@@ -94,32 +94,47 @@ const config = {
             docId: "intro/overview/intro-to-gruntwork",
           },
           {
+            type: "doc",
+            position: "left",
+            label: "Products",
+            docId: "products",
+          },
+          {
             type: "dropdown",
             position: "left",
             label: "Docs",
-            docId: "iac/whats-this/index",
             items: [
               {
                 type: "doc",
                 label: "Infrastructure as Code Library",
-                docId: "iac/whats-this/index"
+                docId: "iac/whats-this/index",
               },
               {
                 type: "doc",
                 label: "Gruntwork Pipelines",
-                docId: "pipelines/index"
+                docId: "pipelines/index",
+              },
+              {
+                type: "doc",
+                label: "Landing Zone",
+                docId: "landing-zone/index",
               },
               {
                 type: "doc",
                 label: "Reference Architecture",
-                docId: "refarch/index"
+                docId: "refarch/index",
               },
               {
                 type: "doc",
                 label: "Patcher",
-                docId: "patcher/index"
+                docId: "patcher/index",
               },
-            ]
+              {
+                type: "doc",
+                label: "Developer Portal",
+                docId: "developer-portal/create-account",
+              },
+            ],
           },
           { to: "/tools", label: "Tools", position: "left" },
           { to: "/courses", label: "Courses", position: "left" },

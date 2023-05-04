@@ -118,7 +118,7 @@ deploy Terraform code from the Service Catalog. See
 
    1. **GitHub Authentication**: All of Gruntwork's code lives in GitHub, and as most of the repos are private, you must
       authenticate to GitHub to be able to access the code. For Terraform, we recommend using Git / SSH URLs and using
-      SSH keys for authentication. See [Link Your GitHub ID](/intro/dev-portal/link-github-id)
+      SSH keys for authentication. See [Link Your GitHub ID](/developer-portal/link-github-id)
       for instructions on linking your GitHub ID and gaining access.
 
 1. **Deploy**. You can now deploy the service as follows:
@@ -258,7 +258,7 @@ Now you can create child `terragrunt.hcl` files to deploy services as follows:
    1. **GitHub Authentication**: All of Gruntwork's code lives in GitHub, and as most of the repos are private, you must
       authenticate to GitHub to be able to access the code. For Terraform, we recommend using Git / SSH URLs and using
       SSH keys for authentication. See [How to get access to the Gruntwork Infrastructure as Code
-      Library](/intro/dev-portal/create-account)
+      Library](/developer-portal/create-account)
       for instructions on setting up your SSH key.
 
 1. **Deploy**. You can now deploy the service as follows:
@@ -321,7 +321,7 @@ Below are instructions on how to build an AMI using these Packer templates. We'l
       ```
 
       See [How to get access to the Gruntwork Infrastructure as Code
-      Library](/intro/dev-portal/create-account)
+      Library](/developer-portal/create-account)
       for instructions on setting up GitHub personal access token.
 
 1. **Set variables**. Each Packer template defines variables you can set in a `variables` block at the top, such as
@@ -398,6 +398,6 @@ most commonly used filters will be:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d9f703f17d3e41684bef2ab8f2fae2a1"
+  "hash": "257e53c5b7b1f2a353d07b4b0b7c98d4"
 }
 ##DOCS-SOURCER-END -->
