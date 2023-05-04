@@ -13,6 +13,8 @@ export type CardProps = {
   appearance?: "float" | "flush" | "invisible"
   padding?: number | string
   className?: string
+  titleClassName?: string,
+  descriptionClassName?: string,
 }
 
 export const Card: React.FunctionComponent<CardProps> = ({
@@ -26,6 +28,8 @@ export const Card: React.FunctionComponent<CardProps> = ({
   appearance = "float",
   padding,
   className,
+  titleClassName,
+  descriptionClassName,
   children,
 }) => {
   const body = (
@@ -50,9 +54,9 @@ export const Card: React.FunctionComponent<CardProps> = ({
         )}
       </div>
       <div>
-        <h3 className={styles.title}>{title}</h3>
+        <h3 className={clsx(styles.title, titleClassName)}>{title}</h3>
         {(children || description) && (
-          <div className={styles.description}>{children || description}</div>
+          <div className={clsx(styles.description, descriptionClassName)}>{children || description}</div>
         )}
         {tags && (
           <ul className={styles.tags}>

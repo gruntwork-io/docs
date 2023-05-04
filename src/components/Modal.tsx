@@ -1,6 +1,17 @@
 import React, { useEffect } from "react"
 import ModalCmp from "react-modal"
 import styles from "./Modal.module.css"
+import clsx from "clsx"
+
+export enum ModalWidth {
+  DEFAULT = "default",
+  LARGE = "large",
+}
+
+export enum ModalHeight {
+  DEFAULT = "default",
+  LARGE = "large",
+}
 
 interface ModalProps {
   showModal: boolean
@@ -10,6 +21,9 @@ interface ModalProps {
   shouldCloseOnOverlayClick?: boolean
   handleCancelRequest: () => void
   handleAcceptRequest?: () => void
+  width?: ModalWidth,
+  height?: ModalHeight,
+  
 }
 
 export const idOfNoticeLink = "notice"
@@ -25,6 +39,8 @@ export const Modal: React.FC<ModalProps> = ({
   shouldCloseOnOverlayClick = true,
   handleCancelRequest,
   handleAcceptRequest,
+  width = ModalWidth.DEFAULT,
+  height = ModalHeight.DEFAULT,
   children,
 }) => {
   const onRequestClose = (e) => {
@@ -82,7 +98,13 @@ export const Modal: React.FC<ModalProps> = ({
       shouldCloseOnEsc={shouldCloseOnEsc}
       shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
       closeTimeoutMS={0}
-      className={styles.mainContainer}
+      className={clsx(
+        styles.mainContainer,
+        width === ModalWidth.LARGE && styles.mainContainerLargeWidth,
+        width === ModalWidth.DEFAULT && styles.mainContainerDefaultWidth,
+        height === ModalHeight.LARGE && styles.mainContainerLargeHeight,
+        height === ModalHeight.DEFAULT && styles.mainContainerDefaultHeight,
+      )}
       overlayClassName={styles.overlay}
     >
       {children}

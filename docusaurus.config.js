@@ -30,6 +30,20 @@ const buildVersion = cfg.has("app.buildVersion")
 
 const plugins = ["plugin-image-zoom"]
 
+// Set up Tailwind
+// @ts-ignore
+plugins.push(async (_context, _options) => {
+  return {
+    name: "docusaurus-tailwindcss",
+    configurePostCss(postcssOptions) {
+      // Appends TailwindCSS and AutoPrefixer.
+      postcssOptions.plugins.push(require("tailwindcss"))
+      postcssOptions.plugins.push(require("autoprefixer"))
+      return postcssOptions
+    },
+  }
+})
+
 if (enablePosthog) {
   plugins.push("posthog-docusaurus")
 }
@@ -76,7 +90,7 @@ const config = {
   plugins: plugins,
 
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    /** @type {import('@docusaurus/theme-classic').Options} */
     ({
       navbar: {
         title: "",
