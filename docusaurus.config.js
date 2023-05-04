@@ -94,13 +94,6 @@ const config = {
             docId: "intro/overview/intro-to-gruntwork",
           },
           {
-            type: "doc",
-            position: "left",
-            label: "Guides",
-            docId: "guides/index",
-            activeBasePath: "docs/guides",
-          },
-          {
             type: "dropdown",
             position: "left",
             label: "Docs",
