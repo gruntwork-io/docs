@@ -101,10 +101,27 @@ const config = {
             activeBasePath: "docs/guides",
           },
           {
-            type: "doc",
+            type: "dropdown",
             position: "left",
-            label: "IaC",
+            label: "Docs",
             docId: "iac/whats-this/index",
+            items: [
+              {
+                type: "doc",
+                label: "Infrastructure as Code Library",
+                docId: "iac/whats-this/index"
+              },
+              {
+                type: "doc",
+                label: "Gruntwork Pipelines",
+                docId: "pipelines/index"
+              },
+              {
+                type: "doc",
+                label: "Reference Architecture",
+                docId: "refarch/index"
+              },
+            ]
           },
           { to: "/tools", label: "Tools", position: "left" },
           { to: "/courses", label: "Courses", position: "left" },
