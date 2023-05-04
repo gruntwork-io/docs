@@ -106,22 +106,6 @@ const config = {
             label: "IaC",
             docId: "iac/whats-this/index",
           },
-          {
-            type: "dropdown",
-            label: "Library Reference",
-            items: [
-              {
-                type: "doc",
-                label: "Modules",
-                docId: "reference/modules/intro",
-              },
-              {
-                type: "doc",
-                label: "Services",
-                docId: "reference/services/intro/overview",
-              },
-            ],
-          },
           { to: "/tools", label: "Tools", position: "left" },
           { to: "/courses", label: "Courses", position: "left" },
           {
