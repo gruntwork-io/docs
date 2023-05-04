@@ -121,6 +121,11 @@ const config = {
                 label: "Reference Architecture",
                 docId: "refarch/index"
               },
+              {
+                type: "doc",
+                label: "Patcher",
+                docId: "patcher/index"
+              },
             ]
           },
           { to: "/tools", label: "Tools", position: "left" },
