@@ -122,7 +122,7 @@ const config = {
               {
                 type: "doc",
                 label: "Reference Architecture",
-                docId: "refarch/index",
+                docId: "refarch/whats-this/index",
               },
               {
                 type: "doc",
