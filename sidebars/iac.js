@@ -7,6 +7,7 @@ const sidebar = [
       {
         label: "What is all this?",
         type: "category",
+        collapsible: false,
         link: {
           type: "doc",
           id: "iac/whats-this/index",
@@ -16,6 +17,7 @@ const sidebar = [
       {
         label: "Getting Started",
         type: "category",
+        collapsible: false,
         link: {
           type: "doc",
           id: "iac/getting-started/index",
@@ -23,11 +25,13 @@ const sidebar = [
         items: [
           "iac/getting-started/setting-up",
           "iac/getting-started/accessing-the-code",
+          "iac/getting-started/deploying-a-module",
         ],
       },
       {
         label: "Usage",
         type: "category",
+        collapsible: false,
         link: {
           type: "doc",
           id: "iac/usage/index",
@@ -42,6 +46,7 @@ const sidebar = [
       {
         label: "Library Reference",
         type: "category",
+        collapsible: false,
         link: {
           type: "doc",
           id: "reference/intro",
