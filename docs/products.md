@@ -24,7 +24,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus gravida quis blandit turpis cursus.</Card>
 <Card
   title="Pipelines"
-  href="/pipelines">
+  href="/pipelines/what-is-it">
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus gravida quis blandit turpis cursus.
 </Card>
 <Card
@@ -57,6 +57,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "6304de216d4d7795552a9ebe60fdd38f"
+  "hash": "789d8f00ba6136384bd2df9186dd959a"
 }
 ##DOCS-SOURCER-END -->
