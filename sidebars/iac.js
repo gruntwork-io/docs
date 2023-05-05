@@ -1,6 +1,6 @@
 const sidebar = [
   {
-    label: "Infrastructre as Code",
+    label: "Infrastructure as Code",
     type: "category",
     collapsible: false,
     items: [
