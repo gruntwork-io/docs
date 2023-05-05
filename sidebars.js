@@ -23,6 +23,9 @@ const apiSidebars = require("./sidebars/api-reference.js")
 const faqSidebars = require("./sidebars/faq.js")
 const iacSiderbars = require("./sidebars/iac.js")
 const developerPortalSidebars = require("./sidebars/developer-portal.js")
+const patcherSiderbars = require("./sidebars/patcher.js")
+const pipelinesSiderbars = require("./sidebars/pipelines.js")
+const landingZoneSidebars = require("./sidebars/landing-zone.js")
 
 // @ts-check
 
@@ -42,6 +45,9 @@ const sidebars = {
   faqSidebars,
   iacSiderbars,
   developerPortalSidebars,
+  patcherSiderbars,
+  pipelinesSiderbars,
+  landingZoneSidebars,
 }
 
 module.exports = sidebars
