@@ -5,31 +5,39 @@ const sidebar = [
     collapsible: false,
     items: [
       {
-        label: "What is all this?",
+        label: "Overview",
         type: "category",
-        link: {
-          type: "doc",
-          id: "refarch/whats-this/index",
-        },
-        items: [],
+        collapsible: false,
+        items: [
+          "refarch/whats-this/index",
+          "refarch/whats-this/what-is-a-reference-architecture",
+          "refarch/whats-this/how-does-the-gruntwork-reference-architecture-differ",
+        ]
       },
       {
-        label: "Bootstrapping your Reference Architecture",
+        label: "Bootstrapping Your Reference Architecture",
         type: "category",
-        link: {
-          type: "doc",
-          id: "refarch/bootstrapping-your-reference-architecture/index",
-        },
-        items: [],
+        collapsible: false,
+        items: [
+          "refarch/bootstrapping/index",
+          "refarch/bootstrapping/configuring-your-refarch-for-delivery/index",
+          "refarch/bootstrapping/configuring-your-refarch-for-delivery/path1",
+          "refarch/bootstrapping/configuring-your-refarch-for-delivery/path2",
+        ],
       },
       {
         label: "Usage",
         type: "category",
-        link: {
-          type: "doc",
-          id: "refarch/usage/index",
-        },
-        items: [],
+        collapsible: false,
+        items: [
+        ],
+      },
+      {
+        label: "Support",
+        type: "category",
+        collapsible: false,
+        items: [
+        ]
       },
     ],
   },
