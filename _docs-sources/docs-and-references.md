@@ -9,18 +9,18 @@ import CenterLayout from "/src/components/CenterLayout"
 
 <CenterLayout>
 
-# Gruntwork Products
+# Docs and References
 
 <CardGroup cols={2}>
 
 <Card
   title="Infrastructure as Code Library"
-  href="/iac/whats-this">
+  href="/iac/infrastructure-as-code">
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus gravida quis blandit turpis cursus.
 </Card>
 <Card
   title="Reference Architecture"
-  href="/refarch">
+  href="/refarch/whats-this">
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus gravida quis blandit turpis cursus.</Card>
 <Card
   title="Pipelines"
@@ -52,11 +52,3 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 </CardGroup>
 
 </CenterLayout>
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "789d8f00ba6136384bd2df9186dd959a"
-}
-##DOCS-SOURCER-END -->
