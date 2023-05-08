@@ -96,45 +96,8 @@ const config = {
           {
             type: "doc",
             position: "left",
-            label: "Products",
-            docId: "products",
-          },
-          {
-            type: "dropdown",
-            position: "left",
-            label: "Docs",
-            items: [
-              {
-                type: "doc",
-                label: "Infrastructure as Code Library",
-                docId: "iac/whats-this/index",
-              },
-              {
-                type: "doc",
-                label: "Gruntwork Pipelines",
-                docId: "pipelines/what-is-it/index",
-              },
-              {
-                type: "doc",
-                label: "Landing Zone",
-                docId: "landing-zone/index",
-              },
-              {
-                type: "doc",
-                label: "Reference Architecture",
-                docId: "refarch/whats-this/index",
-              },
-              {
-                type: "doc",
-                label: "Patcher",
-                docId: "patcher/index",
-              },
-              {
-                type: "doc",
-                label: "Developer Portal",
-                docId: "developer-portal/create-account",
-              },
-            ],
+            label: "Docs and References",
+            docId: "docs-and-references"
           },
           { to: "/tools", label: "Tools", position: "left" },
           { to: "/courses", label: "Courses", position: "left" },

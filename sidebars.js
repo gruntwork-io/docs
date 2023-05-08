@@ -22,6 +22,7 @@ const updateGuideSidebars = require("./sidebars/update-guides.js")
 const apiSidebars = require("./sidebars/api-reference.js")
 const faqSidebars = require("./sidebars/faq.js")
 const iacSidebars = require("./sidebars/iac.js")
+const libraryRefSiderbars = require("./sidebars/library-reference.js")
 const developerPortalSidebars = require("./sidebars/developer-portal.js")
 const patcherSiderbars = require("./sidebars/patcher.js")
 const pipelinesSiderbars = require("./sidebars/pipelines.js")
@@ -49,7 +50,8 @@ const sidebars = {
   patcherSiderbars,
   pipelinesSiderbars,
   landingZoneSidebars,
-  refarchSidebar
+  refarchSidebar,
+  libraryRefSiderbars,
 }
 
 module.exports = sidebars
