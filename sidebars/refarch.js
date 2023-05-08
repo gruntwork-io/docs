@@ -30,6 +30,9 @@ const sidebar = [
         type: "category",
         collapsible: false,
         items: [
+          "refarch/usage/maintain-your-refarch/index",
+          "refarch/usage/getting-help/index",
+          "refarch/usage/pipelines-integration/index",
         ],
       },
       {
