@@ -2,6 +2,26 @@
   "module": "kms-cmk-replica",
   "releases": [
     {
+      "v0.68.1": {
+        "contains_changes": false
+      }
+    },
+    {
+      "v0.68.0": {
+        "contains_changes": false
+      }
+    },
+    {
+      "v0.67.10": {
+        "contains_changes": false
+      }
+    },
+    {
+      "v0.67.9": {
+        "contains_changes": false
+      }
+    },
+    {
       "v0.67.8": {
         "contains_changes": false
       }

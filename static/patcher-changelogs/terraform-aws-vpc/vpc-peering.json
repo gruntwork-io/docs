@@ -2,6 +2,11 @@
   "module": "vpc-peering",
   "releases": [
     {
+      "v0.22.8": {
+        "contains_changes": false
+      }
+    },
+    {
       "v0.22.7": {
         "contains_changes": false
       }

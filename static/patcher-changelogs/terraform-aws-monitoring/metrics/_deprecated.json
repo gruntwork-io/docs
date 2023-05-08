@@ -2,6 +2,11 @@
   "module": "metrics/_deprecated",
   "releases": [
     {
+      "v0.35.9": {
+        "contains_changes": false
+      }
+    },
+    {
       "v0.35.8": {
         "contains_changes": false
       }

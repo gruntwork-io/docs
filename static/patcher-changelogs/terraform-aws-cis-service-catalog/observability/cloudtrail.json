@@ -2,6 +2,26 @@
   "module": "observability/cloudtrail",
   "releases": [
     {
+      "v0.46.0": {
+        "contains_changes": true
+      }
+    },
+    {
+      "v0.45.1": {
+        "contains_changes": false
+      }
+    },
+    {
+      "v0.45.0": {
+        "contains_changes": false
+      }
+    },
+    {
+      "v0.44.3": {
+        "contains_changes": false
+      }
+    },
+    {
       "v0.44.2": {
         "contains_changes": true
       }

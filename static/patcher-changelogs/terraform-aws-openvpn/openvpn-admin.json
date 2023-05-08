@@ -2,6 +2,11 @@
   "module": "openvpn-admin",
   "releases": [
     {
+      "v0.25.0": {
+        "contains_changes": false
+      }
+    },
+    {
       "v0.24.4": {
         "contains_changes": true
       }
