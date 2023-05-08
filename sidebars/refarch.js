@@ -40,6 +40,7 @@ const sidebar = [
         type: "category",
         collapsible: false,
         items: [
+          "refarch/usage/getting-help/index"
         ]
       },
     ],
