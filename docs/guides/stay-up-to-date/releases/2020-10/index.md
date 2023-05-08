@@ -18,7 +18,6 @@ Here are the repos that were updated:
 - [terraform-aws-cis-service-catalog](#terraform-aws-cis-service-catalog)
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-eks](#terraform-aws-eks)
-- [terraform-aws-elk](#terraform-aws-elk)
 - [terraform-aws-lambda](#terraform-aws-lambda)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
@@ -27,7 +26,6 @@ Here are the repos that were updated:
 - [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-service-catalog](#terraform-aws-service-catalog)
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## boilerplate
@@ -477,35 +475,6 @@ All other functionality is preserved. To update to this version, replace usage o
 
 
 
-## terraform-aws-elk
-
-
-### [v0.7.0](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.7.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/20/2020 | Modules affected: install-filebeat, run-filebeat, elasticsearch-cluster-backup | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.7.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
-    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
-- Update `install-filebeat` to _disable_ filebeat from starting on boot. This is so that the `run-filebeat` script can properly configure filebeat—e.g., with auto-discovery settings—_before_ it tries to boot up.
-- Update `run-filebeat` to do auto-discovery (if enabled) before starting filebeat.
-
-
-
-
-
-
-</div>
-
-
-
 ## terraform-aws-lambda
 
 
@@ -876,54 +845,10 @@ This release updates the following modules to the latest releases of their respe
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.7.1](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.7.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/28/2020 | Modules affected: zookeeper-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.7.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- This release adds a new parameter `var.deployment_health_check_max_retries ` to the `zookeeper-cluster` module that allows you to override the maximum number of retries during a rolling upgrade.
-
-
-
-
-
-</div>
-
-
-### [v0.7.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.7.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/16/2020 | Modules affected: (none) | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.7.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
-    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
-
-
-
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "6870feea7aeadd599a8b69392a32ae68"
+  "hash": "59b872f85e3f0e9103ee4c41caecf90d"
 }
 ##DOCS-SOURCER-END -->

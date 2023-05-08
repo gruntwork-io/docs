@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.26.0" lastModifiedVersion="0.26.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.27.0" lastModifiedVersion="0.27.0"/>
 
 # Aurora Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.26.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Relational Database Service (RDS) cluster that can run [Amazon Aurora](https://aws.amazon.com/rds/aurora/), Amazon’s cloud-native relational database. The cluster is managed by AWS and automatically handles standby failover, read replicas, backups, patching, and encryption.
 
@@ -43,9 +43,9 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What is Amazon RDS?](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/aurora/core-concepts.md#what-is-amazon-rds)
+*   [What is Amazon RDS?](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/aurora/core-concepts.md#what-is-amazon-rds)
 
-*   [Common gotchas with RDS](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/aurora/core-concepts.md#common-gotchas)
+*   [Common gotchas with RDS](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/aurora/core-concepts.md#common-gotchas)
 
 *   [RDS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html): Amazon’s docs for RDS that cover core concepts such as the types of databases supported, security, backup & restore, and monitoring.
 
@@ -57,7 +57,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -69,13 +69,13 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Day-to-day operations
 
-*   [How to connect to an Aurora instance](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/aurora/core-concepts.md#how-do-you-connect-to-the-database)
+*   [How to connect to an Aurora instance](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/aurora/core-concepts.md#how-do-you-connect-to-the-database)
 
 *   [How to authenticate to RDS with IAM](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAM.html)
 
-*   [How to scale Aurora](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/aurora/core-concepts.md#how-do-you-scale-this-database)
+*   [How to scale Aurora](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/aurora/core-concepts.md#how-do-you-scale-this-database)
 
-*   [How to backup Aurora snapshots to a separate AWS account](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/lambda-create-snapshot#how-do-you-backup-your-rds-snapshots-to-a-separate-aws-account)
+*   [How to backup Aurora snapshots to a separate AWS account](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/lambda-create-snapshot#how-do-you-backup-your-rds-snapshots-to-a-separate-aws-account)
 
 ### Major changes
 
@@ -98,7 +98,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.26.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.27.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -235,14 +235,6 @@ module "aurora" {
   # be deleted when this value is set to true.
   deletion_protection = false
 
-  # Create a dependency between the resources in this module to the interpolated
-  # values in this list (and thus the source resources). In other words, the
-  # resources in this module will now depend on the resources backing the values in
-  # this list such that those resources need to be created before the resources in
-  # this module, and the resources in this module need to be destroyed before the
-  # resources in the list.
-  dependencies = []
-
   # If true, enables the HTTP endpoint used for Data API. Only valid when
   # engine_mode is set to serverless.
   enable_http_endpoint = null
@@ -323,6 +315,11 @@ module "aurora" {
 
   # The ARN for the KMS key to encrypt Performance Insights data.
   performance_insights_kms_key_id = null
+
+  # The amount of time in days to retain Performance Insights data. Either 7 (7
+  # days) or 731 (2 years). When specifying performance_insights_retention_period,
+  # performance_insights_enabled needs to be set to true. Defaults to `7`.
+  performance_insights_retention_period = null
 
   # The port the DB will listen on (e.g. 3306)
   port = 3306
@@ -432,7 +429,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.26.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.27.0"
 }
 
 inputs = {
@@ -572,14 +569,6 @@ inputs = {
   # be deleted when this value is set to true.
   deletion_protection = false
 
-  # Create a dependency between the resources in this module to the interpolated
-  # values in this list (and thus the source resources). In other words, the
-  # resources in this module will now depend on the resources backing the values in
-  # this list such that those resources need to be created before the resources in
-  # this module, and the resources in this module need to be destroyed before the
-  # resources in the list.
-  dependencies = []
-
   # If true, enables the HTTP endpoint used for Data API. Only valid when
   # engine_mode is set to serverless.
   enable_http_endpoint = null
@@ -660,6 +649,11 @@ inputs = {
 
   # The ARN for the KMS key to encrypt Performance Insights data.
   performance_insights_kms_key_id = null
+
+  # The amount of time in days to retain Performance Insights data. Either 7 (7
+  # days) or 731 (2 years). When specifying performance_insights_retention_period,
+  # performance_insights_enabled needs to be set to true. Defaults to `7`.
+  performance_insights_retention_period = null
 
   # The port the DB will listen on (e.g. 3306)
   port = 3306
@@ -1039,15 +1033,6 @@ If the DB instance should have deletion protection enabled. The database can't b
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="dependencies" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Create a dependency between the resources in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
 <HclListItem name="enable_http_endpoint" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1187,6 +1172,15 @@ Specifies whether Performance Insights is enabled or not. On Aurora MySQL, Perfo
 <HclListItemDescription>
 
 The ARN for the KMS key to encrypt Performance Insights data.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="performance_insights_retention_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of time in days to retain Performance Insights data. Either 7 (7 days) or 731 (2 years). When specifying performance_insights_retention_period, performance_insights_enabled needs to be set to true. Defaults to `7`.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1415,11 +1409,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/aurora/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/aurora/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8694b5f9a368ce34e79d1bef3b849cc4"
+  "hash": "166d9add668a0d4879c930bff541de57"
 }
 ##DOCS-SOURCER-END -->

@@ -16,7 +16,6 @@ Here are the repos that were updated:
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
-- [terraform-aws-elk](#terraform-aws-elk)
 - [terraform-aws-lambda](#terraform-aws-lambda)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-messaging](#terraform-aws-messaging)
@@ -27,7 +26,6 @@ Here are the repos that were updated:
 - [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-utilities](#terraform-aws-utilities)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 - [terraform-kubernetes-helm](#terraform-kubernetes-helm)
 
 
@@ -279,47 +277,6 @@ This release introduces the ability to extend the AWS principals that can assume
 - Documentation updates and fixes.
 
 
-
-</div>
-
-
-
-## terraform-aws-elk
-
-
-### [v0.3.1](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.3.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/21/2019 | Modules affected: install-logstash, install-filebeat, install-collectd, auto-discovery | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.3.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-This release fixes a bug in the install scripts where for some base AMIs, the install script could hang on a user prompt that will never be answered in the context of the automation script during `apt-get upgrade`.
-
-
-
-</div>
-
-
-### [v0.3.0](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.3.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/19/2019 | Modules affected: elasticsearch-cluster-backup | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.3.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-* `elasticsearch-cluster-backup` [**BACKWARDS INCOMPATIBLE**]
-
-
-This release fixes a bug where AWS region of the s3 bucket was hardcoded to `us-east-1` in the `elasticsearch-cluster-backup` module. With this change, the `elasticsearch-cluster-backup` module now takes in a new required input variable `region`.
-
-
-* https://github.com/gruntwork-io/package-elk/pull/83
 
 </div>
 
@@ -863,37 +820,6 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.6.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/18/2019 | Modules affected: zookeeper-cluster, exhibitor-shared-config, zookeeper-iam-permissions, zookeeper-security-group-rules | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-* `zookeeper-cluster` [**BACKWARDS INCOMPATIBLE**]
-*  `exhibitor-shared-config` [**BACKWARDS INCOMPATIBLE**]
-* `zookeeper-iam-permissions` [**BACKWARDS INCOMPATIBLE**]
-* `zookeeper-security-group-rules` [**BACKWARDS INCOMPATIBLE**]
-
-
-**All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
-
-All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
-
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
-
-
-* https://github.com/gruntwork-io/package-zookeeper/pull/45
-
-</div>
-
-
-
 ## terraform-kubernetes-helm
 
 
@@ -926,6 +852,6 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "32778004facafcb944ab1e3d80c772ea"
+  "hash": "64cdbd10f8ec7271f86abe5524c1e239"
 }
 ##DOCS-SOURCER-END -->

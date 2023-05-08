@@ -25,7 +25,6 @@ Here are the repos that were updated:
 - [terraform-aws-service-catalog](#terraform-aws-service-catalog)
 - [terraform-aws-utilities](#terraform-aws-utilities)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## aws-sample-app
@@ -895,31 +894,10 @@ Fixes a bug in the `ecs-cluster` module to allow SSH from CIDR blocks to work co
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.8.1](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.8.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/15/2021 | Modules affected: zookeeper-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.8.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- You can now specify the CloudWatch metrics to enable for `zookeeper-cluster` using the new `enabled_metrics` input variable.
-
-
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "0b0199fc7090073fe4850f30768bd8df"
+  "hash": "a82dd2d4bb14489d6aca7682eddb452d"
 }
 ##DOCS-SOURCER-END -->

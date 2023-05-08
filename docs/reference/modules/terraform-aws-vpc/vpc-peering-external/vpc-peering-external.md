@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.22.7" lastModifiedVersion="0.22.0"/>
+<VersionBadge repoTitle="VPC Modules" version="0.23.0" lastModifiedVersion="0.22.0"/>
 
 # VPC Peering For External VPCs Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.22.7/modules/vpc-peering-external" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/vpc-peering-external" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -87,7 +87,7 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 
 module "vpc_peering_external" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-external?ref=v0.22.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-external?ref=v0.23.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -198,7 +198,7 @@ module "vpc_peering_external" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-external?ref=v0.22.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-external?ref=v0.23.0"
 }
 
 inputs = {
@@ -309,11 +309,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.22.7/modules/vpc-peering-external/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.22.7/modules/vpc-peering-external/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.22.7/modules/vpc-peering-external/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/vpc-peering-external/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/vpc-peering-external/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/vpc-peering-external/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "237edfa61ec29b445608c62458877b16"
+  "hash": "03209c5d9f879e8698d161956bfb6636"
 }
 ##DOCS-SOURCER-END -->

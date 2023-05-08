@@ -17,8 +17,6 @@ Here are the repos that were updated:
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
-- [terraform-aws-elk](#terraform-aws-elk)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-mongodb](#terraform-aws-mongodb)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
 - [terraform-aws-openvpn](#terraform-aws-openvpn)
@@ -26,7 +24,6 @@ Here are the repos that were updated:
 - [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 - [terraform-kubernetes-helm](#terraform-kubernetes-helm)
 
 
@@ -234,64 +231,6 @@ All the module variables have been updated to use concrete types based on the ne
 Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
-
-</div>
-
-
-
-## terraform-aws-elk
-
-
-### [v0.4.0](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.4.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/2/2019 | Modules affected: logstash-security-group-rules, logstash-iam-policies, logstash-cluster, load-balancer-alb-target-group | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.4.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-**All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
-
-All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
-
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `vars.tf` file to double check if the 0 value has been converted to a `null`.
-
-
-
-</div>
-
-
-
-## terraform-aws-kafka
-
-
-### [v0.6.0](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.6.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/6/2019 | Modules affected: kafka-security-group-rules, confluent-tools-cluster, kafka-cluster, kafka-iam-permissions | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.6.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-* `kafka-security-group-rules` [**BACKWARDS INCOMPATIBLE**]
-* `confluent-tools-cluster` [**BACKWARDS INCOMPATIBLE**]
-* `kafka-cluster` [**BACKWARDS INCOMPATIBLE**]
-* `kafka-iam-permissions` [**BACKWARDS INCOMPATIBLE**]
-* `confluent-tools-security-group-rules` [**BACKWARDS INCOMPATIBLE**]
-* `confluent-tools-iam-permissions` [**BACKWARDS INCOMPATIBLE**]
-
-
-**All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
-
-All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
-
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `vars.tf` file to double check if the 0 value has been converted to a `null`.
-
-
-* https://github.com/gruntwork-io/package-kafka/pull/59
 
 </div>
 
@@ -542,44 +481,6 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.6.2](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.2)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/12/2019 | Modules affected: zookeeper-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.2">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- Resolves an IAM timing fix in the `zookeeper-cluster` module that can happen occasionally.
-
-
-
-</div>
-
-
-### [v0.6.1](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/10/2019 | Modules affected: **No changes to underlying modules.** | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-Starting this release, all the modules are tested and verified to work with Ubuntu 18.04.
-
-
-
-</div>
-
-
-
 ## terraform-kubernetes-helm
 
 
@@ -606,6 +507,6 @@ Starting this release, all the modules are tested and verified to work with Ubun
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e8a622ecc024f396e52fcdcfc03e5925"
+  "hash": "492c74d1af1223260d0fa73a8e9e92dc"
 }
 ##DOCS-SOURCER-END -->

@@ -17,7 +17,6 @@ Here are the repos that were updated:
 - [terraform-aws-cis-service-catalog](#terraform-aws-cis-service-catalog)
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-eks](#terraform-aws-eks)
-- [terraform-aws-elk](#terraform-aws-elk)
 - [terraform-aws-lambda](#terraform-aws-lambda)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
 - [terraform-aws-openvpn](#terraform-aws-openvpn)
@@ -211,19 +210,6 @@ Most users will not be affected by the change to `configure-environment-for-grun
 </div>
 
 
-### [v0.0.1-alpha1](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.0.1-alpha1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/14/2022 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.0.1-alpha1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Test release. Do not use.
-
-</div>
-
-
 ### [v0.40.1](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.40.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -390,29 +376,6 @@ Note that this change is functionally backward compatible, but due to complexiti
   
 
 - Fixed bug where using name prefix breaks the iam role name output on `eks-cluster-workers` module.
-
-
-
-
-</div>
-
-
-
-## terraform-aws-elk
-
-
-### [v0.11.1](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.11.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/12/2022 | Modules affected: elasticsearch-cluster-backup, elasticsearch-cluster-restore, install-elasticsearch, install-filebeat | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.11.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- Updated the default Elasticsearch version to latest patch that includes patch for log4j vulnerability
-
 
 
 
@@ -1032,6 +995,6 @@ route_table_deletion_timeout
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "be0b72d65e49a2b027c8ed65afa16089"
+  "hash": "1480b3d1e4c7a995dc7db97454f393a5"
 }
 ##DOCS-SOURCER-END -->

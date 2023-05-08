@@ -15,13 +15,10 @@ Here are the repos that were updated:
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
-- [terraform-aws-elk](#terraform-aws-elk)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-lambda](#terraform-aws-lambda)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
 - [terraform-aws-openvpn](#terraform-aws-openvpn)
 - [terraform-aws-security](#terraform-aws-security)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## gruntwork
@@ -200,76 +197,6 @@ This is a backwards incompatible change for the `ecs-service-with-discovery` mod
 
 
 
-## terraform-aws-elk
-
-
-### [v0.2.7](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.7)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/1/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.7">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-Also renamed vars.tf -&gt; variables.tf
-
-</div>
-
-
-### [v0.2.6](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.6)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/1/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.6">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  - #58 This release addresses issue: #57. `kibana-cluster` will now create egress rules for the security group that it creates.
-- Stabilized the ELK tests.
-- Added better documentation/clarified examples with our AMI and example code READMEs
-
-</div>
-
-
-
-## terraform-aws-kafka
-
-
-### [v0.4.2](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.4.2)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/18/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.4.2">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-kafka/pull/38:
-
-The `run-kafka` script now exposes new parameters to configure a number of security settings:
-
-* Configure which SSL protocols and ciphers are supported with `--ssl-protocols`, `--ssl-client-auth`, `--ssl-cipher-suites`, and `--ssl-secure-random-implementation`.
-* Enable SASL authentication using `--enable-sasl`, `--sasl-mechanisms`, `--sasl-inter-broker-protocol`, and `--sasl-jaas-config-path`.
-* Enable ACLs using `--enable-acl`, `--acl-authorizer-class-name`, and `--acl-allow-everyone-if-no-acl-found`.
-
-https://github.com/gruntwork-io/package-kafka/pull/41:
-
-The Kafka Connect, Schema Registry, and REST Proxy modules now all allow you to configure a key store to use for validating SSL connections:
-
-* The `xxx-install.sh` script for each module now supports `--kafka-key-store-dir-src` and `--kafka-key-store-dir-dst` params to install the key stores.
-* The `xxx-run.sh` script for each module now supports `--kafka-client-key-store-path` and `--kafka-client-key-store-password` to configure the service to use a key store.
-
-https://github.com/gruntwork-io/package-kafka/pull/42: 
-
-The `run-kafka` script now allows you to configure the ZooKeeper chroot and enable JMX:
-
-* Configure ZooKeeper chroot using `--zookeeper-chroot`.
-* Enable JMX using `--enable-jmx`, `--jmx-port`, and `--jmx-opts`.
-
-</div>
-
-
-
 ## terraform-aws-lambda
 
 
@@ -396,27 +323,10 @@ A special thanks to @jeckhart for contributing all of these PRs!
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.4.8](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.8)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/18/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.8">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-zookeeper/pull/31, https://github.com/gruntwork-io/package-zookeeper/pull/32: Update to `module-asg` version `v0.6.18` so that the rolling deploy script works with either Python 2 or 3. Upgrade Oracle JDK installer to version `8u192-b12`. 
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "cf9de13c26ce9312f8f44a3702ed7ae6"
+  "hash": "98afa5402efefad242a4b32e7eca49f5"
 }
 ##DOCS-SOURCER-END -->

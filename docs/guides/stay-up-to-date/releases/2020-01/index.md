@@ -20,8 +20,6 @@ Here are the repos that were updated:
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
-- [terraform-aws-elk](#terraform-aws-elk)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
 - [terraform-aws-openvpn](#terraform-aws-openvpn)
@@ -30,7 +28,6 @@ Here are the repos that were updated:
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
 - [terraform-aws-utilities](#terraform-aws-utilities)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## infrastructure-live-acme
@@ -588,49 +585,6 @@ This release introduces a new module `eks-cluster-managed-workers`, which provis
 
 
 
-## terraform-aws-elk
-
-
-### [v0.5.1](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.5.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/24/2020 | Modules affected: elasticsearch-cluster-restore, elasticsearch-cluster-backup | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.5.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-The default lambda engine for the `elasticsearch-cluster-restore` and `elasticsearch-cluster-backup` modules have been updated to `nodejs10.x`.
-
-
-
-</div>
-
-
-
-## terraform-aws-kafka
-
-
-### [v0.6.2](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.6.2)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/27/2020 | Modules affected: **No | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.6.2">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-* **No changes to underlying modules.**
-
-
-Bump package-zookeeper version to fix tests and fix broken links
-
-
-</div>
-
-
-
 ## terraform-aws-load-balancer
 
 
@@ -970,32 +924,10 @@ Now `vpc-app` and `vpc-mgmt` will create a single VPC endpoint for all tiers. Pr
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.6.7](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.7)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/27/2020 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.7">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- Fix broken link
-- Update CODEOWNERS
-
-
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "3e2e79f16f795251585d7d3e8ec72a18"
+  "hash": "91856cb0a674fab348c3a0e0c7a6924f"
 }
 ##DOCS-SOURCER-END -->

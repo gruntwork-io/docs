@@ -16,14 +16,12 @@ Here are the repos that were updated:
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-lambda](#terraform-aws-lambda)
 - [terraform-aws-messaging](#terraform-aws-messaging)
 - [terraform-aws-mongodb](#terraform-aws-mongodb)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
 - [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-server](#terraform-aws-server)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## package-k8s
@@ -442,30 +440,6 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
 
 
 
-## terraform-aws-kafka
-
-
-### [v0.4.3](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.4.3)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/10/2018 | Modules affected: install-kafka | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.4.3">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-- `install-kafka` 
-
-
-- The default version installed by the `install-kafka` module script is now `1.0.2`, as `1.0.0` is no longer distributed.
-
-
-- https://github.com/gruntwork-io/package-kafka/pull/44
-
-</div>
-
-
-
 ## terraform-aws-lambda
 
 
@@ -701,36 +675,10 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.4.10](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.10)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/20/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.10">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-   ### Modules affected
-
-* `zookeeper-cluster`
-
-
-* Update `zookeeper-cluster` to use `module-asg` `v0.6.21` to address potential issues when destroying resources.
-* Refactor tests to work with `terratest` `v0.13.18`.
-
-
-* https://github.com/gruntwork-io/package-zookeeper/pull/36
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "75a6878b62a9d40866921da46353c162"
+  "hash": "9a9df05e92b6eb5c8532a64616fc98d5"
 }
 ##DOCS-SOURCER-END -->

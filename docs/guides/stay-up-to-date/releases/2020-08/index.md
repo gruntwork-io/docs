@@ -21,7 +21,6 @@ Here are the repos that were updated:
 - [terraform-aws-cis-service-catalog](#terraform-aws-cis-service-catalog)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-openvpn](#terraform-aws-openvpn)
 - [terraform-aws-security](#terraform-aws-security)
@@ -513,29 +512,6 @@ Fix bug where the control plane upgrade scripts fail on python3.
 
 
 
-## terraform-aws-kafka
-
-
-### [v0.6.3](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.6.3)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/11/2020 | Modules affected: generate-key-stores | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.6.3">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-* `generate-key-stores`
-
-
-You can now install `generate-key-stores` using `gruntwork-install`.
-
-https://github.com/gruntwork-io/package-kafka/pull/65
-
-</div>
-
-
-
 ## terraform-aws-load-balancer
 
 
@@ -955,6 +931,6 @@ This release introduces two changes:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "3cbc0c600a4e5e7a759d3b293afc4e97"
+  "hash": "1d9a81e7d49a1c68e9593a054d9ce38c"
 }
 ##DOCS-SOURCER-END -->

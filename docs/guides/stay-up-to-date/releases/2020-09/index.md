@@ -16,7 +16,6 @@ Here are the repos that were updated:
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
-- [terraform-aws-elk](#terraform-aws-elk)
 - [terraform-aws-lambda](#terraform-aws-lambda)
 - [terraform-aws-messaging](#terraform-aws-messaging)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
@@ -27,7 +26,6 @@ Here are the repos that were updated:
 - [terraform-aws-service-catalog](#terraform-aws-service-catalog)
 - [terraform-aws-utilities](#terraform-aws-utilities)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## terraform-aws-asg
@@ -480,29 +478,6 @@ The `eks-cluster-wokers` module can now be configured to take in the external de
   
 
 Starting this release we will no longer use `kubergrunt` to get the OIDC provider thumbprint, and instead rely on terraform native functionality.
-
-
-
-</div>
-
-
-
-## terraform-aws-elk
-
-
-### [v0.6.0](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.6.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/8/2020 | Modules affected: elastalert, kibana-cluster, load-balancer-alb-target-group, elasticsearch-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.6.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- Updated default Elasticsearch version to `6.8.12`
-- Compatibility with AWS provider 3.x
-- Updated miscellaneous underlying module versions
 
 
 
@@ -1482,48 +1457,10 @@ This is a minor update that fixes a perpetual diff in the `vpc-flow-logs` module
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.6.9](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.9)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/4/2020 | Modules affected: exhibitor-shared-config, zookeeper-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.9">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- You can now enable server-side encryption on the S3 bucket used by Exhibitor by setting `shared_config_s3_bucket_encryption` input variable to `true` and optionally providing a custom KMS CMK to use via the `shared_config_s3_bucket_kms_key_arn` input variable.
-
-
-
-</div>
-
-
-### [v0.6.8](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.8)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/4/2020 | Modules affected: zookeeper-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.8">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- You can now enable encryption for the root block device in `zookeeper-cluster` using the new `root_block_device_encrypted` input variable.
-
-
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "1645f4c6570831c580d6b2f105f9a8dc"
+  "hash": "53867dd0728996287d406d2a23c765b9"
 }
 ##DOCS-SOURCER-END -->

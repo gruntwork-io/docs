@@ -17,7 +17,6 @@ Here are the repos that were updated:
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
 - [terraform-aws-sam](#terraform-aws-sam)
@@ -25,7 +24,6 @@ Here are the repos that were updated:
 - [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-utilities](#terraform-aws-utilities)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 - [terraform-kubernetes-helm](#terraform-kubernetes-helm)
 
 
@@ -347,72 +345,6 @@ terraform state mv module.&lt;your-module-name&gt;.aws_elasticache_replication_g
 
 
 This is a compatible release of `terraform-aws-eks` with [`package-k8s` v0.1.4](https://github.com/gruntwork-io/package-k8s/releases/tag/v0.1.4).
-
-</div>
-
-
-
-## terraform-aws-kafka
-
-
-### [v0.5.0](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.5.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/23/2019 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.5.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-   ### Modules affected
-
-* `confluent-tools-cluster`
-* `confluent-tools-security-group-rules`
-* `kafka-cluster`
-* `kafka-security-group-rules`
-
-
-*  Upgrade ZooKeeper dependency to v0.5.0 with improved health checking
-*  Add support for num_xxx variables for Security Groups
-*  Update examples and tests to reflect the changes
-
-
-You can find examples of how to do this upgrade in [this commit](https://github.com/gruntwork-io/infrastructure-modules-acme/commit/c06c70c0cfbae967723438b2cd8a390179b736d3) and [this commit](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/commit/b37ef00e8e36deba3990455d08b618abb1f00d8b).
- 
-*  Add `num_*` variables for security-group rules to avoid `terraform` issues with `length` -function in all affected modules.
-
-
-* https://github.com/gruntwork-io/package-kafka/pull/45
-* https://github.com/gruntwork-io/package-kafka/issues/40
-* https://github.com/gruntwork-io/package-zookeeper/releases/tag/v0.5.0
-
-
-
-</div>
-
-
-### [v0.4.4](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.4.4)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/9/2019 | Modules affected: server-group, kafka-cluster, run-kafka, confluent-tools-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.4.4">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-* `server-group`
-* `kafka-cluster`
-* `run-kafka`
-* `confluent-tools-cluster`
-
-* `test`
-
-
-* This release includes big improvements in testing. Tests are upgraded to `terratest v0.13.20` and tests are now test executed using 3 different Linux distributions: `Ubuntu`, `AmazonLinux` and `CentOS`. 
-* Also, a number of module dependencies were updated to more recent versions.
-
-
-* #43 
-
 
 </div>
 
@@ -775,83 +707,6 @@ This release introduces modules that support running python PEX files in Terrafo
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.5.2](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.2)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/29/2019 | Modules affected: zookeeper-cluster, zookeeper-security-group-rules | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.2">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-* `zookeeper-cluster`
-* `zookeeper-security-group-rules`
-
-
-* Fix a misconfiguration of the `count` parameter for Security Group rules on inbound CIDR blocks that would lead to errors with duplicate Security Group rules being created.
-
-
-* https://github.com/gruntwork-io/package-zookeeper/pull/39
-
-</div>
-
-
-### [v0.5.1](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/29/2019 | Modules affected: run-health-checker | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-* `run-health-checker`
-
-
-* The `run-health-checker` module will now properly pass healthchecks for single-node ZooKeeper clusters running in &quot;standalone&quot; mode (e.g., in pre-prod environments).
-
-
-* https://github.com/gruntwork-io/package-zookeeper/pull/38
-
-</div>
-
-
-### [v0.5.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/17/2019 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-   ### Modules affected
-
-* `run-health-checker` (new)
-* `zookeeper-cluster`
-* `install-oracle-jdk`
-* `zookeeper-security-group-rules`
-
-
-*  Improved ZooKeeper health checking by not only monitoring availability of the ZK client port, but actually checking the cluster status of the node with a `stat` command using a custom `health-checker` script target. 
-*  Upgrade Oracle JDK installer to `8u202`.
-
-
-You can find examples of how to do this upgrade in [this commit](https://github.com/gruntwork-io/infrastructure-modules-acme/commit/ef86d71dfb2336b743289a60a0ff9bcc8c529136) and [this commit](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/commit/cf2cef34327ebb5ae41af8e3be65103078479fe1).
-
-*  Configuration options for health checker - inbound rules, port in `zookeeper-security-group-rules` and `zookeeper-cluster`. 
-*  Add `num_*` variables for security-group rules to avoid `terraform` issues with `length` -function in `zookeeper-security-group-rules` and `zookeeper-cluster`.
-
-
-* https://github.com/gruntwork-io/package-zookeeper/pull/37
-* https://github.com/gruntwork-io/health-checker/releases/tag/v0.0.3
-
-</div>
-
-
-
 ## terraform-kubernetes-helm
 
 
@@ -903,6 +758,6 @@ This is a backwards incompatible change. Specifically, the modules no longer nee
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "d2ddc44546d039c7caefd791a9c0e757"
+  "hash": "a6aada3a4f37cc1b464bff9dfe91817e"
 }
 ##DOCS-SOURCER-END -->

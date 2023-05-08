@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.11" lastModifiedVersion="0.95.1"/>
+<VersionBadge version="0.104.1" lastModifiedVersion="0.95.1"/>
 
 # Amazon Elasticsearch Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/data-stores/elasticsearch" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.1/modules/data-stores/elasticsearch" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Felasticsearch" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -63,7 +63,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -76,7 +76,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -92,11 +92,16 @@ If you want to deploy this repo in production, check out the following resources
 
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ELASTICSEARCH MODULE
+#
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE"
+# When using values other than defaults for these variables; set through environment variables or
+# another secure method.
+#
 # ------------------------------------------------------------------------------------------------------
 
 module "elasticsearch" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/elasticsearch?ref=v0.102.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/elasticsearch?ref=v0.104.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -397,7 +402,7 @@ module "elasticsearch" {
   # Master account user password. Only used if advanced_security_options and
   # internal_user_database_enabled are set to true. WARNING: this password will be
   # stored in Terraform state.
-  master_user_password = null
+  master_user_password = null # SENSITIVE
 
   # Whether to monitor KMS key statistics
   monitor_kms_key = false
@@ -448,10 +453,15 @@ module "elasticsearch" {
 
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ELASTICSEARCH MODULE
+#
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE"
+# When using values other than defaults for these variables; set through environment variables or
+# another secure method.
+#
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/elasticsearch?ref=v0.102.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/elasticsearch?ref=v0.104.1"
 }
 
 inputs = {
@@ -755,7 +765,7 @@ inputs = {
   # Master account user password. Only used if advanced_security_options and
   # internal_user_database_enabled are set to true. WARNING: this password will be
   # stored in Terraform state.
-  master_user_password = null
+  master_user_password = null # SENSITIVE
 
   # Whether to monitor KMS key statistics
   monitor_kms_key = false
@@ -1523,11 +1533,11 @@ Domain-specific endpoint for Kibana without https scheme.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/data-stores/elasticsearch/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/data-stores/elasticsearch/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/data-stores/elasticsearch/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.1/modules/data-stores/elasticsearch/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.1/modules/data-stores/elasticsearch/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.1/modules/data-stores/elasticsearch/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "733b0ddcb2131495bad83260c5528c81"
+  "hash": "ff93e25b3f16032c6eb115c9dbdf5efb"
 }
 ##DOCS-SOURCER-END -->
