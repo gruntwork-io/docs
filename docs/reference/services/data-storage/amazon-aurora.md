@@ -43,6 +43,7 @@ by AWS and automatically handles standby failover, read replicas, backups, patch
 *   Automatic scaling of storage
 *   Scale to 0 with Aurora Serverless
 *   Integrate with Kubernetes Service Discovery
+*   Support Aurora Serverless v2
 
 ## Learn
 
@@ -161,6 +162,13 @@ module "aurora" {
   # metric in var.create_snapshot_cloudwatch_metric_namespace isn't updated within
   # this time period, as that indicates the backup failed to run.
   backup_job_alarm_period = 3600
+
+  # Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA
+  # state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  backup_job_alarm_treat_missing_data = "missing"
 
   # How many days to keep backup snapshots around before cleaning them up. Max: 35
   backup_retention_period = 30
@@ -285,6 +293,12 @@ module "aurora" {
   # threshold.
   high_cpu_utilization_threshold = 90
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_cpu_utilization_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the read latency.
   high_read_latency_period = 60
 
@@ -292,12 +306,24 @@ module "aurora" {
   # per disk I/O operation), in seconds, is above this threshold.
   high_read_latency_threshold = 5
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_read_latency_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the write latency.
   high_write_latency_period = 60
 
   # Trigger an alarm if the DB instance write latency (average amount of time taken
   # per disk I/O operation), in seconds, is above this threshold.
   high_write_latency_threshold = 5
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_write_latency_treat_missing_data = "missing"
 
   # The ID of the hosted zone in which to write DNS records
   hosted_zone_id = null
@@ -326,12 +352,24 @@ module "aurora" {
   # below this threshold.
   low_disk_space_available_threshold = 1000000000
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  low_disk_space_available_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the available free memory.
   low_memory_available_period = 60
 
   # Trigger an alarm if the amount of free memory, in Bytes, on the DB instance
   # drops below this threshold.
   low_memory_available_threshold = 100000000
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  low_memory_available_treat_missing_data = "missing"
 
   # The value to use for the master password of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
@@ -360,6 +398,11 @@ module "aurora" {
   # The daily time range during which automated backups are created (e.g.
   # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs.
   preferred_backup_window = "06:00-07:00"
+
+  # The weekly day and time range during which cluster maintenance can occur (e.g.
+  # wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may
+  # even be a downtime during maintenance windows.
+  preferred_maintenance_window = "sun:07:00-sun:08:00"
 
   # The domain name to create a route 53 record for the primary endpoint of the RDS
   # database.
@@ -400,10 +443,14 @@ module "aurora" {
   # Only used when var.engine_mode is set to serverless.
   scaling_configuration_max_capacity = 256
 
+  scaling_configuration_max_capacity_V2 = null
+
   # The minimum capacity. The minimum capacity must be lesser than or equal to the
   # maximum capacity. Valid capacity values are 2, 4, 8, 16, 32, 64, 128, and 256.
   # Only used when var.engine_mode is set to serverless.
   scaling_configuration_min_capacity = 2
+
+  scaling_configuration_min_capacity_V2 = null
 
   # The time, in seconds, before an Aurora DB cluster in serverless mode is paused.
   # Valid values are 300 through 86400. Only used when var.engine_mode is set to
@@ -533,6 +580,13 @@ inputs = {
   # this time period, as that indicates the backup failed to run.
   backup_job_alarm_period = 3600
 
+  # Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA
+  # state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  backup_job_alarm_treat_missing_data = "missing"
+
   # How many days to keep backup snapshots around before cleaning them up. Max: 35
   backup_retention_period = 30
 
@@ -656,6 +710,12 @@ inputs = {
   # threshold.
   high_cpu_utilization_threshold = 90
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_cpu_utilization_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the read latency.
   high_read_latency_period = 60
 
@@ -663,12 +723,24 @@ inputs = {
   # per disk I/O operation), in seconds, is above this threshold.
   high_read_latency_threshold = 5
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_read_latency_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the write latency.
   high_write_latency_period = 60
 
   # Trigger an alarm if the DB instance write latency (average amount of time taken
   # per disk I/O operation), in seconds, is above this threshold.
   high_write_latency_threshold = 5
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_write_latency_treat_missing_data = "missing"
 
   # The ID of the hosted zone in which to write DNS records
   hosted_zone_id = null
@@ -697,12 +769,24 @@ inputs = {
   # below this threshold.
   low_disk_space_available_threshold = 1000000000
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  low_disk_space_available_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the available free memory.
   low_memory_available_period = 60
 
   # Trigger an alarm if the amount of free memory, in Bytes, on the DB instance
   # drops below this threshold.
   low_memory_available_threshold = 100000000
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  low_memory_available_treat_missing_data = "missing"
 
   # The value to use for the master password of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
@@ -731,6 +815,11 @@ inputs = {
   # The daily time range during which automated backups are created (e.g.
   # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs.
   preferred_backup_window = "06:00-07:00"
+
+  # The weekly day and time range during which cluster maintenance can occur (e.g.
+  # wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may
+  # even be a downtime during maintenance windows.
+  preferred_maintenance_window = "sun:07:00-sun:08:00"
 
   # The domain name to create a route 53 record for the primary endpoint of the RDS
   # database.
@@ -771,10 +860,14 @@ inputs = {
   # Only used when var.engine_mode is set to serverless.
   scaling_configuration_max_capacity = 256
 
+  scaling_configuration_max_capacity_V2 = null
+
   # The minimum capacity. The minimum capacity must be lesser than or equal to the
   # maximum capacity. Valid capacity values are 2, 4, 8, 16, 32, 64, 128, and 256.
   # Only used when var.engine_mode is set to serverless.
   scaling_configuration_min_capacity = 2
+
+  scaling_configuration_min_capacity_V2 = null
 
   # The time, in seconds, before an Aurora DB cluster in serverless mode is paused.
   # Valid values are 300 through 86400. Only used when var.engine_mode is set to
@@ -937,6 +1030,15 @@ How often, in seconds, the backup job is expected to run. This is the same as <a
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="backup_job_alarm_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="backup_retention_period" requirement="optional" type="number">
@@ -1535,6 +1637,15 @@ Trigger an alarm if the DB instance has a CPU utilization percentage above this 
 <HclListItemDefaultValue defaultValue="90"/>
 </HclListItem>
 
+<HclListItem name="high_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="high_read_latency_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1553,6 +1664,15 @@ Trigger an alarm if the DB instance read latency (average amount of time taken p
 <HclListItemDefaultValue defaultValue="5"/>
 </HclListItem>
 
+<HclListItem name="high_read_latency_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="high_write_latency_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1569,6 +1689,15 @@ Trigger an alarm if the DB instance write latency (average amount of time taken 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="5"/>
+</HclListItem>
+
+<HclListItem name="high_write_latency_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="hosted_zone_id" requirement="optional" type="string">
@@ -1659,6 +1788,15 @@ Trigger an alarm if the amount of disk space, in Bytes, on the DB instance drops
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="low_disk_space_available_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="low_memory_available_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1687,6 +1825,15 @@ Trigger an alarm if the amount of free memory, in Bytes, on the DB instance drop
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="low_memory_available_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="master_password" requirement="optional" type="string">
@@ -1741,6 +1888,15 @@ The daily time range during which automated backups are created (e.g. 04:00-09:0
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;06:00-07:00&quot;"/>
+</HclListItem>
+
+<HclListItem name="preferred_maintenance_window" requirement="optional" type="string">
+<HclListItemDescription>
+
+The weekly day and time range during which cluster maintenance can occur (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may even be a downtime during maintenance windows.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;sun:07:00-sun:08:00&quot;"/>
 </HclListItem>
 
 <HclListItem name="primary_domain_name" requirement="optional" type="string">
@@ -1806,6 +1962,10 @@ The maximum capacity. The maximum capacity must be greater than or equal to the 
 <HclListItemDefaultValue defaultValue="256"/>
 </HclListItem>
 
+<HclListItem name="scaling_configuration_max_capacity_V2" requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="scaling_configuration_min_capacity" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1813,6 +1973,10 @@ The minimum capacity. The minimum capacity must be lesser than or equal to the m
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="2"/>
+</HclListItem>
+
+<HclListItem name="scaling_configuration_min_capacity_V2" requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="scaling_configuration_seconds_until_auto_pause" requirement="optional" type="number">
@@ -2076,6 +2240,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "bb727a549a04b8f81f55c470d93e6907"
+  "hash": "fff36074ae3268f897aab6c8b2707b2a"
 }
 ##DOCS-SOURCER-END -->

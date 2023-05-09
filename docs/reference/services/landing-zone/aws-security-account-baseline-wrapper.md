@@ -651,9 +651,6 @@ module "account_baseline_security" {
   # resources.
   iam_group_name_full_access = "full-access"
 
-  # The name of the IAM Group that allows access to houston CLI.
-  iam_group_name_houston_cli = "houston-cli-users"
-
   # The name to be used for the IAM Group that grants IAM administrative access.
   # Effectively grants administrator access.
   iam_group_name_iam_admin = "iam-admin"
@@ -823,10 +820,6 @@ module "account_baseline_security" {
   # Should we create the IAM Group for full access? Allows full access to all AWS
   # resources. (true or false)
   should_create_iam_group_full_access = true
-
-  # Should we create the IAM Group for houston CLI users? Allows users to use the
-  # houston CLI for managing and deploying services.
-  should_create_iam_group_houston_cli_users = false
 
   # Should we create the IAM Group for IAM administrator access? Allows users to
   # manage all IAM entities, effectively granting administrator access. (true or
@@ -1446,9 +1439,6 @@ inputs = {
   # resources.
   iam_group_name_full_access = "full-access"
 
-  # The name of the IAM Group that allows access to houston CLI.
-  iam_group_name_houston_cli = "houston-cli-users"
-
   # The name to be used for the IAM Group that grants IAM administrative access.
   # Effectively grants administrator access.
   iam_group_name_iam_admin = "iam-admin"
@@ -1618,10 +1608,6 @@ inputs = {
   # Should we create the IAM Group for full access? Allows full access to all AWS
   # resources. (true or false)
   should_create_iam_group_full_access = true
-
-  # Should we create the IAM Group for houston CLI users? Allows users to use the
-  # houston CLI for managing and deploying services.
-  should_create_iam_group_houston_cli_users = false
 
   # Should we create the IAM Group for IAM administrator access? Allows users to
   # manage all IAM entities, effectively granting administrator access. (true or
@@ -2741,15 +2727,6 @@ The name to be used for the IAM Group that grants full access to all AWS resourc
 <HclListItemDefaultValue defaultValue="&quot;full-access&quot;"/>
 </HclListItem>
 
-<HclListItem name="iam_group_name_houston_cli" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the IAM Group that allows access to houston CLI.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;houston-cli-users&quot;"/>
-</HclListItem>
-
 <HclListItem name="iam_group_name_iam_admin" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -3313,15 +3290,6 @@ Should we create the IAM Group for full access? Allows full access to all AWS re
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="should_create_iam_group_houston_cli_users" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Should we create the IAM Group for houston CLI users? Allows users to use the houston CLI for managing and deploying services.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="should_create_iam_group_iam_admin" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -3492,12 +3460,6 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItem name="allow_full_access_sign_in_url">
 </HclListItem>
 
-<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_arn">
-</HclListItem>
-
-<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_id">
-</HclListItem>
-
 <HclListItem name="allow_iam_admin_access_from_other_accounts_iam_role_arn">
 </HclListItem>
 
@@ -3532,15 +3494,6 @@ Any types represent complex values of variable type. For details, please consult
 </HclListItem>
 
 <HclListItem name="allow_ssh_grunt_access_sign_in_url">
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_arn">
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_id">
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_houston_access_sign_in_url">
 </HclListItem>
 
 <HclListItem name="allow_support_access_from_other_accounts_iam_role_arn">
@@ -3758,12 +3711,6 @@ The names of the SNS topic where findings are published if <a href="#publish_fin
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="houston_cli_users_iam_group_arn">
-</HclListItem>
-
-<HclListItem name="houston_cli_users_iam_group_name">
-</HclListItem>
-
 <HclListItem name="iam_admin_iam_group_arn">
 </HclListItem>
 
@@ -3897,6 +3844,6 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/landingzone/account-baseline-security/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d0b28c8e29fabb4109c6fcaa1254e159"
+  "hash": "86ca8d5f78b994ce576598900a2098cc"
 }
 ##DOCS-SOURCER-END -->

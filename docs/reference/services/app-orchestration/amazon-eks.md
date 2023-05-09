@@ -465,6 +465,48 @@ module "eks_cluster" {
   # all availability zones.
   fargate_worker_disallowed_availability_zones = ["us-east-1d","us-east-1e","ca-central-1d"]
 
+  # The period, in seconds, over which to measure the CPU utilization percentage for
+  # the ASG.
+  high_worker_cpu_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster CPU utilization percentage
+  # above this threshold.
+  high_worker_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_worker_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the ASG.
+  high_worker_disk_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster root disk utilization
+  # percentage above this threshold.
+  high_worker_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_worker_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization percentage
+  # for the ASG.
+  high_worker_memory_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster Memory utilization percentage
+  # above this threshold.
+  high_worker_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_worker_memory_utilization_treat_missing_data = "missing"
+
   # Mapping of IAM role ARNs to Kubernetes RBAC groups that grant permissions to the
   # user.
   iam_role_to_rbac_group_mapping = {}
@@ -473,9 +515,15 @@ module "eks_cluster" {
   # user.
   iam_user_to_rbac_group_mapping = {}
 
+  # The URL from which to download Kubergrunt if it's not installed already. Use to
+  # specify a version of kubergrunt that is compatible with your specified
+  # kubernetes version. Ex.
+  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.1/kubergrunt
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.1/kubergrunt"
+
   # Version of Kubernetes to use. Refer to EKS docs for list of available versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.22"
+  kubernetes_version = "1.25"
 
   # Configure one or more Node Groups to manage the EC2 instances in this cluster.
   # Set to empty object ({}) if you do not wish to configure managed node groups.
@@ -1086,6 +1134,48 @@ inputs = {
   # all availability zones.
   fargate_worker_disallowed_availability_zones = ["us-east-1d","us-east-1e","ca-central-1d"]
 
+  # The period, in seconds, over which to measure the CPU utilization percentage for
+  # the ASG.
+  high_worker_cpu_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster CPU utilization percentage
+  # above this threshold.
+  high_worker_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_worker_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the ASG.
+  high_worker_disk_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster root disk utilization
+  # percentage above this threshold.
+  high_worker_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_worker_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization percentage
+  # for the ASG.
+  high_worker_memory_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster Memory utilization percentage
+  # above this threshold.
+  high_worker_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_worker_memory_utilization_treat_missing_data = "missing"
+
   # Mapping of IAM role ARNs to Kubernetes RBAC groups that grant permissions to the
   # user.
   iam_role_to_rbac_group_mapping = {}
@@ -1094,9 +1184,15 @@ inputs = {
   # user.
   iam_user_to_rbac_group_mapping = {}
 
+  # The URL from which to download Kubergrunt if it's not installed already. Use to
+  # specify a version of kubergrunt that is compatible with your specified
+  # kubernetes version. Ex.
+  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.1/kubergrunt
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.1/kubergrunt"
+
   # Version of Kubernetes to use. Refer to EKS docs for list of available versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.22"
+  kubernetes_version = "1.25"
 
   # Configure one or more Node Groups to manage the EC2 instances in this cluster.
   # Set to empty object ({}) if you do not wish to configure managed node groups.
@@ -2514,6 +2610,87 @@ A list of availability zones in the region that we CANNOT use to deploy the EKS 
 </HclListItemDefaultValue>
 </HclListItem>
 
+<HclListItem name="high_worker_cpu_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the CPU utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_worker_cpu_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster CPU utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_worker_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_worker_disk_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the root disk utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_worker_disk_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster root disk utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_worker_disk_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_worker_memory_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the Memory utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_worker_memory_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster Memory utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_worker_memory_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="iam_role_to_rbac_group_mapping" requirement="optional" type="map(list(…))">
 <HclListItemDescription>
 
@@ -2574,13 +2751,22 @@ map(list(string))
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="kubergrunt_download_url" requirement="optional" type="string">
+<HclListItemDescription>
+
+The URL from which to download Kubergrunt if it's not installed already. Use to specify a version of kubergrunt that is compatible with your specified kubernetes version. Ex. 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.1/kubergrunt'
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.1/kubergrunt&quot;"/>
+</HclListItem>
+
 <HclListItem name="kubernetes_version" requirement="optional" type="string">
 <HclListItemDescription>
 
 Version of Kubernetes to use. Refer to EKS docs for list of available versions (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.22&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;1.25&quot;"/>
 </HclListItem>
 
 <HclListItem name="managed_node_group_configurations" requirement="optional" type="any">
@@ -3249,6 +3435,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2caa2a5291ae3555709583da25cf694c"
+  "hash": "f1bdfd7af84f1250dd747122de18d1a1"
 }
 ##DOCS-SOURCER-END -->

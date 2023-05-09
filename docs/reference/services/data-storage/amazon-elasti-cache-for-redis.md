@@ -135,6 +135,12 @@ module "redis" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  alarm_treat_missing_data = "missing"
+
   # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk
   # space usage) should send notifications.
   alarms_sns_topic_arns = []
@@ -280,6 +286,12 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  alarm_treat_missing_data = "missing"
 
   # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk
   # space usage) should send notifications.
@@ -443,6 +455,15 @@ The ID of the VPC in which to deploy RDS.
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="alarm_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
 
 <HclListItem name="alarms_sns_topic_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
@@ -676,6 +697,14 @@ When cluster mode is disabled, use this endpoint for all read operations.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="security_group_id">
+<HclListItemDescription>
+
+Security Group ID used for redis cluster.
+
+</HclListItemDescription>
+</HclListItem>
+
 </TabItem>
 </Tabs>
 
@@ -688,6 +717,6 @@ When cluster mode is disabled, use this endpoint for all read operations.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/data-stores/redis/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5a4b3280203d214510493c7a635ddfd2"
+  "hash": "e0d17e57059cb8089aa0c4cfc5e6e1e5"
 }
 ##DOCS-SOURCER-END -->

@@ -201,6 +201,11 @@ module "ecs_service" {
   # expire. Only used if var.create_cloudwatch_log_group is true.
   cloudwatch_log_group_retention = null
 
+  # A map of tags to apply to the Cloudwatch log group. Each item in this list
+  # should be a map with the parameters key and value. Only used if
+  # var.create_cloudwatch_log_group is true.
+  cloudwatch_log_group_tags = {}
+
   # The number of CPU units to allocate to the ECS Service.
   cpu = 1
 
@@ -384,12 +389,20 @@ module "ecs_service" {
   # threshold
   high_cpu_utilization_threshold = 90
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be
+  # one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_cpu_utilization_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the memory utilization percentage
   high_memory_utilization_period = 300
 
   # Trigger an alarm if the ECS Service has a memory utilization percentage above
   # this threshold
   high_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be
+  # one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_memory_utilization_treat_missing_data = "missing"
 
   # The ID of the Route 53 hosted zone into which the Route 53 DNS record should be
   # written
@@ -688,6 +701,11 @@ inputs = {
   # expire. Only used if var.create_cloudwatch_log_group is true.
   cloudwatch_log_group_retention = null
 
+  # A map of tags to apply to the Cloudwatch log group. Each item in this list
+  # should be a map with the parameters key and value. Only used if
+  # var.create_cloudwatch_log_group is true.
+  cloudwatch_log_group_tags = {}
+
   # The number of CPU units to allocate to the ECS Service.
   cpu = 1
 
@@ -871,12 +889,20 @@ inputs = {
   # threshold
   high_cpu_utilization_threshold = 90
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be
+  # one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_cpu_utilization_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the memory utilization percentage
   high_memory_utilization_period = 300
 
   # Trigger an alarm if the ECS Service has a memory utilization percentage above
   # this threshold
   high_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be
+  # one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_memory_utilization_treat_missing_data = "missing"
 
   # The ID of the Route 53 hosted zone into which the Route 53 DNS record should be
   # written
@@ -1348,6 +1374,15 @@ Number of days to retain log events. Possible values are: 1, 3, 5, 7, 14, 30, 60
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the Cloudwatch log group. Each item in this list should be a map with the parameters key and value. Only used if <a href="#create_cloudwatch_log_group"><code>create_cloudwatch_log_group</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="cpu" requirement="optional" type="number">
@@ -2007,6 +2042,15 @@ Trigger an alarm if the ECS Service has a CPU utilization percentage above this 
 <HclListItemDefaultValue defaultValue="90"/>
 </HclListItem>
 
+<HclListItem name="high_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="high_memory_utilization_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2023,6 +2067,15 @@ Trigger an alarm if the ECS Service has a memory utilization percentage above th
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_memory_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="hosted_zone_id" requirement="optional" type="string">
@@ -2804,6 +2857,6 @@ The names of the ECS service's load balancer's target groups
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/services/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ec68c908784cc07ced5cdd6d25e058e0"
+  "hash": "f5e51554ad054f8c504b55596c47c76f"
 }
 ##DOCS-SOURCER-END -->

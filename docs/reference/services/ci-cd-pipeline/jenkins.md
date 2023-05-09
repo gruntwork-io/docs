@@ -297,6 +297,48 @@ module "jenkins" {
   # Terraform will complain).
   external_account_ssh_grunt_role_arn = ""
 
+  # The period, in seconds, over which to measure the CPU utilization percentage for
+  # the ASG.
+  high_asg_cpu_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster CPU utilization percentage
+  # above this threshold.
+  high_asg_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_asg_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the ASG.
+  high_asg_disk_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster root disk utilization
+  # percentage above this threshold.
+  high_asg_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_asg_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization percentage
+  # for the ASG.
+  high_asg_memory_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster Memory utilization percentage
+  # above this threshold.
+  high_asg_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_asg_memory_utilization_treat_missing_data = "missing"
+
   # Set to true to make the Jenkins ALB an internal ALB that cannot be accessed from
   # the public Internet. We strongly recommend setting this to true to keep Jenkins
   # more secure.
@@ -310,6 +352,13 @@ module "jenkins" {
 
   # The OS user that should be used to run Jenkins
   jenkins_user = "jenkins"
+
+  # Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA
+  # state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  jenkins_volume_alarm_treat_missing_data = "missing"
 
   # Set to true to encrypt the Jenkins EBS volume.
   jenkins_volume_encrypted = true
@@ -588,6 +637,48 @@ inputs = {
   # Terraform will complain).
   external_account_ssh_grunt_role_arn = ""
 
+  # The period, in seconds, over which to measure the CPU utilization percentage for
+  # the ASG.
+  high_asg_cpu_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster CPU utilization percentage
+  # above this threshold.
+  high_asg_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_asg_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the ASG.
+  high_asg_disk_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster root disk utilization
+  # percentage above this threshold.
+  high_asg_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_asg_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization percentage
+  # for the ASG.
+  high_asg_memory_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster Memory utilization percentage
+  # above this threshold.
+  high_asg_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_asg_memory_utilization_treat_missing_data = "missing"
+
   # Set to true to make the Jenkins ALB an internal ALB that cannot be accessed from
   # the public Internet. We strongly recommend setting this to true to keep Jenkins
   # more secure.
@@ -601,6 +692,13 @@ inputs = {
 
   # The OS user that should be used to run Jenkins
   jenkins_user = "jenkins"
+
+  # Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA
+  # state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  jenkins_volume_alarm_treat_missing_data = "missing"
 
   # Set to true to encrypt the Jenkins EBS volume.
   jenkins_volume_encrypted = true
@@ -1107,6 +1205,87 @@ If you are using ssh-grunt and your IAM users / groups are defined in a separate
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
+<HclListItem name="high_asg_cpu_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the CPU utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_asg_cpu_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster CPU utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_asg_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_asg_disk_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the root disk utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_asg_disk_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster root disk utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_asg_disk_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_asg_memory_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the Memory utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_asg_memory_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster Memory utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_asg_memory_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="is_internal_alb" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1141,6 +1320,15 @@ The OS user that should be used to run Jenkins
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;jenkins&quot;"/>
+</HclListItem>
+
+<HclListItem name="jenkins_volume_alarm_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="jenkins_volume_encrypted" requirement="optional" type="bool">
@@ -1401,6 +1589,6 @@ The ID of the Security Group attached to the Jenkins EC2 Instance
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/mgmt/jenkins/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c19cafb205c9d5d4c6639381c8f9d7ea"
+  "hash": "25d0a6a23cc58f7e505a01b1319d0352"
 }
 ##DOCS-SOURCER-END -->

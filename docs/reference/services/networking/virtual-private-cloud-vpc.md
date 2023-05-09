@@ -111,9 +111,6 @@ module "vpc" {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The AWS region in which all resources will be created
-  aws_region = <string>
-
   # The IP address range of the VPC in CIDR notation. A prefix of /18 is
   # recommended. Do not use a prefix higher than /27. Examples include
   # '10.100.0.0/18', '10.200.0.0/18', etc.
@@ -153,6 +150,11 @@ module "vpc" {
   # Specific Availability Zones in which subnets SHOULD NOT be created. Useful for
   # when features / support is missing from a given AZ.
   availability_zone_exclude_names = []
+
+  # DEPRECATED. The AWS Region where this VPC will exist. This variable is no longer
+  # used and only kept around for backwards compatibility. We now automatically
+  # fetch the region using a data source.
+  aws_region = ""
 
   # Whether or not to create DNS forwarders from the Mgmt VPC to the App VPC to
   # resolve private Route 53 endpoints. This is most useful when you want to keep
@@ -294,6 +296,10 @@ module "vpc" {
   # VPC Flow Logs will be encrypted with a KMS Key (a Customer Master Key). The IAM
   # Users specified in this list will have access to this key.
   kms_key_user_iam_arns = null
+
+  # Specify true to indicate that instances launched into the public subnet should
+  # be assigned a public IP address (versus a private IP address)
+  map_public_ip_on_launch = false
 
   # A map of tags to apply to the NAT gateways, on top of the custom_tags. The key
   # is the tag name and the value is the tag value. Note that tags defined here will
@@ -486,9 +492,6 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The AWS region in which all resources will be created
-  aws_region = <string>
-
   # The IP address range of the VPC in CIDR notation. A prefix of /18 is
   # recommended. Do not use a prefix higher than /27. Examples include
   # '10.100.0.0/18', '10.200.0.0/18', etc.
@@ -528,6 +531,11 @@ inputs = {
   # Specific Availability Zones in which subnets SHOULD NOT be created. Useful for
   # when features / support is missing from a given AZ.
   availability_zone_exclude_names = []
+
+  # DEPRECATED. The AWS Region where this VPC will exist. This variable is no longer
+  # used and only kept around for backwards compatibility. We now automatically
+  # fetch the region using a data source.
+  aws_region = ""
 
   # Whether or not to create DNS forwarders from the Mgmt VPC to the App VPC to
   # resolve private Route 53 endpoints. This is most useful when you want to keep
@@ -669,6 +677,10 @@ inputs = {
   # VPC Flow Logs will be encrypted with a KMS Key (a Customer Master Key). The IAM
   # Users specified in this list will have access to this key.
   kms_key_user_iam_arns = null
+
+  # Specify true to indicate that instances launched into the public subnet should
+  # be assigned a public IP address (versus a private IP address)
+  map_public_ip_on_launch = false
 
   # A map of tags to apply to the NAT gateways, on top of the custom_tags. The key
   # is the tag name and the value is the tag value. Note that tags defined here will
@@ -855,14 +867,6 @@ inputs = {
 
 ### Required
 
-<HclListItem name="aws_region" requirement="required" type="string">
-<HclListItemDescription>
-
-The AWS region in which all resources will be created
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="cidr_block" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -923,6 +927,15 @@ Specific Availability Zones in which subnets SHOULD NOT be created. Useful for w
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="aws_region" requirement="optional" type="string">
+<HclListItemDescription>
+
+DEPRECATED. The AWS Region where this VPC will exist. This variable is no longer used and only kept around for backwards compatibility. We now automatically fetch the region using a data source.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="create_dns_forwarder" requirement="optional" type="bool">
@@ -1255,6 +1268,15 @@ VPC Flow Logs will be encrypted with a KMS Key (a Customer Master Key). The IAM 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="map_public_ip_on_launch" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specify true to indicate that instances launched into the public subnet should be assigned a public IP address (versus a private IP address)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="nat_gateway_custom_tags" requirement="optional" type="map(string)">
@@ -1855,6 +1877,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1e26ed6fb8133cefb080426878fcf388"
+  "hash": "91f4300ed83edb28e04a0067acde3ca8"
 }
 ##DOCS-SOURCER-END -->
