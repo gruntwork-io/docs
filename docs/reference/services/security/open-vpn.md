@@ -278,48 +278,6 @@ module "openvpn_server" {
   # if it contains files. Should only be set to true for testing/development
   force_destroy = false
 
-  # The period, in seconds, over which to measure the CPU utilization percentage for
-  # the ASG.
-  high_asg_cpu_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster CPU utilization percentage
-  # above this threshold.
-  high_asg_cpu_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_asg_cpu_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the root disk utilization
-  # percentage for the ASG.
-  high_asg_disk_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster root disk utilization
-  # percentage above this threshold.
-  high_asg_disk_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_asg_disk_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the Memory utilization percentage
-  # for the ASG.
-  high_asg_memory_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster Memory utilization percentage
-  # above this threshold.
-  high_asg_memory_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_asg_memory_utilization_treat_missing_data = "missing"
-
   # The ID of the Route 53 Hosted Zone in which the domain should be created. Only
   # used if var.create_route53_entry is true. If null, lookup the hosted zone ID
   # using the var.base_domain_name.
@@ -354,9 +312,6 @@ module "openvpn_server" {
   # 'openvpn-requests-'.
   revocation_queue_name = "queue"
 
-  # The size of the OpenVPN EC2 instance root volume, in GB.
-  root_volume_size = 8
-
   # When true, precreate the CloudWatch Log Group to use for log aggregation from
   # the EC2 instances. This is useful if you wish to customize the CloudWatch Log
   # Group with various settings such as retention periods and KMS encryption. When
@@ -375,12 +330,6 @@ module "openvpn_server" {
 
   # The tenancy of this server. Must be one of: default, dedicated, or host.
   tenancy = "default"
-
-  # Set this variable to true to enable the use of Instance Metadata Service Version
-  # 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due
-  # to its special security hardening, we allow this in order to support the use
-  # case of AMIs built outside of these modules that depend on IMDSv1.
-  use_imdsv1 = true
 
   # When true, all IAM policies will be managed as dedicated policies rather than
   # inline policies attached to the IAM roles. Dedicated managed policies are
@@ -608,48 +557,6 @@ inputs = {
   # if it contains files. Should only be set to true for testing/development
   force_destroy = false
 
-  # The period, in seconds, over which to measure the CPU utilization percentage for
-  # the ASG.
-  high_asg_cpu_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster CPU utilization percentage
-  # above this threshold.
-  high_asg_cpu_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_asg_cpu_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the root disk utilization
-  # percentage for the ASG.
-  high_asg_disk_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster root disk utilization
-  # percentage above this threshold.
-  high_asg_disk_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_asg_disk_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the Memory utilization percentage
-  # for the ASG.
-  high_asg_memory_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster Memory utilization percentage
-  # above this threshold.
-  high_asg_memory_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_asg_memory_utilization_treat_missing_data = "missing"
-
   # The ID of the Route 53 Hosted Zone in which the domain should be created. Only
   # used if var.create_route53_entry is true. If null, lookup the hosted zone ID
   # using the var.base_domain_name.
@@ -684,9 +591,6 @@ inputs = {
   # 'openvpn-requests-'.
   revocation_queue_name = "queue"
 
-  # The size of the OpenVPN EC2 instance root volume, in GB.
-  root_volume_size = 8
-
   # When true, precreate the CloudWatch Log Group to use for log aggregation from
   # the EC2 instances. This is useful if you wish to customize the CloudWatch Log
   # Group with various settings such as retention periods and KMS encryption. When
@@ -705,12 +609,6 @@ inputs = {
 
   # The tenancy of this server. Must be one of: default, dedicated, or host.
   tenancy = "default"
-
-  # Set this variable to true to enable the use of Instance Metadata Service Version
-  # 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due
-  # to its special security hardening, we allow this in order to support the use
-  # case of AMIs built outside of these modules that depend on IMDSv1.
-  use_imdsv1 = true
 
   # When true, all IAM policies will be managed as dedicated policies rather than
   # inline policies attached to the IAM roles. Dedicated managed policies are
@@ -1125,87 +1023,6 @@ When a terraform destroy is run, should the backup s3 bucket be destroyed even i
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="high_asg_cpu_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the CPU utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_cpu_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster CPU utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_cpu_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the root disk utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster root disk utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the Memory utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster Memory utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="hosted_zone_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1278,15 +1095,6 @@ The name of the sqs queue that will be used to receive certification revocation 
 <HclListItemDefaultValue defaultValue="&quot;queue&quot;"/>
 </HclListItem>
 
-<HclListItem name="root_volume_size" requirement="optional" type="number">
-<HclListItemDescription>
-
-The size of the OpenVPN EC2 instance root volume, in GB.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="8"/>
-</HclListItem>
-
 <HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1321,15 +1129,6 @@ The tenancy of this server. Must be one of: default, dedicated, or host.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
-</HclListItem>
-
-<HclListItem name="use_imdsv1" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
@@ -1512,6 +1311,6 @@ The security group ID of the OpenVPN server.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/mgmt/openvpn-server/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3ba00892f50f907d0d8dd10cd878bf29"
+  "hash": "d126f3854ab13932285e1d8908a42d0e"
 }
 ##DOCS-SOURCER-END -->

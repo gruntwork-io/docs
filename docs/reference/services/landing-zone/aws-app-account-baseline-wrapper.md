@@ -362,9 +362,6 @@ module "account_baseline_app" {
   # account).
   cloudtrail_s3_bucket_already_exists = true
 
-  # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
-  cloudtrail_s3_bucket_key_enabled = false
-
   # The name of the S3 Bucket where CloudTrail logs will be stored. This could be a
   # bucket in this AWS account (e.g., if this is the logs account) or the name of a
   # bucket in another AWS account where logs should be sent (e.g., if this is the
@@ -1017,9 +1014,6 @@ inputs = {
   # account and var.cloudtrail_s3_bucket_name is the name of a bucket in the logs
   # account).
   cloudtrail_s3_bucket_already_exists = true
-
-  # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
-  cloudtrail_s3_bucket_key_enabled = false
 
   # The name of the S3 Bucket where CloudTrail logs will be stored. This could be a
   # bucket in this AWS account (e.g., if this is the logs account) or the name of a
@@ -1939,15 +1933,6 @@ Set to false to create an S3 bucket of name <a href="#cloudtrail_s3_bucket_name"
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="cloudtrail_s3_bucket_key_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="cloudtrail_s3_bucket_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2819,6 +2804,12 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <HclListItem name="allow_full_access_sign_in_url">
 </HclListItem>
 
+<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_id">
+</HclListItem>
+
 <HclListItem name="allow_iam_admin_access_from_other_accounts_iam_role_arn">
 </HclListItem>
 
@@ -2853,6 +2844,15 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 </HclListItem>
 
 <HclListItem name="allow_ssh_grunt_access_sign_in_url">
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_id">
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_houston_access_sign_in_url">
 </HclListItem>
 
 <HclListItem name="allow_support_access_from_other_accounts_iam_role_arn">
@@ -3092,6 +3092,6 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/landingzone/account-baseline-app/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "7e2ba1d47783b34cf4410dd2b87ff1bc"
+  "hash": "09b4a889ba0caeac8bb2498f830d268d"
 }
 ##DOCS-SOURCER-END -->

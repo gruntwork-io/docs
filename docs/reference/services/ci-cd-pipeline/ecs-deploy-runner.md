@@ -2312,7 +2312,6 @@ Create multi-region resources in the specified regions. The best practice is to 
       "af-south-1",      Cape Town
       "ap-east-1",       Hong Kong
       "eu-south-1",      Milan
-      "me-central-1",    UAE
       "me-south-1",      Bahrain
       "us-gov-east-1",   GovCloud
       "us-gov-west-1",   GovCloud
@@ -2502,6 +2501,6 @@ Security Group ID of the ECS task
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/mgmt/ecs-deploy-runner/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "00bb2a803b09a4222914da9237ac948c"
+  "hash": "541385e78102abdfb4f6d569e66028f4"
 }
 ##DOCS-SOURCER-END -->

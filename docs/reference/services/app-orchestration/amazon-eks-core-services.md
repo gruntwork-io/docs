@@ -250,7 +250,7 @@ module "eks_core_services" {
   # major/minor version (e.g., v1.20) of your Kubernetes Installation. See
   # https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases
   # for a list of versions.
-  cluster_autoscaler_version = "v1.25.0"
+  cluster_autoscaler_version = "v1.22.2"
 
   # Whether or not to enable the AWS LB Ingress controller.
   enable_alb_ingress_controller = true
@@ -280,18 +280,9 @@ module "eks_core_services" {
   # When null, use the default defined in the chart (1000).
   external_dns_batch_change_size = null
 
-  # Name of the Helm chart for external-dns. This should usually be 'external-dns'
-  # but may differ in the case of overriding the repository URL.
-  external_dns_chart_name = "external-dns"
-
-  # Helm chart repository URL to obtain the external-dns chart from. Useful when
-  # using Bitnami charts that are older than 6 months due to Bitnami's lifecycle
-  # policy which removes older chart from the main index.
-  external_dns_chart_repository_url = "https://charts.bitnami.com/bitnami"
-
   # The version of the helm chart to use. Note that this is different from the
   # app/container version.
-  external_dns_chart_version = "6.12.2"
+  external_dns_chart_version = "6.2.4"
 
   # Configure affinity rules for the external-dns Pod to control which nodes to
   # schedule on. Each item in the list should be a map with the keys `key`,
@@ -358,9 +349,6 @@ module "eks_core_services" {
   # tion-file#config_output).
   fargate_fluent_bit_extra_parsers = ""
 
-  # Whether or not Kubernetes metadata is added to the log files
-  fargate_fluent_bit_include_kubernetes_metadata = true
-
   # Prefix string to use for the CloudWatch Log Stream that gets created for each
   # Fargate pod.
   fargate_fluent_bit_log_stream_prefix = "fargate"
@@ -370,12 +358,6 @@ module "eks_core_services" {
   # able to provision the resources (e.g ran out of capacity). If empty, will allow
   # all availability zones.
   fargate_worker_disallowed_availability_zones = ["us-east-1d","us-east-1e","ca-central-1d"]
-
-  # Can be used to add more inputs. This string should be formatted according to
-  # Fluent Bit docs
-  # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/classic-
-  # ode/configuration-file#config_input).
-  fluent_bit_additional_inputs = ""
 
   # Additional filters that fluent-bit should apply to log output. This string
   # should be formatted according to the Fluent-bit docs
@@ -388,11 +370,6 @@ module "eks_core_services" {
   # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configur
   # tion-file#config_output).
   fluent_bit_extra_outputs = ""
-
-  # Can be used to add additional log parsers. This string should be formatted
-  # according to Fluent Bit docs, as it will be injected directly into the
-  # fluent-bit.conf file.
-  fluent_bit_extra_parsers = ""
 
   # The Container repository to use for looking up the aws-for-fluent-bit Container
   # image when deploying the pods. When null, uses the default repository set in the
@@ -438,10 +415,6 @@ module "eks_core_services" {
   # Configure tolerations rules to allow the fluent-bit Pods to schedule on nodes
   # that have been tainted. Each item in the list specifies a toleration rule.
   fluent_bit_pod_tolerations = []
-
-  # Optionally use a cri parser instead of the default Docker parser. This should be
-  # used for EKS v1.24 and later.
-  fluent_bit_use_cri_parser_conf = true
 
   # Which version of aws-for-fluent-bit to install. When null, uses the default
   # version set in the chart. Only applies to non-fargate workers.
@@ -659,7 +632,7 @@ inputs = {
   # major/minor version (e.g., v1.20) of your Kubernetes Installation. See
   # https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases
   # for a list of versions.
-  cluster_autoscaler_version = "v1.25.0"
+  cluster_autoscaler_version = "v1.22.2"
 
   # Whether or not to enable the AWS LB Ingress controller.
   enable_alb_ingress_controller = true
@@ -689,18 +662,9 @@ inputs = {
   # When null, use the default defined in the chart (1000).
   external_dns_batch_change_size = null
 
-  # Name of the Helm chart for external-dns. This should usually be 'external-dns'
-  # but may differ in the case of overriding the repository URL.
-  external_dns_chart_name = "external-dns"
-
-  # Helm chart repository URL to obtain the external-dns chart from. Useful when
-  # using Bitnami charts that are older than 6 months due to Bitnami's lifecycle
-  # policy which removes older chart from the main index.
-  external_dns_chart_repository_url = "https://charts.bitnami.com/bitnami"
-
   # The version of the helm chart to use. Note that this is different from the
   # app/container version.
-  external_dns_chart_version = "6.12.2"
+  external_dns_chart_version = "6.2.4"
 
   # Configure affinity rules for the external-dns Pod to control which nodes to
   # schedule on. Each item in the list should be a map with the keys `key`,
@@ -767,9 +731,6 @@ inputs = {
   # tion-file#config_output).
   fargate_fluent_bit_extra_parsers = ""
 
-  # Whether or not Kubernetes metadata is added to the log files
-  fargate_fluent_bit_include_kubernetes_metadata = true
-
   # Prefix string to use for the CloudWatch Log Stream that gets created for each
   # Fargate pod.
   fargate_fluent_bit_log_stream_prefix = "fargate"
@@ -779,12 +740,6 @@ inputs = {
   # able to provision the resources (e.g ran out of capacity). If empty, will allow
   # all availability zones.
   fargate_worker_disallowed_availability_zones = ["us-east-1d","us-east-1e","ca-central-1d"]
-
-  # Can be used to add more inputs. This string should be formatted according to
-  # Fluent Bit docs
-  # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/classic-
-  # ode/configuration-file#config_input).
-  fluent_bit_additional_inputs = ""
 
   # Additional filters that fluent-bit should apply to log output. This string
   # should be formatted according to the Fluent-bit docs
@@ -797,11 +752,6 @@ inputs = {
   # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configur
   # tion-file#config_output).
   fluent_bit_extra_outputs = ""
-
-  # Can be used to add additional log parsers. This string should be formatted
-  # according to Fluent Bit docs, as it will be injected directly into the
-  # fluent-bit.conf file.
-  fluent_bit_extra_parsers = ""
 
   # The Container repository to use for looking up the aws-for-fluent-bit Container
   # image when deploying the pods. When null, uses the default repository set in the
@@ -847,10 +797,6 @@ inputs = {
   # Configure tolerations rules to allow the fluent-bit Pods to schedule on nodes
   # that have been tainted. Each item in the list specifies a toleration rule.
   fluent_bit_pod_tolerations = []
-
-  # Optionally use a cri parser instead of the default Docker parser. This should be
-  # used for EKS v1.24 and later.
-  fluent_bit_use_cri_parser_conf = true
 
   # Which version of aws-for-fluent-bit to install. When null, uses the default
   # version set in the chart. Only applies to non-fargate workers.
@@ -1510,7 +1456,7 @@ Specifies an 'expander' for the cluster autoscaler. This helps determine which A
 Which version of the cluster autoscaler to install. This should match the major/minor version (e.g., v1.20) of your Kubernetes Installation. See https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases for a list of versions.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v1.25.0&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v1.22.2&quot;"/>
 </HclListItem>
 
 <HclListItem name="enable_alb_ingress_controller" requirement="optional" type="bool">
@@ -1585,31 +1531,13 @@ The maximum number of changes that should be applied in a batch by external-dns.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="external_dns_chart_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Name of the Helm chart for external-dns. This should usually be 'external-dns' but may differ in the case of overriding the repository URL.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;external-dns&quot;"/>
-</HclListItem>
-
-<HclListItem name="external_dns_chart_repository_url" requirement="optional" type="string">
-<HclListItemDescription>
-
-Helm chart repository URL to obtain the external-dns chart from. Useful when using Bitnami charts that are older than 6 months due to Bitnami's lifecycle policy which removes older chart from the main index.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;https://charts.bitnami.com/bitnami&quot;"/>
-</HclListItem>
-
 <HclListItem name="external_dns_chart_version" requirement="optional" type="string">
 <HclListItemDescription>
 
 The version of the helm chart to use. Note that this is different from the app/container version.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;6.12.2&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;6.2.4&quot;"/>
 </HclListItem>
 
 <HclListItem name="external_dns_pod_node_affinity" requirement="optional" type="list(object(…))">
@@ -1848,15 +1776,6 @@ Additional parsers that fluent-bit should export logs to. This string should be 
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
-<HclListItem name="fargate_fluent_bit_include_kubernetes_metadata" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not Kubernetes metadata is added to the log files
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="fargate_fluent_bit_log_stream_prefix" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1885,15 +1804,6 @@ A list of availability zones in the region that we CANNOT use to deploy the EKS 
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="fluent_bit_additional_inputs" requirement="optional" type="string">
-<HclListItemDescription>
-
-Can be used to add more inputs. This string should be formatted according to Fluent Bit docs (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/classic-mode/configuration-file#config_input).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
 <HclListItem name="fluent_bit_extra_filters" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1907,15 +1817,6 @@ Additional filters that fluent-bit should apply to log output. This string shoul
 <HclListItemDescription>
 
 Additional output streams that fluent-bit should export logs to. This string should be formatted according to the Fluent-bit docs (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configuration-file#config_output).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="fluent_bit_extra_parsers" requirement="optional" type="string">
-<HclListItemDescription>
-
-Can be used to add additional log parsers. This string should be formatted according to Fluent Bit docs, as it will be injected directly into the fluent-bit.conf file.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
@@ -2089,15 +1990,6 @@ list(map(any))
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="fluent_bit_use_cri_parser_conf" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Optionally use a cri parser instead of the default Docker parser. This should be used for EKS v1.24 and later.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="fluent_bit_version" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2268,6 +2160,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b8adba0acf9409c00cb0d64e62a80955"
+  "hash": "9a3ecde517bf95a2f4d210ea92c4e5c5"
 }
 ##DOCS-SOURCER-END -->

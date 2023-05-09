@@ -176,21 +176,10 @@ module "public_static_website" {
   # max-age' or 'Expires' header.
   default_ttl = 30
 
-  # Option to disable cloudfront log delivery to s3. This is required in regions
-  # where cloudfront cannot deliver logs to s3, see
-  # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.ht
-  # l#access-logs-choosing-s3-bucket
-  disable_cloudfront_logging = false
-
   # If set to true, a CloudFront function to implement default directory index
   # (looking up index.html in an S3 directory when path ends in /) is deployed. Only
   # relevant when var.restrict_bucket_access_to_cloudfront is set to true.
   enable_default_directory_index_function = false
-
-  # Set to true to enable versioning. This means the bucket will retain all old
-  # versions of all files. This is useful for backup purposes (e.g. you can rollback
-  # to an older version), but it may mean your bucket uses more storage.
-  enable_versioning = true
 
   # The path to the error document in the S3 bucket (e.g. error.html).
   error_document = "error.html"
@@ -247,19 +236,8 @@ module "public_static_website" {
   restrict_bucket_access_to_cloudfront = false
 
   # A map describing the routing_rule for the aws_s3_website_configuration resource.
-  # Describes redirect behavior and conditions when redirects are applied. Conflicts
-  # with routing_rules. Use routing_rules if rules contain empty String values.
+  # Describes redirect behavior and conditions when redirects are applied.
   routing_rule = {}
-
-  # A json string array containing routing rules for the
-  # aws_s3_website_configuration resource. Describes redirect behavior and
-  # conditions when redirects are applied. Conflicts with routing_rule. Use this
-  # when routing rules contain empty String values.
-  routing_rules = null
-
-  # By default, the s3 bucket hosting the website is named after the domain name.
-  # Use this configuration to override it with this value instead.
-  s3_bucket_override_bucket_name = null
 
   # The policy directives and their values that CloudFront includes as values for
   # the Content-Security-Policy HTTP response header. When null, the header is
@@ -299,12 +277,6 @@ module "public_static_website" {
   # in the origin specified by TargetOriginId when a request matches the path
   # pattern in PathPattern. One of allow-all, https-only, or redirect-to-https.
   viewer_protocol_policy = "allow-all"
-
-  # If you're using AWS WAF to filter CloudFront requests, the Id of the AWS WAF web
-  # ACL that is associated with the distribution. Refer to
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
-  # front_distribution#web_acl_id for more details.
-  web_acl_id = null
 
 }
 
@@ -384,21 +356,10 @@ inputs = {
   # max-age' or 'Expires' header.
   default_ttl = 30
 
-  # Option to disable cloudfront log delivery to s3. This is required in regions
-  # where cloudfront cannot deliver logs to s3, see
-  # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.ht
-  # l#access-logs-choosing-s3-bucket
-  disable_cloudfront_logging = false
-
   # If set to true, a CloudFront function to implement default directory index
   # (looking up index.html in an S3 directory when path ends in /) is deployed. Only
   # relevant when var.restrict_bucket_access_to_cloudfront is set to true.
   enable_default_directory_index_function = false
-
-  # Set to true to enable versioning. This means the bucket will retain all old
-  # versions of all files. This is useful for backup purposes (e.g. you can rollback
-  # to an older version), but it may mean your bucket uses more storage.
-  enable_versioning = true
 
   # The path to the error document in the S3 bucket (e.g. error.html).
   error_document = "error.html"
@@ -455,19 +416,8 @@ inputs = {
   restrict_bucket_access_to_cloudfront = false
 
   # A map describing the routing_rule for the aws_s3_website_configuration resource.
-  # Describes redirect behavior and conditions when redirects are applied. Conflicts
-  # with routing_rules. Use routing_rules if rules contain empty String values.
+  # Describes redirect behavior and conditions when redirects are applied.
   routing_rule = {}
-
-  # A json string array containing routing rules for the
-  # aws_s3_website_configuration resource. Describes redirect behavior and
-  # conditions when redirects are applied. Conflicts with routing_rule. Use this
-  # when routing rules contain empty String values.
-  routing_rules = null
-
-  # By default, the s3 bucket hosting the website is named after the domain name.
-  # Use this configuration to override it with this value instead.
-  s3_bucket_override_bucket_name = null
 
   # The policy directives and their values that CloudFront includes as values for
   # the Content-Security-Policy HTTP response header. When null, the header is
@@ -507,12 +457,6 @@ inputs = {
   # in the origin specified by TargetOriginId when a request matches the path
   # pattern in PathPattern. One of allow-all, https-only, or redirect-to-https.
   viewer_protocol_policy = "allow-all"
-
-  # If you're using AWS WAF to filter CloudFront requests, the Id of the AWS WAF web
-  # ACL that is associated with the distribution. Refer to
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
-  # front_distribution#web_acl_id for more details.
-  web_acl_id = null
 
 }
 
@@ -657,15 +601,6 @@ The default amount of time, in seconds, that an object is in a CloudFront cache 
 <HclListItemDefaultValue defaultValue="30"/>
 </HclListItem>
 
-<HclListItem name="disable_cloudfront_logging" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Option to disable cloudfront log delivery to s3. This is required in regions where cloudfront cannot deliver logs to s3, see https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html#access-logs-choosing-s3-bucket
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="enable_default_directory_index_function" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -673,15 +608,6 @@ If set to true, a CloudFront function to implement default directory index (look
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="enable_versioning" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to enable versioning. This means the bucket will retain all old versions of all files. This is useful for backup purposes (e.g. you can rollback to an older version), but it may mean your bucket uses more storage.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="error_document" requirement="optional" type="string">
@@ -841,7 +767,7 @@ If set to true, the S3 bucket will only be accessible via CloudFront, and not di
 <HclListItem name="routing_rule" requirement="optional" type="any">
 <HclListItemDescription>
 
-A map describing the routing_rule for the aws_s3_website_configuration resource. Describes redirect behavior and conditions when redirects are applied. Conflicts with routing_rules. Use routing_rules if rules contain empty String values.
+A map describing the routing_rule for the aws_s3_website_configuration resource. Describes redirect behavior and conditions when redirects are applied.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -852,24 +778,53 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
 
-<HclListItem name="routing_rules" requirement="optional" type="string">
-<HclListItemDescription>
 
-A json string array containing routing rules for the aws_s3_website_configuration resource. Describes redirect behavior and conditions when redirects are applied. Conflicts with routing_rule. Use this when routing rules contain empty String values.
+```hcl
+   {
+      condition = {
+        key_prefix_equals  = "docs/"
+      }
+  
+      redirect = {
+        hostname = "example"
+        http_redirect_code = "403"
+        protocol = "https"
+        replace_key_prefix_with = "documents/"
+      }
+   }   {
+      condition = {
+        http_error_code_returned_equals = "401"
+      }
+  
+      redirect {
+        replace_key_with = "error.html"
+      }
+   }
+  
 
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
+```
+</details>
 
-<HclListItem name="s3_bucket_override_bucket_name" requirement="optional" type="string">
-<HclListItemDescription>
+</HclGeneralListItem>
+<HclGeneralListItem title="More Details">
+<details>
 
-By default, the s3 bucket hosting the website is named after the domain name. Use this configuration to override it with this value instead.
 
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+```hcl
+
+   Ideally, this would be a map(object({...})), but the Terraform object type constraint doesn't support optional
+   parameters, whereas routing rules have many optional params. And we can't even use map(any), as the Terraform
+   map type constraint requires all values to have the same type ("shape"), but as each object in the map may specify
+   different optional params, this won't work either. So, sadly, we are forced to fall back to "any."
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="security_header_content_security_policy" requirement="optional" type="string">
@@ -992,15 +947,6 @@ Use this element to specify the protocol that users can use to access the files 
 <HclListItemDefaultValue defaultValue="&quot;allow-all&quot;"/>
 </HclListItem>
 
-<HclListItem name="web_acl_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-If you're using AWS WAF to filter CloudFront requests, the Id of the AWS WAF web ACL that is associated with the distribution. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution#web_acl_id for more details.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -1056,6 +1002,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/services/public-static-website/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e3213a6fda42c8c20914b6df323ff023"
+  "hash": "3a5c3f1057ea92a448cac12ec558e6eb"
 }
 ##DOCS-SOURCER-END -->

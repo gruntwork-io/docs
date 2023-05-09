@@ -253,12 +253,6 @@ module "account_baseline_root" {
   # role
   aws_config_iam_role_permissions_boundary = null
 
-  # Additional IAM policies to apply to cloudtrail S3 bucket. You can use this to
-  # grant read/write access beyond what is provided to Cloudtrail. This should be a
-  # map, where each key is a unique statement ID (SID), and each value is an object
-  # that contains the parameters defined in the comment below.
-  cloudtrail_additional_bucket_policy_statements = null
-
   # Map of advanced event selector name to list of field selectors to apply for that
   # event selector. Advanced event selectors allow for more fine grained data
   # logging of events.
@@ -779,6 +773,10 @@ Refer to the AWS docs on data event selection for more details on the
   # Should we create the IAM Group for full access? Allows full access to all AWS
   # resources. (true or false)
   should_create_iam_group_full_access = true
+
+  # Should we create the IAM Group for houston CLI users? Allows users to use the
+  # houston CLI for managing and deploying services.
+  should_create_iam_group_houston_cli_users = false
 
   # Should we create the IAM Group for logs? Allows read access to logs in
   # CloudTrail, AWS Config, and CloudWatch. If var.cloudtrail_kms_key_arn is
@@ -993,12 +991,6 @@ inputs = {
   # role
   aws_config_iam_role_permissions_boundary = null
 
-  # Additional IAM policies to apply to cloudtrail S3 bucket. You can use this to
-  # grant read/write access beyond what is provided to Cloudtrail. This should be a
-  # map, where each key is a unique statement ID (SID), and each value is an object
-  # that contains the parameters defined in the comment below.
-  cloudtrail_additional_bucket_policy_statements = null
-
   # Map of advanced event selector name to list of field selectors to apply for that
   # event selector. Advanced event selectors allow for more fine grained data
   # logging of events.
@@ -1519,6 +1511,10 @@ Refer to the AWS docs on data event selection for more details on the
   # Should we create the IAM Group for full access? Allows full access to all AWS
   # resources. (true or false)
   should_create_iam_group_full_access = true
+
+  # Should we create the IAM Group for houston CLI users? Allows users to use the
+  # houston CLI for managing and deploying services.
+  should_create_iam_group_houston_cli_users = false
 
   # Should we create the IAM Group for logs? Allows read access to logs in
   # CloudTrail, AWS Config, and CloudWatch. If var.cloudtrail_kms_key_arn is
@@ -1972,89 +1968,6 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudtrail_additional_bucket_policy_statements" requirement="optional" type="any">
-<HclListItemDescription>
-
-Additional IAM policies to apply to cloudtrail S3 bucket. You can use this to grant read/write access beyond what is provided to Cloudtrail. This should be a map, where each key is a unique statement ID (SID), and each value is an object that contains the parameters defined in the comment below.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   {
-      AllIamUsersReadAccess = {
-        effect     = "Allow"
-        actions    = ["s3:GetObject"]
-        principals = {
-          AWS = ["arn:aws:iam::111111111111:user/ann", "arn:aws:iam::111111111111:user/bob"]
-        }
-        condition = {
-          SourceVPCCheck = {
-            test = "StringEquals"
-            variable = "aws:SourceVpc"
-            values = ["vpc-abcd123"]
-          }
-        }
-      }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   See the 'statement' block in the aws_iam_policy_document data
-   source for context: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document
-  
-   - effect                                      string            (optional): Either "Allow" or "Deny", to specify whether this statement allows or denies the given actions.
-   - actions                                     list(string)      (optional): A list of actions that this statement either allows or denies. For example, ["s3:GetObject", "s3:PutObject"].
-   - not_actions                                 list(string)      (optional): A list of actions that this statement does NOT apply to. Used to apply a policy statement to all actions except those listed.
-   - principals                                  map(list(string)) (optional): The principals to which this statement applies. The keys are the principal type ("AWS", "Service", or "Federated") and the value is a list of identifiers.
-   - not_principals                              map(list(string)) (optional): The principals to which this statement does NOT apply. The keys are the principal type ("AWS", "Service", or "Federated") and the value is a list of identifiers.
-   - keys                                        list(string)      (optional): A list of keys within the bucket to which this policy applies. For example, ["", "/*"] would apply to (a) the bucket itself and (b) all keys within the bucket. The default is [""].
-   - condition                                   map(object)       (optional): A nested configuration block (described below) that defines a further, possibly-service-specific condition that constrains whether this statement applies.
-  
-   condition is a map from a unique ID for the condition to an object that can define the following properties:
-  
-   - test                                        string            (required): The name of the IAM condition operator to evaluate.
-   - variable                                    string            (required): The name of a Context Variable to apply the condition to. Context variables may either be standard AWS variables starting with aws:, or service-specific variables prefixed with the service name.
-   - values                                      list(string)      (required):  The values to evaluate the condition against. If multiple values are provided, the condition matches if at least one of them applies. (That is, the tests are combined with the "OR" boolean operation.)
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-   Ideally, this would be a map(object({...})), but the Terraform object type constraint doesn't support optional
-   parameters, whereas IAM policy statements have many optional params. And we can't even use map(any), as the
-   Terraform map type constraint requires all values to have the same type ("shape"), but as each object in the map
-   may specify different optional params, this won't work either. So, sadly, we are forced to fall back to "any."
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="cloudtrail_advanced_event_selectors" requirement="optional" type="any">
@@ -3156,6 +3069,15 @@ Should we create the IAM Group for full access? Allows full access to all AWS re
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="should_create_iam_group_houston_cli_users" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Should we create the IAM Group for houston CLI users? Allows users to use the houston CLI for managing and deploying services.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="should_create_iam_group_logs" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -3317,6 +3239,12 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItem name="allow_full_access_sign_in_url">
 </HclListItem>
 
+<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_id">
+</HclListItem>
+
 <HclListItem name="allow_iam_admin_access_from_other_accounts_iam_role_arn">
 </HclListItem>
 
@@ -3351,6 +3279,15 @@ Any types represent complex values of variable type. For details, please consult
 </HclListItem>
 
 <HclListItem name="allow_ssh_grunt_access_sign_in_url">
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_id">
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_houston_access_sign_in_url">
 </HclListItem>
 
 <HclListItem name="allow_support_access_from_other_accounts_iam_role_arn">
@@ -3608,6 +3545,12 @@ The names of the SNS topic where findings are published if <a href="#publish_fin
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="houston_cli_users_iam_group_arn">
+</HclListItem>
+
+<HclListItem name="houston_cli_users_iam_group_name">
+</HclListItem>
+
 <HclListItem name="iam_admin_iam_group_arn">
 </HclListItem>
 
@@ -3749,6 +3692,6 @@ A map of user name to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/landingzone/account-baseline-root/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1242f626f91e3976629731ec4ec514f0"
+  "hash": "ba5a93e1dd4c0306862bd383a22dae6f"
 }
 ##DOCS-SOURCER-END -->
