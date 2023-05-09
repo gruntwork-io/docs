@@ -518,12 +518,12 @@ module "eks_cluster" {
   # The URL from which to download Kubergrunt if it's not installed already. Use to
   # specify a version of kubergrunt that is compatible with your specified
   # kubernetes version. Ex.
-  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.1/kubergrunt
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.1/kubergrunt"
+  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.10.0/kubergrunt
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.10.0/kubergrunt"
 
   # Version of Kubernetes to use. Refer to EKS docs for list of available versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.25"
+  kubernetes_version = "1.24"
 
   # Configure one or more Node Groups to manage the EC2 instances in this cluster.
   # Set to empty object ({}) if you do not wish to configure managed node groups.
@@ -1187,12 +1187,12 @@ inputs = {
   # The URL from which to download Kubergrunt if it's not installed already. Use to
   # specify a version of kubergrunt that is compatible with your specified
   # kubernetes version. Ex.
-  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.1/kubergrunt
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.1/kubergrunt"
+  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.10.0/kubergrunt
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.10.0/kubergrunt"
 
   # Version of Kubernetes to use. Refer to EKS docs for list of available versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.25"
+  kubernetes_version = "1.24"
 
   # Configure one or more Node Groups to manage the EC2 instances in this cluster.
   # Set to empty object ({}) if you do not wish to configure managed node groups.
@@ -2754,10 +2754,10 @@ map(list(string))
 <HclListItem name="kubergrunt_download_url" requirement="optional" type="string">
 <HclListItemDescription>
 
-The URL from which to download Kubergrunt if it's not installed already. Use to specify a version of kubergrunt that is compatible with your specified kubernetes version. Ex. 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.1/kubergrunt'
+The URL from which to download Kubergrunt if it's not installed already. Use to specify a version of kubergrunt that is compatible with your specified kubernetes version. Ex. 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.10.0/kubergrunt'
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.1/kubergrunt&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.10.0/kubergrunt&quot;"/>
 </HclListItem>
 
 <HclListItem name="kubernetes_version" requirement="optional" type="string">
@@ -2766,7 +2766,7 @@ The URL from which to download Kubergrunt if it's not installed already. Use to 
 Version of Kubernetes to use. Refer to EKS docs for list of available versions (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.25&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;1.24&quot;"/>
 </HclListItem>
 
 <HclListItem name="managed_node_group_configurations" requirement="optional" type="any">
@@ -3435,6 +3435,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f1bdfd7af84f1250dd747122de18d1a1"
+  "hash": "e61a3303b164170280a4e2b8c9febed7"
 }
 ##DOCS-SOURCER-END -->

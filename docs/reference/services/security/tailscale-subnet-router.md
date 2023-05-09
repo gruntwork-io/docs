@@ -101,14 +101,11 @@ script, which can be used to load the auth key from AWS Secrets Manager to authe
 ### How do I authenticate the server to Tailscale?
 
 This module expects the server to authenticate to Tailscale using [an auth
-key](https://tailscale.com/kb/1085/auth-keys/) that is stored in AWS Secrets Manager. When creating the Secrets Manager secret first select the `Other type of secret` option, then select the `Plaintext` tab, and finally input your Tailscale auth key.
-
-The auth key must be **Reusable** to allow the server to automatically rejoin the network when recovering from a failure.
+key](https://tailscale.com/kb/1085/auth-keys/) that is stored in AWS Secrets Manager. The auth key must be **Reusable**
+to allow the server to automatically rejoin the network when recovering from a failure.
 
 We also recommend using a unique auth key for each subnet router instance, and to tag each key so that you can
 differentiate between the different VPC networks in your [Tailscale ACL rules](https://tailscale.com/kb/1018/acls/).
-
-You can specify the ACL tags your server will advertise by using the [tailscale_advertise_tags](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/e865799422cf334940a3a01c52d84f0377f494c6/modules/mgmt/tailscale-subnet-router/variables.tf#L71) variable, which will grant access to the server automatically based on tag-based ACLs in Tailscale. For more information see [Server role account using ACL tags](https://tailscale.com/kb/1068/acl-tags/).
 
 ### How do I add IAM policies to the Tailscale subnet router IAM role?
 
@@ -357,10 +354,6 @@ module "tailscale_subnet_router" {
   # var.name input value.
   tailnet_hostname = null
 
-  # Advertise tags for Tailscale subnet router. These are used on the 'up' command
-  # to control ACLs in Tailscale.
-  tailscale_advertise_tags = []
-
   # Set this variable to true to enable the use of Instance Metadata Service Version
   # 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due
   # to its special security hardening, we allow this in order to support the use
@@ -591,10 +584,6 @@ inputs = {
   # Advertised hostname of the server on the tailnet. If null, defaults to the
   # var.name input value.
   tailnet_hostname = null
-
-  # Advertise tags for Tailscale subnet router. These are used on the 'up' command
-  # to control ACLs in Tailscale.
-  tailscale_advertise_tags = []
 
   # Set this variable to true to enable the use of Instance Metadata Service Version
   # 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due
@@ -1019,15 +1008,6 @@ Advertised hostname of the server on the tailnet. If null, defaults to the <a hr
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="tailscale_advertise_tags" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Advertise tags for Tailscale subnet router. These are used on the 'up' command to control ACLs in Tailscale.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
 <HclListItem name="use_imdsv1" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1092,6 +1072,6 @@ ID of the primary security group attached to the Tailscale relay server.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/mgmt/tailscale-subnet-router/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "483979639017cf5921193a5a4ef01826"
+  "hash": "574a982930eead7ac4a2dbd7ea19c480"
 }
 ##DOCS-SOURCER-END -->
