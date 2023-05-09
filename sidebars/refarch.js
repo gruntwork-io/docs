@@ -33,8 +33,20 @@ const sidebar = [
           "refarch/usage/maintain-your-refarch/index",
           "refarch/usage/getting-help/index",
           "refarch/usage/pipelines-integration/index",
-        ],
+       ],
       },
+      {
+        label: "Access",
+        type: "category",
+        collapsible: false,
+        items: [
+          "refarch/access/setup-auth/index",
+          "refarch/access/how-to-auth-vpn/index",
+          "refarch/access/how-to-auth-console/index",
+          "refarch/access/how-to-auth-cli/index",
+          "refarch/access/how-to-auth-ec2/index"
+        ],
+      }, 
       {
         label: "Support",
         type: "category",
