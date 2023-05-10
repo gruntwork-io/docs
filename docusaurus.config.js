@@ -112,7 +112,7 @@ const config = {
               {
                 type: "doc",
                 label: "Reference Architecture",
-                docId: "refarch/whats-this/index"
+                docId: "refarch/whats-this/what-is-a-reference-architecture"
               },
               {
                 type: "doc",
