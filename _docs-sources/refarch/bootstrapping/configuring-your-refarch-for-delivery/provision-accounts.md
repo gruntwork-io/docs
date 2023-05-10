@@ -1,4 +1,4 @@
-# Step 1. Provision AWS accounts 
+# Provision AWS accounts 
 
 Haxx0r ipsum mainframe bang ssh data public root client wombat recursively. Hexadecimal snarf chown highjack sudo for suitably small values null default bar unix server man pages endif ascii linux kilo tcp tunnel in. Long giga afk crack infinite loop buffer worm foo Dennis Ritchie.
 

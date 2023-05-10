@@ -1,4 +1,4 @@
-# Path 1: Use the Gruntwork CLI 
+# Using the Gruntwork CLI 
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tortor vitae purus faucibus ornare suspendisse sed nisi. At tempor commodo ullamcorper a. Eu volutpat odio facilisis mauris. Nec feugiat nisl pretium fusce id velit ut. In nibh mauris cursus mattis molestie a iaculis at erat. Et magnis dis parturient montes. At tempor commodo ullamcorper a lacus. Porta nibh venenatis cras sed felis eget velit aliquet. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Aenean euismod elementum nisi quis eleifend quam. Elit sed vulputate mi sit amet mauris commodo quis.
 
@@ -29,6 +29,6 @@ Please use the wizard
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "2ad2dd9eea1c7fa1a1c09d3c89ab6f83"
+  "hash": "af6e00ac3b7ca52f07c20c35c46813a4"
 }
 ##DOCS-SOURCER-END -->

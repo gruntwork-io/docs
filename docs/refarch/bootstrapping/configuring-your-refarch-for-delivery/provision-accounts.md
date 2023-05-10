@@ -1,4 +1,4 @@
-# Step 1. Provision AWS accounts 
+# Provision AWS accounts 
 
 Haxx0r ipsum mainframe bang ssh data public root client wombat recursively. Hexadecimal snarf chown highjack sudo for suitably small values null default bar unix server man pages endif ascii linux kilo tcp tunnel in. Long giga afk crack infinite loop buffer worm foo Dennis Ritchie.
 
@@ -10,6 +10,6 @@ Linux mega var alloc xss linux tunnel in gc stdio.h int win back door mountain d
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "339d3644087b10bac1eea6424e85e20f"
+  "hash": "ca0907c32a4fd6dccd07b96274a3b11d"
 }
 ##DOCS-SOURCER-END -->
