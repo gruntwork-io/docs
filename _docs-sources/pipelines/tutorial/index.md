@@ -17,11 +17,3 @@ Now it's time to deploy your pipeline to your code repository. This is like when
 
 Step 6: Monitor and improve your pipeline
 Just like how you need to monitor your cat's health to make sure they're happy and healthy, you need to monitor your pipeline to make sure it's working properly. Keep an eye on the pipeline's logs and metrics to make sure everything is running smoothly. If you notice any issues, make improvements to your pipeline script to fix them.
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "7a0a3dd6cd92296e7e3fe10247dd6a89"
-}
-##DOCS-SOURCER-END -->

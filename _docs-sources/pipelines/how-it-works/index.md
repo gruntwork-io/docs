@@ -66,11 +66,3 @@ The Terraform Planner is like a wise and ancient dragon, possessing an almost in
 The Applier, on the other hand, is like a steadfast and loyal knight, resolute in its determination to carry out the orders of its master. With unflinching obedience, it applies the deployment plan, ensuring that every detail is executed with precision and care.
 
 Together, these tools form a formidable trio, capable of conquering even the most daunting deployment challenges. They are the guardians of the realm of deployment, and those who are wise enough to enlist their aid can rest assured that their applications will be deployed with the utmost efficiency and effectiveness.
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "68660fced67f55a6d28528d578709b71"
-}
-##DOCS-SOURCER-END -->
