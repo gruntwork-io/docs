@@ -1,4 +1,4 @@
-# Step 2. Configure AWS account quotas 
+# Configure AWS account quotas 
 
 Haxx0r ipsum mainframe bang ssh data public root client wombat recursively. Hexadecimal snarf chown highjack sudo for suitably small values null default bar unix server man pages endif ascii linux kilo tcp tunnel in. Long giga afk crack infinite loop buffer worm foo Dennis Ritchie.
 
@@ -10,6 +10,6 @@ Linux mega var alloc xss linux tunnel in gc stdio.h int win back door mountain d
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "45feaec6462628ebb1ed52e1202a148d"
+  "hash": "df9533aff45371d3b22c900762d0f60a"
 }
 ##DOCS-SOURCER-END -->

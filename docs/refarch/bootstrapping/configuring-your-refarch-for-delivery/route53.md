@@ -1,4 +1,4 @@
-# Step 3. Configure Route53 and domains
+# Configure Route53 and app domains
 
 Haxx0r ipsum mainframe bang ssh data public root client wombat recursively. Hexadecimal snarf chown highjack sudo for suitably small values null default bar unix server man pages endif ascii linux kilo tcp tunnel in. Long giga afk crack infinite loop buffer worm foo Dennis Ritchie.
 
@@ -10,6 +10,6 @@ Linux mega var alloc xss linux tunnel in gc stdio.h int win back door mountain d
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "43850190e97afa383f883b7f2b009057"
+  "hash": "b1fcdc91617e8cb12a8ffa3b25a3ebe6"
 }
 ##DOCS-SOURCER-END -->
