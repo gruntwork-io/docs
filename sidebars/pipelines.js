@@ -12,6 +12,7 @@ const sidebar = [
             {
               label: "Learn Pipelines",
               type: "category",
+              collapsible: false,
               items: [
                 {
                   label: "How it works",
@@ -33,6 +34,7 @@ const sidebar = [
             {
               label: "Maintain Pipelines",
               type: "category",
+              collapsible: false,
               items: ["pipelines/maintain/updating", "pipelines/maintain/extending"],
             },
         ]
