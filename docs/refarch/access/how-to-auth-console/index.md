@@ -1,4 +1,4 @@
-# How to authenticate to the AWS Web Console 
+# AWS Web Console Authentication
 
 Haxx0r ipsum foo Trojan horse new all your base are belong to us ip error private shell fopen semaphore epoch char packet sniffer segfault gurfle bypass. Memory leak bubble sort injection leet malloc brute force double xss mega sudo mountain dew void echo win emacs linux piggyback bin. I'm compiling float bang case cat infinite loop Donald Knuth unix for /dev/null machine code then chown d00dz worm gnu crack packet bar eof while.
 
@@ -27,6 +27,6 @@ Bang spoof *.* headers Dennis Ritchie pragma bubble sort mutex d00dz firewall wo
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "bd8815675312ddb0b62f109f73c504c0"
+  "hash": "a4cfa20d43c27e8c441004e02b5be1b5"
 }
 ##DOCS-SOURCER-END -->

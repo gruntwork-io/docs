@@ -1,5 +1,5 @@
 
-# How to: Add a new AWS Account
+# Add a new AWS Account
 
 Haxx0r ipsum Linus Torvalds hello world null python fail epoch. Less thread less xss chown over clock bin baz unix warez malloc printf packet sniffer leet semaphore linux gnu new it's a feature. Recursively tcp big-endian var ack fork else ascii foo infinite loop gobble back door vi overflow char spoof loop cat segfault.
 

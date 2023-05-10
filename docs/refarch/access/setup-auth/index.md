@@ -1,4 +1,4 @@
-# Do this first: Set up AWS Auth
+# Set up AWS Auth
 
 Haxx0r ipsum foo Trojan horse new all your base are belong to us ip error private shell fopen semaphore epoch char packet sniffer segfault gurfle bypass. Memory leak bubble sort injection leet malloc brute force double xss mega sudo mountain dew void echo win emacs linux piggyback bin. I'm compiling float bang case cat infinite loop Donald Knuth unix for /dev/null machine code then chown d00dz worm gnu crack packet bar eof while.
 
@@ -30,6 +30,6 @@ Bang spoof *.* headers Dennis Ritchie pragma bubble sort mutex d00dz firewall wo
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0b15c4a73d690bc99155135e02a87bab"
+  "hash": "7a97e6bb587edb67f8a1ede41acaf84a"
 }
 ##DOCS-SOURCER-END -->

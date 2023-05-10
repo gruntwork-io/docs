@@ -1,5 +1,5 @@
 
-# Stay up to date 
+# Extending and modifying your Reference Architecture 
 
 Haxx0r ipsum Linus Torvalds hello world null python fail epoch. Less thread less xss chown over clock bin baz unix warez malloc printf packet sniffer leet semaphore linux gnu new it's a feature. Recursively tcp big-endian var ack fork else ascii foo infinite loop gobble back door vi overflow char spoof loop cat segfault.
 
@@ -11,6 +11,6 @@ Double Linus Torvalds big-endian socket fail d00dz ddos bit headers daemon wanna
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "fcca5edb42670916bd7f68f6206de0ef"
+  "hash": "dec3a1d385fed054f897ef18eacbe190"
 }
 ##DOCS-SOURCER-END -->
