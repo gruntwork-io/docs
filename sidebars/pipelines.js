@@ -10,7 +10,7 @@ const sidebar = [
                 id: "pipelines/what-is-it/index"
             },
             {
-              label: "Learn Pipelines",
+              label: "Getting Started",
               type: "category",
               collapsible: false,
               items: [
