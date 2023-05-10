@@ -9,13 +9,13 @@ const sidebar = [
         type: "category",
         collapsible: false,
         items: [
-          "refarch/whats-this/index",
           "refarch/whats-this/what-is-a-reference-architecture",
           "refarch/whats-this/how-does-the-gruntwork-reference-architecture-differ",
+          "refarch/whats-this/understanding-the-deployment-process"
         ]
       },
       {
-        label: "Bootstrapping Your Reference Architecture",
+        label: "Configuration",
         type: "category",
         collapsible: false,
         items: [
