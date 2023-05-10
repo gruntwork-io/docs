@@ -6,11 +6,3 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 This is a paragraph. It might not seem long enough, but it is.
 
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "5e22dd7d841afce53b58954225e58cf7"
-}
-##DOCS-SOURCER-END -->

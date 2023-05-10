@@ -11,11 +11,3 @@ And just like with a pack of dogs, there are different roles and responsibilitie
 It's important to keep all your accounts organized and working together smoothly, just like how you would keep your pack of dogs in line. You don't want one dog to get too aggressive and start fighting with the others, just like you don't want one AWS account to start interfering with the others.
 
 But if you can manage your pack of dogs successfully, they can work together to accomplish great things - just like how an AWS multi-account setup can help you achieve your goals with ease and efficiency. So, if you're a dog lover like me, you'll find that AWS multi-account setups are just as fun and rewarding as having a pack of loyal furry friends by your side. Woof!
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "f1f1a577938c27178c3e76a08ec4ae58"
-}
-##DOCS-SOURCER-END -->
