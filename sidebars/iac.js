@@ -25,7 +25,7 @@ const sidebar = [
         ],
       },
       {
-        label: "Working with Modules",
+        label: "Working with the Library",
         type: "category",
         collapsible: false,
         items: [
@@ -41,7 +41,7 @@ const sidebar = [
         collapsible: false,
         items: [
           "iac/usage/versioning",
-          "iac/usage/stay-up-to-date",
+          "iac/usage/updating",
         ],
       },
       {
