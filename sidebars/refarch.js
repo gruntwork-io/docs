@@ -22,7 +22,12 @@ const sidebar = [
           "refarch/bootstrapping/index",
           "refarch/bootstrapping/configuring-your-refarch-for-delivery/index",
           "refarch/bootstrapping/configuring-your-refarch-for-delivery/path1",
-          "refarch/bootstrapping/configuring-your-refarch-for-delivery/path2",
+          "refarch/bootstrapping/configuring-your-refarch-for-delivery/gruntwork-cli",
+          "refarch/bootstrapping/configuring-your-refarch-for-delivery/preflight-checks",
+          "refarch/bootstrapping/configuring-your-refarch-for-delivery/provision-accounts",
+          "refarch/bootstrapping/configuring-your-refarch-for-delivery/setup-quotas",
+          "refarch/bootstrapping/configuring-your-refarch-for-delivery/route53",
+
         ],
       },
       {
