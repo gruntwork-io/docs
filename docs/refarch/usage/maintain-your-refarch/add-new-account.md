@@ -1,5 +1,5 @@
 
-# How to: Add a new AWS Account
+# Add a new AWS Account
 
 Haxx0r ipsum Linus Torvalds hello world null python fail epoch. Less thread less xss chown over clock bin baz unix warez malloc printf packet sniffer leet semaphore linux gnu new it's a feature. Recursively tcp big-endian var ack fork else ascii foo infinite loop gobble back door vi overflow char spoof loop cat segfault.
 
@@ -12,6 +12,6 @@ Double Linus Torvalds big-endian socket fail d00dz ddos bit headers daemon wanna
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "fb1d6b3d061bf31cc84e626ce8483482"
+  "hash": "ff3431c548adfdc932e64b354185c0be"
 }
 ##DOCS-SOURCER-END -->

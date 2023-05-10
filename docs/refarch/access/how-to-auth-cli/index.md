@@ -1,4 +1,4 @@
-# How to authenticate on the command line (CLI) 
+# Command Line (CLI) Authentication
 
 Haxx0r ipsum foo Trojan horse new all your base are belong to us ip error private shell fopen semaphore epoch char packet sniffer segfault gurfle bypass. Memory leak bubble sort injection leet malloc brute force double xss mega sudo mountain dew void echo win emacs linux piggyback bin. I'm compiling float bang case cat infinite loop Donald Knuth unix for /dev/null machine code then chown d00dz worm gnu crack packet bar eof while.
 
@@ -27,6 +27,6 @@ Bang spoof *.* headers Dennis Ritchie pragma bubble sort mutex d00dz firewall wo
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "c368e86e39ff316783857bb1ad32bf24"
+  "hash": "cbf48096701b297b37b66eb0737883eb"
 }
 ##DOCS-SOURCER-END -->
