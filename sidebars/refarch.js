@@ -36,7 +36,10 @@ const sidebar = [
         collapsible: false,
         items: [
           "refarch/usage/maintain-your-refarch/index",
-          "refarch/usage/getting-help/index",
+          "refarch/usage/maintain-your-refarch/add-new-account",
+          "refarch/usage/maintain-your-refarch/undeploy",
+          "refarch/usage/maintain-your-refarch/stay-up-to-date",
+          "refarch/usage/maintain-your-refarch/upgrade-terraform",
           "refarch/usage/pipelines-integration/index",
        ],
       },

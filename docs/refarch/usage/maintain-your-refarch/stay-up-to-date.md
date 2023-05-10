@@ -1,4 +1,5 @@
-# Maintain your Reference Architecture 
+
+# How to: Stay up to date 
 
 Haxx0r ipsum Linus Torvalds hello world null python fail epoch. Less thread less xss chown over clock bin baz unix warez malloc printf packet sniffer leet semaphore linux gnu new it's a feature. Recursively tcp big-endian var ack fork else ascii foo infinite loop gobble back door vi overflow char spoof loop cat segfault.
 
@@ -7,10 +8,9 @@ Mutex overflow leet hexadecimal ifdef pragma blob afk worm hash leapfrog protect
 Double Linus Torvalds big-endian socket fail d00dz ddos bit headers daemon wannabee ascii bar buffer flood. Tunnel in leapfrog boolean port ifdef baz terminal fork tera snarf race condition irc sql interpreter pwned *.* win hello world. Warez highjack packet ip todo function giga fatal public.
 
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "614f2615bb3026f583a0f48b3629c057"
+  "hash": "c9566d8d0159900beccff2a26fb70d2a"
 }
 ##DOCS-SOURCER-END -->
