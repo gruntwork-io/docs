@@ -25,7 +25,7 @@ const sidebar = [
         ],
       },
       {
-        label: "Usage",
+        label: "Working with Modules",
         type: "category",
         collapsible: false,
         items: [
@@ -33,6 +33,13 @@ const sidebar = [
           "iac/usage/using-a-service",
           "iac/usage/customizing-modules",
           "iac/usage/composing-your-own-service",
+        ],
+      },
+      {
+        label: "Staying up to date",
+        type: "category",
+        collapsible: false,
+        items: [
           "iac/usage/versioning",
           "iac/usage/stay-up-to-date",
         ],

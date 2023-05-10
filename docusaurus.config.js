@@ -122,20 +122,10 @@ const config = {
             ],
           },
           {
-            type: "dropdown",
+            type: "doc",
             label: "Library Reference",
-            items: [
-              {
-                type: "doc",
-                label: "Modules",
-                docId: "reference/modules/intro",
-              },
-              {
-                type: "doc",
-                label: "Services",
-                docId: "reference/services/intro/overview",
-              },
-            ],
+            docId: "iac/reference/index",
+
           },
           { to: "/tools", label: "Tools", position: "left" },
           { to: "/courses", label: "Courses", position: "left" },
