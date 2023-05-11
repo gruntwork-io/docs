@@ -12,7 +12,7 @@ Gruntwork products strike a balance between opinionatedness and configurability.
 
 ## As a Gruntwork customer, you are responsible for
 
-1. Staffing appropriately (as described in the [Prerequisites Guide](/intro/overview/reference-architecture-prerequisites-guide/)) to maintain and customize the modules and (if applicable) the Reference Architecture and to understand how the Gruntwork product works so that changes can be made to customize it to the customer’s needs.
+1. Staffing appropriately (as described in the [Prerequisites Guide](/intro/overview/reference-architecture-prerequisites-guide)) to maintain and customize the modules and (if applicable) the Reference Architecture and to understand how the Gruntwork product works so that changes can be made to customize it to the customer’s needs.
    1. Raise limitations of Gruntwork modules as a feature request or a pull request.
       1. N.B., Gruntwork does not guarantee any turn-around time on getting features built or PRs reviewed and merged. Gruntwork modules must also be applicable to a wide range of companies, so we will be selective about features added and pull requests accepted.
 1. Adding additional Infrastructure as Code to customize it for your company.
@@ -33,6 +33,6 @@ Gruntwork products strike a balance between opinionatedness and configurability.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "2ac696b8bb2538cb3cabb31221e28b38"
+  "hash": "7c188f5625165266fbce224db1dc03ce"
 }
 ##DOCS-SOURCER-END -->
