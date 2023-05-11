@@ -11235,9 +11235,9 @@ trough@^1.0.0:
   resolved "https://registry.yarnpkg.com/trough/-/trough-1.0.5.tgz#b8b639cefad7d0bb2abd37d433ff8293efa5f406"
   integrity sha512-rvuRbTarPXmMb79SmzEp8aqXNKcK+y0XaB298IXueQ8I2PsrATcPBCSPyK/dDNa2iWOhKlfNnOjdAOTBU/nkFA==
 
-ts-commons@gruntwork-io/ts-commons#v2.0.0:
-  version "1.0.0"
-  resolved "git+ssh://git@github.com/gruntwork-io/ts-commons.git#342be3734001e9e812fd09c7583d817dcd2b0851"
+ts-commons@gruntwork-io/ts-commons#v3.2.1:
+  version "3.2.1"
+  resolved "git+ssh://git@github.com/gruntwork-io/ts-commons.git#fdf39317d24ee6006d3b5488134f806c5619d70f"
 
 ts-essentials@^2.0.3:
   version "2.0.12"
