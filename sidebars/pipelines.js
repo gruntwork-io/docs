@@ -5,9 +5,16 @@ const sidebar = [
         collapsible: false,
         items: [
             {
-                label: "What is Gruntwork Pipelines?",
-                type: "doc",
-                id: "pipelines/what-is-it/index"
+              label: "Overview",
+              type: "category",
+              collapsible: false,
+              items: [
+                {
+                  label: "What is Gruntwork Pipelines?",
+                  type: "doc",
+                  id: "pipelines/what-is-it/index"
+                },
+              ]
             },
             {
               label: "Getting Started",
