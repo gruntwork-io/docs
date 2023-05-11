@@ -10,7 +10,7 @@ A battle-tested, production-grade _catalog_ of infrastructure code that contains
 - App orchestration — ECS, EC2, Kubernetes, and more
 - Data storage — Aurora, Elasticache, RDS, and more
 - Best-practice security baselines
-- _and [more…](/iac/whats-this/)_
+- _and [more…](/iac/whats-this)_
 
 ## Gruntwork Compliance
 
@@ -25,7 +25,7 @@ Gruntwork offers basic and paid support options:
 
 ## Gruntwork is responsible for
 
-1. Providing a tested, updated, and richly featured [collection of infrastructure code](<(/iac/whats-this/)>) for the customer to use.
+1. Providing a tested, updated, and richly featured [collection of infrastructure code](/iac/whats-this) for the customer to use.
 1. Maintaining a healthy [Knowledge Base community](https://github.com/gruntwork-io/knowledge-base/discussions) where other engineers (including Grunts) post & answer questions.
 1. For Pro / Enterprise Support customers: Answering questions via email and Slack.
 1. For Reference Architecture customers:
@@ -46,6 +46,6 @@ Gruntwork offers basic and paid support options:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "5ff60036297014119a95bd2d4fe9d037"
+  "hash": "45592a641758d9236786db1209d4bcc8"
 }
 ##DOCS-SOURCER-END -->
