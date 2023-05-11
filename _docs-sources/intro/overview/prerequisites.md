@@ -1,8 +1,6 @@
-# What do I need to know
+# What you need to know
 
-Gruntwork accelerates your infrastructure. Our products allow you to treat your infrastructure like you do your application: as code, complete with pull requests and peer reviews. Our products may require a variety of skills to maintain and customize to your needs over time.
-
-Here's what your team will need so you can succeed with Gruntwork:
+Gruntwork accelerates your infrastructure. Our products allow you to treat your infrastructure like you do your application: as code, complete with pull requests and peer reviews. Our products require a _variety of skills_ to maintain and customize to your needs over time.
 
 ## Terraform
 

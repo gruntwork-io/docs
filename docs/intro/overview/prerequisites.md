@@ -1,8 +1,6 @@
-# What do I need to know
+# What you need to know
 
-Gruntwork accelerates your infrastructure. Our products allow you to treat your infrastructure like you do your application: as code, complete with pull requests and peer reviews. Our products may require a variety of skills to maintain and customize to your needs over time.
-
-Here's what your team will need so you can succeed with Gruntwork:
+Gruntwork accelerates your infrastructure. Our products allow you to treat your infrastructure like you do your application: as code, complete with pull requests and peer reviews. Our products require a _variety of skills_ to maintain and customize to your needs over time.
 
 ## Terraform
 
@@ -37,6 +35,6 @@ With Gruntwork, you can accelerate your journey towards capturing your AWS cloud
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "302a3c6f00db9e54ee837f0f5653ecae"
+  "hash": "4ede6b938e1010b0fb0fca78fbd7edb1"
 }
 ##DOCS-SOURCER-END -->

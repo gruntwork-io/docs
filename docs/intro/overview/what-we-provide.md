@@ -23,16 +23,29 @@ Gruntwork offers basic and paid support options:
 - **[Community support](/support#get-support).** Get help via a [Gruntwork Community Slack](https://gruntwork-community.slack.com/archives/CHH9Y3Z62) and our [Knowledge Base](https://github.com/gruntwork-io/knowledge-base/discussions).
 - **[Paid support](/support#paid-support-tiers).** Get help via email, a private Slack channel, or scheduled Zoom calls, with response times backed by SLAs.
 
-## Gruntwork’s Limitations
+## Gruntwork is responsible for
 
-Gruntwork focuses on helping you launch and maintain your infrastructure as code. Understanding and using the AWS services that our code provisioned is up to you. Since Gruntwork is an accelerator for your AWS infrastructure and not an abstraction layer in front of AWS, knowledge of AWS and the services you intend to use is required.
-
-If you purchased our Reference Architecture: During the process of setting up the AWS accounts our tooling will automatically submit quota increase requests to AWS as a support ticket. These AWS quota increases are required to install the components of the Reference Architecture. Often, AWS will approve these requests quickly. Sometimes these support tickets will take some time for AWS to resolve. Unfortunately, some of these requests may be denied by AWS’s support team. Gruntwork can work with you to get these requests approved, but this can take some time, and that time is mostly out of our control.
+1. Providing a tested, updated, and richly featured [collection of infrastructure code](<(/iac/whats-this/)>) for the customer to use.
+1. Maintaining a healthy [Knowledge Base community](https://github.com/gruntwork-io/knowledge-base/discussions) where other engineers (including Grunts) post & answer questions.
+1. For Pro / Enterprise Support customers: Answering questions via email and Slack.
+1. For Reference Architecture customers:
+   1. Generating the initial Reference Architecture based on our customer’s selections of available configurations. This includes:
+      1. Our implementation of Landing Zone
+      1. A complete sample app with underlying database and caching layer
+      1. The Gruntwork Pipeline for deploying changes to infrastructure
+      1. An overview of how to use the Reference Architecture
+   1. Deploying the initial Reference Architecture into the customer’s brand new empty AWS accounts.
+   1. Delivering the initial Reference Architecture Infrastructure as Code to the customer.
+   1. Providing resources to the customer for deeply understanding the inner workings of the Reference Architecture.
+1. For CIS customers:
+   1. Providing IaC libraries to the CIS customer that correctly implement CIS requirements and restrictions.
+   1. For aspects of the CIS AWS Foundations Benchmark where those requirements cannot be met by modules, but require human intervention, provide instructions on manual steps the customer must take to meet the requirements.
+   1. For CIS Reference Architecture customers, deploying a Reference Architecture and providing access to infrastructure code that implements the CIS AWS Foundations Benchmark requirements out-of-the-box, wherever possible.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "bc855cd2df64c68cd8f309c72c3495c0"
+  "hash": "5ff60036297014119a95bd2d4fe9d037"
 }
 ##DOCS-SOURCER-END -->
