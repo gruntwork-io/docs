@@ -152,7 +152,7 @@ module "rds" {
 
   # Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be
   # permitted. Note that these updates must always be manually performed and will
-  # never automatically applied.
+  # never be automatically applied.
   allow_major_version_upgrade = true
 
   # If true, both the CMK's Key Policy and IAM Policies (permissions) can be used to
@@ -601,7 +601,7 @@ inputs = {
 
   # Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be
   # permitted. Note that these updates must always be manually performed and will
-  # never automatically applied.
+  # never be automatically applied.
   allow_major_version_upgrade = true
 
   # If true, both the CMK's Key Policy and IAM Policies (permissions) can be used to
@@ -1068,7 +1068,7 @@ The list of IDs or Security Groups to allow network access to RDS from. All secu
 <HclListItem name="allow_major_version_upgrade" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be permitted. Note that these updates must always be manually performed and will never automatically applied.
+Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be permitted. Note that these updates must always be manually performed and will never be automatically applied.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -2331,6 +2331,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d27d33abafec4dc21bef0b8eb15e8f29"
+  "hash": "b9e9d60dc289b41f3912e4d2260228b2"
 }
 ##DOCS-SOURCER-END -->
