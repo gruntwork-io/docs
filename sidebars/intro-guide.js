@@ -1,8 +1,12 @@
 const sidebar = [
   {
-    "What is all this": [
+    label: "Overview",
+    type: "category",
+    collapsible: false,
+    items: [
       "intro/overview/intro-to-gruntwork",
-      "intro/overview/how-it-works",
+      "intro/overview/what-we-provide",
+      "intro/overview/what-you-provide",
       "intro/overview/prerequisites",
       // Temporarily hiding the unfinished sections from the sidebar We'll put
       // them back shortly and don't want to delete the pages as we know we're
