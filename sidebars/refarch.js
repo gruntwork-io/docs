@@ -34,9 +34,7 @@ const sidebar = [
         items: [
           "refarch/access/setup-auth/index",
           "refarch/access/how-to-auth-vpn/index",
-          "refarch/access/how-to-auth-console/index",
-          "refarch/access/how-to-auth-cli/index",
-          "refarch/access/how-to-auth-ec2/index"
+          "refarch/access/how-to-auth-aws/index",
         ],
       }, 
       {
@@ -52,15 +50,6 @@ const sidebar = [
           "refarch/usage/maintain-your-refarch/extending",
           "refarch/usage/pipelines-integration/index",
        ],
-      },
-      {
-        label: "Support",
-        type: "category",
-        collapsible: false,
-        items: [
-          "refarch/support/getting-help/index",
-          "refarch/support/onboarding/index",
-        ]
       },
     ],
   },
