@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.3" lastModifiedVersion="0.95.1"/>
+<VersionBadge version="0.104.5" lastModifiedVersion="0.104.4"/>
 
 # Bastion Host
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.3/modules/mgmt/bastion-host" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.5/modules/mgmt/bastion-host" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fbastion-host" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -87,7 +87,7 @@ The bastion host AMI is defined using the [Packer](https://www.packer.io/) templ
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.3/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.5/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -95,7 +95,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.3/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.5/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog, configure CI / CD for your apps and
@@ -115,7 +115,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "bastion_host" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/bastion-host?ref=v0.104.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/bastion-host?ref=v0.104.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -288,6 +288,18 @@ module "bastion_host" {
   # The name of the bastion host and the other resources created by these templates
   name = "bastion-host"
 
+  # If set to true, the root volume will be deleted when the Instance is terminated.
+  root_volume_delete_on_termination = true
+
+  # The size of the root volume, in gigabytes.
+  root_volume_size = 8
+
+  # Tags to set on the root volume.
+  root_volume_tags = {}
+
+  # The root volume type. Must be one of: standard, gp2, io1.
+  root_volume_type = "standard"
+
   # When true, precreate the CloudWatch Log Group to use for log aggregation from
   # the EC2 instances. This is useful if you wish to customize the CloudWatch Log
   # Group with various settings such as retention periods and KMS encryption. When
@@ -329,7 +341,7 @@ module "bastion_host" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/bastion-host?ref=v0.104.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/bastion-host?ref=v0.104.5"
 }
 
 inputs = {
@@ -504,6 +516,18 @@ inputs = {
 
   # The name of the bastion host and the other resources created by these templates
   name = "bastion-host"
+
+  # If set to true, the root volume will be deleted when the Instance is terminated.
+  root_volume_delete_on_termination = true
+
+  # The size of the root volume, in gigabytes.
+  root_volume_size = 8
+
+  # Tags to set on the root volume.
+  root_volume_tags = {}
+
+  # The root volume type. Must be one of: standard, gp2, io1.
+  root_volume_type = "standard"
 
   # When true, precreate the CloudWatch Log Group to use for log aggregation from
   # the EC2 instances. This is useful if you wish to customize the CloudWatch Log
@@ -904,6 +928,42 @@ The name of the bastion host and the other resources created by these templates
 <HclListItemDefaultValue defaultValue="&quot;bastion-host&quot;"/>
 </HclListItem>
 
+<HclListItem name="root_volume_delete_on_termination" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, the root volume will be deleted when the Instance is terminated.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="root_volume_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+The size of the root volume, in gigabytes.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="8"/>
+</HclListItem>
+
+<HclListItem name="root_volume_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to set on the root volume.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="root_volume_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The root volume type. Must be one of: standard, gp2, io1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;standard&quot;"/>
+</HclListItem>
+
 <HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1007,11 +1067,11 @@ The fully qualified name of the bastion host.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.3/modules/mgmt/bastion-host/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.3/modules/mgmt/bastion-host/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.3/modules/mgmt/bastion-host/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.5/modules/mgmt/bastion-host/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.5/modules/mgmt/bastion-host/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.5/modules/mgmt/bastion-host/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "434bd19488b3a2dd627a08021e634f9d"
+  "hash": "b3320f8e61131a4b19811839d4c9f863"
 }
 ##DOCS-SOURCER-END -->
