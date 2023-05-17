@@ -349,6 +349,24 @@ module "ec_2_instance" {
   # own IAM user name and SSH key. This Key Pair is only as a fallback.
   keypair_name = null
 
+  # Whether the metadata service is available. Valid values include enabled or
+  # disabled. Defaults to enabled.
+  metadata_http_endpoint = "enabled"
+
+  # Desired HTTP PUT response hop limit for instance metadata requests. The larger
+  # the number, the further instance metadata requests can travel. Valid values are
+  # integer from 1 to 64. Defaults to 1.
+  metadata_http_put_response_hop_limit = 1
+
+  # Whether or not the metadata service requires session tokens, also referred to as
+  # Instance Metadata Service Version 2 (IMDSv2). Valid values include optional or
+  # required. Defaults to optional.
+  metadata_http_tokens = "optional"
+
+  # Enables or disables access to instance tags from the instance metadata service.
+  # Valid values include enabled or disabled. Defaults to disabled.
+  metadata_tags = "disabled"
+
   # If set to true, the root volume will be deleted when the Instance is terminated.
   root_volume_delete_on_termination = true
 
@@ -645,6 +663,24 @@ inputs = {
   # may have ssh-grunt installed. The preferred way to do SSH access is with your
   # own IAM user name and SSH key. This Key Pair is only as a fallback.
   keypair_name = null
+
+  # Whether the metadata service is available. Valid values include enabled or
+  # disabled. Defaults to enabled.
+  metadata_http_endpoint = "enabled"
+
+  # Desired HTTP PUT response hop limit for instance metadata requests. The larger
+  # the number, the further instance metadata requests can travel. Valid values are
+  # integer from 1 to 64. Defaults to 1.
+  metadata_http_put_response_hop_limit = 1
+
+  # Whether or not the metadata service requires session tokens, also referred to as
+  # Instance Metadata Service Version 2 (IMDSv2). Valid values include optional or
+  # required. Defaults to optional.
+  metadata_http_tokens = "optional"
+
+  # Enables or disables access to instance tags from the instance metadata service.
+  # Valid values include enabled or disabled. Defaults to disabled.
+  metadata_tags = "disabled"
 
   # If set to true, the root volume will be deleted when the Instance is terminated.
   root_volume_delete_on_termination = true
@@ -1192,6 +1228,42 @@ The name of a Key Pair that can be used to SSH to this instance. This instance m
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="metadata_http_endpoint" requirement="optional" type="string">
+<HclListItemDescription>
+
+Whether the metadata service is available. Valid values include enabled or disabled. Defaults to enabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;enabled&quot;"/>
+</HclListItem>
+
+<HclListItem name="metadata_http_put_response_hop_limit" requirement="optional" type="number">
+<HclListItemDescription>
+
+Desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. Valid values are integer from 1 to 64. Defaults to 1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
+
+<HclListItem name="metadata_http_tokens" requirement="optional" type="string">
+<HclListItemDescription>
+
+Whether or not the metadata service requires session tokens, also referred to as Instance Metadata Service Version 2 (IMDSv2). Valid values include optional or required. Defaults to optional.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;optional&quot;"/>
+</HclListItem>
+
+<HclListItem name="metadata_tags" requirement="optional" type="string">
+<HclListItemDescription>
+
+Enables or disables access to instance tags from the instance metadata service. Valid values include enabled or disabled. Defaults to disabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;disabled&quot;"/>
+</HclListItem>
+
 <HclListItem name="root_volume_delete_on_termination" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1377,6 +1449,6 @@ The input parameters for the EBS volumes.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.6/modules/services/ec2-instance/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "101788a35f60ff5ca2fc40f9a42c65e0"
+  "hash": "78c726d48666897202746b30e76eeefb"
 }
 ##DOCS-SOURCER-END -->
