@@ -6,7 +6,7 @@ To gain access to the IaC Library, link your GitHub ID to your account in the De
 
 ## Accessing Modules and Services in the IaC library
 
-Once you have gained access to the Gruntwork IaC library on Github, you search for repositories and view the source for our modules and services on Github.
+Once you have gained access to the Gruntwork IaC library on Github, you can search for repositories and view the source for our modules and services on Github.
 
 Each IaC repository is prefixed with `terraform-aws-`, then a high level description of the modules it contains. For example, Amazon SNS, SQS, MSK, and Kinesis are located in the `terraform-aws-messaging` repository. In each repository, the modules are located in the `modules` directory. Example usage and tests are provided for each module in the `examples` and `tests` directories, respectively.
 
@@ -16,6 +16,6 @@ Please check the [Library Reference](../../iac/reference/index.md) to view the c
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "9a1a46b8e2a4622e814da6fc7b0df61c"
+  "hash": "264a7f4553b1f6cc17fe37cab887df78"
 }
 ##DOCS-SOURCER-END -->
