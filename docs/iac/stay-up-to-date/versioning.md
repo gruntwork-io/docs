@@ -9,7 +9,7 @@ For modules that have submodules (e.g., terraform-aws-server/modules/single-serv
 
 New module versions are released by creating a release on Github.  When a new version is created, refer to the release notes for a list of changes and migration guides (when necessary).
 
-## Reference a version
+## Example: Reference a version
 
 The git tag created by the release can then be referenced in the source argument for a module block sourcing from a git URL. For backwards compatible changes, updating is as simple as changing the tag version after `ref` in the source argument. For backwards incompatible releases, refer to the release notes for the migration guide.
 
@@ -33,6 +33,6 @@ module "my_instance" {
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "45f9da9e940c4729c914430d9677d4c5"
+  "hash": "d71b4af02690d6f83d72721d9f1d3138"
 }
 ##DOCS-SOURCER-END -->
