@@ -14,9 +14,9 @@ This tutorial will teach you how to develop a Terraform module that deploys an A
 
 ## Create the module
 
-In this section you'll create a Terraform module that can create an AWS Lambda and AWS IAM role. This module will include three files - `main.tf` which will contain the resource definitions, `variables.tf`
+In this section you'll create a Terraform module that can create an AWS Lambda and AWS IAM role. This module will include three files - `main.tf` which will contain the resource definitions, `variables.tf`, which specifies the possible inputs to the module, and `outputs.tf`, which specifies the values that can be used to pass references to attributes from the resources in the module.
 
- This module could be referenced many times to create any number of AWS Lambdas and IAM roles.
+This module could be referenced many times to create any number of AWS Lambdas and IAM roles.
 
 
 ### Create a basic file structure

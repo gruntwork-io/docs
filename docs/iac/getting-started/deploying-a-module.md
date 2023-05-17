@@ -2,7 +2,7 @@
 
 Modules allow you to define an interface to create one or many resources in the cloud or on-premise. Similar to how in object oriented programming you can define a class that may have different attribute values across many instances.
 
-Modules help create your Terraform code DRY (don't repeat yourself), and speed up development time when creating new resources.
+Modules help keep your Terraform code DRY (don't repeat yourself), and speed up development time when creating new resources.
 
 This tutorial will teach you how to develop a Terraform module that deploys an AWS Lambda. We will create the required file structure, define an AWS Lambda and AWS IAM role as code, then plan and apply the resource in an AWS account. Then, we’ll verify the deployment by invoking the Lambda using the AWS CLI.
 
@@ -14,9 +14,9 @@ This tutorial will teach you how to develop a Terraform module that deploys an A
 
 ## Create the module
 
-In this section you'll create a Terraform module that can create an AWS Lambda and AWS IAM role. This module will include three files - `main.tf` which will contain the resource definitions, `variables.tf`
+In this section you'll create a Terraform module that can create an AWS Lambda and AWS IAM role. This module will include three files - `main.tf` which will contain the resource definitions, `variables.tf`, which specifies the possible inputs to the module, and `outputs.tf`, which specifies the values that can be used to pass references to attributes from the resources in the module.
 
- This module could be referenced many times to create any number of AWS Lambdas and IAM roles.
+This module could be referenced many times to create any number of AWS Lambdas and IAM roles.
 
 
 ### Create a basic file structure
@@ -270,6 +270,6 @@ In [Using a module](../usage/using-a-module.md), we'll create the same resources
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0682171f42a8e8d507ab968b9184b234"
+  "hash": "db6df562af70c49095c6f1a44457bca4"
 }
 ##DOCS-SOURCER-END -->
