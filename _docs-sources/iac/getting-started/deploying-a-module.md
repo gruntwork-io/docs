@@ -2,7 +2,7 @@
 
 Modules allow you to define an interface to create one or many resources in the cloud or on-premise. Similar to how in object oriented programming you can define a class that may have different attribute values across many instances.
 
-Modules help create your Terraform code DRY (don't repeat yourself), and speed up development time when creating new resources.
+Modules help keep your Terraform code DRY (don't repeat yourself), and speed up development time when creating new resources.
 
 This tutorial will teach you how to develop a Terraform module that deploys an AWS Lambda. We will create the required file structure, define an AWS Lambda and AWS IAM role as code, then plan and apply the resource in an AWS account. Then, we’ll verify the deployment by invoking the Lambda using the AWS CLI.
 
