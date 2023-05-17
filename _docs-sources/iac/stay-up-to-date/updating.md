@@ -4,6 +4,8 @@ Updating a module or service requires updating the tagged version in the `source
 
 For backwards compatible changes, this is as simple as incrementing the version number. For backwards incompatible changes, refer to the release notes for a migration guide.
 
+We recommend updating module versions in your development environment first, followed by staging, then production, to ensure that the update and any required changes are well understood.
+
 ## Example: Update a version
 
 For example, below is a module block referencing version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
