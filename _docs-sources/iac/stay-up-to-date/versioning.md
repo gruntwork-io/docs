@@ -1,9 +1,9 @@
 # Versioning
 
-Gruntwork versions the IaC library using [Semantic Versioning](https://semver.org/) (SemVer).
-- Major version are used when making backwards incompatible changes.
-- Minor version are used when adding new variables or a new feature.
-- Patch versions are used for backward compatible bug fixes.
+Gruntwork versions the IaC library using [Semantic Versioning](https://semver.org/) (SemVer). Since much of the Gruntwork IaC Library is still pre-1.0.0, most of the Gruntwork IaC Library uses 0.MINOR.PATCH version numbers. With 0.MINOR.PATCH, the rules are a bit different, where we increment the:
+
+- MINOR version when you make backward incompatible API changes, and
+- PATCH version when you add backward compatible functionality or bug fixes.
 
 For modules that have submodules (e.g., terraform-aws-server/modules/single-server), not every release contains changes to every module. While using the latest available version is recommended, the version that most recently contains changes for a module can be found in each submodules reference in the [Library Reference](../reference/index.md).
 
