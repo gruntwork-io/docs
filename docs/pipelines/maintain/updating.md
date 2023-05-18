@@ -86,14 +86,19 @@ aws-vault exec your-prod -- terragrunt apply --terragrunt-source-update -auto-ap
 
 ### Updating tag values (standalone)
 
-If you've deployed Pipelines as a standalone framework using the `ecs-deploy-runner` module in the Service Catalog, refer to the [Variable Reference](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#reference) section of the service in the [Library Reference](http://localhost:3001/iac/reference/) for configuration details.
+If you've deployed Pipelines as a standalone framework using the `ecs-deploy-runner` service in the Service Catalog, refer to the [Variable Reference](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#reference) section for the service in the Library Reference for configuration details. You will need to update the `docker_tag` value in the `container_image` object for the [ami_builder_config](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#ami_builder_config), [docker_image_builder_config](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#docker_image_builder_config), [terraform_applied_config](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_applier_config), and [terraform_planner_config](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_planner_config) variables.
 
 Once you have updated any references to the container image tags, you will need to run `terraform plan` and `terraform apply` in each account where pipelines is deployed.
+
+
+### What's next
+
+Now that you've learned how to update your pipeline, the next step is to extend your pipeline to customize the configuration to suite your needs.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "a00ca5a20dd67e070caf507aa2528be7"
+  "hash": "cb3701098bf3368364681bf717096f55"
 }
 ##DOCS-SOURCER-END -->
