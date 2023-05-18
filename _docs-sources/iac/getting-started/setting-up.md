@@ -4,7 +4,7 @@ The Gruntwork IaC library requires that you have a few tools installed in order 
 
 ## Terraform
 
-Terraform is an open source infrastructure provisioning tool that allows you to define and manage a wide variety of infrastructure (e.g., servers, load balancers, databases, network settings, and so on) as code across a wide variety of providers (e.g., AWS, GCP, Azure) Terraform defines cloud and on-premise resources in human-readable configuration language and offers a consistent workflow for provisioning and managing infrastructure.
+Terraform is an open source infrastructure provisioning tool that allows you to define and manage a wide variety of infrastructure (e.g., servers, load balancers, databases, network settings, and so on) as code across a wide variety of providers (e.g., AWS, GCP, Azure). Terraform defines cloud and on-premise resources in human-readable configuration language and offers a consistent workflow for provisioning and managing infrastructure.
 
 Gruntwork's IaC library is built using Terraform, so having Terraform installed is required.
 
