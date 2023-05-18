@@ -31,7 +31,7 @@ touch terraform-aws-gw-lambda-tutorial/modules/lambda/outputs.tf
 
 ### Define the module resources
 
-First, define the resources that should be created by the module. This is where you define resource level blocks provided by Terraform. For this module, we need an AWS Lambda and an AWS IAM role that will be used by the Lambda.
+First, define the resources that should be created by the module. This is where you define resource level blocks provided by Terraform. For this module, we need an AWS Lambda function and an AWS IAM role that will be used by the Lambda function.
 
 Paste the following snippet in `terraform-aws-gw-lambda/modules/lambda/main.tf`.
 ```hcl
