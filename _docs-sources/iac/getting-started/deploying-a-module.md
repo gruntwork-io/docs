@@ -250,7 +250,7 @@ Finally, when prompted, enter `yes` to confirm the resource deletion. Terraform 
 
 ## What's next
 
-Now that you've developed and deployed your first Terraform module, try creating another module that leverages the module you just created. For example, make your Lambda function available via a URL using an [AWS API Gateway HTTP API](modules/terraform-aws-lambda/api-gateway-proxy/) with an AWS Lambda integration. Then, write a test using [Terratest](https://terratest.gruntwork.io/) that confirms your module creates resources as you'd expect.
+Now that you've developed and deployed your first Terraform module, try creating another module that leverages the module you just created. For example, make your Lambda function available via a URL using an [AWS API Gateway HTTP API](../../reference/modules/terraform-aws-lambda/api-gateway-proxy/) with an AWS Lambda integration. Then, write a test using [Terratest](https://terratest.gruntwork.io/) that confirms your module creates resources as you'd expect.
 
 Finally, consider what other resources you would create to make your modules ready to use in production. You would likely need to add [logs](../../reference/modules/terraform-aws-monitoring/logs/), [metrics](../../reference/modules/terraform-aws-monitoring/metrics/), and [alerting](../../reference/modules/terraform-aws-monitoring/alarms/).
 
