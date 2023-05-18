@@ -252,7 +252,7 @@ Finally, when prompted, enter `yes` to confirm the resource deletion. Terraform 
 
 Now that you've developed and deployed your first Terraform module, try creating another module that leverages the module you just created. For example, make your Lambda function available via a URL using an [AWS API Gateway HTTP API](../../reference/modules/terraform-aws-lambda/api-gateway-proxy/) with an AWS Lambda integration. Then, write a test using [Terratest](https://terratest.gruntwork.io/) that confirms your module creates resources as you'd expect.
 
-Finally, consider what other resources you would create to make your modules ready to use in production. For example, you would likely need to add [metrics](../../reference/modules/terraform-aws-monitoring/metrics/metrics.md), and [alerting](../../reference/modules/terraform-aws-monitoring/alarms/alarms.md).
+Finally, consider what other resources you would create to make your modules ready to use in production. For example, you would likely need to add [metrics](../../reference/modules/terraform-aws-monitoring/metrics/metrics.md) and [alerting](../../reference/modules/terraform-aws-monitoring/alarms/alarms.md).
 
 In [Using a module](../usage/using-a-module.md), we'll create the same resources defined in your modules using a pre-built Gruntwork module.
 
@@ -260,6 +260,6 @@ In [Using a module](../usage/using-a-module.md), we'll create the same resources
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "27d7e9fd910a12a2d20fa4e79563409f"
+  "hash": "3efbb6ebf6ee3ff84427f88fe8ae885b"
 }
 ##DOCS-SOURCER-END -->
