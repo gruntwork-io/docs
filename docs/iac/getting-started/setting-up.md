@@ -4,7 +4,7 @@ The Gruntwork IaC library requires that you have a few tools installed in order 
 
 ## Terraform
 
-Terraform is an open source infrastructure provisioning tool that allows you to define and manage a wide variety of infrastructure (e.g., servers, load balancers, databases, network settings, and so on) as code across a wide variety of providers (e.g., AWS, GCP, Azure) Terraform defines cloud and on-premise resources in human-readable configuration language and offers a consistent workflow for provisioning and managing infrastructure.
+Terraform is an open source infrastructure provisioning tool that allows you to define and manage a wide variety of infrastructure (e.g., servers, load balancers, databases, network settings, and so on) as code across a wide variety of providers (e.g., AWS, GCP, Azure). Terraform defines cloud and on-premise resources in human-readable configuration language and offers a consistent workflow for provisioning and managing infrastructure.
 
 Gruntwork's IaC library is built using Terraform, so having Terraform installed is required.
 
@@ -16,7 +16,7 @@ If you need multiple versions of Terraform installed, [tfenv](https://github.com
 ### Learn more
 If you're new to Terraform, we recommend starting with learning about Terraform's [configuration language](https://developer.hashicorp.com/terraform/language) then familiarizing yourself with the basics of [provisioning infrastructure](https://developer.hashicorp.com/terraform/cli/run) using Terraform.
 
-If you want to skip immediately to learning, you can learn how to [deploying your first module](./deploying-a-module.md). For a more in-depth guide, check out our [Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca) for a thorough introduction to the language.
+If you want to skip immediately to learning, you can learn how to [deploy your first module](./deploying-a-module.md). For a more in-depth guide, check out our [Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca) for a thorough introduction to the language.
 
 ## Terragrunt
 
@@ -42,6 +42,6 @@ If you're ready to get started with creating and deploying a module, jump to [de
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0a24d3d1042de21fb880c01d787c5b96"
+  "hash": "174274e6c95766e273d68904fd1a7a61"
 }
 ##DOCS-SOURCER-END -->
