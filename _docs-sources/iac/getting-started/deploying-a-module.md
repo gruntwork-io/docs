@@ -221,7 +221,7 @@ Review the output to confirm it will only create an AWS Lambda and IAM role. The
 
 Next, invoke the AWS Lambda to verify it was created and executing the application code.
 
-Use `terraform output` to retreive the name of the AWS Lambda we provisioned. This uses the outputs we added to the module in [create a module](./deploying-a-module.md#create-a-module) to retrieve the name of the Lambda from Terraform state. Then, invoke the Lambda directly using the AWS CLI, writing the response of the Lambda to a file called `lambda_output`.
+Use `terraform output` to retrieve the name of the AWS Lambda we provisioned. This uses the outputs we added to the module in [create a module](./deploying-a-module.md#create-a-module) to retrieve the name of the Lambda from Terraform state. Then, invoke the Lambda directly using the AWS CLI, writing the response of the Lambda to a file called `lambda_output`.
 ```sh
 #!/bin/bash
 export FUNCTION_NAME=$(terraform output -raw function_name)
