@@ -6,9 +6,9 @@ Gruntwork products and services can help you quickly achieve world-class infrast
 
 You must be appropriately staffed in order to maintain and customize the modules, services, and (if applicable) the Reference Architecture.
 
-## Learn how to use our products
+## Time to learn
 
-You’ll need to understand our opinionated stance on DevOps best practices and how to apply it for your purposes. You'll also need to learn how to use the Gruntwork products themselves. Our [product documentation](/products) and [support](/support) remain available to assist you in these endeavors.
+With Gruntwork, you can accelerate your journey towards capturing your AWS cloud infrastructure as Infrastructure as Code. Although our aim is to simplify this intricate process, gaining a comprehensive understanding of your infrastructure's complexities and tailoring it to your specific needs will require a significant investment of time and effort on your part. Our [product documentation](/products) and [support](/support) remain available to assist you in these endeavors.
 
 ## Implement the “last mile”
 
