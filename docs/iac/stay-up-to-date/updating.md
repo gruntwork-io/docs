@@ -30,6 +30,8 @@ module "my_instance" {
 }
 ```
 
+After making the change, run `terraform plan`, inspect the output to ensure it looks as you expect, then run `terraform apply`.
+
 ## Patcher
 
 Keeping track of all references to modules and services is a complicated, error prone task. It's easy to miss a version or even be completely unaware that a downstream service is referencing a module. To solve this problem, Gruntwork developed [Patcher](https://docs.gruntwork.io/guides/stay-up-to-date/patcher), which shows the version of a module you are using, the latest version available, and the changelog for the module. If you're interested in trying out Patcher, please reach out to sales@gruntwork.io!
@@ -39,6 +41,6 @@ Keeping track of all references to modules and services is a complicated, error 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "277d5777f63fe5ba0143342d00db033a"
+  "hash": "84309ddbff6bf6b820551de46c93b295"
 }
 ##DOCS-SOURCER-END -->
