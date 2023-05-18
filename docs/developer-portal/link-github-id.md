@@ -19,12 +19,12 @@ To link a new GitHub ID, you’ll first have to unlink the current one. Although
 1. Sign in to the Gruntwork Developer Portal and navigate to your [Profile Settings](https://app.gruntwork.io/settings/profile).
 2. Click **Unlink** in the description under the **GitHub Account** section.
 3. Click **Yes, Unlink My Account** in the confirmation dialog that appears.
-4. Proceed with the [steps above](#linking-your-github-account) to link a new GitHub account.
+4. Proceed with the [steps above](#linking-your-github-account) to link a new GitHub account *using a private/incognito browser window*. (This guarantees you’ll have an opportunity to specify the new account you wish to link.)
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "83dd05d2370300a2388662fd39dc39a8"
+  "hash": "fe517d6e6cc69cccf54fb082e0cc8b9e"
 }
 ##DOCS-SOURCER-END -->

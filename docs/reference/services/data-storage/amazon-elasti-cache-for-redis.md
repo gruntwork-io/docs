@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.3" lastModifiedVersion="0.96.6"/>
+<VersionBadge version="0.104.6" lastModifiedVersion="0.104.5"/>
 
 # Amazon ElastiCache for Redis
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.3/modules/data-stores/redis" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.6/modules/data-stores/redis" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fredis" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -67,7 +67,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.3/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.6/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -75,7 +75,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.3/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.6/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -94,7 +94,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "redis" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/redis?ref=v0.104.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/redis?ref=v0.104.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -134,6 +134,10 @@ module "redis" {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # Trigger an alarm if the amount of free memory, in Bytes, on the node drops below
+  # this threshold
+  alarm_low_memory_available_threshold = 100000000
 
   # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
@@ -243,7 +247,7 @@ module "redis" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/redis?ref=v0.104.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/redis?ref=v0.104.6"
 }
 
 inputs = {
@@ -286,6 +290,10 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # Trigger an alarm if the amount of free memory, in Bytes, on the node drops below
+  # this threshold
+  alarm_low_memory_available_threshold = 100000000
 
   # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
@@ -455,6 +463,27 @@ The ID of the VPC in which to deploy RDS.
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="alarm_low_memory_available_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the amount of free memory, in Bytes, on the node drops below this threshold
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="100000000"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Default is 100MB (100 million bytes)
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
 
 <HclListItem name="alarm_treat_missing_data" requirement="optional" type="string">
 <HclListItemDescription>
@@ -712,11 +741,11 @@ Security Group ID used for redis cluster.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.3/modules/data-stores/redis/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.3/modules/data-stores/redis/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.3/modules/data-stores/redis/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.6/modules/data-stores/redis/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.6/modules/data-stores/redis/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.6/modules/data-stores/redis/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d64af95f072ebd89f594553aca2c6b0a"
+  "hash": "9f692770777faa992f2bf27facafab8b"
 }
 ##DOCS-SOURCER-END -->
