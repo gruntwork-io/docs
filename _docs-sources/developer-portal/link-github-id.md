@@ -1,6 +1,6 @@
 # Link Your GitHub Account
 
-Gruntwork provides all code included in your subscription through GitHub. You’ll need to link a GitHub ID to your Gruntwork Developer Portal account in order to access the IaC Library on GitHub. Follow the steps below to link your GitHub ID.
+Gruntwork provides all code included in your subscription through GitHub. You need to link a GitHub ID to your Gruntwork Developer Portal account in order to access the IaC Library on GitHub. Follow the steps below to link your GitHub ID.
 
 1. First, sign in to the [Gruntwork Developer Portal](https://app.gruntwork.io).
 2. Click the **Link my GitHub Account** button in the notice at the top of the home page, or the corresponding button located in your [Profile Settings](https://app.gruntwork.io/settings/profile).

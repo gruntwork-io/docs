@@ -38,7 +38,7 @@ If you have linked a GitHub account to your user account in the Developer Portal
 
 The GitHub invitation typically expires after 7 days.
 
-To get a new invitation, simply sign in to the Developer Portal and you will be automatically re-invited. After sign in, check your GitHub account's email inbox for the new invitation.
+To get a new invitation, sign in to the Developer Portal and you will be automatically re-invited. After sign in, check your GitHub account's email inbox for the new invitation.
 
 :::
 
