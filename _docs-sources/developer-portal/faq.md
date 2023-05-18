@@ -2,9 +2,10 @@
 
 ## How can a user change their GitHub account(unlink/link)?
 
-1. Go to [https://app.gruntwork.io/settings/profile](https://app.gruntwork.io/settings/profile)
-1. Click the **Unlink** link in the &ldquo;GitHub Account&rdquo; section as shown below
-    ![Unlink GitHubId on Profile page](/img/faq/developer-portal/unlink-github.png)
+![Unlink GitHub Account on Profile page](/img/faq/developer-portal/unlink-github.png)
+
+1. Go to [https://app.gruntwork.io/settings/profile](https://app.gruntwork.io/settings/profile).
+1. Click the **Unlink** link in the &ldquo;GitHub Account&rdquo; section as shown in image above.
 1. [Follow these steps](./link-github-id.md) to link a new GitHub account *using a private/incognito browser window*.
     :::tip
 
@@ -25,7 +26,7 @@ If a you need to use a different email (for instance, if you were using a person
 1. Link your GitHub account to the new user profile when prompted after sign in.
     :::tip
 
-    If you link the same GitHub account you had on the older user account to the new user account prior to the old account being revoked from the team, your access to our GitHub Organization will be unaffected.
+    In order to ensure you do not lose any access, link the same GitHub account(that is linked to the older user account) before the old user account is revoked.
 
     :::
 1. Remove the old user account from your Organization in the Developer Portal to prevent duplicate license usage
@@ -45,7 +46,7 @@ To get a new invitation, sign in to the Developer Portal and you will be automat
 If you are still unable to find the GitHub invitation contact your Organization's GitHub Administrator to verify if your Organization uses GitHub Enterprise. In cases like these, there are policies / settings that your GitHub Enterprise administrator may have configured, which block your ability to view and accept our invitations. When this happens, Gruntwork is unable to assist you further until your GitHub Enterprise administrator has relaxed the constraints on your account.
 
 
-## User did not receive their invitation to the Developer Portal?
+## User did not receive their invitation to the Developer Portal
 
 If you haven't received your invitation to the Developer Portal, follow these steps in order:
 
