@@ -34,9 +34,8 @@ const sidebar = [
         items: [
           "refarch/access/setup-auth/index",
           "refarch/access/how-to-auth-vpn/index",
-          "refarch/access/how-to-auth-aws/index",
         ],
-      }, 
+      },
       {
         label: "Usage",
         type: "category",
@@ -49,7 +48,7 @@ const sidebar = [
           "refarch/usage/maintain-your-refarch/upgrade-terraform",
           "refarch/usage/maintain-your-refarch/extending",
           "refarch/usage/pipelines-integration/index",
-       ],
+        ],
       },
     ],
   },
