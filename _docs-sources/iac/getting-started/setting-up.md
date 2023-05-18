@@ -16,7 +16,7 @@ If you need multiple versions of Terraform installed, [tfenv](https://github.com
 ### Learn more
 If you're new to Terraform, we recommend starting with learning about Terraform's [configuration language](https://developer.hashicorp.com/terraform/language) then familiarizing yourself with the basics of [provisioning infrastructure](https://developer.hashicorp.com/terraform/cli/run) using Terraform.
 
-If you want to skip immediately to learning, you can learn how to [deploying your first module](./deploying-a-module.md). For a more in-depth guide, check out our [Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca) for a thorough introduction to the language.
+If you want to skip immediately to learning, you can learn how to [deploy your first module](./deploying-a-module.md). For a more in-depth guide, check out our [Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca) for a thorough introduction to the language.
 
 ## Terragrunt
 
