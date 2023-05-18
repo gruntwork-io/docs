@@ -7,7 +7,7 @@ Gruntwork versions the IaC library using [Semantic Versioning](https://semver.or
 
 For modules that have submodules (e.g., terraform-aws-server/modules/single-server), not every release contains changes to every module. While using the latest available version is recommended, the version that most recently contains changes for a module can be found in each submodules reference in the [Library Reference](../reference/index.md).
 
-New module versions are released by creating a release on Github.  When a new version is created, refer to the release notes for a list of changes and migration guides (when necessary).
+New module versions are released by creating a release on Github. When a new version is created, refer to the release notes for a list of changes and migration guides (when necessary).
 
 ## Example: Reference a version
 

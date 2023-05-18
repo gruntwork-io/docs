@@ -33,6 +33,6 @@ module "my_instance" {
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "8e3c17786feca471b9dd3a10cb0d0c4c"
+  "hash": "1087ffd091dd604b35e77cce5e2f4987"
 }
 ##DOCS-SOURCER-END -->
