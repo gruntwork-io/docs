@@ -7,7 +7,11 @@ const sidebar = [
       "developer-portal/create-account",
       "developer-portal/invite-team",
       "developer-portal/link-github-id",
-      "developer-portal/faq",
+      {
+        type: "link",
+        label: "FAQ",
+        href: "https://github.com/orgs/gruntwork-io/discussions?discussions_q=label%3As%3Adev-portal",
+      },
     ],
   },
 ]
