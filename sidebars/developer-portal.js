@@ -1,3 +1,7 @@
+const developerPortalKnowledgeBaseDiscussions =
+  "https://github.com/orgs/gruntwork-io/discussions?" +
+  encodeURIComponent("discussions_q=label:s:dev-portal")
+
 const sidebar = [
   {
     label: "Developer Portal",
@@ -10,7 +14,7 @@ const sidebar = [
       {
         type: "link",
         label: "FAQ",
-        href: "https://github.com/orgs/gruntwork-io/discussions?discussions_q=label%3As%3Adev-portal",
+        href: developerPortalKnowledgeBaseDiscussions,
       },
     ],
   },
