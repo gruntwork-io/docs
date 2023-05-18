@@ -2,7 +2,7 @@
 
 **Gruntwork is a "DevOps accelerator" that gets you to a world-class DevOps setup leveraging infrastructure-as-code in just a few days.**
 
-All Gruntwork products exist within a framework we’ve devised specifically to emphasize DevOps industry best-practices and maximize your team’s efficiency.
+All Gruntwork products exist within a [framework](/guides/production-framework) we’ve devised specifically to emphasize DevOps industry best-practices and maximize your team’s efficiency.
 
 Gruntwork works best for teams building new infrastructure ("greenfield"), either from scratch or as part of a migration. However, it can also be used by teams with existing infrastructure ("brownfield") if they have sufficient DevOps experience.
 
@@ -17,6 +17,6 @@ There are two fundamental ways to engage Gruntwork:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "654404caaf28f371ce24cf9eac385ae6"
+  "hash": "34b8d8a010df277dbbd55a17f4d5d282"
 }
 ##DOCS-SOURCER-END -->

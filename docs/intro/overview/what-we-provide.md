@@ -21,7 +21,7 @@ Gruntwork offers basic and paid support options:
 
 ## Gruntwork Compliance
 
-An optional _catalog extension_ that contains building blocks that correctly implement CIS compliance standards. For aspects of the CIS AWS Foundations Benchmark where those requirements cannot be met by modules, but require human intervention, we provide instructions on manual steps the customer must take to meet the requirements.
+An optional _catalog extension_ that contains building blocks that correctly implement CIS compliance standards. For aspects of the CIS AWS Foundations Benchmark where those requirements cannot be met by modules, but require human intervention, we provide instructions on manual steps you must take to meet the requirements.
 
 :::note
 
@@ -31,19 +31,19 @@ For CIS Reference Architecture customers, we deploy a Reference Architecture and
 
 ## Gruntwork Reference Architecture
 
-An optional end-to-end, multi-account architecture that Gruntwork deploys into the customer's brand new AWS accounts that includes:
+An optional end-to-end, multi-account architecture that Gruntwork deploys into your brand new AWS accounts that includes:
 
 - Our implementation of Landing Zone
 - A complete sample app with underlying database and caching layer
 - The Gruntwork Pipeline for deploying changes to infrastructure
 - An overview of how to use the Reference Architecture
 
-Once the infrastructure is deployed, Gruntwork engineers also deliver the full Infrastructure as Code to the customer. Finally, Gruntwork provides resources to the customer for deeply understanding the inner workings of the Reference Architecture.
+Once the infrastructure is deployed, Gruntwork engineers deliver the full Infrastructure as Code to you.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d8adc151ef915e64e5ba7459fcdbaa3f"
+  "hash": "ad5c4151873ae56ef650e1e3bdc71229"
 }
 ##DOCS-SOURCER-END -->
