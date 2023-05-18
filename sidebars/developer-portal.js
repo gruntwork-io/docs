@@ -7,6 +7,7 @@ const sidebar = [
       "developer-portal/create-account",
       "developer-portal/invite-team",
       "developer-portal/link-github-id",
+      "developer-portal/faq",
     ],
   },
 ]

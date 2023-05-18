@@ -102,22 +102,22 @@ const config = {
               {
                 type: "doc",
                 label: "Infrastructure as Code Library",
-                docId: "iac/whats-this/index"
+                docId: "iac/whats-this/index",
               },
               {
                 type: "doc",
                 label: "Gruntwork Pipelines",
-                docId: "pipelines/what-is-it/index"
+                docId: "pipelines/what-is-it/index",
               },
               {
                 type: "doc",
                 label: "Reference Architecture",
-                docId: "refarch/whats-this/what-is-a-reference-architecture"
+                docId: "refarch/whats-this/what-is-a-reference-architecture",
               },
               {
                 type: "doc",
                 label: "Developer Portal",
-                docId: "developer-portal/create-account"
+                docId: "developer-portal/create-account",
               },
             ],
           },
@@ -125,7 +125,6 @@ const config = {
             type: "doc",
             label: "Library Reference",
             docId: "iac/reference/index",
-
           },
           { to: "/tools", label: "Tools", position: "left" },
           { to: "/courses", label: "Courses", position: "left" },

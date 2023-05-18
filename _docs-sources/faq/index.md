@@ -14,19 +14,19 @@ Get answers to frequently asked questions, organized by category.
     title="Reference Architecture Pre-Deployment"
     href="/faq/ref-arch-predeployment"
   >
-    Preparing for a deployment? We've got answers to common questions here. 
+    Preparing for a deployment? We've got answers to common questions here.
   </Card>
   <Card
     title="Reference Architecture"
     href="/faq/ref-arch"
   >
-    Questions about working with a deployed Reference Architecture. 
+    Questions about working with a deployed Reference Architecture.
   </Card>
   <Card
     title="DevOps Best Practices"
     href="/faq/devops-general"
   >
-    Common advice, strategies, tooling, tips and tricks. 
+    Common advice, strategies, tooling, tips and tricks.
   </Card>
   <Card
     title="Service Catalog FAQ"
@@ -38,31 +38,31 @@ Get answers to frequently asked questions, organized by category.
     title="Terragrunt"
     href="/faq/terragrunt"
   >
-    Common questions about Gruntwork's open-source library, Terragrunt 
+    Common questions about Gruntwork's open-source library, Terragrunt
   </Card>
   <Card
     title="Terratest"
     href="/faq/terratest"
   >
-    Common questions about Gruntwork's open-source library, Terratest 
+    Common questions about Gruntwork's open-source library, Terratest
   </Card>
   <Card
     title="Pipelines"
     href="/faq/pipelines"
   >
-    Common questions about Gruntwork's continuous integration and delivery (CI/CD) product, Pipelines.  
+    Common questions about Gruntwork's continuous integration and delivery (CI/CD) product, Pipelines.
   </Card>
   <Card
     title="EKS"
     href="/faq/eks"
   >
-    Common questions about Gruntwork's EKS modules, best practices and common tasks.  
+    Common questions about Gruntwork's EKS modules, best practices and common tasks.
   </Card>
 <Card
     title="Infrastructure as Code (IaC) and modules"
     href="/faq/iac-general"
   >
-    Common questions about working with modules, Infrastructure as code best practices, tips and tricks. 
+    Common questions about working with modules, Infrastructure as code best practices, tips and tricks.
   </Card>
 
 </Grid>
