@@ -34,6 +34,7 @@ const sidebar = [
         items: [
           "refarch/access/setup-auth/index",
           "refarch/access/how-to-auth-vpn/index",
+          "refarch/access/how-to-auth-aws-web-console/index"
         ],
       },
       {
