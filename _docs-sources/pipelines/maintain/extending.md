@@ -15,7 +15,7 @@ First, define a module for your application by following the guide on [how to de
 
 Next, open `shared/<your region>/mgmt/ecs-deploy-runner/terragrunt.hcl` and update `docker_image_builder_config.allowed_repos` to include the HTTPS Git URL of the application repo for which you would like to deploy Docker images.
 
-Since pipelines [cannot update itself](./updating.md), you must run `terragrunt plan` and `terragrunt apply` manually to deploy the change from your local machine.
+Since pipelines [cannot update itself](./updating.md), you must run `terragrunt plan` and `terragrunt apply` manually to deploy the change from your local machine. Run `terragrunt plan` to inspect the changes that will be made to your pipeline. Once the changes have been reviewed, run `terragrunt apply` to deploy the changes.
 
 ### Standalone
 
@@ -48,10 +48,23 @@ infrastructure-deployer --aws-region "us-east-1" -- docker-image-builder build-d
 
 ## Updating branches that can be deployed
 
+Pipelines can be configured to only allow jobs to be performed on specific branches. For example, a common configuration is to allow `terraform plan` or `terragrunt plan` jobs for Pull Requests, and only allow `terraform apply` or `terragrunt apply` to run on merges to the main branch.
+
+Depending on your use case, you may need to modify the allow-list to only allow a pre-defined list of branch names.
 
 ### RefArch
 
+Open `shared/<your region>/mgmt/ecs-deploy-runner/terragrunt.hcl` and update the values the `allowed_apply_git_refs` attribute for the job configuration you would like to modify (either `terraform_planner_config` or `terraform_applier_config`).
+
+Run `terragrunt plan` to inspect the changes that will be made to your pipeline. Once the changes have been reviewed, run `terragrunt apply` to deploy the changes.
+
 ### Standalone
+
+If you've deployed Pipelines as a standalone framework using the `ecs-deploy-runner` service in the Service Catalog, you will need to locate the file in which you've defined a module block sourcing the `ecs-deploy-runner` service.
+
+By default, the `ecs-deploy-runner` service from the Service Catalog allows any git ref to be applied. After you locate the module block for `ecs-deploy-runner`, modify the `allowed_apply_git_refs` attribute for the job configuration that you would like to modify (either `terraform_planner_config` or `terraform_applier_config`).
+
+Run `terraform plan` to inspect the changes that will be made to your pipeline. Once the changes have been reviewed, run `terraform apply` to deploy the changes.
 
 ## Adding script arguments
 
