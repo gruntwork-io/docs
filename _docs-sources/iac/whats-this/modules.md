@@ -1,14 +1,16 @@
 # What is a Module?
 
-Modules are reusable code to deploy and manage one piece of infrastructure and each one is a battle-tested, best-practices definition of a piece of infrastructure, such as a VPC, ECS cluster, or an Auto Scaling Group.
+Modules are reusable code components that encapsulate the configuration and resource definitions needed to deploy and manage a specific piece of infrastructure, such as a VPC, ECS cluster, or Auto Scaling Group. Each module defines several AWS resources. For example, the VPC module contains resource definitions for subnets, nat gateways, and more. Modules promote code reusability, modularity, and consistency in infrastructure deployments and can be customized in a variety of ways.
+
+Gruntwork modules are tested in AWS, in a randomly selected region, each time it changes to verify the infrastructure created matches the desired configuration.
 
 ## When do you use a Module?
 
-Modules are fairly generic building blocks, so you don't typically deploy a single module directly, but rather, you write code that combines the modules you need for a specific use case. 
+The Gruntwork Infrastructure as Code (IaC) Library contains hundreds of modules that you can use and combine. These modules are fairly generic building blocks, so you don't typically deploy a single module directly. Instead, you write code that combines the modules you need for a specific use case. 
 
 For example, one module might deploy the control plane for Kubernetes and a separate module could deploy worker nodes; you may need to combine both modules together to deploy a Kubernetes cluster, or use the `eks-cluster` service from the [Service Catalog](/iac/whats-this/services/).
 
-The Gruntwork Infrastructure as Code (IaC) Library contains hundreds of battle-tested, commercially supported and maintained modules that you can use and combine in many different ways. Modules are versioned using Semantic Versioning to allow Gruntwork clients to keep up to date with the latest infrastructure best practices in a systematic way.
+For a full list of modules available, refer to the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/).
 
 ## How to navigate modules in the IaC Library
 

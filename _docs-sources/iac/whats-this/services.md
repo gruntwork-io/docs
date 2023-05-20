@@ -1,12 +1,12 @@
 # What is a Service?
 
-The Gruntwork Service Catalog consists of a number of reusable, customizable, battle-tested, production-grade infrastructure-as-code services that you can use to deploy and manage your infrastructure, including Docker orchestration, EC2 orchestration, load balancing, networking, databases, caches, monitoring, alerting, CI/CD, secrets management, VPN, and much more.
+The Gruntwork Service Catalog consists of a number of reusable, customizable, production-grade infrastructure-as-code services that you can use to deploy and manage your infrastructure. This includes Docker orchestration, EC2 orchestration, load balancing, networking, databases, caches, monitoring, alerting, CI/CD, secrets management, VPN, and much more.
 
 ## When do you use a Service?
 
-Services in the service catalog are reusable code that combines multiple modules to configure a service for a specific use case. These are designed for specific use cases and meant to be deployed directly. 
+Services in the service catalog are reusable code that combines multiple modules. These are designed for specific use cases such as EKS and ECS clusters, VPCs with public and private subnets, and databases. Using a service can save you time piecing together individual modules and testing that they're correctly referencing each other.
 
-For example, the eks-cluster service combines all the modules you need to run an EKS (Kubernetes) cluster in a typical production environment, including modules for the control plane, worker nodes, secrets management, log aggregation, alerting, and so on. 
+For example, the `eks-cluster` service combines all the modules you need to run an EKS (Kubernetes) cluster in a typical production environment, including modules for the control plane, worker nodes, secrets management, log aggregation, alerting, and so on. 
 
 ## How to navigate services in the IaC Library
 
@@ -17,7 +17,7 @@ The code in the `terraform-aws-service-catalog` repo is organized into three pri
 1. `examples`: Sample code that shows how to use the services in the modules folder and allows you to try the services out without having to write any code: you `cd` into one of the folders, follow a few steps in the README (e.g., run `terraform apply`), and you'll have fully working infrastructure up and running. In other words, this is executable documentation. Note that the examples folder contains two sub-folders:
 
     1. `for-learning-and-testing`: Example code that is optimized for learning, experimenting, and testing, but not
-      direct production usage). Most of these examples use Terraform directly to make it easy to fill in dependencies
+      direct production usage. Most of these examples use Terraform directly to make it easy to fill in dependencies
       that are convenient for testing, but not necessarily those you'd use in production: e.g., default VPCs or mock
       database URLs.
 
