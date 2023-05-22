@@ -79,7 +79,7 @@ If you need to run a custom script in the `deploy-runner`, you must fork the ima
 Pipelines executes in ECS tasks running in your AWS account(s). Each task (terraform planner, applier, docker builder, ami builder) has a distinct execution IAM role with only the permissions each task requires to complete successfully.
 
 If you are expanding your usage of AWS to include an AWS service you've never used before, you will need to grant each job sufficient permissions to access that service.
-For example, if you need to create an AWS DynamoDB Table using Pipelines for the first time, you would want to add (at a minimum) the ability to list and describe tables to the policy for the `planner` IAM role, and all permissions for DynamoDB to the IAM policy for the `terraform-applier` IAM role.
+For example, if you need to create an Amazon DynamoDB Table using Pipelines for the first time, you would want to add (at a minimum) the ability to list and describe tables to the policy for the `planner` IAM role, and all permissions for DynamoDB to the IAM policy for the `terraform-applier` IAM role.
 
 We recommend that the `planner` configuration have read only access to resources, and the applier be able to read, create, modify, and destroy resources.
 
@@ -122,6 +122,6 @@ After you are done updating the IAM policy documents, run `terraform plan` then 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "85288b2cf22e17e12c9c7d8ae6d497ac"
+  "hash": "7562b5231997a9c3c3d354b6da52da84"
 }
 ##DOCS-SOURCER-END -->
