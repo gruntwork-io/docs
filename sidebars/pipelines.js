@@ -27,15 +27,15 @@ const sidebar = [
                   id: "pipelines/how-it-works/index",
                 },
                 {
-                  label: "Tutorial",
+                  label: "Single Account Tutorial",
                   type: "doc",
                   id: "pipelines/tutorial/index",
                 },
-                {
-                  label: "Deploying Multi-Account Pipelines",
-                  type: "doc",
-                  id: "pipelines/multi-account/index",
-                },
+                // {
+                //   label: "Deploying Multi-Account Pipelines",
+                //   type: "doc",
+                //   id: "pipelines/multi-account/index",
+                // },
               ]
             },
             {
