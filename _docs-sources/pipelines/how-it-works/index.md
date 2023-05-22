@@ -8,9 +8,9 @@
 
 Gruntwork Pipelines can be used with any external CI/CD tool. The role of the CI/CD tool is to trigger jobs
 inside Gruntwork Pipelines. We have [example configurations](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production/infrastructure-live/_ci/scripts)
-that identify changed terraform modules and call the Gruntwork Pipelines invoker lambda.
+that identify changed terraform modules and call the Gruntwork Pipelines invoker Lambda function.
 
-By default, the invoker lambda is run by a CLI tool called `infrastructure-deployer` from within your CI tool.
+By default, the invoker Lambda function is run by a CLI tool called `infrastructure-deployer` from within your CI tool.
 
 ## ECS Deploy Runner
 
@@ -22,7 +22,7 @@ the logs back to your CI tool as if they were running locally.
 
 ### Infrastructure Deployer CLI
 
-This [CLI tool](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/infrastructure-deployer)
+The [infrastructure deployer cli tool](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/infrastructure-deployer)
 serves as the interface between your chosen CI tool and Gruntwork Pipelines. It is used to trigger
 jobs in the deploy runner. Primarily, it calls instances of the invoker lambda described in the next section.
 
@@ -47,7 +47,7 @@ the ECS deploy runner stack deployed in us-west-2.
 ### Invoker Lambda
 
 The [Invoker Lambda](https://github.com/gruntwork-io/terraform-aws-ci/blob/main/modules/ecs-deploy-runner/main_lambda.tf)
-is a lambda function written in python that acts as the AWS entrypoint for your pipeline.
+is an AWS Lambda function written in python that acts as the AWS entrypoint for your pipeline.
 It has 3 primary roles:
 
 1. Serving as a gatekeeper for pipelines runs, determining if a particular command is allowed to be run, and if the arguments are valid
@@ -59,7 +59,7 @@ It has 3 primary roles:
 The ECS deploy runner is flexible and can be configured for many tasks.  The [standard configuration](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner-standard-configuration)
 is a set of 4 ECS task definitions that we ship with Pipelines by default.
 Once you have your pipeline deployed you can [modify](../maintain/extending.md) the configuration as you like.
-The configuration defines what scripts are accepted by the invoker lambda and which arguments may be provided. The invoker lambda
+The configuration defines what scripts are accepted by the invoker Lambda and which arguments may be provided. The invoker Lambda
 will reject ANY script or argument not defined in the ECS Deploy Runner configuration.
 The 4 default tasks are defined below.
 
@@ -67,12 +67,12 @@ The 4 default tasks are defined below.
 
 The Docker Image Builder task definition allows CI jobs to build docker images.
 This ECS task uses an open source library called [Kaniko](https://github.com/GoogleContainerTools/kaniko) to enable docker builds from within a docker container.
-We provide a [docker image](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner/docker/kaniko) based on kaniko for this task.
+We provide a [Docker image](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner/docker/kaniko) based on kaniko for this task.
 
 #### Packer AMI Builder
 
 The Packer AMI Builder task definition allows CI jobs to build AMIs using HashiCorp Packer. This task runs in
-a [docker image](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner/docker/deploy-runner) we provide.
+a [Docker image](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner/docker/deploy-runner) we provide.
 
 #### Terraform Planner and Applier
 
