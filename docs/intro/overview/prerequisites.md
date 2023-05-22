@@ -27,14 +27,10 @@ To be successful with the infrastructure provisioned by us, you must have a dece
 
 We create Docker containers throughout our code library, and use them heavily in our [Gruntwork Pipelines](https://gruntwork.io/pipelines/) product, an important piece of the Reference Architecture. Containerization is an important part of helping many companies scale in the cloud, and we’re no exception. Familiarity with creating docker images and pushing and pulling them from repositories is required. Likewise, we use Packer to build AMIs. Understanding Packer will enable you to build your own AMIs for your own infrastructure and make modifications to the infrastructure we provision for you.
 
-## Time to learn
-
-With Gruntwork, you can accelerate your journey towards capturing your AWS cloud infrastructure as Infrastructure as Code. Although our aim is to simplify this intricate process, gaining a comprehensive understanding of your infrastructure's complexities and tailoring it to your specific needs will require a significant investment of time and effort on your part.
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "4ede6b938e1010b0fb0fca78fbd7edb1"
+  "hash": "b80e8bf8175294cc0f3b86d6c0739869"
 }
 ##DOCS-SOURCER-END -->

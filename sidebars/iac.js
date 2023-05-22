@@ -40,7 +40,10 @@ const sidebar = [
         label: "Staying up to date",
         type: "category",
         collapsible: false,
-        items: ["iac/usage/versioning", "iac/usage/updating"],
+        items: [
+          "iac/stay-up-to-date/versioning",
+          "iac/stay-up-to-date/updating",
+        ],
       },
       {
         label: "Support",
