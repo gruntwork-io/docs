@@ -18,6 +18,6 @@ The code in the module repos are organized into three primary folders:
 
 1. `modules`: The core implementation code. All of the modules that you will use and deploy are defined within. For example to ECS cluster module in the `terraform-aws-ecs` repo in `modules/ecs-cluster`.
 
-1. `examples`: Sample code that shows how to use the modules in the `modules` folder and allows you to try them out without having to write any code: you `cd` into one of the folders, follow a few steps in the README (e.g. run `terraform apply`), and you'll have a fully working module up and running. In other words, this is executable documentation.
+1. `examples`: Sample code that shows how to use the modules in the `modules` folder and allows you to try them out without having to write any code: `cd` into one of the folders, follow a few steps in the README (e.g. run `terraform apply`), and you'll have a fully working module up and running. In other words, this is executable documentation.
 
 1. `test`: Automated tests for the code in modules and examples.

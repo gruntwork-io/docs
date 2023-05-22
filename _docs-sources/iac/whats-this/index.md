@@ -10,7 +10,7 @@ Modules are reusable code components that are used to deploy and manage specific
 
 ## Services
 
-Services in the service catalog are reusable code that combines multiple modules from the IaC Library. It simplifies the deployment and management of complex infrastructure configurations and rather than dealing with individual modules and their dependencies, users can directly deploy services tailored for a particular use case. 
+Services in the service catalog are reusable code that combines multiple modules from the IaC Library, simplifying the deployment and management of complex infrastructure configurations. Rather than dealing with individual modules and their dependencies, users can directly deploy services tailored for a particular use case. 
 
 For more information on the service catalog check out the [Services page](/iac/whats-this/services/).
 
