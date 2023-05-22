@@ -2,7 +2,7 @@
 
 Pipelines is built using the terraform-aws-ci module. We recommend updating your pipeline whenever there's a new release of the module.
 
-By default, the Pipelines cannot update it's own infrastructure (ECS cluster, AWS Lambda function, etc). This safeguard is in place to prevent you from accidentally locking yourself out of the pipeline when applying a change to permissions.
+By default, Pipelines cannot update it's own infrastructure (ECS cluster, AWS Lambda function, etc). This safeguard is in place to prevent you from accidentally locking yourself out of the pipeline when applying a change to permissions.
 
 For example, if you change the IAM permissions of the CI user, you may no longer be able to run the pipeline. The pipeline job that updates the permissions will also be affected by the change. This is a difficult scenario to recover from, since you will have lost access to make further changes using Pipelines.
 
@@ -99,6 +99,6 @@ Now that you've learned how to update your pipeline, the next step is to extend 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "19ed48688b8b7e6136e6793f6a6df300"
+  "hash": "0f864de6399105ffd07fc2455b218b55"
 }
 ##DOCS-SOURCER-END -->
