@@ -1,3 +1,14 @@
 # Reference Architecture
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tortor vitae purus faucibus ornare suspendisse sed nisi. At tempor commodo ullamcorper a. Eu volutpat odio facilisis mauris. Nec feugiat nisl pretium fusce id velit ut. In nibh mauris cursus mattis molestie a iaculis at erat. Et magnis dis parturient montes. At tempor commodo ullamcorper a lacus. Porta nibh venenatis cras sed felis eget velit aliquet. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Aenean euismod elementum nisi quis eleifend quam. Elit sed vulputate mi sit amet mauris commodo quis.
+The Gruntwork Reference Architecture is an implementation of best practices for infrastructure in the cloud. It is an opinionated, end-to-end tech stack built on top of our Infrastructure as Code Library, deployed into the customer's AWS accounts. It is comprised of three pieces.
+## Landing Zone
+
+Gruntwork Landing Zone is a terraform-native approach to [AWS Landing zone / Control Tower](https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html). This uses Terraform to quickly create new AWS accounts, configure them with a standard security baseline, and defines a best-practices multi-account setup.
+
+## Sample Application
+
+Our [sample application](https://github.com/gruntwork-io/aws-sample-app) is built with JavaSCript, Node.js, and Express.js, following [Twelve-Factor App](https://12factor.net/) practices. It consists of a load balancer, a front end, a backend, a cache, and a database.
+
+## Pipelines
+
+Gruntwork Pipelines makes the process of deploying infrastructure similar to how developers often deploy code. It is a code framework and approach that enables the customer to use your preferred CI tool to set up an end-to-end pipeline for infrastructure code.
