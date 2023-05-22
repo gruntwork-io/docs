@@ -28,7 +28,7 @@ jobs in the deploy runner. Primarily, it calls instances of the invoker lambda d
 
 Usage:
 
-`infrastructure-deployer --aws-region AWS_REGION [other otpions] -- CONTAINER_NAME SCRIPT ARGS...`
+`infrastructure-deployer --aws-region AWS_REGION [other options] -- CONTAINER_NAME SCRIPT ARGS...`
 
 When launching a task, you may optionally set the following useful flags:
 
@@ -50,9 +50,9 @@ The [Invoker Lambda](https://github.com/gruntwork-io/terraform-aws-ci/blob/main/
 is a lambda function written in python that acts as the AWS entrypoint for your pipeline.
 It has 3 primary roles:
 
-1. It serves as a gatekeeper for pipelines runs, determining if a particular command is allowed to be run
-2. It creates ECS tasks that run terraform, docker, or packer commands
-3. It ships deployment logs back to your CI/CD tool
+1. Serving as a gatekeeper for pipelines runs, determining if a particular command is allowed to be run, and if the arguments are valid
+2. Creating ECS tasks that run terraform, docker, or packer commands
+3. Shipping deployment logs back to your CI/CD tool
 
 ### Standard Configuration
 
@@ -71,10 +71,10 @@ We provide a [docker image](https://github.com/gruntwork-io/terraform-aws-ci/tre
 
 #### Packer AMI Builder
 
-The Packer AMI Builder task definition allows CI jobs to build AMIs using Hashicorp's Packer tool. This task runs in
+The Packer AMI Builder task definition allows CI jobs to build AMIs using HashiCorp Packer. This task runs in
 a [docker image](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner/docker/deploy-runner) we provide.
 
-#### Terraform Planner/Applier
+#### Terraform Planner and Applier
 
 The Terraform Planner task definition and Terraform Applier task definition are very similar. They allow CI jobs to
 plan and apply terraform and terragrunt code. These tasks run in the same [docker image](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner/docker/deploy-runner)
