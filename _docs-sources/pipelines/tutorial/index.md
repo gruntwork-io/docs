@@ -73,8 +73,8 @@ terraform apply
 
 The four standard Gruntwork Pipelines capabilities are instrumented by two separate Docker files
 
-1. [ecs-deploy-runner](./docker/deploy-runner/Dockerfile) - Terraform plan, apply and AMI building
-2. [kaniko](./docker/kaniko/Dockerfile) - Docker image building. [Kaniko](https://github.com/GoogleContainerTools/kaniko) is a tool that supports building Docker images inside of a container
+1. `ecs-deploy-runner` - Terraform plan, apply and AMI building
+2. `kaniko` - Docker image building. [Kaniko](https://github.com/GoogleContainerTools/kaniko) is a tool that supports building Docker images inside of a container
 
 These Dockerfiles live in the ecs-deploy-runner module within [the terraform-aws-ci repository](https://github.com/gruntwork-io/terraform-aws-ci). In this example, we'll be cloning the terraform-aws-ci and running Docker build against the Dockerfiles defined there.
 
