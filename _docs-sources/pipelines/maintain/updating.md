@@ -63,7 +63,7 @@ deploy_runner_container_image_tag = "v0.52.1"
 kaniko_container_image_tag = "v0.52.1"
 ```
 
-Next, apply the ecs-deploy-runner module in each account.
+Next, apply the ecs-deploy-runner module in each account:
 ```sh
 cd logs/$DEPLOY_RUNNER_REGION/mgmt/ecs-deploy-runner
 aws-vault exec your-logs -- terragrunt apply --terragrunt-source-update -auto-approve
