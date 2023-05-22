@@ -68,9 +68,52 @@ Run `terraform plan` to inspect the changes that will be made to your pipeline. 
 
 ## Adding script arguments
 
+The `deploy-runner` Docker image for Pipelines only allows scripts within a single directory to be executed in the ECS task as an additional security measure.
+
+By default, the `deploy-runner` ships with three scripts - one to build HashiCorp Packer images, one to run `terraform plan` and `terraform apply`, and one to automatically update the value of a variable in a Terraform tfvars or Terragrunt HCL file.
+
+If you need to run a custom script in the `deploy-runner`, you must fork the image code, add an additional line to copy your script into directory designated by the `trigger_directory` argument. Then, you will need to rebuild the Docker image, push to ECR, then update your Pipelines deployment following the steps in [Updating Pipelines](./updating.md).
+
 ## Adding permissions
+
+Pipelines executes in ECS tasks running in your AWS account(s). Each task (terraform planner, applier, docker builder, ami builder) has a distinct execution IAM role with only the permissions each task requires to complete successfully.
+
+If you are expanding your usage of AWS to include an AWS service you've never used before, you will need to grant each job sufficient permissions to access that service.
+For example, if you need to create an AWS DynamoDB Table using Pipelines for the first time, you would want to add (at a minimum) the ability to list and describe tables to the policy for the `planner` IAM role, and all permissions for DynamoDB to the IAM policy for the `terraform-applier` IAM role.
+
+We recommend that the `planner` configuration have read only access to resources, and the applier be able to read, create, modify, and destroy resources.
 
 ### RefArch
 
+If you've deployed Pipelines as a part of your Reference Architecture, the permissions for the `terraform-planner` task are located in `_envcommon/mgmt/read_only_permissions.yml` and the permissions for the `terraform-applier` task are located in `_envcommon/mgmt/deploy_permissions.yml`. Open and add the required permissions to each file.
+
+After you are done updating both files, you will need to run `terragrunt plan`, review the changes, then `terragrunt apply` for each account in your Reference Architecture.
+```sh
+cd logs/$DEPLOY_RUNNER_REGION/mgmt/ecs-deploy-runner
+aws-vault exec your-logs -- terragrunt apply --terragrunt-source-update -auto-approve
+
+cd shared/$DEPLOY_RUNNER_REGION/mgmt/ecs-deploy-runner
+aws-vault exec your-shared -- terragrunt apply --terragrunt-source-update -auto-approve
+
+cd security/$DEPLOY_RUNNER_REGION/mgmt/ecs-deploy-runner
+aws-vault exec your-security -- terragrunt apply --terragrunt-source-update -auto-approve
+
+cd dev/$DEPLOY_RUNNER_REGION/mgmt/ecs-deploy-runner
+aws-vault exec your-dev -- terragrunt apply --terragrunt-source-update -auto-approve
+
+cd stage/$DEPLOY_RUNNER_REGION/mgmt/ecs-deploy-runner
+aws-vault exec your-stage -- terragrunt apply --terragrunt-source-update -auto-approve
+
+cd prod/$DEPLOY_RUNNER_REGION/mgmt/ecs-deploy-runner
+aws-vault exec your-prod -- terragrunt apply --terragrunt-source-update -auto-approve
+```
 
 ### Standalone
+
+If you've deployed Pipelines as a standalone framework using the `ecs-deploy-runner` service in the Service Catalog, , you will need to locate the file in which you've defined a module block sourcing the `ecs-deploy-runner` service.
+
+Modify the AWS IAM policy document being passed into the `iam_policy` variable for the [terraform_applier_config](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_applier_config) and the [terraform_planner_config](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_planner_config) variables.
+
+Refer to the [Variable Reference](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#reference) section for the service in the Library Reference for the full set of configuration details for this service.
+
+After you are done updating the IAM policy documents, run `terraform plan` then review the changes that will be made. Finally, run `terraform apply` to apply the changes.
