@@ -17,7 +17,7 @@ This guide assumes you have the following:
 
 ## Updating container images
 
-Gruntwork Pipelines uses two images - one for the[Deploy Runner](https://github.com/gruntwork-io/terraform-aws-ci/blob/main/modules/ecs-deploy-runner/docker/deploy-runner/Dockerfile) and one for [Kaniko](https://github.com/gruntwork-io/terraform-aws-ci/blob/main/modules/ecs-deploy-runner/docker/kaniko/Dockerfile). To update pipelines to the latest version, you must build and push new versions of each image.
+Gruntwork Pipelines uses two images - one for the [Deploy Runner](https://github.com/gruntwork-io/terraform-aws-ci/blob/main/modules/ecs-deploy-runner/docker/deploy-runner/Dockerfile) and one for [Kaniko](https://github.com/gruntwork-io/terraform-aws-ci/blob/main/modules/ecs-deploy-runner/docker/kaniko/Dockerfile). To update pipelines to the latest version, you must build and push new versions of each image.
 
 ### Build and push images
 
