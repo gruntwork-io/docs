@@ -1,11 +1,35 @@
 # What is a Service?
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu nisl nunc mi ipsum faucibus vitae aliquet. Cras adipiscing enim eu turpis egestas pretium aenean pharetra magna. Nam at lectus urna duis convallis convallis. Eget est lorem ipsum dolor sit amet consectetur adipiscing elit. Interdum varius sit amet mattis vulputate enim. Massa id neque aliquam vestibulum. Nunc sed augue lacus viverra vitae congue eu consequat ac. Volutpat ac tincidunt vitae semper. Placerat orci nulla pellentesque dignissim enim. Dui sapien eget mi proin sed libero enim sed. Sem viverra aliquet eget sit. Dis parturient montes nascetur ridiculus. Quam id leo in vitae. Tortor dignissim convallis aenean et tortor at risus viverra adipiscing. Elit eget gravida cum sociis natoque penatibus et.
-
-## Whats a Service
-
-It's a bunch of modules grouped into one REALLY BIG module
+The Gruntwork Service Catalog consists of a number of reusable, customizable, production-grade infrastructure-as-code services that you can use to deploy and manage your infrastructure. This includes Docker orchestration, EC2 orchestration, load balancing, networking, databases, caches, monitoring, alerting, CI/CD, secrets management, VPN, and much more.
 
 ## When do you use a Service?
 
-When you feel like it, ya dingus!
+Services in the service catalog are reusable code that combines multiple modules. These are designed for specific use cases such as EKS and ECS clusters, VPCs with public and private subnets, and databases. Using a service can save you time piecing together individual modules and testing that they're correctly referencing each other.
+
+For example, the `eks-cluster` service combines all the modules you need to run an EKS (Kubernetes) cluster in a typical production environment, including modules for the control plane, worker nodes, secrets management, log aggregation, alerting, and so on. 
+
+## How to navigate services in the IaC Library
+
+The code in the `terraform-aws-service-catalog` repo is organized into three primary folders:
+
+1. `modules`: The core implementation code of this repo. All the services that you will use and deploy are defined within, such as the EKS cluster service in modules/services/eks-cluster.
+
+1. `examples`: Sample code that shows how to use the services in the modules folder and allows you to try the services out without having to write any code: you `cd` into one of the folders, follow a few steps in the README (e.g., run `terraform apply`), and you'll have fully working infrastructure up and running. In other words, this is executable documentation. Note that the examples folder contains two sub-folders:
+
+    1. `for-learning-and-testing`: Example code that is optimized for learning, experimenting, and testing, but not
+      direct production usage. Most of these examples use Terraform directly to make it easy to fill in dependencies
+      that are convenient for testing, but not necessarily those you'd use in production: e.g., default VPCs or mock
+      database URLs.
+
+    1. `for-production`: Example code optimized for direct usage in production. This is code from the [Gruntwork Reference
+      Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an end-to-end,
+      integrated tech stack on top of the Gruntwork Service Catalog. To keep the code DRY and manage dependencies
+      between modules, the code is deployed using [Terragrunt](https://terragrunt.gruntwork.io/). However, Terragrunt
+      is NOT required to use the Gruntwork Service Catalog: you can alternatively use vanilla Terraform or Terraform
+      Cloud / Enterprise, as described [here](https://docs.gruntwork.io/reference/services/intro/deploy-new-infrastructure#how-to-deploy-terraform-code-from-the-service-catalog).
+
+    1. Not all modules have a `for-production` example, but you can still create a production-grade configuration by 
+       using the template provided in this discussion question, [How do I use the modules in terraform-aws-service-catalog
+       if there is no example?](https://github.com/gruntwork-io/knowledge-base/discussions/360#discussioncomment-25705480).
+
+1. `test`: Automated tests for the code in modules and examples.
