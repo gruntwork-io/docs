@@ -5,7 +5,7 @@ preflight checks against every commit that you push up to this branch.
 
 ![Gruntwork Reference Architecture preflight checks](/img/preflight1.png)
 
-From the moment that your git commit is pushed, it usually takes around 4 minutes for your preflight check errors to appear on your pull request. Note that any errors will be 
+Preflight checks can take up to 4-5 minutes to complete after you push your commit. Any errors will be 
 directly annotated on the exact line of your form that presents a blocking issue, so be sure to check the *Files changed* tab of your pull request to see them:
 
 ![Gruntwork Ref Arch preflight checks on your pull request](/img/preflight-error-on-pr.png)
