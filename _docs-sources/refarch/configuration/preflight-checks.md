@@ -1,6 +1,6 @@
 # Step 2. Iterate on Preflight checks 
 
-Once you have run the bootstrap script and pushed your `ref-arch-form` branch with your changes, your `infrastructure-live` repository GitHub actions will commence, running 
+Once you have run the bootstrap script and pushed your `ref-arch-form` branch with your changes, your `infrastructure-live` repository GitHub Actions will commence, running 
 preflight checks against every commit that you push up to this branch. 
 
 ![Gruntwork Reference Architecture preflight checks](/img/preflight1.png)
