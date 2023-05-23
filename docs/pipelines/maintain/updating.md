@@ -17,7 +17,7 @@ This guide assumes you have the following:
 
 ## Updating container images
 
-Gruntwork Pipelines uses two images - one for the[Deploy Runner](https://github.com/gruntwork-io/terraform-aws-ci/blob/main/modules/ecs-deploy-runner/docker/deploy-runner/Dockerfile) and one for [Kaniko](https://github.com/gruntwork-io/terraform-aws-ci/blob/main/modules/ecs-deploy-runner/docker/kaniko/Dockerfile). To update pipelines to the latest version, you must build and push new versions of each image.
+Gruntwork Pipelines uses two images - one for the [Deploy Runner](https://github.com/gruntwork-io/terraform-aws-ci/blob/main/modules/ecs-deploy-runner/docker/deploy-runner/Dockerfile) and one for [Kaniko](https://github.com/gruntwork-io/terraform-aws-ci/blob/main/modules/ecs-deploy-runner/docker/kaniko/Dockerfile). To update pipelines to the latest version, you must build and push new versions of each image.
 
 ### Build and push images
 
@@ -63,7 +63,7 @@ deploy_runner_container_image_tag = "v0.52.1"
 kaniko_container_image_tag = "v0.52.1"
 ```
 
-Next, apply the ecs-deploy-runner module in each account.
+Next, apply the ecs-deploy-runner module in each account:
 ```sh
 cd logs/$DEPLOY_RUNNER_REGION/mgmt/ecs-deploy-runner
 aws-vault exec your-logs -- terragrunt apply --terragrunt-source-update -auto-approve
@@ -99,6 +99,6 @@ Now that you've learned how to update your pipeline, the next step is to extend 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0f864de6399105ffd07fc2455b218b55"
+  "hash": "b6df76fc472554fa5e09567c46377ce0"
 }
 ##DOCS-SOURCER-END -->
