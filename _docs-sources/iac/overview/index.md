@@ -6,7 +6,7 @@ The library consists of two types of code: Modules & Services
 
 ## Modules
 
-Modules are reusable code components that are used to deploy and manage specific pieces of infrastructure. These modules encapsulate the configuration and resource definitions required to create and manage a particular component, such as a VPC, ECS cluster, or an Auto Scaling Group. For more information on modules check out the [Modules page](/iac/overview/modules/). 
+Modules are reusable code components that are used to deploy and manage specific pieces of infrastructure. These modules encapsulate the configuration and resource definitions required to create and manage a particular component, such as a VPC, ECS cluster, or an Auto Scaling Group. For more information on modules check out the [Modules page](/iac/overview/modules/).
 
 ## Services
 
