@@ -23,9 +23,6 @@ const sidebar = [
           "refarch/configuration/install-required-tools",
           "refarch/configuration/run-the-wizard",
           "refarch/configuration/preflight-checks",
-          // "refarch/configuration/provision-accounts",
-          // "refarch/configuration/setup-quotas",
-          // "refarch/configuration/route53",
         ],
       },
       {
