@@ -9,114 +9,161 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="0.11.0" lastModifiedVersion="0.10.1"/>
+<VersionBadge repoTitle="AWS Messaging" version="0.12.0" lastModifiedVersion="0.12.0"/>
 
 # Amazon Managed Streaming for Apache Kafka (Amazon MSK) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.11.0/modules/msk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/msk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.10.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.12.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform module configures and launches an [Amazon MSK](https://aws.amazon.com/msk/) cluster.
 
-Amazon Managed Streaming for Apache Kafka (Amazon MSK) is a fully managed service that enables you to build and run applications that use Apache
-Kafka to process streaming data. Amazon MSK provides the control-plane operations, such as those for creating, updating,
-and deleting clusters. Managing all the data-plane operations, such running producers and consumers, is up to you.
-
-It runs open-source versions of [Apache Kafka](https://github.com/apache/kafka), meaning existing applications, tooling,
-and plugins from partners and the Apache Kafka community are supported without requiring changes to application code.
-You can read more about supported Apache Kafka versions in [the official documentation](https://docs.aws.amazon.com/msk/latest/developerguide/supported-kafka-versions.html).
-
-Note that this module does not support [Amazon MSK Serverless](https://docs.aws.amazon.com/msk/latest/developerguide/serverless.html),
-which is still in preview.
-
 ## Cluster Configuration
 
-Amazon MSK provides a [default configuration](https://docs.aws.amazon.com/msk/latest/developerguide/msk-default-configuration.html)
-for brokers, topics, and Apache ZooKeeper nodes. You can also create [custom configurations](https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-properties.html)
-with `var.server_properties` and use them to create new MSK clusters or to update existing clusters.
+Amazon Managed Streaming for Apache Kafka provides a default configuration for brokers, topics, and Apache ZooKeeper
+nodes. You can also create custom configurations and use them to create new MSK clusters or to update existing clusters.
+An MSK configuration consists of a set of properties and their corresponding values:
+
+*   **default configuration**: when you create an MSK cluster and don't specify a custom MSK configuration, Amazon MSK
+    creates and uses a default configuration with the values shown
+    in [this page](https://docs.aws.amazon.com/msk/latest/developerguide/msk-default-configuration.html). For properties
+    that aren't in this table, Amazon MSK uses the defaults associated with your version of Apache Kafka.
+*   **custom configuration**: you can create custom configuration using `var.server_properties`. Refer to
+    the [Custom MSK configurations](https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-properties.html)
+    for more information.
+
+### Configuration Update
+
+You can use the `var.server_properties` to update the cluster configuration. When updating the configuration of an
+Amazon Managed Streaming for Apache Kafka (MSK) cluster, the update happens in place. MSK applies the configuration
+update to the running brokers in a rolling update fashion, meaning that each broker is updated one at a time while the
+others remain operational.
+
+This approach ensures that the Kafka cluster remains available during the configuration update process. The update
+process does not require destroying and recreating the cluster, which would cause significant downtime and disruption to
+the running applications.
 
 ### Capacity Planning
 
-When planning the capacity for your cluster, there are multiple factors that need to be taken into consideration, including:
+Capacity planning involves ensuring that your cluster has enough resources to meet the current and future demands of
+your use case. There are many aspects and requirements to consider, including data volume, performance, availability,
+workload, future growth, cost, etc. Refer to the following references for best practices, recommendations, and further
+details on planning capacity:
 
-*   Performance and throughput
-*   Fault tolerance
-*   Storage capacity
+*   [MSK Best practices](https://docs.aws.amazon.com/msk/latest/developerguide/bestpractices.html)
+*   [Best practices for right-sizing your Apache Kafka clusters to optimize performance and cost](https://aws.amazon.com/blogs/big-data/best-practices-for-right-sizing-your-apache-kafka-clusters-to-optimize-performance-and-cost/)
+*   [Apache Kafka Supports 200K Partitions Per Cluster](https://blogs.apache.org/kafka/entry/apache-kafka-supports-more-partitions)
+*   [Provisioning storage throughput](https://docs.aws.amazon.com/msk/latest/developerguide/msk-provision-throughput.html)
+*   [MSK Sizing and Pricing spreadsheet](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fdy7oqpxkwhskb.cloudfront.net%2FMSK_Sizing_Pricing.xlsx\&wdOrigin=BROWSELINK)
 
-To ensure high availability for production workloads, it is recommended to have a topic replication factor > 1. This means that
-your topics are partitioned and replicated across multiple brokers in the cluster, leading to better fault tolerance and
-parallelism for your consumers. As a rule of thumb, the optimal number of partitions for a topic should be equal to, or a
-multiple of, the number of brokers in your cluster. Note that the number of partitions can only be increased, not decreased.
+Based on the result of the capacity planning, you will be tweaking the following configuration to provision your
+cluster:
 
-See https://docs.aws.amazon.com/msk/latest/developerguide/bestpractices.html for further details on planning the capacity
-and configuration of your cluster.
+*   **number of partitions per broker**: the number of partitions per broker in Apache Kafka is determined by the total
+    number of partitions across all topics and the number of brokers in the cluster. By default, Kafka evenly distributes
+    the partitions across all available brokers, so the number of partitions per broker will depend on the number of
+    brokers and the total number of partitions.
+*   **number of brokers per cluster**: can be configured to any value between 1 and 15.
+*   **replication factor**: controls the # of other brokers to replicate the data for fault tolerance. It is recommended
+    to have a topic replication factor > 1.
+*   **broker_type**: depending on the broker type, recommended number of partitions per broker and maximum storage
+    throughput changes.
 
-### Storage Auto Scaling
+## Broker Storage Scaling
 
-Amount of required EBS storage depends on multiple factors, for example number of topics, amount
-and size of your data, data retention and replication factor. As such it is not possible to give an exact recommendation, instead
-the storage requirements should be calculated based on your use case. It is important to monitor disk usage and increase disk
+Amount of required EBS storage depends on multiple factors, for example number of topics, amount and size of your data,
+data retention, and replication factor. As such it is not possible to give an exact recommendation, instead the storage
+requirements should be calculated based on your use case. It is important to monitor disk usage and increase disk
 size when needed.
 
-The module will set the initial EBS volume size with input variable `initial_ebs_volume_size` and automatically scale the broker
-volumes up until `broker_storage_autoscaling_max_capacity` is reached. You can optionally disable scale in with input
-variable `disable_broker_storage_scale_in`. You can use `broker_storage_autoscaling_target_percentage` to control the scaling threshold.
+You can specify the initial EBS volume size with the input variable `var.initial_ebs_volume_size` and use the following
+variables to configure auto-scaling broker storage:
+
+*   `var.broker_storage_autoscaling_max_capacity`: the max capacity of broker node EBS storage
+*   `var.broker_storage_autoscaling_target_percentage`: triggering point of the auto-scaling
+*   `var.disable_broker_storage_scale_in`: flag to disable scaling-in broker storage after auto-scale.
+
+**Note**: if you do not want to use the auto-scaling feature for whatever reason, you can set
+the `var.broker_storage_autoscaling_max_capacity` the same as the `var.initial_ebs_volume_size`.
 
 ## Monitoring
 
+Amazon Managed Streaming for Apache Kafka gathers Apache Kafka metrics and sends them to Amazon CloudWatch where you can
+view them. For more information about Apache Kafka metrics, including the ones that Amazon MSK surfaces,
+see [Monitoring](https://kafka.apache.org/documentation/#monitoring) in the Apache Kafka documentation.
+
+You can also monitor your MSK cluster with Prometheus, an open-source monitoring application. For information about
+Prometheus, see [Overview in the Prometheus documentation](https://prometheus.io/docs/introduction/overview/). To learn
+how to monitor your cluster with Prometheus,
+see [Open monitoring with Prometheus](https://docs.aws.amazon.com/msk/latest/developerguide/open-monitoring.html).
+
 ### Monitoring With CloudWatch
 
-Amazon MSK integrates with Amazon CloudWatch so that you can collect, view, and analyze metrics for your MSK serverless cluster.
-You can set the monitoring level for an MSK cluster to one of the following: `DEFAULT`, `PER_BROKER`, `PER_TOPIC_PER_BROKER`, or `PER_TOPIC_PER_PARTITION`.
-You can read more about metrics and monitoring here: https://docs.aws.amazon.com/msk/latest/developerguide/metrics-details.html
+Amazon MSK integrates with Amazon CloudWatch so that you can collect, view, and analyze CloudWatch metrics for your
+Amazon MSK cluster. The metrics that you configure for your MSK cluster are automatically collected and pushed to
+CloudWatch. You can set the monitoring level for an MSK cluster to one of the following: `DEFAULT`, `PER_BROKER`,
+`PER_TOPIC_PER_BROKER`, or `PER_TOPIC_PER_PARTITION`. Only the DEFAULT-level metrics are free.
 
-### Open Monitoring with Prometheus
+**Note**: currently, we do not support setting different monitoring level for CloudWatch Monitoring. You would have to
+do this via the Amazon console. You can read more about metrics and monitoring
+here: https://docs.aws.amazon.com/msk/latest/developerguide/metrics-details.html
 
-You can also monitor your MSK cluster with [Prometheus](https://prometheus.io/), an open-source monitoring system for
-time-series metric data. You can also use tools that are compatible with Prometheus-formatted metrics or tools that integrate
-with Amazon MSK Open Monitoring, like Datadog, Lenses, New Relic, and Sumo logic. You can read more about Open Monitoring
-with Prometheus here: https://docs.aws.amazon.com/msk/latest/developerguide/open-monitoring.html
+### Monitoring with Prometheus
 
-All metrics emitted by Apache Kafka to JMX are accessible using open monitoring with Prometheus. For information about Apache Kafka
-metrics, see [Monitoring](https://kafka.apache.org/documentation/#monitoring) in the Apache Kafka documentation.
+You can monitor your MSK cluster with Prometheus, an open-source monitoring system for time-series metric data. You can
+publish this data to Amazon Managed Service for Prometheus using Prometheus's remote write feature. Please use the
+following variables to setup monitoring;
 
-## Encryption
+*   `var.open_monitoring_enable_jmx_exporter`
+*   `var.open_monitoring_enable_node_exporter`
 
-Amazon MSK allows you to enable encryption at rest and in transit.
-The certificates that Amazon MSK uses for encryption must be renewed every 13 months. Amazon MSK automatically renews these
-certificates for all clusters.
+## Security
 
-### Encryption at Rest
+### Data Protection w/ Encryption
 
-Amazon MSK integrates with AWS Key Management Service (KMS) to offer transparent server-side encryption. Amazon MSK always
-encrypts your data at rest. When you create an MSK cluster, you can specify the AWS KMS customer master key (CMK) with
-`var.encryption_at_rest_kms_key_arn` that you want Amazon MSK to use to encrypt your data at rest. If no key is specified,
-an AWS managed KMS (`aws/msk` managed service) key will be used for encrypting the data at rest.
+Amazon MSK provides data encryption options that you can use to meet strict data management requirements. Refer to
+the [Amazon MSK encryption](https://docs.aws.amazon.com/msk/latest/developerguide/msk-encryption.html) page for more
+information.
 
-### Encryption in Transit
+#### Encryption at Rest
 
-Amazon MSK uses TLS 1.2. By default, it encrypts data in transit between the brokers of your MSK cluster. You can override
-this default using `var.encryption_in_transit_in_cluster` input variable at the time you create the cluster. You can also control client-to-broker encryption using `var.encryption_in_transit_client_broker` input variable.
+Amazon MSK integrates with AWS Key Management Service (KMS) to offer transparent server-side encryption. Amazon MSK
+always encrypts your data at rest. When you create an MSK cluster, you can specify the AWS KMS customer master key (CMK)
+with `var.encryption_at_rest_kms_key_arn` that you want Amazon MSK to use to encrypt your data at rest. If no key is
+specified, an AWS managed KMS (`aws/msk` managed service) key will be used for encrypting the data at rest.
+
+#### Encryption in Transit
+
+Amazon MSK uses TLS 1.2. By default, it encrypts data in transit between the brokers of your MSK cluster. You can
+override this default using `var.encryption_in_transit_in_cluster` input variable at the time you create the cluster.
+You can also control client-to-broker encryption using `var.encryption_in_transit_client_broker` input variable.
+
+### Authentication and Authorization
+
+The MSK module supports the following authentication and authorization methods:
+
+*   [IAM access control](https://docs.aws.amazon.com/msk/latest/developerguide/iam-access-control.html)
+    using `var.enable_client_sasl_iam`. You can refer
+    to the [msk-with-iam-auth example module](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/examples/msk-with-iam-auth).
+*   [TLS](https://docs.aws.amazon.com/msk/latest/developerguide/msk-authentication.html) using `var.enable_client_tls`
+    and `var.client_tls_certificate_authority_arns`
+*   [Apache Kafka ACLs](https://docs.aws.amazon.com/msk/latest/developerguide/msk-acls.html)
+    using `var.server_properties`.
+
+You can read more about available authentication and authorization options from
+the [Authentication and authorization for Apache Kafka APIs page](https://docs.aws.amazon.com/msk/latest/developerguide/kafka_apis_iam.html)
 
 ## Logging
 
-Broker logs enable you to troubleshoot your Apache Kafka applications and to analyze their communications with your MSK cluster.
-You can deliver Apache Kafka broker logs to one or more of the following destination types:
+Broker logs enable you to troubleshoot your Apache Kafka applications and to analyze their communications with your MSK
+cluster. You can deliver Apache Kafka broker logs to one or more of the following destination types with variables:
 
-*   Amazon CloudWatch Logs
-*   Amazon S3
-*   Amazon Kinesis Data Firehose.
+*   Amazon CloudWatch Logs: `var.enable_cloudwatch_logs`, `var.cloudwatch_log_group`
+*   Amazon S3: `var.enable_s3_logs`, `var.s3_logs_bucket`, `var.s3_logs_prefix`
+*   Amazon Kinesis Data Firehose: `var.enable_firehose_logs`, `var.firehose_delivery_stream`).
 
 You can read more about MSK logging here: https://docs.aws.amazon.com/msk/latest/developerguide/msk-logging.html
-
-## Authentication and Authorization
-
-You can use [IAM](https://docs.aws.amazon.com/msk/latest/developerguide/iam-access-control.html) to authenticate clients and to
-allow or deny Apache Kafka actions. Alternatively, you can use [TLS](https://docs.aws.amazon.com/msk/latest/developerguide/msk-authentication.html)
-or [SASL/SCRAM](https://docs.aws.amazon.com/msk/latest/developerguide/msk-password.html) to authenticate clients, and
-[Apache Kafka ACLs](https://docs.aws.amazon.com/msk/latest/developerguide/msk-acls.html) to allow or deny actions.
-You can read more about available authentication and authorization options here: https://docs.aws.amazon.com/msk/latest/developerguide/kafka_apis_iam.html
 
 ## Connecting to Kafka brokers
 
@@ -129,8 +176,9 @@ need all the IPs, as the rest will be discovered automatically via ZooKeeper):
 --bootstrap.servers=10.0.0.4:9092,10.0.0.5:9092,10.0.0.6:9092
 ```
 
-Depending on which client authentication method you configured, there are a number of output variables (`bootstrap_brokers_*`) that
-provide you with a list of bootstrap servers. You can also get the list of bootstrap servers using the AWS Cli:
+Depending on which client authentication method you configured, there are a number of output
+variables (`bootstrap_brokers_*`) that provide you with a list of bootstrap servers. You can also get the list of
+bootstrap servers using the AWS Cli:
 
 ```bash
 $ aws kafka get-bootstrap-brokers --cluster-arn ClusterArn
@@ -140,34 +188,54 @@ $ aws kafka get-bootstrap-brokers --cluster-arn ClusterArn
 }
 ```
 
-### MSK Connect
+## Other Resources for MSK
 
-[MSK Connect](https://docs.aws.amazon.com/msk/latest/developerguide/msk-connect.html) is a feature of Amazon MSK that makes
-it easy for developers to stream data to and from their Apache Kafka clusters. With MSK Connect, you can deploy fully managed
-connectors built for Kafka Connect that move data into or pull data from popular data stores like Amazon S3 and Amazon
-OpenSearch Service. You can deploy connectors developed by 3rd parties like Debezium for streaming change logs from databases
-into an Apache Kafka cluster, or deploy an existing connector with no code changes. Connectors automatically scale to adjust
-for changes in load and you pay only for the resources that you use.
+*   [MSK Connect](https://docs.aws.amazon.com/msk/latest/developerguide/msk-connect.html): a feature of Amazon MSK that
+    makes it easy for developers to stream data to and from their Apache Kafka clusters.
+*   [Kafka Cluster Migration](https://docs.aws.amazon.com/msk/latest/developerguide/migration.html): You can mirror or
+    migrate your cluster using MirrorMaker, which is part of Apache Kafka.
+*   [ZooKeeper](https://zookeeper.apache.org/)
+*   [ZooKeeper Security](https://docs.aws.amazon.com/msk/latest/developerguide/zookeeper-security.html)
 
-## Kafka Cluster Migration
+## MSK Serverless
 
-You can mirror or migrate your cluster using MirrorMaker, which is part of Apache Kafka. Kafka MirrorMaker is a utility
-that helps to replicate the data between two Apache Kafka clusters within or across regions.
+MSK Serverless is a cluster type for Amazon MSK that makes it possible for you to run Apache Kafka without having to
+manage and scale cluster capacity. Refer to
+the [MSK Serverless](https://docs.aws.amazon.com/msk/latest/developerguide/serverless.html) page for more information.
+You can enable it by setting `var.enable_serverless = true`.
 
-For further information about migrating Kafka clusters, see: https://docs.aws.amazon.com/msk/latest/developerguide/migration.html
+MSK Serverless provides limited configuration options. Only the following list of variables would work with serverless:
 
-## ZooKeeper
+*   `var.enable_client_sasl_iam`: only allows SASL IAM based authentication.
+*   `var.allow_connections_from_cidr_blocks` and `var.allow_connections_from_security_groups`: controls the traffic that
+    is allowed to reach and leave the mks cluster.
+*   `var.custom_tags` and `var.custom_tags_security_group`: specify custom tags on msk cluster & security group.
 
-Kafka depends on [ZooKeeper](https://zookeeper.apache.org/) to work. Amazon MSK manages the Apache ZooKeeper nodes for you.
-Each Amazon MSK cluster includes the appropriate number of Apache ZooKeeper nodes for your Apache Kafka cluster at no additional cost.
+Other variables are only applicable to non-serverless MSK deployment.
 
-### Controlling Access to Apache ZooKeeper
+### Connecting to MSK Serverless
 
-For security reasons you may want to limit access to the Apache ZooKeeper nodes that are part of your Amazon MSK cluster.
-To limit access to the nodes, you can assign a separate security group to them. You can then decide who gets access to that security group.
+It's not possible to output endpoint for serverless cluster type deployment -
+related [issue](https://github.com/hashicorp/terraform-provider-aws/issues/28005). You would have to use the Amazon
+console UI or use the following command to retrieve the endpoint:
 
-As ZooKeeper security group configuration requires manual actions, this module does not include support for that. To change
-the security group for ZooKeeper, follow these instructions: https://docs.aws.amazon.com/msk/latest/developerguide/zookeeper-security.html
+```shell
+aws kafka  get-bootstrap-brokers --cluster-arn "<CLUSTER_ARN>"
+```
+
+## Tiered Storage
+
+Tiered storage is a low-cost storage tier for Amazon MSK that scales to virtually unlimited storage, making it
+cost-effective to build streaming data applications. Refer to
+the [Tiered storage](https://docs.aws.amazon.com/msk/latest/developerguide/msk-tiered-storage.html) for requirements, constraints, limitations, and more information.
+
+You can enable the tiered storage by setting the following variables:
+
+*   `var.storage_info = "TIERED"`
+*   `var.kafka_version = "2.8.2.tiered"` (Note: this is the only supported kafka version for tiered storage)
+*   `var.instance_type`: set to other than `kafka.t3.small`.
+
+It's only supported for the provisioned cluster type (non-serverless mode).
 
 ## Sample Usage
 
@@ -182,7 +250,7 @@ the security group for ZooKeeper, follow these instructions: https://docs.aws.am
 
 module "msk" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v0.11.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v0.12.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -191,20 +259,6 @@ module "msk" {
   # The name of the Kafka cluster (e.g. kafka-stage). This variable is used to
   # namespace all resources created by this module.
   cluster_name = <string>
-
-  # The number of brokers to have in the cluster.
-  cluster_size = <number>
-
-  # Specify the instance type to use for the kafka brokers (e.g. `kafka.m5.large`).
-  # See
-  # https://docs.aws.amazon.com/msk/latest/developerguide/msk-create-cluster.html#br
-  # ker-instance-types for available instance types.
-  instance_type = <string>
-
-  # Kafka version to install. See
-  # https://docs.aws.amazon.com/msk/latest/developerguide/supported-kafka-versions.h
-  # ml for a list of supported versions.
-  kafka_version = <string>
 
   # The subnet IDs into which the broker instances should be deployed. You should
   # typically pass in one subnet ID per node in the cluster_size variable. The
@@ -246,6 +300,10 @@ module "msk" {
   # Name of the Cloudwatch Log Group to deliver logs to.
   cloudwatch_log_group = null
 
+  # The number of brokers to have in the cluster. This field is required for
+  # non-serverless cluster type.
+  cluster_size = null
+
   # Custom tags to apply to the Kafka broker nodes and all related resources.
   custom_tags = {}
 
@@ -276,6 +334,9 @@ module "msk" {
   # Indicates whether you want to enable or disable streaming broker logs to S3.
   enable_s3_logs = false
 
+  # Indicates whether you want to enable msk serverless or not
+  enable_serverless = false
+
   # You may specify a KMS key short ID or ARN (it will always output an ARN) to use
   # for encrypting your data at rest. If no key is specified, an AWS managed KMS
   # ('aws/msk' managed service) key will be used for encrypting the data at rest.
@@ -300,6 +361,19 @@ module "msk" {
   # node. 
   initial_ebs_volume_size = 50
 
+  # Specify the instance type to use for the kafka brokers (e.g. `kafka.m5.large`).
+  # See
+  # https://docs.aws.amazon.com/msk/latest/developerguide/msk-create-cluster.html#br
+  # ker-instance-types for available instance types. This field is required for
+  # non-serverless cluster type.
+  instance_type = null
+
+  # Kafka version to install. See
+  # https://docs.aws.amazon.com/msk/latest/developerguide/supported-kafka-versions.h
+  # ml for a list of supported versions. This field is required for non-serverless
+  # cluster type.
+  kafka_version = null
+
   # Indicates whether you want to enable or disable the Prometheus JMX Exporter.
   open_monitoring_enable_jmx_exporter = false
 
@@ -322,6 +396,10 @@ module "msk" {
   # (https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-propert
   # es.html).
   server_properties = {}
+
+  # Controls storage mode for supported storage tiers. Valid values are: LOCAL or
+  # TIERED.
+  storage_mode = null
 
 }
 
@@ -338,7 +416,7 @@ module "msk" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v0.11.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v0.12.0"
 }
 
 inputs = {
@@ -350,20 +428,6 @@ inputs = {
   # The name of the Kafka cluster (e.g. kafka-stage). This variable is used to
   # namespace all resources created by this module.
   cluster_name = <string>
-
-  # The number of brokers to have in the cluster.
-  cluster_size = <number>
-
-  # Specify the instance type to use for the kafka brokers (e.g. `kafka.m5.large`).
-  # See
-  # https://docs.aws.amazon.com/msk/latest/developerguide/msk-create-cluster.html#br
-  # ker-instance-types for available instance types.
-  instance_type = <string>
-
-  # Kafka version to install. See
-  # https://docs.aws.amazon.com/msk/latest/developerguide/supported-kafka-versions.h
-  # ml for a list of supported versions.
-  kafka_version = <string>
 
   # The subnet IDs into which the broker instances should be deployed. You should
   # typically pass in one subnet ID per node in the cluster_size variable. The
@@ -405,6 +469,10 @@ inputs = {
   # Name of the Cloudwatch Log Group to deliver logs to.
   cloudwatch_log_group = null
 
+  # The number of brokers to have in the cluster. This field is required for
+  # non-serverless cluster type.
+  cluster_size = null
+
   # Custom tags to apply to the Kafka broker nodes and all related resources.
   custom_tags = {}
 
@@ -435,6 +503,9 @@ inputs = {
   # Indicates whether you want to enable or disable streaming broker logs to S3.
   enable_s3_logs = false
 
+  # Indicates whether you want to enable msk serverless or not
+  enable_serverless = false
+
   # You may specify a KMS key short ID or ARN (it will always output an ARN) to use
   # for encrypting your data at rest. If no key is specified, an AWS managed KMS
   # ('aws/msk' managed service) key will be used for encrypting the data at rest.
@@ -459,6 +530,19 @@ inputs = {
   # node. 
   initial_ebs_volume_size = 50
 
+  # Specify the instance type to use for the kafka brokers (e.g. `kafka.m5.large`).
+  # See
+  # https://docs.aws.amazon.com/msk/latest/developerguide/msk-create-cluster.html#br
+  # ker-instance-types for available instance types. This field is required for
+  # non-serverless cluster type.
+  instance_type = null
+
+  # Kafka version to install. See
+  # https://docs.aws.amazon.com/msk/latest/developerguide/supported-kafka-versions.h
+  # ml for a list of supported versions. This field is required for non-serverless
+  # cluster type.
+  kafka_version = null
+
   # Indicates whether you want to enable or disable the Prometheus JMX Exporter.
   open_monitoring_enable_jmx_exporter = false
 
@@ -481,6 +565,10 @@ inputs = {
   # (https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-propert
   # es.html).
   server_properties = {}
+
+  # Controls storage mode for supported storage tiers. Valid values are: LOCAL or
+  # TIERED.
+  storage_mode = null
 
 }
 
@@ -504,30 +592,6 @@ inputs = {
 <HclListItemDescription>
 
 The name of the Kafka cluster (e.g. kafka-stage). This variable is used to namespace all resources created by this module.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="cluster_size" requirement="required" type="number">
-<HclListItemDescription>
-
-The number of brokers to have in the cluster.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="instance_type" requirement="required" type="string">
-<HclListItemDescription>
-
-Specify the instance type to use for the kafka brokers (e.g. `kafka.m5.large`). See https://docs.aws.amazon.com/msk/latest/developerguide/msk-create-cluster.html#broker-instance-types for available instance types.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="kafka_version" requirement="required" type="string">
-<HclListItemDescription>
-
-Kafka version to install. See https://docs.aws.amazon.com/msk/latest/developerguide/supported-kafka-versions.html for a list of supported versions.
 
 </HclListItemDescription>
 </HclListItem>
@@ -617,6 +681,15 @@ Optional list of ACM Certificate Authority Amazon Resource Names (ARNs).
 <HclListItemDescription>
 
 Name of the Cloudwatch Log Group to deliver logs to.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of brokers to have in the cluster. This field is required for non-serverless cluster type.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -733,6 +806,15 @@ Indicates whether you want to enable or disable streaming broker logs to S3.
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="enable_serverless" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Indicates whether you want to enable msk serverless or not
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="encryption_at_rest_kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -785,6 +867,24 @@ The initial size of the EBS volume (in GiB) for the data drive on each broker no
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="50"/>
+</HclListItem>
+
+<HclListItem name="instance_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Specify the instance type to use for the kafka brokers (e.g. `kafka.m5.large`). See https://docs.aws.amazon.com/msk/latest/developerguide/msk-create-cluster.html#broker-instance-types for available instance types. This field is required for non-serverless cluster type.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="kafka_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+Kafka version to install. See https://docs.aws.amazon.com/msk/latest/developerguide/supported-kafka-versions.html for a list of supported versions. This field is required for non-serverless cluster type.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="open_monitoring_enable_jmx_exporter" requirement="optional" type="bool">
@@ -854,6 +954,15 @@ Contents of the server.properties file. Supported properties are documented in t
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="storage_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+Controls storage mode for supported storage tiers. Valid values are: LOCAL or TIERED.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 </TabItem>
@@ -963,6 +1072,14 @@ The name of the cluster security group.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="storage_mode">
+<HclListItemDescription>
+
+Storage mode of the MSK cluster
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="zookeeper_connect_string">
 <HclListItemDescription>
 
@@ -986,11 +1103,11 @@ A comma separated list of one or more hostname:port pairs to use to connect to t
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.11.0/modules/msk/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.11.0/modules/msk/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.11.0/modules/msk/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/msk/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/msk/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/msk/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e70b68d7744578da6559d1ec2ac96c1e"
+  "hash": "b79b53ec686584f53dad33e0079eebb5"
 }
 ##DOCS-SOURCER-END -->
