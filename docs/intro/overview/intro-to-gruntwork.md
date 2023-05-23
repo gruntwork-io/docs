@@ -11,12 +11,12 @@ All Gruntwork products are built on and fully compatible with [Terraform](https:
 There are two fundamental ways to engage Gruntwork:
 
 1. **Gruntwork builds your architecture.** We generate the [Reference Architecture](https://gruntwork.io/reference-architecture/) based on your needs, deploy into your AWS accounts, and give you 100% of the code. Since you have all the code, you can extend, enhance, and customize the environment exactly according to your needs. See [the docs](/refarch/whats-this/what-is-a-reference-architecture) for more information about our Reference Architecture.
-2. **Build it yourself.** The Gruntwork IaC library empowers you to construct your own bespoke architecture in record time. By mix-and-matching our [modules](/iac/whats-this/modules) and [services](/iac/whats-this/services) you can quickly define a custom architecture to suit your needs, all with the confidence of having world-class, battle-tested code running under the hood.
+2. **Build it yourself.** The Gruntwork IaC library empowers you to construct your own bespoke architecture in record time. By mix-and-matching our [modules](/iac/overview/modules) and [services](/iac/overview/services) you can quickly define a custom architecture to suit your needs, all with the confidence of having world-class, battle-tested code running under the hood.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "34b8d8a010df277dbbd55a17f4d5d282"
+  "hash": "af670a40f515720a66dda4d4242ff5d6"
 }
 ##DOCS-SOURCER-END -->

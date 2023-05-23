@@ -10,7 +10,7 @@ A battle-tested, production-grade _catalog_ of infrastructure code that contains
 - App orchestration — ECS, EC2, Kubernetes, and more
 - Data storage — Aurora, Elasticache, RDS, and more
 - Best-practice security baselines
-- _and [more…](/iac/whats-this)_
+- _and [more…](/iac/overview)_
 
 ## Support
 
@@ -44,6 +44,6 @@ Once the infrastructure is deployed, Gruntwork engineers deliver the full Infras
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "ad5c4151873ae56ef650e1e3bdc71229"
+  "hash": "cf4c8fa77268c39386d8ebec94f519b9"
 }
 ##DOCS-SOURCER-END -->

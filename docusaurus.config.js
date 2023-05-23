@@ -102,7 +102,7 @@ const config = {
               {
                 type: "doc",
                 label: "Infrastructure as Code Library",
-                docId: "iac/whats-this/index"
+                docId: "iac/overview/index"
               },
               {
                 type: "doc",
