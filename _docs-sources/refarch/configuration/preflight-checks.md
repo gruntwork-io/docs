@@ -22,7 +22,7 @@ checks using your latest form data.
 
 ## Merge your pull request
 
-In most cases, you will require a couple of iterations in order to clear all preflight check errors. Once your preflight checks pass, meaning there are no more error annotations on your pull request
+Once your preflight checks pass, meaning there are no more error annotations on your pull request
 and the GitHub check itself is green, you can merge your pull request to the `main` branch.
 
 ## Sit tight and wait for your deployment to commence
