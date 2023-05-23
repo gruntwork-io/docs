@@ -18,7 +18,7 @@ Once your preflight checks pass, and your pull request has been merged, Gruntwor
 Gruntwork provides bootstrap scripts, automated tooling, documentation and support to help you complete your setup steps and commence your Reference Architecture deployment.
 
 ## Required Actions and Data
-Some of the initial configuration steps will require you to *perform actions* against your AWS account(s), such as creating an IAM role that Gruntwork uses to access your accounts. Meanwhile, your `reference-architecture-form.yml` requires *data*, such as your AWS account IDs, domain name, etc.
+Some of the initial configuration steps will require you to *perform actions* against your AWS accounts, such as creating an IAM role that Gruntwork uses to access your accounts. Meanwhile, your `reference-architecture-form.yml` requires *data*, such as your AWS account IDs, domain name, etc.
 
 ### Actions
 
