@@ -3,7 +3,7 @@
 The Gruntwork Reference Architecture allows you to configure key aspects to your needs. Before you receive your deployed Reference Architecture, you will: 
 1. **Configure** your choice of your primary AWS region, database and compute flavors, domain names and more via a pull request
 2. **Iterate** on the configuration in your pull request in response to Gruntwork preflight checks that spot blocking issues and ensure your deployment is ready to commence
-3. **Merge** your pull request, once your configuration passes all checks, which will automatically commence your Reference Architecture deployment 
+3. **Merge** your pull request after all check pass. Merging will automatically commence your Reference Architecture deployment 
 4. **Wait** until Gruntwork has successfully completed your deployment. You'll receive an automated email indicating your deployment is complete
 
 ## Where and how to configure your Reference Architecture for deployment
