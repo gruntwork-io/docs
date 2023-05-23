@@ -6,6 +6,10 @@ The Gruntwork Reference Architecture allows you to configure key aspects to your
 3. **Merge** your pull request after all check pass. Merging will automatically commence your Reference Architecture deployment
 4. **Wait** until Gruntwork has successfully completed your deployment. You'll receive an automated email indicating your deployment is complete
 
+## Requirements
+
+This guide requires that you have access to an AWS IAM user or role in the AWS account that serves as your Organization Root for AWS Organizations with permissions to create member accounts. For more information on IAM policies for AWS organizations see the AWS guide on [managing IAM policies for AWS Organizations](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions_iam-policies.html#orgs_permissions_grant-admin-actions).
+
 ## Configure your Reference Architecture for deployment
 
 Your Reference Architecture configuration lives in your `infrastructure-live` repository on GitHub. Within your `infrastructure-live` repository, the `reference-architecture-form.yml` file defines all of your specific selections, domain names, AWS account IDs, etc.

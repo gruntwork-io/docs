@@ -10,6 +10,10 @@ If you have already completed running wizard using the [bootstrap script option]
 
 Installation instructions for the Gruntwork CLI can be found in [Instal Required Tools](./install-required-tools.md#installing-gruntwork-cli).
 
+## Required Permissions
+
+To run the wizard you will need access to the AWS account that serves as the Organization Root of your AWS Organization. At a minimum, the AWS IAM user or role will need the `organizations:CreateAccount` action, which grants the ability to create member accounts.
+
 ## Running the wizard
 
 To commence the wizard, first authenticate to AWS on the command line, then run `gruntwork wizard`.
