@@ -30,7 +30,7 @@ and the GitHub check itself is green, you can merge your pull request to the `ma
 Merging your `ref-arch-form` pull request to the `main` branch will automatically kick off the deployment process for your Reference Architecture. There's nothing more for you to do at this point. During deployment we ask 
 that you please do not log into, modify or interact with your Reference Architecture AWS accounts in any way once you have merged your pull request. 
 
-Your deployment is now in Gruntwork engineers' hands, and we are notified of every single error your deployment encounters. We'll work behind the scenes to complete your deployment, communicating with you via email or GitHub if we need 
+Your deployment is now in Gruntwork engineers' hands and we are notified of every single error your deployment encounters. We'll work behind the scenes to complete your deployment, communicating with you via email or GitHub if we need 
 any additional information or if we need you to perform any remediation steps to un-block your deployment. 
 
 Once your deployment completes, you'll receive an automated email with next steps and a link to your Quick Start guide that has been written to your `infrastructure-live` repository. 
