@@ -1,4 +1,4 @@
-# Step 1. Run the bootstrap script
+# Bootstrap your machine
 
 Within your `infrastructure-live` repository, there are two bootstrap scripts: 
 1. `bootstrap_unix.sh` which can be run on macOS and Linux machines
