@@ -14,7 +14,7 @@ Visit [https://github.com/gruntwork-io/gruntwork/releases](https://github.com/gr
 
 You can use our [Gruntwork installer tool](https://github.com/gruntwork-io/gruntwork-installer) to install any Gruntwork binary tool or terraform module. 
 
-After installing the Gruntwork installer itself, you can look up the latest Gruntwork CLI release at [https://github.com/gruntwork-io/gruntwork/releases](https://github.com/gruntwork-io/gruntwork/releases) and then run the following command: 
+After installing the Gruntwork installer, you can look up the latest Gruntwork CLI release at [https://github.com/gruntwork-io/gruntwork/releases](https://github.com/gruntwork-io/gruntwork/releases) and then run the following command: 
 
 `gruntwork-install --binary-name 'gruntwork' --repo 'https://github.com/gruntwork-io/gruntwork' --tag '<latest-tag>'`
 
