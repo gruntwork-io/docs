@@ -22,13 +22,13 @@ checks using your latest form data.
 
 ## Merge your pull request
 
-In most cases, you will require a couple of iterations in order to clear all preflight check errors. Once your preflight checks pass, meaning there are no more error annotations on your pull request
+Once your preflight checks pass, meaning there are no more error annotations on your pull request
 and the GitHub check itself is green, you can merge your pull request to the `main` branch.
 
 ## Sit tight and wait for your deployment to commence
 
 Merging your `ref-arch-form` pull request to the `main` branch will automatically kick off the deployment process for your Reference Architecture. There's nothing more for you to do at this point. During deployment we ask
-that you please do not log into, modify or interact with your Reference Architecture AWS accounts in any way once you have merged your pull request.
+that you please do not log into, modify or interact with your Reference Architecture AWS accounts in any way or make any modifications to your `infrastructure-live` repo once you have merged your pull request.
 
 Your deployment is now in Gruntwork engineers' hands and we are notified of every single error your deployment encounters. We'll work behind the scenes to complete your deployment, communicating with you via email or GitHub if we need
 any additional information or if we need you to perform any remediation steps to un-block your deployment.
@@ -39,6 +39,6 @@ Once your deployment completes, you'll receive an automated email with next step
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "907b3fe21493ddb8ad228622c219515f"
+  "hash": "48546f70af86b93fdffadd238cee2dbd"
 }
 ##DOCS-SOURCER-END -->
