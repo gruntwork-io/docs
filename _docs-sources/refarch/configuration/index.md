@@ -8,7 +8,7 @@ The Gruntwork Reference Architecture allows you to configure key aspects to your
 
 ## Where and how to configure your Reference Architecture for deployment
 
-GitHub, and your `infrastructure-live` repository, are the source of truth for your configuration decisions. Within your `infrastructure-live` repository, the `reference-architecture-form.yml` file is where all of your specific selections, domain names, AWS account IDs, etc are defined.  
+Your Reference Architecture configuration lives in your `infrastructure-live` repository on GitHub. Within your `infrastructure-live` repository, the `reference-architecture-form.yml` file defines all of your specific selections, domain names, AWS account IDs, etc.  
 
 Gruntwork deployment tooling reads your `reference-architecture-form.yml` in order to first perform preflight checks to 
 ensure your accounts and selections are valid and ready for deployment. 
