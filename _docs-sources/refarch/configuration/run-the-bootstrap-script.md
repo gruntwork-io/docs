@@ -10,7 +10,7 @@ Choose the correct bootstrap script for your system. Both scripts perform the eq
 
 The bootstrap script will: 
 * Ensure you have required dependencies installed, such as the official `aws` command line tool and `git`
-* Ensure you are running the script in the correct place (the root of your `infrastructure-live` repository)
+* Ensure you are running the script in the root of your `infrastructure-live` repository
 * Ensure you have sufficient GitHub access to access and clone private Gruntwork repositories
 * Download the Gruntwork installer 
 * Use the Gruntwork installer to install the Gruntwork command line interface (CLI) which contains the Reference Architecture configuration wizard. The wizard will make a best effort attempt to automatically perform the required setup **actions**
