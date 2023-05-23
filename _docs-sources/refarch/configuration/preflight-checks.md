@@ -20,7 +20,7 @@ need assistance, please reach out to us at `support@gruntwork.io` and we'll be h
 Once you have fixed any issues flagged by preflight checks, you can make a new commit with your latest form changes and push it up to the same branch. This will trigger a re-run of preflight
 checks using your latest form data. 
 
-## Checks passed? Merge your pull request
+## Merge your pull request
 
 In most cases, you will require a couple of iterations in order to clear all preflight check errors. Once your preflight checks pass, meaning there are no more error annotations on your pull request 
 and the GitHub check itself is green, you can merge your pull request to the `main` branch. 
