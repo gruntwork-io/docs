@@ -5,7 +5,7 @@ Pipelines can be extended to support building and deploying application code in 
 
 ## Adding a repository
 
-Pipelines has separate configurations for each type of job that be performed (e.g., building a docker image, running terraform plan, running terraform apply). An allow-list of repos and branches is defined for each job type, which can be updated to extend your usage of pipelines to additional application repositories.
+Pipelines has separate configurations for each type of job that can be performed (e.g., building a docker image, running terraform plan, running terraform apply). An allow-list of repos and branches is defined for each job type, which can be updated to extend your usage of pipelines to additional application repositories.
 
 This guide focuses on building Docker images for applications repos, if you have repositories for which you would like to run `terraform plan` or `terraform apply` jobs, similar steps can be followed, modifying the appropriate task configurations.
 
