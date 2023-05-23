@@ -20,7 +20,7 @@ The bootstrap script will:
 
 The Gruntwork CLI wizard attempts to orchestrate all required configuration **actions**, such as: 
  1. Provisioning AWS accounts on your behalf for use in your Reference Architecture 
- 1. Creating the `GruntworkAccountAccess` IAM role in each of your Reference Architecture accounts which Gruntwork engineers as well as Gruntwork deployment tooling uses to access, and deploy resources into, your accounts 
+ 1. Creating the `GruntworkAccountAccess` IAM role in each of your Reference Architecture accounts which is used by Gruntwork tooling and engineers to access and deploy resources into your accounts
  1. Registering new Route53 domain names on your behalf and configuring the Route53 Hosted Zones correctly so that your Reference Architecture can host applications that will resolve over the public internet
 
  and much more. 
