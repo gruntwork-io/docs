@@ -20,12 +20,12 @@ const sidebar = [
         collapsible: false,
         items: [
           "refarch/configuration/index",
-          "refarch/configuration/run-the-bootstrap-script",
+          "refarch/configuration/install-required-tools",
+          "refarch/configuration/run-the-wizard",
           "refarch/configuration/preflight-checks",
-          "refarch/configuration/provision-accounts",
-          "refarch/configuration/setup-quotas",
-          "refarch/configuration/route53",
-          "refarch/configuration/use-the-gruntwork-cli"
+          // "refarch/configuration/provision-accounts",
+          // "refarch/configuration/setup-quotas",
+          // "refarch/configuration/route53",
         ],
       },
       {
