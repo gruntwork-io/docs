@@ -1,6 +1,6 @@
 # Use the Gruntwork CLI
 
-Visit and install [the Gruntwork command line interface (CLI)](github.com/gruntwork-io)
+Visit and install [the Gruntwork command line interface (CLI)](https://github.com/gruntwork-io/gruntwork)
 
 ## Installation options 
 
