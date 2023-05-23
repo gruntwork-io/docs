@@ -1,4 +1,4 @@
-# Step 2. Iterate on Preflight checks 
+# Iterate on Preflight checks 
 
 Once you have run the bootstrap script and pushed your `ref-arch-form` branch with your changes, your `infrastructure-live` repository GitHub Actions will commence, running 
 preflight checks against every commit that you push up to this branch. 
