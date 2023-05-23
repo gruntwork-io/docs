@@ -13,7 +13,7 @@ directly annotated on the exact line of your form that presents a blocking issue
 ## Fix up the errors 
 
 In most cases, the error messages included in the preflight check annotations will provide sufficient information to remediate the underlying issue. If at any point you are confused or 
-need assistance, please don't hesitate to reach out to us at `support@gruntwork.io` and we'll be happy to assist you. 
+need assistance, please reach out to us at `support@gruntwork.io` and we'll be happy to assist you. 
 
 ## Commit your form changes and push to your `ref-arch-form` branch
 
