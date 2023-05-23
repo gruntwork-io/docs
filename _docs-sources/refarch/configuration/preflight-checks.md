@@ -17,7 +17,7 @@ need assistance, please reach out to us at `support@gruntwork.io` and we'll be h
 
 ## Commit your form changes and push to your `ref-arch-form` branch
 
-Once you have fixed the issues flagged by preflight checks, you can make a new commit with your latest form changes and push it up to the same branch. This will trigger a re-run of preflight
+Once you have fixed any issues flagged by preflight checks, you can make a new commit with your latest form changes and push it up to the same branch. This will trigger a re-run of preflight
 checks using your latest form data. 
 
 ## Checks passed? Merge your pull request
