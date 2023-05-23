@@ -1,4 +1,4 @@
-# Getting Started
+# Get Started
 
 The Gruntwork Reference Architecture allows you to configure key aspects to your needs. Before you receive your deployed Reference Architecture, you will:
 1. **Configure** your choice of your primary AWS region, database and compute flavors, domain names and more via a pull request
@@ -42,6 +42,6 @@ Now that you understand the configuration and delivery process at a high level, 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b8c641b0da44af984496b15d8d794b49"
+  "hash": "40a86f6143e5d0159025ee7db20b5bbb"
 }
 ##DOCS-SOURCER-END -->
