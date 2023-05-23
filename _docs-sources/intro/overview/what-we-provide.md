@@ -10,7 +10,7 @@ A battle-tested, production-grade _catalog_ of infrastructure code that contains
 - App orchestration — ECS, EC2, Kubernetes, and more
 - Data storage — Aurora, Elasticache, RDS, and more
 - Best-practice security baselines
-- _and [more…](/iac/whats-this)_
+- _and [more…](/iac/overview)_
 
 ## Support
 

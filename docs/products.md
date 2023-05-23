@@ -15,7 +15,7 @@ import CenterLayout from "/src/components/CenterLayout"
 
 <Card
   title="Infrastructure as Code Library"
-  href="/iac/whats-this/">
+  href="/iac/overview/">
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus gravida quis blandit turpis cursus.
 </Card>
 <Card
@@ -47,6 +47,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7032c0e9bdcced083653c96693f92ae5"
+  "hash": "742a15d371bb62cf40daaa83400eb5ee"
 }
 ##DOCS-SOURCER-END -->

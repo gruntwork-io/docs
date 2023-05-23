@@ -15,7 +15,7 @@ import CenterLayout from "/src/components/CenterLayout"
 
 <Card
   title="Infrastructure as Code Library"
-  href="/iac/whats-this/">
+  href="/iac/overview/">
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus gravida quis blandit turpis cursus.
 </Card>
 <Card

@@ -1,24 +1,26 @@
 # What is a Service?
 
-The Gruntwork Service Catalog consists of a number of reusable, customizable, production-grade infrastructure-as-code services that you can use to deploy and manage your infrastructure. This includes Docker orchestration, EC2 orchestration, load balancing, networking, databases, caches, monitoring, alerting, CI/CD, secrets management, VPN, and much more.
+The Gruntwork Service Catalog consists of a number of customizable, production-grade infrastructure-as-code services that you can use to deploy and manage your infrastructure. This includes Docker orchestration, EC2 orchestration, load balancing, networking, databases, caches, monitoring, alerting, CI/CD, secrets management, VPN, and much more.
 
-## When do you use a Service?
+## When should I use a service?
 
-Services in the service catalog are reusable code that combines multiple modules. These are designed for specific use cases such as EKS and ECS clusters, VPCs with public and private subnets, and databases. Using a service can save you time piecing together individual modules and testing that they're correctly referencing each other.
+Services combine multiple modules to configure an end-to-end solution. These are designed for specific use cases such as EKS and ECS clusters, VPCs with public and private subnets, and databases. Using a service can save you time piecing together individual modules and testing that they’re correctly referencing each other.
 
-For example, the `eks-cluster` service combines all the modules you need to run an EKS (Kubernetes) cluster in a typical production environment, including modules for the control plane, worker nodes, secrets management, log aggregation, alerting, and so on. 
+For example, the `eks-cluster` service combines all the modules you need to run an EKS (Kubernetes) cluster in a typical production environment, including modules for the control plane, worker nodes, secrets management, log aggregation, alerting, and so on.
 
-## How to navigate services in the IaC Library
+If you need more flexibility than our services provide, then you can combine modules from our [Module Catalog](/iac/overview/modules), your own modules, or open source modules to meet your specific use case.
+
+## How services are structured
 
 The code in the `terraform-aws-service-catalog` repo is organized into three primary folders:
 
 1. `modules`: The core implementation code of this repo. All the services that you will use and deploy are defined within, such as the EKS cluster service in modules/services/eks-cluster.
 
-1. `examples`: Sample code that shows how to use the services in the modules folder and allows you to try the services out without having to write any code: you `cd` into one of the folders, follow a few steps in the README (e.g., run `terraform apply`), and you'll have fully working infrastructure up and running. In other words, this is executable documentation. Note that the examples folder contains two sub-folders:
+1. `examples`: Sample code that shows how to use the services in the modules folder and allows you to try the services out without having to write any code: you `cd` into one of the folders, follow a few steps in the README (e.g., run `terraform apply`), and you’ll have fully working infrastructure up and running. In other words, this is executable documentation. Note that the examples folder contains two sub-folders:
 
     1. `for-learning-and-testing`: Example code that is optimized for learning, experimenting, and testing, but not
       direct production usage. Most of these examples use Terraform directly to make it easy to fill in dependencies
-      that are convenient for testing, but not necessarily those you'd use in production: e.g., default VPCs or mock
+      that are convenient for testing, but not necessarily those you’d use in production: e.g., default VPCs or mock
       database URLs.
 
     1. `for-production`: Example code optimized for direct usage in production. This is code from the [Gruntwork Reference

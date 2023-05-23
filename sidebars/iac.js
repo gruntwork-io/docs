@@ -9,9 +9,9 @@ const sidebar = [
         type: "category",
         collapsible: false,
         items: [
-          "iac/whats-this/index",
-          "iac/whats-this/modules",
-          "iac/whats-this/services",
+          "iac/overview/index",
+          "iac/overview/modules",
+          "iac/overview/services",
         ],
       },
       {
