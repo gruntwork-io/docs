@@ -31,7 +31,7 @@ There is a bootstrap in your `infrastructure-live` repository that will attempt 
 
 The gruntwork CLI includes a [wizard](./run-the-wizard.md) that automates all of the steps to get the required data from you. This is the recommended path for the majority of users.
 
-If you are required to manually provision AWS accounts, domain names, or otherwise, the Gruntwork CLI has utilities to [manually bootstrap](https://github.com/gruntwork-io/gruntwork#bootstrap-manually) the required resources. This approach is only recommended for advanced users. After all data has been generated manually, you will need to fill out the `reference-architecture-form.yml` manually.
+If you are required to manually provision AWS accounts, domain names, or otherwise, the Gruntwork CLI has utilities to [manually bootstrap](https://github.com/gruntwork-io/gruntwork#bootstrap-manually) the required resources. This approach is only recommended for advanced users after consulting with Gruntwork. After all data has been generated manually, you will need to fill out the `reference-architecture-form.yml` manually.
 
 ## Let's get started!
 
