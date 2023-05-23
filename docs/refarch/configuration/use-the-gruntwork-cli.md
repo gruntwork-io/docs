@@ -1,6 +1,6 @@
 # Use the Gruntwork CLI
 
-Visit and install [the Gruntwork command line interface (CLI)](github.com/gruntwork-io)
+Visit and install [the Gruntwork command line interface (CLI)](https://github.com/gruntwork-io/gruntwork)
 
 ## Installation options 
 
@@ -12,9 +12,9 @@ Visit [https://github.com/gruntwork-io/gruntwork/releases](https://github.com/gr
 
 ### Install using the Gruntwork installer
 
-You can use our [Gruntwork installer tool](github.com/gruntwork-io/gruntwork) to install any Gruntwork binary tool or terraform module. 
+You can use our [Gruntwork installer tool](https://github.com/gruntwork-io/gruntwork-installer) to install any Gruntwork binary tool or terraform module. 
 
-After installing the Gruntwork installer itself, you can look up the latest Gruntwork CLI release at [https://github.com/gruntwork-io/gruntwork/releases](https://github.com/gruntwork-io/gruntwork/releases) and then run the following command: 
+After installing the Gruntwork installer, you can look up the latest Gruntwork CLI release at [https://github.com/gruntwork-io/gruntwork/releases](https://github.com/gruntwork-io/gruntwork/releases) and then run the following command: 
 
 `gruntwork-install --binary-name 'gruntwork' --repo 'https://github.com/gruntwork-io/gruntwork' --tag '<latest-tag>'`
 
@@ -37,6 +37,6 @@ The Gruntwork CLI features a wizard designed to assist you in completing your Re
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "9d75bec72af5aaa26fbb268caf3593d1"
+  "hash": "71ba0441c6ec2511a8f51deed5c555a4"
 }
 ##DOCS-SOURCER-END -->

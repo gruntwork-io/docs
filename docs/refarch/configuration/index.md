@@ -1,14 +1,14 @@
 # Understand the process 
 
-The Gruntwork Reference Architecture  allows you to configure key aspects to your needs. Before you receive your deployed Reference Architecture, you will: 
+The Gruntwork Reference Architecture allows you to configure key aspects to your needs. Before you receive your deployed Reference Architecture, you will: 
 1. **Configure** your choice of your primary AWS region, database and compute flavors, domain names and more via a pull request
 2. **Iterate** on the configuration in your pull request in response to Gruntwork preflight checks that spot blocking issues and ensure your deployment is ready to commence
-3. **Merge** your pull request, once your configuration passes all checks, which will automatically commence your Reference Architecture deployment 
+3. **Merge** your pull request after all check pass. Merging will automatically commence your Reference Architecture deployment 
 4. **Wait** until Gruntwork has successfully completed your deployment. You'll receive an automated email indicating your deployment is complete
 
-## Where and how to configure your Reference Architecture for deployment
+## Configure your Reference Architecture for deployment
 
-GitHub, and your `infrastructure-live` repository, are the source of truth for your configuration decisions. Within your `infrastructure-live` repository, the `reference-architecture-form.yml` file is where all of your specific selections, domain names, AWS account IDs, etc are defined.  
+Your Reference Architecture configuration lives in your `infrastructure-live` repository on GitHub. Within your `infrastructure-live` repository, the `reference-architecture-form.yml` file defines all of your specific selections, domain names, AWS account IDs, etc.  
 
 Gruntwork deployment tooling reads your `reference-architecture-form.yml` in order to first perform preflight checks to 
 ensure your accounts and selections are valid and ready for deployment. 
@@ -17,7 +17,7 @@ Once your preflight checks pass, and your pull request has been merged, Gruntwor
 
 Gruntwork provides bootstrap scripts, automated tooling, documentation and support to help you complete your setup steps and commence your Reference Architecture deployment. 
 
-## Configuring your Reference Architecture requires Actions and Data
+## Required Actions and Data
 Some of the initial configuration steps will require you to *perform actions* against your AWS account(s), such as creating an IAM role that Gruntwork uses to access your accounts. Meanwhile, your `reference-architecture-form.yml` requires *data*, such as your AWS account IDs, domain name, etc. 
 
 ### Actions 
@@ -40,6 +40,6 @@ Now that you understand the configuration and delivery process at a high level, 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "be905a02160f27c757ed622998ffd19b"
+  "hash": "e7097c6c2f6394dc058be7435e87f569"
 }
 ##DOCS-SOURCER-END -->
