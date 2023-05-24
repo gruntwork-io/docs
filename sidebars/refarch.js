@@ -11,8 +11,8 @@ const sidebar = [
         items: [
           "refarch/whats-this/what-is-a-reference-architecture",
           "refarch/whats-this/how-does-the-gruntwork-reference-architecture-differ",
-          "refarch/whats-this/understanding-the-deployment-process"
-        ]
+          "refarch/whats-this/understanding-the-deployment-process",
+        ],
       },
       {
         label: "Configuration",
@@ -36,20 +36,19 @@ const sidebar = [
           "refarch/access/how-to-auth-vpn/index",
           "refarch/access/how-to-auth-aws/index",
         ],
-      }, 
+      },
       {
         label: "Usage",
         type: "category",
         collapsible: false,
         items: [
-          "refarch/usage/maintain-your-refarch/index",
-          "refarch/usage/maintain-your-refarch/add-new-account",
-          "refarch/usage/maintain-your-refarch/undeploy",
-          "refarch/usage/maintain-your-refarch/stay-up-to-date",
-          "refarch/usage/maintain-your-refarch/upgrade-terraform",
+          "refarch/usage/maintain-your-refarch/deploying-your-apps",
+          "refarch/usage/maintain-your-refarch/adding-new-account",
+          "refarch/usage/maintain-your-refarch/staying-up-to-date",
           "refarch/usage/maintain-your-refarch/extending",
           "refarch/usage/pipelines-integration/index",
-       ],
+          "refarch/usage/maintain-your-refarch/undeploying",
+        ],
       },
     ],
   },
