@@ -1,15 +1,8 @@
-# VPN Authentcation 
+# VPN Authentication 
 
 Most of the AWS resources that comprise the Reference Architecture run in private subnets, which means they do not have a public IP address, and cannot be reached directly from the public Internet. This reduces the "surface area" that attackers can reach. Of course, you still need access into the VPCs, so we exposed a single entrypoint into the network: an [OpenVPN server](https://openvpn.net/).
 
-You use an OpenVPN client to connect to the OpenVPN server. Once connected to the VPN, you can securely connect to private resources in the account.
-
-Here are the steps you'll need to take:
-
-1. [Install an OpenVPN client](#install-an-openvpn-client)
-1. [Join the OpenVPN IAM Group](#join-the-openvpn-iam-group)
-1. [Use openvpn-admin to generate a configuration file](#use-openvpn-admin-to-generate-a-configuration-file)
-1. [Connect to the OpenVPN server](#connect-to-the-openvpn-server)
+You'll need to [install an OpenVPN client](#install-an-openvpn-client), [add your user to an IAM group with proper permissions](#join-the-openvpn-iam-group), and [generate and install an OpenVPN configuration file](#use-openvpn-admin-to-generate-a-configuration-file). Once this is done, you'll be able to [connect to your OpenVPN server](#connect-to-the-openvpn-server).
 
 ## Install an OpenVPN client
 
