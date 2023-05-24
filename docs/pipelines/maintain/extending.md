@@ -1,13 +1,17 @@
 # Extending your Pipeline
 
-Pipelines can be extended to support building and deploying application code in many repositories. This guide demonstrates how to update which repositories are allowed to submit requests to Pipelines to build docker images.
+Pipelines can be extended in several ways:
+- Adding repositories to supporting building Docker images for many applications
+- Updating which branches can kick off which jobs
+- Adding additional build scripts that can run in Pipelines
+- Adding permissions to Pipelines
 
 
 ## Adding a repository
 
 Pipelines has separate configurations for each type of job that can be performed (e.g., building a docker image, running terraform plan, running terraform apply). An allow-list of repos and branches is defined for each job type, which can be updated to extend your usage of pipelines to additional application repositories.
 
-This guide focuses on building Docker images for applications repos, if you have repositories for which you would like to run `terraform plan` or `terraform apply` jobs, similar steps can be followed, modifying the appropriate task configurations.
+This portion of the guide focuses on building Docker images for application repos. If you have repositories for which you would like to run `terraform plan` or `terraform apply` jobs, similar steps can be followed, modifying the appropriate task configurations.
 
 ### RefArch
 
@@ -29,7 +33,7 @@ Run `terraform plan` to inspect the changes that will be made to your pipeline. 
 
 ### Adding infrastructure deployer to the new repo (RefArch & Standalone)
 
-Pipelines can be triggered from Github events in many repositories. In order to configure Pipelines for the new repository, you need to add a step in your CI/CD configuration for the repository that uses the `infrastructure-deployer` CLI tool to trigger Docker image builds.
+Pipelines can be triggered from GitHub events in many repositories. In order to configure Pipelines for the new repository, you need to add a step in your CI/CD configuration for the repository that uses the `infrastructure-deployer` CLI tool to trigger Docker image builds.
 
 ```sh
 export ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
@@ -50,11 +54,16 @@ infrastructure-deployer --aws-region "us-east-1" -- docker-image-builder build-d
 
 Pipelines can be configured to only allow jobs to be performed on specific branches. For example, a common configuration is to allow `terraform plan` or `terragrunt plan` jobs for Pull Requests, and only allow `terraform apply` or `terragrunt apply` to run on merges to the main branch.
 
-Depending on your use case, you may need to modify the allow-list to only allow a pre-defined list of branch names.
+Depending on your use case, you may need to modify the `allowed_apply_git_refs` attribute to update the allow-list of branch names that can kick off the `plan` and `apply` jobs.
+
+For example, a common configuration for `apply` jobs is to specify that this job can only run on the `main` branch:
+```tf
+allowed_apply_git_refs = ["main", "origin/main"]
+```
 
 ### RefArch
 
-Open `shared/<your region>/mgmt/ecs-deploy-runner/terragrunt.hcl` and update the values the `allowed_apply_git_refs` attribute for the job configuration you would like to modify (either `terraform_planner_config` or `terraform_applier_config`).
+Open `shared/<your region>/mgmt/ecs-deploy-runner/terragrunt.hcl` and update the values in the `allowed_apply_git_refs` attribute for the job configuration you would like to modify (either `terraform_planner_config` or `terraform_applier_config`).
 
 Run `terragrunt plan` to inspect the changes that will be made to your pipeline. Once the changes have been reviewed, run `terragrunt apply` to deploy the changes.
 
@@ -66,11 +75,11 @@ By default, the `ecs-deploy-runner` service from the Service Catalog allows any 
 
 Run `terraform plan` to inspect the changes that will be made to your pipeline. Once the changes have been reviewed, run `terraform apply` to deploy the changes.
 
-## Adding script arguments
+## Adding scripts that can be run in Pipelines
 
 The `deploy-runner` Docker image for Pipelines only allows scripts within a single directory to be executed in the ECS task as an additional security measure.
 
-By default, the `deploy-runner` ships with three scripts - one to build HashiCorp Packer images, one to run `terraform plan` and `terraform apply`, and one to automatically update the value of a variable in a Terraform tfvars or Terragrunt HCL file.
+By default, the `deploy-runner` ships with three scripts — one to build HashiCorp Packer images, one to run `terraform plan` and `terraform apply`, and one to automatically update the value of a variable in a Terraform tfvars or Terragrunt HCL file.
 
 If you need to run a custom script in the `deploy-runner`, you must fork the image code, add an additional line to copy your script into directory designated by the `trigger_directory` argument. Then, you will need to rebuild the Docker image, push to ECR, then update your Pipelines deployment following the steps in [Updating Pipelines](./updating.md).
 
@@ -122,6 +131,6 @@ After you are done updating the IAM policy documents, run `terraform plan` then 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "5792df7c61e799b01ef83cd1e883a23c"
+  "hash": "dcc02f5015eb1695f764052c1fea58c7"
 }
 ##DOCS-SOURCER-END -->
