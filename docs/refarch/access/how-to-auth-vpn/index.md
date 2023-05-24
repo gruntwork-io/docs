@@ -2,7 +2,7 @@
 
 Most of the AWS resources that comprise the Reference Architecture run in private subnets, which means they do not have a public IP address, and cannot be reached directly from the public Internet. This reduces the "surface area" that attackers can reach. Of course, you still need access into the VPCs, so we exposed a single entrypoint into the network: an [OpenVPN server](https://openvpn.net/).
 
-You use an OpenVPN client to connect to the OpenVPN server, which gets you "in" to the network, allowing you to securely connect to private resources in the account.
+You use an OpenVPN client to connect to the OpenVPN server. Once connected to the VPN, you can securely connect to private resources in the account.
 
 Here are the steps you'll need to take:
 
@@ -21,7 +21,7 @@ There are free and paid OpenVPN clients available for most major operating syste
 
 ## Join the OpenVPN IAM Group
 
-Your IAM User needs access to SQS queues used by the OpenVPN server. Since IAM users are defined only in the security account, and the OpenVPN servers are defined in separate AWS accounts (stage, prod, etc), that means you need to "switch" to the accounts with the OpenVPN servers by assuming an IAM Role that has access to the SQS queues in those accounts.
+Your IAM User needs access to SQS queues used by the OpenVPN server. Since IAM users are defined only in the security account, and the OpenVPN servers are defined in separate AWS accounts (stage, prod, etc), that means you need to authenticate to the accounts with the OpenVPN servers by assuming an IAM Role that has access to the SQS queues in those accounts.
 
 To be able to assume an IAM Role, your IAM user needs to be part of an IAM Group with the proper permissions, such as `_account.xxx-full-access` or `_account.xxx-openvpn-users`, where `xxx` is the name of the account you want to access (stage, prod, etc). See Configure other IAM users for instructions on adding users to IAM Groups.
 
@@ -47,6 +47,6 @@ To connect to an OpenVPN server in one of your app accounts (Dev, Stage, Prod), 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0f615f2950bf9eb64063ecd50839e229"
+  "hash": "47d20f23dc77b961116cf431aad68ea0"
 }
 ##DOCS-SOURCER-END -->
