@@ -1,6 +1,6 @@
 # Deploying your first module
 
-[Modules](../overview/modules.md) allow you to define an interface to create one or many resources in the cloud or on-premise. similar to how in object oriented programming you can define a class that may have different attribute values across many instances.
+[Modules](../overview/modules.md) allow you to define an interface to create one or many resources in the cloud or on-premise, similar to how in object oriented programming you can define a class that may have different attribute values across many instances.
 
 Modules help keep your Terraform code DRY (Don’t Repeat Yourself), and speed up development time when creating new resources.
 
@@ -260,6 +260,6 @@ In [Using a module](../usage/using-a-module.md), you’ll learn how to create t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "2dde1cd9ee1f2a68ae6e994f0661461e"
+  "hash": "7b82019aecd3437514d6a3c75b0e041f"
 }
 ##DOCS-SOURCER-END -->
