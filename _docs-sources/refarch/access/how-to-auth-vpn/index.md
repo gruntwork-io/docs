@@ -16,7 +16,7 @@ There are free and paid OpenVPN clients available for most major operating syste
 
 Your IAM User needs access to SQS queues used by the OpenVPN server. Since IAM users are defined only in the security account, and the OpenVPN servers are defined in separate AWS accounts (stage, prod, etc), that means you need to authenticate to the accounts with the OpenVPN servers by assuming an IAM Role that has access to the SQS queues in those accounts.
 
-To be able to assume an IAM Role, your IAM user needs to be part of an IAM Group with the proper permissions, such as `_account.xxx-full-access` or `_account.xxx-openvpn-users`, where `xxx` is the name of the account you want to access (stage, prod, etc). See Configure other IAM users for instructions on adding users to IAM Groups.
+To be able to assume an IAM Role, your IAM user needs to be part of an IAM Group with the proper permissions, such as `_account.xxx-full-access` or `_account.xxx-openvpn-users`, where `xxx` is the name of the account you want to access (stage, prod, etc). See [Configure other IAM users](/refarch/access/setup-auth/#step-3-configure-other-iam-users) for instructions on adding users to IAM Groups.
 
 ## Use openvpn-admin to generate a configuration file
 
