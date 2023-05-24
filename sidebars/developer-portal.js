@@ -1,6 +1,7 @@
 const developerPortalKnowledgeBaseDiscussions =
-  "https://github.com/orgs/gruntwork-io/discussions?" +
-  encodeURIComponent("discussions_q=label:s:dev-portal")
+  "https://github.com/orgs/gruntwork-io/discussions?discussions_q=" +
+  // filter by discussions with the label "s:dev-portal" & sort by top voted discussions first
+  encodeURIComponent("label:s:dev-portal sort:top")
 
 const sidebar = [
   {
