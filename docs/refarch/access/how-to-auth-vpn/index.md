@@ -6,7 +6,7 @@ You'll need to [install an OpenVPN client](#install-an-openvpn-client), [add you
 
 ## Install an OpenVPN client
 
-There are free and paid OpenVPN clients available for most major operating systems:
+There are free and paid OpenVPN clients available for most major operating systems. Popular options include:
 
 1. OS X: [Viscosity](https://www.sparklabs.com/viscosity/) or [Tunnelblick](https://tunnelblick.net/).
 1. Windows: [official client](https://openvpn.net/index.php/open-source/downloads.html).
@@ -40,6 +40,6 @@ To connect to an OpenVPN server in one of your app accounts (Dev, Stage, Prod), 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7e062f518f65608791d479d0609823e5"
+  "hash": "4b6066ba8d452940523132794535ff70"
 }
 ##DOCS-SOURCER-END -->

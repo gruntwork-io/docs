@@ -22,7 +22,7 @@ Please note that you'll want to repeat the process above of resetting the passwo
 
 ## Step 2. Configure your IAM user
 
-All IAM Users are defined and managed in the security account. Gruntwork created an IAM User with admin permissions in the security account when deploying your Reference Architecture. The password is encrypted via PGP using Keybase and is Base64-encoded.
+The security account defines and manages all IAM Users. When deploying your Reference Architecture, Gruntwork creates an IAM User with admin permissions in the security account. The password for the IAM User is encrypted via PGP using Keybase and is Base64-encoded.
 
 To access the Terraform state containing the password, you need to already be authenticated to the account. Thus to get access to the initial admin IAM User, we will use the root user credentials. To do this, you can either:
 
@@ -101,6 +101,6 @@ To deploy this new code and create the new IAM Users, you will need to:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "5573e3d989849a9a06365601eef90907"
+  "hash": "97a480f6bf019715d20fad837af3afd4"
 }
 ##DOCS-SOURCER-END -->
