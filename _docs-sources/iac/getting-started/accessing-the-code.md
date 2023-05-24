@@ -1,8 +1,6 @@
 # Accessing the code
 
-Gruntwork provides all code included in your subscription to the Infrastructure as Code (IaC) library through GitHub.
-
-To gain access to the IaC Library, link your GitHub ID to your account in the Developer Portal. Follow the steps outlined in the Developer Portal guide on [linking your Github ID](../../developer-portal/link-github-id).
+Gruntwork provides all code included in your subscription to the Infrastructure as Code (IaC) library through GitHub. To gain access to the IaC Library, you must first [create an account in the Developer Portal](../../developer-portal/create-account.md). Once you have an account, you must [link your Github ID](../../developer-portal/link-github-id) to your Developer Portal account to gain access to the IaC Library.
 
 ## Accessing Modules and Services in the IaC library
 

@@ -1,10 +1,10 @@
 # Deploying your first module
 
-[Modules](../overview/modules.md) allow you to define an interface to create one or many resources in the cloud or on-premise. Similar to how in object oriented programming you can define a class that may have different attribute values across many instances.
+[Modules](../overview/modules.md) allow you to define an interface to create one or many resources in the cloud or on-premise. similar to how in object oriented programming you can define a class that may have different attribute values across many instances.
 
-Modules help keep your Terraform code DRY (Don't Repeat Yourself), and speed up development time when creating new resources.
+Modules help keep your Terraform code DRY (Don’t Repeat Yourself), and speed up development time when creating new resources.
 
-This tutorial will teach you how to develop a Terraform module that deploys an AWS Lambda function. We will create the required file structure, define an AWS Lambda function and AWS IAM role as code, then plan and apply the resource in an AWS account. Then, we’ll verify the deployment by invoking the Lambda using the AWS CLI.
+This tutorial will teach you how to develop a Terraform module that deploys an AWS Lambda function. We will create the required file structure, define an AWS Lambda function and AWS IAM role as code, then plan and apply the resource in an AWS account. Then, we’ll verify the deployment by invoking the Lambda using the AWS CLI. Finally, we'll clean up the resources we create to avoid unexpected costs.
 
 ## Prerequisites
 - An AWS account with permissions to create the necessary resources
@@ -14,7 +14,7 @@ This tutorial will teach you how to develop a Terraform module that deploys an A
 
 ## Create the module
 
-In this section you'll create a Terraform module that can create an AWS Lambda function and IAM role. This module will include three files - `main.tf` which will contain the resource definitions, `variables.tf`, which specifies the possible inputs to the module, and `outputs.tf`, which specifies the values that can be used to pass references to attributes from the resources in the module.
+In this section you’ll create a Terraform module that can create an AWS Lambda function and IAM role. This module will include three files — `main.tf` which will contain the resource definitions, `variables.tf`, which specifies the possible inputs to the module, and `outputs.tf`, which specifies the values that can be used to pass references to attributes from the resources in the module.
 
 This module could be referenced many times to create any number of AWS Lambda functions and IAM roles.
 
@@ -76,7 +76,7 @@ resource "aws_lambda_function" "lambda" {
 
 ### Specify the variables for the module
 
-Now that you've defined the resources you want to create, you need to list out all of the variables that you want to allow users to pass into the variable. In the module, you can reference these values in the module using the `var` syntax, as visible in `terraform-aws-gw-lambda/modules/lambda/main.tf`.
+Now that you’ve defined the resources you want to create, you need to list out all of the variables that you want to allow users to pass into the module. You can reference these values in the module using the `var` syntax, as visible in `terraform-aws-gw-lambda/modules/lambda/main.tf`.
 
 Copy the following snippet into `terraform-aws-gw-lambda-tutorial/modules/lambda/variables.tf`.
 
@@ -116,7 +116,7 @@ variable "timeout" {
 
 ### Specify the outputs
 
-Terraform allows you to specify values that will be outputted by the module. Outputs are convenient ways to pass values between modules when composing a service comprised of many modules.
+Terraform allows you to specify values that the module will output. Outputs are convenient ways to pass values between modules when composing a service comprised of many modules.
 
 Copy the following snippet into `terraform-aws-gw-lambda-tutorial/modules/lambda/outputs.tf`.
 ```tf
@@ -131,7 +131,7 @@ Now that you have defined a module that creates an AWS Lambda function and IAM r
 
 ### Create the basic file structure
 
-Now that you have the module defined, you need to create files which will reference the module. Typically, you would create a module in one repository, then reference it in a different repository. For this tutorial, we'll just create the reference in the top level directory for the sake of simplicity.
+Now that you have the module defined, you need to create files which will reference the module. Typically, you would create a module in one repository, then reference it in a different repository. For this tutorial, we’ll just create the reference in the top level directory for the sake of simplicity.
 
 Create a file called `main.tf`, which will contain a reference to the module, and a file called `main.py`, which will contain the Lambda function code.
 ```sh
@@ -141,7 +141,7 @@ touch terraform-aws-gw-lambda-tutorial/main.py
 
 ### Write the function code
 
-Next, we'll write a simple Python function that returns a string that will be used as the entrypoint of the AWS Lambda function. Terraform will create a zip file containing this file that will be uploaded to the Lambda function.
+Next, we’ll write a simple Python function that returns a string that will be used as the entrypoint of the AWS Lambda function. Terraform will create a zip file containing this file that will be uploaded to the Lambda function.
 
 Copy the following to `terraform-aws-gw-lambda-tutorial/main.py`.
 ```
@@ -184,7 +184,7 @@ output "function_name" {
 
 Terraform will generate an execution plan using the `plan` action. The plan will show what resources Terraform determines need to be created or modified.
 
-Running `terraform plan` is helpful when developing modules, to confirm that the Terraform code you are writing, and to confirm what resources will be created or modified when applying the module in your AWS account.
+Running `terraform plan` is helpful when developing modules, to confirm that the Terraform code you are writing are using the correct syntax, and to confirm what resources will be created or modified when applying the module in your AWS account.
 
 
 From the `terraform-aws-gw-lambda-tutorial` directory, run a plan to see what resources will be created.
@@ -197,7 +197,7 @@ Review the output of `terraform plan`, it should contain two resources - an AWS 
 
 ### Run Terraform apply
 
-Terraform creates resources when using the `apply` action in a directory containing Terraform configuration files. Like with the `plan` command, Terraform will determine which resources need to be created or modified.
+Terraform creates resources when using the `apply` action in a directory containing Terraform configuration files. Like with the `plan` command, Terraform will determine which resources need to be created or modified. You should expect the same resources to be created when running `apply` that are shown when running `plan`.
 
 From the `terraform-aws-gw-lambda-tutorial` directory, run `terraform apply`. Terraform will pause to show you the resources it will create and prompt you to confirm resource creation.
 
@@ -209,7 +209,7 @@ Review the output to confirm it will only create an AWS Lambda function and IAM 
 
 ## Invoke the created resource
 
-Next, invoke the AWS Lambda function to verify it was created and executing the application code.
+Next, invoke the AWS Lambda function to verify it was created and is successfully executing the application code.
 
 Use `terraform output` to retrieve the name of the AWS Lambda function you provisioned. This uses the outputs we added to the module in [create a module](./deploying-a-module.md#create-a-module) to retrieve the name of the Lambda function. Then, invoke the Lambda function directly using the AWS CLI, writing the response of the Lambda to a file called `lambda_output`.
 ```sh
@@ -218,7 +218,7 @@ export FUNCTION_NAME=$(terraform output -raw function_name)
 aws lambda invoke --function-name $FUNCTION_NAME --output json lambda_output
 ```
 
-The lambda invoke command should return JSON blob in response with the StatusCode of 200 and the ExecutedVersion of $LATEST.
+The lambda `invoke` command should return a JSON blob in response with the StatusCode of 200 and the ExecutedVersion of `$LATEST`.
 ```sh
 {
     "StatusCode": 200,
@@ -230,14 +230,14 @@ Inspect the contents of the `lambda_output` file, you should see a string statin
 
 ## Clean up
 
-When you've completed the tutorial, clean up the resources you created to avoid incurring unexpected costs.
+When you’ve completed the tutorial, clean up the resources you created to avoid incurring unexpected costs.
 
 First, execute the `terraform plan -destroy` command to show the AWS resources that will be destroyed.
 ```sh
 terraform plan -destroy
 ```
 
-Review the output, it should show two resources to be destroyed - an AWS Lambda function and IAM role and state the two resources will be destroyed.
+Review the output, it should show two resources to be destroyed — an AWS Lambda function and IAM role.
 
 Next, execute the `destroy` command.
 
@@ -248,18 +248,18 @@ terraform destroy
 Finally, when prompted, enter `yes` to confirm the resource deletion. Terraform will begin destroying the resources created as part of this tutorial.
 
 
-## What's next
+## What’s next
 
-Now that you've developed and deployed your first Terraform module, try creating another module that leverages the module you just created. For example, make your Lambda function available via a URL using an [AWS API Gateway HTTP API](../../reference/modules/terraform-aws-lambda/api-gateway-proxy/) with an AWS Lambda integration. Then, write a test using [Terratest](https://terratest.gruntwork.io/) that confirms your module creates resources as you'd expect.
+Now that you’ve developed and deployed your first Terraform module, try creating another module that leverages the module you just created. For example, make your Lambda function available via a URL using an [AWS API Gateway HTTP API](../../reference/modules/terraform-aws-lambda/api-gateway-proxy/) with an AWS Lambda integration. Then, write a test using [Terratest](https://terratest.gruntwork.io/) that confirms your module creates resources as you’d expect.
 
 Finally, consider what other resources you would create to make your modules ready to use in production. For example, you would likely need to add [metrics](../../reference/modules/terraform-aws-monitoring/metrics/metrics.md) and [alerting](../../reference/modules/terraform-aws-monitoring/alarms/alarms.md).
 
-In [Using a module](../usage/using-a-module.md), we'll create the same resources defined in your modules using a pre-built Gruntwork module.
+In [Using a module](../usage/using-a-module.md), you’ll learn how to create the same resources defined in these modules using a pre-built Gruntwork module.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b84f9732dc62437fc43090dc1331e1a9"
+  "hash": "2dde1cd9ee1f2a68ae6e994f0661461e"
 }
 ##DOCS-SOURCER-END -->
