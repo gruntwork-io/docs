@@ -16,6 +16,6 @@ Our [sample application](https://github.com/gruntwork-io/aws-sample-app) is buil
 
 ## Pipelines
 
-Gruntwork Pipelines makes the process of deploying infrastructure similar to how developers often deploy code. It is a code framework and approach that enables the customer to use your preferred CI tool to set up an end-to-end pipeline for infrastructure code.
+[Gruntwork Pipelines](/pipelines/what-is-it/) makes the process of deploying infrastructure similar to how developers often deploy code. It is a code framework and approach that enables the customer to use your preferred CI tool to set up an end-to-end pipeline for infrastructure code.
 
 
