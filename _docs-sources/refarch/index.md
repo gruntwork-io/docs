@@ -3,7 +3,7 @@
 The Gruntwork Reference Architecture is an implementation of best practices for infrastructure in the cloud. It is an opinionated, end-to-end tech stack built on top of our Infrastructure as Code Library, deployed into the customer's AWS accounts. It is comprised of three pieces.
 ## Landing Zone
 
-Gruntwork Landing Zone is a terraform-native approach to [AWS Landing zone / Control Tower](https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html). This uses Terraform to quickly create new AWS accounts, configure them with a standard security baseline, and defines a best-practices multi-account setup.
+Gruntwork Landing Zone is a Terraform-native approach to [AWS Landing zone / Control Tower](https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html). This uses Terraform to quickly create new AWS accounts, configure them with a standard security baseline, and defines a best-practices multi-account setup.
 
 ## Sample Application
 
