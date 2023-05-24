@@ -10,7 +10,7 @@ Configuration of the Gruntwork Reference Architecture is primarily the customer'
 - You access the repo in GitHub via invitation in the [Gruntwork Dev Portal](https://app.gruntwork.io)
 - You use the Gruntwork CLI wizard to create accounts and set config options
 - Pre-flight checks run via Github Actions to determine when the repo is ready for deployment
-- Your accounts should be empty at conclusion of this phase
+- The AWS accounts you are deploying the Reference Architecture to should be empty at conclusion of this phase
 - You merge the PR to the `main` branch to initiate the deployment phase
 
 ### 2. Deployment
