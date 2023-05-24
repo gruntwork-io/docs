@@ -12,11 +12,11 @@ Gruntwork Landing Zone is a terraform-native approach to [AWS Landing zone / Con
 
 ## Sample Application
 
-Our [sample application](https://github.com/gruntwork-io/aws-sample-app) is built with JavaSCript, Node.js, and Express.js, following [Twelve-Factor App](https://12factor.net/) practices. It consists of a load balancer, a front end, a backend, a cache, and a database.
+Our [sample application](https://github.com/gruntwork-io/aws-sample-app) is built with JavaScript, Node.js, and Express.js, following [Twelve-Factor App](https://12factor.net/) practices. It consists of a load balancer, a front end, a backend, a cache, and a database.
 
 ## Pipelines
 
-Gruntwork Pipelines makes the process of deploying infrastructure similar to how developers often deploy code. It is a code framework and approach that enables the customer to use your preferred CI tool to set up an end-to-end pipeline for infrastructure code.
+[Gruntwork Pipelines](/pipelines/what-is-it/) makes the process of deploying infrastructure similar to how developers often deploy code. It is a code framework and approach that enables the customer to use your preferred CI tool to set up an end-to-end pipeline for infrastructure code.
 
 
 
@@ -24,6 +24,6 @@ Gruntwork Pipelines makes the process of deploying infrastructure similar to how
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d3d14a7b2bd530ddfae7016be819fcc1"
+  "hash": "46f511ea49a68bd5cd9db652305f4c41"
 }
 ##DOCS-SOURCER-END -->
