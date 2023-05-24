@@ -18,7 +18,7 @@ Configuration of the Gruntwork Reference Architecture is primarily the customer'
 The deployment phase is primarily Gruntwork's responsibility.
 
 - We monitor the deployment and fix any errors that occur as needed
-- In some cases, back-and-forth with you may be required to resolve issues (e.g. AWS quota problems)
+- In some cases, we may need to communicate with you to resolve issues (e.g. AWS quota problems)
 - Deployment is completed and the `infrastructure-live-${COMPANY_NAME}` repo is populated
 - You should not touch accounts during this phase
 - You receive an email notification when the deployment is complete
