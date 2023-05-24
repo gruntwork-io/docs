@@ -6,7 +6,7 @@ You'll need to [install an OpenVPN client](#install-an-openvpn-client), [add you
 
 ## Install an OpenVPN client
 
-There are free and paid OpenVPN clients available for most major operating systems:
+There are free and paid OpenVPN clients available for most major operating systems. Popular options include:
 
 1. OS X: [Viscosity](https://www.sparklabs.com/viscosity/) or [Tunnelblick](https://tunnelblick.net/).
 1. Windows: [official client](https://openvpn.net/index.php/open-source/downloads.html).
