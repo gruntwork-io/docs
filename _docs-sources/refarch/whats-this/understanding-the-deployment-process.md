@@ -21,7 +21,7 @@ The deployment phase is primarily Gruntwork's responsibility.
 - In some cases, we may need to communicate with you to resolve issues (e.g. AWS quota problems)
 - Deployment is completed and the `infrastructure-live-${COMPANY_NAME}` repo is populated
 - During the deployment phase, you should not attempt to modify resources in or respond to any automated notifications from your AWS accounts
-- You receive an email notification when the deployment is complete
+- Once the deployment is complete, you will receive an email
 
 ### 3. Adoption
 
