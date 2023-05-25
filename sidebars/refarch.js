@@ -19,12 +19,10 @@ const sidebar = [
         type: "category",
         collapsible: false,
         items: [
-          "refarch/bootstrapping/configuring-your-refarch-for-delivery/index",
-          "refarch/bootstrapping/configuring-your-refarch-for-delivery/path1",
-          "refarch/bootstrapping/configuring-your-refarch-for-delivery/preflight-checks",
-          "refarch/bootstrapping/configuring-your-refarch-for-delivery/provision-accounts",
-          "refarch/bootstrapping/configuring-your-refarch-for-delivery/setup-quotas",
-          "refarch/bootstrapping/configuring-your-refarch-for-delivery/route53",
+          "refarch/configuration/index",
+          "refarch/configuration/install-required-tools",
+          "refarch/configuration/run-the-wizard",
+          "refarch/configuration/preflight-checks",
         ],
       },
       {
@@ -34,9 +32,9 @@ const sidebar = [
         items: [
           "refarch/access/setup-auth/index",
           "refarch/access/how-to-auth-vpn/index",
-          "refarch/access/how-to-auth-aws/index",
+          "refarch/access/how-to-auth-ec2/index",
         ],
-      }, 
+      },
       {
         label: "Usage",
         type: "category",
@@ -49,7 +47,7 @@ const sidebar = [
           "refarch/usage/maintain-your-refarch/upgrade-terraform",
           "refarch/usage/maintain-your-refarch/extending",
           "refarch/usage/pipelines-integration/index",
-       ],
+        ],
       },
     ],
   },
