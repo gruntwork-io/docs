@@ -149,8 +149,11 @@ terragrunt destroy-all \
 
 ## Removing the Terraform state
 
-**NOTE: Deleting state means that you lose the ability to manage your current Terraform resources! Be sure to only
-delete once you have confirmed all resources are destroyed.**
+:::danger
+
+Deleting state means that you lose the ability to manage your current Terraform resources! Be sure to only delete once you have confirmed all resources are destroyed.
+
+:::
 
 Once all the resources for an environment have been destroyed, you can remove the state objects managed by `terragrunt`.
 The reference architecture manages state for each environment in an S3 bucket in each environment's AWS account.
