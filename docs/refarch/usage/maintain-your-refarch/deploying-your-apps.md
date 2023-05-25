@@ -273,13 +273,13 @@ was deployed successfully. The following commands will help you examine the ECS 
 
 First, you can find the available ECS clusters:
 
-```
+```bash
 aws --region us-west-2 ecs list-clusters
 ```
 
 Armed with the available clusters, you can list the available ECS services on a cluster by running:
 
-```
+```bash
 aws --region us-west-2 ecs list-services --cluster <cluster-name>
 ```
 
@@ -483,6 +483,6 @@ are timing out or returning wrong content.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "4a28f57ed17119d0ff15d0dd2dae7e1d"
+  "hash": "d08792911259a518905b44fb0aece64d"
 }
 ##DOCS-SOURCER-END -->

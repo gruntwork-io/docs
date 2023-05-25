@@ -149,11 +149,14 @@ terragrunt destroy-all \
 
 ## Removing the Terraform state
 
-**NOTE: Deleting state means that you lose the ability to manage your current Terraform resources! Be sure to only
-delete once you have confirmed all resources are destroyed.**
+:::danger
+
+Deleting state means that you lose the ability to manage your current Terraform resources! Be sure to only delete once you have confirmed all resources are destroyed.
+
+:::
 
 Once all the resources for an environment have been destroyed, you can remove the state objects managed by `terragrunt`.
-The reference architecture manages state for each environment in an S3 bucket in each environment's AWS account.
+The Reference Architecture manages state for each environment in an S3 bucket in each environment's AWS account.
 Additionally, to prevent concurrent access to the state, it also utilizes a DynamoDB table to manage locks.
 
 To delete the state objects, login to the console and look for the S3 bucket in the environment you wish to undeploy. It
@@ -181,8 +184,7 @@ destroyed successfully**.
     recommended to set `force_destroy = true` prior to running destroy so that Terraform can destroy the S3 buckets.
     However, this can be cumbersome if you are destroying whole environments, as it can be difficult to flip the bit in
     every single module.
-  - Instead, oftentimes it is faster and more convenient to first empty and then delete the buckets using the AWS web console prior to
-    invoking `destroy` with `terragrunt`.
+  - Alternatively, it is often faster and more convenient to empty and delete the buckets using the AWS web console before executing the `destroy` command with `terragrunt`.
   - **IMPORTANT**: You should only do this if you are intending on destroying an entire environment. Otherwise, it is
     too easy to accidentally delete the wrong S3 bucket.
 
@@ -205,6 +207,6 @@ case, your best bet is to skip over that module with the `--terragrunt-exclude-d
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "9462cc73436f2440ea7204f2254894b4"
+  "hash": "094bceed99a69d1fd150af218e2ff247"
 }
 ##DOCS-SOURCER-END -->
