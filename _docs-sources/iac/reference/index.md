@@ -4,4 +4,4 @@ The Library Reference serves as the definitive source for all actively maintaine
 
 If you're already familiar with the IaC Library and are ready to dive right in, you can find the full Service Catalog and Module catalog reference in the left sidebar.
 
-For an introduction to the Gruntwork IaC Library, checkout the [Overview](/iac/overview) page. This page introduces the concept of Modules and Services, clarifies their respective purposes, and offers guidance on when and how to effectively utilize them. The overview is a great starting point for understanding what the library can offer and how to best navigate it.
+For an introduction to the Gruntwork IaC Library, check out the [Overview](/iac/overview) page. This page introduces the concept of Modules and Services, clarifies their respective purposes, and offers guidance on when and how to effectively utilize them. The overview is a great starting point for understanding what the library can offer and how to best navigate it.
