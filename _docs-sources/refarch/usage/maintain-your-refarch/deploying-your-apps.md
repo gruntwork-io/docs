@@ -279,7 +279,7 @@ aws --region us-west-2 ecs list-clusters
 
 Armed with the available clusters, you can list the available ECS services on a cluster by running:
 
-```
+```bash
 aws --region us-west-2 ecs list-services --cluster <cluster-name>
 ```
 
