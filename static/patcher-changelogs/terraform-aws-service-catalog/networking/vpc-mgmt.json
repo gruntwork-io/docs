@@ -1,6 +1,21 @@
 {
   "module": "networking/vpc-mgmt",
   "releases": {
+    "v0.104.6": {
+      "contains_changes": false
+    },
+    "v0.104.5": {
+      "contains_changes": false
+    },
+    "v0.104.4": {
+      "contains_changes": false
+    },
+    "v0.104.3": {
+      "contains_changes": false
+    },
+    "v0.104.2": {
+      "contains_changes": false
+    },
     "v0.104.1": {
       "contains_changes": false
     },
