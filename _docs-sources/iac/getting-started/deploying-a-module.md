@@ -142,7 +142,8 @@ touch terraform-aws-gw-lambda-tutorial/main.py
 Next, we’ll write a simple Python function that returns a string that will be used as the entrypoint of the AWS Lambda function. Terraform will create a zip file containing this file that will be uploaded to the Lambda function.
 
 Copy the following to `terraform-aws-gw-lambda-tutorial/main.py`.
-```
+
+```py
 def lambda_handler(event, context):
     return "Hello from Gruntwork!"
 ```
