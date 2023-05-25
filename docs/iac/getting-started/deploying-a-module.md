@@ -2,8 +2,6 @@
 
 [Modules](../overview/modules.md) allow you to define an interface to create one or many resources in the cloud or on-premise, similar to how in object oriented programming you can define a class that may have different attribute values across many instances.
 
-Modules help keep your Terraform code DRY (Don’t Repeat Yourself), and speed up development time when creating new resources.
-
 This tutorial will teach you how to develop a Terraform module that deploys an AWS Lambda function. We will create the required file structure, define an AWS Lambda function and AWS IAM role as code, then plan and apply the resource in an AWS account. Then, we’ll verify the deployment by invoking the Lambda using the AWS CLI. Finally, we'll clean up the resources we create to avoid unexpected costs.
 
 ## Prerequisites
@@ -260,6 +258,6 @@ In [Using a module](../usage/using-a-module.md), you’ll learn how to create t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7b82019aecd3437514d6a3c75b0e041f"
+  "hash": "f34c473f2adfee25ab3516d6b01251bf"
 }
 ##DOCS-SOURCER-END -->
