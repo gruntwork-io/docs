@@ -7,6 +7,8 @@ Gruntwork versions the IaC library using [Semantic Versioning](https://semver.or
 
 For modules that have submodules (e.g., terraform-aws-server/modules/single-server), not every release contains changes to every module. While using the latest available version is recommended, the version that most recently contains changes for a module can be found in each submodule’s reference in the [Library Reference](../reference/index.md).
 
+![Submodules show the last version in which they were modified](/img/iac/stay-up-to-date/versioning/module_release_tag_versions.png)
+
 We release new module versions using GitHub releases, refer to the release notes in the GitHub repository release page for a list of changes and migration guides (when necessary).
 
 ## Example: Reference a version
@@ -37,6 +39,6 @@ Once you start using versioned modules, it’s important to keep the modules up 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b6f48fbb0948284bf77cc0b57360c905"
+  "hash": "57cf586fda5a2d43db69bb91099b111b"
 }
 ##DOCS-SOURCER-END -->
