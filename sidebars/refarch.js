@@ -43,6 +43,7 @@ const sidebar = [
         collapsible: false,
         items: [
           "refarch/usage/maintain-your-refarch/deploying-your-apps",
+          "refarch/usage/maintain-your-refarch/monitoring",
           "refarch/usage/maintain-your-refarch/adding-new-account",
           "refarch/usage/maintain-your-refarch/staying-up-to-date",
           "refarch/usage/maintain-your-refarch/extending",
