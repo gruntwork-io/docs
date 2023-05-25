@@ -19,10 +19,14 @@ See [How to Manage Multiple Environments with Terraform](https://blog.gruntwork.
 
 Our code is stored in Git repositories in GitHub. You must have a working knowledge of Git via SSH (`add`, `commit`, `pull`, branches, et cetera) and GitHub (Pull requests, issues, et cetera) in order to interface with the Reference Architecture and our code library.
 
+## Knowledge of Go, Shell, and Python
+
+Some of the modules we have leverage Go, Shell scripting and Python. To customize these to suit your needs, you may need to dive in and make changes. In addition, all of our automated testing is written in Go, so familiarity with Go is highly recommended.
+
 ## AWS
 
 To be successful with the infrastructure provisioned by us, you must have a decent working knowledge of AWS, its permissions schemes ([IAM](https://aws.amazon.com/iam/)), services, and APIs. While having AWS certification is not required, it is certainly helpful. Since Gruntwork is an accelerator for your AWS infrastructure and not an abstraction layer in front of AWS, knowledge of AWS and the services you intend to use is required.
 
 ## Containerization tools like Docker and Packer
 
-We create Docker containers throughout our code library, and use them heavily in our [Gruntwork Pipelines](https://gruntwork.io/pipelines/) product, an important piece of the Reference Architecture. Containerization is an important part of helping many companies scale in the cloud, and we’re no exception. Familiarity with creating docker images and pushing and pulling them from repositories is required. Likewise, we use Packer to build AMIs. Understanding Packer will enable you to build your own AMIs for your own infrastructure and make modifications to the infrastructure we provision for you.
+We create Docker containers throughout our code library, and use them heavily in our [Gruntwork Pipelines](/pipelines/what-is-it/) product, an important piece of the Reference Architecture. Containerization is an important part of helping many companies scale in the cloud, and we’re no exception. Familiarity with creating docker images and pushing and pulling them from repositories is required. Likewise, we use Packer to build AMIs. Understanding Packer will enable you to build your own AMIs for your own infrastructure and make modifications to the infrastructure we provision for you.

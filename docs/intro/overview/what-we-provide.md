@@ -2,7 +2,7 @@
 
 ## Gruntwork IaC Library
 
-A battle-tested, production-grade _catalog_ of infrastructure code that contains the core "building blocks" of infrastructure. It includes everything you’ll need to set up:
+A battle-tested, production-grade _[catalog](/iac/reference/)_ of infrastructure code that contains the core “building blocks” of infrastructure. It includes everything you’ll need to set up:
 
 - A Multi-account structure
 - An infrastructure CI/CD Pipeline
@@ -10,14 +10,7 @@ A battle-tested, production-grade _catalog_ of infrastructure code that contains
 - App orchestration — ECS, EC2, Kubernetes, and more
 - Data storage — Aurora, Elasticache, RDS, and more
 - Best-practice security baselines
-- _and [more…](/iac/overview)_
-
-## Support
-
-Gruntwork offers basic and paid support options:
-
-- **[Community support](/support#get-support).** Get help via a [Gruntwork Community Slack](https://gruntwork-community.slack.com/archives/CHH9Y3Z62) and our [Knowledge Base](https://github.com/gruntwork-io/knowledge-base/discussions) where we maintain healthy communities where other engineers (including Grunts) post & answer questions.
-- **[Paid support](/support#paid-support-tiers).** Get help via email or a private Slack channel with response times backed by SLAs.
+- _and [more…](/iac/reference/)_
 
 ## Gruntwork Compliance
 
@@ -40,10 +33,17 @@ An optional end-to-end, multi-account architecture that Gruntwork deploys into y
 
 Once the infrastructure is deployed, Gruntwork engineers deliver the full Infrastructure as Code to you.
 
+## Support
+
+Gruntwork offers basic and paid support options:
+
+- **[Community support](/support#get-support).** Get help via a [Gruntwork Community Slack](https://gruntwork-community.slack.com/archives/CHH9Y3Z62) and our [Knowledge Base](https://github.com/gruntwork-io/knowledge-base/discussions) where we maintain healthy communities where other engineers (including Grunts) post & answer questions.
+- **[Paid support](/support#paid-support-tiers).** Get help via email or a private Slack channel with response times backed by SLAs.
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "cf4c8fa77268c39386d8ebec94f519b9"
+  "hash": "7797c7773cacd3bf8f83d75d8def11b7"
 }
 ##DOCS-SOURCER-END -->
