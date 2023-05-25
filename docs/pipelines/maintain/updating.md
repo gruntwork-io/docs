@@ -90,7 +90,7 @@ aws-vault exec your-prod -- terragrunt apply --terragrunt-source-update -auto-ap
 </TabItem>
 <TabItem value="Standalone" label="Standalone">
 
-If you’ve deployed Pipelines as a standalone framework using the `ecs-deploy-runner` service in the Service Catalog, refer to the [Variable Reference](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#reference) section for the service in the Library Reference for configuration details. You will need to update the `docker_tag` value in the `container_image` object for the [ami_builder_config](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#ami_builder_config), [docker_image_builder_config](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#docker_image_builder_config), [terraform_applier_config](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_applier_config), and [terraform_planner_config](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_planner_config) variables.
+If you’ve deployed Pipelines as a standalone framework using the `ecs-deploy-runner` service in the Service Catalog, refer to the [Variable Reference](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#reference) section for the service in the Library Reference for configuration details. You will need to update the `docker_tag` value in the `container_image` object for the [`ami_builder_config`](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#ami_builder_config), [`docker_image_builder_config`](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#docker_image_builder_config), [`terraform_applier_config`](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_applier_config), and [`terraform_planner_config`](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_planner_config) variables.
 
 Once you have updated any references to the container image tags, you will need to run `terraform plan` and `terraform apply` in each account where pipelines is deployed.
 
@@ -105,6 +105,6 @@ Now that you’ve learned how to update your pipeline, the next step is to exten
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "fc782ec154dfc97fce72fe6e9bb6d1bd"
+  "hash": "7f10a0fabf8abf04f35cdf048cbe2563"
 }
 ##DOCS-SOURCER-END -->
