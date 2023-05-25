@@ -29,12 +29,12 @@ To be successful with the infrastructure provisioned by us, you must have a dece
 
 ## Containerization tools like Docker and Packer
 
-We create Docker containers throughout our code library, and use them heavily in our [Gruntwork Pipelines](/pipelines/what-is-it/) product, an important piece of the Reference Architecture. Containerization is an important part of helping many companies scale in the cloud, and we’re no exception. Familiarity with creating docker images and pushing and pulling them from repositories is required. Likewise, we use Packer to build AMIs. Understanding Packer will enable you to build your own AMIs for your own infrastructure and make modifications to the infrastructure we provision for you.
+We create Docker containers throughout our code library, and use them heavily in our [Gruntwork Pipelines](../../pipelines/overview) product, an important piece of the Reference Architecture. Containerization is an important part of helping many companies scale in the cloud, and we’re no exception. Familiarity with creating docker images and pushing and pulling them from repositories is required. Likewise, we use Packer to build AMIs. Understanding Packer will enable you to build your own AMIs for your own infrastructure and make modifications to the infrastructure we provision for you.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0ac43a8c0cb701353e1e293f54906114"
+  "hash": "4c6fd18d671d2e0cd59142d672646346"
 }
 ##DOCS-SOURCER-END -->
