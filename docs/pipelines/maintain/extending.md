@@ -42,7 +42,7 @@ Run `terraform plan` to inspect the changes that will be made to your pipeline. 
 
 Pipelines can be triggered from GitHub events in many repositories. In order to configure Pipelines for the new repository, you need to add a step in your CI/CD configuration for the repository that uses the `infrastructure-deployer` CLI tool to trigger Docker image builds.
 
-```sh
+```bash
 export ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
 export DEPLOY_RUNNER_REGION=$(aws configure get region)
 export ECR_REPO_URL="${ACCOUNT_ID}.dkr.ecr.${DEPLOY_RUNNER_REGION}.amazonaws.com"
@@ -57,9 +57,9 @@ infrastructure-deployer --aws-region "us-east-1" -- docker-image-builder build-d
     --docker-image-tag "${ECR_REPO_URL}/${REPOSITORY_NAME}:${DOCKER_TAG}" \
 ```
 
-## Updating branches that can be deployed
+## Specifying branches that can be deployed
 
-Pipelines can be configured to only allow jobs to be performed on specific branches. For example, a common configuration is to allow `terraform plan` or `terragrunt plan` jobs for Pull Requests, and only allow `terraform apply` or `terragrunt apply` to run on merges to the main branch.
+Pipelines can be configured to only allow jobs to be performed on specific branches. For example, a common configuration is to allow `terraform plan` or `terragrunt plan` jobs for pull requests, and only allow `terraform apply` or `terragrunt apply` to run on merges to the main branch.
 
 Depending on your use case, you may need to modify the `allowed_apply_git_refs` attribute to update the allow-list of branch names that can kick off the `plan` and `apply` jobs.
 
@@ -86,20 +86,9 @@ Run `terraform plan` to inspect the changes that will be made to your pipeline. 
 </TabItem>
 </Tabs>
 
-## Adding scripts that can be run in Pipelines
+## Adding a new AWS Service
 
-The `deploy-runner` Docker image for Pipelines only allows scripts within a single directory to be executed in the ECS task as an additional security measure.
-
-By default, the `deploy-runner` ships with three scripts — one to build HashiCorp Packer images, one to run `terraform plan` and `terraform apply`, and one to automatically update the value of a variable in a Terraform tfvars or Terragrunt HCL file.
-
-If you need to run a custom script in the `deploy-runner`, you must fork the image code, add an additional line to copy your script into directory designated by the `trigger_directory` argument. Then, you will need to rebuild the Docker image, push to ECR, then update your Pipelines deployment following the steps in [Updating Pipelines](./updating.md).
-
-## Adding permissions
-
-Pipelines executes in ECS tasks running in your AWS account(s). Each task (terraform planner, applier, docker builder, ami builder) has a distinct execution IAM role with only the permissions each task requires to complete successfully.
-
-If you are expanding your usage of AWS to include an AWS service you’ve never used before, you will need to grant each job sufficient permissions to access that service.
-For example, if you need to create an Amazon DynamoDB Table using Pipelines for the first time, you would want to add (at a minimum) the ability to list and describe tables to the policy for the `planner` IAM role, and all permissions for DynamoDB to the IAM policy for the `terraform-applier` IAM role.
+If you are expanding your usage of AWS to include an AWS service you’ve never used before, you will need to grant each job sufficient permissions to access that service. Pipelines executes in ECS tasks running in your AWS account(s). Each task (terraform planner, applier, docker builder, ami builder) has a distinct execution IAM role with only the permissions each task requires to complete successfully. For example, if you need to create an Amazon DynamoDB Table using Pipelines for the first time, you would want to add (at a minimum) the ability to list and describe tables to the policy for the `planner` IAM role, and all permissions for DynamoDB to the IAM policy for the `terraform-applier` IAM role.
 
 We recommend that the `planner` configuration have read-only access to resources, and the applier be able to read, create, modify, and destroy resources.
 
@@ -109,7 +98,7 @@ We recommend that the `planner` configuration have read-only access to resources
 If you’ve deployed Pipelines as a part of your Reference Architecture, the permissions for the `terraform-planner` task are located in `_envcommon/mgmt/read_only_permissions.yml` and the permissions for the `terraform-applier` task are located in `_envcommon/mgmt/deploy_permissions.yml`. Open and add the required permissions to each file.
 
 After you are done updating both files, you will need to run `terragrunt plan`, review the changes, then `terragrunt apply` for each account in your Reference Architecture.
-```sh
+```bash
 cd logs/$DEPLOY_RUNNER_REGION/mgmt/ecs-deploy-runner
 aws-vault exec <your-logs> -- terragrunt apply --terragrunt-source-update -auto-approve
 
@@ -131,18 +120,26 @@ aws-vault exec <your-prod> -- terragrunt apply --terragrunt-source-update -auto-
 </TabItem>
 <TabItem value="Standalone" label="Standalone">
 
-If you’ve deployed Pipelines as a standalone framework using the `ecs-deploy-runner` service in the Service Catalog, , you will need to locate the file in which you’ve defined a module block sourcing the `ecs-deploy-runner` service.
+If you’ve deployed Pipelines as a standalone framework using the `ecs-deploy-runner` service in the Service Catalog, you will need to locate the file in which you’ve defined a module block sourcing the `ecs-deploy-runner` service.
 
-Modify the AWS IAM policy document being passed into the `iam_policy` variable for the [`terraform_applier_config`](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_applier_config) and the [`terraform_planner_config`](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_planner_config) variables. Refer to the [Variable Reference](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#reference) section for the service in the Library Reference for the full set of configuration details for this service.
+Modify the AWS IAM policy document being passed into the `iam_policy` variable for the [`terraform_applier_config`](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_applier_config) and the [`terraform_planner_config`](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_planner_config) variables. Refer to the [variable reference](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#reference) section for the service in the Library Reference for the full set of configuration details for this service.
 
 After you are done updating the IAM policy documents, run `terraform plan` then review the changes that will be made. Finally, run `terraform apply` to apply the changes.
 </TabItem>
 </Tabs>
 
+## Adding scripts that can be run in Pipelines
+
+The `deploy-runner` Docker image for Pipelines only allows scripts within a single directory to be executed in the ECS task as an additional security measure.
+
+By default, the `deploy-runner` ships with three scripts — one to build HashiCorp Packer images, one to run `terraform plan` and `terraform apply`, and one to automatically update the value of a variable in a Terraform tfvars or Terragrunt HCL file.
+
+If you need to run a custom script in the `deploy-runner`, you must fork the image code, add an additional line to copy your script into directory designated by the `trigger_directory` argument. Then, you will need to rebuild the Docker image, push to ECR, then update your Pipelines deployment following the steps in [Updating your Pipeline](./updating.md).
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "3d990d1e73ea5209a212dfa8cd24d25d"
+  "hash": "d85a12c41096fd3a1a9b010b8a5194b4"
 }
 ##DOCS-SOURCER-END -->
