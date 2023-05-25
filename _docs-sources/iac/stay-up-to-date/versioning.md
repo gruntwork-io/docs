@@ -5,7 +5,7 @@ Gruntwork versions the IaC library using [Semantic Versioning](https://semver.or
 - MINOR version when we make backward incompatible API changes, and
 - PATCH version when we add backward compatible functionality or bug fixes
 
-For modules that have submodules (e.g., terraform-aws-server/modules/single-server), not every release contains changes to every module. While using the latest available version is recommended, the version that most recently contains changes for a module can be found in each submodule's reference in the [Library Reference](../reference/index.md).
+For modules that have submodules (e.g., terraform-aws-server/modules/single-server), not every release contains changes to every module. While using the latest available version is recommended, the version that most recently contains changes for a module can be found in each submodule’s reference in the [Library Reference](../reference/index.md).
 
 We release new module versions using GitHub releases, refer to the release notes in the GitHub repository release page for a list of changes and migration guides (when necessary).
 
@@ -29,6 +29,6 @@ module "my_instance" {
 }
 ```
 
-## What's next
+## What’s next
 
-Once you start using versioned modules, it's important to keep the modules up to date. Refer to the [Updating](./updating.md) guide to learn more.
+Once you start using versioned modules, it’s important to keep the modules up to date. Refer to the [Updating](./updating.md) guide to learn more.
