@@ -20,7 +20,7 @@ This module could be referenced many times to create any number of AWS Lambda fu
 ### Create a basic file structure
 First, create the directories and files that will contain the Terraform configuration.
 
-```sh
+```bash
 mkdir -p terraform-aws-gw-lambda-tutorial/modules/lambda
 touch terraform-aws-gw-lambda-tutorial/modules/lambda/main.tf
 touch terraform-aws-gw-lambda-tutorial/modules/lambda/variables.tf
@@ -78,7 +78,7 @@ Now that you’ve defined the resources you want to create, you need to list out
 
 Copy the following snippet into `terraform-aws-gw-lambda-tutorial/modules/lambda/variables.tf`.
 
-```tf
+```hcl
 variable "lambda_name" {
   type        = string
   description = "Name that will be used for the AWS Lambda function"
@@ -117,7 +117,7 @@ variable "timeout" {
 Terraform allows you to specify values that the module will output. Outputs are convenient ways to pass values between modules when composing a service comprised of many modules.
 
 Copy the following snippet into `terraform-aws-gw-lambda-tutorial/modules/lambda/outputs.tf`.
-```tf
+```hcl
 output "function_name" {
   value = aws_lambda_function.lambda.function_name
 }
@@ -132,7 +132,7 @@ Now that you have defined a module that creates an AWS Lambda function and IAM r
 Now that you have the module defined, you need to create files which will reference the module. Typically, you would create a module in one repository, then reference it in a different repository. For this tutorial, we’ll just create the reference in the top level directory for the sake of simplicity.
 
 Create a file called `main.tf`, which will contain a reference to the module, and a file called `main.py`, which will contain the Lambda function code.
-```sh
+```bash
 touch terraform-aws-gw-lambda-tutorial/main.tf
 touch terraform-aws-gw-lambda-tutorial/main.py
 ```
@@ -151,7 +151,7 @@ def lambda_handler(event, context):
 
 Next, create a reference to the module you just created in `/modules/lambda/main.tf`. This code uses the `module` block from Terraform, which references the `/modules/lambda` directory using the `source` attribute. You can then specify values for the required variables specified in `/modules/lambdas/variables.tf`. Finally, we specify an output using the value of the `module.lambda.function_name` output created in `/modules/lambdas/outputs.tf`
 
-```
+```hcl
 terraform {
   required_providers {
     aws = {
@@ -186,7 +186,7 @@ Running `terraform plan` is helpful when developing modules, to confirm that the
 
 
 From the `terraform-aws-gw-lambda-tutorial` directory, run a plan to see what resources will be created.
-```sh
+```bash
 terraform plan
 ```
 
@@ -199,7 +199,7 @@ Terraform creates resources when using the `apply` action in a directory contain
 
 From the `terraform-aws-gw-lambda-tutorial` directory, run `terraform apply`. Terraform will pause to show you the resources it will create and prompt you to confirm resource creation.
 
-```sh
+```bash
 terraform apply
 ```
 
@@ -210,14 +210,14 @@ Review the output to confirm it will only create an AWS Lambda function and IAM 
 Next, invoke the AWS Lambda function to verify it was created and is successfully executing the application code.
 
 Use `terraform output` to retrieve the name of the AWS Lambda function you provisioned. This uses the outputs we added to the module in [create a module](./deploying-a-module.md#create-a-module) to retrieve the name of the Lambda function. Then, invoke the Lambda function directly using the AWS CLI, writing the response of the Lambda to a file called `lambda_output`.
-```sh
+```bash
 #!/bin/bash
 export FUNCTION_NAME=$(terraform output -raw function_name)
 aws lambda invoke --function-name $FUNCTION_NAME --output json lambda_output
 ```
 
 The lambda `invoke` command should return a JSON blob in response with the StatusCode of 200 and the ExecutedVersion of `$LATEST`.
-```sh
+```bash
 {
     "StatusCode": 200,
     "ExecutedVersion": "$LATEST"
@@ -231,7 +231,7 @@ Inspect the contents of the `lambda_output` file, you should see a string statin
 When you’ve completed the tutorial, clean up the resources you created to avoid incurring unexpected costs.
 
 First, execute the `terraform plan -destroy` command to show the AWS resources that will be destroyed.
-```sh
+```bash
 terraform plan -destroy
 ```
 
@@ -239,7 +239,7 @@ Review the output, it should show two resources to be destroyed — an AWS Lambd
 
 Next, execute the `destroy` command.
 
-```sh
+```bash
 terraform destroy
 ```
 
