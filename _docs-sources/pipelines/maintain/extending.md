@@ -88,10 +88,7 @@ Run `terraform plan` to inspect the changes that will be made to your pipeline. 
 
 ## Adding a new AWS Service
 
-Pipelines executes in ECS tasks running in your AWS account(s). Each task (terraform planner, applier, docker builder, ami builder) has a distinct execution IAM role with only the permissions each task requires to complete successfully.
-
-If you are expanding your usage of AWS to include an AWS service you’ve never used before, you will need to grant each job sufficient permissions to access that service.
-For example, if you need to create an Amazon DynamoDB Table using Pipelines for the first time, you would want to add (at a minimum) the ability to list and describe tables to the policy for the `planner` IAM role, and all permissions for DynamoDB to the IAM policy for the `terraform-applier` IAM role.
+If you are expanding your usage of AWS to include an AWS service you’ve never used before, you will need to grant each job sufficient permissions to access that service. Pipelines executes in ECS tasks running in your AWS account(s). Each task (terraform planner, applier, docker builder, ami builder) has a distinct execution IAM role with only the permissions each task requires to complete successfully. For example, if you need to create an Amazon DynamoDB Table using Pipelines for the first time, you would want to add (at a minimum) the ability to list and describe tables to the policy for the `planner` IAM role, and all permissions for DynamoDB to the IAM policy for the `terraform-applier` IAM role.
 
 We recommend that the `planner` configuration have read-only access to resources, and the applier be able to read, create, modify, and destroy resources.
 
