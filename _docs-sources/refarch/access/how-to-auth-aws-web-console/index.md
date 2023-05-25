@@ -5,7 +5,7 @@
 To authenticate to the security account, you will need:
 
 1. The login URL. This should be of the format `https://<ACCOUNT ID>.signin.aws.amazon.com/console`.
-1. IAM User Credentials. This will consist of a username and password. See [setting up initial access](/access/setup-auth/) for how to create IAM users.
+1. IAM User Credentials. This will consist of a username and password. See [setting up initial access](/refarch/access/setup-auth/) for how to create IAM users.
 1. An MFA Token. This is something you must set up during your first login. See configuring your IAM user.
 
 Once you have these details, open your web browser to the Login URL, enter your username, password, and MFA token, and you should be in.

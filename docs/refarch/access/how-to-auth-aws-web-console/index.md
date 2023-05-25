@@ -5,7 +5,7 @@
 To authenticate to the security account, you will need:
 
 1. The login URL. This should be of the format `https://<ACCOUNT ID>.signin.aws.amazon.com/console`.
-1. IAM User Credentials. This will consist of a username and password. See [setting up initial access](/access/setup-auth/) for how to create IAM users.
+1. IAM User Credentials. This will consist of a username and password. See [setting up initial access](/refarch/access/setup-auth/) for how to create IAM users.
 1. An MFA Token. This is something you must set up during your first login. See configuring your IAM user.
 
 Once you have these details, open your web browser to the Login URL, enter your username, password, and MFA token, and you should be in.
@@ -21,6 +21,6 @@ To authenticate to any other account (e.g., dev, stage, prod), you need to:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "3e51f8298adf6c055e3fe7927a91b242"
+  "hash": "512e9841b97c13b9a44c2f4fb0019f54"
 }
 ##DOCS-SOURCER-END -->
