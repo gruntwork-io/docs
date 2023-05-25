@@ -1,14 +1,14 @@
 # Library Reference
 
-The Library Reference serves as the definitive source for all of the Modules and Services within the Gruntwork Infrastructure as Code Library. This comprehensive reference provides a dedicated page for each module and service providing descriptions, detailed information on input and output variables, and sample code to help you get started.
+The Library Reference serves as the definitive index for all actively maintained Modules and Services within the Gruntwork Infrastructure as Code Library. This comprehensive reference provides a dedicated page for each module and service providing descriptions, detailed information on input and output variables, and sample code to help you get started.
 
 If you're already familiar with the IaC Library and are ready to dive right in, you can find the full Service Catalog and Module catalog reference in the left sidebar.
 
-For an introduction to the Gruntwork IaC Library, checkout the [Overview](/iac/overview) page. This page introduces the concept of Modules and Services, clarifies their respective purposes, and offers guidance on when and how to effectively utilize them. The overview is a great starting point for understanding what the library can offer and how to best navigate it.
+For an introduction to the Gruntwork IaC Library, check out the [Overview](/iac/overview) page. This page introduces the concept of Modules and Services, clarifies their respective purposes, and offers guidance on when and how to effectively utilize them. The overview is a great starting point for understanding what the library can offer and how to best navigate it.
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d37c5b226834b1edaa9c1dc51335d571"
+  "hash": "de75e3371081959e3f3d5c1917ecae87"
 }
 ##DOCS-SOURCER-END -->
