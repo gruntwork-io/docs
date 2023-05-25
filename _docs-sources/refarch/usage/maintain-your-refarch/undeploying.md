@@ -156,7 +156,7 @@ Deleting state means that you lose the ability to manage your current Terraform 
 :::
 
 Once all the resources for an environment have been destroyed, you can remove the state objects managed by `terragrunt`.
-The reference architecture manages state for each environment in an S3 bucket in each environment's AWS account.
+The Reference Architecture manages state for each environment in an S3 bucket in each environment's AWS account.
 Additionally, to prevent concurrent access to the state, it also utilizes a DynamoDB table to manage locks.
 
 To delete the state objects, login to the console and look for the S3 bucket in the environment you wish to undeploy. It
