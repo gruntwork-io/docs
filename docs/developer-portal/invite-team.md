@@ -40,10 +40,16 @@ This change will take effect immediately. Any team members who have accepted the
 
 The number of licenses available depends on the level of your subscription. You can see the total number of licenses as well as the number remaining at the top of the [Team](https://app.gruntwork.io/team) page. If you need to invite more team members than your current license limit allows, you may request additional licenses, which are billed at a standard monthly rate. To do so, contact sales@gruntwork.io.
 
+## Related FAQs
+
+- [Invitation to the Developer Portal not received](https://github.com/orgs/gruntwork-io/discussions/716)
+- [Trouble logging into the Portal with email](https://github.com/orgs/gruntwork-io/discussions/395)
+- [How can the email associated with an account be changed?](https://github.com/orgs/gruntwork-io/discussions/714)
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "702a33b934d092e229bc9c8d17e92387"
+  "hash": "bee09c3bb6a23fba09bc3061cd35ed0c"
 }
 ##DOCS-SOURCER-END -->
