@@ -191,7 +191,7 @@ From the `terraform-aws-gw-lambda-tutorial` directory, run a plan to see what re
 terraform plan
 ```
 
-Review the output of `terraform plan`, it should contain two resources - an AWS Lambda function and an AWS IAM role.
+Review the output of `terraform plan`, it should contain two resources — an AWS Lambda function and an AWS IAM role.
 
 
 ### Run Terraform apply
@@ -259,6 +259,6 @@ In [Using a module](../usage/using-a-module.md), you’ll learn how to create t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0817d5f0e4f82e6a9b6d1a986969eeff"
+  "hash": "05eec16b0d7b37d68fd21167edbb39df"
 }
 ##DOCS-SOURCER-END -->

@@ -191,7 +191,7 @@ From the `terraform-aws-gw-lambda-tutorial` directory, run a plan to see what re
 terraform plan
 ```
 
-Review the output of `terraform plan`, it should contain two resources - an AWS Lambda function and an AWS IAM role.
+Review the output of `terraform plan`, it should contain two resources — an AWS Lambda function and an AWS IAM role.
 
 
 ### Run Terraform apply
