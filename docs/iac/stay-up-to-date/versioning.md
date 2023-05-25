@@ -2,12 +2,12 @@
 
 Gruntwork versions the IaC library using [Semantic Versioning](https://semver.org/) (SemVer). Since much of the Gruntwork IaC Library is still pre-1.0.0, most of the Gruntwork IaC Library uses 0.MINOR.PATCH version numbers. With 0.MINOR.PATCH, the rules are a bit different, where we increment the:
 
-- MINOR version when you make backward incompatible API changes, and
-- PATCH version when you add backward compatible functionality or bug fixes.
+- MINOR version when we make backward incompatible API changes, and
+- PATCH version when we add backward compatible functionality or bug fixes
 
 For modules that have submodules (e.g., terraform-aws-server/modules/single-server), not every release contains changes to every module. While using the latest available version is recommended, the version that most recently contains changes for a module can be found in each submodule's reference in the [Library Reference](../reference/index.md).
 
-New module versions are released by creating a release on Github. When a new version is created, refer to the release notes in the Github repository release page for a list of changes and migration guides (when necessary).
+We release new module versions using GitHub releases, refer to the release notes in the GitHub repository release page for a list of changes and migration guides (when necessary).
 
 ## Example: Reference a version
 
@@ -37,6 +37,6 @@ Once you start using versioned modules, it's important to keep the modules up to
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "06cba32d3e3220dd417091d48af8a2db"
+  "hash": "6e3ee96e96da62747acdd3ed17bd07af"
 }
 ##DOCS-SOURCER-END -->

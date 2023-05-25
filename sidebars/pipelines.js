@@ -12,7 +12,7 @@ const sidebar = [
                 {
                   label: "What is Gruntwork Pipelines?",
                   type: "doc",
-                  id: "pipelines/what-is-it/index"
+                  id: "pipelines/overview/index"
                 },
               ]
             },

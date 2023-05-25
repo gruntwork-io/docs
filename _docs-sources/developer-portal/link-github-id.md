@@ -13,3 +13,8 @@ Gruntwork provides all code included in your subscription through GitHub. You ne
 Once you’ve linked your account, the notice on the home page will disappear and you’ll find your GitHub ID recorded in your [Profile Settings](https://app.gruntwork.io/settings/profile). Going forward, you’ll have access to all private repositories included in your subscription. If you haven’t done so yet, we strongly recommend [adding an SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) to your GitHub account. An SSH key is required to access the Gruntwork IaC library without adding a password in your Terraform code.
 
 :::
+
+## Related FAQs
+
+- [I have linked my GitHub Account but do not have code access](https://github.com/orgs/gruntwork-io/discussions/715)
+- [How can I change my GitHub account(unlink/link)?](https://github.com/orgs/gruntwork-io/discussions/713)
