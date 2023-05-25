@@ -15,7 +15,7 @@ Gruntwork Landing Zone is a terraform-native approach to [AWS Landing zone / Con
 
 ### Pipelines
 
-[Gruntwork Pipelines](/pipelines/what-is-it/) makes the process of deploying infrastructure similar to how developers often deploy code. It is a code framework and approach that enables the customer to use your preferred CI tool to set up an end-to-end pipeline for infrastructure code.
+[Gruntwork Pipelines](/pipelines/overview/) makes the process of deploying infrastructure similar to how developers often deploy code. It is a code framework and approach that enables the customer to use your preferred CI tool to set up an end-to-end pipeline for infrastructure code.
 
 
 ### Sample Application
@@ -26,6 +26,6 @@ Our [sample application](https://github.com/gruntwork-io/aws-sample-app) is buil
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "2baff3843aba7cb28188c44f902f9dc3"
+  "hash": "be6add7032b21738ccfdf7fff3d6dece"
 }
 ##DOCS-SOURCER-END -->
