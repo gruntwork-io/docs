@@ -14,7 +14,7 @@ gruntwork aws create --account "<ACCOUNT_NAME>=<EMAIL_ADDRESS_FOR_ROOT_USER>"
 ```
 
 Record the account name, AWS ID, and deploy order of the new account you just created in the
-[accounts.json](/examples/for-production/infrastructure-live/accounts.json) file so that we can reference it throughout the process.
+`accounts.json` file so that we can reference it throughout the process.
 
 ### Set the deploy order
 
@@ -173,7 +173,7 @@ needs to be able to access the secrets for accessing the remote repositories and
 runners. Both of these are stored in the `shared` account.
 
 In order for this setup to work for each new account that is created, the `logs`, `security`, and `shared` accounts need
-to be made aware of the new account. This is handled through the [accounts.json](/examples/for-production/infrastructure-live/accounts.json) file in your
+to be made aware of the new account. This is handled through the `accounts.json` file in your
 `infrastructure-live` repository.
 
 Once the `accounts.json` file is updated with the new account, you will want to grant the permissions for the new
@@ -294,6 +294,6 @@ to provision new infrastructure in the account.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b2b1ea1f7a9bfb0191b2280245104d15"
+  "hash": "5a1c64660af54bebbbaafa760abab734"
 }
 ##DOCS-SOURCER-END -->

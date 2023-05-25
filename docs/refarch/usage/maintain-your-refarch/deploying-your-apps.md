@@ -234,7 +234,7 @@ Once the envcommon file is created, you can create the `terragrunt.hcl` file to 
 For the purpose of this example, we will assume we want to deploy the simple web app into the `dev` account first.
 
 1. Create a `simple-web-app` folder in `dev/us-west-2/dev/services`.
-1. Copy over the contents of the [sample-app-frontend terragrunt.hcl](../dev/us-west-2/dev/services/sample-app-frontend/terragrunt.hcl).
+1. Copy over the contents of the `sample-app-frontend terragrunt.hcl`.
 1. Update the include path for `envcommon` to reference the new `ecs-simple-web-app.hcl` envcommon file you created
    above.
 1. Remove the unneeded `service_environment_variables`, `tls_secrets_manager_arn`, and `db_secrets_manager_arn` local
@@ -344,8 +344,8 @@ Next, update the following in the new `k8s-simple-web-app.hcl` configuration fil
 Once the envcommon file is created, you can create the `terragrunt.hcl` file to deploy it in a specific environment.
 For the purpose of this example, we will assume we want to deploy the simple web app into the `dev` account first.
 
-1. Create a `simple-web-app` folder in [dev/us-west-2/dev/services](../dev/us-west-2/dev/services).
-1. Copy over the contents of the [k8s-sample-app-frontend terragrunt.hcl](../dev/us-west-2/dev/services/k8s-sample-app-frontend/terragrunt.hcl).
+1. Create a `simple-web-app` folder in `dev/us-west-2/dev/services`.
+1. Copy over the contents of the `k8s-sample-app-frontend terragrunt.hcl`.
 1. Update the include path for `envcommon` to reference the new `ecs-simple-web-app.hcl` envcommon file you created
    above.
 1. Remove the unneeded `tls_secrets_manager_arn` local variables, as well as all usage of it in the file.
@@ -483,6 +483,6 @@ are timing out or returning wrong content.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d08792911259a518905b44fb0aece64d"
+  "hash": "500b96fa5cb03b6572e4bf0a3724f35b"
 }
 ##DOCS-SOURCER-END -->
