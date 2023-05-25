@@ -13,7 +13,7 @@ directly annotated on the exact line of your form that presents a blocking issue
 ## Fix up any errors
 
 In most cases, the error messages included in the preflight check annotations will provide sufficient information to remediate the underlying issue. If at any point you are confused or
-need assistance, please reach out to us at `support@gruntwork.io` and we'll be happy to assist you.
+need assistance, please reach out to us at `support@gruntwork.io` and we’ll be happy to assist you.
 
 ## Commit your form changes and push to your `ref-arch-form` branch
 
@@ -27,18 +27,18 @@ and the GitHub check itself is green, you can merge your pull request to the `ma
 
 ## Sit tight and wait for your deployment to commence
 
-Merging your `ref-arch-form` pull request to the `main` branch will automatically kick off the deployment process for your Reference Architecture. There's nothing more for you to do at this point. During deployment we ask
+Merging your `ref-arch-form` pull request to the `main` branch will automatically kick off the deployment process for your Reference Architecture. There’s nothing more for you to do at this point. During deployment we ask
 that you please do not log into, modify or interact with your Reference Architecture AWS accounts in any way or make any modifications to your `infrastructure-live` repo once you have merged your pull request.
 
-Your deployment is now in Gruntwork engineers' hands and we are notified of every single error your deployment encounters. We'll work behind the scenes to complete your deployment, communicating with you via email or GitHub if we need
+Your deployment is now in Gruntwork engineers’ hands and we are notified of every single error your deployment encounters. We’ll work behind the scenes to complete your deployment, communicating with you via email or GitHub if we need
 any additional information or if we need you to perform any remediation steps to un-block your deployment.
 
-Once your deployment completes, you'll receive an automated email with next steps and a link to your Quick Start guide that has been written to your `infrastructure-live` repository.
+Once your deployment completes, you’ll receive an automated email with next steps and a link to your Quick Start guide that has been written to your `infrastructure-live` repository.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "48546f70af86b93fdffadd238cee2dbd"
+  "hash": "33af82a966de250c4c653a84b1756e77"
 }
 ##DOCS-SOURCER-END -->
