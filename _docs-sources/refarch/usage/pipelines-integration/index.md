@@ -4,7 +4,7 @@ CI/CD is a crucial tool for ensuring the smooth iteration and consistent deliver
 
 Gruntwork Pipelines is a framework that enables you to use your preferred CI tool to securely run an end-to-end pipeline for infrastructure code (Terraform) and app code (Docker or Packer). Rather than replace your existing CI/CD provider, Gruntwork Pipelines is designed to enhance the security of your existing tool. For more information please see the [full pipelines documentation](/pipelines/what-is-it/).
 
-In the guide below, we walk through how to configure Gruntwork Pipelines in your CI/CD
+In the guide below, we walk through how to configure Gruntwork Pipelines in your CI/CD.
 
 ## Set up machine user credentials
 
