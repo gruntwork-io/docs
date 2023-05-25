@@ -6,19 +6,19 @@ The Gruntwork Reference Architecture is opinionated, and delivered as code. It i
 
 ## Components
 
-The Gruntwork Reference Architecture has three main components — Landing Zone, Pipelines, and a Sample Application.
+The Gruntwork Reference Architecture has three main components — Gruntwork Landing Zone, Gruntwork Pipelines, and a Sample Application.
 
-## Landing Zone
+### Landing Zone
 
 Gruntwork Landing Zone is a terraform-native approach to [AWS Landing zone / Control Tower](https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html). This uses Terragrunt to quickly create new AWS accounts, configure them with a standard security baseline, and defines a best-practices multi-account setup.
 
 
-## Pipelines
+### Pipelines
 
 [Gruntwork Pipelines](/pipelines/what-is-it/) makes the process of deploying infrastructure similar to how developers often deploy code. It is a code framework and approach that enables the customer to use your preferred CI tool to set up an end-to-end pipeline for infrastructure code.
 
 
-## Sample Application
+### Sample Application
 
 Our [sample application](https://github.com/gruntwork-io/aws-sample-app) is built with JavaScript, Node.js, and Express.js, following [Twelve-Factor App](https://12factor.net/) practices. It consists of a load balancer, a front end, a backend, a cache, and a database.
 
@@ -26,6 +26,6 @@ Our [sample application](https://github.com/gruntwork-io/aws-sample-app) is buil
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "9981296a5c219318dc423ae5f1ab96e7"
+  "hash": "092d5b0235863c2079d6b00054f7adcd"
 }
 ##DOCS-SOURCER-END -->
