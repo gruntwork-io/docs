@@ -253,12 +253,10 @@ Now that you’ve developed and deployed your first Terraform module, try creati
 
 Finally, consider what other resources you would create to make your modules ready to use in production. For example, you would likely need to add [metrics](../../reference/modules/terraform-aws-monitoring/metrics/metrics.md) and [alerting](../../reference/modules/terraform-aws-monitoring/alarms/alarms.md).
 
-In [Using a module](../usage/using-a-module.md), you’ll learn how to create the same resources defined in these modules using a pre-built Gruntwork module.
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "37b9edc7ca9a8d504c50df82d7b0c0c9"
+  "hash": "d039b6c2cda248bdf74af9e85c9200ef"
 }
 ##DOCS-SOURCER-END -->
