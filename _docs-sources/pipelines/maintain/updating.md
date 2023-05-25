@@ -1,3 +1,6 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Updating Your Pipeline
 
 Pipelines is built using the [terraform-aws-ci](../../reference/modules/terraform-aws-ci/ecs-deploy-runner/) module. We recommend updating your pipeline whenever there’s a new release of the module.
@@ -54,9 +57,10 @@ Each image may take a few minutes to build and push. Once both images are built,
 
 Next, update the references to these images to the new tag values. This will vary depending on if you’re using Pipelines as configured by the Reference Architecture or if you’ve deployed Pipelines as a standalone framework.
 
-### Updating tag values (RefArch)
+<Tabs groupId="deployment-type">
+<TabItem value="RefArch" label="RefArch" default>
 
-Update `common.hcl` with the new tag values for these images. The new tag value will be version of terraform-aws-ci that the images use. For example, if your newly created images are using the v0.52.1 release of terraform-aws-ci, update common.hcl to:
+To update the image tags for pipelines deployed by a Reference Architecture, you update `common.hcl` with the new tag values for these images. The new tag value will be version of terraform-aws-ci that the images use. For example, if your newly created images are using the v0.52.1 release of terraform-aws-ci, update common.hcl to:
 
 ```
 deploy_runner_container_image_tag = "v0.52.1"
@@ -83,13 +87,15 @@ aws-vault exec your-stage -- terragrunt apply --terragrunt-source-update -auto-a
 cd prod/$DEPLOY_RUNNER_REGION/mgmt/ecs-deploy-runner
 aws-vault exec your-prod -- terragrunt apply --terragrunt-source-update -auto-approve
 ```
-
-### Updating tag values (standalone)
+</TabItem>
+<TabItem value="Standalone" label="Standalone">
 
 If you’ve deployed Pipelines as a standalone framework using the `ecs-deploy-runner` service in the Service Catalog, refer to the [Variable Reference](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#reference) section for the service in the Library Reference for configuration details. You will need to update the `docker_tag` value in the `container_image` object for the [ami_builder_config](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#ami_builder_config), [docker_image_builder_config](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#docker_image_builder_config), [terraform_applier_config](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_applier_config), and [terraform_planner_config](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_planner_config) variables.
 
 Once you have updated any references to the container image tags, you will need to run `terraform plan` and `terraform apply` in each account where pipelines is deployed.
 
+</TabItem>
+</Tabs>
 
 ### What's next
 

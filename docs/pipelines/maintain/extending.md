@@ -1,3 +1,6 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Extending your Pipeline
 
 Pipelines can be extended in several ways:
@@ -13,15 +16,17 @@ Pipelines has separate configurations for each type of job that can be performed
 
 This portion of the guide focuses on building Docker images for application repos. If you have repositories for which you would like to run `terraform plan` or `terraform apply` jobs, similar steps can be followed, modifying the appropriate task configurations.
 
-### RefArch
+<Tabs groupId="deployment-type">
+<TabItem value="RefArch" label="RefArch" default>
 
-First, define a module for your application by following the guide on [how to deploy your apps into the Reference Architecture](../../guides/reference-architecture/example-usage-guide/deploy-apps/intro).
+If you've deployed Pipelines as a part of your Reference Architecture, we recommend following the guide on [how to deploy your apps into the Reference Architecture](../../guides/reference-architecture/example-usage-guide/deploy-apps/intro) to learn how to define a module for your application.
 
-Next, open `shared/<your region>/mgmt/ecs-deploy-runner/terragrunt.hcl` and update `docker_image_builder_config.allowed_repos` to include the HTTPS Git URL of the application repo for which you would like to deploy Docker images.
+To allow Pipelines jobs to be started by events in your repository, open `shared/<your region>/mgmt/ecs-deploy-runner/terragrunt.hcl` and update `docker_image_builder_config.allowed_repos` to include the HTTPS Git URL of the application repo for which you would like to deploy Docker images.
 
 Since pipelines [cannot update itself](./updating.md), you must run `terragrunt plan` and `terragrunt apply` manually to deploy the change from your local machine. Run `terragrunt plan` to inspect the changes that will be made to your pipeline. Once the changes have been reviewed, run `terragrunt apply` to deploy the changes.
 
-### Standalone
+</TabItem>
+<TabItem value="Standalone" label="Standalone">
 
 If you've deployed Pipelines as a standalone framework using the `ecs-deploy-runner` service in the Service Catalog, you will need to locate the file in which you've defined a module block sourcing the `ecs-deploy-runner` service.
 
@@ -30,8 +35,10 @@ Once the `ecs-deploy-runner` module block is located, update the `allowed_repos`
 Refer to the [Variable Reference](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#reference) section for the service in the Library Reference for full configuration details.
 
 Run `terraform plan` to inspect the changes that will be made to your pipeline. Once the changes have been reviewed, run `terraform apply` to deploy the changes. To deploy the application to ECS or EKS you will need to deploy a task definition (ECS) or Deployment (EKS) that references the newly built image.
+</TabItem>
+</Tabs>
 
-### Adding infrastructure deployer to the new repo (RefArch & Standalone)
+### Adding infrastructure deployer to the new repo
 
 Pipelines can be triggered from GitHub events in many repositories. In order to configure Pipelines for the new repository, you need to add a step in your CI/CD configuration for the repository that uses the `infrastructure-deployer` CLI tool to trigger Docker image builds.
 
@@ -61,19 +68,23 @@ For example, a common configuration for `apply` jobs is to specify that this job
 allowed_apply_git_refs = ["main", "origin/main"]
 ```
 
-### RefArch
+<Tabs groupId="deployment-type">
+<TabItem value="RefArch" label="RefArch" default>
 
-Open `shared/<your region>/mgmt/ecs-deploy-runner/terragrunt.hcl` and update the values in the `allowed_apply_git_refs` attribute for the job configuration you would like to modify (either `terraform_planner_config` or `terraform_applier_config`).
+If you've deployed Pipelines as a part of your Reference Architecture, open `shared/<your region>/mgmt/ecs-deploy-runner/terragrunt.hcl` and update the values in the `allowed_apply_git_refs` attribute for the job configuration you would like to modify (either `terraform_planner_config` or `terraform_applier_config`).
 
 Run `terragrunt plan` to inspect the changes that will be made to your pipeline. Once the changes have been reviewed, run `terragrunt apply` to deploy the changes.
 
-### Standalone
+</TabItem>
+<TabItem value="Standalone" label="Standalone">
 
 If you've deployed Pipelines as a standalone framework using the `ecs-deploy-runner` service in the Service Catalog, you will need to locate the file in which you've defined a module block sourcing the `ecs-deploy-runner` service.
 
 By default, the `ecs-deploy-runner` service from the Service Catalog allows any git ref to be applied. After you locate the module block for `ecs-deploy-runner`, modify the `allowed_apply_git_refs` attribute for the job configuration that you would like to modify (either `terraform_planner_config` or `terraform_applier_config`).
 
 Run `terraform plan` to inspect the changes that will be made to your pipeline. Once the changes have been reviewed, run `terraform apply` to deploy the changes.
+</TabItem>
+</Tabs>
 
 ## Adding scripts that can be run in Pipelines
 
@@ -92,7 +103,8 @@ For example, if you need to create an Amazon DynamoDB Table using Pipelines for 
 
 We recommend that the `planner` configuration have read only access to resources, and the applier be able to read, create, modify, and destroy resources.
 
-### RefArch
+<Tabs groupId="deployment-type">
+<TabItem value="RefArch" label="RefArch" default>
 
 If you've deployed Pipelines as a part of your Reference Architecture, the permissions for the `terraform-planner` task are located in `_envcommon/mgmt/read_only_permissions.yml` and the permissions for the `terraform-applier` task are located in `_envcommon/mgmt/deploy_permissions.yml`. Open and add the required permissions to each file.
 
@@ -116,8 +128,8 @@ aws-vault exec your-stage -- terragrunt apply --terragrunt-source-update -auto-a
 cd prod/$DEPLOY_RUNNER_REGION/mgmt/ecs-deploy-runner
 aws-vault exec your-prod -- terragrunt apply --terragrunt-source-update -auto-approve
 ```
-
-### Standalone
+</TabItem>
+<TabItem value="Standalone" label="Standalone">
 
 If you've deployed Pipelines as a standalone framework using the `ecs-deploy-runner` service in the Service Catalog, , you will need to locate the file in which you've defined a module block sourcing the `ecs-deploy-runner` service.
 
@@ -126,11 +138,13 @@ Modify the AWS IAM policy document being passed into the `iam_policy` variable f
 Refer to the [Variable Reference](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#reference) section for the service in the Library Reference for the full set of configuration details for this service.
 
 After you are done updating the IAM policy documents, run `terraform plan` then review the changes that will be made. Finally, run `terraform apply` to apply the changes.
+</TabItem>
+</Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "dcc02f5015eb1695f764052c1fea58c7"
+  "hash": "4f37a68ed13a6969f14abf4daeeee4d3"
 }
 ##DOCS-SOURCER-END -->
