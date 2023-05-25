@@ -273,7 +273,7 @@ was deployed successfully. The following commands will help you examine the ECS 
 
 First, you can find the available ECS clusters:
 
-```
+```bash
 aws --region us-west-2 ecs list-clusters
 ```
 
