@@ -18,9 +18,11 @@ However, for the purposes of this guide, we will create a much simpler app from 
 pieces fit together. Start with this simple app, and then, when you're ready, start adopting the more advanced
 practices from [aws-sample-app](https://github.com/gruntwork-io/aws-sample-app/).
 
-## The App
+## Deploying another app
 
-For this guide, we'll use a simple Node.js app as an example, but the same principles can be applied to any app:
+For this guide, we'll use a simple Node.js app as an example, but the same principles can be applied to any app.
+Below is a classic, "Hello World" starter app that listens for requests on port `8080`. For this example
+walkthrough, save this file as `server.js`.
 
 ```js title="server.js"
 const express = require("express")
@@ -39,10 +41,7 @@ app.listen(PORT, HOST)
 console.log(`Running on http://${HOST}:${PORT}`)
 ```
 
-That's it! It's a classic express "Hello World" starter app that listens for requests on port `8080`. For this example
-walkthrough, save this file as `server.js`.
-
-Since we need to pull in the dependencies to run this app, we will also need a corresponding `package.json`:
+Since we need to pull in the dependencies (like ExpressJS) to run this app, we will also need a corresponding `package.json`. Please save this file along side `server.js`.
 
 ```js title="package.json"
 {
@@ -60,7 +59,7 @@ Since we need to pull in the dependencies to run this app, we will also need a c
 
 ## Dockerizing
 
-In order to deploy the app on ECS, we need to Dockerize the app. If you are not familiar with the basics of Docker, we
+In order to deploy the app, we need to Dockerize the app. If you are not familiar with the basics of Docker, we
 recommend you check out our "Crash Course on Docker and Packer" from the [Gruntwork Training
 Library](https://training.gruntwork.io/p/a-crash-course-on-docker-packer).
 
@@ -78,6 +77,8 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 
+# Ensure that our Docker image is configured to `EXPOSE`
+# the port that our app is going to need for external communication.
 EXPOSE 8080
 CMD [ "npm", "start" ]
 ```
@@ -89,9 +90,6 @@ The folder structure of our sample app looks like this:
 ├── Dockerfile
 └── package.json
 ```
-
-Your actual app will be more complicated than this, but the main point to take from here is that we need to ensure our
-Docker image is configured to `EXPOSE` the port that our app is going to need for external communication.
 
 To build this Docker image from the `Dockerfile`, run:
 
@@ -307,6 +305,6 @@ Now that your code is built, tested and deployed, it's time to take a look at [M
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "3ab87096139895b5eb010273c190a55a"
+  "hash": "603ac24bfd1a233423233b9947ec8a5c"
 }
 ##DOCS-SOURCER-END -->
