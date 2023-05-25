@@ -19,17 +19,20 @@ In addition to installing dependencies, the bootstrap script will:
 
 ## Install manually
 
-### Installing git
-If you would like to install `git` manually, installation steps can be found on the [Git SCM Installing Git Guide](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+:::caution
+We do not recommend this approach. TODO: Finish this section
+:::
 
+If you prefer to install your tools manually, see the following sections on installing Git and the Gruntwork CLI.
 
-### Installing gruntwork CLI
-If you would like to install the Gruntwork CLI manually, we recommend downloading the latest release from the [GitHub releases page](https://github.com/gruntwork-io/gruntwork/releases).
+1. If you would like to install `git` manually, installation steps can be found on the [Git SCM Installing Git Guide](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+2. If you would like to install the Gruntwork CLI manually, we recommend downloading the latest release from the [GitHub releases page](https://github.com/gruntwork-io/gruntwork/releases).
+
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "dbe3d3b8ebd06409cacc75a22e26d031"
+  "hash": "2d05b1c296de0c21b3dbc09079f07e85"
 }
 ##DOCS-SOURCER-END -->
