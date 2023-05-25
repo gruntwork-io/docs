@@ -2,7 +2,7 @@
 
 CI/CD is a crucial tool for ensuring the smooth iteration and consistent delivery of Infrastructure as Code (IaC) to production environments. By adopting CI/CD practices, teams can automate the process of integrating and testing changes made to IaC code, allowing for frequent and reliable updates. With CI/CD, each change to the IaC codebase triggers an automated build process, ensuring that any new additions or modifications are properly incorporated. This enables developers to catch errors and conflicts early, facilitating collaboration and reducing the likelihood of issues surfacing during deployment.
 
-Gruntwork Pipelines is a framework that enables you to use your preferred CI tool to securely run an end-to-end pipeline for infrastructure code (Terraform) and app code (Docker or Packer). Rather than replace your existing CI/CD provider, Gruntwork Pipelines is designed to enhance the security of your existing tool. For more information please see the [full pipelines documentation](/pipelines/what-is-it/).
+Gruntwork Pipelines is a framework that enables you to use your preferred CI tool to securely run an end-to-end pipeline for infrastructure code (Terraform) and app code (Docker or Packer). Rather than replace your existing CI/CD provider, Gruntwork Pipelines is designed to enhance the security of your existing tool. For more information please see the [full pipelines documentation](/pipelines/overview/).
 
 In the guide below, we walk through how to configure Gruntwork Pipelines in your CI/CD.
 
@@ -101,6 +101,6 @@ a CircleCI environment variable.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "6f645034aeb252be1cba97808d0143a1"
+  "hash": "03e72865afe5801c953794c910d09957"
 }
 ##DOCS-SOURCER-END -->
