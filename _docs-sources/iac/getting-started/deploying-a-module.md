@@ -32,7 +32,7 @@ touch terraform-aws-gw-lambda-tutorial/modules/lambda/outputs.tf
 First, define the resources that should be created by the module. This is where you define resource level blocks provided by Terraform. For this module, we need an AWS Lambda function and an IAM role that will be used by the Lambda function.
 
 Paste the following snippet in `terraform-aws-gw-lambda/modules/lambda/main.tf`.
-```hcl
+```hcl title="terraform-aws-gw-lambda/modules/lambda/main.tf"
 resource "aws_iam_role" "lambda_role" {
   name = "${var.lambda_name}-role"
 
@@ -78,7 +78,7 @@ Now that you’ve defined the resources you want to create, you need to list out
 
 Copy the following snippet into `terraform-aws-gw-lambda-tutorial/modules/lambda/variables.tf`.
 
-```hcl
+```hcl title="terraform-aws-gw-lambda-tutorial/modules/lambda/variables.tf"
 variable "lambda_name" {
   type        = string
   description = "Name that will be used for the AWS Lambda function"
@@ -117,7 +117,7 @@ variable "timeout" {
 Terraform allows you to specify values that the module will output. Outputs are convenient ways to pass values between modules when composing a service comprised of many modules.
 
 Copy the following snippet into `terraform-aws-gw-lambda-tutorial/modules/lambda/outputs.tf`.
-```hcl
+```hcl title="terraform-aws-gw-lambda-tutorial/modules/lambda/outputs.tf"
 output "function_name" {
   value = aws_lambda_function.lambda.function_name
 }
@@ -143,7 +143,7 @@ Next, we’ll write a simple Python function that returns a string that will be 
 
 Copy the following to `terraform-aws-gw-lambda-tutorial/main.py`.
 
-```py
+```py title="terraform-aws-gw-lambda-tutorial/main.py"
 def lambda_handler(event, context):
     return "Hello from Gruntwork!"
 ```
@@ -152,7 +152,7 @@ def lambda_handler(event, context):
 
 Next, create a reference to the module you just created in `/modules/lambda/main.tf`. This code uses the `module` block from Terraform, which references the `/modules/lambda` directory using the `source` attribute. You can then specify values for the required variables specified in `/modules/lambdas/variables.tf`. Finally, we specify an output using the value of the `module.lambda.function_name` output created in `/modules/lambdas/outputs.tf`
 
-```hcl
+```hcl title="terraform-aws-gw-lambda-tutorial/main.tf"
 terraform {
   required_providers {
     aws = {
@@ -218,7 +218,7 @@ aws lambda invoke --function-name $FUNCTION_NAME --output json lambda_output
 ```
 
 The lambda `invoke` command should return a JSON blob in response with the StatusCode of 200 and the ExecutedVersion of `$LATEST`.
-```bash
+```json
 {
     "StatusCode": 200,
     "ExecutedVersion": "$LATEST"
