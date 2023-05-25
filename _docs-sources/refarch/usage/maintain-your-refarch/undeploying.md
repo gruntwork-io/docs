@@ -184,8 +184,7 @@ destroyed successfully**.
     recommended to set `force_destroy = true` prior to running destroy so that Terraform can destroy the S3 buckets.
     However, this can be cumbersome if you are destroying whole environments, as it can be difficult to flip the bit in
     every single module.
-  - Instead, oftentimes it is faster and more convenient to first empty and then delete the buckets using the AWS web console prior to
-    invoking `destroy` with `terragrunt`.
+  - Alternatively, it is often faster and more convenient to empty and delete the buckets using the AWS web console before executing the `destroy` command with `terragrunt`.
   - **IMPORTANT**: You should only do this if you are intending on destroying an entire environment. Otherwise, it is
     too easy to accidentally delete the wrong S3 bucket.
 
