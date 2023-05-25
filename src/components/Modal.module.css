@@ -1,5 +1,4 @@
 .mainContainer {
-  max-width: 420px;
   margin: auto;
   background: #f9fbfc;
   padding: 2em;
@@ -9,6 +8,21 @@
   flex-direction: column;
   justify-self: center;
   align-self: center;
+}
+
+.mainContainerDefaultWidth {
+  max-width: 420px;
+}
+
+.mainContainerLargeWidth {
+  @apply w-1/2;
+}
+
+.mainContainerDefaultHeight {
+}
+
+.mainContainerLargeHeight {
+  height: 400px;
 }
 
 html[data-theme="dark"] .mainContainer {

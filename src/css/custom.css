@@ -421,3 +421,10 @@ html[data-theme="dark"] .link-button:hover {
 .dont_show {
   display: none;
 }
+
+/**
+  * Load Tailwind CSS
+  */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

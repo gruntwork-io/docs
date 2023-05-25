@@ -1,0 +1,31 @@
+/* BASIC STRUCTURE */
+
+.SearchInput {
+  align-items: center;
+  background: var(--docsearch-searchbox-background);
+  border: 0;
+  border-radius: 40px;
+  color: var(--docsearch-muted-color);
+  /* cursor: pointer; */
+  display: flex;
+  font-weight: 500;
+  height: 36px;
+  justify-content: space-between;
+  padding: 0 8px;
+  -webkit-user-select: none;
+  user-select: none;
+  width: 100%;
+  background-color: gainsboro;
+}
+
+.SearchSubmit {
+  display: none;
+}
+
+.SearchReset {
+  display: none;
+}
+
+.searchResult {
+  height: 100px;
+}
