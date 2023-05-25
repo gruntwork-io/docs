@@ -16,7 +16,7 @@ Gruntwork provides a [_catalog_ of services](/iac/reference/) that can be added 
 
 ## Composing your own services
 
-If Gruntwork doesn't already have the service you are looking you may be able to use our [modules](../../../iac/overview/modules.md) and combine them into your own bespoke new services to accelerate your development of the functionality you need.
+If Gruntwork doesn't already have the service you are looking you may be able to use our [modules](../../../iac/overview/modules) and combine them into your own bespoke new services to accelerate your development of the functionality you need.
 
 ## Build your own modules
 
@@ -26,6 +26,6 @@ If Gruntwork doesn't have existing modules for the AWS services that you are try
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "283a6beb6af1a81fdfd317d7d66d728a"
+  "hash": "d9af92ca01253c43d339423e19ea2516"
 }
 ##DOCS-SOURCER-END -->

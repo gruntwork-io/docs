@@ -16,7 +16,7 @@ Gruntwork provides a [_catalog_ of services](/iac/reference/) that can be added 
 
 ## Composing your own services
 
-If Gruntwork doesn't already have the service you are looking you may be able to use our [modules](../../../iac/overview/modules.md) and combine them into your own bespoke new services to accelerate your development of the functionality you need.
+If Gruntwork doesn't already have the service you are looking you may be able to use our [modules](../../../iac/overview/modules) and combine them into your own bespoke new services to accelerate your development of the functionality you need.
 
 ## Build your own modules
 
