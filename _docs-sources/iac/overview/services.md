@@ -1,10 +1,10 @@
 # What is a Service?
 
-The Gruntwork Service Catalog consists of a number of customizable, production-grade infrastructure-as-code services that you can use to deploy and manage your infrastructure. This includes Docker orchestration, EC2 orchestration, load balancing, networking, databases, caches, monitoring, alerting, CI/CD, secrets management, VPN, and much more.
+The Gruntwork Service Catalog consists of a number of customizable, production-grade infrastructure-as-code services that you can use to deploy and manage your infrastructure. This includes Docker orchestration, EC2 orchestration, load balancing, networking, databases, caches, monitoring, alerting, CI/CD, secrets management, VPN, and much more. Services combine multiple modules to configure an end-to-end solution.
 
 ## When should I use a service?
 
-Services combine multiple modules to configure an end-to-end solution. These are designed for specific use cases such as EKS and ECS clusters, VPCs with public and private subnets, and databases. Using a service can save you time piecing together individual modules and testing that they’re correctly referencing each other.
+Using a service can save you time piecing together individual modules and testing that they’re correctly referencing each other. These are designed for specific use cases such as EKS and ECS clusters, VPCs with public and private subnets, and databases. 
 
 For example, the `eks-cluster` service combines all the modules you need to run an EKS (Kubernetes) cluster in a typical production environment, including modules for the control plane, worker nodes, secrets management, log aggregation, alerting, and so on.
 

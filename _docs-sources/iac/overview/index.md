@@ -2,8 +2,6 @@
 
 The Gruntwork Infrastructure as Code Library (IaC Library) is a collection of reusable code that enables you to deploy and manage infrastructure quickly and reliably. It promotes code reusability, modularity, and consistency in infrastructure deployments. We’ve taken the thousands of hours we spent building infrastructure on AWS and condensed all that experience and code into pre-built packages or modules.  
 
-The library consists of two types of code: Modules & Services
-
 ## Modules
 
 Modules are reusable code components that are used to deploy and manage specific pieces of infrastructure. These modules encapsulate the configuration and resource definitions required to create and manage a particular component, such as a VPC, ECS cluster, or an Auto Scaling Group. For more information on modules check out the [Modules page](/iac/overview/modules/).
@@ -25,3 +23,5 @@ The Gruntwork IaC Library is deployed using the following tools:
 1. [Packer](https://www.packer.io/). Used to define and manage _machine images_ (e.g., VM images). The main use case is
    to package code as [Amazon Machine Images (AMIs)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)
    that run on EC2 instances. Once you’ve built an AMI, you use Terraform to deploy it into AWS.
+
+1. [Terratest](https://terratest.gruntwork.io/). Used for automated testing of modules and services. 
