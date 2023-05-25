@@ -1,8 +1,23 @@
+---
+title: "Extending your Reference Architecture"
+---
 
-# Extending and modifying your Reference Architecture 
+# Extending and modifying your Reference Architecture
 
-Haxx0r ipsum Linus Torvalds hello world null python fail epoch. Less thread less xss chown over clock bin baz unix warez malloc printf packet sniffer leet semaphore linux gnu new it's a feature. Recursively tcp big-endian var ack fork else ascii foo infinite loop gobble back door vi overflow char spoof loop cat segfault.
+Your Reference Architecture is delivered as a collection of IaC code. You will grow and evolve this codebase through out the lifetime of your cloud deployment. There are a few ways in which you can extend and modify your Reference Architecture:
 
-Mutex overflow leet hexadecimal ifdef pragma blob afk worm hash leapfrog protected private break root. Bubble sort big-endian baz crack less grep default fail void memory leak long bar var ctl-c loop. Tera class concurrently bubble sort interpreter flush then wannabee stack hello world server sql it's a feature.
+- You can immediately add any off-the-shelf Gruntwork services.
+- You can create your own services using any Gruntwork modules.
+- You can build your own modules and combine them into your own services.
 
-Double Linus Torvalds big-endian socket fail d00dz ddos bit headers daemon wannabee ascii bar buffer flood. Tunnel in leapfrog boolean port ifdef baz terminal fork tera snarf race condition irc sql interpreter pwned *.* win hello world. Warez highjack packet ip todo function giga fatal public.
+## Use Gruntwork's services
+
+Gruntwork provides a [_catalog_ of services](/iac/reference/) that can be added by directly referencing them in your terragrunt configuration. Check out the [Using a Service](/iac/usage/using-a-service) docs to learn how you can quickly start using our services in your own Reference Architecture.
+
+## Composing your own services
+
+If Gruntwork doesn't already have the service you are looking you may be able to use our [modules](/iac/overview/modules) and [combine them into your own bespoke new services](/iac/usage/composing-your-own-service) to accelerate your development of the functionality you need. Please check out how you can start [using modules](/iac/usage/using-a-module).
+
+## Build your own modules
+
+If Gruntwork doesn't have existing modules for the AWS services that you are trying to deploy, you can always [create and deploy your own modules](/iac/getting-started/deploying-a-module), compose them into your on bespoke services and add them to your Reference Architecture.
