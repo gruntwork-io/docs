@@ -7,11 +7,11 @@ You can SSH to any of your EC2 Instances two different ways:
 
 Every EC2 instance has ssh-grunt installed, which allows you to manage SSH access using IAM Groups. Here's how it works:
 
-1. [Add users to SSH IAM Groups](#add-users-to-ssh-iam-groups)
-1. [Upload your public SSH key](#upload-your-public-ssh-key)
-1. [Figure out your SSH username](#figure-out-your-ssh-username)
-1. [Connect to VPN](#conntect-to-vpn)
-1. [SSH to an EC2 instance](#ssh-to-an-ssh-instance)
+1. Add users to SSH IAM Groups
+1. Upload your public SSH key
+1. Figure out your SSH username
+1. Connect to VPN
+1. SSH to an EC2 instance
 
 ## Add users to SSH IAM Groups
 
@@ -62,6 +62,6 @@ As part of the Reference Architecture deployment, Gruntwork will create EC2 Key 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "39249cea686e5d56a55f862611512b97"
+  "hash": "4f8b26ab96536c85058b65c7deb50da3"
 }
 ##DOCS-SOURCER-END -->

@@ -18,7 +18,7 @@ Please note that the root user account can do anything in your AWS account, bypa
 1. Enable Multi-Factor Auth (MFA): Follow [these instructions](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-root) to enable MFA for the root user.
 After this initial set up, you should NOT use the root user account afterward except in very rare circumstances. (e.g., if you get locked out of your IAM User account and no one has permissions to reset your password). For day to day tasks, you should use an IAM User instead, as described in the next section.
 
-Please note that you'll want to repeat the process above of resetting the password and enabling MFA for every account in your organization: dev, stage, prod, shared, security, logs, and the root account too.
+Please note that you'll want to repeat the process above of resetting the password and enabling MFA for every account in your organization: dev, stage, prod, shared, security, logs, and the root account.
 
 ## Step 2. Configure your IAM user
 

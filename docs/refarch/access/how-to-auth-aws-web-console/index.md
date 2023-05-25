@@ -15,12 +15,12 @@ Once you have these details, open your web browser to the Login URL, enter your 
 To authenticate to any other account (e.g., dev, stage, prod), you need to:
 
 1. Authenticate to the security account. Since all IAM users are defined in this account, you must always authenticate to it first.
-1. [Switch to an IAM Role in the other AWS account](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-console.html). To access other accounts, you "switch" to (AKA, "assume") an IAM Role defined in that account: e.g., to get read-only access to an account, you could assume the allow-read-only-access-from-other-accounts IAM Role. See the cross-account-iam-roles module for the default set of IAM Roles that exist in each account. Note that to be able to access an IAM Role xxx in some account yyy, your IAM User must be in an IAM Group that has permissions to assume that IAM Role. For example, to assume the allow-read-only-access-from-other-accounts IAM Role in the prod account, you must be in the _account.prod-read-only IAM Group. See Configure other IAM Users for how you add users to IAM Groups.
+1. [Switch to an IAM Role in the other AWS account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-console.html). To access other accounts, you "switch" to (AKA, "assume") an IAM Role defined in that account: e.g., to get read-only access to an account, you could assume the allow-read-only-access-from-other-accounts IAM Role. See the cross-account-iam-roles module for the default set of IAM Roles that exist in each account. Note that to be able to access an IAM Role xxx in some account yyy, your IAM User must be in an IAM Group that has permissions to assume that IAM Role. For example, to assume the allow-read-only-access-from-other-accounts IAM Role in the prod account, you must be in the _account.prod-read-only IAM Group. See Configure other IAM Users for how you add users to IAM Groups.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "413d780fa22aeb95975267bf94fc7572"
+  "hash": "3e51f8298adf6c055e3fe7927a91b242"
 }
 ##DOCS-SOURCER-END -->
