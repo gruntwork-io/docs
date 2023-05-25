@@ -14,15 +14,15 @@ Once you’ve linked your account, the notice on the home page will disappear an
 
 :::
 
-## Related FAQs
+## Related Knowledge Base Discussions
 
 - [I have linked my GitHub Account but do not have code access](https://github.com/orgs/gruntwork-io/discussions/715)
-- [How can I change my GitHub account(unlink/link)?](https://github.com/orgs/gruntwork-io/discussions/713)
+- [How can I change my GitHub account (unlink/link)?](https://github.com/orgs/gruntwork-io/discussions/713)
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "3508aa52df06adc08da5233176740dfd"
+  "hash": "3591dc141fc31d6d7a1b84f90996d21e"
 }
 ##DOCS-SOURCER-END -->

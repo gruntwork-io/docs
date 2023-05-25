@@ -1,3 +1,8 @@
+const kbLink =
+  "https://github.com/orgs/gruntwork-io/discussions?discussions_q=" +
+  // filter by discussions with the label "s:Reference Architecture" & sort by top voted discussions first
+  encodeURIComponent('label:"s:Reference Architecture" sort:top')
+
 const sidebar = [
   {
     label: "Reference Architecture",
@@ -48,6 +53,11 @@ const sidebar = [
           "refarch/usage/pipelines-integration/index",
           "refarch/usage/maintain-your-refarch/undeploying",
         ],
+      },
+      {
+        type: "link",
+        label: "Knowledge Base",
+        href: kbLink,
       },
     ],
   },

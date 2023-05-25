@@ -1,4 +1,4 @@
-const developerPortalKnowledgeBaseDiscussions =
+const kbLink =
   "https://github.com/orgs/gruntwork-io/discussions?discussions_q=" +
   // filter by discussions with the label "s:dev-portal" & sort by top voted discussions first
   encodeURIComponent("label:s:dev-portal sort:top")
@@ -14,8 +14,8 @@ const sidebar = [
       "developer-portal/link-github-id",
       {
         type: "link",
-        label: "FAQ",
-        href: developerPortalKnowledgeBaseDiscussions,
+        label: "Knowledge Base",
+        href: kbLink,
       },
     ],
   },
