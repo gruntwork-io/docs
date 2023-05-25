@@ -1,5 +1,3 @@
-import BrowserWindow from '@site/src/components/BrowserWindow';
-
 # Adding a new account
 
 This document is a guide on how to add a new AWS account to your Reference Architecture. This is useful if you have a
@@ -296,6 +294,6 @@ to provision new infrastructure in the account.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "a5f0915ddeaa786c72f5f63e8b50ae55"
+  "hash": "b2b1ea1f7a9bfb0191b2280245104d15"
 }
 ##DOCS-SOURCER-END -->

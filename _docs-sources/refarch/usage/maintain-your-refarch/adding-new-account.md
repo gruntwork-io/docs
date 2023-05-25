@@ -1,5 +1,3 @@
-import BrowserWindow from '@site/src/components/BrowserWindow';
-
 # Adding a new account
 
 This document is a guide on how to add a new AWS account to your Reference Architecture. This is useful if you have a
