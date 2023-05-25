@@ -14,7 +14,7 @@ We release new module versions using GitHub releases, refer to the release notes
 The git tag created by the release can then be referenced in the source argument for a module block sourcing from a git URL.
 
 For example, below is a module block referencing version `0.15.4` of the `single-server` submodule from the `terraform-aws-server` module.
-```tf
+```hcl
 module "my_instance" {
   source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.15.4"
 
@@ -37,6 +37,6 @@ Once you start using versioned modules, it’s important to keep the modules up 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "8b39ad994f866b9f645ce778127de648"
+  "hash": "b6f48fbb0948284bf77cc0b57360c905"
 }
 ##DOCS-SOURCER-END -->

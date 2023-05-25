@@ -10,7 +10,7 @@ Below is a module block referencing version `0.15.3` of the `single-server` subm
 
 To update to version `0.15.4`, you update the value to the right of `ref=` in the source attribute. Since the version number denotes that this update is backwards compatible, it should not require any other changes.
 
-```tf
+```hcl
 module "my_instance" {
   # Old
   # source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.15.3"
