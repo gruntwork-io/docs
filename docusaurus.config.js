@@ -107,7 +107,7 @@ const config = {
               {
                 type: "doc",
                 label: "Gruntwork Pipelines",
-                docId: "pipelines/what-is-it/index"
+                docId: "pipelines/overview/index"
               },
               {
                 type: "doc",

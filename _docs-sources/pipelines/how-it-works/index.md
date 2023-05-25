@@ -1,13 +1,12 @@
 # How it works
 
-## Block Diagram
-
 ![Gruntwork Pipelines Architecture](/img/guides/build-it-yourself/pipelines/tftg-pipeline-architecture.png)
 
 ## External CI Tool
 
-Gruntwork Pipelines can be used with any external CI/CD tool. The role of the CI/CD tool is to trigger jobs
-inside Gruntwork Pipelines. We have [example configurations](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production/infrastructure-live/_ci/scripts)
+Gruntwork Pipelines has been validated with CircleCI, Github Actions, and Gitlab. However, it can be used with any external CI/CD tool.
+The role of the CI/CD tool is to trigger jobs inside Gruntwork Pipelines.
+We have [example configurations](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production/infrastructure-live/_ci/scripts)
 that identify changed terraform modules and call the Gruntwork Pipelines invoker Lambda function.
 
 By default, the invoker Lambda function is run by a CLI tool called `infrastructure-deployer` from within your CI tool.
@@ -32,11 +31,11 @@ Usage:
 
 When launching a task, you may optionally set the following useful flags:
 
-- `max-wait-time` (default 2h0m0s) - timeout length for the action
-- `task-cpu` - A custom number of CPU units to allocate to the ECS task
-- `task-memory` - A custom number of memory units to allocate to the ECS task
+- `max-wait-time` (default 2h0m0s) — timeout length for the action
+- `task-cpu` — A custom number of CPU units to allocate to the ECS task
+- `task-memory` — A custom number of memory units to allocate to the ECS task
 
-To get the list of supported containers and scripts, pass in the --describe-containers option. For example:
+To get the list of supported containers and scripts, pass in the `--describe-containers` option. For example:
 
 `infrastructure-deployer --describe-containers --aws-region us-west-2`
 
@@ -57,17 +56,17 @@ It has 3 primary roles:
 ### Standard Configuration
 
 The ECS deploy runner is flexible and can be configured for many tasks.  The [standard configuration](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner-standard-configuration)
-is a set of 4 ECS task definitions that we ship with Pipelines by default.
+is a set of ECS task definitions that we ship with Pipelines by default.
 Once you have your pipeline deployed you can [modify](../maintain/extending.md) the configuration as you like.
 The configuration defines what scripts are accepted by the invoker Lambda and which arguments may be provided. The invoker Lambda
-will reject ANY script or argument not defined in the ECS Deploy Runner configuration.
-The 4 default tasks are defined below.
+will reject _any_ script or argument not defined in the ECS Deploy Runner configuration.
+The default tasks are defined below.
 
 #### Docker Image Builder (Kaniko)
 
 The Docker Image Builder task definition allows CI jobs to build docker images.
 This ECS task uses an open source library called [Kaniko](https://github.com/GoogleContainerTools/kaniko) to enable docker builds from within a docker container.
-We provide a [Docker image](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner/docker/kaniko) based on kaniko for this task.
+We provide a [Docker image](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner/docker/kaniko) based on Kaniko for this task.
 
 #### Packer AMI Builder
 
@@ -77,5 +76,5 @@ a [Docker image](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modu
 #### Terraform Planner and Applier
 
 The Terraform Planner task definition and Terraform Applier task definition are very similar. They allow CI jobs to
-plan and apply terraform and terragrunt code. These tasks run in the same [docker image](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner/docker/deploy-runner)
-as the AMI builder
+plan and apply Terraform and Terragrunt code. These tasks run in the same [Docker image](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner/docker/deploy-runner)
+as the AMI builder.
