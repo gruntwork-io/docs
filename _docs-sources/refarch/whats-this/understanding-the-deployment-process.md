@@ -28,7 +28,7 @@ The deployment phase is primarily [our responsibility](../../intro/overview/what
 The adoption phase is primarily [your responsibility](../../intro/overview/what-you-provide).
 
 - You complete “last mile” configuration following our handoff docs, including final Pipelines integrations with your CI/CD of choice
-- You migrate the `infrastructure-live-${COMPANY_NAME}` repo to your own Version Control System or Github Organization
+- You migrate the `infrastructure-live-${YOUR_COMPANY_NAME}` repo to your own Version Control System or Github Organization
 - You revoke Gruntwork access to your AWS account
 - At this points, your AWS accounts are fully in your control
 - From this point forward, we expect you to self-serve, with assistance from Gruntwork Support, as needed
