@@ -1,4 +1,4 @@
-# Monitoring, Alerting and Logging
+# Monitoring, Alerting, and Logging
 
 You'll want to see what's happening in your AWS account:
 
