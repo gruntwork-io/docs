@@ -1,6 +1,12 @@
 {
   "module": "backup-openvpn-pki",
   "releases": {
+    "v0.26.1": {
+      "contains_changes": false
+    },
+    "v0.26.0": {
+      "contains_changes": false
+    },
     "v0.25.0": {
       "contains_changes": false
     },

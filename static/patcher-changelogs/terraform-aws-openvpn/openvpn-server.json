@@ -1,6 +1,12 @@
 {
   "module": "openvpn-server",
   "releases": {
+    "v0.26.1": {
+      "contains_changes": false
+    },
+    "v0.26.0": {
+      "contains_changes": true
+    },
     "v0.25.0": {
       "contains_changes": true
     },

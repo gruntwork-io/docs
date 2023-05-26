@@ -1,6 +1,9 @@
 {
   "module": "attach-eni",
   "releases": {
+    "v0.15.3": {
+      "contains_changes": true
+    },
     "v0.15.2": {
       "contains_changes": false
     },
