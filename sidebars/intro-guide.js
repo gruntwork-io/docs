@@ -1,6 +1,6 @@
 const sidebar = [
   {
-    label: "Overview",
+    label: "Introduction",
     type: "category",
     collapsible: false,
     items: [

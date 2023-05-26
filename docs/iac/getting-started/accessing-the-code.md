@@ -1,15 +1,17 @@
 # Accessing the code
 
-Gruntwork uses Github to host and share code with our customers.
+Gruntwork provides all code included in your subscription to the Infrastructure as Code (IaC) library through GitHub. To gain access to the IaC Library, you must first [create an account in the Developer Portal](../../developer-portal/create-account.md). Once you have an account, you must [link your GitHub ID](../../developer-portal/link-github-id) to your Developer Portal account to gain access to the IaC Library.
 
-## How to access the IaC library
+## Accessing Modules and Services in the IaC library
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Volutpat diam ut venenatis tellus in metus vulputate eu. Massa sed elementum tempus egestas sed sed risus. Urna id volutpat lacus laoreet non curabitur gravida. Sed id semper risus in hendrerit. Orci dapibus ultrices in iaculis nunc sed. Sed cras ornare arcu dui vivamus. Sem nulla pharetra diam sit amet nisl suscipit. Elit pellentesque habitant morbi tristique senectus et netus et malesuada. Bibendum arcu vitae elementum curabitur. Amet nisl purus in mollis nunc sed id semper risus. Egestas purus viverra accumsan in nisl. Arcu non sodales neque sodales ut. Tincidunt eget nullam non nisi est sit amet facilisis magna. Porttitor massa id neque aliquam vestibulum morbi blandit cursus. Eu sem integer vitae justo eget. Sed libero enim sed faucibus. Proin sed libero enim sed faucibus turpis in. Vitae elementum curabitur vitae nunc sed velit dignissim sodales ut. Amet facilisis magna etiam tempor orci eu lobortis elementum nibh.
+Once you have gained access to the Gruntwork IaC library, you can view the source code for our modules and services in [GitHub](https://github.com/orgs/gruntwork-io/repositories). For a full list of modules and services, check the [Library Reference](../../iac/reference/index.md).
+
+In GitHub, each IaC repository is prefixed with `terraform-aws-` then a high level description of the modules it contains. For example, Amazon SNS, SQS, MSK, and Kinesis are located in the `terraform-aws-messaging` repository. In each repository, the modules are located in the `modules` directory. Example usage and tests are provided for each module in the `examples` and `tests` directories, respectively.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b45fa8dca0912eb3f8562327f2dc3429"
+  "hash": "bcd57ad0a4f3270656d998deb53df2b0"
 }
 ##DOCS-SOURCER-END -->

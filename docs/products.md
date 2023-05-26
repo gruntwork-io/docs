@@ -15,7 +15,7 @@ import CenterLayout from "/src/components/CenterLayout"
 
 <Card
   title="Infrastructure as Code Library"
-  href="/iac/whats-this/">
+  href="/iac/overview/">
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus gravida quis blandit turpis cursus.
 </Card>
 <Card
@@ -24,7 +24,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus gravida quis blandit turpis cursus.</Card>
 <Card
   title="Pipelines"
-  href="/pipelines/what-is-it">
+  href="/pipelines/overview">
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus gravida quis blandit turpis cursus.
 </Card>
 <Card
@@ -47,6 +47,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7032c0e9bdcced083653c96693f92ae5"
+  "hash": "63dcbb806b5ae30f5518511920444ad1"
 }
 ##DOCS-SOURCER-END -->

@@ -1,19 +1,34 @@
-# Understanding the deployment process
+# Understanding the Deployment Process
 
-Haxx0r ipsum Linus Torvalds hello world null python fail epoch. Less thread less xss chown over clock bin baz unix warez malloc printf packet sniffer leet semaphore linux gnu new it's a feature. Recursively tcp big-endian var ack fork else ascii foo infinite loop gobble back door vi overflow char spoof loop cat segfault.
+The Gruntwork Reference Architecture has three deployment phases.
 
-Mutex overflow leet hexadecimal ifdef pragma blob afk worm hash leapfrog protected private break root. Bubble sort big-endian baz crack less grep default fail void memory leak long bar var ctl-c loop. Tera class concurrently bubble sort interpreter flush then wannabee stack hello world server sql it's a feature.
+### Configuration
 
-Double Linus Torvalds big-endian socket fail d00dz ddos bit headers daemon wannabee ascii bar buffer flood. Tunnel in leapfrog boolean port ifdef baz terminal fork tera snarf race condition irc sql interpreter pwned *.* win hello world. Warez highjack packet ip todo function giga fatal public.
+Configuration of the Gruntwork Reference Architecture is primarily [your responsibility](../../intro/overview/what-you-provide).
 
-# Phase 1: Configuration 
+- We deliver a templated `infrastructure-live-${YOUR_COMPANY_NAME}` repository to you in our GitHub organization
+- You access the repo in GitHub via invitation in the [Gruntwork Dev Portal](https://app.gruntwork.io)
+- You use the Gruntwork CLI wizard to create accounts and set config options
+- Pre-flight checks run via Github Actions to determine when the repo is ready for deployment
+- The AWS accounts you are deploying the Reference Architecture to should be empty at conclusion of this phase
+- You merge the PR to the `main` branch to initiate the deployment phase
 
-Haxx0r ipsum Linus Torvalds hello world null python fail epoch. Less thread less xss chown over clock bin baz unix warez malloc printf packet sniffer leet semaphore linux gnu new it's a feature. Recursively tcp big-endian var ack fork else ascii foo infinite loop gobble back door vi overflow char spoof loop cat segfault.
+### Deployment
 
-# Phase 2: Delivery 
+The deployment phase is primarily [our responsibility](../../intro/overview/what-we-provide.md#gruntwork-reference-architecture).
 
-Haxx0r ipsum Linus Torvalds hello world null python fail epoch. Less thread less xss chown over clock bin baz unix warez malloc printf packet sniffer leet semaphore linux gnu new it's a feature. Recursively tcp big-endian var ack fork else ascii foo infinite loop gobble back door vi overflow char spoof loop cat segfault.
+- We monitor the deployment and fix any errors that occur as needed
+- In some cases, we may need to communicate with you to resolve issues (e.g. AWS quota problems)
+- Deployment is completed and the `infrastructure-live-${YOUR_COMPANY_NAME}` repo is populated
+- During the deployment phase, you should not attempt to modify resources in or respond to any automated notifications from your AWS accounts
+- Once the deployment is complete, you will receive an email
 
-# Phase 3: Adoption 
+### Adoption
 
-Haxx0r ipsum Linus Torvalds hello world null python fail epoch. Less thread less xss chown over clock bin baz unix warez malloc printf packet sniffer leet semaphore linux gnu new it's a feature. Recursively tcp big-endian var ack fork else ascii foo infinite loop gobble back door vi overflow char spoof loop cat segfault.
+The adoption phase is primarily [your responsibility](../../intro/overview/what-you-provide).
+
+- You complete “last mile” configuration following our handoff docs, including final Pipelines integrations with your CI/CD of choice
+- You migrate the `infrastructure-live-${YOUR_COMPANY_NAME}` repo to your own Version Control System or Github Organization
+- You revoke Gruntwork access to your AWS account
+- At this points, your AWS accounts are fully in your control
+- From this point forward, we expect you to self-serve, with assistance from Gruntwork Support, as needed
