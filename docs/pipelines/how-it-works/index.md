@@ -4,7 +4,7 @@
 
 ## External CI Tool
 
-Gruntwork Pipelines has been validated with CircleCI, Github Actions, and Gitlab. However, it can be used with any external CI/CD tool.
+Gruntwork Pipelines has been validated with [CircleCI](https://circleci.com/), [GitHub Actions](https://github.com/features/actions), and [GitLab](https://about.gitlab.com/). However, it can be used with any external CI/CD tool.
 The role of the CI/CD tool is to trigger jobs inside Gruntwork Pipelines.
 We have [example configurations](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production/infrastructure-live/_ci/scripts)
 that identify changed terraform modules and call the Gruntwork Pipelines invoker Lambda function.
@@ -21,9 +21,9 @@ the logs back to your CI tool as if they were running locally.
 
 ### Infrastructure Deployer CLI
 
-The [infrastructure deployer cli tool](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/infrastructure-deployer)
+The [Infrastructure Deployer CLI tool](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/infrastructure-deployer)
 serves as the interface between your chosen CI tool and Gruntwork Pipelines. It is used to trigger
-jobs in the deploy runner. Primarily, it calls instances of the invoker lambda described in the next section.
+jobs in the deploy-runner. Primarily, it calls instances of the invoker lambda described in the next section.
 
 Usage:
 
@@ -31,7 +31,7 @@ Usage:
 
 When launching a task, you may optionally set the following useful flags:
 
-- `max-wait-time` (default 2h0m0s) — timeout length for the action
+- `max-wait-time` (default 2h0m0s) — timeout length for the action, this can be any golang parseable string
 - `task-cpu` — A custom number of CPU units to allocate to the ECS task
 - `task-memory` — A custom number of memory units to allocate to the ECS task
 
@@ -40,13 +40,13 @@ To get the list of supported containers and scripts, pass in the `--describe-con
 `infrastructure-deployer --describe-containers --aws-region us-west-2`
 
 This will list all the containers and the scripts for each container that can be invoked using the invoker function of
-the ECS deploy runner stack deployed in us-west-2.
+the ECS deploy runner stack deployed in `us-west-2`.
 
 
 ### Invoker Lambda
 
-The [Invoker Lambda](https://github.com/gruntwork-io/terraform-aws-ci/blob/main/modules/ecs-deploy-runner/main_lambda.tf)
-is an AWS Lambda function written in python that acts as the AWS entrypoint for your pipeline.
+The [Invoker Lambda](https://github.com/gruntwork-io/terraform-aws-ci/blob/main/modules/ecs-deploy-runner/invoker-lambda/invoker/index.py)
+is an AWS Lambda function written in Python that acts as the AWS entrypoint for your pipeline.
 It has 3 primary roles:
 
 1. Serving as a gatekeeper for pipelines runs, determining if a particular command is allowed to be run, and if the arguments are valid
@@ -57,7 +57,7 @@ It has 3 primary roles:
 
 The ECS deploy runner is flexible and can be configured for many tasks.  The [standard configuration](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner-standard-configuration)
 is a set of ECS task definitions that we ship with Pipelines by default.
-Once you have your pipeline deployed you can [modify](../maintain/extending.md) the configuration as you like.
+Once you have your pipeline deployed you can [modify the ECS Deploy Runner configuration](../maintain/extending.md) as you like.
 The configuration defines what scripts are accepted by the invoker Lambda and which arguments may be provided. The invoker Lambda
 will reject _any_ script or argument not defined in the ECS Deploy Runner configuration.
 The default tasks are defined below.
@@ -83,6 +83,6 @@ as the AMI builder.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "172b5783488f18bfd5cf60c112dabdd6"
+  "hash": "d7c7153a684c2a16a19a9dfadbf682c7"
 }
 ##DOCS-SOURCER-END -->

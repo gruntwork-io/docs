@@ -14,6 +14,11 @@ const sidebar = [
                   type: "doc",
                   id: "pipelines/overview/index"
                 },
+                {
+                  label: "How it works",
+                  type: "doc",
+                  id: "pipelines/how-it-works/index",
+                },
               ]
             },
             {
@@ -21,11 +26,6 @@ const sidebar = [
               type: "category",
               collapsible: false,
               items: [
-                {
-                  label: "How it works",
-                  type: "doc",
-                  id: "pipelines/how-it-works/index",
-                },
                 {
                   label: "Single Account Tutorial",
                   type: "doc",
