@@ -10,12 +10,28 @@ It is important to regularly update your version of Terraform to ensure you have
 
 Neglecting regular updates may lead to increased complexity and difficulty when attempting to upgrade from multiple versions behind. This was particularly true during the pre-1.0 era of Terraform where significant changes and breaking modifications were more frequent.
 
-https://github.com/tfutils/tfenv
+The test pipeline's workhorse, the ECS Deploy Runner, includes a Terraform version manager,
+[`tfenv`](https://github.com/tfutils/tfenv), so that you can run multiple versions of Terraform with your
+`infrastructure-live` repo. This is especially useful when you want to upgrade Terraform versions.
+
+1. You'll first need to add a `.terraform-version` file to the module directory of the module you're upgrading.
+1. In that file, specify the Terraform version as a string, e.g. `1.0.8`. Then push your changes to a branch.
+1. The test pipeline will detect the change to the module and run `plan` on that module. When it does this, it will
+   use the Terraform version you specified in the `.terraform-version` file.
+1. If the `plan` output looks good and there are no issues, you can approve and merge to your default protected branch. Once the code is merged, the changes will be `apply`ed
+   using the newly specified Terraform version.
+
+   :::info
+
+   The `.tfstate` state file will be written in the version specified by the `.terraform-version` file. You can verify this by viewing the state file in the S3
+   bucket containing all your Reference Architecture's state files.
+
+   :::
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "606f088410472a2fdec97b722ae78a87"
+  "hash": "c67cfbfdf13c6a38dd41d140f8a8e4cd"
 }
 ##DOCS-SOURCER-END -->
