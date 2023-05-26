@@ -1,11 +1,13 @@
-# SSH to EC2 Instances 
+# SSH to EC2 Instances
+
 You can SSH to any of your EC2 Instances two different ways:
-1. (Recommended) ssh-grunt
+
+1. (Recommended) `ssh-grunt`
 1. (For emergency / backup use only) EC2 Key Pairs
 
-## (Recommended) ssh-grunt
+## (Recommended) `ssh-grunt`
 
-Every EC2 instance has ssh-grunt installed, which allows you to manage SSH access using IAM Groups. Here's how it works:
+Every EC2 instance has `ssh-grunt` installed, which allows you to manage SSH access using IAM Groups. Here's how it works:
 
 1. Add users to SSH IAM Groups
 1. Upload your public SSH key
@@ -15,7 +17,7 @@ Every EC2 instance has ssh-grunt installed, which allows you to manage SSH acces
 
 ## Add users to SSH IAM Groups
 
-When running ssh-grunt, each EC2 instance specifies from which IAM Groups it will allow SSH access, and SSH access with sudo permissions. By default, these IAM Group names are ssh-grunt-users and ssh-grunt-sudo-users, respectively. To be able to SSH to an EC2 instance, your IAM User must be added to one of these IAM Groups (see Configure other IAM Users for instructions).
+When running `ssh-grunt`, each EC2 instance specifies from which IAM Groups it will allow SSH access, and SSH access with sudo permissions. By default, these IAM Group names are `ssh-grunt-users` and `ssh-grunt-sudo-users`, respectively. To be able to SSH to an EC2 instance, your IAM User must be added to one of these IAM Groups (see Configure other IAM Users for instructions).
 
 ## Upload your public SSH key
 
@@ -25,11 +27,11 @@ When running ssh-grunt, each EC2 instance specifies from which IAM Groups it wil
 
 ## Figure out your SSH username
 
-Your username for SSH is typically the same as your IAM User name. However, if your IAM User name has special characters that are not allowed by operating systems (e.g., most puncuation is not allowed), your SSH username may be a bit different, as specified in the ssh-grunt documentation. For example:
+Your username for SSH is typically the same as your IAM User name. However, if your IAM User name has special characters that are not allowed by operating systems (e.g., most punctuation is not allowed), your SSH username may be a bit different, as specified in the ssh-grunt documentation. For example:
 
-1. If your IAM User name is josh, your SSH username will also be josh.
-1. If your IAM User name is josh@gruntwork.io, your SSH username will be josh.
-1. If your IAM User name is `_gruntwork.josh.padnick`, your SSH username will be `gruntwork_josh_padnick`.
+1. If your IAM User name is `jane`, your SSH username will also be `jane`.
+1. If your IAM User name is `jane@example.com`, your SSH username will be `jane`.
+1. If your IAM User name is `_example.jane.doe`, your SSH username will be `example_jane_doe`.
 
 ## Connect to VPN
 
@@ -39,18 +41,20 @@ Since just about all the EC2 instances are deployed into public subnets, you won
 
 Let's assume that:
 
-1.  Your IAM User name is josh.
+1.  Your IAM User name is jane.
 1.  You've uploaded your public SSH key to your IAM User profile.
-1.  Your private key is located at /Users/josh/.ssh/id_rsa on your local machine.
+1.  Your private key is located at `/Users/jane/.ssh/id_rsa` on your local machine.
 1.  Your EC2 Instance's IP address is 1.2.3.4.
 
 Then you can SSH to the EC2 Instance as follows:
 
 # Do this once to load your SSH Key into the SSH Agent
-`ssh-add /Users/josh/.ssh/id_rsa`
+
+`ssh-add /Users/jane/.ssh/id_rsa`
 
 # Every time you want to login to an EC2 Instance, use this command
-`ssh josh@1.2.3.4`
+
+`ssh jane@1.2.3.4`
 
 (For emergency / backup use only) EC2 Key Pairs
 
