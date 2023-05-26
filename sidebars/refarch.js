@@ -15,8 +15,8 @@ const sidebar = [
         collapsible: false,
         items: [
           "refarch/whats-this/what-is-a-reference-architecture",
-          "refarch/whats-this/understanding-the-deployment-process"
-        ]
+          "refarch/whats-this/understanding-the-deployment-process",
+        ],
       },
       {
         label: "Configuration",
@@ -36,6 +36,8 @@ const sidebar = [
         items: [
           "refarch/access/setup-auth/index",
           "refarch/access/how-to-auth-vpn/index",
+          "refarch/access/how-to-auth-aws-web-console/index",
+          "refarch/access/how-to-auth-CLI/index",
           "refarch/access/how-to-auth-ec2/index",
         ],
       },
