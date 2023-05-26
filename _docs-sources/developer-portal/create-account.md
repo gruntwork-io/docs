@@ -31,7 +31,7 @@ For security, sign in emails expire after 10 minutes. You can enter your email a
 
 If you are the admin for your organization, you'll be prompted to confirm details including your company address and phone number, as well as a billing email. Provide the required information and click **Continue** to finish signing in.
 
-## Related FAQs
+## Related Knowledge Base Discussions
 
 - [Invitation to the Developer Portal not received](https://github.com/orgs/gruntwork-io/discussions/716)
 - [Trouble logging into the Portal with email](https://github.com/orgs/gruntwork-io/discussions/395)
