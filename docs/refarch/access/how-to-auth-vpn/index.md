@@ -1,8 +1,6 @@
-# VPN Authentication 
+# VPN Authentication
 
-Most of the AWS resources that comprise the Reference Architecture run in private subnets, which means they do not have a public IP address, and cannot be reached directly from the public Internet. This reduces the "surface area" that attackers can reach. Of course, you still need access into the VPCs, so we exposed a single entrypoint into the network: an [OpenVPN server](https://openvpn.net/).
-
-You'll need to [install an OpenVPN client](#install-an-openvpn-client), [add your user to an IAM group with proper permissions](#join-the-openvpn-iam-group), and [generate and install an OpenVPN configuration file](#use-openvpn-admin-to-generate-a-configuration-file). Once this is done, you'll be able to [connect to your OpenVPN server](#connect-to-the-openvpn-server).
+Most of the AWS resources that comprise the Reference Architecture run in private subnets, which means they do not have a public IP address, and cannot be reached directly from the public Internet. This reduces the "surface area" that attackers can reach. Of course, you still need access into the VPCs so we exposed a single entrypoint into the network: an [OpenVPN server](https://openvpn.net/).
 
 ## Install an OpenVPN client
 
@@ -10,13 +8,21 @@ There are free and paid OpenVPN clients available for most major operating syste
 
 1. OS X: [Viscosity](https://www.sparklabs.com/viscosity/) or [Tunnelblick](https://tunnelblick.net/).
 1. Windows: [official client](https://openvpn.net/index.php/open-source/downloads.html).
-1. Linux: `apt-get install openvpn` or `yum install openvpn`.
+1. Linux:
+
+   ```bash title="Debian"
+   apt-get install openvpn
+   ```
+
+   ```bash title="Redhat"
+   yum install openvpn
+   ```
 
 ## Join the OpenVPN IAM Group
 
 Your IAM User needs access to SQS queues used by the OpenVPN server. Since IAM users are defined only in the security account, and the OpenVPN servers are defined in separate AWS accounts (stage, prod, etc), that means you need to authenticate to the accounts with the OpenVPN servers by assuming an IAM Role that has access to the SQS queues in those accounts.
 
-To be able to assume an IAM Role, your IAM user needs to be part of an IAM Group with the proper permissions, such as `_account.xxx-full-access` or `_account.xxx-openvpn-users`, where `xxx` is the name of the account you want to access (stage, prod, etc). See [Configure other IAM users](/refarch/access/setup-auth/#step-3-configure-other-iam-users) for instructions on adding users to IAM Groups.
+To be able to assume an IAM Role, your IAM user needs to be part of an IAM Group with the proper permissions, such as `_account.xxx-full-access` or `_account.xxx-openvpn-users`, where `xxx` is the name of the account you want to access (stage, prod, etc). See [Configure other IAM users](/refarch/access/setup-auth/#configure-other-iam-users) for instructions on adding users to IAM Groups.
 
 ## Use openvpn-admin to generate a configuration file
 
@@ -40,6 +46,6 @@ To connect to an OpenVPN server in one of your app accounts (Dev, Stage, Prod), 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "4b6066ba8d452940523132794535ff70"
+  "hash": "91ff031d4942093c0a2f574e1644bdd7"
 }
 ##DOCS-SOURCER-END -->
