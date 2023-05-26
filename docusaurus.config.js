@@ -234,6 +234,14 @@ const config = {
                 href: "https://terratest.gruntwork.io",
               },
               {
+                label: "Stay Up to Date",
+                to: "/guides/stay-up-to-date",
+              },
+              {
+                label: "Gruntwork Releases",
+                to: "/guides/stay-up-to-date/releases",
+              },
+              {
                 label: "Support",
                 href: "/support",
               },
