@@ -5,7 +5,9 @@ Gruntwork versions the IaC library using [Semantic Versioning](https://semver.or
 - MINOR version when we make backward incompatible API changes, and
 - PATCH version when we add backward compatible functionality or bug fixes
 
-For modules that have submodules (e.g., terraform-aws-server/modules/single-server), not every release contains changes to every module. While using the latest available version is recommended, the version that most recently contains changes for a module can be found in each submodule's reference in the [Library Reference](../reference/index.md).
+For modules that have submodules (e.g., terraform-aws-server/modules/single-server), not every release contains changes to every module. While using the latest available version is recommended, the version that most recently contains changes for a module can be found in each submodule’s reference in the [Library Reference](../reference/index.md).
+
+![Submodules show the last version in which they were modified](/img/iac/stay-up-to-date/versioning/module_release_tag_versions.png)
 
 We release new module versions using GitHub releases, refer to the release notes in the GitHub repository release page for a list of changes and migration guides (when necessary).
 
@@ -14,7 +16,7 @@ We release new module versions using GitHub releases, refer to the release notes
 The git tag created by the release can then be referenced in the source argument for a module block sourcing from a git URL.
 
 For example, below is a module block referencing version `0.15.4` of the `single-server` submodule from the `terraform-aws-server` module.
-```tf
+```hcl
 module "my_instance" {
   source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.15.4"
 
@@ -29,6 +31,6 @@ module "my_instance" {
 }
 ```
 
-## What's next
+## What’s next
 
-Once you start using versioned modules, it's important to keep the modules up to date. Refer to the [Updating](./updating.md) guide to learn more.
+Once you start using versioned modules, it’s important to keep the modules up to date. Refer to the [Updating](./updating.md) guide to learn more.
