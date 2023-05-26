@@ -1,6 +1,9 @@
 {
   "module": "elastic-cache",
   "releases": {
+    "v0.19.3": {
+      "contains_changes": true
+    },
     "v0.19.2": {
       "contains_changes": false
     },

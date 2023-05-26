@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Module Server" version="0.15.3" lastModifiedVersion="0.15.0"/>
+<VersionBadge repoTitle="Module Server" version="0.15.4" lastModifiedVersion="0.15.0"/>
 
 # EC2 Backup Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.3/modules/ec2-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.4/modules/ec2-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.15.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -32,7 +32,7 @@ This module makes it easy to deploy a [data lifecycle manager policy](https://do
 
 module "ec_2_backup" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/ec2-backup?ref=v0.15.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/ec2-backup?ref=v0.15.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -97,7 +97,7 @@ module "ec_2_backup" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/ec2-backup?ref=v0.15.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/ec2-backup?ref=v0.15.4"
 }
 
 inputs = {
@@ -303,11 +303,11 @@ The name of the IAM role associated with the data lifecycle manager
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.3/modules/ec2-backup/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.3/modules/ec2-backup/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.3/modules/ec2-backup/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.4/modules/ec2-backup/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.4/modules/ec2-backup/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.4/modules/ec2-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "75fbca15fc39dbbe7f08b0738a10807b"
+  "hash": "df287c6f2dcfd908d9b05d938cbfebf4"
 }
 ##DOCS-SOURCER-END -->

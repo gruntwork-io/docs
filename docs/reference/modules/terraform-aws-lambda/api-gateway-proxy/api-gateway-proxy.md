@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.8" lastModifiedVersion="0.20.0"/>
+<VersionBadge repoTitle="AWS Lambda" version="0.21.9" lastModifiedVersion="0.21.9"/>
 
 # API Gateway Proxy Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/api-gateway-proxy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/api-gateway-proxy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.20.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an [API Gateway](https://aws.amazon.com/api-gateway/) that can be used to expose your serverless
 applications running in [AWS Lambda](https://aws.amazon.com/lambda/).
@@ -34,7 +34,7 @@ recommend using a framework like Serverless to avoid the verbose configuration o
 :::note
 
 If you are looking for a module to route different requests and methods to different Lambda functions, refer to the
-[lambda-http-api-gateway](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/lambda-http-api-gateway) module.
+[lambda-http-api-gateway](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/lambda-http-api-gateway) module.
 
 :::
 
@@ -58,33 +58,33 @@ before, make sure to read [How to use the Gruntwork Infrastructure as Code Libra
 
 ### Core concepts
 
-*   [What is API Gateway?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/api-gateway-proxy/core-concepts.md#what-is-api-gateway)
+*   [What is API Gateway?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/api-gateway-proxy/core-concepts.md#what-is-api-gateway)
 *   [What is the difference between the different endpoint
-    types?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/api-gateway-proxy/core-concepts.md#what-is-the-difference-between-the-different-endpoint-types)
+    types?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/api-gateway-proxy/core-concepts.md#what-is-the-difference-between-the-different-endpoint-types)
 *   [API Gateway Documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html): Amazon's docs
     on API Gateway covering core concepts such as security, monitoring, and invoking APIs.
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/test): Automated tests for the modules and examples.
 
 ## Deploy
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples folder](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ## Manage
 
 ### Day-to-day operations
 
 *   [How do I expose AWS Lambda functions using API
-    Gateway?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/api-gateway-proxy/core-concepts.md#how-do-i-expose-aws-lambda-functions-using-api-gateway)
+    Gateway?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/api-gateway-proxy/core-concepts.md#how-do-i-expose-aws-lambda-functions-using-api-gateway)
 *   [Can I expose additional lambda functions in a decentralized
-    manner?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/api-gateway-proxy/core-concepts.md#can-i-expose-additional-lambda-functions-in-a-decentralized-manner)
-*   [How do I pass in the us_east\_1 aws provider?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/api-gateway-proxy/core-concepts.md#how-do-i-pass-in-the-us_east\_1-aws-provider)
+    manner?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/api-gateway-proxy/core-concepts.md#can-i-expose-additional-lambda-functions-in-a-decentralized-manner)
+*   [How do I pass in the us_east\_1 aws provider?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/api-gateway-proxy/core-concepts.md#how-do-i-pass-in-the-us_east\_1-aws-provider)
 
 ## Sample Usage
 
@@ -99,7 +99,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 module "api_gateway_proxy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy?ref=v0.21.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy?ref=v0.21.9"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -131,7 +131,7 @@ module "api_gateway_proxy" {
   api_description = ""
 
   # Configuration of the API endpoint for the API Gateway REST API. Defaults to EDGE
-  # configuration.
+  # configuration. 
   api_endpoint_configuration = null
 
   # Source of the API key for requests. Valid values are HEADER (default) and
@@ -158,6 +158,11 @@ module "api_gateway_proxy" {
   # The domain to use when looking up the ACM certificate. This is useful for
   # looking up wild card certificates that will match the given domain name.
   certificate_domain = null
+
+  # Set to true to automatically create a Rest API policy if necessary, or use
+  # `var.rest_api_policy` to pass an external policy. A Rest API policy is necessary
+  # if using PRIVATE api_endpoint_configuration type.
+  create_rest_api_policy = false
 
   # Map of tags (where the key is the tag key and the value is tag value) to apply
   # to the resources in this module.
@@ -215,6 +220,12 @@ module "api_gateway_proxy" {
   # used if hosted_zone_id is null.
   hosted_zone_tags = {}
 
+  # Configuration for passing an external Rest API policy to be attached to API
+  # Gateway, instead of the one created internally when setting
+  # `var.rest_api_policy` to true. A Rest API policy is necessary if using PRIVATE
+  # api_endpoint_configuration type.
+  override_rest_api_policy = null
+
   # Name of the lambda function to invoke just for the root path (URL or URL/). Only
   # used if enable_root_lambda_function is true.
   root_lambda_function_name = null
@@ -240,7 +251,7 @@ module "api_gateway_proxy" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy?ref=v0.21.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy?ref=v0.21.9"
 }
 
 inputs = {
@@ -275,7 +286,7 @@ inputs = {
   api_description = ""
 
   # Configuration of the API endpoint for the API Gateway REST API. Defaults to EDGE
-  # configuration.
+  # configuration. 
   api_endpoint_configuration = null
 
   # Source of the API key for requests. Valid values are HEADER (default) and
@@ -302,6 +313,11 @@ inputs = {
   # The domain to use when looking up the ACM certificate. This is useful for
   # looking up wild card certificates that will match the given domain name.
   certificate_domain = null
+
+  # Set to true to automatically create a Rest API policy if necessary, or use
+  # `var.rest_api_policy` to pass an external policy. A Rest API policy is necessary
+  # if using PRIVATE api_endpoint_configuration type.
+  create_rest_api_policy = false
 
   # Map of tags (where the key is the tag key and the value is tag value) to apply
   # to the resources in this module.
@@ -358,6 +374,12 @@ inputs = {
   # Tags to use when looking up the Route 53 hosted zone to bind the domain to. Only
   # used if hosted_zone_id is null.
   hosted_zone_tags = {}
+
+  # Configuration for passing an external Rest API policy to be attached to API
+  # Gateway, instead of the one created internally when setting
+  # `var.rest_api_policy` to true. A Rest API policy is necessary if using PRIVATE
+  # api_endpoint_configuration type.
+  override_rest_api_policy = null
 
   # Name of the lambda function to invoke just for the root path (URL or URL/). Only
   # used if enable_root_lambda_function is true.
@@ -426,7 +448,7 @@ Description to set on the API Gateway REST API. If empty string, defaults to 'RE
 <HclListItem name="api_endpoint_configuration" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-Configuration of the API endpoint for the API Gateway REST API. Defaults to EDGE configuration.
+Configuration of the API endpoint for the API Gateway REST API. Defaults to EDGE configuration. 
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -434,6 +456,7 @@ Configuration of the API endpoint for the API Gateway REST API. Defaults to EDGE
 ```hcl
 object({
     # The endpoint type. Must be one of EDGE, REGIONAL, or PRIVATE.
+    # Type PRIVATE requires configuring a REST API policy, see var.create_rest_api policy for more details.
     type = string
     # Set of VPC Endpoint Identifiers to use when using a private endpoint.
     vpc_endpoint_ids = list(string)
@@ -511,6 +534,15 @@ The domain to use when looking up the ACM certificate. This is useful for lookin
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="create_rest_api_policy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to automatically create a Rest API policy if necessary, or use `<a href="#rest_api_policy"><code>rest_api_policy</code></a>` to pass an external policy. A Rest API policy is necessary if using PRIVATE api_endpoint_configuration type.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="custom_tags" requirement="optional" type="map(string)">
@@ -626,6 +658,15 @@ Tags to use when looking up the Route 53 hosted zone to bind the domain to. Only
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="override_rest_api_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+Configuration for passing an external Rest API policy to be attached to API Gateway, instead of the one created internally when setting `<a href="#rest_api_policy"><code>rest_api_policy</code></a>` to true. A Rest API policy is necessary if using PRIVATE api_endpoint_configuration type.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="root_lambda_function_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -695,11 +736,11 @@ The URL of the API Gateway that you can use to invoke it.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/api-gateway-proxy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/api-gateway-proxy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/api-gateway-proxy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/api-gateway-proxy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/api-gateway-proxy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/api-gateway-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0e7959effacf1ffc375e7be893744971"
+  "hash": "6d5cf50e188a11787e22e1d6fecf3654"
 }
 ##DOCS-SOURCER-END -->

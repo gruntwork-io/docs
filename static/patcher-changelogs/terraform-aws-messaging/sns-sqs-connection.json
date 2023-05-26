@@ -1,6 +1,9 @@
 {
   "module": "sns-sqs-connection",
   "releases": {
+    "v0.11.0": {
+      "contains_changes": true
+    },
     "v0.10.1": {
       "contains_changes": false
     },
