@@ -46,59 +46,41 @@ export default function Home(): JSX.Element {
               </Card>
               <Card
                 title="The Reference Architecture"
-                href="/guides/reference-architecture"
+                href="/refarch/configuration/"
                 icon="/img/icons/refarch.svg"
               >
                 Bought a Reference Architecture? Get your new infrastructure up
-                and running quickly with our comprehensive guide.
+                and running quickly with our getting started guide.
               </Card>
               <Card
-                title="Deploy A Service"
-                href="/guides/build-it-yourself"
+                title="Developer Portal"
+                href="/developer-portal/create-account"
                 icon="/img/icons/deploy.svg"
               >
-                Follow our tutorials and learn how to deploy Gruntwork services
-                to construct your own bespoke architecture.
+                Create your account in the Gruntwork Developer Portal and add your teammates.
               </Card>
             </CardGroup>
           </div>
           <div className="container" style={{ margin: "6rem auto" }}>
-            <h2>Discover Your Use Case</h2>
+            <h2>Products</h2>
             <CardGroup commonCardProps={{ appearance: "invisible" }}>
               <Card
-                title="Set Up Your Multi-account Structure"
-                href="/guides/build-it-yourself/landing-zone"
+                title="Infrastructure as Code Library"
+                href="/iac/overview/"
               >
-                Streamline how you create, configure, and secure your AWS
-                accounts using Gruntwork Landing Zone.
+                A collection of reusable code that enables you to deploy and manage infrastructure quickly and reliably.
               </Card>
               <Card
-                title="Create an Infra CI/CD Pipeline"
-                href="/guides/build-it-yourself/pipelines"
+                title="Reference Architecture"
+                href="/refarch/whats-this/what-is-a-reference-architecture"
               >
-                Use your preferred CI tool to set up an end-to-end pipeline for
-                your infrastructure code.
+                An end-to-end tech stack built using best practices on top of our Infrastructure as Code Library, deployed into your AWS accounts.
               </Card>
               <Card
-                title="Configure Your Network"
-                href="/guides/build-it-yourself/vpc"
+                title="Gruntwork Pipelines"
+                href="/pipelines/overview"
               >
-                Set up your network according to industry best practices using
-                our VPC service.
-              </Card>
-              <Card
-                title="Deploy a Kubernetes Cluster"
-                href="/guides/build-it-yourself/kubernetes-cluster"
-              >
-                Deploy Kubernetes using EKS to host all of your apps and
-                services.
-              </Card>
-              <Card
-                title="Achieve Compliance"
-                href="/guides/build-it-yourself/achieve-compliance"
-              >
-                Implement the CIS AWS Foundations Benchmark using our curated
-                collection of modules and services.
+                A framework for running secure deployments for infrastructure code and application code.
               </Card>
             </CardGroup>
           </div>
