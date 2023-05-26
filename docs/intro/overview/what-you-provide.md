@@ -54,6 +54,6 @@ Once deployed, Gruntwork hands the Reference Architecture over to your team. You
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "52875a926cd4d9052d336dfbb578a0b7"
+  "hash": "edc1f389361e09189438b0ca0c21d291"
 }
 ##DOCS-SOURCER-END -->
