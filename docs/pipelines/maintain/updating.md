@@ -3,7 +3,7 @@ import TabItem from '@theme/TabItem';
 
 # Updating Your Pipeline
 
-Pipelines is built using the [terraform-aws-ci](../../reference/modules/terraform-aws-ci/ecs-deploy-runner/) module. We recommend updating your pipeline whenever there’s a new release of the module.
+Pipelines is built using the [`terraform-aws-ci`](../../reference/modules/terraform-aws-ci/ecs-deploy-runner/) module. We recommend updating your pipeline whenever there’s a new release of the module.
 
 By default, Pipelines cannot update it’s own infrastructure (ECS cluster, AWS Lambda function, etc), so you must run upgrades to Pipelines manually from your local machine. This safeguard is in place to prevent you from accidentally locking yourself out of the Pipeline when applying a change to permissions.
 
@@ -15,18 +15,16 @@ This guide assumes you have the following:
 - An AWS account with permissions to create the necessary resources
 - An [AWS Identity and Access Management](https://aws.amazon.com/iam/) (IAM) user or role with permissions to start pipelines deployments and update AWS Lambda functions
 - [AWS Command Line Interface](https://aws.amazon.com/cli/) (AWS CLI) installed on your local machine
-- [infrastructure-deployer](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/infrastructure-deployer) CLI tool installed locally
-- [aws-vault](https://www.github.com/99designs/aws-vault) installed locally for authenticating to AWS
+- [`infrastructure-deployer`](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/infrastructure-deployer) CLI tool installed locally
+- [`aws-vault`](https://www.github.com/99designs/aws-vault) installed locally for authenticating to AWS
 
 ## Updating container images
 
 Gruntwork Pipelines uses two images — one for the [Deploy Runner](https://github.com/gruntwork-io/terraform-aws-ci/blob/main/modules/ecs-deploy-runner/docker/deploy-runner/Dockerfile) and one for [Kaniko](https://github.com/gruntwork-io/terraform-aws-ci/blob/main/modules/ecs-deploy-runner/docker/kaniko/Dockerfile). To update pipelines to the latest version, you must build and push new versions of each image.
 
-### Build and push images
-
 Pipelines has the ability to build container images, including the images it uses. You can use the `infrastructure-deployer` CLI tool locally to start building the new image versions. This is the same tool used by Pipelines in your CI system.
 
-```sh
+```bash
 export ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
 export DEPLOY_RUNNER_REGION=$(aws configure get region)
 export DOCKERFILE_REPO="https://github.com/gruntwork-io/terraform-aws-ci.git"
@@ -60,7 +58,7 @@ Next, update the references to these images to the new tag values. This will var
 <Tabs groupId="deployment-type">
 <TabItem value="RefArch" label="RefArch" default>
 
-To update the image tags for pipelines deployed by a Reference Architecture, you update `common.hcl` with the new tag values for these images. The new tag value will be version of terraform-aws-ci that the images use. For example, if your newly created images are using the v0.52.1 release of terraform-aws-ci, update common.hcl to:
+To update the image tags for pipelines deployed by a Reference Architecture, you update `common.hcl` with the new tag values for these images. The new tag value will be version of `terraform-aws-ci` that the images use. For example, if your newly created images are using the v0.52.1 release of `terraform-aws-ci`, update common.hcl to:
 
 ```
 deploy_runner_container_image_tag = "v0.52.1"
@@ -68,7 +66,7 @@ kaniko_container_image_tag = "v0.52.1"
 ```
 
 Next, apply the ecs-deploy-runner module in each account:
-```sh
+```bash
 cd logs/$DEPLOY_RUNNER_REGION/mgmt/ecs-deploy-runner
 aws-vault exec your-logs -- terragrunt apply --terragrunt-source-update -auto-approve
 
@@ -97,14 +95,10 @@ Once you have updated any references to the container image tags, you will need 
 </TabItem>
 </Tabs>
 
-### What's next
-
-Now that you’ve learned how to update your pipeline, the next step is to extend your pipeline to customize the configuration to suit your needs.
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7f10a0fabf8abf04f35cdf048cbe2563"
+  "hash": "5669161d46321039ff3022421a9c98e0"
 }
 ##DOCS-SOURCER-END -->
