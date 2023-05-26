@@ -20,7 +20,7 @@ In addition to installing dependencies, the bootstrap script will:
 ## Install manually
 
 :::caution
-We do not recommend this approach. TODO: Finish this section
+We do not recommend this approach. The bootstrap script performs several checks to ensure you have all tools and access required to configure your Reference Architecture. You will need to perform these checks manually if installing tools manually.
 :::
 
 If you prefer to install your tools manually, see the following sections on installing Git and the Gruntwork CLI.
@@ -33,6 +33,6 @@ If you prefer to install your tools manually, see the following sections on inst
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "2d05b1c296de0c21b3dbc09079f07e85"
+  "hash": "9eb3edd24a18952be44c183211f64055"
 }
 ##DOCS-SOURCER-END -->
