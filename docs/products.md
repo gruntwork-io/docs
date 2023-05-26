@@ -16,27 +16,21 @@ import CenterLayout from "/src/components/CenterLayout"
 <Card
   title="Infrastructure as Code Library"
   href="/iac/overview/">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus gravida quis blandit turpis cursus.
+A collection of reusable code that enables you to deploy and manage infrastructure quickly and reliably.
 </Card>
 <Card
   title="Reference Architecture"
   href="/refarch/whats-this/what-is-a-reference-architecture">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus gravida quis blandit turpis cursus.</Card>
+An end-to-end tech stack built using best practices on top of our Infrastructure as Code Library, deployed into your AWS accounts.</Card>
 <Card
   title="Pipelines"
   href="/pipelines/overview">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus gravida quis blandit turpis cursus.
+A framework for running secure deployments for infrastructure code and application code.
 </Card>
 <Card
 title="Developer Portal"
 href="/developer-portal/create-account">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus gravida quis blandit turpis cursus.
-</Card>
-<Card
-title="CIS"
-href="https://github.com/gruntwork-io/repo-copier"
-tags={["with cis subscription"]}>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus gravida quis blandit turpis cursus.
+Gain access to all resources included in your Gruntwork subscription.
 </Card>
 
 </CardGroup>
@@ -47,6 +41,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "63dcbb806b5ae30f5518511920444ad1"
+  "hash": "60546b2e4e3611071223a6e12967dd3a"
 }
 ##DOCS-SOURCER-END -->
