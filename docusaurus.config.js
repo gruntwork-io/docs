@@ -267,7 +267,15 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ["hcl", "python", "yaml", "json", "bash", "go"],
+        additionalLanguages: [
+          "hcl",
+          "python",
+          "yaml",
+          "json",
+          "bash",
+          "go",
+          "docker",
+        ],
       },
       algolia: algoliaConfig
         ? {
