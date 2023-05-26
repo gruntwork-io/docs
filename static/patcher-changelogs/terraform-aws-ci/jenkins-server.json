@@ -1,6 +1,12 @@
 {
   "module": "jenkins-server",
   "releases": {
+    "v0.52.0": {
+      "contains_changes": false
+    },
+    "v0.51.8": {
+      "contains_changes": false
+    },
     "v0.51.7": {
       "contains_changes": false
     },

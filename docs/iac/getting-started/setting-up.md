@@ -20,9 +20,11 @@ If you want to skip immediately to learning, you can learn how to [deploy your f
 
 ## Terragrunt
 
-Terragrunt is a tool developed by Gruntwork that provides extra tools for keeping your Terraform configurations DRY, working with multiple Terraform modules, and managing remote state. Terragrunt allows you to execute multiple Terraform commands at once, centrally manage your Terraform state configuration, and set repeatable CLI arguments. Since Terraform is a dependency of Terragrunt, you can continue to write modules for Terraform in the Terraform configuration language, then reference and re-use the modules in different environments or applications.
+[Terragrunt](https://terragrunt.gruntwork.io) is a tool developed by Gruntwork that provides extra tools for keeping your Terraform configurations DRY, working with multiple Terraform modules, and managing remote state. Terragrunt allows you to execute multiple Terraform commands at once, centrally manage your Terraform state configuration, and set repeatable CLI arguments. Since Terraform is a dependency of Terragrunt, you can continue to write modules for Terraform in the Terraform configuration language, then reference and re-use the modules in different environments or applications.
 
+:::info
 Terragrunt is not a required tool to use the IaC library, but it does provide many convenience features on top of Terraform. If you are using the Gruntwork [Reference Architecture](../../refarch/whats-this/what-is-a-reference-architecture), Terragrunt is a requirement.
+:::
 
 ### Installation
 Terragrunt is supported on Mac (x86 and Apple Silicon), Windows, and Linux. To install Terragrunt, follow the guide on how to [install Terragrunt](https://terragrunt.gruntwork.io/docs/getting-started/install/) on the Terragrunt website.
@@ -42,6 +44,6 @@ If you’re ready to get started with creating and deploying a module, jump to [
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "bb71dcd496297aabc24589079e4b3cb6"
+  "hash": "b5257de86e38f27701ec9503dfb6d5bb"
 }
 ##DOCS-SOURCER-END -->

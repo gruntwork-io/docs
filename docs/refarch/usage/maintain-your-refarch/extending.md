@@ -12,11 +12,11 @@ Your Reference Architecture is delivered as a collection of IaC code. You will g
 
 ## Use Gruntwork's services
 
-Gruntwork provides a [_catalog_ of services](/iac/reference/) that can be added by directly referencing them in your terragrunt configuration. Check out the [Using a Service](/iac/usage/using-a-service) docs to learn how you can quickly start using our services in your own Reference Architecture.
+Gruntwork provides a [_catalog_ of services](/iac/reference/) that can be added by directly referencing them in your terragrunt configuration. You can add these services to your architecture by creating references to them in the `_envcommon` directory, then each respective environment directory.
 
 ## Composing your own services
 
-If Gruntwork doesn't already have the service you are looking you may be able to use our [modules](/iac/overview/modules) and [combine them into your own bespoke new services](/iac/usage/composing-your-own-service) to accelerate your development of the functionality you need. Please check out how you can start [using modules](/iac/usage/using-a-module).
+If Gruntwork doesn't already have the service you are looking you may be able to use our [modules](../../../iac/overview/modules) and combine them into your own bespoke new services to accelerate your development of the functionality you need.
 
 ## Build your own modules
 
@@ -26,6 +26,6 @@ If Gruntwork doesn't have existing modules for the AWS services that you are try
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "da86a094744c91c8846ed628df436b72"
+  "hash": "d9af92ca01253c43d339423e19ea2516"
 }
 ##DOCS-SOURCER-END -->

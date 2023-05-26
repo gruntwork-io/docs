@@ -102,22 +102,22 @@ const config = {
               {
                 type: "doc",
                 label: "Infrastructure as Code Library",
-                docId: "iac/overview/index"
+                docId: "iac/overview/index",
               },
               {
                 type: "doc",
                 label: "Gruntwork Pipelines",
-                docId: "pipelines/overview/index"
+                docId: "pipelines/overview/index",
               },
               {
                 type: "doc",
                 label: "Reference Architecture",
-                docId: "refarch/whats-this/what-is-a-reference-architecture"
+                docId: "refarch/whats-this/what-is-a-reference-architecture",
               },
               {
                 type: "doc",
                 label: "Developer Portal",
-                docId: "developer-portal/create-account"
+                docId: "developer-portal/create-account",
               },
             ],
           },
@@ -125,7 +125,6 @@ const config = {
             type: "doc",
             label: "Library Reference",
             docId: "iac/reference/index",
-
           },
           { to: "/tools", label: "Tools", position: "left" },
           { to: "/courses", label: "Courses", position: "left" },
@@ -268,7 +267,15 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ["hcl"],
+        additionalLanguages: [
+          "hcl",
+          "python",
+          "yaml",
+          "json",
+          "bash",
+          "go",
+          "docker",
+        ],
       },
       algolia: algoliaConfig
         ? {
