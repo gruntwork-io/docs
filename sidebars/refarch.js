@@ -15,9 +15,8 @@ const sidebar = [
         collapsible: false,
         items: [
           "refarch/whats-this/what-is-a-reference-architecture",
-          "refarch/whats-this/how-does-the-gruntwork-reference-architecture-differ",
-          "refarch/whats-this/understanding-the-deployment-process",
-        ],
+          "refarch/whats-this/understanding-the-deployment-process"
+        ]
       },
       {
         label: "Configuration",
