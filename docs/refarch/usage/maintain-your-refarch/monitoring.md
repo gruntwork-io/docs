@@ -1,4 +1,4 @@
-# Monitoring, Alerting and Logging
+# Monitoring, Alerting, and Logging
 
 You'll want to see what's happening in your AWS account:
 
@@ -50,6 +50,6 @@ your servers in near-real-time.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b6322e4e7665dc7b2c69c402328b596b"
+  "hash": "54476bdf3a748fb598f356843322546f"
 }
 ##DOCS-SOURCER-END -->
