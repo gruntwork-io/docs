@@ -84,7 +84,7 @@ terraform {
 }
 
 locals {
-  source_base_url = git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server"
+  source_base_url = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server"
 }
 ```
 
@@ -101,13 +101,13 @@ include "root" {
 }
 
 include "envcommon" {
-  path = "${dirname(find_in_parent_folders())}/_envcommon/single_ec2_instance.hcl"
+  path = "${dirname(find_in_parent_folders())}/_envcommon/services/single_ec2_instance.hcl"
   merge_strategy = "deep"
   expose = true
 }
 
 inputs = {
-  name = "my_instance-dev"
+  name = "my_instance"
   ami = "ami-99999999999999999"
   instance_type = "t2.medium"
   keypair_name = ""
@@ -128,6 +128,6 @@ Once you start using versioned modules, it’s important to keep the modules up 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "11008807672b5427dfbdff7fa60e5156"
+  "hash": "0f89f83572dd9e7517c28f99b3299f4e"
 }
 ##DOCS-SOURCER-END -->

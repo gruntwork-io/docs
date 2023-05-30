@@ -89,7 +89,7 @@ terraform {
 }
 
 locals {
-  source_base_url = git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server"
+  source_base_url = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server"
 }
 ```
 
@@ -106,13 +106,13 @@ include "root" {
 }
 
 include "envcommon" {
-  path = "${dirname(find_in_parent_folders())}/_envcommon/single_ec2_instance.hcl"
+  path = "${dirname(find_in_parent_folders())}/_envcommon/services/single_ec2_instance.hcl"
   merge_strategy = "deep"
   expose = true
 }
 
 inputs = {
-  name = "my_instance-dev"
+  name = "my_instance"
   ami = "ami-99999999999999999"
   instance_type = "t2.medium"
   keypair_name = ""
