@@ -88,9 +88,8 @@ locals {
 }
 ```
 
-Then, reference the git tag in the `source` argument for the `terraform` block in the `terragrunt.hcl` environment and region specific files.
+Then, reference the git tag in the `source` argument for the `terraform` block in the `terragrunt.hcl` environment and region specific files that reference the file in the `_envcommon` directory. For example, if you were using this module to create a single EC2 instance in your development environment in the us-west-2 region of AWS, your file path would be `/dev/us-west-2/services/single_ec2_instance/terragrunt.hcl`.
 
-For example, if you were using this module to create a single EC2 instance in your development environment in the us-west-2 region of AWS, your file path would look like the following:
 ```hcl title=/dev/us-west-2/services/single_ec2_instance/terragrunt.hcl
 terraform {
   source = "${include.envcommon.locals.source_base_url}?ref=v0.15.4"
@@ -128,6 +127,6 @@ Once you start using versioned modules, it’s important to keep the modules up 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0f89f83572dd9e7517c28f99b3299f4e"
+  "hash": "715878543c531be9e51562358dbc1d18"
 }
 ##DOCS-SOURCER-END -->
