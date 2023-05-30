@@ -33,6 +33,7 @@ const sidebar = [
           // "iac/usage/using-a-service",
           // "iac/usage/customizing-modules",
           // "iac/usage/composing-your-own-service",
+          "guides/working-with-code/using-modules",
           "guides/working-with-code/tfc-integration",
         ],
       },
