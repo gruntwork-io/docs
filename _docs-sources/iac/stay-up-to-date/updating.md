@@ -76,9 +76,9 @@ After making the change, run `terragrunt plan`, inspect the output to ensure it 
 </TabItem>
 <TabItem value="Terragrunt with _envcommon" label="_envcommon (Terragrunt)">
 
-Below is an example using the `_envcommon` pattern to reference version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
+When following the `_envcommon` pattern, there are two places that reference the git tag created by the release — the `.hcl` file with the reference to the module in the `_envcommon` directory and the environment and region specific references to the _envcommon file.
 
-To update to version `0.15.4`, you update the value to the right of `ref=` in the source attribute. Since the version number denotes that this update is backwards compatible, it should not require any other changes. When following the `_envcommon` pattern, there are two places that reference the git tag created by the release — the `.hcl` file with the reference to the module in the `_envcommon` directory and the environment and region specific references to the _envcommon file.
+Below is an example using the `_envcommon` pattern to reference version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module. To update to version `0.15.4`, you update the value to the right of `ref=` in the source attribute. Since the version number denotes that this update is backwards compatible, it should not require any other changes.
 
 ```hcl title=_envcommon/services/single_ec2_instance.hcl
 terraform {
