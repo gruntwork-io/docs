@@ -162,7 +162,7 @@ This code pulls in a module using Terraform’s native `module` functionality. F
 
 The `source` URL in the code above uses a Git URL with SSH authentication (see
 [module sources](https://www.terraform.io/docs/modules/sources.html) for all the types of `source` URLs you can use).
-If you followed the [SSH key instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) when [linking your GitHub ID](/intro/dev-portal/link-github-id.md), this will allow you to access private repos in the Gruntwork
+If you followed the [SSH key instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) when [linking your GitHub ID](/developer-portal/link-github-id.md), this will allow you to access private repos in the Gruntwork
 Infrastructure as Code Library without having to hard-code a password in your Terraform code.
 
 #### Versioned URL

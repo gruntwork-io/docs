@@ -10,7 +10,6 @@
  */
 
 const introSidebar = require("./sidebars/intro-guide.js")
-const guidesSidebar = require("./sidebars/guides-index.js")
 const productionFrameworkSidebar = require("./sidebars/production-framework-guide.js")
 const refarchUsageSidebar = require("./sidebars/refarch-usage-guide.js")
 const landingZoneSidebar = require("./sidebars/landing-zone-guide.js")
@@ -21,13 +20,19 @@ const complianceSidebar = require("./sidebars/compliance-guide.js")
 const updateGuideSidebars = require("./sidebars/update-guides.js")
 const apiSidebars = require("./sidebars/api-reference.js")
 const faqSidebars = require("./sidebars/faq.js")
+const iacSidebars = require("./sidebars/iac.js")
+const libraryRefSiderbars = require("./sidebars/library-reference.js")
+const developerPortalSidebars = require("./sidebars/developer-portal.js")
+const patcherSiderbars = require("./sidebars/patcher.js")
+const pipelinesSiderbars = require("./sidebars/pipelines.js")
+const landingZoneSidebars = require("./sidebars/landing-zone.js")
+const refarchSidebar = require("./sidebars/refarch.js")
 
 // @ts-check
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   introSidebar,
-  guidesSidebar,
   productionFrameworkSidebar,
   refarchUsageSidebar,
   landingZoneSidebar,
@@ -38,6 +43,13 @@ const sidebars = {
   ...updateGuideSidebars,
   ...apiSidebars,
   faqSidebars,
+  iacSidebars,
+  developerPortalSidebars,
+  patcherSiderbars,
+  pipelinesSiderbars,
+  landingZoneSidebars,
+  refarchSidebar,
+  libraryRefSiderbars,
 }
 
 module.exports = sidebars

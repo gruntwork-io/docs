@@ -94,27 +94,37 @@ const config = {
             docId: "intro/overview/intro-to-gruntwork",
           },
           {
-            type: "doc",
-            position: "left",
-            label: "Guides",
-            docId: "guides/index",
-            activeBasePath: "docs/guides",
-          },
-          {
             type: "dropdown",
-            label: "Library Reference",
+            position: "left",
+            label: "Docs",
+            id: "docs",
             items: [
               {
                 type: "doc",
-                label: "Modules",
-                docId: "reference/modules/intro",
+                label: "Infrastructure as Code Library",
+                docId: "iac/overview/index",
               },
               {
                 type: "doc",
-                label: "Services",
-                docId: "reference/services/intro/overview",
+                label: "Gruntwork Pipelines",
+                docId: "pipelines/overview/index",
+              },
+              {
+                type: "doc",
+                label: "Reference Architecture",
+                docId: "refarch/whats-this/what-is-a-reference-architecture",
+              },
+              {
+                type: "doc",
+                label: "Developer Portal",
+                docId: "developer-portal/create-account",
               },
             ],
+          },
+          {
+            type: "doc",
+            label: "Library Reference",
+            docId: "iac/reference/index",
           },
           { to: "/tools", label: "Tools", position: "left" },
           { to: "/courses", label: "Courses", position: "left" },
@@ -224,6 +234,14 @@ const config = {
                 href: "https://terratest.gruntwork.io",
               },
               {
+                label: "Gruntwork Releases",
+                to: "/guides/stay-up-to-date",
+              },
+              {
+                label: "Style Guides",
+                to: "/guides/style",
+              },
+              {
                 label: "Support",
                 href: "/support",
               },
@@ -257,7 +275,15 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ["hcl"],
+        additionalLanguages: [
+          "hcl",
+          "python",
+          "yaml",
+          "json",
+          "bash",
+          "go",
+          "docker",
+        ],
       },
       algolia: algoliaConfig
         ? {

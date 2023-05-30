@@ -162,7 +162,7 @@ This code pulls in a module using Terraform’s native `module` functionality. F
 
 The `source` URL in the code above uses a Git URL with SSH authentication (see
 [module sources](https://www.terraform.io/docs/modules/sources.html) for all the types of `source` URLs you can use).
-If you followed the [SSH key instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) when [linking your GitHub ID](/intro/dev-portal/link-github-id.md), this will allow you to access private repos in the Gruntwork
+If you followed the [SSH key instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) when [linking your GitHub ID](/developer-portal/link-github-id.md), this will allow you to access private repos in the Gruntwork
 Infrastructure as Code Library without having to hard-code a password in your Terraform code.
 
 #### Versioned URL
@@ -770,6 +770,6 @@ Now that you have your Terraform module deployed, you can pull in updates as fol
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "51856e814c4a4bc50bdbcab6b0aaf2ce"
+  "hash": "2820ee930b54e06462e6cfc030d0c03a"
 }
 ##DOCS-SOURCER-END -->
