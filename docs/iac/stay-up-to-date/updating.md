@@ -80,7 +80,7 @@ Below is an example using the `_envcommon` pattern to reference version `0.15.3`
 
 To update to version `0.15.4`, you update the value to the right of `ref=` in the source attribute. Since the version number denotes that this update is backwards compatible, it should not require any other changes. When following the `_envcommon` pattern, there are two places that reference the git tag created by the release — the `.hcl` file with the reference to the module in the `_envcommon` directory, and the environment and region specific reference to that file.
 
-```hcl title=_envcommon/single_ec2_instance.hcl
+```hcl title=_envcommon/services/single_ec2_instance.hcl
 terraform {
   # Old
   # source = "${local.source_base_url}?ref=v0.15.3"
@@ -136,6 +136,6 @@ Keeping track of all references to modules and services is a complicated, error 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "ca6a871522ffc0e24a73103abcfb9665"
+  "hash": "a64b115c7b7524d5249cc2dbec1e9606"
 }
 ##DOCS-SOURCER-END -->
