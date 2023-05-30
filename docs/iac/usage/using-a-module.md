@@ -1,0 +1,245 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Using a Module
+
+The Terraform modules in the Gruntwork Infrastructure as Code Library allows you to configure the `provider` and `backend` settings to suit their needs. This makes it possible to use Gruntwork modules alongside any existing modules you may have already developed, minimizing any duplication of configuration.
+
+## Prerequisites
+
+- An AWS account with permissions to create the necessary resources
+- An [AWS Identity and Access Management](https://aws.amazon.com/iam/) (IAM) user or role with permissions to create AWS IAM roles, Lambda functions, and Cloudwatch Log Groups
+- [AWS Command Line Interface](https://aws.amazon.com/cli/) (AWS CLI) installed on your local machine
+- [Terraform](https://www.terraform.io) installed on your local machine
+
+## Create a module
+
+In this section you'll create a module that provisions an AWS Lambda Function using the [`terraform-aws-lambda`](../../reference/modules/terraform-aws-lambda/lambda/) Gruntwork module. This module automatically creates the AWS IAM role and Cloudwatch Log Group for the Lambda function. For more information about the configuration of the module, refer to the [Library Reference](../../reference/modules/terraform-aws-lambda/lambda/#reference).
+
+### Create the basic file structure
+
+First, create the basic file structure required that will contain the module reference. In this guide, you will create a module named `serverless-api` which contains the reference to the `terraform-aws-lambda` module. This approach is taken to allow you to define a module once, then use it in many environments and regions, while keeping the amount of copy-and-paste work to a minimum.
+
+In this guide, we will use `example` as the name of the environment. In a real-world environment, this might be `dev`, `staging`, `production`, or any other name.
+
+<Tabs groupId="tool-choice">
+<TabItem value="Terraform" label="Terraform" default>
+
+For Terraform, create two paths — one which will contain the reference to the `terraform-aws-lambda` module and one which will contain a reference to the local module (aka ["wrapper module"](#creating-a-wrapper-module-terraform-only)).
+
+```bash
+mkdir -p gw_module_guide/serverless-api/lambda
+touch gw_module_guide/serverless-api/lambda/main.tf
+touch gw_module_guide/serverless-api/lambda/variables.tf
+
+mkdir -p gw_module_guide/example/<YOUR_REGION>
+mkdir -p gw_module_guide/example/<YOUR_REGION>/main.tf
+```
+
+</TabItem>
+<TabItem value="Terragrunt" label="Terragrunt" default>
+
+For Terragrunt, we recommend that all re-usable infrastructure modules live in a directory called `_envcommon`. Create two paths — one which will contain the reference to the `terraform-aws-lambda` and one which will contain a reference to the local module.
+
+```bash
+mkdir -p _envcommon/serverless-api
+touch _envcommon/serverless-api/lambda.hcl
+
+mkdir -p gw_module_guide/example/<YOUR REGION>/example/serverless-api
+touch gw_module_guide/example/<YOUR REGION>/example/serverless-api/terragrunt.hcl
+```
+
+</TabItem>
+</Tabs>
+
+### Create the reference to the Gruntwork module
+
+Next, create the reference to the `terraform-aws-lambda` module...
+
+<Tabs groupId="tool-choice">
+<TabItem value="Terraform" label="Terraform" default>
+
+Define a module block that uses the git url `terraform-aws-lambda` module for the `source` attribute.
+
+One of the benefits of referencing modules this way is that ability to set defaults for your organization. As an example — the `terraform-aws-lambda` exposes many variables but in the module block below, we are hard coding the value `run_in_vpc` to be `false`. This will ensure that anyone consuming this module will only create AWS Lambda functions that are not in a VPC. For a full list of configuration options for this module, refer to the [Library Reference](../../reference/modules/terraform-aws-lambda/lambda/#reference).
+
+```hcl title=gw_module_guide/serverless-api/lambda/main.tf
+module "lambda" {
+  source = "git::git@github.com/gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v0.21.9"
+
+  name        = var.name
+  runtime     = var.runtime
+  source_path = var.source_path
+  handler     = var.handler
+  run_in_vpc  = false
+}
+```
+
+Next, add the variables to the `variables.tf` file.
+
+```hcl title=gw_module_guide/serverless-api/lambda/variables.tf
+variable "name" {
+  type = string
+  description = "Name that will be used for the AWS Lambda function"
+}
+
+variable "runtime" {
+  type = string
+  description = "The runtime of the Lambda. Options include go, python, ruby, etc."
+}
+
+variable "source_path" {
+  type = string
+  description = "The path to the directory containing the source to be deployed to lambda"
+}
+
+variable "handler" {
+  type = string
+  description = "The name of the handler function that will be called as the entrypoint of the lambda"
+}
+```
+
+</TabItem>
+<TabItem value="Terragrunt" label="Terragrunt" default>
+
+Define the module in `_envcommon` that references the `terraform-aws-lambda`. For `terragrunt`, the source is defined in the `source` attribute of the `terraform` block.
+
+One of the benefits of referencing modules this way is that ability to set defaults for your organization. As an example — the `terraform-aws-lambda` exposes many variables but in the module block below, we are hard coding the value `run_in_vpc` to be `false`. This will ensure that anyone consuming this module will only create AWS Lambda functions that are not in a VPC. For a full list of configuration options for this module, refer to the [Library Reference](../../reference/modules/terraform-aws-lambda/lambda/#reference).
+
+```hcl title=_envcommon/serverless-api/lambda.hcl
+terraform {
+  source = "${local.source_base_url}?ref=v0.21.9"
+}
+
+locals {
+  source_base_url = "git::git@github.com/gruntwork-io/terraform-aws-lambda.git//modules/lambda"
+}
+
+inputs {
+  run_in_vpc = false
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Reference the module
+
+Next, create the reference to the local module you just created. We recommend that you have separate references per environment and region. For example, if you were deploying this module to your development environment in the us-west-2 AWS region, you would create one reference. If you wanted to deploy to your development environment in the us-east-1 AWS region, you would create a separate reference. This allows you to granularly roll out changes across your environments and regions.
+
+<Tabs groupId="tool-choice">
+<TabItem value="Terraform" label="Terraform" default>
+
+Create a module block that uses the path to the local module as the source attribute, supplying values for the required attributes of the module.
+
+```hcl title=gw_module_guide/example/<YOUR_REGION>/main.tf
+module "my_lambda" {
+  source = "../../serverless-api/lambda"
+
+  name        = "gruntwork-lambda-module-guide"
+  runtime     = "python3.9"
+  source_path = "${path.module}/main.py"
+  handler     = "main.lambda_handler"
+}
+```
+
+</TabItem>
+<TabItem value="Terragrunt" label="Terragrunt" default>
+
+Create a module block that uses the path to the local module as the source attribute, supplying values for the required attributes of the module.
+
+One of the benefits of this approach is that you can increment the version of a module for a specific environment and region in a granular fashion. For example, when we shipped a version v0.22.0 of the `terraform-aws-lambda` module, you could update just the `example` environment in the us-west-2 AWS region to ensure the upgrade goes as expected, then roll out to other environments or regions.
+
+```hcl title=gw_module_guide/example/<YOUR_REGION>/example/serverless-api/terragrunt.hcl
+terraform {
+  source = "${include.envcommon.locals.source_base_url}?ref=v0.21.9"
+}
+
+include "root" {
+  path = find_in_parent_folders()
+}
+
+include "envcommon" {
+  path = "${dirname(find_in_parent_folders())}/_envcommon/serverless-api/lambda.hcl"
+  merge_strategy = "deep"
+  expose = true
+}
+
+inputs {
+  name        = "gruntwork-lambda-module-guide"
+  runtime     = "python3.9"
+  source_path = "${path.module}/main.py"
+  handler     = "main.lambda_handler"
+}
+```
+</TabItem>
+</Tabs>
+
+## Plan and apply the module
+
+Now that you have created a module and a reference that is specific to a sing environment and AWS region, you can run a `plan` to see the infrastructure resources that will be provisioned by the module.
+
+### Plan
+
+<Tabs groupId="tool-choice">
+<TabItem value="Terraform" label="Terraform" default>
+
+Run terraform plan...
+
+```bash
+terraform plan
+```
+
+</TabItem>
+<TabItem value="Terragrunt" label="Terragrunt" default>
+
+Run terragrunt plan...
+
+```bash
+terragrunt plan
+```
+
+</TabItem>
+</Tabs>
+
+### Apply
+
+After running a `plan` and confirming that all expected resources show that they will be provisioned in the plan, you can run an `apply` to create the resources.
+
+<Tabs groupId="tool-choice">
+<TabItem value="Terraform" label="Terraform" default>
+
+Run terraform apply
+
+```bash
+terraform apply
+```
+
+</TabItem>
+<TabItem value="Terragrunt" label="Terragrunt" default>
+
+Run terragrunt apply
+
+```bash
+terragrunt apply
+```
+
+</TabItem>
+</Tabs>
+
+## Testing
+
+Use [Terratest](https://terratest.gruntwork.io)
+
+
+## What's next
+
+Use a service!
+
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "local-copier",
+  "hash": "8418854e87b71241efd7232ceaa254a9"
+}
+##DOCS-SOURCER-END -->
