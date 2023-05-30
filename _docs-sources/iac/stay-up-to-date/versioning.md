@@ -75,7 +75,7 @@ inputs = {
 
 When following the `_envcommon` pattern, there are two places that reference the git tag created by the release.
 
-First, locate the file in which you are referencing the module in your `_envcommon` directory. Then, referencing the git tag in the `source` argument for the `terraform` block in the file.
+First, locate the file in which you are referencing the module in your `_envcommon` directory. Then, reference the git tag in the `source` argument for the `terraform` block in the file.
 
 For example, if you were referencing the `single-server` module, your file path might look like the following:
 ```hcl title=_envcommon/services/single_ec2_instance.hcl
