@@ -240,7 +240,7 @@ terragrunt apply
 
 Now that you have a module defined, you can write a test to programmatically confirm that it creates the desired resources. This is particularly helpful when developing modules to ensure that your changes will not break existing functionality.
 
-To simplify writing tests for infrastructure as code, Gruntwork developed [Terratest](https://terratest.gruntwork.io). Terratest allows you to write tests in [Go](https://go.dev) with built-in functionality to deploy, validate, and undeploy infrastructure.
+To simplify writing tests for infrastructure as code, Gruntwork developed [Terratest](https://terratest.gruntwork.io). Terratest allows you to write tests in [Go](https://go.dev) with built-in functionality to deploy, validate, and undeploy infrastructure. All Gruntwork modules are tested using `Terratest` as part of the software development lifecycle (SDLC).
 
 ### Create the basic file structure
 
@@ -259,23 +259,27 @@ Next, initialize the go module and install terratest as a dependency.
 cd test
 go mod init github.com/<YOUR GITHUB USERNAME>/gw_module_guide
 go get github.com/gruntwork-io/terratest
+go get github.com/stretchr/testify/assert
 ```
 
 ### Write the test
 
-Next, write the test.
+Next, we'll write the test. Specify a single test called `TestLambdaCreated` that provisions an AWS Lambda function, confirms it is created, then destroys the Lambda function. We'll use some of the built-in functionality in `Terratest` to generate random values and set variables that will be passed into Terraform.
 
-```go
+```go title=gw_module_guide/test/lambda_test.go
 package test
 
 import (
-        "testing"
+  "testing"
 
-        "fmt"
-        "github.com/gruntwork-io/terratest/modules/terraform"
+  "fmt"
+
+  "github.com/gruntwork-io/terratest/modules/random"
+  "github.com/gruntwork-io/terratest/modules/terraform"
+  "github.com/stretchr/testify/assert"
 )
 
-func TestLambda(t *testing.T) {
+func TestLambdaCreated(t *testing.T) {
   // Run this test in parallel with all the others
   t.Parallel()
 
@@ -302,6 +306,8 @@ func TestLambda(t *testing.T) {
 
   // Run 'terraform init' and 'terraform apply' to deploy the module
   terraform.InitAndApply(t, terraformOptions)
+
+  // Assert here!
 }
 ```
 
@@ -312,7 +318,7 @@ Finally, run the test you wrote. From the `test` directory, run the following co
 go test -v
 ```
 
-You should expect to see `--- PASS: TestLambda` as the final log line of the output from the test.
+You should expect to see `--- PASS: TestLambdaCreated` as the final log line of the output from the test.
 
 ## What's next
 
