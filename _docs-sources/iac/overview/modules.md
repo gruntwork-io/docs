@@ -1,4 +1,4 @@
-# What is a Module?
+# What is a module?
 
 Modules are reusable "infrastructure building blocks" that encapsulate the configuration and resource definitions needed to deploy and manage a specific piece of infrastructure, such as a VPC, ECS cluster, or Auto Scaling Group. Each module defines several AWS resources. For example, the VPC module contains resource definitions for subnets, NAT gateways, and more. Modules promote code reusability, modularity, and consistency in infrastructure deployments and can be customized in a variety of ways.
 
@@ -20,7 +20,7 @@ For example, one module might deploy the control plane for Kubernetes and a sepa
 
 We recommend our [Service Catalog](/iac/overview/services/) for common use cases, but our full Module Catalog is available if you have a more complex use case. For a full list of modules available, refer to the [Gruntwork Infrastructure as Code Library](/iac/reference/).
 
-## How modules are structured
+## How services are structured
 
 The code in the module repos are organized into three primary folders:
 

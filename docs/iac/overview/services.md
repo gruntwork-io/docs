@@ -39,6 +39,6 @@ The code in the `terraform-aws-service-catalog` repo is organized into three pri
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d0cd1d5b262a455727c97909adf30fdd"
+  "hash": "66f96a57f0b4025b316f410130c0ef39"
 }
 ##DOCS-SOURCER-END -->

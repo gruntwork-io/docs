@@ -33,6 +33,6 @@ The code in the module repos are organized into three primary folders:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "8ae75da1b25f29a6126c62d274ff878a"
+  "hash": "47aebf9f46c9b623eafbde6656588d2b"
 }
 ##DOCS-SOURCER-END -->

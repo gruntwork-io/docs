@@ -1,5 +1,5 @@
 ---
-sidebar_label: Using Our Modules
+sidebar_label: Using our modules
 ---
 
 # Using Gruntwork Terraform Modules
