@@ -104,12 +104,12 @@ const config = {
             items: [
               {
                 type: "doc",
-                label: "Infrastructure as Code Library",
+                label: "Library",
                 docId: "iac/overview/index",
               },
               {
                 type: "doc",
-                label: "Gruntwork Pipelines",
+                label: "Pipelines",
                 docId: "pipelines/overview/index",
               },
               {
