@@ -1,6 +1,9 @@
 {
   "module": "services/asg-service",
   "releases": {
+    "v0.104.7": {
+      "contains_changes": false
+    },
     "v0.104.6": {
       "contains_changes": false
     },

@@ -1,6 +1,9 @@
 {
   "module": "kms-grant-multi-region",
   "releases": {
+    "v0.68.2": {
+      "contains_changes": false
+    },
     "v0.68.1": {
       "contains_changes": false
     },
