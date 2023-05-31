@@ -13,11 +13,11 @@ In this guide, you will learn how to use a module from the Gruntwork Infrastruct
 - An [AWS Identity and Access Management](https://aws.amazon.com/iam/) (IAM) user or role with permissions to create AWS IAM roles, Lambda functions, and Cloudwatch Log Groups
 - [AWS Command Line Interface](https://aws.amazon.com/cli/) (AWS CLI) installed on your local machine
 - [Terraform](https://www.terraform.io) installed on your local machine
-- [Go](https://go.dev) installed on your local machine
+- (Optional — only required for testing) [Go](https://go.dev) installed on your local machine
 
 ## Create a module
 
-In this section you'll create a module that provisions an AWS Lambda Function using the [`terraform-aws-lambda`](../../reference/modules/terraform-aws-lambda/lambda/) Gruntwork module. This module automatically creates the AWS IAM role and Cloudwatch Log Group for the Lambda function. For more information about the configuration of the module, refer to the [Library Reference](../../reference/modules/terraform-aws-lambda/lambda/#reference).
+In this section you’ll create a module that provisions an AWS Lambda Function using the [`terraform-aws-lambda`](../../reference/modules/terraform-aws-lambda/lambda/) Gruntwork module. This module automatically creates the AWS IAM role and Cloudwatch Log Group for the Lambda function. For more information about the configuration of the module, refer to the [Library Reference](../../reference/modules/terraform-aws-lambda/lambda/#reference).
 
 ### Create the basic file structure
 
@@ -217,7 +217,7 @@ def lambda_handler(event, context):
 
 ## Plan and apply the module
 
-Next, we'll run a plan to see the resources that will be created, then an apply to create the resources in AWS.
+Next, we’ll run a plan to see the resources that will be created, then an apply to create the resources in AWS.
 
 ### Plan
 
@@ -311,7 +311,7 @@ go mod tidy
 
 ### Write the test
 
-Next, we'll write the test. Specify a single test called `TestLambdaCreated` that provisions an AWS Lambda function, confirms it is created, then destroys the Lambda function. We'll use some of the built-in functionality in `Terratest` to generate random values and set variables that will be passed into Terraform.
+Next, we’ll write the test. Specify a single test called `TestLambdaCreated` that provisions an AWS Lambda function, confirms it is created, then destroys the Lambda function. We’ll use some of the built-in functionality in `Terratest` to generate random values and set variables that will be passed into Terraform.
 
 ```go title=gw_module_guide/test/lambda_test.go
 package test
@@ -338,7 +338,7 @@ func TestLambdaCreated(t *testing.T) {
 
 	// Unique ID to namespace resources
 	uniqueId := random.UniqueId()
-	// Generate a unique name for each Lambda so any tests running in parallel don't clash
+	// Generate a unique name for each Lambda so any tests running in parallel don’t clash
 	lambdaName := fmt.Sprintf("test-lambda-%s", uniqueId)
 
 	// Get the cwd so we can point to the lambda handler
@@ -386,9 +386,9 @@ go test -v
 
 You should expect to see `--- PASS: TestLambdaCreated` in the final log lines of the output from the test.
 
-## What's next
+## What’s next
 
-Now that you've used a Gruntwork module to provision resources, consider how you would need to expand this usage make the Lambda function available via a URL using an [AWS API Gateway HTTP API](../../reference/modules/terraform-aws-lambda/api-gateway-proxy/). We refer to combining multiple modules into a single deliverable module as a [service](../overview/services.md).
+Now that you’ve used a Gruntwork module to provision resources, consider how you would need to expand this usage make the Lambda function available via a URL using an [AWS API Gateway HTTP API](../../reference/modules/terraform-aws-lambda/api-gateway-proxy/). We refer to combining multiple modules into a single deliverable module as a [service](../overview/services.md).
 
 <!-- Leaving this commented out since these two docs pages are coming soon -->
 <!-- You can dive deeper into this topic in [composing your own service](./composing-your-own-service.md) or learn how to use a Gruntwork developed service in [using a service](./using-a-service.md). -->
@@ -399,6 +399,6 @@ Lastly, consider how else you might test you module. Are there additional succes
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "ae6432edb71b6dff279aea9e0747d4e5"
+  "hash": "27541d8120d16d62dadba830e7366465"
 }
 ##DOCS-SOURCER-END -->
