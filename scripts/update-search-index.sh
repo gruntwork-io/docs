@@ -24,6 +24,7 @@ function print_usage() {
   echo
   echo -e "  --api-key\t\t\t[Required] The Algolia API key."
   echo -e "  --config\t\t\t[Optional] Path to 'docsearch.json'. Defaults to 'docsearch.json' in current folder."
+  echo -e "  --index-prefix\t\t[Optional] The index prefix. Defaults to 'prod_docs_sourcer'."
   echo
   echo "Example:"
   echo
@@ -43,6 +44,8 @@ function assert_envvar_not_empty() {
 function index_docs() {
   local api_key
   local config="docsearch.json"
+  # The --index-prefix option is not required. We set the default to the prod_docs_sourcer index.
+  local index_prefix="prod_docs_sourcer"
 
   while [[ $# -gt 0 ]]; do
     local key="$1"
@@ -54,6 +57,10 @@ function index_docs() {
       ;;
     --config)
       config="$2"
+      shift
+      ;;
+    --index-prefix)
+      index_prefix="$2"
       shift
       ;;
     --help)
@@ -74,6 +81,13 @@ function index_docs() {
   #Verify parameters
   assert_not_empty "--api-key" "$api_key"
 
+  echo "Updating search index with docs-sourcer using prefix: $index_prefix"
+  # Update Algolia index using docs-sourcer. This is the new method of indexing.
+  # In order to add plugins to this list just space separate them.
+  ALGOLIA_APP_ID="$ALGOLIA_APP_ID" ALGOLIA_API_KEY="$api_key" ALGOLIA_INDEX_PREFIX="$index_prefix" yarn regenerate --plugins docs-indexer
+
+  # Update Algolia index using docsearch-scraper. This is the old method of indexing. We are temporarily running this
+  # alongside the docs-sourcer index.
   docker run \
     --env ALGOLIA_APP_ID="$ALGOLIA_APP_ID" \
     --env ALGOLIA_API_KEY="$api_key" \

@@ -95,7 +95,7 @@ references:
       command: |
         echo "Sleeping for 30 seconds to allow the new updates to take effect."
         sleep 30
-        ./scripts/update-search-index.sh --api-key "$ALGOLIA_API_KEY" --config docsearch-stage.json
+        ./scripts/update-search-index.sh --api-key "$ALGOLIA_API_KEY" --config docsearch-stage.json --index-prefix stage_docs_sourcer
 
   notify_slack_stage_reindex: &notify_slack_stage_reindex
     slack/status:
