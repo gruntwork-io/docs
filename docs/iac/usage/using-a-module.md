@@ -36,8 +36,10 @@ touch gw_module_guide/serverless-api/lambda/main.tf
 touch gw_module_guide/serverless-api/lambda/variables.tf
 
 mkdir -p gw_module_guide/example/<YOUR_REGION>
-mkdir -p gw_module_guide/example/<YOUR_REGION>/main.tf
-mkdir -p gw_module_guide/example/<YOUR_REGION>/main.py
+touch gw_module_guide/example/<YOUR_REGION>/main.tf
+
+mkdir -p gw_module_guide/example/<YOUR_REGION>/src
+touch gw_module_guide/example/<YOUR_REGION>/src/main.py
 ```
 
 </TabItem>
@@ -51,7 +53,8 @@ touch _envcommon/serverless-api/lambda.hcl
 
 mkdir -p gw_module_guide/example/<YOUR REGION>/example/serverless-api
 touch gw_module_guide/example/<YOUR REGION>/example/serverless-api/terragrunt.hcl
-touch gw_module_guide/example/<YOUR REGION>/example/serverless-api/main.py
+mkdir -p gw_module_guide/example/<YOUR REGION>/example/serverless-api/src
+touch gw_module_guide/example/<YOUR REGION>/example/serverless-api/src/main.py
 ```
 
 </TabItem>
@@ -70,13 +73,15 @@ One of the benefits of referencing modules this way is that ability to set defau
 
 ```hcl title=gw_module_guide/serverless-api/lambda/main.tf
 module "lambda" {
-  source = "git::git@github.com/gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v0.21.9"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v0.21.9"
 
   name        = var.name
   runtime     = var.runtime
   source_path = var.source_path
   handler     = var.handler
   run_in_vpc  = false
+  timeout     = 30
+  memory_size = 128
 }
 ```
 
@@ -84,24 +89,25 @@ Next, add the variables to the `variables.tf` file.
 
 ```hcl title=gw_module_guide/serverless-api/lambda/variables.tf
 variable "name" {
-  type = string
+  type        = string
   description = "Name that will be used for the AWS Lambda function"
 }
 
 variable "runtime" {
-  type = string
+  type        = string
   description = "The runtime of the Lambda. Options include go, python, ruby, etc."
 }
 
 variable "source_path" {
-  type = string
+  type        = string
   description = "The path to the directory containing the source to be deployed to lambda"
 }
 
 variable "handler" {
-  type = string
+  type        = string
   description = "The name of the handler function that will be called as the entrypoint of the lambda"
 }
+
 ```
 
 </TabItem>
@@ -143,9 +149,16 @@ module "my_lambda" {
 
   name        = "gruntwork-lambda-module-guide"
   runtime     = "python3.9"
-  source_path = "${path.module}/main.py"
+  source_path = "${path.module}/src"
   handler     = "main.lambda_handler"
 }
+```
+
+Next, copy the following python code which will be used as the entrypoint of the AWS Lambda function.
+
+```python title=gw_module_guide/example/<YOUR_REGION>/src/main.py
+def lambda_handler(event, context):
+    return "Hello from Gruntwork!"
 ```
 
 </TabItem>
@@ -173,10 +186,18 @@ include "envcommon" {
 inputs {
   name        = "gruntwork-lambda-module-guide"
   runtime     = "python3.9"
-  source_path = "${path.module}/main.py"
+  source_path = "${path.module}/src"
   handler     = "main.lambda_handler"
 }
 ```
+
+Next, copy the following python code which will be used as the entrypoint of the AWS Lambda function.
+
+```python title=gw_module_guide/example/<YOUR_REGION>/example/serverless-api/src/main.py
+def lambda_handler(event, context):
+    return "Hello from Gruntwork!"
+```
+
 </TabItem>
 </Tabs>
 
@@ -203,7 +224,7 @@ terraform plan
 
 Terragrunt will generate an execution plan using the `plan` action. The plan will show what resources Terragrunt determines need to be created or modified.
 
-In your plan output, you should expect to see an AWS Lambda function, IAM role, and Cloudwatch Log group.
+In your plan output, you should expect to see an AWS Lambda function, IAM role, IAM policy, IAM Role Policy Attachment, and Cloudwatch Log group.
 ```bash
 terragrunt plan
 ```
@@ -236,7 +257,7 @@ terragrunt apply
 </TabItem>
 </Tabs>
 
-## Testing
+## Testing (Terraform only)
 
 Now that you have a module defined, you can write a test to programmatically confirm that it creates the desired resources. This is particularly helpful when developing modules to ensure that your changes will not break existing functionality.
 
@@ -248,7 +269,16 @@ First, create the basic file structure required to write tests. We recommend put
 
 ```bash
 mkdir -p gw_module_guide/test
-touch -p gw_module_guide/test/lambda_test.go
+touch gw_module_guide/test/lambda_test.go
+mkdir -p gw_module_guide/test/src
+touch gw_module_guide/test/src/main.py
+```
+
+Copy the following Python function, which will be used as the entrypoint for the Lambda function created during the test.
+
+```python title=gw_module_guide/test/src/main.py
+def lambda_handler(event, context):
+    return "Hello from Gruntwork!"
 ```
 
 ### Install dependencies
@@ -256,10 +286,12 @@ touch -p gw_module_guide/test/lambda_test.go
 Next, initialize the go module and install terratest as a dependency.
 
 ```bash
-cd test
+cd gw_module_guide/test
 go mod init github.com/<YOUR GITHUB USERNAME>/gw_module_guide
 go get github.com/gruntwork-io/terratest
 go get github.com/stretchr/testify/assert
+go get github.com/aws/aws-sdk-go/aws
+go mod tidy
 ```
 
 ### Write the test
@@ -269,47 +301,66 @@ Next, we'll write the test. Specify a single test called `TestLambdaCreated` tha
 ```go title=gw_module_guide/test/lambda_test.go
 package test
 
+package test
+
 import (
-  "testing"
+	"os"
+	"testing"
 
-  "fmt"
+	"fmt"
 
-  "github.com/gruntwork-io/terratest/modules/random"
-  "github.com/gruntwork-io/terratest/modules/terraform"
-  "github.com/stretchr/testify/assert"
+	awsSDK "github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/service/lambda"
+	"github.com/gruntwork-io/terratest/modules/aws"
+	"github.com/gruntwork-io/terratest/modules/random"
+	"github.com/gruntwork-io/terratest/modules/terraform"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestLambdaCreated(t *testing.T) {
-  // Run this test in parallel with all the others
-  t.Parallel()
+	// Run this test in parallel with all the others
+	t.Parallel()
 
-  // Unique ID to namespace resources
-  uniqueId := random.UniqueId()
-  // Generate a unique name for each Lambda so any tests running in parallel don't clash
-  lambdaName := fmt.Sprintf("test-lambda-%s", uniqueId)
+	// Unique ID to namespace resources
+	uniqueId := random.UniqueId()
+	// Generate a unique name for each Lambda so any tests running in parallel don't clash
+	lambdaName := fmt.Sprintf("test-lambda-%s", uniqueId)
 
-  terraformOptions := &terraform.Options {
-    // Where the Terraform code is located
-    TerraformDir: "../serverless-api/lambda/",
+	// Get the cwd so we can point to the lambda handler
+	path, _ := os.Getwd()
+	srcPath := path + "/src"
 
-    // Variables to pass to the Terraform code
-    Vars: map[string]interface{}{
-      "lambda_name": lambdaName,
-      "handler":     "main.lambda_handler",
-      "source_file": "main.py",
-      "runtime":     "python3.9",
-    },
-  }
+	terraformOptions := &terraform.Options{
+		// Where the Terraform code is located
+		TerraformDir: "../serverless-api/lambda/",
 
-  // Run 'terraform destroy' at the end of the test to clean up
-  defer terraform.Destroy(t, terraformOptions)
+		// Variables to pass to the Terraform code
+		Vars: map[string]interface{}{
+			"name":        lambdaName,
+			"runtime":     "python3.9",
+			"handler":     "main.lambda_handler",
+			"source_path": srcPath,
+		},
+	}
 
-  // Run 'terraform init' and 'terraform apply' to deploy the module
-  terraform.InitAndApply(t, terraformOptions)
+	// Run 'terraform destroy' at the end of the test to clean up
+	defer terraform.Destroy(t, terraformOptions)
 
-  // Assert here!
+	// Run 'terraform init' and 'terraform apply' to deploy the module
+	terraform.InitAndApply(t, terraformOptions)
+
+	// Create a lambda client so we can retrieve the function
+	lambdaClient := aws.NewLambdaClient(t, "us-west-2")
+	function, _ := lambdaClient.GetFunction(&lambda.GetFunctionInput{
+		FunctionName: &lambdaName,
+	})
+
+	// Assert the function name is equal to what we set
+	assert.Equal(t, lambdaName, awsSDK.StringValue(function.Configuration.FunctionName))
 }
 ```
+
+In this test, we first generate data so that the test run creates resources with unique names. Next, we create the Terraform `options`, which indicates the folder in which the Terraform module we want to test is located and sets the values that will be passed in for variables. Then, we set up a `terraform destroy` operation, which will always run regardless of the test status. Then, we run `terraform init` and `terraform apply` to create the resources. Finally, we validate that the name of the AWS Lambda function that was created matches the expected name.
 
 ### Run the test
 
@@ -318,7 +369,7 @@ Finally, run the test you wrote. From the `test` directory, run the following co
 go test -v
 ```
 
-You should expect to see `--- PASS: TestLambdaCreated` as the final log line of the output from the test.
+You should expect to see `--- PASS: TestLambdaCreated` in the final log lines of the output from the test.
 
 ## What's next
 
@@ -330,6 +381,6 @@ Lastly, consider how else you might test you module. Are there additional succes
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "aa1fb668203c54f77ff6821ef6a1387a"
+  "hash": "69ac8ca6b946cd35bcad4ea6f3d93eeb"
 }
 ##DOCS-SOURCER-END -->
