@@ -1,6 +1,6 @@
-# What is the Infrastructure as Code Library?
+# What is Gruntwork Library?
 
-The Gruntwork Infrastructure as Code Library (IaC Library) is a collection of reusable code that enables you to deploy and manage infrastructure quickly and reliably. It promotes code reusability, modularity, and consistency in infrastructure deployments. We’ve taken the thousands of hours we spent building infrastructure on AWS and condensed all that experience and code into pre-built packages or modules.  
+Gruntwork Library (formerly known as the "Gruntwork IaC Library") is a collection of reusable infrastructure-as-code that enables you to deploy and manage infrastructure quickly and reliably. It promotes code reusability, modularity, and consistency in infrastructure deployments. We’ve taken the thousands of hours we spent building infrastructure on AWS and condensed all that experience and code into pre-built packages or modules.
 
 ## Modules
 
@@ -10,7 +10,7 @@ Modules are "infrastructure building blocks" authored by Gruntwork and written i
 
 Service modules are opinionated combinations of the "building block" modules described above. They are designed to be used "off the shelf" with no need to assemble a collection of “building block” modules on your own. They typically represent a full use case. For example, the `vpc` service module deploys a VPC, VPC Flow Logs, and Network ACLs. If you agree with the opinions embedded in a service module, they’re the fastest way to deploy production-grade infrastructure. To learn more, check [What is a service module?](/iac/overview/services/).
 
-## Tools used in the IaC Library
+## Tools used in Library
 
 The Gruntwork IaC Library has been created using the following tools:
 
