@@ -1,6 +1,9 @@
 {
   "module": "tls-scripts/generate-trust-stores.sh",
   "releases": {
+    "v0.104.7": {
+      "contains_changes": false
+    },
     "v0.104.6": {
       "contains_changes": false
     },
