@@ -53,6 +53,7 @@ touch _envcommon/serverless-api/lambda.hcl
 
 mkdir -p gw_module_guide/example/<YOUR REGION>/example/serverless-api
 touch gw_module_guide/example/<YOUR REGION>/example/serverless-api/terragrunt.hcl
+
 mkdir -p gw_module_guide/example/<YOUR REGION>/example/serverless-api/src
 touch gw_module_guide/example/<YOUR REGION>/example/serverless-api/src/main.py
 ```
@@ -123,11 +124,13 @@ terraform {
 }
 
 locals {
-  source_base_url = "git::git@github.com/gruntwork-io/terraform-aws-lambda.git//modules/lambda"
+  source_base_url = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda"
 }
 
 inputs {
-  run_in_vpc = false
+  run_in_vpc  = false
+  timeout     = 30
+  memory_size = 128
 }
 ```
 
@@ -270,6 +273,7 @@ First, create the basic file structure required to write tests. We recommend put
 ```bash
 mkdir -p gw_module_guide/test
 touch gw_module_guide/test/lambda_test.go
+
 mkdir -p gw_module_guide/test/src
 touch gw_module_guide/test/src/main.py
 ```
@@ -373,7 +377,9 @@ You should expect to see `--- PASS: TestLambdaCreated` in the final log lines of
 
 ## What's next
 
-Now that you've used a Gruntwork module to provision resources, consider how you would need to expand this usage make the Lambda function available via a URL using an [AWS API Gateway HTTP API](../../reference/modules/terraform-aws-lambda/api-gateway-proxy/). We refer to combining multiple modules into a single deliverable module as a [service](../overview/services.md). You can dive deeper into this topic in [composing your own service](./composing-your-own-service.md) or learn how to use a Gruntwork developed service in [using a service](./using-a-service.md).
+Now that you've used a Gruntwork module to provision resources, consider how you would need to expand this usage make the Lambda function available via a URL using an [AWS API Gateway HTTP API](../../reference/modules/terraform-aws-lambda/api-gateway-proxy/). We refer to combining multiple modules into a single deliverable module as a [service](../overview/services.md).
+
+<!-- You can dive deeper into this topic in [composing your own service](./composing-your-own-service.md) or learn how to use a Gruntwork developed service in [using a service](./using-a-service.md). -->
 
 Lastly, consider how else you might test you module. Are there additional success or failure cases you would want to add? To learn more about testing using Terratest, refer to the [official document](https://terratest.gruntwork.io/docs/getting-started/quick-start/).
 
@@ -381,6 +387,6 @@ Lastly, consider how else you might test you module. Are there additional succes
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "69ac8ca6b946cd35bcad4ea6f3d93eeb"
+  "hash": "e2e0d11edba676e8c0201c085cc637fc"
 }
 ##DOCS-SOURCER-END -->
