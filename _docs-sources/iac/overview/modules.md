@@ -20,7 +20,7 @@ For example, one module might deploy the control plane for Kubernetes and a sepa
 
 We recommend our [Service Catalog](/iac/overview/services/) for common use cases, but our full Module Catalog is available if you have a more complex use case. For a full list of modules available, refer to the [Gruntwork Infrastructure as Code Library](/iac/reference/).
 
-## How services are structured
+## How modules are structured
 
 The code in the module repos are organized into three primary folders:
 
