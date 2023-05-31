@@ -3,7 +3,9 @@ import TabItem from '@theme/TabItem';
 
 # Using a Module
 
-The Terraform modules in the Gruntwork Infrastructure as Code Library allows you to configure the `provider` and `backend` settings to suit their needs. This makes it possible to use Gruntwork modules alongside any existing modules you may have already developed, minimizing any duplication of configuration.
+The Terraform modules in the Gruntwork Infrastructure as Code Library allows you to configure the `provider` and `backend` settings to suit their needs. This makes it possible to use Gruntwork modules alongside any existing modules you may have already developed, with minimal duplication of configuration.
+
+In this guide, you will learn how to use a module from the Gruntwork Infrastructure as Code (IaC) Library to create an AWS Lambda function. You will also learn how to organize your IaC code to be able to support many deployments.
 
 ## Prerequisites
 
@@ -177,15 +179,18 @@ inputs {
 
 ## Plan and apply the module
 
-Now that you have created a module and a reference that is specific to a sing environment and AWS region, you can run a `plan` to see the infrastructure resources that will be provisioned by the module.
+Next, we'll run a plan to see the resources that will be created, then an apply to create the resources in AWS.
 
 ### Plan
+
+Now that you have created a module and a reference that is specific to a single environment and AWS region, you can run a `plan` to see the infrastructure resources that will be provisioned by the module.
 
 <Tabs groupId="tool-choice">
 <TabItem value="Terraform" label="Terraform" default>
 
-Run terraform plan...
+Terraform will generate an execution plan using the `plan` action. The plan will show what resources Terraform determines need to be created or modified.
 
+In your plan output, you should expect to see an AWS Lambda function, IAM role, and Cloudwatch Log group.
 ```bash
 terraform plan
 ```
@@ -193,8 +198,9 @@ terraform plan
 </TabItem>
 <TabItem value="Terragrunt" label="Terragrunt" default>
 
-Run terragrunt plan...
+Terragrunt will generate an execution plan using the `plan` action. The plan will show what resources Terragrunt determines need to be created or modified.
 
+In your plan output, you should expect to see an AWS Lambda function, IAM role, and Cloudwatch Log group.
 ```bash
 terragrunt plan
 ```
@@ -204,12 +210,12 @@ terragrunt plan
 
 ### Apply
 
-After running a `plan` and confirming that all expected resources show that they will be provisioned in the plan, you can run an `apply` to create the resources.
+After running a `plan` and confirming that all expected resources show that they will be provisioned in the plan, run an `apply` to create the resources.
 
 <Tabs groupId="tool-choice">
 <TabItem value="Terraform" label="Terraform" default>
 
-Run terraform apply
+Terraform will create resources when using the `apply` action. Like with the `plan` action, Terraform will determine which resources need to be created or modified. You should expect to see the same resources to be created when running `apply` that are shown when running `plan`.
 
 ```bash
 terraform apply
@@ -218,7 +224,7 @@ terraform apply
 </TabItem>
 <TabItem value="Terragrunt" label="Terragrunt" default>
 
-Run terragrunt apply
+Terragrunt will create resources when using the `apply` action. Like with the `plan` action, Terragrunt will determine which resources need to be created or modified. You should expect to see the same resources to be created when running `apply` that are shown when running `plan`.
 
 ```bash
 terragrunt apply
@@ -234,4 +240,4 @@ Use [Terratest](https://terratest.gruntwork.io)
 
 ## What's next
 
-Use a service!
+Now that you've used a Gruntwork module to provision resources, consider how you would need to expand this usage make the Lambda function available via a URL using an [AWS API Gateway HTTP API](../../reference/modules/terraform-aws-lambda/api-gateway-proxy/). We refer to this as a [service](../overview/services.md). You can dive deeper into this topic in [composing your own service](./composing-your-own-service.md) or learn how to use a Gruntwork developed service in [using a service](./using-a-service.md).
