@@ -48,8 +48,9 @@ touch gw_module_guide/example/<YOUR_REGION>/src/main.py
 For Terragrunt, we recommend that all re-usable infrastructure modules live in a directory called `_envcommon`. Create two paths — one which will contain the reference to the `terraform-aws-lambda` and one which will contain a reference to the local module.
 
 ```bash
-mkdir -p _envcommon/serverless-api
-touch _envcommon/serverless-api/lambda.hcl
+mkdir -p gw_module_guide/_envcommon/serverless-api
+touch gw_module_guide/terragrunt.hcl
+touch gw_module_guide/_envcommon/serverless-api/lambda.hcl
 
 mkdir -p gw_module_guide/example/<YOUR REGION>/example/serverless-api
 touch gw_module_guide/example/<YOUR REGION>/example/serverless-api/terragrunt.hcl
@@ -118,7 +119,7 @@ Define the module in `_envcommon` that references the `terraform-aws-lambda`. Fo
 
 One of the benefits of referencing modules this way is that ability to set defaults for your organization. As an example — the `terraform-aws-lambda` exposes many variables but in the module block below, we are hard coding the value `run_in_vpc` to be `false`. This will ensure that anyone consuming this module will only create AWS Lambda functions that are not in a VPC. For a full list of configuration options for this module, refer to the [Library Reference](../../reference/modules/terraform-aws-lambda/lambda/#reference).
 
-```hcl title=_envcommon/serverless-api/lambda.hcl
+```hcl title=gw_module_guide/_envcommon/serverless-api/lambda.hcl
 terraform {
   source = "${local.source_base_url}?ref=v0.21.9"
 }
@@ -127,7 +128,7 @@ locals {
   source_base_url = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda"
 }
 
-inputs {
+inputs = {
   run_in_vpc  = false
   timeout     = 30
   memory_size = 128
@@ -176,6 +177,16 @@ terraform {
   source = "${include.envcommon.locals.source_base_url}?ref=v0.21.9"
 }
 
+generate "provider" {
+  path = "provider.tf"
+  if_exists = "overwrite_terragrunt"
+  contents = <<EOF
+provider "aws" {
+  region = "us-west-2"
+}
+EOF
+}
+
 include "root" {
   path = find_in_parent_folders()
 }
@@ -186,10 +197,10 @@ include "envcommon" {
   expose = true
 }
 
-inputs {
+inputs = {
   name        = "gruntwork-lambda-module-guide"
   runtime     = "python3.9"
-  source_path = "${path.module}/src"
+  source_path = "./src"
   handler     = "main.lambda_handler"
 }
 ```
@@ -387,6 +398,6 @@ Lastly, consider how else you might test you module. Are there additional succes
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e2e0d11edba676e8c0201c085cc637fc"
+  "hash": "85f7e4cc1e18a5a48e9bddf3ae5601cc"
 }
 ##DOCS-SOURCER-END -->
