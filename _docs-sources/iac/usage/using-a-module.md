@@ -13,6 +13,7 @@ In this guide, you will learn how to use a module from the Gruntwork Infrastruct
 - An [AWS Identity and Access Management](https://aws.amazon.com/iam/) (IAM) user or role with permissions to create AWS IAM roles, Lambda functions, and Cloudwatch Log Groups
 - [AWS Command Line Interface](https://aws.amazon.com/cli/) (AWS CLI) installed on your local machine
 - [Terraform](https://www.terraform.io) installed on your local machine
+- [Go](https://go.dev) installed on your local machine
 
 ## Create a module
 
@@ -36,6 +37,7 @@ touch gw_module_guide/serverless-api/lambda/variables.tf
 
 mkdir -p gw_module_guide/example/<YOUR_REGION>
 mkdir -p gw_module_guide/example/<YOUR_REGION>/main.tf
+mkdir -p gw_module_guide/example/<YOUR_REGION>/main.py
 ```
 
 </TabItem>
@@ -49,6 +51,7 @@ touch _envcommon/serverless-api/lambda.hcl
 
 mkdir -p gw_module_guide/example/<YOUR REGION>/example/serverless-api
 touch gw_module_guide/example/<YOUR REGION>/example/serverless-api/terragrunt.hcl
+touch gw_module_guide/example/<YOUR REGION>/example/serverless-api/main.py
 ```
 
 </TabItem>
@@ -235,9 +238,84 @@ terragrunt apply
 
 ## Testing
 
-Use [Terratest](https://terratest.gruntwork.io)
+Now that you have a module defined, you can write a test to programmatically confirm that it creates the desired resources. This is particularly helpful when developing modules to ensure that your changes will not break existing functionality.
 
+To simplify writing tests for infrastructure as code, Gruntwork developed [Terratest](https://terratest.gruntwork.io). Terratest allows you to write tests in [Go](https://go.dev) with built-in functionality to deploy, validate, and undeploy infrastructure.
+
+### Create the basic file structure
+
+First, create the basic file structure required to write tests. We recommend putting all tests in the `test` directory in your repository.
+
+```bash
+mkdir -p gw_module_guide/test
+touch -p gw_module_guide/test/lambda_test.go
+```
+
+### Install dependencies
+
+Next, initialize the go module and install terratest as a dependency.
+
+```bash
+cd test
+go mod init github.com/<YOUR GITHUB USERNAME>/gw_module_guide
+go get github.com/gruntwork-io/terratest
+```
+
+### Write the test
+
+Next, write the test.
+
+```go
+package test
+
+import (
+        "testing"
+
+        "fmt"
+        "github.com/gruntwork-io/terratest/modules/terraform"
+)
+
+func TestLambda(t *testing.T) {
+  // Run this test in parallel with all the others
+  t.Parallel()
+
+  // Unique ID to namespace resources
+  uniqueId := random.UniqueId()
+  // Generate a unique name for each Lambda so any tests running in parallel don't clash
+  lambdaName := fmt.Sprintf("test-lambda-%s", uniqueId)
+
+  terraformOptions := &terraform.Options {
+    // Where the Terraform code is located
+    TerraformDir: "../serverless-api/lambda/",
+
+    // Variables to pass to the Terraform code
+    Vars: map[string]interface{}{
+      "lambda_name": lambdaName,
+      "handler":     "main.lambda_handler",
+      "source_file": "main.py",
+      "runtime":     "python3.9",
+    },
+  }
+
+  // Run 'terraform destroy' at the end of the test to clean up
+  defer terraform.Destroy(t, terraformOptions)
+
+  // Run 'terraform init' and 'terraform apply' to deploy the module
+  terraform.InitAndApply(t, terraformOptions)
+}
+```
+
+### Run the test
+
+Finally, run the test you wrote. From the `test` directory, run the following command:
+```bash
+go test -v
+```
+
+You should expect to see `--- PASS: TestLambda` as the final log line of the output from the test.
 
 ## What's next
 
 Now that you've used a Gruntwork module to provision resources, consider how you would need to expand this usage make the Lambda function available via a URL using an [AWS API Gateway HTTP API](../../reference/modules/terraform-aws-lambda/api-gateway-proxy/). We refer to this as a [service](../overview/services.md). You can dive deeper into this topic in [composing your own service](./composing-your-own-service.md) or learn how to use a Gruntwork developed service in [using a service](./using-a-service.md).
+
+Lastly, consider how else you might test you module. Are there additional success or failure cases you would want to add? To learn more about testing using Terratest, refer to the [official document](https://terratest.gruntwork.io/docs/getting-started/quick-start/).
