@@ -24,6 +24,6 @@ The Gruntwork IaC Library has been created using the following tools:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "74ebcd1c94d5c02b7a16bdac200b4973"
+  "hash": "2083ee2971bad5bf9ccabdf629024a89"
 }
 ##DOCS-SOURCER-END -->
