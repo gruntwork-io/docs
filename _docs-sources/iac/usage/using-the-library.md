@@ -115,7 +115,7 @@ variable "handler" {
 </TabItem>
 <TabItem value="Terragrunt" label="Terragrunt" default>
 
-Define the module in `_envcommon` that references the `terraform-aws-lambda`. For `terragrunt`, the source is defined in the `source` attribute of the `terraform` block.
+Define the module in `_envcommon` that references the `terraform-aws-lambda` module. For `terragrunt`, the source is defined in the `source` attribute of the `terraform` block.
 
 One of the benefits of referencing modules this way is the ability to set defaults for your organization. As an example — the `terraform-aws-lambda` exposes many variables but in the module block below, we are hard coding the value `run_in_vpc` to be `false`. This will ensure that anyone consuming this module will only create AWS Lambda functions that are not in a VPC. For a full list of configuration options for this module, refer to the [Library Reference](../../reference/modules/terraform-aws-lambda/lambda/#reference).
 
