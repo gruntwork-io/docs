@@ -45,7 +45,7 @@ touch gw_module_guide/example/<YOUR_REGION>/src/main.py
 </TabItem>
 <TabItem value="Terragrunt" label="Terragrunt" default>
 
-For Terragrunt, we recommend that all re-usable infrastructure modules live in a directory called `_envcommon`. Create two paths — one which will contain the reference to the `terraform-aws-lambda` and one which will contain a reference to the local module.
+For Terragrunt, we recommend that all re-usable infrastructure modules live in a directory called `_envcommon`. Create two paths — one which will contain the reference to the `terraform-aws-lambda` module and one which will contain a reference to the local module.
 
 ```bash
 mkdir -p gw_module_guide/_envcommon/serverless-api
