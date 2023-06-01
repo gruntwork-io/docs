@@ -93,7 +93,7 @@ output "api_endpoint" {
 }
 ```
 
-## Using the service
+## Use the service
 
 Now that you have defined the service, you can reference the service to create the resources in AWS.
 
