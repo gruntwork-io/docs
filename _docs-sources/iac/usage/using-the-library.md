@@ -388,7 +388,7 @@ You should expect to see `--- PASS: TestLambdaCreated` in the final log lines of
 
 ## What’s next
 
-Now that you’ve used a Gruntwork module to provision resources, consider how you would need to expand this usage make the Lambda function available via a URL using an [AWS API Gateway HTTP API](../../reference/modules/terraform-aws-lambda/api-gateway-proxy/). We refer to combining multiple modules into a single deliverable module as a [service](../overview/services.md).
+Now that you’ve used a Gruntwork module to provision resources, consider how you would need to expand this usage to make the Lambda function available via a URL using an [AWS API Gateway HTTP API](../../reference/modules/terraform-aws-lambda/api-gateway-proxy/). We refer to combining multiple modules into a single deliverable module as a [service](../overview/services.md).
 
 <!-- Leaving this commented out since these two docs pages are coming soon -->
 <!-- You can dive deeper into this topic in [composing your own service](./composing-your-own-service.md). -->
