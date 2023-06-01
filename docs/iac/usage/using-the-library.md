@@ -113,7 +113,7 @@ variable "handler" {
 </TabItem>
 <TabItem value="Terragrunt" label="Terragrunt" default>
 
-Define a module in `_envcommon/serverless-api/lambda.hcl` referencing the [git url](https://developer.hashicorp.com/terraform/language/modules/sources#github) for the `terraform-aws-lambda` module. For `terragrunt`, the source is defined in the `source` attribute of the `terraform` block.
+Define a module in `_envcommon/serverless-api/lambda.hcl` referencing the [git url](https://developer.hashicorp.com/terraform/language/modules/sources#github) of the `terraform-aws-lambda` module. For `terragrunt`, the source is defined in the `source` attribute of the `terraform` block.
 
 ```hcl title=gw_module_guide/_envcommon/serverless-api/lambda.hcl
 terraform {
@@ -394,6 +394,6 @@ Lastly, consider how else you might test your module. Are there additional succe
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b45f7cc113802ee97b2133147ee4796b"
+  "hash": "e470b90b46779f221cd9581d24ce046c"
 }
 ##DOCS-SOURCER-END -->

@@ -113,7 +113,7 @@ variable "handler" {
 </TabItem>
 <TabItem value="Terragrunt" label="Terragrunt" default>
 
-Define a module in `_envcommon/serverless-api/lambda.hcl` referencing the [git url](https://developer.hashicorp.com/terraform/language/modules/sources#github) for the `terraform-aws-lambda` module. For `terragrunt`, the source is defined in the `source` attribute of the `terraform` block.
+Define a module in `_envcommon/serverless-api/lambda.hcl` referencing the [git url](https://developer.hashicorp.com/terraform/language/modules/sources#github) of the `terraform-aws-lambda` module. For `terragrunt`, the source is defined in the `source` attribute of the `terraform` block.
 
 ```hcl title=gw_module_guide/_envcommon/serverless-api/lambda.hcl
 terraform {
