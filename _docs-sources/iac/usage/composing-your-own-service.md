@@ -26,7 +26,7 @@ touch gw_service_guide/serverless-api/variables.tf
 touch gw_service_guide/serverless-api/outputs.tf
 ```
 
-### Defining the service
+### Define the service
 
 Next, define the module blocks for the AWS Lambda function and HTTP API Gateway. For the Lambda, we will use the [`Lambda function` module](../../reference/modules/terraform-aws-lambda/lambda/), for the HTTP API Gateway we will use the [`HTTP API Gateway` module](../../reference/modules/terraform-aws-lambda/lambda-http-api-gateway/).
 
