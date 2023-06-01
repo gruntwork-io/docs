@@ -11,7 +11,7 @@ In this guide, you will learn how to create a service that provisions a simple A
 - [AWS Command Line Interface](https://aws.amazon.com/cli/) (AWS CLI) installed on your local machine
 - [Terraform](https://www.terraform.io) installed on your local machine
 
-## Creating the service
+## Create the service
 
 In this section we’ll define a service that provisions an AWS Lambda Function and HTTP API Gateway, with a single proxy route on the API Gateway pointing to the Lambda. This service exposes a simple set of inputs for configuring the Lambda code configuration and name of the provisioned resources.
 
