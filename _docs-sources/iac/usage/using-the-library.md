@@ -21,7 +21,7 @@ In this section you’ll create a module that provisions an AWS Lambda Function 
 
 ### Create the basic file structure
 
-First, create the basic file structure that will contain the module reference. In this guide, you will create a module named `serverless-api` which contains the reference to the `terraform-aws-lambda` module. This approach is taken to allow you to define a module once, then use it in many environments and regions, while keeping the amount of copy-and-paste work to a minimum.
+First, create the basic file structure that will contain the module reference. In this guide, you will create a module named `serverless-api` which contains the reference to the `terraform-aws-lambda` module. This enables you to define the module once and utilize it in many environments and regions.
 
 In this guide, we will use `example` as the name of the environment. In a real-world environment, this might be `dev`, `staging`, `production`, or any other name.
 

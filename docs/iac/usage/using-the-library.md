@@ -3,7 +3,7 @@ import TabItem from '@theme/TabItem';
 
 # Using the Library
 
-The Terraform modules in the Gruntwork Infrastructure as Code Library allows you to configure the `provider` and `backend` settings to suit their needs. This makes it possible to use Gruntwork modules alongside any existing modules you may have already developed, with minimal duplication of configuration.
+The Terraform modules in the Gruntwork Infrastructure as Code Library allow you to configure the `provider` and `backend` settings to suit your needs. This makes it possible to use Gruntwork modules alongside any existing modules you may have already developed, with minimal duplication of configuration.
 
 In this guide, you will learn how to use a [module](../overview/modules.md) from the Gruntwork Infrastructure as Code (IaC) Library to create an AWS Lambda function. You will also learn how to organize your IaC code to be able to support many deployments. The same steps can be followed when using a [service](../overview/services.md), since both modules are services can be referenced in `module` blocks.
 
@@ -21,7 +21,7 @@ In this section you’ll create a module that provisions an AWS Lambda Function 
 
 ### Create the basic file structure
 
-First, create the basic file structure required that will contain the module reference. In this guide, you will create a module named `serverless-api` which contains the reference to the `terraform-aws-lambda` module. This approach is taken to allow you to define a module once, then use it in many environments and regions, while keeping the amount of copy-and-paste work to a minimum.
+First, create the basic file structure that will contain the module reference. In this guide, you will create a module named `serverless-api` which contains the reference to the `terraform-aws-lambda` module. This enables you to define the module once and utilize it in many environments and regions.
 
 In this guide, we will use `example` as the name of the environment. In a real-world environment, this might be `dev`, `staging`, `production`, or any other name.
 
@@ -45,7 +45,7 @@ touch gw_module_guide/example/<YOUR_REGION>/src/main.py
 </TabItem>
 <TabItem value="Terragrunt" label="Terragrunt" default>
 
-For Terragrunt, we recommend that all re-usable infrastructure modules live in a directory called `_envcommon`. Create two paths — one which will contain the reference to the `terraform-aws-lambda` and one which will contain a reference to the local module.
+For Terragrunt, we recommend that all re-usable infrastructure modules live in a directory called `_envcommon`. Create two paths — one which will contain the reference to the `terraform-aws-lambda` module and one which will contain a reference to the local module.
 
 ```bash
 mkdir -p gw_module_guide/_envcommon/serverless-api
@@ -71,7 +71,7 @@ Next, create the reference to the `terraform-aws-lambda` module...
 
 Define a module block that uses the git url `terraform-aws-lambda` module for the `source` attribute.
 
-One of the benefits of referencing modules this way is that ability to set defaults for your organization. As an example — the `terraform-aws-lambda` exposes many variables but in the module block below, we are hard coding the value `run_in_vpc` to be `false`. This will ensure that anyone consuming this module will only create AWS Lambda functions that are not in a VPC. For a full list of configuration options for this module, refer to the [Library Reference](../../reference/modules/terraform-aws-lambda/lambda/#reference).
+One of the benefits of referencing modules this way is the ability to set defaults for your organization. As an example — the `terraform-aws-lambda` exposes many variables but in the module block below, we are hard coding the value `run_in_vpc` to be `false`. This will ensure that anyone consuming this module will only create AWS Lambda functions that are not in a VPC. For a full list of configuration options for this module, refer to the [Library Reference](../../reference/modules/terraform-aws-lambda/lambda/#reference).
 
 ```hcl title=gw_module_guide/serverless-api/lambda/main.tf
 module "lambda" {
@@ -115,9 +115,9 @@ variable "handler" {
 </TabItem>
 <TabItem value="Terragrunt" label="Terragrunt" default>
 
-Define the module in `_envcommon` that references the `terraform-aws-lambda`. For `terragrunt`, the source is defined in the `source` attribute of the `terraform` block.
+Define the module in `_envcommon` that references the `terraform-aws-lambda` module. For `terragrunt`, the source is defined in the `source` attribute of the `terraform` block.
 
-One of the benefits of referencing modules this way is that ability to set defaults for your organization. As an example — the `terraform-aws-lambda` exposes many variables but in the module block below, we are hard coding the value `run_in_vpc` to be `false`. This will ensure that anyone consuming this module will only create AWS Lambda functions that are not in a VPC. For a full list of configuration options for this module, refer to the [Library Reference](../../reference/modules/terraform-aws-lambda/lambda/#reference).
+One of the benefits of referencing modules this way is the ability to set defaults for your organization. As an example — the `terraform-aws-lambda` exposes many variables but in the module block below, we are hard coding the value `run_in_vpc` to be `false`. This will ensure that anyone consuming this module will only create AWS Lambda functions that are not in a VPC. For a full list of configuration options for this module, refer to the [Library Reference](../../reference/modules/terraform-aws-lambda/lambda/#reference).
 
 ```hcl title=gw_module_guide/_envcommon/serverless-api/lambda.hcl
 terraform {
@@ -170,7 +170,7 @@ def lambda_handler(event, context):
 
 Create a module block that uses the path to the local module as the source attribute, supplying values for the required attributes of the module.
 
-One of the benefits of this approach is that you can increment the version of a module for a specific environment and region in a granular fashion. For example, when we shipped a version v0.22.0 of the `terraform-aws-lambda` module, you could update just the `example` environment in the us-west-2 AWS region to ensure the upgrade goes as expected, then roll out to other environments or regions.
+One of the benefits of this approach is that you can increment the version of a module for a specific environment and region in a granular fashion. For example, if we were to ship a version v0.22.0 of the `terraform-aws-lambda` module, you could update just the `example` environment in the us-west-2 AWS region to ensure the upgrade goes as expected, then roll out to other environments or regions.
 
 ```hcl title=gw_module_guide/example/<YOUR_REGION>/example/serverless-api/terragrunt.hcl
 terraform {
@@ -399,6 +399,6 @@ Lastly, consider how else you might test you module. Are there additional succes
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "2cd3eb3232d0156f62786cfe9992a408"
+  "hash": "6ff7e00117540011be7325db4cf1578b"
 }
 ##DOCS-SOURCER-END -->
