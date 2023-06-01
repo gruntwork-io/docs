@@ -12,7 +12,7 @@ fi
 source "$BASH_COMMONS_DIR/log.sh"
 source "$BASH_COMMONS_DIR/assert.sh"
 
-readonly ALGOLIA_APP_ID="7AWZHGNJE2"
+readonly ALGOLIA_APPLICATION_ID="7AWZHGNJE2"
 
 function print_usage() {
   echo
@@ -84,13 +84,12 @@ function index_docs() {
   echo "Updating search index with docs-sourcer using prefix: $index_prefix..."
   # Update Algolia index using docs-sourcer. This is the new method of indexing.
   # In order to add plugins to this list just space separate them.
-  export ALGOLIA_APP_ID="$ALGOLIA_APP_ID"
-  ALGOLIA_API_KEY="$api_key" ALGOLIA_INDEX_PREFIX="$index_prefix" yarn regenerate --plugins docs-indexer
+  ALGOLIA_APP_ID="$ALGOLIA_APPLICATION_ID" ALGOLIA_API_KEY="$api_key" ALGOLIA_INDEX_PREFIX="$index_prefix" yarn regenerate --plugins docs-indexer
 
   # Update Algolia index using docsearch-scraper. This is the old method of indexing. We are temporarily running this
   # alongside the docs-sourcer index.
   docker run \
-    --env ALGOLIA_APP_ID="$ALGOLIA_APP_ID" \
+    --env ALGOLIA_APP_ID="$ALGOLIA_APPLICATION_ID" \
     --env ALGOLIA_API_KEY="$api_key" \
     --env "CONFIG=$(cat $config | jq -r tostring)" \
     algolia/docsearch-scraper
