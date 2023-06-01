@@ -28,7 +28,7 @@ touch gw_service_guide/serverless-api/outputs.tf
 
 ### Define the service
 
-Next, define the module blocks for the AWS Lambda function and HTTP API Gateway. For the Lambda, we will use the [`Lambda function` module](../../reference/modules/terraform-aws-lambda/lambda/), for the HTTP API Gateway we will use the [`HTTP API Gateway` module](../../reference/modules/terraform-aws-lambda/lambda-http-api-gateway/).
+Next, define the module blocks for the AWS Lambda function and HTTP API Gateway. For the Lambda, we will use the [Lambda function module](../../reference/modules/terraform-aws-lambda/lambda/), for the HTTP API Gateway we will use the [HTTP API Gateway module](../../reference/modules/terraform-aws-lambda/lambda-http-api-gateway/).
 
 To keep the configuration simple for this guide, we define a single route — `ANY /{proxy+}`. This tells the API Gateway to send any requests matching the path `/*` to the Lambda. This is an effective approach if you are using an API framework in the Lambda function code that can handle request routing. We will also set some defaults for the Lambda to not run in a VPC, have a maximum run time of 30 seconds, and 128MB of memory.
 
@@ -84,7 +84,7 @@ variable "lambda_handler" {
 
 ### Specify the outputs
 
-Next, define the outputs from the module. Outputs are convenient ways to pass values between modules when composing a service comprised of many modules. For this guide, we only want a single output — the URL for the API we are provisioning. For a module consumed by your company or team, you may want to define more outputs, to ensure that all resources created have associated outputs the consumers of your module can use as they see fit. Refer to the Library Reference for the [`Lambda function` module](../../reference/modules/terraform-aws-lambda/lambda/#reference) and [`HTTP API Gateway` module](../../reference/modules/terraform-aws-lambda/lambda-http-api-gateway/#reference) for a full list of outputs available.
+Next, define the outputs from the module. Outputs are convenient ways to pass values between modules when composing a service comprised of many modules. For this guide, we only want a single output — the URL for the API we are provisioning. You may want to define more outputs when developing a module for your company or team. Refer to the Library Reference for the [Lambda function module](../../reference/modules/terraform-aws-lambda/lambda/#reference) and [HTTP API Gateway module](../../reference/modules/terraform-aws-lambda/lambda-http-api-gateway/#reference) for a full list of outputs available.
 
 ```hcl title=gw_service_guide/serverless-api/outputs.tf
 output "api_endpoint" {
@@ -138,8 +138,6 @@ def lambda_handler(event, context):
     body = {"message": "Hello from Gruntwork!"}
     return {"statusCode": 200, "body": json.dumps(body)}
 ```
-
-Now that the service and references are defined, we can run `plan` and `apply` to create the resources in AWS.
 
 ## Plan and apply the service
 
