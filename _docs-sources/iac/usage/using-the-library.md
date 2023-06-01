@@ -170,7 +170,7 @@ def lambda_handler(event, context):
 
 Create a module block that uses the path to the local module as the source attribute, supplying values for the required attributes of the module.
 
-One of the benefits of this approach is that you can increment the version of a module for a specific environment and region in a granular fashion. For example, when we shipped a version v0.22.0 of the `terraform-aws-lambda` module, you could update just the `example` environment in the us-west-2 AWS region to ensure the upgrade goes as expected, then roll out to other environments or regions.
+One of the benefits of this approach is that you can increment the version of a module for a specific environment and region in a granular fashion. For example, if we were to ship a version v0.22.0 of the `terraform-aws-lambda` module, you could update just the `example` environment in the us-west-2 AWS region to ensure the upgrade goes as expected, then roll out to other environments or regions.
 
 ```hcl title=gw_module_guide/example/<YOUR_REGION>/example/serverless-api/terragrunt.hcl
 terraform {
