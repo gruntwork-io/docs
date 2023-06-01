@@ -1,6 +1,6 @@
 # Create Your Account
 
-The Gruntwork Developer Portal provides access to all resources included in your Gruntwork subscription. Activating your account will grant access to the Gruntwork IaC Library and our DevOps training courses. Admins can also manage their team and invite additional members.
+The [Gruntwork Developer Portal](https://app.gruntwork.io) provides access to all resources included in your Gruntwork subscription. Activating your account will grant access to the Gruntwork IaC Library and our DevOps training courses. Admins can also manage their team and invite additional members.
 
 ## 1. Accept your invitation
 
@@ -41,6 +41,6 @@ If you are the admin for your organization, you'll be prompted to confirm detail
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "2fb31838de5bbfda36fcf232bf6aa524"
+  "hash": "2265e4e8637aa03fc0a7cb05bde8dd11"
 }
 ##DOCS-SOURCER-END -->
