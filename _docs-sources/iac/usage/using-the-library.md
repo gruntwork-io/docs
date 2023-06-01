@@ -1,11 +1,11 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Using a Module
+# Using the Library
 
 The Terraform modules in the Gruntwork Infrastructure as Code Library allows you to configure the `provider` and `backend` settings to suit their needs. This makes it possible to use Gruntwork modules alongside any existing modules you may have already developed, with minimal duplication of configuration.
 
-In this guide, you will learn how to use a module from the Gruntwork Infrastructure as Code (IaC) Library to create an AWS Lambda function. You will also learn how to organize your IaC code to be able to support many deployments.
+In this guide, you will learn how to use a [module](../overview/modules.md) from the Gruntwork Infrastructure as Code (IaC) Library to create an AWS Lambda function. You will also learn how to organize your IaC code to be able to support many deployments. The same steps can be followed when using a [service](../overview/services.md), since both modules are services can be referenced in `module` blocks.
 
 ## Prerequisites
 
@@ -394,11 +394,3 @@ Now that you’ve used a Gruntwork module to provision resources, consider how y
 <!-- You can dive deeper into this topic in [composing your own service](./composing-your-own-service.md) or learn how to use a Gruntwork developed service in [using a service](./using-a-service.md). -->
 
 Lastly, consider how else you might test you module. Are there additional success or failure cases you would want to add? To learn more about testing using Terratest, refer to the [official document](https://terratest.gruntwork.io/docs/getting-started/quick-start/).
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "27541d8120d16d62dadba830e7366465"
-}
-##DOCS-SOURCER-END -->

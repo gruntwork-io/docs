@@ -29,7 +29,7 @@ const sidebar = [
         type: "category",
         collapsible: false,
         items: [
-          "iac/usage/using-a-module",
+          "iac/usage/using-the-library",
           "iac/usage/composing-your-own-service",
           "iac/usage/customizing-modules",
           "guides/working-with-code/tfc-integration",
