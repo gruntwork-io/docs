@@ -17,7 +17,7 @@ In this section we’ll define a service that provisions an AWS Lambda Function 
 
 ### Create the basic file structure
 
-First, create the basic file structure that will contain the service definition. We’ll create three files — main.tf which will contain the resource definitions, variables.tf, which specifies the possible inputs to the module, and outputs.tf, which specifies the values that can be used to pass references to attributes from the resources in the module.
+First, create the basic file structure that will contain the service definition. We’ll create three files — `main.tf` which will contain the resource definitions, `variables.tf`, which specifies the possible inputs to the module, and `outputs.tf`, which specifies the values that can be used to pass references to attributes from the resources in the module.
 
 ```bash
 mkdir -p gw_service_guide/serverless-api/
