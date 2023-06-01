@@ -71,7 +71,7 @@ Next, create the reference to the `terraform-aws-lambda` module...
 
 Define a module block that uses the git url `terraform-aws-lambda` module for the `source` attribute.
 
-One of the benefits of referencing modules this way is that ability to set defaults for your organization. As an example — the `terraform-aws-lambda` exposes many variables but in the module block below, we are hard coding the value `run_in_vpc` to be `false`. This will ensure that anyone consuming this module will only create AWS Lambda functions that are not in a VPC. For a full list of configuration options for this module, refer to the [Library Reference](../../reference/modules/terraform-aws-lambda/lambda/#reference).
+One of the benefits of referencing modules this way is the ability to set defaults for your organization. As an example — the `terraform-aws-lambda` exposes many variables but in the module block below, we are hard coding the value `run_in_vpc` to be `false`. This will ensure that anyone consuming this module will only create AWS Lambda functions that are not in a VPC. For a full list of configuration options for this module, refer to the [Library Reference](../../reference/modules/terraform-aws-lambda/lambda/#reference).
 
 ```hcl title=gw_module_guide/serverless-api/lambda/main.tf
 module "lambda" {
