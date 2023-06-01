@@ -101,7 +101,7 @@ Now that you have defined the service, you can reference the service to create t
 
 First, create the files that will contain the reference to the service. Typically, you would create a module in one repository, then reference it in a different repository. For this tutorial, we’ll just create the reference in the top level directory for the sake of simplicity.
 
-Create a file called main.tf, which will contain a reference to the module, a directory called `/src`, which will contain all source code for the Lambda function, and a file called main.py, which will contain the Lambda function code.
+Create a file called `main.tf`, which will contain a reference to the module, a directory called `/src`, which will contain all source code for the Lambda function, and a file called `main.py`, which will contain the Lambda function code.
 
 ```bash
 touch gw_service_guide/main.tf
