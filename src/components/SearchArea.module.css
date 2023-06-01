@@ -1,0 +1,77 @@
+/* BASIC STRUCTURE */
+
+.container {
+  max-width: 600px;
+  margin-top: 4rem;
+}
+
+.card_container_max_width {
+  max-width: 400px;
+  max-height: 200px;
+  margin: 0 auto;
+}
+
+.card_result {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50ch;
+}
+
+.SearchContainerItem {
+  width: 400px;
+}
+
+.SearchContainerItemHeader {
+  font-size: x-small;
+  align-items: start;
+  font-weight: 600;
+  color: rgba(40, 40, 40, 0.628);
+  margin-bottom: 0;
+}
+
+.SearchInput {
+  align-items: center;
+  background: rgb(252, 252, 252);
+  border: 0;
+  border-radius: 5px;
+  color: rgba(40, 40, 40, 0.628);
+  display: flex;
+  font-weight: 500;
+  height: 36px;
+  justify-content: space-between;
+  padding: 0 8px;
+  -webkit-user-select: none;
+  user-select: none;
+  width: 100%;
+  outline: 1px solid rgb(148, 148, 148);
+}
+
+input:focus-visible {
+  outline: 2px solid rgb(112, 212, 245);
+  outline: 2px solid rgb(112, 212, 245);
+  border-radius: 3px;
+}
+
+.FacetListInput {
+  border-radius: 5px;
+  display: flex;
+  height: 36px;
+  background: rgb(252, 252, 252);
+  color: rgba(40, 40, 40, 0.628);
+  outline: 1px solid rgb(148, 148, 148);
+  border-radius: 5px;
+}
+
+.SearchSubmit {
+  display: none;
+}
+
+.SearchReset {
+  display: none;
+}
+
+.searchModal {
+  width: 50%;
+  height: 400px;
+}
