@@ -81,10 +81,10 @@ function index_docs() {
   #Verify parameters
   assert_not_empty "--api-key" "$api_key"
 
-  echo "Updating search index with docs-sourcer using prefix: $index_prefix"
+  echo "Updating search index with docs-sourcer using prefix: $index_prefix..."
   # Update Algolia index using docs-sourcer. This is the new method of indexing.
   # In order to add plugins to this list just space separate them.
-  ALGOLIA_APP_ID="$ALGOLIA_APP_ID" ALGOLIA_API_KEY="$api_key" ALGOLIA_INDEX_PREFIX="$index_prefix" yarn regenerate --plugins docs-indexer
+  ALGOLIA_API_KEY="$api_key" ALGOLIA_INDEX_PREFIX="$index_prefix" yarn regenerate --plugins docs-indexer
 
   # Update Algolia index using docsearch-scraper. This is the old method of indexing. We are temporarily running this
   # alongside the docs-sourcer index.
