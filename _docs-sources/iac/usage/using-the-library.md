@@ -13,6 +13,7 @@ In this guide, you will learn how to use a [module](../overview/modules.md) from
 - An [AWS Identity and Access Management](https://aws.amazon.com/iam/) (IAM) user or role with permissions to create AWS IAM roles, Lambda functions, and Cloudwatch Log Groups
 - [AWS Command Line Interface](https://aws.amazon.com/cli/) (AWS CLI) installed on your local machine
 - [Terraform](https://www.terraform.io) installed on your local machine
+- (Optional) [Terragrunt](https://terragrunt.gruntwork.io) installed on your local machine
 - (Optional — only required for testing) [Go](https://go.dev) installed on your local machine
 
 ## Create a module
@@ -312,8 +313,6 @@ Next, we’ll write the test. Specify a single test called `TestLambdaCreated` t
 ```go title=gw_module_guide/test/lambda_test.go
 package test
 
-package test
-
 import (
 	"os"
 	"testing"
@@ -334,11 +333,16 @@ func TestLambdaCreated(t *testing.T) {
 
 	// Unique ID to namespace resources
 	uniqueId := random.UniqueId()
-	// Generate a unique name for each Lambda so any tests running in parallel don’t clash
+	// Generate a unique name for each Lambda so any tests running in parallel don't clash
 	lambdaName := fmt.Sprintf("test-lambda-%s", uniqueId)
 
 	// Get the cwd so we can point to the lambda handler
-	path, _ := os.Getwd()
+	path, err := os.Getwd()
+
+	if err != nil {
+		t.Errorf("Unable to retrieve working directory, received error %s", err)
+	}
+
 	srcPath := path + "/src"
 
 	terraformOptions := &terraform.Options{
