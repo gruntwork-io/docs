@@ -20,24 +20,9 @@ interface SearchAreaProps {
   type: string
 }
 
-function CustomHits(props: UseHitsProps) {
-  const { hits, results, sendEvent } = useHits(props)
-
-  /*
-  Don't display search results where the module has been deprecated. We prefix the friendly name for these
-  modules with [DEPRECATED], so we filter for all hits where there is not a match for the prefix.
-  */
-  const activeHits = hits.filter((hit: any) => !hit.moduleFriendlyName.startsWith('[DEPRECATED]'))
-
-  /*
-  Don't display modules where the description contains a note.
-  These modules all state they are not intended to be used directly.
-  */
-  const onlyUseableModules = activeHits.filter((hit: any) => hit.moduleDescription.toLowerCase().indexOf("note") === -1)
-
-  return (
-    <CardGroup cols={3}>
-      {onlyUseableModules.map((hit: any) => {
+function ResultCardGroup(hits: any) {
+  return (<CardGroup cols={3}>
+      {hits.map((hit: any) => {
         return (
           <Card
             title={hit.moduleFriendlyName}
@@ -54,6 +39,34 @@ function CustomHits(props: UseHitsProps) {
         )
       })}
     </CardGroup>
+  )
+}
+
+function NoResults() {
+  return (
+    <div className={styles.NoResultsContainer}>
+      <p className={styles.NoResults}>No results found, please try another search</p>
+    </div>
+  )
+}
+
+function CustomHits(props: UseHitsProps) {
+  const { hits, results, sendEvent } = useHits(props)
+
+  /*
+  Don't display search results where the module has been deprecated. We prefix the friendly name for these
+  modules with [DEPRECATED], so we filter for all hits where there is not a match for the prefix.
+  */
+  const activeHits = hits.filter((hit: any) => !hit.moduleFriendlyName.startsWith('[DEPRECATED]'))
+
+  /*
+  Don't display modules where the description contains a note.
+  These modules all state they are not intended to be used directly, and the module description breaks out of the card
+  */
+  const onlyUseableModules = activeHits.filter((hit: any) => hit.moduleDescription.toLowerCase().indexOf("note") === -1)
+
+  return (
+    onlyUseableModules.length > 0 ? ResultCardGroup(onlyUseableModules) : NoResults()
   )
 }
 

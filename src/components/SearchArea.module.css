@@ -22,6 +22,17 @@
   width: 400px;
 }
 
+.NoResultsContainer {
+  max-width: 600px;
+  align-items: center;
+}
+
+.NoResults {
+  font-size: large;
+  color: rgba(40, 40, 40, 0.628);
+  font-style: italic;
+}
+
 .SearchContainerItemHeader {
   font-size: x-small;
   align-items: start;
