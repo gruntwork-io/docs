@@ -37,12 +37,23 @@ including its children. Patcher supports `source` values only from GitHub.
 If you purchased and deployed our [Reference Architecture](https://gruntwork.io/reference-architecture/) and have your deployment organized in an `infrastructure-live` repository, we recommend running Patcher inside each environment folder, e.g. `infrastructure-live/dev`.
 
 ### Patcher Report
+@@TODO
 
+### Patcher Update
+@@TODO
+
+## Debugging
+
+All logs are stored in the folder `~/.patcher/logs`. To also send `debug` logs, run Patcher with the `--loglevel debug` flag.
+
+```
+patcher report --loglevel debug
+```
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "6c9e74826d57e74a553a6a4f5e01e0e5"
+  "hash": "06b435657c7e0bc4d8021ba3e4efce7e"
 }
 ##DOCS-SOURCER-END -->
