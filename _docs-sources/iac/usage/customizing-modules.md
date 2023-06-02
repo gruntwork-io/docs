@@ -8,7 +8,7 @@ In these cases, you may either fork the code to your own organization or create 
 
 :::caution
 
-Whenever possible, we strongly recommend using the code directly from the gruntwork-io GitHub org and avoid forking. If your company completely bans all outside sources, then follow the instructions below.
+Whenever possible, we strongly recommend using the code directly from the `gruntwork-io` GitHub org and avoid forking. If your company completely bans all outside sources, then follow the instructions below.
 
 :::
 
