@@ -371,7 +371,7 @@ func TestLambdaCreated(t *testing.T) {
 }
 ```
 
-In this test, we first generate data so that the test run creates resources with unique names. Next, we create the Terraform `options`, which indicates the folder in which the Terraform module we want to test is located and sets the values that will be passed in for variables. Then, we set up a `terraform destroy` operation, which will always run regardless of the test status. Then, we run `terraform init` and `terraform apply` to create the resources. Finally, we validate that the name of the AWS Lambda function that was created matches the expected name.
+In this test, we first generate data so that the test run creates resources with unique names. Next, we create the Terraform `options`, which indicate the folder in which the Terraform module we want to test is located and sets the values that will be passed in for variables. Then, we set up a `terraform destroy` operation, which will always run regardless of the test status. Then, we run `terraform init` and `terraform apply` to create the resources. Finally, we validate that the name of the AWS Lambda function that was created matches the expected name.
 
 ### Run the test
 
