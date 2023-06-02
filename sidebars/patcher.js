@@ -1,16 +1,24 @@
 const sidebar = [
     {
-        label: "Patcher",
-        type: "category",
-        collapsible: false,
-        items: [
-            {
-                label: "Getting Started",
-                type: "doc",
-                id: "patcher/index",
-            }
-        ]
+      "Getting Started": [
+        {
+          "label": "Getting Started",
+          "type": "category",
+          "link": {
+            "type": "doc",
+            "id": "patcher/getting-started/index"
+          },
+          "items": []
+        }
+      ]
+    },
+    {
+      "Running Patcher": [
+        "patcher/running-patcher/report",
+        "patcher/running-patcher/update"
+      ]
     }
-]
-
-module.exports = sidebar
+  ]
+  
+  module.exports = sidebar
+    
