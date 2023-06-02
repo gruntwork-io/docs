@@ -46,6 +46,10 @@ function NoResults() {
 function CustomHits(hits: any[]) {
   let newHits = hits["hits"]["searchHits"];
 
+  if (newHits.length === 0) {
+    return NoResults()
+  }
+
   /*
   Don't display search results where the module has been deprecated. We prefix the friendly name for these
   modules with [DEPRECATED], so we filter for all hits where there is not a match for the prefix.
@@ -74,7 +78,7 @@ export const SearchArea: React.FunctionComponent<
   const searchClient = algoliasearch(algoliaAppId, algoliaSearchKey)
   const index = searchClient.initIndex("dev_docs_sourcer-modules");
 
-  const [repoTitleDropdownVisible, setRepoTitleDropdownVisible] = useState(false);
+  const [repoTitleDropdownVisible, setTitleDropdownVisible] = useState(false);
   const [typeDropdownVisible, setTypeDropdownVisible] = useState(false);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -98,8 +102,12 @@ export const SearchArea: React.FunctionComponent<
   const loadSearchHits = async () => {
     await index.search(searchTerm, {facets: ["mainRepoTitle", "type"], facetFilters: facetFilters}).then(resp => {
       setSearchHits(resp["hits"]);
-      setSearchRepoFacets(handleSearchFacets(resp["facets"]["mainRepoTitle"]));
-      setSearchTypeFacets(handleSearchFacets(resp["facets"]["type"]));
+
+      // Only load the facets once - when the page loads
+      if (searchRepoFacets.length === 0 && searchTypeFacets.length == 0) {
+        setSearchRepoFacets(handleSearchFacets(resp["facets"]["mainRepoTitle"]));
+        setSearchTypeFacets(handleSearchFacets(resp["facets"]["type"]));
+      }
     });
   }
 
@@ -107,17 +115,35 @@ export const SearchArea: React.FunctionComponent<
     loadSearchHits()
   }, [])
 
-  const onSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    loadSearchHits();
+  }, [searchTerm]);
+
+  useEffect(() => {
+    loadSearchHits();
+  }, [facetFilters]);
+
+  const onSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value);
     setSearchTerm(event.target.value);
-    loadSearchHits()
+  }
+
+  const selectRepoTitleFacet = (facetName: string) => {
+    if (`mainRepoTitle:${facetName}` === facetFilters[0]) {
+      // Unset
+      setFacetFilters(["type:module"])
+    } else {
+      setFacetFilters([`mainRepoTitle:${facetName}`]);
+    }
+    setTitleDropdownVisible(false);
   }
 
   const handleTypeFacetDropdownEvent = () => {
-    setTypeDropdownVisible(!typeDropdownVisible)
+    setTypeDropdownVisible(!typeDropdownVisible);
   }
 
-  const handleRepoTitleFacetDropdownEvent = () => {
-    setRepoTitleDropdownVisible(!repoTitleDropdownVisible)
+  const handleRepoFacetDropdownEvent = () => {
+    setTitleDropdownVisible(!repoTitleDropdownVisible);
   }
 
   return (
@@ -130,16 +156,13 @@ export const SearchArea: React.FunctionComponent<
           <div className={styles.SearchContainerItem} id="sme-area">
             <p className={styles.SearchContainerItemHeader}>TOPIC</p>
             <div id="type-dropdown">
-              <button onClick={handleRepoTitleFacetDropdownEvent}>
-                Click me
+              <button className={styles.FacetDropdownButton} onClick={handleRepoFacetDropdownEvent}>
+                <p className={styles.FacetButtonText}>{facetFilters}</p>
               </button>
               {repoTitleDropdownVisible &&
               <ul className={styles.FacetList}>
                 {searchRepoFacets.map(f => {
-                  return <li key={f["key"]}>
-                    <input type="checkbox" />
-                    <span>{f["key"]} {f["value"]}</span>
-                  </li>
+                  return <li onClick={() => selectRepoTitleFacet(f["key"])} key={f["key"]}>{f["key"]}</li>
                 })}
               </ul>}
             </div>
@@ -147,16 +170,13 @@ export const SearchArea: React.FunctionComponent<
           <div className={styles.SearchContainerItem} id="type">
             <p className={styles.SearchContainerItemHeader}>TYPE</p>
             <div id="type-dropdown">
-              <button onClick={handleTypeFacetDropdownEvent}>
-                Click me
+              <button className={styles.FacetDropdownButton} onClick={handleTypeFacetDropdownEvent}>
+                <p className={styles.FacetButtonText}>Module</p>
               </button>
               {typeDropdownVisible &&
               <ul className={styles.FacetList}>
                 {searchTypeFacets.map(f => {
-                  return <li key={f["key"]}>
-                    <input type="checkbox" />
-                    <span>{f["key"]} {f["value"]}</span>
-                  </li>
+                  return <li key={f["key"]}>{f["key"]}</li>
                 })}
               </ul>}
             </div>
