@@ -1,13 +1,6 @@
 import algoliasearch from "algoliasearch/lite"
-import React, { PropsWithChildren } from "react"
-import {
-  Configure,
-  InstantSearch,
-  RefinementList,
-  SearchBox,
-  UseHitsProps,
-  useHits
-} from "react-instantsearch-hooks-web"
+import React, { PropsWithChildren, useEffect, useState } from "react"
+
 import { Card } from "./Card"
 import { CardGroup } from "./CardGroup"
 
@@ -50,14 +43,14 @@ function NoResults() {
   )
 }
 
-function CustomHits(props: UseHitsProps) {
-  const { hits, results, sendEvent } = useHits(props)
+function CustomHits(hits: any[]) {
+  let newHits = hits["hits"]["searchHits"];
 
   /*
   Don't display search results where the module has been deprecated. We prefix the friendly name for these
   modules with [DEPRECATED], so we filter for all hits where there is not a match for the prefix.
   */
-  const activeHits = hits.filter((hit: any) => !hit.moduleFriendlyName.startsWith('[DEPRECATED]'))
+  const activeHits = newHits.filter((hit: any) => !hit.moduleFriendlyName.startsWith('[DEPRECATED]'))
 
   /*
   Don't display modules where the description contains a note.
@@ -70,6 +63,7 @@ function CustomHits(props: UseHitsProps) {
   )
 }
 
+
 export const SearchArea: React.FunctionComponent<
   PropsWithChildren<SearchAreaProps>
 > = ({ name, requirement, type, children }) => {
@@ -78,31 +72,98 @@ export const SearchArea: React.FunctionComponent<
   const algoliaSearchKey: string = "a976ea48057ceaa662656ec8f4f591af"
 
   const searchClient = algoliasearch(algoliaAppId, algoliaSearchKey)
+  const index = searchClient.initIndex("dev_docs_sourcer-modules");
+
+  const [repoTitleDropdownVisible, setRepoTitleDropdownVisible] = useState(false);
+  const [typeDropdownVisible, setTypeDropdownVisible] = useState(false);
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [facetFilters, setFacetFilters] = useState(["type:module"])
+
+  const [searchHits, setSearchHits] = useState([]);
+  const [searchRepoFacets, setSearchRepoFacets] = useState([]);
+  const [searchTypeFacets, setSearchTypeFacets] = useState([])
+
+  const handleSearchFacets = (facets: {}): Object[] => {
+    const facetArray = []
+
+    for (const k in facets) {
+      let v = facets[k];
+      facetArray.push({key: k, value: v});
+    }
+
+    return facetArray
+  }
+
+  const loadSearchHits = async () => {
+    await index.search(searchTerm, {facets: ["mainRepoTitle", "type"], facetFilters: facetFilters}).then(resp => {
+      setSearchHits(resp["hits"]);
+      setSearchRepoFacets(handleSearchFacets(resp["facets"]["mainRepoTitle"]));
+      setSearchTypeFacets(handleSearchFacets(resp["facets"]["type"]));
+    });
+  }
+
+  useEffect(() => {
+    loadSearchHits()
+  }, [])
+
+  const onSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+    loadSearchHits()
+  }
+
+  const handleTypeFacetDropdownEvent = () => {
+    setTypeDropdownVisible(!typeDropdownVisible)
+  }
+
+  const handleRepoTitleFacetDropdownEvent = () => {
+    setRepoTitleDropdownVisible(!repoTitleDropdownVisible)
+  }
 
   return (
     <div className={styles.container}>
-      <InstantSearch
-        searchClient={searchClient}
-        indexName="dev_docs_sourcer-modules"
-      >
-        <Configure facetFilters={["type:module"]} hitsPerPage={28} restrictSearchableAttributes={["mainRepoTitle", "moduleFriendlyName", "rawModuleName"]} />
-
         <Grid cols={3}>
           <div className={styles.SearchContainerItem}>
             <p className={styles.SearchContainerItemHeader}>SEARCH</p>
-            <SearchBox placeholder="Try searching for VPC or EKS..." classNames={{input: styles.SearchInput, submit:styles.SearchSubmit, reset: styles.SearchReset}} />
+            <input type="text" onChange={onSearch} className={styles.SearchInput} placeholder="Try searching for VPC or EKS..." />
           </div>
           <div className={styles.SearchContainerItem} id="sme-area">
             <p className={styles.SearchContainerItemHeader}>TOPIC</p>
-            <RefinementList attribute="mainRepoTitle" searchable={false} className={styles.FacetListInput} />
+            <div id="type-dropdown">
+              <button onClick={handleRepoTitleFacetDropdownEvent}>
+                Click me
+              </button>
+              {repoTitleDropdownVisible &&
+              <ul className={styles.FacetList}>
+                {searchRepoFacets.map(f => {
+                  return <li key={f["key"]}>
+                    <input type="checkbox" />
+                    <span>{f["key"]} {f["value"]}</span>
+                  </li>
+                })}
+              </ul>}
+            </div>
           </div>
           <div className={styles.SearchContainerItem} id="type">
             <p className={styles.SearchContainerItemHeader}>TYPE</p>
-            <RefinementList attribute="type" searchable={false} className={styles.FacetListInput} />
+            <div id="type-dropdown">
+              <button onClick={handleTypeFacetDropdownEvent}>
+                Click me
+              </button>
+              {typeDropdownVisible &&
+              <ul className={styles.FacetList}>
+                {searchTypeFacets.map(f => {
+                  return <li key={f["key"]}>
+                    <input type="checkbox" />
+                    <span>{f["key"]} {f["value"]}</span>
+                  </li>
+                })}
+              </ul>}
+            </div>
           </div>
         </Grid>
-        <CustomHits />
-      </InstantSearch>
+        <CustomHits hits={{ searchHits }} />
+      {/* </InstantSearch> */}
     </div>
   )
 }

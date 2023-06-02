@@ -64,25 +64,7 @@ input:focus-visible {
   border-radius: 3px;
 }
 
-.FacetListInput {
-  border-radius: 5px;
-  display: flex;
-  height: 36px;
-  background: rgb(252, 252, 252);
-  color: rgba(40, 40, 40, 0.628);
-  outline: 1px solid rgb(148, 148, 148);
-  border-radius: 5px;
-}
-
-.SearchSubmit {
-  display: none;
-}
-
-.SearchReset {
-  display: none;
-}
-
-.searchModal {
-  width: 50%;
-  height: 400px;
+.FacetList {
+  padding-left: 0pt;
+  list-style-type: none;
 }
