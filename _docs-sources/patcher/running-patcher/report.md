@@ -1,17 +1,18 @@
 # Patcher Report
 
-`patcher report` is a read-only version of Patcher that shows the changelog per module and its usages.
+The `patcher report` command is a read-only version of Patcher that shows the changelog per module and its usages.
 
-After running patcher report you will end up in the 'Modules View', similar to the screenshot below.
+After scanning for dependencies, Patcher will show you the 'Modules View', similar to the screenshot below.
 
 ![Patcher Report screenshot](/img/guides/stay-up-to-date/patcher/patcher-report-overview-futd.png)
 
-#### Navigation commands
+### Navigation commands
 
 1. While in the modules view, press `u` to see the usages. It shows all places where module is being used:
 
 ![Patcher Usages screenshot](/img/guides/stay-up-to-date/patcher/patcher-report-usages.png)
 
+@@TODO explain "next safe" and "next breaking"
 
 2. While in the modules view, press `v` to see the changelogs from a module. Press `o` to open the page in the browser.
 
@@ -22,6 +23,6 @@ Some modules do not have a CHANGELOGS.md file. In this case, press `o` to open t
 
 :::
 
-![Patcher Changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-report-overview-no-changelog.png)
+![Patcher No Changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-report-no-changelog.png)
 
 
