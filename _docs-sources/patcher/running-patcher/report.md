@@ -1,6 +1,8 @@
 # Patcher Report
 
-In `v0.2.x`, the only available command is `patcher report`. This is a read-only version of Patcher that shows the changelog per module and its usages. After running patcher report you will end up in the 'Modules View', similar to the screenshot below.
+`patcher report` is a read-only version of Patcher that shows the changelog per module and its usages.
+
+After running patcher report you will end up in the 'Modules View', similar to the screenshot below.
 
 ![Patcher Report screenshot](/img/guides/stay-up-to-date/patcher/patcher-report.png)
 
@@ -22,20 +24,4 @@ Some modules do not have a CHANGELOGS.md file. In this case, press `o` to open t
 
 ![Patcher Changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-no-changelogs.png)
 
-
-### CIS AWS v1.5 Upgrade
-
-In `v0.1.x`, the only command available is `patcher upgrade cis`. This will upgrade your service catalogs to the latest
-module versions in the context of CIS v1.5.
-
-For the CIS AWS Foundations Benchmark v1.5 upgrade, refer to [the upgrade guide](https://docs.gruntwork.io/guides/stay-up-to-date/cis/cis-1.5.0/).
-
-
-## Debugging
-
-All logs are stored in the folder `~/.patcher/logs`. To also send `debug` logs, run Patcher with the `--loglevel debug` flag.
-
-```
-patcher report --loglevel debug
-```
 

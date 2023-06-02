@@ -15,10 +15,24 @@ const sidebar = [
     {
       "Running Patcher": [
         "patcher/running-patcher/report",
-        "patcher/running-patcher/update"
+        "patcher/running-patcher/update",
+        "patcher/running-patcher/upgrade"
+      ]
+    },
+    {
+      "Telemetry": [
+        {
+          "label": "Telemetry",
+          "type": "category",
+          "link": {
+            "type": "doc",
+            "id": "patcher/telemetry/index"
+          },
+          "items": []
+        }
       ]
     }
   ]
   
   module.exports = sidebar
-    
+
