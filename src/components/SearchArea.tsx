@@ -155,16 +155,18 @@ export const SearchArea: React.FunctionComponent<
           </div>
           <div className={styles.SearchContainerItem} id="sme-area">
             <p className={styles.SearchContainerItemHeader}>TOPIC</p>
-            <div id="type-dropdown">
+            <div id="title-dropdown">
               <button className={styles.FacetDropdownButton} onClick={handleRepoFacetDropdownEvent}>
-                <p className={styles.FacetButtonText}>{facetFilters}</p>
+                <p className={styles.FacetButtonText}>{facetFilters[0].split(":")[1]}</p>
               </button>
               {repoTitleDropdownVisible &&
-              <ul className={styles.FacetList}>
-                {searchRepoFacets.map(f => {
-                  return <li onClick={() => selectRepoTitleFacet(f["key"])} key={f["key"]}>{f["key"]}</li>
-                })}
-              </ul>}
+              <div className={styles.FacetListContainer}>
+                <ul className={styles.FacetList}>
+                  {searchRepoFacets.map(f => {
+                    return <li className={styles.FacetListItem} onClick={() => selectRepoTitleFacet(f["key"])} key={f["key"]}>{f["key"]}</li>
+                  })}
+                </ul>
+              </div>}
             </div>
           </div>
           <div className={styles.SearchContainerItem} id="type">
@@ -174,11 +176,13 @@ export const SearchArea: React.FunctionComponent<
                 <p className={styles.FacetButtonText}>Module</p>
               </button>
               {typeDropdownVisible &&
-              <ul className={styles.FacetList}>
-                {searchTypeFacets.map(f => {
-                  return <li key={f["key"]}>{f["key"]}</li>
-                })}
-              </ul>}
+              <div className={styles.FacetListContainer}>
+                <ul className={styles.FacetList}>
+                  {searchTypeFacets.map(f => {
+                    return <li className={styles.FacetListItem} key={f["key"]}>{f["key"]}</li>
+                  })}
+                </ul>
+              </div>}
             </div>
           </div>
         </Grid>

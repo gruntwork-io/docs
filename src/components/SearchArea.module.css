@@ -64,19 +64,30 @@ input:focus-visible {
   border-radius: 3px;
 }
 
-.FacetList {
+.FacetListContainer {
   padding-left: 0pt;
-  list-style-type: none;
   background: rgb(252, 252, 252);
-  border: 0;
   border-radius: 5px;
+  position:absolute;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.FacetList {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  list-style-type: none;
+}
+
+.FacetListItem {
+  color:rgba(40, 40, 40, 0.628);
 }
 
 .FacetDropdownButton {
   background: rgb(252, 252, 252);
-  border: 0;
   border-radius: 5px;
   color: rgba(40, 40, 40, 0.628);
+  border: 0;
   display: flex;
   height: 36px;
   justify-content: space-between;
