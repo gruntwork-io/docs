@@ -29,7 +29,7 @@ In this guide, we will use `example` as the name of the environment. In a real-w
 <Tabs groupId="tool-choice">
 <TabItem value="Terraform" label="Terraform" default>
 
-For Terraform, create two paths — one which will contain the reference to the `terraform-aws-lambda` module and one which will contain a reference to the local module (aka ["wrapper module"](#creating-a-wrapper-module-terraform-only)).
+For Terraform, create two paths — one which will contain the reference to the `terraform-aws-lambda` module and one which will contain a reference to the local module (aka "wrapper module").
 
 ```bash
 mkdir -p gw_module_guide/serverless-api/lambda
@@ -390,6 +390,6 @@ You should expect to see `--- PASS: TestLambdaCreated` in the final log lines of
 
 Now that you’ve used a Gruntwork module to provision resources, consider how you would need to expand this usage to make the Lambda function available via a URL using an [AWS API Gateway HTTP API](../../reference/modules/terraform-aws-lambda/api-gateway-proxy/). We refer to combining multiple modules into a single deliverable module as a [service](../overview/services.md).
 
-<!-- You can dive deeper into this topic in [composing your own service](./composing-your-own-service.md). -->
+Next, consider how else you might test your module. Are there additional success or failure cases you would want to add? To learn more about testing using Terratest, refer to the [official document](https://terratest.gruntwork.io/docs/getting-started/quick-start/).
 
-Lastly, consider how else you might test your module. Are there additional success or failure cases you would want to add? To learn more about testing using Terratest, refer to the [official document](https://terratest.gruntwork.io/docs/getting-started/quick-start/).
+Finally, consider how you would run `terraform plan` and `terraform apply` for each PR created for a repo, or in response to PRs being merged. We purpose built [Pipelines](../../pipelines/how-it-works/index.md) with this workflow in mind, refer to the docs to learn more.
