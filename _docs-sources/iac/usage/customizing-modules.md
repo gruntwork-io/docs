@@ -101,7 +101,7 @@ If you believe your change will be useful to the entire Gruntwork community that
 
 ## Forking
 
-The [Gruntwork Terms of Service](https://gruntwork.io/terms/) give you permissions to fork the code from the Gruntwork Infrastructure as Code Library into your own repos. There are two scenarios where you might need to fork code — to make changes to the Gruntwork codebase to suit your organization’s needs, or to comply with a policy that requires all source code to be pulled from an internal GitHub Enterprise or BitBucket server. If your change is specific to your organization, we encourage you to [contribute your changes back to the upstream Gruntwork repository](./contributing.md). This section will walk you through what you need to do to fork the code if your company requires all source code to be pulled from an internal GitHub Enterprise or BitBucket serve.
+The [Gruntwork Terms of Service](https://gruntwork.io/terms/) give you permissions to fork the code from the Gruntwork Infrastructure as Code Library into your own repos. There are two scenarios where you might need to fork code — to make changes to the Gruntwork codebase to suit your organization’s needs or to comply with a policy that requires all source code to be pulled from an internal GitHub Enterprise or BitBucket server. If your change is specific to your organization, we encourage you to [contribute your changes back to the upstream Gruntwork repository](./contributing.md) when possible. This section walks you through what you need to do to fork the code if your company requires all source code to be pulled from an internal GitHub Enterprise or BitBucket serve.
 
 :::caution
 
