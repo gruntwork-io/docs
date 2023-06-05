@@ -2,10 +2,6 @@
 
 We strive to keep the Infrastructure as Code Library flexible and generic enough to serve common use cases, however there may be instances where you need to customize a module to your specific use case, or to ensure compliance with a company policy that does not allow you to pull code from an external source. In these cases, you may either fork the code to your own organization or create a pull request that implements the desired functionality.
 
-## Submitting PRs
-
-If you believe your change will be useful to the entire Gruntwork community that is using the module, you can [create a pull request](https://help.github.com/articles/creating-a-pull-request/) with your changes. Refer to [contributing](./contributing.md) for more information.
-
 ## Creating a wrapper module
 
 In some instances, you may need to extend a Gruntwork module, set default values for variables, or manage what variables and outputs are available. In these cases, we recommend creating a wrapper module in one of your own Git repos.
@@ -98,15 +94,20 @@ output "function_invoke_arn" {
 }
 ```
 
+## Submitting PRs
+
+If you believe your change will be useful to the entire Gruntwork community that is using the module, you can [create a pull request](https://help.github.com/articles/creating-a-pull-request/) with your changes. Refer to [contributing](./contributing.md) for more information.
+
+
 ## Forking
+
+The [Gruntwork Terms of Service](https://gruntwork.io/terms/) give you permissions to fork the code from the Gruntwork Infrastructure as Code Library into your own repos. There are two scenarios where you might need to fork code — to make changes to the Gruntwork codebase to suit your organization’s needs, or to comply with a policy that requires all source code to be pulled from an internal GitHub Enterprise or BitBucket server. If your change is specific to your organization, we encourage you to [contribute your changes back to the upstream Gruntwork repository](./contributing.md). This section will walk you through what you need to do to fork the code if your company requires all source code to be pulled from an internal GitHub Enterprise or BitBucket serve.
 
 :::caution
 
 Whenever possible, we strongly recommend that you use code directly from the `gruntwork-io` GitHub org and avoid forking due to the [increased overhead of managing the fork](#drawbacks-to-forking). If your company completely bans all outside sources, then follow the instructions below.
 
 :::
-
-The [Gruntwork Terms of Service](https://gruntwork.io/terms/) give you permissions to fork the code from the Gruntwork Infrastructure as Code Library into your own repos. This section will walk you through what you need to do to fork the code if your company does not allow external dependencies (e.g., you have a company policy that requires all source code to be pulled from an internal GitHub Enterprise or BitBucket server) or if you need to make modifications to the Infrastructure as Code Library that you do not wish to contribute back to Gruntwork.
 
 :::note
 
@@ -131,7 +132,11 @@ To fork the code in the Gruntwork Infrastructure as Code Library:
 
 We recommend automating this entire process and running it on a regular schedule. The Gruntwork Infrastructure as Code Library is [updated continuously](../../guides/stay-up-to-date#gruntwork-releases), so you’ll want to pull in these updates regularly to stay up to date.
 
+:::info
+
 For enterprise users, Gruntwork offers the [Repo Copier](https://github.com/gruntwork-io/repo-copier), a purpose built tool that includes functionality to complete all of these steps.
+
+:::
 
 ### Using forked code
 
@@ -152,6 +157,6 @@ While forking is allowed under the Gruntwork Terms of Services, there are some d
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "f7c3ff0b8f7a2ad7d4f000ed7ede4a42"
+  "hash": "7fc13535339a41b80950c777aae47c9e"
 }
 ##DOCS-SOURCER-END -->
