@@ -144,8 +144,26 @@ Next, we’ll write a simple Python function that returns a string that will be 
 Copy the following to `terraform-aws-gw-lambda-tutorial/main.py`.
 
 ```py title="terraform-aws-gw-lambda-tutorial/main.py"
+import json
+from urllib.request import urlopen, Request
+
 def lambda_handler(event, context):
-    return "Hello from Gruntwork!"
+    # Your GitHub username
+    github_username = "%unknown%" 
+    # The URL of our tutorial service, which returns a message and tracks your tutorial completion status
+    endpoint_url = "%endpoint_url%"
+
+    httprequest = Request(url, headers={'Accept': 'application/json'})
+
+    response_object = {}
+
+    with urlopen(httprequest) as response:
+        response_object["statusCode"] = response.status
+        response_object["headers"] = {}
+        response_object["headers"]["Content-Type"] = "application/json"
+        response_object["body"] = json.dumps(response.read().decode())
+
+        return response_object
 ```
 
 ### Reference the module

@@ -1,5 +1,6 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
+const path = require('path')
 
 const lightCodeTheme = require("prism-react-renderer/themes/github")
 const darkCodeTheme = require("prism-react-renderer/themes/dracula")
@@ -21,8 +22,8 @@ const enableGoogleAnalytics =
 const siteUrl = cfg.has("siteUrl")
   ? cfg.get("siteUrl")
   : process.env["NETLIFY"]
-  ? process.env["DEPLOY_URL"]
-  : "http://localhost:3000"
+    ? process.env["DEPLOY_URL"]
+    : "http://localhost:3000"
 
 const buildVersion = cfg.has("app.buildVersion")
   ? cfg.get("app.buildVersion")
@@ -67,13 +68,17 @@ const config = {
         },
         googleAnalytics: enableGoogleAnalytics
           ? {
-              trackingID: googleAnalyticsConfig.trackingID,
-              anonymizeIP: true,
-            }
+            trackingID: googleAnalyticsConfig.trackingID,
+            anonymizeIP: true,
+          }
           : undefined,
       },
     ],
   ],
+
+  // clientModules are custom modules (anything that Webpack can import), so css, js, etc
+  // that get included on every page and can be used to run arbitrary client-side Javascript, for example: 
+  clientModules: [path.resolve('./scripts/module-tutorial-client.js')],
 
   plugins: plugins,
 
@@ -289,20 +294,20 @@ const config = {
       },
       algolia: algoliaConfig
         ? {
-            appId: algoliaConfig.appId,
-            // Public API key: safe to commit, but still sourced from config
-            apiKey: algoliaConfig.apiKey,
-            indexName: algoliaConfig.indexName,
-            libraryIndexName: algoliaConfig.libraryIndexName,
-            contextualSearch: true,
-          }
+          appId: algoliaConfig.appId,
+          // Public API key: safe to commit, but still sourced from config
+          apiKey: algoliaConfig.apiKey,
+          indexName: algoliaConfig.indexName,
+          libraryIndexName: algoliaConfig.libraryIndexName,
+          contextualSearch: true,
+        }
         : undefined,
       zoomSelector: ".markdown :not(em) > img:not(.no-zoom)",
       posthog: enablePosthog
         ? {
-            apiKey: posthogConfig.apiKey,
-            appUrl: posthogConfig.appUrl,
-          }
+          apiKey: posthogConfig.apiKey,
+          appUrl: posthogConfig.appUrl,
+        }
         : undefined,
       metadata: [
         { name: "buildVersion", content: buildVersion },
