@@ -113,6 +113,7 @@ export const SearchArea: React.FunctionComponent<
       .search(searchTerm, {
         facets: ["mainRepoTitle", "type"],
         facetFilters: facetFilters,
+        hitsPerPage: 300,
       })
       .then((resp) => {
         setSearchHits(resp["hits"])
