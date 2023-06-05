@@ -1,6 +1,12 @@
 {
   "module": "eks-k8s-karpenter",
   "releases": {
+    "v0.58.4": {
+      "contains_changes": true
+    },
+    "v0.58.3": {
+      "contains_changes": false
+    },
     "v0.58.2": {
       "contains_changes": false
     },

@@ -1,6 +1,9 @@
 {
   "module": "persistent-ebs-volume",
   "releases": {
+    "v0.15.4": {
+      "contains_changes": false
+    },
     "v0.15.3": {
       "contains_changes": true
     },

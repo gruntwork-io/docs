@@ -1,6 +1,9 @@
 {
   "module": "memcached",
   "releases": {
+    "v0.20.0": {
+      "contains_changes": true
+    },
     "v0.19.3": {
       "contains_changes": true
     },
