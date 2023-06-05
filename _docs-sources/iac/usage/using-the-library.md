@@ -216,6 +216,12 @@ def lambda_handler(event, context):
 
 Next, we’ll run a plan to see the resources that will be created, then an apply to create the resources in AWS.
 
+:::note
+
+For this guide, we'll run `terraform plan` and `terraform apply` locally. We recommend running `terraform plan` and `terraform apply` in your CI system in response to PR created, PR sync, and merge events when collaborating on infrastructure as code with a team or organization. We purpose built [Pipelines](../../pipelines/how-it-works/index.md) with this workflow in mind, refer to the Pipelines documentation to learn more.
+
+:::
+
 ### Plan
 
 Now that you have created a module and a reference that is specific to a single environment and AWS region, you can run a `plan` to see the infrastructure resources that will be provisioned by the module.
@@ -390,6 +396,4 @@ You should expect to see `--- PASS: TestLambdaCreated` in the final log lines of
 
 Now that you’ve used a Gruntwork module to provision resources, consider how you would need to expand this usage to make the Lambda function available via a URL using an [AWS API Gateway HTTP API](../../reference/modules/terraform-aws-lambda/api-gateway-proxy/). We refer to combining multiple modules into a single deliverable module as a [service](../overview/services.md).
 
-Next, consider how else you might test your module. Are there additional success or failure cases you would want to add? To learn more about testing using Terratest, refer to the [official document](https://terratest.gruntwork.io/docs/getting-started/quick-start/).
-
-Finally, consider how you would run `terraform plan` and `terraform apply` for each PR created for a repo, or in response to PRs being merged. We purpose built [Pipelines](../../pipelines/how-it-works/index.md) with this workflow in mind, refer to the docs to learn more.
+Finally, consider how else you might test your module. Are there additional success or failure cases you would want to add? To learn more about testing using Terratest, refer to the [official document](https://terratest.gruntwork.io/docs/getting-started/quick-start/).
