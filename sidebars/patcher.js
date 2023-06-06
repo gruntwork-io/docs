@@ -2,8 +2,8 @@ const sidebar = [
   {
     "Getting Started": [
       "patcher/getting-started/getting-started",
-      "patcher/getting-started/update-strategies",
-      "patcher/getting-started/telemetry"
+      "patcher/getting-started/telemetry",
+      "patcher/getting-started/update-strategies"
     ]
   },
   {
@@ -13,6 +13,6 @@ const sidebar = [
       "patcher/running-patcher/upgrade"
     ]
   }
-  
-  module.exports = sidebar
+]
 
+module.exports = sidebar
