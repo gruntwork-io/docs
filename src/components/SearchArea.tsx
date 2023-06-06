@@ -80,6 +80,18 @@ function CustomHits(hits: any[]) {
     : NoResults()
 }
 
+/*
+Given a string, return the same string with the first letter capitalized.
+
+This is used to capitalize labels for the type facet dropdown,
+because they are currently not capitalized.
+
+e.g. word -> Word
+*/
+function capitalize(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
 export const SearchArea: React.FunctionComponent<
   PropsWithChildren<SearchAreaProps>
 > = ({ name, requirement, type, children }) => {
@@ -133,7 +145,8 @@ export const SearchArea: React.FunctionComponent<
   }, [])
 
   useEffect(() => {
-    loadSearchHits()
+    const timeOutId = setTimeout(() => loadSearchHits(), 500)
+    return () => clearTimeout(timeOutId)
   }, [searchTerm])
 
   useEffect(() => {
@@ -197,7 +210,7 @@ export const SearchArea: React.FunctionComponent<
               isClearable={true}
               isSearchable={true}
               options={searchTypeFacets.map((f) => {
-                return { value: f["key"], label: f["key"] }
+                return { value: f["key"], label: capitalize(f["key"]) }
               })}
             />
           </div>

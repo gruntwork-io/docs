@@ -6,24 +6,25 @@
 }
 
 .card_container_max_width {
-  max-width: 400px;
+  max-width: 300px;
   max-height: 200px;
   margin: 0 auto;
 }
 
 .card_result {
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 50ch;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .SearchContainerItem {
-  width: 400px;
+  width: 300px;
 }
 
 .SearchContainerDropdown {
-  width: 400px;
+  width: 300px;
 }
 
 .NoResultsContainer {
@@ -74,4 +75,24 @@ input:focus-visible {
 
 .FacetListContainer {
   position:absolute;
+}
+
+@media only screen and (max-width: 640px) {
+  .card_container_max_width {
+    width: 100%;
+    max-width: unset;
+  }
+  .container {
+    width: 100%
+  }
+  .SearchContainerItem {
+    width: 100%
+  }
+  .SearchContainerDropdown {
+    width: 100%
+  }
+  .FacetListContainer {
+    width: 100%;
+    padding-right: 1.7rem;
+  }
 }
