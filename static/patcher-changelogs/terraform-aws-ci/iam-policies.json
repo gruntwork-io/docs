@@ -1,6 +1,9 @@
 {
   "module": "iam-policies",
   "releases": {
+    "v0.52.2": {
+      "contains_changes": false
+    },
     "v0.52.1": {
       "contains_changes": false
     },
