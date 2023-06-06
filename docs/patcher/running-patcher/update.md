@@ -8,11 +8,16 @@ The `patcher update` command allows you to update some or all of the module depe
 
 In interactive mode, the update command lets you selectively update dependencies one module at time.
 
+Example usage:
+```
+patcher update dev
+```
+
 After scanning for dependencies, Patcher will show you the 'Modules View'.
 
 If all the dependencies are fully up to date, then Patcher shows a tick in the "Up to date" column.
 
-![Patcher update screensho showing dependendency that is fully up to date](/img/guides/stay-up-to-date/patcher/patcher-update-overview-futd.png)
+![Patcher update screenshot showing dependendency that is fully up to date](/img/guides/stay-up-to-date/patcher/patcher-update-overview-futd.png)
 
 If the next available version for a module dependency contains a breaking change that Patcher cannot patch, then a warning message is shown at the bottom of the screen. You can view the individual usages of the module but you are not able to update them.
 
@@ -24,7 +29,7 @@ If Patcher can update one or more usages of a module to a newer version, then Pa
 
 Pressing `ENTER` will update all the usages of that module to either the highest version before the next closest breaking change or the latest version of the dependecy, whichever is encountered first.
 
-The "Up to date" column is chnaged to show "Updated". This indicates that at least one of the dependencies on that module have been updated.
+The "Up to date" column is changed to show "Updated". This indicates that at least one of the dependencies on that module have been updated.
 
 ![Patcher Update screenshot showing dependency that has been updated](/img/guides/stay-up-to-date/patcher/patcher-update-overview-updated.png)
 
@@ -38,8 +43,6 @@ When you quit Patcher, it writes the details of all the updates to stdout in YAM
 
 ![Patcher Usages screenshot showing module with multiple usages](/img/guides/stay-up-to-date/patcher/patcher-update-usages-update-available.png)
 
-@@TODO explain "next safe" and "next breaking"
-
 2. While in the modules view, press `v` to see the changelogs from a module. Press `o` to open the page in the browser.
 
 ![Patcher Changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-update-changelog.png)
@@ -51,17 +54,42 @@ Some modules do not have a CHANGELOGS.md file. In this case, press `o` to open t
 
 ![Patcher No Changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-update-no-changelog.png)
 
-### Updating a Dependency to the Next Safe Version
-
-@@TODO
-
 ## Non-Interactive Mode
+
+In non-interactive mode, Patcher updates all module dependencies in the current folder (and child folders) according to the specified update strategy.
+
+Non-interactive mode supports both the `next-safe` and `next-breaking` update strategies. 
+
+### Next Safe (Default)
+
+Using the `next-safe` update strategy, if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the highest version **before** that breaking change. Otherwise, it will update the dependencies the latest version of that module.
+
+Example usage:
+```
+patcher update --non-interactive --update-strategy next-safe
+```
+Or just
+```
+patcher update --non-interactive
+```
+
+### Next Breaking
+
+Using the `next-breaking` update strategy, if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the version with the breaking change and stop. Otherwise, it will update the dependencies the latest version of that module.
+
+If Patcher updates a dependency to a breaking version, a `README-TO-COMPLETE-UPDATE.md` is written into the folder containing the dependendency. The `README-TO-COMPLETE-UPDATE.md` file contains a release note extract for each dependency in that folder that was updated to a breaking change.
+
+Example usage:
+```
+patcher update --non-interactive --update-strategy next-breaking
+```
+
 
 @@TODO
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "f3dba36328c1e83b7332d2482397b923"
+  "hash": "b4f3f16c37c12cc31d87fae212d8fb52"
 }
 ##DOCS-SOURCER-END -->

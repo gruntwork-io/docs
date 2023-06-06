@@ -92,3 +92,10 @@ Here are the release notes for version v0.62.0:
   - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
   - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 ```
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "local-copier",
+  "hash": "45438254db7c4f504953b651b2af4af4"
+}
+##DOCS-SOURCER-END -->
