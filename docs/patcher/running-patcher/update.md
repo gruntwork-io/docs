@@ -18,7 +18,7 @@ If the next available version for a module dependency contains a breaking change
 
 ![Patcher Update screenshot showing dependency that has a breaking change next](/img/guides/stay-up-to-date/patcher/patcher-update-overview-breaking-change.png)
 
-If Patcher can update one or more usages of a module to a newer version, then Patcher shows the message "Hit <ENTER> to update all usages to the next safe version."
+If Patcher can update one or more usages of a module to a newer version, then Patcher shows the message "Hit «ENTER» to update all usages to the next safe version."
 
 ![Patcher Update screenshot showing dependency that can be updated](/img/guides/stay-up-to-date/patcher/patcher-update-overview-update-available.png)
 
@@ -62,6 +62,6 @@ Some modules do not have a CHANGELOGS.md file. In this case, press `o` to open t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "868934f7078138510050ffeecec69b42"
+  "hash": "f3dba36328c1e83b7332d2482397b923"
 }
 ##DOCS-SOURCER-END -->
