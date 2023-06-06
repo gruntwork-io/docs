@@ -12,7 +12,7 @@ After scanning for dependencies, Patcher will show you the 'Modules View'.
 
 If all the dependencies are fully up to date, then Patcher shows a tick in the "Up to date" column.
 
-![Patcher update screensho showing dependendency that is fully up to date](/img/guides/stay-up-to-date/patcher/patcher-update-overview-futd.png)
+![Patcher update screenshot showing dependendency that is fully up to date](/img/guides/stay-up-to-date/patcher/patcher-update-overview-futd.png)
 
 If the next available version for a module dependency contains a breaking change that Patcher cannot patch, then a warning message is shown at the bottom of the screen. You can view the individual usages of the module but you are not able to update them.
 
@@ -38,8 +38,6 @@ When you quit Patcher, it writes the details of all the updates to stdout in YAM
 
 ![Patcher Usages screenshot showing module with multiple usages](/img/guides/stay-up-to-date/patcher/patcher-update-usages-update-available.png)
 
-@@TODO explain "next safe" and "next breaking"
-
 2. While in the modules view, press `v` to see the changelogs from a module. Press `o` to open the page in the browser.
 
 ![Patcher Changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-update-changelog.png)
@@ -50,10 +48,6 @@ Some modules do not have a CHANGELOGS.md file. In this case, press `o` to open t
 :::
 
 ![Patcher No Changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-update-no-changelog.png)
-
-### Updating a Dependency to the Next Safe Version
-
-@@TODO
 
 ## Non-Interactive Mode
 
