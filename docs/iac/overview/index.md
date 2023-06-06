@@ -4,7 +4,7 @@ The Gruntwork Infrastructure as Code Library (IaC Library) is a collection of re
 
 ## Modules
 
-Modules are "infrastructure building blocks" authored by Gruntwork and primarily written in Terraform. They capture a singular best-practice pattern for specific pieces of infrastructure and are designed to be both limited in scope and highly reusable. They typically represent one part of a use case you want to accomplish. For example, the `vpc-flow-logs` module does not create a VPC, it only adds the VPC Flow Logs functionality to an existing VPC. To learn more, check out [What is a module?](/iac/overview/modules/).
+Modules are "infrastructure building blocks" authored by Gruntwork and written in Terraform. They capture a singular best-practice pattern for specific pieces of infrastructure and are designed to be both limited in scope and highly reusable. They typically represent one part of a use case you want to accomplish. For example, the `vpc-flow-logs` module does not create a VPC, it only adds the VPC Flow Logs functionality to an existing VPC. To learn more, refer to [What is a module?](/iac/overview/modules/).
 
 ## Services
 
@@ -24,6 +24,6 @@ The Gruntwork IaC Library has been created using the following tools:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "2083ee2971bad5bf9ccabdf629024a89"
+  "hash": "eacbbc00f6d3b1f967f32a61ce8941af"
 }
 ##DOCS-SOURCER-END -->
