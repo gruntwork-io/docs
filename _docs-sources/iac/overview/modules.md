@@ -20,7 +20,7 @@ For example, one module might deploy the control plane for Kubernetes and a sepa
 
 We recommend our [Service Catalog](/iac/overview/services/) for common use cases, but our full Module Catalog is available if you have a more complex use case. For a full list of modules available, refer to the [Gruntwork Infrastructure as Code Library](/iac/reference/).
 
-## How services are structured
+## How modules are structured
 
 The code in the module repos are organized into three primary folders:
 
@@ -29,3 +29,5 @@ The code in the module repos are organized into three primary folders:
 1. `examples`: Sample code that shows how to use the modules in the `modules` folder and allows you to try them out without having to write any code: `cd` into one of the folders, follow a few steps in the README (e.g. run `terraform apply`), and you’ll have a fully working module up and running. In other words, this is executable documentation.
 
 1. `test`: Automated tests for the code in modules and examples.
+
+We follow Hashicorp's [Standard Model Structure](https://developer.hashicorp.com/terraform/language/modules/develop/structure) for our files (`main.tf`, `variables.tf`, `outputs.tf`). In the `variables.tf` file we always put the required variables at the top of the file, followed by the optional variables. Although there are often a lot of ways to configure our modules, we set reasonable defaults and try to minimize the effort required to configure the modules to the most common use cases.

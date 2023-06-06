@@ -10,6 +10,8 @@ For example, the `eks-cluster` service combines all the modules you need to run 
 
 If you need more flexibility than our services provide, then you can combine modules from our [Module Catalog](/iac/overview/modules), your own modules, or open source modules to meet your specific use case.
 
+CIS customers also have access to the `terraform-aws-cis-service-catalog` repository to help ensure conformity to the [CIS AWS Foundations Benchmark](https://gruntwork.io/achieve-compliance/).
+
 ## How services are structured
 
 The code in the `terraform-aws-service-catalog` repo is organized into three primary folders:

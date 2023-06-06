@@ -1,6 +1,9 @@
 {
   "module": "vpc-peering-cross-accounts-requester",
   "releases": {
+    "v0.23.0": {
+      "contains_changes": false
+    },
     "v0.22.8": {
       "contains_changes": false
     },

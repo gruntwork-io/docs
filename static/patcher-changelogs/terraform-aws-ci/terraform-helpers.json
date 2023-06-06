@@ -1,6 +1,12 @@
 {
   "module": "terraform-helpers",
   "releases": {
+    "v0.52.2": {
+      "contains_changes": false
+    },
+    "v0.52.1": {
+      "contains_changes": false
+    },
     "v0.52.0": {
       "contains_changes": false
     },

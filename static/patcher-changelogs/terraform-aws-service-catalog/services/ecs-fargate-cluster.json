@@ -1,6 +1,12 @@
 {
   "module": "services/ecs-fargate-cluster",
   "releases": {
+    "v0.104.8": {
+      "contains_changes": false
+    },
+    "v0.104.7": {
+      "contains_changes": false
+    },
     "v0.104.6": {
       "contains_changes": false
     },

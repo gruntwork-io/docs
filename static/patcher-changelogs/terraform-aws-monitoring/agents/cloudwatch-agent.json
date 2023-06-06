@@ -1,6 +1,9 @@
 {
   "module": "agents/cloudwatch-agent",
   "releases": {
+    "v0.36.0": {
+      "contains_changes": false
+    },
     "v0.35.9": {
       "contains_changes": false
     },
