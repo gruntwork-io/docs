@@ -144,26 +144,47 @@ Next, we’ll write a simple Python function that returns a string that will be 
 Copy the following to `terraform-aws-gw-lambda-tutorial/main.py`.
 
 ```py title="terraform-aws-gw-lambda-tutorial/main.py"
-import json
-from urllib.request import urlopen, Request
+from botocore.vendored import requests
+import uuid
+import base64
 
-def lambda_handler(event, context):
-    # Your GitHub username
-    github_username = "%unknown%" 
-    # The URL of our tutorial service, which returns a message and tracks your tutorial completion status
-    endpoint_url = "%endpoint_url%"
+url = "https://api.mixpanel.com/track"
 
-    httprequest = Request(url, headers={'Accept': 'application/json'})
+github_username = "%unknown%"
 
-    response_object = {}
+# This code sets up our mixpanel project ID and sends an event into Mixpanel 
+# that includes your GitHub username to signify that you completed the tutorial
+# We don't track anything else about you other than your GitHub username, and we 
+# only use this data internally to understand who has completed our tutorial 
+mixpanelClientId = "%mixpanel_project_id%"
+tok = base64.b64decode(mixpanelClientId).decode('utf-8')
 
-    with urlopen(httprequest) as response:
-        response_object["statusCode"] = response.status
-        response_object["headers"] = {}
-        response_object["headers"]["Content-Type"] = "application/json"
-        response_object["body"] = json.dumps(response.read().decode())
+payload = [
+    {
+        "event": "ModuleTutorialDeploymentComplete",
+        "properties": {
+            "token": tok,
+            "distinct_id": github_username,
+            "$insert_id": uuid.uuid4().hex
+        }
+    }
+]
+headers = {
+    "accept": "text/plain",
+    "content-type": "application/json"
+}
 
-        return response_object
+response = requests.post(url, json=payload, headers=headers)
+
+print(f"Status code: {response.status_code}")
+text = response.text
+if text == "1":
+    text = "Success"
+else:
+    text = "Unknown error"
+print(f"Response: {text}")
+print(f"Hello, {github_username}, from Gruntwork!")
+
 ```
 
 ### Reference the module
