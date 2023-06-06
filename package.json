@@ -32,6 +32,7 @@
     "config": "^3.3.6",
     "env-cmd": "^10.1.0",
     "file-loader": "^6.2.0",
+    "path": "^0.12.7",
     "plugin-image-zoom": "ataft/plugin-image-zoom",
     "posthog-docusaurus": "^1.0.3",
     "prism-react-renderer": "^1.2.1",
