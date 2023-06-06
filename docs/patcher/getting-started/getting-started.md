@@ -38,11 +38,11 @@ If you purchased and deployed our [Reference Architecture](https://gruntwork.io/
 
 ### Patcher Report
 
-The patcher [report command](patcher/running-patcher/report) is a read-only version of Patcher that shows the changelog per module and its usages.
+The patcher [report command](/patcher/running-patcher/report) is a read-only version of Patcher that shows the changelog per module and its usages.
 
 ### Patcher Update
 
-The patcher [update command](patcher/running-patcher/update) allows you to update some or all of the module dependencies in the current folder and any child folders.
+The patcher [update command](/patcher/running-patcher/update) allows you to update some or all of the module dependencies in the current folder and any child folders.
 
 ## Debugging
 
@@ -56,6 +56,6 @@ patcher report --loglevel debug
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "3c28ef97253353728c6c2a2b6f156b66"
+  "hash": "f60b7aed1b0d297f0828c477518737b3"
 }
 ##DOCS-SOURCER-END -->

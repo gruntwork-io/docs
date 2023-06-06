@@ -62,7 +62,7 @@ Non-interactive mode supports both the `next-safe` and `next-breaking` update st
 
 ### Next Safe (Default)
 
-Using the `next-safe` update strategy, if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the highest version **before** that breaking change. Otherwise, it will update the dependencies the latest version of that module.
+Using the [next safe update strategy](/patcher/getting-started/update-strategies#next-safe-update-strategy-default), if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the highest version **before** that breaking change. Otherwise, it will update the dependencies the latest version of that module.
 
 Example usage:
 ```
@@ -75,7 +75,7 @@ patcher update --non-interactive
 
 ### Next Breaking
 
-Using the `next-breaking` update strategy, if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the version with the breaking change and stop. Otherwise, it will update the dependencies the latest version of that module.
+Using the [next-breaking update strategy](/patcher/getting-started/update-strategies#next-breaking-update-strategy), if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the version with the breaking change and stop. Otherwise, it will update the dependencies the latest version of that module.
 
 If Patcher updates a dependency to a breaking version, a `README-TO-COMPLETE-UPDATE.md` is written into the folder containing the dependendency. The `README-TO-COMPLETE-UPDATE.md` file contains a release note extract for each dependency in that folder that was updated to a breaking change.
 
@@ -90,6 +90,6 @@ patcher update --non-interactive --update-strategy next-breaking
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "5ed784cd821892810af80f49d614fa70"
+  "hash": "c8b14b7c0b896372c05670b3843c3ffa"
 }
 ##DOCS-SOURCER-END -->

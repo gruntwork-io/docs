@@ -1,8 +1,12 @@
 # Telemetry
 
-Patcher uses [sentry.io](https://sentry.io) for application performance monitoring and error tracking. This data to helps us catch bugs quickly and improve Patcher.
+Patcher uses [sentry.io](https://sentry.io) for application performance monitoring and error tracking. This data helps us catch bugs quickly and improve Patcher.
 
-When you first run Patcher, we assign an anonymous UUID for that Patcher install. This UUID is stored in `~/.patcher/config.json` and the same UUID will be sent each time you run Patcher.
+### Anonymous UUID
+
+When you first run Patcher, we generate an anonymous UUID for that Patcher install.
+
+This UUID is stored in `~/.patcher/config.json` and the same UUID will be sent each time you run Patcher.
 
 Example `config.json` file:
 ```
@@ -25,6 +29,6 @@ export PATCHER_TELEMETRY_OPT_OUT=true
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "857513f21a464d151ad65bebfa3ea6fb"
+  "hash": "c29e061bc9421b3e8929c62a41847140"
 }
 ##DOCS-SOURCER-END -->
