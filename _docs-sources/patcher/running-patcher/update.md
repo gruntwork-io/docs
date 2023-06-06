@@ -1,8 +1,8 @@
 # Patcher Update
 
-The `patcher update` command allows you to update some or all of the module dependencies in the current folder and any child folders.
+The Patcher update command allows you to update some or all of the module dependencies in the current folder and any child folders.
 
-@@TK 
+The update command supports two modes: **interactive mode** and **non-interactive mode**.
 
 ## Interactive Mode
 
