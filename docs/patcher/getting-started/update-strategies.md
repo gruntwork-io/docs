@@ -8,7 +8,7 @@ And in `infrastructure-live/dev` there are 2 dependencies on `terraform-aws-secu
 - `_global/ops-admin-role/terragrunt.hcl` currently uses `0.65.6`
 - `_global/website-ci-cd-access/terragrunt.hcl` currently use `0.61.0`
 
-#### "Next Safe" Update Strategy (Default)
+## "Next Safe" Update Strategy (Default)
 
 The **next safe** strategy will update a dependency to either the highest version **before the next closest breaking change** or the latest version of the dependency, whichever is encountered first.
 
@@ -41,7 +41,7 @@ This is an example of the YAML that Patcher writes to `stdout` describing these 
         release_notes_url: https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.62.0
 ```
 
-#### "Next Breaking" Update Strategy
+## "Next Breaking" Update Strategy
 
 The **next breaking** strategy will update a dependency to either the next closest breaking change or the latest version of the dependency, whichever is encountered first.
 
@@ -99,6 +99,6 @@ Here are the release notes for version v0.62.0:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "cd462bf5156b94000b13ede5b8d85532"
+  "hash": "f6fe1124604572a427bf235623bb032e"
 }
 ##DOCS-SOURCER-END -->
