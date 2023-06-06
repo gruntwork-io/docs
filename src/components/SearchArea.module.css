@@ -63,12 +63,8 @@
   margin: 2px;
   padding-bottom: 2px;
   padding-top: 2px;
-}
-
-input[type="text"]
-{
-    font-size:15px;
-    font-family: "Source Sans Pro";
+  font-size:15px;
+  font-family: "Source Sans Pro";
 }
 
 input:focus-visible {
