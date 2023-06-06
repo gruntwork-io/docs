@@ -1,8 +1,8 @@
-# Patcher Update
+# Update Strategies
 
 Patcher supports two update strategies: **next safe** and **next breaking**. Theses update strategy determines how Patcher will behave if it encounters a breaking change that it cannot patch.
 
-For example, the Gruntwork `terraform-aws-security/custom-iam-entity` identity module has two recent breaking changes: `0.62.0` and `0.65.0`.
+For example, the Gruntwork `terraform-aws-security/custom-iam-entity` module has two recent breaking changes: `0.62.0` and `0.65.0`.
 
 And in `infrastructure-live/dev` there are 2 dependencies on `terraform-aws-security/custom-iam-entity`:
 - `_global/ops-admin-role/terragrunt.hcl` currently uses `0.65.6`
@@ -10,15 +10,17 @@ And in `infrastructure-live/dev` there are 2 dependencies on `terraform-aws-secu
 
 #### "Next Safe" Update Strategy (Default)
 
-The **next safe** strategy will update a dependency to either the highest version **before** the next closest breaking change or the latest version of the dependency, whichever is encountered first.
+The **next safe** strategy will update a dependency to either the highest version **before the next closest breaking change** or the latest version of the dependency, whichever is encountered first.
 
-So if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the highest version **before** that breaking change. Otherwise, it will update the dependencies the latest version of that module.
+So if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the highest version before that breaking change and stop. Otherwise, if no breaking chnages are encountered it will update the dependencies the latest version of that module.
 
 For example, for the dependencies on `terraform-aws-security/custom-iam-entity` in `infrastructure-live/dev`:
-- `_global/ops-admin-role/terragrunt.hcl` will be updated from `0.65.6` to `0.68.2`, the latest version (there are no breaking changes between `0.65.6` and `0.68.2`)
-- `_global/website-ci-cd-access/terragrunt.hcl` will be updated from `0.61.0` to `0.61.1`, the highest version before `0.62.0` (`0.62.0` is the next closest version that contains a breaking change which requires manual intervention).
+- `_global/ops-admin-role/terragrunt.hcl` will be updated from `0.65.6` to `0.68.2`, the latest version
+  - There are no breaking changes between `0.65.6` and `0.68.2`
+- `_global/website-ci-cd-access/terragrunt.hcl` will be updated from `0.61.0` to `0.61.1`, the highest version before `0.62.0`
+  - `0.62.0` is the next highest version that contains a breaking change which requires manual intervention
 
-This is an example of the YAML Patcher writes to `stdout` describing these updates.
+This is an example of the YAML that Patcher writes to `stdout` describing these updates:
 
 ```yaml
   successful_updates:
@@ -43,17 +45,18 @@ This is an example of the YAML Patcher writes to `stdout` describing these updat
 
 The **next breaking** strategy will update a dependency to either the next closest breaking change or the latest version of the dependency, whichever is encountered first.
 
-So if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the version with the breaking change and stop. Otherwise, it will update the dependencies the latest version of that module.
+So if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the version with the breaking change and stop. Otherwise, if no breaking chnages are encountered it will update the dependencies the latest version of that module.
 
 This may result in an update that requires manual intervention. If so, Patcher will provide additional information to help you understand what needs to be done.
 
 Patcher does this by writing a `README-TO-COMPLETE-UPDATE.md` into the folder containing the dependendency. If more than one dependency in a folder has been update to a breaking version, then the `README-TO-COMPLETE-UPDATE.md` file will contain a release note extracts for each breaking change in that folder.
 
 For example, for the dependencies on `terraform-aws-security/custom-iam-entity` in `infrastructure-live/dev`:
-- `_global/ops-admin-role/terragrunt.hcl` will be updated from `0.65.6` to `0.68.2`, the latest version (there are no breaking changes between `0.65.6` and `0.68.2`)
+- `_global/ops-admin-role/terragrunt.hcl` will be updated from `0.65.6` to `0.68.2`, the latest version
+  - There are no breaking changes between `0.65.6` and `0.68.2`
 - `_global/website-ci-cd-access/terragrunt.hcl` will be updated from `0.61.0` to `0.62.0`, the next highest version with a breaking change that requires manual intervention.
 
-If any of the dependencies were updated to a breaking version, then the YAML Patcher writes to `stdout` describing these updates will include a `manual_steps_you_must_follow` section listing the generated `README-TO-COMPLETE-UPDATE.md` files, for example:
+If any of the dependencies were updated to a breaking version, then the YAML that Patcher writes to `stdout` describing these updates will include a `manual_steps_you_must_follow` section listing the generated `README-TO-COMPLETE-UPDATE.md` files, for example:
 
 ```yaml
   successful_updates:
@@ -96,6 +99,6 @@ Here are the release notes for version v0.62.0:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "45438254db7c4f504953b651b2af4af4"
+  "hash": "cd462bf5156b94000b13ede5b8d85532"
 }
 ##DOCS-SOURCER-END -->

@@ -37,10 +37,12 @@ including its children. Patcher supports `source` values only from GitHub.
 If you purchased and deployed our [Reference Architecture](https://gruntwork.io/reference-architecture/) and have your deployment organized in an `infrastructure-live` repository, we recommend running Patcher inside each environment folder, e.g. `infrastructure-live/dev`.
 
 ### Patcher Report
-@@TODO
+
+The patcher [report command](patcher/running-patcher/report) is a read-only version of Patcher that shows the changelog per module and its usages.
 
 ### Patcher Update
-@@TODO
+
+The patcher [update command](patcher/running-patcher/update) allows you to update some or all of the module dependencies in the current folder and any child folders.
 
 ## Debugging
 
@@ -54,6 +56,6 @@ patcher report --loglevel debug
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "06b435657c7e0bc4d8021ba3e4efce7e"
+  "hash": "3c28ef97253353728c6c2a2b6f156b66"
 }
 ##DOCS-SOURCER-END -->
