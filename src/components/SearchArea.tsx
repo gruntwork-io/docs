@@ -146,7 +146,7 @@ export const SearchArea: React.FunctionComponent<
 
   const selectRepoTitleFacet = (facetName: any) => {
     if (!facetName) {
-      // Unset
+      // Unset - we always want to be scoped to modules
       setFacetFilters(["type:module"])
     } else {
       setFacetFilters([`mainRepoTitle:${facetName.value}`])
@@ -155,7 +155,7 @@ export const SearchArea: React.FunctionComponent<
 
   const selectTypeFacet = (facetName: any) => {
     if (!facetName) {
-      // Unset
+      // Unset - we always want to be scoped to modules
       setFacetFilters(["type:module"])
     } else {
       setFacetFilters([`type:${facetName.value}`])
