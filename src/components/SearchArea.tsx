@@ -217,7 +217,6 @@ export const SearchArea: React.FunctionComponent<
         </div>
       </Grid>
       <CustomHits hits={{ searchHits }} />
-      {/* </InstantSearch> */}
     </div>
   )
 }
