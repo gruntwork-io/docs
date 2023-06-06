@@ -1,6 +1,6 @@
 import SearchArea from "/src/components/SearchArea"
 
-# Library Reference
+# Find a module
 
 The Library Reference provides a complete listing of the modules, services, and tools included in the Gruntwork IaC Library. Find one that suits your needs, or suggest a module if you need something we’re missing.
 

@@ -80,18 +80,6 @@ function CustomHits(hits: any[]) {
     : NoResults()
 }
 
-/*
-Given a string, return the same string with the first letter capitalized.
-
-This is used to capitalize labels for the type facet dropdown,
-because they are currently not capitalized.
-
-e.g. word -> Word
-*/
-function capitalize(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1)
-}
-
 export const SearchArea: React.FunctionComponent<
   PropsWithChildren<SearchAreaProps>
 > = ({ name, requirement, type, children }) => {
@@ -100,7 +88,7 @@ export const SearchArea: React.FunctionComponent<
   const algoliaSearchKey: string = "a976ea48057ceaa662656ec8f4f591af"
 
   const searchClient = algoliasearch(algoliaAppId, algoliaSearchKey)
-  const index = searchClient.initIndex("dev_docs_sourcer-modules")
+  const index = searchClient.initIndex("dev_docs_sourcer-modules") // TODO: Get this from config
 
   const [searchTerm, setSearchTerm] = useState("")
   const [facetFilters, setFacetFilters] = useState(["type:module"])
@@ -166,26 +154,20 @@ export const SearchArea: React.FunctionComponent<
     }
   }
 
-  const selectTypeFacet = (facetName: any) => {
-    if (!facetName) {
-      // Unset - we always want to be scoped to modules
-      setFacetFilters(["type:module"])
-    } else {
-      setFacetFilters([`type:${facetName.value}`])
-    }
-  }
-
   return (
     <div className={styles.container}>
       <Grid cols={3}>
         <div className={styles.SearchContainerItem}>
           <p className={styles.SearchContainerItemHeader}>SEARCH</p>
-          <input
-            type="text"
-            onChange={onSearch}
-            className={styles.SearchInput}
-            placeholder="Try searching for VPC or EKS..."
-          />
+          <div className={styles.SearchInputContainer}>
+            <input
+              type="text"
+              onChange={onSearch}
+              className={styles.SearchInput}
+              placeholder="Try searching for VPC or EKS..."
+              autoFocus
+            />
+          </div>
         </div>
         <div className={styles.SearchContainerItem} id="sme-area">
           <p className={styles.SearchContainerItemHeader}>TOPIC</p>
@@ -197,20 +179,6 @@ export const SearchArea: React.FunctionComponent<
               isSearchable={true}
               options={searchRepoFacets.map((f) => {
                 return { value: f["key"], label: f["key"] }
-              })}
-            />
-          </div>
-        </div>
-        <div className={styles.SearchContainerItem} id="type">
-          <p className={styles.SearchContainerItemHeader}>TYPE</p>
-          <div className={styles.FacetListContainer}>
-            <Select
-              className={styles.SearchContainerDropdown}
-              onChange={(value) => selectTypeFacet(value)}
-              isClearable={true}
-              isSearchable={true}
-              options={searchTypeFacets.map((f) => {
-                return { value: f["key"], label: capitalize(f["key"]) }
               })}
             />
           </div>
