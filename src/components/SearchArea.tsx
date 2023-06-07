@@ -107,7 +107,6 @@ export const SearchArea: React.FunctionComponent<
   const [facetFilters, setFacetFilters] = useState([])
 
   const [searchHits, setSearchHits] = useState([])
-  const [searchRepoFacets, setSearchRepoFacets] = useState([])
   const [searchTypeFacets, setSearchTypeFacets] = useState([])
 
   const handleSearchFacets = (facets: {}): Object[] => {
