@@ -84,7 +84,7 @@ This is the `README-TO-COMPLETE-UPDATE.md` written into `dev/_global/website-ci-
 ```markdown
 # custom-iam-entity v0.61.0 -> v0.62.0 (2023.06.05 12:26:30)
 
-Updated dependency custom-iam-entity in /Users/griff/Gruntwork/dogfood-infrastructure-live/dev/_global/website-ci-cd-access/terragrunt.hcl to version v0.62.0, which contains breaking changes. You MUST follow the instructions in the release notes to complete this update safely: https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.62.0
+Updated dependency custom-iam-entity in ~/infrastructure-live/dev/_global/website-ci-cd-access/terragrunt.hcl to version v0.62.0, which contains breaking changes. You MUST follow the instructions in the release notes to complete this update safely: https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.62.0
 
 Here are the release notes for version v0.62.0:
 
