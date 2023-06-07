@@ -9,17 +9,17 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.4" lastModifiedVersion="0.35.4"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.35.6" lastModifiedVersion="0.35.6"/>
 
 # ECS Cluster Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/modules/ecs-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.35.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.35.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches an [EC2 Container Service
 Cluster](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_clusters.html) that you can use to run
-Docker containers and services (see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/modules/ecs-service/README.adoc)).
+Docker containers and services (see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-service/README.adoc)).
 
 **WARNING: Launch Configurations:** [Launch configurations](https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-configurations.html) are being phased out in favor of [Launch Templates](https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-templates.html). Before upgrading to the latest release please be sure to test and plan any changes to infrastructure that may be impacted. Launch templates are being introduced in [PR #371](https://github.com/gruntwork-io/terraform-aws-ecs/pull/371)
 
@@ -32,7 +32,7 @@ ECS and register itself as part of the right cluster.
 
 ## How do you run Docker containers on the cluster?
 
-See the [service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/modules/ecs-service/README.adoc).
+See the [service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-service/README.adoc).
 
 ## How do you add additional security group rules?
 
@@ -97,7 +97,7 @@ currently no way in ECS to manage IAM policies on a per-Docker-container basis.
 
 ## How do you make changes to the EC2 Instances in the cluster?
 
-To deploy an update to an ECS Service, see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/modules/ecs-service). To deploy an update to the
+To deploy an update to an ECS Service, see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-service). To deploy an update to the
 EC2 Instances in your ECS cluster, such as a new AMI, read on.
 
 Terraform and AWS do not provide a way to automatically roll out a change to the Instances in an ECS Cluster. Due to
@@ -122,8 +122,8 @@ To deploy a change such as rolling out a new AMI to all ECS Instances:
     python3 roll-out-ecs-cluster-update.py --asg-name ASG_NAME --cluster-name CLUSTER_NAME --aws-region AWS_REGION
     ```
 
-    If you have your output variables configured as shown in [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/examples/docker-service-with-elb/outputs.tf)
-    of the [docker-service-with-elb example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/examples/docker-service-with-elb), you can use the `terraform output`
+    If you have your output variables configured as shown in [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/examples/docker-service-with-elb/outputs.tf)
+    of the [docker-service-with-elb example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/examples/docker-service-with-elb), you can use the `terraform output`
     command to fill in most of the arguments automatically:
 
     ```
@@ -207,7 +207,7 @@ enable Capacity Providers on an existing ECS cluster that did not have Capacity 
 instances to ensure all the instances get associated with the new Capacity Provider.
 
 To rotate the instances, you can run the
-[roll-out-ecs-cluster-update.py](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/modules/ecs-cluster/roll-out-ecs-cluster-update.py)
+[roll-out-ecs-cluster-update.py](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-cluster/roll-out-ecs-cluster-update.py)
 script in the `terraform-aws-ecs` module. Refer to the
 [documentation](#how-do-you-make-changes-to-the-ec2-instances-in-the-cluster)
 for more information on the script.
@@ -225,7 +225,7 @@ for more information on the script.
 
 module "ecs_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v0.35.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v0.35.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -241,26 +241,26 @@ module "ecs_cluster" {
   # (e.g. t2.medium).
   cluster_instance_type = <string>
 
-  # The maximum number of EC2 Instances that must be running for this ECS Cluster.
-  # We recommend making this twice var.cluster_min_size, even if you don't plan on
-  # scaling the cluster up and down, as the extra capacity will be used to deploy
-  # udpates to the cluster.
+  # The maximum number of EC2 Instances that must be running for this ECS
+  # Cluster. We recommend making this twice var.cluster_min_size, even if you
+  # don't plan on scaling the cluster up and down, as the extra capacity will be
+  # used to deploy udpates to the cluster.
   cluster_max_size = <number>
 
-  # The minimum number of EC2 Instances launchable for this ECS Cluster. Useful for
-  # auto-scaling limits.
+  # The minimum number of EC2 Instances launchable for this ECS Cluster. Useful
+  # for auto-scaling limits.
   cluster_min_size = <number>
 
-  # The name of the ECS cluster (e.g. ecs-prod). This is used to namespace all the
-  # resources created by these templates.
+  # The name of the ECS cluster (e.g. ecs-prod). This is used to namespace all
+  # the resources created by these templates.
   cluster_name = <string>
 
   # The ID of the VPC in which the ECS Cluster's EC2 Instances will reside.
   vpc_id = <string>
 
   # A list of the subnets into which the ECS Cluster's EC2 Instances will be
-  # launched. These should usually be all private subnets and include one in each
-  # AWS Availability Zone.
+  # launched. These should usually be all private subnets and include one in
+  # each AWS Availability Zone.
   vpc_subnet_ids = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
@@ -271,19 +271,20 @@ module "ecs_cluster" {
   # Cluster.
   alb_security_group_ids = []
 
-  # The IP address ranges in CIDR format from which to allow incoming SSH requests
-  # to the ECS instances.
+  # The IP address ranges in CIDR format from which to allow incoming SSH
+  # requests to the ECS instances.
   allow_ssh_from_cidr_blocks = []
 
-  # The IDs of security groups from which to allow incoming SSH requests to the ECS
-  # instances.
+  # The IDs of security groups from which to allow incoming SSH requests to the
+  # ECS instances.
   allow_ssh_from_security_group_ids = []
 
-  # Protect EC2 instances running ECS tasks from being terminated due to scale in
-  # (spot instances do not support lifecycle modifications)
+  # Protect EC2 instances running ECS tasks from being terminated due to scale
+  # in (spot instances do not support lifecycle modifications)
   autoscaling_termination_protection = false
 
-  # Enable a capacity provider to autoscale the EC2 ASG created for this ECS cluster
+  # Enable a capacity provider to autoscale the EC2 ASG created for this ECS
+  # cluster
   capacity_provider_enabled = false
 
   # Maximum step adjustment size to the ASG's desired instance count
@@ -292,7 +293,8 @@ module "ecs_cluster" {
   # Minimum step adjustment size to the ASG's desired instance count
   capacity_provider_min_scale_step = 1
 
-  # Target cluster utilization for the capacity provider; a number from 1 to 100.
+  # Target cluster utilization for the capacity provider; a number from 1 to
+  # 100.
   capacity_provider_target = 75
 
   # A list of metrics to collect. The allowed values are GroupDesiredCapacity,
@@ -305,8 +307,8 @@ module "ecs_cluster" {
   # Enables/disables detailed CloudWatch monitoring for EC2 instances
   cluster_detailed_monitoring = true
 
-  # Passthrough to aws_launch_template resource.  Associate a public ip address with
-  # EC2 instances in cluster
+  # Passthrough to aws_launch_template resource.  Associate a public ip address
+  # with EC2 instances in cluster
   cluster_instance_associate_public_ip_address = false
 
   # The name of the device to mount.
@@ -316,11 +318,12 @@ module "ecs_cluster" {
   # false
   cluster_instance_ebs_delete_on_termination = false
 
-  # The amount of provisioned IOPS. This must be set with a volume_type of io1/io2.
+  # The amount of provisioned IOPS. This must be set with a volume_type of
+  # io1/io2.
   cluster_instance_ebs_iops = null
 
-  # The ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) to
-  # use when creating the encrypted volume. The variable
+  # The ARN of the AWS Key Management Service (AWS KMS) customer master key
+  # (CMK) to use when creating the encrypted volume. The variable
   # cluster_instance_root_volume_encrypted must be set to true when this is set.
   cluster_instance_ebs_kms_key_id = null
 
@@ -330,8 +333,8 @@ module "ecs_cluster" {
   # The Snapshot ID to mount.
   cluster_instance_ebs_snapshot_id = null
 
-  # The throughput to provision for a gp3 volume in MiB/s (specified as an integer,
-  # e.g., 500), with a maximum of 1,000 MiB/s.
+  # The throughput to provision for a gp3 volume in MiB/s (specified as an
+  # integer, e.g., 500), with a maximum of 1,000 MiB/s.
   cluster_instance_ebs_throughput = null
 
   # The required duration in minutes. This value must be a multiple of 60.
@@ -363,102 +366,108 @@ module "ecs_cluster" {
   # placement group strategy is set to partition.
   cluster_instance_placement_partition_number = null
 
-  # Set to true to request spot instances. Set cluster_instance_spot_price variable
-  # to set a maximum spot price limit.
+  # Set to true to request spot instances. Set cluster_instance_spot_price
+  # variable to set a maximum spot price limit.
   cluster_instance_request_spot_instances = false
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role for the cluster instances.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role for the cluster instances.
   cluster_instance_role_permissions_boundary_arn = null
 
   # Set to true to encrypt the root block devices for the ECS cluster's EC2
   # instances
   cluster_instance_root_volume_encrypted = false
 
-  # The size in GB of the root volume for each of the ECS Cluster's EC2 Instances
+  # The size in GB of the root volume for each of the ECS Cluster's EC2
+  # Instances
   cluster_instance_root_volume_size = 40
 
-  # The volume type for the root volume for each of the ECS Cluster's EC2 Instances.
-  # Can be standard, gp2, or io1
+  # The volume type for the root volume for each of the ECS Cluster's EC2
+  # Instances. Can be standard, gp2, or io1
   cluster_instance_root_volume_type = "gp2"
 
   # Value is the maximum bid price for the instance on the EC2 Spot Market.
   cluster_instance_spot_price = null
 
-  # The User Data script to run on each of the ECS Cluster's EC2 Instances on their
-  # first boot.
+  # The User Data script to run on each of the ECS Cluster's EC2 Instances on
+  # their first boot.
   cluster_instance_user_data = null
 
   # The base64-encoded User Data script to run on the server when it is booting.
-  # This can be used to pass binary User Data, such as a gzipped cloud-init script.
-  # If you wish to pass in plain text (e.g., typical Bash script) for User Data, use
-  # var.cluster_instance_user_data instead.
+  # This can be used to pass binary User Data, such as a gzipped cloud-init
+  # script. If you wish to pass in plain text (e.g., typical Bash script) for
+  # User Data, use var.cluster_instance_user_data instead.
   cluster_instance_user_data_base64 = null
 
-  # If you set this variable to false, this module will not create any resources.
-  # This is used as a workaround because Terraform does not allow you to use the
-  # 'count' parameter on modules. By using this parameter, you can optionally create
-  # or not create the resources within this module.
+  # If you set this variable to false, this module will not create any
+  # resources. This is used as a workaround because Terraform does not allow you
+  # to use the 'count' parameter on modules. By using this parameter, you can
+  # optionally create or not create the resources within this module.
   create_resources = true
 
-  # When set, name the IAM role for the ECS cluster using this variable. When null,
-  # the IAM role name will be derived from var.cluster_name.
+  # When set, name the IAM role for the ECS cluster using this variable. When
+  # null, the IAM role name will be derived from var.cluster_name.
   custom_iam_role_name = null
 
-  # A list of custom tags to apply to the EC2 Instances in this ASG. Each item in
-  # this list should be a map with the parameters key, value, and
+  # A list of custom tags to apply to the EC2 Instances in this ASG. Each item
+  # in this list should be a map with the parameters key, value, and
   # propagate_at_launch.
   custom_tags_ec2_instances = []
 
   # Custom tags to apply to the ECS cluster
   custom_tags_ecs_cluster = {}
 
-  # A map of custom tags to apply to the Security Group for this ECS Cluster. The
-  # key is the tag name and the value is the tag value.
+  # A map of custom tags to apply to the Security Group for this ECS Cluster.
+  # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
   # Whether or not to enable Container Insights on the ECS cluster. Refer to
-  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-container
-  # insights.html for more information on ECS Container Insights.
+  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-container-insights.html
+  # for more information on ECS Container Insights.
   enable_cluster_container_insights = false
 
   # Set this variable to true to enable the Instance Metadata Service (IMDS)
-  # endpoint, which is used to fetch information such as user-data scripts, instance
-  # IP address and region, etc. Set this variable to false if you do not want the
-  # IMDS endpoint enabled for instances launched into the Auto Scaling Group for the
-  # workers.
+  # endpoint, which is used to fetch information such as user-data scripts,
+  # instance IP address and region, etc. Set this variable to false if you do
+  # not want the IMDS endpoint enabled for instances launched into the Auto
+  # Scaling Group for the workers.
   enable_imds = true
 
   # The desired HTTP PUT response hop limit for instance metadata requests.
   http_put_response_hop_limit = null
 
-  # Enable a multi-az capacity provider to autoscale the EC2 ASGs created for this
-  # ECS cluster, only if capacity_provider_enabled = true
+  # Maximum amount of time, in seconds, that an instance can be in service,
+  # values must be either equal to 0 or between 86400 and 31536000 seconds.
+  max_instance_lifetime = null
+
+  # Enable a multi-az capacity provider to autoscale the EC2 ASGs created for
+  # this ECS cluster, only if capacity_provider_enabled = true
   multi_az_capacity_provider = false
 
   # The port to use for SSH access.
   ssh_port = 22
 
-  # The tenancy of the servers in this cluster. Must be one of: default, dedicated,
-  # or host.
+  # The tenancy of the servers in this cluster. Must be one of: default,
+  # dedicated, or host.
   tenancy = "default"
 
-  # A list of policies to decide how the instances in the auto scale group should be
-  # terminated. The allowed values are OldestInstance, NewestInstance,
+  # A list of policies to decide how the instances in the auto scale group
+  # should be terminated. The allowed values are OldestInstance, NewestInstance,
   # OldestLaunchConfiguration, ClosestToNextInstanceHour, OldestLaunchTemplate,
-  # AllocationStrategy, Default. If you specify more than one policy, the ASG will
-  # try each one in turn, use it to select the instance(s) to terminate, and if more
-  # than one instance matches the criteria, then use the next policy to try to break
-  # the tie. E.g., If you use ['OldestInstance', 'ClosestToNextInstanceHour'] and
-  # and there were two instances with exactly the same launch time, then the ASG
-  # would try the next policy, which is to terminate the one closest to the next
-  # instance hour in billing.
+  # AllocationStrategy, Default. If you specify more than one policy, the ASG
+  # will try each one in turn, use it to select the instance(s) to terminate,
+  # and if more than one instance matches the criteria, then use the next policy
+  # to try to break the tie. E.g., If you use ['OldestInstance',
+  # 'ClosestToNextInstanceHour'] and and there were two instances with exactly
+  # the same launch time, then the ASG would try the next policy, which is to
+  # terminate the one closest to the next instance hour in billing.
   termination_policies = ["OldestInstance"]
 
-  # Set this variable to true to enable the use of Instance Metadata Service Version
-  # 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due
-  # to its special security hardening, we allow this in order to support the use
-  # case of AMIs built outside of these modules that depend on IMDSv1.
+  # Set this variable to true to enable the use of Instance Metadata Service
+  # Version 1 in this module's aws_launch_template. Note that while IMDsv2 is
+  # preferred due to its special security hardening, we allow this in order to
+  # support the use case of AMIs built outside of these modules that depend on
+  # IMDSv1.
   use_imdsv1 = true
 
 }
@@ -476,7 +485,7 @@ module "ecs_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v0.35.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v0.35.6"
 }
 
 inputs = {
@@ -495,26 +504,26 @@ inputs = {
   # (e.g. t2.medium).
   cluster_instance_type = <string>
 
-  # The maximum number of EC2 Instances that must be running for this ECS Cluster.
-  # We recommend making this twice var.cluster_min_size, even if you don't plan on
-  # scaling the cluster up and down, as the extra capacity will be used to deploy
-  # udpates to the cluster.
+  # The maximum number of EC2 Instances that must be running for this ECS
+  # Cluster. We recommend making this twice var.cluster_min_size, even if you
+  # don't plan on scaling the cluster up and down, as the extra capacity will be
+  # used to deploy udpates to the cluster.
   cluster_max_size = <number>
 
-  # The minimum number of EC2 Instances launchable for this ECS Cluster. Useful for
-  # auto-scaling limits.
+  # The minimum number of EC2 Instances launchable for this ECS Cluster. Useful
+  # for auto-scaling limits.
   cluster_min_size = <number>
 
-  # The name of the ECS cluster (e.g. ecs-prod). This is used to namespace all the
-  # resources created by these templates.
+  # The name of the ECS cluster (e.g. ecs-prod). This is used to namespace all
+  # the resources created by these templates.
   cluster_name = <string>
 
   # The ID of the VPC in which the ECS Cluster's EC2 Instances will reside.
   vpc_id = <string>
 
   # A list of the subnets into which the ECS Cluster's EC2 Instances will be
-  # launched. These should usually be all private subnets and include one in each
-  # AWS Availability Zone.
+  # launched. These should usually be all private subnets and include one in
+  # each AWS Availability Zone.
   vpc_subnet_ids = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
@@ -525,19 +534,20 @@ inputs = {
   # Cluster.
   alb_security_group_ids = []
 
-  # The IP address ranges in CIDR format from which to allow incoming SSH requests
-  # to the ECS instances.
+  # The IP address ranges in CIDR format from which to allow incoming SSH
+  # requests to the ECS instances.
   allow_ssh_from_cidr_blocks = []
 
-  # The IDs of security groups from which to allow incoming SSH requests to the ECS
-  # instances.
+  # The IDs of security groups from which to allow incoming SSH requests to the
+  # ECS instances.
   allow_ssh_from_security_group_ids = []
 
-  # Protect EC2 instances running ECS tasks from being terminated due to scale in
-  # (spot instances do not support lifecycle modifications)
+  # Protect EC2 instances running ECS tasks from being terminated due to scale
+  # in (spot instances do not support lifecycle modifications)
   autoscaling_termination_protection = false
 
-  # Enable a capacity provider to autoscale the EC2 ASG created for this ECS cluster
+  # Enable a capacity provider to autoscale the EC2 ASG created for this ECS
+  # cluster
   capacity_provider_enabled = false
 
   # Maximum step adjustment size to the ASG's desired instance count
@@ -546,7 +556,8 @@ inputs = {
   # Minimum step adjustment size to the ASG's desired instance count
   capacity_provider_min_scale_step = 1
 
-  # Target cluster utilization for the capacity provider; a number from 1 to 100.
+  # Target cluster utilization for the capacity provider; a number from 1 to
+  # 100.
   capacity_provider_target = 75
 
   # A list of metrics to collect. The allowed values are GroupDesiredCapacity,
@@ -559,8 +570,8 @@ inputs = {
   # Enables/disables detailed CloudWatch monitoring for EC2 instances
   cluster_detailed_monitoring = true
 
-  # Passthrough to aws_launch_template resource.  Associate a public ip address with
-  # EC2 instances in cluster
+  # Passthrough to aws_launch_template resource.  Associate a public ip address
+  # with EC2 instances in cluster
   cluster_instance_associate_public_ip_address = false
 
   # The name of the device to mount.
@@ -570,11 +581,12 @@ inputs = {
   # false
   cluster_instance_ebs_delete_on_termination = false
 
-  # The amount of provisioned IOPS. This must be set with a volume_type of io1/io2.
+  # The amount of provisioned IOPS. This must be set with a volume_type of
+  # io1/io2.
   cluster_instance_ebs_iops = null
 
-  # The ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) to
-  # use when creating the encrypted volume. The variable
+  # The ARN of the AWS Key Management Service (AWS KMS) customer master key
+  # (CMK) to use when creating the encrypted volume. The variable
   # cluster_instance_root_volume_encrypted must be set to true when this is set.
   cluster_instance_ebs_kms_key_id = null
 
@@ -584,8 +596,8 @@ inputs = {
   # The Snapshot ID to mount.
   cluster_instance_ebs_snapshot_id = null
 
-  # The throughput to provision for a gp3 volume in MiB/s (specified as an integer,
-  # e.g., 500), with a maximum of 1,000 MiB/s.
+  # The throughput to provision for a gp3 volume in MiB/s (specified as an
+  # integer, e.g., 500), with a maximum of 1,000 MiB/s.
   cluster_instance_ebs_throughput = null
 
   # The required duration in minutes. This value must be a multiple of 60.
@@ -617,102 +629,108 @@ inputs = {
   # placement group strategy is set to partition.
   cluster_instance_placement_partition_number = null
 
-  # Set to true to request spot instances. Set cluster_instance_spot_price variable
-  # to set a maximum spot price limit.
+  # Set to true to request spot instances. Set cluster_instance_spot_price
+  # variable to set a maximum spot price limit.
   cluster_instance_request_spot_instances = false
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role for the cluster instances.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role for the cluster instances.
   cluster_instance_role_permissions_boundary_arn = null
 
   # Set to true to encrypt the root block devices for the ECS cluster's EC2
   # instances
   cluster_instance_root_volume_encrypted = false
 
-  # The size in GB of the root volume for each of the ECS Cluster's EC2 Instances
+  # The size in GB of the root volume for each of the ECS Cluster's EC2
+  # Instances
   cluster_instance_root_volume_size = 40
 
-  # The volume type for the root volume for each of the ECS Cluster's EC2 Instances.
-  # Can be standard, gp2, or io1
+  # The volume type for the root volume for each of the ECS Cluster's EC2
+  # Instances. Can be standard, gp2, or io1
   cluster_instance_root_volume_type = "gp2"
 
   # Value is the maximum bid price for the instance on the EC2 Spot Market.
   cluster_instance_spot_price = null
 
-  # The User Data script to run on each of the ECS Cluster's EC2 Instances on their
-  # first boot.
+  # The User Data script to run on each of the ECS Cluster's EC2 Instances on
+  # their first boot.
   cluster_instance_user_data = null
 
   # The base64-encoded User Data script to run on the server when it is booting.
-  # This can be used to pass binary User Data, such as a gzipped cloud-init script.
-  # If you wish to pass in plain text (e.g., typical Bash script) for User Data, use
-  # var.cluster_instance_user_data instead.
+  # This can be used to pass binary User Data, such as a gzipped cloud-init
+  # script. If you wish to pass in plain text (e.g., typical Bash script) for
+  # User Data, use var.cluster_instance_user_data instead.
   cluster_instance_user_data_base64 = null
 
-  # If you set this variable to false, this module will not create any resources.
-  # This is used as a workaround because Terraform does not allow you to use the
-  # 'count' parameter on modules. By using this parameter, you can optionally create
-  # or not create the resources within this module.
+  # If you set this variable to false, this module will not create any
+  # resources. This is used as a workaround because Terraform does not allow you
+  # to use the 'count' parameter on modules. By using this parameter, you can
+  # optionally create or not create the resources within this module.
   create_resources = true
 
-  # When set, name the IAM role for the ECS cluster using this variable. When null,
-  # the IAM role name will be derived from var.cluster_name.
+  # When set, name the IAM role for the ECS cluster using this variable. When
+  # null, the IAM role name will be derived from var.cluster_name.
   custom_iam_role_name = null
 
-  # A list of custom tags to apply to the EC2 Instances in this ASG. Each item in
-  # this list should be a map with the parameters key, value, and
+  # A list of custom tags to apply to the EC2 Instances in this ASG. Each item
+  # in this list should be a map with the parameters key, value, and
   # propagate_at_launch.
   custom_tags_ec2_instances = []
 
   # Custom tags to apply to the ECS cluster
   custom_tags_ecs_cluster = {}
 
-  # A map of custom tags to apply to the Security Group for this ECS Cluster. The
-  # key is the tag name and the value is the tag value.
+  # A map of custom tags to apply to the Security Group for this ECS Cluster.
+  # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
   # Whether or not to enable Container Insights on the ECS cluster. Refer to
-  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-container
-  # insights.html for more information on ECS Container Insights.
+  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-container-insights.html
+  # for more information on ECS Container Insights.
   enable_cluster_container_insights = false
 
   # Set this variable to true to enable the Instance Metadata Service (IMDS)
-  # endpoint, which is used to fetch information such as user-data scripts, instance
-  # IP address and region, etc. Set this variable to false if you do not want the
-  # IMDS endpoint enabled for instances launched into the Auto Scaling Group for the
-  # workers.
+  # endpoint, which is used to fetch information such as user-data scripts,
+  # instance IP address and region, etc. Set this variable to false if you do
+  # not want the IMDS endpoint enabled for instances launched into the Auto
+  # Scaling Group for the workers.
   enable_imds = true
 
   # The desired HTTP PUT response hop limit for instance metadata requests.
   http_put_response_hop_limit = null
 
-  # Enable a multi-az capacity provider to autoscale the EC2 ASGs created for this
-  # ECS cluster, only if capacity_provider_enabled = true
+  # Maximum amount of time, in seconds, that an instance can be in service,
+  # values must be either equal to 0 or between 86400 and 31536000 seconds.
+  max_instance_lifetime = null
+
+  # Enable a multi-az capacity provider to autoscale the EC2 ASGs created for
+  # this ECS cluster, only if capacity_provider_enabled = true
   multi_az_capacity_provider = false
 
   # The port to use for SSH access.
   ssh_port = 22
 
-  # The tenancy of the servers in this cluster. Must be one of: default, dedicated,
-  # or host.
+  # The tenancy of the servers in this cluster. Must be one of: default,
+  # dedicated, or host.
   tenancy = "default"
 
-  # A list of policies to decide how the instances in the auto scale group should be
-  # terminated. The allowed values are OldestInstance, NewestInstance,
+  # A list of policies to decide how the instances in the auto scale group
+  # should be terminated. The allowed values are OldestInstance, NewestInstance,
   # OldestLaunchConfiguration, ClosestToNextInstanceHour, OldestLaunchTemplate,
-  # AllocationStrategy, Default. If you specify more than one policy, the ASG will
-  # try each one in turn, use it to select the instance(s) to terminate, and if more
-  # than one instance matches the criteria, then use the next policy to try to break
-  # the tie. E.g., If you use ['OldestInstance', 'ClosestToNextInstanceHour'] and
-  # and there were two instances with exactly the same launch time, then the ASG
-  # would try the next policy, which is to terminate the one closest to the next
-  # instance hour in billing.
+  # AllocationStrategy, Default. If you specify more than one policy, the ASG
+  # will try each one in turn, use it to select the instance(s) to terminate,
+  # and if more than one instance matches the criteria, then use the next policy
+  # to try to break the tie. E.g., If you use ['OldestInstance',
+  # 'ClosestToNextInstanceHour'] and and there were two instances with exactly
+  # the same launch time, then the ASG would try the next policy, which is to
+  # terminate the one closest to the next instance hour in billing.
   termination_policies = ["OldestInstance"]
 
-  # Set this variable to true to enable the use of Instance Metadata Service Version
-  # 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due
-  # to its special security hardening, we allow this in order to support the use
-  # case of AMIs built outside of these modules that depend on IMDSv1.
+  # Set this variable to true to enable the use of Instance Metadata Service
+  # Version 1 in this module's aws_launch_template. Note that while IMDsv2 is
+  # preferred due to its special security hardening, we allow this in order to
+  # support the use case of AMIs built outside of these modules that depend on
+  # IMDSv1.
   use_imdsv1 = true
 
 }
@@ -1204,6 +1222,15 @@ The desired HTTP PUT response hop limit for instance metadata requests.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="max_instance_lifetime" requirement="optional" type="number">
+<HclListItemDescription>
+
+Maximum amount of time, in seconds, that an instance can be in service, values must be either equal to 0 or between 86400 and 31536000 seconds.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="multi_az_capacity_provider" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1297,11 +1324,11 @@ Set this variable to true to enable the use of Instance Metadata Service Version
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/modules/ecs-cluster/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/modules/ecs-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/modules/ecs-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-cluster/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3198350bb56f34de06db8e5c4804e6bc"
+  "hash": "8068f335da24a3df99d0861204b78608"
 }
 ##DOCS-SOURCER-END -->

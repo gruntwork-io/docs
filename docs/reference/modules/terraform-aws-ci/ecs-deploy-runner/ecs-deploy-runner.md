@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.52.1" lastModifiedVersion="0.52.0"/>
+<VersionBadge repoTitle="CI Modules" version="0.52.3" lastModifiedVersion="0.52.3"/>
 
 # Infrastructure Pipeline: ECS Deploy Runner
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/ecs-deploy-runner" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to set up a secure CI/CD pipeline for your infrastructure code ([Terraform](https://www.terraform.io), [Terragrunt](https://terragrunt.gruntwork.io), [Packer](https://www.packer.io/), [Docker](https://www.docker.com/), etc). You can use this in combination with existing CI servers (e.g Jenkins, CircleCI, Gitlab) to set up workflows that:
 
@@ -29,7 +29,7 @@ This module can be used to set up a secure CI/CD pipeline for your infrastructur
 
 These workflows can be implemented without directly running the steps from your CI servers. Instead, the CI server can coordinate the CI / CD flow, and for anything that requires sensitive / powerful IAM permissions, it can trigger pre-defined, locked-down jobs in an isolated ECS task, and stream the logs from that task as if it’s running locally.
 
-Refer to the [infrastructure-deployer CLI](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/infrastructure-deployer) to integrate this with existing CI servers. You can also refer to the [infrastructure-deploy-script module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/infrastructure-deploy-script) for more information on the underlying deployment scripts.
+Refer to the [infrastructure-deployer CLI](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/infrastructure-deployer) to integrate this with existing CI servers. You can also refer to the [infrastructure-deploy-script module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/infrastructure-deploy-script) for more information on the underlying deployment scripts.
 
 ![Terraform and Terragrunt CI/CD architecture](/img/reference/modules/terraform-aws-ci/ecs-deploy-runner/tftg-pipeline-architecture.png)
 
@@ -53,17 +53,17 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [Overview](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/ecs-deploy-runner/core-concepts.md#overview): An overview of the architecture deployed by in this module, including how to implement a CI/CD pipeline for infrastructure code.
+*   [Overview](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner/core-concepts.md#overview): An overview of the architecture deployed by in this module, including how to implement a CI/CD pipeline for infrastructure code.
 
-*   [Threat model of the deploy runner](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/ecs-deploy-runner/core-concepts.md#threat-model-of-the-deploy-runner): An overview of the threat model used to design the security features of the solution, including a description of the potential attack vectors that are mitigated by the solution, and those attacks that require policy and behavioral changes to mitigate.
+*   [Threat model of the deploy runner](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner/core-concepts.md#threat-model-of-the-deploy-runner): An overview of the threat model used to design the security features of the solution, including a description of the potential attack vectors that are mitigated by the solution, and those attacks that require policy and behavioral changes to mitigate.
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -71,29 +71,29 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples folder](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ## Manage
 
-*   [What configuration is recommended for container_images?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/ecs-deploy-runner/core-concepts.md#what-configuration-is-recommended-for-container_images)
+*   [What configuration is recommended for container_images?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner/core-concepts.md#what-configuration-is-recommended-for-container_images)
 
-*   [How do I restrict what args can be passed into the scripts?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/ecs-deploy-runner/core-concepts.md#how-do-i-restrict-what-args-can-be-passed-into-the-scripts)
+*   [How do I restrict what args can be passed into the scripts?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner/core-concepts.md#how-do-i-restrict-what-args-can-be-passed-into-the-scripts)
 
-*   [How do I trigger a deployment?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/ecs-deploy-runner/core-concepts.md#how-do-i-trigger-a-deployment)
+*   [How do I trigger a deployment?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner/core-concepts.md#how-do-i-trigger-a-deployment)
 
-*   [How do I trigger a deployment from CI?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/ecs-deploy-runner/core-concepts.md#how-do-i-trigger-a-deployment-from-ci)
+*   [How do I trigger a deployment from CI?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner/core-concepts.md#how-do-i-trigger-a-deployment-from-ci)
 
-*   [How do I customize the deployment task runtime environment?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/ecs-deploy-runner/core-concepts.md#what-container-is-used-for-the-deploy-task)
+*   [How do I customize the deployment task runtime environment?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner/core-concepts.md#what-container-is-used-for-the-deploy-task)
 
-*   [How do I use the deployment task container with a private VCS system such as GitHub Enterprise?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/ecs-deploy-runner/core-concepts.md#how-do-i-use-the-ecs-deploy-runner-with-a-private-vcs-system-such-as-github-enterprise)
+*   [How do I use the deployment task container with a private VCS system such as GitHub Enterprise?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner/core-concepts.md#how-do-i-use-the-ecs-deploy-runner-with-a-private-vcs-system-such-as-github-enterprise)
 
-*   [How do I stream logs from the deployment task?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/ecs-deploy-runner/core-concepts.md#how-do-i-stream-logs-from-the-deployment-task)
+*   [How do I stream logs from the deployment task?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner/core-concepts.md#how-do-i-stream-logs-from-the-deployment-task)
 
-*   [How do I access the stdout and stderr output from the underlying scripts?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/ecs-deploy-runner/core-concepts.md#how-do-i-access-the-stdout-and-stderr-output-from-the-underlying-scripts)
+*   [How do I access the stdout and stderr output from the underlying scripts?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner/core-concepts.md#how-do-i-access-the-stdout-and-stderr-output-from-the-underlying-scripts)
 
-*   [What are the IAM permissions necessary to trigger a deployment?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/ecs-deploy-runner/core-concepts.md#what-are-the-iam-permissions-necessary-to-trigger-a-deployment)
+*   [What are the IAM permissions necessary to trigger a deployment?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner/core-concepts.md#what-are-the-iam-permissions-necessary-to-trigger-a-deployment)
 
-*   [How do I see the list of supported containers?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/infrastructure-deployer/core-concepts.md#how-do-i-see-the-list-of-supported-containers)
+*   [How do I see the list of supported containers?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/infrastructure-deployer/core-concepts.md#how-do-i-see-the-list-of-supported-containers)
 
 ## Sample Usage
 
@@ -108,16 +108,17 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 module "ecs_deploy_runner" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner?ref=v0.52.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner?ref=v0.52.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Map of names to docker image (repo and tag) to use for the ECS task. Each entry
-  # corresponds to a different ECS task definition that can be used for
-  # infrastructure pipelines. The key corresponds to a user defined name that can be
-  # used with the invoker function to determine which task definition to use.
+  # Map of names to docker image (repo and tag) to use for the ECS task. Each
+  # entry corresponds to a different ECS task definition that can be used for
+  # infrastructure pipelines. The key corresponds to a user defined name that
+  # can be used with the invoker function to determine which task definition to
+  # use.
   container_images = <map(object(
     docker_image = string
     docker_tag   = string
@@ -149,35 +150,36 @@ module "ecs_deploy_runner" {
   # Configuration for storing artifacts from the underlying commands. When set,
   # stdout, stderr, and interleaved output will be stored in the configured S3
   # bucket. Set to null if you do not wish for artifacts to be stored. Note that
-  # when null, the args for configuring storage of outputs will not be available.
+  # when null, the args for configuring storage of outputs will not be
+  # available.
   artifact_config = null
 
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting log data.
   cloudwatch_log_group_kms_key_id = null
 
-  # A custom name to set for the CloudWatch Log Group used to stream the container
-  # logs. When null, the Log Group will default to var.name.
+  # A custom name to set for the CloudWatch Log Group used to stream the
+  # container logs. When null, the Log Group will default to var.name.
   cloudwatch_log_group_name = null
 
   # The number of days to retain log events in the log group. Refer to
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
-  # watch_log_group#retention_in_days for all the valid values. When null, the log
-  # events are retained forever.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days
+  # for all the valid values. When null, the log events are retained forever.
   cloudwatch_log_group_retention_in_days = null
 
-  # The ARN of the destination to deliver matching log events to. Kinesis stream or
-  # Lambda function ARN. Only applicable if var.should_create_cloudwatch_log_group
-  # is true, and var.container_images is non-empty.
+  # The ARN of the destination to deliver matching log events to. Kinesis stream
+  # or Lambda function ARN. Only applicable if
+  # var.should_create_cloudwatch_log_group is true, and var.container_images is
+  # non-empty.
   cloudwatch_log_group_subscription_destination_arn = null
 
-  # The method used to distribute log data to the destination. Only applicable when
-  # var.cloudwatch_log_group_subscription_destination_arn is a kinesis stream. Valid
-  # values are `Random` and `ByLogStream`.
+  # The method used to distribute log data to the destination. Only applicable
+  # when var.cloudwatch_log_group_subscription_destination_arn is a kinesis
+  # stream. Valid values are `Random` and `ByLogStream`.
   cloudwatch_log_group_subscription_distribution = null
 
-  # A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of
-  # log events.
+  # A valid CloudWatch Logs filter pattern for subscribing to a filtered stream
+  # of log events.
   cloudwatch_log_group_subscription_filter_pattern = ""
 
   # ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver
@@ -185,24 +187,23 @@ module "ecs_deploy_runner" {
   # var.cloudwatch_log_group_subscription_destination_arn is a kinesis stream.
   cloudwatch_log_group_subscription_role_arn = null
 
-  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are
-  # tag keys and values are tag values.
+  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys
+  # are tag keys and values are tag values.
   cloudwatch_log_group_tags = null
 
-  # The default CPU units for the instances that Fargate will spin up. The invoker
-  # allows users to override the CPU at run time, but this value will be used if the
-  # user provides no value for the CPU. Options here:
-  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#far
-  # ate-tasks-size.
+  # The default CPU units for the instances that Fargate will spin up. The
+  # invoker allows users to override the CPU at run time, but this value will be
+  # used if the user provides no value for the CPU. Options here:
+  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
   container_cpu = 1024
 
-  # The default launch type of the ECS deploy runner workers. This launch type will
-  # be used if it is not overridden during invocation of the lambda function. Must
-  # be FARGATE or EC2.
+  # The default launch type of the ECS deploy runner workers. This launch type
+  # will be used if it is not overridden during invocation of the lambda
+  # function. Must be FARGATE or EC2.
   container_default_launch_type = "FARGATE"
 
-  # The maximum CPU units that is allowed to be specified by the user when invoking
-  # the deploy runner with the Lambda function.
+  # The maximum CPU units that is allowed to be specified by the user when
+  # invoking the deploy runner with the Lambda function.
   container_max_cpu = 2048
 
   # The maximum memory units that is allowed to be specified by the user when
@@ -210,38 +211,37 @@ module "ecs_deploy_runner" {
   container_max_memory = 8192
 
   # The default memory units for the instances that Fargate will spin up. The
-  # invoker allows users to override the memory at run time, but this value will be
-  # used if the user provides no value for memory. Options here:
-  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#far
-  # ate-tasks-size.
+  # invoker allows users to override the memory at run time, but this value will
+  # be used if the user provides no value for memory. Options here:
+  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
   container_memory = 4096
 
-  # A map of custom tags to apply to all the resources created in this module. The
-  # key is the tag name and the value is the tag value.
+  # A map of custom tags to apply to all the resources created in this module.
+  # The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # Worker configuration of a EC2 worker pool for the ECS cluster. If null, no EC2
-  # worker pool will be allocated and the deploy runner will be in Fargate only
-  # mode.
+  # Worker configuration of a EC2 worker pool for the ECS cluster. If null, no
+  # EC2 worker pool will be allocated and the deploy runner will be in Fargate
+  # only mode.
   ec2_worker_pool_configuration = null
 
-  # The ARN of the policy that is used to set the permissions boundary for the ECS
-  # Task Execution IAM role. This policy should be created outside of this module.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # ECS Task Execution IAM role. This policy should be created outside of this
+  # module.
   ecs_task_exec_role_permissions_boundary = null
 
-  # The ARN of the policy that is used to set the permissions boundary for the ECS
-  # Task IAM role. This policy should be created outside of this module.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # ECS Task IAM role. This policy should be created outside of this module.
   ecs_task_permissions_boundary = null
 
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting log data for the invoker lambda function.
   invoker_lambda_cloudwatch_log_group_kms_key_id = null
 
-  # The number of days to retain log events in the log group for the invoker lambda
-  # function. Refer to
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
-  # watch_log_group#retention_in_days for all the valid values. When null, the log
-  # events are retained forever.
+  # The number of days to retain log events in the log group for the invoker
+  # lambda function. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days
+  # for all the valid values. When null, the log events are retained forever.
   invoker_lambda_cloudwatch_log_group_retention_in_days = null
 
   # Tags to apply on the CloudWatch Log Group for the invoker lambda function,
@@ -252,55 +252,57 @@ module "ecs_deploy_runner" {
   # info, warn, error.
   invoker_lambda_loglevel = "info"
 
-  # The amount of reserved concurrent executions for the invoker lambda function.
-  # Set to -1 to explicitly denote concurrent executions are unreserved.
+  # The amount of reserved concurrent executions for the invoker lambda
+  # function. Set to -1 to explicitly denote concurrent executions are
+  # unreserved.
   invoker_lambda_reserved_concurrent_executions = null
 
   # The ARN of the policy that is used to set the permissions boundary for the
-  # invoker lambda function's execution role. This policy should be created outside
-  # of this module.
+  # invoker lambda function's execution role. This policy should be created
+  # outside of this module.
   invoker_lambda_role_permissions_boundary = null
 
-  # When true, precreate the CloudWatch Log Group to use for log aggregation from
-  # the invoker lambda function execution. This is useful if you wish to customize
-  # the CloudWatch Log Group with various settings such as retention periods and KMS
-  # encryption. When false, AWS Lambda will automatically create a basic log group
-  # to use.
+  # When true, precreate the CloudWatch Log Group to use for log aggregation
+  # from the invoker lambda function execution. This is useful if you wish to
+  # customize the CloudWatch Log Group with various settings such as retention
+  # periods and KMS encryption. When false, AWS Lambda will automatically create
+  # a basic log group to use.
   invoker_lambda_should_create_cloudwatch_log_group = true
 
   # Name of this instance of the deploy runner stack. Used to namespace all
   # resources.
   name = "ecs-deploy-runner"
 
-  # When non-null, set the security group name of the ECS Deploy Runner ECS Task to
-  # this string. When null, a unique name will be generated by Terraform to avoid
-  # conflicts when deploying multiple instances of the ECS Deploy Runner.
+  # When non-null, set the security group name of the ECS Deploy Runner ECS Task
+  # to this string. When null, a unique name will be generated by Terraform to
+  # avoid conflicts when deploying multiple instances of the ECS Deploy Runner.
   outbound_security_group_name = null
 
   # The ARN of a AWS Secrets Manager secret containing credentials to access the
   # private repository. See the docs for details on the format of the secret:
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/private-auth.html.
-  # Note that appropriate secrets manager permissions need to be added to the task
-  # execution role for this to work.
+  # Note that appropriate secrets manager permissions need to be added to the
+  # task execution role for this to work.
   repository_credentials_secrets_manager_arn = null
 
-  # ARN of the KMS Key used to encrypt the AWS Secrets Manager entries. Note that if
-  # this variable is provided, this module will grant read and decrypt access to the
-  # KMS key to the ECS task. Only required if a custom KMS key was used to encrypt
-  # the secrets manager entry.
+  # ARN of the KMS Key used to encrypt the AWS Secrets Manager entries. Note
+  # that if this variable is provided, this module will grant read and decrypt
+  # access to the KMS key to the ECS task. Only required if a custom KMS key was
+  # used to encrypt the secrets manager entry.
   secrets_manager_kms_key_arn = null
 
-  # When true, precreate the CloudWatch Log Group to use for log aggregation from
-  # the ECS Task execution. This is useful if you wish to customize the CloudWatch
-  # Log Group with various settings such as retention periods and KMS encryption.
-  # When false, AWS ECS will automatically create a basic log group to use.
+  # When true, precreate the CloudWatch Log Group to use for log aggregation
+  # from the ECS Task execution. This is useful if you wish to customize the
+  # CloudWatch Log Group with various settings such as retention periods and KMS
+  # encryption. When false, AWS ECS will automatically create a basic log group
+  # to use.
   should_create_cloudwatch_log_group = true
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
 }
@@ -318,7 +320,7 @@ module "ecs_deploy_runner" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner?ref=v0.52.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner?ref=v0.52.3"
 }
 
 inputs = {
@@ -327,10 +329,11 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Map of names to docker image (repo and tag) to use for the ECS task. Each entry
-  # corresponds to a different ECS task definition that can be used for
-  # infrastructure pipelines. The key corresponds to a user defined name that can be
-  # used with the invoker function to determine which task definition to use.
+  # Map of names to docker image (repo and tag) to use for the ECS task. Each
+  # entry corresponds to a different ECS task definition that can be used for
+  # infrastructure pipelines. The key corresponds to a user defined name that
+  # can be used with the invoker function to determine which task definition to
+  # use.
   container_images = <map(object(
     docker_image = string
     docker_tag   = string
@@ -362,35 +365,36 @@ inputs = {
   # Configuration for storing artifacts from the underlying commands. When set,
   # stdout, stderr, and interleaved output will be stored in the configured S3
   # bucket. Set to null if you do not wish for artifacts to be stored. Note that
-  # when null, the args for configuring storage of outputs will not be available.
+  # when null, the args for configuring storage of outputs will not be
+  # available.
   artifact_config = null
 
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting log data.
   cloudwatch_log_group_kms_key_id = null
 
-  # A custom name to set for the CloudWatch Log Group used to stream the container
-  # logs. When null, the Log Group will default to var.name.
+  # A custom name to set for the CloudWatch Log Group used to stream the
+  # container logs. When null, the Log Group will default to var.name.
   cloudwatch_log_group_name = null
 
   # The number of days to retain log events in the log group. Refer to
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
-  # watch_log_group#retention_in_days for all the valid values. When null, the log
-  # events are retained forever.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days
+  # for all the valid values. When null, the log events are retained forever.
   cloudwatch_log_group_retention_in_days = null
 
-  # The ARN of the destination to deliver matching log events to. Kinesis stream or
-  # Lambda function ARN. Only applicable if var.should_create_cloudwatch_log_group
-  # is true, and var.container_images is non-empty.
+  # The ARN of the destination to deliver matching log events to. Kinesis stream
+  # or Lambda function ARN. Only applicable if
+  # var.should_create_cloudwatch_log_group is true, and var.container_images is
+  # non-empty.
   cloudwatch_log_group_subscription_destination_arn = null
 
-  # The method used to distribute log data to the destination. Only applicable when
-  # var.cloudwatch_log_group_subscription_destination_arn is a kinesis stream. Valid
-  # values are `Random` and `ByLogStream`.
+  # The method used to distribute log data to the destination. Only applicable
+  # when var.cloudwatch_log_group_subscription_destination_arn is a kinesis
+  # stream. Valid values are `Random` and `ByLogStream`.
   cloudwatch_log_group_subscription_distribution = null
 
-  # A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of
-  # log events.
+  # A valid CloudWatch Logs filter pattern for subscribing to a filtered stream
+  # of log events.
   cloudwatch_log_group_subscription_filter_pattern = ""
 
   # ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver
@@ -398,24 +402,23 @@ inputs = {
   # var.cloudwatch_log_group_subscription_destination_arn is a kinesis stream.
   cloudwatch_log_group_subscription_role_arn = null
 
-  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are
-  # tag keys and values are tag values.
+  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys
+  # are tag keys and values are tag values.
   cloudwatch_log_group_tags = null
 
-  # The default CPU units for the instances that Fargate will spin up. The invoker
-  # allows users to override the CPU at run time, but this value will be used if the
-  # user provides no value for the CPU. Options here:
-  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#far
-  # ate-tasks-size.
+  # The default CPU units for the instances that Fargate will spin up. The
+  # invoker allows users to override the CPU at run time, but this value will be
+  # used if the user provides no value for the CPU. Options here:
+  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
   container_cpu = 1024
 
-  # The default launch type of the ECS deploy runner workers. This launch type will
-  # be used if it is not overridden during invocation of the lambda function. Must
-  # be FARGATE or EC2.
+  # The default launch type of the ECS deploy runner workers. This launch type
+  # will be used if it is not overridden during invocation of the lambda
+  # function. Must be FARGATE or EC2.
   container_default_launch_type = "FARGATE"
 
-  # The maximum CPU units that is allowed to be specified by the user when invoking
-  # the deploy runner with the Lambda function.
+  # The maximum CPU units that is allowed to be specified by the user when
+  # invoking the deploy runner with the Lambda function.
   container_max_cpu = 2048
 
   # The maximum memory units that is allowed to be specified by the user when
@@ -423,38 +426,37 @@ inputs = {
   container_max_memory = 8192
 
   # The default memory units for the instances that Fargate will spin up. The
-  # invoker allows users to override the memory at run time, but this value will be
-  # used if the user provides no value for memory. Options here:
-  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#far
-  # ate-tasks-size.
+  # invoker allows users to override the memory at run time, but this value will
+  # be used if the user provides no value for memory. Options here:
+  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
   container_memory = 4096
 
-  # A map of custom tags to apply to all the resources created in this module. The
-  # key is the tag name and the value is the tag value.
+  # A map of custom tags to apply to all the resources created in this module.
+  # The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # Worker configuration of a EC2 worker pool for the ECS cluster. If null, no EC2
-  # worker pool will be allocated and the deploy runner will be in Fargate only
-  # mode.
+  # Worker configuration of a EC2 worker pool for the ECS cluster. If null, no
+  # EC2 worker pool will be allocated and the deploy runner will be in Fargate
+  # only mode.
   ec2_worker_pool_configuration = null
 
-  # The ARN of the policy that is used to set the permissions boundary for the ECS
-  # Task Execution IAM role. This policy should be created outside of this module.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # ECS Task Execution IAM role. This policy should be created outside of this
+  # module.
   ecs_task_exec_role_permissions_boundary = null
 
-  # The ARN of the policy that is used to set the permissions boundary for the ECS
-  # Task IAM role. This policy should be created outside of this module.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # ECS Task IAM role. This policy should be created outside of this module.
   ecs_task_permissions_boundary = null
 
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting log data for the invoker lambda function.
   invoker_lambda_cloudwatch_log_group_kms_key_id = null
 
-  # The number of days to retain log events in the log group for the invoker lambda
-  # function. Refer to
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
-  # watch_log_group#retention_in_days for all the valid values. When null, the log
-  # events are retained forever.
+  # The number of days to retain log events in the log group for the invoker
+  # lambda function. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days
+  # for all the valid values. When null, the log events are retained forever.
   invoker_lambda_cloudwatch_log_group_retention_in_days = null
 
   # Tags to apply on the CloudWatch Log Group for the invoker lambda function,
@@ -465,55 +467,57 @@ inputs = {
   # info, warn, error.
   invoker_lambda_loglevel = "info"
 
-  # The amount of reserved concurrent executions for the invoker lambda function.
-  # Set to -1 to explicitly denote concurrent executions are unreserved.
+  # The amount of reserved concurrent executions for the invoker lambda
+  # function. Set to -1 to explicitly denote concurrent executions are
+  # unreserved.
   invoker_lambda_reserved_concurrent_executions = null
 
   # The ARN of the policy that is used to set the permissions boundary for the
-  # invoker lambda function's execution role. This policy should be created outside
-  # of this module.
+  # invoker lambda function's execution role. This policy should be created
+  # outside of this module.
   invoker_lambda_role_permissions_boundary = null
 
-  # When true, precreate the CloudWatch Log Group to use for log aggregation from
-  # the invoker lambda function execution. This is useful if you wish to customize
-  # the CloudWatch Log Group with various settings such as retention periods and KMS
-  # encryption. When false, AWS Lambda will automatically create a basic log group
-  # to use.
+  # When true, precreate the CloudWatch Log Group to use for log aggregation
+  # from the invoker lambda function execution. This is useful if you wish to
+  # customize the CloudWatch Log Group with various settings such as retention
+  # periods and KMS encryption. When false, AWS Lambda will automatically create
+  # a basic log group to use.
   invoker_lambda_should_create_cloudwatch_log_group = true
 
   # Name of this instance of the deploy runner stack. Used to namespace all
   # resources.
   name = "ecs-deploy-runner"
 
-  # When non-null, set the security group name of the ECS Deploy Runner ECS Task to
-  # this string. When null, a unique name will be generated by Terraform to avoid
-  # conflicts when deploying multiple instances of the ECS Deploy Runner.
+  # When non-null, set the security group name of the ECS Deploy Runner ECS Task
+  # to this string. When null, a unique name will be generated by Terraform to
+  # avoid conflicts when deploying multiple instances of the ECS Deploy Runner.
   outbound_security_group_name = null
 
   # The ARN of a AWS Secrets Manager secret containing credentials to access the
   # private repository. See the docs for details on the format of the secret:
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/private-auth.html.
-  # Note that appropriate secrets manager permissions need to be added to the task
-  # execution role for this to work.
+  # Note that appropriate secrets manager permissions need to be added to the
+  # task execution role for this to work.
   repository_credentials_secrets_manager_arn = null
 
-  # ARN of the KMS Key used to encrypt the AWS Secrets Manager entries. Note that if
-  # this variable is provided, this module will grant read and decrypt access to the
-  # KMS key to the ECS task. Only required if a custom KMS key was used to encrypt
-  # the secrets manager entry.
+  # ARN of the KMS Key used to encrypt the AWS Secrets Manager entries. Note
+  # that if this variable is provided, this module will grant read and decrypt
+  # access to the KMS key to the ECS task. Only required if a custom KMS key was
+  # used to encrypt the secrets manager entry.
   secrets_manager_kms_key_arn = null
 
-  # When true, precreate the CloudWatch Log Group to use for log aggregation from
-  # the ECS Task execution. This is useful if you wish to customize the CloudWatch
-  # Log Group with various settings such as retention periods and KMS encryption.
-  # When false, AWS ECS will automatically create a basic log group to use.
+  # When true, precreate the CloudWatch Log Group to use for log aggregation
+  # from the ECS Task execution. This is useful if you wish to customize the
+  # CloudWatch Log Group with various settings such as retention periods and KMS
+  # encryption. When false, AWS ECS will automatically create a basic log group
+  # to use.
   should_create_cloudwatch_log_group = true
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
 }
@@ -1265,11 +1269,11 @@ Security Group ID of the ECS task
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/ecs-deploy-runner/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/ecs-deploy-runner/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/ecs-deploy-runner/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "17560f6c5c42d33352c87f09a4426fe8"
+  "hash": "76459d5edaea31f7f72cbf0d64fa3eff"
 }
 ##DOCS-SOURCER-END -->

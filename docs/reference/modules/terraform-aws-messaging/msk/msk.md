@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="0.12.0" lastModifiedVersion="0.12.0"/>
+<VersionBadge repoTitle="AWS Messaging" version="0.12.1" lastModifiedVersion="0.12.0"/>
 
 # Amazon Managed Streaming for Apache Kafka (Amazon MSK) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/msk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/msk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.12.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -145,7 +145,7 @@ The MSK module supports the following authentication and authorization methods:
 
 *   [IAM access control](https://docs.aws.amazon.com/msk/latest/developerguide/iam-access-control.html)
     using `var.enable_client_sasl_iam`. You can refer
-    to the [msk-with-iam-auth example module](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/examples/msk-with-iam-auth).
+    to the [msk-with-iam-auth example module](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/examples/msk-with-iam-auth).
 *   [TLS](https://docs.aws.amazon.com/msk/latest/developerguide/msk-authentication.html) using `var.enable_client_tls`
     and `var.client_tls_certificate_authority_arns`
 *   [Apache Kafka ACLs](https://docs.aws.amazon.com/msk/latest/developerguide/msk-acls.html)
@@ -250,7 +250,7 @@ It's only supported for the provisioned cluster type (non-serverless mode).
 
 module "msk" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v0.12.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v0.12.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -260,10 +260,10 @@ module "msk" {
   # namespace all resources created by this module.
   cluster_name = <string>
 
-  # The subnet IDs into which the broker instances should be deployed. You should
-  # typically pass in one subnet ID per node in the cluster_size variable. The
-  # number of broker nodes must be a multiple of subnets. We strongly recommend that
-  # you run Kafka in private subnets.
+  # The subnet IDs into which the broker instances should be deployed. You
+  # should typically pass in one subnet ID per node in the cluster_size
+  # variable. The number of broker nodes must be a multiple of subnets. We
+  # strongly recommend that you run Kafka in private subnets.
   subnet_ids = <list(string)>
 
   # The ID of the VPC in which to deploy the cluster.
@@ -277,8 +277,8 @@ module "msk" {
   # instances.
   additional_security_group_ids = []
 
-  # A list of CIDR-formatted IP address ranges that will be allowed to connect to
-  # the Kafka brokers.
+  # A list of CIDR-formatted IP address ranges that will be allowed to connect
+  # to the Kafka brokers.
   allow_connections_from_cidr_blocks = []
 
   # A list of security group IDs that will be allowed to connect to the Kafka
@@ -307,8 +307,8 @@ module "msk" {
   # Custom tags to apply to the Kafka broker nodes and all related resources.
   custom_tags = {}
 
-  # A map of custom tags to apply to the Security Group for this MSK Cluster. The
-  # key is the tag name and the value is the tag value.
+  # A map of custom tags to apply to the Security Group for this MSK Cluster.
+  # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
   # Flag indicating whether broker storage should never be scaled in.
@@ -327,8 +327,8 @@ module "msk" {
   # Cloudwatch Logs.
   enable_cloudwatch_logs = false
 
-  # Indicates whether you want to enable or disable streaming broker logs to Kinesis
-  # Data Firehose.
+  # Indicates whether you want to enable or disable streaming broker logs to
+  # Kinesis Data Firehose.
   enable_firehose_logs = false
 
   # Indicates whether you want to enable or disable streaming broker logs to S3.
@@ -337,52 +337,55 @@ module "msk" {
   # Indicates whether you want to enable msk serverless or not
   enable_serverless = false
 
-  # You may specify a KMS key short ID or ARN (it will always output an ARN) to use
-  # for encrypting your data at rest. If no key is specified, an AWS managed KMS
-  # ('aws/msk' managed service) key will be used for encrypting the data at rest.
+  # You may specify a KMS key short ID or ARN (it will always output an ARN) to
+  # use for encrypting your data at rest. If no key is specified, an AWS managed
+  # KMS ('aws/msk' managed service) key will be used for encrypting the data at
+  # rest.
   encryption_at_rest_kms_key_arn = null
 
   # Encryption setting for data in transit between clients and brokers. Valid
   # values: TLS, TLS_PLAINTEXT, and PLAINTEXT. Default value is `TLS`.
   encryption_in_transit_client_broker = "TLS"
 
-  # Whether data communication among broker nodes is encrypted. Default value: true.
+  # Whether data communication among broker nodes is encrypted. Default value:
+  # true.
   encryption_in_transit_in_cluster = true
 
   # Specify the desired enhanced MSK CloudWatch monitoring level. See
-  # https://docs.aws.amazon.com/msk/latest/developerguide/metrics-details.html for
-  # valid values.
+  # https://docs.aws.amazon.com/msk/latest/developerguide/metrics-details.html
+  # for valid values.
   enhanced_monitoring = "DEFAULT"
 
   # Name of the Kinesis Data Firehose delivery stream to deliver logs to.
   firehose_delivery_stream = null
 
-  # The initial size of the EBS volume (in GiB) for the data drive on each broker
-  # node. 
+  # The initial size of the EBS volume (in GiB) for the data drive on each
+  # broker node. 
   initial_ebs_volume_size = 50
 
-  # Specify the instance type to use for the kafka brokers (e.g. `kafka.m5.large`).
-  # See
-  # https://docs.aws.amazon.com/msk/latest/developerguide/msk-create-cluster.html#br
-  # ker-instance-types for available instance types. This field is required for
-  # non-serverless cluster type.
+  # Specify the instance type to use for the kafka brokers (e.g.
+  # `kafka.m5.large`). See
+  # https://docs.aws.amazon.com/msk/latest/developerguide/msk-create-cluster.html#broker-instance-types
+  # for available instance types. This field is required for non-serverless
+  # cluster type.
   instance_type = null
 
   # Kafka version to install. See
-  # https://docs.aws.amazon.com/msk/latest/developerguide/supported-kafka-versions.h
-  # ml for a list of supported versions. This field is required for non-serverless
+  # https://docs.aws.amazon.com/msk/latest/developerguide/supported-kafka-versions.html
+  # for a list of supported versions. This field is required for non-serverless
   # cluster type.
   kafka_version = null
 
   # Indicates whether you want to enable or disable the Prometheus JMX Exporter.
   open_monitoring_enable_jmx_exporter = false
 
-  # Indicates whether you want to enable or disable the Prometheus Node Exporter.
+  # Indicates whether you want to enable or disable the Prometheus Node
+  # Exporter.
   open_monitoring_enable_node_exporter = false
 
-  # Override automatically created Service-linked role for storage autoscaling. If
-  # not provided, Application Auto Scaling creates the appropriate service-linked
-  # role for you.
+  # Override automatically created Service-linked role for storage autoscaling.
+  # If not provided, Application Auto Scaling creates the appropriate
+  # service-linked role for you.
   override_broker_storage_autoscaling_role_arn = null
 
   # Name of the S3 bucket to deliver logs to.
@@ -391,14 +394,13 @@ module "msk" {
   # Prefix to append to the folder name.
   s3_logs_prefix = null
 
-  # Contents of the server.properties file. Supported properties are documented in
-  # the MSK Developer Guide
-  # (https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-propert
-  # es.html).
+  # Contents of the server.properties file. Supported properties are documented
+  # in the MSK Developer Guide
+  # (https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-properties.html).
   server_properties = {}
 
-  # Controls storage mode for supported storage tiers. Valid values are: LOCAL or
-  # TIERED.
+  # Controls storage mode for supported storage tiers. Valid values are: LOCAL
+  # or TIERED.
   storage_mode = null
 
 }
@@ -416,7 +418,7 @@ module "msk" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v0.12.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v0.12.1"
 }
 
 inputs = {
@@ -429,10 +431,10 @@ inputs = {
   # namespace all resources created by this module.
   cluster_name = <string>
 
-  # The subnet IDs into which the broker instances should be deployed. You should
-  # typically pass in one subnet ID per node in the cluster_size variable. The
-  # number of broker nodes must be a multiple of subnets. We strongly recommend that
-  # you run Kafka in private subnets.
+  # The subnet IDs into which the broker instances should be deployed. You
+  # should typically pass in one subnet ID per node in the cluster_size
+  # variable. The number of broker nodes must be a multiple of subnets. We
+  # strongly recommend that you run Kafka in private subnets.
   subnet_ids = <list(string)>
 
   # The ID of the VPC in which to deploy the cluster.
@@ -446,8 +448,8 @@ inputs = {
   # instances.
   additional_security_group_ids = []
 
-  # A list of CIDR-formatted IP address ranges that will be allowed to connect to
-  # the Kafka brokers.
+  # A list of CIDR-formatted IP address ranges that will be allowed to connect
+  # to the Kafka brokers.
   allow_connections_from_cidr_blocks = []
 
   # A list of security group IDs that will be allowed to connect to the Kafka
@@ -476,8 +478,8 @@ inputs = {
   # Custom tags to apply to the Kafka broker nodes and all related resources.
   custom_tags = {}
 
-  # A map of custom tags to apply to the Security Group for this MSK Cluster. The
-  # key is the tag name and the value is the tag value.
+  # A map of custom tags to apply to the Security Group for this MSK Cluster.
+  # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
   # Flag indicating whether broker storage should never be scaled in.
@@ -496,8 +498,8 @@ inputs = {
   # Cloudwatch Logs.
   enable_cloudwatch_logs = false
 
-  # Indicates whether you want to enable or disable streaming broker logs to Kinesis
-  # Data Firehose.
+  # Indicates whether you want to enable or disable streaming broker logs to
+  # Kinesis Data Firehose.
   enable_firehose_logs = false
 
   # Indicates whether you want to enable or disable streaming broker logs to S3.
@@ -506,52 +508,55 @@ inputs = {
   # Indicates whether you want to enable msk serverless or not
   enable_serverless = false
 
-  # You may specify a KMS key short ID or ARN (it will always output an ARN) to use
-  # for encrypting your data at rest. If no key is specified, an AWS managed KMS
-  # ('aws/msk' managed service) key will be used for encrypting the data at rest.
+  # You may specify a KMS key short ID or ARN (it will always output an ARN) to
+  # use for encrypting your data at rest. If no key is specified, an AWS managed
+  # KMS ('aws/msk' managed service) key will be used for encrypting the data at
+  # rest.
   encryption_at_rest_kms_key_arn = null
 
   # Encryption setting for data in transit between clients and brokers. Valid
   # values: TLS, TLS_PLAINTEXT, and PLAINTEXT. Default value is `TLS`.
   encryption_in_transit_client_broker = "TLS"
 
-  # Whether data communication among broker nodes is encrypted. Default value: true.
+  # Whether data communication among broker nodes is encrypted. Default value:
+  # true.
   encryption_in_transit_in_cluster = true
 
   # Specify the desired enhanced MSK CloudWatch monitoring level. See
-  # https://docs.aws.amazon.com/msk/latest/developerguide/metrics-details.html for
-  # valid values.
+  # https://docs.aws.amazon.com/msk/latest/developerguide/metrics-details.html
+  # for valid values.
   enhanced_monitoring = "DEFAULT"
 
   # Name of the Kinesis Data Firehose delivery stream to deliver logs to.
   firehose_delivery_stream = null
 
-  # The initial size of the EBS volume (in GiB) for the data drive on each broker
-  # node. 
+  # The initial size of the EBS volume (in GiB) for the data drive on each
+  # broker node. 
   initial_ebs_volume_size = 50
 
-  # Specify the instance type to use for the kafka brokers (e.g. `kafka.m5.large`).
-  # See
-  # https://docs.aws.amazon.com/msk/latest/developerguide/msk-create-cluster.html#br
-  # ker-instance-types for available instance types. This field is required for
-  # non-serverless cluster type.
+  # Specify the instance type to use for the kafka brokers (e.g.
+  # `kafka.m5.large`). See
+  # https://docs.aws.amazon.com/msk/latest/developerguide/msk-create-cluster.html#broker-instance-types
+  # for available instance types. This field is required for non-serverless
+  # cluster type.
   instance_type = null
 
   # Kafka version to install. See
-  # https://docs.aws.amazon.com/msk/latest/developerguide/supported-kafka-versions.h
-  # ml for a list of supported versions. This field is required for non-serverless
+  # https://docs.aws.amazon.com/msk/latest/developerguide/supported-kafka-versions.html
+  # for a list of supported versions. This field is required for non-serverless
   # cluster type.
   kafka_version = null
 
   # Indicates whether you want to enable or disable the Prometheus JMX Exporter.
   open_monitoring_enable_jmx_exporter = false
 
-  # Indicates whether you want to enable or disable the Prometheus Node Exporter.
+  # Indicates whether you want to enable or disable the Prometheus Node
+  # Exporter.
   open_monitoring_enable_node_exporter = false
 
-  # Override automatically created Service-linked role for storage autoscaling. If
-  # not provided, Application Auto Scaling creates the appropriate service-linked
-  # role for you.
+  # Override automatically created Service-linked role for storage autoscaling.
+  # If not provided, Application Auto Scaling creates the appropriate
+  # service-linked role for you.
   override_broker_storage_autoscaling_role_arn = null
 
   # Name of the S3 bucket to deliver logs to.
@@ -560,14 +565,13 @@ inputs = {
   # Prefix to append to the folder name.
   s3_logs_prefix = null
 
-  # Contents of the server.properties file. Supported properties are documented in
-  # the MSK Developer Guide
-  # (https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-propert
-  # es.html).
+  # Contents of the server.properties file. Supported properties are documented
+  # in the MSK Developer Guide
+  # (https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-properties.html).
   server_properties = {}
 
-  # Controls storage mode for supported storage tiers. Valid values are: LOCAL or
-  # TIERED.
+  # Controls storage mode for supported storage tiers. Valid values are: LOCAL
+  # or TIERED.
   storage_mode = null
 
 }
@@ -1103,11 +1107,11 @@ A comma separated list of one or more hostname:port pairs to use to connect to t
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/msk/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/msk/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/msk/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/msk/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/msk/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/msk/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b79b53ec686584f53dad33e0079eebb5"
+  "hash": "09e0dc41d1e91bad4c9892f0a8a756de"
 }
 ##DOCS-SOURCER-END -->

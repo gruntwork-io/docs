@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="0.12.0" lastModifiedVersion="0.12.0"/>
+<VersionBadge repoTitle="AWS Messaging" version="0.12.1" lastModifiedVersion="0.12.0"/>
 
 # Kinesis Data Stream Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/kinesis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/kinesis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.12.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -152,7 +152,7 @@ regions: https://github.com/aws-samples/aws-kinesis-data-streams-replicator
 
 module "kinesis" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis?ref=v0.12.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis?ref=v0.12.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -169,31 +169,31 @@ module "kinesis" {
   # rounded up to the nearest 1 KB
   average_data_size_in_kb = 0
 
-  # The type of encryption to use (can be KMS or NONE). Default to use KMS key for
-  # encryption at rest.
+  # The type of encryption to use (can be KMS or NONE). Default to use KMS key
+  # for encryption at rest.
   encryption_type = "KMS"
 
-  # A boolean that indicates all registered consumers should be deregistered from
-  # the stream so that the stream can be destroyed without error.
+  # A boolean that indicates all registered consumers should be deregistered
+  # from the stream so that the stream can be destroyed without error.
   enforce_consumer_deletion = false
 
   # ID of the key to use for KMS
   kms_key_id = "alias/aws/kinesis"
 
-  # The number of Amazon Kinesis Streams applications that consume data concurrently
-  # and independently from the stream, that is, the consumers
+  # The number of Amazon Kinesis Streams applications that consume data
+  # concurrently and independently from the stream, that is, the consumers
   number_of_consumers = 0
 
-  # A shard is a group of data records in a stream. When you create a stream, you
-  # specify the number of shards for the stream.
+  # A shard is a group of data records in a stream. When you create a stream,
+  # you specify the number of shards for the stream.
   number_of_shards = null
 
   # The number of data records written to and read from the stream per second
   records_per_second = 0
 
-  # Length of time data records are accessible after they are added to the stream.
-  # The maximum value of a stream's retention period is 168 hours. Minimum value is
-  # 24.
+  # Length of time data records are accessible after they are added to the
+  # stream. The maximum value of a stream's retention period is 168 hours.
+  # Minimum value is 24.
   retention_period = 24
 
   # The additional shard-level CloudWatch metrics to enable
@@ -201,8 +201,8 @@ module "kinesis" {
 
   # Specifies the capacity mode of the stream. Must be either PROVISIONED or
   # ON_DEMAND. When you are using PROVISIONED mode, you must set either the
-  # shard_count directly or set the average_data_size_in_kb, records_per_second, and
-  # number_of_consumers
+  # shard_count directly or set the average_data_size_in_kb, records_per_second,
+  # and number_of_consumers
   stream_mode = null
 
   # A map of key value pairs to apply as tags to the Kinesis stream.
@@ -223,7 +223,7 @@ module "kinesis" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis?ref=v0.12.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis?ref=v0.12.1"
 }
 
 inputs = {
@@ -243,31 +243,31 @@ inputs = {
   # rounded up to the nearest 1 KB
   average_data_size_in_kb = 0
 
-  # The type of encryption to use (can be KMS or NONE). Default to use KMS key for
-  # encryption at rest.
+  # The type of encryption to use (can be KMS or NONE). Default to use KMS key
+  # for encryption at rest.
   encryption_type = "KMS"
 
-  # A boolean that indicates all registered consumers should be deregistered from
-  # the stream so that the stream can be destroyed without error.
+  # A boolean that indicates all registered consumers should be deregistered
+  # from the stream so that the stream can be destroyed without error.
   enforce_consumer_deletion = false
 
   # ID of the key to use for KMS
   kms_key_id = "alias/aws/kinesis"
 
-  # The number of Amazon Kinesis Streams applications that consume data concurrently
-  # and independently from the stream, that is, the consumers
+  # The number of Amazon Kinesis Streams applications that consume data
+  # concurrently and independently from the stream, that is, the consumers
   number_of_consumers = 0
 
-  # A shard is a group of data records in a stream. When you create a stream, you
-  # specify the number of shards for the stream.
+  # A shard is a group of data records in a stream. When you create a stream,
+  # you specify the number of shards for the stream.
   number_of_shards = null
 
   # The number of data records written to and read from the stream per second
   records_per_second = 0
 
-  # Length of time data records are accessible after they are added to the stream.
-  # The maximum value of a stream's retention period is 168 hours. Minimum value is
-  # 24.
+  # Length of time data records are accessible after they are added to the
+  # stream. The maximum value of a stream's retention period is 168 hours.
+  # Minimum value is 24.
   retention_period = 24
 
   # The additional shard-level CloudWatch metrics to enable
@@ -275,8 +275,8 @@ inputs = {
 
   # Specifies the capacity mode of the stream. Must be either PROVISIONED or
   # ON_DEMAND. When you are using PROVISIONED mode, you must set either the
-  # shard_count directly or set the average_data_size_in_kb, records_per_second, and
-  # number_of_consumers
+  # shard_count directly or set the average_data_size_in_kb, records_per_second,
+  # and number_of_consumers
   stream_mode = null
 
   # A map of key value pairs to apply as tags to the Kinesis stream.
@@ -459,11 +459,11 @@ A map of key value pairs to apply as tags to the Kinesis stream.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/kinesis/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/kinesis/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/kinesis/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/kinesis/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/kinesis/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/kinesis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "13a2efb145839ff88db9e4e0baee8b20"
+  "hash": "0e3daa13e284f3f21609770e56b6f66e"
 }
 ##DOCS-SOURCER-END -->
