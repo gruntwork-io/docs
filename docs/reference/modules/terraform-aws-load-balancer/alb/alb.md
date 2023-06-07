@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="0.29.6" lastModifiedVersion="0.29.6"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="0.29.7" lastModifiedVersion="0.29.7"/>
 
 # Application Load Balancer (ALB) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.6/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an [Application Load Balancer](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)
 that you can use as a load balancer for any [ALB Target Group](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html).
@@ -191,32 +191,32 @@ There are two ways for you to override this behavior:
 
 module "alb" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The name of the ALB. Do not include the environment name since this module will
-  # automatically append it to the value of this variable.
+  # The name of the ALB. Do not include the environment name since this module
+  # will automatically append it to the value of this variable.
   alb_name = <string>
 
-  # If the ALB should only accept traffic from within the VPC, set this to true. If
-  # it should accept traffic from the public Internet, set it to false.
+  # If the ALB should only accept traffic from within the VPC, set this to true.
+  # If it should accept traffic from the public Internet, set it to false.
   is_internal_alb = <bool>
 
-  # The AWS predefined TLS/SSL policy for the ALB. A List of policies can be found
-  # here:
-  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https
-  # listener.html#describe-ssl-policies. AWS recommends ELBSecurityPolicy-2016-08
-  # policy for general use but this policy includes TLSv1.0 which is rapidly being
-  # phased out. ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't
-  # include TLSv1.0.
+  # The AWS predefined TLS/SSL policy for the ALB. A List of policies can be
+  # found here:
+  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies.
+  # AWS recommends ELBSecurityPolicy-2016-08 policy for general use but this
+  # policy includes TLSv1.0 which is rapidly being phased out.
+  # ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't include
+  # TLSv1.0.
   ssl_policy = <string>
 
   # A list of the subnets into which the ALB will place its underlying nodes.
-  # Include one subnet per Availabability Zone. If the ALB is public-facing, these
-  # should be public subnets. Otherwise, they should be private subnets.
+  # Include one subnet per Availabability Zone. If the ALB is public-facing,
+  # these should be public subnets. Otherwise, they should be private subnets.
   vpc_subnet_ids = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
@@ -243,72 +243,72 @@ module "alb" {
   # var.https_listener_ports_and_acm_ssl_certs. The keys are the listener ports.
   additional_ssl_certs_for_ports = {}
 
-  # The S3 Bucket name where ALB logs should be stored. If left empty, no ALB logs
-  # will be captured. Tip: It's easiest to create the S3 Bucket using the Gruntwork
-  # Module
-  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/logs/
-  # oad-balancer-access-logs.
+  # The S3 Bucket name where ALB logs should be stored. If left empty, no ALB
+  # logs will be captured. Tip: It's easiest to create the S3 Bucket using the
+  # Gruntwork Module
+  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/logs/load-balancer-access-logs.
   alb_access_logs_s3_bucket_name = null
 
-  # Set to true to enable all outbound traffic on this ALB. If set to false, the ALB
-  # will allow no outbound traffic by default. This will make the ALB unusuable, so
-  # some other code must then update the ALB Security Group to enable outbound
-  # access!
+  # Set to true to enable all outbound traffic on this ALB. If set to false, the
+  # ALB will allow no outbound traffic by default. This will make the ALB
+  # unusuable, so some other code must then update the ALB Security Group to
+  # enable outbound access!
   allow_all_outbound = true
 
   # The CIDR-formatted IP Address ranges from which this ALB will allow incoming
   # requests. If var.is_internal_alb is false, use the default value. If
-  # var.is_internal_alb is true, consider setting this to the VPC's CIDR Block, or
-  # something even more restrictive.
+  # var.is_internal_alb is true, consider setting this to the VPC's CIDR Block,
+  # or something even more restrictive.
   allow_inbound_from_cidr_blocks = ["0.0.0.0/0"]
 
-  # The IDs of security groups from which this ALB will allow incoming requests. .
-  # If you update this variable, make sure to update
+  # The IDs of security groups from which this ALB will allow incoming requests.
+  # . If you update this variable, make sure to update
   # var.allow_inbound_from_security_group_ids_num too!
   allow_inbound_from_security_group_ids = []
 
-  # The number of elements in var.allow_inbound_from_security_group_ids. We should
-  # be able to compute this automatically, but due to a Terraform limitation, if
-  # there are any dynamic resources in var.allow_inbound_from_security_group_ids,
-  # then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
+  # The number of elements in var.allow_inbound_from_security_group_ids. We
+  # should be able to compute this automatically, but due to a Terraform
+  # limitation, if there are any dynamic resources in
+  # var.allow_inbound_from_security_group_ids, then we won't be able to:
+  # https://github.com/hashicorp/terraform/pull/11482
   allow_inbound_from_security_group_ids_num = 0
 
-  # Prefix to use for access logs to create a sub-folder in S3 Bucket name where ALB
-  # logs should be stored. Only used if var.enable_custom_alb_access_logs_s3_prefix
-  # is true.
+  # Prefix to use for access logs to create a sub-folder in S3 Bucket name where
+  # ALB logs should be stored. Only used if
+  # var.enable_custom_alb_access_logs_s3_prefix is true.
   custom_alb_access_logs_s3_prefix = null
 
-  # A map of custom tags to apply to the ALB and its Security Group. The key is the
-  # tag name and the value is the tag value.
+  # A map of custom tags to apply to the ALB and its Security Group. The key is
+  # the tag name and the value is the tag value.
   custom_tags = {}
 
-  # If a request to the load balancer does not match any of your listener rules, the
-  # default action will return a fixed response with this body.
+  # If a request to the load balancer does not match any of your listener rules,
+  # the default action will return a fixed response with this body.
   default_action_body = null
 
-  # If a request to the load balancer does not match any of your listener rules, the
-  # default action will return a fixed response with this content type.
+  # If a request to the load balancer does not match any of your listener rules,
+  # the default action will return a fixed response with this content type.
   default_action_content_type = "text/plain"
 
-  # If a request to the load balancer does not match any of your listener rules, the
-  # default action will return a fixed response with this status code.
+  # If a request to the load balancer does not match any of your listener rules,
+  # the default action will return a fixed response with this status code.
   default_action_status_code = 404
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
-  # resources in this module will now depend on the resources backing the values in
-  # this list such that those resources need to be created before the resources in
-  # this module, and the resources in this module need to be destroyed before the
-  # resources in the list.
+  # resources in this module will now depend on the resources backing the values
+  # in this list such that those resources need to be created before the
+  # resources in this module, and the resources in this module need to be
+  # destroyed before the resources in the list.
   dependencies = []
 
-  # If true, the ALB will drop invalid headers. Elastic Load Balancing requires that
-  # message header names contain only alphanumeric characters and hyphens.
+  # If true, the ALB will drop invalid headers. Elastic Load Balancing requires
+  # that message header names contain only alphanumeric characters and hyphens.
   drop_invalid_header_fields = false
 
   # Set to true to enable the ALB to log all requests. Ideally, this variable
-  # wouldn't be necessary, but because Terraform can't interpolate dynamic variables
-  # in counts, we must explicitly include this. Enter true or false.
+  # wouldn't be necessary, but because Terraform can't interpolate dynamic
+  # variables in counts, we must explicitly include this. Enter true or false.
   enable_alb_access_logs = false
 
   # Set to true to use the value of alb_access_logs_s3_prefix for access logs
@@ -316,12 +316,12 @@ module "alb" {
   # disable the S3 prefix. Only used if var.enable_alb_access_logs is true.
   enable_custom_alb_access_logs_s3_prefix = false
 
-  # If true, deletion of the ALB will be disabled via the AWS API. This will prevent
-  # Terraform from deleting the load balancer.
+  # If true, deletion of the ALB will be disabled via the AWS API. This will
+  # prevent Terraform from deleting the load balancer.
   enable_deletion_protection = false
 
-  # Indicates whether HTTP/2 is enabled in application load balancers. Defaults to
-  # true.
+  # Indicates whether HTTP/2 is enabled in application load balancers. Defaults
+  # to true.
   enable_http2 = true
 
   # Indicates whether to allow a WAF-enabled load balancer to route requests to
@@ -333,60 +333,61 @@ module "alb" {
   # balancers. Defaults to true.
   enable_xff_client_port = true
 
-  # A list of ports for which an HTTP Listener should be created on the ALB. Tip:
-  # When you define Listener Rules for these Listeners, be sure that, for each
-  # Listener, at least one Listener Rule uses the '*' path to ensure that every
-  # possible request path for that Listener is handled by a Listener Rule. Otherwise
-  # some requests won't route to any Target Group.
+  # A list of ports for which an HTTP Listener should be created on the ALB.
+  # Tip: When you define Listener Rules for these Listeners, be sure that, for
+  # each Listener, at least one Listener Rule uses the '*' path to ensure that
+  # every possible request path for that Listener is handled by a Listener Rule.
+  # Otherwise some requests won't route to any Target Group.
   http_listener_ports = []
 
-  # A list of the ports for which an HTTPS Listener should be created on the ALB.
-  # Each item in the list should be a map with the keys 'port', the port number to
-  # listen on, and 'tls_domain_name', the domain name of an SSL/TLS certificate
-  # issued by the Amazon Certificate Manager (ACM) to associate with the Listener to
-  # be created. If your certificate isn't issued by ACM, specify
-  # var.https_listener_ports_and_ssl_certs instead. Tip: When you define Listener
-  # Rules for these Listeners, be sure that, for each Listener, at least one
-  # Listener Rule  uses the '*' path to ensure that every possible request path for
-  # that Listener is handled by a Listener Rule. Otherwise some requests won't route
-  # to any Target Group.
+  # A list of the ports for which an HTTPS Listener should be created on the
+  # ALB. Each item in the list should be a map with the keys 'port', the port
+  # number to listen on, and 'tls_domain_name', the domain name of an SSL/TLS
+  # certificate issued by the Amazon Certificate Manager (ACM) to associate with
+  # the Listener to be created. If your certificate isn't issued by ACM, specify
+  # var.https_listener_ports_and_ssl_certs instead. Tip: When you define
+  # Listener Rules for these Listeners, be sure that, for each Listener, at
+  # least one Listener Rule  uses the '*' path to ensure that every possible
+  # request path for that Listener is handled by a Listener Rule. Otherwise some
+  # requests won't route to any Target Group.
   https_listener_ports_and_acm_ssl_certs = []
 
-  # The number of elements in var.https_listener_ports_and_acm_ssl_certs. We should
-  # be able to compute this automatically, but due to a Terraform limitation, if
-  # there are any dynamic resources in var.https_listener_ports_and_acm_ssl_certs,
-  # then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
+  # The number of elements in var.https_listener_ports_and_acm_ssl_certs. We
+  # should be able to compute this automatically, but due to a Terraform
+  # limitation, if there are any dynamic resources in
+  # var.https_listener_ports_and_acm_ssl_certs, then we won't be able to:
+  # https://github.com/hashicorp/terraform/pull/11482
   https_listener_ports_and_acm_ssl_certs_num = 0
 
-  # A list of the ports for which an HTTPS Listener should be created on the ALB.
-  # Each item in the list should be a map with the keys 'port', the port number to
-  # listen on, and 'tls_arn', the Amazon Resource Name (ARN) of the SSL/TLS
-  # certificate to associate with the Listener to be created. If your certificate is
-  # issued by the Amazon Certificate Manager (ACM), specify
+  # A list of the ports for which an HTTPS Listener should be created on the
+  # ALB. Each item in the list should be a map with the keys 'port', the port
+  # number to listen on, and 'tls_arn', the Amazon Resource Name (ARN) of the
+  # SSL/TLS certificate to associate with the Listener to be created. If your
+  # certificate is issued by the Amazon Certificate Manager (ACM), specify
   # var.https_listener_ports_and_acm_ssl_certs instead. Tip: When you define
-  # Listener Rules for these Listeners, be sure that, for each Listener, at least
-  # one Listener Rule  uses the '*' path to ensure that every possible request path
-  # for that Listener is handled by a Listener Rule. Otherwise some requests won't
-  # route to any Target Group.
+  # Listener Rules for these Listeners, be sure that, for each Listener, at
+  # least one Listener Rule  uses the '*' path to ensure that every possible
+  # request path for that Listener is handled by a Listener Rule. Otherwise some
+  # requests won't route to any Target Group.
   https_listener_ports_and_ssl_certs = []
 
-  # The number of elements in var.https_listener_ports_and_ssl_certs. We should be
-  # able to compute this automatically, but due to a Terraform limitation, if there
-  # are any dynamic resources in var.https_listener_ports_and_ssl_certs, then we
-  # won't be able to: https://github.com/hashicorp/terraform/pull/11482
+  # The number of elements in var.https_listener_ports_and_ssl_certs. We should
+  # be able to compute this automatically, but due to a Terraform limitation, if
+  # there are any dynamic resources in var.https_listener_ports_and_ssl_certs,
+  # then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
   https_listener_ports_and_ssl_certs_num = 0
 
-  # The time in seconds that the client TCP connection to the ALB is allowed to be
-  # idle before the ALB closes the TCP connection.  
+  # The time in seconds that the client TCP connection to the ALB is allowed to
+  # be idle before the ALB closes the TCP connection.  
   idle_timeout = 60
 
   # DEPRECATED. The VPC ID in which this ALB will be placed.
   vpc_id = ""
 
-  #  (Optional) Determines how the load balancer modifies the X-Forwarded-For header
-  # in the HTTP request before sending the request to the target. The possible
-  # values are append, preserve, and remove. Only valid for Load Balancers of type
-  # application. The default is append.
+  #  (Optional) Determines how the load balancer modifies the X-Forwarded-For
+  # header in the HTTP request before sending the request to the target. The
+  # possible values are append, preserve, and remove. Only valid for Load
+  # Balancers of type application. The default is append.
   xff_header_processing_mode = "append"
 
 }
@@ -404,7 +405,7 @@ module "alb" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.7"
 }
 
 inputs = {
@@ -413,26 +414,26 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The name of the ALB. Do not include the environment name since this module will
-  # automatically append it to the value of this variable.
+  # The name of the ALB. Do not include the environment name since this module
+  # will automatically append it to the value of this variable.
   alb_name = <string>
 
-  # If the ALB should only accept traffic from within the VPC, set this to true. If
-  # it should accept traffic from the public Internet, set it to false.
+  # If the ALB should only accept traffic from within the VPC, set this to true.
+  # If it should accept traffic from the public Internet, set it to false.
   is_internal_alb = <bool>
 
-  # The AWS predefined TLS/SSL policy for the ALB. A List of policies can be found
-  # here:
-  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https
-  # listener.html#describe-ssl-policies. AWS recommends ELBSecurityPolicy-2016-08
-  # policy for general use but this policy includes TLSv1.0 which is rapidly being
-  # phased out. ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't
-  # include TLSv1.0.
+  # The AWS predefined TLS/SSL policy for the ALB. A List of policies can be
+  # found here:
+  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies.
+  # AWS recommends ELBSecurityPolicy-2016-08 policy for general use but this
+  # policy includes TLSv1.0 which is rapidly being phased out.
+  # ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't include
+  # TLSv1.0.
   ssl_policy = <string>
 
   # A list of the subnets into which the ALB will place its underlying nodes.
-  # Include one subnet per Availabability Zone. If the ALB is public-facing, these
-  # should be public subnets. Otherwise, they should be private subnets.
+  # Include one subnet per Availabability Zone. If the ALB is public-facing,
+  # these should be public subnets. Otherwise, they should be private subnets.
   vpc_subnet_ids = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
@@ -459,72 +460,72 @@ inputs = {
   # var.https_listener_ports_and_acm_ssl_certs. The keys are the listener ports.
   additional_ssl_certs_for_ports = {}
 
-  # The S3 Bucket name where ALB logs should be stored. If left empty, no ALB logs
-  # will be captured. Tip: It's easiest to create the S3 Bucket using the Gruntwork
-  # Module
-  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/logs/
-  # oad-balancer-access-logs.
+  # The S3 Bucket name where ALB logs should be stored. If left empty, no ALB
+  # logs will be captured. Tip: It's easiest to create the S3 Bucket using the
+  # Gruntwork Module
+  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/logs/load-balancer-access-logs.
   alb_access_logs_s3_bucket_name = null
 
-  # Set to true to enable all outbound traffic on this ALB. If set to false, the ALB
-  # will allow no outbound traffic by default. This will make the ALB unusuable, so
-  # some other code must then update the ALB Security Group to enable outbound
-  # access!
+  # Set to true to enable all outbound traffic on this ALB. If set to false, the
+  # ALB will allow no outbound traffic by default. This will make the ALB
+  # unusuable, so some other code must then update the ALB Security Group to
+  # enable outbound access!
   allow_all_outbound = true
 
   # The CIDR-formatted IP Address ranges from which this ALB will allow incoming
   # requests. If var.is_internal_alb is false, use the default value. If
-  # var.is_internal_alb is true, consider setting this to the VPC's CIDR Block, or
-  # something even more restrictive.
+  # var.is_internal_alb is true, consider setting this to the VPC's CIDR Block,
+  # or something even more restrictive.
   allow_inbound_from_cidr_blocks = ["0.0.0.0/0"]
 
-  # The IDs of security groups from which this ALB will allow incoming requests. .
-  # If you update this variable, make sure to update
+  # The IDs of security groups from which this ALB will allow incoming requests.
+  # . If you update this variable, make sure to update
   # var.allow_inbound_from_security_group_ids_num too!
   allow_inbound_from_security_group_ids = []
 
-  # The number of elements in var.allow_inbound_from_security_group_ids. We should
-  # be able to compute this automatically, but due to a Terraform limitation, if
-  # there are any dynamic resources in var.allow_inbound_from_security_group_ids,
-  # then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
+  # The number of elements in var.allow_inbound_from_security_group_ids. We
+  # should be able to compute this automatically, but due to a Terraform
+  # limitation, if there are any dynamic resources in
+  # var.allow_inbound_from_security_group_ids, then we won't be able to:
+  # https://github.com/hashicorp/terraform/pull/11482
   allow_inbound_from_security_group_ids_num = 0
 
-  # Prefix to use for access logs to create a sub-folder in S3 Bucket name where ALB
-  # logs should be stored. Only used if var.enable_custom_alb_access_logs_s3_prefix
-  # is true.
+  # Prefix to use for access logs to create a sub-folder in S3 Bucket name where
+  # ALB logs should be stored. Only used if
+  # var.enable_custom_alb_access_logs_s3_prefix is true.
   custom_alb_access_logs_s3_prefix = null
 
-  # A map of custom tags to apply to the ALB and its Security Group. The key is the
-  # tag name and the value is the tag value.
+  # A map of custom tags to apply to the ALB and its Security Group. The key is
+  # the tag name and the value is the tag value.
   custom_tags = {}
 
-  # If a request to the load balancer does not match any of your listener rules, the
-  # default action will return a fixed response with this body.
+  # If a request to the load balancer does not match any of your listener rules,
+  # the default action will return a fixed response with this body.
   default_action_body = null
 
-  # If a request to the load balancer does not match any of your listener rules, the
-  # default action will return a fixed response with this content type.
+  # If a request to the load balancer does not match any of your listener rules,
+  # the default action will return a fixed response with this content type.
   default_action_content_type = "text/plain"
 
-  # If a request to the load balancer does not match any of your listener rules, the
-  # default action will return a fixed response with this status code.
+  # If a request to the load balancer does not match any of your listener rules,
+  # the default action will return a fixed response with this status code.
   default_action_status_code = 404
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
-  # resources in this module will now depend on the resources backing the values in
-  # this list such that those resources need to be created before the resources in
-  # this module, and the resources in this module need to be destroyed before the
-  # resources in the list.
+  # resources in this module will now depend on the resources backing the values
+  # in this list such that those resources need to be created before the
+  # resources in this module, and the resources in this module need to be
+  # destroyed before the resources in the list.
   dependencies = []
 
-  # If true, the ALB will drop invalid headers. Elastic Load Balancing requires that
-  # message header names contain only alphanumeric characters and hyphens.
+  # If true, the ALB will drop invalid headers. Elastic Load Balancing requires
+  # that message header names contain only alphanumeric characters and hyphens.
   drop_invalid_header_fields = false
 
   # Set to true to enable the ALB to log all requests. Ideally, this variable
-  # wouldn't be necessary, but because Terraform can't interpolate dynamic variables
-  # in counts, we must explicitly include this. Enter true or false.
+  # wouldn't be necessary, but because Terraform can't interpolate dynamic
+  # variables in counts, we must explicitly include this. Enter true or false.
   enable_alb_access_logs = false
 
   # Set to true to use the value of alb_access_logs_s3_prefix for access logs
@@ -532,12 +533,12 @@ inputs = {
   # disable the S3 prefix. Only used if var.enable_alb_access_logs is true.
   enable_custom_alb_access_logs_s3_prefix = false
 
-  # If true, deletion of the ALB will be disabled via the AWS API. This will prevent
-  # Terraform from deleting the load balancer.
+  # If true, deletion of the ALB will be disabled via the AWS API. This will
+  # prevent Terraform from deleting the load balancer.
   enable_deletion_protection = false
 
-  # Indicates whether HTTP/2 is enabled in application load balancers. Defaults to
-  # true.
+  # Indicates whether HTTP/2 is enabled in application load balancers. Defaults
+  # to true.
   enable_http2 = true
 
   # Indicates whether to allow a WAF-enabled load balancer to route requests to
@@ -549,60 +550,61 @@ inputs = {
   # balancers. Defaults to true.
   enable_xff_client_port = true
 
-  # A list of ports for which an HTTP Listener should be created on the ALB. Tip:
-  # When you define Listener Rules for these Listeners, be sure that, for each
-  # Listener, at least one Listener Rule uses the '*' path to ensure that every
-  # possible request path for that Listener is handled by a Listener Rule. Otherwise
-  # some requests won't route to any Target Group.
+  # A list of ports for which an HTTP Listener should be created on the ALB.
+  # Tip: When you define Listener Rules for these Listeners, be sure that, for
+  # each Listener, at least one Listener Rule uses the '*' path to ensure that
+  # every possible request path for that Listener is handled by a Listener Rule.
+  # Otherwise some requests won't route to any Target Group.
   http_listener_ports = []
 
-  # A list of the ports for which an HTTPS Listener should be created on the ALB.
-  # Each item in the list should be a map with the keys 'port', the port number to
-  # listen on, and 'tls_domain_name', the domain name of an SSL/TLS certificate
-  # issued by the Amazon Certificate Manager (ACM) to associate with the Listener to
-  # be created. If your certificate isn't issued by ACM, specify
-  # var.https_listener_ports_and_ssl_certs instead. Tip: When you define Listener
-  # Rules for these Listeners, be sure that, for each Listener, at least one
-  # Listener Rule  uses the '*' path to ensure that every possible request path for
-  # that Listener is handled by a Listener Rule. Otherwise some requests won't route
-  # to any Target Group.
+  # A list of the ports for which an HTTPS Listener should be created on the
+  # ALB. Each item in the list should be a map with the keys 'port', the port
+  # number to listen on, and 'tls_domain_name', the domain name of an SSL/TLS
+  # certificate issued by the Amazon Certificate Manager (ACM) to associate with
+  # the Listener to be created. If your certificate isn't issued by ACM, specify
+  # var.https_listener_ports_and_ssl_certs instead. Tip: When you define
+  # Listener Rules for these Listeners, be sure that, for each Listener, at
+  # least one Listener Rule  uses the '*' path to ensure that every possible
+  # request path for that Listener is handled by a Listener Rule. Otherwise some
+  # requests won't route to any Target Group.
   https_listener_ports_and_acm_ssl_certs = []
 
-  # The number of elements in var.https_listener_ports_and_acm_ssl_certs. We should
-  # be able to compute this automatically, but due to a Terraform limitation, if
-  # there are any dynamic resources in var.https_listener_ports_and_acm_ssl_certs,
-  # then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
+  # The number of elements in var.https_listener_ports_and_acm_ssl_certs. We
+  # should be able to compute this automatically, but due to a Terraform
+  # limitation, if there are any dynamic resources in
+  # var.https_listener_ports_and_acm_ssl_certs, then we won't be able to:
+  # https://github.com/hashicorp/terraform/pull/11482
   https_listener_ports_and_acm_ssl_certs_num = 0
 
-  # A list of the ports for which an HTTPS Listener should be created on the ALB.
-  # Each item in the list should be a map with the keys 'port', the port number to
-  # listen on, and 'tls_arn', the Amazon Resource Name (ARN) of the SSL/TLS
-  # certificate to associate with the Listener to be created. If your certificate is
-  # issued by the Amazon Certificate Manager (ACM), specify
+  # A list of the ports for which an HTTPS Listener should be created on the
+  # ALB. Each item in the list should be a map with the keys 'port', the port
+  # number to listen on, and 'tls_arn', the Amazon Resource Name (ARN) of the
+  # SSL/TLS certificate to associate with the Listener to be created. If your
+  # certificate is issued by the Amazon Certificate Manager (ACM), specify
   # var.https_listener_ports_and_acm_ssl_certs instead. Tip: When you define
-  # Listener Rules for these Listeners, be sure that, for each Listener, at least
-  # one Listener Rule  uses the '*' path to ensure that every possible request path
-  # for that Listener is handled by a Listener Rule. Otherwise some requests won't
-  # route to any Target Group.
+  # Listener Rules for these Listeners, be sure that, for each Listener, at
+  # least one Listener Rule  uses the '*' path to ensure that every possible
+  # request path for that Listener is handled by a Listener Rule. Otherwise some
+  # requests won't route to any Target Group.
   https_listener_ports_and_ssl_certs = []
 
-  # The number of elements in var.https_listener_ports_and_ssl_certs. We should be
-  # able to compute this automatically, but due to a Terraform limitation, if there
-  # are any dynamic resources in var.https_listener_ports_and_ssl_certs, then we
-  # won't be able to: https://github.com/hashicorp/terraform/pull/11482
+  # The number of elements in var.https_listener_ports_and_ssl_certs. We should
+  # be able to compute this automatically, but due to a Terraform limitation, if
+  # there are any dynamic resources in var.https_listener_ports_and_ssl_certs,
+  # then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
   https_listener_ports_and_ssl_certs_num = 0
 
-  # The time in seconds that the client TCP connection to the ALB is allowed to be
-  # idle before the ALB closes the TCP connection.  
+  # The time in seconds that the client TCP connection to the ALB is allowed to
+  # be idle before the ALB closes the TCP connection.  
   idle_timeout = 60
 
   # DEPRECATED. The VPC ID in which this ALB will be placed.
   vpc_id = ""
 
-  #  (Optional) Determines how the load balancer modifies the X-Forwarded-For header
-  # in the HTTP request before sending the request to the target. The possible
-  # values are append, preserve, and remove. Only valid for Load Balancers of type
-  # application. The default is append.
+  #  (Optional) Determines how the load balancer modifies the X-Forwarded-For
+  # header in the HTTP request before sending the request to the target. The
+  # possible values are append, preserve, and remove. Only valid for Load
+  # Balancers of type application. The default is append.
   xff_header_processing_mode = "append"
 
 }
@@ -1097,11 +1099,11 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.6/modules/alb/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.6/modules/alb/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.6/modules/alb/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/alb/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/alb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "76131662147e7f8306705a60f263698f"
+  "hash": "cc98337bdd384d717d638613fc745bc7"
 }
 ##DOCS-SOURCER-END -->

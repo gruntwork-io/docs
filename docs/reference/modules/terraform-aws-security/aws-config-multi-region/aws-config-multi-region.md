@@ -9,15 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.2" lastModifiedVersion="0.66.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.3" lastModifiedVersion="0.66.0"/>
 
 # AWS Config Multi Region Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-config-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/aws-config-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.66.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module wraps the [aws-config core module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-config/README.md) to configure [AWS Config](https://aws.amazon.com/config/) in all enabled regions for the AWS Account, and optionally can aggregate AWS Config across multiple accounts.
+This module wraps the [aws-config core module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/aws-config/README.md) to configure [AWS Config](https://aws.amazon.com/config/) in all enabled regions for the AWS Account, and optionally can aggregate AWS Config across multiple accounts.
 
 ![multi account multi region aws config](/img/reference/modules/terraform-aws-security/aws-config-multi-region/multi-account-multi-region-aws-config.png)
 
@@ -45,25 +45,25 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   Learn more about AWS Config in the [aws-config core module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-config/README.adoc).
+*   Learn more about AWS Config in the [aws-config core module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/aws-config/README.adoc).
 
-*   [How to use a multi-region module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/codegen/core-concepts.md#how-to-use-a-multi-region-module)
+*   [How to use a multi-region module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/codegen/core-concepts.md#how-to-use-a-multi-region-module)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [codegen](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/codegen): Code generation utilities that help generate modules in this repo.
+*   [codegen](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/codegen): Code generation utilities that help generate modules in this repo.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/test): Automated tests for the modules and examples.
 
 ## Deploy
 
 *   [How to configure a production-grade AWS account structure](https://gruntwork.io/guides/foundations/how-to-configure-production-grade-aws-account-structure/)
 
-*   [How does Config work with multiple AWS accounts and multiple regions?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-config-multi-region/core-concepts.md#how-does-config-work-with-multiple-aws-accounts-and-multiple-regions)
+*   [How does Config work with multiple AWS accounts and multiple regions?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/aws-config-multi-region/core-concepts.md#how-does-config-work-with-multiple-aws-accounts-and-multiple-regions)
 
 ## Sample Usage
 
@@ -78,7 +78,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 module "aws_config_multi_region" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-multi-region?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-multi-region?ref=v0.68.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -88,92 +88,92 @@ module "aws_config_multi_region" {
   # misconfiguration errors caused by environment variables.
   aws_account_id = <string>
 
-  # The name of the S3 Bucket where Config items will be stored. Can be in the same
-  # account or in another account.
+  # The name of the S3 Bucket where Config items will be stored. Can be in the
+  # same account or in another account.
   s3_bucket_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The S3 bucket where access logs for this bucket should be stored. Only used if
-  # access_logging_enabled is true.
+  # The S3 bucket where access logs for this bucket should be stored. Only used
+  # if access_logging_enabled is true.
   access_logging_bucket = null
 
   # A prefix (i.e., folder path) to use for all access logs stored in
   # access_logging_bucket. Only used if access_logging_enabled is true.
   access_logging_prefix = null
 
-  # Map of additional managed rules to add on top of the defaults. The key is the
-  # name of the rule (e.g. ´acm-certificate-expiration-check´) and the value is an
-  # object specifying the rule details
+  # Map of additional managed rules to add on top of the defaults. The key is
+  # the name of the rule (e.g. ´acm-certificate-expiration-check´) and the value
+  # is an object specifying the rule details
   additional_config_rules = {}
 
   # Set to true to send the AWS Config data to another account (e.g., a logs
-  # account) for aggregation purposes. You must set the ID of that other account via
-  # the central_account_id variable. This redundant variable has to exist because
-  # Terraform does not allow computed data in count and for_each parameters and
-  # var.central_account_id may be computed if its the ID of a newly-created AWS
-  # account.
+  # account) for aggregation purposes. You must set the ID of that other account
+  # via the central_account_id variable. This redundant variable has to exist
+  # because Terraform does not allow computed data in count and for_each
+  # parameters and var.central_account_id may be computed if its the ID of a
+  # newly-created AWS account.
   aggregate_config_data_in_external_account = false
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role.
   aws_config_iam_role_permissions_boundary = null
 
-  # For multi-account deployments, set this to the account ID of the central account
-  # in which the S3 bucket and SNS topic exist. Only used if
+  # For multi-account deployments, set this to the account ID of the central
+  # account in which the S3 bucket and SNS topic exist. Only used if
   # aggregate_config_data_in_external_account is true.
   central_account_id = null
 
-  # A name for the configuration recorder and delivery channel. If not provided, the
-  # name is set to 'default'.
+  # A name for the configuration recorder and delivery channel. If not provided,
+  # the name is set to 'default'.
   config_name = null
 
   # List of AWS account identifiers to exclude from the rules. Only used if
   # create_account_rules is false.
   config_rule_excluded_accounts = []
 
-  # The maximum frequency with which AWS Config runs evaluations for the ´PERIODIC´
-  # rules. See
-  # https://www.terraform.io/docs/providers/aws/r/config_organization_managed_rule.h
-  # ml#maximum_execution_frequency
+  # The maximum frequency with which AWS Config runs evaluations for the
+  # ´PERIODIC´ rules. See
+  # https://www.terraform.io/docs/providers/aws/r/config_organization_managed_rule.html#maximum_execution_frequency
   config_rule_maximum_execution_frequency = "TwentyFour_Hours"
 
-  # Set to true to create the config rules at the account level or false to create
-  # them at the organization level. When you create rules at the organization level,
-  # you must run this module in the root account, and the rules will apply to EVERY
-  # account in the organization. This allows you to manage the rules centrally,
-  # which is convenient, but also has a dependency / ordering issue, as org level
-  # config rules require every child account to have an AWS Config Recorder already
-  # set up, which is very inconvenient (when adding a new account, you first have to
-  # leave the rules disabled for it, then create the account, apply a baseline to it
-  # that creates a Config Recorder, and then go back to the root and enable the
-  # rules). When creating rules at the account level, you have to create and manage
-  # the rules in each account separately, which is inconvenient (but only slightly,
-  # since it's all managed as code), but there are no dependency or ordering issues.
+  # Set to true to create the config rules at the account level or false to
+  # create them at the organization level. When you create rules at the
+  # organization level, you must run this module in the root account, and the
+  # rules will apply to EVERY account in the organization. This allows you to
+  # manage the rules centrally, which is convenient, but also has a dependency /
+  # ordering issue, as org level config rules require every child account to
+  # have an AWS Config Recorder already set up, which is very inconvenient (when
+  # adding a new account, you first have to leave the rules disabled for it,
+  # then create the account, apply a baseline to it that creates a Config
+  # Recorder, and then go back to the root and enable the rules). When creating
+  # rules at the account level, you have to create and manage the rules in each
+  # account separately, which is inconvenient (but only slightly, since it's all
+  # managed as code), but there are no dependency or ordering issues.
   create_account_rules = true
 
-  # Set to false to have this module skip creating resources. This weird parameter
-  # exists solely because Terraform does not support conditional modules. Therefore,
-  # this is a hack to allow you to conditionally decide if the resources should be
-  # created or not.
+  # Set to false to have this module skip creating resources. This weird
+  # parameter exists solely because Terraform does not support conditional
+  # modules. Therefore, this is a hack to allow you to conditionally decide if
+  # the resources should be created or not.
   create_resources = true
 
   # Optional KMS key to use for encrypting S3 objects on the AWS Config delivery
-  # channel for an externally managed S3 bucket. This must belong to the same region
-  # as the destination S3 bucket. If null, AWS Config will default to encrypting the
-  # delivered data with AES-256 encryption. Only used if var.should_create_s3_bucket
-  # is false - otherwise, var.kms_key_arn is used.
+  # channel for an externally managed S3 bucket. This must belong to the same
+  # region as the destination S3 bucket. If null, AWS Config will default to
+  # encrypting the delivered data with AES-256 encryption. Only used if
+  # var.should_create_s3_bucket is false - otherwise, var.kms_key_arn is used.
   delivery_channel_kms_key_arn = null
 
-  # The frequency with which AWS Config delivers configuration snapshots. When null,
-  # defaults to the maximum execution frequency of each rule. Valid values: One_Hour
-  # | Three_Hours | Six_Hours | Twelve_Hours | TwentyFour_Hours
+  # The frequency with which AWS Config delivers configuration snapshots. When
+  # null, defaults to the maximum execution frequency of each rule. Valid
+  # values: One_Hour | Three_Hours | Six_Hours | Twelve_Hours | TwentyFour_Hours
   delivery_frequency = null
 
-  # When true, enable the global AWS Config Configuration Aggregator on all regions
-  # regardless of what is passed into var.opt_in_regions.
+  # When true, enable the global AWS Config Configuration Aggregator on all
+  # regions regardless of what is passed into var.opt_in_regions.
   enable_all_regions_for_config_aggregator = false
 
   # Set to true to create a set of default config rules in each enabled region.
@@ -186,19 +186,19 @@ module "aws_config_multi_region" {
   # requirements.
   enable_iam_password_policy_rule = true
 
-  # Checks whether your IAM users have passwords or active access keys that have not
-  # been used within the specified number of days.
+  # Checks whether your IAM users have passwords or active access keys that have
+  # not been used within the specified number of days.
   enable_iam_user_unused_credentials_check = true
 
-  # Checks whether the security group with 0.0.0.0/0 of any Amazon Virtual Private
-  # Cloud (Amazon VPC) allows only specific inbound TCP or UDP traffic.
+  # Checks whether the security group with 0.0.0.0/0 of any Amazon Virtual
+  # Private Cloud (Amazon VPC) allows only specific inbound TCP or UDP traffic.
   enable_insecure_sg_rules = true
 
   # Checks whether storage encryption is enabled for your RDS DB instances.
   enable_rds_storage_encrypted_rule = true
 
-  # Checks whether users of your AWS account require a multi-factor authentication
-  # (MFA) device to sign in with root credentials.
+  # Checks whether users of your AWS account require a multi-factor
+  # authentication (MFA) device to sign in with root credentials.
   enable_root_account_mfa_rule = true
 
   # Checks that your Amazon S3 buckets do not allow public read access.
@@ -207,18 +207,18 @@ module "aws_config_multi_region" {
   # Checks that your Amazon S3 buckets do not allow public write access.
   enable_s3_bucket_public_write_prohibited_rule = true
 
-  # Enables S3 server access logging which sends detailed records for the requests
-  # that are made to the bucket. Defaults to false.
+  # Enables S3 server access logging which sends detailed records for the
+  # requests that are made to the bucket. Defaults to false.
   enable_s3_server_access_logging = false
 
   # ID or ARN of the KMS key that is used to encrypt the volume. Used for
   # configuring the encrypted volumes config rule.
   encrypted_volumes_kms_id = null
 
-  # If set to true, when you run 'terraform destroy', delete all objects from the
-  # bucket so that the bucket can be destroyed without error. Warning: these objects
-  # are not recoverable so only use this if you're absolutely sure you want to
-  # permanently delete everything!
+  # If set to true, when you run 'terraform destroy', delete all objects from
+  # the bucket so that the bucket can be destroyed without error. Warning: these
+  # objects are not recoverable so only use this if you're absolutely sure you
+  # want to permanently delete everything!
   force_destroy = false
 
   # The AWS Region to use as the global recorder.
@@ -245,114 +245,118 @@ module "aws_config_multi_region" {
   # Require at least one uppercase character in password.
   iam_password_policy_rule_require_uppercase_characters = true
 
-  # The name of an IAM role for Config service to assume. Must be unique within the
-  # AWS account.
+  # The name of an IAM role for Config service to assume. Must be unique within
+  # the AWS account.
   iam_role_name = "AWS_ConfigRole"
 
   # Maximum number of days a credential can be not used.
   iam_user_max_credential_usage_age = 90
 
-  # Comma-separated list of TCP ports authorized to be open to 0.0.0.0/0. Ranges are
-  # defined by a dash; for example, '443,1020-1025'.
+  # Comma-separated list of TCP ports authorized to be open to 0.0.0.0/0. Ranges
+  # are defined by a dash; for example, '443,1020-1025'.
   insecure_sg_rules_authorized_tcp_ports = null
 
-  # Comma-separated list of UDP ports authorized to be open to 0.0.0.0/0. Ranges are
-  # defined by a dash; for example, '500,1020-1025'.
+  # Comma-separated list of UDP ports authorized to be open to 0.0.0.0/0. Ranges
+  # are defined by a dash; for example, '500,1020-1025'.
   insecure_sg_rules_authorized_udp_ports = null
 
-  # Optional KMS key to use for each region for configuring default encryption for
-  # the S3 bucket and SNS topic (encoded as a map from region - e.g. us-east-1 - to
-  # ARN of KMS key). This is a backward compatible interface for configuring a
-  # single KMS key for both S3 objects and the SNS topic. When null, falls back to
-  # using var.s3_bucket_kms_key_arn and var.sns_topic_kms_key_region_map
+  # Optional KMS key to use for each region for configuring default encryption
+  # for the S3 bucket and SNS topic (encoded as a map from region - e.g.
+  # us-east-1 - to ARN of KMS key). This is a backward compatible interface for
+  # configuring a single KMS key for both S3 objects and the SNS topic. When
+  # null, falls back to using var.s3_bucket_kms_key_arn and
+  # var.sns_topic_kms_key_region_map
   kms_key_arn = null
 
   # For multi-account deployments, in the central account, provide a list of AWS
-  # account IDs that should have permissions to write to the S3 bucket and publish
-  # to the SNS topic. Use this in conjunction with should_create_s3_bucket and
-  # sns_topic_name. If this is a child account, leave this list empty.
+  # account IDs that should have permissions to write to the S3 bucket and
+  # publish to the SNS topic. Use this in conjunction with
+  # should_create_s3_bucket and sns_topic_name. If this is a child account,
+  # leave this list empty.
   linked_accounts = []
 
-  # After this number of days, log files should be transitioned from S3 to Glacier.
-  # Enter 0 to never archive log data.
+  # After this number of days, log files should be transitioned from S3 to
+  # Glacier. Enter 0 to never archive log data.
   num_days_after_which_archive_log_data = 365
 
-  # After this number of days, log files should be deleted from S3. Enter 0 to never
-  # delete log data.
+  # After this number of days, log files should be deleted from S3. Enter 0 to
+  # never delete log data.
   num_days_after_which_delete_log_data = 730
 
   # KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
 
-  # Set to true to enable replication for this bucket. You can set the role to use
-  # for replication using the replication_role parameter and the rules for
+  # Set to true to enable replication for this bucket. You can set the role to
+  # use for replication using the replication_role parameter and the rules for
   # replication using the replication_rules parameter.
   replication_enabled = false
 
-  # The ARN of the IAM role for Amazon S3 to assume when replicating objects. Only
-  # used if replication_enabled is set to true.
+  # The ARN of the IAM role for Amazon S3 to assume when replicating objects.
+  # Only used if replication_enabled is set to true.
   replication_role = null
 
-  # The rules for managing replication. Only used if replication_enabled is set to
-  # true. This should be a map, where the key is a unique ID for each replication
-  # rule and the value is an object of the form explained in a comment above.
+  # The rules for managing replication. Only used if replication_enabled is set
+  # to true. This should be a map, where the key is a unique ID for each
+  # replication rule and the value is an object of the form explained in a
+  # comment above.
   replication_rules = {}
 
-  # Optional KMS key to use for encrypting S3 objects on the AWS Config bucket, when
-  # the S3 bucket is created within this module (var.should_create_s3_bucket is
-  # true). For encrypting S3 objects on delivery for an externally managed S3
-  # bucket, refer to the var.delivery_channel_kms_key_arn input variable. If null,
-  # data in S3 will be encrypted using the default aws/s3 key. If provided, the key
-  # policy of the provided key must permit the IAM role used by AWS Config. See
-  # https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html. Note that the
-  # key should be in the same region as the global recorder region (where the S3
-  # bucket will be created).
+  # Optional KMS key to use for encrypting S3 objects on the AWS Config bucket,
+  # when the S3 bucket is created within this module
+  # (var.should_create_s3_bucket is true). For encrypting S3 objects on delivery
+  # for an externally managed S3 bucket, refer to the
+  # var.delivery_channel_kms_key_arn input variable. If null, data in S3 will be
+  # encrypted using the default aws/s3 key. If provided, the key policy of the
+  # provided key must permit the IAM role used by AWS Config. See
+  # https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html. Note that
+  # the key should be in the same region as the global recorder region (where
+  # the S3 bucket will be created).
   s3_bucket_kms_key_arn = null
 
   # Enable MFA delete for either 'Change the versioning state of your bucket' or
-  # 'Permanently delete an object version'. This setting only applies to the bucket
-  # used to storage AWS Config data. This cannot be used to toggle this setting but
-  # is available to allow managed buckets to reflect the state in AWS. For
-  # instructions on how to enable MFA Delete, check out the README from the
-  # private-s3-bucket module. CIS v1.4 requires this variable to be true. If you do
-  # not wish to be CIS-compliant, you can set it to false.
+  # 'Permanently delete an object version'. This setting only applies to the
+  # bucket used to storage AWS Config data. This cannot be used to toggle this
+  # setting but is available to allow managed buckets to reflect the state in
+  # AWS. For instructions on how to enable MFA Delete, check out the README from
+  # the private-s3-bucket module. CIS v1.4 requires this variable to be true. If
+  # you do not wish to be CIS-compliant, you can set it to false.
   s3_mfa_delete = false
 
-  # A prefix to use when storing Config objects in S3. This will be the beginning of
-  # the path in the S3 object. For example: <s3 bucket
+  # A prefix to use when storing Config objects in S3. This will be the
+  # beginning of the path in the S3 object. For example: <s3 bucket
   # name>:/<prefix>/AWSLogs/<account ID>/Config/*. If this variable is null (the
   # default), the path will not include any prefix: e.g., it'll be <s3 bucket
   # name>:/AWSLogs/<account ID>/Config/*.
   s3_object_prefix = null
 
   # Set this to true to create an S3 bucket in the same region where the global
-  # recorder is configured. For multi-account deployments, set this to true for the
-  # central account that should host the S3 bucket and SNS topics, and false for all
-  # other accounts.
+  # recorder is configured. For multi-account deployments, set this to true for
+  # the central account that should host the S3 bucket and SNS topics, and false
+  # for all other accounts.
   should_create_s3_bucket = true
 
   # If true, create an SNS topic for Config notifications.
   should_create_sns_topic = true
 
-  # Optional KMS key to use for each region for configuring default encryption for
-  # the SNS topic (encoded as a map from region - e.g. us-east-1 - to ARN of KMS
-  # key). If null or the region key is missing, encryption will not be configured
-  # for the SNS topic in that region.
+  # Optional KMS key to use for each region for configuring default encryption
+  # for the SNS topic (encoded as a map from region - e.g. us-east-1 - to ARN of
+  # KMS key). If null or the region key is missing, encryption will not be
+  # configured for the SNS topic in that region.
   sns_topic_kms_key_region_map = null
 
   # The name of the SNS topic to use for Config notifications.
   sns_topic_name = "ConfigTopic"
 
-  # A map of tags to apply to the S3 Bucket. The key is the tag name and the value
-  # is the tag value.
+  # A map of tags to apply to the S3 Bucket. The key is the tag name and the
+  # value is the tag value.
   tags = {}
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
 }
@@ -370,7 +374,7 @@ module "aws_config_multi_region" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-multi-region?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-multi-region?ref=v0.68.3"
 }
 
 inputs = {
@@ -383,92 +387,92 @@ inputs = {
   # misconfiguration errors caused by environment variables.
   aws_account_id = <string>
 
-  # The name of the S3 Bucket where Config items will be stored. Can be in the same
-  # account or in another account.
+  # The name of the S3 Bucket where Config items will be stored. Can be in the
+  # same account or in another account.
   s3_bucket_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The S3 bucket where access logs for this bucket should be stored. Only used if
-  # access_logging_enabled is true.
+  # The S3 bucket where access logs for this bucket should be stored. Only used
+  # if access_logging_enabled is true.
   access_logging_bucket = null
 
   # A prefix (i.e., folder path) to use for all access logs stored in
   # access_logging_bucket. Only used if access_logging_enabled is true.
   access_logging_prefix = null
 
-  # Map of additional managed rules to add on top of the defaults. The key is the
-  # name of the rule (e.g. ´acm-certificate-expiration-check´) and the value is an
-  # object specifying the rule details
+  # Map of additional managed rules to add on top of the defaults. The key is
+  # the name of the rule (e.g. ´acm-certificate-expiration-check´) and the value
+  # is an object specifying the rule details
   additional_config_rules = {}
 
   # Set to true to send the AWS Config data to another account (e.g., a logs
-  # account) for aggregation purposes. You must set the ID of that other account via
-  # the central_account_id variable. This redundant variable has to exist because
-  # Terraform does not allow computed data in count and for_each parameters and
-  # var.central_account_id may be computed if its the ID of a newly-created AWS
-  # account.
+  # account) for aggregation purposes. You must set the ID of that other account
+  # via the central_account_id variable. This redundant variable has to exist
+  # because Terraform does not allow computed data in count and for_each
+  # parameters and var.central_account_id may be computed if its the ID of a
+  # newly-created AWS account.
   aggregate_config_data_in_external_account = false
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role.
   aws_config_iam_role_permissions_boundary = null
 
-  # For multi-account deployments, set this to the account ID of the central account
-  # in which the S3 bucket and SNS topic exist. Only used if
+  # For multi-account deployments, set this to the account ID of the central
+  # account in which the S3 bucket and SNS topic exist. Only used if
   # aggregate_config_data_in_external_account is true.
   central_account_id = null
 
-  # A name for the configuration recorder and delivery channel. If not provided, the
-  # name is set to 'default'.
+  # A name for the configuration recorder and delivery channel. If not provided,
+  # the name is set to 'default'.
   config_name = null
 
   # List of AWS account identifiers to exclude from the rules. Only used if
   # create_account_rules is false.
   config_rule_excluded_accounts = []
 
-  # The maximum frequency with which AWS Config runs evaluations for the ´PERIODIC´
-  # rules. See
-  # https://www.terraform.io/docs/providers/aws/r/config_organization_managed_rule.h
-  # ml#maximum_execution_frequency
+  # The maximum frequency with which AWS Config runs evaluations for the
+  # ´PERIODIC´ rules. See
+  # https://www.terraform.io/docs/providers/aws/r/config_organization_managed_rule.html#maximum_execution_frequency
   config_rule_maximum_execution_frequency = "TwentyFour_Hours"
 
-  # Set to true to create the config rules at the account level or false to create
-  # them at the organization level. When you create rules at the organization level,
-  # you must run this module in the root account, and the rules will apply to EVERY
-  # account in the organization. This allows you to manage the rules centrally,
-  # which is convenient, but also has a dependency / ordering issue, as org level
-  # config rules require every child account to have an AWS Config Recorder already
-  # set up, which is very inconvenient (when adding a new account, you first have to
-  # leave the rules disabled for it, then create the account, apply a baseline to it
-  # that creates a Config Recorder, and then go back to the root and enable the
-  # rules). When creating rules at the account level, you have to create and manage
-  # the rules in each account separately, which is inconvenient (but only slightly,
-  # since it's all managed as code), but there are no dependency or ordering issues.
+  # Set to true to create the config rules at the account level or false to
+  # create them at the organization level. When you create rules at the
+  # organization level, you must run this module in the root account, and the
+  # rules will apply to EVERY account in the organization. This allows you to
+  # manage the rules centrally, which is convenient, but also has a dependency /
+  # ordering issue, as org level config rules require every child account to
+  # have an AWS Config Recorder already set up, which is very inconvenient (when
+  # adding a new account, you first have to leave the rules disabled for it,
+  # then create the account, apply a baseline to it that creates a Config
+  # Recorder, and then go back to the root and enable the rules). When creating
+  # rules at the account level, you have to create and manage the rules in each
+  # account separately, which is inconvenient (but only slightly, since it's all
+  # managed as code), but there are no dependency or ordering issues.
   create_account_rules = true
 
-  # Set to false to have this module skip creating resources. This weird parameter
-  # exists solely because Terraform does not support conditional modules. Therefore,
-  # this is a hack to allow you to conditionally decide if the resources should be
-  # created or not.
+  # Set to false to have this module skip creating resources. This weird
+  # parameter exists solely because Terraform does not support conditional
+  # modules. Therefore, this is a hack to allow you to conditionally decide if
+  # the resources should be created or not.
   create_resources = true
 
   # Optional KMS key to use for encrypting S3 objects on the AWS Config delivery
-  # channel for an externally managed S3 bucket. This must belong to the same region
-  # as the destination S3 bucket. If null, AWS Config will default to encrypting the
-  # delivered data with AES-256 encryption. Only used if var.should_create_s3_bucket
-  # is false - otherwise, var.kms_key_arn is used.
+  # channel for an externally managed S3 bucket. This must belong to the same
+  # region as the destination S3 bucket. If null, AWS Config will default to
+  # encrypting the delivered data with AES-256 encryption. Only used if
+  # var.should_create_s3_bucket is false - otherwise, var.kms_key_arn is used.
   delivery_channel_kms_key_arn = null
 
-  # The frequency with which AWS Config delivers configuration snapshots. When null,
-  # defaults to the maximum execution frequency of each rule. Valid values: One_Hour
-  # | Three_Hours | Six_Hours | Twelve_Hours | TwentyFour_Hours
+  # The frequency with which AWS Config delivers configuration snapshots. When
+  # null, defaults to the maximum execution frequency of each rule. Valid
+  # values: One_Hour | Three_Hours | Six_Hours | Twelve_Hours | TwentyFour_Hours
   delivery_frequency = null
 
-  # When true, enable the global AWS Config Configuration Aggregator on all regions
-  # regardless of what is passed into var.opt_in_regions.
+  # When true, enable the global AWS Config Configuration Aggregator on all
+  # regions regardless of what is passed into var.opt_in_regions.
   enable_all_regions_for_config_aggregator = false
 
   # Set to true to create a set of default config rules in each enabled region.
@@ -481,19 +485,19 @@ inputs = {
   # requirements.
   enable_iam_password_policy_rule = true
 
-  # Checks whether your IAM users have passwords or active access keys that have not
-  # been used within the specified number of days.
+  # Checks whether your IAM users have passwords or active access keys that have
+  # not been used within the specified number of days.
   enable_iam_user_unused_credentials_check = true
 
-  # Checks whether the security group with 0.0.0.0/0 of any Amazon Virtual Private
-  # Cloud (Amazon VPC) allows only specific inbound TCP or UDP traffic.
+  # Checks whether the security group with 0.0.0.0/0 of any Amazon Virtual
+  # Private Cloud (Amazon VPC) allows only specific inbound TCP or UDP traffic.
   enable_insecure_sg_rules = true
 
   # Checks whether storage encryption is enabled for your RDS DB instances.
   enable_rds_storage_encrypted_rule = true
 
-  # Checks whether users of your AWS account require a multi-factor authentication
-  # (MFA) device to sign in with root credentials.
+  # Checks whether users of your AWS account require a multi-factor
+  # authentication (MFA) device to sign in with root credentials.
   enable_root_account_mfa_rule = true
 
   # Checks that your Amazon S3 buckets do not allow public read access.
@@ -502,18 +506,18 @@ inputs = {
   # Checks that your Amazon S3 buckets do not allow public write access.
   enable_s3_bucket_public_write_prohibited_rule = true
 
-  # Enables S3 server access logging which sends detailed records for the requests
-  # that are made to the bucket. Defaults to false.
+  # Enables S3 server access logging which sends detailed records for the
+  # requests that are made to the bucket. Defaults to false.
   enable_s3_server_access_logging = false
 
   # ID or ARN of the KMS key that is used to encrypt the volume. Used for
   # configuring the encrypted volumes config rule.
   encrypted_volumes_kms_id = null
 
-  # If set to true, when you run 'terraform destroy', delete all objects from the
-  # bucket so that the bucket can be destroyed without error. Warning: these objects
-  # are not recoverable so only use this if you're absolutely sure you want to
-  # permanently delete everything!
+  # If set to true, when you run 'terraform destroy', delete all objects from
+  # the bucket so that the bucket can be destroyed without error. Warning: these
+  # objects are not recoverable so only use this if you're absolutely sure you
+  # want to permanently delete everything!
   force_destroy = false
 
   # The AWS Region to use as the global recorder.
@@ -540,114 +544,118 @@ inputs = {
   # Require at least one uppercase character in password.
   iam_password_policy_rule_require_uppercase_characters = true
 
-  # The name of an IAM role for Config service to assume. Must be unique within the
-  # AWS account.
+  # The name of an IAM role for Config service to assume. Must be unique within
+  # the AWS account.
   iam_role_name = "AWS_ConfigRole"
 
   # Maximum number of days a credential can be not used.
   iam_user_max_credential_usage_age = 90
 
-  # Comma-separated list of TCP ports authorized to be open to 0.0.0.0/0. Ranges are
-  # defined by a dash; for example, '443,1020-1025'.
+  # Comma-separated list of TCP ports authorized to be open to 0.0.0.0/0. Ranges
+  # are defined by a dash; for example, '443,1020-1025'.
   insecure_sg_rules_authorized_tcp_ports = null
 
-  # Comma-separated list of UDP ports authorized to be open to 0.0.0.0/0. Ranges are
-  # defined by a dash; for example, '500,1020-1025'.
+  # Comma-separated list of UDP ports authorized to be open to 0.0.0.0/0. Ranges
+  # are defined by a dash; for example, '500,1020-1025'.
   insecure_sg_rules_authorized_udp_ports = null
 
-  # Optional KMS key to use for each region for configuring default encryption for
-  # the S3 bucket and SNS topic (encoded as a map from region - e.g. us-east-1 - to
-  # ARN of KMS key). This is a backward compatible interface for configuring a
-  # single KMS key for both S3 objects and the SNS topic. When null, falls back to
-  # using var.s3_bucket_kms_key_arn and var.sns_topic_kms_key_region_map
+  # Optional KMS key to use for each region for configuring default encryption
+  # for the S3 bucket and SNS topic (encoded as a map from region - e.g.
+  # us-east-1 - to ARN of KMS key). This is a backward compatible interface for
+  # configuring a single KMS key for both S3 objects and the SNS topic. When
+  # null, falls back to using var.s3_bucket_kms_key_arn and
+  # var.sns_topic_kms_key_region_map
   kms_key_arn = null
 
   # For multi-account deployments, in the central account, provide a list of AWS
-  # account IDs that should have permissions to write to the S3 bucket and publish
-  # to the SNS topic. Use this in conjunction with should_create_s3_bucket and
-  # sns_topic_name. If this is a child account, leave this list empty.
+  # account IDs that should have permissions to write to the S3 bucket and
+  # publish to the SNS topic. Use this in conjunction with
+  # should_create_s3_bucket and sns_topic_name. If this is a child account,
+  # leave this list empty.
   linked_accounts = []
 
-  # After this number of days, log files should be transitioned from S3 to Glacier.
-  # Enter 0 to never archive log data.
+  # After this number of days, log files should be transitioned from S3 to
+  # Glacier. Enter 0 to never archive log data.
   num_days_after_which_archive_log_data = 365
 
-  # After this number of days, log files should be deleted from S3. Enter 0 to never
-  # delete log data.
+  # After this number of days, log files should be deleted from S3. Enter 0 to
+  # never delete log data.
   num_days_after_which_delete_log_data = 730
 
   # KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
 
-  # Set to true to enable replication for this bucket. You can set the role to use
-  # for replication using the replication_role parameter and the rules for
+  # Set to true to enable replication for this bucket. You can set the role to
+  # use for replication using the replication_role parameter and the rules for
   # replication using the replication_rules parameter.
   replication_enabled = false
 
-  # The ARN of the IAM role for Amazon S3 to assume when replicating objects. Only
-  # used if replication_enabled is set to true.
+  # The ARN of the IAM role for Amazon S3 to assume when replicating objects.
+  # Only used if replication_enabled is set to true.
   replication_role = null
 
-  # The rules for managing replication. Only used if replication_enabled is set to
-  # true. This should be a map, where the key is a unique ID for each replication
-  # rule and the value is an object of the form explained in a comment above.
+  # The rules for managing replication. Only used if replication_enabled is set
+  # to true. This should be a map, where the key is a unique ID for each
+  # replication rule and the value is an object of the form explained in a
+  # comment above.
   replication_rules = {}
 
-  # Optional KMS key to use for encrypting S3 objects on the AWS Config bucket, when
-  # the S3 bucket is created within this module (var.should_create_s3_bucket is
-  # true). For encrypting S3 objects on delivery for an externally managed S3
-  # bucket, refer to the var.delivery_channel_kms_key_arn input variable. If null,
-  # data in S3 will be encrypted using the default aws/s3 key. If provided, the key
-  # policy of the provided key must permit the IAM role used by AWS Config. See
-  # https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html. Note that the
-  # key should be in the same region as the global recorder region (where the S3
-  # bucket will be created).
+  # Optional KMS key to use for encrypting S3 objects on the AWS Config bucket,
+  # when the S3 bucket is created within this module
+  # (var.should_create_s3_bucket is true). For encrypting S3 objects on delivery
+  # for an externally managed S3 bucket, refer to the
+  # var.delivery_channel_kms_key_arn input variable. If null, data in S3 will be
+  # encrypted using the default aws/s3 key. If provided, the key policy of the
+  # provided key must permit the IAM role used by AWS Config. See
+  # https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html. Note that
+  # the key should be in the same region as the global recorder region (where
+  # the S3 bucket will be created).
   s3_bucket_kms_key_arn = null
 
   # Enable MFA delete for either 'Change the versioning state of your bucket' or
-  # 'Permanently delete an object version'. This setting only applies to the bucket
-  # used to storage AWS Config data. This cannot be used to toggle this setting but
-  # is available to allow managed buckets to reflect the state in AWS. For
-  # instructions on how to enable MFA Delete, check out the README from the
-  # private-s3-bucket module. CIS v1.4 requires this variable to be true. If you do
-  # not wish to be CIS-compliant, you can set it to false.
+  # 'Permanently delete an object version'. This setting only applies to the
+  # bucket used to storage AWS Config data. This cannot be used to toggle this
+  # setting but is available to allow managed buckets to reflect the state in
+  # AWS. For instructions on how to enable MFA Delete, check out the README from
+  # the private-s3-bucket module. CIS v1.4 requires this variable to be true. If
+  # you do not wish to be CIS-compliant, you can set it to false.
   s3_mfa_delete = false
 
-  # A prefix to use when storing Config objects in S3. This will be the beginning of
-  # the path in the S3 object. For example: <s3 bucket
+  # A prefix to use when storing Config objects in S3. This will be the
+  # beginning of the path in the S3 object. For example: <s3 bucket
   # name>:/<prefix>/AWSLogs/<account ID>/Config/*. If this variable is null (the
   # default), the path will not include any prefix: e.g., it'll be <s3 bucket
   # name>:/AWSLogs/<account ID>/Config/*.
   s3_object_prefix = null
 
   # Set this to true to create an S3 bucket in the same region where the global
-  # recorder is configured. For multi-account deployments, set this to true for the
-  # central account that should host the S3 bucket and SNS topics, and false for all
-  # other accounts.
+  # recorder is configured. For multi-account deployments, set this to true for
+  # the central account that should host the S3 bucket and SNS topics, and false
+  # for all other accounts.
   should_create_s3_bucket = true
 
   # If true, create an SNS topic for Config notifications.
   should_create_sns_topic = true
 
-  # Optional KMS key to use for each region for configuring default encryption for
-  # the SNS topic (encoded as a map from region - e.g. us-east-1 - to ARN of KMS
-  # key). If null or the region key is missing, encryption will not be configured
-  # for the SNS topic in that region.
+  # Optional KMS key to use for each region for configuring default encryption
+  # for the SNS topic (encoded as a map from region - e.g. us-east-1 - to ARN of
+  # KMS key). If null or the region key is missing, encryption will not be
+  # configured for the SNS topic in that region.
   sns_topic_kms_key_region_map = null
 
   # The name of the SNS topic to use for Config notifications.
   sns_topic_name = "ConfigTopic"
 
-  # A map of tags to apply to the S3 Bucket. The key is the tag name and the value
-  # is the tag value.
+  # A map of tags to apply to the S3 Bucket. The key is the tag name and the
+  # value is the tag value.
   tags = {}
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
 }
@@ -1303,11 +1311,11 @@ The ARNs of the SNS Topic used by the config notifications.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-config-multi-region/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-config-multi-region/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-config-multi-region/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/aws-config-multi-region/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/aws-config-multi-region/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/aws-config-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6291ad47e828ffe7196f87cd53a64ae4"
+  "hash": "60c5fcec29c6768f3a9a34c7367cadd9"
 }
 ##DOCS-SOURCER-END -->

@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.2" lastModifiedVersion="0.47.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.3" lastModifiedVersion="0.47.0"/>
 
 # Generate a TLS/SSL Certificate for a Private Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/tls-cert-private" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/tls-cert-private" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.47.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -35,7 +35,7 @@ using a commercial CA or public, free CA like [Let's Encrypt](https://letsencryp
 1.  Edit the `docker-compose.yml` file and fill in your desired argument values.
 2.  Now run `docker-compose up` and your TLS certs will output to a local `output` directory!
 
-To see documentation on the arguments in `docker-compose.yml`, see the [main.sh](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/tls-cert-private/scripts/main.sh) file.
+To see documentation on the arguments in `docker-compose.yml`, see the [main.sh](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/tls-cert-private/scripts/main.sh) file.
 
 Note that the Docker Compose file mounts the local machine folder `./output` in the Docker container. Mac and Windows
 users sohuld take note that, in some cases, volume mounting may be extremely slow, or even one-way-only if you use an
@@ -177,11 +177,11 @@ TLS certificates for any public services.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/tls-cert-private/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/tls-cert-private/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/tls-cert-private/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/tls-cert-private/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/tls-cert-private/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/tls-cert-private/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cb7d880207fcdfae3462d508e2117482"
+  "hash": "930c2968d4845fe11b0eb5267bd9d9e4"
 }
 ##DOCS-SOURCER-END -->

@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.23.0" lastModifiedVersion="0.22.6"/>
+<VersionBadge repoTitle="VPC Modules" version="0.23.1" lastModifiedVersion="0.22.6"/>
 
 # Interface VPC Endpoint
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/vpc-interface-endpoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-interface-endpoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -193,7 +193,7 @@ Not specifying a rule allows all traffic.
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules//_docs/vpc-core-concepts.md) like subnets and NAT Gateways.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules//_docs/vpc-core-concepts.md) like subnets and NAT Gateways.
 
 ## Sample Usage
 
@@ -208,14 +208,14 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 
 module "vpc_interface_endpoint" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.23.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.23.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # A list of IDs of the subnets for all endpoints. Each endpoint will create one
-  # ENI (Elastic Network Interface) per subnet.
+  # A list of IDs of the subnets for all endpoints. Each endpoint will create
+  # one ENI (Elastic Network Interface) per subnet.
   subnet_ids = <list(string)>
 
   # The ID of the VPC for all modules
@@ -225,138 +225,139 @@ module "vpc_interface_endpoint" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   access_analyzer_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Access Analyzer endpoint
   access_analyzer_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Access Analyzer endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Access Analyzer endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   access_analyzer_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Access
-  # Analyzer endpoint. Only a single subnet within an AZ is supported. When defined,
-  # it overrides var.subnet_ids. For some regions, Access Analyzer endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # Analyzer endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, Access Analyzer
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   access_analyzer_endpoint_subnet_ids = []
 
   # Tags for the Access Analyzer endpoint
   access_analyzer_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   acm_pca_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the ACM PCA endpoint
   acm_pca_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the ACM PCA endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the ACM PCA endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   acm_pca_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the ACM PCA
   # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, ACM PCA endpoint is not supported in
-  # all the AZs, so this variable helps to overcome this issue.
+  # overrides var.subnet_ids. For some regions, ACM PCA endpoint is not
+  # supported in all the AZs, so this variable helps to overcome this issue.
   acm_pca_endpoint_subnet_ids = []
 
   # Tags for the ACM PCA endpoint
   acm_pca_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   api_gateway_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the API Gateway endpoint
   api_gateway_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the API Gateway endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the API Gateway endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   api_gateway_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the API Gateway
-  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
-  # subnet_ids will be used.
+  # The IDs of subnets in which to create a network interface for the API
+  # Gateway endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
   api_gateway_endpoint_subnet_ids = []
 
   # Tags for the API Gateway endpoint
   api_gateway_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   appmesh_envoy_management_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the AppMesh endpoint
   appmesh_envoy_management_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the AppMesh endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the AppMesh endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   appmesh_envoy_management_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the AppMesh
   # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, AppMesh endpoint is not supported in
-  # all the AZs, so this variable helps to overcome this issue.
+  # overrides var.subnet_ids. For some regions, AppMesh endpoint is not
+  # supported in all the AZs, so this variable helps to overcome this issue.
   appmesh_envoy_management_endpoint_subnet_ids = []
 
   # Tags for the AppMesh endpoint
   appmesh_envoy_management_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   appstream_api_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the AppStream API endpoint
   appstream_api_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the AppStream API endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the AppStream API endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   appstream_api_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the AppStream API
-  # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, AppStream API endpoint is not
+  # The IDs of subnets in which to create a network interface for the AppStream
+  # API endpoint. Only a single subnet within an AZ is supported. When defined,
+  # it overrides var.subnet_ids. For some regions, AppStream API endpoint is not
   # supported in all the AZs, so this variable helps to overcome this issue.
   appstream_api_endpoint_subnet_ids = []
 
   # Tags for the AppStream API endpoint
   appstream_api_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   appstream_streaming_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the AppStream STREAMING endpoint
   appstream_streaming_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the AppStream STREAMING endpoint. If none is provided, AWS will associate
-  # the default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the AppStream STREAMING endpoint. If none is provided, AWS
+  # will associate the default security group for the VPC.
   appstream_streaming_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the AppStream
@@ -369,114 +370,116 @@ module "vpc_interface_endpoint" {
   # Tags for the AppStream STREAMING endpoint
   appstream_streaming_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   athena_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Athena endpoint
   athena_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Athena endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Athena endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   athena_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Athena
   # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Athena endpoint is not supported in
-  # all the AZs, so this variable helps to overcome this issue.
+  # overrides var.subnet_ids. For some regions, Athena endpoint is not supported
+  # in all the AZs, so this variable helps to overcome this issue.
   athena_endpoint_subnet_ids = []
 
   # Tags for the Athena endpoint
   athena_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   auto_scaling_plans_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Auto Scaling Plans endpoint
   auto_scaling_plans_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Auto Scaling Plans endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Auto Scaling Plans endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   auto_scaling_plans_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the Auto Scaling
-  # Plans endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Auto Scaling Plans endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the Auto
+  # Scaling Plans endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, Auto Scaling Plans
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   auto_scaling_plans_endpoint_subnet_ids = []
 
   # Tags for the Auto Scaling Plans endpoint
   auto_scaling_plans_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   cloud_directory_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Cloud Directory endpoint
   cloud_directory_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Cloud Directory endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Cloud Directory endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   cloud_directory_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Cloud
   # Directory endpoint. Only a single subnet within an AZ is supported. When
-  # defined, it overrides var.subnet_ids. For some regions, Cloud Directory endpoint
-  # is not supported in all the AZs, so this variable helps to overcome this issue.
+  # defined, it overrides var.subnet_ids. For some regions, Cloud Directory
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   cloud_directory_endpoint_subnet_ids = []
 
   # Tags for the Cloud Directory endpoint
   cloud_directory_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   cloudformation_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Cloudformation endpoint
   cloudformation_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Cloudformation endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Cloudformation endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   cloudformation_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the
-  # theCloudformation endpoint. Only a single subnet within an AZ is supported. If
-  # omitted, only subnet_ids will be used.
+  # theCloudformation endpoint. Only a single subnet within an AZ is supported.
+  # If omitted, only subnet_ids will be used.
   cloudformation_endpoint_subnet_ids = []
 
   # Tags for the CloudFormation endpoint
   cloudformation_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   cloudtrail_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CloudTrail endpoint
   cloudtrail_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the CloudTrail endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the CloudTrail endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   cloudtrail_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the CloudTrail
@@ -487,19 +490,19 @@ module "vpc_interface_endpoint" {
   # Tags for the CloudTrail endpoint
   cloudtrail_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   cloudwatch_events_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CloudWatch Events endpoint
   cloudwatch_events_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the CloudWatch Events endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the CloudWatch Events endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   cloudwatch_events_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the CloudWatch
@@ -510,235 +513,237 @@ module "vpc_interface_endpoint" {
   # Tags for the CloudWatch Events endpoint
   cloudwatch_events_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   cloudwatch_logs_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CloudWatch Logs endpoint
   cloudwatch_logs_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the CloudWatch Logs endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the CloudWatch Logs endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   cloudwatch_logs_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the CloudWatch
-  # Logs endpoint. Only a single subnet within an AZ is supported. If omitted, only
-  # subnet_ids will be used.
+  # Logs endpoint. Only a single subnet within an AZ is supported. If omitted,
+  # only subnet_ids will be used.
   cloudwatch_logs_endpoint_subnet_ids = []
 
   # Tags for the CloudWatch Logs endpoint
   cloudwatch_logs_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   cloudwatch_monitoring_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CloudWatch Monitoring endpoint
   cloudwatch_monitoring_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the CloudWatch Monitoring endpoint. If none is provided, AWS will associate
-  # the default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the CloudWatch Monitoring endpoint. If none is provided, AWS
+  # will associate the default security group for the VPC.
   cloudwatch_monitoring_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the CloudWatch
-  # Monitoring endpoint. Only a single subnet within an AZ is supported. If omitted,
-  # only subnet_ids will be used.
+  # Monitoring endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
   cloudwatch_monitoring_endpoint_subnet_ids = []
 
   # Tags for the CloudWatch Monitoring endpoint
   cloudwatch_monitoring_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   codeartifact_api_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CodeArtifact API endpoint
   codeartifact_api_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Codeartifact API endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Codeartifact API endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   codeartifact_api_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the Codeartifact
-  # API endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Codeartifact API endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the
+  # Codeartifact API endpoint. Only a single subnet within an AZ is supported.
+  # When defined, it overrides var.subnet_ids. For some regions, Codeartifact
+  # API endpoint is not supported in all the AZs, so this variable helps to
+  # overcome this issue.
   codeartifact_api_endpoint_subnet_ids = []
 
   # Tags for the CodeArtifact API endpoint
   codeartifact_api_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   codeartifact_repositories_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Codeartifact repositories endpoint
   codeartifact_repositories_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Codeartifact repositories endpoint. If none is provided, AWS will
-  # associate the default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Codeartifact repositories endpoint. If none is provided,
+  # AWS will associate the default security group for the VPC.
   codeartifact_repositories_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the Codeartifact
-  # repositories endpoint. Only a single subnet within an AZ is supported. When
-  # defined, it overrides var.subnet_ids. For some regions, Codeartifact
-  # repositories endpoint is not supported in all the AZs, so this variable helps to
-  # overcome this issue.
+  # The IDs of subnets in which to create a network interface for the
+  # Codeartifact repositories endpoint. Only a single subnet within an AZ is
+  # supported. When defined, it overrides var.subnet_ids. For some regions,
+  # Codeartifact repositories endpoint is not supported in all the AZs, so this
+  # variable helps to overcome this issue.
   codeartifact_repositories_endpoint_subnet_ids = []
 
   # Tags for the CodeArtifact API endpoint
   codeartifact_repositories_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   codebuild_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CodeBuild endpoint
   codebuild_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the CodeBuild endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the CodeBuild endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   codebuild_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the CodeBuild
   # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, CodeBuild endpoint is not supported
-  # in all the AZs, so this variable helps to overcome this issue.
+  # overrides var.subnet_ids. For some regions, CodeBuild endpoint is not
+  # supported in all the AZs, so this variable helps to overcome this issue.
   codebuild_endpoint_subnet_ids = []
 
   # Tags for the CodeBuild endpoint
   codebuild_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   codecommit_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CodeCommit endpoint
   codecommit_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the CodeCommit endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the CodeCommit endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   codecommit_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the CodeCommit API
-  # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, CodeCommit endpoint is not supported
-  # in all the AZs, so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the CodeCommit
+  # API endpoint. Only a single subnet within an AZ is supported. When defined,
+  # it overrides var.subnet_ids. For some regions, CodeCommit endpoint is not
+  # supported in all the AZs, so this variable helps to overcome this issue.
   codecommit_endpoint_subnet_ids = []
 
   # Tags for the CodeCommit endpoint
   codecommit_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   codedeploy_commands_secure_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CodeDeploy Commands Secure endpoint
   codedeploy_commands_secure_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the CodeDeploy Commands Secure endpoint. If none is provided, AWS will
-  # associate the default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the CodeDeploy Commands Secure endpoint. If none is provided,
+  # AWS will associate the default security group for the VPC.
   codedeploy_commands_secure_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the CodeDeploy
-  # Commands Secure endpoint. Only a single subnet within an AZ is supported. When
-  # defined, it overrides var.subnet_ids. For some regions, CodeDeploy Commands
-  # Secure endpoint is not supported in all the AZs, so this variable helps to
-  # overcome this issue.
+  # Commands Secure endpoint. Only a single subnet within an AZ is supported.
+  # When defined, it overrides var.subnet_ids. For some regions, CodeDeploy
+  # Commands Secure endpoint is not supported in all the AZs, so this variable
+  # helps to overcome this issue.
   codedeploy_commands_secure_endpoint_subnet_ids = []
 
   # Tags for the CodeDeploy Commands Secure endpoint
   codedeploy_commands_secure_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   codedeploy_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CodeDeploy endpoint
   codedeploy_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the CodeDeploy endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the CodeDeploy endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   codedeploy_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the CodeDeploy
   # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, CodeDeploy endpoint is not supported
-  # in all the AZs, so this variable helps to overcome this issue.
+  # overrides var.subnet_ids. For some regions, CodeDeploy endpoint is not
+  # supported in all the AZs, so this variable helps to overcome this issue.
   codedeploy_endpoint_subnet_ids = []
 
   # Tags for the CodeDeploy endpoint
   codedeploy_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   codepipeline_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CodePipeline endpoint
   codepipeline_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the CodePipeline endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the CodePipeline endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   codepipeline_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the CodePipeline
-  # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, CodePipeline endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the
+  # CodePipeline endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, CodePipeline
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   codepipeline_endpoint_subnet_ids = []
 
   # Tags for the CodePipeline endpoint
   codepipeline_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   config_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the config endpoint
   config_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the config endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the config endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   config_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the config
@@ -749,139 +754,141 @@ module "vpc_interface_endpoint" {
   # Tags for the Config endpoint
   config_endpoint_tags = {}
 
-  # If true, creates a security group that allows ingress on port 443 and applies it
-  # to all endpoints. Must set this to true or supply security_group_ids.
+  # If true, creates a security group that allows ingress on port 443 and
+  # applies it to all endpoints. Must set this to true or supply
+  # security_group_ids.
   create_https_security_group = false
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   datasync_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Data Sync endpoint
   datasync_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Data Sync endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Data Sync endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   datasync_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Data Sync
   # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Data Sync endpoint is not supported
-  # in all the AZs, so this variable helps to overcome this issue.
+  # overrides var.subnet_ids. For some regions, Data Sync endpoint is not
+  # supported in all the AZs, so this variable helps to overcome this issue.
   datasync_endpoint_subnet_ids = []
 
   # Tags for the Data Sync endpoint
   datasync_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ebs_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the EBS endpoint.
   ebs_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the EBS endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the EBS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   ebs_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the EBS endpoint.
-  # Only a single subnet within an AZ is supported. If omitted, only subnet_ids will
-  # be used.
+  # The IDs of subnets in which to create a network interface for the EBS
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
   ebs_endpoint_subnet_ids = []
 
   # Tags for the EBS endpoint
   ebs_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ec2_autoscaling_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the EC2-Autoscaling endpoint
   ec2_autoscaling_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the EC2-Autoscaling endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the EC2-Autoscaling endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   ec2_autoscaling_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the
-  # EC2-Autoscaling endpoint. Only a single subnet within an AZ is supported. When
-  # defined, it overrides var.subnet_ids. For some regions, EC2-Autoscaling endpoint
-  # is not supported in all the AZs, so this variable helps to overcome this issue.
+  # EC2-Autoscaling endpoint. Only a single subnet within an AZ is supported.
+  # When defined, it overrides var.subnet_ids. For some regions, EC2-Autoscaling
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   ec2_autoscaling_endpoint_subnet_ids = []
 
   # Tags for the CodeArtifact API endpoint
   ec2_autoscaling_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ec2_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the EC2 endpoint
   ec2_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the EC2 endpoint
+  # The ID of one or more security groups to associate with the network
+  # interface for the EC2 endpoint
   ec2_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the EC2 endpoint.
-  # Only a single subnet within an AZ is supported. If omitted, only subnet_ids will
-  # be used.
+  # The IDs of subnets in which to create a network interface for the EC2
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
   ec2_endpoint_subnet_ids = []
 
   # Tags for the EC2 endpoint
   ec2_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ec2messages_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the EC2 Messages endpoint
   ec2messages_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the EC2 Messages endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the EC2 Messages endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   ec2messages_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the EC2 Messages
-  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
-  # subnet_ids will be used.
+  # The IDs of subnets in which to create a network interface for the EC2
+  # Messages endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
   ec2messages_endpoint_subnet_ids = []
 
   # Tags for the EC2 Messages endpoint
   ec2messages_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ecr_api_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the ECR API endpoint
   ecr_api_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the ECR API endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the ECR API endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   ecr_api_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the ECR api
@@ -891,19 +898,19 @@ module "vpc_interface_endpoint" {
   # Tags for the ECR API endpoint
   ecr_api_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ecr_dkr_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for ECR DKR endpoint
   ecr_dkr_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the ECR DKR endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the ECR DKR endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   ecr_dkr_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the ECR dkr
@@ -913,19 +920,19 @@ module "vpc_interface_endpoint" {
   # Tags for the ECR DKR endpoint
   ecr_dkr_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ecs_agent_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the ECS Agent endpoint
   ecs_agent_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the ECS Agent endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the ECS Agent endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   ecs_agent_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the ECS Agent
@@ -936,113 +943,113 @@ module "vpc_interface_endpoint" {
   # Tags for the ECS Agent endpoint
   ecs_agent_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ecs_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the ECS endpoint
   ecs_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the ECS endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the ECS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   ecs_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the ECS endpoint.
-  # Only a single subnet within an AZ is supported. If omitted, only subnet_ids will
-  # be used.
+  # The IDs of subnets in which to create a network interface for the ECS
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
   ecs_endpoint_subnet_ids = []
 
   # Tags for the ECS endpoint
   ecs_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ecs_telemetry_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the ECS Telemetry endpoint
   ecs_telemetry_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the ECS Telemetry endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the ECS Telemetry endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   ecs_telemetry_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the ECS Telemetry
-  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
-  # subnet_ids will be used.
+  # The IDs of subnets in which to create a network interface for the ECS
+  # Telemetry endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
   ecs_telemetry_endpoint_subnet_ids = []
 
   # Tags for the ECS Telemetry endpoint
   ecs_telemetry_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   efs_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the EFS endpoint.
   efs_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the EFS endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the EFS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   efs_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the EFS endpoint.
-  # Only a single subnet within an AZ is supported. If omitted, only subnet_ids will
-  # be used.
+  # The IDs of subnets in which to create a network interface for the EFS
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
   efs_endpoint_subnet_ids = []
 
   # Tags for the EFS endpoint
   efs_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   elastic_inference_runtime_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Elastic Inference Runtime endpoint
   elastic_inference_runtime_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Elastic Inference Runtime endpoint. If none is provided, AWS will
-  # associate the default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Elastic Inference Runtime endpoint. If none is provided,
+  # AWS will associate the default security group for the VPC.
   elastic_inference_runtime_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Elastic
-  # Inference Runtime endpoint. Only a single subnet within an AZ is supported. When
-  # defined, it overrides var.subnet_ids. For some regions, Elastic Inference
-  # Runtime endpoint is not supported in all the AZs, so this variable helps to
-  # overcome this issue.
+  # Inference Runtime endpoint. Only a single subnet within an AZ is supported.
+  # When defined, it overrides var.subnet_ids. For some regions, Elastic
+  # Inference Runtime endpoint is not supported in all the AZs, so this variable
+  # helps to overcome this issue.
   elastic_inference_runtime_endpoint_subnet_ids = []
 
   # Tags for the Elastic Inference Runtime endpoint
   elastic_inference_runtime_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   elasticbeanstalk_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Elastic Beanstalk endpoint
   elasticbeanstalk_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Elastic Beanstalk endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Elastic Beanstalk endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   elasticbeanstalk_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Elastic
@@ -1055,79 +1062,80 @@ module "vpc_interface_endpoint" {
   # Tags for the Elastic Beanstalk endpoint
   elasticbeanstalk_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   elasticbeanstalk_health_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Elastic Beanstalk Health endpoint
   elasticbeanstalk_health_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Elastic Beanstalk Health endpoint. If none is provided, AWS will
-  # associate the default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Elastic Beanstalk Health endpoint. If none is provided,
+  # AWS will associate the default security group for the VPC.
   elasticbeanstalk_health_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Elastic
-  # Beanstalk Health endpoint. Only a single subnet within an AZ is supported. When
-  # defined, it overrides var.subnet_ids. For some regions, Elastic Beanstalk Health
-  # endpoint is not supported in all the AZs, so this variable helps to overcome
-  # this issue.
+  # Beanstalk Health endpoint. Only a single subnet within an AZ is supported.
+  # When defined, it overrides var.subnet_ids. For some regions, Elastic
+  # Beanstalk Health endpoint is not supported in all the AZs, so this variable
+  # helps to overcome this issue.
   elasticbeanstalk_health_endpoint_subnet_ids = []
 
   # Tags for the Elastic Beanstalk Health endpoint
   elasticbeanstalk_health_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   elb_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Elastic Load Balancing endpoint
   elb_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Elastic Load Balancing endpoint. If none is provided, AWS will associate
-  # the default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Elastic Load Balancing endpoint. If none is provided, AWS
+  # will associate the default security group for the VPC.
   elb_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the Elastic Load
-  # Balancing endpoint. Only a single subnet within an AZ is supported. If omitted,
-  # only subnet_ids will be used.
+  # The IDs of subnets in which to create a network interface for the Elastic
+  # Load Balancing endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
   elb_endpoint_subnet_ids = []
 
   # Tags for the Elastic Load Balancing endpoint
   elb_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   emr_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the EMR endpoint
   emr_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the EMR endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the EMR endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   emr_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the EMR endpoint.
-  # Only a single subnet within an AZ is supported. When defined, it overrides
-  # var.subnet_ids. For some regions, EMR endpoint is not supported in all the AZs,
-  # so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the EMR
+  # endpoint. Only a single subnet within an AZ is supported. When defined, it
+  # overrides var.subnet_ids. For some regions, EMR endpoint is not supported in
+  # all the AZs, so this variable helps to overcome this issue.
   emr_endpoint_subnet_ids = []
 
   # Tags for the EMR endpoint
   emr_endpoint_tags = {}
 
-  # Set to true if you want to provision a Access Analyzer Endpoint within the VPC
+  # Set to true if you want to provision a Access Analyzer Endpoint within the
+  # VPC
   enable_access_analyzer_endpoint = false
 
   # Set to true if you want to provision a ACM PCA Endpoint within the VPC
@@ -1142,18 +1150,19 @@ module "vpc_interface_endpoint" {
   # Set to true if you want to provision a AppStream API Endpoint within the VPC
   enable_appstream_api_endpoint = false
 
-  # Set to true if you want to provision a AppStream STREAMING Endpoint within the
-  # VPC
+  # Set to true if you want to provision a AppStream STREAMING Endpoint within
+  # the VPC
   enable_appstream_streaming_endpoint = false
 
   # Set to true if you want to provision a Athena Endpoint within the VPC
   enable_athena_endpoint = false
 
-  # Set to true if you want to provision a Auto Scaling Plans Endpoint within the
-  # VPC
+  # Set to true if you want to provision a Auto Scaling Plans Endpoint within
+  # the VPC
   enable_auto_scaling_plans_endpoint = false
 
-  # Set to true if you want to provision a Cloud Directory Endpoint within the VPC
+  # Set to true if you want to provision a Cloud Directory Endpoint within the
+  # VPC
   enable_cloud_directory_endpoint = false
 
   # Set to true if you want to provision a Cloudformation within the VPC
@@ -1168,11 +1177,12 @@ module "vpc_interface_endpoint" {
   # Set to true if you want to provision a CloudWatch Logs within the VPC
   enable_cloudwatch_logs_endpoint = false
 
-  # Set to true if you want to provision a Codeartifact API Endpoint within the VPC
+  # Set to true if you want to provision a Codeartifact API Endpoint within the
+  # VPC
   enable_codeartifact_api_endpoint = false
 
-  # Set to true if you want to provision a Codeartifact repositories Endpoint within
-  # the VPC
+  # Set to true if you want to provision a Codeartifact repositories Endpoint
+  # within the VPC
   enable_codeartifact_repositories_endpoint = false
 
   # Set to true if you want to provision a CodeBuild Endpoint within the VPC
@@ -1200,7 +1210,8 @@ module "vpc_interface_endpoint" {
   # Set to true if you want to provision a EBS endpoint within the VPC.
   enable_ebs_endpoint = false
 
-  # Set to true if you want to provision a EC2-Autoscaling Endpoint within the VPC
+  # Set to true if you want to provision a EC2-Autoscaling Endpoint within the
+  # VPC
   enable_ec2_autoscaling_endpoint = false
 
   # Set to true if you want to provision an EC2 within the VPC
@@ -1227,30 +1238,34 @@ module "vpc_interface_endpoint" {
   # Set to true if you want to provision a EFS endpoint within the VPC.
   enable_efs_endpoint = false
 
-  # Set to true if you want to provision a Elastic Inference Runtime Endpoint within
-  # the VPC
+  # Set to true if you want to provision a Elastic Inference Runtime Endpoint
+  # within the VPC
   enable_elastic_inference_runtime_endpoint = false
 
-  # Set to true if you want to provision a Elastic Beanstalk Endpoint within the VPC
+  # Set to true if you want to provision a Elastic Beanstalk Endpoint within the
+  # VPC
   enable_elasticbeanstalk_endpoint = false
 
-  # Set to true if you want to provision a Elastic Beanstalk Health Endpoint within
-  # the VPC
+  # Set to true if you want to provision a Elastic Beanstalk Health Endpoint
+  # within the VPC
   enable_elasticbeanstalk_health_endpoint = false
 
-  # Set to true if you want to provision an Elastic Load Balancing within the VPC
+  # Set to true if you want to provision an Elastic Load Balancing within the
+  # VPC
   enable_elb_endpoint = false
 
   # Set to true if you want to provision a EMR Endpoint within the VPC
   enable_emr_endpoint = false
 
-  # Set to true if you want to provision a Git CodeCommit Endpoint within the VPC
+  # Set to true if you want to provision a Git CodeCommit Endpoint within the
+  # VPC
   enable_git_codecommit_endpoint = false
 
   # Set to true if you want to provision a Glue endpoint within the VPC.
   enable_glue_endpoint = false
 
-  # Set to true if you want to provision a KINESIS Firehose Endpoint within the VPC
+  # Set to true if you want to provision a KINESIS Firehose Endpoint within the
+  # VPC
   enable_kinesis_firehose_endpoint = false
 
   # Set to true if you want to provision a Kinesis Streams within the VPC
@@ -1277,13 +1292,15 @@ module "vpc_interface_endpoint" {
   # Set to true if you want to provision a SageMaker API Endpoint within the VPC
   enable_sagemaker_api_endpoint = false
 
-  # Set to true if you want to provision a SageMaker Runtime Endpoint within the VPC
+  # Set to true if you want to provision a SageMaker Runtime Endpoint within the
+  # VPC
   enable_sagemaker_runtime_endpoint = false
 
   # Set to true if you want to provision a Secrets Manager within the VPC
   enable_secretsmanager_endpoint = false
 
-  # Set to true if you want to provision a Service Catalog Endpoint within the VPC
+  # Set to true if you want to provision a Service Catalog Endpoint within the
+  # VPC
   enable_servicecatalog_endpoint = false
 
   # Set to true if you want to provision a Simple Email Service within the VPC
@@ -1307,7 +1324,8 @@ module "vpc_interface_endpoint" {
   # Set to true if you want to provision a Step Function Endpoint within the VPC
   enable_states_endpoint = false
 
-  # Set to true if you want to provision a Storage Gateway Endpoint within the VPC
+  # Set to true if you want to provision a Storage Gateway Endpoint within the
+  # VPC
   enable_storagegateway_endpoint = false
 
   # Set to true if you want to provision a STS within the VPC
@@ -1319,7 +1337,8 @@ module "vpc_interface_endpoint" {
   # Set to true if you want to provision a Transfer Endpoint within the VPC
   enable_transfer_endpoint = false
 
-  # Set to true if you want to provision a Transfer Server Endpoint within the VPC
+  # Set to true if you want to provision a Transfer Server Endpoint within the
+  # VPC
   enable_transferserver_endpoint = false
 
   # Set to true if you want to provision a CloudWatch Monitoring within the VPC
@@ -1328,143 +1347,146 @@ module "vpc_interface_endpoint" {
   # Set to true if you want to provision a Workspaces Endpoint within the VPC
   enable_workspaces_endpoint = false
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   git_codecommit_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Git CodeCommit API endpoint
   git_codecommit_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Git CodeCommit endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Git CodeCommit endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   git_codecommit_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the Git CodeCommit
-  # API endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Git CodeCommit endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the Git
+  # CodeCommit API endpoint. Only a single subnet within an AZ is supported.
+  # When defined, it overrides var.subnet_ids. For some regions, Git CodeCommit
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   git_codecommit_endpoint_subnet_ids = []
 
   # Tags for the Git CodeCommit endpoint
   git_codecommit_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   glue_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Glue endpoint.
   glue_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the glue endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the glue endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   glue_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the glue endpoint.
-  # Only a single subnet within an AZ is supported. If omitted, only subnet_ids will
-  # be used.
+  # The IDs of subnets in which to create a network interface for the glue
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
   glue_endpoint_subnet_ids = []
 
   # Tags for the Glue endpoint
   glue_endpoint_tags = {}
 
-  # List of CIDR blocks where HTTPS ingress should be allowed from. Defaults to the
-  # VPC's CIDR if left empty. Only used if create_https_security_group is true.
+  # List of CIDR blocks where HTTPS ingress should be allowed from. Defaults to
+  # the VPC's CIDR if left empty. Only used if create_https_security_group is
+  # true.
   https_security_group_cidr_blocks = []
 
   # Name prefix to use on the created SG. A random string will be appended.
   https_security_group_name_prefix = "allow-https-"
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   kinesis_firehose_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the KINESIS Firehose endpoint
   kinesis_firehose_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the KINESIS Firehose endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the KINESIS Firehose endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   kinesis_firehose_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the KINESIS
-  # Firehose endpoint. Only a single subnet within an AZ is supported. When defined,
-  # it overrides var.subnet_ids. For some regions, KINESIS Firehose endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # Firehose endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, KINESIS Firehose
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   kinesis_firehose_endpoint_subnet_ids = []
 
   # Tags for the KINESIS Firehose endpoint
   kinesis_firehose_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   kinesis_streams_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Kinesis Streams endpoint
   kinesis_streams_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Kinesis Streams endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Kinesis Streams endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   kinesis_streams_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Kinesis
-  # Streams endpoint. Only a single subnet within an AZ is supported. If omitted,
-  # only subnet_ids will be used.
+  # Streams endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
   kinesis_streams_endpoint_subnet_ids = []
 
   # Tags for the Kinesis endpoint
   kinesis_streams_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   kms_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the KMS endpoint
   kms_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the KMS endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the KMS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   kms_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the KMS endpoint.
-  # Only a single subnet within an AZ is supported. If omitted, only subnet_ids will
-  # be used.
+  # The IDs of subnets in which to create a network interface for the KMS
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
   kms_endpoint_subnet_ids = []
 
   # Tags for the KMS endpoint
   kms_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   lambda_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Lambda endpoint.
   lambda_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Lambda endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Lambda endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   lambda_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Lambda
@@ -1475,67 +1497,68 @@ module "vpc_interface_endpoint" {
   # Tags for the Lambda endpoint
   lambda_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   qldb_session_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the QLDB Session endpoint
   qldb_session_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the QLDB Session endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the QLDB Session endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   qldb_session_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the QLDB Session
-  # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, QLDB Session endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the QLDB
+  # Session endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, QLDB Session
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   qldb_session_endpoint_subnet_ids = []
 
   # Tags for the QLDB Session endpoint
   qldb_session_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   rds_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the RDS endpoint
   rds_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the RDS endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the RDS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   rds_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the RDS endpoint.
-  # Only a single subnet within an AZ is supported. When defined, it overrides
-  # var.subnet_ids. For some regions, RDS endpoint is not supported in all the AZs,
-  # so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the RDS
+  # endpoint. Only a single subnet within an AZ is supported. When defined, it
+  # overrides var.subnet_ids. For some regions, RDS endpoint is not supported in
+  # all the AZs, so this variable helps to overcome this issue.
   rds_endpoint_subnet_ids = []
 
   # Tags for the RDS endpoint
   rds_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   redshift_data_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Redshift endpoint
   redshift_data_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Redshift endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Redshift endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   redshift_data_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Redshift
@@ -1546,335 +1569,340 @@ module "vpc_interface_endpoint" {
   # Tags for the Redshift endpoint
   redshift_data_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   rekognition_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Rekognition endpoint
   rekognition_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Rekognition endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Rekognition endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   rekognition_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the Rekognition
-  # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Rekognition endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the
+  # Rekognition endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, Rekognition endpoint
+  # is not supported in all the AZs, so this variable helps to overcome this
+  # issue.
   rekognition_endpoint_subnet_ids = []
 
   # Tags for the Rekognition endpoint
   rekognition_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   sagemaker_api_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the SageMaker API endpoint
   sagemaker_api_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the SageMaker API endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the SageMaker API endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   sagemaker_api_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the SageMaker API
-  # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, SageMaker API endpoint is not
+  # The IDs of subnets in which to create a network interface for the SageMaker
+  # API endpoint. Only a single subnet within an AZ is supported. When defined,
+  # it overrides var.subnet_ids. For some regions, SageMaker API endpoint is not
   # supported in all the AZs, so this variable helps to overcome this issue.
   sagemaker_api_endpoint_subnet_ids = []
 
   # Tags for the SageMaker API endpoint
   sagemaker_api_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   sagemaker_runtime_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the SageMaker Runtime endpoint
   sagemaker_runtime_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the SageMaker Runtime endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the SageMaker Runtime endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   sagemaker_runtime_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the SageMaker
-  # Runtime endpoint. Only a single subnet within an AZ is supported. When defined,
-  # it overrides var.subnet_ids. For some regions, SageMaker Runtime endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # Runtime endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, SageMaker Runtime
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   sagemaker_runtime_endpoint_subnet_ids = []
 
   # Tags for the SageMaker Runtime endpoint
   sagemaker_runtime_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   secretsmanager_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Secrets Manager endpoint
   secretsmanager_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Secrets Manager endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Secrets Manager endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   secretsmanager_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Secrets
-  # Manager endpoint. Only a single subnet within an AZ is supported. If omitted,
-  # only subnet_ids will be used.
+  # Manager endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
   secretsmanager_endpoint_subnet_ids = []
 
   # Tags for the Secrets Manager endpoint
   secretsmanager_endpoint_tags = {}
 
-  # A list of IDs of the security groups which will apply for all endpoints. Must
-  # supply this or create_https_security_group = true.
+  # A list of IDs of the security groups which will apply for all endpoints.
+  # Must supply this or create_https_security_group = true.
   security_group_ids = []
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   servicecatalog_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Service Catalog endpoint
   servicecatalog_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Service Catalog endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Service Catalog endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   servicecatalog_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Service
-  # Catalog endpoint. Only a single subnet within an AZ is supported. When defined,
-  # it overrides var.subnet_ids. For some regions, Service Catalog endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # Catalog endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, Service Catalog
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   servicecatalog_endpoint_subnet_ids = []
 
   # Tags for the Service Catalog endpoint
   servicecatalog_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ses_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Simple Email Service endpoint
   ses_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Simple Email Service endpoint. If none is provided, AWS will associate
-  # the default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Simple Email Service endpoint. If none is provided, AWS
+  # will associate the default security group for the VPC.
   ses_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the Simple Email
-  # Service endpoint. Only a single subnet within an AZ is supported. When defined,
-  # it overrides var.subnet_ids. For some regions, SES is not supported in all the
-  # AZs, so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the Simple
+  # Email Service endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, SES is not supported
+  # in all the AZs, so this variable helps to overcome this issue.
   ses_endpoint_subnet_ids = []
 
   # Tags for the Simple Email Service endpoint
   ses_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   sms_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the SMS endpoint
   sms_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the SMS endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the SMS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   sms_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the SMS endpoint.
-  # Only a single subnet within an AZ is supported. When defined, it overrides
-  # var.subnet_ids. For some regions, SMS endpoint is not supported in all the AZs,
-  # so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the SMS
+  # endpoint. Only a single subnet within an AZ is supported. When defined, it
+  # overrides var.subnet_ids. For some regions, SMS endpoint is not supported in
+  # all the AZs, so this variable helps to overcome this issue.
   sms_endpoint_subnet_ids = []
 
   # Tags for the SMS endpoint
   sms_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   sns_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the SNS endpoint
   sns_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the SNS endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the SNS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   sns_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the SNS endpoint.
-  # Only a single subnet within an AZ is supported. If omitted, only subnet_ids will
-  # be used.
+  # The IDs of subnets in which to create a network interface for the SNS
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
   sns_endpoint_subnet_ids = []
 
   # Tags for the SNS endpoint
   sns_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   sqs_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the SQS endpoint
   sqs_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the SQS endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the SQS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   sqs_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the SQS endpoint.
-  # Only a single subnet within an AZ is supported. If omitted, only subnet_ids will
-  # be used.
+  # The IDs of subnets in which to create a network interface for the SQS
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
   sqs_endpoint_subnet_ids = []
 
   # Tags for the SQS endpoint
   sqs_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ssm_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the SSM Endpoint endpoint
   ssm_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the SSM Endpoint endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the SSM Endpoint endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   ssm_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the SSM Endpoint
-  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
-  # subnet_ids will be used.
+  # The IDs of subnets in which to create a network interface for the SSM
+  # Endpoint endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
   ssm_endpoint_subnet_ids = []
 
   # Tags for the SSM Endpoint endpoint
   ssm_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ssmmessages_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the SSM Messages endpoint
   ssmmessages_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the SSM Messages endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the SSM Messages endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   ssmmessages_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the SSM Messages
-  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
-  # subnet_ids will be used.
+  # The IDs of subnets in which to create a network interface for the SSM
+  # Messages endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
   ssmmessages_endpoint_subnet_ids = []
 
   # Tags for the SSM Messages endpoint
   ssmmessages_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   states_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Step Function endpoint
   states_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Step Function endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Step Function endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   states_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the Step Function
-  # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Step Function endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the Step
+  # Function endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, Step Function
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   states_endpoint_subnet_ids = []
 
   # Tags for the Step Function endpoint
   states_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   storagegateway_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Storage Gateway endpoint
   storagegateway_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Storage Gateway endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Storage Gateway endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   storagegateway_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Storage
-  # Gateway endpoint. Only a single subnet within an AZ is supported. When defined,
-  # it overrides var.subnet_ids. For some regions, Storage Gateway endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # Gateway endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, Storage Gateway
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   storagegateway_endpoint_subnet_ids = []
 
   # Tags for the Storage Gateway endpoint
   storagegateway_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   sts_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the STS endpoint
   sts_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the STS endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the STS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   sts_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the STS endpoint.
-  # Only a single subnet within an AZ is supported. If omitted, only subnet_ids will
-  # be used.
+  # The IDs of subnets in which to create a network interface for the STS
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
   sts_endpoint_subnet_ids = []
 
   # Tags for the STS endpoint
@@ -1883,97 +1911,98 @@ module "vpc_interface_endpoint" {
   # A map of tags to apply to all endpoints.
   tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   textract_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Textract endpoint
   textract_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Textract endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Textract endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   textract_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Textract
   # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Textract endpoint is not supported
-  # in all the AZs, so this variable helps to overcome this issue.
+  # overrides var.subnet_ids. For some regions, Textract endpoint is not
+  # supported in all the AZs, so this variable helps to overcome this issue.
   textract_endpoint_subnet_ids = []
 
   # Tags for the Textract endpoint
   textract_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   transfer_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Transfer endpoint
   transfer_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Transfer endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Transfer endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   transfer_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Transfer
   # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Transfer endpoint is not supported
-  # in all the AZs, so this variable helps to overcome this issue.
+  # overrides var.subnet_ids. For some regions, Transfer endpoint is not
+  # supported in all the AZs, so this variable helps to overcome this issue.
   transfer_endpoint_subnet_ids = []
 
   # Tags for the Transfer endpoint
   transfer_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   transferserver_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Transfer Server endpoint
   transferserver_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Transfer Server endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Transfer Server endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   transferserver_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Transfer
-  # Server endpoint. Only a single subnet within an AZ is supported. When defined,
-  # it overrides var.subnet_ids. For some regions, Transfer Server endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # Server endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, Transfer Server
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   transferserver_endpoint_subnet_ids = []
 
   # Tags for the Transfer Server endpoint
   transferserver_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   workspaces_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Workspaces endpoint
   workspaces_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Workspaces endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Workspaces endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   workspaces_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Workspaces
   # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Workspaces endpoint is not supported
-  # in all the AZs, so this variable helps to overcome this issue.
+  # overrides var.subnet_ids. For some regions, Workspaces endpoint is not
+  # supported in all the AZs, so this variable helps to overcome this issue.
   workspaces_endpoint_subnet_ids = []
 
   # Tags for the Workspaces endpoint
@@ -1994,7 +2023,7 @@ module "vpc_interface_endpoint" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.23.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.23.1"
 }
 
 inputs = {
@@ -2003,8 +2032,8 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # A list of IDs of the subnets for all endpoints. Each endpoint will create one
-  # ENI (Elastic Network Interface) per subnet.
+  # A list of IDs of the subnets for all endpoints. Each endpoint will create
+  # one ENI (Elastic Network Interface) per subnet.
   subnet_ids = <list(string)>
 
   # The ID of the VPC for all modules
@@ -2014,138 +2043,139 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   access_analyzer_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Access Analyzer endpoint
   access_analyzer_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Access Analyzer endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Access Analyzer endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   access_analyzer_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Access
-  # Analyzer endpoint. Only a single subnet within an AZ is supported. When defined,
-  # it overrides var.subnet_ids. For some regions, Access Analyzer endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # Analyzer endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, Access Analyzer
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   access_analyzer_endpoint_subnet_ids = []
 
   # Tags for the Access Analyzer endpoint
   access_analyzer_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   acm_pca_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the ACM PCA endpoint
   acm_pca_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the ACM PCA endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the ACM PCA endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   acm_pca_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the ACM PCA
   # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, ACM PCA endpoint is not supported in
-  # all the AZs, so this variable helps to overcome this issue.
+  # overrides var.subnet_ids. For some regions, ACM PCA endpoint is not
+  # supported in all the AZs, so this variable helps to overcome this issue.
   acm_pca_endpoint_subnet_ids = []
 
   # Tags for the ACM PCA endpoint
   acm_pca_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   api_gateway_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the API Gateway endpoint
   api_gateway_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the API Gateway endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the API Gateway endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   api_gateway_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the API Gateway
-  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
-  # subnet_ids will be used.
+  # The IDs of subnets in which to create a network interface for the API
+  # Gateway endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
   api_gateway_endpoint_subnet_ids = []
 
   # Tags for the API Gateway endpoint
   api_gateway_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   appmesh_envoy_management_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the AppMesh endpoint
   appmesh_envoy_management_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the AppMesh endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the AppMesh endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   appmesh_envoy_management_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the AppMesh
   # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, AppMesh endpoint is not supported in
-  # all the AZs, so this variable helps to overcome this issue.
+  # overrides var.subnet_ids. For some regions, AppMesh endpoint is not
+  # supported in all the AZs, so this variable helps to overcome this issue.
   appmesh_envoy_management_endpoint_subnet_ids = []
 
   # Tags for the AppMesh endpoint
   appmesh_envoy_management_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   appstream_api_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the AppStream API endpoint
   appstream_api_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the AppStream API endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the AppStream API endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   appstream_api_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the AppStream API
-  # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, AppStream API endpoint is not
+  # The IDs of subnets in which to create a network interface for the AppStream
+  # API endpoint. Only a single subnet within an AZ is supported. When defined,
+  # it overrides var.subnet_ids. For some regions, AppStream API endpoint is not
   # supported in all the AZs, so this variable helps to overcome this issue.
   appstream_api_endpoint_subnet_ids = []
 
   # Tags for the AppStream API endpoint
   appstream_api_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   appstream_streaming_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the AppStream STREAMING endpoint
   appstream_streaming_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the AppStream STREAMING endpoint. If none is provided, AWS will associate
-  # the default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the AppStream STREAMING endpoint. If none is provided, AWS
+  # will associate the default security group for the VPC.
   appstream_streaming_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the AppStream
@@ -2158,114 +2188,116 @@ inputs = {
   # Tags for the AppStream STREAMING endpoint
   appstream_streaming_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   athena_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Athena endpoint
   athena_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Athena endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Athena endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   athena_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Athena
   # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Athena endpoint is not supported in
-  # all the AZs, so this variable helps to overcome this issue.
+  # overrides var.subnet_ids. For some regions, Athena endpoint is not supported
+  # in all the AZs, so this variable helps to overcome this issue.
   athena_endpoint_subnet_ids = []
 
   # Tags for the Athena endpoint
   athena_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   auto_scaling_plans_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Auto Scaling Plans endpoint
   auto_scaling_plans_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Auto Scaling Plans endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Auto Scaling Plans endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   auto_scaling_plans_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the Auto Scaling
-  # Plans endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Auto Scaling Plans endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the Auto
+  # Scaling Plans endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, Auto Scaling Plans
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   auto_scaling_plans_endpoint_subnet_ids = []
 
   # Tags for the Auto Scaling Plans endpoint
   auto_scaling_plans_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   cloud_directory_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Cloud Directory endpoint
   cloud_directory_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Cloud Directory endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Cloud Directory endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   cloud_directory_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Cloud
   # Directory endpoint. Only a single subnet within an AZ is supported. When
-  # defined, it overrides var.subnet_ids. For some regions, Cloud Directory endpoint
-  # is not supported in all the AZs, so this variable helps to overcome this issue.
+  # defined, it overrides var.subnet_ids. For some regions, Cloud Directory
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   cloud_directory_endpoint_subnet_ids = []
 
   # Tags for the Cloud Directory endpoint
   cloud_directory_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   cloudformation_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Cloudformation endpoint
   cloudformation_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Cloudformation endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Cloudformation endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   cloudformation_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the
-  # theCloudformation endpoint. Only a single subnet within an AZ is supported. If
-  # omitted, only subnet_ids will be used.
+  # theCloudformation endpoint. Only a single subnet within an AZ is supported.
+  # If omitted, only subnet_ids will be used.
   cloudformation_endpoint_subnet_ids = []
 
   # Tags for the CloudFormation endpoint
   cloudformation_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   cloudtrail_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CloudTrail endpoint
   cloudtrail_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the CloudTrail endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the CloudTrail endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   cloudtrail_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the CloudTrail
@@ -2276,19 +2308,19 @@ inputs = {
   # Tags for the CloudTrail endpoint
   cloudtrail_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   cloudwatch_events_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CloudWatch Events endpoint
   cloudwatch_events_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the CloudWatch Events endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the CloudWatch Events endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   cloudwatch_events_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the CloudWatch
@@ -2299,235 +2331,237 @@ inputs = {
   # Tags for the CloudWatch Events endpoint
   cloudwatch_events_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   cloudwatch_logs_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CloudWatch Logs endpoint
   cloudwatch_logs_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the CloudWatch Logs endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the CloudWatch Logs endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   cloudwatch_logs_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the CloudWatch
-  # Logs endpoint. Only a single subnet within an AZ is supported. If omitted, only
-  # subnet_ids will be used.
+  # Logs endpoint. Only a single subnet within an AZ is supported. If omitted,
+  # only subnet_ids will be used.
   cloudwatch_logs_endpoint_subnet_ids = []
 
   # Tags for the CloudWatch Logs endpoint
   cloudwatch_logs_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   cloudwatch_monitoring_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CloudWatch Monitoring endpoint
   cloudwatch_monitoring_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the CloudWatch Monitoring endpoint. If none is provided, AWS will associate
-  # the default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the CloudWatch Monitoring endpoint. If none is provided, AWS
+  # will associate the default security group for the VPC.
   cloudwatch_monitoring_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the CloudWatch
-  # Monitoring endpoint. Only a single subnet within an AZ is supported. If omitted,
-  # only subnet_ids will be used.
+  # Monitoring endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
   cloudwatch_monitoring_endpoint_subnet_ids = []
 
   # Tags for the CloudWatch Monitoring endpoint
   cloudwatch_monitoring_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   codeartifact_api_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CodeArtifact API endpoint
   codeartifact_api_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Codeartifact API endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Codeartifact API endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   codeartifact_api_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the Codeartifact
-  # API endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Codeartifact API endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the
+  # Codeartifact API endpoint. Only a single subnet within an AZ is supported.
+  # When defined, it overrides var.subnet_ids. For some regions, Codeartifact
+  # API endpoint is not supported in all the AZs, so this variable helps to
+  # overcome this issue.
   codeartifact_api_endpoint_subnet_ids = []
 
   # Tags for the CodeArtifact API endpoint
   codeartifact_api_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   codeartifact_repositories_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Codeartifact repositories endpoint
   codeartifact_repositories_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Codeartifact repositories endpoint. If none is provided, AWS will
-  # associate the default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Codeartifact repositories endpoint. If none is provided,
+  # AWS will associate the default security group for the VPC.
   codeartifact_repositories_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the Codeartifact
-  # repositories endpoint. Only a single subnet within an AZ is supported. When
-  # defined, it overrides var.subnet_ids. For some regions, Codeartifact
-  # repositories endpoint is not supported in all the AZs, so this variable helps to
-  # overcome this issue.
+  # The IDs of subnets in which to create a network interface for the
+  # Codeartifact repositories endpoint. Only a single subnet within an AZ is
+  # supported. When defined, it overrides var.subnet_ids. For some regions,
+  # Codeartifact repositories endpoint is not supported in all the AZs, so this
+  # variable helps to overcome this issue.
   codeartifact_repositories_endpoint_subnet_ids = []
 
   # Tags for the CodeArtifact API endpoint
   codeartifact_repositories_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   codebuild_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CodeBuild endpoint
   codebuild_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the CodeBuild endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the CodeBuild endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   codebuild_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the CodeBuild
   # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, CodeBuild endpoint is not supported
-  # in all the AZs, so this variable helps to overcome this issue.
+  # overrides var.subnet_ids. For some regions, CodeBuild endpoint is not
+  # supported in all the AZs, so this variable helps to overcome this issue.
   codebuild_endpoint_subnet_ids = []
 
   # Tags for the CodeBuild endpoint
   codebuild_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   codecommit_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CodeCommit endpoint
   codecommit_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the CodeCommit endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the CodeCommit endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   codecommit_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the CodeCommit API
-  # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, CodeCommit endpoint is not supported
-  # in all the AZs, so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the CodeCommit
+  # API endpoint. Only a single subnet within an AZ is supported. When defined,
+  # it overrides var.subnet_ids. For some regions, CodeCommit endpoint is not
+  # supported in all the AZs, so this variable helps to overcome this issue.
   codecommit_endpoint_subnet_ids = []
 
   # Tags for the CodeCommit endpoint
   codecommit_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   codedeploy_commands_secure_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CodeDeploy Commands Secure endpoint
   codedeploy_commands_secure_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the CodeDeploy Commands Secure endpoint. If none is provided, AWS will
-  # associate the default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the CodeDeploy Commands Secure endpoint. If none is provided,
+  # AWS will associate the default security group for the VPC.
   codedeploy_commands_secure_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the CodeDeploy
-  # Commands Secure endpoint. Only a single subnet within an AZ is supported. When
-  # defined, it overrides var.subnet_ids. For some regions, CodeDeploy Commands
-  # Secure endpoint is not supported in all the AZs, so this variable helps to
-  # overcome this issue.
+  # Commands Secure endpoint. Only a single subnet within an AZ is supported.
+  # When defined, it overrides var.subnet_ids. For some regions, CodeDeploy
+  # Commands Secure endpoint is not supported in all the AZs, so this variable
+  # helps to overcome this issue.
   codedeploy_commands_secure_endpoint_subnet_ids = []
 
   # Tags for the CodeDeploy Commands Secure endpoint
   codedeploy_commands_secure_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   codedeploy_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CodeDeploy endpoint
   codedeploy_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the CodeDeploy endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the CodeDeploy endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   codedeploy_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the CodeDeploy
   # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, CodeDeploy endpoint is not supported
-  # in all the AZs, so this variable helps to overcome this issue.
+  # overrides var.subnet_ids. For some regions, CodeDeploy endpoint is not
+  # supported in all the AZs, so this variable helps to overcome this issue.
   codedeploy_endpoint_subnet_ids = []
 
   # Tags for the CodeDeploy endpoint
   codedeploy_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   codepipeline_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the CodePipeline endpoint
   codepipeline_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the CodePipeline endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the CodePipeline endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   codepipeline_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the CodePipeline
-  # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, CodePipeline endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the
+  # CodePipeline endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, CodePipeline
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   codepipeline_endpoint_subnet_ids = []
 
   # Tags for the CodePipeline endpoint
   codepipeline_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   config_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the config endpoint
   config_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the config endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the config endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   config_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the config
@@ -2538,139 +2572,141 @@ inputs = {
   # Tags for the Config endpoint
   config_endpoint_tags = {}
 
-  # If true, creates a security group that allows ingress on port 443 and applies it
-  # to all endpoints. Must set this to true or supply security_group_ids.
+  # If true, creates a security group that allows ingress on port 443 and
+  # applies it to all endpoints. Must set this to true or supply
+  # security_group_ids.
   create_https_security_group = false
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   datasync_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Data Sync endpoint
   datasync_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Data Sync endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Data Sync endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   datasync_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Data Sync
   # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Data Sync endpoint is not supported
-  # in all the AZs, so this variable helps to overcome this issue.
+  # overrides var.subnet_ids. For some regions, Data Sync endpoint is not
+  # supported in all the AZs, so this variable helps to overcome this issue.
   datasync_endpoint_subnet_ids = []
 
   # Tags for the Data Sync endpoint
   datasync_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ebs_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the EBS endpoint.
   ebs_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the EBS endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the EBS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   ebs_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the EBS endpoint.
-  # Only a single subnet within an AZ is supported. If omitted, only subnet_ids will
-  # be used.
+  # The IDs of subnets in which to create a network interface for the EBS
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
   ebs_endpoint_subnet_ids = []
 
   # Tags for the EBS endpoint
   ebs_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ec2_autoscaling_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the EC2-Autoscaling endpoint
   ec2_autoscaling_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the EC2-Autoscaling endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the EC2-Autoscaling endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   ec2_autoscaling_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the
-  # EC2-Autoscaling endpoint. Only a single subnet within an AZ is supported. When
-  # defined, it overrides var.subnet_ids. For some regions, EC2-Autoscaling endpoint
-  # is not supported in all the AZs, so this variable helps to overcome this issue.
+  # EC2-Autoscaling endpoint. Only a single subnet within an AZ is supported.
+  # When defined, it overrides var.subnet_ids. For some regions, EC2-Autoscaling
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   ec2_autoscaling_endpoint_subnet_ids = []
 
   # Tags for the CodeArtifact API endpoint
   ec2_autoscaling_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ec2_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the EC2 endpoint
   ec2_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the EC2 endpoint
+  # The ID of one or more security groups to associate with the network
+  # interface for the EC2 endpoint
   ec2_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the EC2 endpoint.
-  # Only a single subnet within an AZ is supported. If omitted, only subnet_ids will
-  # be used.
+  # The IDs of subnets in which to create a network interface for the EC2
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
   ec2_endpoint_subnet_ids = []
 
   # Tags for the EC2 endpoint
   ec2_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ec2messages_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the EC2 Messages endpoint
   ec2messages_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the EC2 Messages endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the EC2 Messages endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   ec2messages_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the EC2 Messages
-  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
-  # subnet_ids will be used.
+  # The IDs of subnets in which to create a network interface for the EC2
+  # Messages endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
   ec2messages_endpoint_subnet_ids = []
 
   # Tags for the EC2 Messages endpoint
   ec2messages_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ecr_api_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the ECR API endpoint
   ecr_api_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the ECR API endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the ECR API endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   ecr_api_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the ECR api
@@ -2680,19 +2716,19 @@ inputs = {
   # Tags for the ECR API endpoint
   ecr_api_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ecr_dkr_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for ECR DKR endpoint
   ecr_dkr_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the ECR DKR endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the ECR DKR endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   ecr_dkr_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the ECR dkr
@@ -2702,19 +2738,19 @@ inputs = {
   # Tags for the ECR DKR endpoint
   ecr_dkr_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ecs_agent_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the ECS Agent endpoint
   ecs_agent_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the ECS Agent endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the ECS Agent endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   ecs_agent_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the ECS Agent
@@ -2725,113 +2761,113 @@ inputs = {
   # Tags for the ECS Agent endpoint
   ecs_agent_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ecs_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the ECS endpoint
   ecs_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the ECS endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the ECS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   ecs_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the ECS endpoint.
-  # Only a single subnet within an AZ is supported. If omitted, only subnet_ids will
-  # be used.
+  # The IDs of subnets in which to create a network interface for the ECS
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
   ecs_endpoint_subnet_ids = []
 
   # Tags for the ECS endpoint
   ecs_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ecs_telemetry_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the ECS Telemetry endpoint
   ecs_telemetry_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the ECS Telemetry endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the ECS Telemetry endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   ecs_telemetry_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the ECS Telemetry
-  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
-  # subnet_ids will be used.
+  # The IDs of subnets in which to create a network interface for the ECS
+  # Telemetry endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
   ecs_telemetry_endpoint_subnet_ids = []
 
   # Tags for the ECS Telemetry endpoint
   ecs_telemetry_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   efs_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the EFS endpoint.
   efs_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the EFS endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the EFS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   efs_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the EFS endpoint.
-  # Only a single subnet within an AZ is supported. If omitted, only subnet_ids will
-  # be used.
+  # The IDs of subnets in which to create a network interface for the EFS
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
   efs_endpoint_subnet_ids = []
 
   # Tags for the EFS endpoint
   efs_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   elastic_inference_runtime_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Elastic Inference Runtime endpoint
   elastic_inference_runtime_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Elastic Inference Runtime endpoint. If none is provided, AWS will
-  # associate the default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Elastic Inference Runtime endpoint. If none is provided,
+  # AWS will associate the default security group for the VPC.
   elastic_inference_runtime_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Elastic
-  # Inference Runtime endpoint. Only a single subnet within an AZ is supported. When
-  # defined, it overrides var.subnet_ids. For some regions, Elastic Inference
-  # Runtime endpoint is not supported in all the AZs, so this variable helps to
-  # overcome this issue.
+  # Inference Runtime endpoint. Only a single subnet within an AZ is supported.
+  # When defined, it overrides var.subnet_ids. For some regions, Elastic
+  # Inference Runtime endpoint is not supported in all the AZs, so this variable
+  # helps to overcome this issue.
   elastic_inference_runtime_endpoint_subnet_ids = []
 
   # Tags for the Elastic Inference Runtime endpoint
   elastic_inference_runtime_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   elasticbeanstalk_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Elastic Beanstalk endpoint
   elasticbeanstalk_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Elastic Beanstalk endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Elastic Beanstalk endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   elasticbeanstalk_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Elastic
@@ -2844,79 +2880,80 @@ inputs = {
   # Tags for the Elastic Beanstalk endpoint
   elasticbeanstalk_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   elasticbeanstalk_health_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Elastic Beanstalk Health endpoint
   elasticbeanstalk_health_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Elastic Beanstalk Health endpoint. If none is provided, AWS will
-  # associate the default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Elastic Beanstalk Health endpoint. If none is provided,
+  # AWS will associate the default security group for the VPC.
   elasticbeanstalk_health_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Elastic
-  # Beanstalk Health endpoint. Only a single subnet within an AZ is supported. When
-  # defined, it overrides var.subnet_ids. For some regions, Elastic Beanstalk Health
-  # endpoint is not supported in all the AZs, so this variable helps to overcome
-  # this issue.
+  # Beanstalk Health endpoint. Only a single subnet within an AZ is supported.
+  # When defined, it overrides var.subnet_ids. For some regions, Elastic
+  # Beanstalk Health endpoint is not supported in all the AZs, so this variable
+  # helps to overcome this issue.
   elasticbeanstalk_health_endpoint_subnet_ids = []
 
   # Tags for the Elastic Beanstalk Health endpoint
   elasticbeanstalk_health_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   elb_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Elastic Load Balancing endpoint
   elb_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Elastic Load Balancing endpoint. If none is provided, AWS will associate
-  # the default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Elastic Load Balancing endpoint. If none is provided, AWS
+  # will associate the default security group for the VPC.
   elb_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the Elastic Load
-  # Balancing endpoint. Only a single subnet within an AZ is supported. If omitted,
-  # only subnet_ids will be used.
+  # The IDs of subnets in which to create a network interface for the Elastic
+  # Load Balancing endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
   elb_endpoint_subnet_ids = []
 
   # Tags for the Elastic Load Balancing endpoint
   elb_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   emr_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the EMR endpoint
   emr_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the EMR endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the EMR endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   emr_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the EMR endpoint.
-  # Only a single subnet within an AZ is supported. When defined, it overrides
-  # var.subnet_ids. For some regions, EMR endpoint is not supported in all the AZs,
-  # so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the EMR
+  # endpoint. Only a single subnet within an AZ is supported. When defined, it
+  # overrides var.subnet_ids. For some regions, EMR endpoint is not supported in
+  # all the AZs, so this variable helps to overcome this issue.
   emr_endpoint_subnet_ids = []
 
   # Tags for the EMR endpoint
   emr_endpoint_tags = {}
 
-  # Set to true if you want to provision a Access Analyzer Endpoint within the VPC
+  # Set to true if you want to provision a Access Analyzer Endpoint within the
+  # VPC
   enable_access_analyzer_endpoint = false
 
   # Set to true if you want to provision a ACM PCA Endpoint within the VPC
@@ -2931,18 +2968,19 @@ inputs = {
   # Set to true if you want to provision a AppStream API Endpoint within the VPC
   enable_appstream_api_endpoint = false
 
-  # Set to true if you want to provision a AppStream STREAMING Endpoint within the
-  # VPC
+  # Set to true if you want to provision a AppStream STREAMING Endpoint within
+  # the VPC
   enable_appstream_streaming_endpoint = false
 
   # Set to true if you want to provision a Athena Endpoint within the VPC
   enable_athena_endpoint = false
 
-  # Set to true if you want to provision a Auto Scaling Plans Endpoint within the
-  # VPC
+  # Set to true if you want to provision a Auto Scaling Plans Endpoint within
+  # the VPC
   enable_auto_scaling_plans_endpoint = false
 
-  # Set to true if you want to provision a Cloud Directory Endpoint within the VPC
+  # Set to true if you want to provision a Cloud Directory Endpoint within the
+  # VPC
   enable_cloud_directory_endpoint = false
 
   # Set to true if you want to provision a Cloudformation within the VPC
@@ -2957,11 +2995,12 @@ inputs = {
   # Set to true if you want to provision a CloudWatch Logs within the VPC
   enable_cloudwatch_logs_endpoint = false
 
-  # Set to true if you want to provision a Codeartifact API Endpoint within the VPC
+  # Set to true if you want to provision a Codeartifact API Endpoint within the
+  # VPC
   enable_codeartifact_api_endpoint = false
 
-  # Set to true if you want to provision a Codeartifact repositories Endpoint within
-  # the VPC
+  # Set to true if you want to provision a Codeartifact repositories Endpoint
+  # within the VPC
   enable_codeartifact_repositories_endpoint = false
 
   # Set to true if you want to provision a CodeBuild Endpoint within the VPC
@@ -2989,7 +3028,8 @@ inputs = {
   # Set to true if you want to provision a EBS endpoint within the VPC.
   enable_ebs_endpoint = false
 
-  # Set to true if you want to provision a EC2-Autoscaling Endpoint within the VPC
+  # Set to true if you want to provision a EC2-Autoscaling Endpoint within the
+  # VPC
   enable_ec2_autoscaling_endpoint = false
 
   # Set to true if you want to provision an EC2 within the VPC
@@ -3016,30 +3056,34 @@ inputs = {
   # Set to true if you want to provision a EFS endpoint within the VPC.
   enable_efs_endpoint = false
 
-  # Set to true if you want to provision a Elastic Inference Runtime Endpoint within
-  # the VPC
+  # Set to true if you want to provision a Elastic Inference Runtime Endpoint
+  # within the VPC
   enable_elastic_inference_runtime_endpoint = false
 
-  # Set to true if you want to provision a Elastic Beanstalk Endpoint within the VPC
+  # Set to true if you want to provision a Elastic Beanstalk Endpoint within the
+  # VPC
   enable_elasticbeanstalk_endpoint = false
 
-  # Set to true if you want to provision a Elastic Beanstalk Health Endpoint within
-  # the VPC
+  # Set to true if you want to provision a Elastic Beanstalk Health Endpoint
+  # within the VPC
   enable_elasticbeanstalk_health_endpoint = false
 
-  # Set to true if you want to provision an Elastic Load Balancing within the VPC
+  # Set to true if you want to provision an Elastic Load Balancing within the
+  # VPC
   enable_elb_endpoint = false
 
   # Set to true if you want to provision a EMR Endpoint within the VPC
   enable_emr_endpoint = false
 
-  # Set to true if you want to provision a Git CodeCommit Endpoint within the VPC
+  # Set to true if you want to provision a Git CodeCommit Endpoint within the
+  # VPC
   enable_git_codecommit_endpoint = false
 
   # Set to true if you want to provision a Glue endpoint within the VPC.
   enable_glue_endpoint = false
 
-  # Set to true if you want to provision a KINESIS Firehose Endpoint within the VPC
+  # Set to true if you want to provision a KINESIS Firehose Endpoint within the
+  # VPC
   enable_kinesis_firehose_endpoint = false
 
   # Set to true if you want to provision a Kinesis Streams within the VPC
@@ -3066,13 +3110,15 @@ inputs = {
   # Set to true if you want to provision a SageMaker API Endpoint within the VPC
   enable_sagemaker_api_endpoint = false
 
-  # Set to true if you want to provision a SageMaker Runtime Endpoint within the VPC
+  # Set to true if you want to provision a SageMaker Runtime Endpoint within the
+  # VPC
   enable_sagemaker_runtime_endpoint = false
 
   # Set to true if you want to provision a Secrets Manager within the VPC
   enable_secretsmanager_endpoint = false
 
-  # Set to true if you want to provision a Service Catalog Endpoint within the VPC
+  # Set to true if you want to provision a Service Catalog Endpoint within the
+  # VPC
   enable_servicecatalog_endpoint = false
 
   # Set to true if you want to provision a Simple Email Service within the VPC
@@ -3096,7 +3142,8 @@ inputs = {
   # Set to true if you want to provision a Step Function Endpoint within the VPC
   enable_states_endpoint = false
 
-  # Set to true if you want to provision a Storage Gateway Endpoint within the VPC
+  # Set to true if you want to provision a Storage Gateway Endpoint within the
+  # VPC
   enable_storagegateway_endpoint = false
 
   # Set to true if you want to provision a STS within the VPC
@@ -3108,7 +3155,8 @@ inputs = {
   # Set to true if you want to provision a Transfer Endpoint within the VPC
   enable_transfer_endpoint = false
 
-  # Set to true if you want to provision a Transfer Server Endpoint within the VPC
+  # Set to true if you want to provision a Transfer Server Endpoint within the
+  # VPC
   enable_transferserver_endpoint = false
 
   # Set to true if you want to provision a CloudWatch Monitoring within the VPC
@@ -3117,143 +3165,146 @@ inputs = {
   # Set to true if you want to provision a Workspaces Endpoint within the VPC
   enable_workspaces_endpoint = false
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   git_codecommit_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Git CodeCommit API endpoint
   git_codecommit_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Git CodeCommit endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Git CodeCommit endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   git_codecommit_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the Git CodeCommit
-  # API endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Git CodeCommit endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the Git
+  # CodeCommit API endpoint. Only a single subnet within an AZ is supported.
+  # When defined, it overrides var.subnet_ids. For some regions, Git CodeCommit
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   git_codecommit_endpoint_subnet_ids = []
 
   # Tags for the Git CodeCommit endpoint
   git_codecommit_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   glue_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Glue endpoint.
   glue_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the glue endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the glue endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   glue_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the glue endpoint.
-  # Only a single subnet within an AZ is supported. If omitted, only subnet_ids will
-  # be used.
+  # The IDs of subnets in which to create a network interface for the glue
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
   glue_endpoint_subnet_ids = []
 
   # Tags for the Glue endpoint
   glue_endpoint_tags = {}
 
-  # List of CIDR blocks where HTTPS ingress should be allowed from. Defaults to the
-  # VPC's CIDR if left empty. Only used if create_https_security_group is true.
+  # List of CIDR blocks where HTTPS ingress should be allowed from. Defaults to
+  # the VPC's CIDR if left empty. Only used if create_https_security_group is
+  # true.
   https_security_group_cidr_blocks = []
 
   # Name prefix to use on the created SG. A random string will be appended.
   https_security_group_name_prefix = "allow-https-"
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   kinesis_firehose_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the KINESIS Firehose endpoint
   kinesis_firehose_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the KINESIS Firehose endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the KINESIS Firehose endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   kinesis_firehose_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the KINESIS
-  # Firehose endpoint. Only a single subnet within an AZ is supported. When defined,
-  # it overrides var.subnet_ids. For some regions, KINESIS Firehose endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # Firehose endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, KINESIS Firehose
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   kinesis_firehose_endpoint_subnet_ids = []
 
   # Tags for the KINESIS Firehose endpoint
   kinesis_firehose_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   kinesis_streams_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Kinesis Streams endpoint
   kinesis_streams_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Kinesis Streams endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Kinesis Streams endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   kinesis_streams_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Kinesis
-  # Streams endpoint. Only a single subnet within an AZ is supported. If omitted,
-  # only subnet_ids will be used.
+  # Streams endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
   kinesis_streams_endpoint_subnet_ids = []
 
   # Tags for the Kinesis endpoint
   kinesis_streams_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   kms_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the KMS endpoint
   kms_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the KMS endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the KMS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   kms_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the KMS endpoint.
-  # Only a single subnet within an AZ is supported. If omitted, only subnet_ids will
-  # be used.
+  # The IDs of subnets in which to create a network interface for the KMS
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
   kms_endpoint_subnet_ids = []
 
   # Tags for the KMS endpoint
   kms_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   lambda_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Lambda endpoint.
   lambda_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Lambda endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Lambda endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   lambda_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Lambda
@@ -3264,67 +3315,68 @@ inputs = {
   # Tags for the Lambda endpoint
   lambda_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   qldb_session_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the QLDB Session endpoint
   qldb_session_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the QLDB Session endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the QLDB Session endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   qldb_session_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the QLDB Session
-  # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, QLDB Session endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the QLDB
+  # Session endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, QLDB Session
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   qldb_session_endpoint_subnet_ids = []
 
   # Tags for the QLDB Session endpoint
   qldb_session_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   rds_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the RDS endpoint
   rds_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the RDS endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the RDS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   rds_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the RDS endpoint.
-  # Only a single subnet within an AZ is supported. When defined, it overrides
-  # var.subnet_ids. For some regions, RDS endpoint is not supported in all the AZs,
-  # so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the RDS
+  # endpoint. Only a single subnet within an AZ is supported. When defined, it
+  # overrides var.subnet_ids. For some regions, RDS endpoint is not supported in
+  # all the AZs, so this variable helps to overcome this issue.
   rds_endpoint_subnet_ids = []
 
   # Tags for the RDS endpoint
   rds_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   redshift_data_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Redshift endpoint
   redshift_data_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Redshift endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Redshift endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   redshift_data_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Redshift
@@ -3335,335 +3387,340 @@ inputs = {
   # Tags for the Redshift endpoint
   redshift_data_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   rekognition_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Rekognition endpoint
   rekognition_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Rekognition endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Rekognition endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   rekognition_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the Rekognition
-  # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Rekognition endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the
+  # Rekognition endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, Rekognition endpoint
+  # is not supported in all the AZs, so this variable helps to overcome this
+  # issue.
   rekognition_endpoint_subnet_ids = []
 
   # Tags for the Rekognition endpoint
   rekognition_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   sagemaker_api_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the SageMaker API endpoint
   sagemaker_api_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the SageMaker API endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the SageMaker API endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   sagemaker_api_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the SageMaker API
-  # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, SageMaker API endpoint is not
+  # The IDs of subnets in which to create a network interface for the SageMaker
+  # API endpoint. Only a single subnet within an AZ is supported. When defined,
+  # it overrides var.subnet_ids. For some regions, SageMaker API endpoint is not
   # supported in all the AZs, so this variable helps to overcome this issue.
   sagemaker_api_endpoint_subnet_ids = []
 
   # Tags for the SageMaker API endpoint
   sagemaker_api_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   sagemaker_runtime_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the SageMaker Runtime endpoint
   sagemaker_runtime_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the SageMaker Runtime endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the SageMaker Runtime endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   sagemaker_runtime_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the SageMaker
-  # Runtime endpoint. Only a single subnet within an AZ is supported. When defined,
-  # it overrides var.subnet_ids. For some regions, SageMaker Runtime endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # Runtime endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, SageMaker Runtime
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   sagemaker_runtime_endpoint_subnet_ids = []
 
   # Tags for the SageMaker Runtime endpoint
   sagemaker_runtime_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   secretsmanager_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Secrets Manager endpoint
   secretsmanager_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Secrets Manager endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Secrets Manager endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   secretsmanager_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Secrets
-  # Manager endpoint. Only a single subnet within an AZ is supported. If omitted,
-  # only subnet_ids will be used.
+  # Manager endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
   secretsmanager_endpoint_subnet_ids = []
 
   # Tags for the Secrets Manager endpoint
   secretsmanager_endpoint_tags = {}
 
-  # A list of IDs of the security groups which will apply for all endpoints. Must
-  # supply this or create_https_security_group = true.
+  # A list of IDs of the security groups which will apply for all endpoints.
+  # Must supply this or create_https_security_group = true.
   security_group_ids = []
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   servicecatalog_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Service Catalog endpoint
   servicecatalog_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Service Catalog endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Service Catalog endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   servicecatalog_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Service
-  # Catalog endpoint. Only a single subnet within an AZ is supported. When defined,
-  # it overrides var.subnet_ids. For some regions, Service Catalog endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # Catalog endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, Service Catalog
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   servicecatalog_endpoint_subnet_ids = []
 
   # Tags for the Service Catalog endpoint
   servicecatalog_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ses_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Simple Email Service endpoint
   ses_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Simple Email Service endpoint. If none is provided, AWS will associate
-  # the default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Simple Email Service endpoint. If none is provided, AWS
+  # will associate the default security group for the VPC.
   ses_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the Simple Email
-  # Service endpoint. Only a single subnet within an AZ is supported. When defined,
-  # it overrides var.subnet_ids. For some regions, SES is not supported in all the
-  # AZs, so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the Simple
+  # Email Service endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, SES is not supported
+  # in all the AZs, so this variable helps to overcome this issue.
   ses_endpoint_subnet_ids = []
 
   # Tags for the Simple Email Service endpoint
   ses_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   sms_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the SMS endpoint
   sms_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the SMS endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the SMS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   sms_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the SMS endpoint.
-  # Only a single subnet within an AZ is supported. When defined, it overrides
-  # var.subnet_ids. For some regions, SMS endpoint is not supported in all the AZs,
-  # so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the SMS
+  # endpoint. Only a single subnet within an AZ is supported. When defined, it
+  # overrides var.subnet_ids. For some regions, SMS endpoint is not supported in
+  # all the AZs, so this variable helps to overcome this issue.
   sms_endpoint_subnet_ids = []
 
   # Tags for the SMS endpoint
   sms_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   sns_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the SNS endpoint
   sns_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the SNS endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the SNS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   sns_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the SNS endpoint.
-  # Only a single subnet within an AZ is supported. If omitted, only subnet_ids will
-  # be used.
+  # The IDs of subnets in which to create a network interface for the SNS
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
   sns_endpoint_subnet_ids = []
 
   # Tags for the SNS endpoint
   sns_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   sqs_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the SQS endpoint
   sqs_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the SQS endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the SQS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   sqs_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the SQS endpoint.
-  # Only a single subnet within an AZ is supported. If omitted, only subnet_ids will
-  # be used.
+  # The IDs of subnets in which to create a network interface for the SQS
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
   sqs_endpoint_subnet_ids = []
 
   # Tags for the SQS endpoint
   sqs_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ssm_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the SSM Endpoint endpoint
   ssm_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the SSM Endpoint endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the SSM Endpoint endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   ssm_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the SSM Endpoint
-  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
-  # subnet_ids will be used.
+  # The IDs of subnets in which to create a network interface for the SSM
+  # Endpoint endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
   ssm_endpoint_subnet_ids = []
 
   # Tags for the SSM Endpoint endpoint
   ssm_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   ssmmessages_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the SSM Messages endpoint
   ssmmessages_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the SSM Messages endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the SSM Messages endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   ssmmessages_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the SSM Messages
-  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
-  # subnet_ids will be used.
+  # The IDs of subnets in which to create a network interface for the SSM
+  # Messages endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
   ssmmessages_endpoint_subnet_ids = []
 
   # Tags for the SSM Messages endpoint
   ssmmessages_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   states_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Step Function endpoint
   states_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Step Function endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Step Function endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   states_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the Step Function
-  # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Step Function endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # The IDs of subnets in which to create a network interface for the Step
+  # Function endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, Step Function
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   states_endpoint_subnet_ids = []
 
   # Tags for the Step Function endpoint
   states_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   storagegateway_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Storage Gateway endpoint
   storagegateway_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Storage Gateway endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Storage Gateway endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   storagegateway_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Storage
-  # Gateway endpoint. Only a single subnet within an AZ is supported. When defined,
-  # it overrides var.subnet_ids. For some regions, Storage Gateway endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # Gateway endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, Storage Gateway
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   storagegateway_endpoint_subnet_ids = []
 
   # Tags for the Storage Gateway endpoint
   storagegateway_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   sts_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the STS endpoint
   sts_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the STS endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the STS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
   sts_endpoint_security_group_ids = []
 
-  # The IDs of subnets in which to create a network interface for the STS endpoint.
-  # Only a single subnet within an AZ is supported. If omitted, only subnet_ids will
-  # be used.
+  # The IDs of subnets in which to create a network interface for the STS
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
   sts_endpoint_subnet_ids = []
 
   # Tags for the STS endpoint
@@ -3672,97 +3729,98 @@ inputs = {
   # A map of tags to apply to all endpoints.
   tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   textract_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Textract endpoint
   textract_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Textract endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Textract endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   textract_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Textract
   # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Textract endpoint is not supported
-  # in all the AZs, so this variable helps to overcome this issue.
+  # overrides var.subnet_ids. For some regions, Textract endpoint is not
+  # supported in all the AZs, so this variable helps to overcome this issue.
   textract_endpoint_subnet_ids = []
 
   # Tags for the Textract endpoint
   textract_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   transfer_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Transfer endpoint
   transfer_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Transfer endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Transfer endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
   transfer_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Transfer
   # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Transfer endpoint is not supported
-  # in all the AZs, so this variable helps to overcome this issue.
+  # overrides var.subnet_ids. For some regions, Transfer endpoint is not
+  # supported in all the AZs, so this variable helps to overcome this issue.
   transfer_endpoint_subnet_ids = []
 
   # Tags for the Transfer endpoint
   transfer_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   transferserver_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Transfer Server endpoint
   transferserver_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Transfer Server endpoint. If none is provided, AWS will associate the
-  # default security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Transfer Server endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   transferserver_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Transfer
-  # Server endpoint. Only a single subnet within an AZ is supported. When defined,
-  # it overrides var.subnet_ids. For some regions, Transfer Server endpoint is not
-  # supported in all the AZs, so this variable helps to overcome this issue.
+  # Server endpoint. Only a single subnet within an AZ is supported. When
+  # defined, it overrides var.subnet_ids. For some regions, Transfer Server
+  # endpoint is not supported in all the AZs, so this variable helps to overcome
+  # this issue.
   transferserver_endpoint_subnet_ids = []
 
   # Tags for the Transfer Server endpoint
   transferserver_endpoint_tags = {}
 
-  # IAM policy to restrict what resources can call this endpoint. For example, you
-  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
-  # other types of resources. If not specified, all resources will be allowed to
-  # call this endpoint.
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   workspaces_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
   # specified VPC for the Workspaces endpoint
   workspaces_endpoint_private_dns_enabled = true
 
-  # The ID of one or more security groups to associate with the network interface
-  # for the Workspaces endpoint. If none is provided, AWS will associate the default
-  # security group for the VPC.
+  # The ID of one or more security groups to associate with the network
+  # interface for the Workspaces endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
   workspaces_endpoint_security_group_ids = []
 
   # The IDs of subnets in which to create a network interface for the Workspaces
   # endpoint. Only a single subnet within an AZ is supported. When defined, it
-  # overrides var.subnet_ids. For some regions, Workspaces endpoint is not supported
-  # in all the AZs, so this variable helps to overcome this issue.
+  # overrides var.subnet_ids. For some regions, Workspaces endpoint is not
+  # supported in all the AZs, so this variable helps to overcome this issue.
   workspaces_endpoint_subnet_ids = []
 
   # Tags for the Workspaces endpoint
@@ -8273,11 +8331,11 @@ If you have private dns enabled, then your streaming calls would automatically g
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/vpc-interface-endpoint/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/vpc-interface-endpoint/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/vpc-interface-endpoint/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-interface-endpoint/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-interface-endpoint/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-interface-endpoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5bbdf72f37b1e3a8aaac2f473a5bbea6"
+  "hash": "d4ec903d56e0727b9a213a445da2f326"
 }
 ##DOCS-SOURCER-END -->

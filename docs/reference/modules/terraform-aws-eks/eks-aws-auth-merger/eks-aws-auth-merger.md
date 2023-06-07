@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.58.3" lastModifiedVersion="0.57.3"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.59.0" lastModifiedVersion="0.59.0"/>
 
 # EKS AWS Auth Merger
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-aws-auth-merger" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-aws-auth-merger" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.57.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.59.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module contains a go CLI, docker container, and terraform module for deploying a Kubernetes controller for managing mappings between AWS IAM roles and users to RBAC groups in Kubernetes. The official way to manage the mapping is to add values in a single, central `ConfigMap`. This module allows you to break up the central `ConfigMap` across multiple, separate `ConfigMaps` each configuring a subset of the mappings you ultimately want to use, allowing you to update entries in the `ConfigMap` in isolated modules (e.g., when you add a new IAM role in a separate module from the EKS cluster). The `aws-auth-merger` watches for `aws-auth` compatible `ConfigMaps` that can be merged to manage the `aws-auth` authentication `ConfigMap` for EKS.
 
@@ -35,21 +35,21 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   *[What is Kubernetes RBAC?](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-k8s-role-mapping/README.md#what-is-kubernetes-role-based-access-control-rbac)*: overview of Kubernetes RBAC, the underlying system managing authentication and authorization in Kubernetes.
+*   *[What is Kubernetes RBAC?](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-k8s-role-mapping/README.md#what-is-kubernetes-role-based-access-control-rbac)*: overview of Kubernetes RBAC, the underlying system managing authentication and authorization in Kubernetes.
 
-*   *[What is AWS IAM role?](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-k8s-role-mapping/README.md#what-is-aws-iam-role)*: overview of AWS IAM Roles, the underlying system managing authentication and authorization in AWS.
+*   *[What is AWS IAM role?](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-k8s-role-mapping/README.md#what-is-aws-iam-role)*: overview of AWS IAM Roles, the underlying system managing authentication and authorization in AWS.
 
 *   *[Managing users or IAM roles for your cluster](https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html)*: The official AWS docs on how the `aws-auth` Kubernetes `ConfigMap` works.
 
-*   *[What is the aws-auth-merger?](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-aws-auth-merger/core-concepts.md#what-is-the-aws-auth-merger)*: overview of the `aws-auth-merger` and how it works to manage the `aws-auth` Kubernetes `ConfigMap`.
+*   *[What is the aws-auth-merger?](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-aws-auth-merger/core-concepts.md#what-is-the-aws-auth-merger)*: overview of the `aws-auth-merger` and how it works to manage the `aws-auth` Kubernetes `ConfigMap`.
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -57,7 +57,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples folder](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -69,15 +69,15 @@ If you want to deploy this repo in production, check out the following resources
 
 ## Manage
 
-*   [How to deploy and use the aws-auth-merger](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-aws-auth-merger/core-concepts.md#how-do-i-use-the-aws-auth-merger)
+*   [How to deploy and use the aws-auth-merger](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-aws-auth-merger/core-concepts.md#how-do-i-use-the-aws-auth-merger)
 
-*   [How to handle conflicts with automatic updates to the aws-auth ConfigMap by EKS](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-aws-auth-merger/core-concepts.md#how-do-i-handle-conflicts-with-automatic-updates-by-eks)
+*   [How to handle conflicts with automatic updates to the aws-auth ConfigMap by EKS](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-aws-auth-merger/core-concepts.md#how-do-i-handle-conflicts-with-automatic-updates-by-eks)
 
-*   [How to restrict users to specific actions on the EKS cluster](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-k8s-role-mapping/README.md#restricting-specific-actions)
+*   [How to restrict users to specific actions on the EKS cluster](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-k8s-role-mapping/README.md#restricting-specific-actions)
 
-*   [How to restrict users to specific namespaces on the EKS cluster](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-k8s-role-mapping/README.md#restricting-by-namespace)
+*   [How to restrict users to specific namespaces on the EKS cluster](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-k8s-role-mapping/README.md#restricting-by-namespace)
 
-*   [How to authenticate kubectl to EKS](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/core-concepts.md#how-to-authenticate-kubectl)
+*   [How to authenticate kubectl to EKS](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/core-concepts.md#how-to-authenticate-kubectl)
 
 ## Sample Usage
 
@@ -92,7 +92,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "eks_aws_auth_merger" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-aws-auth-merger?ref=v0.58.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-aws-auth-merger?ref=v0.59.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -104,8 +104,8 @@ module "eks_aws_auth_merger" {
     tag = string
   )>
 
-  # Namespace to deploy the aws-auth-merger into. The app will watch for ConfigMaps
-  # in this Namespace to merge into the aws-auth ConfigMap.
+  # Namespace to deploy the aws-auth-merger into. The app will watch for
+  # ConfigMaps in this Namespace to merge into the aws-auth ConfigMap.
   namespace = <string>
 
   # ----------------------------------------------------------------------------------------------------
@@ -113,12 +113,12 @@ module "eks_aws_auth_merger" {
   # ----------------------------------------------------------------------------------------------------
 
   # Labels to apply to ConfigMaps that are created automatically by the
-  # aws-auth-merger when snapshotting the existing main ConfigMap. This must match
-  # the label selector provided in configmap_label_selector.
+  # aws-auth-merger when snapshotting the existing main ConfigMap. This must
+  # match the label selector provided in configmap_label_selector.
   autocreate_labels = {}
 
-  # A Kubernetes Label Selector for the Namespace to look for ConfigMaps that should
-  # be merged into the main aws-auth ConfigMap.
+  # A Kubernetes Label Selector for the Namespace to look for ConfigMaps that
+  # should be merged into the main aws-auth ConfigMap.
   configmap_label_selector = ""
 
   # If true, create a Fargate Profile so that the aws-auth-merger app runs on
@@ -128,10 +128,10 @@ module "eks_aws_auth_merger" {
   # When true this will inform the module to create the Namespace.
   create_namespace = true
 
-  # If you set this variable to false, this module will not create any resources.
-  # This is used as a workaround because Terraform does not allow you to use the
-  # 'count' parameter on modules. By using this parameter, you can optionally create
-  # or not create the resources within this module.
+  # If you set this variable to false, this module will not create any
+  # resources. This is used as a workaround because Terraform does not allow you
+  # to use the 'count' parameter on modules. By using this parameter, you can
+  # optionally create or not create the resources within this module.
   create_resources = true
 
   # Key value pairs of strings to apply as annotations on the Deployment.
@@ -157,8 +157,8 @@ module "eks_aws_auth_merger" {
   # Key value pairs of strings to apply as labels on the Pod.
   pod_labels = {}
 
-  # Interval to poll the Namespace for aws-auth ConfigMaps to merge as a duration
-  # string (e.g. 5m10s for 5 minutes 10 seconds).
+  # Interval to poll the Namespace for aws-auth ConfigMaps to merge as a
+  # duration string (e.g. 5m10s for 5 minutes 10 seconds).
   refresh_interval = "5m"
 
   # Key value pairs of strings to apply as annotations on the ServiceAccount.
@@ -174,12 +174,12 @@ module "eks_aws_auth_merger" {
   # ServiceAccount.
   service_account_role_annotations = {}
 
-  # Key value pairs of strings to apply as annotations on the RBAC Role Binding for
-  # the ServiceAccount.
+  # Key value pairs of strings to apply as annotations on the RBAC Role Binding
+  # for the ServiceAccount.
   service_account_role_binding_annotations = {}
 
-  # Key value pairs of strings to apply as labels on the RBAC Role Binding for the
-  # ServiceAccount.
+  # Key value pairs of strings to apply as labels on the RBAC Role Binding for
+  # the ServiceAccount.
   service_account_role_binding_labels = {}
 
   # Name to apply to the RBAC Role Binding for the ServiceAccount.
@@ -207,7 +207,7 @@ module "eks_aws_auth_merger" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-aws-auth-merger?ref=v0.58.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-aws-auth-merger?ref=v0.59.0"
 }
 
 inputs = {
@@ -222,8 +222,8 @@ inputs = {
     tag = string
   )>
 
-  # Namespace to deploy the aws-auth-merger into. The app will watch for ConfigMaps
-  # in this Namespace to merge into the aws-auth ConfigMap.
+  # Namespace to deploy the aws-auth-merger into. The app will watch for
+  # ConfigMaps in this Namespace to merge into the aws-auth ConfigMap.
   namespace = <string>
 
   # ----------------------------------------------------------------------------------------------------
@@ -231,12 +231,12 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # Labels to apply to ConfigMaps that are created automatically by the
-  # aws-auth-merger when snapshotting the existing main ConfigMap. This must match
-  # the label selector provided in configmap_label_selector.
+  # aws-auth-merger when snapshotting the existing main ConfigMap. This must
+  # match the label selector provided in configmap_label_selector.
   autocreate_labels = {}
 
-  # A Kubernetes Label Selector for the Namespace to look for ConfigMaps that should
-  # be merged into the main aws-auth ConfigMap.
+  # A Kubernetes Label Selector for the Namespace to look for ConfigMaps that
+  # should be merged into the main aws-auth ConfigMap.
   configmap_label_selector = ""
 
   # If true, create a Fargate Profile so that the aws-auth-merger app runs on
@@ -246,10 +246,10 @@ inputs = {
   # When true this will inform the module to create the Namespace.
   create_namespace = true
 
-  # If you set this variable to false, this module will not create any resources.
-  # This is used as a workaround because Terraform does not allow you to use the
-  # 'count' parameter on modules. By using this parameter, you can optionally create
-  # or not create the resources within this module.
+  # If you set this variable to false, this module will not create any
+  # resources. This is used as a workaround because Terraform does not allow you
+  # to use the 'count' parameter on modules. By using this parameter, you can
+  # optionally create or not create the resources within this module.
   create_resources = true
 
   # Key value pairs of strings to apply as annotations on the Deployment.
@@ -275,8 +275,8 @@ inputs = {
   # Key value pairs of strings to apply as labels on the Pod.
   pod_labels = {}
 
-  # Interval to poll the Namespace for aws-auth ConfigMaps to merge as a duration
-  # string (e.g. 5m10s for 5 minutes 10 seconds).
+  # Interval to poll the Namespace for aws-auth ConfigMaps to merge as a
+  # duration string (e.g. 5m10s for 5 minutes 10 seconds).
   refresh_interval = "5m"
 
   # Key value pairs of strings to apply as annotations on the ServiceAccount.
@@ -292,12 +292,12 @@ inputs = {
   # ServiceAccount.
   service_account_role_annotations = {}
 
-  # Key value pairs of strings to apply as annotations on the RBAC Role Binding for
-  # the ServiceAccount.
+  # Key value pairs of strings to apply as annotations on the RBAC Role Binding
+  # for the ServiceAccount.
   service_account_role_binding_annotations = {}
 
-  # Key value pairs of strings to apply as labels on the RBAC Role Binding for the
-  # ServiceAccount.
+  # Key value pairs of strings to apply as labels on the RBAC Role Binding for
+  # the ServiceAccount.
   service_account_role_binding_labels = {}
 
   # Name to apply to the RBAC Role Binding for the ServiceAccount.
@@ -627,11 +627,11 @@ The name of the namespace that is used. If create_namespace is true, this output
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-aws-auth-merger/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-aws-auth-merger/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-aws-auth-merger/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-aws-auth-merger/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-aws-auth-merger/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-aws-auth-merger/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "20bf62e60d7d2d6cae7390e949bc972f"
+  "hash": "46a65d4e2e8107b84e32bbee8a82f530"
 }
 ##DOCS-SOURCER-END -->
