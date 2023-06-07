@@ -75,12 +75,12 @@
   font-family: "Source Sans Pro";
 }
 
-input:hover {
+.SearchInput:hover {
   outline: 1px solid hsl(0, 0%, 70%);;
 }
 
-input:focus-visible {
-  outline: 2px solid #2684FF;
+.SearchInput:focus-visible {
+  outline: 2px solid #6f5bd7;
 }
 
 .FacetListContainer {

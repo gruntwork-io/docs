@@ -80,6 +80,18 @@ function CustomHits(hits: any[]) {
     : NoResults()
 }
 
+const selectStyles = {
+  control: (base, state) => ({
+    ...base,
+    borderColor: state.isFocused ? "#6f5bd7" : base.borderColor,
+    boxShadow: state.isFocused ? "0 0 0 1px #6f5bd7" : base.borderColor,
+    '&:hover': {
+      borderColor: state.isFocused ? '##6f5bd7' : base.borderColor,
+      boxShadow: state.isFocused ? "0 0 0 1px #6f5bd7" : base.boarderColor,
+    }
+  })
+};
+
 export const SearchArea: React.FunctionComponent<
   PropsWithChildren<SearchAreaProps>
 > = ({ name, requirement, type, children }) => {
@@ -180,6 +192,7 @@ export const SearchArea: React.FunctionComponent<
               options={searchRepoFacets.map((f) => {
                 return { value: f["key"], label: f["key"] }
               })}
+              styles={selectStyles}
             />
           </div>
         </div>
