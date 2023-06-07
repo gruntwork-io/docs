@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.4" lastModifiedVersion="0.34.2"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.35.6" lastModifiedVersion="0.34.2"/>
 
 # ECS Task Scheduler Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/modules/ecs-task-scheduler" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-task-scheduler" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.34.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -26,7 +26,7 @@ This module provides two options for defining when ECS tasks will be run:
 *   [Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html)
 *   [Schedule Expressions](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html#eb-rate-expressions)
 
-In [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/modules/ecs-task-scheduler/variables.tf) there are two variables (`task_event_pattern` and `task_schedule_expression`) that can be provided in the module definition. At least one, but not both of these fields, must be provided. This is what is passed to the EventBridge rule to determine when to invoke your ECS task.
+In [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-task-scheduler/variables.tf) there are two variables (`task_event_pattern` and `task_schedule_expression`) that can be provided in the module definition. At least one, but not both of these fields, must be provided. This is what is passed to the EventBridge rule to determine when to invoke your ECS task.
 
 Note that this approach has AWS limitations with monitoring the event trigger and ECS task. AWS EventBridge fires the event but does not monitor whether the task ran successfully so if there is a failure, EventBridge does not attempt any retries or report failures.
 
@@ -180,7 +180,7 @@ This module provides support for passing the following additional inputs and ove
     }
     ```
 
-See [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/modules/ecs-task-scheduler/variables.tf) for specific variable definitions.
+See [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-task-scheduler/variables.tf) for specific variable definitions.
 
 ## Sample Usage
 
@@ -195,7 +195,7 @@ See [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.
 
 module "ecs_task_scheduler" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-task-scheduler?ref=v0.35.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-task-scheduler?ref=v0.35.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -211,15 +211,15 @@ module "ecs_task_scheduler" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Creation of the Eventbridge IAM role within the module. If omitted IAM role ARN
-  # must be provided in ecs_task_iam_role variable.
+  # Creation of the Eventbridge IAM role within the module. If omitted IAM role
+  # ARN must be provided in ecs_task_iam_role variable.
   create_iam_role = true
 
   # String of JSON that defines container overrides that are passed to the task.
   ecs_target_container_overrides = null
 
-  # Whether or not to enable the execute command functionality for the containers in
-  # this task.
+  # Whether or not to enable the execute command functionality for the
+  # containers in this task.
   ecs_target_enable_execute_command = null
 
   # Specifies an ECS task group for the task.
@@ -237,14 +237,15 @@ module "ecs_task_scheduler" {
   # Specifies the platform version for the task.
   ecs_target_platform_version = null
 
-  # Specifies whether to propagate the tags from the task definition to the task.
+  # Specifies whether to propagate the tags from the task definition to the
+  # task.
   ecs_target_propagate_tags = null
 
   # The number of tasks to create based on the TaskDefinition.
   ecs_target_task_count = 1
 
-  # ARN of IAM role for eventbridge to use. Only use if create_iam_role is set to
-  # true
+  # ARN of IAM role for eventbridge to use. Only use if create_iam_role is set
+  # to true
   ecs_task_iam_role = null
 
   # Specifies whether to enable Amazon ECS managed tags for the task.
@@ -257,8 +258,8 @@ module "ecs_task_scheduler" {
   # task_schedule_expression.
   task_event_pattern = null
 
-  # The scheduling expression to use (rate or cron - see README for usage examples).
-  # Leave null if using task_event_pattern.
+  # The scheduling expression to use (rate or cron - see README for usage
+  # examples). Leave null if using task_event_pattern.
   task_schedule_expression = null
 
 }
@@ -276,7 +277,7 @@ module "ecs_task_scheduler" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-task-scheduler?ref=v0.35.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-task-scheduler?ref=v0.35.6"
 }
 
 inputs = {
@@ -295,15 +296,15 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Creation of the Eventbridge IAM role within the module. If omitted IAM role ARN
-  # must be provided in ecs_task_iam_role variable.
+  # Creation of the Eventbridge IAM role within the module. If omitted IAM role
+  # ARN must be provided in ecs_task_iam_role variable.
   create_iam_role = true
 
   # String of JSON that defines container overrides that are passed to the task.
   ecs_target_container_overrides = null
 
-  # Whether or not to enable the execute command functionality for the containers in
-  # this task.
+  # Whether or not to enable the execute command functionality for the
+  # containers in this task.
   ecs_target_enable_execute_command = null
 
   # Specifies an ECS task group for the task.
@@ -321,14 +322,15 @@ inputs = {
   # Specifies the platform version for the task.
   ecs_target_platform_version = null
 
-  # Specifies whether to propagate the tags from the task definition to the task.
+  # Specifies whether to propagate the tags from the task definition to the
+  # task.
   ecs_target_propagate_tags = null
 
   # The number of tasks to create based on the TaskDefinition.
   ecs_target_task_count = 1
 
-  # ARN of IAM role for eventbridge to use. Only use if create_iam_role is set to
-  # true
+  # ARN of IAM role for eventbridge to use. Only use if create_iam_role is set
+  # to true
   ecs_task_iam_role = null
 
   # Specifies whether to enable Amazon ECS managed tags for the task.
@@ -341,8 +343,8 @@ inputs = {
   # task_schedule_expression.
   task_event_pattern = null
 
-  # The scheduling expression to use (rate or cron - see README for usage examples).
-  # Leave null if using task_event_pattern.
+  # The scheduling expression to use (rate or cron - see README for usage
+  # examples). Leave null if using task_event_pattern.
   task_schedule_expression = null
 
 }
@@ -545,11 +547,11 @@ The scheduling expression to use (rate or cron - see README for usage examples).
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/modules/ecs-task-scheduler/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/modules/ecs-task-scheduler/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/modules/ecs-task-scheduler/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-task-scheduler/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-task-scheduler/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-task-scheduler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "11817cfef8d0514e6c10bb68f7283e95"
+  "hash": "ef1268d1552f1f29e2cfc839b2b76160"
 }
 ##DOCS-SOURCER-END -->

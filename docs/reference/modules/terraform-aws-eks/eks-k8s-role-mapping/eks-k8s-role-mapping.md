@@ -9,17 +9,17 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.58.3" lastModifiedVersion="0.56.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.59.0" lastModifiedVersion="0.58.4"/>
 
 # EKS K8S Role Mapping Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-k8s-role-mapping" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-k8s-role-mapping" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.56.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.58.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 **NOTE: This module manages a single ConfigMap to use with Kubernetes AWS IAM authentication. If you wish to break up
 the ConfigMap across multiple smaller ConfigMaps to manage entries in isolated modules (e.g., when you add a new IAM
-role in a separate module from the EKS cluster), refer to the [eks-aws-auth-merger](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-aws-auth-merger).**
+role in a separate module from the EKS cluster), refer to the [eks-aws-auth-merger](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-aws-auth-merger).**
 
 This Module can be used to manage the mapping of AWS IAM roles and users to Kubernetes RBAC groups for finer grained
 access control of your EKS Cluster.
@@ -59,7 +59,7 @@ as much or as little permissions as necessary when accessing resources in the AW
 
 This Module provides code for you to manage the mapping between AWS IAM roles and Kubernetes RBAC roles so that you can
 maintain a consistent set of mappings between the two systems. This works hand in hand with the [EKS authentication
-system](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/core-concepts.md#how-do-i-authenticate-kubectl-to-the-eks-cluster), providing the information to Kubernetes to resolve the user to the right RBAC group based on the provided IAM role credentials.
+system](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/core-concepts.md#how-do-i-authenticate-kubectl-to-the-eks-cluster), providing the information to Kubernetes to resolve the user to the right RBAC group based on the provided IAM role credentials.
 
 ## Examples
 
@@ -335,14 +335,14 @@ ConfigMap and as such does not have the cyclic dependency problem of Helm.
 
 module "eks_k_8_s_role_mapping" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-role-mapping?ref=v0.58.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-role-mapping?ref=v0.59.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # List of AWS ARNs of the IAM roles associated with the EKS worker nodes. Each IAM
-  # role passed in will be set up as a Node role in Kubernetes.
+  # List of AWS ARNs of the IAM roles associated with the EKS worker nodes. Each
+  # IAM role passed in will be set up as a Node role in Kubernetes.
   eks_worker_iam_role_arns = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
@@ -353,24 +353,24 @@ module "eks_k_8_s_role_mapping" {
   # that holds the mapping information.
   config_map_labels = {}
 
-  # List of AWS ARNs of the IAM roles associated with launching fargate pods. Each
-  # IAM role passed in will be set up as a Node role in Kubernetes.
+  # List of AWS ARNs of the IAM roles associated with launching fargate pods.
+  # Each IAM role passed in will be set up as a Node role in Kubernetes.
   eks_fargate_profile_executor_iam_role_arns = []
 
-  # Mapping of AWS IAM roles to RBAC groups, where the keys are AWS ARN of IAM roles
-  # and values are the mapped k8s RBAC group names as a list.
+  # Mapping of AWS IAM roles to RBAC groups, where the keys are AWS ARN of IAM
+  # roles and values are the mapped k8s RBAC group names as a list.
   iam_role_to_rbac_group_mappings = {}
 
-  # Mapping of AWS IAM users to RBAC groups, where the keys are AWS ARN of IAM users
-  # and values are the mapped k8s RBAC group names as a list.
+  # Mapping of AWS IAM users to RBAC groups, where the keys are AWS ARN of IAM
+  # users and values are the mapped k8s RBAC group names as a list.
   iam_user_to_rbac_group_mappings = {}
 
-  # Name to apply to the ConfigMap that is created. Note that this must be called
-  # aws-auth, unless you are using the aws-auth-merger.
+  # Name to apply to the ConfigMap that is created. Note that this must be
+  # called aws-auth, unless you are using the aws-auth-merger.
   name = "aws-auth"
 
-  # Namespace to create the ConfigMap in. Note that this must be kube-system, unless
-  # you are using the aws-auth-merger.
+  # Namespace to create the ConfigMap in. Note that this must be kube-system,
+  # unless you are using the aws-auth-merger.
   namespace = "kube-system"
 
 }
@@ -388,7 +388,7 @@ module "eks_k_8_s_role_mapping" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-role-mapping?ref=v0.58.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-role-mapping?ref=v0.59.0"
 }
 
 inputs = {
@@ -397,8 +397,8 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # List of AWS ARNs of the IAM roles associated with the EKS worker nodes. Each IAM
-  # role passed in will be set up as a Node role in Kubernetes.
+  # List of AWS ARNs of the IAM roles associated with the EKS worker nodes. Each
+  # IAM role passed in will be set up as a Node role in Kubernetes.
   eks_worker_iam_role_arns = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
@@ -409,24 +409,24 @@ inputs = {
   # that holds the mapping information.
   config_map_labels = {}
 
-  # List of AWS ARNs of the IAM roles associated with launching fargate pods. Each
-  # IAM role passed in will be set up as a Node role in Kubernetes.
+  # List of AWS ARNs of the IAM roles associated with launching fargate pods.
+  # Each IAM role passed in will be set up as a Node role in Kubernetes.
   eks_fargate_profile_executor_iam_role_arns = []
 
-  # Mapping of AWS IAM roles to RBAC groups, where the keys are AWS ARN of IAM roles
-  # and values are the mapped k8s RBAC group names as a list.
+  # Mapping of AWS IAM roles to RBAC groups, where the keys are AWS ARN of IAM
+  # roles and values are the mapped k8s RBAC group names as a list.
   iam_role_to_rbac_group_mappings = {}
 
-  # Mapping of AWS IAM users to RBAC groups, where the keys are AWS ARN of IAM users
-  # and values are the mapped k8s RBAC group names as a list.
+  # Mapping of AWS IAM users to RBAC groups, where the keys are AWS ARN of IAM
+  # users and values are the mapped k8s RBAC group names as a list.
   iam_user_to_rbac_group_mappings = {}
 
-  # Name to apply to the ConfigMap that is created. Note that this must be called
-  # aws-auth, unless you are using the aws-auth-merger.
+  # Name to apply to the ConfigMap that is created. Note that this must be
+  # called aws-auth, unless you are using the aws-auth-merger.
   name = "aws-auth"
 
-  # Namespace to create the ConfigMap in. Note that this must be kube-system, unless
-  # you are using the aws-auth-merger.
+  # Namespace to create the ConfigMap in. Note that this must be kube-system,
+  # unless you are using the aws-auth-merger.
   namespace = "kube-system"
 
 }
@@ -543,11 +543,11 @@ The name of the ConfigMap created to store the mapping. This exists so that down
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-k8s-role-mapping/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-k8s-role-mapping/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-k8s-role-mapping/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-k8s-role-mapping/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-k8s-role-mapping/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-k8s-role-mapping/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c6a8fd2337ad690c0a8263333db4a95a"
+  "hash": "e2b4e222279f2b230d76654dfce3f1f7"
 }
 ##DOCS-SOURCER-END -->

@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="0.12.0" lastModifiedVersion="0.11.0"/>
+<VersionBadge repoTitle="AWS Messaging" version="0.12.1" lastModifiedVersion="0.11.0"/>
 
 # Simple Queuing Service (SQS) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/sqs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.11.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -101,7 +101,7 @@ including:
 
 module "sqs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v0.12.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v0.12.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -126,24 +126,24 @@ module "sqs" {
   # Set to true to enable content-based deduplication for FIFO queues.
   content_based_deduplication = false
 
-  # If you set this variable to false, this module will not create any resources.
-  # This is used as a workaround because Terraform does not allow you to use the
-  # 'count' parameter on modules. By using this parameter, you can optionally create
-  # or not create the resources within this module.
+  # If you set this variable to false, this module will not create any
+  # resources. This is used as a workaround because Terraform does not allow you
+  # to use the 'count' parameter on modules. By using this parameter, you can
+  # optionally create or not create the resources within this module.
   create_resources = true
 
-  # A map of tags to apply to the dead letter queue, on top of the custom_tags. The
-  # key is the tag name and the value is the tag value. Note that tags defined here
-  # will override tags defined as custom_tags in case of conflict.
+  # A map of tags to apply to the dead letter queue, on top of the custom_tags.
+  # The key is the tag name and the value is the tag value. Note that tags
+  # defined here will override tags defined as custom_tags in case of conflict.
   custom_dlq_tags = {}
 
-  # A map of custom tags to apply to the sqs queue. The key is the tag name and the
-  # value is the tag value.
+  # A map of custom tags to apply to the sqs queue. The key is the tag name and
+  # the value is the tag value.
   custom_tags = {}
 
   # Set to true to enable a dead letter queue. Messages that cannot be
-  # processed/consumed successfully will be sent to a second queue so you can set
-  # aside these messages and analyze what went wrong.
+  # processed/consumed successfully will be sent to a second queue so you can
+  # set aside these messages and analyze what went wrong.
   dead_letter_queue = false
 
   # Specifies whether message deduplication occurs at the message group or queue
@@ -155,33 +155,33 @@ module "sqs" {
   # delayed. An integer from 0 to 900 (15 minutes).
   delay_seconds = 0
 
-  # The time in seconds that the delivery of all messages in the dead letter queue
-  # will be delayed. An integer from 0 to 900 (15 minutes). The default value is set
-  # to the same value as `delay_seconds`
+  # The time in seconds that the delivery of all messages in the dead letter
+  # queue will be delayed. An integer from 0 to 900 (15 minutes). The default
+  # value is set to the same value as `delay_seconds`
   dlq_delay_seconds = null
 
   # The number of seconds Amazon dead letter SQS retains a message. Integer
-  # representing seconds, from 60 (1 minute) to 1209600 (14 days). The default value
-  # is set to the same value as `message_retention_seconds`.
+  # representing seconds, from 60 (1 minute) to 1209600 (14 days). The default
+  # value is set to the same value as `message_retention_seconds`.
   dlq_message_retention_seconds = null
 
   # The time for which a ReceiveMessage call will wait for a dead letter queue
   # message to arrive (long polling) before returning. An integer from 0 to 20
-  # (seconds). Setting this to 0 means the call will return immediately. The default
-  # value is set to the same value as `receive_wait_time_seconds`
+  # (seconds). Setting this to 0 means the call will return immediately. The
+  # default value is set to the same value as `receive_wait_time_seconds`
   dlq_receive_wait_time_seconds = null
 
-  # The visibility timeout for the dead letter queue. An integer from 0 to 43200 (12
-  # hours). The default value is set to the same value as
+  # The visibility timeout for the dead letter queue. An integer from 0 to 43200
+  # (12 hours). The default value is set to the same value as
   # `visibility_timeout_seconds`
   dlq_visibility_timeout_seconds = null
 
   # Set to true to make this a FIFO queue.
   fifo_queue = false
 
-  # Specifies whether the FIFO queue throughput quota applies to the entire queue or
-  # per message group. Valid values are perQueue (default) and perMessageGroupId.
-  # Only used if fifo_queue is set to true.
+  # Specifies whether the FIFO queue throughput quota applies to the entire
+  # queue or per message group. Valid values are perQueue (default) and
+  # perMessageGroupId. Only used if fifo_queue is set to true.
   fifo_throughput_limit = "perQueue"
 
   # The length of time, in seconds, for which Amazon SQS can reuse a data key to
@@ -191,32 +191,32 @@ module "sqs" {
   kms_data_key_reuse_period_seconds = 300
 
   # The ID of an AWS-managed customer master key (such as 'alias/aws/sqs') for
-  # Amazon SQS or a custom CMK. Make sure `sqs_managed_sse_enabled` is set to false
-  # (by default) when using your custom master key for encryption.
+  # Amazon SQS or a custom CMK. Make sure `sqs_managed_sse_enabled` is set to
+  # false (by default) when using your custom master key for encryption.
   kms_master_key_id = null
 
-  # The limit of how many bytes a message can contain before Amazon SQS rejects it.
-  # An integer from 1024 bytes (1 KiB) up to 262144 bytes (256 KiB).
+  # The limit of how many bytes a message can contain before Amazon SQS rejects
+  # it. An integer from 1024 bytes (1 KiB) up to 262144 bytes (256 KiB).
   max_message_size = 262144
 
-  # The maximum number of times that a message can be received by consumers. When
-  # this value is exceeded for a message the message will be automatically sent to
-  # the Dead Letter Queue. Only used if var.dead_letter_queue is true.
+  # The maximum number of times that a message can be received by consumers.
+  # When this value is exceeded for a message the message will be automatically
+  # sent to the Dead Letter Queue. Only used if var.dead_letter_queue is true.
   max_receive_count = 3
 
   # The number of seconds Amazon SQS retains a message. Integer representing
   # seconds, from 60 (1 minute) to 1209600 (14 days).
   message_retention_seconds = 345600
 
-  # The time for which a ReceiveMessage call will wait for a message to arrive (long
-  # polling) before returning. An integer from 0 to 20 (seconds). Setting this to 0
-  # means the call will return immediately.
+  # The time for which a ReceiveMessage call will wait for a message to arrive
+  # (long polling) before returning. An integer from 0 to 20 (seconds). Setting
+  # this to 0 means the call will return immediately.
   receive_wait_time_seconds = 0
 
   # (Optional) Boolean to enable server-side encryption (SSE) of message content
   # with SQS-owned encryption keys. See Encryption at rest. Terraform will only
-  # perform drift detection of its value when present in a configuration. You cannot
-  # use this with `kms_master_key_id`.
+  # perform drift detection of its value when present in a configuration. You
+  # cannot use this with `kms_master_key_id`.
   sqs_managed_sse_enabled = null
 
   # The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
@@ -237,7 +237,7 @@ module "sqs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v0.12.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v0.12.1"
 }
 
 inputs = {
@@ -265,24 +265,24 @@ inputs = {
   # Set to true to enable content-based deduplication for FIFO queues.
   content_based_deduplication = false
 
-  # If you set this variable to false, this module will not create any resources.
-  # This is used as a workaround because Terraform does not allow you to use the
-  # 'count' parameter on modules. By using this parameter, you can optionally create
-  # or not create the resources within this module.
+  # If you set this variable to false, this module will not create any
+  # resources. This is used as a workaround because Terraform does not allow you
+  # to use the 'count' parameter on modules. By using this parameter, you can
+  # optionally create or not create the resources within this module.
   create_resources = true
 
-  # A map of tags to apply to the dead letter queue, on top of the custom_tags. The
-  # key is the tag name and the value is the tag value. Note that tags defined here
-  # will override tags defined as custom_tags in case of conflict.
+  # A map of tags to apply to the dead letter queue, on top of the custom_tags.
+  # The key is the tag name and the value is the tag value. Note that tags
+  # defined here will override tags defined as custom_tags in case of conflict.
   custom_dlq_tags = {}
 
-  # A map of custom tags to apply to the sqs queue. The key is the tag name and the
-  # value is the tag value.
+  # A map of custom tags to apply to the sqs queue. The key is the tag name and
+  # the value is the tag value.
   custom_tags = {}
 
   # Set to true to enable a dead letter queue. Messages that cannot be
-  # processed/consumed successfully will be sent to a second queue so you can set
-  # aside these messages and analyze what went wrong.
+  # processed/consumed successfully will be sent to a second queue so you can
+  # set aside these messages and analyze what went wrong.
   dead_letter_queue = false
 
   # Specifies whether message deduplication occurs at the message group or queue
@@ -294,33 +294,33 @@ inputs = {
   # delayed. An integer from 0 to 900 (15 minutes).
   delay_seconds = 0
 
-  # The time in seconds that the delivery of all messages in the dead letter queue
-  # will be delayed. An integer from 0 to 900 (15 minutes). The default value is set
-  # to the same value as `delay_seconds`
+  # The time in seconds that the delivery of all messages in the dead letter
+  # queue will be delayed. An integer from 0 to 900 (15 minutes). The default
+  # value is set to the same value as `delay_seconds`
   dlq_delay_seconds = null
 
   # The number of seconds Amazon dead letter SQS retains a message. Integer
-  # representing seconds, from 60 (1 minute) to 1209600 (14 days). The default value
-  # is set to the same value as `message_retention_seconds`.
+  # representing seconds, from 60 (1 minute) to 1209600 (14 days). The default
+  # value is set to the same value as `message_retention_seconds`.
   dlq_message_retention_seconds = null
 
   # The time for which a ReceiveMessage call will wait for a dead letter queue
   # message to arrive (long polling) before returning. An integer from 0 to 20
-  # (seconds). Setting this to 0 means the call will return immediately. The default
-  # value is set to the same value as `receive_wait_time_seconds`
+  # (seconds). Setting this to 0 means the call will return immediately. The
+  # default value is set to the same value as `receive_wait_time_seconds`
   dlq_receive_wait_time_seconds = null
 
-  # The visibility timeout for the dead letter queue. An integer from 0 to 43200 (12
-  # hours). The default value is set to the same value as
+  # The visibility timeout for the dead letter queue. An integer from 0 to 43200
+  # (12 hours). The default value is set to the same value as
   # `visibility_timeout_seconds`
   dlq_visibility_timeout_seconds = null
 
   # Set to true to make this a FIFO queue.
   fifo_queue = false
 
-  # Specifies whether the FIFO queue throughput quota applies to the entire queue or
-  # per message group. Valid values are perQueue (default) and perMessageGroupId.
-  # Only used if fifo_queue is set to true.
+  # Specifies whether the FIFO queue throughput quota applies to the entire
+  # queue or per message group. Valid values are perQueue (default) and
+  # perMessageGroupId. Only used if fifo_queue is set to true.
   fifo_throughput_limit = "perQueue"
 
   # The length of time, in seconds, for which Amazon SQS can reuse a data key to
@@ -330,32 +330,32 @@ inputs = {
   kms_data_key_reuse_period_seconds = 300
 
   # The ID of an AWS-managed customer master key (such as 'alias/aws/sqs') for
-  # Amazon SQS or a custom CMK. Make sure `sqs_managed_sse_enabled` is set to false
-  # (by default) when using your custom master key for encryption.
+  # Amazon SQS or a custom CMK. Make sure `sqs_managed_sse_enabled` is set to
+  # false (by default) when using your custom master key for encryption.
   kms_master_key_id = null
 
-  # The limit of how many bytes a message can contain before Amazon SQS rejects it.
-  # An integer from 1024 bytes (1 KiB) up to 262144 bytes (256 KiB).
+  # The limit of how many bytes a message can contain before Amazon SQS rejects
+  # it. An integer from 1024 bytes (1 KiB) up to 262144 bytes (256 KiB).
   max_message_size = 262144
 
-  # The maximum number of times that a message can be received by consumers. When
-  # this value is exceeded for a message the message will be automatically sent to
-  # the Dead Letter Queue. Only used if var.dead_letter_queue is true.
+  # The maximum number of times that a message can be received by consumers.
+  # When this value is exceeded for a message the message will be automatically
+  # sent to the Dead Letter Queue. Only used if var.dead_letter_queue is true.
   max_receive_count = 3
 
   # The number of seconds Amazon SQS retains a message. Integer representing
   # seconds, from 60 (1 minute) to 1209600 (14 days).
   message_retention_seconds = 345600
 
-  # The time for which a ReceiveMessage call will wait for a message to arrive (long
-  # polling) before returning. An integer from 0 to 20 (seconds). Setting this to 0
-  # means the call will return immediately.
+  # The time for which a ReceiveMessage call will wait for a message to arrive
+  # (long polling) before returning. An integer from 0 to 20 (seconds). Setting
+  # this to 0 means the call will return immediately.
   receive_wait_time_seconds = 0
 
   # (Optional) Boolean to enable server-side encryption (SSE) of message content
   # with SQS-owned encryption keys. See Encryption at rest. Terraform will only
-  # perform drift detection of its value when present in a configuration. You cannot
-  # use this with `kms_master_key_id`.
+  # perform drift detection of its value when present in a configuration. You
+  # cannot use this with `kms_master_key_id`.
   sqs_managed_sse_enabled = null
 
   # The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
@@ -636,11 +636,11 @@ The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/sqs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/sqs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/sqs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cdb35ae87f10929f1493a2f1529f4115"
+  "hash": "bbfaf31676b6679d5c17011906e2127d"
 }
 ##DOCS-SOURCER-END -->

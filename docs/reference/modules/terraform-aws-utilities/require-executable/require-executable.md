@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.1" lastModifiedVersion="0.9.1"/>
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.2" lastModifiedVersion="0.9.1"/>
 
 # Require Executable Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/require-executable" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/require-executable" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.9.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -28,7 +28,7 @@ This module uses Python under the hood, so Python must be installed and availabl
 
 ## Example code
 
-See the [require-executable example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/examples/require-executable) for working sample code.
+See the [require-executable example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/examples/require-executable) for working sample code.
 
 ## Conditional check
 
@@ -59,7 +59,7 @@ module "require_executables" {
 
 module "require_executable" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/require-executable?ref=v0.9.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/require-executable?ref=v0.9.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -72,10 +72,10 @@ module "require_executable" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Error message to show if the required executable is not found. This is printed
-  # for each executable that was not found. The module will make the following
-  # substitutions in the string: `__EXECUTABLE_NAME__` will become the name of the
-  # executable that was not found.
+  # Error message to show if the required executable is not found. This is
+  # printed for each executable that was not found. The module will make the
+  # following substitutions in the string: `__EXECUTABLE_NAME__` will become the
+  # name of the executable that was not found.
   error_message = "Not found: __EXECUTABLE_NAME__"
 
 }
@@ -93,7 +93,7 @@ module "require_executable" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/require-executable?ref=v0.9.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/require-executable?ref=v0.9.2"
 }
 
 inputs = {
@@ -109,10 +109,10 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Error message to show if the required executable is not found. This is printed
-  # for each executable that was not found. The module will make the following
-  # substitutions in the string: `__EXECUTABLE_NAME__` will become the name of the
-  # executable that was not found.
+  # Error message to show if the required executable is not found. This is
+  # printed for each executable that was not found. The module will make the
+  # following substitutions in the string: `__EXECUTABLE_NAME__` will become the
+  # name of the executable that was not found.
   error_message = "Not found: __EXECUTABLE_NAME__"
 
 }
@@ -170,11 +170,11 @@ A map of the executables to the resolved path where they reside.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/require-executable/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/require-executable/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/require-executable/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/require-executable/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/require-executable/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/require-executable/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f51a79d245170ae0fb82ebd49779d294"
+  "hash": "9db41390f538aa3cb6ccfdbc3a93c0e3"
 }
 ##DOCS-SOURCER-END -->

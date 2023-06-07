@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.58.3" lastModifiedVersion="0.56.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.59.0" lastModifiedVersion="0.58.4"/>
 
 # EKS Fargate Container Logs Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-fargate-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-fargate-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.56.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.58.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module supports collecting logs from Fargate Pods and shipping them to CloudWatch Logs, Elasticsearch, Kinesis
 Streams, or Kinesis Firehose.
@@ -25,7 +25,7 @@ Bit](https://fluentbit.io/) instance that runs on Fargate worker nodes. This all
 aggregation on Fargate Pods in EKS without setting up a side car container.
 
 **This module is for setting up log aggregation for EKS Fargate Pods. For other pods, take a look at the
-[eks-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-container-logs) module.**
+[eks-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-container-logs) module.**
 
 ## How does this work?
 
@@ -106,30 +106,30 @@ fields @timestamp, @message
 
 module "eks_fargate_container_logs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.58.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.59.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # List of ARNs of Fargate execution IAM roles that should have permission to talk
-  # to each output target. Policies that grant permissions to each output service
-  # will be attached to these IAM roles.
+  # List of ARNs of Fargate execution IAM roles that should have permission to
+  # talk to each output target. Policies that grant permissions to each output
+  # service will be attached to these IAM roles.
   fargate_execution_iam_role_arns = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Configurations for forwarding logs to AWS managed Elasticsearch. Set to null if
-  # you do not wish to forward the logs to ES.
+  # Configurations for forwarding logs to AWS managed Elasticsearch. Set to null
+  # if you do not wish to forward the logs to ES.
   aws_elasticsearch_configuration = null
 
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
 
-  # Configurations for forwarding logs to CloudWatch Logs. Set to null if you do not
-  # wish to forward the logs to CloudWatch Logs.
+  # Configurations for forwarding logs to CloudWatch Logs. Set to null if you do
+  # not wish to forward the logs to CloudWatch Logs.
   cloudwatch_configuration = null
 
   # Annotations to associate with the aws-logging ConfigMap
@@ -138,41 +138,41 @@ module "eks_fargate_container_logs" {
   # Labels to associate with the aws-logging ConfigMap
   configmap_labels = {}
 
-  # Can be used to provide custom filtering of the log output. This string should be
-  # formatted according to Fluent Bit docs, as it will be injected directly into the
-  # fluent-bit.conf file.
+  # Can be used to provide custom filtering of the log output. This string
+  # should be formatted according to Fluent Bit docs, as it will be injected
+  # directly into the fluent-bit.conf file.
   extra_filters = ""
 
-  # Can be used to provide custom parsers of the log output. This string should be
-  # formatted according to Fluent Bit docs, as it will be injected directly into the
-  # fluent-bit.conf file.
+  # Can be used to provide custom parsers of the log output. This string should
+  # be formatted according to Fluent Bit docs, as it will be injected directly
+  # into the fluent-bit.conf file.
   extra_parsers = ""
 
-  # Configurations for forwarding logs to Kinesis Firehose. Set to null if you do
-  # not wish to forward the logs to Firehose.
+  # Configurations for forwarding logs to Kinesis Firehose. Set to null if you
+  # do not wish to forward the logs to Firehose.
   firehose_configuration = null
 
   # Whether or not Kubernetes metadata is added to the log files
   include_kubernetes_metadata = true
 
-  # Configurations for forwarding logs to Kinesis stream. Set to null if you do not
-  # wish to forward the logs to Kinesis.
+  # Configurations for forwarding logs to Kinesis stream. Set to null if you do
+  # not wish to forward the logs to Kinesis.
   kinesis_configuration = null
 
   # The time Fluent Bit waits until it communicates with the API server for the
   # latest metadata. The smaller the TTL, the more load is generated on the API
-  # server. This setting will only have effect, when 'include_kubernetes_metadata'
-  # is 'true'.
+  # server. This setting will only have effect, when
+  # 'include_kubernetes_metadata' is 'true'.
   kubernetes_metadata_cache_ttl = "300s"
 
-  # When enabled, it checks if the log field content is a JSON string map, if so, it
-  # append the map fields as part of the log structure. This setting will only have
-  # effect, when 'include_kubernetes_metadata' is 'true'.
+  # When enabled, it checks if the log field content is a JSON string map, if
+  # so, it append the map fields as part of the log structure. This setting will
+  # only have effect, when 'include_kubernetes_metadata' is 'true'.
   kubernetes_metadata_merge_log = false
 
-  # If Merge_Log_Key is set, all the new structured fields taken from the original
-  # log content are inserted under the new key. This setting will only have effect,
-  # when 'include_kubernetes_metadata' is 'true'.
+  # If Merge_Log_Key is set, all the new structured fields taken from the
+  # original log content are inserted under the new key. This setting will only
+  # have effect, when 'include_kubernetes_metadata' is 'true'.
   kubernetes_metadata_merge_log_key = null
 
   # Annotations to associate with the aws-observability Namespace
@@ -181,11 +181,11 @@ module "eks_fargate_container_logs" {
   # Labels to associate with the aws-observability Namespace
   namespace_labels = {}
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
 }
@@ -203,7 +203,7 @@ module "eks_fargate_container_logs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.58.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.59.0"
 }
 
 inputs = {
@@ -212,24 +212,24 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # List of ARNs of Fargate execution IAM roles that should have permission to talk
-  # to each output target. Policies that grant permissions to each output service
-  # will be attached to these IAM roles.
+  # List of ARNs of Fargate execution IAM roles that should have permission to
+  # talk to each output target. Policies that grant permissions to each output
+  # service will be attached to these IAM roles.
   fargate_execution_iam_role_arns = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Configurations for forwarding logs to AWS managed Elasticsearch. Set to null if
-  # you do not wish to forward the logs to ES.
+  # Configurations for forwarding logs to AWS managed Elasticsearch. Set to null
+  # if you do not wish to forward the logs to ES.
   aws_elasticsearch_configuration = null
 
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
 
-  # Configurations for forwarding logs to CloudWatch Logs. Set to null if you do not
-  # wish to forward the logs to CloudWatch Logs.
+  # Configurations for forwarding logs to CloudWatch Logs. Set to null if you do
+  # not wish to forward the logs to CloudWatch Logs.
   cloudwatch_configuration = null
 
   # Annotations to associate with the aws-logging ConfigMap
@@ -238,41 +238,41 @@ inputs = {
   # Labels to associate with the aws-logging ConfigMap
   configmap_labels = {}
 
-  # Can be used to provide custom filtering of the log output. This string should be
-  # formatted according to Fluent Bit docs, as it will be injected directly into the
-  # fluent-bit.conf file.
+  # Can be used to provide custom filtering of the log output. This string
+  # should be formatted according to Fluent Bit docs, as it will be injected
+  # directly into the fluent-bit.conf file.
   extra_filters = ""
 
-  # Can be used to provide custom parsers of the log output. This string should be
-  # formatted according to Fluent Bit docs, as it will be injected directly into the
-  # fluent-bit.conf file.
+  # Can be used to provide custom parsers of the log output. This string should
+  # be formatted according to Fluent Bit docs, as it will be injected directly
+  # into the fluent-bit.conf file.
   extra_parsers = ""
 
-  # Configurations for forwarding logs to Kinesis Firehose. Set to null if you do
-  # not wish to forward the logs to Firehose.
+  # Configurations for forwarding logs to Kinesis Firehose. Set to null if you
+  # do not wish to forward the logs to Firehose.
   firehose_configuration = null
 
   # Whether or not Kubernetes metadata is added to the log files
   include_kubernetes_metadata = true
 
-  # Configurations for forwarding logs to Kinesis stream. Set to null if you do not
-  # wish to forward the logs to Kinesis.
+  # Configurations for forwarding logs to Kinesis stream. Set to null if you do
+  # not wish to forward the logs to Kinesis.
   kinesis_configuration = null
 
   # The time Fluent Bit waits until it communicates with the API server for the
   # latest metadata. The smaller the TTL, the more load is generated on the API
-  # server. This setting will only have effect, when 'include_kubernetes_metadata'
-  # is 'true'.
+  # server. This setting will only have effect, when
+  # 'include_kubernetes_metadata' is 'true'.
   kubernetes_metadata_cache_ttl = "300s"
 
-  # When enabled, it checks if the log field content is a JSON string map, if so, it
-  # append the map fields as part of the log structure. This setting will only have
-  # effect, when 'include_kubernetes_metadata' is 'true'.
+  # When enabled, it checks if the log field content is a JSON string map, if
+  # so, it append the map fields as part of the log structure. This setting will
+  # only have effect, when 'include_kubernetes_metadata' is 'true'.
   kubernetes_metadata_merge_log = false
 
-  # If Merge_Log_Key is set, all the new structured fields taken from the original
-  # log content are inserted under the new key. This setting will only have effect,
-  # when 'include_kubernetes_metadata' is 'true'.
+  # If Merge_Log_Key is set, all the new structured fields taken from the
+  # original log content are inserted under the new key. This setting will only
+  # have effect, when 'include_kubernetes_metadata' is 'true'.
   kubernetes_metadata_merge_log_key = null
 
   # Annotations to associate with the aws-observability Namespace
@@ -281,11 +281,11 @@ inputs = {
   # Labels to associate with the aws-observability Namespace
   namespace_labels = {}
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
 }
@@ -633,11 +633,11 @@ The ID of the Kubernetes ConfigMap containing the logging configuration. This ca
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-fargate-container-logs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-fargate-container-logs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-fargate-container-logs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-fargate-container-logs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-fargate-container-logs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-fargate-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b808391b5eb5372bad0de95bae252414"
+  "hash": "36265d5a1caed77ff8b035ba0557dc56"
 }
 ##DOCS-SOURCER-END -->
