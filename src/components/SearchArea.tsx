@@ -20,8 +20,8 @@ function ResultCardGroup(hits: any) {
       {hits.map((hit: any) => {
         return (
           <Card
-            title={hit.moduleFriendlyName}
-            key={hit.moduleFriendlyName}
+            title={hit.moduleName}
+            key={hit.moduleName}
             href={hit.docsRelativeUrl}
             tags={[hit.mainRepoTitle]}
             className={styles.card_container_max_width}
@@ -64,7 +64,7 @@ function CustomHits(hits: any[]) {
   modules with [DEPRECATED], so we filter for all hits where there is not a match for the prefix.
   */
   const activeHits = newHits.filter(
-    (hit: any) => !hit.moduleFriendlyName.startsWith("[DEPRECATED]")
+    (hit: any) => !hit.moduleName.startsWith("[DEPRECATED]")
   )
 
   /*
@@ -101,10 +101,10 @@ export const SearchArea: React.FunctionComponent<
   const algoliaSearchKey: string = "a976ea48057ceaa662656ec8f4f591af"
 
   const searchClient = algoliasearch(algoliaAppId, algoliaSearchKey)
-  const index = searchClient.initIndex("dev_docs_sourcer-modules") // TODO: Get this from config
+  const index = searchClient.initIndex("dev_docs_sourcer-library-reference") // TODO: Get this from config
 
   const [searchTerm, setSearchTerm] = useState("")
-  const [facetFilters, setFacetFilters] = useState(["type:module"])
+  const [facetFilters, setFacetFilters] = useState([])
 
   const [searchHits, setSearchHits] = useState([])
   const [searchRepoFacets, setSearchRepoFacets] = useState([])
@@ -124,7 +124,7 @@ export const SearchArea: React.FunctionComponent<
   const loadSearchHits = async () => {
     await index
       .search(searchTerm, {
-        facets: ["mainRepoTitle", "type"],
+        facets: ["type"],
         facetFilters: facetFilters,
         hitsPerPage: 300,
       })
@@ -132,10 +132,7 @@ export const SearchArea: React.FunctionComponent<
         setSearchHits(resp["hits"])
 
         // Only load the facets once - when the page loads
-        if (searchRepoFacets.length === 0 && searchTypeFacets.length == 0) {
-          setSearchRepoFacets(
-            handleSearchFacets(resp["facets"]["mainRepoTitle"])
-          )
+        if (searchTypeFacets.length == 0) {
           setSearchTypeFacets(handleSearchFacets(resp["facets"]["type"]))
         }
       })
@@ -146,7 +143,7 @@ export const SearchArea: React.FunctionComponent<
   }, [])
 
   useEffect(() => {
-    const timeOutId = setTimeout(() => loadSearchHits(), 500)
+    const timeOutId = setTimeout(() => loadSearchHits(), 200)
     return () => clearTimeout(timeOutId)
   }, [searchTerm])
 
@@ -158,12 +155,12 @@ export const SearchArea: React.FunctionComponent<
     setSearchTerm(event.target.value)
   }
 
-  const selectRepoTitleFacet = (facetName: any) => {
-    if (!facetName) {
+  const selectRepoTitleFacet = (type: any) => {
+    if (!type) {
       // Unset - we always want to be scoped to modules
-      setFacetFilters(["type:module"])
+      setFacetFilters([]);
     } else {
-      setFacetFilters([`mainRepoTitle:${facetName.value}`])
+      setFacetFilters([`type:${type.value}`])
     }
   }
 
@@ -183,14 +180,14 @@ export const SearchArea: React.FunctionComponent<
           </div>
         </div>
         <div className={styles.SearchContainerItem} id="sme-area">
-          <p className={styles.SearchContainerItemHeader}>TOPIC</p>
+          <p className={styles.SearchContainerItemHeader}>TYPE</p>
           <div className={styles.FacetListContainer}>
             <Select
               className={styles.SearchContainerDropdown}
               onChange={(value) => selectRepoTitleFacet(value)}
               isClearable={true}
               isSearchable={true}
-              options={searchRepoFacets.map((f) => {
+              options={searchTypeFacets.map((f) => {
                 return { value: f["key"], label: f["key"] }
               })}
               styles={selectStyles}
