@@ -194,10 +194,6 @@ Now that you've defined your own service, consider how you would make this modul
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-<<<<<<< HEAD
   "hash": "ab2323ae973d0c54ef5a157f37049044"
-=======
-  "hash": "c6ea9d59b043bf03bcb3fc780f03098c"
->>>>>>> c6ffdfd8 (incremental checkin)
 }
 ##DOCS-SOURCER-END -->
