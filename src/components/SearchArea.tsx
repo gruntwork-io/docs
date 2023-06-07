@@ -83,6 +83,7 @@ function CustomHits(hits: any[]) {
 const selectStyles = {
   control: (base, state) => ({
     ...base,
+    fontSize: "16px",
     borderColor: state.isFocused ? "#6f5bd7" : base.borderColor,
     boxShadow: state.isFocused ? "0 0 0 1px #6f5bd7" : base.borderColor,
     '&:hover': {
