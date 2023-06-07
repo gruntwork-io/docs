@@ -31,10 +31,11 @@ const sidebar = [
         items: [
           // "iac/usage/using-a-module",
           // "iac/usage/using-a-service",
-          // "iac/usage/customizing-modules",
-          "iac/usage/composing-your-own-service",
           "guides/working-with-code/using-modules",
+          "iac/usage/composing-your-own-service",
+          "iac/usage/customizing-modules",
           "guides/working-with-code/tfc-integration",
+          "iac/usage/contributing",
         ],
       },
       {
@@ -45,12 +46,6 @@ const sidebar = [
           "iac/stay-up-to-date/versioning",
           "iac/stay-up-to-date/updating",
         ],
-      },
-      {
-        label: "Support",
-        type: "category",
-        collapsible: false,
-        items: ["iac/support/contributing"],
       },
     ],
   },
