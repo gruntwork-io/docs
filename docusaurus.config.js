@@ -291,6 +291,7 @@ const config = {
             // Public API key: safe to commit, but still sourced from config
             apiKey: algoliaConfig.apiKey,
             indexName: algoliaConfig.indexName,
+            libraryIndexName: algoliaConfig.libraryIndexName,
             contextualSearch: true,
           }
         : undefined,

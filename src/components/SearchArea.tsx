@@ -96,12 +96,20 @@ const selectStyles = {
 export const SearchArea: React.FunctionComponent<
   PropsWithChildren<SearchAreaProps>
 > = ({ name, requirement, type, children }) => {
+  // TODO: Make using a configuration work here
+  // const { algoliaAppId, algoliaSearchKey, indexName } = config.get<{
+  //   appId: string;
+  //   apiKey: string;
+  //   libraryIndexName: string;
+  // }>("themeConfig.algolia");
+
   const algoliaAppId: string = "7AWZHGNJE2"
   // This key is for search only. It is safe to check in.
   const algoliaSearchKey: string = "a976ea48057ceaa662656ec8f4f591af"
+  const indexName: string = "dev_docs_sourcer-library-reference"
 
   const searchClient = algoliasearch(algoliaAppId, algoliaSearchKey)
-  const index = searchClient.initIndex("dev_docs_sourcer-library-reference") // TODO: Get this from config
+  const index = searchClient.initIndex(indexName)
 
   const [searchTerm, setSearchTerm] = useState("")
   const [facetFilters, setFacetFilters] = useState([])
