@@ -31,10 +31,8 @@ const sidebar = [
         items: [
           // "iac/usage/using-a-module",
           // "iac/usage/using-a-service",
-          // "iac/usage/customizing-modules",
-          "iac/usage/composing-your-own-service",
-          "iac/usage/customizing-modules",
           "guides/working-with-code/using-modules",
+          "iac/usage/composing-your-own-service",
           "iac/usage/customizing-modules",
           "guides/working-with-code/tfc-integration",
           "iac/usage/contributing",
