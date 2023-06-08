@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Fargate Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-fargate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/firelens/modules/ecs-fargate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.24.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -24,11 +24,11 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-fargate/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-fargate/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-fargate/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/firelens/modules/ecs-fargate/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/firelens/modules/ecs-fargate/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/firelens/modules/ecs-fargate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a8dfaa08e6f05804287c19bc7ca802fc"
+  "hash": "301f1206e437035db150c21f6142dd37"
 }
 ##DOCS-SOURCER-END -->
