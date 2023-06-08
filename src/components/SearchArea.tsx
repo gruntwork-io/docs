@@ -115,6 +115,8 @@ export const SearchArea: React.FunctionComponent<
   const [searchHits, setSearchHits] = useState([])
   const [searchTypeFacets, setSearchTypeFacets] = useState([])
 
+  const [isLoading, setIsLoading] = useState(true)
+
   const handleSearchFacets = (facets: {}): Object[] => {
     const facetArray = []
 
@@ -127,6 +129,8 @@ export const SearchArea: React.FunctionComponent<
   }
 
   const loadSearchHits = async () => {
+    setIsLoading(true)
+
     await index
       .search(searchTerm, {
         facets: ["type"],
@@ -146,6 +150,10 @@ export const SearchArea: React.FunctionComponent<
   useEffect(() => {
     loadSearchHits()
   }, [])
+
+  useEffect(() => {
+    setIsLoading(false)
+  }, [searchHits])
 
   useEffect(() => {
     const timeOutId = setTimeout(() => loadSearchHits(), 200)
@@ -201,7 +209,7 @@ export const SearchArea: React.FunctionComponent<
           </div>
         </div>
       </Grid>
-      <CustomHits hits={{ searchHits }} />
+      {isLoading && searchHits.length === 0 ? <div /> : <CustomHits hits={{ searchHits }} />}
     </div>
   )
 }
