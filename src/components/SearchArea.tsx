@@ -1,5 +1,5 @@
 import algoliasearch from "algoliasearch/lite"
-import React, { PropsWithChildren, useEffect, useState } from "react"
+import React, { PropsWithChildren, useEffect, useRef, useState } from "react"
 import Select from "react-select"
 
 import { Card } from "./Card"
@@ -177,6 +177,14 @@ export const SearchArea: React.FunctionComponent<
     }
   }
 
+  const inputElement = useRef(null);
+    useEffect(() => {
+      if (inputElement.current) {
+        inputElement.current.focus();
+      }
+  }, []);
+
+
   return (
     <div className={styles.container}>
       <Grid cols={3}>
@@ -185,6 +193,7 @@ export const SearchArea: React.FunctionComponent<
           <div className={styles.SearchInputContainer}>
             <input
               type="text"
+              ref={inputElement}
               onChange={onSearch}
               className={styles.SearchInput}
               placeholder="Try searching for VPC or EKS..."
