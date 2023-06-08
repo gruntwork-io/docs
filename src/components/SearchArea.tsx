@@ -4,9 +4,9 @@ import Select from "react-select"
 
 import { Card } from "./Card"
 import { CardGroup } from "./CardGroup"
-
 import styles from "./SearchArea.module.css"
 import Grid from "./Grid"
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 
 interface SearchAreaProps {
   name: string
@@ -93,17 +93,12 @@ const selectStyles = {
 export const SearchArea: React.FunctionComponent<
   PropsWithChildren<SearchAreaProps>
 > = ({ name, requirement, type, children }) => {
-  // TODO: Make using a configuration work here
-  // const { algoliaAppId, algoliaSearchKey, indexName } = config.get<{
-  //   appId: string;
-  //   apiKey: string;
-  //   libraryIndexName: string;
-  // }>("themeConfig.algolia");
+  const {siteConfig} = useDocusaurusContext();
 
-  const algoliaAppId: string = "7AWZHGNJE2"
   // This key is for search only. It is safe to check in.
+  const algoliaAppId: string = siteConfig.themeConfig.algolia.appId
   const algoliaSearchKey: string = "a976ea48057ceaa662656ec8f4f591af"
-  const indexName: string = "dev_docs_sourcer-library-reference"
+  const indexName: string = siteConfig.themeConfig.algolia.libraryIndexName
 
   const searchClient = algoliasearch(algoliaAppId, algoliaSearchKey)
   const index = searchClient.initIndex(indexName)
