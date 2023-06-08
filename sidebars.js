@@ -18,13 +18,12 @@ const vpcSidebar = require("./sidebars/vpc-guide.js")
 const kubernetesSidebar = require("./sidebars/kubernetes-guide.js")
 const complianceSidebar = require("./sidebars/compliance-guide.js")
 const updateGuideSidebars = require("./sidebars/update-guides.js")
-const apiSidebars = require("./sidebars/api-reference.js")
 const faqSidebars = require("./sidebars/faq.js")
 const librarySidebars = require("./sidebars/library.js")
-const libraryRefSiderbars = require("./sidebars/library-reference.js")
+const libraryRefSidebars = require("./sidebars/library-reference.js")
 const developerPortalSidebars = require("./sidebars/developer-portal.js")
-const patcherSiderbars = require("./sidebars/patcher.js")
-const pipelinesSiderbars = require("./sidebars/pipelines.js")
+const patcherSidebars = require("./sidebars/patcher.js")
+const pipelinesSidebars = require("./sidebars/pipelines.js")
 const landingZoneSidebars = require("./sidebars/landing-zone.js")
 const refarchSidebar = require("./sidebars/refarch.js")
 
@@ -41,15 +40,14 @@ const sidebars = {
   kubernetesSidebar,
   complianceSidebar,
   ...updateGuideSidebars,
-  ...apiSidebars,
   faqSidebars,
   librarySidebars,
   developerPortalSidebars,
-  patcherSiderbars,
-  pipelinesSiderbars,
+  patcherSidebars,
+  pipelinesSidebars,
   landingZoneSidebars,
   refarchSidebar,
-  libraryRefSiderbars,
+  libraryRefSidebars,
 }
 
 module.exports = sidebars
