@@ -144,47 +144,57 @@ Next, we’ll write a simple Python function that returns a string that will be 
 Copy the following to `terraform-aws-gw-lambda-tutorial/main.py`.
 
 ```py title="terraform-aws-gw-lambda-tutorial/main.py"
-from botocore.vendored import requests
 import uuid
 import base64
+import json
+from urllib.request import urlopen, Request
 
-url = "https://api.mixpanel.com/track"
 
-github_username = "%unknown%"
+def lambda_handler(event, context):
+    url = "https://api.mixpanel.com/track"
 
-# This code sets up our mixpanel project ID and sends an event into Mixpanel 
-# that includes your GitHub username to signify that you completed the tutorial
-# We don't track anything else about you other than your GitHub username, and we 
-# only use this data internally to understand who has completed our tutorial 
-mixpanelClientId = "%mixpanel_project_id%"
-tok = base64.b64decode(mixpanelClientId).decode('utf-8')
+    github_username = "%unknown%"
 
-payload = [
-    {
-        "event": "ModuleTutorialDeploymentComplete",
-        "properties": {
-            "token": tok,
-            "distinct_id": github_username,
-            "$insert_id": uuid.uuid4().hex
+    # This code sets up our mixpanel project ID and sends an event into Mixpanel
+    # that includes your GitHub username to signify that you completed the tutorial
+    # We don't track anything else about you other than your GitHub username, and we
+    # only use this data internally to understand who has completed our tutorial
+    mixpanelClientId = "%mixpanel_project_id%"
+    tok = base64.b64decode(mixpanelClientId).decode('utf-8')
+
+    payload = [
+        {
+            "event": "ModuleTutorialDeploymentComplete",
+            "properties": {
+                "token": tok,
+                "distinct_id": github_username,
+                "github_username": github_username,
+                "$insert_id": uuid.uuid4().hex
+            }
         }
+    ]
+    headers = {
+        "accept": "text/plain",
+        "content-type": "application/json"
     }
-]
-headers = {
-    "accept": "text/plain",
-    "content-type": "application/json"
-}
 
-response = requests.post(url, json=payload, headers=headers)
+    httprequest = Request(url, headers=headers,
+                          data=json.dumps(payload).encode('utf-8'))
 
-print(f"Status code: {response.status_code}")
-text = response.text
-if text == "1":
-    text = "Success"
-else:
-    text = "Unknown error"
-print(f"Response: {text}")
-print(f"Hello, {github_username}, from Gruntwork!")
+    response_object = {}
 
+    with urlopen(httprequest) as response:
+        text = ""
+        mixpanel_response_text = response.read().decode()
+        if mixpanel_response_text == "1":
+            text = "Success"
+        else:
+            text = "Unknown error"
+        response_object["operation_status"] = text
+        response_object["statusCode"] = response.status
+        response_object["body"] = f"Hello, {github_username}, from Gruntwork!"
+
+        return response_object
 ```
 
 ### Reference the module
@@ -217,6 +227,14 @@ output "function_name" {
 ```
 
 ## Plan and apply the module
+
+### Run Terraform init
+
+Before you can run plan and apply, you need to run `terraform init`, which will prepare your Terraform configuration for use: 
+
+```bash
+terraform init
+```
 
 ### Run Terraform plan
 
