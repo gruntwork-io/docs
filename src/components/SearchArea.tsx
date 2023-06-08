@@ -21,7 +21,7 @@ function ResultCardGroup(hits: any) {
         return (
           <Card
             title={hit.rawModuleName}
-            key={hit.rawModuleName}
+            key={hit.moduleName}
             href={hit.docsRelativeUrl}
             tags={[hit.mainRepoTitle]}
             className={styles.card_container_max_width}
