@@ -6,17 +6,19 @@
 }
 
 .card_container_max_width {
+  min-width: 300px;
   max-width: 300px;
   max-height: 200px;
   margin: 0 auto;
 }
 
 .card_result {
-  white-space: nowrap;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  overflow-wrap: break-word;
-  max-width: 100%;
+  font-size: 13px;
 }
 
 .SearchContainerItem {

@@ -29,10 +29,7 @@ function ResultCardGroup(hits: any) {
             <div
               className={styles.card_result}
               dangerouslySetInnerHTML={{
-                __html: (hit.moduleDescription as string).substring(
-                  3,
-                  (hit.moduleDescription as string).length - 3
-                ),
+                __html: (hit.moduleDescription as string)
               }}
             ></div>
           </Card>
@@ -86,12 +83,12 @@ const selectStyles = {
     fontSize: "16px",
     borderColor: state.isFocused ? "#6f5bd7" : base.borderColor,
     boxShadow: state.isFocused ? "0 0 0 1px #6f5bd7" : base.borderColor,
-    '&:hover': {
-      borderColor: state.isFocused ? '##6f5bd7' : base.borderColor,
+    "&:hover": {
+      borderColor: state.isFocused ? "#6f5bd7" : base.borderColor,
       boxShadow: state.isFocused ? "0 0 0 1px #6f5bd7" : base.boarderColor,
-    }
-  })
-};
+    },
+  }),
+}
 
 export const SearchArea: React.FunctionComponent<
   PropsWithChildren<SearchAreaProps>
@@ -165,7 +162,7 @@ export const SearchArea: React.FunctionComponent<
   const selectRepoTitleFacet = (type: any) => {
     if (!type) {
       // Unset - we always want to be scoped to modules
-      setFacetFilters([]);
+      setFacetFilters([])
     } else {
       setFacetFilters([`type:${type.value}`])
     }
@@ -197,6 +194,7 @@ export const SearchArea: React.FunctionComponent<
               options={searchTypeFacets.map((f) => {
                 return { value: f["key"], label: f["key"] }
               })}
+              placeholder="All"
               styles={selectStyles}
             />
           </div>
