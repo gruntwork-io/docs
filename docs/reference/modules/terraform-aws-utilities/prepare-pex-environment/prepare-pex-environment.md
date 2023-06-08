@@ -9,16 +9,16 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.1" lastModifiedVersion="0.8.0"/>
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.2" lastModifiedVersion="0.8.0"/>
 
 # Prepare PEX Environment Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/prepare-pex-environment" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/prepare-pex-environment" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.8.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-**NOTE**: This module should not be used directly. Use [run-pex-as-data-source](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/run-pex-as-data-source) or
-[run-pex-as-resource](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/run-pex-as-resource) instead.
+**NOTE**: This module should not be used directly. Use [run-pex-as-data-source](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/run-pex-as-data-source) or
+[run-pex-as-resource](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/run-pex-as-resource) instead.
 
 This module can be used to prepare an runtime environment that can call out to a PEX binary. Specifically, this module:
 
@@ -30,7 +30,7 @@ This module uses Python under the hood so, the Python must be installed on the O
 
 ## What is PEX?
 
-PEX (or Python EXecutable) is an executable python environment in the spirit of [virtualenvs](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/prepare-pex-environment/virtualenv.org). It is
+PEX (or Python EXecutable) is an executable python environment in the spirit of [virtualenvs](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/prepare-pex-environment/virtualenv.org). It is
 generated using the [pex](https://github.com/pantsbuild/pex) library, and is an executable zip file containing:
 
 *   An bootstrap script in python that unpacks the requirements and includes them in the `PYTHONPATH` (`sys.path`).
@@ -71,7 +71,7 @@ This will search [`pypi`](https://pypi.org/) for the python packages defined in 
 specified platform and python versions, download the wheel/package, inject the bootstrap script and produce an
 executable zip file.
 
-See the [`pex/sample-python-script` example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/examples/pex/sample-python-script) for an example implementation that you
+See the [`pex/sample-python-script` example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/examples/pex/sample-python-script) for an example implementation that you
 can use as a template.
 
 ### Known limitations of PEX
@@ -112,7 +112,7 @@ can use as a template.
 
 module "prepare_pex_environment" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/prepare-pex-environment?ref=v0.9.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/prepare-pex-environment?ref=v0.9.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -122,8 +122,8 @@ module "prepare_pex_environment" {
   # housing the pex file.
   pex_module_path_parts = <list(string)>
 
-  # Parts of the path (folders and files names) to the PEX executable for python as
-  # a list of strings.
+  # Parts of the path (folders and files names) to the PEX executable for python
+  # as a list of strings.
   python_pex_path_parts = <list(string)>
 
 }
@@ -141,7 +141,7 @@ module "prepare_pex_environment" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/prepare-pex-environment?ref=v0.9.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/prepare-pex-environment?ref=v0.9.2"
 }
 
 inputs = {
@@ -154,8 +154,8 @@ inputs = {
   # housing the pex file.
   pex_module_path_parts = <list(string)>
 
-  # Parts of the path (folders and files names) to the PEX executable for python as
-  # a list of strings.
+  # Parts of the path (folders and files names) to the PEX executable for python
+  # as a list of strings.
   python_pex_path_parts = <list(string)>
 
 }
@@ -226,11 +226,11 @@ The python path that should be used for running PEX file. This should be set as 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/prepare-pex-environment/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/prepare-pex-environment/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/prepare-pex-environment/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/prepare-pex-environment/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/prepare-pex-environment/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/prepare-pex-environment/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5e8fc330f386b26a4d5420e212a6d149"
+  "hash": "632579e3e8de1cda824a062b9513c2b5"
 }
 ##DOCS-SOURCER-END -->

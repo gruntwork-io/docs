@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.2" lastModifiedVersion="0.67.3"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.3" lastModifiedVersion="0.67.3"/>
 
 # IAM Role for GitHub Actions
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/github-actions-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/github-actions-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -182,15 +182,15 @@ jobs:
 
 module "github_actions_iam_role" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.68.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Map of github repositories to the list of branches that are allowed to assume
-  # the IAM role. The repository should be encoded as org/repo-name (e.g.,
-  # gruntwork-io/terrraform-aws-ci).
+  # Map of github repositories to the list of branches that are allowed to
+  # assume the IAM role. The repository should be encoded as org/repo-name
+  # (e.g., gruntwork-io/terrraform-aws-ci).
   allowed_sources = <map(list(string))>
 
   # ARN of the OpenID Connect Provider provisioned for GitHub Actions.
@@ -203,9 +203,9 @@ module "github_actions_iam_role" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The string operator to use when evaluating the AWS IAM condition for determining
-  # which GitHub repos are allowed to assume the IAM role. Examples: StringEquals,
-  # StringLike, etc.
+  # The string operator to use when evaluating the AWS IAM condition for
+  # determining which GitHub repos are allowed to assume the IAM role. Examples:
+  # StringEquals, StringLike, etc.
   allowed_sources_condition_operator = "StringEquals"
 
   # Whether to create the IAM role and attach permissions for GitHub Actions to
@@ -222,27 +222,28 @@ module "github_actions_iam_role" {
   # A list of IAM AWS Customer Managed policy names to attach to the group.
   iam_customer_managed_policy_names = null
 
-  # An object defining the IAM policy statements that should be attached directly to
-  # the IAM role/group. The input is a map of objects where the map keys are SIDs
-  # for IAM policy statements, and the object fields are the resources, actions, and
-  # the effect of the statement.
+  # An object defining the IAM policy statements that should be attached
+  # directly to the IAM role/group. The input is a map of objects where the map
+  # keys are SIDs for IAM policy statements, and the object fields are the
+  # resources, actions, and the effect of the statement.
   iam_policy = {}
 
   # A list of policies (by ARN) to attach to this group.
   iam_policy_arns = null
 
-  # The name of an IAM role to create. Required when var.create_iam_role is true.
+  # The name of an IAM role to create. Required when var.create_iam_role is
+  # true.
   iam_role_name = null
 
-  # The maximum allowable session duration, in seconds, for the credentials you get
-  # when assuming the IAM roles created by this module.
+  # The maximum allowable session duration, in seconds, for the credentials you
+  # get when assuming the IAM roles created by this module.
   max_session_duration = 43200
 
-  # A list of AWS services for which the IAM role will receive full permissions. See
-  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-reso
-  # rces-contextkeys.html to find the service name. For example, to grant developers
-  # access only to EC2 and Amazon Machine Learning, use the value
-  # ["ec2","machinelearning"].
+  # A list of AWS services for which the IAM role will receive full permissions.
+  # See
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-resources-contextkeys.html
+  # to find the service name. For example, to grant developers access only to
+  # EC2 and Amazon Machine Learning, use the value ["ec2","machinelearning"].
   permitted_full_access_services = []
 
 }
@@ -260,7 +261,7 @@ module "github_actions_iam_role" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.68.3"
 }
 
 inputs = {
@@ -269,9 +270,9 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Map of github repositories to the list of branches that are allowed to assume
-  # the IAM role. The repository should be encoded as org/repo-name (e.g.,
-  # gruntwork-io/terrraform-aws-ci).
+  # Map of github repositories to the list of branches that are allowed to
+  # assume the IAM role. The repository should be encoded as org/repo-name
+  # (e.g., gruntwork-io/terrraform-aws-ci).
   allowed_sources = <map(list(string))>
 
   # ARN of the OpenID Connect Provider provisioned for GitHub Actions.
@@ -284,9 +285,9 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The string operator to use when evaluating the AWS IAM condition for determining
-  # which GitHub repos are allowed to assume the IAM role. Examples: StringEquals,
-  # StringLike, etc.
+  # The string operator to use when evaluating the AWS IAM condition for
+  # determining which GitHub repos are allowed to assume the IAM role. Examples:
+  # StringEquals, StringLike, etc.
   allowed_sources_condition_operator = "StringEquals"
 
   # Whether to create the IAM role and attach permissions for GitHub Actions to
@@ -303,27 +304,28 @@ inputs = {
   # A list of IAM AWS Customer Managed policy names to attach to the group.
   iam_customer_managed_policy_names = null
 
-  # An object defining the IAM policy statements that should be attached directly to
-  # the IAM role/group. The input is a map of objects where the map keys are SIDs
-  # for IAM policy statements, and the object fields are the resources, actions, and
-  # the effect of the statement.
+  # An object defining the IAM policy statements that should be attached
+  # directly to the IAM role/group. The input is a map of objects where the map
+  # keys are SIDs for IAM policy statements, and the object fields are the
+  # resources, actions, and the effect of the statement.
   iam_policy = {}
 
   # A list of policies (by ARN) to attach to this group.
   iam_policy_arns = null
 
-  # The name of an IAM role to create. Required when var.create_iam_role is true.
+  # The name of an IAM role to create. Required when var.create_iam_role is
+  # true.
   iam_role_name = null
 
-  # The maximum allowable session duration, in seconds, for the credentials you get
-  # when assuming the IAM roles created by this module.
+  # The maximum allowable session duration, in seconds, for the credentials you
+  # get when assuming the IAM roles created by this module.
   max_session_duration = 43200
 
-  # A list of AWS services for which the IAM role will receive full permissions. See
-  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-reso
-  # rces-contextkeys.html to find the service name. For example, to grant developers
-  # access only to EC2 and Amazon Machine Learning, use the value
-  # ["ec2","machinelearning"].
+  # A list of AWS services for which the IAM role will receive full permissions.
+  # See
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-resources-contextkeys.html
+  # to find the service name. For example, to grant developers access only to
+  # EC2 and Amazon Machine Learning, use the value ["ec2","machinelearning"].
   permitted_full_access_services = []
 
 }
@@ -535,11 +537,11 @@ The name of the IAM role.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/github-actions-iam-role/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/github-actions-iam-role/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/github-actions-iam-role/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/github-actions-iam-role/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/github-actions-iam-role/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/github-actions-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b35da09fb074b2d5fedb280afdf15234"
+  "hash": "7ea2098676baff08dcc55d551369e9ea"
 }
 ##DOCS-SOURCER-END -->

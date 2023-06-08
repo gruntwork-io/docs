@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.52.1" lastModifiedVersion="0.51.6"/>
+<VersionBadge repoTitle="CI Modules" version="0.52.3" lastModifiedVersion="0.52.3"/>
 
 # Jenkins server
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/jenkins-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/jenkins-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.51.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to deploy [Jenkins CI server](https://jenkins.io) in AWS. It creates the following resources:
 
@@ -29,17 +29,17 @@ to run an ASG for Jenkins that can correctly reattach an EBS volume.
 
 ## Example code
 
-*   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/examples/jenkins) for working sample code.
-*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/jenkins-server/vars.tf) for all parameters you can configure on this module.
+*   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/examples/jenkins) for working sample code.
+*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/jenkins-server/vars.tf) for all parameters you can configure on this module.
 
 ## Jenkins AMI
 
-See the [install-jenkins module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/install-jenkins) for a way to create an AMI with Jenkins installed and a
+See the [install-jenkins module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/install-jenkins) for a way to create an AMI with Jenkins installed and a
 script you can run in User Data to start Jenkins while the server is booting.
 
 ## Backing up Jenkins
 
-See the [ec2-backup module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/ec2-backup) for an automatic way to take scheduled backups of Jenkins and its EBS
+See the [ec2-backup module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ec2-backup) for an automatic way to take scheduled backups of Jenkins and its EBS
 volume.
 
 ## IAM permissions
@@ -112,14 +112,14 @@ data "aws_iam_policy_document" "example" {
 
 module "jenkins_server" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.52.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.52.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The domain name for which there is an ACM cert in this region that can be used
-  # to do SSL termination for the Jenkins ALB (e.g. *.foo.com).
+  # The domain name for which there is an ACM cert in this region that can be
+  # used to do SSL termination for the Jenkins ALB (e.g. *.foo.com).
   acm_cert_domain_name = <string>
 
   # The IDs of the subnets where the Jenkins ALB should be deployed (e.g.,
@@ -136,11 +136,12 @@ module "jenkins_server" {
   # The type of EC2 Instance to run (e.g. t2.micro).
   instance_type = <string>
 
-  # The ID of the subnet where Jenkins should be deployed (e.g., subnet-abcd1234).
+  # The ID of the subnet where Jenkins should be deployed (e.g.,
+  # subnet-abcd1234).
   jenkins_subnet_id = <string>
 
-  # The name for the Jenkins ASG and to namespace all the resources created by this
-  # module.
+  # The name for the Jenkins ASG and to namespace all the resources created by
+  # this module.
   name = <string>
 
   # The id of the VPC where Jenkins should be deployed (e.g. vpc-abcd1234).
@@ -152,12 +153,12 @@ module "jenkins_server" {
 
   # A list of additional ALB target group ARNs. The Jenkins server will be
   # registered in these groups, in addition to the ALB created by this module.
-  # Allows for custom and specialised routing of certain Jenkins paths, for example
-  # WebHooks.
+  # Allows for custom and specialised routing of certain Jenkins paths, for
+  # example WebHooks.
   additional_target_group_arns = []
 
-  # If true, the ALB will drop invalid headers. Elastic Load Balancing requires that
-  # message header names contain only alphanumeric characters and hyphens.
+  # If true, the ALB will drop invalid headers. Elastic Load Balancing requires
+  # that message header names contain only alphanumeric characters and hyphens.
   alb_drop_invalid_header_fields = false
 
   # The port the Jenkins ALB should listen on for HTTP requests.
@@ -166,21 +167,21 @@ module "jenkins_server" {
   # The port the Jenkins ALB should listen on for HTTPS requests.
   alb_https_port = 443
 
-  # The CIDR blocks from which the Jenkins ALB will allow HTTP/HTTPS requests. At
-  # least one of allow_incoming_http_from_cidr_blocks or
-  # allow_incoming_http_from_security_group_ids must be non-empty, or the ALB won't
-  # be able to receive any requests!
+  # The CIDR blocks from which the Jenkins ALB will allow HTTP/HTTPS requests.
+  # At least one of allow_incoming_http_from_cidr_blocks or
+  # allow_incoming_http_from_security_group_ids must be non-empty, or the ALB
+  # won't be able to receive any requests!
   allow_incoming_http_from_cidr_blocks = []
 
   # The Security Group IDs from which the Jenkins ALB will allow HTTP/HTTPS
   # requests. At least one of allow_incoming_http_from_cidr_blocks or
-  # allow_incoming_http_from_security_group_ids must be non-empty, or the ALB won't
-  # be able to receive any requests!
+  # allow_incoming_http_from_security_group_ids must be non-empty, or the ALB
+  # won't be able to receive any requests!
   allow_incoming_http_from_security_group_ids = []
 
   # A list of IP address ranges in CIDR format from which SSH access will be
-  # permitted. Attempts to access the bastion host from all other IP addresses will
-  # be blocked.
+  # permitted. Attempts to access the bastion host from all other IP addresses
+  # will be blocked.
   allow_ssh_from_cidr_blocks = []
 
   # The IDs of security groups from which SSH connections will be allowed.
@@ -193,24 +194,24 @@ module "jenkins_server" {
   # A list of custom tags to apply to Jenkins and all other resources.
   custom_tags = {}
 
-  # How many servers to deploy at a time during a rolling deployment. For example,
-  # if you have 10 servers and set this variable to 2, then the deployment will a)
-  # undeploy 2 servers, b) deploy 2 replacement servers, c) repeat the process for
-  # the next 2 servers.
+  # How many servers to deploy at a time during a rolling deployment. For
+  # example, if you have 10 servers and set this variable to 2, then the
+  # deployment will a) undeploy 2 servers, b) deploy 2 replacement servers, c)
+  # repeat the process for the next 2 servers.
   deployment_batch_size = 1
 
   # The maximum number of times to retry the Load Balancer's Health Check before
-  # giving up on a rolling deployment of Jenkins. Only used if var.skip_health_check
-  # is false.
+  # giving up on a rolling deployment of Jenkins. Only used if
+  # var.skip_health_check is false.
   deployment_health_check_max_retries = 60
 
-  # The amount of time in seconds to wait between checking the status of the Load
-  # Balancer's Health Check status for a Jenkins instance that is being deployed or
-  # redeployed. Only used if var.skip_health_check is false
+  # The amount of time in seconds to wait between checking the status of the
+  # Load Balancer's Health Check status for a Jenkins instance that is being
+  # deployed or redeployed. Only used if var.skip_health_check is false
   deployment_health_check_retry_interval_in_seconds = 10
 
-  # The domain name for which to create a DNS A Record (e.g., foo.jenkins.com). Only
-  # used if var.create_route53_entry is true.
+  # The domain name for which to create a DNS A Record (e.g., foo.jenkins.com).
+  # Only used if var.create_route53_entry is true.
   domain_name = "replace-me"
 
   # Set to true to make Jenkins EBS-optimized.
@@ -219,8 +220,8 @@ module "jenkins_server" {
   # Set to true to use an encrypted EBS volume for the Jenkins data dir.
   ebs_volume_encrypted = true
 
-  # The amount of provisioned IOPS for the EBS volume to use for the Jenkins data
-  # dir. If ebs_volume_type is set to io1, you must set this parameter; if
+  # The amount of provisioned IOPS for the EBS volume to use for the Jenkins
+  # data dir. If ebs_volume_type is set to io1, you must set this parameter; if
   # ebs_volume_type is set to anything else, you must NOT set this parameter.
   ebs_volume_iops = null
 
@@ -235,15 +236,16 @@ module "jenkins_server" {
   # standard, gp2, or io1.
   ebs_volume_type = "gp2"
 
-  # If true, deletion of the ALB will be disabled via the AWS API. This will prevent
-  # Terraform from deleting the load balancer.
+  # If true, deletion of the ALB will be disabled via the AWS API. This will
+  # prevent Terraform from deleting the load balancer.
   enable_alb_deletion_protection = false
 
-  # How long, in seconds, to wait after Jenkins deploys before checking its health.
+  # How long, in seconds, to wait after Jenkins deploys before checking its
+  # health.
   health_check_grace_period = 120
 
-  # How many load balancer health checks Jenkins must pass before it is considered
-  # healthy.
+  # How many load balancer health checks Jenkins must pass before it is
+  # considered healthy.
   health_check_healthy_threshold = 2
 
   # How often, in seconds, the load balancer should conduct health checks on
@@ -256,25 +258,25 @@ module "jenkins_server" {
   # The status code the ALB should expect for health checks.
   health_check_status_code = "200"
 
-  # The maximum time, in seconds, Jenkins has to respond to a load balancer health
-  # check before it times out.
+  # The maximum time, in seconds, Jenkins has to respond to a load balancer
+  # health check before it times out.
   health_check_timeout = 10
 
-  # How many load balancer health checks Jenkins must fail before it is considered
-  # unhealthy.
+  # How many load balancer health checks Jenkins must fail before it is
+  # considered unhealthy.
   health_check_unhealthy_threshold = 10
 
-  # The ID of the Route 53 Hosted Zone in which to create a DNS A Record. Only used
-  # if var.create_route53_entry is true.
+  # The ID of the Route 53 Hosted Zone in which to create a DNS A Record. Only
+  # used if var.create_route53_entry is true.
   hosted_zone_id = "replace-me"
 
-  # Set to true to make the Jenkins ALB an internal ALB that cannot be accessed from
-  # the public Internet. We strongly recommend setting this to true to keep Jenkins
-  # more secure.
+  # Set to true to make the Jenkins ALB an internal ALB that cannot be accessed
+  # from the public Internet. We strongly recommend setting this to true to keep
+  # Jenkins more secure.
   is_internal_alb = true
 
-  # The amount time for the load balancer will wait between changing Jenkins' status
-  # from draining to unused when redeploying.
+  # The amount time for the load balancer will wait between changing Jenkins'
+  # status from draining to unused when redeploying.
   jenkins_deregistration_delay = 10
 
   # The port Jenkins should listen on for HTTP requests.
@@ -283,63 +285,67 @@ module "jenkins_server" {
   # The protocol the load balancer should use when talking to Jenkins.
   jenkins_protocol = "HTTP"
 
-  # The name of an EC2 Key Pair to associate with each server for SSH access. Set to
-  # an empty string to not associate a Key Pair.
+  # The name of an EC2 Key Pair to associate with each server for SSH access.
+  # Set to an empty string to not associate a Key Pair.
   key_pair_name = null
 
-  # After this number of days, Jenkins ALB access logs should be transitioned from
-  # S3 to Glacier. Enter 0 to never archive log data.
+  # After this number of days, Jenkins ALB access logs should be transitioned
+  # from S3 to Glacier. Enter 0 to never archive log data.
   num_days_after_which_archive_log_data = 30
 
-  # After this number of days, Jenkins ALB access logs should be deleted from S3.
-  # Enter 0 to never delete log data.
+  # After this number of days, Jenkins ALB access logs should be deleted from
+  # S3. Enter 0 to never delete log data.
   num_days_after_which_delete_log_data = 0
 
-  # Set to true to enable redirect of all requests from http to https. Ideally, this
-  # variable wouldn't be necessary, but because Terraform can't interpolate dynamic
-  # variables in counts, we must explicitly include this. Enter true or false.
+  # Set to true to enable redirect of all requests from http to https. Ideally,
+  # this variable wouldn't be necessary, but because Terraform can't interpolate
+  # dynamic variables in counts, we must explicitly include this. Enter true or
+  # false.
   redirect_http_to_https = false
 
   # Whether the root volume for Jenkins should be encrypted.
   root_block_device_encrypted = true
 
+  # The name of the root volume
+  root_block_device_name = "/dev/sda1"
+
   # The size, in GB, of the root volume for Jenkins.
   root_block_device_volume_size = 100
 
-  # The type of the root volume for Jenkins. Must be one of: standard, gp2, or io1.
+  # The type of the root volume for Jenkins. Must be one of: standard, gp2, or
+  # io1.
   root_block_device_volume_type = "standard"
 
   # The log level to use with the rolling deploy script. It can be useful to set
   # this to DEBUG when troubleshooting Jenkins redeploys.
   script_log_level = "INFO"
 
-  # If set to true, skip the health check, and start a rolling deployment of Jenkins
-  # without waiting for it to initially be in a healthy state. This is primarily
-  # useful if the server group is in a broken state and you want to force a
-  # deployment anyway.
+  # If set to true, skip the health check, and start a rolling deployment of
+  # Jenkins without waiting for it to initially be in a healthy state. This is
+  # primarily useful if the server group is in a broken state and you want to
+  # force a deployment anyway.
   skip_health_check = false
 
   # The aws predefined policy for alb. A List of policies can be found here:
-  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https
-  # listener.html#describe-ssl-policies
+  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies
   ssl_policy = "ELBSecurityPolicy-TLS-1-1-2017-01"
 
   # The tenancy to use for Jenkins. Must be one of: default, dedicated, or host.
   tenancy = "default"
 
   # The User Data script to run on the Jenkins server when it is booting. If you
-  # need to pass gzipped, base64-encoded data (e.g., for a cloud-init script), use
-  # var.user_data_base64 instead.
+  # need to pass gzipped, base64-encoded data (e.g., for a cloud-init script),
+  # use var.user_data_base64 instead.
   user_data = null
 
   # The base64-encoded User Data script to run on the Jenkins server when it is
-  # booting. This can be used to pass binary User Data, such as a gzipped cloud-init
-  # script. If you wish to pass in plain text (e.g., typical Bash Script) for User
-  # Data, use var.user_data instead.
+  # booting. This can be used to pass binary User Data, such as a gzipped
+  # cloud-init script. If you wish to pass in plain text (e.g., typical Bash
+  # Script) for User Data, use var.user_data instead.
   user_data_base64 = null
 
-  # A maximum duration to wait for each server to be healthy before timing out (e.g.
-  # 10m). Valid units of time are: s, m, h.
+  # A maximum duration to wait for each server to be healthy before timing out
+  # (e.g. 10m). Valid units of time are: s, m, h.
   wait_for_capacity_timeout = "10m"
 
 }
@@ -357,7 +363,7 @@ module "jenkins_server" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.52.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.52.3"
 }
 
 inputs = {
@@ -366,8 +372,8 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The domain name for which there is an ACM cert in this region that can be used
-  # to do SSL termination for the Jenkins ALB (e.g. *.foo.com).
+  # The domain name for which there is an ACM cert in this region that can be
+  # used to do SSL termination for the Jenkins ALB (e.g. *.foo.com).
   acm_cert_domain_name = <string>
 
   # The IDs of the subnets where the Jenkins ALB should be deployed (e.g.,
@@ -384,11 +390,12 @@ inputs = {
   # The type of EC2 Instance to run (e.g. t2.micro).
   instance_type = <string>
 
-  # The ID of the subnet where Jenkins should be deployed (e.g., subnet-abcd1234).
+  # The ID of the subnet where Jenkins should be deployed (e.g.,
+  # subnet-abcd1234).
   jenkins_subnet_id = <string>
 
-  # The name for the Jenkins ASG and to namespace all the resources created by this
-  # module.
+  # The name for the Jenkins ASG and to namespace all the resources created by
+  # this module.
   name = <string>
 
   # The id of the VPC where Jenkins should be deployed (e.g. vpc-abcd1234).
@@ -400,12 +407,12 @@ inputs = {
 
   # A list of additional ALB target group ARNs. The Jenkins server will be
   # registered in these groups, in addition to the ALB created by this module.
-  # Allows for custom and specialised routing of certain Jenkins paths, for example
-  # WebHooks.
+  # Allows for custom and specialised routing of certain Jenkins paths, for
+  # example WebHooks.
   additional_target_group_arns = []
 
-  # If true, the ALB will drop invalid headers. Elastic Load Balancing requires that
-  # message header names contain only alphanumeric characters and hyphens.
+  # If true, the ALB will drop invalid headers. Elastic Load Balancing requires
+  # that message header names contain only alphanumeric characters and hyphens.
   alb_drop_invalid_header_fields = false
 
   # The port the Jenkins ALB should listen on for HTTP requests.
@@ -414,21 +421,21 @@ inputs = {
   # The port the Jenkins ALB should listen on for HTTPS requests.
   alb_https_port = 443
 
-  # The CIDR blocks from which the Jenkins ALB will allow HTTP/HTTPS requests. At
-  # least one of allow_incoming_http_from_cidr_blocks or
-  # allow_incoming_http_from_security_group_ids must be non-empty, or the ALB won't
-  # be able to receive any requests!
+  # The CIDR blocks from which the Jenkins ALB will allow HTTP/HTTPS requests.
+  # At least one of allow_incoming_http_from_cidr_blocks or
+  # allow_incoming_http_from_security_group_ids must be non-empty, or the ALB
+  # won't be able to receive any requests!
   allow_incoming_http_from_cidr_blocks = []
 
   # The Security Group IDs from which the Jenkins ALB will allow HTTP/HTTPS
   # requests. At least one of allow_incoming_http_from_cidr_blocks or
-  # allow_incoming_http_from_security_group_ids must be non-empty, or the ALB won't
-  # be able to receive any requests!
+  # allow_incoming_http_from_security_group_ids must be non-empty, or the ALB
+  # won't be able to receive any requests!
   allow_incoming_http_from_security_group_ids = []
 
   # A list of IP address ranges in CIDR format from which SSH access will be
-  # permitted. Attempts to access the bastion host from all other IP addresses will
-  # be blocked.
+  # permitted. Attempts to access the bastion host from all other IP addresses
+  # will be blocked.
   allow_ssh_from_cidr_blocks = []
 
   # The IDs of security groups from which SSH connections will be allowed.
@@ -441,24 +448,24 @@ inputs = {
   # A list of custom tags to apply to Jenkins and all other resources.
   custom_tags = {}
 
-  # How many servers to deploy at a time during a rolling deployment. For example,
-  # if you have 10 servers and set this variable to 2, then the deployment will a)
-  # undeploy 2 servers, b) deploy 2 replacement servers, c) repeat the process for
-  # the next 2 servers.
+  # How many servers to deploy at a time during a rolling deployment. For
+  # example, if you have 10 servers and set this variable to 2, then the
+  # deployment will a) undeploy 2 servers, b) deploy 2 replacement servers, c)
+  # repeat the process for the next 2 servers.
   deployment_batch_size = 1
 
   # The maximum number of times to retry the Load Balancer's Health Check before
-  # giving up on a rolling deployment of Jenkins. Only used if var.skip_health_check
-  # is false.
+  # giving up on a rolling deployment of Jenkins. Only used if
+  # var.skip_health_check is false.
   deployment_health_check_max_retries = 60
 
-  # The amount of time in seconds to wait between checking the status of the Load
-  # Balancer's Health Check status for a Jenkins instance that is being deployed or
-  # redeployed. Only used if var.skip_health_check is false
+  # The amount of time in seconds to wait between checking the status of the
+  # Load Balancer's Health Check status for a Jenkins instance that is being
+  # deployed or redeployed. Only used if var.skip_health_check is false
   deployment_health_check_retry_interval_in_seconds = 10
 
-  # The domain name for which to create a DNS A Record (e.g., foo.jenkins.com). Only
-  # used if var.create_route53_entry is true.
+  # The domain name for which to create a DNS A Record (e.g., foo.jenkins.com).
+  # Only used if var.create_route53_entry is true.
   domain_name = "replace-me"
 
   # Set to true to make Jenkins EBS-optimized.
@@ -467,8 +474,8 @@ inputs = {
   # Set to true to use an encrypted EBS volume for the Jenkins data dir.
   ebs_volume_encrypted = true
 
-  # The amount of provisioned IOPS for the EBS volume to use for the Jenkins data
-  # dir. If ebs_volume_type is set to io1, you must set this parameter; if
+  # The amount of provisioned IOPS for the EBS volume to use for the Jenkins
+  # data dir. If ebs_volume_type is set to io1, you must set this parameter; if
   # ebs_volume_type is set to anything else, you must NOT set this parameter.
   ebs_volume_iops = null
 
@@ -483,15 +490,16 @@ inputs = {
   # standard, gp2, or io1.
   ebs_volume_type = "gp2"
 
-  # If true, deletion of the ALB will be disabled via the AWS API. This will prevent
-  # Terraform from deleting the load balancer.
+  # If true, deletion of the ALB will be disabled via the AWS API. This will
+  # prevent Terraform from deleting the load balancer.
   enable_alb_deletion_protection = false
 
-  # How long, in seconds, to wait after Jenkins deploys before checking its health.
+  # How long, in seconds, to wait after Jenkins deploys before checking its
+  # health.
   health_check_grace_period = 120
 
-  # How many load balancer health checks Jenkins must pass before it is considered
-  # healthy.
+  # How many load balancer health checks Jenkins must pass before it is
+  # considered healthy.
   health_check_healthy_threshold = 2
 
   # How often, in seconds, the load balancer should conduct health checks on
@@ -504,25 +512,25 @@ inputs = {
   # The status code the ALB should expect for health checks.
   health_check_status_code = "200"
 
-  # The maximum time, in seconds, Jenkins has to respond to a load balancer health
-  # check before it times out.
+  # The maximum time, in seconds, Jenkins has to respond to a load balancer
+  # health check before it times out.
   health_check_timeout = 10
 
-  # How many load balancer health checks Jenkins must fail before it is considered
-  # unhealthy.
+  # How many load balancer health checks Jenkins must fail before it is
+  # considered unhealthy.
   health_check_unhealthy_threshold = 10
 
-  # The ID of the Route 53 Hosted Zone in which to create a DNS A Record. Only used
-  # if var.create_route53_entry is true.
+  # The ID of the Route 53 Hosted Zone in which to create a DNS A Record. Only
+  # used if var.create_route53_entry is true.
   hosted_zone_id = "replace-me"
 
-  # Set to true to make the Jenkins ALB an internal ALB that cannot be accessed from
-  # the public Internet. We strongly recommend setting this to true to keep Jenkins
-  # more secure.
+  # Set to true to make the Jenkins ALB an internal ALB that cannot be accessed
+  # from the public Internet. We strongly recommend setting this to true to keep
+  # Jenkins more secure.
   is_internal_alb = true
 
-  # The amount time for the load balancer will wait between changing Jenkins' status
-  # from draining to unused when redeploying.
+  # The amount time for the load balancer will wait between changing Jenkins'
+  # status from draining to unused when redeploying.
   jenkins_deregistration_delay = 10
 
   # The port Jenkins should listen on for HTTP requests.
@@ -531,63 +539,67 @@ inputs = {
   # The protocol the load balancer should use when talking to Jenkins.
   jenkins_protocol = "HTTP"
 
-  # The name of an EC2 Key Pair to associate with each server for SSH access. Set to
-  # an empty string to not associate a Key Pair.
+  # The name of an EC2 Key Pair to associate with each server for SSH access.
+  # Set to an empty string to not associate a Key Pair.
   key_pair_name = null
 
-  # After this number of days, Jenkins ALB access logs should be transitioned from
-  # S3 to Glacier. Enter 0 to never archive log data.
+  # After this number of days, Jenkins ALB access logs should be transitioned
+  # from S3 to Glacier. Enter 0 to never archive log data.
   num_days_after_which_archive_log_data = 30
 
-  # After this number of days, Jenkins ALB access logs should be deleted from S3.
-  # Enter 0 to never delete log data.
+  # After this number of days, Jenkins ALB access logs should be deleted from
+  # S3. Enter 0 to never delete log data.
   num_days_after_which_delete_log_data = 0
 
-  # Set to true to enable redirect of all requests from http to https. Ideally, this
-  # variable wouldn't be necessary, but because Terraform can't interpolate dynamic
-  # variables in counts, we must explicitly include this. Enter true or false.
+  # Set to true to enable redirect of all requests from http to https. Ideally,
+  # this variable wouldn't be necessary, but because Terraform can't interpolate
+  # dynamic variables in counts, we must explicitly include this. Enter true or
+  # false.
   redirect_http_to_https = false
 
   # Whether the root volume for Jenkins should be encrypted.
   root_block_device_encrypted = true
 
+  # The name of the root volume
+  root_block_device_name = "/dev/sda1"
+
   # The size, in GB, of the root volume for Jenkins.
   root_block_device_volume_size = 100
 
-  # The type of the root volume for Jenkins. Must be one of: standard, gp2, or io1.
+  # The type of the root volume for Jenkins. Must be one of: standard, gp2, or
+  # io1.
   root_block_device_volume_type = "standard"
 
   # The log level to use with the rolling deploy script. It can be useful to set
   # this to DEBUG when troubleshooting Jenkins redeploys.
   script_log_level = "INFO"
 
-  # If set to true, skip the health check, and start a rolling deployment of Jenkins
-  # without waiting for it to initially be in a healthy state. This is primarily
-  # useful if the server group is in a broken state and you want to force a
-  # deployment anyway.
+  # If set to true, skip the health check, and start a rolling deployment of
+  # Jenkins without waiting for it to initially be in a healthy state. This is
+  # primarily useful if the server group is in a broken state and you want to
+  # force a deployment anyway.
   skip_health_check = false
 
   # The aws predefined policy for alb. A List of policies can be found here:
-  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https
-  # listener.html#describe-ssl-policies
+  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies
   ssl_policy = "ELBSecurityPolicy-TLS-1-1-2017-01"
 
   # The tenancy to use for Jenkins. Must be one of: default, dedicated, or host.
   tenancy = "default"
 
   # The User Data script to run on the Jenkins server when it is booting. If you
-  # need to pass gzipped, base64-encoded data (e.g., for a cloud-init script), use
-  # var.user_data_base64 instead.
+  # need to pass gzipped, base64-encoded data (e.g., for a cloud-init script),
+  # use var.user_data_base64 instead.
   user_data = null
 
   # The base64-encoded User Data script to run on the Jenkins server when it is
-  # booting. This can be used to pass binary User Data, such as a gzipped cloud-init
-  # script. If you wish to pass in plain text (e.g., typical Bash Script) for User
-  # Data, use var.user_data instead.
+  # booting. This can be used to pass binary User Data, such as a gzipped
+  # cloud-init script. If you wish to pass in plain text (e.g., typical Bash
+  # Script) for User Data, use var.user_data instead.
   user_data_base64 = null
 
-  # A maximum duration to wait for each server to be healthy before timing out (e.g.
-  # 10m). Valid units of time are: s, m, h.
+  # A maximum duration to wait for each server to be healthy before timing out
+  # (e.g. 10m). Valid units of time are: s, m, h.
   wait_for_capacity_timeout = "10m"
 
 }
@@ -1016,6 +1028,15 @@ Whether the root volume for Jenkins should be encrypted.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="root_block_device_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the root volume
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;/dev/sda1&quot;"/>
+</HclListItem>
+
 <HclListItem name="root_block_device_volume_size" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1152,11 +1173,11 @@ A maximum duration to wait for each server to be healthy before timing out (e.g.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/jenkins-server/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/jenkins-server/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.1/modules/jenkins-server/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/jenkins-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/jenkins-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/jenkins-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "044f0ba5add7bf404ccfb410154bb7a4"
+  "hash": "7ddb46167c2d60ee6861147765b41373"
 }
 ##DOCS-SOURCER-END -->

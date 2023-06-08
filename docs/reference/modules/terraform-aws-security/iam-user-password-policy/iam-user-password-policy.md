@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.2" lastModifiedVersion="0.65.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.3" lastModifiedVersion="0.65.0"/>
 
 # Set a Password Policy for IAM Users
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-user-password-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/iam-user-password-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -46,7 +46,7 @@ password policy you already have in place!
 
 module "iam_user_password_policy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-user-password-policy?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-user-password-policy?ref=v0.68.3"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -56,16 +56,17 @@ module "iam_user_password_policy" {
   allow_users_to_change_password = true
 
   # Set to false to have this module create no resources. This weird parameter
-  # exists solely because Terraform does not support conditional modules. Therefore,
-  # this is a hack to allow you to conditionally decide if the resources should be
-  # created or not.
+  # exists solely because Terraform does not support conditional modules.
+  # Therefore, this is a hack to allow you to conditionally decide if the
+  # resources should be created or not.
   create_resources = true
 
-  # Whether users are prevented from setting a new password after their password has
-  # expired (i.e. require administrator reset) (true or false).
+  # Whether users are prevented from setting a new password after their password
+  # has expired (i.e. require administrator reset) (true or false).
   hard_expiry = true
 
-  # The number of days that an user password is valid. Enter 0 for no expiration.
+  # The number of days that an user password is valid. Enter 0 for no
+  # expiration.
   max_password_age = 0
 
   # Minimum length to require for user passwords.
@@ -101,7 +102,7 @@ module "iam_user_password_policy" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-user-password-policy?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-user-password-policy?ref=v0.68.3"
 }
 
 inputs = {
@@ -114,16 +115,17 @@ inputs = {
   allow_users_to_change_password = true
 
   # Set to false to have this module create no resources. This weird parameter
-  # exists solely because Terraform does not support conditional modules. Therefore,
-  # this is a hack to allow you to conditionally decide if the resources should be
-  # created or not.
+  # exists solely because Terraform does not support conditional modules.
+  # Therefore, this is a hack to allow you to conditionally decide if the
+  # resources should be created or not.
   create_resources = true
 
-  # Whether users are prevented from setting a new password after their password has
-  # expired (i.e. require administrator reset) (true or false).
+  # Whether users are prevented from setting a new password after their password
+  # has expired (i.e. require administrator reset) (true or false).
   hard_expiry = true
 
-  # The number of days that an user password is valid. Enter 0 for no expiration.
+  # The number of days that an user password is valid. Enter 0 for no
+  # expiration.
   max_password_age = 0
 
   # Minimum length to require for user passwords.
@@ -334,11 +336,11 @@ Whether to require uppercase characters for user passwords.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-user-password-policy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-user-password-policy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-user-password-policy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/iam-user-password-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/iam-user-password-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/iam-user-password-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4e5d6c8921c7716b05dd39d3e09cd31a"
+  "hash": "daaafa9cf89130cb2060261fe764f89c"
 }
 ##DOCS-SOURCER-END -->

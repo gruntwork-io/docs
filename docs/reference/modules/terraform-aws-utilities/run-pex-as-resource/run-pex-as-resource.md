@@ -9,19 +9,19 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.1" lastModifiedVersion="0.8.0"/>
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.2" lastModifiedVersion="0.8.0"/>
 
 # Run PEX as Resource
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/run-pex-as-resource" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/run-pex-as-resource" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.8.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module runs the provided PEX binary in a portable manner that works with multiple platforms and python versions, in
 the context of a [local-exec provisioner](https://www.terraform.io/docs/provisioners/local-exec.html) in Terraform.
 
-This module uses [`prepare-pex-environment`](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/prepare-pex-environment) under the hood. See [What is
-PEX?](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/prepare-pex-environment/README.md#what-is-pex) for more details on what is a PEX file and how to construct one
+This module uses [`prepare-pex-environment`](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/prepare-pex-environment) under the hood. See [What is
+PEX?](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/prepare-pex-environment/README.md#what-is-pex) for more details on what is a PEX file and how to construct one
 for use with this module.
 
 ## Data Source vs Resource
@@ -34,7 +34,7 @@ allow you to call out to arbitrary binaries available on the operator machine. T
 *   [local-exec Provisioners](https://www.terraform.io/docs/provisioners/local-exec.html), where you can run the binary to
     provision a resource.
 
-This module uses the Provisioner approach (you can see the [run-pex-as-data-source module](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/run-pex-as-data-source)
+This module uses the Provisioner approach (you can see the [run-pex-as-data-source module](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/run-pex-as-data-source)
 for running it as a data source). Which approach to use depends on your needs:
 
 *   Data sources are calculated every time a terraform state needs to be refreshed. This includes all `plan` and `apply`
@@ -60,7 +60,7 @@ for running it as a data source). Which approach to use depends on your needs:
 
 module "run_pex_as_resource" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/run-pex-as-resource?ref=v0.9.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/run-pex-as-resource?ref=v0.9.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -70,13 +70,14 @@ module "run_pex_as_resource" {
   # housing the pex file.
   pex_module_path_parts = <list(string)>
 
-  # Parts of the path (folders and files names) to the PEX executable for python as
-  # a list of strings.
+  # Parts of the path (folders and files names) to the PEX executable for python
+  # as a list of strings.
   python_pex_path_parts = <list(string)>
 
-  # Main function of the script, encoded as SCRIPT_MODULE:FUNCTION. So for example,
-  # if the main function of the script is in a file named `entrypoint.py` which
-  # houses the function `main`, then this should be `entrypoint:main`.
+  # Main function of the script, encoded as SCRIPT_MODULE:FUNCTION. So for
+  # example, if the main function of the script is in a file named
+  # `entrypoint.py` which houses the function `main`, then this should be
+  # `entrypoint:main`.
   script_main_function = <string>
 
   # ----------------------------------------------------------------------------------------------------
@@ -86,10 +87,10 @@ module "run_pex_as_resource" {
   # The arguments to pass to the command as a string
   command_args = ""
 
-  # If you set this variable to false, this module will not run the PEX script. This
-  # is used as a workaround because Terraform does not allow you to use the 'count'
-  # parameter on modules. By using this parameter, you can optionally enable the
-  # null_resource within this module.
+  # If you set this variable to false, this module will not run the PEX script.
+  # This is used as a workaround because Terraform does not allow you to use the
+  # 'count' parameter on modules. By using this parameter, you can optionally
+  # enable the null_resource within this module.
   enabled = true
 
   # Additional environment variables to set for the command.
@@ -101,13 +102,13 @@ module "run_pex_as_resource" {
   # triggers json as.
   pass_in_previous_triggers = false
 
-  # Pass in the json encoded trigger with this string as the option to passing into
-  # the command. E.g, setting this to `--triggers` will pass in the option
+  # Pass in the json encoded trigger with this string as the option to passing
+  # into the command. E.g, setting this to `--triggers` will pass in the option
   # `--triggers TRIGGERS_JSON`.
   previous_trigger_option = ""
 
-  # A map of arbitrary strings that, when changed, will force the null resource to
-  # be replaced, re-running any associated provisioners.
+  # A map of arbitrary strings that, when changed, will force the null resource
+  # to be replaced, re-running any associated provisioners.
   triggers = null
 
 }
@@ -125,7 +126,7 @@ module "run_pex_as_resource" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/run-pex-as-resource?ref=v0.9.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/run-pex-as-resource?ref=v0.9.2"
 }
 
 inputs = {
@@ -138,13 +139,14 @@ inputs = {
   # housing the pex file.
   pex_module_path_parts = <list(string)>
 
-  # Parts of the path (folders and files names) to the PEX executable for python as
-  # a list of strings.
+  # Parts of the path (folders and files names) to the PEX executable for python
+  # as a list of strings.
   python_pex_path_parts = <list(string)>
 
-  # Main function of the script, encoded as SCRIPT_MODULE:FUNCTION. So for example,
-  # if the main function of the script is in a file named `entrypoint.py` which
-  # houses the function `main`, then this should be `entrypoint:main`.
+  # Main function of the script, encoded as SCRIPT_MODULE:FUNCTION. So for
+  # example, if the main function of the script is in a file named
+  # `entrypoint.py` which houses the function `main`, then this should be
+  # `entrypoint:main`.
   script_main_function = <string>
 
   # ----------------------------------------------------------------------------------------------------
@@ -154,10 +156,10 @@ inputs = {
   # The arguments to pass to the command as a string
   command_args = ""
 
-  # If you set this variable to false, this module will not run the PEX script. This
-  # is used as a workaround because Terraform does not allow you to use the 'count'
-  # parameter on modules. By using this parameter, you can optionally enable the
-  # null_resource within this module.
+  # If you set this variable to false, this module will not run the PEX script.
+  # This is used as a workaround because Terraform does not allow you to use the
+  # 'count' parameter on modules. By using this parameter, you can optionally
+  # enable the null_resource within this module.
   enabled = true
 
   # Additional environment variables to set for the command.
@@ -169,13 +171,13 @@ inputs = {
   # triggers json as.
   pass_in_previous_triggers = false
 
-  # Pass in the json encoded trigger with this string as the option to passing into
-  # the command. E.g, setting this to `--triggers` will pass in the option
+  # Pass in the json encoded trigger with this string as the option to passing
+  # into the command. E.g, setting this to `--triggers` will pass in the option
   # `--triggers TRIGGERS_JSON`.
   previous_trigger_option = ""
 
-  # A map of arbitrary strings that, when changed, will force the null resource to
-  # be replaced, re-running any associated provisioners.
+  # A map of arbitrary strings that, when changed, will force the null resource
+  # to be replaced, re-running any associated provisioners.
   triggers = null
 
 }
@@ -306,11 +308,11 @@ This output is populated when the pex script successfully runs to completion. As
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/run-pex-as-resource/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/run-pex-as-resource/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/run-pex-as-resource/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/run-pex-as-resource/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/run-pex-as-resource/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/run-pex-as-resource/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b7c6197a414ee7e80cb33512f6186962"
+  "hash": "328a1d49b4baef733d7e4797f398738d"
 }
 ##DOCS-SOURCER-END -->

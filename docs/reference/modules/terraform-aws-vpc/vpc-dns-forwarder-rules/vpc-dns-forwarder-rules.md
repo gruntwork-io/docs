@@ -9,23 +9,23 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.23.0" lastModifiedVersion="0.22.0"/>
+<VersionBadge repoTitle="VPC Modules" version="0.23.1" lastModifiedVersion="0.22.0"/>
 
 # VPC DNS Forwarder Rules Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/vpc-dns-forwarder-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-dns-forwarder-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates [Route 53 Resolver Forwarding
 Rules](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-rules-managing.html) for a VPC that will
-utilize Route 53 Resolver Endpoints created with the [vpc-dns-forwarder module](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/vpc-dns-forwarder). These forwarding
+utilize Route 53 Resolver Endpoints created with the [vpc-dns-forwarder module](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-dns-forwarder). These forwarding
 rules, combined with Route 53 Resolvers, allow DNS queries for specific domains to be resolved by peered VPCs.
 
 ## How do you specify the hostnames that use the forwarder?
 
 By default, no DNS query will be routed through the Route 53 Resolvers created by the [vpc-dns-forwarder
-module](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/vpc-dns-forwarder). You need to create forwarding rules that specify which specific domains should be
+module](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-dns-forwarder). You need to create forwarding rules that specify which specific domains should be
 resolved through the Route 53 Resolvers so that they are resolved over the peering connection. You can use this module
 to construct the forwarding rules.
 
@@ -72,27 +72,27 @@ forwarder rule, it will match any domain that ends with `.local` (note the dot),
 
 module "vpc_dns_forwarder_rules" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-dns-forwarder-rules?ref=v0.23.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-dns-forwarder-rules?ref=v0.23.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The primary ip address of the inbound Route 53 Resolver that should be used to
-  # resolve the endpoints.
+  # The primary ip address of the inbound Route 53 Resolver that should be used
+  # to resolve the endpoints.
   destination_vpc_route53_resolver_primary_ip = <string>
 
-  # The secondary ip address of the inbound Route 53 Resolver that should be used to
-  # resolve the endpoints.
+  # The secondary ip address of the inbound Route 53 Resolver that should be
+  # used to resolve the endpoints.
   destination_vpc_route53_resolver_secondary_ip = <string>
 
-  # The endpoints that should be resolved by forwarding to the destination VPC DNS
-  # resolver. Only these endpoints will be forwarded, while the rest will be
+  # The endpoints that should be resolved by forwarding to the destination VPC
+  # DNS resolver. Only these endpoints will be forwarded, while the rest will be
   # resolved as normal.
   endpoints_to_resolve = <list(string)>
 
-  # The number of endpoints in var.endpoints_to_resolve. This should be computable,
-  # but due to a Terraform limitation, we can't:
+  # The number of endpoints in var.endpoints_to_resolve. This should be
+  # computable, but due to a Terraform limitation, we can't:
   # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
   num_endpoints_to_resolve = <number>
 
@@ -107,8 +107,8 @@ module "vpc_dns_forwarder_rules" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # A map of custom tags to apply to any resources created which accept them. The
-  # key is the tag name and the value is the tag value.
+  # A map of custom tags to apply to any resources created which accept them.
+  # The key is the tag name and the value is the tag value.
   custom_tags = {}
 
 }
@@ -126,7 +126,7 @@ module "vpc_dns_forwarder_rules" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-dns-forwarder-rules?ref=v0.23.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-dns-forwarder-rules?ref=v0.23.1"
 }
 
 inputs = {
@@ -135,21 +135,21 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The primary ip address of the inbound Route 53 Resolver that should be used to
-  # resolve the endpoints.
+  # The primary ip address of the inbound Route 53 Resolver that should be used
+  # to resolve the endpoints.
   destination_vpc_route53_resolver_primary_ip = <string>
 
-  # The secondary ip address of the inbound Route 53 Resolver that should be used to
-  # resolve the endpoints.
+  # The secondary ip address of the inbound Route 53 Resolver that should be
+  # used to resolve the endpoints.
   destination_vpc_route53_resolver_secondary_ip = <string>
 
-  # The endpoints that should be resolved by forwarding to the destination VPC DNS
-  # resolver. Only these endpoints will be forwarded, while the rest will be
+  # The endpoints that should be resolved by forwarding to the destination VPC
+  # DNS resolver. Only these endpoints will be forwarded, while the rest will be
   # resolved as normal.
   endpoints_to_resolve = <list(string)>
 
-  # The number of endpoints in var.endpoints_to_resolve. This should be computable,
-  # but due to a Terraform limitation, we can't:
+  # The number of endpoints in var.endpoints_to_resolve. This should be
+  # computable, but due to a Terraform limitation, we can't:
   # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
   num_endpoints_to_resolve = <number>
 
@@ -164,8 +164,8 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # A map of custom tags to apply to any resources created which accept them. The
-  # key is the tag name and the value is the tag value.
+  # A map of custom tags to apply to any resources created which accept them.
+  # The key is the tag name and the value is the tag value.
   custom_tags = {}
 
 }
@@ -180,11 +180,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/vpc-dns-forwarder-rules/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/vpc-dns-forwarder-rules/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/vpc-dns-forwarder-rules/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-dns-forwarder-rules/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-dns-forwarder-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-dns-forwarder-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4392a6cc39bf21095e5f675f860d5151"
+  "hash": "a96584d1d4494bd373a2f9e5c983b1d1"
 }
 ##DOCS-SOURCER-END -->

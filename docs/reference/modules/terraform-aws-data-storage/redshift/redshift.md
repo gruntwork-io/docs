@@ -9,67 +9,46 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.27.0" lastModifiedVersion="0.27.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.27.2" lastModifiedVersion="0.27.2"/>
 
 # Redshift Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module creates an Amazon Redshift cluster that you can use as a data warehouse. The cluster is managed by AWS and automatically handles leader nodes, worker nodes, backups, patching, and encryption.
+This module creates an Amazon Redshift cluster that you can use as a data warehouse. The cluster is managed by AWS and
+automatically handles leader nodes, worker nodes, backups, patching, and encryption.
 
-![Redshift architecture](/img/reference/modules/terraform-aws-data-storage/redshift/redshift-architecture.png)
+![img](/img/reference/modules/terraform-aws-data-storage/redshift/redshift-architecture.png)
 
-## Features
+## About Redshift
 
-*   Deploy a fully-managed data warehouse
+Amazon Redshift is a fully managed, petabyte-scale data warehouse service in the cloud. Refer to the following resources
+to get more information:
 
-*   Scalable worker nodes and storage
-
-*   Automatic nightly snapshots
-
-## Learn
-
-Note
-
-This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/)!
-
-### Core concepts
-
-*   [What is Amazon Redshift?](https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html)
-
-*   [Redshift documentation](https://docs.aws.amazon.com/redshift/index.html)
-
-## Deploy
-
-### Non-production deployment (quick start for learning)
-
-If you just want to try this repo out for experimenting and learning, check out the following resources:
-
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
-
-### Production deployment
-
-If you want to deploy this repo in production, check out the following resources:
-
-*   (coming soon)
-
-## Manage
-
-### Day-to-day operations
-
+*   [What is Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html)
 *   [Designing tables](https://docs.aws.amazon.com/redshift/latest/dg/t_Creating_tables.html)
-
 *   [Loading data](https://docs.aws.amazon.com/redshift/latest/dg/t_Loading_data.html)
-
 *   [Querying Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/query-databases.html)
-
 *   [Redshift best practices](https://docs.aws.amazon.com/redshift/latest/dg/best-practices.html)
 
-### Major changes
+**Note**: currently, this module does not
+support [Amazon Redshift Serverless](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-serverless.html).
 
-*   [Managing securitty](https://docs.aws.amazon.com/redshift/latest/dg/r_Database_objects.html)
+## Serverless
+
+Amazon Redshift Serverless makes it convenient for you to run and scale analytics without having to provision and manage
+data warehouses. Use the `var.enable_serverless` to enable serverless and the `var.serverless_base_capacity` to set teh
+base Redshift Processing Units (RPU) for serving queries.
+
+Refer to the [Amazon Redshift Serverless](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-serverless.html)
+page for more information.
+
+**Note**: it seems like the `terraform destroy` command is not working smoothly for Redshift serverless feature
+yet ([hashicorp/terraform-provider-aws#29962](https://github.com/hashicorp/terraform-provider-aws/issues/29962)). Users
+would likely encounter error when trying to delete a workgroup associated with the Redshift serverless namespace. As a
+workaround, you can re-run the destroy command once the workspace gets deleted completely (e.g., after 30 mins).
 
 ## Sample Usage
 
@@ -84,22 +63,16 @@ If you want to deploy this repo in production, check out the following resources
 
 module "redshift" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.27.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.27.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The instance type to use for the db (e.g. dc2.large)
-  instance_type = <string>
-
-  # The name used to namespace all resources created by these templates, including
-  # the DB instance (e.g. drupaldb). Must be unique for this region. May contain
-  # only lowercase alphanumeric characters, hyphens.
+  # The name used to namespace all resources created by these templates,
+  # including the DB instance (e.g. drupaldb). Must be unique for this region.
+  # May contain only lowercase alphanumeric characters, hyphens.
   name = <string>
-
-  # The number of nodes in the cluster
-  number_of_nodes = <number>
 
   # A list of subnet ids where the database should be deployed. In the standard
   # Gruntwork VPC setup, these should be the private persistence subnet ids.
@@ -112,27 +85,29 @@ module "redshift" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # A list of CIDR-formatted IP address ranges that can connect to this DB. Should
-  # typically be the CIDR blocks of the private app subnet in this VPC plus the
-  # private subnet in the mgmt VPC. This is ignored if create_subnet_group=false.
+  # A list of CIDR-formatted IP address ranges that can connect to this DB.
+  # Should typically be the CIDR blocks of the private app subnet in this VPC
+  # plus the private subnet in the mgmt VPC. This is ignored if
+  # create_subnet_group=false.
   allow_connections_from_cidr_blocks = []
 
   # A list of Security Groups that can connect to this DB.
   allow_connections_from_security_groups = []
 
   # Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be
-  # permitted. Note that these updates must always be manually performed and will
-  # never automatically applied.
+  # permitted. Note that these updates must always be manually performed and
+  # will never automatically applied.
   allow_major_version_upgrade = true
 
-  # A list of CIDR-formatted IP address ranges that this DB can connect. Use this if
-  # the database needs to connect to certain IP addresses for special operation
+  # A list of CIDR-formatted IP address ranges that this DB can connect. Use
+  # this if the database needs to connect to certain IP addresses for special
+  # operation
   allow_outbound_connections_from_cidr_blocks = []
 
   # Indicates that minor engine upgrades will be applied automatically to the DB
   # instance during the maintenance window. If set to true, you should set
-  # var.engine_version to MAJOR.MINOR and omit the .PATCH at the end (e.g., use 5.7
-  # and not 5.7.11); otherwise, you'll get Terraform state drift. See
+  # var.engine_version to MAJOR.MINOR and omit the .PATCH at the end (e.g., use
+  # 5.7 and not 5.7.11); otherwise, you'll get Terraform state drift. See
   # https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version
   # for more details.
   auto_minor_version_upgrade = true
@@ -141,20 +116,20 @@ module "redshift" {
   # 'Security group for the var.name DB' if not specified.
   aws_db_security_group_description = null
 
-  # The name of the aws_db_security_group that is created. Defaults to var.name if
-  # not specified.
+  # The name of the aws_db_security_group that is created. Defaults to var.name
+  # if not specified.
   aws_db_security_group_name = null
 
-  # How many days to keep backup snapshots around before cleaning them up. Must be 1
-  # or greater to support read replicas.
+  # How many days to keep backup snapshots around before cleaning them up. Must
+  # be 1 or greater to support read replicas.
   backup_retention_period = 21
 
-  # The description of the cluster_subnet_group that is created. Defaults to 'Subnet
-  # group for the var.name DB' if not specified.
+  # The description of the cluster_subnet_group that is created. Defaults to
+  # 'Subnet group for the var.name DB' if not specified.
   cluster_subnet_group_description = null
 
-  # The name of the cluster_subnet_group that is created, or an existing one to use
-  # if cluster_subnet_group is false. Defaults to var.name if not specified.
+  # The name of the cluster_subnet_group that is created, or an existing one to
+  # use if cluster_subnet_group is false. Defaults to var.name if not specified.
   cluster_subnet_group_name = null
 
   # If false, the DB will bind to aws_db_subnet_group_name and the CIDR will be
@@ -164,13 +139,13 @@ module "redshift" {
   # Timeout for DB creating
   creating_timeout = "75m"
 
-  # A map of custom tags to apply to the RDS Instance and the Security Group created
-  # for it. The key is the tag name and the value is the tag value.
+  # A map of custom tags to apply to the RDS Instance and the Security Group
+  # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do not
-  # provide a name, Amazon RDS will not create a database in the DB cluster you are
-  # creating.
+  # The name for your database of up to 8 alpha-numeric characters. If you do
+  # not provide a name, Amazon RDS will not create a database in the DB cluster
+  # you are creating.
   db_name = "dev"
 
   # Timeout for DB deleting
@@ -179,41 +154,55 @@ module "redshift" {
   # Elastic IP that will be associated with the cluster
   elastic_ip = null
 
+  # Whether to enable serverless feature or not. Refer to
+  # https://docs.aws.amazon.com/redshift/latest/gsg/new-user-serverless.html for
+  # more information.
+  enable_serverless = false
+
   # If true , enhanced VPC routing is enabled. Forces COPY and UNLOAD traffic
   # between the cluster and data repositories to go through your VPC.
   enhanced_vpc_routing = false
 
-  # The name of the final_snapshot_identifier. Defaults to var.name-final-snapshot
-  # if not specified.
+  # The name of the final_snapshot_identifier. Defaults to
+  # var.name-final-snapshot if not specified.
   final_snapshot_name = null
 
-  # A list of IAM Role ARNs to associate with the cluster. A Maximum of 10 can be
-  # associated to the cluster at any time.
+  # A list of IAM Role ARNs to associate with the cluster. A Maximum of 10 can
+  # be associated to the cluster at any time.
   iam_roles = null
 
-  # The ARN of a KMS key that should be used to encrypt data on disk. Only used if
-  # var.storage_encrypted is true. If you leave this blank, the default RDS KMS key
-  # for the account will be used.
+  # The instance type to use for the db (e.g. dc2.large). This field is
+  # mandatory for provisioned Redshift.
+  instance_type = null
+
+  # The ARN of a KMS key that should be used to encrypt data on disk. Only used
+  # if var.storage_encrypted is true. If you leave this blank, the default RDS
+  # KMS key for the account will be used.
   kms_key_arn = null
 
-  # Configures logging information such as queries and connection attempts for the
-  # specified Amazon Redshift cluster. If enable is set to true. The bucket_name and
-  # s3_key_prefix must be set. The bucket must be in the same region as the cluster
-  # and the cluster must have read bucket and put object permission.
+  # Configures logging information such as queries and connection attempts for
+  # the specified Amazon Redshift cluster. If enable is set to true. The
+  # bucket_name and s3_key_prefix must be set. The bucket must be in the same
+  # region as the cluster and the cluster must have read bucket and put object
+  # permission.
   logging = {"bucket_name":null,"enable":false,"s3_key_prefix":null}
 
-  # The weekly day and time range during which system maintenance can occur (e.g.
-  # wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may
-  # even be a downtime during maintenance windows.
+  # The weekly day and time range during which system maintenance can occur
+  # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
+  # there may even be a downtime during maintenance windows.
   maintenance_window = "sun:07:00-sun:08:00"
 
-  # The password for the master user. If var.snapshot_identifier is non-empty, this
-  # value is ignored. Required unless var.replicate_source_db is set.
+  # The password for the master user. If var.snapshot_identifier is non-empty,
+  # this value is ignored. Required unless var.replicate_source_db is set.
   master_password = null
 
   # The username for the master user. Required unless var.replicate_source_db is
   # set.
   master_username = null
+
+  # The number of nodes in the cluster. This field is mandatory for provisioned
+  # Redshift.
+  number_of_nodes = null
 
   # Name of a Redshift parameter group to associate.
   parameter_group_name = null
@@ -225,21 +214,28 @@ module "redshift" {
   # Only set this to true if you want the database open to the internet.
   publicly_accessible = false
 
+  # This setting specifies the base data warehouse capacity Amazon Redshift uses
+  # to serve queries. Base capacity is specified in RPUs. You can set a base
+  # capacity in Redshift Processing Units (RPUs). One RPU provides 16 GB of
+  # memory. You can adjust the Base capacity setting from 8 RPUs to 512 RPUs in
+  # units of 8. This field is mandatory for serverless.
+  serverless_base_capacity = null
+
   # Determines whether a final DB snapshot is created before the DB instance is
-  # deleted. Be very careful setting this to true; if you do, and you delete this DB
-  # instance, you will not have any backups of the data!
+  # deleted. Be very careful setting this to true; if you do, and you delete
+  # this DB instance, you will not have any backups of the data!
   skip_final_snapshot = false
 
   # If non-null, the name of the cluster the source snapshot was created from.
   snapshot_cluster_identifier = null
 
-  # If non-null, the Redshift cluster will be restored from the given Snapshot ID.
-  # This is the Snapshot ID you'd find in the Redshift console, e.g:
+  # If non-null, the Redshift cluster will be restored from the given Snapshot
+  # ID. This is the Snapshot ID you'd find in the Redshift console, e.g:
   # rs:production-2015-06-26-06-05.
   snapshot_identifier = null
 
-  # Required if you are restoring a snapshot you do not own, optional if you own the
-  # snapshot. The AWS customer account used to create or copy the snapshot.
+  # Required if you are restoring a snapshot you do not own, optional if you own
+  # the snapshot. The AWS customer account used to create or copy the snapshot.
   snapshot_owner_account = null
 
   # Specifies whether the DB instance is encrypted.
@@ -263,7 +259,7 @@ module "redshift" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.27.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.27.2"
 }
 
 inputs = {
@@ -272,16 +268,10 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The instance type to use for the db (e.g. dc2.large)
-  instance_type = <string>
-
-  # The name used to namespace all resources created by these templates, including
-  # the DB instance (e.g. drupaldb). Must be unique for this region. May contain
-  # only lowercase alphanumeric characters, hyphens.
+  # The name used to namespace all resources created by these templates,
+  # including the DB instance (e.g. drupaldb). Must be unique for this region.
+  # May contain only lowercase alphanumeric characters, hyphens.
   name = <string>
-
-  # The number of nodes in the cluster
-  number_of_nodes = <number>
 
   # A list of subnet ids where the database should be deployed. In the standard
   # Gruntwork VPC setup, these should be the private persistence subnet ids.
@@ -294,27 +284,29 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # A list of CIDR-formatted IP address ranges that can connect to this DB. Should
-  # typically be the CIDR blocks of the private app subnet in this VPC plus the
-  # private subnet in the mgmt VPC. This is ignored if create_subnet_group=false.
+  # A list of CIDR-formatted IP address ranges that can connect to this DB.
+  # Should typically be the CIDR blocks of the private app subnet in this VPC
+  # plus the private subnet in the mgmt VPC. This is ignored if
+  # create_subnet_group=false.
   allow_connections_from_cidr_blocks = []
 
   # A list of Security Groups that can connect to this DB.
   allow_connections_from_security_groups = []
 
   # Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be
-  # permitted. Note that these updates must always be manually performed and will
-  # never automatically applied.
+  # permitted. Note that these updates must always be manually performed and
+  # will never automatically applied.
   allow_major_version_upgrade = true
 
-  # A list of CIDR-formatted IP address ranges that this DB can connect. Use this if
-  # the database needs to connect to certain IP addresses for special operation
+  # A list of CIDR-formatted IP address ranges that this DB can connect. Use
+  # this if the database needs to connect to certain IP addresses for special
+  # operation
   allow_outbound_connections_from_cidr_blocks = []
 
   # Indicates that minor engine upgrades will be applied automatically to the DB
   # instance during the maintenance window. If set to true, you should set
-  # var.engine_version to MAJOR.MINOR and omit the .PATCH at the end (e.g., use 5.7
-  # and not 5.7.11); otherwise, you'll get Terraform state drift. See
+  # var.engine_version to MAJOR.MINOR and omit the .PATCH at the end (e.g., use
+  # 5.7 and not 5.7.11); otherwise, you'll get Terraform state drift. See
   # https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version
   # for more details.
   auto_minor_version_upgrade = true
@@ -323,20 +315,20 @@ inputs = {
   # 'Security group for the var.name DB' if not specified.
   aws_db_security_group_description = null
 
-  # The name of the aws_db_security_group that is created. Defaults to var.name if
-  # not specified.
+  # The name of the aws_db_security_group that is created. Defaults to var.name
+  # if not specified.
   aws_db_security_group_name = null
 
-  # How many days to keep backup snapshots around before cleaning them up. Must be 1
-  # or greater to support read replicas.
+  # How many days to keep backup snapshots around before cleaning them up. Must
+  # be 1 or greater to support read replicas.
   backup_retention_period = 21
 
-  # The description of the cluster_subnet_group that is created. Defaults to 'Subnet
-  # group for the var.name DB' if not specified.
+  # The description of the cluster_subnet_group that is created. Defaults to
+  # 'Subnet group for the var.name DB' if not specified.
   cluster_subnet_group_description = null
 
-  # The name of the cluster_subnet_group that is created, or an existing one to use
-  # if cluster_subnet_group is false. Defaults to var.name if not specified.
+  # The name of the cluster_subnet_group that is created, or an existing one to
+  # use if cluster_subnet_group is false. Defaults to var.name if not specified.
   cluster_subnet_group_name = null
 
   # If false, the DB will bind to aws_db_subnet_group_name and the CIDR will be
@@ -346,13 +338,13 @@ inputs = {
   # Timeout for DB creating
   creating_timeout = "75m"
 
-  # A map of custom tags to apply to the RDS Instance and the Security Group created
-  # for it. The key is the tag name and the value is the tag value.
+  # A map of custom tags to apply to the RDS Instance and the Security Group
+  # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do not
-  # provide a name, Amazon RDS will not create a database in the DB cluster you are
-  # creating.
+  # The name for your database of up to 8 alpha-numeric characters. If you do
+  # not provide a name, Amazon RDS will not create a database in the DB cluster
+  # you are creating.
   db_name = "dev"
 
   # Timeout for DB deleting
@@ -361,41 +353,55 @@ inputs = {
   # Elastic IP that will be associated with the cluster
   elastic_ip = null
 
+  # Whether to enable serverless feature or not. Refer to
+  # https://docs.aws.amazon.com/redshift/latest/gsg/new-user-serverless.html for
+  # more information.
+  enable_serverless = false
+
   # If true , enhanced VPC routing is enabled. Forces COPY and UNLOAD traffic
   # between the cluster and data repositories to go through your VPC.
   enhanced_vpc_routing = false
 
-  # The name of the final_snapshot_identifier. Defaults to var.name-final-snapshot
-  # if not specified.
+  # The name of the final_snapshot_identifier. Defaults to
+  # var.name-final-snapshot if not specified.
   final_snapshot_name = null
 
-  # A list of IAM Role ARNs to associate with the cluster. A Maximum of 10 can be
-  # associated to the cluster at any time.
+  # A list of IAM Role ARNs to associate with the cluster. A Maximum of 10 can
+  # be associated to the cluster at any time.
   iam_roles = null
 
-  # The ARN of a KMS key that should be used to encrypt data on disk. Only used if
-  # var.storage_encrypted is true. If you leave this blank, the default RDS KMS key
-  # for the account will be used.
+  # The instance type to use for the db (e.g. dc2.large). This field is
+  # mandatory for provisioned Redshift.
+  instance_type = null
+
+  # The ARN of a KMS key that should be used to encrypt data on disk. Only used
+  # if var.storage_encrypted is true. If you leave this blank, the default RDS
+  # KMS key for the account will be used.
   kms_key_arn = null
 
-  # Configures logging information such as queries and connection attempts for the
-  # specified Amazon Redshift cluster. If enable is set to true. The bucket_name and
-  # s3_key_prefix must be set. The bucket must be in the same region as the cluster
-  # and the cluster must have read bucket and put object permission.
+  # Configures logging information such as queries and connection attempts for
+  # the specified Amazon Redshift cluster. If enable is set to true. The
+  # bucket_name and s3_key_prefix must be set. The bucket must be in the same
+  # region as the cluster and the cluster must have read bucket and put object
+  # permission.
   logging = {"bucket_name":null,"enable":false,"s3_key_prefix":null}
 
-  # The weekly day and time range during which system maintenance can occur (e.g.
-  # wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may
-  # even be a downtime during maintenance windows.
+  # The weekly day and time range during which system maintenance can occur
+  # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
+  # there may even be a downtime during maintenance windows.
   maintenance_window = "sun:07:00-sun:08:00"
 
-  # The password for the master user. If var.snapshot_identifier is non-empty, this
-  # value is ignored. Required unless var.replicate_source_db is set.
+  # The password for the master user. If var.snapshot_identifier is non-empty,
+  # this value is ignored. Required unless var.replicate_source_db is set.
   master_password = null
 
   # The username for the master user. Required unless var.replicate_source_db is
   # set.
   master_username = null
+
+  # The number of nodes in the cluster. This field is mandatory for provisioned
+  # Redshift.
+  number_of_nodes = null
 
   # Name of a Redshift parameter group to associate.
   parameter_group_name = null
@@ -407,21 +413,28 @@ inputs = {
   # Only set this to true if you want the database open to the internet.
   publicly_accessible = false
 
+  # This setting specifies the base data warehouse capacity Amazon Redshift uses
+  # to serve queries. Base capacity is specified in RPUs. You can set a base
+  # capacity in Redshift Processing Units (RPUs). One RPU provides 16 GB of
+  # memory. You can adjust the Base capacity setting from 8 RPUs to 512 RPUs in
+  # units of 8. This field is mandatory for serverless.
+  serverless_base_capacity = null
+
   # Determines whether a final DB snapshot is created before the DB instance is
-  # deleted. Be very careful setting this to true; if you do, and you delete this DB
-  # instance, you will not have any backups of the data!
+  # deleted. Be very careful setting this to true; if you do, and you delete
+  # this DB instance, you will not have any backups of the data!
   skip_final_snapshot = false
 
   # If non-null, the name of the cluster the source snapshot was created from.
   snapshot_cluster_identifier = null
 
-  # If non-null, the Redshift cluster will be restored from the given Snapshot ID.
-  # This is the Snapshot ID you'd find in the Redshift console, e.g:
+  # If non-null, the Redshift cluster will be restored from the given Snapshot
+  # ID. This is the Snapshot ID you'd find in the Redshift console, e.g:
   # rs:production-2015-06-26-06-05.
   snapshot_identifier = null
 
-  # Required if you are restoring a snapshot you do not own, optional if you own the
-  # snapshot. The AWS customer account used to create or copy the snapshot.
+  # Required if you are restoring a snapshot you do not own, optional if you own
+  # the snapshot. The AWS customer account used to create or copy the snapshot.
   snapshot_owner_account = null
 
   # Specifies whether the DB instance is encrypted.
@@ -448,26 +461,10 @@ inputs = {
 
 ### Required
 
-<HclListItem name="instance_type" requirement="required" type="string">
-<HclListItemDescription>
-
-The instance type to use for the db (e.g. dc2.large)
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="name" requirement="required" type="string">
 <HclListItemDescription>
 
 The name used to namespace all resources created by these templates, including the DB instance (e.g. drupaldb). Must be unique for this region. May contain only lowercase alphanumeric characters, hyphens.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="number_of_nodes" requirement="required" type="number">
-<HclListItemDescription>
-
-The number of nodes in the cluster
 
 </HclListItemDescription>
 </HclListItem>
@@ -634,6 +631,15 @@ Elastic IP that will be associated with the cluster
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="enable_serverless" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to enable serverless feature or not. Refer to https://docs.aws.amazon.com/redshift/latest/gsg/new-user-serverless.html for more information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="enhanced_vpc_routing" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -656,6 +662,15 @@ The name of the final_snapshot_identifier. Defaults to <a href="#name"><code>nam
 <HclListItemDescription>
 
 A list of IAM Role ARNs to associate with the cluster. A Maximum of 10 can be associated to the cluster at any time.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="instance_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The instance type to use for the db (e.g. dc2.large). This field is mandatory for provisioned Redshift.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -727,6 +742,15 @@ The username for the master user. Required unless <a href="#replicate_source_db"
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="number_of_nodes" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of nodes in the cluster. This field is mandatory for provisioned Redshift.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="parameter_group_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -752,6 +776,15 @@ WARNING: - In nearly all cases a database should NOT be publicly accessible. Onl
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="serverless_base_capacity" requirement="optional" type="number">
+<HclListItemDescription>
+
+This setting specifies the base data warehouse capacity Amazon Redshift uses to serve queries. Base capacity is specified in RPUs. You can set a base capacity in Redshift Processing Units (RPUs). One RPU provides 16 GB of memory. You can adjust the Base capacity setting from 8 RPUs to 512 RPUs in units of 8. This field is mandatory for serverless.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
@@ -890,11 +923,11 @@ The ID of the Security Group that controls access to the cluster
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/redshift/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/redshift/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/redshift/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/redshift/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/redshift/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "82090efaa4592f23faf621f1b5fbb8f6"
+  "hash": "e9f4237cb9939fa54282af795f6222e1"
 }
 ##DOCS-SOURCER-END -->

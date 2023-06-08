@@ -9,15 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.9" lastModifiedVersion="0.21.0"/>
+<VersionBadge repoTitle="AWS Lambda" version="0.21.10" lastModifiedVersion="0.21.10"/>
 
 # Log group for Lambda Edge
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/lambda-edge-log-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge-log-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module creates a Cloudwatch log group to receive Lambda Edge function logs in one single AWS Region. This module is meant to be used as a building block for the [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/lambda-edge-multi-region-log-groups).
+This module creates a Cloudwatch log group to receive Lambda Edge function logs in one single AWS Region. This module is meant to be used as a building block for the [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge-multi-region-log-groups).
 
 ## Why are the resources in this module not created within the Lambda Edge Module?
 
@@ -28,7 +28,7 @@ region that have [Regional Edge Caches](https://aws.amazon.com/blogs/networking-
 Unfortunately, it is not possible to use a `for_each` on provider blocks and there are multiple issues related to
 using nested providers. That means that, currently, the only way to create multi-regional modules is by code generating each
 block and passing down the providers. A full example of creating the providers and using this module can be found at the
-[lambda-edge example](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/examples/lambda-edge).
+[lambda-edge example](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/examples/lambda-edge).
 
 ## Which regions have regional edge caches?
 
@@ -81,7 +81,7 @@ More information:
 
 module "lambda_edge_log_group" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-log-group?ref=v0.21.9"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-log-group?ref=v0.21.10"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -99,23 +99,22 @@ module "lambda_edge_log_group" {
   cloudwatch_log_group_kms_key_id = null
 
   # The number of days to retain log events in the log group. Refer to
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
-  # watch_log_group#retention_in_days for all the valid values. When null, the log
-  # events are retained forever.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days
+  # for all the valid values. When null, the log events are retained forever.
   cloudwatch_log_group_retention_in_days = null
 
-  # The ARN of the destination to deliver matching log events to. Kinesis stream or
-  # Lambda function ARN. Only applicable if var.should_create_cloudwatch_log_group
-  # is true.
+  # The ARN of the destination to deliver matching log events to. Kinesis stream
+  # or Lambda function ARN. Only applicable if
+  # var.should_create_cloudwatch_log_group is true.
   cloudwatch_log_group_subscription_destination_arn = null
 
-  # The method used to distribute log data to the destination. Only applicable when
-  # var.cloudwatch_log_group_subscription_destination_arn is a kinesis stream. Valid
-  # values are `Random` and `ByLogStream`.
+  # The method used to distribute log data to the destination. Only applicable
+  # when var.cloudwatch_log_group_subscription_destination_arn is a kinesis
+  # stream. Valid values are `Random` and `ByLogStream`.
   cloudwatch_log_group_subscription_distribution = null
 
-  # A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of
-  # log events.
+  # A valid CloudWatch Logs filter pattern for subscribing to a filtered stream
+  # of log events.
   cloudwatch_log_group_subscription_filter_pattern = ""
 
   # ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver
@@ -123,15 +122,15 @@ module "lambda_edge_log_group" {
   # var.cloudwatch_log_group_subscription_destination_arn is a kinesis stream.
   cloudwatch_log_group_subscription_role_arn = null
 
-  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are
-  # tag keys and values are tag values.
+  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys
+  # are tag keys and values are tag values.
   cloudwatch_log_group_tags = {}
 
-  # When true, precreate the CloudWatch Log Group to use for log aggregation from
-  # the lambda function execution. This is useful if you wish to customize the
-  # CloudWatch Log Group with various settings such as retention periods and KMS
-  # encryption. When false, AWS Lambda will automatically create a basic log group
-  # to use.
+  # When true, precreate the CloudWatch Log Group to use for log aggregation
+  # from the lambda function execution. This is useful if you wish to customize
+  # the CloudWatch Log Group with various settings such as retention periods and
+  # KMS encryption. When false, AWS Lambda will automatically create a basic log
+  # group to use.
   should_create_cloudwatch_log_group = true
 
 }
@@ -149,7 +148,7 @@ module "lambda_edge_log_group" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-log-group?ref=v0.21.9"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-log-group?ref=v0.21.10"
 }
 
 inputs = {
@@ -170,23 +169,22 @@ inputs = {
   cloudwatch_log_group_kms_key_id = null
 
   # The number of days to retain log events in the log group. Refer to
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
-  # watch_log_group#retention_in_days for all the valid values. When null, the log
-  # events are retained forever.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days
+  # for all the valid values. When null, the log events are retained forever.
   cloudwatch_log_group_retention_in_days = null
 
-  # The ARN of the destination to deliver matching log events to. Kinesis stream or
-  # Lambda function ARN. Only applicable if var.should_create_cloudwatch_log_group
-  # is true.
+  # The ARN of the destination to deliver matching log events to. Kinesis stream
+  # or Lambda function ARN. Only applicable if
+  # var.should_create_cloudwatch_log_group is true.
   cloudwatch_log_group_subscription_destination_arn = null
 
-  # The method used to distribute log data to the destination. Only applicable when
-  # var.cloudwatch_log_group_subscription_destination_arn is a kinesis stream. Valid
-  # values are `Random` and `ByLogStream`.
+  # The method used to distribute log data to the destination. Only applicable
+  # when var.cloudwatch_log_group_subscription_destination_arn is a kinesis
+  # stream. Valid values are `Random` and `ByLogStream`.
   cloudwatch_log_group_subscription_distribution = null
 
-  # A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of
-  # log events.
+  # A valid CloudWatch Logs filter pattern for subscribing to a filtered stream
+  # of log events.
   cloudwatch_log_group_subscription_filter_pattern = ""
 
   # ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver
@@ -194,15 +192,15 @@ inputs = {
   # var.cloudwatch_log_group_subscription_destination_arn is a kinesis stream.
   cloudwatch_log_group_subscription_role_arn = null
 
-  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are
-  # tag keys and values are tag values.
+  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys
+  # are tag keys and values are tag values.
   cloudwatch_log_group_tags = {}
 
-  # When true, precreate the CloudWatch Log Group to use for log aggregation from
-  # the lambda function execution. This is useful if you wish to customize the
-  # CloudWatch Log Group with various settings such as retention periods and KMS
-  # encryption. When false, AWS Lambda will automatically create a basic log group
-  # to use.
+  # When true, precreate the CloudWatch Log Group to use for log aggregation
+  # from the lambda function execution. This is useful if you wish to customize
+  # the CloudWatch Log Group with various settings such as retention periods and
+  # KMS encryption. When false, AWS Lambda will automatically create a basic log
+  # group to use.
   should_create_cloudwatch_log_group = true
 
 }
@@ -318,11 +316,11 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/lambda-edge-log-group/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/lambda-edge-log-group/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/lambda-edge-log-group/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge-log-group/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge-log-group/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge-log-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "54df7c2f176cdb30a995b6e132db71dd"
+  "hash": "221a5c67f010af40f1349485ff8670e9"
 }
 ##DOCS-SOURCER-END -->

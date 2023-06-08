@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.2" lastModifiedVersion="0.67.10"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.3" lastModifiedVersion="0.67.10"/>
 
 # A Best-Practices Set of IAM Groups
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/iam-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -52,7 +52,7 @@ This module optionally creates the following IAM Groups:
     since users can grant arbitrary permissions!
 *   **use-existing-iam-roles:** IAM Users in this group can pass *existing* IAM Roles to AWS resources to which they have
     been granted access. These IAM Users cannot create *new* IAM Roles, only use existing ones. See
-    [the three levels of IAM permissions](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-policies#the-three-levels-of-iam-permissions) for more information.
+    [the three levels of IAM permissions](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/iam-policies#the-three-levels-of-iam-permissions) for more information.
 *   **ssh-grunt-sudo-users:** IAM Users in this group have SSH access with `sudo` privileges to any EC2 Instance configured
     to use this group to manage SSH logins.
 *   **ssh-grunt-users:** IAM Users in this group have SSH access without `sudo` privileges to any EC2 Instance configured
@@ -83,7 +83,7 @@ own account unless this IAM Policy is attached to his account.
 
 ### IAM Users
 
-This module does not create any IAM Users, nor assign any existing IAM Users to IAM Groups. You can use the [iam-users module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-users) to create users.
+This module does not create any IAM Users, nor assign any existing IAM Users to IAM Groups. You can use the [iam-users module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/iam-users) to create users.
 
 ### IAM Roles
 
@@ -108,7 +108,7 @@ otherwise enable IAM Users to access the billing console:
 ## Background Information
 
 For background information on IAM, IAM users, IAM policies, and more, check out the [background information docs in
-the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-policies#background-information).
+the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/iam-policies#background-information).
 
 ## Sample Usage
 
@@ -123,7 +123,7 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 
 module "iam_groups" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-groups?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-groups?ref=v0.68.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -132,17 +132,18 @@ module "iam_groups" {
   # The ID of the AWS Account.
   aws_account_id = <string>
 
-  # Should we require that all IAM Users use Multi-Factor Authentication for both
-  # AWS API calls and the AWS Web Console? (true or false)
+  # Should we require that all IAM Users use Multi-Factor Authentication for
+  # both AWS API calls and the AWS Web Console? (true or false)
   should_require_mfa = <bool>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group for
-  # doing automated deployments. NOTE: If var.should_create_iam_group_auto_deploy is
-  # true, the list must have at least one element (e.g. '*').
+  # A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group
+  # for doing automated deployments. NOTE: If
+  # var.should_create_iam_group_auto_deploy is true, the list must have at least
+  # one element (e.g. '*').
   auto_deploy_permissions = []
 
   # The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs group
@@ -150,26 +151,26 @@ module "iam_groups" {
   cloudtrail_kms_key_arn = null
 
   # Set to false to have this module create no resources. This weird parameter
-  # exists solely because Terraform does not support conditional modules. Therefore,
-  # this is a hack to allow you to conditionally decide if the resources should be
-  # created or not.
+  # exists solely because Terraform does not support conditional modules.
+  # Therefore, this is a hack to allow you to conditionally decide if the
+  # resources should be created or not.
   create_resources = true
 
-  # The name of the IAM group that will grant access to all external AWS accounts in
-  # var.iam_groups_for_cross_account_access.
+  # The name of the IAM group that will grant access to all external AWS
+  # accounts in var.iam_groups_for_cross_account_access.
   cross_account_access_all_group_name = "access-all-external-accounts"
 
   # A list of AWS services for which the developers IAM Group will receive full
   # permissions. See https://goo.gl/ZyoHlz to find the IAM Service name. For
-  # example, to grant developers access only to EC2 and Amazon Machine Learning, use
-  # the value ["ec2","machinelearning"]. Do NOT add iam to the list of services, or
-  # that will grant Developers de facto admin access. If you need to grant iam
-  # privileges, just grant the user Full Access.
+  # example, to grant developers access only to EC2 and Amazon Machine Learning,
+  # use the value ["ec2","machinelearning"]. Do NOT add iam to the list of
+  # services, or that will grant Developers de facto admin access. If you need
+  # to grant iam privileges, just grant the user Full Access.
   iam_group_developers_permitted_services = []
 
-  # The prefix of the S3 Bucket Name to which an individual IAM User will have full
-  # access. For example, if the prefix is acme.user-, then IAM User john.doe will
-  # have access to S3 Bucket acme.user-john.doe.
+  # The prefix of the S3 Bucket Name to which an individual IAM User will have
+  # full access. For example, if the prefix is acme.user-, then IAM User
+  # john.doe will have access to S3 Bucket acme.user-john.doe.
   iam_group_developers_s3_bucket_prefix = "your-org-name.user-"
 
   # The name of the IAM Group that allows automated deployment by graning the
@@ -180,8 +181,8 @@ module "iam_groups" {
   # billing features in AWS.
   iam_group_name_billing = "billing"
 
-  # The name to be used for the IAM Group that grants IAM Users a reasonable set of
-  # permissions for developers.
+  # The name to be used for the IAM Group that grants IAM Users a reasonable set
+  # of permissions for developers.
   iam_group_name_developers = "developers"
 
   # The name to be used for the IAM Group that grants full access to all AWS
@@ -192,76 +193,78 @@ module "iam_groups" {
   # Effectively grants administrator access.
   iam_group_name_iam_admin = "iam-admin"
 
-  # The name to be used for the IAM Group that grants IAM Users the permissions to
-  # manage their own IAM User account.
+  # The name to be used for the IAM Group that grants IAM Users the permissions
+  # to manage their own IAM User account.
   iam_group_name_iam_user_self_mgmt = "iam-user-self-mgmt"
 
-  # The name to be used for the IAM Group that grants read access to CloudTrail, AWS
-  # Config, and CloudWatch in AWS.
+  # The name to be used for the IAM Group that grants read access to CloudTrail,
+  # AWS Config, and CloudWatch in AWS.
   iam_group_name_logs = "logs"
 
-  # The name to be used for the IAM Group that grants read-only access to all AWS
-  # resources.
+  # The name to be used for the IAM Group that grants read-only access to all
+  # AWS resources.
   iam_group_name_read_only = "read-only"
 
   # The name of the IAM Group that allows access to AWS Support.
   iam_group_name_support = "support"
 
-  # The name to be used for the IAM Group that grants IAM Users the permissions to
-  # use existing IAM Roles when launching AWS Resources. This does NOT grant the
-  # permission to create new IAM Roles.
+  # The name to be used for the IAM Group that grants IAM Users the permissions
+  # to use existing IAM Roles when launching AWS Resources. This does NOT grant
+  # the permission to create new IAM Roles.
   iam_group_name_use_existing_iam_roles = "use-existing-iam-roles"
 
-  # The list of names to be used for the IAM Group that enables its members to SSH
-  # as a sudo user into any server configured with the ssh-grunt Gruntwork module.
-  # Pass in multiple to configure multiple different IAM groups to control different
-  # groupings of access at the server level. Pass in empty list to disable creation
-  # of the IAM groups.
+  # The list of names to be used for the IAM Group that enables its members to
+  # SSH as a sudo user into any server configured with the ssh-grunt Gruntwork
+  # module. Pass in multiple to configure multiple different IAM groups to
+  # control different groupings of access at the server level. Pass in empty
+  # list to disable creation of the IAM groups.
   iam_group_names_ssh_grunt_sudo_users = ["ssh-grunt-sudo-users"]
 
   # The name to be used for the IAM Group that enables its members to SSH as a
-  # non-sudo user into any server configured with the ssh-grunt Gruntwork module.
-  # Pass in multiple to configure multiple different IAM groups to control different
-  # groupings of access at the server level. Pass in empty list to disable creation
-  # of the IAM groups.
+  # non-sudo user into any server configured with the ssh-grunt Gruntwork
+  # module. Pass in multiple to configure multiple different IAM groups to
+  # control different groupings of access at the server level. Pass in empty
+  # list to disable creation of the IAM groups.
   iam_group_names_ssh_grunt_users = ["ssh-grunt-users"]
 
-  # This variable is used to create groups that allow IAM users to assume roles in
-  # your other AWS accounts. It should be a list of objects, where each object has
-  # the fields 'group_name', which will be used as the name of the IAM group, and
-  # 'iam_role_arns', which is a list of ARNs of IAM Roles that you can assume when
-  # part of that group. For each entry in the list of objects, we will create an IAM
-  # group that allows users to assume the given IAM role(s) in the other AWS
-  # account. This allows you to define all your IAM users in one account (e.g. the
-  # users account) and to grant them access to certain IAM roles in other accounts
-  # (e.g. the stage, prod, audit accounts).
+  # This variable is used to create groups that allow IAM users to assume roles
+  # in your other AWS accounts. It should be a list of objects, where each
+  # object has the fields 'group_name', which will be used as the name of the
+  # IAM group, and 'iam_role_arns', which is a list of ARNs of IAM Roles that
+  # you can assume when part of that group. For each entry in the list of
+  # objects, we will create an IAM group that allows users to assume the given
+  # IAM role(s) in the other AWS account. This allows you to define all your IAM
+  # users in one account (e.g. the users account) and to grant them access to
+  # certain IAM roles in other accounts (e.g. the stage, prod, audit accounts).
   iam_groups_for_cross_account_access = []
 
-  # The name to be used for the IAM Policy that grants IAM administrative access.
+  # The name to be used for the IAM Policy that grants IAM administrative
+  # access.
   iam_policy_iam_admin = "iam-admin"
 
-  # The name to be used for the IAM Policy that grants IAM Users the permissions to
-  # manage their own IAM User account.
+  # The name to be used for the IAM Policy that grants IAM Users the permissions
+  # to manage their own IAM User account.
   iam_policy_iam_user_self_mgmt = "iam-user-self-mgmt"
 
-  # Should we create the IAM Group for auto-deploy? Allows automated deployment by
-  # granting the permissions specified in var.auto_deploy_permissions. (true or
-  # false)
+  # Should we create the IAM Group for auto-deploy? Allows automated deployment
+  # by granting the permissions specified in var.auto_deploy_permissions. (true
+  # or false)
   should_create_iam_group_auto_deploy = false
 
-  # Should we create the IAM Group for billing? Allows read-write access to billing
-  # features only. (true or false)
+  # Should we create the IAM Group for billing? Allows read-write access to
+  # billing features only. (true or false)
   should_create_iam_group_billing = true
 
   # Should we create the IAM Group for access to all external AWS accounts? 
   should_create_iam_group_cross_account_access_all = true
 
-  # Should we create the IAM Group for developers? The permissions of that group are
-  # specified via var.iam_group_developers_permitted_services. (true or false)
+  # Should we create the IAM Group for developers? The permissions of that group
+  # are specified via var.iam_group_developers_permitted_services. (true or
+  # false)
   should_create_iam_group_developers = true
 
-  # Should we create the IAM Group for full access? Allows full access to all AWS
-  # resources. (true or false)
+  # Should we create the IAM Group for full access? Allows full access to all
+  # AWS resources. (true or false)
   should_create_iam_group_full_access = true
 
   # Should we create the IAM Group for IAM administrator access? Allows users to
@@ -269,26 +272,26 @@ module "iam_groups" {
   # false)
   should_create_iam_group_iam_admin = false
 
-  # Should we create the IAM Group for logs? Allows read access to CloudTrail, AWS
-  # Config, and CloudWatch. If var.cloudtrail_kms_key_arn is set, will also give
-  # decrypt access to a KMS CMK. (true or false)
+  # Should we create the IAM Group for logs? Allows read access to CloudTrail,
+  # AWS Config, and CloudWatch. If var.cloudtrail_kms_key_arn is set, will also
+  # give decrypt access to a KMS CMK. (true or false)
   should_create_iam_group_logs = true
 
-  # Should we create the IAM Group for read-only? Allows read-only access to all AWS
-  # resources. (true or false)
+  # Should we create the IAM Group for read-only? Allows read-only access to all
+  # AWS resources. (true or false)
   should_create_iam_group_read_only = true
 
   # Should we create the IAM Group for support users? Allows users to access AWS
   # support.
   should_create_iam_group_support = false
 
-  # Should we create the IAM Group for use-existing-iam-roles? Allow launching AWS
-  # resources with existing IAM Roles, but no ability to create new IAM Roles. (true
-  # or false)
+  # Should we create the IAM Group for use-existing-iam-roles? Allow launching
+  # AWS resources with existing IAM Roles, but no ability to create new IAM
+  # Roles. (true or false)
   should_create_iam_group_use_existing_iam_roles = false
 
-  # Should we create the IAM Group for user self-management? Allows users to manage
-  # their own IAM user accounts, but not other IAM users. (true or false)
+  # Should we create the IAM Group for user self-management? Allows users to
+  # manage their own IAM user accounts, but not other IAM users. (true or false)
   should_create_iam_group_user_self_mgmt = true
 
 }
@@ -306,7 +309,7 @@ module "iam_groups" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-groups?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-groups?ref=v0.68.3"
 }
 
 inputs = {
@@ -318,17 +321,18 @@ inputs = {
   # The ID of the AWS Account.
   aws_account_id = <string>
 
-  # Should we require that all IAM Users use Multi-Factor Authentication for both
-  # AWS API calls and the AWS Web Console? (true or false)
+  # Should we require that all IAM Users use Multi-Factor Authentication for
+  # both AWS API calls and the AWS Web Console? (true or false)
   should_require_mfa = <bool>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group for
-  # doing automated deployments. NOTE: If var.should_create_iam_group_auto_deploy is
-  # true, the list must have at least one element (e.g. '*').
+  # A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group
+  # for doing automated deployments. NOTE: If
+  # var.should_create_iam_group_auto_deploy is true, the list must have at least
+  # one element (e.g. '*').
   auto_deploy_permissions = []
 
   # The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs group
@@ -336,26 +340,26 @@ inputs = {
   cloudtrail_kms_key_arn = null
 
   # Set to false to have this module create no resources. This weird parameter
-  # exists solely because Terraform does not support conditional modules. Therefore,
-  # this is a hack to allow you to conditionally decide if the resources should be
-  # created or not.
+  # exists solely because Terraform does not support conditional modules.
+  # Therefore, this is a hack to allow you to conditionally decide if the
+  # resources should be created or not.
   create_resources = true
 
-  # The name of the IAM group that will grant access to all external AWS accounts in
-  # var.iam_groups_for_cross_account_access.
+  # The name of the IAM group that will grant access to all external AWS
+  # accounts in var.iam_groups_for_cross_account_access.
   cross_account_access_all_group_name = "access-all-external-accounts"
 
   # A list of AWS services for which the developers IAM Group will receive full
   # permissions. See https://goo.gl/ZyoHlz to find the IAM Service name. For
-  # example, to grant developers access only to EC2 and Amazon Machine Learning, use
-  # the value ["ec2","machinelearning"]. Do NOT add iam to the list of services, or
-  # that will grant Developers de facto admin access. If you need to grant iam
-  # privileges, just grant the user Full Access.
+  # example, to grant developers access only to EC2 and Amazon Machine Learning,
+  # use the value ["ec2","machinelearning"]. Do NOT add iam to the list of
+  # services, or that will grant Developers de facto admin access. If you need
+  # to grant iam privileges, just grant the user Full Access.
   iam_group_developers_permitted_services = []
 
-  # The prefix of the S3 Bucket Name to which an individual IAM User will have full
-  # access. For example, if the prefix is acme.user-, then IAM User john.doe will
-  # have access to S3 Bucket acme.user-john.doe.
+  # The prefix of the S3 Bucket Name to which an individual IAM User will have
+  # full access. For example, if the prefix is acme.user-, then IAM User
+  # john.doe will have access to S3 Bucket acme.user-john.doe.
   iam_group_developers_s3_bucket_prefix = "your-org-name.user-"
 
   # The name of the IAM Group that allows automated deployment by graning the
@@ -366,8 +370,8 @@ inputs = {
   # billing features in AWS.
   iam_group_name_billing = "billing"
 
-  # The name to be used for the IAM Group that grants IAM Users a reasonable set of
-  # permissions for developers.
+  # The name to be used for the IAM Group that grants IAM Users a reasonable set
+  # of permissions for developers.
   iam_group_name_developers = "developers"
 
   # The name to be used for the IAM Group that grants full access to all AWS
@@ -378,76 +382,78 @@ inputs = {
   # Effectively grants administrator access.
   iam_group_name_iam_admin = "iam-admin"
 
-  # The name to be used for the IAM Group that grants IAM Users the permissions to
-  # manage their own IAM User account.
+  # The name to be used for the IAM Group that grants IAM Users the permissions
+  # to manage their own IAM User account.
   iam_group_name_iam_user_self_mgmt = "iam-user-self-mgmt"
 
-  # The name to be used for the IAM Group that grants read access to CloudTrail, AWS
-  # Config, and CloudWatch in AWS.
+  # The name to be used for the IAM Group that grants read access to CloudTrail,
+  # AWS Config, and CloudWatch in AWS.
   iam_group_name_logs = "logs"
 
-  # The name to be used for the IAM Group that grants read-only access to all AWS
-  # resources.
+  # The name to be used for the IAM Group that grants read-only access to all
+  # AWS resources.
   iam_group_name_read_only = "read-only"
 
   # The name of the IAM Group that allows access to AWS Support.
   iam_group_name_support = "support"
 
-  # The name to be used for the IAM Group that grants IAM Users the permissions to
-  # use existing IAM Roles when launching AWS Resources. This does NOT grant the
-  # permission to create new IAM Roles.
+  # The name to be used for the IAM Group that grants IAM Users the permissions
+  # to use existing IAM Roles when launching AWS Resources. This does NOT grant
+  # the permission to create new IAM Roles.
   iam_group_name_use_existing_iam_roles = "use-existing-iam-roles"
 
-  # The list of names to be used for the IAM Group that enables its members to SSH
-  # as a sudo user into any server configured with the ssh-grunt Gruntwork module.
-  # Pass in multiple to configure multiple different IAM groups to control different
-  # groupings of access at the server level. Pass in empty list to disable creation
-  # of the IAM groups.
+  # The list of names to be used for the IAM Group that enables its members to
+  # SSH as a sudo user into any server configured with the ssh-grunt Gruntwork
+  # module. Pass in multiple to configure multiple different IAM groups to
+  # control different groupings of access at the server level. Pass in empty
+  # list to disable creation of the IAM groups.
   iam_group_names_ssh_grunt_sudo_users = ["ssh-grunt-sudo-users"]
 
   # The name to be used for the IAM Group that enables its members to SSH as a
-  # non-sudo user into any server configured with the ssh-grunt Gruntwork module.
-  # Pass in multiple to configure multiple different IAM groups to control different
-  # groupings of access at the server level. Pass in empty list to disable creation
-  # of the IAM groups.
+  # non-sudo user into any server configured with the ssh-grunt Gruntwork
+  # module. Pass in multiple to configure multiple different IAM groups to
+  # control different groupings of access at the server level. Pass in empty
+  # list to disable creation of the IAM groups.
   iam_group_names_ssh_grunt_users = ["ssh-grunt-users"]
 
-  # This variable is used to create groups that allow IAM users to assume roles in
-  # your other AWS accounts. It should be a list of objects, where each object has
-  # the fields 'group_name', which will be used as the name of the IAM group, and
-  # 'iam_role_arns', which is a list of ARNs of IAM Roles that you can assume when
-  # part of that group. For each entry in the list of objects, we will create an IAM
-  # group that allows users to assume the given IAM role(s) in the other AWS
-  # account. This allows you to define all your IAM users in one account (e.g. the
-  # users account) and to grant them access to certain IAM roles in other accounts
-  # (e.g. the stage, prod, audit accounts).
+  # This variable is used to create groups that allow IAM users to assume roles
+  # in your other AWS accounts. It should be a list of objects, where each
+  # object has the fields 'group_name', which will be used as the name of the
+  # IAM group, and 'iam_role_arns', which is a list of ARNs of IAM Roles that
+  # you can assume when part of that group. For each entry in the list of
+  # objects, we will create an IAM group that allows users to assume the given
+  # IAM role(s) in the other AWS account. This allows you to define all your IAM
+  # users in one account (e.g. the users account) and to grant them access to
+  # certain IAM roles in other accounts (e.g. the stage, prod, audit accounts).
   iam_groups_for_cross_account_access = []
 
-  # The name to be used for the IAM Policy that grants IAM administrative access.
+  # The name to be used for the IAM Policy that grants IAM administrative
+  # access.
   iam_policy_iam_admin = "iam-admin"
 
-  # The name to be used for the IAM Policy that grants IAM Users the permissions to
-  # manage their own IAM User account.
+  # The name to be used for the IAM Policy that grants IAM Users the permissions
+  # to manage their own IAM User account.
   iam_policy_iam_user_self_mgmt = "iam-user-self-mgmt"
 
-  # Should we create the IAM Group for auto-deploy? Allows automated deployment by
-  # granting the permissions specified in var.auto_deploy_permissions. (true or
-  # false)
+  # Should we create the IAM Group for auto-deploy? Allows automated deployment
+  # by granting the permissions specified in var.auto_deploy_permissions. (true
+  # or false)
   should_create_iam_group_auto_deploy = false
 
-  # Should we create the IAM Group for billing? Allows read-write access to billing
-  # features only. (true or false)
+  # Should we create the IAM Group for billing? Allows read-write access to
+  # billing features only. (true or false)
   should_create_iam_group_billing = true
 
   # Should we create the IAM Group for access to all external AWS accounts? 
   should_create_iam_group_cross_account_access_all = true
 
-  # Should we create the IAM Group for developers? The permissions of that group are
-  # specified via var.iam_group_developers_permitted_services. (true or false)
+  # Should we create the IAM Group for developers? The permissions of that group
+  # are specified via var.iam_group_developers_permitted_services. (true or
+  # false)
   should_create_iam_group_developers = true
 
-  # Should we create the IAM Group for full access? Allows full access to all AWS
-  # resources. (true or false)
+  # Should we create the IAM Group for full access? Allows full access to all
+  # AWS resources. (true or false)
   should_create_iam_group_full_access = true
 
   # Should we create the IAM Group for IAM administrator access? Allows users to
@@ -455,26 +461,26 @@ inputs = {
   # false)
   should_create_iam_group_iam_admin = false
 
-  # Should we create the IAM Group for logs? Allows read access to CloudTrail, AWS
-  # Config, and CloudWatch. If var.cloudtrail_kms_key_arn is set, will also give
-  # decrypt access to a KMS CMK. (true or false)
+  # Should we create the IAM Group for logs? Allows read access to CloudTrail,
+  # AWS Config, and CloudWatch. If var.cloudtrail_kms_key_arn is set, will also
+  # give decrypt access to a KMS CMK. (true or false)
   should_create_iam_group_logs = true
 
-  # Should we create the IAM Group for read-only? Allows read-only access to all AWS
-  # resources. (true or false)
+  # Should we create the IAM Group for read-only? Allows read-only access to all
+  # AWS resources. (true or false)
   should_create_iam_group_read_only = true
 
   # Should we create the IAM Group for support users? Allows users to access AWS
   # support.
   should_create_iam_group_support = false
 
-  # Should we create the IAM Group for use-existing-iam-roles? Allow launching AWS
-  # resources with existing IAM Roles, but no ability to create new IAM Roles. (true
-  # or false)
+  # Should we create the IAM Group for use-existing-iam-roles? Allow launching
+  # AWS resources with existing IAM Roles, but no ability to create new IAM
+  # Roles. (true or false)
   should_create_iam_group_use_existing_iam_roles = false
 
-  # Should we create the IAM Group for user self-management? Allows users to manage
-  # their own IAM user accounts, but not other IAM users. (true or false)
+  # Should we create the IAM Group for user self-management? Allows users to
+  # manage their own IAM user accounts, but not other IAM users. (true or false)
   should_create_iam_group_user_self_mgmt = true
 
 }
@@ -948,11 +954,11 @@ Should we create the IAM Group for user self-management? Allows users to manage 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-groups/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-groups/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-groups/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/iam-groups/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/iam-groups/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/iam-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "59a9dddf530e9c788c29dbcf15aa2794"
+  "hash": "34ea8f829572976b400452f24d587bf8"
 }
 ##DOCS-SOURCER-END -->

@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.2" lastModifiedVersion="0.65.9"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.3" lastModifiedVersion="0.65.9"/>
 
 # AWS Organizations
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-organizations" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/aws-organizations" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -39,23 +39,23 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What is AWS Organizations?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-organizations/core-concepts.md#what-is-aws-organizations)
+*   [What is AWS Organizations?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/aws-organizations/core-concepts.md#what-is-aws-organizations)
 
-*   [What is a Root account?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-organizations/core-concepts.md#what-is-a-root-account)
+*   [What is a Root account?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/aws-organizations/core-concepts.md#what-is-a-root-account)
 
-*   [What are Organization Accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-organizations/core-concepts.md#what-are-organization-accounts)
+*   [What are Organization Accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/aws-organizations/core-concepts.md#what-are-organization-accounts)
 
-*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-organizations/core-concepts.md#what-resources-does-this-module-create)
+*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/aws-organizations/core-concepts.md#what-resources-does-this-module-create)
 
 *   [How to configure a production-grade AWS account structure](https://gruntwork.io/guides/foundations/how-to-configure-production-grade-aws-account-structure/)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -63,7 +63,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/aws-organizations](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/examples/aws-organizations): The `examples/aws-organizations` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples/aws-organizations](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/examples/aws-organizations): The `examples/aws-organizations` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -77,9 +77,9 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Day-to-day operations
 
-*   [How do I provision new accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-organizations/core-concepts.md#how-do-i-provision-new-accounts)
+*   [How do I provision new accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/aws-organizations/core-concepts.md#how-do-i-provision-new-accounts)
 
-*   [How do I remove accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-organizations/core-concepts.md#how-do-i-remove-accounts)
+*   [How do I remove accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/aws-organizations/core-concepts.md#how-do-i-remove-accounts)
 
 ## Sample Usage
 
@@ -94,38 +94,38 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aws_organizations" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v0.68.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Map of child accounts to create. The map key is the name of the account and the
-  # value is an object containing account configuration variables.
+  # Map of child accounts to create. The map key is the name of the account and
+  # the value is an object containing account configuration variables.
   child_accounts = <any>
 
   # Flag indicating whether the organization should be created.
   create_organization = <bool>
 
   # If set to ALLOW, the new account enables IAM users to access account billing
-  # information if they have the required permissions. If set to DENY, then only the
-  # root user of the new account can access account billing information.
+  # information if they have the required permissions. If set to DENY, then only
+  # the root user of the new account can access account billing information.
   default_iam_user_access_to_billing = <string>
 
-  # The name of an IAM role that Organizations automatically preconfigures in the
-  # new member account. This role trusts the mgmt account, allowing users in the
-  # mgmt account to assume the role, as permitted by the mgmt account administrator.
+  # The name of an IAM role that Organizations automatically preconfigures in
+  # the new member account. This role trusts the mgmt account, allowing users in
+  # the mgmt account to assume the role, as permitted by the mgmt account
+  # administrator.
   default_role_name = <string>
 
   # List of AWS service principal names for which you want to enable integration
-  # with your organization. Must have `organizations_feature_set` set to ALL. See
-  # https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_servic
-  # s.html
+  # with your organization. Must have `organizations_feature_set` set to ALL.
+  # See
+  # https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html
   organizations_aws_service_access_principals = <list(string)>
 
   # List of Organizations policy types to enable in the Organization Root. See
-  # https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnablePolicyTy
-  # e.html
+  # https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnablePolicyType.html
   organizations_enabled_policy_types = <list(string)>
 
   # Specify `ALL` or `CONSOLIDATED_BILLING`.
@@ -153,7 +153,7 @@ module "aws_organizations" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v0.68.3"
 }
 
 inputs = {
@@ -162,32 +162,32 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Map of child accounts to create. The map key is the name of the account and the
-  # value is an object containing account configuration variables.
+  # Map of child accounts to create. The map key is the name of the account and
+  # the value is an object containing account configuration variables.
   child_accounts = <any>
 
   # Flag indicating whether the organization should be created.
   create_organization = <bool>
 
   # If set to ALLOW, the new account enables IAM users to access account billing
-  # information if they have the required permissions. If set to DENY, then only the
-  # root user of the new account can access account billing information.
+  # information if they have the required permissions. If set to DENY, then only
+  # the root user of the new account can access account billing information.
   default_iam_user_access_to_billing = <string>
 
-  # The name of an IAM role that Organizations automatically preconfigures in the
-  # new member account. This role trusts the mgmt account, allowing users in the
-  # mgmt account to assume the role, as permitted by the mgmt account administrator.
+  # The name of an IAM role that Organizations automatically preconfigures in
+  # the new member account. This role trusts the mgmt account, allowing users in
+  # the mgmt account to assume the role, as permitted by the mgmt account
+  # administrator.
   default_role_name = <string>
 
   # List of AWS service principal names for which you want to enable integration
-  # with your organization. Must have `organizations_feature_set` set to ALL. See
-  # https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_servic
-  # s.html
+  # with your organization. Must have `organizations_feature_set` set to ALL.
+  # See
+  # https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html
   organizations_aws_service_access_principals = <list(string)>
 
   # List of Organizations policy types to enable in the Organization Root. See
-  # https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnablePolicyTy
-  # e.html
+  # https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnablePolicyType.html
   organizations_enabled_policy_types = <list(string)>
 
   # Specify `ALL` or `CONSOLIDATED_BILLING`.
@@ -424,11 +424,11 @@ Identifier of the root of this organization.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-organizations/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-organizations/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-organizations/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/aws-organizations/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/aws-organizations/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/aws-organizations/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a6759506c1d40c9304987b4ef7b2b9e0"
+  "hash": "5fc556714666ff4fa843d46066146847"
 }
 ##DOCS-SOURCER-END -->

@@ -9,39 +9,39 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.58.3" lastModifiedVersion="0.57.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.59.0" lastModifiedVersion="0.58.4"/>
 
 # EKS Cluster Workers Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-cluster-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-cluster-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.57.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.58.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-**This module provisions self managed ASGs, in contrast to [EKS Managed Node Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html). See the [eks-cluster-managed-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-cluster-managed-workers) module for a module to deploy Managed Node Groups.**
+**This module provisions self managed ASGs, in contrast to [EKS Managed Node Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html). See the [eks-cluster-managed-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-cluster-managed-workers) module for a module to deploy Managed Node Groups.**
 
 This Terraform Module launches worker nodes for an [Elastic Container Service for Kubernetes
 Cluster](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html) that you can use to run Kubernetes Pods and
 Deployments.
 
 This module is responsible for the EKS Worker Nodes in [the EKS cluster
-topology](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-cluster-control-plane/README.md#what-is-an-eks-cluster). You must launch a control plane in order
-for the worker nodes to function. See the [eks-cluster-control-plane module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-cluster-control-plane) for
+topology](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-cluster-control-plane/README.md#what-is-an-eks-cluster). You must launch a control plane in order
+for the worker nodes to function. See the [eks-cluster-control-plane module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-cluster-control-plane) for
 managing an EKS control plane.
 
 ## Differences with managed node groups
 
 See the \[Differences with self managed workers] section in the documentation for [eks-cluster-managed-workers
-module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-cluster-managed-workers) for a detailed overview of differences with EKS Managed Node Groups.
+module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-cluster-managed-workers) for a detailed overview of differences with EKS Managed Node Groups.
 
 ## What should be included in the user-data script?
 
 In order for the EKS worker nodes to function, it must register itself to the Kubernetes API run by the EKS control
 plane. This is handled by the bootstrap script provided in the EKS optimized AMI. The user-data script should call the
 bootstrap script at some point during its execution. You can get this information from the [eks-cluster-control-plane
-module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-cluster-control-plane).
+module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-cluster-control-plane).
 
 For an example of a user data script, see the [eks-cluster example's user-data.sh
-script](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/examples/eks-cluster-with-iam-role-mappings/user-data/user-data.sh).
+script](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/examples/eks-cluster-with-iam-role-mappings/user-data/user-data.sh).
 
 You can read more about the bootstrap script in [the official documentation for EKS](https://docs.aws.amazon.com/eks/latest/userguide/launch-workers.html).
 
@@ -144,7 +144,7 @@ EOF
 ```
 
 **Note**: The IAM policies you add will apply to ALL Pods running on these EC2 Instances. See the [How do I associate
-IAM roles to the Pods?](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-cluster-control-plane/README.md#how-do-i-associate-iam-roles-to-the-pods) section of the
+IAM roles to the Pods?](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-cluster-control-plane/README.md#how-do-i-associate-iam-roles-to-the-pods) section of the
 `eks-cluster-control-plane` module README for more fine-grained allocation of IAM credentials to Pods.
 
 ## How do I SSH into the nodes?
@@ -228,7 +228,7 @@ The following are the steps you can take to perform a blue-green release for thi
 This module will not automatically scale in response to resource usage by default, the
 `autoscaling_group_configurations.*.max_size` option is only used to give room for new instances during rolling updates.
 To enable auto-scaling in response to resource utilization, you must set the `include_autoscaler_discovery_tags` input
-variable to `true` and also deploy the [Kubernetes Cluster Autoscaler module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-k8s-cluster-autoscaler).
+variable to `true` and also deploy the [Kubernetes Cluster Autoscaler module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-k8s-cluster-autoscaler).
 
 Note that the cluster autoscaler supports ASGs that manage nodes in a single availability zone or ASGs that manage nodes in multiple availability zones. However, there is a caveat:
 
@@ -253,19 +253,19 @@ Refer to the [Kubernetes Autoscaler](https://github.com/kubernetes/autoscaler) d
 
 module "eks_cluster_workers" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-workers?ref=v0.58.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-workers?ref=v0.59.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Configure one or more Auto Scaling Groups (ASGs) to manage the EC2 instances in
-  # this cluster. If any of the values are not provided, the specified default
-  # variable will be used to lookup a default value.
+  # Configure one or more Auto Scaling Groups (ASGs) to manage the EC2 instances
+  # in this cluster. If any of the values are not provided, the specified
+  # default variable will be used to lookup a default value.
   autoscaling_group_configurations = <any>
 
-  # The name of the EKS cluster (e.g. eks-prod). This is also used to namespace all
-  # the resources created by these templates.
+  # The name of the EKS cluster (e.g. eks-prod). This is also used to namespace
+  # all the resources created by these templates.
   cluster_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
@@ -275,8 +275,8 @@ module "eks_cluster_workers" {
   # A list of additional Security Groups IDs to be attached on the EKS Worker.
   additional_security_group_ids = []
 
-  # When true, this module will attach a security group rule to the instances that
-  # will allow all outbound network access. Only used if
+  # When true, this module will attach a security group rule to the instances
+  # that will allow all outbound network access. Only used if
   # `use_cluster_security_group` is `false`.
   allow_all_outbound_network_calls = true
 
@@ -303,6 +303,11 @@ module "eks_cluster_workers" {
   # asg_instance_root_volume_iops will use this value.
   asg_default_instance_root_volume_iops = null
 
+  # Default value for the asg_instance_root_volume_name field of
+  # autoscaling_group_configurations. Any map entry that does not specify
+  # asg_instance_root_volume_type will use this value.
+  asg_default_instance_root_volume_name = "/dev/xvda"
+
   # Default value for the asg_instance_root_volume_size field of
   # autoscaling_group_configurations. Any map entry that does not specify
   # asg_instance_root_volume_size will use this value.
@@ -328,12 +333,12 @@ module "eks_cluster_workers" {
   # asg_instance_user_data_base64 will use this value.
   asg_default_instance_user_data_base64 = null
 
-  # Default value for the max_size field of autoscaling_group_configurations. Any
-  # map entry that does not specify max_size will use this value.
+  # Default value for the max_size field of autoscaling_group_configurations.
+  # Any map entry that does not specify max_size will use this value.
   asg_default_max_size = 2
 
-  # Default value for the min_size field of autoscaling_group_configurations. Any
-  # map entry that does not specify min_size will use this value.
+  # Default value for the min_size field of autoscaling_group_configurations.
+  # Any map entry that does not specify min_size will use this value.
   asg_default_min_size = 1
 
   # Default value for the multi_instance_overrides field of
@@ -366,13 +371,14 @@ module "eks_cluster_workers" {
   # spot_instance_pools will use this value.
   asg_default_spot_instance_pools = null
 
-  # Default value for the spot_max_price field of autoscaling_group_configurations.
-  # Any map entry that does not specify spot_max_price will use this value. Set to
-  # empty string (default) to mean on-demand price.
+  # Default value for the spot_max_price field of
+  # autoscaling_group_configurations. Any map entry that does not specify
+  # spot_max_price will use this value. Set to empty string (default) to mean
+  # on-demand price.
   asg_default_spot_max_price = null
 
-  # Default value for the tags field of autoscaling_group_configurations. Any map
-  # entry that does not specify tags will use this value.
+  # Default value for the tags field of autoscaling_group_configurations. Any
+  # map entry that does not specify tags will use this value.
   asg_default_tags = []
 
   # Default value for the use_multi_instances_policy field of
@@ -383,123 +389,127 @@ module "eks_cluster_workers" {
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
 
-  # Whether or not to associate a public IP address to the instances of the cluster.
-  # Will only work if the instances are launched in a public subnet.
+  # Whether or not to associate a public IP address to the instances of the
+  # cluster. Will only work if the instances are launched in a public subnet.
   cluster_instance_associate_public_ip_address = false
 
   # The EC2 Keypair name used to SSH into the EKS Cluster's EC2 Instances. To
   # disable keypairs, pass in blank.
   cluster_instance_keypair_name = null
 
-  # If you set this variable to false, this module will not create any resources.
-  # This is used as a workaround because Terraform does not allow you to use the
-  # 'count' parameter on modules. By using this parameter, you can optionally create
-  # or not create the resources within this module.
+  # If you set this variable to false, this module will not create any
+  # resources. This is used as a workaround because Terraform does not allow you
+  # to use the 'count' parameter on modules. By using this parameter, you can
+  # optionally create or not create the resources within this module.
   create_resources = true
 
-  # A map of custom tags to apply to the Security Group for this EKS Cluster. The
-  # key is the tag name and the value is the tag value.
+  # A map of custom tags to apply to the Security Group for this EKS Cluster.
+  # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
-  # Security group ID of the EKS Control Plane nodes to enhance to allow access to
-  # the control plane from the workers. Only used if `use_cluster_security_group` is
-  # `false`. Set to null to use the first security group assigned to the cluster.
+  # Security group ID of the EKS Control Plane nodes to enhance to allow access
+  # to the control plane from the workers. Only used if
+  # `use_cluster_security_group` is `false`. Set to null to use the first
+  # security group assigned to the cluster.
   eks_control_plane_security_group_id = null
 
   # A list of metrics to collect from the ASG. For a list of allowed values, see
-  # https://www.terraform.io/docs/providers/aws/r/autoscaling_group.html#enabled_met
-  # ics.
+  # https://www.terraform.io/docs/providers/aws/r/autoscaling_group.html#enabled_metrics.
   enabled_metrics = []
 
-  # Whether to force detaching any policies the role has before destroying it. If
-  # policies are attached to the role via the aws_iam_policy_attachment resource and
-  # you are modifying the role name or path, the force_detach_policies argument must
-  # be set to true and applied before attempting the operation otherwise you will
-  # encounter a DeleteConflict error. The aws_iam_role_policy_attachment resource
-  # (recommended) does not have this requirement.
+  # Whether to force detaching any policies the role has before destroying it.
+  # If policies are attached to the role via the aws_iam_policy_attachment
+  # resource and you are modifying the role name or path, the
+  # force_detach_policies argument must be set to true and applied before
+  # attempting the operation otherwise you will encounter a DeleteConflict
+  # error. The aws_iam_role_policy_attachment resource (recommended) does not
+  # have this requirement.
   force_detach_policies = false
 
-  # Custom name for the IAM instance profile. When null, the IAM role name will be
-  # used. If var.use_resource_name_prefix is true, this will be used as a name
-  # prefix.
+  # Custom name for the IAM instance profile. When null, the IAM role name will
+  # be used. If var.use_resource_name_prefix is true, this will be used as a
+  # name prefix.
   iam_instance_profile_name = null
 
   # Whether or not the IAM role used for the workers already exists. When false,
   # this module will create a new IAM role.
   iam_role_already_exists = false
 
-  # ARN of the IAM role to use if iam_role_already_exists = true. When null, uses
-  # iam_role_name to lookup the ARN. One of iam_role_name and iam_role_arn is
-  # required (must be non-null) if iam_role_already_exists is true.
+  # ARN of the IAM role to use if iam_role_already_exists = true. When null,
+  # uses iam_role_name to lookup the ARN. One of iam_role_name and iam_role_arn
+  # is required (must be non-null) if iam_role_already_exists is true.
   iam_role_arn = null
 
-  # Custom name for the IAM role. When null, a default name based on cluster_name
-  # will be used. One of iam_role_name and iam_role_arn is required (must be
-  # non-null) if iam_role_already_exists is true.
+  # Custom name for the IAM role. When null, a default name based on
+  # cluster_name will be used. One of iam_role_name and iam_role_arn is required
+  # (must be non-null) if iam_role_already_exists is true.
   iam_role_name = null
 
   # Adds additional tags to each ASG that allow a cluster autoscaler to
   # auto-discover them.
   include_autoscaler_discovery_tags = false
 
-  # A list of elastic load balancer names to add to the autoscaling group names. Use
-  # with ELB classic and NLBs.
+  # A list of elastic load balancer names to add to the autoscaling group names.
+  # Use with ELB classic and NLBs.
   load_balancers = []
 
-  # The maximum amount of time, in seconds, that an instance inside an ASG can be in
-  # service, values must be either equal to 0 or between 604800 and 31536000
-  # seconds. Note that this will be a disruptive shutdown: the ASG will not
-  # automatically drain the node prior to shutting it down.
+  # The maximum amount of time, in seconds, that an instance inside an ASG can
+  # be in service, values must be either equal to 0 or between 604800 and
+  # 31536000 seconds. Note that this will be a disruptive shutdown: the ASG will
+  # not automatically drain the node prior to shutting it down.
   max_instance_lifetime = null
 
-  # Prefix resource names with this string. When you have multiple worker groups for
-  # the cluster, you can use this to namespace the resources.
+  # Prefix resource names with this string. When you have multiple worker groups
+  # for the cluster, you can use this to namespace the resources.
   name_prefix = ""
 
-  # Suffix resource names with this string. When you have multiple worker groups for
-  # the cluster, you can use this to namespace the resources.
+  # Suffix resource names with this string. When you have multiple worker groups
+  # for the cluster, you can use this to namespace the resources.
   name_suffix = ""
 
-  # A list of aws_alb_target_group ARNs, for use with Application Load Balancing.
+  # A list of aws_alb_target_group ARNs, for use with Application Load
+  # Balancing.
   target_group_arns = []
 
-  # The tenancy of the servers in this cluster. Must be one of: default, dedicated,
-  # or host.
+  # The tenancy of the servers in this cluster. Must be one of: default,
+  # dedicated, or host.
   tenancy = "default"
 
-  # Whether or not to attach the EKS managed cluster security group to the worker
-  # nodes for control plane and cross worker network management. Avoiding the
-  # cluster security group allows you to better isolate worker nodes at the network
-  # level (E.g., disallowing free flowing traffic between Fargate Pods and self
-  # managed workers). It is recommended to use the cluster security group for most
-  # use cases. Refer to the module README for more information. If
-  # use_existing_cluster_config is false and this is set to true, it is assumed that
-  # the cluster security group is provided in var.additional_security_group_ids.
+  # Whether or not to attach the EKS managed cluster security group to the
+  # worker nodes for control plane and cross worker network management. Avoiding
+  # the cluster security group allows you to better isolate worker nodes at the
+  # network level (E.g., disallowing free flowing traffic between Fargate Pods
+  # and self managed workers). It is recommended to use the cluster security
+  # group for most use cases. Refer to the module README for more information.
+  # If use_existing_cluster_config is false and this is set to true, it is
+  # assumed that the cluster security group is provided in
+  # var.additional_security_group_ids.
   use_cluster_security_group = true
 
-  # When true, this module will retrieve vpc config and security group ids from the
-  # existing cluster with the provided cluster_name. When false, you must provide
-  # var.vpc_id and var.eks_control_plane_security_group_id.
+  # When true, this module will retrieve vpc config and security group ids from
+  # the existing cluster with the provided cluster_name. When false, you must
+  # provide var.vpc_id and var.eks_control_plane_security_group_id.
   use_existing_cluster_config = true
 
-  # Set this variable to true to enable the use of Instance Metadata Service Version
-  # 1 in this module's aws_launch_configuration. Note that while IMDsv2 is preferred
-  # due to its special security hardening, we allow this in order to support the use
-  # case of AMIs built outside of these modules that depend on IMDSv1.
+  # Set this variable to true to enable the use of Instance Metadata Service
+  # Version 1 in this module's aws_launch_configuration. Note that while IMDsv2
+  # is preferred due to its special security hardening, we allow this in order
+  # to support the use case of AMIs built outside of these modules that depend
+  # on IMDSv1.
   use_imdsv1 = false
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
   # When true, all the relevant resources will be set to use the name_prefix
   # attribute so that unique names are generated for them. This allows those
-  # resources to support recreation through create_before_destroy lifecycle rules.
-  # Set to false if you were using any version before 0.45.0 and wish to avoid
-  # recreating the entire worker pool on your cluster.
+  # resources to support recreation through create_before_destroy lifecycle
+  # rules. Set to false if you were using any version before 0.45.0 and wish to
+  # avoid recreating the entire worker pool on your cluster.
   use_resource_name_prefix = true
 
   # VPC id for the EKS cluster deployment.
@@ -520,7 +530,7 @@ module "eks_cluster_workers" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-workers?ref=v0.58.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-workers?ref=v0.59.0"
 }
 
 inputs = {
@@ -529,13 +539,13 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Configure one or more Auto Scaling Groups (ASGs) to manage the EC2 instances in
-  # this cluster. If any of the values are not provided, the specified default
-  # variable will be used to lookup a default value.
+  # Configure one or more Auto Scaling Groups (ASGs) to manage the EC2 instances
+  # in this cluster. If any of the values are not provided, the specified
+  # default variable will be used to lookup a default value.
   autoscaling_group_configurations = <any>
 
-  # The name of the EKS cluster (e.g. eks-prod). This is also used to namespace all
-  # the resources created by these templates.
+  # The name of the EKS cluster (e.g. eks-prod). This is also used to namespace
+  # all the resources created by these templates.
   cluster_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
@@ -545,8 +555,8 @@ inputs = {
   # A list of additional Security Groups IDs to be attached on the EKS Worker.
   additional_security_group_ids = []
 
-  # When true, this module will attach a security group rule to the instances that
-  # will allow all outbound network access. Only used if
+  # When true, this module will attach a security group rule to the instances
+  # that will allow all outbound network access. Only used if
   # `use_cluster_security_group` is `false`.
   allow_all_outbound_network_calls = true
 
@@ -573,6 +583,11 @@ inputs = {
   # asg_instance_root_volume_iops will use this value.
   asg_default_instance_root_volume_iops = null
 
+  # Default value for the asg_instance_root_volume_name field of
+  # autoscaling_group_configurations. Any map entry that does not specify
+  # asg_instance_root_volume_type will use this value.
+  asg_default_instance_root_volume_name = "/dev/xvda"
+
   # Default value for the asg_instance_root_volume_size field of
   # autoscaling_group_configurations. Any map entry that does not specify
   # asg_instance_root_volume_size will use this value.
@@ -598,12 +613,12 @@ inputs = {
   # asg_instance_user_data_base64 will use this value.
   asg_default_instance_user_data_base64 = null
 
-  # Default value for the max_size field of autoscaling_group_configurations. Any
-  # map entry that does not specify max_size will use this value.
+  # Default value for the max_size field of autoscaling_group_configurations.
+  # Any map entry that does not specify max_size will use this value.
   asg_default_max_size = 2
 
-  # Default value for the min_size field of autoscaling_group_configurations. Any
-  # map entry that does not specify min_size will use this value.
+  # Default value for the min_size field of autoscaling_group_configurations.
+  # Any map entry that does not specify min_size will use this value.
   asg_default_min_size = 1
 
   # Default value for the multi_instance_overrides field of
@@ -636,13 +651,14 @@ inputs = {
   # spot_instance_pools will use this value.
   asg_default_spot_instance_pools = null
 
-  # Default value for the spot_max_price field of autoscaling_group_configurations.
-  # Any map entry that does not specify spot_max_price will use this value. Set to
-  # empty string (default) to mean on-demand price.
+  # Default value for the spot_max_price field of
+  # autoscaling_group_configurations. Any map entry that does not specify
+  # spot_max_price will use this value. Set to empty string (default) to mean
+  # on-demand price.
   asg_default_spot_max_price = null
 
-  # Default value for the tags field of autoscaling_group_configurations. Any map
-  # entry that does not specify tags will use this value.
+  # Default value for the tags field of autoscaling_group_configurations. Any
+  # map entry that does not specify tags will use this value.
   asg_default_tags = []
 
   # Default value for the use_multi_instances_policy field of
@@ -653,123 +669,127 @@ inputs = {
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
 
-  # Whether or not to associate a public IP address to the instances of the cluster.
-  # Will only work if the instances are launched in a public subnet.
+  # Whether or not to associate a public IP address to the instances of the
+  # cluster. Will only work if the instances are launched in a public subnet.
   cluster_instance_associate_public_ip_address = false
 
   # The EC2 Keypair name used to SSH into the EKS Cluster's EC2 Instances. To
   # disable keypairs, pass in blank.
   cluster_instance_keypair_name = null
 
-  # If you set this variable to false, this module will not create any resources.
-  # This is used as a workaround because Terraform does not allow you to use the
-  # 'count' parameter on modules. By using this parameter, you can optionally create
-  # or not create the resources within this module.
+  # If you set this variable to false, this module will not create any
+  # resources. This is used as a workaround because Terraform does not allow you
+  # to use the 'count' parameter on modules. By using this parameter, you can
+  # optionally create or not create the resources within this module.
   create_resources = true
 
-  # A map of custom tags to apply to the Security Group for this EKS Cluster. The
-  # key is the tag name and the value is the tag value.
+  # A map of custom tags to apply to the Security Group for this EKS Cluster.
+  # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
-  # Security group ID of the EKS Control Plane nodes to enhance to allow access to
-  # the control plane from the workers. Only used if `use_cluster_security_group` is
-  # `false`. Set to null to use the first security group assigned to the cluster.
+  # Security group ID of the EKS Control Plane nodes to enhance to allow access
+  # to the control plane from the workers. Only used if
+  # `use_cluster_security_group` is `false`. Set to null to use the first
+  # security group assigned to the cluster.
   eks_control_plane_security_group_id = null
 
   # A list of metrics to collect from the ASG. For a list of allowed values, see
-  # https://www.terraform.io/docs/providers/aws/r/autoscaling_group.html#enabled_met
-  # ics.
+  # https://www.terraform.io/docs/providers/aws/r/autoscaling_group.html#enabled_metrics.
   enabled_metrics = []
 
-  # Whether to force detaching any policies the role has before destroying it. If
-  # policies are attached to the role via the aws_iam_policy_attachment resource and
-  # you are modifying the role name or path, the force_detach_policies argument must
-  # be set to true and applied before attempting the operation otherwise you will
-  # encounter a DeleteConflict error. The aws_iam_role_policy_attachment resource
-  # (recommended) does not have this requirement.
+  # Whether to force detaching any policies the role has before destroying it.
+  # If policies are attached to the role via the aws_iam_policy_attachment
+  # resource and you are modifying the role name or path, the
+  # force_detach_policies argument must be set to true and applied before
+  # attempting the operation otherwise you will encounter a DeleteConflict
+  # error. The aws_iam_role_policy_attachment resource (recommended) does not
+  # have this requirement.
   force_detach_policies = false
 
-  # Custom name for the IAM instance profile. When null, the IAM role name will be
-  # used. If var.use_resource_name_prefix is true, this will be used as a name
-  # prefix.
+  # Custom name for the IAM instance profile. When null, the IAM role name will
+  # be used. If var.use_resource_name_prefix is true, this will be used as a
+  # name prefix.
   iam_instance_profile_name = null
 
   # Whether or not the IAM role used for the workers already exists. When false,
   # this module will create a new IAM role.
   iam_role_already_exists = false
 
-  # ARN of the IAM role to use if iam_role_already_exists = true. When null, uses
-  # iam_role_name to lookup the ARN. One of iam_role_name and iam_role_arn is
-  # required (must be non-null) if iam_role_already_exists is true.
+  # ARN of the IAM role to use if iam_role_already_exists = true. When null,
+  # uses iam_role_name to lookup the ARN. One of iam_role_name and iam_role_arn
+  # is required (must be non-null) if iam_role_already_exists is true.
   iam_role_arn = null
 
-  # Custom name for the IAM role. When null, a default name based on cluster_name
-  # will be used. One of iam_role_name and iam_role_arn is required (must be
-  # non-null) if iam_role_already_exists is true.
+  # Custom name for the IAM role. When null, a default name based on
+  # cluster_name will be used. One of iam_role_name and iam_role_arn is required
+  # (must be non-null) if iam_role_already_exists is true.
   iam_role_name = null
 
   # Adds additional tags to each ASG that allow a cluster autoscaler to
   # auto-discover them.
   include_autoscaler_discovery_tags = false
 
-  # A list of elastic load balancer names to add to the autoscaling group names. Use
-  # with ELB classic and NLBs.
+  # A list of elastic load balancer names to add to the autoscaling group names.
+  # Use with ELB classic and NLBs.
   load_balancers = []
 
-  # The maximum amount of time, in seconds, that an instance inside an ASG can be in
-  # service, values must be either equal to 0 or between 604800 and 31536000
-  # seconds. Note that this will be a disruptive shutdown: the ASG will not
-  # automatically drain the node prior to shutting it down.
+  # The maximum amount of time, in seconds, that an instance inside an ASG can
+  # be in service, values must be either equal to 0 or between 604800 and
+  # 31536000 seconds. Note that this will be a disruptive shutdown: the ASG will
+  # not automatically drain the node prior to shutting it down.
   max_instance_lifetime = null
 
-  # Prefix resource names with this string. When you have multiple worker groups for
-  # the cluster, you can use this to namespace the resources.
+  # Prefix resource names with this string. When you have multiple worker groups
+  # for the cluster, you can use this to namespace the resources.
   name_prefix = ""
 
-  # Suffix resource names with this string. When you have multiple worker groups for
-  # the cluster, you can use this to namespace the resources.
+  # Suffix resource names with this string. When you have multiple worker groups
+  # for the cluster, you can use this to namespace the resources.
   name_suffix = ""
 
-  # A list of aws_alb_target_group ARNs, for use with Application Load Balancing.
+  # A list of aws_alb_target_group ARNs, for use with Application Load
+  # Balancing.
   target_group_arns = []
 
-  # The tenancy of the servers in this cluster. Must be one of: default, dedicated,
-  # or host.
+  # The tenancy of the servers in this cluster. Must be one of: default,
+  # dedicated, or host.
   tenancy = "default"
 
-  # Whether or not to attach the EKS managed cluster security group to the worker
-  # nodes for control plane and cross worker network management. Avoiding the
-  # cluster security group allows you to better isolate worker nodes at the network
-  # level (E.g., disallowing free flowing traffic between Fargate Pods and self
-  # managed workers). It is recommended to use the cluster security group for most
-  # use cases. Refer to the module README for more information. If
-  # use_existing_cluster_config is false and this is set to true, it is assumed that
-  # the cluster security group is provided in var.additional_security_group_ids.
+  # Whether or not to attach the EKS managed cluster security group to the
+  # worker nodes for control plane and cross worker network management. Avoiding
+  # the cluster security group allows you to better isolate worker nodes at the
+  # network level (E.g., disallowing free flowing traffic between Fargate Pods
+  # and self managed workers). It is recommended to use the cluster security
+  # group for most use cases. Refer to the module README for more information.
+  # If use_existing_cluster_config is false and this is set to true, it is
+  # assumed that the cluster security group is provided in
+  # var.additional_security_group_ids.
   use_cluster_security_group = true
 
-  # When true, this module will retrieve vpc config and security group ids from the
-  # existing cluster with the provided cluster_name. When false, you must provide
-  # var.vpc_id and var.eks_control_plane_security_group_id.
+  # When true, this module will retrieve vpc config and security group ids from
+  # the existing cluster with the provided cluster_name. When false, you must
+  # provide var.vpc_id and var.eks_control_plane_security_group_id.
   use_existing_cluster_config = true
 
-  # Set this variable to true to enable the use of Instance Metadata Service Version
-  # 1 in this module's aws_launch_configuration. Note that while IMDsv2 is preferred
-  # due to its special security hardening, we allow this in order to support the use
-  # case of AMIs built outside of these modules that depend on IMDSv1.
+  # Set this variable to true to enable the use of Instance Metadata Service
+  # Version 1 in this module's aws_launch_configuration. Note that while IMDsv2
+  # is preferred due to its special security hardening, we allow this in order
+  # to support the use case of AMIs built outside of these modules that depend
+  # on IMDSv1.
   use_imdsv1 = false
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
   # When true, all the relevant resources will be set to use the name_prefix
   # attribute so that unique names are generated for them. This allows those
-  # resources to support recreation through create_before_destroy lifecycle rules.
-  # Set to false if you were using any version before 0.45.0 and wish to avoid
-  # recreating the entire worker pool on your cluster.
+  # resources to support recreation through create_before_destroy lifecycle
+  # rules. Set to false if you were using any version before 0.45.0 and wish to
+  # avoid recreating the entire worker pool on your cluster.
   use_resource_name_prefix = true
 
   # VPC id for the EKS cluster deployment.
@@ -840,6 +860,8 @@ Any types represent complex values of variable type. For details, please consult
                                               instances to use for the ASG in GB (e.g., 40).
    - asg_instance_root_volume_type   string : (Defaults to value from var.asg_default_instance_root_volume_type) The root volume type of
                                               instances to use for the ASG (e.g., "standard").
+   - asg_instance_root_volume_name   string : (Defaults to value from var.asg_default_instance_root_volume_device) The root volume name of
+                                              instances to use for the ASG (e.g., /dev/sda1)
    - asg_instance_root_volume_iops   number : (Defaults to value from var.asg_default_instance_root_volume_iops) The root volume iops of
                                               instances to use for the ASG (e.g., 200).
    - asg_instance_root_volume_throughput   number : (Defaults to value from var.asg_default_instance_root_volume_throughput) The root volume throughput in MiBPS of
@@ -976,6 +998,15 @@ Default value for the asg_instance_root_volume_iops field of autoscaling_group_c
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="asg_default_instance_root_volume_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default value for the asg_instance_root_volume_name field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_root_volume_type will use this value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;/dev/xvda&quot;"/>
 </HclListItem>
 
 <HclListItem name="asg_default_instance_root_volume_size" requirement="optional" type="number">
@@ -1472,11 +1503,11 @@ AWS ID of the security group created for the EKS worker nodes.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-cluster-workers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-cluster-workers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-cluster-workers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-cluster-workers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-cluster-workers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-cluster-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "55bcbe86dda81de79040aa2486cfecfd"
+  "hash": "7207f515a0db142cef9fb9fbc2cbe9ab"
 }
 ##DOCS-SOURCER-END -->

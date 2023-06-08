@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.23.0" lastModifiedVersion="0.22.3"/>
+<VersionBadge repoTitle="VPC Modules" version="0.23.1" lastModifiedVersion="0.22.3"/>
 
 # Network ACL Outbound Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/network-acl-outbound" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/network-acl-outbound" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -24,7 +24,7 @@ because they are stateless, which means that opening an outbound port is often n
 which the remote services can use to respond. This can be very easy to forget, so this module adds not only the
 outbound to an ACL, but also the ephemeral inbound ports for return traffic.
 
-See the [network-acl-inbound](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/network-acl-inbound) module for the analogous version of this module, but for opening
+See the [network-acl-inbound](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/network-acl-inbound) module for the analogous version of this module, but for opening
 inbound ports.
 
 ## What's a Network ACL?
@@ -47,18 +47,18 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 
 module "network_acl_outbound" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-outbound?ref=v0.23.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-outbound?ref=v0.23.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The number to use for the egress rule that will be added. Each egress rule in an
-  # network ACL must have a unique rule number.
+  # The number to use for the egress rule that will be added. Each egress rule
+  # in an network ACL must have a unique rule number.
   egress_rule_number = <number>
 
-  # The starting number to use for ingress rules that are added. Each ingress rule
-  # in an network ACL must have a unique rule number.
+  # The starting number to use for ingress rules that are added. Each ingress
+  # rule in an network ACL must have a unique rule number.
   ingress_rule_number = <number>
 
   # The id of the network ACL to which the new rules should be attached
@@ -81,40 +81,42 @@ module "network_acl_outbound" {
   # var.outbound_to_port, inclusive
   outbound_to_port = <number>
 
-  # The protocol (e.g. TCP). If you set this value to -1 or 'all', any protocol and
-  # any port is allowed (so the from_port and to_port settings are ignored!).
+  # The protocol (e.g. TCP). If you set this value to -1 or 'all', any protocol
+  # and any port is allowed (so the from_port and to_port settings are
+  # ignored!).
   protocol = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # If you set this variable to false, this module will not create any resources.
-  # This is used as a workaround because Terraform does not allow you to use the
-  # 'count' parameter on modules. By using this parameter, you can optionally create
-  # or not create the resources within this module.
+  # If you set this variable to false, this module will not create any
+  # resources. This is used as a workaround because Terraform does not allow you
+  # to use the 'count' parameter on modules. By using this parameter, you can
+  # optionally create or not create the resources within this module.
   create_resources = true
 
-  # Return traffic will be allowed on all ports between var.ephemeral_from_port and
-  # var.ephemeral_to_port, inclusive, from var.outbound_cidr_blocks
+  # Return traffic will be allowed on all ports between var.ephemeral_from_port
+  # and var.ephemeral_to_port, inclusive, from var.outbound_cidr_blocks
   ephemeral_from_port = 1024
 
-  # Return traffic will be allowed on all ports between var.ephemeral_from_port and
-  # var.ephemeral_to_port, inclusive, from var.outbound_cidr_blocks
+  # Return traffic will be allowed on all ports between var.ephemeral_from_port
+  # and var.ephemeral_to_port, inclusive, from var.outbound_cidr_blocks
   ephemeral_to_port = 65535
 
   # The list of ports to exclude from the inbound return traffic rules. This is
   # useful for adhering to certain compliance standards like CIS that explicitly
-  # deny any allow rule for administrative ports. This can not be set if protocol is
-  # icmp.
+  # deny any allow rule for administrative ports. This can not be set if
+  # protocol is icmp.
   exclude_ephemeral_ports = []
 
-  # The ICMP code. Required if specifying ICMP for the protocol. Note: If the value
-  # of icmp_type is -1 , the icmp_code must also be set to -1 (wildcard ICMP code).
+  # The ICMP code. Required if specifying ICMP for the protocol. Note: If the
+  # value of icmp_type is -1 , the icmp_code must also be set to -1 (wildcard
+  # ICMP code).
   icmp_code = null
 
-  # The ICMP type. Required if specifying icmp for the protocol. When type set to -1
-  # this results in a wildcard ICMP type
+  # The ICMP type. Required if specifying icmp for the protocol. When type set
+  # to -1 this results in a wildcard ICMP type
   icmp_type = null
 
 }
@@ -132,7 +134,7 @@ module "network_acl_outbound" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-outbound?ref=v0.23.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-outbound?ref=v0.23.1"
 }
 
 inputs = {
@@ -141,12 +143,12 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The number to use for the egress rule that will be added. Each egress rule in an
-  # network ACL must have a unique rule number.
+  # The number to use for the egress rule that will be added. Each egress rule
+  # in an network ACL must have a unique rule number.
   egress_rule_number = <number>
 
-  # The starting number to use for ingress rules that are added. Each ingress rule
-  # in an network ACL must have a unique rule number.
+  # The starting number to use for ingress rules that are added. Each ingress
+  # rule in an network ACL must have a unique rule number.
   ingress_rule_number = <number>
 
   # The id of the network ACL to which the new rules should be attached
@@ -169,40 +171,42 @@ inputs = {
   # var.outbound_to_port, inclusive
   outbound_to_port = <number>
 
-  # The protocol (e.g. TCP). If you set this value to -1 or 'all', any protocol and
-  # any port is allowed (so the from_port and to_port settings are ignored!).
+  # The protocol (e.g. TCP). If you set this value to -1 or 'all', any protocol
+  # and any port is allowed (so the from_port and to_port settings are
+  # ignored!).
   protocol = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # If you set this variable to false, this module will not create any resources.
-  # This is used as a workaround because Terraform does not allow you to use the
-  # 'count' parameter on modules. By using this parameter, you can optionally create
-  # or not create the resources within this module.
+  # If you set this variable to false, this module will not create any
+  # resources. This is used as a workaround because Terraform does not allow you
+  # to use the 'count' parameter on modules. By using this parameter, you can
+  # optionally create or not create the resources within this module.
   create_resources = true
 
-  # Return traffic will be allowed on all ports between var.ephemeral_from_port and
-  # var.ephemeral_to_port, inclusive, from var.outbound_cidr_blocks
+  # Return traffic will be allowed on all ports between var.ephemeral_from_port
+  # and var.ephemeral_to_port, inclusive, from var.outbound_cidr_blocks
   ephemeral_from_port = 1024
 
-  # Return traffic will be allowed on all ports between var.ephemeral_from_port and
-  # var.ephemeral_to_port, inclusive, from var.outbound_cidr_blocks
+  # Return traffic will be allowed on all ports between var.ephemeral_from_port
+  # and var.ephemeral_to_port, inclusive, from var.outbound_cidr_blocks
   ephemeral_to_port = 65535
 
   # The list of ports to exclude from the inbound return traffic rules. This is
   # useful for adhering to certain compliance standards like CIS that explicitly
-  # deny any allow rule for administrative ports. This can not be set if protocol is
-  # icmp.
+  # deny any allow rule for administrative ports. This can not be set if
+  # protocol is icmp.
   exclude_ephemeral_ports = []
 
-  # The ICMP code. Required if specifying ICMP for the protocol. Note: If the value
-  # of icmp_type is -1 , the icmp_code must also be set to -1 (wildcard ICMP code).
+  # The ICMP code. Required if specifying ICMP for the protocol. Note: If the
+  # value of icmp_type is -1 , the icmp_code must also be set to -1 (wildcard
+  # ICMP code).
   icmp_code = null
 
-  # The ICMP type. Required if specifying icmp for the protocol. When type set to -1
-  # this results in a wildcard ICMP type
+  # The ICMP type. Required if specifying icmp for the protocol. When type set
+  # to -1 this results in a wildcard ICMP type
   icmp_type = null
 
 }
@@ -217,11 +221,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/network-acl-outbound/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/network-acl-outbound/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.0/modules/network-acl-outbound/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/network-acl-outbound/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/network-acl-outbound/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/network-acl-outbound/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bd943f404722d100b077091514275b76"
+  "hash": "b38d69a53718dd4d333f0a834590f2b8"
 }
 ##DOCS-SOURCER-END -->

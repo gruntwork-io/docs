@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="0.29.6" lastModifiedVersion="0.29.4"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="0.29.7" lastModifiedVersion="0.29.7"/>
 
 # Load Balancer Listener Rules
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.6/modules/lb-listener-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/lb-listener-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module provides a simpler, more declarative interface for creating
 [Load Balancer Listener Rules](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html)
@@ -95,7 +95,7 @@ Note that in most cases, your path definitions should be mutually exclusive and 
 
 module "lb_listener_rules" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v0.29.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v0.29.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -105,30 +105,30 @@ module "lb_listener_rules" {
   # numbers and the values should be the ARN of the listener for that port.
   default_listener_arns = <map(string)>
 
-  # The default port numbers on the load balancer to attach listener rules to. You
-  # can override this default on a rule-by-rule basis by setting the listener_ports
-  # parameter in each rule. The port numbers specified in this variable and the
-  # listener_ports parameter must exist in var.listener_arns.
+  # The default port numbers on the load balancer to attach listener rules to.
+  # You can override this default on a rule-by-rule basis by setting the
+  # listener_ports parameter in each rule. The port numbers specified in this
+  # variable and the listener_ports parameter must exist in var.listener_arns.
   default_listener_ports = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The ARN of the Target Group to which to route traffic. Required if using forward
-  # rules.
+  # The ARN of the Target Group to which to route traffic. Required if using
+  # forward rules.
   default_forward_target_group_arns = []
 
-  # Listener rules for a fixed-response action. See comments below for information
-  # about the parameters.
+  # Listener rules for a fixed-response action. See comments below for
+  # information about the parameters.
   fixed_response_rules = {}
 
-  # Listener rules for a forward action that distributes requests among one or more
-  # target groups. See comments below for information about the parameters.
+  # Listener rules for a forward action that distributes requests among one or
+  # more target groups. See comments below for information about the parameters.
   forward_rules = {}
 
-  # Listener rules for a redirect action. See comments below for information about
-  # the parameters.
+  # Listener rules for a redirect action. See comments below for information
+  # about the parameters.
   redirect_rules = {}
 
 }
@@ -146,7 +146,7 @@ module "lb_listener_rules" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v0.29.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v0.29.7"
 }
 
 inputs = {
@@ -159,30 +159,30 @@ inputs = {
   # numbers and the values should be the ARN of the listener for that port.
   default_listener_arns = <map(string)>
 
-  # The default port numbers on the load balancer to attach listener rules to. You
-  # can override this default on a rule-by-rule basis by setting the listener_ports
-  # parameter in each rule. The port numbers specified in this variable and the
-  # listener_ports parameter must exist in var.listener_arns.
+  # The default port numbers on the load balancer to attach listener rules to.
+  # You can override this default on a rule-by-rule basis by setting the
+  # listener_ports parameter in each rule. The port numbers specified in this
+  # variable and the listener_ports parameter must exist in var.listener_arns.
   default_listener_ports = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The ARN of the Target Group to which to route traffic. Required if using forward
-  # rules.
+  # The ARN of the Target Group to which to route traffic. Required if using
+  # forward rules.
   default_forward_target_group_arns = []
 
-  # Listener rules for a fixed-response action. See comments below for information
-  # about the parameters.
+  # Listener rules for a fixed-response action. See comments below for
+  # information about the parameters.
   fixed_response_rules = {}
 
-  # Listener rules for a forward action that distributes requests among one or more
-  # target groups. See comments below for information about the parameters.
+  # Listener rules for a forward action that distributes requests among one or
+  # more target groups. See comments below for information about the parameters.
   forward_rules = {}
 
-  # Listener rules for a redirect action. See comments below for information about
-  # the parameters.
+  # Listener rules for a redirect action. See comments below for information
+  # about the parameters.
   redirect_rules = {}
 
 }
@@ -725,11 +725,11 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.6/modules/lb-listener-rules/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.6/modules/lb-listener-rules/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.6/modules/lb-listener-rules/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/lb-listener-rules/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/lb-listener-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/lb-listener-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bc4d38764a9ca36d4e11e6b86df0d0a0"
+  "hash": "696905e595d4bfd787f583ac96e3473b"
 }
 ##DOCS-SOURCER-END -->
