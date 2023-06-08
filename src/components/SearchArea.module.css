@@ -58,8 +58,11 @@
 .SearchInput {
   align-items: center;
   background: rgb(255, 255, 255);
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #CCCCCC;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
   padding-top: 0px;
   color: hsl(0, 0%, 20%);
   display: flex;
@@ -70,7 +73,6 @@
   user-select: none;
   width: 100%;
   height: 100%;
-  border: 1px solid hsl(0, 0%, 80%);
   margin-left: 1px;
   margin-top: 0px;
   font-size: 15px;
@@ -81,6 +83,16 @@
   outline: unset;
   border-color: #6f5bd7;
   box-shadow: 0 0 0 1px #6f5bd7;
+}
+
+
+.SearchInput::-webkit-input-placeholder {
+  color: #969faf;
+  opacity: unset;
+}
+
+.SearchInput::placeholder {
+  color: #969faf;
 }
 
 .FacetListContainer {

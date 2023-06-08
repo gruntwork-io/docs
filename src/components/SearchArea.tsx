@@ -29,7 +29,7 @@ function ResultCardGroup(hits: any) {
             <div
               className={styles.card_result}
               dangerouslySetInnerHTML={{
-                __html: (hit.moduleDescription as string)
+                __html: hit.moduleDescription as string,
               }}
             ></div>
           </Card>
@@ -78,14 +78,20 @@ function CustomHits(hits: any[]) {
 }
 
 const selectStyles = {
+  placeholder: (base) => {
+    return {
+      ...base,
+      color: "#969faf",
+    }
+  },
   control: (base, state) => ({
     ...base,
     fontSize: "16px",
-    borderColor: state.isFocused ? "#6f5bd7" : base.borderColor,
-    boxShadow: state.isFocused ? "0 0 0 1px #6f5bd7" : base.borderColor,
+    borderColor: state.isFocused ? "#6f5bd7" : "#CCCCCC",
+    boxShadow: state.isFocused ? "0 0 0 1px #6f5bd7" : "#CCCCCC",
     "&:hover": {
-      borderColor: state.isFocused ? "#6f5bd7" : base.borderColor,
-      boxShadow: state.isFocused ? "0 0 0 1px #6f5bd7" : base.boarderColor,
+      borderColor: state.isFocused ? "#6f5bd7" : "#CCCCCC",
+      boxShadow: state.isFocused ? "0 0 0 1px #6f5bd7" : "#CCCCCC",
     },
   }),
 }
@@ -93,7 +99,7 @@ const selectStyles = {
 export const SearchArea: React.FunctionComponent<
   PropsWithChildren<SearchAreaProps>
 > = ({ name, requirement, type, children }) => {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext()
 
   const algoliaAppId: string = siteConfig.themeConfig.algolia.appId
   // This key is for search only. It is safe to check in.
