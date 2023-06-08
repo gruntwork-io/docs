@@ -48,6 +48,7 @@ references:
         export AWS_SECRET_ACCESS_KEY=`echo ${CREDENTIALS} | jq -r '.Credentials.SecretAccessKey'`
         export AWS_SESSION_TOKEN=`echo ${CREDENTIALS} | jq -r '.Credentials.SessionToken'`
         export AWS_EXPIRATION=`echo ${CREDENTIALS} | jq -r '.Credentials.Expiration'`
+        export ALGOLIA_LIBRARY_INDEX_NAME="stage_docs_sourcer-library-reference"
         ./scripts/push-to-s3-stage.sh
 
   deploy_to_prod: &deploy-to-prod
@@ -60,6 +61,7 @@ references:
         export AWS_SECRET_ACCESS_KEY=`echo ${CREDENTIALS} | jq -r '.Credentials.SecretAccessKey'`
         export AWS_SESSION_TOKEN=`echo ${CREDENTIALS} | jq -r '.Credentials.SessionToken'`
         export AWS_EXPIRATION=`echo ${CREDENTIALS} | jq -r '.Credentials.Expiration'`
+        export ALGOLIA_LIBRARY_INDEX_NAME="prod_docs_sourcer-library-reference"
         ./scripts/push-to-s3-prod.sh
 
   notify_slack_staging: &notify_slack_staging
