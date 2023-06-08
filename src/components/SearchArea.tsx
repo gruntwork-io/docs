@@ -20,8 +20,8 @@ function ResultCardGroup(hits: any) {
       {hits.map((hit: any) => {
         return (
           <Card
-            title={hit.moduleName}
-            key={hit.moduleName}
+            title={hit.rawModuleName}
+            key={hit.rawModuleName}
             href={hit.docsRelativeUrl}
             tags={[hit.mainRepoTitle]}
             className={styles.card_container_max_width}
@@ -189,7 +189,7 @@ export const SearchArea: React.FunctionComponent<
               options={searchTypeFacets.map((f) => {
                 return { value: f["key"], label: f["key"] }
               })}
-              placeholder="All"
+              placeholder="Any"
               styles={selectStyles}
             />
           </div>
