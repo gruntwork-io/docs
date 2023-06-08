@@ -95,8 +95,8 @@ export const SearchArea: React.FunctionComponent<
 > = ({ name, requirement, type, children }) => {
   const {siteConfig} = useDocusaurusContext();
 
-  // This key is for search only. It is safe to check in.
   const algoliaAppId: string = siteConfig.themeConfig.algolia.appId
+  // This key is for search only. It is safe to check in.
   const algoliaSearchKey: string = "a976ea48057ceaa662656ec8f4f591af"
   const indexName: string = siteConfig.themeConfig.algolia.libraryIndexName
 
