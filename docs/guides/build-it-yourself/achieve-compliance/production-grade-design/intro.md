@@ -6,7 +6,7 @@ pagination_label: Production-grade Design
 
 In [core concepts](../core-concepts/intro.md) we discussed the basics of the AWS Foundations Benchmark. Although it's possible to achieve
 compliance with the Benchmark by manually configuring each setting in the web console or entering the CLI commands, we
-strongly discourage this approach. It precludes [the myriad benefits of using code to manage infrastructure](/intro/core-concepts/infrastructure-as-code).
+strongly discourage this approach. It precludes [the myriad benefits of using code to manage infrastructure](iac/overview).
 
 Instead, we advise using [Terraform](https://www.terraform.io) (or similar tools, such as
 [CloudFormation](https://aws.amazon.com/cloudformation/) or [Pulumi](https://www.pulumi.com/) to configure cloud
@@ -20,6 +20,6 @@ edition of Terraform Up & Running](https://medium.com/gruntwork/terraform-up-run
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b16df89a913536dd1269166a711b6434"
+  "hash": "8a243c2ec825394c88776c5397531de6"
 }
 ##DOCS-SOURCER-END -->

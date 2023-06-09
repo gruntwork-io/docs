@@ -128,7 +128,7 @@ structure to deploy Terraform modules. Please note that **Terragrunt is NOT requ
 the Gruntwork Infrastructure as Code Library.** Check out
 our [Introduction to Gruntwork](/intro/overview/intro-to-gruntwork) for instructions
 on alternative options, such as how to
-[Deploy using plain Terraform](/intro/first-deployment/deploy#deploy-using-plain-terraform).
+[Deploy using plain Terraform](/iac/getting-started/deploying-a-module).
 
 :::
 
