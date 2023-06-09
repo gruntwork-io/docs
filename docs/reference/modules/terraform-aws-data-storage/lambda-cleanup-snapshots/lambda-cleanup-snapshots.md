@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Delete Snapshots Lambda Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/lambda-cleanup-snapshots" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F346/modules/lambda-cleanup-snapshots" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -29,7 +29,7 @@ Note that to use this module, you must have access to the Gruntwork [Continuous 
 
 This module allows you to configure a number of parameters, such as which database to backup, how often to run the
 backups, what account to share the backups with, and more. For a list of all available variables and their
-descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/lambda-cleanup-snapshots/variables.tf).
+descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F346/modules/lambda-cleanup-snapshots/variables.tf).
 
 ## Sample Usage
 
@@ -293,11 +293,11 @@ Namespace of snapshots that will be cleaned up by this module. If specified then
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/lambda-cleanup-snapshots/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/lambda-cleanup-snapshots/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/lambda-cleanup-snapshots/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F346/modules/lambda-cleanup-snapshots/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F346/modules/lambda-cleanup-snapshots/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F346/modules/lambda-cleanup-snapshots/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2797e8da3a551aa46e4146bcef08ec69"
+  "hash": "5f97a4b8e5dbc05fca339861b3d4acfc"
 }
 ##DOCS-SOURCER-END -->
