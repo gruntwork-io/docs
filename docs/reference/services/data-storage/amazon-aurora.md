@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.7" lastModifiedVersion="0.102.14"/>
+<VersionBadge version="0.104.11" lastModifiedVersion="0.102.14"/>
 
 # Amazon Aurora
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.7/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.7/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.7/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/aurora?ref=v0.104.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/aurora?ref=v0.104.11"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -112,9 +112,9 @@ module "aurora" {
   # contain subnets in var.vpc_id.
   aurora_subnet_ids = <list(string)>
 
-  # The name used to namespace all the Aurora resources created by these templates,
-  # including the cluster and cluster instances (e.g. drupaldb). Must be unique in
-  # this region. Must be a lowercase string.
+  # The name used to namespace all the Aurora resources created by these
+  # templates, including the cluster and cluster instances (e.g. drupaldb). Must
+  # be unique in this region. Must be a lowercase string.
   name = <string>
 
   # The ID of the VPC in which to deploy Aurora.
@@ -124,80 +124,83 @@ module "aurora" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk
-  # space usage) should send notifications. Also used for the alarms if the share
-  # snapshot backup job fails.
+  # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
+  # disk space usage) should send notifications. Also used for the alarms if the
+  # share snapshot backup job fails.
   alarms_sns_topic_arns = []
 
-  # The list of network CIDR blocks to allow network access to Aurora from. One of
-  # var.allow_connections_from_cidr_blocks or
-  # var.allow_connections_from_security_groups must be specified for the database to
-  # be reachable.
+  # The list of network CIDR blocks to allow network access to Aurora from. One
+  # of var.allow_connections_from_cidr_blocks or
+  # var.allow_connections_from_security_groups must be specified for the
+  # database to be reachable.
   allow_connections_from_cidr_blocks = []
 
-  # The list of IDs or Security Groups to allow network access to Aurora from. All
-  # security groups must either be in the VPC specified by var.vpc_id, or a peered
-  # VPC with the VPC specified by var.vpc_id. One of
+  # The list of IDs or Security Groups to allow network access to Aurora from.
+  # All security groups must either be in the VPC specified by var.vpc_id, or a
+  # peered VPC with the VPC specified by var.vpc_id. One of
   # var.allow_connections_from_cidr_blocks or
-  # var.allow_connections_from_security_groups must be specified for the database to
-  # be reachable.
+  # var.allow_connections_from_security_groups must be specified for the
+  # database to be reachable.
   allow_connections_from_security_groups = []
 
   # Enable to allow major engine version upgrades when changing engine versions.
   allow_major_version_upgrade = false
 
-  # Specifies whether any cluster modifications are applied immediately, or during
-  # the next maintenance window. Note that cluster modifications may cause degraded
-  # performance or downtime.
+  # Specifies whether any cluster modifications are applied immediately, or
+  # during the next maintenance window. Note that cluster modifications may
+  # cause degraded performance or downtime.
   apply_immediately = false
 
   # Configure the auto minor version upgrade behavior. This is applied to the
-  # cluster instances and indicates if the automatic minor version upgrade of the
-  # engine is allowed. Default value is true.
+  # cluster instances and indicates if the automatic minor version upgrade of
+  # the engine is allowed. Default value is true.
   auto_minor_version_upgrade = true
 
-  # How often, in seconds, the backup job is expected to run. This is the same as
-  # var.schedule_expression, but unfortunately, Terraform offers no way to convert
-  # rate expressions to seconds. We add a CloudWatch alarm that triggers if the
-  # metric in var.create_snapshot_cloudwatch_metric_namespace isn't updated within
-  # this time period, as that indicates the backup failed to run.
+  # How often, in seconds, the backup job is expected to run. This is the same
+  # as var.schedule_expression, but unfortunately, Terraform offers no way to
+  # convert rate expressions to seconds. We add a CloudWatch alarm that triggers
+  # if the metric in var.create_snapshot_cloudwatch_metric_namespace isn't
+  # updated within this time period, as that indicates the backup failed to run.
   backup_job_alarm_period = 3600
 
   # Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA
   # state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   backup_job_alarm_treat_missing_data = "missing"
 
-  # How many days to keep backup snapshots around before cleaning them up. Max: 35
+  # How many days to keep backup snapshots around before cleaning them up. Max:
+  # 35
   backup_retention_period = 30
 
   # Copy all the Aurora cluster tags to snapshots. Default is false.
   copy_tags_to_snapshot = false
 
-  # Set to true if you want a DNS record automatically created and pointed at the
-  # RDS endpoints.
+  # Set to true if you want a DNS record automatically created and pointed at
+  # the RDS endpoints.
   create_route53_entry = false
 
-  # The namespace to use for the CloudWatch metric we report every time a new RDS
-  # snapshot is created. We add a CloudWatch alarm on this metric to notify us if
-  # the backup job fails to run for any reason. Defaults to the cluster name.
+  # The namespace to use for the CloudWatch metric we report every time a new
+  # RDS snapshot is created. We add a CloudWatch alarm on this metric to notify
+  # us if the backup job fails to run for any reason. Defaults to the cluster
+  # name.
   create_snapshot_cloudwatch_metric_namespace = null
 
-  # A map of custom tags to apply to the RDS cluster and all associated resources
-  # created for it. The key is the tag name and the value is the tag value.
+  # A map of custom tags to apply to the RDS cluster and all associated
+  # resources created for it. The key is the tag name and the value is the tag
+  # value.
   custom_tags = {}
 
-  # Parameters for the cpu usage widget to output for use in a CloudWatch dashboard.
+  # Parameters for the cpu usage widget to output for use in a CloudWatch
+  # dashboard.
   dashboard_cpu_usage_widget_parameters = {"height":6,"period":60,"width":8}
 
-  # Parameters for the database connections widget to output for use in a CloudWatch
-  # dashboard.
+  # Parameters for the database connections widget to output for use in a
+  # CloudWatch dashboard.
   dashboard_db_connections_widget_parameters = {"height":6,"period":60,"width":8}
 
-  # Parameters for the available disk space widget to output for use in a CloudWatch
-  # dashboard.
+  # Parameters for the available disk space widget to output for use in a
+  # CloudWatch dashboard.
   dashboard_disk_space_widget_parameters = {"height":6,"period":60,"width":8}
 
   # Parameters for the available memory widget to output for use in a CloudWatch
@@ -212,43 +215,42 @@ module "aurora" {
   # dashboard.
   dashboard_write_latency_widget_parameters = {"height":6,"period":60,"width":8}
 
-  # Configure a custom parameter group for the RDS DB cluster. This will create a
-  # new parameter group with the given parameters. When null, the database will be
-  # launched with the default parameter group.
+  # Configure a custom parameter group for the RDS DB cluster. This will create
+  # a new parameter group with the given parameters. When null, the database
+  # will be launched with the default parameter group.
   db_cluster_custom_parameter_group = null
 
-  # The friendly name or ARN of an AWS Secrets Manager secret that contains database
-  # configuration information in the format outlined by this document:
+  # The friendly name or ARN of an AWS Secrets Manager secret that contains
+  # database configuration information in the format outlined by this document:
   # https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html.
-  # The engine, username, password, dbname, and port fields must be included in the
-  # JSON. Note that even with this precaution, this information will be stored in
-  # plaintext in the Terraform state file! See the following blog post for more
-  # details:
-  # https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terr
-  # form-code-1d586955ace1. If you do not wish to use Secrets Manager, leave this as
-  # null, and use the master_username, master_password, db_name, engine, and port
-  # variables.
+  # The engine, username, password, dbname, and port fields must be included in
+  # the JSON. Note that even with this precaution, this information will be
+  # stored in plaintext in the Terraform state file! See the following blog post
+  # for more details:
+  # https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terraform-code-1d586955ace1.
+  # If you do not wish to use Secrets Manager, leave this as null, and use the
+  # master_username, master_password, db_name, engine, and port variables.
   db_config_secrets_manager_id = null
 
-  # Configure a custom parameter group for the RDS DB Instance. This will create a
-  # new parameter group with the given parameters. When null, the database will be
-  # launched with the default parameter group.
+  # Configure a custom parameter group for the RDS DB Instance. This will create
+  # a new parameter group with the given parameters. When null, the database
+  # will be launched with the default parameter group.
   db_instance_custom_parameter_group = null
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do not
-  # provide a name, Amazon RDS will not create a database in the DB cluster you are
-  # creating. This can also be provided via AWS Secrets Manager. See the description
-  # of db_config_secrets_manager_id. A value here overrides the value in
-  # db_config_secrets_manager_id.
+  # The name for your database of up to 8 alpha-numeric characters. If you do
+  # not provide a name, Amazon RDS will not create a database in the DB cluster
+  # you are creating. This can also be provided via AWS Secrets Manager. See the
+  # description of db_config_secrets_manager_id. A value here overrides the
+  # value in db_config_secrets_manager_id.
   db_name = null
 
-  # Set to true to enable several basic CloudWatch alarms around CPU usage, memory
-  # usage, and disk space usage. If set to true, make sure to specify SNS topics to
-  # send notifications to using var.alarms_sns_topic_arn.
+  # Set to true to enable several basic CloudWatch alarms around CPU usage,
+  # memory usage, and disk space usage. If set to true, make sure to specify SNS
+  # topics to send notifications to using var.alarms_sns_topic_arn.
   enable_cloudwatch_alarms = true
 
-  # When true, enable CloudWatch metrics for the manual snapshots created for the
-  # purpose of sharing with another account.
+  # When true, enable CloudWatch metrics for the manual snapshots created for
+  # the purpose of sharing with another account.
   enable_cloudwatch_metrics = true
 
   # Enable deletion protection on the database instance. If this is enabled, the
@@ -257,8 +259,8 @@ module "aurora" {
 
   # Set to true to enable alarms related to performance, such as read and write
   # latency alarms. Set to false to disable those alarms if you aren't sure what
-  # would be reasonable perf numbers for your RDS set up or if those numbers are too
-  # unpredictable.
+  # would be reasonable perf numbers for your RDS set up or if those numbers are
+  # too unpredictable.
   enable_perf_alarms = true
 
   # When true, enable CloudWatch alarms for the manual snapshots created for the
@@ -266,15 +268,15 @@ module "aurora" {
   # var.share_snapshot_with_another_account is true.
   enable_share_snapshot_cloudwatch_alarms = true
 
-  # If non-empty, the Aurora cluster will export the specified logs to Cloudwatch.
-  # Must be zero or more of: audit, error, general and slowquery
+  # If non-empty, the Aurora cluster will export the specified logs to
+  # Cloudwatch. Must be zero or more of: audit, error, general and slowquery
   enabled_cloudwatch_logs_exports = []
 
-  # The name of the database engine to be used for this DB cluster. Valid Values:
-  # aurora (for MySQL 5.6-compatible Aurora), aurora-mysql (for MySQL 5.7-compatible
-  # Aurora), and aurora-postgresql. This can also be provided via AWS Secrets
-  # Manager. See the description of db_config_secrets_manager_id. A value here
-  # overrides the value in db_config_secrets_manager_id.
+  # The name of the database engine to be used for this DB cluster. Valid
+  # Values: aurora (for MySQL 5.6-compatible Aurora), aurora-mysql (for MySQL
+  # 5.7-compatible Aurora), and aurora-postgresql. This can also be provided via
+  # AWS Secrets Manager. See the description of db_config_secrets_manager_id. A
+  # value here overrides the value in db_config_secrets_manager_id.
   engine = null
 
   # The version of aurora to run - provisioned or serverless.
@@ -282,80 +284,81 @@ module "aurora" {
 
   # The Amazon Aurora DB engine version for the selected engine and engine_mode.
   # Note: Starting with Aurora MySQL 2.03.2, Aurora engine versions have the
-  # following syntax <mysql-major-version>.mysql_aurora.<aurora-mysql-version>. e.g.
-  # 5.7.mysql_aurora.2.08.1.
+  # following syntax <mysql-major-version>.mysql_aurora.<aurora-mysql-version>.
+  # e.g. 5.7.mysql_aurora.2.08.1.
   engine_version = null
 
-  # The period, in seconds, over which to measure the CPU utilization percentage.
+  # The period, in seconds, over which to measure the CPU utilization
+  # percentage.
   high_cpu_utilization_period = 60
 
-  # Trigger an alarm if the DB instance has a CPU utilization percentage above this
-  # threshold.
+  # Trigger an alarm if the DB instance has a CPU utilization percentage above
+  # this threshold.
   high_cpu_utilization_threshold = 90
 
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   high_cpu_utilization_treat_missing_data = "missing"
 
   # The period, in seconds, over which to measure the read latency.
   high_read_latency_period = 60
 
-  # Trigger an alarm if the DB instance read latency (average amount of time taken
-  # per disk I/O operation), in seconds, is above this threshold.
+  # Trigger an alarm if the DB instance read latency (average amount of time
+  # taken per disk I/O operation), in seconds, is above this threshold.
   high_read_latency_threshold = 5
 
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   high_read_latency_treat_missing_data = "missing"
 
   # The period, in seconds, over which to measure the write latency.
   high_write_latency_period = 60
 
-  # Trigger an alarm if the DB instance write latency (average amount of time taken
-  # per disk I/O operation), in seconds, is above this threshold.
+  # Trigger an alarm if the DB instance write latency (average amount of time
+  # taken per disk I/O operation), in seconds, is above this threshold.
   high_write_latency_threshold = 5
 
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   high_write_latency_treat_missing_data = "missing"
 
   # The ID of the hosted zone in which to write DNS records
   hosted_zone_id = null
 
-  # Specifies whether mappings of AWS Identity and Access Management (IAM) accounts
-  # to database accounts is enabled. Disabled by default.
+  # Specifies whether mappings of AWS Identity and Access Management (IAM)
+  # accounts to database accounts is enabled. Disabled by default.
   iam_database_authentication_enabled = false
 
-  # The number of DB instances, including the primary, to run in the RDS cluster.
-  # Only used when var.engine_mode is set to provisioned.
+  # The number of DB instances, including the primary, to run in the RDS
+  # cluster. Only used when var.engine_mode is set to provisioned.
   instance_count = 1
 
   # The instance type to use for the db (e.g. db.r3.large). Only used when
   # var.engine_mode is set to provisioned.
   instance_type = "db.t3.small"
 
-  # The ARN of a KMS key that should be used to encrypt data on disk. Only used if
-  # var.storage_encrypted is true. If you leave this null, the default RDS KMS key
-  # for the account will be used.
+  # The ARN of a KMS key that should be used to encrypt data on disk. Only used
+  # if var.storage_encrypted is true. If you leave this null, the default RDS
+  # KMS key for the account will be used.
   kms_key_arn = null
 
   # The period, in seconds, over which to measure the available free disk space.
   low_disk_space_available_period = 60
 
-  # Trigger an alarm if the amount of disk space, in Bytes, on the DB instance drops
-  # below this threshold.
+  # Trigger an alarm if the amount of disk space, in Bytes, on the DB instance
+  # drops below this threshold.
   low_disk_space_available_threshold = 1000000000
 
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   low_disk_space_available_treat_missing_data = "missing"
 
   # The period, in seconds, over which to measure the available free memory.
@@ -365,10 +368,10 @@ module "aurora" {
   # drops below this threshold.
   low_memory_available_threshold = 100000000
 
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   low_memory_available_treat_missing_data = "missing"
 
   # The value to use for the master password of the database. This can also be
@@ -390,100 +393,103 @@ module "aurora" {
   # The ARN for the KMS key to encrypt Performance Insights data.
   performance_insights_kms_key_id = null
 
-  # The port the DB will listen on (e.g. 3306). This can also be provided via AWS
-  # Secrets Manager. See the description of db_config_secrets_manager_id. A value
-  # here overrides the value in db_config_secrets_manager_id.
+  # The port the DB will listen on (e.g. 3306). This can also be provided via
+  # AWS Secrets Manager. See the description of db_config_secrets_manager_id. A
+  # value here overrides the value in db_config_secrets_manager_id.
   port = null
 
   # The daily time range during which automated backups are created (e.g.
-  # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs.
+  # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup
+  # runs.
   preferred_backup_window = "06:00-07:00"
 
-  # The weekly day and time range during which cluster maintenance can occur (e.g.
-  # wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may
-  # even be a downtime during maintenance windows.
+  # The weekly day and time range during which cluster maintenance can occur
+  # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
+  # there may even be a downtime during maintenance windows.
   preferred_maintenance_window = "sun:07:00-sun:08:00"
 
-  # The domain name to create a route 53 record for the primary endpoint of the RDS
-  # database.
+  # The domain name to create a route 53 record for the primary endpoint of the
+  # RDS database.
   primary_domain_name = null
 
-  # If you wish to make your database accessible from the public Internet, set this
-  # flag to true (WARNING: NOT RECOMMENDED FOR REGULAR USAGE!!). The default is
-  # false, which means the database is only accessible from within the VPC, which is
-  # much more secure. This flag MUST be false for serverless mode.
+  # If you wish to make your database accessible from the public Internet, set
+  # this flag to true (WARNING: NOT RECOMMENDED FOR REGULAR USAGE!!). The
+  # default is false, which means the database is only accessible from within
+  # the VPC, which is much more secure. This flag MUST be false for serverless
+  # mode.
   publicly_accessible = false
 
-  # The domain name to create a route 53 record for the reader endpoint of the RDS
-  # database. Note that Aurora Serverless does not have reader endpoints, so this
-  # option is ignored when engine_mode is set to serverless. 
+  # The domain name to create a route 53 record for the reader endpoint of the
+  # RDS database. Note that Aurora Serverless does not have reader endpoints, so
+  # this option is ignored when engine_mode is set to serverless. 
   reader_domain_name = null
 
-  # If non-empty, the Aurora cluster will be restored from the given source cluster
-  # using the latest restorable time. Can only be used if snapshot_identifier is
-  # null. For more information see
+  # If non-empty, the Aurora cluster will be restored from the given source
+  # cluster using the latest restorable time. Can only be used if
+  # snapshot_identifier is null. For more information see
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PIT.html
   restore_source_cluster_identifier = null
 
-  # Only used if 'restore_source_cluster_identifier' is non-empty. Type of restore
-  # to be performed. Valid options are 'full-copy' and 'copy-on-write'.
-  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Clo
-  # e.html
+  # Only used if 'restore_source_cluster_identifier' is non-empty. Type of
+  # restore to be performed. Valid options are 'full-copy' and 'copy-on-write'.
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Clone.html
   restore_type = null
 
   # Whether to enable automatic pause. A DB cluster can be paused only when it's
   # idle (it has no connections). If a DB cluster is paused for more than seven
-  # days, the DB cluster might be backed up with a snapshot. In this case, the DB
-  # cluster is restored when there is a request to connect to it. Only used when
-  # var.engine_mode is set to serverless.
+  # days, the DB cluster might be backed up with a snapshot. In this case, the
+  # DB cluster is restored when there is a request to connect to it. Only used
+  # when var.engine_mode is set to serverless.
   scaling_configuration_auto_pause = true
 
-  # The maximum capacity. The maximum capacity must be greater than or equal to the
-  # minimum capacity. Valid capacity values are 2, 4, 8, 16, 32, 64, 128, and 256.
-  # Only used when var.engine_mode is set to serverless.
+  # The maximum capacity. The maximum capacity must be greater than or equal to
+  # the minimum capacity. Valid capacity values are 2, 4, 8, 16, 32, 64, 128,
+  # and 256. Only used when var.engine_mode is set to serverless.
   scaling_configuration_max_capacity = 256
 
   scaling_configuration_max_capacity_V2 = null
 
-  # The minimum capacity. The minimum capacity must be lesser than or equal to the
-  # maximum capacity. Valid capacity values are 2, 4, 8, 16, 32, 64, 128, and 256.
-  # Only used when var.engine_mode is set to serverless.
+  # The minimum capacity. The minimum capacity must be lesser than or equal to
+  # the maximum capacity. Valid capacity values are 2, 4, 8, 16, 32, 64, 128,
+  # and 256. Only used when var.engine_mode is set to serverless.
   scaling_configuration_min_capacity = 2
 
   scaling_configuration_min_capacity_V2 = null
 
-  # The time, in seconds, before an Aurora DB cluster in serverless mode is paused.
-  # Valid values are 300 through 86400. Only used when var.engine_mode is set to
-  # serverless.
+  # The time, in seconds, before an Aurora DB cluster in serverless mode is
+  # paused. Valid values are 300 through 86400. Only used when var.engine_mode
+  # is set to serverless.
   scaling_configuration_seconds_until_auto_pause = 300
 
-  # The maximum number of snapshots to keep around for the purpose of cross account
-  # sharing. Once this number is exceeded, a lambda function will delete the oldest
-  # snapshots. Only used if var.share_snapshot_with_another_account is true.
+  # The maximum number of snapshots to keep around for the purpose of cross
+  # account sharing. Once this number is exceeded, a lambda function will delete
+  # the oldest snapshots. Only used if var.share_snapshot_with_another_account
+  # is true.
   share_snapshot_max_snapshots = 30
 
   # An expression that defines how often to run the lambda function to take
-  # snapshots for the purpose of cross account sharing. For example, cron(0 20 * * ?
-  # *) or rate(5 minutes). Required if var.share_snapshot_with_another_account is
-  # true
+  # snapshots for the purpose of cross account sharing. For example, cron(0 20 *
+  # * ? *) or rate(5 minutes). Required if
+  # var.share_snapshot_with_another_account is true
   share_snapshot_schedule_expression = null
 
-  # The ID of the AWS Account that the snapshot should be shared with. Required if
-  # var.share_snapshot_with_another_account is true.
+  # The ID of the AWS Account that the snapshot should be shared with. Required
+  # if var.share_snapshot_with_another_account is true.
   share_snapshot_with_account_id = null
 
-  # If set to true, take periodic snapshots of the Aurora DB that should be shared
-  # with another account.
+  # If set to true, take periodic snapshots of the Aurora DB that should be
+  # shared with another account.
   share_snapshot_with_another_account = false
 
   # Determines whether a final DB snapshot is created before the DB instance is
-  # deleted. Be very careful setting this to true; if you do, and you delete this DB
-  # instance, you will not have any backups of the data! You almost never want to
-  # set this to true, unless you are doing automated or manual testing.
+  # deleted. Be very careful setting this to true; if you do, and you delete
+  # this DB instance, you will not have any backups of the data! You almost
+  # never want to set this to true, unless you are doing automated or manual
+  # testing.
   skip_final_snapshot = false
 
-  # If non-null, the RDS Instance will be restored from the given Snapshot ID. This
-  # is the Snapshot ID you'd find in the RDS console, e.g:
+  # If non-null, the RDS Instance will be restored from the given Snapshot ID.
+  # This is the Snapshot ID you'd find in the RDS console, e.g:
   # rds:production-2015-06-26-06-05.
   snapshot_identifier = null
 
@@ -492,8 +498,8 @@ module "aurora" {
   # snapshots. Uses the default aws/rds key in KMS.
   storage_encrypted = true
 
-  # Trigger an alarm if the number of connections to the DB instance goes above this
-  # threshold.
+  # Trigger an alarm if the number of connections to the DB instance goes above
+  # this threshold.
   too_many_db_connections_threshold = null
 
 }
@@ -516,7 +522,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/aurora?ref=v0.104.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/aurora?ref=v0.104.11"
 }
 
 inputs = {
@@ -529,9 +535,9 @@ inputs = {
   # contain subnets in var.vpc_id.
   aurora_subnet_ids = <list(string)>
 
-  # The name used to namespace all the Aurora resources created by these templates,
-  # including the cluster and cluster instances (e.g. drupaldb). Must be unique in
-  # this region. Must be a lowercase string.
+  # The name used to namespace all the Aurora resources created by these
+  # templates, including the cluster and cluster instances (e.g. drupaldb). Must
+  # be unique in this region. Must be a lowercase string.
   name = <string>
 
   # The ID of the VPC in which to deploy Aurora.
@@ -541,80 +547,83 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk
-  # space usage) should send notifications. Also used for the alarms if the share
-  # snapshot backup job fails.
+  # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
+  # disk space usage) should send notifications. Also used for the alarms if the
+  # share snapshot backup job fails.
   alarms_sns_topic_arns = []
 
-  # The list of network CIDR blocks to allow network access to Aurora from. One of
-  # var.allow_connections_from_cidr_blocks or
-  # var.allow_connections_from_security_groups must be specified for the database to
-  # be reachable.
+  # The list of network CIDR blocks to allow network access to Aurora from. One
+  # of var.allow_connections_from_cidr_blocks or
+  # var.allow_connections_from_security_groups must be specified for the
+  # database to be reachable.
   allow_connections_from_cidr_blocks = []
 
-  # The list of IDs or Security Groups to allow network access to Aurora from. All
-  # security groups must either be in the VPC specified by var.vpc_id, or a peered
-  # VPC with the VPC specified by var.vpc_id. One of
+  # The list of IDs or Security Groups to allow network access to Aurora from.
+  # All security groups must either be in the VPC specified by var.vpc_id, or a
+  # peered VPC with the VPC specified by var.vpc_id. One of
   # var.allow_connections_from_cidr_blocks or
-  # var.allow_connections_from_security_groups must be specified for the database to
-  # be reachable.
+  # var.allow_connections_from_security_groups must be specified for the
+  # database to be reachable.
   allow_connections_from_security_groups = []
 
   # Enable to allow major engine version upgrades when changing engine versions.
   allow_major_version_upgrade = false
 
-  # Specifies whether any cluster modifications are applied immediately, or during
-  # the next maintenance window. Note that cluster modifications may cause degraded
-  # performance or downtime.
+  # Specifies whether any cluster modifications are applied immediately, or
+  # during the next maintenance window. Note that cluster modifications may
+  # cause degraded performance or downtime.
   apply_immediately = false
 
   # Configure the auto minor version upgrade behavior. This is applied to the
-  # cluster instances and indicates if the automatic minor version upgrade of the
-  # engine is allowed. Default value is true.
+  # cluster instances and indicates if the automatic minor version upgrade of
+  # the engine is allowed. Default value is true.
   auto_minor_version_upgrade = true
 
-  # How often, in seconds, the backup job is expected to run. This is the same as
-  # var.schedule_expression, but unfortunately, Terraform offers no way to convert
-  # rate expressions to seconds. We add a CloudWatch alarm that triggers if the
-  # metric in var.create_snapshot_cloudwatch_metric_namespace isn't updated within
-  # this time period, as that indicates the backup failed to run.
+  # How often, in seconds, the backup job is expected to run. This is the same
+  # as var.schedule_expression, but unfortunately, Terraform offers no way to
+  # convert rate expressions to seconds. We add a CloudWatch alarm that triggers
+  # if the metric in var.create_snapshot_cloudwatch_metric_namespace isn't
+  # updated within this time period, as that indicates the backup failed to run.
   backup_job_alarm_period = 3600
 
   # Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA
   # state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   backup_job_alarm_treat_missing_data = "missing"
 
-  # How many days to keep backup snapshots around before cleaning them up. Max: 35
+  # How many days to keep backup snapshots around before cleaning them up. Max:
+  # 35
   backup_retention_period = 30
 
   # Copy all the Aurora cluster tags to snapshots. Default is false.
   copy_tags_to_snapshot = false
 
-  # Set to true if you want a DNS record automatically created and pointed at the
-  # RDS endpoints.
+  # Set to true if you want a DNS record automatically created and pointed at
+  # the RDS endpoints.
   create_route53_entry = false
 
-  # The namespace to use for the CloudWatch metric we report every time a new RDS
-  # snapshot is created. We add a CloudWatch alarm on this metric to notify us if
-  # the backup job fails to run for any reason. Defaults to the cluster name.
+  # The namespace to use for the CloudWatch metric we report every time a new
+  # RDS snapshot is created. We add a CloudWatch alarm on this metric to notify
+  # us if the backup job fails to run for any reason. Defaults to the cluster
+  # name.
   create_snapshot_cloudwatch_metric_namespace = null
 
-  # A map of custom tags to apply to the RDS cluster and all associated resources
-  # created for it. The key is the tag name and the value is the tag value.
+  # A map of custom tags to apply to the RDS cluster and all associated
+  # resources created for it. The key is the tag name and the value is the tag
+  # value.
   custom_tags = {}
 
-  # Parameters for the cpu usage widget to output for use in a CloudWatch dashboard.
+  # Parameters for the cpu usage widget to output for use in a CloudWatch
+  # dashboard.
   dashboard_cpu_usage_widget_parameters = {"height":6,"period":60,"width":8}
 
-  # Parameters for the database connections widget to output for use in a CloudWatch
-  # dashboard.
+  # Parameters for the database connections widget to output for use in a
+  # CloudWatch dashboard.
   dashboard_db_connections_widget_parameters = {"height":6,"period":60,"width":8}
 
-  # Parameters for the available disk space widget to output for use in a CloudWatch
-  # dashboard.
+  # Parameters for the available disk space widget to output for use in a
+  # CloudWatch dashboard.
   dashboard_disk_space_widget_parameters = {"height":6,"period":60,"width":8}
 
   # Parameters for the available memory widget to output for use in a CloudWatch
@@ -629,43 +638,42 @@ inputs = {
   # dashboard.
   dashboard_write_latency_widget_parameters = {"height":6,"period":60,"width":8}
 
-  # Configure a custom parameter group for the RDS DB cluster. This will create a
-  # new parameter group with the given parameters. When null, the database will be
-  # launched with the default parameter group.
+  # Configure a custom parameter group for the RDS DB cluster. This will create
+  # a new parameter group with the given parameters. When null, the database
+  # will be launched with the default parameter group.
   db_cluster_custom_parameter_group = null
 
-  # The friendly name or ARN of an AWS Secrets Manager secret that contains database
-  # configuration information in the format outlined by this document:
+  # The friendly name or ARN of an AWS Secrets Manager secret that contains
+  # database configuration information in the format outlined by this document:
   # https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html.
-  # The engine, username, password, dbname, and port fields must be included in the
-  # JSON. Note that even with this precaution, this information will be stored in
-  # plaintext in the Terraform state file! See the following blog post for more
-  # details:
-  # https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terr
-  # form-code-1d586955ace1. If you do not wish to use Secrets Manager, leave this as
-  # null, and use the master_username, master_password, db_name, engine, and port
-  # variables.
+  # The engine, username, password, dbname, and port fields must be included in
+  # the JSON. Note that even with this precaution, this information will be
+  # stored in plaintext in the Terraform state file! See the following blog post
+  # for more details:
+  # https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terraform-code-1d586955ace1.
+  # If you do not wish to use Secrets Manager, leave this as null, and use the
+  # master_username, master_password, db_name, engine, and port variables.
   db_config_secrets_manager_id = null
 
-  # Configure a custom parameter group for the RDS DB Instance. This will create a
-  # new parameter group with the given parameters. When null, the database will be
-  # launched with the default parameter group.
+  # Configure a custom parameter group for the RDS DB Instance. This will create
+  # a new parameter group with the given parameters. When null, the database
+  # will be launched with the default parameter group.
   db_instance_custom_parameter_group = null
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do not
-  # provide a name, Amazon RDS will not create a database in the DB cluster you are
-  # creating. This can also be provided via AWS Secrets Manager. See the description
-  # of db_config_secrets_manager_id. A value here overrides the value in
-  # db_config_secrets_manager_id.
+  # The name for your database of up to 8 alpha-numeric characters. If you do
+  # not provide a name, Amazon RDS will not create a database in the DB cluster
+  # you are creating. This can also be provided via AWS Secrets Manager. See the
+  # description of db_config_secrets_manager_id. A value here overrides the
+  # value in db_config_secrets_manager_id.
   db_name = null
 
-  # Set to true to enable several basic CloudWatch alarms around CPU usage, memory
-  # usage, and disk space usage. If set to true, make sure to specify SNS topics to
-  # send notifications to using var.alarms_sns_topic_arn.
+  # Set to true to enable several basic CloudWatch alarms around CPU usage,
+  # memory usage, and disk space usage. If set to true, make sure to specify SNS
+  # topics to send notifications to using var.alarms_sns_topic_arn.
   enable_cloudwatch_alarms = true
 
-  # When true, enable CloudWatch metrics for the manual snapshots created for the
-  # purpose of sharing with another account.
+  # When true, enable CloudWatch metrics for the manual snapshots created for
+  # the purpose of sharing with another account.
   enable_cloudwatch_metrics = true
 
   # Enable deletion protection on the database instance. If this is enabled, the
@@ -674,8 +682,8 @@ inputs = {
 
   # Set to true to enable alarms related to performance, such as read and write
   # latency alarms. Set to false to disable those alarms if you aren't sure what
-  # would be reasonable perf numbers for your RDS set up or if those numbers are too
-  # unpredictable.
+  # would be reasonable perf numbers for your RDS set up or if those numbers are
+  # too unpredictable.
   enable_perf_alarms = true
 
   # When true, enable CloudWatch alarms for the manual snapshots created for the
@@ -683,15 +691,15 @@ inputs = {
   # var.share_snapshot_with_another_account is true.
   enable_share_snapshot_cloudwatch_alarms = true
 
-  # If non-empty, the Aurora cluster will export the specified logs to Cloudwatch.
-  # Must be zero or more of: audit, error, general and slowquery
+  # If non-empty, the Aurora cluster will export the specified logs to
+  # Cloudwatch. Must be zero or more of: audit, error, general and slowquery
   enabled_cloudwatch_logs_exports = []
 
-  # The name of the database engine to be used for this DB cluster. Valid Values:
-  # aurora (for MySQL 5.6-compatible Aurora), aurora-mysql (for MySQL 5.7-compatible
-  # Aurora), and aurora-postgresql. This can also be provided via AWS Secrets
-  # Manager. See the description of db_config_secrets_manager_id. A value here
-  # overrides the value in db_config_secrets_manager_id.
+  # The name of the database engine to be used for this DB cluster. Valid
+  # Values: aurora (for MySQL 5.6-compatible Aurora), aurora-mysql (for MySQL
+  # 5.7-compatible Aurora), and aurora-postgresql. This can also be provided via
+  # AWS Secrets Manager. See the description of db_config_secrets_manager_id. A
+  # value here overrides the value in db_config_secrets_manager_id.
   engine = null
 
   # The version of aurora to run - provisioned or serverless.
@@ -699,80 +707,81 @@ inputs = {
 
   # The Amazon Aurora DB engine version for the selected engine and engine_mode.
   # Note: Starting with Aurora MySQL 2.03.2, Aurora engine versions have the
-  # following syntax <mysql-major-version>.mysql_aurora.<aurora-mysql-version>. e.g.
-  # 5.7.mysql_aurora.2.08.1.
+  # following syntax <mysql-major-version>.mysql_aurora.<aurora-mysql-version>.
+  # e.g. 5.7.mysql_aurora.2.08.1.
   engine_version = null
 
-  # The period, in seconds, over which to measure the CPU utilization percentage.
+  # The period, in seconds, over which to measure the CPU utilization
+  # percentage.
   high_cpu_utilization_period = 60
 
-  # Trigger an alarm if the DB instance has a CPU utilization percentage above this
-  # threshold.
+  # Trigger an alarm if the DB instance has a CPU utilization percentage above
+  # this threshold.
   high_cpu_utilization_threshold = 90
 
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   high_cpu_utilization_treat_missing_data = "missing"
 
   # The period, in seconds, over which to measure the read latency.
   high_read_latency_period = 60
 
-  # Trigger an alarm if the DB instance read latency (average amount of time taken
-  # per disk I/O operation), in seconds, is above this threshold.
+  # Trigger an alarm if the DB instance read latency (average amount of time
+  # taken per disk I/O operation), in seconds, is above this threshold.
   high_read_latency_threshold = 5
 
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   high_read_latency_treat_missing_data = "missing"
 
   # The period, in seconds, over which to measure the write latency.
   high_write_latency_period = 60
 
-  # Trigger an alarm if the DB instance write latency (average amount of time taken
-  # per disk I/O operation), in seconds, is above this threshold.
+  # Trigger an alarm if the DB instance write latency (average amount of time
+  # taken per disk I/O operation), in seconds, is above this threshold.
   high_write_latency_threshold = 5
 
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   high_write_latency_treat_missing_data = "missing"
 
   # The ID of the hosted zone in which to write DNS records
   hosted_zone_id = null
 
-  # Specifies whether mappings of AWS Identity and Access Management (IAM) accounts
-  # to database accounts is enabled. Disabled by default.
+  # Specifies whether mappings of AWS Identity and Access Management (IAM)
+  # accounts to database accounts is enabled. Disabled by default.
   iam_database_authentication_enabled = false
 
-  # The number of DB instances, including the primary, to run in the RDS cluster.
-  # Only used when var.engine_mode is set to provisioned.
+  # The number of DB instances, including the primary, to run in the RDS
+  # cluster. Only used when var.engine_mode is set to provisioned.
   instance_count = 1
 
   # The instance type to use for the db (e.g. db.r3.large). Only used when
   # var.engine_mode is set to provisioned.
   instance_type = "db.t3.small"
 
-  # The ARN of a KMS key that should be used to encrypt data on disk. Only used if
-  # var.storage_encrypted is true. If you leave this null, the default RDS KMS key
-  # for the account will be used.
+  # The ARN of a KMS key that should be used to encrypt data on disk. Only used
+  # if var.storage_encrypted is true. If you leave this null, the default RDS
+  # KMS key for the account will be used.
   kms_key_arn = null
 
   # The period, in seconds, over which to measure the available free disk space.
   low_disk_space_available_period = 60
 
-  # Trigger an alarm if the amount of disk space, in Bytes, on the DB instance drops
-  # below this threshold.
+  # Trigger an alarm if the amount of disk space, in Bytes, on the DB instance
+  # drops below this threshold.
   low_disk_space_available_threshold = 1000000000
 
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   low_disk_space_available_treat_missing_data = "missing"
 
   # The period, in seconds, over which to measure the available free memory.
@@ -782,10 +791,10 @@ inputs = {
   # drops below this threshold.
   low_memory_available_threshold = 100000000
 
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   low_memory_available_treat_missing_data = "missing"
 
   # The value to use for the master password of the database. This can also be
@@ -807,100 +816,103 @@ inputs = {
   # The ARN for the KMS key to encrypt Performance Insights data.
   performance_insights_kms_key_id = null
 
-  # The port the DB will listen on (e.g. 3306). This can also be provided via AWS
-  # Secrets Manager. See the description of db_config_secrets_manager_id. A value
-  # here overrides the value in db_config_secrets_manager_id.
+  # The port the DB will listen on (e.g. 3306). This can also be provided via
+  # AWS Secrets Manager. See the description of db_config_secrets_manager_id. A
+  # value here overrides the value in db_config_secrets_manager_id.
   port = null
 
   # The daily time range during which automated backups are created (e.g.
-  # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs.
+  # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup
+  # runs.
   preferred_backup_window = "06:00-07:00"
 
-  # The weekly day and time range during which cluster maintenance can occur (e.g.
-  # wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may
-  # even be a downtime during maintenance windows.
+  # The weekly day and time range during which cluster maintenance can occur
+  # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
+  # there may even be a downtime during maintenance windows.
   preferred_maintenance_window = "sun:07:00-sun:08:00"
 
-  # The domain name to create a route 53 record for the primary endpoint of the RDS
-  # database.
+  # The domain name to create a route 53 record for the primary endpoint of the
+  # RDS database.
   primary_domain_name = null
 
-  # If you wish to make your database accessible from the public Internet, set this
-  # flag to true (WARNING: NOT RECOMMENDED FOR REGULAR USAGE!!). The default is
-  # false, which means the database is only accessible from within the VPC, which is
-  # much more secure. This flag MUST be false for serverless mode.
+  # If you wish to make your database accessible from the public Internet, set
+  # this flag to true (WARNING: NOT RECOMMENDED FOR REGULAR USAGE!!). The
+  # default is false, which means the database is only accessible from within
+  # the VPC, which is much more secure. This flag MUST be false for serverless
+  # mode.
   publicly_accessible = false
 
-  # The domain name to create a route 53 record for the reader endpoint of the RDS
-  # database. Note that Aurora Serverless does not have reader endpoints, so this
-  # option is ignored when engine_mode is set to serverless. 
+  # The domain name to create a route 53 record for the reader endpoint of the
+  # RDS database. Note that Aurora Serverless does not have reader endpoints, so
+  # this option is ignored when engine_mode is set to serverless. 
   reader_domain_name = null
 
-  # If non-empty, the Aurora cluster will be restored from the given source cluster
-  # using the latest restorable time. Can only be used if snapshot_identifier is
-  # null. For more information see
+  # If non-empty, the Aurora cluster will be restored from the given source
+  # cluster using the latest restorable time. Can only be used if
+  # snapshot_identifier is null. For more information see
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PIT.html
   restore_source_cluster_identifier = null
 
-  # Only used if 'restore_source_cluster_identifier' is non-empty. Type of restore
-  # to be performed. Valid options are 'full-copy' and 'copy-on-write'.
-  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Clo
-  # e.html
+  # Only used if 'restore_source_cluster_identifier' is non-empty. Type of
+  # restore to be performed. Valid options are 'full-copy' and 'copy-on-write'.
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Clone.html
   restore_type = null
 
   # Whether to enable automatic pause. A DB cluster can be paused only when it's
   # idle (it has no connections). If a DB cluster is paused for more than seven
-  # days, the DB cluster might be backed up with a snapshot. In this case, the DB
-  # cluster is restored when there is a request to connect to it. Only used when
-  # var.engine_mode is set to serverless.
+  # days, the DB cluster might be backed up with a snapshot. In this case, the
+  # DB cluster is restored when there is a request to connect to it. Only used
+  # when var.engine_mode is set to serverless.
   scaling_configuration_auto_pause = true
 
-  # The maximum capacity. The maximum capacity must be greater than or equal to the
-  # minimum capacity. Valid capacity values are 2, 4, 8, 16, 32, 64, 128, and 256.
-  # Only used when var.engine_mode is set to serverless.
+  # The maximum capacity. The maximum capacity must be greater than or equal to
+  # the minimum capacity. Valid capacity values are 2, 4, 8, 16, 32, 64, 128,
+  # and 256. Only used when var.engine_mode is set to serverless.
   scaling_configuration_max_capacity = 256
 
   scaling_configuration_max_capacity_V2 = null
 
-  # The minimum capacity. The minimum capacity must be lesser than or equal to the
-  # maximum capacity. Valid capacity values are 2, 4, 8, 16, 32, 64, 128, and 256.
-  # Only used when var.engine_mode is set to serverless.
+  # The minimum capacity. The minimum capacity must be lesser than or equal to
+  # the maximum capacity. Valid capacity values are 2, 4, 8, 16, 32, 64, 128,
+  # and 256. Only used when var.engine_mode is set to serverless.
   scaling_configuration_min_capacity = 2
 
   scaling_configuration_min_capacity_V2 = null
 
-  # The time, in seconds, before an Aurora DB cluster in serverless mode is paused.
-  # Valid values are 300 through 86400. Only used when var.engine_mode is set to
-  # serverless.
+  # The time, in seconds, before an Aurora DB cluster in serverless mode is
+  # paused. Valid values are 300 through 86400. Only used when var.engine_mode
+  # is set to serverless.
   scaling_configuration_seconds_until_auto_pause = 300
 
-  # The maximum number of snapshots to keep around for the purpose of cross account
-  # sharing. Once this number is exceeded, a lambda function will delete the oldest
-  # snapshots. Only used if var.share_snapshot_with_another_account is true.
+  # The maximum number of snapshots to keep around for the purpose of cross
+  # account sharing. Once this number is exceeded, a lambda function will delete
+  # the oldest snapshots. Only used if var.share_snapshot_with_another_account
+  # is true.
   share_snapshot_max_snapshots = 30
 
   # An expression that defines how often to run the lambda function to take
-  # snapshots for the purpose of cross account sharing. For example, cron(0 20 * * ?
-  # *) or rate(5 minutes). Required if var.share_snapshot_with_another_account is
-  # true
+  # snapshots for the purpose of cross account sharing. For example, cron(0 20 *
+  # * ? *) or rate(5 minutes). Required if
+  # var.share_snapshot_with_another_account is true
   share_snapshot_schedule_expression = null
 
-  # The ID of the AWS Account that the snapshot should be shared with. Required if
-  # var.share_snapshot_with_another_account is true.
+  # The ID of the AWS Account that the snapshot should be shared with. Required
+  # if var.share_snapshot_with_another_account is true.
   share_snapshot_with_account_id = null
 
-  # If set to true, take periodic snapshots of the Aurora DB that should be shared
-  # with another account.
+  # If set to true, take periodic snapshots of the Aurora DB that should be
+  # shared with another account.
   share_snapshot_with_another_account = false
 
   # Determines whether a final DB snapshot is created before the DB instance is
-  # deleted. Be very careful setting this to true; if you do, and you delete this DB
-  # instance, you will not have any backups of the data! You almost never want to
-  # set this to true, unless you are doing automated or manual testing.
+  # deleted. Be very careful setting this to true; if you do, and you delete
+  # this DB instance, you will not have any backups of the data! You almost
+  # never want to set this to true, unless you are doing automated or manual
+  # testing.
   skip_final_snapshot = false
 
-  # If non-null, the RDS Instance will be restored from the given Snapshot ID. This
-  # is the Snapshot ID you'd find in the RDS console, e.g:
+  # If non-null, the RDS Instance will be restored from the given Snapshot ID.
+  # This is the Snapshot ID you'd find in the RDS console, e.g:
   # rds:production-2015-06-26-06-05.
   snapshot_identifier = null
 
@@ -909,8 +921,8 @@ inputs = {
   # snapshots. Uses the default aws/rds key in KMS.
   storage_encrypted = true
 
-  # Trigger an alarm if the number of connections to the DB instance goes above this
-  # threshold.
+  # Trigger an alarm if the number of connections to the DB instance goes above
+  # this threshold.
   too_many_db_connections_threshold = null
 
 }
@@ -2235,11 +2247,11 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.7/modules/data-stores/aurora/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.7/modules/data-stores/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.7/modules/data-stores/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/data-stores/aurora/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/data-stores/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "131ec83d44b23420adced064036892e3"
+  "hash": "3e27c1fb24fdf7bbcc8682f01cd64768"
 }
 ##DOCS-SOURCER-END -->
