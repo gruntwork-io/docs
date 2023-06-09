@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.7" lastModifiedVersion="0.104.1"/>
+<VersionBadge version="0.104.10" lastModifiedVersion="0.104.8"/>
 
 # Lambda
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.7/modules/services/lambda" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/services/lambda" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Flambda" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -59,9 +59,9 @@ documentation in the [terraform-aws-lambda](https://github.com/gruntwork-io/terr
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.7/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.7/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.7/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -69,7 +69,7 @@ documentation in the [terraform-aws-lambda](https://github.com/gruntwork-io/terr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.7/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -77,7 +77,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.7/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -101,7 +101,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "lambda" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/lambda?ref=v0.104.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/lambda?ref=v0.104.10"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -386,7 +386,7 @@ module "lambda" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/lambda?ref=v0.104.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/lambda?ref=v0.104.10"
 }
 
 inputs = {
@@ -1363,11 +1363,11 @@ Latest published version of your Lambda Function
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.7/modules/services/lambda/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.7/modules/services/lambda/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.7/modules/services/lambda/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/services/lambda/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/services/lambda/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/services/lambda/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9c8f8426a6e34fe99dd5ba372b73f5cf"
+  "hash": "0819713d356d5e76c5b3bc1d1209ba41"
 }
 ##DOCS-SOURCER-END -->
