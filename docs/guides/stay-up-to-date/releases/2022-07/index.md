@@ -3,10 +3,10 @@
 
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2022-07</small></p>
 
-This page is lists all the updates to the [Gruntwork Infrastructure as Code 
-Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2022-07. For instructions 
-on how to use these updates in your code, check out the [updating 
-documentation](/guides/working-with-code/using-modules#updating).
+This page is lists all the updates to the [Gruntwork Infrastructure as Code
+Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2022-07. For instructions
+on how to use these updates in your code, check out the [updating
+documentation](/iac/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -869,6 +869,6 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "888f9d7e007d5303918d161d10651e02"
+  "hash": "0a4764572ab6d455af2565e0c80f7c71"
 }
 ##DOCS-SOURCER-END -->

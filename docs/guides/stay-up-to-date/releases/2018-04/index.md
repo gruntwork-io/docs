@@ -3,10 +3,10 @@
 
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2018-04</small></p>
 
-This page is lists all the updates to the [Gruntwork Infrastructure as Code 
-Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2018-04. For instructions 
-on how to use these updates in your code, check out the [updating 
-documentation](/guides/working-with-code/using-modules#updating).
+This page is lists all the updates to the [Gruntwork Infrastructure as Code
+Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2018-04. For instructions
+on how to use these updates in your code, check out the [updating
+documentation](/iac/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -227,6 +227,6 @@ The main motivation for locking down EC2 metadata is as follows:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a02a2f417d1b9f79aff4d1965086394e"
+  "hash": "80a38cd5ca8386d6a47b7e88db104caf"
 }
 ##DOCS-SOURCER-END -->

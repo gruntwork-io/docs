@@ -3,10 +3,10 @@
 
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2017-11</small></p>
 
-This page is lists all the updates to the [Gruntwork Infrastructure as Code 
-Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2017-11. For instructions 
-on how to use these updates in your code, check out the [updating 
-documentation](/guides/working-with-code/using-modules#updating).
+This page is lists all the updates to the [Gruntwork Infrastructure as Code
+Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2017-11. For instructions
+on how to use these updates in your code, check out the [updating
+documentation](/iac/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -427,6 +427,6 @@ https_listener_ports_and_acm_ssl_certs = [
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "20c5a0f9df60811ff40b0ae3189bcca5"
+  "hash": "ce17f556f0a49e6ba41a8e38b9c91d4d"
 }
 ##DOCS-SOURCER-END -->

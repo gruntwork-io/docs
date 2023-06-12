@@ -3,10 +3,10 @@
 
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2018-12</small></p>
 
-This page is lists all the updates to the [Gruntwork Infrastructure as Code 
-Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2018-12. For instructions 
-on how to use these updates in your code, check out the [updating 
-documentation](/guides/working-with-code/using-modules#updating).
+This page is lists all the updates to the [Gruntwork Infrastructure as Code
+Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2018-12. For instructions
+on how to use these updates in your code, check out the [updating
+documentation](/iac/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -679,6 +679,6 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "9a9df05e92b6eb5c8532a64616fc98d5"
+  "hash": "206a8b99f4cc209c2e7bfe236ce6e517"
 }
 ##DOCS-SOURCER-END -->

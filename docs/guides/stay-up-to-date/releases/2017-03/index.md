@@ -3,10 +3,10 @@
 
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2017-03</small></p>
 
-This page is lists all the updates to the [Gruntwork Infrastructure as Code 
-Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2017-03. For instructions 
-on how to use these updates in your code, check out the [updating 
-documentation](/guides/working-with-code/using-modules#updating).
+This page is lists all the updates to the [Gruntwork Infrastructure as Code
+Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2017-03. For instructions
+on how to use these updates in your code, check out the [updating
+documentation](/iac/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -438,6 +438,6 @@ To use this, you need to configure the new `iam_groups_for_cross_account_access`
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "7cd71f432a22de3a090ebd508fcce00b"
+  "hash": "caae6d4f830d706f050d7eb7394a6595"
 }
 ##DOCS-SOURCER-END -->

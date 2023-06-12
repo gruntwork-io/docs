@@ -3,10 +3,10 @@
 
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2023-05</small></p>
 
-This page is lists all the updates to the [Gruntwork Infrastructure as Code 
-Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2023-05. For instructions 
-on how to use these updates in your code, check out the [updating 
-documentation](/guides/working-with-code/using-modules#updating).
+This page is lists all the updates to the [Gruntwork Infrastructure as Code
+Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2023-05. For instructions
+on how to use these updates in your code, check out the [updating
+documentation](/iac/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -87,41 +87,6 @@ Here are the repos that were updated:
 
 
 ## patcher-cli
-
-
-### [v0.3.1](https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.3.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/30/2023 | <a href="https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.3.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-This release includes the following changes.
-
-  - `patcher update`
-  - User selects the module dependencies to be updated
-  - Supports bumping to the next safe version
-  - Outputs YAML to `stdout` detailing the updates that were applied
-
-  - `patcher update --non-interactive`
-  - Updates all module dependencies in the current folder (and child folders) according to the specified update strategy
-  -  Outputs YAML to `stdout` detailing the updates that were applied
-  -  Outputs YAML to `stdout` listing all the `README-TO-COMPLETE-UPDATE.md` files that were created (`--update-strategy next-breaking` only)
-  -  `--no-color` flag for better output handling in CI pipelines
- 
-
-- This version only supports updating each selected dependency to either the highest version **before** the next closest breaking change or the latest version of the dependency, whichever is encountered first.
-
-- Setting `--update-strategy next-safe` (default)` will update all dependencies to either the highest version **before** the next closest breaking change or the latest version of the dependency, whichever is encountered first.
-- Setting `--update-strategy next-breaking` will update all dependencies to either the the next closest breaking change or the latest version of the dependency, whichever is encountered first.
-  - This may result in an update that requires manual intervention. 
-  - If a dependency is updated to a breaking change, a `README-TO-COMPLETE-UPDATE.md` containing an extract of the relevant release note is written to the folder containing the dependency
-
-
-
-</div>
 
 
 ### [v0.2.3](https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.2.3)
@@ -235,26 +200,6 @@ Updated the views to have a responsive height.
 
 
 ## terraform-aws-ci
-
-
-### [v0.52.2](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.2)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/30/2023 | Modules affected: ecs-deploy-runner, jenkins-server | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.2">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- Bump kubegrunt to v0.11.2
-- Fix: Jenkins ebs volume mapping var
-
-
-
-
-
-</div>
 
 
 ### [v0.52.1](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.1)
@@ -564,26 +509,6 @@ Fixed the user certificate request with pattern name similar to the already adde
 ## terraform-aws-service-catalog
 
 
-### [v0.104.8](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.104.8)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/30/2023 | Modules affected: mgmt | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.104.8">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- Bump requests from 2.25.1 to 2.31.0 in /examples/for-learning-and-testing/services/lambda/python
-- Bump jenkins module version
-
-
-
-
-
-</div>
-
-
 ### [v0.104.7](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.104.7)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -700,6 +625,6 @@ Fixed the user certificate request with pattern name similar to the already adde
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "1118159ce833d76dd5862d1b040d2ab9"
+  "hash": "3d4e586a09fe326a22bc0a441d2c23bf"
 }
 ##DOCS-SOURCER-END -->

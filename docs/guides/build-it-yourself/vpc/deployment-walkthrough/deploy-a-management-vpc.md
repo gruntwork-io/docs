@@ -103,8 +103,7 @@ file for reference.
 
 ## Test your wrapper module
 
-At this point, you’ll want to test your code. See [Manual tests for Terraform code](/intro/first-deployment/testing#manual-tests-for-terraform-code)
-and [Automated tests for Terraform code](/intro/first-deployment/testing#automated-tests-for-terraform-code)
+At this point, you’ll want to test your code. See [Manual tests for Terraform code](/iac/usage/using-the-library#testing-terraform-only)
 for instructions.
 
 ## Merge and release your wrapper module
@@ -216,6 +215,6 @@ terragrunt apply
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d3decd64eee5437c8225240c28c35def"
+  "hash": "b26574ee19cebd11ae44cb5c448b0b58"
 }
 ##DOCS-SOURCER-END -->

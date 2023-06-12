@@ -107,10 +107,7 @@ module "dns_mgmt_to_app" {
 ```
 
 At this point, you’ll want to test your code. See
-[Manual tests for Terraform code](/intro/first-deployment/testing#manual-tests-for-terraform-code)
-and
-[Automated tests for Terraform code](/intro/first-deployment/testing#automated-tests-for-terraform-code)
-for instructions.
+[Manual tests for Terraform code](/iac/usage/using-the-library#testing-terraform-only) for instructions.
 
 Once your updated `vpc-app` wrapper module is working the way you want, submit a pull request, get your changes merged
 into the `master` branch, and create a new versioned release by using a Git tag. For example, to create a `v0.5.0`
@@ -151,6 +148,6 @@ terragrunt apply
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "505aec32658779cb451e97e1aad70c50"
+  "hash": "13ac759465f9cd6a9a3d46fc8dd190e7"
 }
 ##DOCS-SOURCER-END -->

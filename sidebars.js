@@ -12,7 +12,6 @@
 const introSidebar = require("./sidebars/intro-guide.js")
 const productionFrameworkSidebar = require("./sidebars/production-framework-guide.js")
 const landingZoneSidebar = require("./sidebars/landing-zone-guide.js")
-const pipelineSidebar = require("./sidebars/pipelines-guide.js")
 const vpcSidebar = require("./sidebars/vpc-guide.js")
 const kubernetesSidebar = require("./sidebars/kubernetes-guide.js")
 const complianceSidebar = require("./sidebars/compliance-guide.js")
@@ -33,7 +32,6 @@ const sidebars = {
   introSidebar,
   productionFrameworkSidebar,
   landingZoneSidebar,
-  pipelineSidebar,
   vpcSidebar,
   kubernetesSidebar,
   complianceSidebar,
