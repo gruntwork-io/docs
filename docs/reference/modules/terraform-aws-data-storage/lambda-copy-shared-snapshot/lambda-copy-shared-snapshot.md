@@ -58,10 +58,10 @@ account 222222222222. To be able to make a copy of that snapshot in account 2222
 
       # (Other params omitted)
     }
-     
+
     module "copy_snapshot" {
       source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-copy-shared-snapshot?ref=<VERSION>"
-      
+
       # Tell this copy snapshot module to use this key to encrypt the copied snapshot
       kms_key_id = "${module.kms_master_key.key_arn}"
 
@@ -399,6 +399,6 @@ Namespace all Lambda scheduling resources created by this module with this name.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/db-subnet-grou/modules/lambda-copy-shared-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "631e6a3a24a2134335dae71af75c3206"
+  "hash": "a35973c7e51acd1020ca494fa770071f"
 }
 ##DOCS-SOURCER-END -->
