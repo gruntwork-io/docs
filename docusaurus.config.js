@@ -60,6 +60,11 @@ const config = {
           routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/gruntwork-io/docs/edit/master/",
+          exclude: [
+            "guides/build-it-yourself/landing-zone/**",
+            "guides/build-it-yourself/kubernetes-cluster/**",
+            "guides/build-it-yourself/vpc/**",
+          ],
           beforeDefaultRemarkPlugins: [captionsPlugin],
         },
         blog: false,
