@@ -222,6 +222,10 @@ const config = {
             title: "Resources",
             items: [
               {
+                label: "Production Framework",
+                href: "/guides/production-framework"
+              },
+              {
                 label: "Developer Portal",
                 href: "https://app.gruntwork.io",
               },
