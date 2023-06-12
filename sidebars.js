@@ -10,6 +10,7 @@
  */
 
 const introSidebar = require("./sidebars/intro-guide.js")
+const complianceSidebar = require("./sidebars/compliance-guide.js")
 const updateGuideSidebars = require("./sidebars/update-guides.js")
 const faqSidebars = require("./sidebars/faq.js")
 const librarySidebars = require("./sidebars/library.js")
@@ -25,6 +26,7 @@ const refarchSidebar = require("./sidebars/refarch.js")
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   introSidebar,
+  complianceSidebar,
   ...updateGuideSidebars,
   faqSidebars,
   librarySidebars,
