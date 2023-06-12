@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # RDS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/pre-commit/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -401,14 +401,6 @@ module "rds" {
   # disable automated backups.
   replica_backup_retention_period = 0
 
-  # Specifies that this resource is a Replicate database, and to use this value
-  # as the source database. This correlates to the identifier of another Amazon
-  # RDS Database to replicate (if replicating within a single region) or ARN of
-  # the Amazon RDS Database to replicate (if replicating cross-region). Note
-  # that if you are creating a cross-region replica of an encrypted database you
-  # will also need to specify a kms_key_arn.
-  replicate_source_db = null
-
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
   # this DB instance, you will not have any backups of the data!
@@ -759,14 +751,6 @@ inputs = {
   # read replicas. Must be 1 or greater to support read replicas. 0 means
   # disable automated backups.
   replica_backup_retention_period = 0
-
-  # Specifies that this resource is a Replicate database, and to use this value
-  # as the source database. This correlates to the identifier of another Amazon
-  # RDS Database to replicate (if replicating within a single region) or ARN of
-  # the Amazon RDS Database to replicate (if replicating cross-region). Note
-  # that if you are creating a cross-region replica of an encrypted database you
-  # will also need to specify a kms_key_arn.
-  replicate_source_db = null
 
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
@@ -1411,15 +1395,6 @@ How many days to keep backup snapshots around before cleaning them up on the rea
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
-<HclListItem name="replicate_source_db" requirement="optional" type="string">
-<HclListItemDescription>
-
-Specifies that this resource is a Replicate database, and to use this value as the source database. This correlates to the identifier of another Amazon RDS Database to replicate (if replicating within a single region) or ARN of the Amazon RDS Database to replicate (if replicating cross-region). Note that if you are creating a cross-region replica of an encrypted database you will also need to specify a kms_key_arn.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1520,11 +1495,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/rds/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/pre-commit/modules/rds/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/pre-commit/modules/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/pre-commit/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dd5340a056505fec56a4865253cae532"
+  "hash": "f4b9af07758137b3ed58aedb14830ef5"
 }
 ##DOCS-SOURCER-END -->

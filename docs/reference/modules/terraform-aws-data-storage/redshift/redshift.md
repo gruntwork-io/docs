@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Redshift Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/pre-commit/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -923,11 +923,11 @@ The ID of the Security Group that controls access to the cluster
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/redshift/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/redshift/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/redshift/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/pre-commit/modules/redshift/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/pre-commit/modules/redshift/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/pre-commit/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e9f4237cb9939fa54282af795f6222e1"
+  "hash": "18e912b992a7cc5e42db4305921c1ebb"
 }
 ##DOCS-SOURCER-END -->
