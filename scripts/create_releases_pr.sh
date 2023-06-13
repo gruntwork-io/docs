@@ -4,9 +4,6 @@ set -e
 
 export DOCS_SITE_BASE_DIR="."
 export GITHUB_ORG_NAME=gruntwork-io
-
-export RELEASES_PLUGIN_BEFORE_DATE=
-export BRANCH_NAME=
 export CONFIGURE_GIT=${CONFIGURE_GIT:=1}
 
 function set_release_date() {
@@ -14,9 +11,11 @@ function set_release_date() {
 
   # Handling running this on linux or mac
   if [ ${unameOut} = "Linux" ]; then
-    RELEASES_PLUGIN_BEFORE_DATE=$(date -d "$(date +"%Y-%m-01") - 1 day" +"%F")
+    # Equivalent of a return statement
+    echo $(date -d "$(date +"%Y-%m-01") - 1 day" +"%F")
   elif [ ${unameOut} = "Darwin" ]; then
-    RELEASES_PLUGIN_BEFORE_DATE=$(date -v1d -v-1d +%Y-%m-%d)
+    # Equivalent of a return statement
+    echo $(date -v1d -v-1d +%Y-%m-%d)
   else
     echo "Unknown uname ${unameOut}, exiting"
     exit 1
@@ -32,9 +31,10 @@ function configure_git {
 }
 
 function set_branch_name() {
-  RELEASE_DATE=$1
+  local -r release_date=$1
 
-  BRANCH_NAME="automation/update-releases-as-of-${RELEASE_DATE}"
+  # The equivalent of return for bash functions
+  echo "automation/update-releases-as-of-$release_date"
 }
 
 function assert_envvar_not_empty() {
@@ -50,30 +50,30 @@ function generate_release_data() {
 }
 
 function create_branch() {
-  BRANCH=$1
+  local -r branch=$1
 
-  git checkout -b ${BRANCH}
+  git checkout -b $branch
 }
 
 function add_and_commit_changes() {
-  RELEASE_DATE=$1
+  local -r release_date=$1
 
   git add docs/guides/stay-up-to-date/
-  git commit -m "Update Gruntwork releases as of ${RELEASE_DATE}"
+  git commit -m "Update Gruntwork releases as of $release_date"
 }
 
 function push_branch() {
-  BRANCH=$1
+  local -r branch=$1
 
-  git push --set-upstream origin ${BRANCH}
+  git push --set-upstream origin "$branch"
 }
 
 function create_pull_request() {
-  RELEASE_DATE=$1
+  local -r release_date=$1
 
   gh pr create --base master \
-  -t "Update Gruntwork Releases as of ${RELEASE_DATE}" \
-  --body "Update Gruntwork releases as of ${RELEASE_DATE}"
+  -t "Update Gruntwork Releases as of $release_date" \
+  --body "Update Gruntwork releases as of $release_date"
 }
 
 function main() {
@@ -87,8 +87,8 @@ function main() {
 
   assert_envvar_not_empty "GITHUB_OAUTH_TOKEN"
 
-  set_release_date
-  set_branch_name $RELEASES_PLUGIN_BEFORE_DATE
+  local -r RELEASES_PLUGIN_BEFORE_DATE=$(set_release_date)
+  local -r BRANCH_NAME=$(set_branch_name $RELEASES_PLUGIN_BEFORE_DATE)
 
   create_branch $BRANCH_NAME
   generate_release_data
