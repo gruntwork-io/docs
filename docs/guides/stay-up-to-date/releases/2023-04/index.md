@@ -12,6 +12,7 @@ Here are the repos that were updated:
 
 - [aws-sample-app](#aws-sample-app)
 - [gruntwork](#gruntwork)
+- [patcher-cli](#patcher-cli)
 - [repo-copier](#repo-copier)
 - [terraform-aws-architecture-catalog](#terraform-aws-architecture-catalog)
 - [terraform-aws-asg](#terraform-aws-asg)
@@ -105,6 +106,42 @@ The new signature for Docker Compose is `docker compose &lt;command&gt;` (Not th
 
 
 **Full Changelog**: https://github.com/gruntwork-io/gruntwork/compare/v0.4.13...v0.4.15
+
+</div>
+
+
+
+## patcher-cli
+
+
+### [v0.2.2](https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.2.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 4/28/2023 | <a href="https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.2.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - Remove limitation of Patcher only scanning modules where the source is from `gruntwork-io`.
+- Add new context variable `PATCHER_IS_CIS_CUSTOMER`, so CIS patches can be skipped for non-CIS customers
+- Performance enhancements: extract dependencies in parallel.
+
+</div>
+
+
+### [v0.2.0](https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.2.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 4/4/2023 | <a href="https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.2.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+- This release adds the `patcher report` command that checks which Gruntwork maintained modules you are using, whether there are newer versions available for those modules, and lets you view the change log for those modules.
+- This release also introduces a new and improved UI
+- Note: this version does not support `patcher upgrade cis`, if you are a CIS customer looking to upgrade then you should use Patcher `v0.1.2`
+
 
 </div>
 
@@ -1289,6 +1326,6 @@ The new signature for Docker Compose is `docker compose &lt;command&gt;` (Not th
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "29040de542e0b36e22097b258f94deef"
+  "hash": "370df619a8b29a104813169c849787d2"
 }
 ##DOCS-SOURCER-END -->
