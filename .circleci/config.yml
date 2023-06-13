@@ -196,12 +196,20 @@ jobs:
 workflows:
   version: 2
   validate_build:
+    # Make sure this pipeline doesn't run when a schedule is triggered
+    when:
+      not:
+        equal: [scheduled_pipeline, << pipeline.trigger_source >>]
     jobs:
       - validate-build:
           filters:
             branches:
               ignore: master
   stage_deployment:
+    # Make sure this pipeline doesn't run when a schedule is triggered
+    when:
+      not:
+        equal: [scheduled_pipeline, << pipeline.trigger_source >>]
     jobs:
       - validate-build:
           filters:
@@ -218,6 +226,10 @@ workflows:
             branches:
               only: master
   prod_deployment:
+    # Make sure this pipeline doesn't run when a schedule is triggered
+    when:
+      not:
+        equal: [scheduled_pipeline, << pipeline.trigger_source >>]
     jobs:
       - validate-build:
           filters:
