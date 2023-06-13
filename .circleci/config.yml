@@ -249,17 +249,17 @@ workflows:
             branches:
               ignore: /.*/
   create_releases_pull_request:
-    when:
-      and:
-        # Docs:
-        # https://circleci.com/docs/selecting-a-workflow-to-run-using-pipeline-parameters/
-        # https://circleci.com/docs/schedule-pipelines-with-multiple-workflows/
+    # when:
+    #   and:
+    #     # Docs:
+    #     # https://circleci.com/docs/selecting-a-workflow-to-run-using-pipeline-parameters/
+    #     # https://circleci.com/docs/schedule-pipelines-with-multiple-workflows/
 
-        # Only trigger the pipeline when BOTH conditions are met
-        # 1. Trigger source is scheduled pipeline (other options are api, and webhook, which we don't want)
-        - equal: [scheduled_pipeline, << pipeline.trigger_source >>]
-        # 2. A scheduled job with the name "monthly"
-        - equal: ["monthly", << pipeline.schedule.name >>]
+    #     # Only trigger the pipeline when BOTH conditions are met
+    #     # 1. Trigger source is scheduled pipeline (other options are api, and webhook, which we don't want)
+    #     - equal: [scheduled_pipeline, << pipeline.trigger_source >>]
+    #     # 2. A scheduled job with the name "monthly"
+    #     - equal: ["monthly", << pipeline.schedule.name >>]
     jobs:
       - create-releases-pr:
           context:

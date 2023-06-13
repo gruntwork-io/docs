@@ -47,7 +47,10 @@ function assert_envvar_not_empty() {
 }
 
 function generate_release_data() {
-  yarn regenerate --plugins releases
+  local -r release_date=$1
+
+  # The 'releases' plugin requires this env var to be set to limit releases to before this date
+  RELEASES_PLUGIN_BEFORE_DATE="$release_date" yarn regenerate --plugins releases
 }
 
 function create_branch() {
@@ -88,11 +91,12 @@ function main() {
 
   assert_envvar_not_empty "GITHUB_OAUTH_TOKEN"
 
-  local -r RELEASES_PLUGIN_BEFORE_DATE=$(set_release_date)
+  # no -r for RELEASES_PLUGIN_BEFORE_DATE so we can pass it into generate_release_data and set it for the process
+  local RELEASES_PLUGIN_BEFORE_DATE=$(set_release_date)
   local -r BRANCH_NAME=$(set_branch_name $RELEASES_PLUGIN_BEFORE_DATE)
 
   create_branch $BRANCH_NAME
-  generate_release_data
+  generate_release_data $RELEASES_PLUGIN_BEFORE_DATE
   add_and_commit_changes $RELEASES_PLUGIN_BEFORE_DATE
   push_branch $BRANCH_NAME
   create_pull_request $RELEASES_PLUGIN_BEFORE_DATE
