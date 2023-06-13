@@ -1,3 +1,5 @@
+import ModuleTutorialCodeBlock from "/src/components/ModuleTutorialCodeBlock"
+
 # Deploying your first module
 
 [Modules](../overview/modules.md) allow you to define an interface to create one or many resources in the cloud or on-premise, similar to how in object oriented programming you can define a class that may have different attribute values across many instances.
@@ -143,59 +145,7 @@ Next, we’ll write a simple Python function that returns a string that will be 
 
 Copy the following to `terraform-aws-gw-lambda-tutorial/main.py`.
 
-```py title="terraform-aws-gw-lambda-tutorial/main.py"
-import uuid
-import base64
-import json
-from urllib.request import urlopen, Request
-
-
-def lambda_handler(event, context):
-    url = "https://api.mixpanel.com/track"
-
-    github_username = "%unknown%"
-
-    # This code sets up our mixpanel project ID and sends an event into Mixpanel
-    # that includes your GitHub username to signify that you completed the tutorial
-    # We don't track anything else about you other than your GitHub username, and we
-    # only use this data internally to understand who has completed our tutorial
-    mixpanelClientId = "%mixpanel_project_id%"
-    tok = base64.b64decode(mixpanelClientId).decode('utf-8')
-
-    payload = [
-        {
-            "event": "ModuleTutorialDeploymentComplete",
-            "properties": {
-                "token": tok,
-                "distinct_id": github_username,
-                "github_username": github_username,
-                "$insert_id": uuid.uuid4().hex
-            }
-        }
-    ]
-    headers = {
-        "accept": "text/plain",
-        "content-type": "application/json"
-    }
-
-    httprequest = Request(url, headers=headers,
-                          data=json.dumps(payload).encode('utf-8'))
-
-    response_object = {}
-
-    with urlopen(httprequest) as response:
-        text = ""
-        mixpanel_response_text = response.read().decode()
-        if mixpanel_response_text == "1":
-            text = "Success"
-        else:
-            text = "Unknown error"
-        response_object["operation_status"] = text
-        response_object["statusCode"] = response.status
-        response_object["body"] = f"Hello, {github_username}, from Gruntwork!"
-
-        return response_object
-```
+<ModuleTutorialCodeBlock />
 
 ### Reference the module
 
@@ -314,6 +264,6 @@ Finally, consider what other resources you would create to make your modules rea
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "9b19b1ff12ee76fd076d2220ca3faafd"
+  "hash": "c5777fbceec4b7fecf415e45f62efaa9"
 }
 ##DOCS-SOURCER-END -->

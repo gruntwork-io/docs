@@ -76,10 +76,6 @@ const config = {
     ],
   ],
 
-  // clientModules are custom modules (anything that Webpack can import), so css, js, etc
-  // that get included on every page and can be used to run arbitrary client-side Javascript, for example: 
-  clientModules: [path.resolve('./scripts/module-tutorial-client.js')],
-
   plugins: plugins,
 
   themeConfig:
