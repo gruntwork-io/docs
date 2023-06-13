@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ECS Service with ALB
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-service-with-alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/feature%2F392-ecs-service-change-default-launch-type-behavior/modules/ecs-service-with-alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.24.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -24,11 +24,11 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-service-with-alb/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-service-with-alb/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-service-with-alb/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/feature%2F392-ecs-service-change-default-launch-type-behavior/modules/ecs-service-with-alb/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/feature%2F392-ecs-service-change-default-launch-type-behavior/modules/ecs-service-with-alb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/feature%2F392-ecs-service-change-default-launch-type-behavior/modules/ecs-service-with-alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bf06874e05ae9c3c60b2bb13c8187b81"
+  "hash": "32a34f88b5d59fcea78a76ca5a12d361"
 }
 ##DOCS-SOURCER-END -->
