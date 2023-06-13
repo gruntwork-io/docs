@@ -10,6 +10,7 @@ documentation](/guides/working-with-code/using-modules#updating).
 
 Here are the repos that were updated:
 
+- [patcher-cli](#patcher-cli)
 - [repo-copier](#repo-copier)
 - [terraform-aws-asg](#terraform-aws-asg)
 - [terraform-aws-ci](#terraform-aws-ci)
@@ -19,6 +20,23 @@ Here are the repos that were updated:
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
 - [terraform-aws-service-catalog](#terraform-aws-service-catalog)
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
+
+
+## patcher-cli
+
+
+### [v0.1.0](https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.1.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 2/22/2023 | <a href="https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.1.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  (no release notes found)
+
+</div>
+
 
 
 ## repo-copier
@@ -504,6 +522,6 @@ Migrated the example in examples/asg-alarms to use a launch template instead of 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "89092911ad18e330c4fc6de0de8763df"
+  "hash": "20213fd11e6acfdb665765d3330a2f06"
 }
 ##DOCS-SOURCER-END -->
