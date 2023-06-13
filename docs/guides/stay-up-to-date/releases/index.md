@@ -6,12 +6,13 @@ import CardGroup from "/src/components/CardGroup"
 
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / Releases</small></p>
 
-This page is lists all updates to the [Gruntwork Infrastructure as Code 
-Library](https://gruntwork.io/infrastructure-as-code-library/), grouped by month. For instructions on how to use these 
-updates in your code, check out the [updating documentation](/guides/working-with-code/using-modules#updating).
+This page is lists all updates to the [Gruntwork Infrastructure as Code
+Library](https://gruntwork.io/infrastructure-as-code-library/), grouped by month. For instructions on how to use these
+updates in your code, check out the [updating documentation](/iac/stay-up-to-date/updating).
 
 <CardGroup cols={1} gap="1rem" stacked equalHeightRows={false} commonCardProps={{padding: "1.25rem"}}>
-  <Card title="Gruntwork Release 2023-05" href="/guides/stay-up-to-date/releases/2023-05" />
+  <Card title="Gruntwork Release 2023-06" href="/guides/stay-up-to-date/releases/2023-06" />
+<Card title="Gruntwork Release 2023-05" href="/guides/stay-up-to-date/releases/2023-05" />
 <Card title="Gruntwork Release 2023-04" href="/guides/stay-up-to-date/releases/2023-04" />
 <Card title="Gruntwork Release 2023-03" href="/guides/stay-up-to-date/releases/2023-03" />
 <Card title="Gruntwork Release 2023-02" href="/guides/stay-up-to-date/releases/2023-02" />
@@ -101,6 +102,6 @@ updates in your code, check out the [updating documentation](/guides/working-wit
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "486e8f4846e5d113dde9ae0d5cf948d0"
+  "hash": "efe00d58a21465b291440ef4d2cf86c7"
 }
 ##DOCS-SOURCER-END -->
