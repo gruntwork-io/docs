@@ -87,7 +87,6 @@ references:
       environment:
         CONFIGURE_GIT: 0 # Tell the script that we're in CI and need to configure git for gruntwork-ci user
 
-
   notify_slack_staging: &notify_slack_staging
     slack/status:
       failure_message: "[Docs] :red_circle: $CIRCLE_JOB has failed on master! Build triggered by: $CIRCLE_USERNAME. You have one hour to fix or revert!!"

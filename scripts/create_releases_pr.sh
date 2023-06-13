@@ -5,6 +5,7 @@ set -e
 export DOCS_SITE_BASE_DIR="."
 export GITHUB_ORG_NAME=gruntwork-io
 export CONFIGURE_GIT=${CONFIGURE_GIT:=1}
+export GH_TOKEN=${GITHUB_OAUTH_TOKEN} # required to use 'gh'
 
 function set_release_date() {
   unameOut="$(uname -s)"
