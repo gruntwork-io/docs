@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Backup Plan Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/backup-plan" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/default_subnet_group_aurora/modules/backup-plan" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -22,7 +22,7 @@ This Terraform Module creates the following AWS Backup resources:
 1.  Backup plans - specifying **how and when** to back things up
 2.  Resource selections - specifying **which resources** to back up
 
-You associate your plans with a [Backup vault](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/backup-vault).
+You associate your plans with a [Backup vault](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/default_subnet_group_aurora/modules/backup-vault).
 
 ## What is a Backup Plan?
 
@@ -91,7 +91,7 @@ module "backup_plan" {
 
 ## How do you troubleshoot Backup jobs?
 
-See [Troubleshooting AWS Backup](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/core-concepts.md#troubleshooting-aws-backup) in the core-concepts guide.
+See [Troubleshooting AWS Backup](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/default_subnet_group_aurora/core-concepts.md#troubleshooting-aws-backup) in the core-concepts guide.
 
 ## Sample Usage
 
@@ -245,11 +245,11 @@ The ARN of the IAM service role used by Backup plans
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/backup-plan/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/backup-plan/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/backup-plan/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/default_subnet_group_aurora/modules/backup-plan/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/default_subnet_group_aurora/modules/backup-plan/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/default_subnet_group_aurora/modules/backup-plan/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "519945a25a80cd05960a27c6425e3ae9"
+  "hash": "719f363b9fa4cdd1dc76f788432c4eb0"
 }
 ##DOCS-SOURCER-END -->
