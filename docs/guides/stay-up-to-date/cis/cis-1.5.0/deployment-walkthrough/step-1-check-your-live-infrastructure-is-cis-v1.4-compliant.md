@@ -35,7 +35,7 @@ steampipe plugin install aws
 ## 1.2 Configure Steampipe to analyze all regions
 
 The file `~/.steampipe/config/aws.spc`, that is created by Steampipe, needs to be updated to analyze all regions,
-by adding `regions = ["*"]`. Otherwise, multi-regions resouces, like AWS Config, IAM Access Analyzer will fail in the check:
+by adding `regions = ["*"]`. Otherwise, multi-regions resources, like AWS Config, IAM Access Analyzer will fail in the check:
 
 ```hcl
 connection "aws" {
@@ -158,6 +158,6 @@ references to the Gruntwork Infrastructure as Code Library.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "296848a030a0676c4e7051e606f41a7e"
+  "hash": "8d957e23951c0e864a1b71b7a122a0db"
 }
 ##DOCS-SOURCER-END -->
