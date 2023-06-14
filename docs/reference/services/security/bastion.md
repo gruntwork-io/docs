@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.10" lastModifiedVersion="0.104.4"/>
+<VersionBadge version="0.104.11" lastModifiedVersion="0.104.4"/>
 
 # Bastion Host
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/mgmt/bastion-host" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/mgmt/bastion-host" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fbastion-host" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -87,7 +87,7 @@ The bastion host AMI is defined using the [Packer](https://www.packer.io/) templ
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -95,7 +95,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog, configure CI / CD for your apps and
@@ -115,26 +115,26 @@ If you want to deploy this repo in production, check out the following resources
 
 module "bastion_host" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/bastion-host?ref=v0.104.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/bastion-host?ref=v0.104.11"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
   # A list of IP address ranges in CIDR format from which SSH access will be
-  # permitted. Attempts to access the bastion host from all other IP addresses will
-  # be blocked. This is only used if var.allow_ssh_from_cidr is true.
+  # permitted. Attempts to access the bastion host from all other IP addresses
+  # will be blocked. This is only used if var.allow_ssh_from_cidr is true.
   allow_ssh_from_cidr_list = <list(string)>
 
   # The AMI to run on the bastion host. This should be built from the Packer
-  # template under bastion-host.json. One of var.ami or var.ami_filters is required.
-  # Set to null if looking up the ami with filters.
+  # template under bastion-host.json. One of var.ami or var.ami_filters is
+  # required. Set to null if looking up the ami with filters.
   ami = <string>
 
-  # Properties on the AMI that can be used to lookup a prebuilt AMI for use with the
-  # Bastion Host. You can build the AMI using the Packer template bastion-host.json.
-  # Only used if var.ami is null. One of var.ami or var.ami_filters is required. Set
-  # to null if passing the ami ID directly.
+  # Properties on the AMI that can be used to lookup a prebuilt AMI for use with
+  # the Bastion Host. You can build the AMI using the Packer template
+  # bastion-host.json. Only used if var.ami is null. One of var.ami or
+  # var.ami_filters is required. Set to null if passing the ami ID directly.
   ami_filters = <object(
     owners = list(string)
     filters = list(object(
@@ -158,12 +158,13 @@ module "bastion_host" {
   # server.
   additional_security_group_ids = []
 
-  # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk
-  # space usage) should send notifications.
+  # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
+  # disk space usage) should send notifications.
   alarms_sns_topic_arn = []
 
   # Tags to use to filter the Route 53 Hosted Zones that might match the hosted
-  # zone's name (use if you have multiple public hosted zones with the same name)
+  # zone's name (use if you have multiple public hosted zones with the same
+  # name)
   base_domain_name_tags = {}
 
   # Cloud init scripts to run on the bastion host while it boots. See the part
@@ -177,107 +178,66 @@ module "bastion_host" {
   cloudwatch_log_group_kms_key_id = null
 
   # The number of days to retain log events in the log group. Refer to
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
-  # watch_log_group#retention_in_days for all the valid values. When null, the log
-  # events are retained forever.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days
+  # for all the valid values. When null, the log events are retained forever.
   cloudwatch_log_group_retention_in_days = null
 
-  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are
-  # tag keys and values are tag values.
+  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys
+  # are tag keys and values are tag values.
   cloudwatch_log_group_tags = null
 
-  # Set to true to create a DNS record in Route53 pointing to the bastion. If true,
-  # be sure to set var.domain_name.
+  # Set to true to create a DNS record in Route53 pointing to the bastion. If
+  # true, be sure to set var.domain_name.
   create_dns_record = true
 
-  # The default OS user for the Bastion Host AMI. For AWS Ubuntu AMIs, which is what
-  # the Packer template in bastion-host.json uses, the default OS user is 'ubuntu'.
+  # The default OS user for the Bastion Host AMI. For AWS Ubuntu AMIs, which is
+  # what the Packer template in bastion-host.json uses, the default OS user is
+  # 'ubuntu'.
   default_user = "ubuntu"
 
-  # The apex domain of the hostname for the bastion server (e.g., example.com). The
-  # complete hostname for the bastion server will be var.name.var.domain_name (e.g.,
-  # bastion.example.com). Only used if create_dns_record is true.
+  # The apex domain of the hostname for the bastion server (e.g., example.com).
+  # The complete hostname for the bastion server will be
+  # var.name.var.domain_name (e.g., bastion.example.com). Only used if
+  # create_dns_record is true.
   domain_name = ""
 
   # If true, the launched EC2 Instance will be EBS-optimized.
   ebs_optimized = true
 
-  # Set to true to enable several basic CloudWatch alarms around CPU usage, memory
-  # usage, and disk space usage. If set to true, make sure to specify SNS topics to
-  # send notifications to using var.alarms_sns_topic_arn.
+  # Set to true to enable several basic CloudWatch alarms around CPU usage,
+  # memory usage, and disk space usage. If set to true, make sure to specify SNS
+  # topics to send notifications to using var.alarms_sns_topic_arn.
   enable_cloudwatch_alarms = true
 
   # Set to true to send logs to CloudWatch. This is useful in combination with
-  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/log
-  # /cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch.
+  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts
+  # to do log aggregation in CloudWatch.
   enable_cloudwatch_log_aggregation = true
 
-  # Set to true to add IAM permissions to send custom metrics to CloudWatch. This is
-  # useful in combination with
-  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/age
-  # ts/cloudwatch-agent to get memory and disk metrics in CloudWatch for your
-  # Bastion host.
+  # Set to true to add IAM permissions to send custom metrics to CloudWatch.
+  # This is useful in combination with
+  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent
+  # to get memory and disk metrics in CloudWatch for your Bastion host.
   enable_cloudwatch_metrics = true
 
   # Enable fail2ban to block brute force log in attempts. Defaults to true.
   enable_fail2ban = true
 
-  # Enable ip-lockdown to block access to the instance metadata. Defaults to true.
+  # Enable ip-lockdown to block access to the instance metadata. Defaults to
+  # true.
   enable_ip_lockdown = true
 
   # Set to true to add IAM permissions for ssh-grunt
-  # (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-
-  # runt), which will allow you to manage SSH access via IAM groups.
+  # (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt),
+  # which will allow you to manage SSH access via IAM groups.
   enable_ssh_grunt = true
 
-  # If you are using ssh-grunt and your IAM users / groups are defined in a separate
-  # AWS account, you can use this variable to specify the ARN of an IAM role that
-  # ssh-grunt can assume to retrieve IAM group and public SSH key info from that
-  # account. To omit this variable, set it to an empty string (do NOT use null, or
-  # Terraform will complain).
+  # If you are using ssh-grunt and your IAM users / groups are defined in a
+  # separate AWS account, you can use this variable to specify the ARN of an IAM
+  # role that ssh-grunt can assume to retrieve IAM group and public SSH key info
+  # from that account. To omit this variable, set it to an empty string (do NOT
+  # use null, or Terraform will complain).
   external_account_ssh_grunt_role_arn = ""
-
-  # The period, in seconds, over which to measure the CPU utilization percentage for
-  # the instance.
-  high_instance_cpu_utilization_period = 60
-
-  # Trigger an alarm if the EC2 instance has a CPU utilization percentage above this
-  # threshold.
-  high_instance_cpu_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_instance_cpu_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the root disk utilization
-  # percentage for the instance.
-  high_instance_disk_utilization_period = 60
-
-  # Trigger an alarm if the EC2 instance has a root disk utilization percentage
-  # above this threshold.
-  high_instance_disk_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_instance_disk_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the Memory utilization percentage
-  # for the instance.
-  high_instance_memory_utilization_period = 60
-
-  # Trigger an alarm if the EC2 instance has a Memory utilization percentage above
-  # this threshold.
-  high_instance_memory_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_instance_memory_utilization_treat_missing_data = "missing"
 
   # The type of instance to run for the bastion host
   instance_type = "t3.micro"
@@ -285,45 +245,35 @@ module "bastion_host" {
   # The name of a Key Pair that can be used to SSH to this instance.
   keypair_name = null
 
-  # The name of the bastion host and the other resources created by these templates
+  # The name of the bastion host and the other resources created by these
+  # templates
   name = "bastion-host"
 
-  # If set to true, the root volume will be deleted when the Instance is terminated.
-  root_volume_delete_on_termination = true
-
-  # The size of the root volume, in gigabytes.
-  root_volume_size = 8
-
-  # Tags to set on the root volume.
-  root_volume_tags = {}
-
-  # The root volume type. Must be one of: standard, gp2, io1.
-  root_volume_type = "standard"
-
-  # When true, precreate the CloudWatch Log Group to use for log aggregation from
-  # the EC2 instances. This is useful if you wish to customize the CloudWatch Log
-  # Group with various settings such as retention periods and KMS encryption. When
-  # false, the CloudWatch agent will automatically create a basic log group to use.
+  # When true, precreate the CloudWatch Log Group to use for log aggregation
+  # from the EC2 instances. This is useful if you wish to customize the
+  # CloudWatch Log Group with various settings such as retention periods and KMS
+  # encryption. When false, the CloudWatch agent will automatically create a
+  # basic log group to use.
   should_create_cloudwatch_log_group = true
 
-  # If you are using ssh-grunt, this is the name of the IAM group from which users
-  # will be allowed to SSH to this Bastion Host. This value is only used if
-  # enable_ssh_grunt=true.
+  # If you are using ssh-grunt, this is the name of the IAM group from which
+  # users will be allowed to SSH to this Bastion Host. This value is only used
+  # if enable_ssh_grunt=true.
   ssh_grunt_iam_group = "ssh-grunt-users"
 
-  # If you are using ssh-grunt, this is the name of the IAM group from which users
-  # will be allowed to SSH to this Bastion Host with sudo permissions. This value is
-  # only used if enable_ssh_grunt=true.
+  # If you are using ssh-grunt, this is the name of the IAM group from which
+  # users will be allowed to SSH to this Bastion Host with sudo permissions.
+  # This value is only used if enable_ssh_grunt=true.
   ssh_grunt_iam_group_sudo = "ssh-grunt-sudo-users"
 
   # The tenancy of this server. Must be one of: default, dedicated, or host.
   tenancy = "default"
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
 }
@@ -341,7 +291,7 @@ module "bastion_host" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/bastion-host?ref=v0.104.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/bastion-host?ref=v0.104.11"
 }
 
 inputs = {
@@ -351,19 +301,19 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # A list of IP address ranges in CIDR format from which SSH access will be
-  # permitted. Attempts to access the bastion host from all other IP addresses will
-  # be blocked. This is only used if var.allow_ssh_from_cidr is true.
+  # permitted. Attempts to access the bastion host from all other IP addresses
+  # will be blocked. This is only used if var.allow_ssh_from_cidr is true.
   allow_ssh_from_cidr_list = <list(string)>
 
   # The AMI to run on the bastion host. This should be built from the Packer
-  # template under bastion-host.json. One of var.ami or var.ami_filters is required.
-  # Set to null if looking up the ami with filters.
+  # template under bastion-host.json. One of var.ami or var.ami_filters is
+  # required. Set to null if looking up the ami with filters.
   ami = <string>
 
-  # Properties on the AMI that can be used to lookup a prebuilt AMI for use with the
-  # Bastion Host. You can build the AMI using the Packer template bastion-host.json.
-  # Only used if var.ami is null. One of var.ami or var.ami_filters is required. Set
-  # to null if passing the ami ID directly.
+  # Properties on the AMI that can be used to lookup a prebuilt AMI for use with
+  # the Bastion Host. You can build the AMI using the Packer template
+  # bastion-host.json. Only used if var.ami is null. One of var.ami or
+  # var.ami_filters is required. Set to null if passing the ami ID directly.
   ami_filters = <object(
     owners = list(string)
     filters = list(object(
@@ -387,12 +337,13 @@ inputs = {
   # server.
   additional_security_group_ids = []
 
-  # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk
-  # space usage) should send notifications.
+  # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
+  # disk space usage) should send notifications.
   alarms_sns_topic_arn = []
 
   # Tags to use to filter the Route 53 Hosted Zones that might match the hosted
-  # zone's name (use if you have multiple public hosted zones with the same name)
+  # zone's name (use if you have multiple public hosted zones with the same
+  # name)
   base_domain_name_tags = {}
 
   # Cloud init scripts to run on the bastion host while it boots. See the part
@@ -406,107 +357,66 @@ inputs = {
   cloudwatch_log_group_kms_key_id = null
 
   # The number of days to retain log events in the log group. Refer to
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
-  # watch_log_group#retention_in_days for all the valid values. When null, the log
-  # events are retained forever.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days
+  # for all the valid values. When null, the log events are retained forever.
   cloudwatch_log_group_retention_in_days = null
 
-  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are
-  # tag keys and values are tag values.
+  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys
+  # are tag keys and values are tag values.
   cloudwatch_log_group_tags = null
 
-  # Set to true to create a DNS record in Route53 pointing to the bastion. If true,
-  # be sure to set var.domain_name.
+  # Set to true to create a DNS record in Route53 pointing to the bastion. If
+  # true, be sure to set var.domain_name.
   create_dns_record = true
 
-  # The default OS user for the Bastion Host AMI. For AWS Ubuntu AMIs, which is what
-  # the Packer template in bastion-host.json uses, the default OS user is 'ubuntu'.
+  # The default OS user for the Bastion Host AMI. For AWS Ubuntu AMIs, which is
+  # what the Packer template in bastion-host.json uses, the default OS user is
+  # 'ubuntu'.
   default_user = "ubuntu"
 
-  # The apex domain of the hostname for the bastion server (e.g., example.com). The
-  # complete hostname for the bastion server will be var.name.var.domain_name (e.g.,
-  # bastion.example.com). Only used if create_dns_record is true.
+  # The apex domain of the hostname for the bastion server (e.g., example.com).
+  # The complete hostname for the bastion server will be
+  # var.name.var.domain_name (e.g., bastion.example.com). Only used if
+  # create_dns_record is true.
   domain_name = ""
 
   # If true, the launched EC2 Instance will be EBS-optimized.
   ebs_optimized = true
 
-  # Set to true to enable several basic CloudWatch alarms around CPU usage, memory
-  # usage, and disk space usage. If set to true, make sure to specify SNS topics to
-  # send notifications to using var.alarms_sns_topic_arn.
+  # Set to true to enable several basic CloudWatch alarms around CPU usage,
+  # memory usage, and disk space usage. If set to true, make sure to specify SNS
+  # topics to send notifications to using var.alarms_sns_topic_arn.
   enable_cloudwatch_alarms = true
 
   # Set to true to send logs to CloudWatch. This is useful in combination with
-  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/log
-  # /cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch.
+  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts
+  # to do log aggregation in CloudWatch.
   enable_cloudwatch_log_aggregation = true
 
-  # Set to true to add IAM permissions to send custom metrics to CloudWatch. This is
-  # useful in combination with
-  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/age
-  # ts/cloudwatch-agent to get memory and disk metrics in CloudWatch for your
-  # Bastion host.
+  # Set to true to add IAM permissions to send custom metrics to CloudWatch.
+  # This is useful in combination with
+  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent
+  # to get memory and disk metrics in CloudWatch for your Bastion host.
   enable_cloudwatch_metrics = true
 
   # Enable fail2ban to block brute force log in attempts. Defaults to true.
   enable_fail2ban = true
 
-  # Enable ip-lockdown to block access to the instance metadata. Defaults to true.
+  # Enable ip-lockdown to block access to the instance metadata. Defaults to
+  # true.
   enable_ip_lockdown = true
 
   # Set to true to add IAM permissions for ssh-grunt
-  # (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-
-  # runt), which will allow you to manage SSH access via IAM groups.
+  # (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt),
+  # which will allow you to manage SSH access via IAM groups.
   enable_ssh_grunt = true
 
-  # If you are using ssh-grunt and your IAM users / groups are defined in a separate
-  # AWS account, you can use this variable to specify the ARN of an IAM role that
-  # ssh-grunt can assume to retrieve IAM group and public SSH key info from that
-  # account. To omit this variable, set it to an empty string (do NOT use null, or
-  # Terraform will complain).
+  # If you are using ssh-grunt and your IAM users / groups are defined in a
+  # separate AWS account, you can use this variable to specify the ARN of an IAM
+  # role that ssh-grunt can assume to retrieve IAM group and public SSH key info
+  # from that account. To omit this variable, set it to an empty string (do NOT
+  # use null, or Terraform will complain).
   external_account_ssh_grunt_role_arn = ""
-
-  # The period, in seconds, over which to measure the CPU utilization percentage for
-  # the instance.
-  high_instance_cpu_utilization_period = 60
-
-  # Trigger an alarm if the EC2 instance has a CPU utilization percentage above this
-  # threshold.
-  high_instance_cpu_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_instance_cpu_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the root disk utilization
-  # percentage for the instance.
-  high_instance_disk_utilization_period = 60
-
-  # Trigger an alarm if the EC2 instance has a root disk utilization percentage
-  # above this threshold.
-  high_instance_disk_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_instance_disk_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the Memory utilization percentage
-  # for the instance.
-  high_instance_memory_utilization_period = 60
-
-  # Trigger an alarm if the EC2 instance has a Memory utilization percentage above
-  # this threshold.
-  high_instance_memory_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_instance_memory_utilization_treat_missing_data = "missing"
 
   # The type of instance to run for the bastion host
   instance_type = "t3.micro"
@@ -514,45 +424,35 @@ inputs = {
   # The name of a Key Pair that can be used to SSH to this instance.
   keypair_name = null
 
-  # The name of the bastion host and the other resources created by these templates
+  # The name of the bastion host and the other resources created by these
+  # templates
   name = "bastion-host"
 
-  # If set to true, the root volume will be deleted when the Instance is terminated.
-  root_volume_delete_on_termination = true
-
-  # The size of the root volume, in gigabytes.
-  root_volume_size = 8
-
-  # Tags to set on the root volume.
-  root_volume_tags = {}
-
-  # The root volume type. Must be one of: standard, gp2, io1.
-  root_volume_type = "standard"
-
-  # When true, precreate the CloudWatch Log Group to use for log aggregation from
-  # the EC2 instances. This is useful if you wish to customize the CloudWatch Log
-  # Group with various settings such as retention periods and KMS encryption. When
-  # false, the CloudWatch agent will automatically create a basic log group to use.
+  # When true, precreate the CloudWatch Log Group to use for log aggregation
+  # from the EC2 instances. This is useful if you wish to customize the
+  # CloudWatch Log Group with various settings such as retention periods and KMS
+  # encryption. When false, the CloudWatch agent will automatically create a
+  # basic log group to use.
   should_create_cloudwatch_log_group = true
 
-  # If you are using ssh-grunt, this is the name of the IAM group from which users
-  # will be allowed to SSH to this Bastion Host. This value is only used if
-  # enable_ssh_grunt=true.
+  # If you are using ssh-grunt, this is the name of the IAM group from which
+  # users will be allowed to SSH to this Bastion Host. This value is only used
+  # if enable_ssh_grunt=true.
   ssh_grunt_iam_group = "ssh-grunt-users"
 
-  # If you are using ssh-grunt, this is the name of the IAM group from which users
-  # will be allowed to SSH to this Bastion Host with sudo permissions. This value is
-  # only used if enable_ssh_grunt=true.
+  # If you are using ssh-grunt, this is the name of the IAM group from which
+  # users will be allowed to SSH to this Bastion Host with sudo permissions.
+  # This value is only used if enable_ssh_grunt=true.
   ssh_grunt_iam_group_sudo = "ssh-grunt-sudo-users"
 
   # The tenancy of this server. Must be one of: default, dedicated, or host.
   tenancy = "default"
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
 }
@@ -820,87 +720,6 @@ If you are using ssh-grunt and your IAM users / groups are defined in a separate
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
-<HclListItem name="high_instance_cpu_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the CPU utilization percentage for the instance.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_instance_cpu_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the EC2 instance has a CPU utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_instance_cpu_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_instance_disk_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the root disk utilization percentage for the instance.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_instance_disk_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the EC2 instance has a root disk utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_instance_disk_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_instance_memory_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the Memory utilization percentage for the instance.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_instance_memory_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the EC2 instance has a Memory utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_instance_memory_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="instance_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -926,42 +745,6 @@ The name of the bastion host and the other resources created by these templates
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;bastion-host&quot;"/>
-</HclListItem>
-
-<HclListItem name="root_volume_delete_on_termination" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, the root volume will be deleted when the Instance is terminated.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="root_volume_size" requirement="optional" type="number">
-<HclListItemDescription>
-
-The size of the root volume, in gigabytes.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="8"/>
-</HclListItem>
-
-<HclListItem name="root_volume_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags to set on the root volume.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="root_volume_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-The root volume type. Must be one of: standard, gp2, io1.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;standard&quot;"/>
 </HclListItem>
 
 <HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
@@ -1067,11 +850,11 @@ The fully qualified name of the bastion host.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/mgmt/bastion-host/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/mgmt/bastion-host/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/mgmt/bastion-host/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/mgmt/bastion-host/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/mgmt/bastion-host/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/mgmt/bastion-host/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "56980655a9790b325cd1abb7ae1636b9"
+  "hash": "6abecc3487d80624c966a6db3bb05824"
 }
 ##DOCS-SOURCER-END -->

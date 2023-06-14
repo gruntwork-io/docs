@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.10" lastModifiedVersion="0.104.8"/>
+<VersionBadge version="0.104.11" lastModifiedVersion="0.104.8"/>
 
 # Jenkins CI Server
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/mgmt/jenkins" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/mgmt/jenkins" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fjenkins" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,7 +68,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -76,7 +76,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -98,7 +98,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "jenkins" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/jenkins?ref=v0.104.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/jenkins?ref=v0.104.11"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -108,19 +108,19 @@ module "jenkins" {
   # Manager (ACM).
   acm_ssl_certificate_domain = <string>
 
-  # The IDs of the subnets in which to deploy the ALB that runs in front of Jenkins.
-  # Must be subnets in var.vpc_id.
+  # The IDs of the subnets in which to deploy the ALB that runs in front of
+  # Jenkins. Must be subnets in var.vpc_id.
   alb_subnet_ids = <list(string)>
 
   # The ID of the AMI to run on the Jenkins server. This should be the AMI build
-  # from the Packer template jenkins-ubuntu.json. One of var.ami or var.ami_filters
-  # is required. Set to null if looking up the ami with filters.
+  # from the Packer template jenkins-ubuntu.json. One of var.ami or
+  # var.ami_filters is required. Set to null if looking up the ami with filters.
   ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with
-  # Jenkins. You can build the AMI using the Packer template jenkins-ubuntu.json.
-  # Only used if var.ami is null. One of var.ami or var.ami_filters is required. Set
-  # to null if passing the ami ID directly.
+  # Jenkins. You can build the AMI using the Packer template
+  # jenkins-ubuntu.json. Only used if var.ami is null. One of var.ami or
+  # var.ami_filters is required. Set to null if passing the ami ID directly.
   ami_filters = <object(
     owners = list(string)
     filters = list(object(
@@ -129,8 +129,8 @@ module "jenkins" {
     ))
   )>
 
-  # The domain name for the DNS A record to add for Jenkins (e.g. jenkins.foo.com).
-  # Must be in the domain managed by var.hosted_zone_id.
+  # The domain name for the DNS A record to add for Jenkins (e.g.
+  # jenkins.foo.com). Must be in the domain managed by var.hosted_zone_id.
   domain_name = <string>
 
   # The ID of the Route 53 Hosted Zone in which to create a DNS A record for
@@ -140,11 +140,12 @@ module "jenkins" {
   # The instance type to use for the Jenkins server (e.g. t2.medium)
   instance_type = <string>
 
-  # The ID of the subnet in which to deploy Jenkins. Must be a subnet in var.vpc_id.
+  # The ID of the subnet in which to deploy Jenkins. Must be a subnet in
+  # var.vpc_id.
   jenkins_subnet_id = <string>
 
-  # The amount of memory to give Jenkins (e.g., 1g or 512m). Used for the -Xms and
-  # -Xmx settings.
+  # The amount of memory to give Jenkins (e.g., 1g or 512m). Used for the -Xms
+  # and -Xmx settings.
   memory = <string>
 
   # The ID of the VPC in which to deploy Jenkins
@@ -154,40 +155,41 @@ module "jenkins" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk
-  # space usage) should send notifications. Also used for the alarms if the Jenkins
-  # backup job fails.
+  # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
+  # disk space usage) should send notifications. Also used for the alarms if the
+  # Jenkins backup job fails.
   alarms_sns_topic_arn = []
 
-  # The IP address ranges in CIDR format from which to allow incoming HTTP requests
-  # to Jenkins.
+  # The IP address ranges in CIDR format from which to allow incoming HTTP
+  # requests to Jenkins.
   allow_incoming_http_from_cidr_blocks = []
 
   # The IDs of security groups from which to allow incoming HTTP requests to
   # Jenkins.
   allow_incoming_http_from_security_group_ids = []
 
-  # The IP address ranges in CIDR format from which to allow incoming SSH requests
-  # to Jenkins.
+  # The IP address ranges in CIDR format from which to allow incoming SSH
+  # requests to Jenkins.
   allow_ssh_from_cidr_blocks = []
 
-  # The IDs of security groups from which to allow incoming SSH requests to Jenkins.
+  # The IDs of security groups from which to allow incoming SSH requests to
+  # Jenkins.
   allow_ssh_from_security_group_ids = []
 
-  # How often, in seconds, the backup job is expected to run. This is the same as
-  # var.backup_job_schedule_expression, but unfortunately, Terraform offers no way
-  # to convert rate expressions to seconds. We add a CloudWatch alarm that triggers
-  # if the value of var.backup_job_metric_name and var.backup_job_metric_namespace
-  # isn't updated within this time period, as that indicates the backup failed to
-  # run.
+  # How often, in seconds, the backup job is expected to run. This is the same
+  # as var.backup_job_schedule_expression, but unfortunately, Terraform offers
+  # no way to convert rate expressions to seconds. We add a CloudWatch alarm
+  # that triggers if the value of var.backup_job_metric_name and
+  # var.backup_job_metric_namespace isn't updated within this time period, as
+  # that indicates the backup failed to run.
   backup_job_alarm_period = 86400
 
   # The name for the CloudWatch Metric the AWS lambda backup job will increment
   # every time the job completes successfully.
   backup_job_metric_name = "jenkins-backup-job"
 
-  # The namespace for the CloudWatch Metric the AWS lambda backup job will increment
-  # every time the job completes successfully.
+  # The namespace for the CloudWatch Metric the AWS lambda backup job will
+  # increment every time the job completes successfully.
   backup_job_metric_namespace = "Custom/Jenkins"
 
   # A cron or rate expression that specifies how often to take a snapshot of the
@@ -204,13 +206,13 @@ module "jenkins" {
   backup_using_lambda = false
 
   # The list of IAM actions this Jenkins server should be allowed to do: e.g.,
-  # ec2:*, s3:*, etc. This should be the list of IAM permissions Jenkins needs in
-  # this AWS account to run builds. These permissions will be added to the server's
-  # IAM role for all resources ('*').
+  # ec2:*, s3:*, etc. This should be the list of IAM permissions Jenkins needs
+  # in this AWS account to run builds. These permissions will be added to the
+  # server's IAM role for all resources ('*').
   build_permission_actions = []
 
-  # Cloud init scripts to run on the Jenkins server when it is booting. See the part
-  # blocks in
+  # Cloud init scripts to run on the Jenkins server when it is booting. See the
+  # part blocks in
   # https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for
   # syntax.
   cloud_init_parts = {}
@@ -220,13 +222,12 @@ module "jenkins" {
   cloudwatch_log_group_kms_key_id = null
 
   # The number of days to retain log events in the log group. Refer to
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
-  # watch_log_group#retention_in_days for all the valid values. When null, the log
-  # events are retained forever.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days
+  # for all the valid values. When null, the log events are retained forever.
   cloudwatch_log_group_retention_in_days = null
 
-  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are
-  # tag keys and values are tag values.
+  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys
+  # are tag keys and values are tag values.
   cloudwatch_log_group_tags = null
 
   # Set to true to create a public DNS A record in Route53 for Jenkins.
@@ -235,8 +236,9 @@ module "jenkins" {
   # A list of custom tags to apply to Jenkins and all other resources.
   custom_tags = {}
 
-  # The default OS user for the Jenkins AMI. For AWS Ubuntu AMIs, which is what the
-  # Packer template in jenkins-ubunutu.json uses, the default OS user is 'ubuntu'.
+  # The default OS user for the Jenkins AMI. For AWS Ubuntu AMIs, which is what
+  # the Packer template in jenkins-ubunutu.json uses, the default OS user is
+  # 'ubuntu'.
   default_user = "ubuntu"
 
   # How often this lifecycle policy should be evaluated, in hours.
@@ -252,96 +254,54 @@ module "jenkins" {
   # should be evaluated. Max of 1.
   dlm_backup_job_schedule_times = ["03:00"]
 
-  # The ARN of the KMS key used for encrypting the Jenkins EBS volume. The module
-  # will grant Jenkins permission to use this key.
+  # The ARN of the KMS key used for encrypting the Jenkins EBS volume. The
+  # module will grant Jenkins permission to use this key.
   ebs_kms_key_arn = null
 
-  # Whether or not the provide EBS KMS key ARN is a key alias. If providing the key
-  # ID, leave this set to false.
+  # Whether or not the provide EBS KMS key ARN is a key alias. If providing the
+  # key ID, leave this set to false.
   ebs_kms_key_arn_is_alias = false
 
-  # Set to true to enable several basic CloudWatch alarms around CPU usage, memory
-  # usage, and disk space usage. If set to true, make sure to specify SNS topics to
-  # send notifications to using var.alarms_sns_topic_arn.
+  # Set to true to enable several basic CloudWatch alarms around CPU usage,
+  # memory usage, and disk space usage. If set to true, make sure to specify SNS
+  # topics to send notifications to using var.alarms_sns_topic_arn.
   enable_cloudwatch_alarms = true
 
-  # Set to true to add AIM permissions to send logs to CloudWatch. This is useful in
-  # combination with
-  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/log
-  # /cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch.
+  # Set to true to add AIM permissions to send logs to CloudWatch. This is
+  # useful in combination with
+  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts
+  # to do log aggregation in CloudWatch.
   enable_cloudwatch_log_aggregation = true
 
-  # Set to true to add IAM permissions to send custom metrics to CloudWatch. This is
-  # useful in combination with
-  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/age
-  # ts/cloudwatch-agent to get memory and disk metrics in CloudWatch for your
-  # Jenkins server.
+  # Set to true to add IAM permissions to send custom metrics to CloudWatch.
+  # This is useful in combination with
+  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent
+  # to get memory and disk metrics in CloudWatch for your Jenkins server.
   enable_cloudwatch_metrics = true
 
-  # Enable ip-lockdown to block access to the instance metadata. Defaults to true.
+  # Enable ip-lockdown to block access to the instance metadata. Defaults to
+  # true.
   enable_ip_lockdown = true
 
   # Set to true to add IAM permissions for ssh-grunt
-  # (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-
-  # runt), which will allow you to manage SSH access via IAM groups.
+  # (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt),
+  # which will allow you to manage SSH access via IAM groups.
   enable_ssh_grunt = true
 
   # A list of IAM role ARNs in other AWS accounts that Jenkins will be able to
   # assume to do automated deployment in those accounts.
   external_account_auto_deploy_iam_role_arns = []
 
-  # If you are using ssh-grunt and your IAM users / groups are defined in a separate
-  # AWS account, you can use this variable to specify the ARN of an IAM role that
-  # ssh-grunt can assume to retrieve IAM group and public SSH key info from that
-  # account. To omit this variable, set it to an empty string (do NOT use null, or
-  # Terraform will complain).
+  # If you are using ssh-grunt and your IAM users / groups are defined in a
+  # separate AWS account, you can use this variable to specify the ARN of an IAM
+  # role that ssh-grunt can assume to retrieve IAM group and public SSH key info
+  # from that account. To omit this variable, set it to an empty string (do NOT
+  # use null, or Terraform will complain).
   external_account_ssh_grunt_role_arn = ""
 
-  # The period, in seconds, over which to measure the CPU utilization percentage for
-  # the ASG.
-  high_asg_cpu_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster CPU utilization percentage
-  # above this threshold.
-  high_asg_cpu_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_asg_cpu_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the root disk utilization
-  # percentage for the ASG.
-  high_asg_disk_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster root disk utilization
-  # percentage above this threshold.
-  high_asg_disk_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_asg_disk_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the Memory utilization percentage
-  # for the ASG.
-  high_asg_memory_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster Memory utilization percentage
-  # above this threshold.
-  high_asg_memory_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_asg_memory_utilization_treat_missing_data = "missing"
-
-  # Set to true to make the Jenkins ALB an internal ALB that cannot be accessed from
-  # the public Internet. We strongly recommend setting this to true to keep Jenkins
-  # more secure.
+  # Set to true to make the Jenkins ALB an internal ALB that cannot be accessed
+  # from the public Internet. We strongly recommend setting this to true to keep
+  # Jenkins more secure.
   is_internal_alb = true
 
   # The OS device name where the Jenkins EBS volume should be attached
@@ -353,13 +313,6 @@ module "jenkins" {
   # The OS user that should be used to run Jenkins
   jenkins_user = "jenkins"
 
-  # Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA
-  # state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  jenkins_volume_alarm_treat_missing_data = "missing"
-
   # Set to true to encrypt the Jenkins EBS volume.
   jenkins_volume_encrypted = true
 
@@ -367,8 +320,8 @@ module "jenkins" {
   # Jenkins server.
   jenkins_volume_size = 200
 
-  # The type of volume to use for the EBS volume used by the Jenkins server. Must be
-  # one of: standard, gp2, io1, sc1, or st1.
+  # The type of volume to use for the EBS volume used by the Jenkins server.
+  # Must be one of: standard, gp2, io1, sc1, or st1.
   jenkins_volume_type = "gp2"
 
   # The name of a Key Pair that can be used to SSH to the Jenkins server. Leave
@@ -382,42 +335,43 @@ module "jenkins" {
   # standard, gp2, io1, sc1, or st1.
   root_block_device_volume_type = "gp2"
 
-  # The amount of disk space, in GB, to allocate for the root volume of this server.
-  # Note that all of Jenkins' data is stored on a separate EBS Volume (see
-  # var.jenkins_volume_size), so this root volume is primarily used for the OS, temp
-  # folders, apps, etc.
+  # The amount of disk space, in GB, to allocate for the root volume of this
+  # server. Note that all of Jenkins' data is stored on a separate EBS Volume
+  # (see var.jenkins_volume_size), so this root volume is primarily used for the
+  # OS, temp folders, apps, etc.
   root_volume_size = 100
 
-  # When true, precreate the CloudWatch Log Group to use for log aggregation from
-  # the EC2 instances. This is useful if you wish to customize the CloudWatch Log
-  # Group with various settings such as retention periods and KMS encryption. When
-  # false, the CloudWatch agent will automatically create a basic log group to use.
+  # When true, precreate the CloudWatch Log Group to use for log aggregation
+  # from the EC2 instances. This is useful if you wish to customize the
+  # CloudWatch Log Group with various settings such as retention periods and KMS
+  # encryption. When false, the CloudWatch agent will automatically create a
+  # basic log group to use.
   should_create_cloudwatch_log_group = true
 
-  # If set to true, skip the health check, and start a rolling deployment of Jenkins
-  # without waiting for it to initially be in a healthy state. This is primarily
-  # useful if the server group is in a broken state and you want to force a
-  # deployment anyway.
+  # If set to true, skip the health check, and start a rolling deployment of
+  # Jenkins without waiting for it to initially be in a healthy state. This is
+  # primarily useful if the server group is in a broken state and you want to
+  # force a deployment anyway.
   skip_health_check = false
 
-  # If you are using ssh-grunt, this is the name of the IAM group from which users
-  # will be allowed to SSH to this Jenkins server. This value is only used if
-  # enable_ssh_grunt=true.
+  # If you are using ssh-grunt, this is the name of the IAM group from which
+  # users will be allowed to SSH to this Jenkins server. This value is only used
+  # if enable_ssh_grunt=true.
   ssh_grunt_iam_group = "ssh-grunt-users"
 
-  # If you are using ssh-grunt, this is the name of the IAM group from which users
-  # will be allowed to SSH to this Jenkins server with sudo permissions. This value
-  # is only used if enable_ssh_grunt=true.
+  # If you are using ssh-grunt, this is the name of the IAM group from which
+  # users will be allowed to SSH to this Jenkins server with sudo permissions.
+  # This value is only used if enable_ssh_grunt=true.
   ssh_grunt_iam_group_sudo = "ssh-grunt-sudo-users"
 
   # The tenancy of this server. Must be one of: default, dedicated, or host.
   tenancy = "default"
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
 }
@@ -435,7 +389,7 @@ module "jenkins" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/jenkins?ref=v0.104.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/jenkins?ref=v0.104.11"
 }
 
 inputs = {
@@ -448,19 +402,19 @@ inputs = {
   # Manager (ACM).
   acm_ssl_certificate_domain = <string>
 
-  # The IDs of the subnets in which to deploy the ALB that runs in front of Jenkins.
-  # Must be subnets in var.vpc_id.
+  # The IDs of the subnets in which to deploy the ALB that runs in front of
+  # Jenkins. Must be subnets in var.vpc_id.
   alb_subnet_ids = <list(string)>
 
   # The ID of the AMI to run on the Jenkins server. This should be the AMI build
-  # from the Packer template jenkins-ubuntu.json. One of var.ami or var.ami_filters
-  # is required. Set to null if looking up the ami with filters.
+  # from the Packer template jenkins-ubuntu.json. One of var.ami or
+  # var.ami_filters is required. Set to null if looking up the ami with filters.
   ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with
-  # Jenkins. You can build the AMI using the Packer template jenkins-ubuntu.json.
-  # Only used if var.ami is null. One of var.ami or var.ami_filters is required. Set
-  # to null if passing the ami ID directly.
+  # Jenkins. You can build the AMI using the Packer template
+  # jenkins-ubuntu.json. Only used if var.ami is null. One of var.ami or
+  # var.ami_filters is required. Set to null if passing the ami ID directly.
   ami_filters = <object(
     owners = list(string)
     filters = list(object(
@@ -469,8 +423,8 @@ inputs = {
     ))
   )>
 
-  # The domain name for the DNS A record to add for Jenkins (e.g. jenkins.foo.com).
-  # Must be in the domain managed by var.hosted_zone_id.
+  # The domain name for the DNS A record to add for Jenkins (e.g.
+  # jenkins.foo.com). Must be in the domain managed by var.hosted_zone_id.
   domain_name = <string>
 
   # The ID of the Route 53 Hosted Zone in which to create a DNS A record for
@@ -480,11 +434,12 @@ inputs = {
   # The instance type to use for the Jenkins server (e.g. t2.medium)
   instance_type = <string>
 
-  # The ID of the subnet in which to deploy Jenkins. Must be a subnet in var.vpc_id.
+  # The ID of the subnet in which to deploy Jenkins. Must be a subnet in
+  # var.vpc_id.
   jenkins_subnet_id = <string>
 
-  # The amount of memory to give Jenkins (e.g., 1g or 512m). Used for the -Xms and
-  # -Xmx settings.
+  # The amount of memory to give Jenkins (e.g., 1g or 512m). Used for the -Xms
+  # and -Xmx settings.
   memory = <string>
 
   # The ID of the VPC in which to deploy Jenkins
@@ -494,40 +449,41 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk
-  # space usage) should send notifications. Also used for the alarms if the Jenkins
-  # backup job fails.
+  # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
+  # disk space usage) should send notifications. Also used for the alarms if the
+  # Jenkins backup job fails.
   alarms_sns_topic_arn = []
 
-  # The IP address ranges in CIDR format from which to allow incoming HTTP requests
-  # to Jenkins.
+  # The IP address ranges in CIDR format from which to allow incoming HTTP
+  # requests to Jenkins.
   allow_incoming_http_from_cidr_blocks = []
 
   # The IDs of security groups from which to allow incoming HTTP requests to
   # Jenkins.
   allow_incoming_http_from_security_group_ids = []
 
-  # The IP address ranges in CIDR format from which to allow incoming SSH requests
-  # to Jenkins.
+  # The IP address ranges in CIDR format from which to allow incoming SSH
+  # requests to Jenkins.
   allow_ssh_from_cidr_blocks = []
 
-  # The IDs of security groups from which to allow incoming SSH requests to Jenkins.
+  # The IDs of security groups from which to allow incoming SSH requests to
+  # Jenkins.
   allow_ssh_from_security_group_ids = []
 
-  # How often, in seconds, the backup job is expected to run. This is the same as
-  # var.backup_job_schedule_expression, but unfortunately, Terraform offers no way
-  # to convert rate expressions to seconds. We add a CloudWatch alarm that triggers
-  # if the value of var.backup_job_metric_name and var.backup_job_metric_namespace
-  # isn't updated within this time period, as that indicates the backup failed to
-  # run.
+  # How often, in seconds, the backup job is expected to run. This is the same
+  # as var.backup_job_schedule_expression, but unfortunately, Terraform offers
+  # no way to convert rate expressions to seconds. We add a CloudWatch alarm
+  # that triggers if the value of var.backup_job_metric_name and
+  # var.backup_job_metric_namespace isn't updated within this time period, as
+  # that indicates the backup failed to run.
   backup_job_alarm_period = 86400
 
   # The name for the CloudWatch Metric the AWS lambda backup job will increment
   # every time the job completes successfully.
   backup_job_metric_name = "jenkins-backup-job"
 
-  # The namespace for the CloudWatch Metric the AWS lambda backup job will increment
-  # every time the job completes successfully.
+  # The namespace for the CloudWatch Metric the AWS lambda backup job will
+  # increment every time the job completes successfully.
   backup_job_metric_namespace = "Custom/Jenkins"
 
   # A cron or rate expression that specifies how often to take a snapshot of the
@@ -544,13 +500,13 @@ inputs = {
   backup_using_lambda = false
 
   # The list of IAM actions this Jenkins server should be allowed to do: e.g.,
-  # ec2:*, s3:*, etc. This should be the list of IAM permissions Jenkins needs in
-  # this AWS account to run builds. These permissions will be added to the server's
-  # IAM role for all resources ('*').
+  # ec2:*, s3:*, etc. This should be the list of IAM permissions Jenkins needs
+  # in this AWS account to run builds. These permissions will be added to the
+  # server's IAM role for all resources ('*').
   build_permission_actions = []
 
-  # Cloud init scripts to run on the Jenkins server when it is booting. See the part
-  # blocks in
+  # Cloud init scripts to run on the Jenkins server when it is booting. See the
+  # part blocks in
   # https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for
   # syntax.
   cloud_init_parts = {}
@@ -560,13 +516,12 @@ inputs = {
   cloudwatch_log_group_kms_key_id = null
 
   # The number of days to retain log events in the log group. Refer to
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
-  # watch_log_group#retention_in_days for all the valid values. When null, the log
-  # events are retained forever.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days
+  # for all the valid values. When null, the log events are retained forever.
   cloudwatch_log_group_retention_in_days = null
 
-  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are
-  # tag keys and values are tag values.
+  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys
+  # are tag keys and values are tag values.
   cloudwatch_log_group_tags = null
 
   # Set to true to create a public DNS A record in Route53 for Jenkins.
@@ -575,8 +530,9 @@ inputs = {
   # A list of custom tags to apply to Jenkins and all other resources.
   custom_tags = {}
 
-  # The default OS user for the Jenkins AMI. For AWS Ubuntu AMIs, which is what the
-  # Packer template in jenkins-ubunutu.json uses, the default OS user is 'ubuntu'.
+  # The default OS user for the Jenkins AMI. For AWS Ubuntu AMIs, which is what
+  # the Packer template in jenkins-ubunutu.json uses, the default OS user is
+  # 'ubuntu'.
   default_user = "ubuntu"
 
   # How often this lifecycle policy should be evaluated, in hours.
@@ -592,96 +548,54 @@ inputs = {
   # should be evaluated. Max of 1.
   dlm_backup_job_schedule_times = ["03:00"]
 
-  # The ARN of the KMS key used for encrypting the Jenkins EBS volume. The module
-  # will grant Jenkins permission to use this key.
+  # The ARN of the KMS key used for encrypting the Jenkins EBS volume. The
+  # module will grant Jenkins permission to use this key.
   ebs_kms_key_arn = null
 
-  # Whether or not the provide EBS KMS key ARN is a key alias. If providing the key
-  # ID, leave this set to false.
+  # Whether or not the provide EBS KMS key ARN is a key alias. If providing the
+  # key ID, leave this set to false.
   ebs_kms_key_arn_is_alias = false
 
-  # Set to true to enable several basic CloudWatch alarms around CPU usage, memory
-  # usage, and disk space usage. If set to true, make sure to specify SNS topics to
-  # send notifications to using var.alarms_sns_topic_arn.
+  # Set to true to enable several basic CloudWatch alarms around CPU usage,
+  # memory usage, and disk space usage. If set to true, make sure to specify SNS
+  # topics to send notifications to using var.alarms_sns_topic_arn.
   enable_cloudwatch_alarms = true
 
-  # Set to true to add AIM permissions to send logs to CloudWatch. This is useful in
-  # combination with
-  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/log
-  # /cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch.
+  # Set to true to add AIM permissions to send logs to CloudWatch. This is
+  # useful in combination with
+  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts
+  # to do log aggregation in CloudWatch.
   enable_cloudwatch_log_aggregation = true
 
-  # Set to true to add IAM permissions to send custom metrics to CloudWatch. This is
-  # useful in combination with
-  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/age
-  # ts/cloudwatch-agent to get memory and disk metrics in CloudWatch for your
-  # Jenkins server.
+  # Set to true to add IAM permissions to send custom metrics to CloudWatch.
+  # This is useful in combination with
+  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent
+  # to get memory and disk metrics in CloudWatch for your Jenkins server.
   enable_cloudwatch_metrics = true
 
-  # Enable ip-lockdown to block access to the instance metadata. Defaults to true.
+  # Enable ip-lockdown to block access to the instance metadata. Defaults to
+  # true.
   enable_ip_lockdown = true
 
   # Set to true to add IAM permissions for ssh-grunt
-  # (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-
-  # runt), which will allow you to manage SSH access via IAM groups.
+  # (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt),
+  # which will allow you to manage SSH access via IAM groups.
   enable_ssh_grunt = true
 
   # A list of IAM role ARNs in other AWS accounts that Jenkins will be able to
   # assume to do automated deployment in those accounts.
   external_account_auto_deploy_iam_role_arns = []
 
-  # If you are using ssh-grunt and your IAM users / groups are defined in a separate
-  # AWS account, you can use this variable to specify the ARN of an IAM role that
-  # ssh-grunt can assume to retrieve IAM group and public SSH key info from that
-  # account. To omit this variable, set it to an empty string (do NOT use null, or
-  # Terraform will complain).
+  # If you are using ssh-grunt and your IAM users / groups are defined in a
+  # separate AWS account, you can use this variable to specify the ARN of an IAM
+  # role that ssh-grunt can assume to retrieve IAM group and public SSH key info
+  # from that account. To omit this variable, set it to an empty string (do NOT
+  # use null, or Terraform will complain).
   external_account_ssh_grunt_role_arn = ""
 
-  # The period, in seconds, over which to measure the CPU utilization percentage for
-  # the ASG.
-  high_asg_cpu_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster CPU utilization percentage
-  # above this threshold.
-  high_asg_cpu_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_asg_cpu_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the root disk utilization
-  # percentage for the ASG.
-  high_asg_disk_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster root disk utilization
-  # percentage above this threshold.
-  high_asg_disk_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_asg_disk_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the Memory utilization percentage
-  # for the ASG.
-  high_asg_memory_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster Memory utilization percentage
-  # above this threshold.
-  high_asg_memory_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_asg_memory_utilization_treat_missing_data = "missing"
-
-  # Set to true to make the Jenkins ALB an internal ALB that cannot be accessed from
-  # the public Internet. We strongly recommend setting this to true to keep Jenkins
-  # more secure.
+  # Set to true to make the Jenkins ALB an internal ALB that cannot be accessed
+  # from the public Internet. We strongly recommend setting this to true to keep
+  # Jenkins more secure.
   is_internal_alb = true
 
   # The OS device name where the Jenkins EBS volume should be attached
@@ -693,13 +607,6 @@ inputs = {
   # The OS user that should be used to run Jenkins
   jenkins_user = "jenkins"
 
-  # Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA
-  # state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  jenkins_volume_alarm_treat_missing_data = "missing"
-
   # Set to true to encrypt the Jenkins EBS volume.
   jenkins_volume_encrypted = true
 
@@ -707,8 +614,8 @@ inputs = {
   # Jenkins server.
   jenkins_volume_size = 200
 
-  # The type of volume to use for the EBS volume used by the Jenkins server. Must be
-  # one of: standard, gp2, io1, sc1, or st1.
+  # The type of volume to use for the EBS volume used by the Jenkins server.
+  # Must be one of: standard, gp2, io1, sc1, or st1.
   jenkins_volume_type = "gp2"
 
   # The name of a Key Pair that can be used to SSH to the Jenkins server. Leave
@@ -722,42 +629,43 @@ inputs = {
   # standard, gp2, io1, sc1, or st1.
   root_block_device_volume_type = "gp2"
 
-  # The amount of disk space, in GB, to allocate for the root volume of this server.
-  # Note that all of Jenkins' data is stored on a separate EBS Volume (see
-  # var.jenkins_volume_size), so this root volume is primarily used for the OS, temp
-  # folders, apps, etc.
+  # The amount of disk space, in GB, to allocate for the root volume of this
+  # server. Note that all of Jenkins' data is stored on a separate EBS Volume
+  # (see var.jenkins_volume_size), so this root volume is primarily used for the
+  # OS, temp folders, apps, etc.
   root_volume_size = 100
 
-  # When true, precreate the CloudWatch Log Group to use for log aggregation from
-  # the EC2 instances. This is useful if you wish to customize the CloudWatch Log
-  # Group with various settings such as retention periods and KMS encryption. When
-  # false, the CloudWatch agent will automatically create a basic log group to use.
+  # When true, precreate the CloudWatch Log Group to use for log aggregation
+  # from the EC2 instances. This is useful if you wish to customize the
+  # CloudWatch Log Group with various settings such as retention periods and KMS
+  # encryption. When false, the CloudWatch agent will automatically create a
+  # basic log group to use.
   should_create_cloudwatch_log_group = true
 
-  # If set to true, skip the health check, and start a rolling deployment of Jenkins
-  # without waiting for it to initially be in a healthy state. This is primarily
-  # useful if the server group is in a broken state and you want to force a
-  # deployment anyway.
+  # If set to true, skip the health check, and start a rolling deployment of
+  # Jenkins without waiting for it to initially be in a healthy state. This is
+  # primarily useful if the server group is in a broken state and you want to
+  # force a deployment anyway.
   skip_health_check = false
 
-  # If you are using ssh-grunt, this is the name of the IAM group from which users
-  # will be allowed to SSH to this Jenkins server. This value is only used if
-  # enable_ssh_grunt=true.
+  # If you are using ssh-grunt, this is the name of the IAM group from which
+  # users will be allowed to SSH to this Jenkins server. This value is only used
+  # if enable_ssh_grunt=true.
   ssh_grunt_iam_group = "ssh-grunt-users"
 
-  # If you are using ssh-grunt, this is the name of the IAM group from which users
-  # will be allowed to SSH to this Jenkins server with sudo permissions. This value
-  # is only used if enable_ssh_grunt=true.
+  # If you are using ssh-grunt, this is the name of the IAM group from which
+  # users will be allowed to SSH to this Jenkins server with sudo permissions.
+  # This value is only used if enable_ssh_grunt=true.
   ssh_grunt_iam_group_sudo = "ssh-grunt-sudo-users"
 
   # The tenancy of this server. Must be one of: default, dedicated, or host.
   tenancy = "default"
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
 }
@@ -1205,87 +1113,6 @@ If you are using ssh-grunt and your IAM users / groups are defined in a separate
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
-<HclListItem name="high_asg_cpu_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the CPU utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_cpu_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster CPU utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_cpu_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the root disk utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster root disk utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the Memory utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster Memory utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="is_internal_alb" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1320,15 +1147,6 @@ The OS user that should be used to run Jenkins
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;jenkins&quot;"/>
-</HclListItem>
-
-<HclListItem name="jenkins_volume_alarm_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="jenkins_volume_encrypted" requirement="optional" type="bool">
@@ -1584,11 +1402,11 @@ The ID of the Security Group attached to the Jenkins EC2 Instance
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/mgmt/jenkins/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/mgmt/jenkins/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/mgmt/jenkins/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/mgmt/jenkins/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/mgmt/jenkins/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/mgmt/jenkins/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "7d44353a4299273a100dafe249bf500a"
+  "hash": "fbe5cea9f60e7625cc9280133e336c45"
 }
 ##DOCS-SOURCER-END -->

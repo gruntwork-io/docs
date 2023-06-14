@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.10" lastModifiedVersion="0.98.0"/>
+<VersionBadge version="0.104.11" lastModifiedVersion="0.98.0"/>
 
 # Account Baseline for security account
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/landingzone/account-baseline-security" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/landingzone/account-baseline-security" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-security" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -59,13 +59,13 @@ If you’ve never used the Service Catalog before, make sure to read
 
 *   Learn more about each individual module, click the link in the [Features](#features) section.
 *   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
-*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
+*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -73,7 +73,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/examples/for-learning-and-testing/landingzone): The
+*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-learning-and-testing/landingzone): The
     `examples/for-learning-and-testing/landingzone` folder contains standalone sample code optimized for learning,
     experimenting, and testing (but not direct production usage).
 
@@ -81,7 +81,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -101,7 +101,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "account_baseline_security" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/account-baseline-security?ref=v0.104.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/account-baseline-security?ref=v0.104.11"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -115,85 +115,87 @@ module "account_baseline_security" {
   # GuardDuty.
   aws_region = <string>
 
-  # Creates resources in the specified regions. The best practice is to enable AWS
-  # Config in all enabled regions in your AWS account. This variable must NOT be set
-  # to null or empty. Otherwise, we won't know which regions to use and authenticate
-  # to, and may use some not enabled in your AWS account (e.g., GovCloud, China,
-  # etc). To get the list of regions enabled in your AWS account, you can use the
-  # AWS CLI: aws ec2 describe-regions.
+  # Creates resources in the specified regions. The best practice is to enable
+  # AWS Config in all enabled regions in your AWS account. This variable must
+  # NOT be set to null or empty. Otherwise, we won't know which regions to use
+  # and authenticate to, and may use some not enabled in your AWS account (e.g.,
+  # GovCloud, China, etc). To get the list of regions enabled in your AWS
+  # account, you can use the AWS CLI: aws ec2 describe-regions.
   config_opt_in_regions = <list(string)>
 
-  # Creates resources in the specified regions. The best practice is to enable EBS
-  # Encryption in all enabled regions in your AWS account. This variable must NOT be
-  # set to null or empty. Otherwise, we won't know which regions to use and
-  # authenticate to, and may use some not enabled in your AWS account (e.g.,
-  # GovCloud, China, etc). To get the list of regions enabled in your AWS account,
-  # you can use the AWS CLI: aws ec2 describe-regions. The value provided for
-  # global_recorder_region must be in this list.
+  # Creates resources in the specified regions. The best practice is to enable
+  # EBS Encryption in all enabled regions in your AWS account. This variable
+  # must NOT be set to null or empty. Otherwise, we won't know which regions to
+  # use and authenticate to, and may use some not enabled in your AWS account
+  # (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS
+  # account, you can use the AWS CLI: aws ec2 describe-regions. The value
+  # provided for global_recorder_region must be in this list.
   ebs_opt_in_regions = <list(string)>
 
   # Creates resources in the specified regions. The best practice is to enable
-  # GuardDuty in all enabled regions in your AWS account. This variable must NOT be
-  # set to null or empty. Otherwise, we won't know which regions to use and
+  # GuardDuty in all enabled regions in your AWS account. This variable must NOT
+  # be set to null or empty. Otherwise, we won't know which regions to use and
   # authenticate to, and may use some not enabled in your AWS account (e.g.,
-  # GovCloud, China, etc). To get the list of regions enabled in your AWS account,
-  # you can use the AWS CLI: aws ec2 describe-regions. The value provided for
-  # global_recorder_region must be in this list.
+  # GovCloud, China, etc). To get the list of regions enabled in your AWS
+  # account, you can use the AWS CLI: aws ec2 describe-regions. The value
+  # provided for global_recorder_region must be in this list.
   guardduty_opt_in_regions = <list(string)>
 
-  # Creates resources in the specified regions. The best practice is to enable IAM
-  # Access Analyzer in all enabled regions in your AWS account. This variable must
-  # NOT be set to null or empty. Otherwise, we won't know which regions to use and
-  # authenticate to, and may use some not enabled in your AWS account (e.g.,
-  # GovCloud, China, etc). To get the list of regions enabled in your AWS account,
-  # you can use the AWS CLI: aws ec2 describe-regions. The value provided for
-  # global_recorder_region must be in this list.
+  # Creates resources in the specified regions. The best practice is to enable
+  # IAM Access Analyzer in all enabled regions in your AWS account. This
+  # variable must NOT be set to null or empty. Otherwise, we won't know which
+  # regions to use and authenticate to, and may use some not enabled in your AWS
+  # account (e.g., GovCloud, China, etc). To get the list of regions enabled in
+  # your AWS account, you can use the AWS CLI: aws ec2 describe-regions. The
+  # value provided for global_recorder_region must be in this list.
   iam_access_analyzer_opt_in_regions = <list(string)>
 
   # Creates resources in the specified regions. This variable must NOT be set to
-  # null or empty. Otherwise, we won't know which regions to use and authenticate
-  # to, and may use some not enabled in your AWS account (e.g., GovCloud, China,
-  # etc). To get the list of regions enabled in your AWS account, you can use the
-  # AWS CLI: aws ec2 describe-regions. The value provided for global_recorder_region
-  # must be in this list.
+  # null or empty. Otherwise, we won't know which regions to use and
+  # authenticate to, and may use some not enabled in your AWS account (e.g.,
+  # GovCloud, China, etc). To get the list of regions enabled in your AWS
+  # account, you can use the AWS CLI: aws ec2 describe-regions. The value
+  # provided for global_recorder_region must be in this list.
   kms_cmk_opt_in_regions = <list(string)>
 
-  # The name used to prefix AWS Config and Cloudtrail resources, including the S3
-  # bucket names and SNS topics used for each.
+  # The name used to prefix AWS Config and Cloudtrail resources, including the
+  # S3 bucket names and SNS topics used for each.
   name_prefix = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Map of additional managed rules to add. The key is the name of the rule (e.g.
-  # ´acm-certificate-expiration-check´) and the value is an object specifying the
-  # rule details
+  # Map of additional managed rules to add. The key is the name of the rule
+  # (e.g. ´acm-certificate-expiration-check´) and the value is an object
+  # specifying the rule details
   additional_config_rules = {}
 
-  # Map of github repositories to the list of branches that are allowed to assume
-  # the IAM role. The repository should be encoded as org/repo-name (e.g.,
-  # gruntwork-io/terrraform-aws-ci). Allows GitHub Actions to assume the auto deploy
-  # IAM role using an OpenID Connect Provider for the given repositories. Refer to
-  # the docs for github-actions-iam-role for more information. Note that this is
-  # mutually exclusive with var.allow_auto_deploy_from_other_account_arns. Only used
-  # if var.enable_github_actions_access is true. 
+  # Map of github repositories to the list of branches that are allowed to
+  # assume the IAM role. The repository should be encoded as org/repo-name
+  # (e.g., gruntwork-io/terrraform-aws-ci). Allows GitHub Actions to assume the
+  # auto deploy IAM role using an OpenID Connect Provider for the given
+  # repositories. Refer to the docs for github-actions-iam-role for more
+  # information. Note that this is mutually exclusive with
+  # var.allow_auto_deploy_from_other_account_arns. Only used if
+  # var.enable_github_actions_access is true. 
   allow_auto_deploy_from_github_actions_for_sources = {}
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed to assume the
-  # auto deploy IAM role that has the permissions in var.auto_deploy_permissions.
+  # A list of IAM ARNs from other AWS accounts that will be allowed to assume
+  # the auto deploy IAM role that has the permissions in
+  # var.auto_deploy_permissions.
   allow_auto_deploy_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
   allow_auto_deploy_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed full (read and
-  # write) access to the billing info for this account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed full (read
+  # and write) access to the billing info for this account.
   allow_billing_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
   allow_billing_access_iam_role_permissions_boundary = null
 
   # If true, an IAM Policy that grants access to CloudTrail will be honored. If
@@ -201,156 +203,160 @@ module "account_baseline_security" {
   # CloudTrail and any IAM Policy grants will be ignored. (true or false)
   allow_cloudtrail_access_with_iam = true
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed full (read and
-  # write) access to the services in this account specified in
+  # A list of IAM ARNs from other AWS accounts that will be allowed full (read
+  # and write) access to the services in this account specified in
   # var.dev_permitted_services.
   allow_dev_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
   allow_dev_access_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed full (read and
-  # write) access to this account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed full (read
+  # and write) access to this account.
   allow_full_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
   allow_full_access_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed access to the
-  # logs in CloudTrail, AWS Config, and CloudWatch for this account. Will also be
-  # given permissions to decrypt with the KMS CMK that is used to encrypt CloudTrail
-  # logs.
+  # A list of IAM ARNs from other AWS accounts that will be allowed access to
+  # the logs in CloudTrail, AWS Config, and CloudWatch for this account. Will
+  # also be given permissions to decrypt with the KMS CMK that is used to
+  # encrypt CloudTrail logs.
   allow_logs_access_from_other_account_arns = []
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed read-only access
-  # to this account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed read-only
+  # access to this account.
   allow_read_only_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
   allow_read_only_access_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed read access to
-  # IAM groups and publish SSH keys. This is used for ssh-grunt.
+  # A list of IAM ARNs from other AWS accounts that will be allowed read access
+  # to IAM groups and publish SSH keys. This is used for ssh-grunt.
   allow_ssh_grunt_access_from_other_account_arns = []
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed support access
-  # (AWSSupportAccess) to this account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed support
+  # access (AWSSupportAccess) to this account.
   allow_support_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
   allow_support_access_iam_role_permissions_boundary = null
 
-  # A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group for
-  # doing automated deployments. NOTE: If var.should_create_iam_group_auto_deploy is
-  # true, the list must have at least one element (e.g. '*').
+  # A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group
+  # for doing automated deployments. NOTE: If
+  # var.should_create_iam_group_auto_deploy is true, the list must have at least
+  # one element (e.g. '*').
   auto_deploy_permissions = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
   aws_config_iam_role_permissions_boundary = null
 
   # Whether or not to allow kms:DescribeKey to external AWS accounts with write
-  # access to the CloudTrail bucket. This is useful during deployment so that you
-  # don't have to pass around the KMS key ARN.
+  # access to the CloudTrail bucket. This is useful during deployment so that
+  # you don't have to pass around the KMS key ARN.
   cloudtrail_allow_kms_describe_key_to_external_aws_accounts = false
 
-  # Specify the name of the CloudWatch Logs group to publish the CloudTrail logs to.
-  # This log group exists in the current account. Set this value to `null` to avoid
-  # publishing the trail logs to the logs group. The recommended configuration for
-  # CloudTrail is (a) for each child account to aggregate its logs in an S3 bucket
-  # in a single central account, such as a logs account and (b) to also store 14
-  # days work of logs in CloudWatch in the child account itself for local debugging.
+  # Specify the name of the CloudWatch Logs group to publish the CloudTrail logs
+  # to. This log group exists in the current account. Set this value to `null`
+  # to avoid publishing the trail logs to the logs group. The recommended
+  # configuration for CloudTrail is (a) for each child account to aggregate its
+  # logs in an S3 bucket in a single central account, such as a logs account and
+  # (b) to also store 14 days work of logs in CloudWatch in the child account
+  # itself for local debugging.
   cloudtrail_cloudwatch_logs_group_name = "cloudtrail-logs"
 
   # If true, logging of data events will be enabled.
   cloudtrail_data_logging_enabled = false
 
-  # Specify if you want your event selector to include management events for your
-  # trail.
+  # Specify if you want your event selector to include management events for
+  # your trail.
   cloudtrail_data_logging_include_management_events = true
 
-  # Specify if you want your trail to log read-only events, write-only events, or
-  # all. Possible values are: ReadOnly, WriteOnly, All.
+  # Specify if you want your trail to log read-only events, write-only events,
+  # or all. Possible values are: ReadOnly, WriteOnly, All.
   cloudtrail_data_logging_read_write_type = "All"
 
-  # Data resources for which to log data events. This should be a map, where each
-  # key is a data resource type, and each value is a list of data resource values.
-  # Possible values for data resource types are: AWS::S3::Object,
-  # AWS::Lambda::Function and AWS::DynamoDB::Table. See the 'data_resource' block
-  # within the 'event_selector' block of the 'aws_cloudtrail' resource for context:
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
-  # trail#data_resource.
+  # Data resources for which to log data events. This should be a map, where
+  # each key is a data resource type, and each value is a list of data resource
+  # values. Possible values for data resource types are: AWS::S3::Object,
+  # AWS::Lambda::Function and AWS::DynamoDB::Table. See the 'data_resource'
+  # block within the 'event_selector' block of the 'aws_cloudtrail' resource for
+  # context:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#data_resource.
   cloudtrail_data_logging_resources = {}
 
-  # A list of external AWS accounts that should be given write access for CloudTrail
-  # logs to this S3 bucket. This is useful when aggregating CloudTrail logs for
-  # multiple AWS accounts in one common S3 bucket.
+  # A list of external AWS accounts that should be given write access for
+  # CloudTrail logs to this S3 bucket. This is useful when aggregating
+  # CloudTrail logs for multiple AWS accounts in one common S3 bucket.
   cloudtrail_external_aws_account_ids_with_write_access = []
 
-  # If set to true, when you run 'terraform destroy', delete all objects from the
-  # bucket so that the bucket can be destroyed without error. Warning: these objects
-  # are not recoverable so only use this if you're absolutely sure you want to
-  # permanently delete everything!
+  # If set to true, when you run 'terraform destroy', delete all objects from
+  # the bucket so that the bucket can be destroyed without error. Warning: these
+  # objects are not recoverable so only use this if you're absolutely sure you
+  # want to permanently delete everything!
   cloudtrail_force_destroy = false
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
   cloudtrail_iam_role_permissions_boundary = null
 
   # All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key)
-  # that governs access to write API calls older than 7 days and all read API calls.
-  # The IAM Users specified in this list will have rights to change who can access
-  # this extended log data.
+  # that governs access to write API calls older than 7 days and all read API
+  # calls. The IAM Users specified in this list will have rights to change who
+  # can access this extended log data.
   cloudtrail_kms_key_administrator_iam_arns = []
 
-  # All CloudTrail Logs will be encrypted with a KMS CMK (Customer Master Key) that
-  # governs access to write API calls older than 7 days and all read API calls. If
-  # that CMK already exists, set this to the ARN of that CMK. Otherwise, set this to
-  # null, and a new CMK will be created. We recommend setting this to the ARN of a
-  # CMK that already exists in a separate logs account.
+  # All CloudTrail Logs will be encrypted with a KMS CMK (Customer Master Key)
+  # that governs access to write API calls older than 7 days and all read API
+  # calls. If that CMK already exists, set this to the ARN of that CMK.
+  # Otherwise, set this to null, and a new CMK will be created. We recommend
+  # setting this to the ARN of a CMK that already exists in a separate logs
+  # account.
   cloudtrail_kms_key_arn = null
 
-  # If the kms_key_arn provided is an alias or alias ARN, then this must be set to
-  # true so that the module will exchange the alias for a CMK ARN. Setting this to
-  # true and using aliases requires
-  # var.cloudtrail_allow_kms_describe_key_to_external_aws_accounts to also be true
-  # for multi-account scenarios.
+  # If the kms_key_arn provided is an alias or alias ARN, then this must be set
+  # to true so that the module will exchange the alias for a CMK ARN. Setting
+  # this to true and using aliases requires
+  # var.cloudtrail_allow_kms_describe_key_to_external_aws_accounts to also be
+  # true for multi-account scenarios.
   cloudtrail_kms_key_arn_is_alias = false
 
-  # Additional service principals beyond CloudTrail that should have access to the
-  # KMS key used to encrypt the logs. This is useful for granting access to the logs
-  # for the purposes of constructing metric filters.
+  # Additional service principals beyond CloudTrail that should have access to
+  # the KMS key used to encrypt the logs. This is useful for granting access to
+  # the logs for the purposes of constructing metric filters.
   cloudtrail_kms_key_service_principals = []
 
   # All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key)
-  # that governs access to write API calls older than 7 days and all read API calls.
-  # The IAM Users specified in this list will have read-only access to this extended
-  # log data.
+  # that governs access to write API calls older than 7 days and all read API
+  # calls. The IAM Users specified in this list will have read-only access to
+  # this extended log data.
   cloudtrail_kms_key_user_iam_arns = []
 
-  # After this number of days, log files should be transitioned from S3 to Glacier.
-  # Enter 0 to never archive log data.
+  # After this number of days, log files should be transitioned from S3 to
+  # Glacier. Enter 0 to never archive log data.
   cloudtrail_num_days_after_which_archive_log_data = 30
 
-  # After this number of days, log files should be deleted from S3. Enter 0 to never
-  # delete log data.
+  # After this number of days, log files should be deleted from S3. Enter 0 to
+  # never delete log data.
   cloudtrail_num_days_after_which_delete_log_data = 365
 
-  # After this number of days, logs stored in CloudWatch will be deleted. Possible
-  # values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827,
-  # 3653, and 0 (default). When set to 0, logs will be retained indefinitely.
+  # After this number of days, logs stored in CloudWatch will be deleted.
+  # Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400,
+  # 545, 731, 1827, 3653, and 0 (default). When set to 0, logs will be retained
+  # indefinitely.
   cloudtrail_num_days_to_retain_cloudwatch_logs = 0
 
   # Set to false to create an S3 bucket of name var.cloudtrail_s3_bucket_name in
   # this account for storing CloudTrail logs. Set to true to assume the bucket
   # specified in var.cloudtrail_s3_bucket_name already exists in another AWS
   # account. We recommend setting this to true and setting
-  # var.cloudtrail_s3_bucket_name to the name of a bucket that already exists in a
-  # separate logs account.
+  # var.cloudtrail_s3_bucket_name to the name of a bucket that already exists in
+  # a separate logs account.
   cloudtrail_s3_bucket_already_exists = false
 
   # The name of the S3 Bucket where CloudTrail logs will be stored. If value is
@@ -358,148 +364,151 @@ module "account_baseline_security" {
   cloudtrail_s3_bucket_name = null
 
   # Enable MFA delete for either 'Change the versioning state of your bucket' or
-  # 'Permanently delete an object version'. This setting only applies to the bucket
-  # used to storage Cloudtrail data. This cannot be used to toggle this setting but
-  # is available to allow managed buckets to reflect the state in AWS. For
-  # instructions on how to enable MFA Delete, check out the README from the
-  # terraform-aws-security/private-s3-bucket module.
+  # 'Permanently delete an object version'. This setting only applies to the
+  # bucket used to storage Cloudtrail data. This cannot be used to toggle this
+  # setting but is available to allow managed buckets to reflect the state in
+  # AWS. For instructions on how to enable MFA Delete, check out the README from
+  # the terraform-aws-security/private-s3-bucket module.
   cloudtrail_s3_mfa_delete = false
 
   # Tags to apply to the CloudTrail resources.
   cloudtrail_tags = {}
 
   # Set to true to send the AWS Config data to another account (e.g., a logs
-  # account) for aggregation purposes. You must set the ID of that other account via
-  # the config_central_account_id variable. This redundant variable has to exist
-  # because Terraform does not allow computed data in count and for_each parameters
-  # and var.config_central_account_id may be computed if its the ID of a
-  # newly-created AWS account.
+  # account) for aggregation purposes. You must set the ID of that other account
+  # via the config_central_account_id variable. This redundant variable has to
+  # exist because Terraform does not allow computed data in count and for_each
+  # parameters and var.config_central_account_id may be computed if its the ID
+  # of a newly-created AWS account.
   config_aggregate_config_data_in_external_account = false
 
   # If the S3 bucket and SNS topics used for AWS Config live in a different AWS
-  # account, set this variable to the ID of that account. If the S3 bucket and SNS
-  # topics live in this account, set this variable to null. We recommend setting
-  # this to the ID of a separate logs account. Only used if
+  # account, set this variable to the ID of that account. If the S3 bucket and
+  # SNS topics live in this account, set this variable to null. We recommend
+  # setting this to the ID of a separate logs account. Only used if
   # var.config_aggregate_config_data_in_external_account is true.
   config_central_account_id = null
 
-  # Set to true to create AWS Config rules directly in this account. Set false to
-  # not create any Config rules in this account (i.e., if you created the rules at
-  # the organization level already). We recommend setting this to true to use
-  # account-level rules because org-level rules create a chicken-and-egg problem
-  # with creating new accounts.
+  # Set to true to create AWS Config rules directly in this account. Set false
+  # to not create any Config rules in this account (i.e., if you created the
+  # rules at the organization level already). We recommend setting this to true
+  # to use account-level rules because org-level rules create a chicken-and-egg
+  # problem with creating new accounts.
   config_create_account_rules = true
 
   # Optional KMS key to use for encrypting S3 objects on the AWS Config delivery
-  # channel for an externally managed S3 bucket. This must belong to the same region
-  # as the destination S3 bucket. If null, AWS Config will default to encrypting the
-  # delivered data with AES-256 encryption. Only used if var.should_create_s3_bucket
-  # is false - otherwise, var.kms_key_arn is used.
+  # channel for an externally managed S3 bucket. This must belong to the same
+  # region as the destination S3 bucket. If null, AWS Config will default to
+  # encrypting the delivered data with AES-256 encryption. Only used if
+  # var.should_create_s3_bucket is false - otherwise, var.kms_key_arn is used.
   config_delivery_channel_kms_key_arn = null
 
-  # Same as var.config_delivery_channel_kms_key_arn, except the value is a name of a
-  # KMS key configured with var.kms_customer_master_keys. The module created KMS key
-  # for the delivery region (indexed by the name) will be used. Note that if both
-  # var.config_delivery_channel_kms_key_arn and
+  # Same as var.config_delivery_channel_kms_key_arn, except the value is a name
+  # of a KMS key configured with var.kms_customer_master_keys. The module
+  # created KMS key for the delivery region (indexed by the name) will be used.
+  # Note that if both var.config_delivery_channel_kms_key_arn and
   # var.config_delivery_channel_kms_key_by_name are configured, the key in
   # var.config_delivery_channel_kms_key_arn will always be used.
   config_delivery_channel_kms_key_by_name = null
 
-  # If set to true, when you run 'terraform destroy', delete all objects from the
-  # bucket so that the bucket can be destroyed without error. Warning: these objects
-  # are not recoverable so only use this if you're absolutely sure you want to
-  # permanently delete everything!
+  # If set to true, when you run 'terraform destroy', delete all objects from
+  # the bucket so that the bucket can be destroyed without error. Warning: these
+  # objects are not recoverable so only use this if you're absolutely sure you
+  # want to permanently delete everything!
   config_force_destroy = false
 
-  # Provide a list of AWS account IDs that will send Config data to this account.
-  # This is useful if your aggregating config data in this account for other
-  # accounts.
+  # Provide a list of AWS account IDs that will send Config data to this
+  # account. This is useful if your aggregating config data in this account for
+  # other accounts.
   config_linked_accounts = []
 
-  # After this number of days, log files should be transitioned from S3 to Glacier.
-  # Enter 0 to never archive log data.
+  # After this number of days, log files should be transitioned from S3 to
+  # Glacier. Enter 0 to never archive log data.
   config_num_days_after_which_archive_log_data = 365
 
-  # After this number of days, log files should be deleted from S3. Enter 0 to never
-  # delete log data.
+  # After this number of days, log files should be deleted from S3. Enter 0 to
+  # never delete log data.
   config_num_days_after_which_delete_log_data = 730
 
-  # Optional KMS key to use for encrypting S3 objects on the AWS Config bucket, when
-  # the S3 bucket is created within this module (var.config_should_create_s3_bucket
-  # is true). For encrypting S3 objects on delivery for an externally managed S3
-  # bucket, refer to the var.config_delivery_channel_kms_key_arn input variable. If
-  # null, data in S3 will be encrypted using the default aws/s3 key. If provided,
-  # the key policy of the provided key must permit the IAM role used by AWS Config.
-  # See https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html. Note that
+  # Optional KMS key to use for encrypting S3 objects on the AWS Config bucket,
+  # when the S3 bucket is created within this module
+  # (var.config_should_create_s3_bucket is true). For encrypting S3 objects on
+  # delivery for an externally managed S3 bucket, refer to the
+  # var.config_delivery_channel_kms_key_arn input variable. If null, data in S3
+  # will be encrypted using the default aws/s3 key. If provided, the key policy
+  # of the provided key must permit the IAM role used by AWS Config. See
+  # https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html. Note that
   # the KMS key must reside in the global recorder region (as configured by
   # var.aws_region).
   config_s3_bucket_kms_key_arn = null
 
-  # Same as var.config_s3_bucket_kms_key_arn, except the value is a name of a KMS
-  # key configured with var.kms_customer_master_keys. The module created KMS key for
-  # the global recorder region (indexed by the name) will be used. Note that if both
-  # var.config_s3_bucket_kms_key_arn and var.config_s3_bucket_kms_key_by_name are
-  # configured, the key in var.config_s3_bucket_kms_key_arn will always be used.
+  # Same as var.config_s3_bucket_kms_key_arn, except the value is a name of a
+  # KMS key configured with var.kms_customer_master_keys. The module created KMS
+  # key for the global recorder region (indexed by the name) will be used. Note
+  # that if both var.config_s3_bucket_kms_key_arn and
+  # var.config_s3_bucket_kms_key_by_name are configured, the key in
+  # var.config_s3_bucket_kms_key_arn will always be used.
   config_s3_bucket_kms_key_by_name = null
 
-  # The name of the S3 Bucket where CloudTrail logs will be stored. This could be a
-  # bucket in this AWS account or the name of a bucket in another AWS account where
-  # logs should be sent. We recommend setting this to the name of a bucket in a
-  # separate logs account.
+  # The name of the S3 Bucket where CloudTrail logs will be stored. This could
+  # be a bucket in this AWS account or the name of a bucket in another AWS
+  # account where logs should be sent. We recommend setting this to the name of
+  # a bucket in a separate logs account.
   config_s3_bucket_name = null
 
   # Enable MFA delete for either 'Change the versioning state of your bucket' or
-  # 'Permanently delete an object version'. This setting only applies to the bucket
-  # used to storage AWS Config data. This cannot be used to toggle this setting but
-  # is available to allow managed buckets to reflect the state in AWS. For
-  # instructions on how to enable MFA Delete, check out the README from the
-  # terraform-aws-security/private-s3-bucket module.
+  # 'Permanently delete an object version'. This setting only applies to the
+  # bucket used to storage AWS Config data. This cannot be used to toggle this
+  # setting but is available to allow managed buckets to reflect the state in
+  # AWS. For instructions on how to enable MFA Delete, check out the README from
+  # the terraform-aws-security/private-s3-bucket module.
   config_s3_mfa_delete = false
 
   # Set to true to create an S3 bucket of name var.config_s3_bucket_name in this
-  # account for storing AWS Config data. Set to false to assume the bucket specified
-  # in var.config_s3_bucket_name already exists in another AWS account. We recommend
-  # setting this to false and setting var.config_s3_bucket_name to the name off an
-  # S3 bucket that already exists in a separate logs account.
+  # account for storing AWS Config data. Set to false to assume the bucket
+  # specified in var.config_s3_bucket_name already exists in another AWS
+  # account. We recommend setting this to false and setting
+  # var.config_s3_bucket_name to the name off an S3 bucket that already exists
+  # in a separate logs account.
   config_should_create_s3_bucket = false
 
   # Set to true to create an SNS topic in this account for sending AWS Config
-  # notifications (e.g., if this is the logs account). Set to false to assume the
-  # topic specified in var.config_sns_topic_name already exists in another AWS
-  # account (e.g., if this is the stage or prod account and
+  # notifications (e.g., if this is the logs account). Set to false to assume
+  # the topic specified in var.config_sns_topic_name already exists in another
+  # AWS account (e.g., if this is the stage or prod account and
   # var.config_sns_topic_name is the name of an SNS topic in the logs account).
   config_should_create_sns_topic = false
 
-  # Same as var.config_sns_topic_kms_key_region_map, except the value is a name of a
-  # KMS key configured with var.kms_customer_master_keys. The module created KMS key
-  # for each region (indexed by the name) will be used. Note that if an entry exists
-  # for a region in both var.config_sns_topic_kms_key_region_map and
+  # Same as var.config_sns_topic_kms_key_region_map, except the value is a name
+  # of a KMS key configured with var.kms_customer_master_keys. The module
+  # created KMS key for each region (indexed by the name) will be used. Note
+  # that if an entry exists for a region in both
+  # var.config_sns_topic_kms_key_region_map and
   # var.config_sns_topic_kms_key_by_name_region_map, then the key in
   # var.config_sns_topic_kms_key_region_map will always be used.
   config_sns_topic_kms_key_by_name_region_map = null
 
-  # Optional KMS key to use for each region for configuring default encryption for
-  # the SNS topic (encoded as a map from region - e.g. us-east-1 - to ARN of KMS
-  # key). If null or the region key is missing, encryption will not be configured
-  # for the SNS topic in that region.
+  # Optional KMS key to use for each region for configuring default encryption
+  # for the SNS topic (encoded as a map from region - e.g. us-east-1 - to ARN of
+  # KMS key). If null or the region key is missing, encryption will not be
+  # configured for the SNS topic in that region.
   config_sns_topic_kms_key_region_map = null
 
-  # The name of the SNS Topic in where AWS Config notifications will be sent. Can be
-  # in the same account or in another account.
+  # The name of the SNS Topic in where AWS Config notifications will be sent.
+  # Can be in the same account or in another account.
   config_sns_topic_name = "ConfigTopic"
 
-  # A map of tags to apply to the S3 Bucket. The key is the tag name and the value
-  # is the tag value.
+  # A map of tags to apply to the S3 Bucket. The key is the tag name and the
+  # value is the tag value.
   config_tags = {}
 
-  # The maximum frequency with which AWS Config runs evaluations for the ´PERIODIC´
-  # rules. See
-  # https://www.terraform.io/docs/providers/aws/r/config_organization_managed_rule.h
-  # ml#maximum_execution_frequency
+  # The maximum frequency with which AWS Config runs evaluations for the
+  # ´PERIODIC´ rules. See
+  # https://www.terraform.io/docs/providers/aws/r/config_organization_managed_rule.html#maximum_execution_frequency
   configrules_maximum_execution_frequency = "TwentyFour_Hours"
 
-  # The name of the IAM group that will grant access to all external AWS accounts in
-  # var.iam_groups_for_cross_account_access.
+  # The name of the IAM group that will grant access to all external AWS
+  # accounts in var.iam_groups_for_cross_account_access.
   cross_account_access_all_group_name = "_all-accounts"
 
   # A custom name to use for the Cloudtrail Trail. If null, defaults to the
@@ -507,15 +516,15 @@ module "account_baseline_security" {
   custom_cloudtrail_trail_name = null
 
   # A list of AWS services for which the developers from the accounts in
-  # var.allow_dev_access_from_other_account_arns will receive full permissions. See
-  # https://goo.gl/ZyoHlz to find the IAM Service name. For example, to grant
-  # developers access only to EC2 and Amazon Machine Learning, use the value
-  # ["ec2","machinelearning"]. Do NOT add iam to the list of services, or that will
-  # grant Developers de facto admin access.
+  # var.allow_dev_access_from_other_account_arns will receive full permissions.
+  # See https://goo.gl/ZyoHlz to find the IAM Service name. For example, to
+  # grant developers access only to EC2 and Amazon Machine Learning, use the
+  # value ["ec2","machinelearning"]. Do NOT add iam to the list of services, or
+  # that will grant Developers de facto admin access.
   dev_permitted_services = []
 
-  # If set to true (default), all new EBS volumes will have encryption enabled by
-  # default
+  # If set to true (default), all new EBS volumes will have encryption enabled
+  # by default
   ebs_enable_encryption = true
 
   # The name of the KMS CMK to use by default for encrypting EBS volumes, if
@@ -524,15 +533,15 @@ module "account_baseline_security" {
   ebs_kms_key_name = ""
 
   # If set to true, the KMS Customer Managed Keys (CMK) with the name in
-  # var.ebs_kms_key_name will be set as the default for EBS encryption. When false
-  # (default), the AWS-managed aws/ebs key will be used.
+  # var.ebs_kms_key_name will be set as the default for EBS encryption. When
+  # false (default), the AWS-managed aws/ebs key will be used.
   ebs_use_existing_kms_keys = false
 
-  # Set to true (default) to enable CloudTrail in the security account. Set to false
-  # to disable CloudTrail (note: all other CloudTrail variables will be ignored).
-  # Note that if you have enabled organization trail in the root (parent) account,
-  # you should set this to false; the organization trail will enable CloudTrail on
-  # child accounts by default.
+  # Set to true (default) to enable CloudTrail in the security account. Set to
+  # false to disable CloudTrail (note: all other CloudTrail variables will be
+  # ignored). Note that if you have enabled organization trail in the root
+  # (parent) account, you should set this to false; the organization trail will
+  # enable CloudTrail on child accounts by default.
   enable_cloudtrail = true
 
   # Set to true to enable AWS Config in the security account. Set to false to
@@ -544,15 +553,15 @@ module "account_baseline_security" {
 
   # When true, create an Open ID Connect Provider that GitHub actions can use to
   # assume IAM roles in the account. Refer to
-  # https://docs.github.com/en/actions/deployment/security-hardening-your-deployment
-  # /configuring-openid-connect-in-amazon-web-services for more information.
+  # https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
+  # for more information.
   enable_github_actions_access = false
 
-  # Set to true (default) to enable GuardDuty in this app account. Set to false to
-  # disable GuardDuty (note: all other GuardDuty variables will be ignored). Note
-  # that if you have enabled organization level GuardDuty in the root (parent)
-  # account, you should set this to false; the organization GuardDuty will enable
-  # GuardDuty on child accounts by default.
+  # Set to true (default) to enable GuardDuty in this app account. Set to false
+  # to disable GuardDuty (note: all other GuardDuty variables will be ignored).
+  # Note that if you have enabled organization level GuardDuty in the root
+  # (parent) account, you should set this to false; the organization GuardDuty
+  # will enable GuardDuty on child accounts by default.
   enable_guardduty = true
 
   # A feature flag to enable or disable this module.
@@ -568,15 +577,15 @@ module "account_baseline_security" {
   # requirements.
   enable_iam_password_policy = true
 
-  # Checks whether the security group with 0.0.0.0/0 of any Amazon Virtual Private
-  # Cloud (Amazon VPC) allows only specific inbound TCP or UDP traffic.
+  # Checks whether the security group with 0.0.0.0/0 of any Amazon Virtual
+  # Private Cloud (Amazon VPC) allows only specific inbound TCP or UDP traffic.
   enable_insecure_sg_rules = true
 
   # Checks whether storage encryption is enabled for your RDS DB instances.
   enable_rds_storage_encrypted = true
 
-  # Checks whether users of your AWS account require a multi-factor authentication
-  # (MFA) device to sign in with root credentials.
+  # Checks whether users of your AWS account require a multi-factor
+  # authentication (MFA) device to sign in with root credentials.
   enable_root_account_mfa = true
 
   # Checks that your Amazon S3 buckets do not allow public read access.
@@ -590,15 +599,16 @@ module "account_baseline_security" {
   encrypted_volumes_kms_id = null
 
   # When destroying this user, destroy even if it has non-Terraform-managed IAM
-  # access keys, login profile, or MFA devices. Without force_destroy a user with
-  # non-Terraform-managed access keys and login profile will fail to be destroyed.
+  # access keys, login profile, or MFA devices. Without force_destroy a user
+  # with non-Terraform-managed access keys and login profile will fail to be
+  # destroyed.
   force_destroy_users = false
 
-  # When set, use the statically provided hardcoded list of thumbprints rather than
-  # looking it up dynamically. This is useful if you want to trade reliability of
-  # the OpenID Connect Provider across certificate renewals with a static list that
-  # is obtained using a trustworthy mechanism, to mitigate potential damage from a
-  # domain hijacking attack on GitHub domains.
+  # When set, use the statically provided hardcoded list of thumbprints rather
+  # than looking it up dynamically. This is useful if you want to trade
+  # reliability of the OpenID Connect Provider across certificate renewals with
+  # a static list that is obtained using a trustworthy mechanism, to mitigate
+  # potential damage from a domain hijacking attack on GitHub domains.
   github_actions_openid_connect_provider_thumbprint_list = null
 
   # Name of the Cloudwatch event rules.
@@ -607,9 +617,9 @@ module "account_baseline_security" {
   # Specifies the frequency of notifications sent for subsequent finding
   # occurrences. If the detector is a GuardDuty member account, the value is
   # determined by the GuardDuty master account and cannot be modified, otherwise
-  # defaults to SIX_HOURS. For standalone and GuardDuty master accounts, it must be
-  # configured in Terraform to enable drift detection. Valid values for standalone
-  # and master accounts: FIFTEEN_MINUTES, ONE_HOUR, SIX_HOURS.
+  # defaults to SIX_HOURS. For standalone and GuardDuty master accounts, it must
+  # be configured in Terraform to enable drift detection. Valid values for
+  # standalone and master accounts: FIFTEEN_MINUTES, ONE_HOUR, SIX_HOURS.
   guardduty_finding_publishing_frequency = null
 
   # Specifies a name for the created SNS topics where findings are published.
@@ -622,17 +632,17 @@ module "account_baseline_security" {
   # The name of the IAM Access Analyzer module
   iam_access_analyzer_name = "baseline_security-iam_access_analyzer"
 
-  # If set to ACCOUNT, the analyzer will only be scanning the current AWS account
-  # it's in. If set to ORGANIZATION - will scan the organization AWS account and the
-  # child accounts.
+  # If set to ACCOUNT, the analyzer will only be scanning the current AWS
+  # account it's in. If set to ORGANIZATION - will scan the organization AWS
+  # account and the child accounts.
   iam_access_analyzer_type = "ACCOUNT"
 
   # A list of AWS services for which the developers IAM Group will receive full
   # permissions. See https://goo.gl/ZyoHlz to find the IAM Service name. For
-  # example, to grant developers access only to EC2 and Amazon Machine Learning, use
-  # the value ["ec2","machinelearning"]. Do NOT add iam to the list of services, or
-  # that will grant Developers de facto admin access. If you need to grant iam
-  # privileges, just grant the user Full Access.
+  # example, to grant developers access only to EC2 and Amazon Machine Learning,
+  # use the value ["ec2","machinelearning"]. Do NOT add iam to the list of
+  # services, or that will grant Developers de facto admin access. If you need
+  # to grant iam privileges, just grant the user Full Access.
   iam_group_developers_permitted_services = []
 
   # The name of the IAM Group that allows automated deployment by graning the
@@ -643,61 +653,64 @@ module "account_baseline_security" {
   # billing features in AWS.
   iam_group_name_billing = "billing"
 
-  # The name to be used for the IAM Group that grants IAM Users a reasonable set of
-  # permissions for developers.
+  # The name to be used for the IAM Group that grants IAM Users a reasonable set
+  # of permissions for developers.
   iam_group_name_developers = "developers"
 
   # The name to be used for the IAM Group that grants full access to all AWS
   # resources.
   iam_group_name_full_access = "full-access"
 
+  # The name of the IAM Group that allows access to houston CLI.
+  iam_group_name_houston_cli = "houston-cli-users"
+
   # The name to be used for the IAM Group that grants IAM administrative access.
   # Effectively grants administrator access.
   iam_group_name_iam_admin = "iam-admin"
 
-  # The name to be used for the IAM Group that grants IAM Users the permissions to
-  # manage their own IAM User account.
+  # The name to be used for the IAM Group that grants IAM Users the permissions
+  # to manage their own IAM User account.
   iam_group_name_iam_user_self_mgmt = "iam-user-self-mgmt"
 
-  # The name to be used for the IAM Group that grants read access to CloudTrail, AWS
-  # Config, and CloudWatch in AWS.
+  # The name to be used for the IAM Group that grants read access to CloudTrail,
+  # AWS Config, and CloudWatch in AWS.
   iam_group_name_logs = "logs"
 
-  # The name to be used for the IAM Group that grants read-only access to all AWS
-  # resources.
+  # The name to be used for the IAM Group that grants read-only access to all
+  # AWS resources.
   iam_group_name_read_only = "read-only"
 
   # The name of the IAM Group that allows access to AWS Support.
   iam_group_name_support = "support"
 
-  # The name to be used for the IAM Group that grants IAM Users the permissions to
-  # use existing IAM Roles when launching AWS Resources. This does NOT grant the
-  # permission to create new IAM Roles.
+  # The name to be used for the IAM Group that grants IAM Users the permissions
+  # to use existing IAM Roles when launching AWS Resources. This does NOT grant
+  # the permission to create new IAM Roles.
   iam_group_name_use_existing_iam_roles = "use-existing-iam-roles"
 
-  # The list of names to be used for the IAM Group that enables its members to SSH
-  # as a sudo user into any server configured with the ssh-grunt Gruntwork module.
-  # Pass in multiple to configure multiple different IAM groups to control different
-  # groupings of access at the server level. Pass in empty list to disable creation
-  # of the IAM groups.
+  # The list of names to be used for the IAM Group that enables its members to
+  # SSH as a sudo user into any server configured with the ssh-grunt Gruntwork
+  # module. Pass in multiple to configure multiple different IAM groups to
+  # control different groupings of access at the server level. Pass in empty
+  # list to disable creation of the IAM groups.
   iam_group_names_ssh_grunt_sudo_users = ["ssh-grunt-sudo-users"]
 
   # The name to be used for the IAM Group that enables its members to SSH as a
-  # non-sudo user into any server configured with the ssh-grunt Gruntwork module.
-  # Pass in multiple to configure multiple different IAM groups to control different
-  # groupings of access at the server level. Pass in empty list to disable creation
-  # of the IAM groups.
+  # non-sudo user into any server configured with the ssh-grunt Gruntwork
+  # module. Pass in multiple to configure multiple different IAM groups to
+  # control different groupings of access at the server level. Pass in empty
+  # list to disable creation of the IAM groups.
   iam_group_names_ssh_grunt_users = ["ssh-grunt-users"]
 
-  # This variable is used to create groups that allow IAM users to assume roles in
-  # your other AWS accounts. It should be a list of objects, where each object has
-  # the fields 'group_name', which will be used as the name of the IAM group, and
-  # 'iam_role_arns', which is a list of ARNs of IAM Roles that you can assume when
-  # part of that group. For each entry in the list of objects, we will create an IAM
-  # group that allows users to assume the given IAM role(s) in the other AWS
-  # account. This allows you to define all your IAM users in one account (e.g. the
-  # users account) and to grant them access to certain IAM roles in other accounts
-  # (e.g. the stage, prod, audit accounts).
+  # This variable is used to create groups that allow IAM users to assume roles
+  # in your other AWS accounts. It should be a list of objects, where each
+  # object has the fields 'group_name', which will be used as the name of the
+  # IAM group, and 'iam_role_arns', which is a list of ARNs of IAM Roles that
+  # you can assume when part of that group. For each entry in the list of
+  # objects, we will create an IAM group that allows users to assume the given
+  # IAM role(s) in the other AWS account. This allows you to define all your IAM
+  # users in one account (e.g. the users account) and to grant them access to
+  # certain IAM roles in other accounts (e.g. the stage, prod, audit accounts).
   iam_groups_for_cross_account_access = []
 
   # Allow users to change their own password.
@@ -727,57 +740,59 @@ module "account_baseline_security" {
   # Require at least one uppercase character in password.
   iam_password_policy_require_uppercase_characters = true
 
-  # The name to be used for the IAM Policy that grants IAM Users the permissions to
-  # manage their own IAM User account.
+  # The name to be used for the IAM Policy that grants IAM Users the permissions
+  # to manage their own IAM User account.
   iam_policy_iam_user_self_mgmt = "iam-user-self-mgmt"
 
   # The tags to apply to all the IAM role resources.
   iam_role_tags = {}
 
-  # Comma-separated list of TCP ports authorized to be open to 0.0.0.0/0. Ranges are
-  # defined by a dash; for example, '443,1020-1025'.
+  # Comma-separated list of TCP ports authorized to be open to 0.0.0.0/0. Ranges
+  # are defined by a dash; for example, '443,1020-1025'.
   insecure_sg_rules_authorized_tcp_ports = "443"
 
-  # Comma-separated list of UDP ports authorized to be open to 0.0.0.0/0. Ranges are
-  # defined by a dash; for example, '500,1020-1025'.
+  # Comma-separated list of UDP ports authorized to be open to 0.0.0.0/0. Ranges
+  # are defined by a dash; for example, '500,1020-1025'.
   insecure_sg_rules_authorized_udp_ports = null
 
-  # A map of tags to apply to all KMS Keys to be created. In this map variable, the
-  # key is the tag name and the value is the tag value.
+  # A map of tags to apply to all KMS Keys to be created. In this map variable,
+  # the key is the tag name and the value is the tag value.
   kms_cmk_global_tags = {}
 
   # You can use this variable to create account-level KMS Customer Master Keys
-  # (CMKs) for encrypting and decrypting data. This variable should be a map where
-  # the keys are the names of the CMK and the values are an object that defines the
-  # configuration for that CMK. See the comment below for the configuration options
-  # you can set for each key.
+  # (CMKs) for encrypting and decrypting data. This variable should be a map
+  # where the keys are the names of the CMK and the values are an object that
+  # defines the configuration for that CMK. See the comment below for the
+  # configuration options you can set for each key.
   kms_customer_master_keys = {}
 
   # The map of names of KMS grants to the region where the key resides in. There
-  # should be a one to one mapping between entries in this map and the entries of
-  # the kms_grants map. This is used to workaround a terraform limitation where the
-  # for_each value can not depend on resources.
+  # should be a one to one mapping between entries in this map and the entries
+  # of the kms_grants map. This is used to workaround a terraform limitation
+  # where the for_each value can not depend on resources.
   kms_grant_regions = {}
 
   # Create the specified KMS grants to allow entities to use the KMS key without
-  # modifying the KMS policy or IAM. This is necessary to allow AWS services (e.g.
-  # ASG) to use CMKs encrypt and decrypt resources. The input is a map of grant name
-  # to grant properties. The name must be unique per account.
+  # modifying the KMS policy or IAM. This is necessary to allow AWS services
+  # (e.g. ASG) to use CMKs encrypt and decrypt resources. The input is a map of
+  # grant name to grant properties. The name must be unique per account.
   kms_grants = {}
 
-  # The maximum allowable session duration, in seconds, for the credentials you get
-  # when assuming the IAM roles created by this module. This variable applies to all
-  # IAM roles created by this module that are intended for people to use, such as
-  # allow-read-only-access-from-other-accounts. For IAM roles that are intended for
-  # machine users, such as allow-auto-deploy-from-other-accounts, see
+  # The maximum allowable session duration, in seconds, for the credentials you
+  # get when assuming the IAM roles created by this module. This variable
+  # applies to all IAM roles created by this module that are intended for people
+  # to use, such as allow-read-only-access-from-other-accounts. For IAM roles
+  # that are intended for machine users, such as
+  # allow-auto-deploy-from-other-accounts, see
   # var.max_session_duration_machine_users.
   max_session_duration_human_users = 43200
 
-  # The maximum allowable session duration, in seconds, for the credentials you get
-  # when assuming the IAM roles created by this module. This variable  applies to
-  # all IAM roles created by this module that are intended for machine users, such
-  # as allow-auto-deploy-from-other-accounts. For IAM roles that are intended for
-  # human users, such as allow-read-only-access-from-other-accounts, see
+  # The maximum allowable session duration, in seconds, for the credentials you
+  # get when assuming the IAM roles created by this module. This variable 
+  # applies to all IAM roles created by this module that are intended for
+  # machine users, such as allow-auto-deploy-from-other-accounts. For IAM roles
+  # that are intended for human users, such as
+  # allow-read-only-access-from-other-accounts, see
   # var.max_session_duration_human_users.
   max_session_duration_machine_users = 3600
 
@@ -790,85 +805,90 @@ module "account_baseline_security" {
   rds_storage_encrypted_kms_id = null
 
   # Create service-linked roles for this set of services. You should pass in the
-  # URLs of the services, but without the protocol (e.g., http://) in front: e.g.,
-  # use elasticbeanstalk.amazonaws.com for Elastic Beanstalk or es.amazonaws.com for
-  # Amazon Elasticsearch. Service-linked roles are predefined by the service, can
-  # typically only be assumed by that service, and include all the permissions that
-  # the service requires to call other AWS services on your behalf. You can
-  # typically only create one such role per AWS account, which is why this parameter
-  # exists in the account baseline. See
-  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-wor
-  # -with-iam.html for the list of services that support service-linked roles.
+  # URLs of the services, but without the protocol (e.g., http://) in front:
+  # e.g., use elasticbeanstalk.amazonaws.com for Elastic Beanstalk or
+  # es.amazonaws.com for Amazon Elasticsearch. Service-linked roles are
+  # predefined by the service, can typically only be assumed by that service,
+  # and include all the permissions that the service requires to call other AWS
+  # services on your behalf. You can typically only create one such role per AWS
+  # account, which is why this parameter exists in the account baseline. See
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-work-with-iam.html
+  # for the list of services that support service-linked roles.
   service_linked_roles = []
 
-  # Should we create the IAM Group for auto-deploy? Allows automated deployment by
-  # granting the permissions specified in var.auto_deploy_permissions. (true or
-  # false)
+  # Should we create the IAM Group for auto-deploy? Allows automated deployment
+  # by granting the permissions specified in var.auto_deploy_permissions. (true
+  # or false)
   should_create_iam_group_auto_deploy = false
 
-  # Should we create the IAM Group for billing? Allows read-write access to billing
-  # features only. (true or false)
+  # Should we create the IAM Group for billing? Allows read-write access to
+  # billing features only. (true or false)
   should_create_iam_group_billing = false
 
   # Should we create the IAM Group for access to all external AWS accounts? 
   should_create_iam_group_cross_account_access_all = true
 
-  # Should we create the IAM Group for developers? The permissions of that group are
-  # specified via var.iam_group_developers_permitted_services. (true or false)
+  # Should we create the IAM Group for developers? The permissions of that group
+  # are specified via var.iam_group_developers_permitted_services. (true or
+  # false)
   should_create_iam_group_developers = false
 
-  # Should we create the IAM Group for full access? Allows full access to all AWS
-  # resources. (true or false)
+  # Should we create the IAM Group for full access? Allows full access to all
+  # AWS resources. (true or false)
   should_create_iam_group_full_access = true
+
+  # Should we create the IAM Group for houston CLI users? Allows users to use
+  # the houston CLI for managing and deploying services.
+  should_create_iam_group_houston_cli_users = false
 
   # Should we create the IAM Group for IAM administrator access? Allows users to
   # manage all IAM entities, effectively granting administrator access. (true or
   # false)
   should_create_iam_group_iam_admin = false
 
-  # Should we create the IAM Group for logs? Allows read access to CloudTrail, AWS
-  # Config, and CloudWatch. If var.cloudtrail_kms_key_arn is set, will also give
-  # decrypt access to a KMS CMK. (true or false)
+  # Should we create the IAM Group for logs? Allows read access to CloudTrail,
+  # AWS Config, and CloudWatch. If var.cloudtrail_kms_key_arn is set, will also
+  # give decrypt access to a KMS CMK. (true or false)
   should_create_iam_group_logs = false
 
-  # Should we create the IAM Group for read-only? Allows read-only access to all AWS
-  # resources. (true or false)
+  # Should we create the IAM Group for read-only? Allows read-only access to all
+  # AWS resources. (true or false)
   should_create_iam_group_read_only = false
 
   # Should we create the IAM Group for support? Allows support access
   # (AWSupportAccess). (true or false)
   should_create_iam_group_support = false
 
-  # Should we create the IAM Group for use-existing-iam-roles? Allow launching AWS
-  # resources with existing IAM Roles, but no ability to create new IAM Roles. (true
-  # or false)
+  # Should we create the IAM Group for use-existing-iam-roles? Allow launching
+  # AWS resources with existing IAM Roles, but no ability to create new IAM
+  # Roles. (true or false)
   should_create_iam_group_use_existing_iam_roles = false
 
-  # Should we create the IAM Group for user self-management? Allows users to manage
-  # their own IAM user accounts, but not other IAM users. (true or false)
+  # Should we create the IAM Group for user self-management? Allows users to
+  # manage their own IAM user accounts, but not other IAM users. (true or false)
   should_create_iam_group_user_self_mgmt = true
 
-  # Should we require that all IAM Users use Multi-Factor Authentication for both
-  # AWS API calls and the AWS Web Console? (true or false)
+  # Should we require that all IAM Users use Multi-Factor Authentication for
+  # both AWS API calls and the AWS Web Console? (true or false)
   should_require_mfa = true
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
   # A map of users to create. The keys are the user names and the values are an
   # object with the optional keys 'groups' (a list of IAM groups to add the user
-  # to), 'tags' (a map of tags to apply to the user), 'pgp_key' (either a base-64
-  # encoded PGP public key, or a keybase username in the form keybase:username, used
-  # to encrypt the user's credentials; required if create_login_profile or
-  # create_access_keys is true), 'create_login_profile' (if set to true, create a
-  # password to login to the AWS Web Console), 'create_access_keys' (if set to true,
-  # create access keys for the user), 'path' (the path), and 'permissions_boundary'
-  # (the ARN of the policy that is used to set the permissions boundary for the
-  # user).
+  # to), 'tags' (a map of tags to apply to the user), 'pgp_key' (either a
+  # base-64 encoded PGP public key, or a keybase username in the form
+  # keybase:username, used to encrypt the user's credentials; required if
+  # create_login_profile or create_access_keys is true), 'create_login_profile'
+  # (if set to true, create a password to login to the AWS Web Console),
+  # 'create_access_keys' (if set to true, create access keys for the user),
+  # 'path' (the path), and 'permissions_boundary' (the ARN of the policy that is
+  # used to set the permissions boundary for the user).
   users = {}
 
 }
@@ -886,7 +906,7 @@ module "account_baseline_security" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/account-baseline-security?ref=v0.104.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/account-baseline-security?ref=v0.104.11"
 }
 
 inputs = {
@@ -903,85 +923,87 @@ inputs = {
   # GuardDuty.
   aws_region = <string>
 
-  # Creates resources in the specified regions. The best practice is to enable AWS
-  # Config in all enabled regions in your AWS account. This variable must NOT be set
-  # to null or empty. Otherwise, we won't know which regions to use and authenticate
-  # to, and may use some not enabled in your AWS account (e.g., GovCloud, China,
-  # etc). To get the list of regions enabled in your AWS account, you can use the
-  # AWS CLI: aws ec2 describe-regions.
+  # Creates resources in the specified regions. The best practice is to enable
+  # AWS Config in all enabled regions in your AWS account. This variable must
+  # NOT be set to null or empty. Otherwise, we won't know which regions to use
+  # and authenticate to, and may use some not enabled in your AWS account (e.g.,
+  # GovCloud, China, etc). To get the list of regions enabled in your AWS
+  # account, you can use the AWS CLI: aws ec2 describe-regions.
   config_opt_in_regions = <list(string)>
 
-  # Creates resources in the specified regions. The best practice is to enable EBS
-  # Encryption in all enabled regions in your AWS account. This variable must NOT be
-  # set to null or empty. Otherwise, we won't know which regions to use and
-  # authenticate to, and may use some not enabled in your AWS account (e.g.,
-  # GovCloud, China, etc). To get the list of regions enabled in your AWS account,
-  # you can use the AWS CLI: aws ec2 describe-regions. The value provided for
-  # global_recorder_region must be in this list.
+  # Creates resources in the specified regions. The best practice is to enable
+  # EBS Encryption in all enabled regions in your AWS account. This variable
+  # must NOT be set to null or empty. Otherwise, we won't know which regions to
+  # use and authenticate to, and may use some not enabled in your AWS account
+  # (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS
+  # account, you can use the AWS CLI: aws ec2 describe-regions. The value
+  # provided for global_recorder_region must be in this list.
   ebs_opt_in_regions = <list(string)>
 
   # Creates resources in the specified regions. The best practice is to enable
-  # GuardDuty in all enabled regions in your AWS account. This variable must NOT be
-  # set to null or empty. Otherwise, we won't know which regions to use and
+  # GuardDuty in all enabled regions in your AWS account. This variable must NOT
+  # be set to null or empty. Otherwise, we won't know which regions to use and
   # authenticate to, and may use some not enabled in your AWS account (e.g.,
-  # GovCloud, China, etc). To get the list of regions enabled in your AWS account,
-  # you can use the AWS CLI: aws ec2 describe-regions. The value provided for
-  # global_recorder_region must be in this list.
+  # GovCloud, China, etc). To get the list of regions enabled in your AWS
+  # account, you can use the AWS CLI: aws ec2 describe-regions. The value
+  # provided for global_recorder_region must be in this list.
   guardduty_opt_in_regions = <list(string)>
 
-  # Creates resources in the specified regions. The best practice is to enable IAM
-  # Access Analyzer in all enabled regions in your AWS account. This variable must
-  # NOT be set to null or empty. Otherwise, we won't know which regions to use and
-  # authenticate to, and may use some not enabled in your AWS account (e.g.,
-  # GovCloud, China, etc). To get the list of regions enabled in your AWS account,
-  # you can use the AWS CLI: aws ec2 describe-regions. The value provided for
-  # global_recorder_region must be in this list.
+  # Creates resources in the specified regions. The best practice is to enable
+  # IAM Access Analyzer in all enabled regions in your AWS account. This
+  # variable must NOT be set to null or empty. Otherwise, we won't know which
+  # regions to use and authenticate to, and may use some not enabled in your AWS
+  # account (e.g., GovCloud, China, etc). To get the list of regions enabled in
+  # your AWS account, you can use the AWS CLI: aws ec2 describe-regions. The
+  # value provided for global_recorder_region must be in this list.
   iam_access_analyzer_opt_in_regions = <list(string)>
 
   # Creates resources in the specified regions. This variable must NOT be set to
-  # null or empty. Otherwise, we won't know which regions to use and authenticate
-  # to, and may use some not enabled in your AWS account (e.g., GovCloud, China,
-  # etc). To get the list of regions enabled in your AWS account, you can use the
-  # AWS CLI: aws ec2 describe-regions. The value provided for global_recorder_region
-  # must be in this list.
+  # null or empty. Otherwise, we won't know which regions to use and
+  # authenticate to, and may use some not enabled in your AWS account (e.g.,
+  # GovCloud, China, etc). To get the list of regions enabled in your AWS
+  # account, you can use the AWS CLI: aws ec2 describe-regions. The value
+  # provided for global_recorder_region must be in this list.
   kms_cmk_opt_in_regions = <list(string)>
 
-  # The name used to prefix AWS Config and Cloudtrail resources, including the S3
-  # bucket names and SNS topics used for each.
+  # The name used to prefix AWS Config and Cloudtrail resources, including the
+  # S3 bucket names and SNS topics used for each.
   name_prefix = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Map of additional managed rules to add. The key is the name of the rule (e.g.
-  # ´acm-certificate-expiration-check´) and the value is an object specifying the
-  # rule details
+  # Map of additional managed rules to add. The key is the name of the rule
+  # (e.g. ´acm-certificate-expiration-check´) and the value is an object
+  # specifying the rule details
   additional_config_rules = {}
 
-  # Map of github repositories to the list of branches that are allowed to assume
-  # the IAM role. The repository should be encoded as org/repo-name (e.g.,
-  # gruntwork-io/terrraform-aws-ci). Allows GitHub Actions to assume the auto deploy
-  # IAM role using an OpenID Connect Provider for the given repositories. Refer to
-  # the docs for github-actions-iam-role for more information. Note that this is
-  # mutually exclusive with var.allow_auto_deploy_from_other_account_arns. Only used
-  # if var.enable_github_actions_access is true. 
+  # Map of github repositories to the list of branches that are allowed to
+  # assume the IAM role. The repository should be encoded as org/repo-name
+  # (e.g., gruntwork-io/terrraform-aws-ci). Allows GitHub Actions to assume the
+  # auto deploy IAM role using an OpenID Connect Provider for the given
+  # repositories. Refer to the docs for github-actions-iam-role for more
+  # information. Note that this is mutually exclusive with
+  # var.allow_auto_deploy_from_other_account_arns. Only used if
+  # var.enable_github_actions_access is true. 
   allow_auto_deploy_from_github_actions_for_sources = {}
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed to assume the
-  # auto deploy IAM role that has the permissions in var.auto_deploy_permissions.
+  # A list of IAM ARNs from other AWS accounts that will be allowed to assume
+  # the auto deploy IAM role that has the permissions in
+  # var.auto_deploy_permissions.
   allow_auto_deploy_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
   allow_auto_deploy_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed full (read and
-  # write) access to the billing info for this account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed full (read
+  # and write) access to the billing info for this account.
   allow_billing_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
   allow_billing_access_iam_role_permissions_boundary = null
 
   # If true, an IAM Policy that grants access to CloudTrail will be honored. If
@@ -989,156 +1011,160 @@ inputs = {
   # CloudTrail and any IAM Policy grants will be ignored. (true or false)
   allow_cloudtrail_access_with_iam = true
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed full (read and
-  # write) access to the services in this account specified in
+  # A list of IAM ARNs from other AWS accounts that will be allowed full (read
+  # and write) access to the services in this account specified in
   # var.dev_permitted_services.
   allow_dev_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
   allow_dev_access_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed full (read and
-  # write) access to this account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed full (read
+  # and write) access to this account.
   allow_full_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
   allow_full_access_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed access to the
-  # logs in CloudTrail, AWS Config, and CloudWatch for this account. Will also be
-  # given permissions to decrypt with the KMS CMK that is used to encrypt CloudTrail
-  # logs.
+  # A list of IAM ARNs from other AWS accounts that will be allowed access to
+  # the logs in CloudTrail, AWS Config, and CloudWatch for this account. Will
+  # also be given permissions to decrypt with the KMS CMK that is used to
+  # encrypt CloudTrail logs.
   allow_logs_access_from_other_account_arns = []
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed read-only access
-  # to this account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed read-only
+  # access to this account.
   allow_read_only_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
   allow_read_only_access_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed read access to
-  # IAM groups and publish SSH keys. This is used for ssh-grunt.
+  # A list of IAM ARNs from other AWS accounts that will be allowed read access
+  # to IAM groups and publish SSH keys. This is used for ssh-grunt.
   allow_ssh_grunt_access_from_other_account_arns = []
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed support access
-  # (AWSSupportAccess) to this account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed support
+  # access (AWSSupportAccess) to this account.
   allow_support_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
   allow_support_access_iam_role_permissions_boundary = null
 
-  # A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group for
-  # doing automated deployments. NOTE: If var.should_create_iam_group_auto_deploy is
-  # true, the list must have at least one element (e.g. '*').
+  # A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group
+  # for doing automated deployments. NOTE: If
+  # var.should_create_iam_group_auto_deploy is true, the list must have at least
+  # one element (e.g. '*').
   auto_deploy_permissions = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
   aws_config_iam_role_permissions_boundary = null
 
   # Whether or not to allow kms:DescribeKey to external AWS accounts with write
-  # access to the CloudTrail bucket. This is useful during deployment so that you
-  # don't have to pass around the KMS key ARN.
+  # access to the CloudTrail bucket. This is useful during deployment so that
+  # you don't have to pass around the KMS key ARN.
   cloudtrail_allow_kms_describe_key_to_external_aws_accounts = false
 
-  # Specify the name of the CloudWatch Logs group to publish the CloudTrail logs to.
-  # This log group exists in the current account. Set this value to `null` to avoid
-  # publishing the trail logs to the logs group. The recommended configuration for
-  # CloudTrail is (a) for each child account to aggregate its logs in an S3 bucket
-  # in a single central account, such as a logs account and (b) to also store 14
-  # days work of logs in CloudWatch in the child account itself for local debugging.
+  # Specify the name of the CloudWatch Logs group to publish the CloudTrail logs
+  # to. This log group exists in the current account. Set this value to `null`
+  # to avoid publishing the trail logs to the logs group. The recommended
+  # configuration for CloudTrail is (a) for each child account to aggregate its
+  # logs in an S3 bucket in a single central account, such as a logs account and
+  # (b) to also store 14 days work of logs in CloudWatch in the child account
+  # itself for local debugging.
   cloudtrail_cloudwatch_logs_group_name = "cloudtrail-logs"
 
   # If true, logging of data events will be enabled.
   cloudtrail_data_logging_enabled = false
 
-  # Specify if you want your event selector to include management events for your
-  # trail.
+  # Specify if you want your event selector to include management events for
+  # your trail.
   cloudtrail_data_logging_include_management_events = true
 
-  # Specify if you want your trail to log read-only events, write-only events, or
-  # all. Possible values are: ReadOnly, WriteOnly, All.
+  # Specify if you want your trail to log read-only events, write-only events,
+  # or all. Possible values are: ReadOnly, WriteOnly, All.
   cloudtrail_data_logging_read_write_type = "All"
 
-  # Data resources for which to log data events. This should be a map, where each
-  # key is a data resource type, and each value is a list of data resource values.
-  # Possible values for data resource types are: AWS::S3::Object,
-  # AWS::Lambda::Function and AWS::DynamoDB::Table. See the 'data_resource' block
-  # within the 'event_selector' block of the 'aws_cloudtrail' resource for context:
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
-  # trail#data_resource.
+  # Data resources for which to log data events. This should be a map, where
+  # each key is a data resource type, and each value is a list of data resource
+  # values. Possible values for data resource types are: AWS::S3::Object,
+  # AWS::Lambda::Function and AWS::DynamoDB::Table. See the 'data_resource'
+  # block within the 'event_selector' block of the 'aws_cloudtrail' resource for
+  # context:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#data_resource.
   cloudtrail_data_logging_resources = {}
 
-  # A list of external AWS accounts that should be given write access for CloudTrail
-  # logs to this S3 bucket. This is useful when aggregating CloudTrail logs for
-  # multiple AWS accounts in one common S3 bucket.
+  # A list of external AWS accounts that should be given write access for
+  # CloudTrail logs to this S3 bucket. This is useful when aggregating
+  # CloudTrail logs for multiple AWS accounts in one common S3 bucket.
   cloudtrail_external_aws_account_ids_with_write_access = []
 
-  # If set to true, when you run 'terraform destroy', delete all objects from the
-  # bucket so that the bucket can be destroyed without error. Warning: these objects
-  # are not recoverable so only use this if you're absolutely sure you want to
-  # permanently delete everything!
+  # If set to true, when you run 'terraform destroy', delete all objects from
+  # the bucket so that the bucket can be destroyed without error. Warning: these
+  # objects are not recoverable so only use this if you're absolutely sure you
+  # want to permanently delete everything!
   cloudtrail_force_destroy = false
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
   cloudtrail_iam_role_permissions_boundary = null
 
   # All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key)
-  # that governs access to write API calls older than 7 days and all read API calls.
-  # The IAM Users specified in this list will have rights to change who can access
-  # this extended log data.
+  # that governs access to write API calls older than 7 days and all read API
+  # calls. The IAM Users specified in this list will have rights to change who
+  # can access this extended log data.
   cloudtrail_kms_key_administrator_iam_arns = []
 
-  # All CloudTrail Logs will be encrypted with a KMS CMK (Customer Master Key) that
-  # governs access to write API calls older than 7 days and all read API calls. If
-  # that CMK already exists, set this to the ARN of that CMK. Otherwise, set this to
-  # null, and a new CMK will be created. We recommend setting this to the ARN of a
-  # CMK that already exists in a separate logs account.
+  # All CloudTrail Logs will be encrypted with a KMS CMK (Customer Master Key)
+  # that governs access to write API calls older than 7 days and all read API
+  # calls. If that CMK already exists, set this to the ARN of that CMK.
+  # Otherwise, set this to null, and a new CMK will be created. We recommend
+  # setting this to the ARN of a CMK that already exists in a separate logs
+  # account.
   cloudtrail_kms_key_arn = null
 
-  # If the kms_key_arn provided is an alias or alias ARN, then this must be set to
-  # true so that the module will exchange the alias for a CMK ARN. Setting this to
-  # true and using aliases requires
-  # var.cloudtrail_allow_kms_describe_key_to_external_aws_accounts to also be true
-  # for multi-account scenarios.
+  # If the kms_key_arn provided is an alias or alias ARN, then this must be set
+  # to true so that the module will exchange the alias for a CMK ARN. Setting
+  # this to true and using aliases requires
+  # var.cloudtrail_allow_kms_describe_key_to_external_aws_accounts to also be
+  # true for multi-account scenarios.
   cloudtrail_kms_key_arn_is_alias = false
 
-  # Additional service principals beyond CloudTrail that should have access to the
-  # KMS key used to encrypt the logs. This is useful for granting access to the logs
-  # for the purposes of constructing metric filters.
+  # Additional service principals beyond CloudTrail that should have access to
+  # the KMS key used to encrypt the logs. This is useful for granting access to
+  # the logs for the purposes of constructing metric filters.
   cloudtrail_kms_key_service_principals = []
 
   # All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key)
-  # that governs access to write API calls older than 7 days and all read API calls.
-  # The IAM Users specified in this list will have read-only access to this extended
-  # log data.
+  # that governs access to write API calls older than 7 days and all read API
+  # calls. The IAM Users specified in this list will have read-only access to
+  # this extended log data.
   cloudtrail_kms_key_user_iam_arns = []
 
-  # After this number of days, log files should be transitioned from S3 to Glacier.
-  # Enter 0 to never archive log data.
+  # After this number of days, log files should be transitioned from S3 to
+  # Glacier. Enter 0 to never archive log data.
   cloudtrail_num_days_after_which_archive_log_data = 30
 
-  # After this number of days, log files should be deleted from S3. Enter 0 to never
-  # delete log data.
+  # After this number of days, log files should be deleted from S3. Enter 0 to
+  # never delete log data.
   cloudtrail_num_days_after_which_delete_log_data = 365
 
-  # After this number of days, logs stored in CloudWatch will be deleted. Possible
-  # values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827,
-  # 3653, and 0 (default). When set to 0, logs will be retained indefinitely.
+  # After this number of days, logs stored in CloudWatch will be deleted.
+  # Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400,
+  # 545, 731, 1827, 3653, and 0 (default). When set to 0, logs will be retained
+  # indefinitely.
   cloudtrail_num_days_to_retain_cloudwatch_logs = 0
 
   # Set to false to create an S3 bucket of name var.cloudtrail_s3_bucket_name in
   # this account for storing CloudTrail logs. Set to true to assume the bucket
   # specified in var.cloudtrail_s3_bucket_name already exists in another AWS
   # account. We recommend setting this to true and setting
-  # var.cloudtrail_s3_bucket_name to the name of a bucket that already exists in a
-  # separate logs account.
+  # var.cloudtrail_s3_bucket_name to the name of a bucket that already exists in
+  # a separate logs account.
   cloudtrail_s3_bucket_already_exists = false
 
   # The name of the S3 Bucket where CloudTrail logs will be stored. If value is
@@ -1146,148 +1172,151 @@ inputs = {
   cloudtrail_s3_bucket_name = null
 
   # Enable MFA delete for either 'Change the versioning state of your bucket' or
-  # 'Permanently delete an object version'. This setting only applies to the bucket
-  # used to storage Cloudtrail data. This cannot be used to toggle this setting but
-  # is available to allow managed buckets to reflect the state in AWS. For
-  # instructions on how to enable MFA Delete, check out the README from the
-  # terraform-aws-security/private-s3-bucket module.
+  # 'Permanently delete an object version'. This setting only applies to the
+  # bucket used to storage Cloudtrail data. This cannot be used to toggle this
+  # setting but is available to allow managed buckets to reflect the state in
+  # AWS. For instructions on how to enable MFA Delete, check out the README from
+  # the terraform-aws-security/private-s3-bucket module.
   cloudtrail_s3_mfa_delete = false
 
   # Tags to apply to the CloudTrail resources.
   cloudtrail_tags = {}
 
   # Set to true to send the AWS Config data to another account (e.g., a logs
-  # account) for aggregation purposes. You must set the ID of that other account via
-  # the config_central_account_id variable. This redundant variable has to exist
-  # because Terraform does not allow computed data in count and for_each parameters
-  # and var.config_central_account_id may be computed if its the ID of a
-  # newly-created AWS account.
+  # account) for aggregation purposes. You must set the ID of that other account
+  # via the config_central_account_id variable. This redundant variable has to
+  # exist because Terraform does not allow computed data in count and for_each
+  # parameters and var.config_central_account_id may be computed if its the ID
+  # of a newly-created AWS account.
   config_aggregate_config_data_in_external_account = false
 
   # If the S3 bucket and SNS topics used for AWS Config live in a different AWS
-  # account, set this variable to the ID of that account. If the S3 bucket and SNS
-  # topics live in this account, set this variable to null. We recommend setting
-  # this to the ID of a separate logs account. Only used if
+  # account, set this variable to the ID of that account. If the S3 bucket and
+  # SNS topics live in this account, set this variable to null. We recommend
+  # setting this to the ID of a separate logs account. Only used if
   # var.config_aggregate_config_data_in_external_account is true.
   config_central_account_id = null
 
-  # Set to true to create AWS Config rules directly in this account. Set false to
-  # not create any Config rules in this account (i.e., if you created the rules at
-  # the organization level already). We recommend setting this to true to use
-  # account-level rules because org-level rules create a chicken-and-egg problem
-  # with creating new accounts.
+  # Set to true to create AWS Config rules directly in this account. Set false
+  # to not create any Config rules in this account (i.e., if you created the
+  # rules at the organization level already). We recommend setting this to true
+  # to use account-level rules because org-level rules create a chicken-and-egg
+  # problem with creating new accounts.
   config_create_account_rules = true
 
   # Optional KMS key to use for encrypting S3 objects on the AWS Config delivery
-  # channel for an externally managed S3 bucket. This must belong to the same region
-  # as the destination S3 bucket. If null, AWS Config will default to encrypting the
-  # delivered data with AES-256 encryption. Only used if var.should_create_s3_bucket
-  # is false - otherwise, var.kms_key_arn is used.
+  # channel for an externally managed S3 bucket. This must belong to the same
+  # region as the destination S3 bucket. If null, AWS Config will default to
+  # encrypting the delivered data with AES-256 encryption. Only used if
+  # var.should_create_s3_bucket is false - otherwise, var.kms_key_arn is used.
   config_delivery_channel_kms_key_arn = null
 
-  # Same as var.config_delivery_channel_kms_key_arn, except the value is a name of a
-  # KMS key configured with var.kms_customer_master_keys. The module created KMS key
-  # for the delivery region (indexed by the name) will be used. Note that if both
-  # var.config_delivery_channel_kms_key_arn and
+  # Same as var.config_delivery_channel_kms_key_arn, except the value is a name
+  # of a KMS key configured with var.kms_customer_master_keys. The module
+  # created KMS key for the delivery region (indexed by the name) will be used.
+  # Note that if both var.config_delivery_channel_kms_key_arn and
   # var.config_delivery_channel_kms_key_by_name are configured, the key in
   # var.config_delivery_channel_kms_key_arn will always be used.
   config_delivery_channel_kms_key_by_name = null
 
-  # If set to true, when you run 'terraform destroy', delete all objects from the
-  # bucket so that the bucket can be destroyed without error. Warning: these objects
-  # are not recoverable so only use this if you're absolutely sure you want to
-  # permanently delete everything!
+  # If set to true, when you run 'terraform destroy', delete all objects from
+  # the bucket so that the bucket can be destroyed without error. Warning: these
+  # objects are not recoverable so only use this if you're absolutely sure you
+  # want to permanently delete everything!
   config_force_destroy = false
 
-  # Provide a list of AWS account IDs that will send Config data to this account.
-  # This is useful if your aggregating config data in this account for other
-  # accounts.
+  # Provide a list of AWS account IDs that will send Config data to this
+  # account. This is useful if your aggregating config data in this account for
+  # other accounts.
   config_linked_accounts = []
 
-  # After this number of days, log files should be transitioned from S3 to Glacier.
-  # Enter 0 to never archive log data.
+  # After this number of days, log files should be transitioned from S3 to
+  # Glacier. Enter 0 to never archive log data.
   config_num_days_after_which_archive_log_data = 365
 
-  # After this number of days, log files should be deleted from S3. Enter 0 to never
-  # delete log data.
+  # After this number of days, log files should be deleted from S3. Enter 0 to
+  # never delete log data.
   config_num_days_after_which_delete_log_data = 730
 
-  # Optional KMS key to use for encrypting S3 objects on the AWS Config bucket, when
-  # the S3 bucket is created within this module (var.config_should_create_s3_bucket
-  # is true). For encrypting S3 objects on delivery for an externally managed S3
-  # bucket, refer to the var.config_delivery_channel_kms_key_arn input variable. If
-  # null, data in S3 will be encrypted using the default aws/s3 key. If provided,
-  # the key policy of the provided key must permit the IAM role used by AWS Config.
-  # See https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html. Note that
+  # Optional KMS key to use for encrypting S3 objects on the AWS Config bucket,
+  # when the S3 bucket is created within this module
+  # (var.config_should_create_s3_bucket is true). For encrypting S3 objects on
+  # delivery for an externally managed S3 bucket, refer to the
+  # var.config_delivery_channel_kms_key_arn input variable. If null, data in S3
+  # will be encrypted using the default aws/s3 key. If provided, the key policy
+  # of the provided key must permit the IAM role used by AWS Config. See
+  # https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html. Note that
   # the KMS key must reside in the global recorder region (as configured by
   # var.aws_region).
   config_s3_bucket_kms_key_arn = null
 
-  # Same as var.config_s3_bucket_kms_key_arn, except the value is a name of a KMS
-  # key configured with var.kms_customer_master_keys. The module created KMS key for
-  # the global recorder region (indexed by the name) will be used. Note that if both
-  # var.config_s3_bucket_kms_key_arn and var.config_s3_bucket_kms_key_by_name are
-  # configured, the key in var.config_s3_bucket_kms_key_arn will always be used.
+  # Same as var.config_s3_bucket_kms_key_arn, except the value is a name of a
+  # KMS key configured with var.kms_customer_master_keys. The module created KMS
+  # key for the global recorder region (indexed by the name) will be used. Note
+  # that if both var.config_s3_bucket_kms_key_arn and
+  # var.config_s3_bucket_kms_key_by_name are configured, the key in
+  # var.config_s3_bucket_kms_key_arn will always be used.
   config_s3_bucket_kms_key_by_name = null
 
-  # The name of the S3 Bucket where CloudTrail logs will be stored. This could be a
-  # bucket in this AWS account or the name of a bucket in another AWS account where
-  # logs should be sent. We recommend setting this to the name of a bucket in a
-  # separate logs account.
+  # The name of the S3 Bucket where CloudTrail logs will be stored. This could
+  # be a bucket in this AWS account or the name of a bucket in another AWS
+  # account where logs should be sent. We recommend setting this to the name of
+  # a bucket in a separate logs account.
   config_s3_bucket_name = null
 
   # Enable MFA delete for either 'Change the versioning state of your bucket' or
-  # 'Permanently delete an object version'. This setting only applies to the bucket
-  # used to storage AWS Config data. This cannot be used to toggle this setting but
-  # is available to allow managed buckets to reflect the state in AWS. For
-  # instructions on how to enable MFA Delete, check out the README from the
-  # terraform-aws-security/private-s3-bucket module.
+  # 'Permanently delete an object version'. This setting only applies to the
+  # bucket used to storage AWS Config data. This cannot be used to toggle this
+  # setting but is available to allow managed buckets to reflect the state in
+  # AWS. For instructions on how to enable MFA Delete, check out the README from
+  # the terraform-aws-security/private-s3-bucket module.
   config_s3_mfa_delete = false
 
   # Set to true to create an S3 bucket of name var.config_s3_bucket_name in this
-  # account for storing AWS Config data. Set to false to assume the bucket specified
-  # in var.config_s3_bucket_name already exists in another AWS account. We recommend
-  # setting this to false and setting var.config_s3_bucket_name to the name off an
-  # S3 bucket that already exists in a separate logs account.
+  # account for storing AWS Config data. Set to false to assume the bucket
+  # specified in var.config_s3_bucket_name already exists in another AWS
+  # account. We recommend setting this to false and setting
+  # var.config_s3_bucket_name to the name off an S3 bucket that already exists
+  # in a separate logs account.
   config_should_create_s3_bucket = false
 
   # Set to true to create an SNS topic in this account for sending AWS Config
-  # notifications (e.g., if this is the logs account). Set to false to assume the
-  # topic specified in var.config_sns_topic_name already exists in another AWS
-  # account (e.g., if this is the stage or prod account and
+  # notifications (e.g., if this is the logs account). Set to false to assume
+  # the topic specified in var.config_sns_topic_name already exists in another
+  # AWS account (e.g., if this is the stage or prod account and
   # var.config_sns_topic_name is the name of an SNS topic in the logs account).
   config_should_create_sns_topic = false
 
-  # Same as var.config_sns_topic_kms_key_region_map, except the value is a name of a
-  # KMS key configured with var.kms_customer_master_keys. The module created KMS key
-  # for each region (indexed by the name) will be used. Note that if an entry exists
-  # for a region in both var.config_sns_topic_kms_key_region_map and
+  # Same as var.config_sns_topic_kms_key_region_map, except the value is a name
+  # of a KMS key configured with var.kms_customer_master_keys. The module
+  # created KMS key for each region (indexed by the name) will be used. Note
+  # that if an entry exists for a region in both
+  # var.config_sns_topic_kms_key_region_map and
   # var.config_sns_topic_kms_key_by_name_region_map, then the key in
   # var.config_sns_topic_kms_key_region_map will always be used.
   config_sns_topic_kms_key_by_name_region_map = null
 
-  # Optional KMS key to use for each region for configuring default encryption for
-  # the SNS topic (encoded as a map from region - e.g. us-east-1 - to ARN of KMS
-  # key). If null or the region key is missing, encryption will not be configured
-  # for the SNS topic in that region.
+  # Optional KMS key to use for each region for configuring default encryption
+  # for the SNS topic (encoded as a map from region - e.g. us-east-1 - to ARN of
+  # KMS key). If null or the region key is missing, encryption will not be
+  # configured for the SNS topic in that region.
   config_sns_topic_kms_key_region_map = null
 
-  # The name of the SNS Topic in where AWS Config notifications will be sent. Can be
-  # in the same account or in another account.
+  # The name of the SNS Topic in where AWS Config notifications will be sent.
+  # Can be in the same account or in another account.
   config_sns_topic_name = "ConfigTopic"
 
-  # A map of tags to apply to the S3 Bucket. The key is the tag name and the value
-  # is the tag value.
+  # A map of tags to apply to the S3 Bucket. The key is the tag name and the
+  # value is the tag value.
   config_tags = {}
 
-  # The maximum frequency with which AWS Config runs evaluations for the ´PERIODIC´
-  # rules. See
-  # https://www.terraform.io/docs/providers/aws/r/config_organization_managed_rule.h
-  # ml#maximum_execution_frequency
+  # The maximum frequency with which AWS Config runs evaluations for the
+  # ´PERIODIC´ rules. See
+  # https://www.terraform.io/docs/providers/aws/r/config_organization_managed_rule.html#maximum_execution_frequency
   configrules_maximum_execution_frequency = "TwentyFour_Hours"
 
-  # The name of the IAM group that will grant access to all external AWS accounts in
-  # var.iam_groups_for_cross_account_access.
+  # The name of the IAM group that will grant access to all external AWS
+  # accounts in var.iam_groups_for_cross_account_access.
   cross_account_access_all_group_name = "_all-accounts"
 
   # A custom name to use for the Cloudtrail Trail. If null, defaults to the
@@ -1295,15 +1324,15 @@ inputs = {
   custom_cloudtrail_trail_name = null
 
   # A list of AWS services for which the developers from the accounts in
-  # var.allow_dev_access_from_other_account_arns will receive full permissions. See
-  # https://goo.gl/ZyoHlz to find the IAM Service name. For example, to grant
-  # developers access only to EC2 and Amazon Machine Learning, use the value
-  # ["ec2","machinelearning"]. Do NOT add iam to the list of services, or that will
-  # grant Developers de facto admin access.
+  # var.allow_dev_access_from_other_account_arns will receive full permissions.
+  # See https://goo.gl/ZyoHlz to find the IAM Service name. For example, to
+  # grant developers access only to EC2 and Amazon Machine Learning, use the
+  # value ["ec2","machinelearning"]. Do NOT add iam to the list of services, or
+  # that will grant Developers de facto admin access.
   dev_permitted_services = []
 
-  # If set to true (default), all new EBS volumes will have encryption enabled by
-  # default
+  # If set to true (default), all new EBS volumes will have encryption enabled
+  # by default
   ebs_enable_encryption = true
 
   # The name of the KMS CMK to use by default for encrypting EBS volumes, if
@@ -1312,15 +1341,15 @@ inputs = {
   ebs_kms_key_name = ""
 
   # If set to true, the KMS Customer Managed Keys (CMK) with the name in
-  # var.ebs_kms_key_name will be set as the default for EBS encryption. When false
-  # (default), the AWS-managed aws/ebs key will be used.
+  # var.ebs_kms_key_name will be set as the default for EBS encryption. When
+  # false (default), the AWS-managed aws/ebs key will be used.
   ebs_use_existing_kms_keys = false
 
-  # Set to true (default) to enable CloudTrail in the security account. Set to false
-  # to disable CloudTrail (note: all other CloudTrail variables will be ignored).
-  # Note that if you have enabled organization trail in the root (parent) account,
-  # you should set this to false; the organization trail will enable CloudTrail on
-  # child accounts by default.
+  # Set to true (default) to enable CloudTrail in the security account. Set to
+  # false to disable CloudTrail (note: all other CloudTrail variables will be
+  # ignored). Note that if you have enabled organization trail in the root
+  # (parent) account, you should set this to false; the organization trail will
+  # enable CloudTrail on child accounts by default.
   enable_cloudtrail = true
 
   # Set to true to enable AWS Config in the security account. Set to false to
@@ -1332,15 +1361,15 @@ inputs = {
 
   # When true, create an Open ID Connect Provider that GitHub actions can use to
   # assume IAM roles in the account. Refer to
-  # https://docs.github.com/en/actions/deployment/security-hardening-your-deployment
-  # /configuring-openid-connect-in-amazon-web-services for more information.
+  # https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
+  # for more information.
   enable_github_actions_access = false
 
-  # Set to true (default) to enable GuardDuty in this app account. Set to false to
-  # disable GuardDuty (note: all other GuardDuty variables will be ignored). Note
-  # that if you have enabled organization level GuardDuty in the root (parent)
-  # account, you should set this to false; the organization GuardDuty will enable
-  # GuardDuty on child accounts by default.
+  # Set to true (default) to enable GuardDuty in this app account. Set to false
+  # to disable GuardDuty (note: all other GuardDuty variables will be ignored).
+  # Note that if you have enabled organization level GuardDuty in the root
+  # (parent) account, you should set this to false; the organization GuardDuty
+  # will enable GuardDuty on child accounts by default.
   enable_guardduty = true
 
   # A feature flag to enable or disable this module.
@@ -1356,15 +1385,15 @@ inputs = {
   # requirements.
   enable_iam_password_policy = true
 
-  # Checks whether the security group with 0.0.0.0/0 of any Amazon Virtual Private
-  # Cloud (Amazon VPC) allows only specific inbound TCP or UDP traffic.
+  # Checks whether the security group with 0.0.0.0/0 of any Amazon Virtual
+  # Private Cloud (Amazon VPC) allows only specific inbound TCP or UDP traffic.
   enable_insecure_sg_rules = true
 
   # Checks whether storage encryption is enabled for your RDS DB instances.
   enable_rds_storage_encrypted = true
 
-  # Checks whether users of your AWS account require a multi-factor authentication
-  # (MFA) device to sign in with root credentials.
+  # Checks whether users of your AWS account require a multi-factor
+  # authentication (MFA) device to sign in with root credentials.
   enable_root_account_mfa = true
 
   # Checks that your Amazon S3 buckets do not allow public read access.
@@ -1378,15 +1407,16 @@ inputs = {
   encrypted_volumes_kms_id = null
 
   # When destroying this user, destroy even if it has non-Terraform-managed IAM
-  # access keys, login profile, or MFA devices. Without force_destroy a user with
-  # non-Terraform-managed access keys and login profile will fail to be destroyed.
+  # access keys, login profile, or MFA devices. Without force_destroy a user
+  # with non-Terraform-managed access keys and login profile will fail to be
+  # destroyed.
   force_destroy_users = false
 
-  # When set, use the statically provided hardcoded list of thumbprints rather than
-  # looking it up dynamically. This is useful if you want to trade reliability of
-  # the OpenID Connect Provider across certificate renewals with a static list that
-  # is obtained using a trustworthy mechanism, to mitigate potential damage from a
-  # domain hijacking attack on GitHub domains.
+  # When set, use the statically provided hardcoded list of thumbprints rather
+  # than looking it up dynamically. This is useful if you want to trade
+  # reliability of the OpenID Connect Provider across certificate renewals with
+  # a static list that is obtained using a trustworthy mechanism, to mitigate
+  # potential damage from a domain hijacking attack on GitHub domains.
   github_actions_openid_connect_provider_thumbprint_list = null
 
   # Name of the Cloudwatch event rules.
@@ -1395,9 +1425,9 @@ inputs = {
   # Specifies the frequency of notifications sent for subsequent finding
   # occurrences. If the detector is a GuardDuty member account, the value is
   # determined by the GuardDuty master account and cannot be modified, otherwise
-  # defaults to SIX_HOURS. For standalone and GuardDuty master accounts, it must be
-  # configured in Terraform to enable drift detection. Valid values for standalone
-  # and master accounts: FIFTEEN_MINUTES, ONE_HOUR, SIX_HOURS.
+  # defaults to SIX_HOURS. For standalone and GuardDuty master accounts, it must
+  # be configured in Terraform to enable drift detection. Valid values for
+  # standalone and master accounts: FIFTEEN_MINUTES, ONE_HOUR, SIX_HOURS.
   guardduty_finding_publishing_frequency = null
 
   # Specifies a name for the created SNS topics where findings are published.
@@ -1410,17 +1440,17 @@ inputs = {
   # The name of the IAM Access Analyzer module
   iam_access_analyzer_name = "baseline_security-iam_access_analyzer"
 
-  # If set to ACCOUNT, the analyzer will only be scanning the current AWS account
-  # it's in. If set to ORGANIZATION - will scan the organization AWS account and the
-  # child accounts.
+  # If set to ACCOUNT, the analyzer will only be scanning the current AWS
+  # account it's in. If set to ORGANIZATION - will scan the organization AWS
+  # account and the child accounts.
   iam_access_analyzer_type = "ACCOUNT"
 
   # A list of AWS services for which the developers IAM Group will receive full
   # permissions. See https://goo.gl/ZyoHlz to find the IAM Service name. For
-  # example, to grant developers access only to EC2 and Amazon Machine Learning, use
-  # the value ["ec2","machinelearning"]. Do NOT add iam to the list of services, or
-  # that will grant Developers de facto admin access. If you need to grant iam
-  # privileges, just grant the user Full Access.
+  # example, to grant developers access only to EC2 and Amazon Machine Learning,
+  # use the value ["ec2","machinelearning"]. Do NOT add iam to the list of
+  # services, or that will grant Developers de facto admin access. If you need
+  # to grant iam privileges, just grant the user Full Access.
   iam_group_developers_permitted_services = []
 
   # The name of the IAM Group that allows automated deployment by graning the
@@ -1431,61 +1461,64 @@ inputs = {
   # billing features in AWS.
   iam_group_name_billing = "billing"
 
-  # The name to be used for the IAM Group that grants IAM Users a reasonable set of
-  # permissions for developers.
+  # The name to be used for the IAM Group that grants IAM Users a reasonable set
+  # of permissions for developers.
   iam_group_name_developers = "developers"
 
   # The name to be used for the IAM Group that grants full access to all AWS
   # resources.
   iam_group_name_full_access = "full-access"
 
+  # The name of the IAM Group that allows access to houston CLI.
+  iam_group_name_houston_cli = "houston-cli-users"
+
   # The name to be used for the IAM Group that grants IAM administrative access.
   # Effectively grants administrator access.
   iam_group_name_iam_admin = "iam-admin"
 
-  # The name to be used for the IAM Group that grants IAM Users the permissions to
-  # manage their own IAM User account.
+  # The name to be used for the IAM Group that grants IAM Users the permissions
+  # to manage their own IAM User account.
   iam_group_name_iam_user_self_mgmt = "iam-user-self-mgmt"
 
-  # The name to be used for the IAM Group that grants read access to CloudTrail, AWS
-  # Config, and CloudWatch in AWS.
+  # The name to be used for the IAM Group that grants read access to CloudTrail,
+  # AWS Config, and CloudWatch in AWS.
   iam_group_name_logs = "logs"
 
-  # The name to be used for the IAM Group that grants read-only access to all AWS
-  # resources.
+  # The name to be used for the IAM Group that grants read-only access to all
+  # AWS resources.
   iam_group_name_read_only = "read-only"
 
   # The name of the IAM Group that allows access to AWS Support.
   iam_group_name_support = "support"
 
-  # The name to be used for the IAM Group that grants IAM Users the permissions to
-  # use existing IAM Roles when launching AWS Resources. This does NOT grant the
-  # permission to create new IAM Roles.
+  # The name to be used for the IAM Group that grants IAM Users the permissions
+  # to use existing IAM Roles when launching AWS Resources. This does NOT grant
+  # the permission to create new IAM Roles.
   iam_group_name_use_existing_iam_roles = "use-existing-iam-roles"
 
-  # The list of names to be used for the IAM Group that enables its members to SSH
-  # as a sudo user into any server configured with the ssh-grunt Gruntwork module.
-  # Pass in multiple to configure multiple different IAM groups to control different
-  # groupings of access at the server level. Pass in empty list to disable creation
-  # of the IAM groups.
+  # The list of names to be used for the IAM Group that enables its members to
+  # SSH as a sudo user into any server configured with the ssh-grunt Gruntwork
+  # module. Pass in multiple to configure multiple different IAM groups to
+  # control different groupings of access at the server level. Pass in empty
+  # list to disable creation of the IAM groups.
   iam_group_names_ssh_grunt_sudo_users = ["ssh-grunt-sudo-users"]
 
   # The name to be used for the IAM Group that enables its members to SSH as a
-  # non-sudo user into any server configured with the ssh-grunt Gruntwork module.
-  # Pass in multiple to configure multiple different IAM groups to control different
-  # groupings of access at the server level. Pass in empty list to disable creation
-  # of the IAM groups.
+  # non-sudo user into any server configured with the ssh-grunt Gruntwork
+  # module. Pass in multiple to configure multiple different IAM groups to
+  # control different groupings of access at the server level. Pass in empty
+  # list to disable creation of the IAM groups.
   iam_group_names_ssh_grunt_users = ["ssh-grunt-users"]
 
-  # This variable is used to create groups that allow IAM users to assume roles in
-  # your other AWS accounts. It should be a list of objects, where each object has
-  # the fields 'group_name', which will be used as the name of the IAM group, and
-  # 'iam_role_arns', which is a list of ARNs of IAM Roles that you can assume when
-  # part of that group. For each entry in the list of objects, we will create an IAM
-  # group that allows users to assume the given IAM role(s) in the other AWS
-  # account. This allows you to define all your IAM users in one account (e.g. the
-  # users account) and to grant them access to certain IAM roles in other accounts
-  # (e.g. the stage, prod, audit accounts).
+  # This variable is used to create groups that allow IAM users to assume roles
+  # in your other AWS accounts. It should be a list of objects, where each
+  # object has the fields 'group_name', which will be used as the name of the
+  # IAM group, and 'iam_role_arns', which is a list of ARNs of IAM Roles that
+  # you can assume when part of that group. For each entry in the list of
+  # objects, we will create an IAM group that allows users to assume the given
+  # IAM role(s) in the other AWS account. This allows you to define all your IAM
+  # users in one account (e.g. the users account) and to grant them access to
+  # certain IAM roles in other accounts (e.g. the stage, prod, audit accounts).
   iam_groups_for_cross_account_access = []
 
   # Allow users to change their own password.
@@ -1515,57 +1548,59 @@ inputs = {
   # Require at least one uppercase character in password.
   iam_password_policy_require_uppercase_characters = true
 
-  # The name to be used for the IAM Policy that grants IAM Users the permissions to
-  # manage their own IAM User account.
+  # The name to be used for the IAM Policy that grants IAM Users the permissions
+  # to manage their own IAM User account.
   iam_policy_iam_user_self_mgmt = "iam-user-self-mgmt"
 
   # The tags to apply to all the IAM role resources.
   iam_role_tags = {}
 
-  # Comma-separated list of TCP ports authorized to be open to 0.0.0.0/0. Ranges are
-  # defined by a dash; for example, '443,1020-1025'.
+  # Comma-separated list of TCP ports authorized to be open to 0.0.0.0/0. Ranges
+  # are defined by a dash; for example, '443,1020-1025'.
   insecure_sg_rules_authorized_tcp_ports = "443"
 
-  # Comma-separated list of UDP ports authorized to be open to 0.0.0.0/0. Ranges are
-  # defined by a dash; for example, '500,1020-1025'.
+  # Comma-separated list of UDP ports authorized to be open to 0.0.0.0/0. Ranges
+  # are defined by a dash; for example, '500,1020-1025'.
   insecure_sg_rules_authorized_udp_ports = null
 
-  # A map of tags to apply to all KMS Keys to be created. In this map variable, the
-  # key is the tag name and the value is the tag value.
+  # A map of tags to apply to all KMS Keys to be created. In this map variable,
+  # the key is the tag name and the value is the tag value.
   kms_cmk_global_tags = {}
 
   # You can use this variable to create account-level KMS Customer Master Keys
-  # (CMKs) for encrypting and decrypting data. This variable should be a map where
-  # the keys are the names of the CMK and the values are an object that defines the
-  # configuration for that CMK. See the comment below for the configuration options
-  # you can set for each key.
+  # (CMKs) for encrypting and decrypting data. This variable should be a map
+  # where the keys are the names of the CMK and the values are an object that
+  # defines the configuration for that CMK. See the comment below for the
+  # configuration options you can set for each key.
   kms_customer_master_keys = {}
 
   # The map of names of KMS grants to the region where the key resides in. There
-  # should be a one to one mapping between entries in this map and the entries of
-  # the kms_grants map. This is used to workaround a terraform limitation where the
-  # for_each value can not depend on resources.
+  # should be a one to one mapping between entries in this map and the entries
+  # of the kms_grants map. This is used to workaround a terraform limitation
+  # where the for_each value can not depend on resources.
   kms_grant_regions = {}
 
   # Create the specified KMS grants to allow entities to use the KMS key without
-  # modifying the KMS policy or IAM. This is necessary to allow AWS services (e.g.
-  # ASG) to use CMKs encrypt and decrypt resources. The input is a map of grant name
-  # to grant properties. The name must be unique per account.
+  # modifying the KMS policy or IAM. This is necessary to allow AWS services
+  # (e.g. ASG) to use CMKs encrypt and decrypt resources. The input is a map of
+  # grant name to grant properties. The name must be unique per account.
   kms_grants = {}
 
-  # The maximum allowable session duration, in seconds, for the credentials you get
-  # when assuming the IAM roles created by this module. This variable applies to all
-  # IAM roles created by this module that are intended for people to use, such as
-  # allow-read-only-access-from-other-accounts. For IAM roles that are intended for
-  # machine users, such as allow-auto-deploy-from-other-accounts, see
+  # The maximum allowable session duration, in seconds, for the credentials you
+  # get when assuming the IAM roles created by this module. This variable
+  # applies to all IAM roles created by this module that are intended for people
+  # to use, such as allow-read-only-access-from-other-accounts. For IAM roles
+  # that are intended for machine users, such as
+  # allow-auto-deploy-from-other-accounts, see
   # var.max_session_duration_machine_users.
   max_session_duration_human_users = 43200
 
-  # The maximum allowable session duration, in seconds, for the credentials you get
-  # when assuming the IAM roles created by this module. This variable  applies to
-  # all IAM roles created by this module that are intended for machine users, such
-  # as allow-auto-deploy-from-other-accounts. For IAM roles that are intended for
-  # human users, such as allow-read-only-access-from-other-accounts, see
+  # The maximum allowable session duration, in seconds, for the credentials you
+  # get when assuming the IAM roles created by this module. This variable 
+  # applies to all IAM roles created by this module that are intended for
+  # machine users, such as allow-auto-deploy-from-other-accounts. For IAM roles
+  # that are intended for human users, such as
+  # allow-read-only-access-from-other-accounts, see
   # var.max_session_duration_human_users.
   max_session_duration_machine_users = 3600
 
@@ -1578,85 +1613,90 @@ inputs = {
   rds_storage_encrypted_kms_id = null
 
   # Create service-linked roles for this set of services. You should pass in the
-  # URLs of the services, but without the protocol (e.g., http://) in front: e.g.,
-  # use elasticbeanstalk.amazonaws.com for Elastic Beanstalk or es.amazonaws.com for
-  # Amazon Elasticsearch. Service-linked roles are predefined by the service, can
-  # typically only be assumed by that service, and include all the permissions that
-  # the service requires to call other AWS services on your behalf. You can
-  # typically only create one such role per AWS account, which is why this parameter
-  # exists in the account baseline. See
-  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-wor
-  # -with-iam.html for the list of services that support service-linked roles.
+  # URLs of the services, but without the protocol (e.g., http://) in front:
+  # e.g., use elasticbeanstalk.amazonaws.com for Elastic Beanstalk or
+  # es.amazonaws.com for Amazon Elasticsearch. Service-linked roles are
+  # predefined by the service, can typically only be assumed by that service,
+  # and include all the permissions that the service requires to call other AWS
+  # services on your behalf. You can typically only create one such role per AWS
+  # account, which is why this parameter exists in the account baseline. See
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-work-with-iam.html
+  # for the list of services that support service-linked roles.
   service_linked_roles = []
 
-  # Should we create the IAM Group for auto-deploy? Allows automated deployment by
-  # granting the permissions specified in var.auto_deploy_permissions. (true or
-  # false)
+  # Should we create the IAM Group for auto-deploy? Allows automated deployment
+  # by granting the permissions specified in var.auto_deploy_permissions. (true
+  # or false)
   should_create_iam_group_auto_deploy = false
 
-  # Should we create the IAM Group for billing? Allows read-write access to billing
-  # features only. (true or false)
+  # Should we create the IAM Group for billing? Allows read-write access to
+  # billing features only. (true or false)
   should_create_iam_group_billing = false
 
   # Should we create the IAM Group for access to all external AWS accounts? 
   should_create_iam_group_cross_account_access_all = true
 
-  # Should we create the IAM Group for developers? The permissions of that group are
-  # specified via var.iam_group_developers_permitted_services. (true or false)
+  # Should we create the IAM Group for developers? The permissions of that group
+  # are specified via var.iam_group_developers_permitted_services. (true or
+  # false)
   should_create_iam_group_developers = false
 
-  # Should we create the IAM Group for full access? Allows full access to all AWS
-  # resources. (true or false)
+  # Should we create the IAM Group for full access? Allows full access to all
+  # AWS resources. (true or false)
   should_create_iam_group_full_access = true
+
+  # Should we create the IAM Group for houston CLI users? Allows users to use
+  # the houston CLI for managing and deploying services.
+  should_create_iam_group_houston_cli_users = false
 
   # Should we create the IAM Group for IAM administrator access? Allows users to
   # manage all IAM entities, effectively granting administrator access. (true or
   # false)
   should_create_iam_group_iam_admin = false
 
-  # Should we create the IAM Group for logs? Allows read access to CloudTrail, AWS
-  # Config, and CloudWatch. If var.cloudtrail_kms_key_arn is set, will also give
-  # decrypt access to a KMS CMK. (true or false)
+  # Should we create the IAM Group for logs? Allows read access to CloudTrail,
+  # AWS Config, and CloudWatch. If var.cloudtrail_kms_key_arn is set, will also
+  # give decrypt access to a KMS CMK. (true or false)
   should_create_iam_group_logs = false
 
-  # Should we create the IAM Group for read-only? Allows read-only access to all AWS
-  # resources. (true or false)
+  # Should we create the IAM Group for read-only? Allows read-only access to all
+  # AWS resources. (true or false)
   should_create_iam_group_read_only = false
 
   # Should we create the IAM Group for support? Allows support access
   # (AWSupportAccess). (true or false)
   should_create_iam_group_support = false
 
-  # Should we create the IAM Group for use-existing-iam-roles? Allow launching AWS
-  # resources with existing IAM Roles, but no ability to create new IAM Roles. (true
-  # or false)
+  # Should we create the IAM Group for use-existing-iam-roles? Allow launching
+  # AWS resources with existing IAM Roles, but no ability to create new IAM
+  # Roles. (true or false)
   should_create_iam_group_use_existing_iam_roles = false
 
-  # Should we create the IAM Group for user self-management? Allows users to manage
-  # their own IAM user accounts, but not other IAM users. (true or false)
+  # Should we create the IAM Group for user self-management? Allows users to
+  # manage their own IAM user accounts, but not other IAM users. (true or false)
   should_create_iam_group_user_self_mgmt = true
 
-  # Should we require that all IAM Users use Multi-Factor Authentication for both
-  # AWS API calls and the AWS Web Console? (true or false)
+  # Should we require that all IAM Users use Multi-Factor Authentication for
+  # both AWS API calls and the AWS Web Console? (true or false)
   should_require_mfa = true
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
   # A map of users to create. The keys are the user names and the values are an
   # object with the optional keys 'groups' (a list of IAM groups to add the user
-  # to), 'tags' (a map of tags to apply to the user), 'pgp_key' (either a base-64
-  # encoded PGP public key, or a keybase username in the form keybase:username, used
-  # to encrypt the user's credentials; required if create_login_profile or
-  # create_access_keys is true), 'create_login_profile' (if set to true, create a
-  # password to login to the AWS Web Console), 'create_access_keys' (if set to true,
-  # create access keys for the user), 'path' (the path), and 'permissions_boundary'
-  # (the ARN of the policy that is used to set the permissions boundary for the
-  # user).
+  # to), 'tags' (a map of tags to apply to the user), 'pgp_key' (either a
+  # base-64 encoded PGP public key, or a keybase username in the form
+  # keybase:username, used to encrypt the user's credentials; required if
+  # create_login_profile or create_access_keys is true), 'create_login_profile'
+  # (if set to true, create a password to login to the AWS Web Console),
+  # 'create_access_keys' (if set to true, create access keys for the user),
+  # 'path' (the path), and 'permissions_boundary' (the ARN of the policy that is
+  # used to set the permissions boundary for the user).
   users = {}
 
 }
@@ -2727,6 +2767,15 @@ The name to be used for the IAM Group that grants full access to all AWS resourc
 <HclListItemDefaultValue defaultValue="&quot;full-access&quot;"/>
 </HclListItem>
 
+<HclListItem name="iam_group_name_houston_cli" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the IAM Group that allows access to houston CLI.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;houston-cli-users&quot;"/>
+</HclListItem>
+
 <HclListItem name="iam_group_name_iam_admin" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -3290,6 +3339,15 @@ Should we create the IAM Group for full access? Allows full access to all AWS re
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="should_create_iam_group_houston_cli_users" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Should we create the IAM Group for houston CLI users? Allows users to use the houston CLI for managing and deploying services.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="should_create_iam_group_iam_admin" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -3460,6 +3518,12 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItem name="allow_full_access_sign_in_url">
 </HclListItem>
 
+<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_id">
+</HclListItem>
+
 <HclListItem name="allow_iam_admin_access_from_other_accounts_iam_role_arn">
 </HclListItem>
 
@@ -3494,6 +3558,15 @@ Any types represent complex values of variable type. For details, please consult
 </HclListItem>
 
 <HclListItem name="allow_ssh_grunt_access_sign_in_url">
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_id">
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_houston_access_sign_in_url">
 </HclListItem>
 
 <HclListItem name="allow_support_access_from_other_accounts_iam_role_arn">
@@ -3711,6 +3784,12 @@ The names of the SNS topic where findings are published if <a href="#publish_fin
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="houston_cli_users_iam_group_arn">
+</HclListItem>
+
+<HclListItem name="houston_cli_users_iam_group_name">
+</HclListItem>
+
 <HclListItem name="iam_admin_iam_group_arn">
 </HclListItem>
 
@@ -3839,11 +3918,11 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/landingzone/account-baseline-security/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/landingzone/account-baseline-security/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/landingzone/account-baseline-security/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/landingzone/account-baseline-security/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/landingzone/account-baseline-security/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/landingzone/account-baseline-security/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e023abb1d9237a06828be94446b9dd70"
+  "hash": "b2a850ff847e4cc6ff6a323080b102f8"
 }
 ##DOCS-SOURCER-END -->
