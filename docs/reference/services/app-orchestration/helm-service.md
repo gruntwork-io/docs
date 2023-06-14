@@ -15,11 +15,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.10" lastModifiedVersion="0.100.0"/>
+<VersionBadge version="0.104.11" lastModifiedVersion="0.100.0"/>
 
 # Helm Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/services/helm-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/helm-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fhelm-service" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -63,9 +63,9 @@ If you’ve never used the Service Catalog before, make sure to read
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -73,7 +73,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -81,7 +81,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -100,7 +100,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "helm_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/helm-service?ref=v0.104.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/helm-service?ref=v0.104.11"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -110,11 +110,11 @@ module "helm_service" {
   # Kubernetes resources.
   application_name = <string>
 
-  # Chart name to be installed. The chart name can be local path, a URL to a chart,
-  # or the name of the chart if repository is specified. It is also possible to use
-  # the <repository>/<chart> format here if you are running Terraform on a system
-  # that the repository has been added to with helm repo add but this is not
-  # recommended.
+  # Chart name to be installed. The chart name can be local path, a URL to a
+  # chart, or the name of the chart if repository is specified. It is also
+  # possible to use the <repository>/<chart> format here if you are running
+  # Terraform on a system that the repository has been added to with helm repo
+  # add but this is not recommended.
   helm_chart = <string>
 
   # Repository URL where to locate the requested chart.
@@ -127,45 +127,45 @@ module "helm_service" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Configuration for using the IAM role with Service Accounts feature to provide
-  # permissions to the applications. This expects a map with two properties:
-  # `openid_connect_provider_arn` and `openid_connect_provider_url`. The
-  # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
-  # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL.
-  # Leave as an empty string if you do not wish to use IAM role with Service
-  # Accounts.
+  # Configuration for using the IAM role with Service Accounts feature to
+  # provide permissions to the applications. This expects a map with two
+  # properties: `openid_connect_provider_arn` and `openid_connect_provider_url`.
+  # The `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider
+  # for EKS to retrieve IAM credentials, while `openid_connect_provider_url` is
+  # the URL. Leave as an empty string if you do not wish to use IAM role with
+  # Service Accounts.
   eks_iam_role_for_service_accounts_config = null
 
   # Map of values to pass to the Helm chart. Leave empty to use chart default
   # values.
   helm_chart_values = {}
 
-  # Specify the exact chart version to install. If this is not specified, the latest
-  # version is installed.
+  # Specify the exact chart version to install. If this is not specified, the
+  # latest version is installed.
   helm_chart_version = null
 
-  # An object defining the policy to attach to `iam_role_name` if the IAM role is
-  # going to be created. Accepts a map of objects, where the map keys are sids for
-  # IAM policy statements, and the object fields are the resources, actions, and the
-  # effect ("Allow" or "Deny") of the statement. Ignored if `iam_role_arn` is
-  # provided. Leave as null if you do not wish to use IAM role with Service
-  # Accounts.
+  # An object defining the policy to attach to `iam_role_name` if the IAM role
+  # is going to be created. Accepts a map of objects, where the map keys are
+  # sids for IAM policy statements, and the object fields are the resources,
+  # actions, and the effect ("Allow" or "Deny") of the statement. Ignored if
+  # `iam_role_arn` is provided. Leave as null if you do not wish to use IAM role
+  # with Service Accounts.
   iam_policy = null
 
   # Whether or not the IAM role passed in `iam_role_name` already exists. Set to
   # true if it exists, or false if it needs to be created. Defaults to false.
   iam_role_exists = false
 
-  # The name of an IAM role that will be used by the pod to access the AWS API. If
-  # `iam_role_exists` is set to false, this role will be created. Leave as an empty
-  # string if you do not wish to use IAM role with Service Accounts.
+  # The name of an IAM role that will be used by the pod to access the AWS API.
+  # If `iam_role_exists` is set to false, this role will be created. Leave as an
+  # empty string if you do not wish to use IAM role with Service Accounts.
   iam_role_name = ""
 
   # The name of a service account to create for use with the Pods. This service
-  # account will be mapped to the IAM role defined in `var.iam_role_name` to give
-  # the pod permissions to access the AWS API. Must be unique in this namespace.
-  # Leave as an empty string if you do not wish to assign a Service Account to the
-  # Pods.
+  # account will be mapped to the IAM role defined in `var.iam_role_name` to
+  # give the pod permissions to access the AWS API. Must be unique in this
+  # namespace. Leave as an empty string if you do not wish to assign a Service
+  # Account to the Pods.
   service_account_name = ""
 
   # Sleep for 30 seconds to allow Kubernetes time to remove associated AWS
@@ -195,7 +195,7 @@ module "helm_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/helm-service?ref=v0.104.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/helm-service?ref=v0.104.11"
 }
 
 inputs = {
@@ -208,11 +208,11 @@ inputs = {
   # Kubernetes resources.
   application_name = <string>
 
-  # Chart name to be installed. The chart name can be local path, a URL to a chart,
-  # or the name of the chart if repository is specified. It is also possible to use
-  # the <repository>/<chart> format here if you are running Terraform on a system
-  # that the repository has been added to with helm repo add but this is not
-  # recommended.
+  # Chart name to be installed. The chart name can be local path, a URL to a
+  # chart, or the name of the chart if repository is specified. It is also
+  # possible to use the <repository>/<chart> format here if you are running
+  # Terraform on a system that the repository has been added to with helm repo
+  # add but this is not recommended.
   helm_chart = <string>
 
   # Repository URL where to locate the requested chart.
@@ -225,45 +225,45 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Configuration for using the IAM role with Service Accounts feature to provide
-  # permissions to the applications. This expects a map with two properties:
-  # `openid_connect_provider_arn` and `openid_connect_provider_url`. The
-  # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
-  # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL.
-  # Leave as an empty string if you do not wish to use IAM role with Service
-  # Accounts.
+  # Configuration for using the IAM role with Service Accounts feature to
+  # provide permissions to the applications. This expects a map with two
+  # properties: `openid_connect_provider_arn` and `openid_connect_provider_url`.
+  # The `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider
+  # for EKS to retrieve IAM credentials, while `openid_connect_provider_url` is
+  # the URL. Leave as an empty string if you do not wish to use IAM role with
+  # Service Accounts.
   eks_iam_role_for_service_accounts_config = null
 
   # Map of values to pass to the Helm chart. Leave empty to use chart default
   # values.
   helm_chart_values = {}
 
-  # Specify the exact chart version to install. If this is not specified, the latest
-  # version is installed.
+  # Specify the exact chart version to install. If this is not specified, the
+  # latest version is installed.
   helm_chart_version = null
 
-  # An object defining the policy to attach to `iam_role_name` if the IAM role is
-  # going to be created. Accepts a map of objects, where the map keys are sids for
-  # IAM policy statements, and the object fields are the resources, actions, and the
-  # effect ("Allow" or "Deny") of the statement. Ignored if `iam_role_arn` is
-  # provided. Leave as null if you do not wish to use IAM role with Service
-  # Accounts.
+  # An object defining the policy to attach to `iam_role_name` if the IAM role
+  # is going to be created. Accepts a map of objects, where the map keys are
+  # sids for IAM policy statements, and the object fields are the resources,
+  # actions, and the effect ("Allow" or "Deny") of the statement. Ignored if
+  # `iam_role_arn` is provided. Leave as null if you do not wish to use IAM role
+  # with Service Accounts.
   iam_policy = null
 
   # Whether or not the IAM role passed in `iam_role_name` already exists. Set to
   # true if it exists, or false if it needs to be created. Defaults to false.
   iam_role_exists = false
 
-  # The name of an IAM role that will be used by the pod to access the AWS API. If
-  # `iam_role_exists` is set to false, this role will be created. Leave as an empty
-  # string if you do not wish to use IAM role with Service Accounts.
+  # The name of an IAM role that will be used by the pod to access the AWS API.
+  # If `iam_role_exists` is set to false, this role will be created. Leave as an
+  # empty string if you do not wish to use IAM role with Service Accounts.
   iam_role_name = ""
 
   # The name of a service account to create for use with the Pods. This service
-  # account will be mapped to the IAM role defined in `var.iam_role_name` to give
-  # the pod permissions to access the AWS API. Must be unique in this namespace.
-  # Leave as an empty string if you do not wish to assign a Service Account to the
-  # Pods.
+  # account will be mapped to the IAM role defined in `var.iam_role_name` to
+  # give the pod permissions to access the AWS API. Must be unique in this
+  # namespace. Leave as an empty string if you do not wish to assign a Service
+  # Account to the Pods.
   service_account_name = ""
 
   # Sleep for 30 seconds to allow Kubernetes time to remove associated AWS
@@ -483,11 +483,11 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/services/helm-service/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/services/helm-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/services/helm-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/helm-service/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/helm-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/helm-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ae8bf1a204b83bc1559c2711d136475d"
+  "hash": "1cfd414ff144d8be970f3aad92e245dc"
 }
 ##DOCS-SOURCER-END -->

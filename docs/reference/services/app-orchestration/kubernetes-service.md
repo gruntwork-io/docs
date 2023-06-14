@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.10" lastModifiedVersion="0.100.0"/>
+<VersionBadge version="0.104.11" lastModifiedVersion="0.100.0"/>
 
 # Kubernetes Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/services/k8s-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/k8s-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fk8s-service" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -74,9 +74,9 @@ don’t have access to this repo, email <support@gruntwork.io>.
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -84,7 +84,7 @@ don’t have access to this repo, email <support@gruntwork.io>.
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -92,7 +92,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -111,7 +111,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "k_8_s_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/k8s-service?ref=v0.104.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/k8s-service?ref=v0.104.11"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -142,43 +142,44 @@ module "k_8_s_service" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Map of additional ports to expose for the container. The key is the name of the
-  # port and value contains port number and protocol.
+  # Map of additional ports to expose for the container. The key is the name of
+  # the port and value contains port number and protocol.
   additional_ports = null
 
-  # A list of ACM certificate ARNs to attach to the ALB. The first certificate in
-  # the list will be added as default certificate.
+  # A list of ACM certificate ARNs to attach to the ALB. The first certificate
+  # in the list will be added as default certificate.
   alb_acm_certificate_arns = []
 
-  # The number of consecutive health check successes required before considering an
-  # unhealthy target healthy.
+  # The number of consecutive health check successes required before considering
+  # an unhealthy target healthy.
   alb_health_check_healthy_threshold = 2
 
   # Interval between ALB health checks in seconds.
   alb_health_check_interval = 30
 
-  # URL path for the endpoint that the ALB health check should ping. Defaults to /.
+  # URL path for the endpoint that the ALB health check should ping. Defaults to
+  # /.
   alb_health_check_path = "/"
 
   # String value specifying the port that the ALB health check should probe. By
-  # default, this will be set to the traffic port (the NodePort or port where the
-  # service receives traffic). This can also be set to a Kubernetes named port, or
-  # direct integer value. See
-  # https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.3/guide/ingres
-  # /annotations/#healthcheck-port for more information.
+  # default, this will be set to the traffic port (the NodePort or port where
+  # the service receives traffic). This can also be set to a Kubernetes named
+  # port, or direct integer value. See
+  # https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.3/guide/ingress/annotations/#healthcheck-port
+  # for more information.
   alb_health_check_port = "traffic-port"
 
-  # Protocol (HTTP or HTTPS) that the ALB health check should use to connect to the
-  # application container.
+  # Protocol (HTTP or HTTPS) that the ALB health check should use to connect to
+  # the application container.
   alb_health_check_protocol = "HTTP"
 
-  # The HTTP status code that should be expected when doing health checks against
-  # the specified health check path. Accepts a single value (200), multiple values
-  # (200,201), or a range of values (200-300).
+  # The HTTP status code that should be expected when doing health checks
+  # against the specified health check path. Accepts a single value (200),
+  # multiple values (200,201), or a range of values (200-300).
   alb_health_check_success_codes = "200"
 
-  # The timeout, in seconds, during which no response from a target means a failed
-  # health check.
+  # The timeout, in seconds, during which no response from a target means a
+  # failed health check.
   alb_health_check_timeout = 10
 
   # The Docker image to use for the canary. Required if
@@ -188,167 +189,169 @@ module "k_8_s_service" {
   # Allow deletion of new resources created in this upgrade when upgrade fails.
   cleanup_on_fail = null
 
-  # Kubernetes ConfigMaps to be injected into the container. Each entry in the map
-  # represents a ConfigMap to be injected, with the key representing the name of the
-  # ConfigMap. The value is also a map, with each entry corresponding to an entry in
-  # the ConfigMap, with the key corresponding to the ConfigMap entry key and the
-  # value corresponding to the environment variable name.
+  # Kubernetes ConfigMaps to be injected into the container. Each entry in the
+  # map represents a ConfigMap to be injected, with the key representing the
+  # name of the ConfigMap. The value is also a map, with each entry
+  # corresponding to an entry in the ConfigMap, with the key corresponding to
+  # the ConfigMap entry key and the value corresponding to the environment
+  # variable name.
   configmaps_as_env_vars = {}
 
-  # Kubernetes ConfigMaps to be injected into the container as volume mounts. Each
-  # entry in the map represents a ConfigMap to be mounted, with the key representing
-  # the name of the ConfigMap and the value as a map containing required mountPath
-  # (file path on the container to mount the ConfigMap to) and optional subPath
-  # (sub-path inside the referenced volume).
+  # Kubernetes ConfigMaps to be injected into the container as volume mounts.
+  # Each entry in the map represents a ConfigMap to be mounted, with the key
+  # representing the name of the ConfigMap and the value as a map containing
+  # required mountPath (file path on the container to mount the ConfigMap to)
+  # and optional subPath (sub-path inside the referenced volume).
   configmaps_as_volumes = {}
 
-  # The protocol on which this service's Docker container accepts traffic. Must be
-  # one of the supported protocols:
-  # https://kubernetes.io/docs/concepts/services-networking/service/#protocol-suppor
-  # .
+  # The protocol on which this service's Docker container accepts traffic. Must
+  # be one of the supported protocols:
+  # https://kubernetes.io/docs/concepts/services-networking/service/#protocol-support.
   container_protocol = "TCP"
 
   # The map that lets you define Kubernetes resources you want installed and
   # configured as part of the chart.
   custom_resources = {}
 
-  # The number of canary Pods to run on the Kubernetes cluster for this service. If
-  # greater than 0, you must provide var.canary_image.
+  # The number of canary Pods to run on the Kubernetes cluster for this service.
+  # If greater than 0, you must provide var.canary_image.
   desired_number_of_canary_pods = 0
 
-  # The domain name for the DNS A record to bind to the Ingress resource for this
-  # service (e.g. service.foo.com). Depending on your external-dns configuration,
-  # this will also create the DNS record in the configured DNS service (e.g.,
-  # Route53).
+  # The domain name for the DNS A record to bind to the Ingress resource for
+  # this service (e.g. service.foo.com). Depending on your external-dns
+  # configuration, this will also create the DNS record in the configured DNS
+  # service (e.g., Route53).
   domain_name = null
 
-  # The TTL value of the DNS A record that is bound to the Ingress resource. Only
-  # used if var.domain_name is set and external-dns is deployed.
+  # The TTL value of the DNS A record that is bound to the Ingress resource.
+  # Only used if var.domain_name is set and external-dns is deployed.
   domain_propagation_ttl = null
 
-  # Configuration for using the IAM role with Service Accounts feature to provide
-  # permissions to the applications. This expects a map with two properties:
-  # `openid_connect_provider_arn` and `openid_connect_provider_url`. The
-  # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
-  # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL.
-  # Leave as an empty string if you do not wish to use IAM role with Service
-  # Accounts.
+  # Configuration for using the IAM role with Service Accounts feature to
+  # provide permissions to the applications. This expects a map with two
+  # properties: `openid_connect_provider_arn` and `openid_connect_provider_url`.
+  # The `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider
+  # for EKS to retrieve IAM credentials, while `openid_connect_provider_url` is
+  # the URL. Leave as an empty string if you do not wish to use IAM role with
+  # Service Accounts.
   eks_iam_role_for_service_accounts_config = {"openid_connect_provider_arn":"","openid_connect_provider_url":""}
 
-  # Whether or not to enable liveness probe. Liveness checks indicate whether or not
-  # the container is alive. When these checks fail, the cluster will automatically
-  # rotate the Pod.
+  # Whether or not to enable liveness probe. Liveness checks indicate whether or
+  # not the container is alive. When these checks fail, the cluster will
+  # automatically rotate the Pod.
   enable_liveness_probe = false
 
-  # Whether or not to enable readiness probe. Readiness checks indicate whether or
-  # not the container can accept traffic. When these checks fail, the Pods are
-  # automatically removed from the Service (and added back in when they pass).
+  # Whether or not to enable readiness probe. Readiness checks indicate whether
+  # or not the container can accept traffic. When these checks fail, the Pods
+  # are automatically removed from the Service (and added back in when they
+  # pass).
   enable_readiness_probe = false
 
-  # A map of environment variable name to environment variable value that should be
-  # made available to the Docker container.
+  # A map of environment variable name to environment variable value that should
+  # be made available to the Docker container.
   env_vars = {}
 
   # How the service will be exposed in the cluster. Must be one of `external`
-  # (accessible over the public Internet), `internal` (only accessible from within
-  # the same VPC as the cluster), `cluster-internal` (only accessible within the
-  # Kubernetes network), `none` (deploys as a headless service with no service IP).
+  # (accessible over the public Internet), `internal` (only accessible from
+  # within the same VPC as the cluster), `cluster-internal` (only accessible
+  # within the Kubernetes network), `none` (deploys as a headless service with
+  # no service IP).
   expose_type = "cluster-internal"
 
   # A boolean that indicates whether the access logs bucket should be destroyed,
-  # even if there are files in it, when you run Terraform destroy. Unless you are
-  # using this bucket only for test purposes, you'll want to leave this variable set
-  # to false.
+  # even if there are files in it, when you run Terraform destroy. Unless you
+  # are using this bucket only for test purposes, you'll want to leave this
+  # variable set to false.
   force_destroy_ingress_access_logs = false
 
   # The version of the k8s-service helm chart to deploy.
   helm_chart_version = "v0.2.18"
 
   # Configure the Horizontal Pod Autoscaler (HPA) information for the associated
-  # Deployment. HPA is disabled when this variable is set to null. Note that to use
-  # an HPA, you must have a corresponding service deployed to your cluster that
-  # exports the metrics (e.g., metrics-server
+  # Deployment. HPA is disabled when this variable is set to null. Note that to
+  # use an HPA, you must have a corresponding service deployed to your cluster
+  # that exports the metrics (e.g., metrics-server
   # https://github.com/kubernetes-sigs/metrics-server).
   horizontal_pod_autoscaler = null
 
-  # An object defining the policy to attach to `iam_role_name` if the IAM role is
-  # going to be created. Accepts a map of objects, where the map keys are sids for
-  # IAM policy statements, and the object fields are the resources, actions, and the
-  # effect ("Allow" or "Deny") of the statement. Ignored if `iam_role_arn` is
-  # provided. Leave as null if you do not wish to use IAM role with Service
-  # Accounts.
+  # An object defining the policy to attach to `iam_role_name` if the IAM role
+  # is going to be created. Accepts a map of objects, where the map keys are
+  # sids for IAM policy statements, and the object fields are the resources,
+  # actions, and the effect ("Allow" or "Deny") of the statement. Ignored if
+  # `iam_role_arn` is provided. Leave as null if you do not wish to use IAM role
+  # with Service Accounts.
   iam_policy = null
 
   # Whether or not the IAM role passed in `iam_role_name` already exists. Set to
   # true if it exists, or false if it needs to be created. Defaults to false.
   iam_role_exists = false
 
-  # The name of an IAM role that will be used by the pod to access the AWS API. If
-  # `iam_role_exists` is set to false, this role will be created. Leave as an empty
-  # string if you do not wish to use IAM role with Service Accounts.
+  # The name of an IAM role that will be used by the pod to access the AWS API.
+  # If `iam_role_exists` is set to false, this role will be created. Leave as an
+  # empty string if you do not wish to use IAM role with Service Accounts.
   iam_role_name = ""
 
   # Set to true if the S3 bucket to store the Ingress access logs is managed
   # external to this module.
   ingress_access_logs_s3_bucket_already_exists = false
 
-  # The name to use for the S3 bucket where the Ingress access logs will be stored.
-  # If you leave this blank, a name will be generated automatically based on
-  # var.application_name.
+  # The name to use for the S3 bucket where the Ingress access logs will be
+  # stored. If you leave this blank, a name will be generated automatically
+  # based on var.application_name.
   ingress_access_logs_s3_bucket_name = ""
 
-  # The prefix to use for ingress access logs associated with the ALB. All logs will
-  # be stored in a key with this prefix. If null, the application name will be used.
+  # The prefix to use for ingress access logs associated with the ALB. All logs
+  # will be stored in a key with this prefix. If null, the application name will
+  # be used.
   ingress_access_logs_s3_prefix = null
 
   # A list of custom ingress annotations, such as health checks and TLS
   # certificates, to add to the Helm chart. See:
-  # https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/ingres
-  # /annotations/
+  # https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/ingress/annotations/
   ingress_annotations = {}
 
-  # The protocol used by the Ingress ALB resource to communicate with the Service.
-  # Must be one of HTTP or HTTPS.
+  # The protocol used by the Ingress ALB resource to communicate with the
+  # Service. Must be one of HTTP or HTTPS.
   ingress_backend_protocol = "HTTP"
 
-  # When true, HTTP requests will automatically be redirected to use SSL (HTTPS).
-  # Used only when expose_type is either external or internal.
+  # When true, HTTP requests will automatically be redirected to use SSL
+  # (HTTPS). Used only when expose_type is either external or internal.
   ingress_configure_ssl_redirect = true
 
-  # Assign the ingress resource to an IngressGroup. All Ingress rules of the group
-  # will be collapsed to a single ALB. The rules will be collapsed in priority
-  # order, with lower numbers being evaluated first.
+  # Assign the ingress resource to an IngressGroup. All Ingress rules of the
+  # group will be collapsed to a single ALB. The rules will be collapsed in
+  # priority order, with lower numbers being evaluated first.
   ingress_group = null
 
   # A list of maps of protocols and ports that the ALB should listen on.
   ingress_listener_protocol_ports = [{"port":80,"protocol":"HTTP"},{"port":443,"protocol":"HTTPS"}]
 
   # Path prefix that should be matched to route to the service. For Kubernetes
-  # Versions <1.19, Use /* to match all paths. For Kubernetes Versions >=1.19, use /
-  # with ingress_path_type set to Prefix to match all paths.
+  # Versions <1.19, Use /* to match all paths. For Kubernetes Versions >=1.19,
+  # use / with ingress_path_type set to Prefix to match all paths.
   ingress_path = "/"
 
   # The path type to use for the ingress rule. Refer to
-  # https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types for
-  # more information.
+  # https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types
+  # for more information.
   ingress_path_type = "Prefix"
 
   # Set to true if the Ingress SSL redirect rule is managed externally. This is
   # useful when configuring Ingress grouping and you only want one service to be
-  # managing the SSL redirect rules. Only used if ingress_configure_ssl_redirect is
-  # true.
+  # managing the SSL redirect rules. Only used if ingress_configure_ssl_redirect
+  # is true.
   ingress_ssl_redirect_rule_already_exists = false
 
-  # Whether or not the redirect rule requires setting path type. Set to true when
-  # deploying to Kubernetes clusters with version >=1.19. Only used if
+  # Whether or not the redirect rule requires setting path type. Set to true
+  # when deploying to Kubernetes clusters with version >=1.19. Only used if
   # ingress_configure_ssl_redirect is true.
   ingress_ssl_redirect_rule_requires_path_type = true
 
-  # Controls how the ALB routes traffic to the Pods. Supports 'instance' mode (route
-  # traffic to NodePort and load balance across all worker nodes, relying on
-  # Kubernetes Service networking to route to the pods), or 'ip' mode (route traffic
-  # directly to the pod IP - only works with AWS VPC CNI). Must be set to 'ip' if
-  # using Fargate. Only used if expose_type is not cluster-internal.
+  # Controls how the ALB routes traffic to the Pods. Supports 'instance' mode
+  # (route traffic to NodePort and load balance across all worker nodes, relying
+  # on Kubernetes Service networking to route to the pods), or 'ip' mode (route
+  # traffic directly to the pod IP - only works with AWS VPC CNI). Must be set
+  # to 'ip' if using Fargate. Only used if expose_type is not cluster-internal.
   ingress_target_type = "instance"
 
   # Seconds to wait after Pod creation before liveness probe has any effect. Any
@@ -362,34 +365,35 @@ module "k_8_s_service" {
   # URL path for the endpoint that the liveness probe should ping.
   liveness_probe_path = "/"
 
-  # Port that the liveness probe should use to connect to the application container.
+  # Port that the liveness probe should use to connect to the application
+  # container.
   liveness_probe_port = 80
 
-  # Protocol (HTTP or HTTPS) that the liveness probe should use to connect to the
-  # application container.
+  # Protocol (HTTP or HTTPS) that the liveness probe should use to connect to
+  # the application container.
   liveness_probe_protocol = "HTTP"
 
-  # The minimum number of pods that should be available at any given point in time.
-  # This is used to configure a PodDisruptionBudget for the service, allowing you to
-  # achieve a graceful rollout. See
-  # https://blog.gruntwork.io/avoiding-outages-in-your-kubernetes-cluster-using-podd
-  # sruptionbudgets-ef6a4baa5085 for an introduction to PodDisruptionBudgets.
+  # The minimum number of pods that should be available at any given point in
+  # time. This is used to configure a PodDisruptionBudget for the service,
+  # allowing you to achieve a graceful rollout. See
+  # https://blog.gruntwork.io/avoiding-outages-in-your-kubernetes-cluster-using-poddisruptionbudgets-ef6a4baa5085
+  # for an introduction to PodDisruptionBudgets.
   min_number_of_pods_available = 0
 
-  # After this number of days, Ingress log files should be transitioned from S3 to
-  # Glacier. Set to 0 to never archive logs.
+  # After this number of days, Ingress log files should be transitioned from S3
+  # to Glacier. Set to 0 to never archive logs.
   num_days_after_which_archive_ingress_log_data = 0
 
-  # After this number of days, Ingress log files should be deleted from S3. Set to 0
-  # to never delete logs.
+  # After this number of days, Ingress log files should be deleted from S3. Set
+  # to 0 to never delete logs.
   num_days_after_which_delete_ingress_log_data = 0
 
-  # Override any computed chart inputs with this map. This map is shallow merged to
-  # the computed chart inputs prior to passing on to the Helm Release. This is
-  # provided as a workaround while the terraform module does not support a
-  # particular input value that is exposed in the underlying chart. Please always
-  # file a GitHub issue to request exposing additional underlying input values prior
-  # to using this variable.
+  # Override any computed chart inputs with this map. This map is shallow merged
+  # to the computed chart inputs prior to passing on to the Helm Release. This
+  # is provided as a workaround while the terraform module does not support a
+  # particular input value that is exposed in the underlying chart. Please
+  # always file a GitHub issue to request exposing additional underlying input
+  # values prior to using this variable.
   override_chart_inputs = {}
 
   # Seconds to wait after Pod creation before liveness probe has any effect. Any
@@ -407,39 +411,39 @@ module "k_8_s_service" {
   # container.
   readiness_probe_port = 80
 
-  # Protocol (HTTP or HTTPS) that the readiness probe should use to connect to the
-  # application container.
+  # Protocol (HTTP or HTTPS) that the readiness probe should use to connect to
+  # the application container.
   readiness_probe_protocol = "HTTP"
 
   # Paths that should be allocated as tmpfs volumes in the Deployment container.
-  # Each entry in the map is a key value pair where the key is an arbitrary name to
-  # bind to the volume, and the value is the path in the container to mount the
-  # tmpfs volume.
+  # Each entry in the map is a key value pair where the key is an arbitrary name
+  # to bind to the volume, and the value is the path in the container to mount
+  # the tmpfs volume.
   scratch_paths = {}
 
   # Kubernetes Secrets to be injected into the container. Each entry in the map
-  # represents a Secret to be injected, with the key representing the name of the
-  # Secret. The value is also a map, with each entry corresponding to an entry in
-  # the Secret, with the key corresponding to the Secret entry key and the value
-  # corresponding to the environment variable name.
+  # represents a Secret to be injected, with the key representing the name of
+  # the Secret. The value is also a map, with each entry corresponding to an
+  # entry in the Secret, with the key corresponding to the Secret entry key and
+  # the value corresponding to the environment variable name.
   secrets_as_env_vars = {}
 
   # Kubernetes Secrets to be injected into the container as volume mounts. Each
-  # entry in the map represents a Secret to be mounted, with the key representing
-  # the name of the Secret and the value as a map containing required mountPath
-  # (file path on the container to mount the Secret to) and optional subPath
-  # (sub-path inside the referenced volume).
+  # entry in the map represents a Secret to be mounted, with the key
+  # representing the name of the Secret and the value as a map containing
+  # required mountPath (file path on the container to mount the Secret to) and
+  # optional subPath (sub-path inside the referenced volume).
   secrets_as_volumes = {}
 
-  # When true, and service_account_name is not blank, lookup and assign an existing
-  # ServiceAccount in the Namespace to the Pods.
+  # When true, and service_account_name is not blank, lookup and assign an
+  # existing ServiceAccount in the Namespace to the Pods.
   service_account_exists = false
 
   # The name of a service account to create for use with the Pods. This service
-  # account will be mapped to the IAM role defined in `var.iam_role_name` to give
-  # the pod permissions to access the AWS API. Must be unique in this namespace.
-  # Leave as an empty string if you do not wish to assign a Service Account to the
-  # Pods.
+  # account will be mapped to the IAM role defined in `var.iam_role_name` to
+  # give the pod permissions to access the AWS API. Must be unique in this
+  # namespace. Leave as an empty string if you do not wish to assign a Service
+  # Account to the Pods.
   service_account_name = ""
 
   # The port to expose on the Service. This is most useful when addressing the
@@ -447,26 +451,27 @@ module "k_8_s_service" {
   # Ingress resource.
   service_port = 80
 
-  # Map of keys to container definitions that allow you to manage additional side
-  # car containers that should be included in the Pod. Note that the values are
-  # injected directly into the container list for the Pod Spec.
+  # Map of keys to container definitions that allow you to manage additional
+  # side car containers that should be included in the Pod. Note that the values
+  # are injected directly into the container list for the Pod Spec.
   sidecar_containers = {}
 
-  # Grace period in seconds that Kubernetes will wait before terminating the pod.
-  # The timeout happens in parallel to preStop hook and the SIGTERM signal,
+  # Grace period in seconds that Kubernetes will wait before terminating the
+  # pod. The timeout happens in parallel to preStop hook and the SIGTERM signal,
   # Kubernetes does not wait for preStop to finish before beginning the grace
   # period.
   termination_grace_period_seconds = null
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
   # A local file path where the helm chart values will be emitted. Use to debug
-  # issues with the helm chart values. Set to null to prevent creation of the file.
+  # issues with the helm chart values. Set to null to prevent creation of the
+  # file.
   values_file_path = null
 
   # When true, wait until Pods are up and healthy or wait_timeout seconds before
@@ -492,7 +497,7 @@ module "k_8_s_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/k8s-service?ref=v0.104.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/k8s-service?ref=v0.104.11"
 }
 
 inputs = {
@@ -526,43 +531,44 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Map of additional ports to expose for the container. The key is the name of the
-  # port and value contains port number and protocol.
+  # Map of additional ports to expose for the container. The key is the name of
+  # the port and value contains port number and protocol.
   additional_ports = null
 
-  # A list of ACM certificate ARNs to attach to the ALB. The first certificate in
-  # the list will be added as default certificate.
+  # A list of ACM certificate ARNs to attach to the ALB. The first certificate
+  # in the list will be added as default certificate.
   alb_acm_certificate_arns = []
 
-  # The number of consecutive health check successes required before considering an
-  # unhealthy target healthy.
+  # The number of consecutive health check successes required before considering
+  # an unhealthy target healthy.
   alb_health_check_healthy_threshold = 2
 
   # Interval between ALB health checks in seconds.
   alb_health_check_interval = 30
 
-  # URL path for the endpoint that the ALB health check should ping. Defaults to /.
+  # URL path for the endpoint that the ALB health check should ping. Defaults to
+  # /.
   alb_health_check_path = "/"
 
   # String value specifying the port that the ALB health check should probe. By
-  # default, this will be set to the traffic port (the NodePort or port where the
-  # service receives traffic). This can also be set to a Kubernetes named port, or
-  # direct integer value. See
-  # https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.3/guide/ingres
-  # /annotations/#healthcheck-port for more information.
+  # default, this will be set to the traffic port (the NodePort or port where
+  # the service receives traffic). This can also be set to a Kubernetes named
+  # port, or direct integer value. See
+  # https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.3/guide/ingress/annotations/#healthcheck-port
+  # for more information.
   alb_health_check_port = "traffic-port"
 
-  # Protocol (HTTP or HTTPS) that the ALB health check should use to connect to the
-  # application container.
+  # Protocol (HTTP or HTTPS) that the ALB health check should use to connect to
+  # the application container.
   alb_health_check_protocol = "HTTP"
 
-  # The HTTP status code that should be expected when doing health checks against
-  # the specified health check path. Accepts a single value (200), multiple values
-  # (200,201), or a range of values (200-300).
+  # The HTTP status code that should be expected when doing health checks
+  # against the specified health check path. Accepts a single value (200),
+  # multiple values (200,201), or a range of values (200-300).
   alb_health_check_success_codes = "200"
 
-  # The timeout, in seconds, during which no response from a target means a failed
-  # health check.
+  # The timeout, in seconds, during which no response from a target means a
+  # failed health check.
   alb_health_check_timeout = 10
 
   # The Docker image to use for the canary. Required if
@@ -572,167 +578,169 @@ inputs = {
   # Allow deletion of new resources created in this upgrade when upgrade fails.
   cleanup_on_fail = null
 
-  # Kubernetes ConfigMaps to be injected into the container. Each entry in the map
-  # represents a ConfigMap to be injected, with the key representing the name of the
-  # ConfigMap. The value is also a map, with each entry corresponding to an entry in
-  # the ConfigMap, with the key corresponding to the ConfigMap entry key and the
-  # value corresponding to the environment variable name.
+  # Kubernetes ConfigMaps to be injected into the container. Each entry in the
+  # map represents a ConfigMap to be injected, with the key representing the
+  # name of the ConfigMap. The value is also a map, with each entry
+  # corresponding to an entry in the ConfigMap, with the key corresponding to
+  # the ConfigMap entry key and the value corresponding to the environment
+  # variable name.
   configmaps_as_env_vars = {}
 
-  # Kubernetes ConfigMaps to be injected into the container as volume mounts. Each
-  # entry in the map represents a ConfigMap to be mounted, with the key representing
-  # the name of the ConfigMap and the value as a map containing required mountPath
-  # (file path on the container to mount the ConfigMap to) and optional subPath
-  # (sub-path inside the referenced volume).
+  # Kubernetes ConfigMaps to be injected into the container as volume mounts.
+  # Each entry in the map represents a ConfigMap to be mounted, with the key
+  # representing the name of the ConfigMap and the value as a map containing
+  # required mountPath (file path on the container to mount the ConfigMap to)
+  # and optional subPath (sub-path inside the referenced volume).
   configmaps_as_volumes = {}
 
-  # The protocol on which this service's Docker container accepts traffic. Must be
-  # one of the supported protocols:
-  # https://kubernetes.io/docs/concepts/services-networking/service/#protocol-suppor
-  # .
+  # The protocol on which this service's Docker container accepts traffic. Must
+  # be one of the supported protocols:
+  # https://kubernetes.io/docs/concepts/services-networking/service/#protocol-support.
   container_protocol = "TCP"
 
   # The map that lets you define Kubernetes resources you want installed and
   # configured as part of the chart.
   custom_resources = {}
 
-  # The number of canary Pods to run on the Kubernetes cluster for this service. If
-  # greater than 0, you must provide var.canary_image.
+  # The number of canary Pods to run on the Kubernetes cluster for this service.
+  # If greater than 0, you must provide var.canary_image.
   desired_number_of_canary_pods = 0
 
-  # The domain name for the DNS A record to bind to the Ingress resource for this
-  # service (e.g. service.foo.com). Depending on your external-dns configuration,
-  # this will also create the DNS record in the configured DNS service (e.g.,
-  # Route53).
+  # The domain name for the DNS A record to bind to the Ingress resource for
+  # this service (e.g. service.foo.com). Depending on your external-dns
+  # configuration, this will also create the DNS record in the configured DNS
+  # service (e.g., Route53).
   domain_name = null
 
-  # The TTL value of the DNS A record that is bound to the Ingress resource. Only
-  # used if var.domain_name is set and external-dns is deployed.
+  # The TTL value of the DNS A record that is bound to the Ingress resource.
+  # Only used if var.domain_name is set and external-dns is deployed.
   domain_propagation_ttl = null
 
-  # Configuration for using the IAM role with Service Accounts feature to provide
-  # permissions to the applications. This expects a map with two properties:
-  # `openid_connect_provider_arn` and `openid_connect_provider_url`. The
-  # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
-  # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL.
-  # Leave as an empty string if you do not wish to use IAM role with Service
-  # Accounts.
+  # Configuration for using the IAM role with Service Accounts feature to
+  # provide permissions to the applications. This expects a map with two
+  # properties: `openid_connect_provider_arn` and `openid_connect_provider_url`.
+  # The `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider
+  # for EKS to retrieve IAM credentials, while `openid_connect_provider_url` is
+  # the URL. Leave as an empty string if you do not wish to use IAM role with
+  # Service Accounts.
   eks_iam_role_for_service_accounts_config = {"openid_connect_provider_arn":"","openid_connect_provider_url":""}
 
-  # Whether or not to enable liveness probe. Liveness checks indicate whether or not
-  # the container is alive. When these checks fail, the cluster will automatically
-  # rotate the Pod.
+  # Whether or not to enable liveness probe. Liveness checks indicate whether or
+  # not the container is alive. When these checks fail, the cluster will
+  # automatically rotate the Pod.
   enable_liveness_probe = false
 
-  # Whether or not to enable readiness probe. Readiness checks indicate whether or
-  # not the container can accept traffic. When these checks fail, the Pods are
-  # automatically removed from the Service (and added back in when they pass).
+  # Whether or not to enable readiness probe. Readiness checks indicate whether
+  # or not the container can accept traffic. When these checks fail, the Pods
+  # are automatically removed from the Service (and added back in when they
+  # pass).
   enable_readiness_probe = false
 
-  # A map of environment variable name to environment variable value that should be
-  # made available to the Docker container.
+  # A map of environment variable name to environment variable value that should
+  # be made available to the Docker container.
   env_vars = {}
 
   # How the service will be exposed in the cluster. Must be one of `external`
-  # (accessible over the public Internet), `internal` (only accessible from within
-  # the same VPC as the cluster), `cluster-internal` (only accessible within the
-  # Kubernetes network), `none` (deploys as a headless service with no service IP).
+  # (accessible over the public Internet), `internal` (only accessible from
+  # within the same VPC as the cluster), `cluster-internal` (only accessible
+  # within the Kubernetes network), `none` (deploys as a headless service with
+  # no service IP).
   expose_type = "cluster-internal"
 
   # A boolean that indicates whether the access logs bucket should be destroyed,
-  # even if there are files in it, when you run Terraform destroy. Unless you are
-  # using this bucket only for test purposes, you'll want to leave this variable set
-  # to false.
+  # even if there are files in it, when you run Terraform destroy. Unless you
+  # are using this bucket only for test purposes, you'll want to leave this
+  # variable set to false.
   force_destroy_ingress_access_logs = false
 
   # The version of the k8s-service helm chart to deploy.
   helm_chart_version = "v0.2.18"
 
   # Configure the Horizontal Pod Autoscaler (HPA) information for the associated
-  # Deployment. HPA is disabled when this variable is set to null. Note that to use
-  # an HPA, you must have a corresponding service deployed to your cluster that
-  # exports the metrics (e.g., metrics-server
+  # Deployment. HPA is disabled when this variable is set to null. Note that to
+  # use an HPA, you must have a corresponding service deployed to your cluster
+  # that exports the metrics (e.g., metrics-server
   # https://github.com/kubernetes-sigs/metrics-server).
   horizontal_pod_autoscaler = null
 
-  # An object defining the policy to attach to `iam_role_name` if the IAM role is
-  # going to be created. Accepts a map of objects, where the map keys are sids for
-  # IAM policy statements, and the object fields are the resources, actions, and the
-  # effect ("Allow" or "Deny") of the statement. Ignored if `iam_role_arn` is
-  # provided. Leave as null if you do not wish to use IAM role with Service
-  # Accounts.
+  # An object defining the policy to attach to `iam_role_name` if the IAM role
+  # is going to be created. Accepts a map of objects, where the map keys are
+  # sids for IAM policy statements, and the object fields are the resources,
+  # actions, and the effect ("Allow" or "Deny") of the statement. Ignored if
+  # `iam_role_arn` is provided. Leave as null if you do not wish to use IAM role
+  # with Service Accounts.
   iam_policy = null
 
   # Whether or not the IAM role passed in `iam_role_name` already exists. Set to
   # true if it exists, or false if it needs to be created. Defaults to false.
   iam_role_exists = false
 
-  # The name of an IAM role that will be used by the pod to access the AWS API. If
-  # `iam_role_exists` is set to false, this role will be created. Leave as an empty
-  # string if you do not wish to use IAM role with Service Accounts.
+  # The name of an IAM role that will be used by the pod to access the AWS API.
+  # If `iam_role_exists` is set to false, this role will be created. Leave as an
+  # empty string if you do not wish to use IAM role with Service Accounts.
   iam_role_name = ""
 
   # Set to true if the S3 bucket to store the Ingress access logs is managed
   # external to this module.
   ingress_access_logs_s3_bucket_already_exists = false
 
-  # The name to use for the S3 bucket where the Ingress access logs will be stored.
-  # If you leave this blank, a name will be generated automatically based on
-  # var.application_name.
+  # The name to use for the S3 bucket where the Ingress access logs will be
+  # stored. If you leave this blank, a name will be generated automatically
+  # based on var.application_name.
   ingress_access_logs_s3_bucket_name = ""
 
-  # The prefix to use for ingress access logs associated with the ALB. All logs will
-  # be stored in a key with this prefix. If null, the application name will be used.
+  # The prefix to use for ingress access logs associated with the ALB. All logs
+  # will be stored in a key with this prefix. If null, the application name will
+  # be used.
   ingress_access_logs_s3_prefix = null
 
   # A list of custom ingress annotations, such as health checks and TLS
   # certificates, to add to the Helm chart. See:
-  # https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/ingres
-  # /annotations/
+  # https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/ingress/annotations/
   ingress_annotations = {}
 
-  # The protocol used by the Ingress ALB resource to communicate with the Service.
-  # Must be one of HTTP or HTTPS.
+  # The protocol used by the Ingress ALB resource to communicate with the
+  # Service. Must be one of HTTP or HTTPS.
   ingress_backend_protocol = "HTTP"
 
-  # When true, HTTP requests will automatically be redirected to use SSL (HTTPS).
-  # Used only when expose_type is either external or internal.
+  # When true, HTTP requests will automatically be redirected to use SSL
+  # (HTTPS). Used only when expose_type is either external or internal.
   ingress_configure_ssl_redirect = true
 
-  # Assign the ingress resource to an IngressGroup. All Ingress rules of the group
-  # will be collapsed to a single ALB. The rules will be collapsed in priority
-  # order, with lower numbers being evaluated first.
+  # Assign the ingress resource to an IngressGroup. All Ingress rules of the
+  # group will be collapsed to a single ALB. The rules will be collapsed in
+  # priority order, with lower numbers being evaluated first.
   ingress_group = null
 
   # A list of maps of protocols and ports that the ALB should listen on.
   ingress_listener_protocol_ports = [{"port":80,"protocol":"HTTP"},{"port":443,"protocol":"HTTPS"}]
 
   # Path prefix that should be matched to route to the service. For Kubernetes
-  # Versions <1.19, Use /* to match all paths. For Kubernetes Versions >=1.19, use /
-  # with ingress_path_type set to Prefix to match all paths.
+  # Versions <1.19, Use /* to match all paths. For Kubernetes Versions >=1.19,
+  # use / with ingress_path_type set to Prefix to match all paths.
   ingress_path = "/"
 
   # The path type to use for the ingress rule. Refer to
-  # https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types for
-  # more information.
+  # https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types
+  # for more information.
   ingress_path_type = "Prefix"
 
   # Set to true if the Ingress SSL redirect rule is managed externally. This is
   # useful when configuring Ingress grouping and you only want one service to be
-  # managing the SSL redirect rules. Only used if ingress_configure_ssl_redirect is
-  # true.
+  # managing the SSL redirect rules. Only used if ingress_configure_ssl_redirect
+  # is true.
   ingress_ssl_redirect_rule_already_exists = false
 
-  # Whether or not the redirect rule requires setting path type. Set to true when
-  # deploying to Kubernetes clusters with version >=1.19. Only used if
+  # Whether or not the redirect rule requires setting path type. Set to true
+  # when deploying to Kubernetes clusters with version >=1.19. Only used if
   # ingress_configure_ssl_redirect is true.
   ingress_ssl_redirect_rule_requires_path_type = true
 
-  # Controls how the ALB routes traffic to the Pods. Supports 'instance' mode (route
-  # traffic to NodePort and load balance across all worker nodes, relying on
-  # Kubernetes Service networking to route to the pods), or 'ip' mode (route traffic
-  # directly to the pod IP - only works with AWS VPC CNI). Must be set to 'ip' if
-  # using Fargate. Only used if expose_type is not cluster-internal.
+  # Controls how the ALB routes traffic to the Pods. Supports 'instance' mode
+  # (route traffic to NodePort and load balance across all worker nodes, relying
+  # on Kubernetes Service networking to route to the pods), or 'ip' mode (route
+  # traffic directly to the pod IP - only works with AWS VPC CNI). Must be set
+  # to 'ip' if using Fargate. Only used if expose_type is not cluster-internal.
   ingress_target_type = "instance"
 
   # Seconds to wait after Pod creation before liveness probe has any effect. Any
@@ -746,34 +754,35 @@ inputs = {
   # URL path for the endpoint that the liveness probe should ping.
   liveness_probe_path = "/"
 
-  # Port that the liveness probe should use to connect to the application container.
+  # Port that the liveness probe should use to connect to the application
+  # container.
   liveness_probe_port = 80
 
-  # Protocol (HTTP or HTTPS) that the liveness probe should use to connect to the
-  # application container.
+  # Protocol (HTTP or HTTPS) that the liveness probe should use to connect to
+  # the application container.
   liveness_probe_protocol = "HTTP"
 
-  # The minimum number of pods that should be available at any given point in time.
-  # This is used to configure a PodDisruptionBudget for the service, allowing you to
-  # achieve a graceful rollout. See
-  # https://blog.gruntwork.io/avoiding-outages-in-your-kubernetes-cluster-using-podd
-  # sruptionbudgets-ef6a4baa5085 for an introduction to PodDisruptionBudgets.
+  # The minimum number of pods that should be available at any given point in
+  # time. This is used to configure a PodDisruptionBudget for the service,
+  # allowing you to achieve a graceful rollout. See
+  # https://blog.gruntwork.io/avoiding-outages-in-your-kubernetes-cluster-using-poddisruptionbudgets-ef6a4baa5085
+  # for an introduction to PodDisruptionBudgets.
   min_number_of_pods_available = 0
 
-  # After this number of days, Ingress log files should be transitioned from S3 to
-  # Glacier. Set to 0 to never archive logs.
+  # After this number of days, Ingress log files should be transitioned from S3
+  # to Glacier. Set to 0 to never archive logs.
   num_days_after_which_archive_ingress_log_data = 0
 
-  # After this number of days, Ingress log files should be deleted from S3. Set to 0
-  # to never delete logs.
+  # After this number of days, Ingress log files should be deleted from S3. Set
+  # to 0 to never delete logs.
   num_days_after_which_delete_ingress_log_data = 0
 
-  # Override any computed chart inputs with this map. This map is shallow merged to
-  # the computed chart inputs prior to passing on to the Helm Release. This is
-  # provided as a workaround while the terraform module does not support a
-  # particular input value that is exposed in the underlying chart. Please always
-  # file a GitHub issue to request exposing additional underlying input values prior
-  # to using this variable.
+  # Override any computed chart inputs with this map. This map is shallow merged
+  # to the computed chart inputs prior to passing on to the Helm Release. This
+  # is provided as a workaround while the terraform module does not support a
+  # particular input value that is exposed in the underlying chart. Please
+  # always file a GitHub issue to request exposing additional underlying input
+  # values prior to using this variable.
   override_chart_inputs = {}
 
   # Seconds to wait after Pod creation before liveness probe has any effect. Any
@@ -791,39 +800,39 @@ inputs = {
   # container.
   readiness_probe_port = 80
 
-  # Protocol (HTTP or HTTPS) that the readiness probe should use to connect to the
-  # application container.
+  # Protocol (HTTP or HTTPS) that the readiness probe should use to connect to
+  # the application container.
   readiness_probe_protocol = "HTTP"
 
   # Paths that should be allocated as tmpfs volumes in the Deployment container.
-  # Each entry in the map is a key value pair where the key is an arbitrary name to
-  # bind to the volume, and the value is the path in the container to mount the
-  # tmpfs volume.
+  # Each entry in the map is a key value pair where the key is an arbitrary name
+  # to bind to the volume, and the value is the path in the container to mount
+  # the tmpfs volume.
   scratch_paths = {}
 
   # Kubernetes Secrets to be injected into the container. Each entry in the map
-  # represents a Secret to be injected, with the key representing the name of the
-  # Secret. The value is also a map, with each entry corresponding to an entry in
-  # the Secret, with the key corresponding to the Secret entry key and the value
-  # corresponding to the environment variable name.
+  # represents a Secret to be injected, with the key representing the name of
+  # the Secret. The value is also a map, with each entry corresponding to an
+  # entry in the Secret, with the key corresponding to the Secret entry key and
+  # the value corresponding to the environment variable name.
   secrets_as_env_vars = {}
 
   # Kubernetes Secrets to be injected into the container as volume mounts. Each
-  # entry in the map represents a Secret to be mounted, with the key representing
-  # the name of the Secret and the value as a map containing required mountPath
-  # (file path on the container to mount the Secret to) and optional subPath
-  # (sub-path inside the referenced volume).
+  # entry in the map represents a Secret to be mounted, with the key
+  # representing the name of the Secret and the value as a map containing
+  # required mountPath (file path on the container to mount the Secret to) and
+  # optional subPath (sub-path inside the referenced volume).
   secrets_as_volumes = {}
 
-  # When true, and service_account_name is not blank, lookup and assign an existing
-  # ServiceAccount in the Namespace to the Pods.
+  # When true, and service_account_name is not blank, lookup and assign an
+  # existing ServiceAccount in the Namespace to the Pods.
   service_account_exists = false
 
   # The name of a service account to create for use with the Pods. This service
-  # account will be mapped to the IAM role defined in `var.iam_role_name` to give
-  # the pod permissions to access the AWS API. Must be unique in this namespace.
-  # Leave as an empty string if you do not wish to assign a Service Account to the
-  # Pods.
+  # account will be mapped to the IAM role defined in `var.iam_role_name` to
+  # give the pod permissions to access the AWS API. Must be unique in this
+  # namespace. Leave as an empty string if you do not wish to assign a Service
+  # Account to the Pods.
   service_account_name = ""
 
   # The port to expose on the Service. This is most useful when addressing the
@@ -831,26 +840,27 @@ inputs = {
   # Ingress resource.
   service_port = 80
 
-  # Map of keys to container definitions that allow you to manage additional side
-  # car containers that should be included in the Pod. Note that the values are
-  # injected directly into the container list for the Pod Spec.
+  # Map of keys to container definitions that allow you to manage additional
+  # side car containers that should be included in the Pod. Note that the values
+  # are injected directly into the container list for the Pod Spec.
   sidecar_containers = {}
 
-  # Grace period in seconds that Kubernetes will wait before terminating the pod.
-  # The timeout happens in parallel to preStop hook and the SIGTERM signal,
+  # Grace period in seconds that Kubernetes will wait before terminating the
+  # pod. The timeout happens in parallel to preStop hook and the SIGTERM signal,
   # Kubernetes does not wait for preStop to finish before beginning the grace
   # period.
   termination_grace_period_seconds = null
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
   # A local file path where the helm chart values will be emitted. Use to debug
-  # issues with the helm chart values. Set to null to prevent creation of the file.
+  # issues with the helm chart values. Set to null to prevent creation of the
+  # file.
   values_file_path = null
 
   # When true, wait until Pods are up and healthy or wait_timeout seconds before
@@ -1943,11 +1953,11 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/services/k8s-service/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/services/k8s-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/services/k8s-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/k8s-service/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/k8s-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/k8s-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "8bcd57c6a51b78be44b6f40577bd14f9"
+  "hash": "e2321c9b276540596848ad74b4b5016e"
 }
 ##DOCS-SOURCER-END -->
