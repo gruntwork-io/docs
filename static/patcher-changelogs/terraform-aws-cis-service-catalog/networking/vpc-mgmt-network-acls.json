@@ -1,6 +1,9 @@
 {
   "module": "networking/vpc-mgmt-network-acls",
   "releases": {
+    "v0.47.2": {
+      "contains_changes": false
+    },
     "v0.47.1": {
       "contains_changes": false
     },

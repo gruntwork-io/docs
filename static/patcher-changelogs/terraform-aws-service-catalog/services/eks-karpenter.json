@@ -1,11 +1,11 @@
 {
-  "module": "mgmt/tailscale-subnet-router",
+  "module": "services/eks-karpenter",
   "releases": {
     "v0.104.10": {
       "contains_changes": false
     },
     "v0.104.9": {
-      "contains_changes": true
+      "contains_changes": false
     },
     "v0.104.8": {
       "contains_changes": false
@@ -32,7 +32,7 @@
       "contains_changes": false
     },
     "v0.104.0": {
-      "contains_changes": true
+      "contains_changes": false
     },
     "v0.103.2": {
       "contains_changes": false
@@ -53,7 +53,7 @@
       "contains_changes": false
     },
     "v0.102.13": {
-      "contains_changes": true
+      "contains_changes": false
     },
     "v0.102.12": {
       "contains_changes": false
@@ -92,7 +92,7 @@
       "contains_changes": false
     },
     "v0.102.0": {
-      "contains_changes": true
+      "contains_changes": false
     },
     "v0.101.0": {
       "contains_changes": false
@@ -152,7 +152,7 @@
       "contains_changes": false
     },
     "v0.96.3": {
-      "contains_changes": true
+      "contains_changes": false
     },
     "v0.96.2": {
       "contains_changes": false
@@ -161,7 +161,7 @@
       "contains_changes": false
     },
     "v0.96.0": {
-      "contains_changes": true
+      "contains_changes": false
     },
     "v0.95.1": {
       "contains_changes": false
@@ -182,7 +182,7 @@
       "contains_changes": false
     },
     "v0.93.1": {
-      "contains_changes": true
+      "contains_changes": false
     },
     "v0.93.0": {
       "contains_changes": false
@@ -197,7 +197,7 @@
       "contains_changes": false
     },
     "v0.90.8": {
-      "contains_changes": true
+      "contains_changes": false
     },
     "v0.90.7": {
       "contains_changes": false
@@ -218,10 +218,10 @@
       "contains_changes": false
     },
     "v0.90.1": {
-      "contains_changes": true
+      "contains_changes": false
     },
     "v0.90.0": {
-      "contains_changes": true
+      "contains_changes": false
     },
     "v0.89.4": {
       "contains_changes": false
@@ -230,7 +230,7 @@
       "contains_changes": false
     },
     "v0.89.2": {
-      "contains_changes": true
+      "contains_changes": false
     },
     "v0.89.1": {
       "contains_changes": false
@@ -245,7 +245,7 @@
       "contains_changes": false
     },
     "v0.88.0": {
-      "contains_changes": true
+      "contains_changes": false
     },
     "v0.87.0": {
       "contains_changes": false
@@ -260,10 +260,10 @@
       "contains_changes": false
     },
     "v0.85.11": {
-      "contains_changes": true
+      "contains_changes": false
     },
     "v0.85.10": {
-      "contains_changes": true
+      "contains_changes": false
     },
     "v0.85.9": {
       "contains_changes": false
@@ -281,13 +281,13 @@
       "contains_changes": false
     },
     "v0.85.4": {
-      "contains_changes": true
+      "contains_changes": false
     },
     "v0.85.3": {
       "contains_changes": false
     },
     "v0.85.2": {
-      "contains_changes": true
+      "contains_changes": false
     },
     "v0.85.1": {
       "contains_changes": false

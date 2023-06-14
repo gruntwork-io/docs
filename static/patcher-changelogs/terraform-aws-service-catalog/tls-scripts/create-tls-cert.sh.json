@@ -1,6 +1,12 @@
 {
   "module": "tls-scripts/create-tls-cert.sh",
   "releases": {
+    "v0.104.10": {
+      "contains_changes": false
+    },
+    "v0.104.9": {
+      "contains_changes": false
+    },
     "v0.104.8": {
       "contains_changes": false
     },
