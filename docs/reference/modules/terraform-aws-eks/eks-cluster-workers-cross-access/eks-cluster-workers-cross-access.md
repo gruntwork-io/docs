@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # EKS Cluster Workers Cross Access Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-cluster-workers-cross-access" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-541/modules/eks-cluster-workers-cross-access" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.58.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -139,11 +139,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-cluster-workers-cross-access/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-cluster-workers-cross-access/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-cluster-workers-cross-access/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-541/modules/eks-cluster-workers-cross-access/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-541/modules/eks-cluster-workers-cross-access/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-541/modules/eks-cluster-workers-cross-access/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9584270199da3e2f22e25930bd4ab894"
+  "hash": "bf97eb4996a6d21bfeed36349cf78bcd"
 }
 ##DOCS-SOURCER-END -->

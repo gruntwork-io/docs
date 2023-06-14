@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ALB Ingress Controller IAM Policy Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-alb-ingress-controller-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-541/modules/eks-alb-ingress-controller-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.58.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -23,14 +23,14 @@ defines the minimal set of permissions necessary for the [AWS ALB Ingress
 Controller](https://github.com/kubernetes-sigs/aws-alb-ingress-controller). This policy can then be attached to EC2
 instances or IAM roles so that the controller deployed has enough permissions to manage an ALB.
 
-See [the eks-alb-ingress-controller module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-alb-ingress-controller) for a module that deploys the Ingress
+See [the eks-alb-ingress-controller module](https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-541/modules/eks-alb-ingress-controller) for a module that deploys the Ingress
 Controller on to your EKS cluster.
 
 ## Attaching IAM policy to workers
 
 To allow the ALB Ingress Controller to manage ALBs, it needs IAM permissions to use the AWS API to manage ALBs.
 Currently, the way to grant Pods IAM privileges is to use the worker IAM profiles provisioned by [the
-eks-cluster-workers module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-cluster-workers/README.md#how-do-you-add-additional-iam-policies).
+eks-cluster-workers module](https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-541/modules/eks-cluster-workers/README.md#how-do-you-add-additional-iam-policies).
 
 The Terraform templates in this module create an IAM policy that has the required permissions. You then need to use an
 [aws_iam_policy_attachment](https://www.terraform.io/docs/providers/aws/r/iam_policy_attachment.html) to attach that
@@ -195,11 +195,11 @@ The name of the IAM policy created with the permissions for the ALB ingress cont
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-alb-ingress-controller-iam-policy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-alb-ingress-controller-iam-policy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.0/modules/eks-alb-ingress-controller-iam-policy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-541/modules/eks-alb-ingress-controller-iam-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-541/modules/eks-alb-ingress-controller-iam-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-541/modules/eks-alb-ingress-controller-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "babaa9537557a6f84506b27074c86637"
+  "hash": "cd435c67e7e64102923588bbf6168d75"
 }
 ##DOCS-SOURCER-END -->
