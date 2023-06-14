@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ECS Service with Discovery
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-service-with-discovery" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/test-stability%2FCORE-549/modules/ecs-service-with-discovery" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.24.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -24,11 +24,11 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-service-with-discovery/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-service-with-discovery/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-service-with-discovery/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/test-stability%2FCORE-549/modules/ecs-service-with-discovery/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/test-stability%2FCORE-549/modules/ecs-service-with-discovery/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/test-stability%2FCORE-549/modules/ecs-service-with-discovery/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a05da3791f0399e9157a06b0d4d466ce"
+  "hash": "906d1fac8c69a3a0462df9f8b0f40e77"
 }
 ##DOCS-SOURCER-END -->

@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ECS Deployment Scripts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/test-stability%2FCORE-549/modules/ecs-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.35.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -48,7 +48,7 @@ The `run-ecs-task` script assumes you already have the following:
     resource](https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html). You'll need to know the family
     name and revision of the ECS Task Definition you want to run.
 
-Check out the [deploy-ecs-task example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/examples/deploy-ecs-task) for working sample code of both of the above.
+Check out the [deploy-ecs-task example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/test-stability%2FCORE-549/examples/deploy-ecs-task) for working sample code of both of the above.
 
 To run the ECS Task Definition `db-backup` at revision `3` in an ECS Cluster named `ecs-stage` in `us-west-2`, use the
 following command:
@@ -96,11 +96,11 @@ container instead of the command configured in the Task Definition.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-deploy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-deploy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.6/modules/ecs-deploy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/test-stability%2FCORE-549/modules/ecs-deploy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/test-stability%2FCORE-549/modules/ecs-deploy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/test-stability%2FCORE-549/modules/ecs-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0b959b02bac56d04741189c5046c2e17"
+  "hash": "7d0e6d4ad7047ab38b08d0952d1e68ff"
 }
 ##DOCS-SOURCER-END -->
