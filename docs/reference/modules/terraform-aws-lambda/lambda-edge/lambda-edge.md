@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Lambda@Edge Function Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/fix%2F200-update-nodejs-runtimes/modules/lambda-edge" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -29,7 +29,7 @@ for the full details):
 *   The function must be versioned in order to be a target for Cloudfront events.
 *   The function must be deployed in the `us-east-1` region.
 *   The function runtime must be one of:
-    *   `nodejs10.x` or newer
+    *   `nodejs18.x` or newer
     *   `python3.7` or newer
 
 ## What is AWS Lambda?
@@ -65,7 +65,7 @@ resource "aws_lambda_permission" "with_sns" {
 
 Lambda@Edge stores CloudWatch Logs in the AWS Regions closest to the location where the function receives traffic and is
 executed. That means a log group must be created in every region that have [Regional Edge Caches](https://aws.amazon.com/blogs/networking-and-content-delivery/aggregating-lambdaedge-logs/).
-Instructions on how to do this can be found at the   [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge-multi-region-log-groups). To see which regions are receiving traffic, you can find graphs of metrics for the
+Instructions on how to do this can be found at the   [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/fix%2F200-update-nodejs-runtimes/modules/lambda-edge-multi-region-log-groups). To see which regions are receiving traffic, you can find graphs of metrics for the
 function on the CloudFront console and choose your region there.
 
 ## How to trigger this Lambda function from Cloudfront
@@ -204,9 +204,9 @@ module "lambda_edge" {
   # The runtime environment for the Lambda function (e.g. nodejs, python3.9,
   # java8). See
   # https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime
-  # for all possible values. Currently Lambda@Edge supports only nodejs10.x and
+  # for all possible values. Currently Lambda@Edge supports only nodejs18.x and
   # python3.7.
-  runtime = "nodejs10.x"
+  runtime = "nodejs18.x"
 
   # An S3 bucket location containing the function's deployment package. Exactly
   # one of var.source_path or the var.s3_xxx variables must be specified.
@@ -389,9 +389,9 @@ inputs = {
   # The runtime environment for the Lambda function (e.g. nodejs, python3.9,
   # java8). See
   # https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime
-  # for all possible values. Currently Lambda@Edge supports only nodejs10.x and
+  # for all possible values. Currently Lambda@Edge supports only nodejs18.x and
   # python3.7.
-  runtime = "nodejs10.x"
+  runtime = "nodejs18.x"
 
   # An S3 bucket location containing the function's deployment package. Exactly
   # one of var.source_path or the var.s3_xxx variables must be specified.
@@ -685,10 +685,10 @@ The amount of reserved concurrent executions for this lambda function or -1 if u
 <HclListItem name="runtime" requirement="optional" type="string">
 <HclListItemDescription>
 
-The runtime environment for the Lambda function (e.g. nodejs, python3.9, java8). See https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime for all possible values. Currently Lambda@Edge supports only nodejs10.x and python3.7.
+The runtime environment for the Lambda function (e.g. nodejs, python3.9, java8). See https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime for all possible values. Currently Lambda@Edge supports only nodejs18.x and python3.7.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;nodejs10.x&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;nodejs18.x&quot;"/>
 </HclListItem>
 
 <HclListItem name="s3_bucket" requirement="optional" type="string">
@@ -820,11 +820,11 @@ Name of the (optionally) created CloudWatch log groups for the lambda function.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/fix%2F200-update-nodejs-runtimes/modules/lambda-edge/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/fix%2F200-update-nodejs-runtimes/modules/lambda-edge/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/fix%2F200-update-nodejs-runtimes/modules/lambda-edge/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e3d84f5cdaa86f8833cc52b434a2f018"
+  "hash": "b38bd7d242aff7507d88add17e73432c"
 }
 ##DOCS-SOURCER-END -->

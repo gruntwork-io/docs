@@ -13,16 +13,16 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # API Gateway Lambda Function Proxy Methods Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/api-gateway-proxy-methods" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/fix%2F200-update-nodejs-runtimes/modules/api-gateway-proxy-methods" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.20.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module must be used in conjunction with [the api-gateway-proxy module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/api-gateway-proxy) to configure an API
+This module must be used in conjunction with [the api-gateway-proxy module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/fix%2F200-update-nodejs-runtimes/modules/api-gateway-proxy) to configure an API
 Gateway REST API to route all requests from a root path to a lambda function.
 
-Refer to [the module docs](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/api-gateway-proxy/README.md) for the `api-gateway-proxy` module for more details on how to
+Refer to [the module docs](https://github.com/gruntwork-io/terraform-aws-lambda/tree/fix%2F200-update-nodejs-runtimes/modules/api-gateway-proxy/README.md) for the `api-gateway-proxy` module for more details on how to
 use this module. Specifically, see the section [Can I expose additional lambda functions in a decentralized
-manner?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/api-gateway-proxy/core-concepts.md#can-i-expose-additional-lambda-functions-in-a-decentralized-manner)
+manner?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/fix%2F200-update-nodejs-runtimes/modules/api-gateway-proxy/core-concepts.md#can-i-expose-additional-lambda-functions-in-a-decentralized-manner)
 
 ## Sample Usage
 
@@ -293,11 +293,11 @@ ID of the API Gateway method for the root proxy (only created if path_prefix is 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/api-gateway-proxy-methods/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/api-gateway-proxy-methods/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/api-gateway-proxy-methods/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/fix%2F200-update-nodejs-runtimes/modules/api-gateway-proxy-methods/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/fix%2F200-update-nodejs-runtimes/modules/api-gateway-proxy-methods/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/fix%2F200-update-nodejs-runtimes/modules/api-gateway-proxy-methods/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "60c01b72fd338cb16fa741abb44fc9c3"
+  "hash": "3d0978f9305acb5ab81ebf1d82ccd008"
 }
 ##DOCS-SOURCER-END -->
