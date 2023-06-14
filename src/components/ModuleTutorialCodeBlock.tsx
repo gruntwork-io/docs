@@ -1,36 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
 
-import { Buffer } from 'buffer';
+import { Buffer } from "buffer"
 
 import CodeBlock from "@theme/CodeBlock"
 
-
 export type ModuleTutorialCodeBlockProps = {
-  github_username: string,
+  github_username: string
   mixpanel_project_id: string
 }
 
-export const ModuleTutorialCodeBlock: React.FC<ModuleTutorialCodeBlockProps> = ({
-  github_username,
-  mixpanel_project_id
-}) => {
-
-
+export const ModuleTutorialCodeBlock: React.FC<
+  ModuleTutorialCodeBlockProps
+> = ({ github_username, mixpanel_project_id }) => {
   const mixpanelProjectId = "5736098d8918525aa0a75f1d6dda8321"
-  const buffer = new Buffer(mixpanelProjectId);
-  const base64data = buffer.toString('base64');
+  const buffer = new Buffer(mixpanelProjectId)
+  const base64data = buffer.toString("base64")
+
+  const [githubUsername, setGithubUsername] = useState("unknown")
 
   const getGitHubUsernameFromQueryString = () => {
     // Grab query string params out of URL
-    const urlParams = new URLSearchParams(window.location.search);
-    let githubUsername = urlParams.get('github_username');
+    const urlParams = new URLSearchParams(window.location.search)
+    let githubUsername = urlParams.get("github_username")
     if (githubUsername == null) {
-      githubUsername = 'unknown'
+      githubUsername = "unknown"
     }
     return githubUsername
   }
 
-  const codeBlockSnippet = `import uuid 
+  const codeBlockSnippet = `import uuid
 import base64
 import json
 from urllib.request import urlopen, Request
@@ -83,20 +81,23 @@ def lambda_handler(event, context):
 
     return response_object
     `
+  const [codeSnippet, setCodeSnippet] = useState("")
 
   const produceCodeSnippet = (githubUsername: string): string => {
-    return codeBlockSnippet.replace('%github_username%', githubUsername).replace('%mixpanel_project_id%', base64data)
+    return codeBlockSnippet
+      .replace("%github_username%", githubUsername)
+      .replace("%mixpanel_project_id%", base64data)
   }
 
-  const [githubUsername] = useState(getGitHubUsernameFromQueryString());
+  useEffect(() => {
+    setGithubUsername(getGitHubUsernameFromQueryString())
+  }, [])
 
-  const [codeSnippet] = useState(produceCodeSnippet(githubUsername));
+  useEffect(() => {
+    setCodeSnippet(produceCodeSnippet(githubUsername))
+  }, [githubUsername])
 
-  return (
-    <CodeBlock language="python">
-      {codeSnippet}
-    </CodeBlock>
-  )
+  return <CodeBlock language="python">{codeSnippet}</CodeBlock>
 }
 
 export default ModuleTutorialCodeBlock
