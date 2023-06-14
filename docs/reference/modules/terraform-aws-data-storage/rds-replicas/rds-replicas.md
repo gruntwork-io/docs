@@ -1,0 +1,778 @@
+---
+title: "RDS Read Replicas Module"
+hide_title: true
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Data Storage Modules" version="0.27.3" />
+
+# RDS Read Replicas Module
+
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.3/modules/rds-replicas" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases?q=rds-replicas" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+
+This module creates a read replica (read-only copy) of a DB instance.
+
+## About RDS Read Replicas
+
+A read replica is a read-only copy of a DB instance. You can reduce the load on your primary DB instance by routing
+queries from your applications to the read replica. Refer to
+[Working with DB instance read replicas](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html)
+for more information.
+
+## Sample Usage
+
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S RDS-REPLICAS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "rds_replicas" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-replicas?ref=v0.27.3"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The instance type to use for the db (e.g. db.t2.micro)
+  instance_type = <string>
+
+  # The name used to namespace all resources created by these templates,
+  # including the DB instance (e.g. drupaldb). Must be unique for this region.
+  # May contain only lowercase alphanumeric characters, hyphens, underscores,
+  # periods, and spaces.
+  name = <string>
+
+  # The port the DB will listen on (e.g. 3306)
+  port = <number>
+
+  # An ID of the primary DB instance to create read replicas from
+  primary_instance_id = <string>
+
+  # The id of the VPC in which this DB should be deployed.
+  vpc_id = <string>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # List of IDs of AWS Security Groups to attach to the read replica RDS
+  # instance.
+  additional_security_group_ids = []
+
+  # A list of CIDR-formatted IP address ranges that can connect to read replica
+  # instances. If not set read replica instances will use the same security
+  # group as master instance.
+  allow_connections_from_cidr_blocks = []
+
+  # A list of Security Groups that can connect to read replica instances. If not
+  # set read replica instances will use the same security group as master
+  # instance.
+  allow_connections_from_security_groups = []
+
+  # Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be
+  # permitted. Note that these updates must always be manually performed and
+  # will never automatically applied.
+  allow_major_version_upgrade = true
+
+  # The availability zones within which it should be possible to spin up
+  # replicas
+  allowed_replica_zones = []
+
+  # Specifies whether any cluster modifications are applied immediately, or
+  # during the next maintenance window. Note that cluster modifications may
+  # cause degraded performance or downtime.
+  apply_immediately = false
+
+  # Indicates that minor engine upgrades will be applied automatically to the DB
+  # instance during the maintenance window. If set to true, you should set
+  # var.engine_version to MAJOR.MINOR and omit the .PATCH at the end (e.g., use
+  # 5.7 and not 5.7.11); otherwise, you'll get Terraform state drift. See
+  # https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version
+  # for more details.
+  auto_minor_version_upgrade = true
+
+  # How many days to keep backup snapshots around before cleaning them up. Must
+  # be 1 or greater to support read replicas. 0 means disable automated backups.
+  backup_retention_period = 21
+
+  # The Certificate Authority (CA) certificates bundle to use on the RDS
+  # instance.
+  ca_cert_identifier = null
+
+  # Copy all the RDS instance tags to snapshots. Default is false.
+  copy_tags_to_snapshot = false
+
+  # Timeout for DB creating
+  creating_timeout = "40m"
+
+  # A map of custom tags to apply to the RDS Instance and the Security Group
+  # created for it. The key is the tag name and the value is the tag value.
+  custom_tags = {}
+
+  # Timeout for DB deleting
+  deleting_timeout = "60m"
+
+  # The database can't be deleted when this value is set to true. The default is
+  # false.
+  deletion_protection = false
+
+  # List of log types to enable for exporting to CloudWatch logs. If omitted, no
+  # logs will be exported. Valid values (depending on engine): alert, audit,
+  # error, general, listener, slowquery, trace, postgresql (PostgreSQL) and
+  # upgrade (PostgreSQL).
+  enabled_cloudwatch_logs_exports = []
+
+  # Specifies whether IAM database authentication is enabled. This option is
+  # only available for MySQL and PostgreSQL engines.
+  iam_database_authentication_enabled = null
+
+  # The amount of provisioned IOPS for the primary instance. Setting this
+  # implies a storage_type of 'io1','io2, or 'gp3'. Set to 0 to disable.
+  iops = 0
+
+  # The ARN of a KMS key that should be used to encrypt data on disk. Only used
+  # if var.storage_encrypted is true. If you leave this blank, the default RDS
+  # KMS key for the account will be used.
+  kms_key_arn = null
+
+  # When configured, the upper limit to which Amazon RDS can automatically scale
+  # the storage of the DB instance. Configuring this will automatically ignore
+  # differences to allocated_storage. Must be greater than or equal to
+  # allocated_storage or 0 to disable Storage Autoscaling.
+  max_allocated_storage = 0
+
+  # The interval, in seconds, between points when Enhanced Monitoring metrics
+  # are collected for the DB instance. To disable collecting Enhanced Monitoring
+  # metrics, specify 0. Valid Values: 0, 1, 5, 10, 15, 30, 60. Enhanced
+  # Monitoring metrics are useful when you want to see how different processes
+  # or threads on a DB instance use the CPU.
+  monitoring_interval = 0
+
+  # The ARN for the IAM role that permits RDS to send enhanced monitoring
+  # metrics to CloudWatch Logs. If monitoring_interval is greater than 0, but
+  # monitoring_role_arn is let as an empty string, a default IAM role that
+  # allows enhanced monitoring will be created.
+  monitoring_role_arn = null
+
+  # The number of read replicas to create. RDS will asynchronously replicate all
+  # data from the master to these replicas, which you can use to horizontally
+  # scale reads traffic.
+  num_read_replicas = 0
+
+  # Name of a DB parameter group to associate.
+  parameter_group_name = null
+
+  # Specifies whether Performance Insights are enabled. Performance Insights can
+  # be enabled for specific versions of database engines. See
+  # https://aws.amazon.com/rds/performance-insights/ for more details.
+  performance_insights_enabled = false
+
+  # The ARN for the KMS key to encrypt Performance Insights data. When
+  # specifying performance_insights_kms_key_id, performance_insights_enabled
+  # needs to be set to true. Once KMS key is set, it can never be changed. When
+  # set to `null` default aws/rds KMS for given region is used.
+  performance_insights_kms_key_id = null
+
+  # The amount of time in days to retain Performance Insights data. Either 7 (7
+  # days) or 731 (2 years). When specifying
+  # performance_insights_retention_period, performance_insights_enabled needs to
+  # be set to true. Defaults to `7`.
+  performance_insights_retention_period = null
+
+  # WARNING: - In nearly all cases a database should NOT be publicly accessible.
+  # Only set this to true if you want the database open to the internet.
+  publicly_accessible = false
+
+  # Determines whether a final DB snapshot is created before the DB instance is
+  # deleted. Be very careful setting this to true; if you do, and you delete
+  # this DB instance, you will not have any backups of the data!
+  skip_final_snapshot = false
+
+  # Specifies whether the DB instance is encrypted.
+  storage_encrypted = true
+
+  # The type of storage to use for the primary instance. Must be one of
+  # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
+  # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+  storage_type = "gp2"
+
+  # Timeout for DB updating
+  updating_timeout = "80m"
+
+}
+
+
+```
+
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S RDS-REPLICAS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-replicas?ref=v0.27.3"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The instance type to use for the db (e.g. db.t2.micro)
+  instance_type = <string>
+
+  # The name used to namespace all resources created by these templates,
+  # including the DB instance (e.g. drupaldb). Must be unique for this region.
+  # May contain only lowercase alphanumeric characters, hyphens, underscores,
+  # periods, and spaces.
+  name = <string>
+
+  # The port the DB will listen on (e.g. 3306)
+  port = <number>
+
+  # An ID of the primary DB instance to create read replicas from
+  primary_instance_id = <string>
+
+  # The id of the VPC in which this DB should be deployed.
+  vpc_id = <string>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # List of IDs of AWS Security Groups to attach to the read replica RDS
+  # instance.
+  additional_security_group_ids = []
+
+  # A list of CIDR-formatted IP address ranges that can connect to read replica
+  # instances. If not set read replica instances will use the same security
+  # group as master instance.
+  allow_connections_from_cidr_blocks = []
+
+  # A list of Security Groups that can connect to read replica instances. If not
+  # set read replica instances will use the same security group as master
+  # instance.
+  allow_connections_from_security_groups = []
+
+  # Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be
+  # permitted. Note that these updates must always be manually performed and
+  # will never automatically applied.
+  allow_major_version_upgrade = true
+
+  # The availability zones within which it should be possible to spin up
+  # replicas
+  allowed_replica_zones = []
+
+  # Specifies whether any cluster modifications are applied immediately, or
+  # during the next maintenance window. Note that cluster modifications may
+  # cause degraded performance or downtime.
+  apply_immediately = false
+
+  # Indicates that minor engine upgrades will be applied automatically to the DB
+  # instance during the maintenance window. If set to true, you should set
+  # var.engine_version to MAJOR.MINOR and omit the .PATCH at the end (e.g., use
+  # 5.7 and not 5.7.11); otherwise, you'll get Terraform state drift. See
+  # https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version
+  # for more details.
+  auto_minor_version_upgrade = true
+
+  # How many days to keep backup snapshots around before cleaning them up. Must
+  # be 1 or greater to support read replicas. 0 means disable automated backups.
+  backup_retention_period = 21
+
+  # The Certificate Authority (CA) certificates bundle to use on the RDS
+  # instance.
+  ca_cert_identifier = null
+
+  # Copy all the RDS instance tags to snapshots. Default is false.
+  copy_tags_to_snapshot = false
+
+  # Timeout for DB creating
+  creating_timeout = "40m"
+
+  # A map of custom tags to apply to the RDS Instance and the Security Group
+  # created for it. The key is the tag name and the value is the tag value.
+  custom_tags = {}
+
+  # Timeout for DB deleting
+  deleting_timeout = "60m"
+
+  # The database can't be deleted when this value is set to true. The default is
+  # false.
+  deletion_protection = false
+
+  # List of log types to enable for exporting to CloudWatch logs. If omitted, no
+  # logs will be exported. Valid values (depending on engine): alert, audit,
+  # error, general, listener, slowquery, trace, postgresql (PostgreSQL) and
+  # upgrade (PostgreSQL).
+  enabled_cloudwatch_logs_exports = []
+
+  # Specifies whether IAM database authentication is enabled. This option is
+  # only available for MySQL and PostgreSQL engines.
+  iam_database_authentication_enabled = null
+
+  # The amount of provisioned IOPS for the primary instance. Setting this
+  # implies a storage_type of 'io1','io2, or 'gp3'. Set to 0 to disable.
+  iops = 0
+
+  # The ARN of a KMS key that should be used to encrypt data on disk. Only used
+  # if var.storage_encrypted is true. If you leave this blank, the default RDS
+  # KMS key for the account will be used.
+  kms_key_arn = null
+
+  # When configured, the upper limit to which Amazon RDS can automatically scale
+  # the storage of the DB instance. Configuring this will automatically ignore
+  # differences to allocated_storage. Must be greater than or equal to
+  # allocated_storage or 0 to disable Storage Autoscaling.
+  max_allocated_storage = 0
+
+  # The interval, in seconds, between points when Enhanced Monitoring metrics
+  # are collected for the DB instance. To disable collecting Enhanced Monitoring
+  # metrics, specify 0. Valid Values: 0, 1, 5, 10, 15, 30, 60. Enhanced
+  # Monitoring metrics are useful when you want to see how different processes
+  # or threads on a DB instance use the CPU.
+  monitoring_interval = 0
+
+  # The ARN for the IAM role that permits RDS to send enhanced monitoring
+  # metrics to CloudWatch Logs. If monitoring_interval is greater than 0, but
+  # monitoring_role_arn is let as an empty string, a default IAM role that
+  # allows enhanced monitoring will be created.
+  monitoring_role_arn = null
+
+  # The number of read replicas to create. RDS will asynchronously replicate all
+  # data from the master to these replicas, which you can use to horizontally
+  # scale reads traffic.
+  num_read_replicas = 0
+
+  # Name of a DB parameter group to associate.
+  parameter_group_name = null
+
+  # Specifies whether Performance Insights are enabled. Performance Insights can
+  # be enabled for specific versions of database engines. See
+  # https://aws.amazon.com/rds/performance-insights/ for more details.
+  performance_insights_enabled = false
+
+  # The ARN for the KMS key to encrypt Performance Insights data. When
+  # specifying performance_insights_kms_key_id, performance_insights_enabled
+  # needs to be set to true. Once KMS key is set, it can never be changed. When
+  # set to `null` default aws/rds KMS for given region is used.
+  performance_insights_kms_key_id = null
+
+  # The amount of time in days to retain Performance Insights data. Either 7 (7
+  # days) or 731 (2 years). When specifying
+  # performance_insights_retention_period, performance_insights_enabled needs to
+  # be set to true. Defaults to `7`.
+  performance_insights_retention_period = null
+
+  # WARNING: - In nearly all cases a database should NOT be publicly accessible.
+  # Only set this to true if you want the database open to the internet.
+  publicly_accessible = false
+
+  # Determines whether a final DB snapshot is created before the DB instance is
+  # deleted. Be very careful setting this to true; if you do, and you delete
+  # this DB instance, you will not have any backups of the data!
+  skip_final_snapshot = false
+
+  # Specifies whether the DB instance is encrypted.
+  storage_encrypted = true
+
+  # The type of storage to use for the primary instance. Must be one of
+  # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
+  # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+  storage_type = "gp2"
+
+  # Timeout for DB updating
+  updating_timeout = "80m"
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
+
+
+
+
+## Reference
+
+<Tabs>
+<TabItem value="inputs" label="Inputs" default>
+
+### Required
+
+<HclListItem name="instance_type" requirement="required" type="string">
+<HclListItemDescription>
+
+The instance type to use for the db (e.g. db.t2.micro)
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name used to namespace all resources created by these templates, including the DB instance (e.g. drupaldb). Must be unique for this region. May contain only lowercase alphanumeric characters, hyphens, underscores, periods, and spaces.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="port" requirement="required" type="number">
+<HclListItemDescription>
+
+The port the DB will listen on (e.g. 3306)
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="primary_instance_id" requirement="required" type="string">
+<HclListItemDescription>
+
+An ID of the primary DB instance to create read replicas from
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The id of the VPC in which this DB should be deployed.
+
+</HclListItemDescription>
+</HclListItem>
+
+### Optional
+
+<HclListItem name="additional_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of IDs of AWS Security Groups to attach to the read replica RDS instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of CIDR-formatted IP address ranges that can connect to read replica instances. If not set read replica instances will use the same security group as master instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of Security Groups that can connect to read replica instances. If not set read replica instances will use the same security group as master instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_major_version_upgrade" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be permitted. Note that these updates must always be manually performed and will never automatically applied.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="allowed_replica_zones" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The availability zones within which it should be possible to spin up replicas
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="apply_immediately" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether any cluster modifications are applied immediately, or during the next maintenance window. Note that cluster modifications may cause degraded performance or downtime.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="auto_minor_version_upgrade" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window. If set to true, you should set <a href="#engine_version"><code>engine_version</code></a> to MAJOR.MINOR and omit the .PATCH at the end (e.g., use 5.7 and not 5.7.11); otherwise, you'll get Terraform state drift. See https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version for more details.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="backup_retention_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+How many days to keep backup snapshots around before cleaning them up. Must be 1 or greater to support read replicas. 0 means disable automated backups.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="21"/>
+</HclListItem>
+
+<HclListItem name="ca_cert_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Certificate Authority (CA) certificates bundle to use on the RDS instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="copy_tags_to_snapshot" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Copy all the RDS instance tags to snapshots. Default is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="creating_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Timeout for DB creating
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;40m&quot;"/>
+</HclListItem>
+
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the RDS Instance and the Security Group created for it. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="deleting_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Timeout for DB deleting
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;60m&quot;"/>
+</HclListItem>
+
+<HclListItem name="deletion_protection" requirement="optional" type="bool">
+<HclListItemDescription>
+
+The database can't be deleted when this value is set to true. The default is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enabled_cloudwatch_logs_exports" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on engine): alert, audit, error, general, listener, slowquery, trace, postgresql (PostgreSQL) and upgrade (PostgreSQL).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="iam_database_authentication_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether IAM database authentication is enabled. This option is only available for MySQL and PostgreSQL engines.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="iops" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of provisioned IOPS for the primary instance. Setting this implies a storage_type of 'io1','io2, or 'gp3'. Set to 0 to disable.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of a KMS key that should be used to encrypt data on disk. Only used if <a href="#storage_encrypted"><code>storage_encrypted</code></a> is true. If you leave this blank, the default RDS KMS key for the account will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="max_allocated_storage" requirement="optional" type="number">
+<HclListItemDescription>
+
+When configured, the upper limit to which Amazon RDS can automatically scale the storage of the DB instance. Configuring this will automatically ignore differences to allocated_storage. Must be greater than or equal to allocated_storage or 0 to disable Storage Autoscaling.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="monitoring_interval" requirement="optional" type="number">
+<HclListItemDescription>
+
+The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0. Valid Values: 0, 1, 5, 10, 15, 30, 60. Enhanced Monitoring metrics are useful when you want to see how different processes or threads on a DB instance use the CPU.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="monitoring_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs. If monitoring_interval is greater than 0, but monitoring_role_arn is let as an empty string, a default IAM role that allows enhanced monitoring will be created.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="num_read_replicas" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of read replicas to create. RDS will asynchronously replicate all data from the master to these replicas, which you can use to horizontally scale reads traffic.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="parameter_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name of a DB parameter group to associate.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="performance_insights_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether Performance Insights are enabled. Performance Insights can be enabled for specific versions of database engines. See https://aws.amazon.com/rds/performance-insights/ for more details.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="performance_insights_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN for the KMS key to encrypt Performance Insights data. When specifying performance_insights_kms_key_id, performance_insights_enabled needs to be set to true. Once KMS key is set, it can never be changed. When set to `null` default aws/rds KMS for given region is used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="performance_insights_retention_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of time in days to retain Performance Insights data. Either 7 (7 days) or 731 (2 years). When specifying performance_insights_retention_period, performance_insights_enabled needs to be set to true. Defaults to `7`.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="publicly_accessible" requirement="optional" type="bool">
+<HclListItemDescription>
+
+WARNING: - In nearly all cases a database should NOT be publicly accessible. Only set this to true if you want the database open to the internet.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Determines whether a final DB snapshot is created before the DB instance is deleted. Be very careful setting this to true; if you do, and you delete this DB instance, you will not have any backups of the data!
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="storage_encrypted" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether the DB instance is encrypted.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="storage_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of storage to use for the primary instance. Must be one of 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
+</HclListItem>
+
+<HclListItem name="updating_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Timeout for DB updating
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;80m&quot;"/>
+</HclListItem>
+
+</TabItem>
+<TabItem value="outputs" label="Outputs">
+
+<HclListItem name="read_replica_addresses">
+</HclListItem>
+
+<HclListItem name="read_replica_arns">
+</HclListItem>
+
+<HclListItem name="read_replica_endpoints">
+</HclListItem>
+
+<HclListItem name="read_replica_ids">
+</HclListItem>
+
+<HclListItem name="read_replica_names">
+</HclListItem>
+
+<HclListItem name="read_replica_port">
+</HclListItem>
+
+</TabItem>
+</Tabs>
+
+
+<!-- ##DOCS-SOURCER-START
+{
+  "originalSources": [
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.3/modules/rds-replicas/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.3/modules/rds-replicas/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.3/modules/rds-replicas/outputs.tf"
+  ],
+  "sourcePlugin": "module-catalog-api",
+  "hash": "14fc82369d5bbfa85ab57908d2eb0bfc"
+}
+##DOCS-SOURCER-END -->
