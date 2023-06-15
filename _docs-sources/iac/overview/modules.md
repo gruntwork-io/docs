@@ -1,8 +1,16 @@
-# What is a Module?
+# What is a module?
 
-Modules are reusable code components that encapsulate the configuration and resource definitions needed to deploy and manage a specific piece of infrastructure, such as a VPC, ECS cluster, or Auto Scaling Group. Each module defines several AWS resources. For example, the VPC module contains resource definitions for subnets, NAT gateways, and more. Modules promote code reusability, modularity, and consistency in infrastructure deployments and can be customized in a variety of ways.
+Modules are reusable "infrastructure building blocks" that encapsulate the configuration and resource definitions needed to deploy and manage a specific piece of infrastructure, such as a VPC, ECS cluster, or Auto Scaling Group. Each module defines several AWS resources. For example, the VPC module contains resource definitions for subnets, NAT gateways, and more. Modules promote code reusability, modularity, and consistency in infrastructure deployments and can be customized in a variety of ways.
 
 Gruntwork modules are tested in AWS, in a randomly selected region, each time it changes to verify the infrastructure created matches the desired configuration.
+
+## Example
+
+Let’s look at an example module. The [rds module](/reference/modules/terraform-aws-data-storage/rds/) creates an RDS database, the IAM roles needed to operate that database, optional read replicas, database subnet groups, and the relevant security groups.
+
+The module is written in Terraform and is a key element of an overall RDS deployment, but it's not a _complete_ RDS deployment. That's because the `rds` module does not include backup policies using AWS Backup, or RDS Proxy (to pool database connections), or CloudWatch alarms (to alert you when something goes wrong). These missing pieces are best thought of as building block modules themselves! Indeed, `backup-plan`, `backup-vault`, and `rds-proxy` can all be used in combination with the `rds` module.
+
+To see how Gruntwork gives you an off-the-shelf overall deployment with all the elements included, see [What is a service module?](services).
 
 ## When should I use a module?
 

@@ -1,10 +1,10 @@
-# What is a Service?
+# What is a service module?
 
 The Gruntwork Service Catalog consists of a number of customizable, production-grade infrastructure-as-code services that you can use to deploy and manage your infrastructure. This includes Docker orchestration, EC2 orchestration, load balancing, networking, databases, caches, monitoring, alerting, CI/CD, secrets management, VPN, and much more. Services combine multiple modules to configure an end-to-end solution.
 
 ## When should I use a service?
 
-Using a service can save you time piecing together individual modules and testing that they’re correctly referencing each other. These are designed for specific use cases such as EKS and ECS clusters, VPCs with public and private subnets, and databases. 
+Using a service can save you time piecing together individual modules and testing that they’re correctly referencing each other. These are designed for specific use cases such as EKS and ECS clusters, VPCs with public and private subnets, and databases.
 
 For example, the `eks-cluster` service combines all the modules you need to run an EKS (Kubernetes) cluster in a typical production environment, including modules for the control plane, worker nodes, secrets management, log aggregation, alerting, and so on.
 
@@ -32,7 +32,7 @@ The code in the `terraform-aws-service-catalog` repo is organized into three pri
       is NOT required to use the Gruntwork Service Catalog: you can alternatively use vanilla Terraform or Terraform
       Cloud / Enterprise, as described [here](https://docs.gruntwork.io/reference/services/intro/deploy-new-infrastructure#how-to-deploy-terraform-code-from-the-service-catalog).
 
-    1. Not all modules have a `for-production` example, but you can still create a production-grade configuration by 
+    1. Not all modules have a `for-production` example, but you can still create a production-grade configuration by
        using the template provided in this discussion question, [How do I use the modules in terraform-aws-service-catalog
        if there is no example?](https://github.com/gruntwork-io/knowledge-base/discussions/360#discussioncomment-25705480).
 
@@ -41,6 +41,6 @@ The code in the `terraform-aws-service-catalog` repo is organized into three pri
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "dcf834bb383d07dda3a7ea2abd0c09e4"
+  "hash": "c280cad23b062ef31658b4f0d50a2db1"
 }
 ##DOCS-SOURCER-END -->

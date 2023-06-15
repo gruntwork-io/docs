@@ -4,24 +4,18 @@ The Gruntwork Infrastructure as Code Library (IaC Library) is a collection of re
 
 ## Modules
 
-Modules are reusable code components that are used to deploy and manage specific pieces of infrastructure. These modules encapsulate the configuration and resource definitions required to create and manage a particular component, such as a VPC, ECS cluster, or an Auto Scaling Group. For more information on modules check out the [Modules page](/iac/overview/modules/).
+Modules are "infrastructure building blocks" authored by Gruntwork and written in Terraform. They capture a singular best-practice pattern for specific pieces of infrastructure and are designed to be both limited in scope and highly reusable. They typically represent one part of a use case you want to accomplish. For example, the `vpc-flow-logs` module does not create a VPC, it only adds the VPC Flow Logs functionality to an existing VPC. To learn more, refer to [What is a module?](/iac/overview/modules/).
 
 ## Services
 
-Services in the service catalog are reusable code that combines multiple modules from the IaC Library, simplifying the deployment and management of complex infrastructure configurations. Rather than dealing with individual modules and their dependencies, users can directly deploy services tailored for a particular use case. 
-
-For more information on the service catalog check out the [Services page](/iac/overview/services/).
+Service modules are opinionated combinations of the "building block" modules described above. They are designed to be used "off the shelf" with no need to assemble a collection of “building block” modules on your own. They typically represent a full use case. For example, the `vpc` service module deploys a VPC, VPC Flow Logs, and Network ACLs. If you agree with the opinions embedded in a service module, they’re the fastest way to deploy production-grade infrastructure. To learn more, check [What is a service module?](/iac/overview/services/).
 
 ## Tools used in the IaC Library
 
-The Gruntwork IaC Library is deployed using the following tools:
+The Gruntwork IaC Library has been created using the following tools:
 
-1. [Terraform](https://www.terraform.io/). Used to define and manage most of the basic infrastructure, such as servers, databases, load balancers, and networking. The Gruntwork Service Catalog is compatible with vanilla [Terraform](https://www.terraform.io/), [Terragrunt](https://terragrunt.gruntwork.io/), [Terraform
-   Cloud](https://www.hashicorp.com/blog/announcing-terraform-cloud/), and [Terraform
-   Enterprise](https://www.terraform.io/docs/enterprise/index.html).
+1. [Terraform](https://www.terraform.io/). The Library contains nearly 300 Terraform modules that cover a range of common use cases in AWS. All library modules can be used with vanilla [Terraform](https://www.terraform.io/), [Terragrunt](https://terragrunt.gruntwork.io/), or third-party Terraform pipeline tools such as [Terraform Cloud](https://www.hashicorp.com/blog/announcing-terraform-cloud/) and [Terraform Enterprise](https://www.terraform.io/docs/enterprise/index.html).
 
-1. [Packer](https://www.packer.io/). Used to define and manage _machine images_ (e.g., VM images). The main use case is
-   to package code as [Amazon Machine Images (AMIs)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)
-   that run on EC2 instances. Once you’ve built an AMI, you use Terraform to deploy it into AWS.
+1. [Packer](https://www.packer.io/). The Library defines _machine images_ (e.g., VM images) using Packer, where the main use case is building Amazon Machine Images (AMIs) that run on EC2 instances whose configuration is all defined in code. Once you’ve built an AMI, you can use Terraform to deploy it into AWS.
 
-1. [Terratest](https://terratest.gruntwork.io/). Used for automated testing of modules and services. 
+1. [Terratest](https://terratest.gruntwork.io/). All modules are functionally validated with automated tests written using Terratest.
