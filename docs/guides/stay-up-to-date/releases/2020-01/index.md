@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2020-01. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -187,7 +187,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `server-group` module now outputs the instance profile name via the output variable `iam_instance_profile_name`.
 
@@ -203,7 +203,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Remove duplicate comment
 - Fix broken url
@@ -225,7 +225,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The modules under `iam-policies` now allow you to set the `create_resources` parameter to `false` to have the module not create any resources. This is a workaround for Terraform not supporting the `count` parameter on `module &#x7B; ... &#x7D;` blocks.
 
@@ -241,7 +241,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Move docs-generator tests to deptest, since it is still using dep
 - Fix broken links
@@ -259,7 +259,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added a flag to skip running Git pull automatically in `git-add-commit-push`.
 - Documentation improvements.
@@ -282,7 +282,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixes a missing image in the documentation
 - Adds the Gruntwork License. Previously, the repository was unlicensed, thus subject to the [&quot;all rights reserved&quot; style default license](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository#choosing-the-right-license) which we don&apos;t want.
@@ -300,7 +300,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 You can now define custom metric filters in addition to the default filters required by the Benchmark from the `cloudtrail` module. Previously this was only available through the `cloudwatch-logs-metric-filters` module.
 
@@ -317,7 +317,7 @@ You can now define custom metric filters in addition to the default filters requ
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Adds the ability to define custom metric filters in addition to the default filters required by the Benchmark. Thanks to @frankzieglermbc for his contribution.
 
@@ -338,7 +338,7 @@ You can now define custom metric filters in addition to the default filters requ
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now limit the Availability Zones the `rds` module uses for replicas via the `allowed_replica_zones` parameter.
 
@@ -354,7 +354,7 @@ You can now define custom metric filters in addition to the default filters requ
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix broken links
 
@@ -371,7 +371,7 @@ You can now define custom metric filters in addition to the default filters requ
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release exposes the [`ca_cert_identifier`](https://www.terraform.io/docs/providers/aws/r/db_instance.html#ca_cert_identifier) argument for `aws_db_instance`. This argument configures which CA certificate bundle is used by RDS. The expiration of the previous CA bundle is March 5, 2020, at which point TLS connections that haven&apos;t been updated will break. Refer to the [AWS documentation on this](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL-certificate-rotation.html).
 
@@ -394,7 +394,7 @@ The argument defaults to `rds-ca-2019`. Once you run `terraform apply` with this
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This update adds tags for ECS services and task definitions. To add a tag to a service, provide a map with the `service_tags` variable. Similar, to tag task definitions, provide a map with the `task_definition_tags` variable. For example:
 ```
@@ -446,7 +446,7 @@ Repeat as necessary for all in-scope regions and IAM users.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release introduces support for [ECS capacity providers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-capacity-providers.html) in the `ecs-service` module. This allows you to provide a strategy for how to run the ECS tasks of the service, such as distributing the load between Fargate, and [Fargate Spot](https://aws.amazon.com/blogs/aws/aws-fargate-spot-now-generally-available/).
 
@@ -462,7 +462,7 @@ This release introduces support for [ECS capacity providers](https://docs.aws.am
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix `description` field of `health_check_grace_period_seconds` input variable in the `ecs-service` module
 - Add tests that this repo works with Amazon Linux 2
@@ -485,7 +485,7 @@ This release introduces support for [ECS capacity providers](https://docs.aws.am
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The `eks-cluster-control-plane` now supports specifying a CIDR block to restrict access to the public Kubernetes API endpoint. Note that this is only used for the public endpoint: you cannot restrict access by CIDR for the private endpoint yet.
 
@@ -502,7 +502,7 @@ The `eks-cluster-control-plane` now supports specifying a CIDR block to restrict
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release includes the following feature enhancements:
 
@@ -528,7 +528,7 @@ This release also includes a number of minor bug fixes:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Starting this release, the modules in this repo have official support for Fargate:
 
@@ -553,7 +553,7 @@ Starting this release, the modules in this repo have official support for Fargat
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release introduces a new module `eks-cluster-managed-workers`, which provisions [EKS Managed Node Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html). This is an alternative worker pool to the existing `eks-cluster-workers` module that has some nice properties. You can read more about the differences to self managed workers in [the module README](https://github.com/gruntwork-io/terraform-aws-eks/blob/master/modules/eks-cluster-managed-workers/README.md).
 
@@ -570,7 +570,7 @@ This release introduces a new module `eks-cluster-managed-workers`, which provis
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - **The python scripts used in `eks-k8s-role-mapping` and `eks-cluster-control-plane` no longer support Mac OSX 12. If you are on OSX 12, please use prior versions of this module or upgrade your OSX version.**
 - The python scripts used in `eks-k8s-role-mapping` and `eks-cluster-control-plane` now support Python 3.8.
@@ -596,7 +596,7 @@ This release introduces a new module `eks-cluster-managed-workers`, which provis
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * **No changes to underlying modules.**
 
 
@@ -620,7 +620,7 @@ Fix broken links in README&apos;s
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix broken links in readme&apos;s
 - Fix wrong syntax on event metric filter pattern
@@ -638,7 +638,7 @@ Fix broken links in README&apos;s
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update the SQS alarm period to a minimum of 60 seconds, as AWS now pushes those metrics at one-minute intervals.
 
@@ -654,7 +654,7 @@ Fix broken links in README&apos;s
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The `logs/cloudwatch-log-aggregation-iam-policy` module can now be conditionally excluded based on the input variable `create_resources`. When `create_resources` is `false`, the module will not create any resources and become a no-op.
 
@@ -675,7 +675,7 @@ The `logs/cloudwatch-log-aggregation-iam-policy` module can now be conditionally
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now configure a custom MTU for OpenVPN to use via the `--link-mtu` parameter.
 
@@ -691,7 +691,7 @@ The `logs/cloudwatch-log-aggregation-iam-policy` module can now be conditionally
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now run your VPN server on spot instances by specifying the `spot_price` input variable.
 
@@ -711,9 +711,9 @@ The `logs/cloudwatch-log-aggregation-iam-policy` module can now be conditionally
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-This release fixes a bug where the cloudtrail module sometimes fails due to not being able to see the IAM role that grants access to CloudWatch Logs. 
+
+This release fixes a bug where the cloudtrail module sometimes fails due to not being able to see the IAM role that grants access to CloudWatch Logs.
 
 
 
@@ -728,7 +728,7 @@ This release fixes a bug where the cloudtrail module sometimes fails due to not 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 **None of the Terraform modules has been updated in this release**
 
@@ -747,9 +747,9 @@ The codegen generator go library has been updated to allow rendering explicit bl
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- Addresses the issue of perpetual diff with AWS Organization child account property `iam_user_access_to_billing`. 
+
+- Addresses the issue of perpetual diff with AWS Organization child account property `iam_user_access_to_billing`.
 
 
 
@@ -764,7 +764,7 @@ The codegen generator go library has been updated to allow rendering explicit bl
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release introduces a new module `aws-config-multi-region` which can be used to configure AWS Config in multiple regions of an account.
 
@@ -786,7 +786,7 @@ The following additional fixes are also included in this release:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix-broken-links
 
@@ -803,7 +803,7 @@ The following additional fixes are also included in this release:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `guardduty-single-region` **[NEW]**
 - `guardduty-multi-region` **[NEW]**
 
@@ -829,7 +829,7 @@ The following additional fixes are also included in this release:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now enable EC2 Instance Termination Protection using a new `disable_api_termination` input variable.
 
@@ -849,7 +849,7 @@ The following additional fixes are also included in this release:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix a few broken links in README&apos;s
 - Update CODEOWNERS
@@ -871,7 +871,7 @@ The following additional fixes are also included in this release:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `run-pex-as-resource`
 
 
@@ -895,7 +895,7 @@ The following additional fixes are also included in this release:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix broken links in README&apos;s
 
@@ -912,7 +912,7 @@ The following additional fixes are also included in this release:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Now `vpc-app` and `vpc-mgmt` will create a single VPC endpoint for all tiers. Previously we were creating separate endpoints per tier, but that makes it more likely to reach the max VPC endpoints per region limits of AWS as you add more VPCs, which is not extendable. By consolidating, we can bring down the VPC endpoint count per VPC to 2 from 6.
 

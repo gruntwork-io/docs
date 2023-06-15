@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2018-07. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -87,7 +87,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -104,7 +104,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-security/pull/103: 
+  https://github.com/gruntwork-io/module-security/pull/103:
 
 1. `ssh-grunt` now signs all requests to Houston with its AWS credentials. This is a backwards incompatible change: all `ssh-grunt houston xxx` commands now all take in a required `--houston-region` param (AWS region where Houston is deployed) and an optional `--iam-role` param (IAM role to assume when signing the request).
 

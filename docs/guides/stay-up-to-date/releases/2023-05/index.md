@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2023-05. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -97,8 +97,8 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
-Updated the views to have a responsive height. 
+
+Updated the views to have a responsive height.
 
 </div>
 
@@ -155,7 +155,7 @@ Updated the views to have a responsive height.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Adds support for Launch Template tag specifications on `server-group` module through the variable `tag_specifications`.
 
@@ -226,7 +226,7 @@ Updated the views to have a responsive height.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - ecs-deploy-runner dependencies update and vulnerabilities reduction
 - Fixed `monorepo-helpers` tests
@@ -247,7 +247,7 @@ Updated the views to have a responsive height.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add missing variables for various cloudwatch alarms.
 
@@ -264,7 +264,7 @@ Updated the views to have a responsive height.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update for-production examples for architecture catalog v0.0.36
 - Add variable for copying RDS tags to snapshot
@@ -282,7 +282,7 @@ Updated the views to have a responsive height.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update terraform-aws-security version for `observability/aws-config-multi-region` module to v0.68.2, which fixes S3 ACL issues for new buckets
 
@@ -304,7 +304,7 @@ Updated the views to have a responsive height.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - `ecs-cluster`: update validation logic for `cluster_instance_request_spot_instances`
 
@@ -321,7 +321,7 @@ Updated the views to have a responsive height.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated PEX for Python 3.11 Compatibility
 
@@ -341,7 +341,7 @@ Updated the views to have a responsive height.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update README.md - remove out of date information about AWS managed node groups
 
@@ -365,7 +365,7 @@ Updated the views to have a responsive height.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Adds two variables to the module `api-gateway-proxy`: `create_rest_api_policy`, which attaches a basic REST API policy to API Gateway, and `override_rest_api_policy`, for passing an external policy, if necessary.
 
@@ -417,7 +417,7 @@ Updated the views to have a responsive height.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added a new CLI flag `--run-on-pki-update` for _openvpn-admin_ app.
 - Updated [examples](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/examples). Configured PKI backup after successful certificate request/revocation.
@@ -437,7 +437,7 @@ Updated the views to have a responsive height.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 Fixed the user certificate request with pattern name similar to the already added
 
 
@@ -458,7 +458,7 @@ Fixed the user certificate request with pattern name similar to the already adde
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add permission boundary to private-s3-bucket iam roles
 
@@ -475,7 +475,7 @@ Fixed the user certificate request with pattern name similar to the already adde
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - feat: Guardduty module updated to include ability to specifically exclude detector creation.
 
@@ -496,10 +496,10 @@ Fixed the user certificate request with pattern name similar to the already adde
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add CentOS test case to eni and ebs examples
-- Feature added to `single-server` module to expose metadata-options 
+- Feature added to `single-server` module to expose metadata-options
 
 
 </div>
@@ -517,7 +517,7 @@ Fixed the user certificate request with pattern name similar to the already adde
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Feature: update ec2-instance to expose metadata-options variables
 
@@ -535,7 +535,7 @@ Fixed the user certificate request with pattern name similar to the already adde
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Bump terraform-aws-ci/modules/ecs-deploy-runner to v0.52.1
 
@@ -552,7 +552,7 @@ Fixed the user certificate request with pattern name similar to the already adde
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposes variables for configuring VPC flow logs export destination on module `networking/vpc`.
 - Exposes variable to monitor memory on the alarms of module `data-stores/redis`.
@@ -570,7 +570,7 @@ Fixed the user certificate request with pattern name similar to the already adde
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - Exposes `allow_major_version_upgrade` variable on module `data-stores/rds`
 - Expose variables for configuring volume on bastion-host
 - Chore: increment all references to terraform-aws-security to 0.68.2
@@ -591,7 +591,7 @@ Fixed the user certificate request with pattern name similar to the already adde
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Allows ARNs of variable `secrets_manager_arns` to be provided incomplete and completed by data source in module `ecs-service`.
 
@@ -609,7 +609,7 @@ Fixed the user certificate request with pattern name similar to the already adde
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix: Explicitly set ownership defaults for s3-bucket
 

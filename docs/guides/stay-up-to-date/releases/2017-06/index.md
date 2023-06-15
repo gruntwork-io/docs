@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2017-06. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -63,7 +63,7 @@ Here are the repos that were updated:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   - fix a bug with `--glide-version` parameter
-- bump default versions of installed packages 
+- bump default versions of installed packages
 
 </div>
 
@@ -93,7 +93,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-ecs/pull/32: The `ecs-service-with-alb` module now allows you to map the same ALB port to multiple paths in your ECS service. Note that supporting this required BACKWARDS INCOMPATIBLE changes: 
+  https://github.com/gruntwork-io/module-ecs/pull/32: The `ecs-service-with-alb` module now allows you to map the same ALB port to multiple paths in your ECS service. Note that supporting this required BACKWARDS INCOMPATIBLE changes:
 
 * The `alb_listener_rule_configs` parameter is now a list instead of a map. Each entry in the list should be of the format `&lt;port&gt;:&lt;priority&gt;:&lt;path&gt;`. For example, `80:100:/foo/*`.
 * The `num_alb_listener_rule_configs` parameter has been removed. It is no longer necessary.
@@ -157,11 +157,11 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-load-balancer/pull/13, https://github.com/gruntwork-io/module-load-balancer/pull/14: 
+  https://github.com/gruntwork-io/module-load-balancer/pull/13, https://github.com/gruntwork-io/module-load-balancer/pull/14:
 
 BACKWARDS INCOMPATIBLE CHANGE
 
-The `alb` module now allows you to limit access to the ALB via security groups using a new parameter named `allow_inbound_from_security_group_ids`. 
+The `alb` module now allows you to limit access to the ALB via security groups using a new parameter named `allow_inbound_from_security_group_ids`.
 
 Please note that this is a backwards incompatible release:
 
@@ -226,7 +226,7 @@ Please note that this is a backwards incompatible release:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -271,7 +271,7 @@ Please note that this is a backwards incompatible release:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/package-openvpn/pull/10: Remove a bunch of unused variables from the `openvpn-server` module that were accidentally left over from a refactor. 
+  https://github.com/gruntwork-io/package-openvpn/pull/10: Remove a bunch of unused variables from the `openvpn-server` module that were accidentally left over from a refactor.
 
 </div>
 

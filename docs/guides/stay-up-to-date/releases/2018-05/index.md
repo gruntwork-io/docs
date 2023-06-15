@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2018-05. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -110,7 +110,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-ci/pull/58: 
+  https://github.com/gruntwork-io/module-ci/pull/58:
 
 BACKWARDS INCOMPATIBLE CHANGES
 
@@ -128,9 +128,9 @@ BACKWARDS INCOMPATIBLE CHANGES
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-ci/pull/56: 
+  https://github.com/gruntwork-io/module-ci/pull/56:
 
-BACKWARDS INCOMPATIBLE CHANGE. 
+BACKWARDS INCOMPATIBLE CHANGE.
 
 All the pre-commit hooks that were in `modules/pre-commit` are now in their own open source repo: https://github.com/gruntwork-io/pre-commit. Please update your `.pre-commit-config.yml` files to point to the new repo and its version numbers.
 
@@ -205,7 +205,7 @@ All the pre-commit hooks that were in `modules/pre-commit` are now in their own 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -218,7 +218,7 @@ All the pre-commit hooks that were in `modules/pre-commit` are now in their own 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -252,7 +252,7 @@ All the pre-commit hooks that were in `modules/pre-commit` are now in their own 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 ```bash
 terragrunt state mv module.&lt;module&gt;.aws_lb.nlb module.&lt;module&gt;.aws_lb.nlb_&lt;num&gt;_az
 ```
@@ -274,7 +274,7 @@ Replace `&lt;module&gt;` with the name of your module and `&lt;num&gt;` with the
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -287,7 +287,7 @@ Replace `&lt;module&gt;` with the name of your module and `&lt;num&gt;` with the
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 

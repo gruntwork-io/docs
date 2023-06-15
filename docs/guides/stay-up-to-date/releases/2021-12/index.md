@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2021-12. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -52,7 +52,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/repo-copier/pull/111: 
+  https://github.com/gruntwork-io/repo-copier/pull/111:
 
 * Fix &quot;no commit found for SHA&quot; error that would come up in certain cases when copying repos.
 * The default behavior of `--force-overwrite` is now to overwrite Git history in the existing repo instead of deleting the repo entirely and recreating it. If you wish to delete and recreate, you now also need to pass `--force-recreate`.
@@ -85,7 +85,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - We&apos;ve updated the version of the boto library used in the `asg-rolling-deploy` module from 1.7.10 to 1.20.24 to fix a compatibility issue with python 3.10 (while still maintaining backwards compatibility with older python 3.7+ releases). However, this new version of boto **DOES NOT WORK WITH PYTHON 2**. Python 2 was sunsetted on January 1, 2020, so hopefully, you&apos;ve already migrated off of it, but if you haven&apos;t, you will now need to to use this version of the `asg-rolling-deploy` module.
 
@@ -108,7 +108,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed bug where `setup-minikube` script sometimes ended up with an interactive prompt.
 - Updated `setup-minikube` to install the version `v1.24.0` by default.
@@ -128,7 +128,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated ec2-backup runtime to nodejs14.x
 
@@ -149,7 +149,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated dependency `gruntwork-io/terraform-aws-vpc` to v0.18.6
 - Updated dependency `gruntwork-io/terraform-aws-service-catalog` to v0.65.4
@@ -171,7 +171,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added support for restoring an Aurora cluster using a Point-in-Time restore. Refer to the variable documentation for `restore_source_cluster_identifier` for more details.
 
@@ -188,7 +188,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Fixed a bug where major version upgrades were broken for Postgres Aurora clusters.
 
@@ -205,7 +205,7 @@ Fixed a bug where major version upgrades were broken for Postgres Aurora cluster
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added support for managing AWS Backup service.
 - Exposed ability to attach additional security groups to the RDS instance
@@ -229,7 +229,7 @@ Fixed a bug where major version upgrades were broken for Postgres Aurora cluster
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added the ability to configure the `runtime_platform` block, extending support for Graviton2/Operating system family.
 
@@ -250,7 +250,7 @@ Fixed a bug where major version upgrades were broken for Postgres Aurora cluster
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to set `priorityClassName` on k8s cluster-autoscaler (via the `pod_priority_class_name` input variable).
 
@@ -267,7 +267,7 @@ Fixed a bug where major version upgrades were broken for Postgres Aurora cluster
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - New module to setup and manage [CloudWatch Container Insights](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContainerInsights.html) on EKS cluster. Refer to the docs for the new [eks-cloudwatch-agent module](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cloudwatch-agent) for more information.
 
@@ -284,7 +284,7 @@ Fixed a bug where major version upgrades were broken for Postgres Aurora cluster
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Upgraded helm chart version for `cluster-autoscaler` to include updated permissions.
 - Exposed the ability to set `force_update_version` on the managed node group in the `eks-cluster-managed-workers` module.
@@ -307,7 +307,7 @@ Fixed a bug where major version upgrades were broken for Postgres Aurora cluster
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to set custom tags and name on the IAM role created for the Lambda function.
 
@@ -325,7 +325,7 @@ Fixed a bug where major version upgrades were broken for Postgres Aurora cluster
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added the ability to attach additional security groups to the lambda function (using the new input variable `additional_security_group_ids`).
 
@@ -346,7 +346,7 @@ Fixed a bug where major version upgrades were broken for Postgres Aurora cluster
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Added support for new AWS region (`ap-southeast-3` Jakarta) to multiregion modules. As a result, you will need to add this region to your list of region providers.
 
@@ -380,7 +380,7 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated management of S3 bucket replication configuration to use the `aws_s3_bucket_replication_configuration` resource so that users can have more control over the replication configuration.
 - Fixes to documentation and examples.
@@ -403,7 +403,7 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added the ability to configure an OpenID Connect Provider for GitHub Actions to use to authenticate to AWS in LandingZone (`account-baseline-app` and `account-baseline-security`).
 
@@ -420,7 +420,7 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated `terraform-aws-vpc` to v0.18.5 and exposed ability to disable binding of default NACLs with subnets.
 
@@ -438,7 +438,7 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated dependency `terraform-aws-vpc` version to 0.18.4
 
@@ -456,7 +456,7 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added the ability to configure ECR lifecycle polices
 
@@ -473,7 +473,7 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed bug where `allow_ssh_from_cidr` was hardcoded to `true` in `openvpn-server` module. This will now be set to `false` if the `allow_ssh_from_cidr_list` list is empty.
 - Added `iam_role_id` and `iam_role_name` outputs to `ec2-instance` module
@@ -493,7 +493,7 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Remove renovate.json
 - Add `bucket_kms_key_arn` variable for SSE-KMS in `s3-bucket` module
@@ -511,7 +511,7 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ID of the common security group created for Managed Node Groups in the `eks-cluster` and `eks-workers` module.
 
@@ -528,7 +528,7 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed ability to specify additional security groups for the EKS cluster workers (using the new input var `additional_security_groups_for_workers`). As a part of this change, the input var `additional_security_groups` on `eks-cluster` module has been renamed to `additional_security_groups_for_control_plane`.
 
@@ -549,7 +549,7 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated to add the ability to configure `allow_remote_vpc_dns_resolution` on the VPC peering requester
 
@@ -566,7 +566,7 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added the ability to manage the default NACLs, but restrict association of subnets so that the subnets can be associated with a different NACL.
 
@@ -584,7 +584,7 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated `vpc-app` module `count` calls to be more robust to changes.
 - Updated `vpc-mgmt` module to allow you to manage the default Route Table, Security Group, and Network ACLs.
@@ -602,7 +602,7 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - `vpc-app`: Add explicit Default Route Table tag
 
@@ -621,7 +621,7 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - `vpc-interface-endpoint`: Fix typos in service names
 
@@ -638,7 +638,7 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Support multiple route tables for the public subnets
 

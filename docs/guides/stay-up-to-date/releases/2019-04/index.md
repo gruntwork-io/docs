@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2019-04. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -67,7 +67,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Per our aws 2.0 strategy, we added in the nightly build for this repo so that we can catch issues with provider upgrades in the future as they are released.
 - Fixed a new exception that was being thrown because the healthchecker was being notified about the existence of a new EC2 instance and then was trying to check its health via the ELB before that instance had a chance to register itself with the ELB.  This resulted in an exception being thrown. We now handle this properly.
@@ -89,7 +89,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now set the `redirect_http_to_https` variable to `true` on the `jenkins-server` module to automatically redirect all HTTP requests to HTTPS.
 
@@ -107,7 +107,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `kubernetes-circleci-helpers` [**NEW**]
 
 
@@ -131,7 +131,7 @@ This release introduces scripts that help with setting up a Kubernetes testing e
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `lambda-cleanup-snapshots`
 
 
@@ -155,7 +155,7 @@ This release introduces scripts that help with setting up a Kubernetes testing e
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Adds and exposes a task execution iam role so the tasks can pull private images from ECR and read secrets from AWS Secrets Manager.
 
@@ -178,9 +178,9 @@ This release introduces scripts that help with setting up a Kubernetes testing e
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- The `ecs-clsuter` module now allows you to set the termination policy for the underlying Auto Scaling Group using a new `termination_policies` input variable. This module now sets the default termination policy to `OldestInstance`. Before, we used to use the default termination policy, but recent changes to the default termination policy breaks the ability of the `roll-out-ecs-cluster-update.py` script to do zero-downtime rolling updates of the ECS cluster. Switching to `OldestInstance` should fix this issue. 
+
+- The `ecs-clsuter` module now allows you to set the termination policy for the underlying Auto Scaling Group using a new `termination_policies` input variable. This module now sets the default termination policy to `OldestInstance`. Before, we used to use the default termination policy, but recent changes to the default termination policy breaks the ability of the `roll-out-ecs-cluster-update.py` script to do zero-downtime rolling updates of the ECS cluster. Switching to `OldestInstance` should fix this issue.
 
 
 
@@ -196,7 +196,7 @@ This release introduces scripts that help with setting up a Kubernetes testing e
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - This release fixes #125, where the ALB Healthcheck was not checking that all the tasks were registered, so was prematurely passing the deployment check. Starting this release, the LB checker now verifies that all the tasks for the newest versions are actually registered in the list before checking the health status.
 
@@ -213,7 +213,7 @@ This release introduces scripts that help with setting up a Kubernetes testing e
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Sometimes the ECS service creation will fail because it can not associate the IAM role for the task. This release adds a sleep for each `aws_iam_role` creation to give time to propagate before associating the role.
 
@@ -234,7 +234,7 @@ This release introduces scripts that help with setting up a Kubernetes testing e
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release introduces the following changes:
 
@@ -262,7 +262,7 @@ This release introduces the following changes:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release introduces a new module `eks-k8s-external-dns` that can be used to deploy [external-dns](https://github.com/kubernetes-incubator/external-dns). This is a Kubernetes application that can map `Ingress` resource host paths to route 53 domain records so that you automatically configure host name routes to hit the `Ingress` endpoints. See [the module documentation](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-external-dns) for more information.
 
@@ -279,7 +279,7 @@ This release introduces a new module `eks-k8s-external-dns` that can be used to 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release introduces two new modules: `eks-alb-ingress-controller` and `eks-alb-ingress-controller-iam-policy`. These two modules can be used to deploy [the AWS ALB Ingress Controller](https://github.com/kubernetes-sigs/aws-alb-ingress-controller), which allows you to map [Ingress resources](https://kubernetes.io/docs/concepts/services-networking/ingress/) to AWS ALBs. See the [module documentation for more information](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-alb-ingress-controller).
 
@@ -300,7 +300,7 @@ This release also includes the following updates:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - This release exposes `enabled_cluster_log_types`, which allow you to access control plane logging in CloudWatch Logs. You can read more about this feature in [the official AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html).
 
@@ -317,7 +317,7 @@ This release also includes the following updates:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release introduces support for specifying tolerations on the `fluentd-cloudwatch` Pods deployed using the `eks-cloudwatch-container-logs` module. This allows you to schedule the `fluentd-cloudwatch` Pods on nodes that have taints that prevent normal scheduling of Pods.
 
@@ -336,7 +336,7 @@ Additionally, this release introduces the `eks-cluster-workers-cross-access` mod
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - This release updates all the examples to switch to a data source based token retrieval scheme to authenticate the kubernetes utilities (`kubergrunt`, `kubectl`, and the `kubernetes` + `helm` providers) as opposed to authentication by kubeconfig. This improves the experience for team based workflows, as now the terraform code is no longer dependent on having setup `kubectl` to work (NOTE: you still have to setup `helm`, but in the future this will also be changed to a data source based method). Take a look at [the `eks-cluster-basic` example](https://github.com/gruntwork-io/terraform-aws-eks/blob/master/examples/eks-cluster-basic/main.tf#L15) for an example.
 - Given the new authentication scheme, we no longer recommend using the `configure_kubectl` option. This is great for a single person example setup, but when using in production, it can lead to team confusion. As such starting this release, the option is set to `false` by default. If you would like the old behavior, you can set it to `true` in your module.
@@ -354,7 +354,7 @@ Additionally, this release introduces the `eks-cluster-workers-cross-access` mod
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - We now support EKS private endpoints for clusters launched using the `eks-cluster-control-plane` module. Check out [the module docs for more info](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-control-plane#api-access-and-networking).
 
@@ -371,7 +371,7 @@ Additionally, this release introduces the `eks-cluster-workers-cross-access` mod
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - This fixes a bug where `kubergrunt` was still required even if all the feature flags were turned off.
 - Various fixes to the README and examples.
@@ -389,7 +389,7 @@ Additionally, this release introduces the `eks-cluster-workers-cross-access` mod
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release introduces the `eks-cloudwatch-container-logs` module, which installs a `DaemonSet` on your EKS cluster to ship logs to CloudWatch using `fluentd`. Refer to the [module documentation](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cloudwatch-container-logs) and [eks-cluster-with-supporting-services](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/examples/eks-cluster-with-supporting-services) for more information on how this works.
 
@@ -410,7 +410,7 @@ This release introduces the `eks-cloudwatch-container-logs` module, which instal
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `alb`
 
 
@@ -433,7 +433,7 @@ Special thanks to @jasonmcintosh for the contribution!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `acm-tls-certificate` **[NEW MODULE!]**
 
 
@@ -457,7 +457,7 @@ Special thanks to @jasonmcintosh for the contribution!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Extend cloudwatch log aggregation IAM policy with `logs:DescribeLogGroups` as needed by fluentd.
 
@@ -474,7 +474,7 @@ Special thanks to @jasonmcintosh for the contribution!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - This release introduces `sqs-alarms`, which can be used to setup CloudWatch alarms for SQS queues. Check out the [example](https://github.com/gruntwork-io/module-aws-monitoring/tree/master/examples/sqs-alarms) for how to set it up.
 - This release verifies compatibility with AWS provider 2.X. **NOTE**: there are no changes to the underlying modules (only the examples), so there are no breaking changes with this release.
@@ -495,7 +495,7 @@ Special thanks to @jasonmcintosh for the contribution!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixes a bug where `gruntsam` generates broken code for dashes in route paths. (https://github.com/gruntwork-io/package-sam/issues/40)
 
@@ -512,7 +512,7 @@ Special thanks to @jasonmcintosh for the contribution!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add a new `create_resources` input variable that, if set to false, will result in the `api-gateway-account-settings` module creating no resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack that will allow us to conditionally decide if the API Gateway account settings should be created or not.
 
@@ -534,7 +534,7 @@ Special thanks to @jasonmcintosh for the contribution!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - `cross-account-iam-roles`: Add support for IAM role name prefix via new input variable `iam_role_name_prefix`. This way, we can have all the IAM roles created with names such as `houston-&lt;account-name&gt;-xxx`: e.g., `houston-stage-allow-full-access-from-other-accounts` and `houston-prod-allow-full-access-from-other-accounts`.
 - `kms-master-key`: Add a new `create_resources` input variable to `kms-master-key` that, if set to false, will result in the module creating no resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack that will allow us to conditionally decide if the KMS master key should be created or not.
@@ -557,7 +557,7 @@ Special thanks to @jasonmcintosh for the contribution!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `s3-static-website`
 
 
@@ -581,7 +581,7 @@ Special thanks to @jasonmcintosh for the contribution!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `list-remove` [**NEW**]
 
 
@@ -601,7 +601,7 @@ This release introduces a new module `list-remove` which can be used to remove i
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 This release formats all the modules using `terraform fmt`. No functional changes are introduced.
 
 
@@ -622,7 +622,7 @@ This release formats all the modules using `terraform fmt`. No functional change
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `vpc-dns-forwarder` [**NEW**]
 * `vpc-dns-forwarder-rules` [**NEW**]
 
@@ -649,7 +649,7 @@ This release introduces two new modules that can be used to setup Route 53 Resol
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - This release improves the examples and documentation.
 

@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2018-09. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -31,7 +31,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -44,7 +44,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -61,7 +61,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -78,7 +78,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -125,7 +125,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/package-lambda/pull/21: Add a new parameter called `wait_for` to the `lambda` module. All the resources in the module will not be created until `wait_for` is resolved, which allows you to execute other steps (e.g., create zip file) before this module runs. This is a workaround for the lack of `depends_on` for modules in Terraform. 
+  https://github.com/gruntwork-io/package-lambda/pull/21: Add a new parameter called `wait_for` to the `lambda` module. All the resources in the module will not be created until `wait_for` is resolved, which allows you to execute other steps (e.g., create zip file) before this module runs. This is a workaround for the lack of `depends_on` for modules in Terraform.
 
 </div>
 
@@ -160,7 +160,7 @@ This release is **BACKWARD INCOMPATIBLE** with previous releases only if you wer
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -177,7 +177,7 @@ This release is **BACKWARD INCOMPATIBLE** with previous releases only if you wer
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -207,7 +207,7 @@ This release is **BACKWARD INCOMPATIBLE** with previous releases only if you wer
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 

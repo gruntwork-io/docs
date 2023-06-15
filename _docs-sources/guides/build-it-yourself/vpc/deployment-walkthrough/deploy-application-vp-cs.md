@@ -171,7 +171,7 @@ file for reference.
 
 ## Test your wrapper module
 
-At this point, you’ll want to test your code. See [Manual tests for Terraform code](/iac/usage/using-the-library#testing-terraform-only) for instructions.
+At this point, you’ll want to test your code. See [Manual tests for Terraform code](/library/usage/using-the-library#testing-terraform-only) for instructions.
 
 ## Merge and release your wrapper module
 

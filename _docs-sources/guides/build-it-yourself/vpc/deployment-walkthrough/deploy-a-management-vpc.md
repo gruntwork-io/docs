@@ -103,7 +103,7 @@ file for reference.
 
 ## Test your wrapper module
 
-At this point, you’ll want to test your code. See [Manual tests for Terraform code](/iac/usage/using-the-library#testing-terraform-only)
+At this point, you’ll want to test your code. See [Manual tests for Terraform code](/library/usage/using-the-library#testing-terraform-only)
 for instructions.
 
 ## Merge and release your wrapper module
@@ -150,7 +150,7 @@ This guide will use [Terragrunt](https://github.com/gruntwork-io/terragrunt) and
 structure to deploy Terraform modules. Please note that **Terragrunt is NOT required for using Terraform modules from
 the Gruntwork Infrastructure as Code Library.** Check out our [Introduction to Gruntwork](/intro/overview/intro-to-gruntwork)
 for instructions on alternative options, such as how to
-[deploy using plain terraform](/iac/getting-started/deploying-a-module).
+[deploy using plain terraform](/library/getting-started/deploying-a-module).
 
 :::
 

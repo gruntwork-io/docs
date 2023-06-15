@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2019-03. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -29,7 +29,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `ec2-backup`
 
 
@@ -49,7 +49,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `jenkins-server`
 
 
@@ -73,7 +73,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `ecs-service` [**BREAKING**]
 * `ecs-service-with-alb` [**BREAKING**]
 
@@ -110,7 +110,7 @@ Special thanks to @fieldawarepiotr for contributions to help implement the chang
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release introduces `eks-scripts`, a new module that contains helper scripts for working with EKS. The release ships with the script `map-ec2-tags-to-node-labels`, a python script that can run on the EC2 instance acting as an EKS worker to pull in the tags associated with the EC2 instance and map it to kubernetes node labels. You can then take the output to pass to the bootstrap script to set the labels in kubernetes.
 
@@ -133,7 +133,7 @@ Additionally, this release introduces a few bug fixes for working with multiple 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release does not introduce any changes to the underlying module features. Instead, this release focuses on documentation, examples, and test stability:
 
@@ -160,14 +160,14 @@ This release does not introduce any changes to the underlying module features. I
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `kinesis`
 
 
 The `kinesis` module now supports server-side encryption.
 
 
-* #16 
+* #16
 
 
 </div>
@@ -185,14 +185,14 @@ The `kinesis` module now supports server-side encryption.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `s3-cloudfront`
 
 
-* Fix compatibility issues with AWS provider 2.0.0 
+* Fix compatibility issues with AWS provider 2.0.0
 
 
-* #19 
+* #19
 
 </div>
 
@@ -209,7 +209,7 @@ The `kinesis` module now supports server-side encryption.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `vpc-app`
 * `vpc-peering`
 

@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2023-01. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -58,7 +58,7 @@ This release switches `repo-copier` to using your locally installed `git` instan
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `kubernetes-circleci-helpers` **[BACKWARD INCOMPATIBLE]**
 
 
@@ -90,7 +90,7 @@ This release switches `repo-copier` to using your locally installed `git` instan
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update tflint patch to latest docker and remove include root
 - Plumb `maintenance_window` variable from CIS RDS module through to base RDS module
@@ -108,7 +108,7 @@ This release switches `repo-copier` to using your locally installed `git` instan
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - Add `flow_logs_traffic_type` var to the VPC module.
 - Remove tflint-ruleset-aws-cis to it&apos;s own repo.
   - Update tflint patch: use tflint-ruleset-aws-cis own repo
@@ -131,7 +131,7 @@ This release switches `repo-copier` to using your locally installed `git` instan
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Upgrade to launch templates
 
@@ -151,7 +151,7 @@ This release switches `repo-copier` to using your locally installed `git` instan
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add conditional logic for writing ExecCredential api version to support backward compatibility with the latest release of this module and EKS clusters version &lt; `1.24`
 
@@ -168,7 +168,7 @@ This release switches `repo-copier` to using your locally installed `git` instan
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Expose additional chart configurations for external-dns.
 
@@ -187,13 +187,13 @@ This release switches `repo-copier` to using your locally installed `git` instan
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `eks-cluster-control-plane` **[BACKWARD INCOMPATIBLE]**
 - `eks-k8s-cluster-autoscaler` **[BACKWARD INCOMPATIBLE]**
 - `eks-container-logs` **[BACKWARD INCOMPATIBLE]**
 - `eks-alb-ingress-controller`
 - `eks-aws-auth-merger`
-- `eks-fargate-container-logs` 
+- `eks-fargate-container-logs`
 - `eks-k8s-external-dns`
 - `eks-k8s-role-mapping`
 
@@ -237,9 +237,9 @@ If you wish to maintain backward compatibility with your existing setup of the E
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- Adds `var.managed_policy_waiting_time` to modules `api-gateway-account-settings` and `lambda`. The purpose is mitigating racing conditions that occasionally cause these modules to fail to deploy when using managed IAM policies due to eventual consistency of policy permissions showing for the IAM role. 
+
+- Adds `var.managed_policy_waiting_time` to modules `api-gateway-account-settings` and `lambda`. The purpose is mitigating racing conditions that occasionally cause these modules to fail to deploy when using managed IAM policies due to eventual consistency of policy permissions showing for the IAM role.
 
 
 
@@ -254,7 +254,7 @@ If you wish to maintain backward compatibility with your existing setup of the E
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixes occasional deploy errors on module `api-gateway-account-settings` by enforcing the correct order of attaching permissions.
 
@@ -277,7 +277,7 @@ If you wish to maintain backward compatibility with your existing setup of the E
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added prevention of perpetual diff issues on `sns-to-slack` module when using terragrunt.
 
@@ -298,7 +298,7 @@ If you wish to maintain backward compatibility with your existing setup of the E
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Upgrade to launch templates
 
@@ -314,7 +314,7 @@ If you wish to maintain backward compatibility with your existing setup of the E
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Use new upgrade test code.
 - Updated default branch references (backward compatible)
@@ -338,9 +338,9 @@ If you wish to maintain backward compatibility with your existing setup of the E
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- Fixed private-s3-bucket ACL 
+
+- Fixed private-s3-bucket ACL
 - Added kms grant permissions for `cmk_user_iam_arns` supplied with conditions.
 
 
@@ -359,7 +359,7 @@ If you wish to maintain backward compatibility with your existing setup of the E
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - Updated version of terraform-aws-security from v0.66.0 to v0.67.2.  See release notes [here](https://github.com/gruntwork-io/terraform-aws-security/releases) for details
 
 
@@ -375,7 +375,7 @@ If you wish to maintain backward compatibility with your existing setup of the E
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Adding variables to manage rds
 - Updated Kubernetes to 1.24

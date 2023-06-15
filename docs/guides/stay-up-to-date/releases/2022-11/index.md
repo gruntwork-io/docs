@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2022-11. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -70,7 +70,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update Centos 7 image used in examples
 - Replace &apos;local readonly&apos; with &apos;local -r&apos; in bash scripts
@@ -88,7 +88,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Improved error handling during cloning of git repositories in `build-packer-artifact`
 
@@ -112,7 +112,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update References to CIS v1.5
 - Added support for new AWS region (`me-central-1` UAE) to multiregion modules
@@ -141,7 +141,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 -  Support ECS Task Scheduling
 - Update default branch references (backward compatible)
@@ -165,7 +165,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Install Python libraries as part of install process in `eks-scripts`
 
@@ -181,7 +181,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix prefix delegation environment variable
 
@@ -201,7 +201,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - Updates the Lambda function resource dependency tree to wait until the policy with the necessary permissions is attached to the IAM role before the function is created.
 
 
@@ -216,7 +216,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Adds a fix through the variable `enable_eni_cleanup` for an intermittent bug where the security group could not be destroyed due to lingering ENIs when the Lambda Function is running in a VPC.
 
@@ -238,7 +238,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - Switching NTP to chrony and configuring
 
 
@@ -253,7 +253,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - Added support for new AWS region (`me-central-1` UAE) to multi-region modules. As a result, you will need to add this region to your list of region providers.
 - Changed the `codegen` behavior to use the new Gruntwork Supported AWS Regions whitelist.
 
@@ -271,7 +271,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated IAM user login profiles to include lifecycle rules for importing login profiles without password information
 
@@ -294,7 +294,7 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Converted Packer examples from json to hcl
 
@@ -312,7 +312,7 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added `user_data_replace_on_change` var to allow for enabling or disabling the EC2 auto-replace when a change is made to user-data
 
@@ -333,7 +333,7 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add subPath processing for ConfigMaps and Secrets
 - Update `terraform-aws-eks` to `v0.55.2` - fix Python dependency issue with new AWS EKS optimized AMIs
@@ -352,7 +352,7 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added support for new AWS region (`me-central-1` UAE) to multiregion modules.
 - Updated `terraform-aws-security` versions to `v0.66.0`.
@@ -371,14 +371,14 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added support for Kubernetes 1.23.
 - Bump `helm-kubernetes-services` to `v0.2.16`.
 - Make changes to deprecate set-output command in Github action.
 - Bump `github.com/gruntwork-io/terraform-aws-security` to `v0.65.10`.
 - Allow configuring EKS worker `instance_root_volume_name`.
- 
+
 
 
 </div>
@@ -392,7 +392,7 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - New Helm chart wrapper module that allows you to deploy arbitrary Helm charts using Terraform.
 
@@ -408,7 +408,7 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Allow public subnets in VPCs to auto-assign public IPs, if desired
 
@@ -429,7 +429,7 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add optional ordered_cache_behavior to modules/s3-cloudfront
 

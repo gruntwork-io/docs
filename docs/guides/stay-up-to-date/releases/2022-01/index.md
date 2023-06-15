@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2022-01. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -37,7 +37,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/repo-copier/pull/112: 
+  https://github.com/gruntwork-io/repo-copier/pull/112:
 
 * You can now have `repo-copier` append a suffix to the name of each copied repo using the new `--repo-name-suffix` parameter. This is useful to ensure each repo name is unique and doesn&apos;t conflict with any repos you already have.
 * Improve error handling on GitLab repos to make it clearer you must specify a group in the URL, not a repo or user.
@@ -135,7 +135,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - Adds support for  ASG [instance_refresh](https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-refresh.html) to provide rolling deploys (i.e., replace N% of the ASG at a time), with health checks and a warm-up period
 
 
@@ -154,10 +154,10 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Added `permissions_boundary` to `ecs-deploy-runner` ECS Task IAM role and ECS Task Execution IAM role.
-- This variable is optional, and therefore backwards compatible. It will allow adding an additional layer of permissions restrictions and scope for the IAM role it applies to. 
+- This variable is optional, and therefore backwards compatible. It will allow adding an additional layer of permissions restrictions and scope for the IAM role it applies to.
 
 
 
@@ -174,7 +174,7 @@ Added `permissions_boundary` to `ecs-deploy-runner` ECS Task IAM role and ECS Ta
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `ecs-deploy-runner`
 - `gruntwork-module-circleci-helpers` **[BACKWARD INCOMPATIBLE]**
 
@@ -201,7 +201,7 @@ Most users will not be affected by the change to `configure-environment-for-grun
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to configure reserved concurrent execution for ECS Deploy Runner invoker lambda.
 
@@ -218,7 +218,7 @@ Most users will not be affected by the change to `configure-environment-for-grun
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated `ecs-deploy-runner` to handle options without arguments by adding allowed options in list `allowed_options_without_args`
 
@@ -241,7 +241,7 @@ Most users will not be affected by the change to `configure-environment-for-grun
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Updated dependency `gruntwork-io/terraform-aws-service-catalog` to `v0.70.1`. As a part of this change, support for `ap-southeast-3` (Jakarta) region was added to the multi region modules. **This is a backward incompatible change - refer to the migration guide for more details.**
 
@@ -257,7 +257,7 @@ Updated dependency `gruntwork-io/terraform-aws-service-catalog` to `v0.70.1`. As
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated `cleanup-expired-certs` to configure reserved concurrent executions to 1
 - Added a new module (`security/revoke-unused-iam-credentials`) that will automatically revoke unused IAM credentials
@@ -279,7 +279,7 @@ Updated dependency `gruntwork-io/terraform-aws-service-catalog` to `v0.70.1`. As
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added `enhanced_vpc_routing` and `logging` options to `redshift` module.
 
@@ -300,7 +300,7 @@ Updated dependency `gruntwork-io/terraform-aws-service-catalog` to `v0.70.1`. As
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated control plane module to provision the required KMS permission to the CMK policy when using envelope encryption.
 
@@ -317,7 +317,7 @@ Updated dependency `gruntwork-io/terraform-aws-service-catalog` to `v0.70.1`. As
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Bump `kubergrunt` to v0.8.0
 
@@ -333,7 +333,7 @@ Updated dependency `gruntwork-io/terraform-aws-service-catalog` to `v0.70.1`. As
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated `aws` provider version constraints to ensure Terraform doesn&apos;t use one with a bug around launch templates.
 - Added support for configuring prefix delegation mode on AWS VPC CNI. Prefix delegation mode increases the number of secondary IPs that can be provisioned to an EC2 instance, greatly expanding the number of Pods that can be scheduled on a node. Refer to [the updated documentation](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-control-plane#how-do-i-increase-the-number-of-pods-for-my-worker-nodes) for more details.
@@ -353,10 +353,10 @@ Note that this change is functionally backward compatible, but due to complexiti
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update codeowners to reflect current owners
-- Enable detailed monitoring control for ASG EC2s. A new variable `asg_enable_detailed_monitoring` allows you to configure whether or not detailed monitoring is enabled on the EC2 instances that comprise the EKS cluster workers auto scaling group. 
+- Enable detailed monitoring control for ASG EC2s. A new variable `asg_enable_detailed_monitoring` allows you to configure whether or not detailed monitoring is enabled on the EC2 instances that comprise the EKS cluster workers auto scaling group.
 
 
 
@@ -373,7 +373,7 @@ Note that this change is functionally backward compatible, but due to complexiti
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed bug where using name prefix breaks the iam role name output on `eks-cluster-workers` module.
 
@@ -395,7 +395,7 @@ Note that this change is functionally backward compatible, but due to complexiti
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated to manage CloudWatch Log Group for the lambda function in Terraform. This enables you to configure various settings, like KMS encryption keys for encrypted log events, and retention periods. This change is **backward incompatible**: refer to the migration guide down below for more details.
 
@@ -412,7 +412,7 @@ Note that this change is functionally backward compatible, but due to complexiti
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated to use managed IAM policies instead of inline policies for all IAM roles. Managed IAM policies are more friendly for compliance checkers and is generally recommended by AWS as best practice.
 
@@ -435,7 +435,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to configure s3 server access logging for the ELB/ALB access logs bucket
 
@@ -453,7 +453,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - `cloudwatch-custom-metrics-iam-policy`: Added comment explaining why &quot;ec2:DescribeTags&quot; is needed
 - Updated `sns-to-slack` module to use python 3.7 instead of 2.7.
@@ -475,7 +475,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - openvpn-admin: Fixes a bug that was causing `openvpn-admin` to return the instance&apos;s private IPv4 address. `openvpn-admin` now correctly returns the instance&apos;s public IPv4 address.
 
@@ -494,21 +494,21 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- Require IMDSv2 in aws_launch_configuration. This release allows you to configure the AWS Instance Metadata Service&apos;s (IMDS) state (enabled or disabled) and which versions of this endpoint to allow the use of via Terraform and these new variables: 
+
+- Require IMDSv2 in aws_launch_configuration. This release allows you to configure the AWS Instance Metadata Service&apos;s (IMDS) state (enabled or disabled) and which versions of this endpoint to allow the use of via Terraform and these new variables:
 - `var.enable_imds`
 - `var.use_imdsv1`
 
-In addition, `var.use_imdsv1` defaults to `false` to enforce use of the preferred IMDSv2 endpoint. If you don&apos;t need to also use IMDSv1, we recommend leaving this variable set to `false`, and updating your `start-openvpn-admin` script to this release tag. 
+In addition, `var.use_imdsv1` defaults to `false` to enforce use of the preferred IMDSv2 endpoint. If you don&apos;t need to also use IMDSv1, we recommend leaving this variable set to `false`, and updating your `start-openvpn-admin` script to this release tag.
 
-Note that if you: 
-1. are upgrading to this tag 
+Note that if you:
+1. are upgrading to this tag
 1. intend to use only IMDSv2 going forward
 1. keep `var.use_imdsv1` set to `false`
 then you **must update your `start-openvpn-admin` script to tag v0.19.0 in order to deploy a functioning openvpn server.**
 
- If you need to continue using IMDS version 1, you can set `var.use_imdsv1` to `true`. 
+ If you need to continue using IMDS version 1, you can set `var.use_imdsv1` to `true`.
 
 
 
@@ -523,7 +523,7 @@ then you **must update your `start-openvpn-admin` script to tag v0.19.0 in order
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Updated to generate DSA-like Diffie-Hellman parameters (uses weak prime). The weaker prime is much less computationally intensive and can be generated quickly, without sacrificing on the secure nature of the parameters. If you wish to maintain the old behavior with strong primes, you can pass in the `--gen-strong-prime` option to the call to `init-openvpn`.
 
@@ -540,7 +540,7 @@ Updated to generate DSA-like Diffie-Hellman parameters (uses weak prime). The we
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added ability to configure access logging for the OpenVPN backup bucket
 - Added ability to make IAM Groups for certificate management permissions optional
@@ -563,7 +563,7 @@ Updated to generate DSA-like Diffie-Hellman parameters (uses weak prime). The we
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Removed inline provider that was errorneously added in.
 
@@ -580,7 +580,7 @@ Updated to generate DSA-like Diffie-Hellman parameters (uses weak prime). The we
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated the `kms_key_arn` input variable for AWS Config to be regional for each SNS topic. Previously, it only allowed specifying a single KMS Key, but that was not correct for SNS topics, which are regional resources.
 
@@ -596,7 +596,7 @@ Updated to generate DSA-like Diffie-Hellman parameters (uses weak prime). The we
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to configure access logging and replication settings on AWS Config and AWS Cloudtrail buckets in the respective modules.
 
@@ -614,7 +614,7 @@ Updated to generate DSA-like Diffie-Hellman parameters (uses weak prime). The we
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated to use the `aws_partition` data source to lookup the partition when constructing ARNs. This allows the modules to be compatible with alternative AWS partitions like GovCloud and China.
 
@@ -631,7 +631,7 @@ Updated to generate DSA-like Diffie-Hellman parameters (uses weak prime). The we
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 **NOTE: This release is functionally backward compatible, but requires an updated aws provider version to work (&gt;= 3.64.0). For most users, this won&apos;t be an issue and Terraform will automatically update to the required provider version, but if you have wrapper modules that depend on an older aws provider version, you will need to update your wrapper module to be compatible with the newer provider before you can bump to this version.**
 
 
@@ -652,7 +652,7 @@ Updated to generate DSA-like Diffie-Hellman parameters (uses weak prime). The we
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added the ability to configure snapshot delivery frequency in aws config module.
 
@@ -670,7 +670,7 @@ Updated to generate DSA-like Diffie-Hellman parameters (uses weak prime). The we
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Minor tweaks to enhance functionality around object locking
 - Updating dependencies:
@@ -699,7 +699,7 @@ Updated to generate DSA-like Diffie-Hellman parameters (uses weak prime). The we
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added support for configuring IAM roles that allow access to GitHub Actions with OpenID Connect. Refer to the documentation for [github-actions-iam-role](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/github-actions-iam-role) for more info.
 - Added support to `allow-auto-deploy-access-from-other-accounts` to be assumed by GitHub Actions. This is configured using the new `allow_auto_deploy_from_github_actions` input variable on the `cross-account-iam-roles` module.
@@ -722,7 +722,7 @@ Updated to generate DSA-like Diffie-Hellman parameters (uses weak prime). The we
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed ability to control associating a public IP address to the server in `single-server` module, regardless of what is configured by default on the subnet.
 
@@ -741,7 +741,7 @@ Updated to generate DSA-like Diffie-Hellman parameters (uses weak prime). The we
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated to allow associating domain with EC2 instance even without EIP
 
@@ -763,7 +763,7 @@ Updated to generate DSA-like Diffie-Hellman parameters (uses weak prime). The we
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added EKS Container Insights metrics collection to EKS Core Services.
 
@@ -779,7 +779,7 @@ Updated to generate DSA-like Diffie-Hellman parameters (uses weak prime). The we
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated dependency `gruntwork-io/terraform-aws-security` to version `0.59.0`
 
@@ -797,7 +797,7 @@ Updated to generate DSA-like Diffie-Hellman parameters (uses weak prime). The we
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added the ability to manage the CloudWatch Log Group for EC2 log aggregation in Terraform. Now `base/ec2-baseline` (and all modules that depend on it) will create and manage the CloudWatch Log Group before the server is launched by default. This allows you to configure options such as KMS key based encryption and log event retention periods on the Log Group. Note that this is a **backward incompatible** change. Refer to the migration guide below for more information.
 - Updated dependencies:
@@ -817,7 +817,7 @@ Updated to generate DSA-like Diffie-Hellman parameters (uses weak prime). The we
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 Update various dependencies.
 
 - Update Terraform github.com/gruntwork-io/terraform-aws-vpc to v0.18.7
@@ -842,7 +842,7 @@ Update various dependencies.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added the ability to provide static list of thumbprints for better security posture when configuring an OIDC provider for GitHub Actions.
 - Update various dependencies:
@@ -866,7 +866,7 @@ Update various dependencies.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated snapshot retention for redis to 15 days.
 - Updated dependency `gruntwork-io/terraform-aws-security` to v0.57.1 to add support for `ap-southeast-3` region to multi region modules.
@@ -884,7 +884,7 @@ Update various dependencies.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added the ability to configure encryption on the FluentBit CloudWatch Log Group
 - Updated various dependencies:
@@ -913,7 +913,7 @@ Update various dependencies.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added the ability to configure and manage the cloudwatch log group for ECS service, via the new `create_cloudwatch_log_group`, `cloudwatch_log_group_name`, `cloudwatch_log_group_retention`, and `cloudwatch_log_group_kms_key_id` input variables.
 - Updated dependencies:
@@ -933,7 +933,7 @@ Update various dependencies.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add `reader_endpoint` output to Aurora module
 
@@ -954,7 +954,7 @@ Update various dependencies.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - Now the creation of the Internet Gateway is optional. We can have public subnets and still disable the IGW by setting the variable `enable_igw` to `false` (it&apos;s `true` by default). This fixes #150.
 
 
@@ -970,7 +970,7 @@ Update various dependencies.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Configure Patcher for CircleCI
 - Add timeouts to route table and routes

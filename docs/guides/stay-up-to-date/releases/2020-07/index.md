@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2020-07. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -39,7 +39,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -56,7 +56,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Fix bug where `asg-rolling-deploy` errors out on the `aws_autoscaling_group` resource in AWS provider versions &gt;v2.63.0.
 
@@ -77,7 +77,7 @@ Fix bug where `asg-rolling-deploy` errors out on the `aws_autoscaling_group` res
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The `ecs-deploy-runner` can now be provisioned with an EC2 worker pool to use as reserved workers to speed up the initial boot sequence for the ECS deploy runner tasks.
 
@@ -93,7 +93,7 @@ The `ecs-deploy-runner` can now be provisioned with an EC2 worker pool to use as
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update `install-jenkins` to  use the new Linux Repository signing keys, as the old ones expired.
 
@@ -110,7 +110,7 @@ The `ecs-deploy-runner` can now be provisioned with an EC2 worker pool to use as
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The `infrastructure-deploy-script` now supports passing in `-var-file` to `terraform` and `terragrunt`.
 
@@ -127,7 +127,7 @@ The `infrastructure-deploy-script` now supports passing in `-var-file` to `terra
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 Add the ability to set custom tags on all the resources managed by the `ecs-deploy-runner` module.
 
 
@@ -145,7 +145,7 @@ Add the ability to set custom tags on all the resources managed by the `ecs-depl
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 You can now disable specific containers in the standard configuration by setting the corresponding configuration option to `null`.
 
@@ -162,7 +162,7 @@ You can now disable specific containers in the standard configuration by setting
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release enhances the `ecs-deploy-runner` and `infrastructure-deployer` CLI to support deploying generic infrastructure code beyond just `terraform` and `terragrunt` modules. Prior to this release, the `ecs-deploy-runner` and `infrastructure-deployer` CLI only supported invoking the `infrastructure-deploy-script`. With this release, you can install and invoke arbitrary scripts in the deploy runner container.
 
@@ -189,7 +189,7 @@ The following is a summary of the feature enhancements included in this release:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 You can now set the `backend-config` option on the `init` call in the `ecs-deploy-runner` by passing in `--backend-config` to the `infrastructure-deployer` CLI.
 
@@ -206,7 +206,7 @@ You can now set the `backend-config` option on the `init` call in the `ecs-deplo
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 `infrastructure-deployer` and `infrastructure-deploy-script` now supports deploying the repo root path using `&quot;&quot;` for `--deploy-path`. This is now the default for `--deploy-path` when it is omitted from the CLI args.
 
@@ -222,7 +222,7 @@ You can now set the `backend-config` option on the `init` call in the `ecs-deplo
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The `iam-policies` modules will now output the policy JSON even when the policy is not created.
 
@@ -239,7 +239,7 @@ The `iam-policies` modules will now output the policy JSON even when the policy 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Fix bug where `command-args` was not flowing properly from the lambda function to the deploy script.
 
@@ -260,7 +260,7 @@ Fix bug where `command-args` was not flowing properly from the lambda function t
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release bumps the module-security package version in the `iam-groups` module to get:
 - `logs` groups.
@@ -282,7 +282,7 @@ This release bumps the module-security package version in the `iam-groups` modul
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Remove an unused `is_primary` parameter from the `aurora` module. If you were passing this parameter to the module, please remove it. This is an API change only; there should be no change in behavior.
 
@@ -302,7 +302,7 @@ This release bumps the module-security package version in the `iam-groups` modul
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - add redshift support
 
@@ -320,7 +320,7 @@ This release bumps the module-security package version in the `iam-groups` modul
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `aurora` module now sets `aurora-mysql` (MySQL 5.7-compatible) instead of `aurora` (MySQL 5.6-compatible) as the default engine. Also, updated variable descriptions and example code to better show how to run a global Aurora cluster. You can (and in most cases, probably already are!) override the default via the `engine` parameter.
 - The `aurora` module no longer ignores the `password` param when `snapshot_identifier` is set. This allows you to restore from a snapshot by setting `snapshot_identifier` to a value and `password` to `null` and then later to change the `password` by updating that param.
@@ -343,7 +343,7 @@ This release bumps the module-security package version in the `iam-groups` modul
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 You can now conditionally shut off the `ecs-cluster` module using the `create_resources` input flag. You can also provide a base64 user data parameter for cloud-init configurations.
 
@@ -360,7 +360,7 @@ You can now conditionally shut off the `ecs-cluster` module using the `create_re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Constrain aws provider version to 2.x.
 - Add ECS capacity provider functionality to ECS clusters.
@@ -378,7 +378,7 @@ You can now conditionally shut off the `ecs-cluster` module using the `create_re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 You can now set the permissions boundary for the ECS service IAM role for ELBs.
 
@@ -395,7 +395,7 @@ You can now set the permissions boundary for the ECS service IAM role for ELBs.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 You can now set the permission boundary on the IAM roles created in the `ecs-daemon-service` module.
 
@@ -412,7 +412,7 @@ You can now set the permission boundary on the IAM roles created in the `ecs-dae
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The `roll-out-ecs-cluster-update.py` script will now directly detach the old instances from ASG in a rollout to ensure the old ones get removed.
 
@@ -429,7 +429,7 @@ The `roll-out-ecs-cluster-update.py` script will now directly detach the old ins
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Fix bug where `ecs-cluster` errors out on the `aws_autoscaling_group` resource in AWS provider versions &gt;v2.63.0.
 
@@ -446,9 +446,9 @@ Fix bug where `ecs-cluster` errors out on the `aws_autoscaling_group` resource i
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- The `ecs-cluster` module now supports [block device encryption](https://www.terraform.io/docs/providers/aws/r/launch_configuration.html#encrypted) using the new `cluster_instance_root_volume_encrypted` input variable. 
+
+- The `ecs-cluster` module now supports [block device encryption](https://www.terraform.io/docs/providers/aws/r/launch_configuration.html#encrypted) using the new `cluster_instance_root_volume_encrypted` input variable.
 
 
 
@@ -469,7 +469,7 @@ Fix bug where `ecs-cluster` errors out on the `aws_autoscaling_group` resource i
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The upgrade scripts for `eks-cluster-control-plane` now support upgrading to Kubernetes 1.17. Note that in the process, the AWS VPC CNI version was also updated for ALL kubernetes versions to match expectations with AWS. This means that the CNI controller will be automatically updated when migrating to this version. This should not cause any issue for your cluster, but you may experience some network connectivity issues on new pods as the switch over is happening.
 
@@ -486,7 +486,7 @@ The upgrade scripts for `eks-cluster-control-plane` now support upgrading to Kub
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Fix bug where `eks-cluster-workers` errors out on the `aws_autoscaling_group` resource in AWS provider versions &gt;v2.63.0.
 
@@ -507,7 +507,7 @@ Fix bug where `eks-cluster-workers` errors out on the `aws_autoscaling_group` re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add Load Balancer Listener Rules module, which is an alternative to creating [lb_listener_rule](https://www.terraform.io/docs/providers/aws/r/lb_listener_rule.html) resources directly in Terraform, which can be convenient, for example, when configuring listener rules in a [Terragrunt configuration](https://terragrunt.gruntwork.io/).
 
@@ -530,7 +530,7 @@ Fix bug where `eks-cluster-workers` errors out on the `aws_autoscaling_group` re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix `alarm_configs` type.
 
@@ -548,7 +548,7 @@ Fix bug where `eks-cluster-workers` errors out on the `aws_autoscaling_group` re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add unzip to  needed for Amazon Linux 2
 - Allow route53-health-check-alarms to create multiple resources
@@ -568,7 +568,7 @@ Fix bug where `eks-cluster-workers` errors out on the `aws_autoscaling_group` re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release updates the `var.subnet_id` variable to a list, `var.subnet_ids`, to permit the ASG to use more than one subnet.
 
@@ -588,7 +588,7 @@ This release updates the `var.subnet_id` variable to a list, `var.subnet_ids`, t
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed a bug where `gruntsam` could generate `aws_api_gateway_method_response` resources in a different order each time you ran it, leading to spurious diffs in version control.
 - Fixed a bug where `gruntsam` would silently ignore errors in launching AWS SAM Local.
@@ -616,7 +616,7 @@ This release updates the `var.subnet_id` variable to a list, `var.subnet_ids`, t
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release adds a role with permissions only to access support, as required by the CIS AWS Foundations Benchmark. Previously, this permission was available in `iam-groups`, but not as an IAM role.
 
@@ -633,13 +633,13 @@ This release adds a role with permissions only to access support, as required by
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add missing AWS service access principal to `account-baseline-root`. This should get rid of a spurious diff in the `plan`.
 - Removed the `aws_organizations_organization` data source from `account-baseline-root`, as on the very first `apply`, the AWS organization may not exist yet!
 - Fixed several typos and copy paste errors in the [Landing Zone Deployment Guide](https://github.com/gruntwork-io/module-security/blob/d6863f8af5fb52ce4602c0c208ea4785f0de57d6/_docs/LANDING_ZONE_DEPLOY_GUIDE.md).
 - Allow enabling, disabling, and naming all IAM groups in `account-baseline-security`. The module now exposes `should_create_iam_group_xxx` and `iam_group_name_xxx` input parameters for every group `xxx` we support (e.g., `full-access`, `read-only`, `billing`, etc).
-- Converted `AWSConfigSNSPublishPolicy` in the `aws-config` module from a standalone IAM policy to an inline policy. This avoids name conflicts in case you deploy this more than once. Be aware that when you `apply` this module (or any of the `account-baseline-xxx` modules that use it under the hood), it is expected that it will delete the standalone policy and recreate it as an inline policy. 
+- Converted `AWSConfigSNSPublishPolicy` in the `aws-config` module from a standalone IAM policy to an inline policy. This avoids name conflicts in case you deploy this more than once. Be aware that when you `apply` this module (or any of the `account-baseline-xxx` modules that use it under the hood), it is expected that it will delete the standalone policy and recreate it as an inline policy.
 
 
 
@@ -655,15 +655,15 @@ This release adds a role with permissions only to access support, as required by
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
-- Updated `account-baseline-root` to allow you to turn off AWS Config and CloudTrail entirely. This is necessary 
+
+- Updated `account-baseline-root` to allow you to turn off AWS Config and CloudTrail entirely. This is necessary
   if you want to aggregate AWS Config and CloudTrail data in a child account (e.g., a dedicated logs account), but
   that child account doesn&apos;t initially exist and doesn&apos;t contain S3 buckets / KMS CMKs when you first run `apply`.
   Now you can run `apply` initially with AWS Config and CloudTrail disabled, create all the child accounts, apply a
   security baseline to each child account (including creating the necessary S3 buckets and KMS CMKs), turn AWS Config
   and CloudTrail back on in the root account, and run `apply` again. Also, fixed a bug where this module will now
-  use the KMS key specified via the `cloudtrail_kms_key_arn` input parameter rather than creating its own KMS master 
-  key for encrypting CloudTrail data. See the Deployment Guide for the recommended configuration if deploying from 
+  use the KMS key specified via the `cloudtrail_kms_key_arn` input parameter rather than creating its own KMS master
+  key for encrypting CloudTrail data. See the Deployment Guide for the recommended configuration if deploying from
   scratch. See the Migration Guide if you&apos;re updating an existing deployment.
 
 - Updated `account-baseline-app` so that, depending on the settings you pass in, it can either store AWS Config and
@@ -674,13 +674,13 @@ This release adds a role with permissions only to access support, as required by
 - Updated `account-baseline-security` to allow configuring it to send AWS Config and CloudTrail data to an external
   account (e.g., a separate logs account). Also, fixed a bug where it wasn&apos;t setting the `config_linked_accounts`
   parameter correctly, which made AWS Config data not work correctly if trying to use the security account itself for
-  aggregation.  See the Deployment Guide for the recommended configuration if deploying from scratch. See the Migration 
+  aggregation.  See the Deployment Guide for the recommended configuration if deploying from scratch. See the Migration
   Guide if you&apos;re updating an existing deployment.
 
-- Updated all `account-baseline-xxx` modules to, by default, send CloudTrail data not only to an S3 bucket (e.g., for 
+- Updated all `account-baseline-xxx` modules to, by default, send CloudTrail data not only to an S3 bucket (e.g., for
   aggregation in a logs account) but also CloudWatch Logs in the current account (for easy debugging).
 
-- Updated the `aws-config-multi-region`, `aws-organizations-config-rules`, and `cloudtrail` modules with a 
+- Updated the `aws-config-multi-region`, `aws-organizations-config-rules`, and `cloudtrail` modules with a
   `create_resources` parameter you can set to `false` to disable the module entirely. This is a stopgap until Terraform
   0.13 is generally available with support for using `count` and `for_each` on `module`.
 
@@ -696,7 +696,7 @@ This release adds a role with permissions only to access support, as required by
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Adds the `sts:TagSession` permission to the `allow_access_to_other_accounts` IAM policy. This will allow [session tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html). As an example, this is used with the [&quot;Configure AWS Credentials&quot; GitHub action](https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions).
 
@@ -714,7 +714,7 @@ Adds the `sts:TagSession` permission to the `allow_access_to_other_accounts` IAM
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix a syntactic error in `account-baseline-security` that prevented the module from working. Also, fix some test failures that obscured this.
 
@@ -732,7 +732,7 @@ Adds the `sts:TagSession` permission to the `allow_access_to_other_accounts` IAM
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 When creating a CMK using the `kms-master-key` module, you can now provide IAM conditions for the key users. Previously, the module only accepted a list of users, and did not accept any conditions.
 
@@ -748,7 +748,7 @@ When creating a CMK using the `kms-master-key` module, you can now provide IAM c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added a new `logs` IAM policy, IAM group, and IAM role that grants access to logs in CloudTrail, AWS Config, and CloudWatch.
 
@@ -767,7 +767,7 @@ When creating a CMK using the `kms-master-key` module, you can now provide IAM c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix `ssh_key` param in one of the examples so that tests will pass. No modules were changed.
 
@@ -791,7 +791,7 @@ When creating a CMK using the `kms-master-key` module, you can now provide IAM c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - **[NEW MODULE]**:  EC2 backup. This module makes it easy to deploy a data lifecycle manager that automatically creates snapshots of your EBS volumes at configurable intervals.
 
@@ -815,7 +815,7 @@ When creating a CMK using the `kms-master-key` module, you can now provide IAM c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `s3-cloudfront`
 - `s3-static-website`
 
@@ -842,7 +842,7 @@ When creating a CMK using the `kms-master-key` module, you can now provide IAM c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - Accept new variables `base_domain_name` and `base_domain_name_tags` to lookup the relevant hosted zone so that` hosted_zone_id` need not be provided.
 
 
@@ -862,7 +862,7 @@ When creating a CMK using the `kms-master-key` module, you can now provide IAM c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added a new `instance-type` module that can tell you which of a list of instance types are available in all AZs in the current AWS region.
 
@@ -886,7 +886,7 @@ When creating a CMK using the `kms-master-key` module, you can now provide IAM c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 `vpc-mgmt` now accepts the `create_resources` variable to determine whether or not to create resources. This will be useful until TF 0.13 release support for `count` on module blocks, at which point the `create_resources` functionality will be removed from all Gruntwork modules.
 
@@ -904,7 +904,7 @@ When creating a CMK using the `kms-master-key` module, you can now provide IAM c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release adds subnet ARNs to the outputs for `vpc-app` and `vpc-mgmt`.
 
@@ -922,7 +922,7 @@ This release adds subnet ARNs to the outputs for `vpc-app` and `vpc-mgmt`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Switch the `vpc-app` and `vpc-mgmt` modules from using the deprecated `blacklisted_names` and `blacklisted_zone_ids` parameters to the new `exclude_names` and `exclude_zone_ids` parameters.
 
@@ -938,7 +938,7 @@ This release adds subnet ARNs to the outputs for `vpc-app` and `vpc-mgmt`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 add glue support to vpc-interface-endpoint
 
@@ -954,7 +954,7 @@ add glue support to vpc-interface-endpoint
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now disable VPC endpoints in the `vpc-app` module by setting the `create_vpc_endpoints` variable to `false`.
 

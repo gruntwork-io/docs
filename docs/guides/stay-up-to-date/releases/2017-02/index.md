@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2017-02. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -124,7 +124,7 @@ To upgrade without downtime, we recommend the following approach:
 
   NEW MODULES: This release introduces 4 new modules under the `iam-policies` folder. These modules each create a specific IAM Policy that can be attached to an IAM User, IAM Group, or IAM Role. Collectively, they can be composed to enable the minimum IAM Policies necessary to:
 - Run Terraform with Remote State in S3
-- Run Terragrunt with DynamoDB-based Locking 
+- Run Terragrunt with DynamoDB-based Locking
 - Push a new Docker image to Amazon ECR
 - Deploy a new version of a service to an existing ECS Service.
 
@@ -166,10 +166,10 @@ We&apos;ve updated the `ecs-service-with-alb` module and example code accordingl
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - NEW MODULE: We&apos;re introducing the `tls-cert-private` module, which allows you to generate customized TLS certificate key pairs simply by updating a `docker-compose.yml` file and running `docker-compose up`. 
-  
+  - NEW MODULE: We&apos;re introducing the `tls-cert-private` module, which allows you to generate customized TLS certificate key pairs simply by updating a `docker-compose.yml` file and running `docker-compose up`.
+
   The module works by running a Docker container which downloads the latest version of OpenSSL and runs a series of commands to generate your certificates using RSA 4,096 bit encryption. The outputted files are then available on your local machine, where you may optionally encrypt the TLS private key.
-  
+
   These keys can be used to create temporary self-signed certificates or permanent certificates with a custom Certificate Authority (CA).
 
 

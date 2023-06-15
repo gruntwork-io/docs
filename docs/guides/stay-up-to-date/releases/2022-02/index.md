@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2022-02. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -81,8 +81,8 @@ For almost all use cases of these functions, this should be functionally equival
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
   - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
   - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -103,7 +103,7 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/574
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Restricted provider version to &lt; 4.0 due to breaking changes in new provider
 
@@ -120,9 +120,9 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/574
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
--  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-    - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+
+-  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+    - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
     - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
     - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -147,10 +147,10 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/574
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-**Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+
+**Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
   - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
   - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -166,7 +166,7 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/574
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Housekeeping: Updated CODEOWNERS, Added GitHub PR &amp; Issue Templates, and whitespace changes.
 - Restricted provider version to &lt; 4.0 due to breaking changes in new provider
@@ -190,7 +190,7 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/574
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to configure IAM permissions boundary for the invoker lambda IAM role.
 
@@ -207,7 +207,7 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/574
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated to use `name_prefix` instead of `name` for outbound security group of ECS Deploy Runner to support deploying multiple instances of `ecs-deploy-runner` in a single VPC.
 
@@ -222,8 +222,8 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/574
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
   - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
   - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -241,7 +241,7 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/574
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Restricted provider version to &lt; 4.0 due to breaking changes in new provider
 
@@ -260,7 +260,7 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/574
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated Lambda module version and exposed CloudWatch Log Group settings
 
@@ -277,7 +277,7 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/574
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Improved error message for destroy ref not based on default branch in the `infrastructure-deploy-script`
 - Updated to use managed IAM policies instead of inline policies for all IAM roles. Managed IAM policies are more friendly for compliance checkers and is generally recommended by AWS as best practice.
@@ -299,7 +299,7 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/574
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Flow through `reserved_concurrent_executions` in `account-baseline-root` for the `cleanup-expired-certs` module.
 
@@ -318,7 +318,7 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/574
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Flow through `reserved_concurrent_executions` in `account-baseline-security` for the `cleanup-expired-certs` module.
 
@@ -337,7 +337,7 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/574
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Flow the `reserved_concurrent_executions` var through  `account-baseline-app`.
 
@@ -356,7 +356,7 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/574
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to configure `reserved_concurrent_executions` on the `cleanup-expired-certs` lambda function.
 
@@ -375,7 +375,7 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/574
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated dependency `terraform-aws-service-catalog` to `v0.78.1`
 - Exposed AWS Config encryption parameters.
@@ -393,7 +393,7 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/574
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 Introduce `iam_password_policy_hard_expiry` input variable to control password policy hard expiry, as the previously hard-coded `true` is too strict for most use cases. Hard expiry requires an administrator to reset the password, which greatly degrades the UX of IAM users accessing the AWS console. This also increases the risk of account lock out (e.g., if you have no administrators in the account).
 
 Default value is still `true`.
@@ -410,10 +410,10 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-**Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+
+**Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
   - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
   - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -430,7 +430,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Allow configuration of CloudTrail CloudWatch log group retention period. Default to 14 days instead of the previous 0 days.
 
@@ -447,7 +447,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Restricted provider version to &lt; 4.0 due to breaking changes in new provider
 
@@ -465,7 +465,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add support for custom outbound NACLs from private app networks
 
@@ -482,7 +482,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated to expose the organization trail configuration parameters for CloudTrail in `account-baseline-root`.
 
@@ -499,7 +499,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated `cleanup-expired-certs` module to use managed IAM policies instead of inline policies for all IAM roles. Managed IAM policies are more friendly for compliance checkers and is generally recommended by AWS as best practice.
 - Updated `cleanup-expired-certs` module to manage CloudWatch Log Group for the lambda function in Terraform. This enables you to configure various settings, like KMS encryption keys for encrypted log events, and retention periods.
@@ -521,7 +521,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added option to enable open access via mount targets to EFS volumes.
 
@@ -538,9 +538,9 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
-**Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+
+**Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
   - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
   - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -557,7 +557,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated provider versioning to restrict to `&lt; 4.0`. AWS Provider 4.x series introduced a number of backward incompatible changes and these modules haven&apos;t been updated to work with them yet.
 - Exposed the ability to configure copy-on-write cloning for Aurora DB cluster.
@@ -579,9 +579,9 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
-**Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+
+**Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
   - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
   - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -600,7 +600,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Tweak CircleCI config to make more consistent with rest of repos
 - Restricted provider version to &lt; 4.0 due to breaking changes in new provider
@@ -619,7 +619,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 -  Rename vars.tf to more canonical variables.tf
 -  Fixed bug when the autoscale policy was deleted when changing the capacity provider
@@ -641,7 +641,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed bug in `eks-cluster-workers` module where IAM role conditional can sometimes lead to terraform error.
 
@@ -659,10 +659,10 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
--  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-    - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+
+-  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+    - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
     - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
     - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -683,7 +683,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Tweaked CircleCI config to make more consistent with other repos
 - Restricted provider version to &lt; 4.0 due to breaking changes in new provider
@@ -701,7 +701,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added the ability to manage the control plane logging CloudWatch Log Group. Now you can configure encryption and retention settings on the Log Group that is used for storing control plane logs.
 
@@ -718,7 +718,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added the ability to configure the container image repository used to source the container insights images
 
@@ -741,7 +741,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed the CloudWatch log group name for `lambda@edge` to sync with what is created by `lambda@edge`. Previously the CloudWatch Log Group name was incorrect, causing `lambda@edge` to create a new, separate log group instead of the one configured for it in the module.
 
@@ -757,9 +757,9 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- Add support to disable source code updates beyond initial creation 
+
+- Add support to disable source code updates beyond initial creation
 
 
 
@@ -774,7 +774,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Restricted provider version to &lt; 4.0 due to breaking changes in new provider
 
@@ -791,11 +791,11 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
 
--  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-    - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+
+-  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+    - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
     - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
     - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -820,8 +820,8 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
   - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
   - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -838,7 +838,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Restricted provider version to &lt; 4.0 due to breaking changes in new provider
 
@@ -856,7 +856,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed a regression bug introduced with v0.27.2 where domain lookup by name should only be done if domain is not in lookup table
 
@@ -874,7 +874,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed bug where hosted zone data source look ups causes the domains to be recreated on minor updates to the route 53 hosted zone. You can now work around this problem by using the new `domain_hosted_zone_ids` input map. Refer to the PR description in https://github.com/gruntwork-io/terraform-aws-load-balancer/pull/133 for more information on this.
 
@@ -897,7 +897,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added a new module to use SQS as a trigger for Lambda. Please refer to the [examples](https://github.com/gruntwork-io/terraform-aws-messaging/tree/master/examples/sqs-lambda-connection) folder to check how to use it.
 
@@ -914,9 +914,9 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
-**Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+
+**Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
   - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
   - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -932,7 +932,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Renamed vars.tf to more canonical variables.tf
 - Small fixes in preparation for Terraform 1.1 upgrade
@@ -952,7 +952,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add module for connecting SNS to SQS. This is a new module and we can create a connection among a SNS topic and a SQS queue. More information can be found in [the module documentation](https://github.com/gruntwork-io/terraform-aws-messaging/tree/master/modules/sns-sqs-connection).
 
@@ -973,9 +973,9 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
-**Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+
+**Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
   - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
   - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -992,7 +992,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Remove space at the end of line in CircleCI config
 - Restricted provider version to &lt; 4.0 due to breaking changes in new provider
@@ -1011,9 +1011,9 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- Install CloudWatch Script: Fixed architecture logic error to only log error if architecture is unexpected. 
+
+- Install CloudWatch Script: Fixed architecture logic error to only log error if architecture is unexpected.
 
 
 </div>
@@ -1027,7 +1027,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Rename vars.tf to more canonical variables.tf
 - Install CloudWatch Script: Whether you&apos;re using amd64 or am64, the cloudwatch agent download script will download the architecture-specific agent.
@@ -1045,7 +1045,7 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated to expose object locking settings for load balancer access logs bucket and S3 server access logging bucket.
 
@@ -1066,13 +1066,13 @@ Default value is still `true`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- Enable ebs optimization by default . This release introduces a new `ebs_optimized` variable that defaults to `true`. 
 
-Note that, for the vast majority of instance types, there is no additional charge for enabling EBS optimization, however for certain previous generation instances there will be an additional cost to have EBS optimization enabled. See the [EC2 pricing page](https://aws.amazon.com/ec2/pricing/on-demand/#EBS-Optimized_Instances) and the [previous generation pricing page](https://aws.amazon.com/ec2/previous-generation/) for more details. 
+- Enable ebs optimization by default . This release introduces a new `ebs_optimized` variable that defaults to `true`.
 
-Note that this is a **backward incompatible change:** a naive update to this version will cause the EC2 instances to shuffle, which will result in temporary downtime of your VPN service. If you wish to avoid this, you can set the new `var.ebs_optimized` to `false`. 
+Note that, for the vast majority of instance types, there is no additional charge for enabling EBS optimization, however for certain previous generation instances there will be an additional cost to have EBS optimization enabled. See the [EC2 pricing page](https://aws.amazon.com/ec2/pricing/on-demand/#EBS-Optimized_Instances) and the [previous generation pricing page](https://aws.amazon.com/ec2/previous-generation/) for more details.
+
+Note that this is a **backward incompatible change:** a naive update to this version will cause the EC2 instances to shuffle, which will result in temporary downtime of your VPN service. If you wish to avoid this, you can set the new `var.ebs_optimized` to `false`.
 
 
 
@@ -1090,8 +1090,8 @@ Note that this is a **backward incompatible change:** a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
   - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
   - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -1109,7 +1109,7 @@ Note that this is a **backward incompatible change:** a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Restricted provider version to &lt; 4.0 due to breaking changes in new provider
 - Cost savings: Make sure KMS keys created are deleted within 7 days, not the default 30 days!
@@ -1134,7 +1134,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to extend the CloudTrail S3 bucket policy with additional statements using the new `additional_bucket_policy_statements` input variable.
 
@@ -1152,7 +1152,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Rearranged encryption settings for SNS and S3 in `aws-config` to support independently configuring each. You can now configure the KMS key used for the s3 bucket using `var.s3_bucket_kms_key_arn` and the SNS topic using `var.sns_topic_kms_key_arn`. For `aws-config-multi-region`, the latter is configured using `var.sns_topic_kms_key_region_map`, as the KMS key needs to reside in the same region as the SNS topic.
 
@@ -1171,8 +1171,8 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
   - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
   - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -1189,7 +1189,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Expand the kms_key_arn input variable docs to clarify the relation with SNS topics
 - Restricted provider version to &lt; 4.0 due to breaking changes in new provider
@@ -1210,7 +1210,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated `aws-config-multi-region` module to use explicit default provider pattern.
 
@@ -1227,7 +1227,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added optional permission boundaries var for custom entity IAM Role
 - Fixed bug where iam role policy was dropped for auto deploy cross account IAM role when only github actions access was configured.
@@ -1245,7 +1245,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed bug where the auto deploy IAM role was not created when only the github actions access was configured. Now you can configure the auto deploy IAM role with only setting the github actions input variable.
 
@@ -1264,7 +1264,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated `private-s3-bucket` module to expose a way to create and manage a replication IAM role for replicating an existing S3 bucket to the new bucket.
 
@@ -1287,7 +1287,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixes `invalid index` error that happens occasionally on `terraform destroy` due to missing resource.
 
@@ -1304,10 +1304,10 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-**Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+
+**Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
   - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
   - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -1324,7 +1324,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated tests README
 - Renamed vars.tf to more canonical variables.tf
@@ -1348,7 +1348,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed backward compatibility feature flags for managed IAM policies in all affected modules from `v0.80.0`
 
@@ -1366,7 +1366,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to restore a `redis` DB from backup using the new `snapshot_name` or `snapshot_arn` input variable.
 
@@ -1384,7 +1384,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated dependency `terraform-aws-load-balancer` to `v0.27.3`
 - Fixed bug in `route53` module where minor changes to the hosted zone like updating tags inadvertently causes the records for ACM verification to be recreated, causing outages in the ACM certificate. Now minor updates to the hosted zone no longer cause changes to the records.
@@ -1403,7 +1403,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - Some of our modules have been updated to use managed IAM policies instead of inline policies for all IAM roles. Managed IAM policies are more friendly for compliance checkers and is generally recommended by AWS as best practice.
 
 Note that this is **a backward incompatible change**: a naive update to this version will cause the IAM policies to shuffle, which will result in a temporary downtime of IAM permissions. If you wish to avoid this, you can set the new `var.use_managed_iam_policies` to `false`.
@@ -1425,7 +1425,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed optional provider configuration options for route53 health check module.
 
@@ -1442,7 +1442,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Bump dependency `terraform-aws-eks` to `v0.49.1`
 - Bump dependency `terraform-aws-ci` to `v0.45.0`. In the process, expose the ability to configure the CloudWatch Log Group for the invoker lambda function in `ecs-deploy-runner`.
@@ -1460,7 +1460,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to configure KMS keys for encrypting the S3 bucket and SNS topic used by AWS Config.
 
@@ -1478,7 +1478,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated dependency `terraform-aws-security` to v0.62.1
 
@@ -1495,7 +1495,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added the ability to attach a CloudWatch log filtered subscription to `eks-core-services` for the CloudWatch Log Group used by `fluent-bit`.
 
@@ -1512,8 +1512,8 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
   - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
   - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -1530,7 +1530,7 @@ This release also include minor documentation fixes and updates to README files.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Updated password policy hard expiry to default to `false`, as `true` is too strict for most use cases.
 
@@ -1549,7 +1549,7 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to set a custom Cloudtrail trail name.
 
@@ -1567,7 +1567,7 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed cross account IAM role bug with github actions auto deploy role where `allow_auto_deploy_access_from_other_accounts` needed to be set to configure `allow_auto_deploy_from_github_actions_for_sources`.
 
@@ -1585,7 +1585,7 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated `account-baseline-root` to not create ssh grunt IAM groups by default, since the root account is not meant to run any servers in there.
 - Fixed bug where ssh grunt related sign in urls were being outputted as IAM role arns for an unrelated cross account IAM role in account-baseline module outputs.
@@ -1603,7 +1603,7 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated default version of `terraform-aws-openvpn` used in AMI for openvpn server.
 - Updated default `k8s-service` helm chart version to latest
@@ -1625,7 +1625,7 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated dependency `gruntwork-io/terraform-aws-eks` to v0.48.0
 - Exposed new EKS features from underlying module:
@@ -1645,7 +1645,7 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated `eks-workers` and `eks-clusters` modules to support deploying an EKS cluster with workers in Prefix Delegation network mode of `aws-vpc-cni`. Prefix Delegation mode allows allocating secondary IPs in blocks of 16 addresses, greatly increasing the limit of available IPs for Pods in the EKS workers. **IMPORTANT** Starting this version, EKS clusters managed with `eks-clusters` and `eks-workers` modules default to Prefix Delegation mode - if you wish to avoid this switch, refer to the migration guide for information on how to keep the old model of network management.
 - Upgrade dependency `gruntwork-io/terraform-aws-eks` to v0.47.2
@@ -1663,7 +1663,7 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated to allow configuring GitHub Actions assume role access to the auto deploy cross account role in the baseline modules.
 
@@ -1681,14 +1681,14 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated default EKS disallowed availability zones list to include a new AZ for `ca-central-1` that doesn&apos;t support EKS Fargate
 - Updated dependency `terraform-aws-vpc` to v0.18.12
 - Exposed the following new functionality in the `vpc` module:
     - Added support for making Internet Gateway creation optional.
     - Added support for configuring routes to Virtual Private Gateways in each of the subnet tiers.
-    - Added support for configuring custom outbound NACL rules for the private app subnet tier. 
+    - Added support for configuring custom outbound NACL rules for the private app subnet tier.
 
 
 
@@ -1705,7 +1705,7 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to configure kms key `deletion_window_in_days` for VPC flow logs.
 - Exposed the ability to configure ICMP access through the NACLs.
@@ -1723,7 +1723,7 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed a bug where setting up the VPC peering connection in the `vpc` module can lead to to count errors on certain inputs.
 
@@ -1745,10 +1745,10 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-**Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+
+**Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
   - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
   - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -1765,7 +1765,7 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add GitHub PR &amp; Issue Templates
 - Add gruntwork-io/maintenance-tier-3-orion to CODEOWNERS
@@ -1789,8 +1789,8 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
   - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
   - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -1808,7 +1808,7 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Modernized circleci implementation to help our tests pass again.
 - Restricted provider version to &lt; 4.0 due to breaking changes in new provider
@@ -1830,7 +1830,7 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add `iam_role_permissions_boundary` variable to the `vpc-flow-logs` module #253
 
@@ -1847,8 +1847,8 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`! 
-  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon! 
+  **Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
+  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
   - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
   - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
@@ -1864,7 +1864,7 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Restricted provider version to &lt; 4.0 due to breaking changes in new provider.
 - Updated to use managed IAM policies instead of inline policies for all IAM roles. Managed IAM policies are more friendly for compliance checkers and is generally recommended by AWS as best practice.
@@ -1883,7 +1883,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Implemented support for custom outbound NACLs to private app networks
 
@@ -1900,7 +1900,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated to expose `deletion_window_in_days` for the KMS key that is created to encrypt the VPC flow logs.
 
@@ -1918,7 +1918,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Exposed `icmp_type` and `icmp_code` in `var.private_app_allow_inbound_ports_from_cidr` so that ICMP can be enabled.
 
@@ -1934,7 +1934,7 @@ Exposed `icmp_type` and `icmp_code` in `var.private_app_allow_inbound_ports_from
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to specify propagating virtual gateway routes for public route table (via the `public_propagating_vgws` variable).
 

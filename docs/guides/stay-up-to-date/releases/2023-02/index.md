@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2023-02. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -50,7 +50,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  * Get rid of sensitive data from git history by @brikis98 
+  * Get rid of sensitive data from git history by @brikis98
 * Fix displaying the correct version in the CLI `--version` by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/145
 * Bug fix in `--dry-run` mode. Fix copying non-Golang repository on Windows OS by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/149
 
@@ -72,7 +72,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updates asg-instance-refresh examples to use Launch Templates instead of Launch Configurations
 
@@ -90,7 +90,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Simplify required vars in asg-rolling-deploy
 
@@ -107,7 +107,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - Updates to Launch Template. Deprecate Launch Config
 - Updated asg-rolling-deploy to use Launch Templates
 - Deprecate launch configs in asg-instance-refresh
@@ -129,7 +129,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updates jenkins, ec2-backup, and the ecs-deploy-runner to use launch templates rather than the deprecated launch configurations
 
@@ -150,7 +150,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated launch configurations to launch templates
 
@@ -167,7 +167,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 -  Fix changelog linter issues
 - [examples] Remove deprecated argument `skip_get_ec2_platforms` from AWS …
@@ -186,7 +186,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Modules: remove references to Gruntwork Houston
 - Add Changelogs for each module
@@ -205,7 +205,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated version of the RDS module from the Service Catalog to v0.100.1.
 
@@ -241,7 +241,7 @@ Here are the repos that were updated:
 * Upgrade the aws provider version to 4.22.0 for redshift by @hongil0316 in https://github.com/gruntwork-io/terraform-aws-data-storage/pull/291
 * Upgrade the aws provider version to 4.22.0 for backup vault and policy by @hongil0316 in https://github.com/gruntwork-io/terraform-aws-data-storage/pull/290
 
-In this release, we have updated the aws provider version from 3.x.x to 4.22.0, which involves a major upgrade from aws provider. From testing, we didn&apos;t find any changes needed on the storage modules themselves but it might require changes on other interacting components due to the major provider version upgrade. Please test before using the newest release version. 
+In this release, we have updated the aws provider version from 3.x.x to 4.22.0, which involves a major upgrade from aws provider. From testing, we didn&apos;t find any changes needed on the storage modules themselves but it might require changes on other interacting components due to the major provider version upgrade. Please test before using the newest release version.
 
 
 **Full Changelog**: https://github.com/gruntwork-io/terraform-aws-data-storage/compare/v0.24.4...v0.26.0
@@ -257,7 +257,7 @@ In this release, we have updated the aws provider version from 3.x.x to 4.22.0, 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `rds`
 - `efs`
 - `aurora` **[BACKWARDS INCOMPATIBLE]**
@@ -276,7 +276,7 @@ In this release, we have updated the aws provider version from 3.x.x to 4.22.0, 
 
 Use the terraform state mv [command](https://www.terraform.io/docs/commands/state/mv.html) on any Terraform state files you have, changing your `aws_security_group_rule` indexes from numbers to the source security groups&apos; IDs.
 
-Let&apos;s assume you have 3 entries in `var.allow_connections_from_security_groups` defined in your terraform inputs, 
+Let&apos;s assume you have 3 entries in `var.allow_connections_from_security_groups` defined in your terraform inputs,
 ```
 module.database.aws_security_group_rule.allow_connections_from_security_group[0]
 module.database.aws_security_group_rule.allow_connections_from_security_group[1]
@@ -288,7 +288,7 @@ To prepare your Terraform state to be compatible with this release, you need to 
 terraform state mv &apos;module.database.aws_security_group_rule.allow_connections_from_security_group[0]&apos; &apos;module.database.aws_security_group_rule.allow_connections_from_security_group[&quot;sg-123abc&quot;]&apos;
 
 terraform state mv &apos;module.database.aws_security_group_rule.allow_connections_from_security_group[1]&apos; &apos;module.database.aws_security_group_rule.allow_connections_from_security_group[&quot;sg-456def&quot;]&apos;
-... 
+...
 ```
 
 </div>
@@ -333,7 +333,7 @@ terraform state mv &apos;module.database.aws_security_group_rule.allow_connectio
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Expose Helm Chart `additionalInputs` value.
 
@@ -355,7 +355,7 @@ terraform state mv &apos;module.database.aws_security_group_rule.allow_connectio
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 Migrated the example in examples/asg-alarms to use a launch template instead of a launch configuration.
 
 
@@ -374,7 +374,7 @@ Migrated the example in examples/asg-alarms to use a launch template instead of 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - remove deprecated argument skip_get_ec2_platforms from AWS …
 - remove references to Gruntwork Houston
@@ -398,7 +398,7 @@ Migrated the example in examples/asg-alarms to use a launch template instead of 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add dependency between S3 bucket and access logs bucket
 - Fix duplicate S3 website routing rules and support multiple routing rules
@@ -415,7 +415,7 @@ Migrated the example in examples/asg-alarms to use a launch template instead of 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added new &apos;cloudwatch_log_group_tags&apos; variable to `ecs-service` module
 - Exposes `secondary_private_ips` variable in `ec2-instance` module
@@ -434,7 +434,7 @@ Migrated the example in examples/asg-alarms to use a launch template instead of 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposes variable to disable cloudfront logs on `public_static_website` module.
 
@@ -451,7 +451,7 @@ Migrated the example in examples/asg-alarms to use a launch template instead of 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - Bump `terraform-aws-eks` to `v0.56.3` - expose additional inputs for fluentbit in core services
 - Upgrade `helm-kubernetes-services` to `v0.2.18`
 
@@ -470,7 +470,7 @@ Migrated the example in examples/asg-alarms to use a launch template instead of 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Adds conditional logic for writing ExecCredential api version to support backward compatibility with `terraform-aws-eks` v0.56.1 and above with EKS clusters 1.23 and below.
 
@@ -486,7 +486,7 @@ Migrated the example in examples/asg-alarms to use a launch template instead of 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Expose `web_acl_id` in public-static-website module
 
@@ -507,7 +507,7 @@ Migrated the example in examples/asg-alarms to use a launch template instead of 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixes duplicate routing rules applied when using `routing_rule` input for the `s3-static-website` module
 - Adds `routing_rules` input for the `s3-static-website` module. This enables having empty String values in routing rules

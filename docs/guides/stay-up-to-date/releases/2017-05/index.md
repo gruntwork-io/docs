@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2017-05. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -119,7 +119,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-aws-monitoring/pull/30: Fix a bug in the `alb-target-group-alarms` where there was a typo in the `comparison_operator` of the `tg_low_healthy_host_count` alarm. 
+  https://github.com/gruntwork-io/module-aws-monitoring/pull/30: Fix a bug in the `alb-target-group-alarms` where there was a typo in the `comparison_operator` of the `tg_low_healthy_host_count` alarm.
 
 </div>
 
@@ -149,7 +149,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -188,7 +188,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-security/pull/33: The `iam-groups` module now creates an IAM group that grants access to all external AWS accounts in `var.iam_groups_for_cross_account_access`. 
+  https://github.com/gruntwork-io/module-security/pull/33: The `iam-groups` module now creates an IAM group that grants access to all external AWS accounts in `var.iam_groups_for_cross_account_access`.
 
 </div>
 

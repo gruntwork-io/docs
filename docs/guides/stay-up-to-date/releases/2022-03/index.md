@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2022-03. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -128,7 +128,7 @@ required_version: &quot;~&gt; 0.4.3&quot;
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add support for attaching a launch template to asg with instance refresh
 
@@ -146,7 +146,7 @@ required_version: &quot;~&gt; 0.4.3&quot;
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Converted usage of deprecated `tags` attribute to `tag` blocks. This change is backward compatible for your resources.
 - Upgraded version of `boto3` embedded in the `server-group` module for rolling deployment script.
@@ -164,7 +164,7 @@ required_version: &quot;~&gt; 0.4.3&quot;
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Allows attaching permission boundaries to the role attached to the server&apos;s group role.
 
@@ -185,7 +185,7 @@ required_version: &quot;~&gt; 0.4.3&quot;
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed bug where there is a race condition between log group creation and ECS task creation for the `ecs-deploy-runner`.
 
@@ -203,7 +203,7 @@ required_version: &quot;~&gt; 0.4.3&quot;
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed ability to install `infrastructure-deploy-script` and `monorepo-helpers` without `sudo`.
 
@@ -222,7 +222,7 @@ required_version: &quot;~&gt; 0.4.3&quot;
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to configure the CloudWatch Log Group used by the ECS task launched with `ecs-deploy-runner`.
 
@@ -239,7 +239,7 @@ required_version: &quot;~&gt; 0.4.3&quot;
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed bug where `infrastructure-deploy-script` help text did not include overview docs.
 
@@ -258,7 +258,7 @@ required_version: &quot;~&gt; 0.4.3&quot;
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated `setup-minikube` to be compatible with Ubuntu 20.04, instead of the deprecated Ubuntu 16.04 image.
 
@@ -274,7 +274,7 @@ required_version: &quot;~&gt; 0.4.3&quot;
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the lambda function name of the invoker as an output for `ecs-deploy-runner` module.
 
@@ -292,7 +292,7 @@ required_version: &quot;~&gt; 0.4.3&quot;
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Synced versions of tags in `Dockerfile` for ECS Deploy Runner. The versions of installed software are backward compatible.
 
@@ -311,7 +311,7 @@ required_version: &quot;~&gt; 0.4.3&quot;
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated the `ecs-deploy-runner-standard-configuration` module to not define a `required_providers` block, since it doesn&apos;t have any provider resources.
 - Updated the standard configuration of `ecs-deploy-runner` to allow calling `--help` without option args on scripts within EDR
@@ -335,7 +335,7 @@ required_version: &quot;~&gt; 0.4.3&quot;
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated dependency `gruntwork-io/terraform-aws-service-catalog` to v0.85.2.
 
@@ -352,7 +352,7 @@ required_version: &quot;~&gt; 0.4.3&quot;
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed bug where the rule numbers were not all relative to the new `var.initial_nacl_rule_number` input variable.
 
@@ -369,7 +369,7 @@ required_version: &quot;~&gt; 0.4.3&quot;
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated the `vpc-mgmt-network-acls` and `vpc-app-network-acls` modules to expose the ability to configure the initial rule number used for the rules. This allows a user to set a sufficiently high number to provide more head room for inserting higher priority rules.
 
@@ -387,7 +387,7 @@ required_version: &quot;~&gt; 0.4.3&quot;
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Updated the `macie` module to allow configuring and managing the Macie CloudWatch Log Group within Terraform. This allows a user to configure encryption settings for the Log Group or retention settings.
 
@@ -404,7 +404,7 @@ Updated the `macie` module to allow configuring and managing the Macie CloudWatc
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated `account-baseline-root` module to allow to use external accounts as the administrator account for `macie` and `securityhub`.
 
@@ -425,7 +425,7 @@ Updated the `macie` module to allow configuring and managing the Macie CloudWatc
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update versions of tools in circleci
 - Add support for Oracle parameter groups in the RDS module.
@@ -450,7 +450,7 @@ Updated the `macie` module to allow configuring and managing the Macie CloudWatc
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed configuration parameters for restricting IMDS endpoints on EC2 instances in ECS cluster. Refer to the new `enable_imds` and `use_imdsv1` input parameters for more information.
 
@@ -471,7 +471,7 @@ Updated the `macie` module to allow configuring and managing the Macie CloudWatc
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix `kubergrunt` arguments when syncing core components
 
@@ -488,7 +488,7 @@ Updated the `macie` module to allow configuring and managing the Macie CloudWatc
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `eks-cluster-control-plane`
 
 
@@ -512,7 +512,7 @@ Updated the `macie` module to allow configuring and managing the Macie CloudWatc
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed ability to configure EBS IOPS and Throughput parameters for self managed ASG workers.
 
@@ -529,7 +529,7 @@ Updated the `macie` module to allow configuring and managing the Macie CloudWatc
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to configure detailed monitoring per ASG, instead of only on all ASGs. This change is only backward incompatible if you were using the `asg_enable_detailed_monitoring` input variable - refer to the migration guide down below for more info.
 
@@ -549,7 +549,7 @@ Updated the `macie` module to allow configuring and managing the Macie CloudWatc
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to specify input json for `scheduled-lambda-job` when periodically invoking lambda function.
 
@@ -567,8 +567,8 @@ Updated the `macie` module to allow configuring and managing the Macie CloudWatc
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
-- The modules for Lambda and Lambda Edge functions can now have optional CloudWatch logs subscription  
+
+- The modules for Lambda and Lambda Edge functions can now have optional CloudWatch logs subscription
 
 
 
@@ -587,7 +587,7 @@ Updated the `macie` module to allow configuring and managing the Macie CloudWatc
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to set a custom ALB log prefix for ALB logs.
 
@@ -608,7 +608,7 @@ Updated the `macie` module to allow configuring and managing the Macie CloudWatc
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - A few things were cleaned up and updated.
 - The `logs/load-balancer-access-logs` module has been updated to support the recently changed `private-s3-bucket` module in `terraform-aws-security`, which now supports the Terraform AWS 4.x provider.
 
@@ -624,7 +624,7 @@ Updated the `macie` module to allow configuring and managing the Macie CloudWatc
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added metric dimensions for ec2-disk-alarms
 
@@ -641,7 +641,7 @@ Updated the `macie` module to allow configuring and managing the Macie CloudWatc
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 Fixed bug where disk alarms for ASG and EC2 were using an incorrect metric dimension to filter the metrics.
 
 
@@ -656,7 +656,7 @@ Fixed bug where disk alarms for ASG and EC2 were using an incorrect metric dimen
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added `InstanceType` optional var to ec2-memory-alarms
 
@@ -677,7 +677,7 @@ Fixed bug where disk alarms for ASG and EC2 were using an incorrect metric dimen
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 The `openvpn-server` module has been updated to support the recently changed `private-s3-bucket` module in `terraform-aws-security`, which now supports the Terraform AWS 4.x provider.
 
 
@@ -696,7 +696,7 @@ The `openvpn-server` module has been updated to support the recently changed `pr
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to specify additional service principals that should be granted for CloudTrail key. This is useful for granting access to additional services for different needs, such as to CloudWatch for setting up log metric filters correctly.
 
@@ -713,10 +713,10 @@ The `openvpn-server` module has been updated to support the recently changed `pr
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 Changes to support Terraform AWS 4.x provider in the `private-S3-bucket` module.
 
-This release updates the `private-s3-bucket` module and other modules in this repo that use `private-s3-bucket`. 
+This release updates the `private-s3-bucket` module and other modules in this repo that use `private-s3-bucket`.
 
 
 </div>
@@ -730,7 +730,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added `secretsmanager:DescribeSecret` and `secretsmanager:GetResourcePolicy` to read-only permissions.
 
@@ -747,7 +747,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed bug where setting `replica_regions = [&quot;*&quot;]` in a conditional did not have the intended effect.
 
@@ -765,7 +765,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added the ability to set custom conditions on assume role for `custom-iam-entity` via the new `assume_role_custom_conditions` input variable.
 - Exposed the ability to configure `advanced_event_selectors` in `cloudtrail` module via the new `advanced_event_selectors` input variable.
@@ -789,9 +789,9 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- Allow to add specific seperate tags for SG, IAM or EIP  
+
+- Allow to add specific seperate tags for SG, IAM or EIP
 
 
 
@@ -810,7 +810,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added a new module to deploy Tailscale Subnet Routers in a VPC. Refer to the [module documentation](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/tailscale-subnet-router) for more information.
 
@@ -827,7 +827,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to bind custom iam policies to the lambda service IAM role
 - Added the ability to configure ECR repo to grant access to create lambda functions externally
@@ -846,7 +846,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated `ecs-deploy-runner` to manage the CloudWatch Log Group associated with ECS Tasks in Terraform and exposed the variables to configure it.
 - Updated dependencies
@@ -868,7 +868,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the &apos;auth_token&apos; parameter in `redis` module to allow configuring password protected redis instances.
 - Update dependency `terraform-aws-server` to `v0.14.2`
@@ -886,7 +886,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed ability to set up periodic background job to invoke `ecs-deploy-runner`. This can be used to run various tasks on a periodic basis in the background, such as running `terragrunt run-all plan` on a regular basis to detect infrastructure drift.
 
@@ -903,7 +903,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the `set_source_code_hash` parameter in the `services/lambda` module.
 
@@ -920,7 +920,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to link GitHub Actions to the root account via the `account-baseline-root` module.
 - Exposed the ability to configure EBS IOPS and THROUGHPUT parameters for EKS self managed ASG workers.
@@ -938,10 +938,10 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed ability to configure CloudWatch subscriptions for `services/lambda`.
-- Enabled detailed monitoring for EKS Managed Node Group and self managed ASG instances. You can configure this using the new parameters to configure it. 
+- Enabled detailed monitoring for EKS Managed Node Group and self managed ASG instances. You can configure this using the new parameters to configure it.
 - Update various dependencies:
     - `terraform-aws-lambda` to `v0.18.2`
     - `terraform-aws-eks` to `v0.50.1`
@@ -968,7 +968,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed ability to set `ebs_optimized` on `bastion-host` and `ec2-instance` module. This new variable defaults to `true`.
 - Exposed additional parameters for restoring an Aurora RDS Database from a snapshot (`restore_type` and `copy_tags_to_snapshot`).
@@ -1002,7 +1002,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed `iam_role_permissions_boundary` to `vpc-mgmt` module.
 
@@ -1019,7 +1019,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to configure permission boundaries on the IAM role for VPC flow logs via the `iam_role_permissions_boundary` input parameter.
 - Updated dependency `terraform-aws-vpc` to `v0.20.1`.
@@ -1036,7 +1036,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated dependency `terraform-aws-monitoring` to v0.32.0
 - Fixed bug in ASG and EC2 disk alarms where the metric dimensions were incompatible with the CloudWatch Agent.
@@ -1059,7 +1059,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix example `cloudfront-s3-private-with-custom-bucket-policy`
 
@@ -1076,7 +1076,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Adds ability to override S3 bucket ownership and bucket policy
 
@@ -1097,7 +1097,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `vpc-flow-logs` **[Functionally Backward Compatible]**
 
 
@@ -1109,7 +1109,7 @@ Point your module source to this release (`v0.21.0`), run `terraform init -upgra
 When you run `terraform apply` there should be no destroyed or recreated resources. You will see newly created resources and sometimes in-place modifications.
 
 
-This is a **functionally backward compatible upgrade**, verified with partially automated upgrade testing. Upgrade testing was done to ensure that running init/plan/apply on previously deployed modules will not run into issues when you upgrade to this version of the modules. 
+This is a **functionally backward compatible upgrade**, verified with partially automated upgrade testing. Upgrade testing was done to ensure that running init/plan/apply on previously deployed modules will not run into issues when you upgrade to this version of the modules.
 
 - No configuration changes are required.
 - The AWS provider version must be bumped to at least `3.75.0`.
@@ -1133,7 +1133,7 @@ You can bump the provider by running `terraform init` with the `-upgrade` flag, 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed bug where the rule numbers were not all relative to the new  `initial_nacl_rule_number` input variable.
 
@@ -1151,7 +1151,7 @@ You can bump the provider by running `terraform init` with the `-upgrade` flag, 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated type table documentation for the `additional_s3_bucket_policy_statements` input variable.
 - Updated the `vpc-mgmt-network-acls` and `vpc-app-network-acls` modules to expose the ability to configure the initial rule number used for the rules. This allows a user to set a sufficiently high number to provide more head room for inserting higher priority rules.
@@ -1170,7 +1170,7 @@ You can bump the provider by running `terraform init` with the `-upgrade` flag, 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added the ability to configure additional bucket policies on the VPC flow logs bucket using the new `additional_s3_bucket_policy_statements` input variable.
 

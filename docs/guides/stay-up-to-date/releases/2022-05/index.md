@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2022-05. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -39,7 +39,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  Fix a bug in the `gruntwork wizard` command where declining the AWS account grants wizard would lead to a nil pointer dereference. 
+  Fix a bug in the `gruntwork wizard` command where declining the AWS account grants wizard would lead to a nil pointer dereference.
 
 </div>
 
@@ -70,7 +70,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  Update the gruntwork wizard experience with improved interactivity, better explanations for variables, and many miscellaneous bug fixes to improve the process of using the wizard to prepare for a Reference Architecture deployment. 
+  Update the gruntwork wizard experience with improved interactivity, better explanations for variables, and many miscellaneous bug fixes to improve the process of using the wizard to prepare for a Reference Architecture deployment.
 
 </div>
 
@@ -159,7 +159,7 @@ Note that IAM users in the Gruntwork AWS Account are required to have MFA to ass
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -176,7 +176,7 @@ Note that IAM users in the Gruntwork AWS Account are required to have MFA to ass
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 Minor update, all related to testing module upgrades to make our builds more stable across Gruntwork&apos;s IaC library.
 
 - Remove dead code from upgrade test.
@@ -195,7 +195,7 @@ Minor update, all related to testing module upgrades to make our builds more sta
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Remove dep tests and config. This just removes some old tests that are no longer needed.
 - **Unlock AWS provider v4. Require minimum 3.75.1.** This update includes a few tests that make sure upgrading to this module from the last release is easy. However, you may need to bump your AWS provider version. See the migration guide notes below for more.
@@ -212,7 +212,7 @@ Minor update, all related to testing module upgrades to make our builds more sta
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Moved `--no-wait` check to before waiting for ECS task to start. Now when you pass in `--no-wait`, the `infrastructure-deployer` will immediately exit after invoking the lambda function.
 - Updated examples to be compatible with AWS Provider v4.
@@ -231,7 +231,7 @@ Minor update, all related to testing module upgrades to make our builds more sta
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated `sign-binary` utility to pass sensitive files through `stdin`.
 - Updated the `docker-image-builder` component of ECS Deploy Runner to support assuming IAM roles for cross account docker image builds.
@@ -255,7 +255,7 @@ Minor update, all related to testing module upgrades to make our builds more sta
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Updated the default version of Steampipe that is installed in the `steampipe-runner` container to `v0.13.6`.
 
@@ -274,7 +274,7 @@ Updated the default version of Steampipe that is installed in the `steampipe-run
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - Updated `vpc`, `vpc-mgmt` modules to support tagging of route tables.
     - If you&apos;d like to configure tagging, set `public_route_table_custom_tags`, `private_app_route_table_custom_tags`, and `private_persistence_route_table_custom_tags`.
 - These dependencies were updated:
@@ -306,7 +306,7 @@ Updated the default version of Steampipe that is installed in the `steampipe-run
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated ARNs to be partition-aware
 - Updated examples to use aws_subnets over aws_subnet_ids
@@ -329,7 +329,7 @@ Updated the default version of Steampipe that is installed in the `steampipe-run
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added the ability to configure `http_put_response_hop_limit` on the metadata configuration.
 
@@ -346,7 +346,7 @@ Updated the default version of Steampipe that is installed in the `steampipe-run
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Support for `python2.7` has been dropped from the modules where `python` was being used. You must have `python3.5` or greater installed on the operator machine (where `terraform` is being called), and the `python3` executable must be available on your `PATH`.
 
@@ -368,7 +368,7 @@ Updated the default version of Steampipe that is installed in the `steampipe-run
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated package dependencies of `eks-aws-auth-merger`.
 
@@ -389,7 +389,7 @@ Updated the default version of Steampipe that is installed in the `steampipe-run
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added a new module (`lambda-http-api-gateway`) for configuring an AWS HTTP (V2) API Gateway hooked up to different Lambda functions. Unlike `api-gateway-proxy`, this allows you to configure various HTTP requests to invoke different lambda functions (e.g., `GET` request on `/hello` can invoke the `foo` lambda function, while `POST` request on `/hello` can invoke the `bar` lambda function. Refer to [the module documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/master/modules/lambda-http-api-gateway) for more information.
 - Added a new module (`run-lambda-entrypoint`) that can be used as an entrypoint for container image based Lambda function to expose AWS Secrets Manager secrets as environment variables to the Lambda function. This is useful if you don&apos;t want to leak the Secrets Manager entries into the Lambda function metadata which most traditional integrations will do as they rely on standard Lambda settings like Environment Variables. Refer to [the module documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/master/modules/run-lambda-entrypoint) for more information.
@@ -411,7 +411,7 @@ Updated the default version of Steampipe that is installed in the `steampipe-run
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - New `msk` module for managing Amazon Managed Streaming for Apache Kafka (Amazon MSK)
 - Fix typo in documentation
@@ -434,7 +434,7 @@ Updated the default version of Steampipe that is installed in the `steampipe-run
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - Added a comment indicating that OpenVPN works with both imdsv1 and imdsv2
 - **Unlock AWS provider v4. Require minimum 3.75.1.** This update includes a few tests that make sure upgrading to this module from the last release is easy. However, you may need to bump your AWS provider version. See the migration guide notes below for more.
 
@@ -454,7 +454,7 @@ Updated the default version of Steampipe that is installed in the `steampipe-run
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated modules that creates IAM roles to expose the ability to set permission boundaries.
 
@@ -471,7 +471,7 @@ Updated the default version of Steampipe that is installed in the `steampipe-run
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - **Ignore changes to various S3 configuration**: A bug was introduced in our `v0.63.0` release of this repo. When upgrading the `private-s3-bucket` module, a race condition in the plan could leave your S3 bucket in a state where configurations were actually removed. The plan would show in-place updates, but depending on execution order and completion of the AWS API calls, the update to remove the configuration could happen last, thereby removing the configuration on the bucket. While not ideal, you could work around this issue by running `apply` a second time, picking up the discrepancy and adding the configurations back to the bucket, but this update makes it so you don&apos;t have to run `apply` a second time. When upgrading your modules, including making them AWS Provider v4 compatible, we recommend using this `v0.65.1` version. See the PR and associated issue for more details.
 
@@ -488,7 +488,7 @@ Updated the default version of Steampipe that is installed in the `steampipe-run
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 The modules list above makes it look like a scary update; however, this should be a no-op upgrade for you. Details below!
 
 
@@ -507,7 +507,7 @@ The modules list above makes it look like a scary update; however, this should b
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to configure `permissions_boundary` on each of the IAM roles created by the modules.
 
@@ -524,7 +524,7 @@ The modules list above makes it look like a scary update; however, this should b
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixes default route conflict when attaching multiple ENIs on Ubuntu
 
@@ -544,7 +544,7 @@ The modules list above makes it look like a scary update; however, this should b
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Check in simplified pull request template
 - Ignore .github folder in pre-commit checks
@@ -563,7 +563,7 @@ The modules list above makes it look like a scary update; however, this should b
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added documentation of lb_listener authenticate_oidc options
 - Support enhanced monitoring in the rds module in service catalog
@@ -581,7 +581,7 @@ The modules list above makes it look like a scary update; however, this should b
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated Tailscale Subnet Router to not accept DNS. Tailscale recommends having AWS handle DNS configurations on EC2.
 
@@ -597,7 +597,7 @@ The modules list above makes it look like a scary update; however, this should b
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added support for Kubernetes 1.22.
 - Fixed bug in multi region provider configuration which lead to extended periods of hanging. We recommend reviewing the `providers.tf` and `terragrunt.hcl` in our examples to get the latest version which sets the `skip_get_ec2_platforms = false` for opted out regions.
@@ -616,7 +616,7 @@ The modules list above makes it look like a scary update; however, this should b
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added ability to create multiple subdomain records of different types for public zones in the `route53` module.
 
@@ -634,7 +634,7 @@ The modules list above makes it look like a scary update; however, this should b
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed route table tagging variables in `vpc` module.
 
@@ -651,7 +651,7 @@ The modules list above makes it look like a scary update; however, this should b
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed underlying `lb_target_group_tags` input in `ecs-service` module.
 - Updated various dependencies:
@@ -675,7 +675,7 @@ The modules list above makes it look like a scary update; however, this should b
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated tailscale packer template to support configuring the tailscale version.
 - Updated core testing libraries (no impact on modules).
@@ -698,7 +698,7 @@ The modules list above makes it look like a scary update; however, this should b
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - **Unlock AWS provider v4. Require minimum 3.75.1.** This update includes a few tests that make sure upgrading to this module from the last release is easy. However, you may need to bump your AWS provider version. See the migration guide notes below for more.
 - Update to remove some upgrade test settings particular to testing the provider lock removal, which no longer apply going forward.
 
@@ -718,7 +718,7 @@ The modules list above makes it look like a scary update; however, this should b
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Support for python2 has been dropped. All modules that depend on python now require python 3, and calls out to `python3` directly. Most users should not be impacted by this change, as almost all operating systems ship with `python3` now.
 

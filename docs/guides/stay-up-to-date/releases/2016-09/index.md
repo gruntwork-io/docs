@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2016-09. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -106,7 +106,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - Add support for specifying a list of dependencies in `boilerplate.yml`. Each dependency is another `boilerplate` template, which allows you to chain templates together so that you can create more complicated templates out of simpler pieces. 
+  - Add support for specifying a list of dependencies in `boilerplate.yml`. Each dependency is another `boilerplate` template, which allows you to chain templates together so that you can create more complicated templates out of simpler pieces.
 
 
 </div>
@@ -124,7 +124,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features. 
+  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features.
 - In both `modules/asg-rolling-deploy-dynamic` and `modules/asg-rolling-deploy-static`, the input variables `vpc_subnet_ids`, `load_balancers`, and `availability_zones` are now lists.
 
 
@@ -173,7 +173,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - The redis module now properly handles boolean values for the input variable `enable_automatic_failover`. 
+  - The redis module now properly handles boolean values for the input variable `enable_automatic_failover`.
 
 
 </div>
@@ -201,7 +201,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features. 
+  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features.
 
 Changes in `modules/redis`:
 - The input variables `subnet_ids` and `allow_connections_from_cidr_blocks` are now lists.
@@ -302,9 +302,9 @@ Changes in `modules/memcached`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features. 
+  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features.
 
-`modules/aurora` changes: 
+`modules/aurora` changes:
 - No longer takes an `availability_zones` input variable.
 - Input variables `subnet_ids` and `allow_connections_from_cidr_blocks` are now both lists.
 - Output variables `instance_endpoints` and `instance_ids` are now both lists.
@@ -329,7 +329,7 @@ Changes in `modules/memcached`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features. 
+  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features.
 
 In `modules/ecs-cluster`:
 - Input variable `vpc_subnet_ids` is now a list.
@@ -492,7 +492,7 @@ In `modules/ecs-cluster`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features. 
+  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features.
 - All input variables named `alarm_sns_topic_arns` and `instance_ids` are now lists.
 
 
@@ -571,7 +571,7 @@ In `modules/ecs-cluster`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features. 
+  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features.
 - In `modules/kms-master-key`, the input variables `key_administrator_iam_arns`, `key_user_iam_arns`, and `key_root_user_iam_arns` are now all lists.
 
 
@@ -619,7 +619,7 @@ In `modules/ecs-cluster`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features. 
+  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features.
 - In `modules/single-server`, the input variable `allow_ssh_from_cidr_list` is now a list.
 
 

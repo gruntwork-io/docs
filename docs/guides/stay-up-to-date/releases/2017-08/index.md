@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2017-08. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -64,7 +64,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-asg/pull/9: The `server-group` module now applies the tags you pass in via `custom_tags` to all resources that support tags: the security group, the ENIs, and the EBS volumes. Note that this is a backwards incompatible change, as the `custom_tags` parameter is now a plain map rather than a list of maps. 
+  https://github.com/gruntwork-io/module-asg/pull/9: The `server-group` module now applies the tags you pass in via `custom_tags` to all resources that support tags: the security group, the ENIs, and the EBS volumes. Note that this is a backwards incompatible change, as the `custom_tags` parameter is now a plain map rather than a list of maps.
 
 </div>
 
@@ -107,7 +107,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - UPDATE/#24: Previously, it was not possible to launch an Aurora cluster from a snapshot. The `aurora` module now accepts a new var, `snapshot_identifier`, which is the Snapshot ID from which you&apos;d like to launch a new Aurora cluster. 
+  - UPDATE/#24: Previously, it was not possible to launch an Aurora cluster from a snapshot. The `aurora` module now accepts a new var, `snapshot_identifier`, which is the Snapshot ID from which you&apos;d like to launch a new Aurora cluster.
 
 NOTE: This release a has a bug! Please use [v0.2.10](https://github.com/gruntwork-io/module-data-storage/releases/tag/v0.2.10) instead.
 
@@ -128,7 +128,7 @@ NOTE: This release a has a bug! Please use [v0.2.10](https://github.com/gruntwor
 
   - NEW FEATURE/BREAKING CHANGE: The `ecs-service-with-alb` module now supports host-based routing! In addition, we used this opportunity to simplify the interface to the module. The major change is that you now specify ALB Listener Rules using Terraform code in the same Terraform file that calls the `ecs-service-with-alb` module, giving users total flexibility on routing rules. (#37)
 
-NOTE: This release also updates the ECS Cluster module so that it [no longer adds a rule to the ALB Security Group](https://github.com/gruntwork-io/module-ecs/pull/37/files#diff-d72db0b293516646f6d2af03f815cde2L149) to allow outbound traffic from the ALB to the ECS Cluster. That&apos;s because, as of [v0.6.0 of the ALB Module](https://github.com/gruntwork-io/module-load-balancer/releases/tag/v0.6.0), the ALB now enables all outbound traffic by default. 
+NOTE: This release also updates the ECS Cluster module so that it [no longer adds a rule to the ALB Security Group](https://github.com/gruntwork-io/module-ecs/pull/37/files#diff-d72db0b293516646f6d2af03f815cde2L149) to allow outbound traffic from the ALB to the ECS Cluster. That&apos;s because, as of [v0.6.0 of the ALB Module](https://github.com/gruntwork-io/module-load-balancer/releases/tag/v0.6.0), the ALB now enables all outbound traffic by default.
 
 Therefore, be sure to also upgrade to [v0.6.0 or higher of module alb](https://github.com/gruntwork-io/module-load-balancer/releases) when using this release!
 
@@ -185,7 +185,7 @@ _Therefore, if you use this release or higher with an ECS Cluster, be sure to us
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -312,9 +312,9 @@ Fix several issues:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-server/pull/14: 
+  https://github.com/gruntwork-io/module-server/pull/14:
 
-* Added a new `attach-eni` script which can be used to attach an ENI to an EC2 Instance. 
+* Added a new `attach-eni` script which can be used to attach an ENI to an EC2 Instance.
 * Updated the `mount-ebs-volume` script so it can automatically find an attach an EBS Volume that has the same tag as the EC2 Instance. This is handy when you create EBS Volumes and Instances in matching &quot;pairs.&quot;
 
 </div>
@@ -332,7 +332,7 @@ Fix several issues:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-vpc/pull/27, https://github.com/gruntwork-io/module-vpc/pull/28. 
+  https://github.com/gruntwork-io/module-vpc/pull/27, https://github.com/gruntwork-io/module-vpc/pull/28.
 
 THIS IS A BACKWARDS INCOMPATIBLE RELEASE. READ ON FOR INSTRUCTIONS.
 
@@ -383,7 +383,7 @@ https://github.com/gruntwork-io/module-vpc/pull/26: Fix a bug where the `num_ava
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -396,7 +396,7 @@ https://github.com/gruntwork-io/module-vpc/pull/26: Fix a bug where the `num_ava
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 

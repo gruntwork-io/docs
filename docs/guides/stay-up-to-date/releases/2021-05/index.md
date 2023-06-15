@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2021-05. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -100,9 +100,9 @@ Since this repo is solely used for examples/demonstrations, and NOT meant for di
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - **Terraform 0.15 upgrade**: We have verified that this repo is compatible with Terraform `0.15.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.15.x` against this repo, so we recommend updating to `0.15.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.15.x`. 
+  - **Terraform 0.15 upgrade**: We have verified that this repo is compatible with Terraform `0.15.x`!
+    - From this release onward, we will only be running tests with Terraform `0.15.x` against this repo, so we recommend updating to `0.15.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.15.x`.
     - Once all Gruntwork repos have been upgrade to work with `0.15.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 </div>
@@ -120,7 +120,7 @@ Since this repo is solely used for examples/demonstrations, and NOT meant for di
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now configure the deletion timeout for the ASG in the `asg-rolling-deploy` module using the new `deletion_timeout` input variable.
 
@@ -141,11 +141,11 @@ Since this repo is solely used for examples/demonstrations, and NOT meant for di
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- **Terraform 0.15 upgrade**: We have verified that this repo is compatible with Terraform `0.15.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.15.x` against this repo, so we recommend updating to `0.15.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.15.x`. 
+
+- **Terraform 0.15 upgrade**: We have verified that this repo is compatible with Terraform `0.15.x`!
+    - From this release onward, we will only be running tests with Terraform `0.15.x` against this repo, so we recommend updating to `0.15.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.15.x`.
     - Once all Gruntwork repos have been upgrade to work with `0.15.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 - Note that as part of the Terraform 0.15 upgrade, we&apos;ve updated the `Dockerfile` for the `ecs-deploy-runner` to install Terraform 0.15.1 and Terragrunt v0.29.0 by default. **This is a backwards incompatible change**. See the migration guide below for upgrade instructions.
 
@@ -161,7 +161,7 @@ Since this repo is solely used for examples/demonstrations, and NOT meant for di
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release bumps the versions of Terraform, Terragrunt, and this repo within the ecs-deploy-runner Docker image.
 
@@ -178,7 +178,7 @@ This release bumps the versions of Terraform, Terragrunt, and this repo within t
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add HTTPS auth support in `build-packer-artifact` for accessing private git repos over HTTPS.
 - Add HTTPS auth support in `terraform-update-variable` for accessing private git repos over HTTPS.
@@ -196,7 +196,7 @@ This release bumps the versions of Terraform, Terragrunt, and this repo within t
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 `infrastructure-deploy-script` and ECS Deploy Runner now has support for private repo authentication over HTTPS for terraform. Refer to the updated [documentation](https://github.com/gruntwork-io/terraform-aws-ci/blob/master/modules/ecs-deploy-runner/core-concepts.md#using-https-based-git-urls) for more information. Note that you must update `ecs-deploy-runner` and `ecs-deploy-runner-standard-configuration` to this version to take advantage of the new feature.
 
@@ -217,11 +217,11 @@ This release bumps the versions of Terraform, Terragrunt, and this repo within t
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- **Terraform 0.15 upgrade**: We have verified that this repo is compatible with Terraform `0.15.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.15.x` against this repo, so we recommend updating to `0.15.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.15.x`. 
+
+- **Terraform 0.15 upgrade**: We have verified that this repo is compatible with Terraform `0.15.x`!
+    - From this release onward, we will only be running tests with Terraform `0.15.x` against this repo, so we recommend updating to `0.15.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.15.x`.
     - Once all Gruntwork repos have been upgrade to work with `0.15.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -239,7 +239,7 @@ This release bumps the versions of Terraform, Terragrunt, and this repo within t
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 Update the underlying versions of the following modules:
 - terraform-aws-security to v0.48.3
 - terraform-aws-lambda to v0.11.1
@@ -261,7 +261,7 @@ Update the underlying versions of the following modules:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update example `landingzone` READMEs to mention parallelism when running applying with `terraform apply` (see [here](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/a5b42067f853bb6bc8657ba4772c76bbbc418f45/examples/for-learning-and-testing/landingzone/account-baseline-app/README.md) &amp; [here](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/a5b42067f853bb6bc8657ba4772c76bbbc418f45/examples/for-learning-and-testing/landingzone/account-baseline-security/README.md))
 - Update `account-baseline-security` and `account-baseline-app` to expose and name the variables consistently across submodules
@@ -296,13 +296,13 @@ Update the underlying versions of the following modules:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Set default values for `cleanup-expired-certs` module when called from `landingzone/account-baseline-security`:
    - `var.schedule_expression`
    - `var.report_cloudwatch_metric_name`
    -  `var.report_cloudwatch_metric_namespace`
-- Disable **non-CIS** AWS Config S3 bucket creation for `landingzone/account-baseline-security` 
+- Disable **non-CIS** AWS Config S3 bucket creation for `landingzone/account-baseline-security`
 
 
 
@@ -319,7 +319,7 @@ Update the underlying versions of the following modules:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added the benchmark alarm outputs to the `account-baseline-app` module and example.
 - Added a `security_hub_accounts` output to the `account-baseline-app` module and example.
@@ -346,7 +346,7 @@ Update the underlying versions of the following modules:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 Update the version of the following underlying modules:
 - terraform-aws-vpc to v0.15.0
 - terraform-aws-utilities to v0.5.0
@@ -367,7 +367,7 @@ Update the version of the following underlying modules:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 This release adds new Landing Zone services `account-baseline-app` and `account-baseline-security`.
 
 It also adds new variables to the `cloudtrail` service: `kms_key_arn_is_alias` and `allow_kms_describe_key_to_external_aws_accounts`.
@@ -392,11 +392,11 @@ It also adds new variables to the `cloudtrail` service: `kms_key_arn_is_alias` a
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- **Terraform 0.15 upgrade**: We have verified that this repo is compatible with Terraform `0.15.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.15.x` against this repo, so we recommend updating to `0.15.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.15.x`. 
+
+- **Terraform 0.15 upgrade**: We have verified that this repo is compatible with Terraform `0.15.x`!
+    - From this release onward, we will only be running tests with Terraform `0.15.x` against this repo, so we recommend updating to `0.15.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.15.x`.
     - Once all Gruntwork repos have been upgrade to work with `0.15.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 - As part of the upgrade to Terraform 0.15, we had to work around two bugs on `destroy`. These required backwards incompatible changes. **Make sure to follow the instructions in the migration guide below.**
 - You can now tell the `ecs-service` and `ecs-daemon-service` modules to wait for steady state by setting the new `wait_for_steady_state` input variable to `true`.
@@ -413,7 +413,7 @@ It also adds new variables to the `cloudtrail` service: `kms_key_arn_is_alias` a
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The `run-ecs-task` command now supports overriding the task definition command. This is useful to run one off commands using the same task definition as your ECS service. Refer to [the command docs](https://github.com/gruntwork-io/terraform-aws-ecs/tree/master/modules/ecs-deploy#override-the-container-command) for more info.
 
@@ -434,7 +434,7 @@ The `run-ecs-task` command now supports overriding the task definition command. 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The default Kubernetes version deployed by the control plane module has been updated to `1.20`. If you wish to maintain backward compatibility with your existing setup, you will want to configure the `kubernetes_version` parameter to the version of Kubernetes you are currently using. Note that `1.20` requires `kubergrunt` version `0.7.0` and above.
 - The default cluster-autoscaler version has been updated to `1.20`. If you wish to maintain backward compatibility with your existing setup, you will want to configure the `cluster_autoscaler_version` input variable.
@@ -452,7 +452,7 @@ The `run-ecs-task` command now supports overriding the task definition command. 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Expose ability to override pod labels for `external-dns`
 
@@ -470,7 +470,7 @@ The `run-ecs-task` command now supports overriding the task definition command. 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Expose the managed cluster security group ID in the output `eks_cluster_managed_security_group_id`.
 
@@ -488,7 +488,7 @@ The `run-ecs-task` command now supports overriding the task definition command. 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update `var.kubergrunt_download_url` to latest kubergrunt version (`v0.6.16`)
 - Bump to latest maintained cluster autoscaler version. Note that this requires a redeployment. Review the migration guide below for more info.
@@ -506,7 +506,7 @@ The `run-ecs-task` command now supports overriding the task definition command. 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Expose ability to filter tags by prefix in `map-ec2-tags-to-node-labels`. You can read more about this feature in [the README](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-scripts#prefix).
 - The `eks-cluster-workers` module now relies on launch templates instead of launch configuration to manage the Auto Scaling Group. This means that you can now take advantage of advanced features like multi instances policy for mixed workload ASGs. (This is a **backward incompatible** change. Please read the migration guide below for more info!)
@@ -523,7 +523,7 @@ The `run-ecs-task` command now supports overriding the task definition command. 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 You can now specify the AWS partition (using the `aws_partition` input variable) for the hard coded IAM ARNs used in the modules. This allows you to deploy these resources in alternative partitions, such as GovCloud.
 
@@ -540,7 +540,7 @@ You can now specify the AWS partition (using the `aws_partition` input variable)
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 You can now customize the helm release name and the service account annotations in the `eks-k8s-external-dns` module using the input variables `release_name` and `service_account_annotations`.
 
@@ -561,7 +561,7 @@ You can now customize the helm release name and the service account annotations 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Remove unused module variable
   - `source_code_hash` was not being used anywhere
@@ -585,11 +585,11 @@ You can now customize the helm release name and the service account annotations 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- **Terraform 0.15 upgrade**: We have verified that this repo is compatible with Terraform `0.15.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.15.x` against this repo, so we recommend updating to `0.15.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.15.x`. 
+
+- **Terraform 0.15 upgrade**: We have verified that this repo is compatible with Terraform `0.15.x`!
+    - From this release onward, we will only be running tests with Terraform `0.15.x` against this repo, so we recommend updating to `0.15.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.15.x`.
     - Once all Gruntwork repos have been upgrade to work with `0.15.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -607,7 +607,7 @@ You can now customize the helm release name and the service account annotations 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Create an alarm for lambdas
   This module can be used to create CloudWatch alarms that go off if the Lambda function breaches an associated metric. See the [supported metrics docs](https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html) for available metrics. By default we use the `Errors` metric which is the number of invocations that result in a function error and set to alert as soon as there is an error. Function errors include exceptions thrown by your code and exceptions thrown by the Lambda runtime.
@@ -632,7 +632,7 @@ You can now customize the helm release name and the service account annotations 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The search algorithm for finding the optimal mssfix value when `--mssfix` is omitted to `openvpn-admin` has been optimized.
 
@@ -649,7 +649,7 @@ The search algorithm for finding the optimal mssfix value when `--mssfix` is omi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 You can now specify the host used for conducting the ping test to identify the optimal MTU for the system using the `--host-for-mssfix` input parameter to `openvpn-admin`. As a part of this, the default domain used for the ping test has been switched to `1.1.1.1`.
 
@@ -670,11 +670,11 @@ You can now specify the host used for conducting the ping test to identify the o
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- **Terraform 0.15 upgrade**: We have verified that this repo is compatible with Terraform `0.15.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.15.x` against this repo, so we recommend updating to `0.15.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.15.x`. 
+
+- **Terraform 0.15 upgrade**: We have verified that this repo is compatible with Terraform `0.15.x`!
+    - From this release onward, we will only be running tests with Terraform `0.15.x` against this repo, so we recommend updating to `0.15.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.15.x`.
     - Once all Gruntwork repos have been upgrade to work with `0.15.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -696,7 +696,7 @@ You can now specify the host used for conducting the ping test to identify the o
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 All of the `account-baseline-*` modules have been moved to [the service catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone). See the migration guide below.
 
@@ -713,7 +713,7 @@ All of the `account-baseline-*` modules have been moved to [the service catalog]
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now explicitly set the current AWS account ID in the `aws-config` module via the new `current_account_id` input variable. This helps work around rare issues with the `aws_caller_identity` data source returns the wrong value.
 - The `aws-config-multi-region` module already had a `current_account_id` input variable, but now it will also pass through to the `aws-config` module under the hood.
@@ -731,9 +731,9 @@ All of the `account-baseline-*` modules have been moved to [the service catalog]
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- Fix a bug in the `private-s3-bucket` module where the lookup for the `expired_object_delete_marker` parameter had an extra space in it. 
+
+- Fix a bug in the `private-s3-bucket` module where the lookup for the `expired_object_delete_marker` parameter had an extra space in it.
 - Fix a bug in the `aws-config` module where it would try to create an IAM role policy to manage the SNS topic, even if you disabled the SNS topic.
 
 
@@ -749,7 +749,7 @@ All of the `account-baseline-*` modules have been moved to [the service catalog]
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add `required_providers` block with `aws` provider to the `private-s3-bucket` module. This makes it possible to use the module across multiple regions without getting warnings with Terraform 0.15.
 
@@ -768,10 +768,10 @@ All of the `account-baseline-*` modules have been moved to [the service catalog]
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Create `null_resource` for AWS Config Rules only if region enabled globally
-- Update descriptions for `custom-iam-entity` 
+- Update descriptions for `custom-iam-entity`
 - Update Readme for `ssh-grunt` to point to right place in the `core-concepts.md` document
 
 
@@ -791,7 +791,7 @@ All of the `account-baseline-*` modules have been moved to [the service catalog]
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `single-server` module now outputs the AMI ID via a new `ami` output variable.
 
@@ -812,7 +812,7 @@ All of the `account-baseline-*` modules have been moved to [the service catalog]
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The `account-baseline-app`, `account-baseline-security`, and `account-baseline-root` modules have been updated to match the versions in `terraform-aws-security`. The `account-baseline-app` and `account-baseline-root` modules are backward compatible. See the migration guide below to update `account-baseline-security`.
 
@@ -828,7 +828,7 @@ The `account-baseline-app`, `account-baseline-security`, and `account-baseline-r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update the `aurora` module to mark the password parameter as `sensitive` and the non-password parameters as `nonsensitive`. This is required for the module to work with Terraform 0.15, and was missed in the previous release.
 
@@ -847,11 +847,11 @@ The `account-baseline-app`, `account-baseline-security`, and `account-baseline-r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- **Terraform 0.15 upgrade**: We have verified that this repo is compatible with Terraform `0.15.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.15.x` against this repo, so we recommend updating to `0.15.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.15.x`. 
+
+- **Terraform 0.15 upgrade**: We have verified that this repo is compatible with Terraform `0.15.x`!
+    - From this release onward, we will only be running tests with Terraform `0.15.x` against this repo, so we recommend updating to `0.15.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.15.x`.
     - Once all Gruntwork repos have been upgrade to work with `0.15.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 - As part of the 0.15 upgrade, bump dependency versions:
     - terraform-aws-security: v0.48.2 -&gt; v0.48.3
@@ -876,7 +876,7 @@ The `account-baseline-app`, `account-baseline-security`, and `account-baseline-r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update dependency gruntwork-io/terraform-aws-ecs to v0.29.0 (NOTE: This is **backward incompatible** - Please see [the migration guide included with release v0.29.0 of gruntwork-io/terraform-aws-ecs](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.29.0)).
 - Update for-production examples
@@ -895,7 +895,7 @@ The `account-baseline-app`, `account-baseline-security`, and `account-baseline-r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now enable storage autoscaling in the `rds` module using the new `max_allocated_storage` input variable.
 - Update dependency gruntwork-io/terraform-kubernetes-namespace to v0.3.0.
@@ -915,13 +915,13 @@ The `account-baseline-app`, `account-baseline-security`, and `account-baseline-r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add Lambda README
-- Make route53 ACM certificate validation optional. It is now possible to request ACM certificates without having DNS verification records created for them or having them pass AWS&apos;s programmatic validation process. You can request certs that will not require verification by setting the variables: 
+- Make route53 ACM certificate validation optional. It is now possible to request ACM certificates without having DNS verification records created for them or having them pass AWS&apos;s programmatic validation process. You can request certs that will not require verification by setting the variables:
 
   * `create_verification_record`
-  * `verify_certificate` 
+  * `verify_certificate`
 
   to `false`
 
@@ -939,7 +939,7 @@ The `account-baseline-app`, `account-baseline-security`, and `account-baseline-r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - New Service: Lambda
 - [BUG FIX] Account Baseline Root: Search logs account by email
@@ -959,7 +959,7 @@ The `account-baseline-app`, `account-baseline-security`, and `account-baseline-r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update dependency helm/helm to v3.5.4 in jenkins.
 - `k8s-service` module now supports configuring Ingress grouping. Refer to the [documentation](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/services/k8s-service/core-concepts.md#ingress-groups) for more information.
@@ -977,7 +977,7 @@ The `account-baseline-app`, `account-baseline-security`, and `account-baseline-r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update dependency gruntwork-io/terraform-aws-vpc to v0.15.2
 - Update dependency gruntwork-io/kubergrunt to v0.6.16
@@ -999,7 +999,7 @@ The `account-baseline-app`, `account-baseline-security`, and `account-baseline-r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update dependency gruntwork-io/terraform-aws-ci to v0.35.0. As a result of this, the `ecs-deploy-runner` now supports authenticating to git repositories over HTTPS.
 
@@ -1015,7 +1015,7 @@ The `account-baseline-app`, `account-baseline-security`, and `account-baseline-r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `networking`
 - `base`
 - `services`
@@ -1044,7 +1044,7 @@ The `account-baseline-app`, `account-baseline-security`, and `account-baseline-r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - Update dependency gruntwork-io/terraform-aws-security to v0.48.1
 - Update dependency gruntwork-io/terragrunt to v0.29.2
 - Update dependency gruntwork-io/kubergrunt to v0.6.15
@@ -1067,7 +1067,7 @@ The `account-baseline-app`, `account-baseline-security`, and `account-baseline-r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated the `s3-static-website` module to create the S3 bucket for access logs using the `private-s3-bucket` module under the hood. This adds several extra layers of protection for the access logs bucket, including blocking all public access, enabling encryption at rest, and requiring encryption in transit. This is a backwards incompatible change, so see the migration guide for upgrade instructions.
 
@@ -1087,7 +1087,7 @@ The `account-baseline-app`, `account-baseline-security`, and `account-baseline-r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 `vpc-flow-logs`: Expose `log_format` variable
 
@@ -1104,7 +1104,7 @@ The `account-baseline-app`, `account-baseline-security`, and `account-baseline-r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added new modules for doing VPC peering across two AWS accounts that you own: use `vpc-peering-cross-accounts-requester` to send a peering request and `vpc-peering-cross-accounts-accepter` to accept it. See [`vpc-peering-cross-accounts`](https://github.com/gruntwork-io/terraform-aws-vpc/tree/master/examples/vpc-peering-cross-accounts) for example usage.
 - Rename deprecated patterns: rename all `vars.tf` files to `variables.tf`. There should be no impact on behavior.
@@ -1125,7 +1125,7 @@ The `account-baseline-app`, `account-baseline-security`, and `account-baseline-r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add `enable_default_security_group` to enable destroy the default security group
 
@@ -1144,7 +1144,7 @@ The `account-baseline-app`, `account-baseline-security`, and `account-baseline-r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Add support for exposing client access directly in the nacls for the private app tier for NLB access. You can learn more about this feature in [the updated README](https://github.com/gruntwork-io/terraform-aws-vpc/tree/master/modules/vpc-app-network-acls#how-do-i-configure-the-network-acls-for-public-elb-access).
 

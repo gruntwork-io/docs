@@ -8,7 +8,7 @@ library to test and update the code to be compatible with AWS provider version 4
 the proper versions of the Gruntwork library to pick up the fixes/changes that were made to be compatible. Be sure to
 read the release notes to know what changes need to be made to update to that version.
 
-Refer to our guide on ["Updating to new versions"](/iac/stay-up-to-date/updating)
+Refer to our guide on ["Updating to new versions"](/library/stay-up-to-date/updating)
 for instructions on how to update the versions in your code.
 
 The following table lists the versions of relevant Gruntwork AWS IaC library modules and Service Catalogs which are
@@ -18,7 +18,7 @@ for alternatives to those modules.
 
 :::caution
 
-Gruntwork follows [semantic versioning](/iac/stay-up-to-date/versioning).
+Gruntwork follows [semantic versioning](/library/stay-up-to-date/versioning).
 For pre-1.0 modules, version updates to the _minor_ version are considered backward incompatible releases. Make sure to
 read the release notes for the relevant modules anytime you are updating minor versions! For example, if you are going
 from `v0.5.x` to `v0.9.x`, read the notes for `v0.6.0`, `v0.7.0`, `v0.8.0`, and `v0.9.0` to get the migration steps for
@@ -143,6 +143,6 @@ If you have any questions, we'd love to hear them. Please reach out to <a href="
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e58a1c86f7127058fe43ce3a1d44d998"
+  "hash": "0f681c581a4bff11d9dcdf60239d9dad"
 }
 ##DOCS-SOURCER-END -->

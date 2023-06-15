@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2021-11. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -63,7 +63,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed minor style issues in `git-updated-files`
 - Fixed quoting in one of the error messages in `infrastructure-deploy-script`
@@ -81,7 +81,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Introduced a new script `git-updated-files` which will return the list of files that were modified between two refs, with filter functionality.
 
@@ -98,7 +98,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed bug where `terraform-update-variable` included output from terraform wrappers like `tfenv`.
 - Added support for passing through `--terragrunt-modules-that-include`
@@ -116,7 +116,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed bug where branch refs passed as `ref` to `infrastructure-deploy-script` was not being handled correctly.
 - Bumped default `module_ci_tag` in ECS Deploy Runner docker files to this release tag.
@@ -138,7 +138,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 Updates versions of underlying dependencies:
 - `gruntwork-io/terraform-aws-lambda` to `v0.14.1`
 - `gruntwork-io/terraform-aws-service-catalog` to `v0.65.0`
@@ -162,7 +162,7 @@ Updates versions of underlying dependencies:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Added `delete_automated_backups` variable and respective handling to rds module.
 
@@ -184,7 +184,7 @@ Added `delete_automated_backups` variable and respective handling to rds module.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added the ability to control control access to the private VPC endpoint for kubernetes API access. Refer to [the updated documentation](https://github.com/gruntwork-io/terraform-aws-eks/blob/master/modules/eks-cluster-control-plane/README.md#api-access-and-networking) for more details.
 
@@ -201,7 +201,7 @@ Added `delete_automated_backups` variable and respective handling to rds module.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Added support to AWS Managed Node Groups to pass in taints. This adds the variable to the `node_group_configurations` and defaults to empty list.
 
@@ -218,7 +218,7 @@ Added support to AWS Managed Node Groups to pass in taints. This adds the variab
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed bug where the value for `auto_create_group` for the CloudWatch configuration of EKS FireLens is no longer a valid value on new EKS clusters.
 
@@ -240,7 +240,7 @@ Added support to AWS Managed Node Groups to pass in taints. This adds the variab
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Swapped `jq` for `gojq` to support arm64/aarch64 architecture.
 
@@ -261,10 +261,10 @@ Added support to AWS Managed Node Groups to pass in taints. This adds the variab
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update CODEOWNERS
-- Use Gruntwork SQS module for issue and revoke queues **[BACKWARD INCOMPATIBLE].** 
+- Use Gruntwork SQS module for issue and revoke queues **[BACKWARD INCOMPATIBLE].**
 - Update openvpn-host module user-data script to use AWS Instance Metadata Service Version 2 (IMDSv2)
 - Upgrade openvpn-admin Golang binary to use AWS Instance Metadata Service Version 2 (IMDSv2)
 
@@ -284,7 +284,7 @@ Added support to AWS Managed Node Groups to pass in taints. This adds the variab
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Migrate unmount-ebs-volume script to use IMDSv2. These changes are fully backward compatible.
 
@@ -308,7 +308,7 @@ Added support to AWS Managed Node Groups to pass in taints. This adds the variab
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated dependency gruntwork-io/terraform-aws-eks to v0.46.5. Note that this change includes a backward incompatible update. Refer to the migration guide below for more information.
 - Updated dependency gruntwork-io/terraform-aws-vpc to v0.18.0
@@ -330,7 +330,7 @@ Added support to AWS Managed Node Groups to pass in taints. This adds the variab
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update dependency gruntwork-io/terraform-aws-ci to v0.39.5
 
@@ -347,7 +347,7 @@ Added support to AWS Managed Node Groups to pass in taints. This adds the variab
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed name of ECS Fargate cluster as an output for dependency chaining.
 - Updated `ecs-service` to accept dynamic security group rules for `awsvpc` network config. You can now have the module create and manage a Security Group for your service, instead of externally providing one. **Note that as a result of this, the type of the input variable `network_configuration` has changed. Refer to the migration guide for more info.**
@@ -365,7 +365,7 @@ Added support to AWS Managed Node Groups to pass in taints. This adds the variab
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed bug where the ALB access logs S3 bucket used a hard coded prefix instead of the configurable parameter.
 
@@ -382,7 +382,7 @@ Added support to AWS Managed Node Groups to pass in taints. This adds the variab
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - RDS: Added support for  &quot;backup_window&quot; variable to specify when backups should run
 
@@ -399,7 +399,7 @@ Added support to AWS Managed Node Groups to pass in taints. This adds the variab
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 
 
@@ -413,7 +413,7 @@ Added support to AWS Managed Node Groups to pass in taints. This adds the variab
 - Update dependency gruntwork-io/terragrunt to v0.35.10
 - Update dependency gruntwork-io/terratest to v0.38.4
 - Update dependency gruntwork-io/terraform-aws-server to v0.13.7
-- Update dependency gruntwork-io/terraform-aws-openvpn to v0.17.0 
+- Update dependency gruntwork-io/terraform-aws-openvpn to v0.17.0
   - **NOTE: this update will delete and recreate the SQS queues used by the `openvpn-admin` utility when requesting and revoking certificates. VPN functionality is not affected. Please see the migration guide for [v0.17.0](https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.17.0).**
 - Update dependency hashicorp/terraform to v1.0.10
 
@@ -431,10 +431,10 @@ Added support to AWS Managed Node Groups to pass in taints. This adds the variab
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `public-static-website` module now passes through [`geo_restriction_type`](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/6f50f26d68e5ea6bd65f5794e7ba789555f5b173/modules/services/public-static-website/variables.tf#L92) and [`geo_locations_list`](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/6f50f26d68e5ea6bd65f5794e7ba789555f5b173/modules/services/public-static-website/variables.tf#L98) variables to the underlying module.
-- 
+-
 
 
 
@@ -449,7 +449,7 @@ Added support to AWS Managed Node Groups to pass in taints. This adds the variab
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix a bug in the `route53` module in how it was reading the `zone_id` parameter.
 - You can now configure the `ecs-cluster` module to use a public IP using the new `cluster_instance_associate_public_ip_address` input variable.
@@ -468,7 +468,7 @@ Added support to AWS Managed Node Groups to pass in taints. This adds the variab
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated `ingress_group` input to support setting `priority = null`, so that you can have ingress resources with no group order. This is useful in situations where you have dynamic environments where the priority doesn&apos;t matter, as you can only have one ingress per group order.
 
@@ -485,7 +485,7 @@ Added support to AWS Managed Node Groups to pass in taints. This adds the variab
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Changes in this release:
 - The variable `autoscaler_skip_nodes_with_local_storage` was added to the `eks-core-services` service
@@ -516,7 +516,7 @@ This release also updates versions of underlying dependencies:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated description of NACLs.
 - **[BACKWARD INCOMPATIBLE]**: The `vpc-app` module now requires Terraform version &gt;= 0.13.7. This was previously mentioned in the comment but the code had not been updated.
@@ -537,7 +537,7 @@ This release also updates versions of underlying dependencies:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 `vpc-app`: Add S3 and DynamoDB endpoints to outputs
 
@@ -554,7 +554,7 @@ This release also updates versions of underlying dependencies:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - `vpc-app`: Add outputs containing all subnet information
 

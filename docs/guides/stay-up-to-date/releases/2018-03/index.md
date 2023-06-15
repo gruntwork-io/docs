@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2018-03. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -96,7 +96,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -166,8 +166,8 @@ Running `apply` a second time seems to complete without errors.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
-https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#network_mode 
+
+https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#network_mode
 
 </div>
 
@@ -231,7 +231,7 @@ https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_para
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-aws-monitoring/pull/47: Fix `run-cloudwatch-logs-agent.sh` so for Amazon Linux and CentOS so instead of sending `/var/log/auth.log`, which doesn&apos;t exist, it sends `/var/log/secure` to CloudWatch Logs. 
+  https://github.com/gruntwork-io/module-aws-monitoring/pull/47: Fix `run-cloudwatch-logs-agent.sh` so for Amazon Linux and CentOS so instead of sending `/var/log/auth.log`, which doesn&apos;t exist, it sends `/var/log/secure` to CloudWatch Logs.
 
 </div>
 
@@ -248,7 +248,7 @@ https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_para
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -294,7 +294,7 @@ THIS VERSION IS NOT BACKWARDS COMPATIBLE AND ANY CODE REFERENCING AUTO-GENERATED
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -337,7 +337,7 @@ THIS VERSION IS NOT BACKWARDS COMPATIBLE AND ANY CODE REFERENCING AUTO-GENERATED
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -354,7 +354,7 @@ THIS VERSION IS NOT BACKWARDS COMPATIBLE AND ANY CODE REFERENCING AUTO-GENERATED
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -367,7 +367,7 @@ THIS VERSION IS NOT BACKWARDS COMPATIBLE AND ANY CODE REFERENCING AUTO-GENERATED
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/package-static-assets/pull/9: You can now configure CORS for the S3 bucket using the new `cors_rule` parameter in the `s3-static-website` module. 
+  https://github.com/gruntwork-io/package-static-assets/pull/9: You can now configure CORS for the S3 bucket using the new `cors_rule` parameter in the `s3-static-website` module.
 
 </div>
 
@@ -380,7 +380,7 @@ THIS VERSION IS NOT BACKWARDS COMPATIBLE AND ANY CODE REFERENCING AUTO-GENERATED
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/package-static-assets/pull/7: 
+  https://github.com/gruntwork-io/package-static-assets/pull/7:
 
 BACKWARDS INCOMPATIBLE CHANGE
 

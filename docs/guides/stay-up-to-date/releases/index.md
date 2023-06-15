@@ -8,7 +8,7 @@ import CardGroup from "/src/components/CardGroup"
 
 This page is lists all updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/), grouped by month. For instructions on how to use these
-updates in your code, check out the [updating documentation](/iac/stay-up-to-date/updating).
+updates in your code, check out the [updating documentation](/library/stay-up-to-date/updating).
 
 <CardGroup cols={1} gap="1rem" stacked equalHeightRows={false} commonCardProps={{padding: "1.25rem"}}>
   <Card title="Gruntwork Release 2023-05" href="/guides/stay-up-to-date/releases/2023-05" />

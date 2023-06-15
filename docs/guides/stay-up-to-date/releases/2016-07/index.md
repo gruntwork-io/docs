@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2016-07. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -478,7 +478,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  Add two new modules: 
+  Add two new modules:
 - `persistent-ebs-volume`: Scripts for mounting and unmounting EBS Volumes on your EC2 Instances for Volumes that need to persist between redeploys of the Instance.
 - `route53-helpers`: Scripts for working with Amazon&apos;s DNS Service, Route 53, including a script to add a DNS A record pointing to the instance&apos;s IP address.
 

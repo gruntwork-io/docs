@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2019-12. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -126,7 +126,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated the `ec2-backup` module to run on NodeJS 12 instead of 8, as version 8 is going EOL in February, 2020.
 
@@ -142,7 +142,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release fixes two bugs with `terraform-update-variable`:
 
@@ -167,7 +167,7 @@ This release fixes two bugs with `terraform-update-variable`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 
 </div>
@@ -181,7 +181,7 @@ This release fixes two bugs with `terraform-update-variable`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 `custom-iam-entity` module now supports creating policies to grant full access to arbitrary services that may not have AWS managed policies.
 
@@ -198,7 +198,7 @@ This release fixes two bugs with `terraform-update-variable`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Bump module-security `custom-iam-entity` to latest version to pull in fix for newer versions of terraform.
 
@@ -215,7 +215,7 @@ Bump module-security `custom-iam-entity` to latest version to pull in fix for ne
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 `iam-password-policy` module no longer embeds the provider configuration, similar to the other modules in this repository. This allows users to better customize the provider setup.
 
@@ -231,7 +231,7 @@ Bump module-security `custom-iam-entity` to latest version to pull in fix for ne
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release includes the following bug fixes:
 - Address `terraform` deprecation warnings in the `aws-config` module caused by referring to providers as strings.
@@ -250,7 +250,7 @@ This release includes the following bug fixes:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Starting this release, the `generate-aws-config` should no longer be used to manage your AWS Config configurations. Instead, use the newly introduced `aws-config` terraform module, which will properly handle the enabled regions without relying on code generation. This module is a version of the generated module from `generate-aws-config` with the ability to disable module calls for regions that are opted out.
 
@@ -271,7 +271,7 @@ Starting this release, the `generate-aws-config` should no longer be used to man
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Fix bug where the clean up snapshots Lambda function did not get the right permissions due to a misconfiguration of the `DescribeDBClusterSnapshots` IAM policy.
 
@@ -288,7 +288,7 @@ Fix bug where the clean up snapshots Lambda function did not get the right permi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `aurora` module now configures cluster instances with (a) `create_before_destroy = true`, to ensure new instances are created before old ones are removed and (b) `ignore_changes = [engine_version]`, to ensure updates to `engine_version` will [flow from the aws_rds_cluster](https://github.com/terraform-providers/terraform-provider-aws/issues/9401).
 
@@ -309,7 +309,7 @@ Fix bug where the clean up snapshots Lambda function did not get the right permi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 You can now provide lifecycle hooks to the `eks-alb-ingress-controller` module to execute arbitrary code on destroy of the module.
 
@@ -326,7 +326,7 @@ You can now provide lifecycle hooks to the `eks-alb-ingress-controller` module t
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The VPC subnet tags generated for EKS by `eks-vpc-tags` now supports multiple EKS clusters.
 
@@ -346,7 +346,7 @@ The VPC subnet tags generated for EKS by `eks-vpc-tags` now supports multiple EK
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now add tags to your Lambda functions using the new `tags` input variable on the `lambda` and `lambda-edge` modules.
 
@@ -366,7 +366,7 @@ The VPC subnet tags generated for EKS by `eks-vpc-tags` now supports multiple EK
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `acm-tls-certificate`
 
 
@@ -389,7 +389,7 @@ Special thanks to @scottclk for the contribution!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `acm-tls-certificate`
 
 
@@ -399,7 +399,7 @@ Special thanks to @scottclk for the contribution!
 Special thanks to @scottclk for the contribution!
 
 
-* #68 
+* #68
 
 </div>
 
@@ -416,7 +416,7 @@ Special thanks to @scottclk for the contribution!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Adds a `create_resources` boolean flag, which works similarly as setting `count` to 1 or 0, which is necessary as terraform does not yet support this feature for modules.
 
@@ -437,7 +437,7 @@ Special thanks to @scottclk for the contribution!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The `cloudwatch-logs-metric-filters` module no longer configures an aws provider, and thus no longer needs the `aws_region` input variable. This also means that you will need to configure your provider outside of the module, which in turn allows you to customize the provider to your needs.
 
@@ -458,7 +458,7 @@ The `cloudwatch-logs-metric-filters` module no longer configures an aws provider
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release includes:
 
@@ -478,7 +478,7 @@ This release includes:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 `custom-iam-entity` module now supports creating policies to grant full access to arbitrary services that may not have AWS managed policies.
 
@@ -495,7 +495,7 @@ This release includes:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The `cloudtrail` module will no longer attempt to create the server access logging S3 bucket if `s3_bucket_already_exists` is set to `true`, even if `enable_s3_server_access_logging` is `true`.
 
@@ -512,7 +512,7 @@ The `cloudtrail` module will no longer attempt to create the server access loggi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `aws-organizations-config-rules` **[NEW]**
 
 
@@ -535,7 +535,7 @@ The `cloudtrail` module will no longer attempt to create the server access loggi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `aws-organizations` **[NEW]**
 
 
@@ -556,7 +556,7 @@ The `cloudtrail` module will no longer attempt to create the server access loggi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 `aws-config` module now supports conditional logic to turn off all resources in the module. When you set the `create_resources` input variable to `false`, no resources will be created by the module. This is useful to conditionally turn off the module call in your code.
 
@@ -578,7 +578,7 @@ Additionally, this fixes a bug where the AWS provider was being configured withi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `single-server` module accepts a new variable, `monitoring` which determines whether the instance has [detailed monitoring](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html) enabled. Note that enabling detailed monitoring results in additional costs. See the [CloudWatch Pricing page](https://aws.amazon.com/cloudwatch/pricing/) for details.
 
@@ -599,11 +599,11 @@ Additionally, this fixes a bug where the AWS provider was being configured withi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `s3-cloudfront`
 
 
-- Use new input variable `wait_for_deployment` to tell Terraform whether it should wait for Cloudfront to finish deploying the distribution. If `true`, the module will wait for the distribution status to change from `InProgress` to `Deployed`. Setting this to `false` will skip the process. 
+- Use new input variable `wait_for_deployment` to tell Terraform whether it should wait for Cloudfront to finish deploying the distribution. If `true`, the module will wait for the distribution status to change from `InProgress` to `Deployed`. Setting this to `false` will skip the process.
 
 
 * Thank you to @danakim for the PR!
@@ -624,9 +624,9 @@ Additionally, this fixes a bug where the AWS provider was being configured withi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- Due to a change in AWS, the `s3-cloudfront` module was not able to send CloudFront access logs to the S3 bucket. This has now been fixed by updating the policy on that S3 bucket. Note that due to a Terraform or AWS bug, you need to set `use_cloudfront_arn_for_bucket_policy` to `true` in old AWS accounts and `use_cloudfront_arn_for_bucket_policy` to `false` in old accounts, or you&apos;ll get a perpetual diff from the `plan` output. 
+
+- Due to a change in AWS, the `s3-cloudfront` module was not able to send CloudFront access logs to the S3 bucket. This has now been fixed by updating the policy on that S3 bucket. Note that due to a Terraform or AWS bug, you need to set `use_cloudfront_arn_for_bucket_policy` to `true` in old AWS accounts and `use_cloudfront_arn_for_bucket_policy` to `false` in old accounts, or you&apos;ll get a perpetual diff from the `plan` output.
 
 
 
@@ -645,7 +645,7 @@ Additionally, this fixes a bug where the AWS provider was being configured withi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `run-pex-as-resource`
 
 
@@ -665,7 +665,7 @@ Additionally, this fixes a bug where the AWS provider was being configured withi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `enabled-aws-regions` [**NEW**]
 
 
@@ -689,7 +689,7 @@ This release introduces the `enabled-aws-regions` module, which returns all enab
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release introduces the ability to tag just the VPC, but not any of the other resources in the module using the `vpc_custom_tags` input variable.
 

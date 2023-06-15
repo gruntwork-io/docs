@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2020-09. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -39,11 +39,11 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
+
+- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`!
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`.
     - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -64,7 +64,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now restore a Redis cluster from a snapshot using the new `snapshot_name` or `snapshot_arn` input variables.
 
@@ -83,12 +83,12 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
--  **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
-    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter. 
+
+-  **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`!
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`.
+    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
 
@@ -107,7 +107,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 This is a maintenance release that exports some test helper functions for the ecs-deploy-runner as a new package under `test/edrhelpers`. This allows the helpers to be used by other projects.
 
 
@@ -125,7 +125,7 @@ This is a maintenance release that exports some test helper functions for the ec
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 `infrastructure-deploy-script` now supports running the `refresh` command.
 
@@ -142,7 +142,7 @@ This is a maintenance release that exports some test helper functions for the ec
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Allow non-zero patch versions of Kubernetes (e.g., `1.17.12` vs `1.17.0`) in `setup-minikube`
 - Fix bug where existing script was not compatible with newer minikube versions (&gt;`1.0.0`)
@@ -161,7 +161,7 @@ This is a maintenance release that exports some test helper functions for the ec
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Adds a new flag, `--idempotent`, to the [`build-docker-image` tool](https://github.com/gruntwork-io/module-ci/blob/6af8f6928af612b04c816ac84016d2b7fd689067/modules/ecs-deploy-runner/docker/kaniko/build_docker_image.go) in the Kaniko image of the ecs-deploy-runner. Invoking the build-docker-image tool with the flag will cause it to check for the existence of an image before building and pushing.
 
@@ -180,7 +180,7 @@ Also adds an optional `route53_tags` to the Jenkins example code, making the exa
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release fixes a major regression bug identified in the previous release (`v0.28.0`), where omitting `allowed_repos_regex` for the `ami_builder` in the `ecs-deploy-runner-standard-configuration` module would inadvertently allow building from any repo.
 
@@ -197,7 +197,7 @@ This release fixes a major regression bug identified in the previous release (`v
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 You can now specify repo restrictions as regex using `allowed_repos_regex` and `infrastructure_live_repositories_regex` input variables.
 
@@ -217,7 +217,7 @@ You can now specify repo restrictions as regex using `allowed_repos_regex` and `
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Add `lifecycle` block to ignore changes to `snapshot_identifier` so that restored DB clusters won&apos;t get destroyed during updates.
 
@@ -234,12 +234,12 @@ Add `lifecycle` block to ignore changes to `snapshot_identifier` so that restore
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
--  **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
-    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter. 
+
+-  **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`!
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`.
+    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
 
@@ -261,11 +261,11 @@ Add `lifecycle` block to ignore changes to `snapshot_identifier` so that restore
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
+
+- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`!
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`.
     - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -283,7 +283,7 @@ Add `lifecycle` block to ignore changes to `snapshot_identifier` so that restore
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - When updating this repo to work with AWS Provider 3.x in [v0.21.0](https://github.com/gruntwork-io/module-ecs/releases/tag/v0.21.0), we missed a `required_provider` constraint in the `ecs-daemon-service` module, so it was still pinned to AWS Provider 2.x. This release fixes that.
 
@@ -303,7 +303,7 @@ Add `lifecycle` block to ignore changes to `snapshot_identifier` so that restore
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update comment and readme for to reflect current `roll-out-ecs-cluster-update.py` functionality.
 
@@ -319,7 +319,7 @@ Add `lifecycle` block to ignore changes to `snapshot_identifier` so that restore
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Fix bug in the deployment check scripts that made it incompatible with `awsvpc` networking mode on EC2 based ECS clusters.
 
@@ -336,7 +336,7 @@ Fix bug in the deployment check scripts that made it incompatible with `awsvpc` 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now specify the launch type for the `ecs-daemon-service` module via the new `launch_type` input variable.
 
@@ -353,7 +353,7 @@ Fix bug in the deployment check scripts that made it incompatible with `awsvpc` 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now use the `cluster_asg_metrics_enabled` variable to specify the metrics to collect for the ASG deployed via the `ecs-cluster` module.
 
@@ -374,7 +374,7 @@ Fix bug in the deployment check scripts that made it incompatible with `awsvpc` 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Bump the `executable-dependency` module version so that the `kubergrunt` binary that is downloaded properly has `744` permissions.
 
@@ -390,7 +390,7 @@ Bump the `executable-dependency` module version so that the `kubergrunt` binary 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 You can now optionally turn off the `eks-aws-auth-merger` module using the `create_resources` variable.
 
@@ -406,7 +406,7 @@ You can now optionally turn off the `eks-aws-auth-merger` module using the `crea
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The `eks-cluster-workers` module will now gracefully handle situations where the IAM role is externally deleted.
 
@@ -423,7 +423,7 @@ The `eks-cluster-workers` module will now gracefully handle situations where the
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 You can now adjust the namespace where the core services are deployed into (`eks-cluster-control-plane`, `eks-alb-ingress-controller`, `eks-cloudwatch-container-logs`, `eks-k8s-cluster-autoscaler`).
 
@@ -441,7 +441,7 @@ You can now adjust the namespace where the core services are deployed into (`eks
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release introduces the `eks-aws-auth-merger`, which is an alternative to `eks-k8s-role-mapping` for managing IAM role to RBAC group mappings. This module uses the `aws-auth-merger` tool to watch for `ConfigMaps` in a specified namespace, and merge them together into the `aws-auth` `ConfigMap` at runtime. You can learn more about it in [the module docs](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-aws-auth-merger).
 
@@ -458,7 +458,7 @@ This release introduces the `eks-aws-auth-merger`, which is an alternative to `e
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The `eks-cluster-wokers` module can now be configured to take in the external dependencies as variables instead of looking the info up dynamically.
 
@@ -475,7 +475,7 @@ The `eks-cluster-wokers` module can now be configured to take in the external de
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Starting this release we will no longer use `kubergrunt` to get the OIDC provider thumbprint, and instead rely on terraform native functionality.
 
@@ -496,7 +496,7 @@ Starting this release we will no longer use `kubergrunt` to get the OIDC provide
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now set the new `source_code_hash` input variable to the hash of the zip file you upload to S3 as a way to allow the `lambda`  module to know when that Zip file has changed, and therefore, when the Lambda function needs to be redeployed.
 
@@ -513,11 +513,11 @@ Starting this release we will no longer use `kubergrunt` to get the OIDC provide
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
+
+- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`!
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`.
     - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -541,12 +541,12 @@ Starting this release we will no longer use `kubergrunt` to get the OIDC provide
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
--  **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
-    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter. 
+
+-  **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`!
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`.
+    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
 
@@ -564,7 +564,7 @@ Starting this release we will no longer use `kubergrunt` to get the OIDC provide
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now allow AWS Services (e.g., `events.amazonaws.com`) permissions to write to your SNS topic using the new `allow_publish_services` input variable.
 - Fix a bug where the `topic_policy` output variable used to only return default policy of the SNS topic. It will now return the full topic policy as created by the `sns` module.
@@ -587,7 +587,7 @@ Starting this release we will no longer use `kubergrunt` to get the OIDC provide
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This updates `install-cloudwatch-monitoring-scripts.sh` to set cache removal on reboot so that any cached info about the instances are reset on every boot.
 
@@ -605,12 +605,12 @@ This updates `install-cloudwatch-monitoring-scripts.sh` to set cache removal on 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
--  **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
-    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter. 
+
+-  **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`!
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`.
+    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
 
@@ -627,9 +627,9 @@ This updates `install-cloudwatch-monitoring-scripts.sh` to set cache removal on 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
--  You can now enable server-side encryption for the S3 bucket used to store load balancer access logs using the new `s3_bucket_encryption` input variable. Note that ALBs and CLBs already encrypt the access logs by default, so this is mainly useful to (a) make sure the bucket reflects this and (b) if you want to enable encryption for NLB access logs. 
+
+-  You can now enable server-side encryption for the S3 bucket used to store load balancer access logs using the new `s3_bucket_encryption` input variable. Note that ALBs and CLBs already encrypt the access logs by default, so this is mainly useful to (a) make sure the bucket reflects this and (b) if you want to enable encryption for NLB access logs.
 
 
 
@@ -648,11 +648,11 @@ This updates `install-cloudwatch-monitoring-scripts.sh` to set cache removal on 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
+
+- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`!
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`.
     - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -670,7 +670,7 @@ This updates `install-cloudwatch-monitoring-scripts.sh` to set cache removal on 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - We now enable server-side encryption by default for the backup S3 bucket. We were enabling encryption whenever uploading data to the bucket already, so this is merely an extra layer of defense to make it harder to ever mess that up.
 - Add explicit rules to deny any possible public access for the backup S3 bucket. The bucket was already private by default, so this is also an extra layer of defense to make it harder to mess things up.
@@ -694,7 +694,7 @@ This updates `install-cloudwatch-monitoring-scripts.sh` to set cache removal on 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - `gruntsam` now supports  `OPTIONS` requests.
 
@@ -711,7 +711,7 @@ This updates `install-cloudwatch-monitoring-scripts.sh` to set cache removal on 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now set stage variables using the new `stage_variables` input variable.
 - You can now customize the lambda permission statement ID using the new `xxx_lambda_permission_statement_id` input variable. This is useful to avoid name conflicts.
@@ -734,7 +734,7 @@ This updates `install-cloudwatch-monitoring-scripts.sh` to set cache removal on 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now specify tags to apply to CloudTrail and IAM Role resources created by the `account-baseline-xxx` modules using the new input variables `cloudtrail_tags` and `iam_role_tags`, respectively.
 - Fix a minor typo in a comment in `private-s3-bucket`.
@@ -754,7 +754,7 @@ This updates `install-cloudwatch-monitoring-scripts.sh` to set cache removal on 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Fix bug where `fail2ban` cloudwatch configuration script used the incorrect command for restarting `fail2ban` on Amazon Linux 1.
 
@@ -771,7 +771,7 @@ Fix bug where `fail2ban` cloudwatch configuration script used the incorrect comm
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `account-baseline-xxx` modules now allow you to configure the IAM password policy settings of allowing users to change their own password and whether password expiration requires an admin reset using the new input variables `iam_password_policy_allow_users_to_change_password` and `iam_password_policy_hard_expiry`, respectively. Both default to `true`, as before.
 
@@ -788,7 +788,7 @@ Fix bug where `fail2ban` cloudwatch configuration script used the incorrect comm
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release updates the `AWSConfigRole`  managed policy in the `aws-config` and `aws-config-multi-region` modules to the new `AWS_ConfigRole` managed policy due to a deprecation notice from AWS. There are also several updates to stabilize tests and improve the docs.
 
@@ -805,7 +805,7 @@ This release updates the `AWSConfigRole`  managed policy in the `aws-config` and
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This is a cleanup release that removes several unused variables and fixes a few other small issues.
 
@@ -829,7 +829,7 @@ To update to this release, ensure that your configuration does not set any of th
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The `configure-fail2ban-cloudwatch.sh` script will now restart `fail2ban` after configuring the cloudwatch metrics actions.
 
@@ -846,11 +846,11 @@ The `configure-fail2ban-cloudwatch.sh` script will now restart `fail2ban` after 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
+
+- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`!
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`.
     - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -869,7 +869,7 @@ The `configure-fail2ban-cloudwatch.sh` script will now restart `fail2ban` after 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added a new `private-s3-bucket` module that can be used to an Amazon S3 bucket that enforces best practices for private access:
     - No public access: all public access is completely blocked.
@@ -891,7 +891,7 @@ The `configure-fail2ban-cloudwatch.sh` script will now restart `fail2ban` after 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Adds `eks:Describe*` and `eks:List*` permissions to the Read Only IAM policy.
 
@@ -908,7 +908,7 @@ Adds `eks:Describe*` and `eks:List*` permissions to the Read Only IAM policy.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 This release removes the CloudTrail S3 bucket policy from the `aws_s3_bucket `resources. The policy is already attached via a separate `aws_s3_bucket_policy` resource, hence the attachment in the `aws_s3_bucket` was redundant.
 
 Note that you have to double apply this change for terraform to sort it self out. On the first apply, Terraform will remove the bucket policy since it was removed from `aws_s3_bucket`. On the next apply, Terraform will re-add the bucket policy since it realizes that `aws_s3_bucket_policy` now generates a diff.
@@ -927,7 +927,7 @@ Note that you have to double apply this change for terraform to sort it self out
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Adds the `rds:Download*` permission to the Read Only policy in the `iam-policies` module.
 
@@ -944,7 +944,7 @@ Adds the `rds:Download*` permission to the Read Only policy in the `iam-policies
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Fix a bug in the outputs for `aws-config-rules` introduced by `v0.36.0`.
 
@@ -961,7 +961,7 @@ Fix a bug in the outputs for `aws-config-rules` introduced by `v0.36.0`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Fixes the ARN for the `AmazonSSMManagedInstanceCore` managed policy, which was previously incorrect.
 
@@ -978,7 +978,7 @@ Fixes the ARN for the `AmazonSSMManagedInstanceCore` managed policy, which was p
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Fix regression bug in `aws-auth` where the command broke for MFA token session retrieval without role assume.
 
@@ -995,7 +995,7 @@ Fix regression bug in `aws-auth` where the command broke for MFA token session r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 replace ssm role with new best practice
 
@@ -1015,11 +1015,11 @@ replace ssm role with new best practice
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
+
+- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`!
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`.
     - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -1042,7 +1042,7 @@ replace ssm role with new best practice
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update all Packer templates to ensure that they explicitly request a public IP address. Otherwise, if that setting is not enabled by default in a VPC, the Packer build would fail.
 
@@ -1061,7 +1061,7 @@ replace ssm role with new best practice
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Updated underlying module dependencies:
 
@@ -1084,7 +1084,7 @@ Updated underlying module dependencies:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 You can now configure the `--search-domain` option on the OpenVPN server. Note that this includes a change to the user-data script even if no variable inputs are changed, but it will not take down the OpenVPN server on deploy (0-downtime). It is not necessary to rotate the server unless you want to take advantage of the new search domain option.
 
@@ -1101,7 +1101,7 @@ You can now configure the `--search-domain` option on the OpenVPN server. Note t
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update user data scripts to invoke EC2 baseline with `cwmonitoring` user included in `ip-lockdown`. Note that this will require rotating the servers. Refer to the migration guide for guidelines on how to rotate the servers for each module.
 
@@ -1132,7 +1132,7 @@ You can now configure the `--search-domain` option on the OpenVPN server. Note t
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix bug where the `configmaps_as_env_vars` and `secrets_as_env_vars` variables of `k8s-service` module was the incorrect type.
 - Fix bug where the default value of `ingress_path` was incorrectly locked to `/`, and  not any subpath.
@@ -1151,7 +1151,7 @@ You can now configure the `--search-domain` option on the OpenVPN server. Note t
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `openvpn-server` module will now properly initialize the EC2 baseline scripts, which handle initializing server hardening scripts like `fail2ban`, `ip-lockdown`, and `ssh-grunt`.
 - The `openvpn-server` now properly handles VPC peering routes.
@@ -1172,7 +1172,7 @@ You can now configure the `--search-domain` option on the OpenVPN server. Note t
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Reverts the minikube version change introduced in v0.2.5.
 
@@ -1188,7 +1188,7 @@ Reverts the minikube version change introduced in v0.2.5.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Updated the following underlying module dependencies:
 
@@ -1218,7 +1218,7 @@ Updated the following underlying module dependencies:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Updated the following underlying module dependencies:
 - `gruntwork-io/bash-commons` to v0.1.3
@@ -1244,7 +1244,7 @@ Updated documentation and tests:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Renamed underlying modules to the current names. Specifically:
         - `module-aws-monitoring` is now `terraform-aws-monitoring`
@@ -1265,7 +1265,7 @@ Updated documentation and tests:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release contains the following updates:
 - References to module-security have been bumped to v0.36.8
@@ -1285,7 +1285,7 @@ This release contains the following updates:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added new `gruntwork-access` module customers can use to grant Gruntwork access to their AWS accounts for the purposes of (a) deploying a Reference Architecture or (b) troubleshooting.
 - Added an example of how to use the `gruntwork-access` module with Terragrunt and `account-baseline-root` to create all child accounts for the Reference Architecture and grant Gruntwork access to them in a single `apply`.
@@ -1306,7 +1306,7 @@ This release contains the following updates:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 This release catches a few dependencies up to the latest version.
 
 
@@ -1321,7 +1321,7 @@ This release catches a few dependencies up to the latest version.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release catches up dependencies using the new RenovateBot functionality (see `renovate.json` in the repo root).
 
@@ -1341,7 +1341,7 @@ This release catches up dependencies using the new RenovateBot functionality (se
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Fix OS permissions that are set on the downloaded binary from the `executable-dependency` module.
 
@@ -1359,11 +1359,11 @@ Fix OS permissions that are set on the downloaded binary from the `executable-de
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
+
+- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`!
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`.
    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 - The `run-pex-as-resource` module no longer supports running code on `destroy`. See the migration guide below for more details.
 
@@ -1384,9 +1384,9 @@ Fix OS permissions that are set on the downloaded binary from the `executable-de
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- Add DynamoDB VPC endpoints to the `vpc-mgmt` module. We already had these endpoints in `vpc-app`, but somehow must&apos;ve forgotten to add them to `vpc-mgmt`. 
+
+- Add DynamoDB VPC endpoints to the `vpc-mgmt` module. We already had these endpoints in `vpc-app`, but somehow must&apos;ve forgotten to add them to `vpc-mgmt`.
 - Propagate the tags from the `custom_tags` input variable in `vpc-app` and `vpc-mgmt` to all VPC endpoints. This ensures more consistent tagging for all resources created by these modules.
 
 
@@ -1405,7 +1405,7 @@ Fix OS permissions that are set on the downloaded binary from the `executable-de
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The VPC modules now gracefully handles `num_availability_zones` values that are greater than the number of AZs in the region.
 
@@ -1423,11 +1423,11 @@ The VPC modules now gracefully handles `num_availability_zones` values that are 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
+
+- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`!
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`.
     - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -1446,7 +1446,7 @@ The VPC modules now gracefully handles `num_availability_zones` values that are 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This is a minor update that fixes a perpetual diff in the `vpc-flow-logs` module caused by the new AWS provider v3 chopping the `:*` off the CloudWatch Logs Group ARN.
 

@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2022-10. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -89,7 +89,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update default branch references (backward compatible)
 - [skip ci] Update CODEOWNERS
@@ -112,7 +112,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated `build-packer-artifact` to run `packer` in the root of cloned git repository
 
@@ -131,7 +131,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `aws-helpers`
 - `build-helpers`
 - `circleci-helpers`
@@ -169,7 +169,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - [CIS v1.5] New RDS compliant module
 
@@ -185,7 +185,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add EU team to CODEOWNERS
 - Fix missing variable reference organizations_default_tags in account-baseline-root
@@ -209,7 +209,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - Add option to append Kubernetes Metadata to Fargate logs. The input variable `include_kubernetes_metadata` defaults to `true`, making this a backward incompatible change.
 
 
@@ -224,7 +224,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 The default version of Kubernetes installed by the module has been updated to 1.23. As a result of this, the default version of addons were updated to support installation into 1.23. Specifically:
 
 - `cluster-autoscaler`: The default app version and chart version have been updated to `1.23.0` and `9.21.0`.
@@ -250,7 +250,7 @@ Due to the Cluster Autoscaler version bump, additional IAM Permissions have been
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated Cluster Autoscaler to add optional Permission Boundary for the autoscaler IAM role
 
@@ -271,7 +271,7 @@ Due to the Cluster Autoscaler version bump, additional IAM Permissions have been
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 -  [BACKWARDS INCOMPATIBLE] Fixes log groups being created outside of terraform control.
 
@@ -293,7 +293,7 @@ Due to the Cluster Autoscaler version bump, additional IAM Permissions have been
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add enable_http2 flag support for ALBs
 
@@ -314,7 +314,7 @@ Due to the Cluster Autoscaler version bump, additional IAM Permissions have been
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add backend=false flag to terraform init script
 - Fix no-session flags in docs
@@ -343,7 +343,7 @@ Due to the Cluster Autoscaler version bump, additional IAM Permissions have been
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Use yum on yum-based systems
 
@@ -360,7 +360,7 @@ Due to the Cluster Autoscaler version bump, additional IAM Permissions have been
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add security_group_id to output of Redis module
 
@@ -377,7 +377,7 @@ Due to the Cluster Autoscaler version bump, additional IAM Permissions have been
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update CODEOWNERS
 - Include how to use service catalog without for-production example
@@ -399,7 +399,7 @@ Due to the Cluster Autoscaler version bump, additional IAM Permissions have been
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - `var.aws_region` has been deprecated in the `networking/vpc` (formerly `vpc-app`) module.
 - Added the `var.auto_minor_version_upgrade` parameter to the `data-stores/rds` module.
@@ -418,7 +418,7 @@ Due to the Cluster Autoscaler version bump, additional IAM Permissions have been
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Expose `treat_missing_data` params across most modules that include CloudWatch alarms so that you can configure how the alarms should behave when data is missing.
 - Expose `preferred_maintenance_window` variable in `aurora` module

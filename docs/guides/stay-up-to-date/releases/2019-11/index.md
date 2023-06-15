@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2019-11. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -31,7 +31,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `redis` **[BREAKING CHANGES]**
 
 
@@ -50,9 +50,9 @@ Depending on your configuration, your current resource name is one of
 - `redis_without_snapshotting_with_auth_token_without_cluster_mode`
 - `redis_without_snapshotting_with_auth_token_with_cluster_mode`
 
-To find out which one it is, run `terraform state list`. 
+To find out which one it is, run `terraform state list`.
 
-For example, if your current resource name is `module.redis.aws_elasticache_replication_group.redis_without_snapshotting_without_auth_token_with_cluster_mode[0]`, you can migrate the resource by running: 
+For example, if your current resource name is `module.redis.aws_elasticache_replication_group.redis_without_snapshotting_without_auth_token_with_cluster_mode[0]`, you can migrate the resource by running:
 
 ```bash
 terraform state mv &quot;module.redis.aws_elasticache_replication_group.redis_without_snapshotting_without_auth_token_with_cluster_mode[0]&quot; module.redis.aws_elasticache_replication_group.redis
@@ -63,7 +63,7 @@ Note that you will have to use the quotes around the indexed resource to avoid `
 * Thanks to @brianbordini for the PR!
 
 
-- #40 
+- #40
 
 
 </div>
@@ -77,9 +77,9 @@ Note that you will have to use the quotes around the indexed resource to avoid `
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- In the `memcached` and `redis` modules, we removed the `bastion_host_security_group_id` variable and added an `allow_connections_from_security_groups` variable, so you can now pass in a list of security group IDs that can connect to your cache, rather than just one. 
+
+- In the `memcached` and `redis` modules, we removed the `bastion_host_security_group_id` variable and added an `allow_connections_from_security_groups` variable, so you can now pass in a list of security group IDs that can connect to your cache, rather than just one.
 
 
 </div>
@@ -97,9 +97,9 @@ Note that you will have to use the quotes around the indexed resource to avoid `
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-This is the initial release of wrapper modules for v1.2.0 of the AWS Foundations Benchmark. 
+
+This is the initial release of wrapper modules for v1.2.0 of the AWS Foundations Benchmark.
 
 
 
@@ -118,7 +118,7 @@ This is the initial release of wrapper modules for v1.2.0 of the AWS Foundations
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `aurora` module now supports custom names for db subnets and security groups.
 - Updated the README format as per the new design for the Service Catalog.
@@ -143,7 +143,7 @@ This is the initial release of wrapper modules for v1.2.0 of the AWS Foundations
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed a bug where ECS Auto Scaling was only working for &quot;scale out&quot; but not &quot;scale in.&quot;
 
@@ -160,7 +160,7 @@ This is the initial release of wrapper modules for v1.2.0 of the AWS Foundations
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix bug where ECS service IAM role outputs were incorrectly conditional on `var.is_associated_with_elb`, ignoring the condition about `awsvpc` (which is accounted for in `local.need_ecs_iam_role_for_elb`)
 - `ecs-service` now outputs `service_app_autoscaling_target_resource_id` which can be used for creating auto scaling policies.
@@ -183,7 +183,7 @@ This is the initial release of wrapper modules for v1.2.0 of the AWS Foundations
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `eks-alb-ingress-controller` **[BACKWARDS INCOMPATIBLE]**
 
 
@@ -222,7 +222,7 @@ Special thanks to @alanbrent for the contribution!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This consolidates the lambda resources in `modules/lambda` and `modules/lambda-edge`, taking advantage of the TF12 features that allow it. This allows for better maintainability of the modules.
 
@@ -243,7 +243,7 @@ This consolidates the lambda resources in `modules/lambda` and `modules/lambda-e
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `alb` [**BREAKING CHANGES**]
 
 
@@ -287,9 +287,9 @@ terraform state mv &quot;$MODULE_ADDRESS.aws_alb.alb_without_logs[0]&quot; &quot
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- You can now filter which Availability Zones (AZs) are used by the `vpc-app` and `vpc-mgmt` modules using the new input variables `availability_zone_blacklisted_names`, `availability_zone_blacklisted_ids`, and `availability_zone_state`. 
+
+- You can now filter which Availability Zones (AZs) are used by the `vpc-app` and `vpc-mgmt` modules using the new input variables `availability_zone_blacklisted_names`, `availability_zone_blacklisted_ids`, and `availability_zone_state`.
 
 
 </div>

@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2020-04. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -36,7 +36,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - `Dockerfile` for `infrastructure-deploy-script` now includes bitbucket.org in `known_hosts` list.
 - Fix bug where `v0.18.5` was incompatible with previous versions of `infrastructure-deployer`.
@@ -54,7 +54,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The ECS Deploy Runner stack now supports passing in a limited selection of command arguments to the underlying terraform/terragrunt commands.
 
@@ -74,7 +74,7 @@ The ECS Deploy Runner stack now supports passing in a limited selection of comma
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release adds support for specifying multiple target groups with the ECS service, allowing you to link multiple ALBs and NLBs with your service. See the new [docker-service-with-alb-and-nlb](https://github.com/gruntwork-io/module-ecs/tree/master/examples/docker-service-with-alb-and-nlb) example for an example of how to associate multiple ALB/NLBs with the service.
 
@@ -96,7 +96,7 @@ This release adds support for specifying multiple target groups with the ECS ser
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 You can now disable module calls to `eks-cluster-managed-workers` by setting `create_resources = false`. This allows you to implement conditional logic to turn on or off a module block in your terraform module.
 
 
@@ -112,7 +112,7 @@ You can now disable module calls to `eks-cluster-managed-workers` by setting `cr
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 You can now specify the docker repository to use for sourcing the cluster-autoscaler. Recent versions of the cluster-autoscaler is now region sensitive and you must pull from the corresponding repository.
 
@@ -134,7 +134,7 @@ NOTE: This release will cause a redeploy of the `cluster-autoscaler`, but since 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Fix `eks-cluster-workers` to use properly use `var.custom_tags_security_group` to allow custom tags for SG.
 
@@ -151,7 +151,7 @@ Fix `eks-cluster-workers` to use properly use `var.custom_tags_security_group` t
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 When upgrading from Kubernetes version 1.13 to 1.15, the `coredns` containers get updated to the latest version. In the newer versions of `coredns`, the configuration has a backwards incompatible change that was previously unhandled in the upgrade scripts. This release fixes that issue such that it will reformat the configuration to match expectations of later `coredns` versions.
 
@@ -168,7 +168,7 @@ When upgrading from Kubernetes version 1.13 to 1.15, the `coredns` containers ge
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The outputs for `eks-k8s-cluster-autoscaler-iam-policy` are now computed in a manner that is more robust to loss of credentials during an `apply`.
 
@@ -189,7 +189,7 @@ The outputs for `eks-k8s-cluster-autoscaler-iam-policy` are now computed in a ma
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Both `lambda` and `lambda-edge` now support setting `reserved_concurrent_executions` on the underlying Lambda function.
 
@@ -205,7 +205,7 @@ Both `lambda` and `lambda-edge` now support setting `reserved_concurrent_executi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `lambda-edge` module will now apply tags passed to it via the `tags` input variable to its IAM role.
 - The `lambda` module will now apply tags passed to it via the `tags` input variable to its IAM role and Security Group.
@@ -227,13 +227,13 @@ Both `lambda` and `lambda-edge` now support setting `reserved_concurrent_executi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
-This release introduces improvements to the module, including the ability to look up Route53 public zones by name when a hosted_zone_id is not supplied. 
 
-This release also introduces 3 new optional variables to assist with keeping your config dry: 
+This release introduces improvements to the module, including the ability to look up Route53 public zones by name when a hosted_zone_id is not supplied.
 
-- `global_tags` - tags that will be applied to all certificates 
-- `default_verify_certificate` - set to true to verify all your certificates 
+This release also introduces 3 new optional variables to assist with keeping your config dry:
+
+- `global_tags` - tags that will be applied to all certificates
+- `default_verify_certificate` - set to true to verify all your certificates
 - `default_create_verification_record` - set to true to create the necessary DNS records for certificate verification
 
 See [the vars.tf file](https://github.com/gruntwork-io/module-load-balancer/blob/2a2387a76e8094991d435972825e4585967a21b8/modules/acm-tls-certificate/vars.tf) for more information
@@ -251,7 +251,7 @@ See [the vars.tf file](https://github.com/gruntwork-io/module-load-balancer/blob
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Add support for the new `drop_invalid_header_fields` option in the `aws_lb` resource.
 
@@ -271,7 +271,7 @@ Add support for the new `drop_invalid_header_fields` option in the `aws_lb` reso
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 You can now add tags to the SNS topic created by the `sns` module.
 
@@ -292,7 +292,7 @@ You can now add tags to the SNS topic created by the `sns` module.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The `cloudwatch-dashboard` module now supports managing multiple dashboards in one module.
 
@@ -308,7 +308,7 @@ The `cloudwatch-dashboard` module now supports managing multiple dashboards in o
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added datapoints_to_alarm variable to ecs-service-alarms module:  Addresses the module &apos;ecs-service-alarms&apos; didn&apos;t pass through customizations to the variable &apos;datapoints_to_alarm&apos;.
 
@@ -325,7 +325,7 @@ The `cloudwatch-dashboard` module now supports managing multiple dashboards in o
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 In the `sns-to-slack` module, resources can now be optionally created using the `create_resources` boolean variable. Set the variable to false to have the module create no resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if the Lambda function and other resources should be created or not.
 
@@ -342,7 +342,7 @@ In the `sns-to-slack` module, resources can now be optionally created using the 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix a bug in the `alb-alarms` module where for &quot;low&quot; thresholds (e.g., low request count) it was using `GreaterThanThreshold` instead of `LessThanThreshold`.
 
@@ -358,7 +358,7 @@ In the `sns-to-slack` module, resources can now be optionally created using the 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix a bug in the `rds_disk_space_available` alarm where it would be enabled, incorrectly, for Aurora instances.
 
@@ -378,7 +378,7 @@ In the `sns-to-slack` module, resources can now be optionally created using the 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release fixes a bug in which if the Elastic IP associated with the OpenVPN Server was deleted, Terraform would throw an invalid index error.
 
@@ -401,11 +401,11 @@ Thanks to @syndbg for the contribution!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - `ssh-grunt` sync every 5 minutes by default rather than every 30 minutes.
 
-- The `cloudtrail` and `kms-master-key` modules now accept a `dependencies` variable. This can be used to create a dependency between this module and resources created outside of this module.  For example, you might need to create a dependency between the `cloudtrail` module and an IAM user created using the `iam-user` module because you want to name the user in the KMS key policy. 
+- The `cloudtrail` and `kms-master-key` modules now accept a `dependencies` variable. This can be used to create a dependency between this module and resources created outside of this module.  For example, you might need to create a dependency between the `cloudtrail` module and an IAM user created using the `iam-user` module because you want to name the user in the KMS key policy.
 
 ```
 dependencies = values(module.iam_users.user_arns)
@@ -431,7 +431,7 @@ Now each resource in the `cloudtrail` module will depend on these ARNs.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The behavior of `ssh-grunt` has changed with regards to its handling of duplicate users. Previously, if multiple IAM users resulted in the same clean OS username (e.g. `ben` and `ben@gruntwork.io` both result in `ben` for the OS username), `ssh-grunt` would exit with an error. This had the unfortunate side effect of requiring the administrator to log in as the default user to diagnose the issue.
 
@@ -450,7 +450,7 @@ The behavior has changed such that processing will now continue for all other IA
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix dynamic statement creation in `kms-master-key` so that the optional released in v0.28.3 work properly.
 
@@ -466,7 +466,7 @@ The behavior has changed such that processing will now continue for all other IA
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now grant Service Principals (e.g., &quot;s3.amazonaws.com&quot;) access to your KMS CMKs by setting the `cmk_service_principals` parameter and specifying the actions those Service Principals will be allowed to do via a new `service_principal_actions` input variable.
 
@@ -482,7 +482,7 @@ The behavior has changed such that processing will now continue for all other IA
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - All the parameters passed to the `customer_master_keys` variable of the `kms-master-key` module are now optional instead of required. The module will now only add IAM policy statements for the parameters that are actually set.
 
@@ -498,7 +498,7 @@ The behavior has changed such that processing will now continue for all other IA
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This fixes our automation process so that binaries will be attached to releases.
 
@@ -515,7 +515,7 @@ This fixes our automation process so that binaries will be attached to releases.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Since AWS provider 2.0, setting `num_days_after_which_delete_log_data = 0` no longer works and leads to a provider schema error. This meant that there was no way to configure S3 buckets to never delete data. Starting with this release, you can now prevent deletion of data in S3 for `aws-config` and `cloudtrail` by setting the respective variables to `null`.
 
@@ -532,7 +532,7 @@ Since AWS provider 2.0, setting `num_days_after_which_delete_log_data = 0` no lo
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Account baseline modules now support managing KMS Customer Master Keys.
 - You can now specify multiple IAM roles for managing cross account access IAM groups.
@@ -553,7 +553,7 @@ Since AWS provider 2.0, setting `num_days_after_which_delete_log_data = 0` no lo
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `single-server` module now applies the tags passed in via the `tags` input variable to the EIP and IAM Role resources it creates.
 
@@ -573,7 +573,7 @@ Since AWS provider 2.0, setting `num_days_after_which_delete_log_data = 0` no lo
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now control the suffix appended to the access logs S3 bucket using the new optional input variable `access_logs_bucket_suffix`.
 
@@ -593,7 +593,7 @@ Since AWS provider 2.0, setting `num_days_after_which_delete_log_data = 0` no lo
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fully rely  on Python to determine the path separator. This is an internal refactor to make the code cleaner and safer and should have no impact on external behavior.
 
@@ -614,7 +614,7 @@ Since AWS provider 2.0, setting `num_days_after_which_delete_log_data = 0` no lo
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `vpc-interface-endpoint`
 
 

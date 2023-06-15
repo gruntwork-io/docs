@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2016-06. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -146,7 +146,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  Add 3 new helpers to the `gruntwork-module-circleci-helpers` module: 
+  Add 3 new helpers to the `gruntwork-module-circleci-helpers` module:
 - `build-go-binaries`: automatically build binaries for Go apps.
 - `git-add-commit-push`: automatically add, commit, and push changes to Git.
 - `upload-github-release-assets`: automatically upload assets to a GitHub release.

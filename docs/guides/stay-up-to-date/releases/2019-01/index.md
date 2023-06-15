@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2019-01. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -38,7 +38,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `eks-cluster-control-plane`
 
 
@@ -65,7 +65,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `asg-rolling-deploy`
 
 
@@ -86,7 +86,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `server-group`
 
 
@@ -111,7 +111,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `redis` (BACKWARDS INCOMPATIBLE)
 
 
@@ -123,7 +123,7 @@ This release is backwards incompatible and to update an existing Redis cluster, 
 For example, to migrate a cluster mode Redis cluster deployed via the `aws_elasticache_replication_group.redis_with_snapshotting_without_auth_token` resource, you&apos;d simply run:
 
 ```bash
-terraform state mv module.&lt;your-module-name&gt;.aws_elasticache_replication_group.redis_with_snapshotting_without_auth_token module.&lt;your-module-name&gt;.aws_elasticache_replication_group.redis_with_snapshotting_without_auth_token_with_cluster_mode 
+terraform state mv module.&lt;your-module-name&gt;.aws_elasticache_replication_group.redis_with_snapshotting_without_auth_token module.&lt;your-module-name&gt;.aws_elasticache_replication_group.redis_with_snapshotting_without_auth_token_with_cluster_mode
 ```
 
 
@@ -144,7 +144,7 @@ terraform state mv module.&lt;your-module-name&gt;.aws_elasticache_replication_g
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `install-jenkins`
 
 
@@ -164,7 +164,7 @@ terraform state mv module.&lt;your-module-name&gt;.aws_elasticache_replication_g
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `git-helpers`
 
 
@@ -188,7 +188,7 @@ terraform state mv module.&lt;your-module-name&gt;.aws_elasticache_replication_g
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `rds`
 
 
@@ -208,7 +208,7 @@ terraform state mv module.&lt;your-module-name&gt;.aws_elasticache_replication_g
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `aurora`
 
 
@@ -228,7 +228,7 @@ terraform state mv module.&lt;your-module-name&gt;.aws_elasticache_replication_g
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `aurora`
 
 
@@ -252,7 +252,7 @@ terraform state mv module.&lt;your-module-name&gt;.aws_elasticache_replication_g
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `ecs-daemon-service`
 
 
@@ -272,7 +272,7 @@ terraform state mv module.&lt;your-module-name&gt;.aws_elasticache_replication_g
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `ecs-daemon-service`
 
 
@@ -292,7 +292,7 @@ terraform state mv module.&lt;your-module-name&gt;.aws_elasticache_replication_g
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `ecs-service-with-discovery`
 
 
@@ -312,7 +312,7 @@ terraform state mv module.&lt;your-module-name&gt;.aws_elasticache_replication_g
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `ecs-service-with-discovery` **[Breaking Change]**
 
 
@@ -337,7 +337,7 @@ terraform state mv module.&lt;your-module-name&gt;.aws_elasticache_replication_g
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `eks-cluster-control-plane`
 - `eks-cluster-workers`
 - `eks-k8s-role-mapping`
@@ -361,17 +361,17 @@ This is a compatible release of `terraform-aws-eks` with [`package-k8s` v0.1.4](
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `alb` **[BREAKING CHANGE]**
 
 
-* The ALB requires all listeners to have a &quot;default action&quot; that defines what to do for a request that doesn&apos;t match any listener rule. In the past, the only supported action was to forward requests to a target group, so we used to forward to an empty &quot;black hole&quot; target group, resulting in a 503. The ALB now supports fixed responses, so we&apos;ve updated the default action of the `alb` module to return a blank 404 page, which is a more appropriate status code. 
+* The ALB requires all listeners to have a &quot;default action&quot; that defines what to do for a request that doesn&apos;t match any listener rule. In the past, the only supported action was to forward requests to a target group, so we used to forward to an empty &quot;black hole&quot; target group, resulting in a 503. The ALB now supports fixed responses, so we&apos;ve updated the default action of the `alb` module to return a blank 404 page, which is a more appropriate status code.
 
 
 For most teams, the new 404 behavior is better, so no code changes will be necessary. However, if you wish to override this 404 behavior, you have two options:
 
 1. You can override the default fixed response via the `default_action_content_type`, `default_action_body`, `default_action_status_code` parameters.
-1. You can add an ALB Listener Rule that catches ALL requests (i.e., `*`) and have that rule forward to a custom Target Group so your own apps can respond in any way you wish.  
+1. You can add an ALB Listener Rule that catches ALL requests (i.e., `*`) and have that rule forward to a custom Target Group so your own apps can respond in any way you wish.
 
 
 * https://github.com/gruntwork-io/module-load-balancer/pull/46
@@ -391,7 +391,7 @@ For most teams, the new 404 behavior is better, so no code changes will be neces
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `cloudwatch-dashboard-metric-widget` (BACKWARDS INCOMPATIBLE)
 - `cloudwatch-dashboard`
 
@@ -416,7 +416,7 @@ This release is backwards incompatible and to update an existing metric widget, 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `alarms/alb-target-group-alarms`
 
 
@@ -440,7 +440,7 @@ This release is backwards incompatible and to update an existing metric widget, 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix https://github.com/gruntwork-io/package-sam/issues/25: Add `depends_on` to daisy chain resources that frequently encounter `ConflictException`.
 
@@ -457,7 +457,7 @@ This release is backwards incompatible and to update an existing metric widget, 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -474,7 +474,7 @@ This release is backwards incompatible and to update an existing metric widget, 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `fail2ban`
 
 
@@ -498,7 +498,7 @@ This release is backwards incompatible and to update an existing metric widget, 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `persistent-ebs-volume` **[BREAKING CHANGE]**
 
 
@@ -518,7 +518,7 @@ This release is backwards incompatible and to update an existing metric widget, 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `persistent-ebs-volume`
 
 
@@ -562,7 +562,7 @@ What we changed:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - **[NEW]** `run-pex-as-data-source`
 - **[NEW]** `run-pex-as-resource`
 
@@ -586,7 +586,7 @@ This release introduces modules that support running python PEX files in Terrafo
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `require-executable`
 
 
@@ -606,7 +606,7 @@ This release introduces modules that support running python PEX files in Terrafo
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - **[NEW]** `require-executable`
 
 
@@ -630,7 +630,7 @@ This release introduces modules that support running python PEX files in Terrafo
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `vpc-app`
 * `vpc-mgmt`
 
@@ -652,7 +652,7 @@ This release introduces modules that support running python PEX files in Terrafo
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `vpc-app-network-acls`
 
 
@@ -674,7 +674,7 @@ This release introduces modules that support running python PEX files in Terrafo
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `vpc-app`
 
 
@@ -694,7 +694,7 @@ This release introduces modules that support running python PEX files in Terrafo
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `vpc-app`
 
 
@@ -718,9 +718,9 @@ This release introduces modules that support running python PEX files in Terrafo
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
-- `k8s-namespace` [**BACKWARDS INCOMPATIBLE**] 
-- `k8s-service-account` [**BACKWARDS INCOMPATIBLE**] 
+
+- `k8s-namespace` [**BACKWARDS INCOMPATIBLE**]
+- `k8s-service-account` [**BACKWARDS INCOMPATIBLE**]
 
 
 - The RBAC roles and RBAC role bindings are now managed using the kubernetes provider as opposed to kubectl.
@@ -742,7 +742,7 @@ This is a backwards incompatible change. Specifically, the modules no longer nee
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `k8s-namespace`
 - `k8s-service-account`
 

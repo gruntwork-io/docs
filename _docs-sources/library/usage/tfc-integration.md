@@ -8,7 +8,7 @@ sidebar_label: Integrating with TFC/TFE
 
 This section will cover how to use Gruntwork in conjunction with two popular HashiCorp products: [Terraform Cloud (TFC)](https://www.terraform.io/docs/cloud/index.html) and [Terraform Enterprise (TFE)](https://www.terraform.io/docs/enterprise/index.html). Although the open source edition of Terraform is quite powerful and flexible as a standalone project, many organizations turn to TFC/TFE for the CLI/UI integration, approval-based workflow capabilities, Sentinel policy framework, and more. At its core, Terraform Enterprise is basically Terraform Cloud repackaged for a self-hosted environment. We’ll use "TFC" as short hand for both Terraform Cloud and Enterprise throughout this guide.
 
-In our guide on [using Gruntwork modules](iac/usage/customizing-modules.md) we describe how to use Gruntwork with two VCS repositories: `infrastructure-modules`, containing your Terraform code that wraps the modules from Gruntwork Library, and `infrastructure-live`, containing Terragrunt configurations that enable you to manage Terraform easily across multiple accounts and environments. When using Gruntwork with TFC, you have two choices regarding these repositories:
+In our guide on [using Gruntwork modules](library/usage/customizing-modules.md) we describe how to use Gruntwork with two VCS repositories: `infrastructure-modules`, containing your Terraform code that wraps the modules from Gruntwork Library, and `infrastructure-live`, containing Terragrunt configurations that enable you to manage Terraform easily across multiple accounts and environments. When using Gruntwork with TFC, you have two choices regarding these repositories:
 
 <div className="dlist">
 
@@ -99,7 +99,7 @@ data source](https://www.terraform.io/docs/providers/terraform/d/remote_state.ht
 another workspace. In this manner, you can link multiple workspaces together to
 build an end-to-end infrastructure.
 
-In our guide on [using Gruntwork modules](/iac/usage/customizing-modules.md), we discuss the wrapper module
+In our guide on [using Gruntwork modules](/library/usage/customizing-modules.md), we discuss the wrapper module
 pattern in which multiple Terraform modules are contained in a hierarchy of directories located under
 `infrastructure-modules/modules`. Using such a hierarchy, each workspace will use the same `infrastructure-modules` repository, but pointed at different subdirectories within the repository.
 

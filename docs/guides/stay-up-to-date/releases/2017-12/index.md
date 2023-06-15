@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2017-12. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -177,7 +177,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-aws-monitoring/pull/38: Fig `logrotate` settings to use `copytruncate` (so files are rotated properly even if a process maintains the old file handle) and `maxsize` instead of `size` (as `size` conflicts with `daily`). To use `maxsize`, we also had to install a newer version of `logrotate` on Amazon Linux distros, which, by default, run a version that&apos;s more than 7 years old. 
+  https://github.com/gruntwork-io/module-aws-monitoring/pull/38: Fig `logrotate` settings to use `copytruncate` (so files are rotated properly even if a process maintains the old file handle) and `maxsize` instead of `size` (as `size` conflicts with `daily`). To use `maxsize`, we also had to install a newer version of `logrotate` on Amazon Linux distros, which, by default, run a version that&apos;s more than 7 years old.
 
 </div>
 

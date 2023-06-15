@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2021-03. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -105,7 +105,7 @@ Also undergoes a sort of rebranding of a &quot;generic gruntwork CLI tool&quot; 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/repo-copier/pull/76: 
+  https://github.com/gruntwork-io/repo-copier/pull/76:
 
 * `repo-copier` will now convert pull requests and issues into Markdown files that get copied to the destination.
 * Added release date for each release in `CHANGELOG.md`.
@@ -139,7 +139,7 @@ Also undergoes a sort of rebranding of a &quot;generic gruntwork CLI tool&quot; 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Adds command for setting up TLS for the sample app
 - Initial implementation of the deployer command
@@ -220,7 +220,7 @@ Also undergoes a sort of rebranding of a &quot;generic gruntwork CLI tool&quot; 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Replace usage of `null_data_source` with `locals` to resolve deprecation warning.
 
@@ -238,11 +238,11 @@ Also undergoes a sort of rebranding of a &quot;generic gruntwork CLI tool&quot; 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- **Terraform 0.14 upgrade**: We have verified that this repo is compatible with Terraform `0.14.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.14.x` against this repo, so we recommend updating to `0.14.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.14.x`. 
+
+- **Terraform 0.14 upgrade**: We have verified that this repo is compatible with Terraform `0.14.x`!
+    - From this release onward, we will only be running tests with Terraform `0.14.x` against this repo, so we recommend updating to `0.14.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.14.x`.
     - Once all Gruntwork repos have been upgrade to work with `0.14.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -265,7 +265,7 @@ Also undergoes a sort of rebranding of a &quot;generic gruntwork CLI tool&quot; 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 **Terraform 0.14 upgrade:** We have verified that this repo is compatible with Terraform 0.14.x!
 
@@ -293,7 +293,7 @@ Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixes a bug in the `ecs-deploy-runner` fargate runtime where it did not support running scripts with no args.
 
@@ -311,7 +311,7 @@ Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - `build-go-binaries` now supports building arbitrary os and architecture combinations with the new `--osarch` flag.
 - `build-go-binaries` now defaults to building the following binaries: `darwin/amd64`, `darwin/arm64`, `linux/amd64`, `linux/386`, `linux/arm64`, `windows/amd64`, `windows/386`. Note that this release drops building `darwin/386` binaries. If you need those binaries built, you must explicitly pass it in to `--osarch`.
@@ -331,7 +331,7 @@ Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now build docker images against a specific commit SHA in the ECS Deploy Runner using the `--sha` argument to `build-docker-image` script.
 - Prior to this release all scripts in ECS Deploy Runner had automatically allowed the `--help` option. Starting this release, this behavior has been corrected. If you wish to continue to allow `--help` to your scripts, add it to `allowed_options` in the script configuration.
@@ -353,8 +353,8 @@ Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
-- Flow logs are now always created in modules `vpc` and `vpc-mgmt`. To achieve this, these two modules no longer expose the variable `create_flow_logs`. 
+
+- Flow logs are now always created in modules `vpc` and `vpc-mgmt`. To achieve this, these two modules no longer expose the variable `create_flow_logs`.
 
 - Exposed more necessary properties and removed variables allowing configuration for the CIS version of `aws-config-multi-region` module:
    - added `config_name`, `should_create_sns_topic`, `sns_topic_name`, `kms_key_arn` to `main.tf`
@@ -373,9 +373,9 @@ Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-This release adds new modules for VPC and Management VPC, and integrates them with existing Network ACL modules, thus creating AWS CIS-compliant VPC modules. 
+
+This release adds new modules for VPC and Management VPC, and integrates them with existing Network ACL modules, thus creating AWS CIS-compliant VPC modules.
 
 Note that this release moves the `vpc-app-network-acls` and `vpc-mgmt-network-acls` modules under the `networking` folder. When updating to this version, make sure to update the module path as well.
 
@@ -394,7 +394,7 @@ Note that this release moves the `vpc-app-network-acls` and `vpc-mgmt-network-ac
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Cloudtrail SNS topics can now be encrypted via the new `benchmark_alarm_sns_topic_kms_master_key_id` variable.
 
@@ -410,7 +410,7 @@ Cloudtrail SNS topics can now be encrypted via the new `benchmark_alarm_sns_topi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - New module: `aws-config-multi-region`. This module has the IAM password policy checks for CIS.
 
@@ -426,9 +426,9 @@ Cloudtrail SNS topics can now be encrypted via the new `benchmark_alarm_sns_topi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- Update IAM password policy to CIS v1.3. Some password restrictions no longer apply. 
+
+- Update IAM password policy to CIS v1.3. Some password restrictions no longer apply.
 
 
 
@@ -443,7 +443,7 @@ Cloudtrail SNS topics can now be encrypted via the new `benchmark_alarm_sns_topi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 This release updates versions of several underlying modules, including several backwards incompatible upgrades. Please see the  Migration guide section for manual steps necessary to perform the upgrade.
 
 Other changes in this release:
@@ -451,7 +451,7 @@ Other changes in this release:
 - Internal test fixes
 - `required_version` and `required_providers` added to all terraform modules
 - Added script to disassociate from Security Hub
-- Added Renovate bot 
+- Added Renovate bot
 
 
 
@@ -470,7 +470,7 @@ Other changes in this release:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Set `ignore_changes` on the `snapshot_identifier` param in the `redshift` module so that you can properly restore Redshift clusters from snapshots.
 
@@ -487,7 +487,7 @@ Other changes in this release:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 **Terraform 0.14 upgrade:** We have verified that this repo is compatible with Terraform 0.14.x!
 
 From this release onward, this repo will be running tests with Terraform 0.14.x, so **we recommend updating to 0.14.x soon**!
@@ -511,7 +511,7 @@ Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Allow restoring snapshots from different AWS accounts using the news `snapshot_cluster_identifier` and `snapshot_owner_account` variables.
 
@@ -532,7 +532,7 @@ Allow restoring snapshots from different AWS accounts using the news `snapshot_c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix a bug where the `aws_ecs_task_definition` for the canary task was not setting the `execution_role_arn` param.
 
@@ -549,9 +549,9 @@ Allow restoring snapshots from different AWS accounts using the news `snapshot_c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- Fix the `volumes` param in the `ecs-service` and `ecs-daemon-service` modules so that volumes can be updated safely, support optional params, and support the `docker_volume_configuration`. This is a breaking change, so make sure to see the Migration Guide below for how to upgrade. 
+
+- Fix the `volumes` param in the `ecs-service` and `ecs-daemon-service` modules so that volumes can be updated safely, support optional params, and support the `docker_volume_configuration`. This is a breaking change, so make sure to see the Migration Guide below for how to upgrade.
 
 
 
@@ -566,7 +566,7 @@ Allow restoring snapshots from different AWS accounts using the news `snapshot_c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Now allows for a custom prefix for the ECS task IAM role name in the `custom_iam_role_name_prefix` variable.
 - Fixes a typo in the name of the ECS task execution policy (`task-excution-policy` =&gt; `task-execution-policy`). Note that this change will cause the policy to be recreated, but will not cause downtime for any ECS service.
@@ -589,12 +589,12 @@ Allow restoring snapshots from different AWS accounts using the news `snapshot_c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now customize the `external-dns` service to directly configure the list of sources it watches for using the `sources` input variable. Note that as a part of this change, the `enable_istio` flag has been removed.
 - You can now configure the `external-dns` service to only watch for resources in a specific namespace using the `endpoints_namespace` input variable.
 - You can now grant the `cluster-autoscaler` service to query and manipulate any ASGs with the tag `k8s.io/cluster-autoscaler/CLUSTER_NAME` instead of the set of ASGs that were passed in. This IAM permission is applied when `cluster_autoscaler_absolute_arns = false`.
-- You can now configure the `eks-k8s-cluster-autoscaler` module to create a Fargate Profile but use an existing Fargate execution role that is created in the same terraform configuration. Previously this led to an error due to `count` values not being available at `plan` time. 
+- You can now configure the `eks-k8s-cluster-autoscaler` module to create a Fargate Profile but use an existing Fargate execution role that is created in the same terraform configuration. Previously this led to an error due to `count` values not being available at `plan` time.
 
 
 </div>
@@ -608,7 +608,7 @@ Allow restoring snapshots from different AWS accounts using the news `snapshot_c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now force detach policies on destroy for the IAM role created with self managed workers through the `eks-cluster-workers` module.
 
@@ -629,11 +629,11 @@ Allow restoring snapshots from different AWS accounts using the news `snapshot_c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- **Terraform 0.14 upgrade**: We have verified that this repo is compatible with Terraform `0.14.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.14.x` against this repo, so we recommend updating to `0.14.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.14.x`. 
+
+- **Terraform 0.14 upgrade**: We have verified that this repo is compatible with Terraform `0.14.x`!
+    - From this release onward, we will only be running tests with Terraform `0.14.x` against this repo, so we recommend updating to `0.14.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.14.x`.
     - Once all Gruntwork repos have been upgraded to work with `0.14.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -655,7 +655,7 @@ Allow restoring snapshots from different AWS accounts using the news `snapshot_c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix bug where the `listener_arns` attribute was ignored on each rules map in the `lb-listener-rules` module.
 - Update all repo cross references to the current name.
@@ -672,11 +672,11 @@ Allow restoring snapshots from different AWS accounts using the news `snapshot_c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- **Terraform 0.14 upgrade**: We have verified that this repo is compatible with Terraform `0.14.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.14.x` against this repo, so we recommend updating to `0.14.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.14.x`. 
+
+- **Terraform 0.14 upgrade**: We have verified that this repo is compatible with Terraform `0.14.x`!
+    - From this release onward, we will only be running tests with Terraform `0.14.x` against this repo, so we recommend updating to `0.14.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.14.x`.
     - Once all Gruntwork repos have been upgraded to work with `0.14.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -698,7 +698,7 @@ Allow restoring snapshots from different AWS accounts using the news `snapshot_c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 **Terraform 0.14 upgrade:** We have verified that this repo is compatible with Terraform 0.14.x!
 
 From this release onward, this repo will be running tests with Terraform 0.14.x, so **we recommend updating to 0.14.x soon**!
@@ -722,7 +722,7 @@ Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix a bug where the `sns` module would show errors with output variable access when `create_resources` was set to `false`.
 
@@ -743,7 +743,7 @@ Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - All the modules except for `logs/cloudwatch-log-aggregation-scripts` have been tested for compatibility with Ubuntu 20.04. If you wish to use the log aggregation scripts on Ubuntu 20.04, migrate to the new Unified CloudWatch Agent using the `agents/cloudwatch-agent` module.
 
@@ -762,7 +762,7 @@ Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 Releasing a new minor version for this repo to mark **forward-only compatibility** with Terraform 0.14.x!
 
 From release `v0.24.2`, this repo will be running tests with Terraform 0.14.x, so **we recommend updating to 0.14.x soon**!
@@ -784,7 +784,7 @@ For more details, please refer to the release notes from Terraform 0.14 [release
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - **Terraform 0.14 upgrade:** We have verified that this repo is compatible with Terraform 0.14.x!
 
     From this release onward, this repo will be running tests with Terraform 0.14.x, so **we recommend updating to 0.14.x soon**!
@@ -811,7 +811,7 @@ For more details, please refer to the release notes from Terraform 0.14 [release
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixes an issue in account-baseline-root introduced in v0.45.6 when creating an organization. The module will now `sleep` for enough time to allow the Organization and child accounts be created.
 
@@ -829,7 +829,7 @@ For more details, please refer to the release notes from Terraform 0.14 [release
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update the read-only policy in the `iam-policies` module to the latest permissions for Amazon Elasticsearch. Note that this will also affect the modules that rely on `iam-policies`, including `iam-groups` and `cross-account-iam-roles`.
 - Fix a typo in the `account-baseline-root` README.
@@ -847,12 +847,12 @@ For more details, please refer to the release notes from Terraform 0.14 [release
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
 
-- **Terraform 0.14 upgrade**: We have verified that this repo is compatible with Terraform `0.14.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.14.x` against this repo, so we recommend updating to `0.14.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.14.x`. 
+
+- **Terraform 0.14 upgrade**: We have verified that this repo is compatible with Terraform `0.14.x`!
+    - From this release onward, we will only be running tests with Terraform `0.14.x` against this repo, so we recommend updating to `0.14.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.14.x`.
     - Once all Gruntwork repos have been upgrade to work with `0.14.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -869,7 +869,7 @@ For more details, please refer to the release notes from Terraform 0.14 [release
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update the billing IAM policy to use the AWS-managed billing policy under the hood (so it&apos;s always up to date), but still layer the MFA requirement on top. This will also affect the modules that use this policy under the hood, including the billing IAM group in the `iam-groups` module and the billing IAM role in the `cross-account-iam-roles` module.
 - - **NOTE: Using `account-baseline-root` with this release results in insufficient permissions on the CloudTrail S3 bucket. Use [v0.48.1](https://github.com/gruntwork-io/terraform-aws-security/releases/v0.48.1) or later instead.** The `cloudtrail-bucket`, `cloudtrail`, and `account-baseline-root` modules now all expose a new `cloudtrail_organization_id` input variable that you can use to configure an organization-wide CloudTrail.
@@ -886,7 +886,7 @@ For more details, please refer to the release notes from Terraform 0.14 [release
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 -  Add `create_resources` variable to `iam-user-password-policy` module
 
@@ -903,7 +903,7 @@ For more details, please refer to the release notes from Terraform 0.14 [release
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release fixes a bug in the `account-baseline-root` module in which certain changes to the child account configuration would result in permissions errors.
 
@@ -920,7 +920,7 @@ This release fixes a bug in the `account-baseline-root` module in which certain 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix conditional formatting at `account-baseline-root` and `aws-organizations`.
 - Improve Cloudtrail test:  fix swaped `assert.Equal` parameters.
@@ -939,7 +939,7 @@ This release fixes a bug in the `account-baseline-root` module in which certain 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Exposed the ability to encrypt the SNS topic in the Guard Duty modules with a KMS CMK.
 
@@ -958,7 +958,7 @@ This release fixes a bug in the `account-baseline-root` module in which certain 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - **NOTE: The Organizations Trail functionality in this release contains a bug related to insufficient S3 permissions. Use [v0.48.1](https://github.com/gruntwork-io/terraform-aws-security/releases/v0.48.1) or later instead.** Capability to create an Organization Trail when using the account-baseline modules. To use an Organization Trail, set `cloudtrail_is_organization_trail=true` in `account-baseline-root`, then set `enable_cloudtrail=false` in `account-baseline-security` and `account-baseline-app` since the Organization Trail in the root account will automatically set up trails for the member accounts. Note that CloudTrail logs will still be sent to the bucket in the logs account.
 
@@ -973,7 +973,7 @@ This release fixes a bug in the `account-baseline-root` module in which certain 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The modules `iam-groups` and `cross-account-iam-roles` can be disabled via `var.create_resources`.
 
@@ -991,7 +991,7 @@ This release fixes a bug in the `account-baseline-root` module in which certain 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix bug where `ap-northeast-3` was recently promoted to a full region, but is not yet supported by terraform.
 
@@ -1012,10 +1012,10 @@ This release fixes a bug in the `account-baseline-root` module in which certain 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
-- **Terraform 0.14 upgrade**: We have verified that this repo is compatible with Terraform `0.14.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.14.x` against this repo, so we recommend updating to `0.14.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.14.x`. 
+
+- **Terraform 0.14 upgrade**: We have verified that this repo is compatible with Terraform `0.14.x`!
+    - From this release onward, we will only be running tests with Terraform `0.14.x` against this repo, so we recommend updating to `0.14.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.14.x`.
     - Once all Gruntwork repos have been upgrade to work with `0.14.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -1035,7 +1035,7 @@ This release fixes a bug in the `account-baseline-root` module in which certain 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 A few of the variables in the `vpc-mgmt` module had default values configured and were thus optional, when they should have been required. This release removes these defaults values thus making the variables required. In the unlikely case that you previously relied on these defaults, you will have to make changes to explicitly supply values for these variables.
 
@@ -1054,7 +1054,7 @@ Variables affected: `aws_region`, `vpc_name`, `cidr_block`, `num_nat_gateways`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Packer templates have been updated to accept an `instance_type` variable. The value of that variable will be used to determine the EC2 instance type used by the Packer builder. This is to work around issues where the default type, `t3.micro`, is unavailable in some regions/AZs.
 
@@ -1072,7 +1072,7 @@ Variables affected: `aws_region`, `vpc_name`, `cidr_block`, `num_nat_gateways`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update dependency gruntwork-io/terragrunt to v0.28.16
 - Update dependency gruntwork-io/terraform-aws-vpc to 0.14.4 in the `vpc-mgmt` module
@@ -1090,7 +1090,7 @@ Variables affected: `aws_region`, `vpc_name`, `cidr_block`, `num_nat_gateways`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `s3-bucket` now sets the `access_logging_bucket` param to `null` by default. This makes it easier to use the module with Terragrunt. This is a backwards incompatible change because, if you don&apos;t set `access_logging_bucket` any more, this module will no longer create an access logging bucket by default.
 
@@ -1109,7 +1109,7 @@ Variables affected: `aws_region`, `vpc_name`, `cidr_block`, `num_nat_gateways`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now set tags in the `s3-bucket` service using the new `tags` input variable.
 
@@ -1128,7 +1128,7 @@ Variables affected: `aws_region`, `vpc_name`, `cidr_block`, `num_nat_gateways`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Expose a number of missing fields in the `alb` service that you can now optionally configure:
     - `allow_all_outbound`
@@ -1156,7 +1156,7 @@ Variables affected: `aws_region`, `vpc_name`, `cidr_block`, `num_nat_gateways`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - `vpc` and `vpc-mgmt` now expose the `vpc_ready` output parameter
 
@@ -1174,7 +1174,7 @@ Variables affected: `aws_region`, `vpc_name`, `cidr_block`, `num_nat_gateways`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update dependency gruntwork-io/terraform-aws-cache to v0.11.0. Several months ago, AWS made a backward-incompatible change related to the Elasticache Replication Group Multi-AZ behavior, introducing a new `MultiAZEnabled` toggle. This means that, the last several months, if you deployed Redis with with `enable_automatic_failover` set to true, but did not have this `MultiAZEnabled` flag—which wasn&apos;t exposed in Terraform&apos;s AWS provider—Redis would be deployed into only a single AZ. This issue was fixed in AWS provider 3.26, and in this release, we now expose a new `enable_multi_az` variable in the redis module so that you can configure this property. This change is **backwards incompatible**: you must pass in `enable_multi_az`. To avoid a rebuild of your cluster, you can set it to `null`.
 - Creation of network ACLs is now optional in both `vpc` and `vpc-mgmt` services.
@@ -1194,7 +1194,7 @@ Variables affected: `aws_region`, `vpc_name`, `cidr_block`, `num_nat_gateways`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The default version of Jenkins that gets installed by the `jenkins` module has been updated to the latest LTS release (`2.235.5` =&gt; `2.263.4`). The version update contains **backwards incompatible** changes within Jenkins. Refer to the upgrade guides for [2.249.x](https://www.jenkins.io/doc/upgrade-guide/2.249/) and [2.263.x](https://www.jenkins.io/doc/upgrade-guide/2.263/) to make sure your build jobs are compatible before rotating your servers.
 
@@ -1211,9 +1211,9 @@ Variables affected: `aws_region`, `vpc_name`, `cidr_block`, `num_nat_gateways`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-You can now configure multiple domain names to route to the ALB. This is useful if you want to use host based routing for your services. 
+
+You can now configure multiple domain names to route to the ALB. This is useful if you want to use host based routing for your services.
 
 **Note that this is a backwards incompatible change**: as a part of this change, the input variable `domain_name` has been converted to a list and renamed to `domain_names`. Similarly, the output `alb_dns_name` has been converted to a list and renamed to `alb_dns_names`. You will need to update your configuration to use the new variable and outputs.
 
@@ -1231,7 +1231,7 @@ You can now configure multiple domain names to route to the ALB. This is useful 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The Aurora module now exposes the ability to export Aurora DB cluster logs to CloudWatch Logs via the `enabled_cloudwatch_logs_exports` variable.
 - The account-baseline-root module now supports CloudTrail Organization trails. See the complete description in the [`v0.45.3` release](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.45.3) of the `terraform-aws-security` repo.
@@ -1250,7 +1250,7 @@ You can now configure multiple domain names to route to the ALB. This is useful 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Support empty list for secrets_access in ecs-service
 - Output aws-auth-merger namespace name
@@ -1269,7 +1269,7 @@ You can now configure multiple domain names to route to the ALB. This is useful 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Use usable_fargate_subnet_ids for aws-auth-merger fargate profile
 
@@ -1286,7 +1286,7 @@ You can now configure multiple domain names to route to the ALB. This is useful 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update `terraform-aws-security` in the `account-baseline-root` to v0.45.2
 
@@ -1304,7 +1304,7 @@ You can now configure multiple domain names to route to the ALB. This is useful 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - Update dependency gruntwork-io/terraform-aws-security to [v0.45.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.45.1) (fix for `ap-northeast-3` in multi region modules)
 
 
@@ -1320,7 +1320,7 @@ You can now configure multiple domain names to route to the ALB. This is useful 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Allow creating `bastion-host` with no domain name.
 - Allow specifying custom tags with RDS and Aurora.
@@ -1347,7 +1347,7 @@ You can now configure multiple domain names to route to the ALB. This is useful 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 **Terraform 0.14 upgrade:** We have verified that this repo is compatible with Terraform 0.14.x!
 
 From this release onward, this repo will be running tests with Terraform 0.14.x, so **we recommend updating to 0.14.x soon**!
@@ -1374,7 +1374,7 @@ Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 If `create_resources` was set to `false` in the `vpc-mgmt-network-acls` module, the module would break due to attempting to index empty lists. This release fixes that bug.
 
@@ -1391,7 +1391,7 @@ If `create_resources` was set to `false` in the `vpc-mgmt-network-acls` module, 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 * Older versions of Terraform could not use lists with ternary syntax, so we had to use `split` and `join` to work around it. This should not be a problem in current Terraform versions, so we&apos;ve removed the workaround in this release. There should be no change in behavior, other than, as a nice side effect, `plan` output should work better now for NAT Gateways.
 
@@ -1410,7 +1410,7 @@ If `create_resources` was set to `false` in the `vpc-mgmt-network-acls` module, 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Support for optional resource creation via the `create_resources` parameter was added to `vpc-mgmt-network-acls`.
 
@@ -1429,7 +1429,7 @@ Support for optional resource creation via the `create_resources` parameter was 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Support for optional resource creation via the `create_resources` parameter was added to the following modules: `network-acl-inbound`,
 `network-acl-outbound`, `vpc-app-network-acls`
@@ -1446,11 +1446,11 @@ Support for optional resource creation via the `create_resources` parameter was 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- **Terraform 0.14 upgrade**: We have verified that this repo is compatible with Terraform `0.14.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.14.x` against this repo, so we recommend updating to `0.14.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.14.x`. 
+
+- **Terraform 0.14 upgrade**: We have verified that this repo is compatible with Terraform `0.14.x`!
+    - From this release onward, we will only be running tests with Terraform `0.14.x` against this repo, so we recommend updating to `0.14.x` soon!
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.14.x`.
     - Once all Gruntwork repos have been upgrade to work with `0.14.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 

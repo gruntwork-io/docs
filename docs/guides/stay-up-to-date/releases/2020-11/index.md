@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2020-11. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -88,7 +88,7 @@ The EKS modules have been updated to `v0.28.0`, which removes dependency on the 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The default version of tools used in the Docker image for the ECS Deploy Runner has been updated to the latest versions.
 
@@ -109,7 +109,7 @@ The default version of tools used in the Docker image for the ECS Deploy Runner 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `efs` module now allows you to grant root access to the EFS volume using the `root_access_arns` field in the `efs_access_points` input variable. This is a backwards incompatible update, so please see the migration guide for instructions.
 
@@ -125,7 +125,7 @@ The default version of tools used in the Docker image for the ECS Deploy Runner 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now configure IAM roles for the `redshift` module to use via the new `iam_roles` input variable.
 
@@ -149,7 +149,7 @@ The default version of tools used in the Docker image for the ECS Deploy Runner 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now configure the permissions boundary for the auto scaling IAM role for in `ecs-service` using the new `autoscaling_role_permissions_boundary_arn` input variable.
 
@@ -170,7 +170,7 @@ The default version of tools used in the Docker image for the ECS Deploy Runner 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - This release updates `eks-cluster-workers` to allow you to specify different instance types for each ASG specified in `var.autoscaling_group_configurations`. As part of this change, `var.autoscaling_group_configurations` was converted from an `object` type with concrete attributes to an `any` to allow for optionality in the attributes. Now you only need to specify `subnet_ids` as opposed to the whole object, with the missing values being sourced from the variables prefixed with `asg_default`. Refer to the updated variable documentation for more details.
 
 - The cleanup routine for EKS control plane will now cull Security Groups created by the AWS Load Balancer Controller.
@@ -187,7 +187,7 @@ The default version of tools used in the Docker image for the ECS Deploy Runner 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 This release updates the `eks-alb-ingress-controller` to use the new chart location following the deprecation of the `incubator` and `stable` helm chart repository. In the process, the underlying controller has been upgraded to v2. Please refer to the migration guide below for information on updating to this release.
 
 
@@ -202,7 +202,7 @@ This release updates the `eks-alb-ingress-controller` to use the new chart locat
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix a bug in the `eks-container-logs` where Elasticsearch output was being enabled by default. This also fixes a bug where the boolean encoding in the helm chart values were incorrect.
 - Expose the ability to configure `pod_resources` for the DaemonSet in `eks-container-logs`.
@@ -225,7 +225,7 @@ This release updates the `eks-alb-ingress-controller` to use the new chart locat
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now configure a custom assume role policy for the IAM role in the `lambda` module using the new `assume_role_policy` input variable. This is useful in a few special cases when the default assume role policy won&apos;t work, such as using Lambda functions to rotate secrets in AWS Secrets Manager.
 
@@ -244,7 +244,7 @@ This release updates the `eks-alb-ingress-controller` to use the new chart locat
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `lambda` module now allows you to mount an EFS file system in your Lambda functions using the new `mount_to_file_system`, `file_system_access_point_arn`, and `file_system_mount_path` variables. See [this example](https://github.com/gruntwork-io/package-lambda/tree/master/examples/lambda-vpc) for sample usage.
 
@@ -265,7 +265,7 @@ This release updates the `eks-alb-ingress-controller` to use the new chart locat
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now specify custom tags to apply to the Kinesis stream using the new `tags` input variable.
 
@@ -289,7 +289,7 @@ This release updates the `eks-alb-ingress-controller` to use the new chart locat
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Only create the RDS high replica lag alarm in the `rds-alarms` module if there is at least one replica (`num_rds_instance_ids` is greater than 0).
 
@@ -306,7 +306,7 @@ This release updates the `eks-alb-ingress-controller` to use the new chart locat
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `rds-alarms` module will now only create the replication error alarm if there is more than one RDS instance (that is, if there are actual replicas to alert about!).
 
@@ -327,17 +327,17 @@ This release updates the `eks-alb-ingress-controller` to use the new chart locat
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
 
-- With this release `package-openvpn` now supports Ubuntu 20.04. 
-- For more context, Ubuntu 20.04 is more secure against some risk vulnerabilities that were identified in [this issue](https://github.com/gruntwork-io/package-openvpn/issues/89): 
+
+- With this release `package-openvpn` now supports Ubuntu 20.04.
+- For more context, Ubuntu 20.04 is more secure against some risk vulnerabilities that were identified in [this issue](https://github.com/gruntwork-io/package-openvpn/issues/89):
    - [CVE-2018-1000035 - patched in 20.04](https://people.canonical.com/~ubuntu-security/cve/2018/CVE-2018-1000035.html)
        - A ZIP exploit of password-protected archives
    - [CVE-2018-12327 - 20.04 is not affected](https://people.canonical.com/~ubuntu-security/cve/2018/CVE-2018-12327.html)
        - Code execution or elevation of privilege via NTP command line stack-based buffer overflow
    - [CVE-2019-7306  - 20.04 is not affected](https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-7306.html)
        - Byobu Apport uploads .screenrc with diagnostics
-- We&apos;re using `easy-rsa v2.x` on Ubuntu 20.04 - allows for continuity between the Ubuntu 16.04, 18.04, or 20.04 implementations of `package-openvpn`. There&apos;s an issue raised to follow up on this and upgrade to using `easy-rsa v3.x` 
+- We&apos;re using `easy-rsa v2.x` on Ubuntu 20.04 - allows for continuity between the Ubuntu 16.04, 18.04, or 20.04 implementations of `package-openvpn`. There&apos;s an issue raised to follow up on this and upgrade to using `easy-rsa v3.x`
 - By adding support for Ubuntu 20.04, we&apos;re ensuring:
     - this package can work on the latest LTS distro and has been tested with it
     - users can use a more secure implementation of openVPN
@@ -361,7 +361,7 @@ This release updates the `eks-alb-ingress-controller` to use the new chart locat
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 **This release contains backwards incompatible changes. Make sure to follow the instructions in the migration guide below!**
 - The `cloudtrail-bucket` module has been refactored to use the `private-s3-bucket` module under the hood to configure the S3 bucket.
 
@@ -378,7 +378,7 @@ This release updates the `eks-alb-ingress-controller` to use the new chart locat
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 __This release contains backwards incompatible changes. Make sure to follow the instructions in the migration guide below!__
 
 - The `aws-config-bucket` module has been refactored to use the `private-s3-bucket` module under the hood to configure the S3 bucket.
@@ -396,7 +396,7 @@ __This release contains backwards incompatible changes. Make sure to follow the 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 This release fixes two issues with the `ebs-encryption` modules:
 
 1. Previously, the `aws_ebs_encryption_default_kms_key` output of  a list of strings, but the only possibility was a list of 0 or 1 elements. It now outputs a string instead.
@@ -420,7 +420,7 @@ If you were previously using this output as a list, update your code to instead 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 New module: `secrets-manager-resource-policies`. This module manages the [resource-based policies](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html) that can be associated with AWS Secrets Manager secrets. You can use the module to manage read only and full access to secrets by specifying any user, role, or root ARN to the `iam_entities_with_read_access` and `iam_entities_with_full_access` variables, respectively. You can also construct a custom policy using the [`aws_iam_policy_document` data source](https://www.terraform.io/docs/providers/aws/d/iam_policy_document.html) and providing it via the `policy_statement_json` variable.
 
 
@@ -436,7 +436,7 @@ New module: `secrets-manager-resource-policies`. This module manages the [resour
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now configure how many days to retain CloudWatch logs in the `cloudtrail` module using the new `num_days_to_retain_cloudwatch_logs` input variable.
 
@@ -453,7 +453,7 @@ New module: `secrets-manager-resource-policies`. This module manages the [resour
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Fix bug where the default value for `ebs_kms_key_name` must be `&quot;&quot;`, not `null` for the `account-baseline-security` module.
 
@@ -470,7 +470,7 @@ Fix bug where the default value for `ebs_kms_key_name` must be `&quot;&quot;`, n
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - The `aws-organizations` and `account-baseline-root` modules now output `organization_root_id`.
 
 - The `aws-config-multi-region` module can now configure default AWS Config rules (those defined by the `aws-config-rules` module) in every region AWS Config is enabled. This behavior is controlled using the new `enable_config_rules` input variable (NOTE: defaults to `true`).
@@ -494,7 +494,7 @@ Fix bug where the default value for `ebs_kms_key_name` must be `&quot;&quot;`, n
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release adds a new module, `ebs-encryption`, which allows you to control whether EC2 Elastic Block Storage volumes are encrypted by default. The corresponding `ebs-encryption-multi-region` module will do the same, but for multiple regions in parallel. The `account-baseline-*` modules have been updated to use these modules to enable EBS encryption by default. For usage details, refer to [the example](https://github.com/gruntwork-io/module-security/blob/master/examples/ebs-encryption-multi-region/README.md).
 
@@ -516,7 +516,7 @@ This release adds a new module, `ebs-encryption`, which allows you to control wh
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now specify a custom private IP address for your EC2 instance using the new `private_ip` input parameter in the `single-server` module.
 
@@ -533,7 +533,7 @@ This release adds a new module, `ebs-encryption`, which allows you to control wh
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixed CentOS `attach-eni` bug depending on the CentOS version and AWS instance type.
 
@@ -556,7 +556,7 @@ This release adds a new module, `ebs-encryption`, which allows you to control wh
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - EKS cluster now supports the aws-auth-merger functionality introduced in [terraform-aws-eks v0.23.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.23.0).
 - Sets default values for the ssh-grunt group name in the ECS cluster
@@ -575,7 +575,7 @@ This release adds a new module, `ebs-encryption`, which allows you to control wh
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update dependency `gruntwork-io/terraform-aws-vpc`: `v0.10.0` =&gt; `v0.11.0` ([release notes](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.11.0)). **NOTE: This includes a backwards incompatible change for `networking/vpc` module if you had `create_dns_forwarder = true`**. Refer to [the migration guide](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.11.0) from the underlying module for more information.
 - Update dependency `gruntwork-io/module-ci`: `v0.29.1` =&gt; `v0.29.2` ([release notes](https://github.com/gruntwork-io/module-ci/releases/tag/v0.29.2)).
@@ -594,7 +594,7 @@ This release adds a new module, `ebs-encryption`, which allows you to control wh
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update dependency `gruntwork-io/terraform-aws-eks`: `v0.28.0` =&gt; `v0.29.0` ([release notes](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.29.0)). Note that this will require code changes to the input variables. Refer to [the migration guide](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.29.0) from the underlying module for more information.
 - The outputs of the default EBS encryption in the`account-baseline-app` landingzone module have changed. See the [`v0.42.0` `module-security` release notes](https://github.com/gruntwork-io/module-security/releases/tag/v0.42.0) for details.
@@ -613,7 +613,7 @@ This release adds a new module, `ebs-encryption`, which allows you to control wh
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updates dependency gruntwork-io/terragrunt to v0.26.4
 - Update dependency gruntwork-io/package-openvpn to v0.12.1
@@ -632,7 +632,7 @@ This release adds a new module, `ebs-encryption`, which allows you to control wh
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 Adds two new optional variables to the `ecs-deploy-runner` service:
 
 - `shared_secrets_enabled`: a boolean indicating whether or not shared secrets are to be used
@@ -654,7 +654,7 @@ The use case is to allow a single, central account, such as the shared-services 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 In Terraform &gt;= v0.13.4, `depends_on` must refer to the resource object rather than any attributes on that resource. For example, this:
 
@@ -683,7 +683,7 @@ This released updates the `ecs-cluster` module accordingly.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update dependency `gruntwork-io/module-security`: `v0.41.2` =&gt; `v0.41.3` ([release notes](https://github.com/gruntwork-io/module-security/releases/tag/v0.41.3))
 - Update dependency `gruntwork-io/package-static-assets`: `v0.7.0` =&gt; `v0.7.1` ([release notes](https://github.com/gruntwork-io/package-static-assets/releases/tag/v0.7.1))
@@ -703,7 +703,7 @@ This released updates the `ecs-cluster` module accordingly.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update the default version of helm installed in Jenkins to `v3.4.1`.
 - Update dependency `gruntwork-io/terraform-aws-monitoring`: `v0.23.3` =&gt;  `v0.23.4` ([release notes](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.23.4))
@@ -723,7 +723,7 @@ This released updates the `ecs-cluster` module accordingly.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - Update `terraform-aws-eks`: `v0.26.0` =&gt; `v0.27.2` (Release notes: [v0.26.1](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.26.1) ; [v0.27.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.27.0) ; [v0.27.1](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.27.1) ; [v0.27.2](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.27.2)). NOTE: This includes a backwards incompatible change for the `eks-core-services` module. Refer to the migration guide below for more info.
 
 
@@ -738,7 +738,7 @@ This released updates the `ecs-cluster` module accordingly.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update the default version of `helm` and `packer` that is installed in jenkins (`v3.4.0` for helm and `v1.6.5` for packer).
 - Update `module-security` version: `v0.40.1` =&gt; `v0.41.1` (Release notes: [v0.40.2](https://github.com/gruntwork-io/module-security/releases/tag/v0.40.2) ; [v0.41.0](https://github.com/gruntwork-io/module-security/releases/tag/v0.41.0) ; [v0.41.1](https://github.com/gruntwork-io/module-security/releases/tag/v0.41.1)). NOTE: This includes a backwards incompatible change for the account-baseline modules. Refer to the migration guide below for more info.
@@ -756,7 +756,7 @@ This released updates the `ecs-cluster` module accordingly.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now configure `ecs-service` to deploy the service on Fargate, using either `launch_type` or `capacity_provider_strategy`.
 - The default version of `terragrunt` installed in jenkins is upgraded: `v0.25.5` =&gt; `v0.26.2`
@@ -776,7 +776,7 @@ This released updates the `ecs-cluster` module accordingly.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - `module-security` has been updated: `v0.40.0` =&gt; `v0.40.1` ([release notes](https://github.com/gruntwork-io/module-security/releases/tag/v0.40.1))
 - `module-data-storage` has been updated: `v0.16.2` =&gt; `v0.16.3` ([release notes](https://github.com/gruntwork-io/module-data-storage/releases/tag/v0.16.3))
@@ -796,7 +796,7 @@ This released updates the `ecs-cluster` module accordingly.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - `create_route53_entry` has been removed from `k8s-service`. The variable is now computed based on `domain_name`. *This is a backwards incompatible change: to update, remove the `create_route53_entry` input var from your module call*.
 - Add a new service module for configuring a private S3 bucket.
@@ -822,7 +822,7 @@ This released updates the `ecs-cluster` module accordingly.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now get the ARN of the CloudFront distribution using the new `cloudfront_distribution_arn` output variable.
 
@@ -843,7 +843,7 @@ This released updates the `ecs-cluster` module accordingly.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release updates the default names set for the VPC DNS resolvers. The names are now `DESTINATION_VPC_NAME-from-ORIGIN_VPC_NAME-in` for the inbound resolver and `ORIGIN_VPC_NAME-to-DESTINATION_VPC_NAME-out` for the outbound resolver. You can override these names using the `destination_vpc_resolver_name` and `origin_vpc_resolver_name` input variables.
 

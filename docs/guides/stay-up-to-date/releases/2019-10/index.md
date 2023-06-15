@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2019-10. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -35,7 +35,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Allow custom names for subnet and security group
 
@@ -51,7 +51,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `memcached` version now sets the default version to `1.5.16`. We were using `1.4.24` before, but that&apos;s no longer supported. If you wish to use a different version, use the `memcached_version` input variable.
 - The `redis` module now sets the default version to `5.0.5`. We were using `2.8.24` before, but that&apos;s now quite out of date. If you wish to use a different version, use the `redis_version` input variable.
@@ -73,7 +73,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The go environment setup scripts have been updated with go modules support. As a part of this, `glide` is no longer supported. Note that you will need to update the flags to continue use with `dep`. Refer to the migration guide below for more details.
 
@@ -93,7 +93,7 @@ The go environment setup scripts have been updated with go modules support. As a
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Fix bug where `apply_immediately` was ignored for cluster instances in the `aurora` module.
 
@@ -110,7 +110,7 @@ Fix bug where `apply_immediately` was ignored for cluster instances in the `auro
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `rds` module now allows you to export various logs to CloudWatch depending on the database engine.
 
@@ -131,7 +131,7 @@ Fix bug where `apply_immediately` was ignored for cluster instances in the `auro
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 This release consolidates `ecs-service-with-alb`, `ecs-service-with-discovery`, `ecs-service`, and `ecs-fargate` into one module. As a part of this, features that were only available in one of the flavors are now available in all flavors. Users of the old modules will see the following feature enhancements:
 
 - You can now set up an App AutoScaling Target in all flavors, which will allow you to configure AutoScaling Policies on the ECS Service. Previously this was not available in `ecs-service`.
@@ -152,7 +152,7 @@ This release consolidates `ecs-service-with-alb`, `ecs-service-with-discovery`, 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 `ecs-fargate` now supports ECS Service Discovery.
 
@@ -168,7 +168,7 @@ This release consolidates `ecs-service-with-alb`, `ecs-service-with-discovery`, 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Add support for slow start to `ecs-service-with-alb`. You can set a delay in seconds (using input variable `alb_slow_start`) that controls how long the load balancer should wait before starting to send requests to the targets.
 
@@ -184,7 +184,7 @@ Add support for slow start to `ecs-service-with-alb`. You can set a delay in sec
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 EC2 based ECS clusters will now use `gp2` as the root volume. If you would like the old behavior (e.g to avoid a redeploy), you can set `cluster_instance_root_volume_type` to `standard`.
 
@@ -205,7 +205,7 @@ EC2 based ECS clusters will now use `gp2` as the root volume. If you would like 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 You can now set enable detailed metrics gathering for the ASGs using the new `var.enabled_metrics` variable on the `eks-cluster-workers` module.
 
@@ -221,7 +221,7 @@ You can now set enable detailed metrics gathering for the ASGs using the new `va
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release introduces support for [Kubernetes cluster-autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler), a Kubernetes application that manages autoscaling for your EKS cluster workers. This can be used to automatically scale up or down your worker pools based on demand from Pods.
 
@@ -239,7 +239,7 @@ Check out [the updated README](https://github.com/gruntwork-io/terraform-aws-eks
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 References to `package-terraform-utilities` have been switched to using HTTPS based URLs for the `source` property from SSH based.
 
@@ -256,7 +256,7 @@ References to `package-terraform-utilities` have been switched to using HTTPS ba
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - You can now enable istio gateway support on the `external-dns` app deployed with the `eks-k8s-external-dns` module.
 
@@ -273,7 +273,7 @@ References to `package-terraform-utilities` have been switched to using HTTPS ba
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix a bug with the `eks-alb-ingress-controller` module where you could end up with a perpetual diff in the plan.
 - Fix a regression bug with `eks-cluster-control-plane` where it returned the information on the EKS cluster before the API came up (as checked by `null_resource.wait_for_api`). This could lead to issues in your terraform code if you were chaining an API request immediately following the creation of the EKS cluster.
@@ -291,7 +291,7 @@ References to `package-terraform-utilities` have been switched to using HTTPS ba
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add ability to include suffix in the resource name
 
@@ -308,7 +308,7 @@ References to `package-terraform-utilities` have been switched to using HTTPS ba
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This fixes a bug with `eks-cloudwatch-container-logs`, where `fluentd` was redeployed on every `apply`.
 
@@ -325,7 +325,7 @@ This fixes a bug with `eks-cloudwatch-container-logs`, where `fluentd` was redep
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release exposes the ability to tag the EKS cluster using the `custom_tags_eks_cluster` input variable on `eks-cluster-control-plane`. Note that you will need to be using AWS provider version `&gt;=2.31.0`.
 
@@ -342,7 +342,7 @@ This release exposes the ability to tag the EKS cluster using the `custom_tags_e
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Add support for multiple ASGs in `eks-cluster-workers` so that you can manage one ASG per AZ. This is necessary for the [cluster-autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler) to work.
 
@@ -362,7 +362,7 @@ Add support for multiple ASGs in `eks-cluster-workers` so that you can manage on
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `asg-disk-alarms` module now allows you to configure how to handle the `INSUFFICIENT_DATA` state via the `treat_missing_data` input variable.
 
@@ -378,7 +378,7 @@ Add support for multiple ASGs in `eks-cluster-workers` so that you can manage on
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 This release updates the `elasticsearch-alarms` module to include all AWS recommended alarms, as documented at https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/cloudwatch-alarms.html
 
@@ -403,7 +403,7 @@ The alarms are defaulted to use the values that AWS recommend.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 -  allow bucket policy override in module load-balancer-access-logs
 
@@ -423,7 +423,7 @@ The alarms are defaulted to use the values that AWS recommend.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The EIP resource in `openvpn-server` is now optional. You can set the `enable_eip` flag to `false` to prevent the module from provisioning an EIP.
 
@@ -443,7 +443,7 @@ The EIP resource in `openvpn-server` is now optional. You can set the `enable_ei
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - This release fixes an issue that was introduced in Terraform version 0.12.11 in which indexed references to null resources cause an error. The issue is described in detail in hashicorp/terraform#23140. The change is backwards compatible with earlier revisions of TF 0.12.
 
@@ -460,7 +460,7 @@ The EIP resource in `openvpn-server` is now optional. You can set the `enable_ei
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - This  release bumps the version of Go used with ssh-grunt from 1.11 to 1.13.3 to address an issue with long delays under certain (mysterious) conditions. This build was tested successfully as `v0.20.1-alpha.1`.
 
@@ -477,7 +477,7 @@ The EIP resource in `openvpn-server` is now optional. You can set the `enable_ei
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The recently-created `custom-iam-group` module has been renamed to `custom-iam-entity`. The new module has support for creating roles in addition to groups.
 - The `saml-iam-roles` and `cross-account-iam-roles` modules now support tags. Use a map of tags to create tagged roles. For example:
@@ -500,7 +500,7 @@ The EIP resource in `openvpn-server` is now optional. You can set the `enable_ei
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - In [`v0.18.6`](https://github.com/gruntwork-io/module-security/releases/tag/v0.18.6), we introduced the `iam-admin` policy for IAM groups. The policy allows administration of IAM without full administrator privileges. This update extends the iam-admin to work with SAML and cross-account roles for users that do not use IAM groups.
 
@@ -521,7 +521,7 @@ The EIP resource in `openvpn-server` is now optional. You can set the `enable_ei
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Fix regression bug introduced in `v0.7.4` with `attach-eni`, where some error messages were being swallowed in the script.
 
@@ -538,7 +538,7 @@ Fix regression bug introduced in `v0.7.4` with `attach-eni`, where some error me
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The `attach-eni` script now supports Amazon Linux 2. This release also fixes a bug that prevented the script from working with CentOS 7.
 
@@ -559,7 +559,7 @@ The `attach-eni` script now supports Amazon Linux 2. This release also fixes a b
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Allow use of cloudfront s3 user for s3 origin access via `cloudfront_origin_access_identity_s3_canonical_user_id` variable.
 
@@ -580,7 +580,7 @@ The `attach-eni` script now supports Amazon Linux 2. This release also fixes a b
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 NACLs setup using `vpc-mgmt-network-acls` for the mgmt VPC will now allow outbound UDP 53 from the private subnets.
 
@@ -597,7 +597,7 @@ NACLs setup using `vpc-mgmt-network-acls` for the mgmt VPC will now allow outbou
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - The `vpc-peering` module now exposes an `auto_accept` variable that allows you to specify if it auto-accepts peering connections or not.
 
@@ -617,7 +617,7 @@ NACLs setup using `vpc-mgmt-network-acls` for the mgmt VPC will now allow outbou
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Fix regression bug from `v0.6.0`, where kubergrunt expects base64 encoded data, but we decode the data before passing it through.
 
@@ -634,7 +634,7 @@ Fix regression bug from `v0.6.0`, where kubergrunt expects base64 encoded data, 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 The `local-exec` calls for `k8s-tiller` have been updated to be compatible with Windows. Note that this requires Powershell.
 
@@ -651,7 +651,7 @@ The `local-exec` calls for `k8s-tiller` have been updated to be compatible with 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Fixes a regression bug introduced in `k8s-namespace` and `k8s-namespace-roles` with the behavior of `create_resources`. Starting with terraform `v0.12.11`, referencing resource index 0 of those that were not created with `count = 0` is an error where as before it was `null`. This means that we need to add a conditional for referencing those resources to only index into it when `count &gt; 0`.
 
@@ -670,7 +670,7 @@ This release also adds the `create_resources` parameter to `k8s-service-account`
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Listening on localhost is now optional. To disable localhost listening, set the `tiller_listen_localhost` input variable to `false`.
 

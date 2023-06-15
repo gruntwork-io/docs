@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2023-03. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -100,7 +100,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 Fixed a bug where Terragrunt files without the `source` attribute caused Patcher to crash.
 
 </div>
@@ -114,7 +114,7 @@ Fixed a bug where Terragrunt files without the `source` attribute caused Patcher
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 This release adds functionality to pins the allowed versions number range for each module in the CIS upgrade plan. This is to ensure the prerequisites for the CIS v1.4 to v1.5 upgrade are met. If the version of the module you are currently using is outside the allowed range Patcher will output a warning and skip that module.
 
 | Gruntwork Repo | Minimum Version | Maximum Version |
@@ -231,7 +231,7 @@ This release adds functionality to pins the allowed versions number range for ea
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Updated default parameter group to support Redis 7.
 
@@ -254,7 +254,7 @@ This release adds functionality to pins the allowed versions number range for ea
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 Update kubergrunt version to latest stable
 
 
@@ -272,7 +272,7 @@ Update kubergrunt version to latest stable
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - **[BACKWARDS INCOMPATIBLE]** Updating Github SSH Host Key correctly
 
@@ -293,7 +293,7 @@ Update kubergrunt version to latest stable
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - [PATCHER-102] Update Change Logs to v0.44.1
 - Updating to terraform-aws-ci v0.51.2 and tf-aws-service-catalog v0.102.3
@@ -311,7 +311,7 @@ Update kubergrunt version to latest stable
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update terragrunt version in `tflint` patch
 - Update Organizations metric filter to match Steampipe query
@@ -333,7 +333,7 @@ Update kubergrunt version to latest stable
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Update compatibility for Python 3.8-3.11
 
@@ -355,7 +355,7 @@ Update kubergrunt version to latest stable
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 Bump golang.org/x/text from 0.3.6 to 0.3.8 in /modules/eks-aws-auth-merger/aws-auth-merger
 [skip ci] Refactor contexts
@@ -392,7 +392,7 @@ Feature/k8s 125 - added support for k8s 1.25 and removed deprecated 1.21
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - refactor lambda s3 tests
 - examples: remove deprecated argument skip_get_ec2_platforms from AWS …
@@ -416,7 +416,7 @@ Feature/k8s 125 - added support for k8s 1.25 and removed deprecated 1.21
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Support delivery policy for sns topic
 - Fix allow_inbound_cidr security group bug
@@ -437,7 +437,7 @@ Feature/k8s 125 - added support for k8s 1.25 and removed deprecated 1.21
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix test failures
 - Rename variables to ensure consistency
@@ -459,7 +459,7 @@ Feature/k8s 125 - added support for k8s 1.25 and removed deprecated 1.21
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fixes bug when forming policies of LB logs bucket, and allows setting multiple bucket policy statements on module `load-balancer-access-logs`
 
@@ -480,7 +480,7 @@ Feature/k8s 125 - added support for k8s 1.25 and removed deprecated 1.21
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - CloudTrail: insight_selector capability added
 - Updated CentOS AMI filter in tests
@@ -499,7 +499,7 @@ Feature/k8s 125 - added support for k8s 1.25 and removed deprecated 1.21
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add bucket_key_enabled option for cloudtrail bucket kms key
 
@@ -517,7 +517,7 @@ Feature/k8s 125 - added support for k8s 1.25 and removed deprecated 1.21
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Disable creation of ACLs on buckets that don&apos;t support it
 
@@ -535,7 +535,7 @@ Feature/k8s 125 - added support for k8s 1.25 and removed deprecated 1.21
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Improve documentation about MFA requirements for new accounts
 - Fix missing grants for replica key
@@ -559,7 +559,7 @@ Feature/k8s 125 - added support for k8s 1.25 and removed deprecated 1.21
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Refactor CircleCI contexts
 - [ecs-service]: Fix missing variable values for alb stickyness
@@ -577,7 +577,7 @@ Feature/k8s 125 - added support for k8s 1.25 and removed deprecated 1.21
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Allow for dynamic use of imdsv2 or imdsv2 in user-data script for OpenVPN
 
@@ -595,7 +595,7 @@ Feature/k8s 125 - added support for k8s 1.25 and removed deprecated 1.21
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `networking/route53`
 
 
@@ -617,7 +617,7 @@ Feature/k8s 125 - added support for k8s 1.25 and removed deprecated 1.21
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add Packer build to docker-packer-builder example - CORE-596
 - Gruntwork pipelines documentation improvements - CORE-597,CORE-599
@@ -634,7 +634,7 @@ Feature/k8s 125 - added support for k8s 1.25 and removed deprecated 1.21
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - CORE-523 tf planner example
 - Updated to terraform-aws-ci v0.51.2 to address Github SSH Host Key replacement
@@ -655,7 +655,7 @@ Feature/k8s 125 - added support for k8s 1.25 and removed deprecated 1.21
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Add bucket_key_enabled var in account-baseline-app module
 
@@ -671,7 +671,7 @@ Feature/k8s 125 - added support for k8s 1.25 and removed deprecated 1.21
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Added `bucket_key` variables `data-stores` to pass to upstream module - https://github.com/gruntwork-io/terraform-aws-security/pull/734
 - Added variable `cloudtrail_additional_bucket_policy_statements` to `landingzone/account-baseline-root`, which is passed as to internal `cloudtrail` module
@@ -694,7 +694,7 @@ Feature/k8s 125 - added support for k8s 1.25 and removed deprecated 1.21
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Allows overriding the name used for the S3 buckets in module `s3-static-website`.
 
@@ -718,7 +718,7 @@ Feature/k8s 125 - added support for k8s 1.25 and removed deprecated 1.21
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Use latest upgrade test code.
 - Use origin/HEAD as Base Ref for upgrade testing.
@@ -747,7 +747,7 @@ Special thanks to the following users for their contribution!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 For the module `vpc-interface-endpoint`, when `create_https_security_group = true`, a new security group allowing
 ingress from 443 is created.
 
@@ -763,7 +763,7 @@ ingress from 443 is created.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 - Fix error when disabling IGW creation
 - Fix typo and update to https URL for image

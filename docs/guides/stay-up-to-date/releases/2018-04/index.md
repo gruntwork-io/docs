@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2018-04. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -30,7 +30,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -145,7 +145,7 @@ This release also fixes a bug in v0.6.1 where the `monitoring_role_arn` param wa
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 </div>
 
@@ -179,7 +179,7 @@ This release also fixes a bug in v0.6.1 where the `monitoring_role_arn` param wa
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 The main motivation for locking down EC2 metadata is as follows:
 
 1. EC2 metadata gives you the credentials you need to assume any IAM role associated with the EC2 instance, and thereby, get all the permissions available in that IAM role.
@@ -213,7 +213,7 @@ The main motivation for locking down EC2 metadata is as follows:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-vpc/pull/41, https://github.com/gruntwork-io/module-vpc/pull/42: 
+  https://github.com/gruntwork-io/module-vpc/pull/41, https://github.com/gruntwork-io/module-vpc/pull/42:
 
 * The `vpc-mgmt-network-acls` module now allows all inbound and outbound traffic within the private subnet and between the public and private subnet. Before, all inbound traffic was allowed, but outbound traffic was limited solely to TCP.
 

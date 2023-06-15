@@ -6,7 +6,7 @@
 This page is lists all the updates to the [Gruntwork Infrastructure as Code
 Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2018-11. For instructions
 on how to use these updates in your code, check out the [updating
-documentation](/iac/stay-up-to-date/updating).
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -78,7 +78,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `eks-vpc-tags`
 
 
@@ -104,7 +104,7 @@ This release contains implementations for the following modules:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `eks-cluster-control-plane`
 - `eks-cluster-workers`
 - `eks-k8s-role-mapping`
@@ -142,7 +142,7 @@ This initial release contains implementations for the following modules:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 ```
 Some commit message. [go-test-args=-run SomeTestFunc]
 ```
@@ -164,7 +164,7 @@ The above commit message will only run `SomeTestFunc` test function in the CI se
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `aurora`
 
 
@@ -184,7 +184,7 @@ The above commit message will only run `SomeTestFunc` test function in the CI se
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 
 To update your existing encryption enabled RDS cluster (which most likely uses serverless engine mode, else you&apos;d have run into an error), simply run:
 
@@ -224,7 +224,7 @@ terragrunt state mv module.&lt;module-name&gt;.aws_rds_cluster.cluster_with_encr
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `ecs-deploy-check-binaries`
 
 
@@ -244,7 +244,7 @@ terragrunt state mv module.&lt;module-name&gt;.aws_rds_cluster.cluster_with_encr
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 - `ecs-deploy-check-binaries`
 
 
@@ -268,7 +268,7 @@ terragrunt state mv module.&lt;module-name&gt;.aws_rds_cluster.cluster_with_encr
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `cross-account-iam-roles`
 * `iam-groups`
 * `iam-policies`
@@ -309,11 +309,11 @@ terragrunt state mv module.&lt;module-name&gt;.aws_rds_cluster.cluster_with_encr
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `s3-cloudfront`
 
 
-* The `s3-cloudfront` module will now automatically create an `AAAA` alias record (in addition to the `A` record it always created) if `is_ipv6_enabled` and `create_route53_entries ` are both set to `true`. This is necessary so your static websites work over IPv6. 
+* The `s3-cloudfront` module will now automatically create an `AAAA` alias record (in addition to the `A` record it always created) if `is_ipv6_enabled` and `create_route53_entries ` are both set to `true`. This is necessary so your static websites work over IPv6.
 
 
 * https://github.com/gruntwork-io/package-static-assets/pull/16
@@ -329,7 +329,7 @@ terragrunt state mv module.&lt;module-name&gt;.aws_rds_cluster.cluster_with_encr
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+
 * `s3-static-website`
 * `s3-cloudfront`
 
