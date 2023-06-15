@@ -14,8 +14,8 @@ import CenterLayout from "/src/components/CenterLayout"
 <CardGroup cols={2}>
 
 <Card
-  title="Infrastructure as Code Library"
-  href="/iac/overview/">
+  title="Library"
+  href="/library/overview/">
 A collection of reusable code that enables you to deploy and manage infrastructure quickly and reliably.
 </Card>
 <Card

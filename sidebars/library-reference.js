@@ -7,7 +7,7 @@ const sidebar = [
       {
         label: "Find a module",
         type: "doc",
-        id: "iac/reference/index",
+        id: "library/reference/index",
       },
       {
         type: "category",

@@ -10,15 +10,15 @@ Let’s look at an example module. The [rds module](/reference/modules/terraform
 
 The module is written in Terraform and is a key element of an overall RDS deployment, but it's not a _complete_ RDS deployment. That's because the `rds` module does not include backup policies using AWS Backup, or RDS Proxy (to pool database connections), or CloudWatch alarms (to alert you when something goes wrong). These missing pieces are best thought of as building block modules themselves! Indeed, `backup-plan`, `backup-vault`, and `rds-proxy` can all be used in combination with the `rds` module.
 
-To see how Gruntwork gives you an off-the-shelf overall deployment with all the elements included, see [What is a service module?](services).
+To see how Gruntwork gives you an off-the-shelf overall deployment with all the elements included, see [What is a service module?](./services.md).
 
 ## When should I use a module?
 
-The Gruntwork Infrastructure as Code (IaC) Library contains [hundreds of modules](/iac/reference/) that you can use and combine. These modules are fairly generic building blocks, so you don’t typically deploy a single module directly. Instead, you write code that combines the modules you need for a specific use case.
+The Gruntwork Infrastructure as Code (IaC) Library contains [hundreds of modules](/library/reference/) that you can use and combine. These modules are fairly generic building blocks, so you don’t typically deploy a single module directly. Instead, you write code that combines the modules you need for a specific use case.
 
 For example, one module might deploy the control plane for Kubernetes and a separate module could deploy worker nodes; you may need to combine both modules together to deploy a Kubernetes cluster.
 
-We recommend our [Service Catalog](/iac/overview/services/) for common use cases, but our full Module Catalog is available if you have a more complex use case. For a full list of modules available, refer to the [Gruntwork Infrastructure as Code Library](/iac/reference/).
+We recommend our [Service Catalog](/library/overview/services/) for common use cases, but our full Module Catalog is available if you have a more complex use case. For a full list of modules available, refer to the [Gruntwork Infrastructure as Code Library](/library/reference/).
 
 ## How modules are structured
 
@@ -32,9 +32,10 @@ The code in the module repos are organized into three primary folders:
 
 We follow Hashicorp's [Standard Model Structure](https://developer.hashicorp.com/terraform/language/modules/develop/structure) for our files (`main.tf`, `variables.tf`, `outputs.tf`). In the `variables.tf` file we always put the required variables at the top of the file, followed by the optional variables. Although there are often a lot of ways to configure our modules, we set reasonable defaults and try to minimize the effort required to configure the modules to the most common use cases.
 
+
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "990b96014078aa9754fc43c2aaa439bf"
+  "hash": "6c09e4f6949d8716682b23982772018c"
 }
 ##DOCS-SOURCER-END -->
