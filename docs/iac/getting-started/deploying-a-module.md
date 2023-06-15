@@ -1,3 +1,5 @@
+import ModuleTutorialCodeBlock from "/src/components/ModuleTutorialCodeBlock"
+
 # Deploying your first module
 
 [Modules](../overview/modules.md) allow you to define an interface to create one or many resources in the cloud or on-premise, similar to how in object oriented programming you can define a class that may have different attribute values across many instances.
@@ -143,10 +145,7 @@ Next, we’ll write a simple Python function that returns a string that will be 
 
 Copy the following to `terraform-aws-gw-lambda-tutorial/main.py`.
 
-```py title="terraform-aws-gw-lambda-tutorial/main.py"
-def lambda_handler(event, context):
-    return "Hello from Gruntwork!"
-```
+<ModuleTutorialCodeBlock />
 
 ### Reference the module
 
@@ -178,6 +177,14 @@ output "function_name" {
 ```
 
 ## Plan and apply the module
+
+### Run Terraform init
+
+Before you can run plan and apply, you need to run `terraform init`, which will prepare your Terraform configuration for use: 
+
+```bash
+terraform init
+```
 
 ### Run Terraform plan
 
@@ -257,6 +264,6 @@ Finally, consider what other resources you would create to make your modules rea
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d039b6c2cda248bdf74af9e85c9200ef"
+  "hash": "c5777fbceec4b7fecf415e45f62efaa9"
 }
 ##DOCS-SOURCER-END -->
