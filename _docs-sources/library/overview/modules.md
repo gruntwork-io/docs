@@ -14,11 +14,11 @@ To see how Gruntwork gives you an off-the-shelf overall deployment with all the 
 
 ## When should I use a module?
 
-The Gruntwork Infrastructure as Code (IaC) Library contains [hundreds of modules](/iac/reference/) that you can use and combine. These modules are fairly generic building blocks, so you don’t typically deploy a single module directly. Instead, you write code that combines the modules you need for a specific use case.
+The Gruntwork Infrastructure as Code (IaC) Library contains [hundreds of modules](/library/reference/) that you can use and combine. These modules are fairly generic building blocks, so you don’t typically deploy a single module directly. Instead, you write code that combines the modules you need for a specific use case.
 
 For example, one module might deploy the control plane for Kubernetes and a separate module could deploy worker nodes; you may need to combine both modules together to deploy a Kubernetes cluster.
 
-We recommend our [Service Catalog](/iac/overview/services/) for common use cases, but our full Module Catalog is available if you have a more complex use case. For a full list of modules available, refer to the [Gruntwork Infrastructure as Code Library](/iac/reference/).
+We recommend our [Service Catalog](/library/overview/services/) for common use cases, but our full Module Catalog is available if you have a more complex use case. For a full list of modules available, refer to the [Gruntwork Infrastructure as Code Library](/library/reference/).
 
 ## How modules are structured
 

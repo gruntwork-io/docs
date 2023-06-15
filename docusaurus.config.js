@@ -105,7 +105,7 @@ const config = {
               {
                 type: "doc",
                 label: "Library",
-                docId: "iac/overview/index",
+                docId: "library/overview/index",
               },
               {
                 type: "doc",
@@ -127,7 +127,7 @@ const config = {
           {
             type: "doc",
             label: "Library Reference",
-            docId: "iac/reference/index",
+            docId: "library/reference/index",
           },
           { to: "/tools", label: "Tools", position: "left" },
           { to: "/courses", label: "Courses", position: "left" },

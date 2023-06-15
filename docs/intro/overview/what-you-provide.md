@@ -14,7 +14,7 @@ With Gruntwork, you can accelerate your journey towards capturing your AWS cloud
 
 Gruntwork products strike a balance between being opinionated and configurable. They’ll get you most of the way to your goal, but you may need to make some customizations to suit your use case. You may also need to adapt your apps and services to run in your new infrastructure by customizing/adding additional Infrastructure as Code to customize according to the requirements for your company. Our [Knowledge Base](https://github.com/gruntwork-io/knowledge-base/discussions) and [Community Slack Channel](https://gruntwork-community.slack.com/archives/CHH9Y3Z62) provide great resources to assist you in this effort.
 
-If you notice a limitation or bug in Gruntwork modules, we greatly appreciate and welcome [customer PRs](/iac/usage/contributing) or you raising this to our attention via [bug or feature requests](/support#share-feedback).
+If you notice a limitation or bug in Gruntwork modules, we greatly appreciate and welcome [customer PRs](/library/usage/contributing) or you raising this to our attention via [bug or feature requests](/support#share-feedback).
 
 :::note
 
@@ -54,6 +54,6 @@ Once deployed, Gruntwork hands the Reference Architecture over to your team. You
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "bb2e49f5b207f5c590f192e1cd8544f3"
+  "hash": "f9cec7927e9be28ad56bfb14c2226cf0"
 }
 ##DOCS-SOURCER-END -->

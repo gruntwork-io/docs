@@ -14,11 +14,11 @@ To see how Gruntwork gives you an off-the-shelf overall deployment with all the 
 
 ## When should I use a module?
 
-The Gruntwork Infrastructure as Code (IaC) Library contains [hundreds of modules](/iac/reference/) that you can use and combine. These modules are fairly generic building blocks, so you don’t typically deploy a single module directly. Instead, you write code that combines the modules you need for a specific use case.
+The Gruntwork Infrastructure as Code (IaC) Library contains [hundreds of modules](/library/reference/) that you can use and combine. These modules are fairly generic building blocks, so you don’t typically deploy a single module directly. Instead, you write code that combines the modules you need for a specific use case.
 
 For example, one module might deploy the control plane for Kubernetes and a separate module could deploy worker nodes; you may need to combine both modules together to deploy a Kubernetes cluster.
 
-We recommend our [Service Catalog](/iac/overview/services/) for common use cases, but our full Module Catalog is available if you have a more complex use case. For a full list of modules available, refer to the [Gruntwork Infrastructure as Code Library](/iac/reference/).
+We recommend our [Service Catalog](/library/overview/services/) for common use cases, but our full Module Catalog is available if you have a more complex use case. For a full list of modules available, refer to the [Gruntwork Infrastructure as Code Library](/library/reference/).
 
 ## How modules are structured
 
@@ -32,9 +32,10 @@ The code in the module repos are organized into three primary folders:
 
 We follow Hashicorp's [Standard Model Structure](https://developer.hashicorp.com/terraform/language/modules/develop/structure) for our files (`main.tf`, `variables.tf`, `outputs.tf`). In the `variables.tf` file we always put the required variables at the top of the file, followed by the optional variables. Although there are often a lot of ways to configure our modules, we set reasonable defaults and try to minimize the effort required to configure the modules to the most common use cases.
 
+
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "990b96014078aa9754fc43c2aaa439bf"
+  "hash": "eb361c3e0e90defc2e7b7038e86e6453"
 }
 ##DOCS-SOURCER-END -->

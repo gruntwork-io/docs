@@ -9,9 +9,9 @@ const sidebar = [
         type: "category",
         collapsible: false,
         items: [
-          "iac/overview/index",
-          "iac/overview/modules",
-          "iac/overview/services",
+          "library/overview/index",
+          "library/overview/modules",
+          "library/overview/services",
         ],
       },
       {
@@ -19,9 +19,9 @@ const sidebar = [
         type: "category",
         collapsible: false,
         items: [
-          "iac/getting-started/setting-up",
-          "iac/getting-started/accessing-the-code",
-          "iac/getting-started/deploying-a-module",
+          "library/getting-started/setting-up",
+          "library/getting-started/accessing-the-code",
+          "library/getting-started/deploying-a-module",
         ],
       },
       {
@@ -29,11 +29,11 @@ const sidebar = [
         type: "category",
         collapsible: false,
         items: [
-          "iac/usage/using-the-library",
-          "iac/usage/composing-your-own-service",
-          "iac/usage/customizing-modules",
+          "library/usage/using-the-library",
+          "library/usage/composing-your-own-service",
+          "library/usage/customizing-modules",
           "guides/working-with-code/tfc-integration",
-          "iac/usage/contributing",
+          "library/usage/contributing",
         ],
       },
       {
@@ -41,8 +41,8 @@ const sidebar = [
         type: "category",
         collapsible: false,
         items: [
-          "iac/stay-up-to-date/versioning",
-          "iac/stay-up-to-date/updating",
+          "library/stay-up-to-date/versioning",
+          "library/stay-up-to-date/updating",
         ],
       },
     ],
