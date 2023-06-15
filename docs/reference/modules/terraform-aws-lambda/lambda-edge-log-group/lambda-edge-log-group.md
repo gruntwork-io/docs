@@ -13,11 +13,11 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Log group for Lambda Edge
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge-log-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/update-nodejs/modules/lambda-edge-log-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module creates a Cloudwatch log group to receive Lambda Edge function logs in one single AWS Region. This module is meant to be used as a building block for the [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge-multi-region-log-groups).
+This module creates a Cloudwatch log group to receive Lambda Edge function logs in one single AWS Region. This module is meant to be used as a building block for the [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/update-nodejs/modules/lambda-edge-multi-region-log-groups).
 
 ## Why are the resources in this module not created within the Lambda Edge Module?
 
@@ -28,7 +28,7 @@ region that have [Regional Edge Caches](https://aws.amazon.com/blogs/networking-
 Unfortunately, it is not possible to use a `for_each` on provider blocks and there are multiple issues related to
 using nested providers. That means that, currently, the only way to create multi-regional modules is by code generating each
 block and passing down the providers. A full example of creating the providers and using this module can be found at the
-[lambda-edge example](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/examples/lambda-edge).
+[lambda-edge example](https://github.com/gruntwork-io/terraform-aws-lambda/tree/update-nodejs/examples/lambda-edge).
 
 ## Which regions have regional edge caches?
 
@@ -316,11 +316,11 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge-log-group/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge-log-group/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge-log-group/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/update-nodejs/modules/lambda-edge-log-group/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/update-nodejs/modules/lambda-edge-log-group/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/update-nodejs/modules/lambda-edge-log-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "221a5c67f010af40f1349485ff8670e9"
+  "hash": "99df0022cea8af2607c504bc1434e238"
 }
 ##DOCS-SOURCER-END -->
