@@ -8,7 +8,7 @@ Using a service can save you time piecing together individual modules and testin
 
 For example, the `eks-cluster` service combines all the modules you need to run an EKS (Kubernetes) cluster in a typical production environment, including modules for the control plane, worker nodes, secrets management, log aggregation, alerting, and so on.
 
-If you need more flexibility than our services provide, then you can combine modules from our [Module Catalog](/library/overview/modules), your own modules, or open source modules to meet your specific use case.
+If you need more flexibility than our services provide, then you can combine modules from our [Module Catalog](./modules.md), your own modules, or open source modules to meet your specific use case.
 
 CIS customers also have access to the `terraform-aws-cis-service-catalog` repository to help ensure conformity to the [CIS AWS Foundations Benchmark](https://gruntwork.io/achieve-compliance/).
 

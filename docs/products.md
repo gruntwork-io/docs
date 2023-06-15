@@ -14,7 +14,7 @@ import CenterLayout from "/src/components/CenterLayout"
 <CardGroup cols={2}>
 
 <Card
-  title="Infrastructure as Code Library"
+  title="Library"
   href="/library/overview/">
 A collection of reusable code that enables you to deploy and manage infrastructure quickly and reliably.
 </Card>
@@ -41,6 +41,6 @@ Gain access to all resources included in your Gruntwork subscription.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "9ec2d30cce86301fa47cc16a7545ced5"
+  "hash": "5f318316b19601c06bc28cafd73d8f5b"
 }
 ##DOCS-SOURCER-END -->

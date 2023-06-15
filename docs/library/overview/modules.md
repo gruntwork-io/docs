@@ -10,7 +10,7 @@ Let’s look at an example module. The [rds module](/reference/modules/terraform
 
 The module is written in Terraform and is a key element of an overall RDS deployment, but it's not a _complete_ RDS deployment. That's because the `rds` module does not include backup policies using AWS Backup, or RDS Proxy (to pool database connections), or CloudWatch alarms (to alert you when something goes wrong). These missing pieces are best thought of as building block modules themselves! Indeed, `backup-plan`, `backup-vault`, and `rds-proxy` can all be used in combination with the `rds` module.
 
-To see how Gruntwork gives you an off-the-shelf overall deployment with all the elements included, see [What is a service module?](services).
+To see how Gruntwork gives you an off-the-shelf overall deployment with all the elements included, see [What is a service module?](./services.md)
 
 ## When should I use a module?
 
@@ -36,6 +36,6 @@ We follow Hashicorp's [Standard Model Structure](https://developer.hashicorp.com
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "eb361c3e0e90defc2e7b7038e86e6453"
+  "hash": "6cc9b9e5a36e9e2e7b3458df4094c3a7"
 }
 ##DOCS-SOURCER-END -->
