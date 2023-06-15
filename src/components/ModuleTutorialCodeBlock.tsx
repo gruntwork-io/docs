@@ -71,9 +71,9 @@ def lambda_handler(event, context):
         text = ""
         mixpanel_response_text = response.read().decode()
         if mixpanel_response_text == "1":
-        text = "Success"
+            text = "Success"
         else:
-        text = "Unknown error"
+            text = "Unknown error"
 
         response_object["operation_status"] = text
         response_object["statusCode"] = response.status
