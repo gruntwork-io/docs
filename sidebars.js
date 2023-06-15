@@ -20,7 +20,7 @@ const complianceSidebar = require("./sidebars/compliance-guide.js")
 const updateGuideSidebars = require("./sidebars/update-guides.js")
 const apiSidebars = require("./sidebars/api-reference.js")
 const faqSidebars = require("./sidebars/faq.js")
-const iacSidebars = require("./sidebars/iac.js")
+const librarySidebars = require("./sidebars/library.js")
 const libraryRefSiderbars = require("./sidebars/library-reference.js")
 const developerPortalSidebars = require("./sidebars/developer-portal.js")
 const patcherSiderbars = require("./sidebars/patcher.js")
@@ -43,7 +43,7 @@ const sidebars = {
   ...updateGuideSidebars,
   ...apiSidebars,
   faqSidebars,
-  iacSidebars,
+  librarySidebars,
   developerPortalSidebars,
   patcherSiderbars,
   pipelinesSiderbars,
