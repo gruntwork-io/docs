@@ -52,6 +52,11 @@ The code in the module repos are organized into three primary folders:
 
 We follow Hashicorp's [Standard Model Structure](https://developer.hashicorp.com/terraform/language/modules/develop/structure) for our files (`main.tf`, `variables.tf`, `outputs.tf`). In the `variables.tf` file we always put the required variables at the top of the file, followed by the optional variables. Although there are often a lot of ways to configure our modules, we set reasonable defaults and try to minimize the effort required to configure the modules to the most common use cases.
 
+## How modules are updated
+
+Gruntwork brings together AWS and Terraform experts around the world who track updates from AWS, Terraform, and the DevOps community at large, along with requests from the Gruntwork customer community. We translate the most important of these updates into new features, new optimizations, and ultimately new releases.
+
+Check out [Gruntwork releases](/guides/stay-up-to-date/#gruntwork-releases) for a comprehensive listing of all the updates.
 
 <!-- ##DOCS-SOURCER-START
 {
