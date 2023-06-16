@@ -61,6 +61,6 @@ Check out [Gruntwork releases](/guides/stay-up-to-date/#gruntwork-releases) for 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "6c09e4f6949d8716682b23982772018c"
+  "hash": "5b59064dae73b419efdc80d685f8e38e"
 }
 ##DOCS-SOURCER-END -->

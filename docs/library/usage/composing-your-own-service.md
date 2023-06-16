@@ -194,6 +194,6 @@ Now that you've defined your own service, consider how you would make this modul
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "feea3e9cf49c60fad43593433cb35ba6"
+  "hash": "0fb79fb0654353835a7e1a3c571feb85"
 }
 ##DOCS-SOURCER-END -->

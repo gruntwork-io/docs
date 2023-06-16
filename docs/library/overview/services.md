@@ -65,6 +65,6 @@ When [building block modules are updated](/library/overview/modules#how-modules-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "9b3b39d6685ee816a308eb98d831e932"
+  "hash": "fd5691d340b397d6dc47f5eb5e9f153f"
 }
 ##DOCS-SOURCER-END -->
