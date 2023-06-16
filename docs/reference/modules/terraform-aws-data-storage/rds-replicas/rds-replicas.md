@@ -60,11 +60,6 @@ module "rds_replicas" {
   # An ID of the primary DB instance to create read replicas from
   primary_instance_id = <string>
 
-  # A list of subnet ids where the database should be deployed. In the standard
-  # Gruntwork VPC setup, these should be the private persistence subnet ids.
-  # This is ignored if create_subnet_group=false.
-  subnet_ids = <list(string)>
-
   # The id of the VPC in which this DB should be deployed.
   vpc_id = <string>
 
@@ -225,6 +220,11 @@ module "rds_replicas" {
   # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
   # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
   storage_type = "gp2"
+
+  # A list of subnet ids where the database should be deployed. In the standard
+  # Gruntwork VPC setup, these should be the private persistence subnet ids.
+  # This is ignored if create_subnet_group=false.
+  subnet_ids = null
 
   # Timeout for DB updating
   updating_timeout = "80m"
@@ -268,11 +268,6 @@ inputs = {
   # An ID of the primary DB instance to create read replicas from
   primary_instance_id = <string>
 
-  # A list of subnet ids where the database should be deployed. In the standard
-  # Gruntwork VPC setup, these should be the private persistence subnet ids.
-  # This is ignored if create_subnet_group=false.
-  subnet_ids = <list(string)>
-
   # The id of the VPC in which this DB should be deployed.
   vpc_id = <string>
 
@@ -433,6 +428,11 @@ inputs = {
   # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
   # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
   storage_type = "gp2"
+
+  # A list of subnet ids where the database should be deployed. In the standard
+  # Gruntwork VPC setup, these should be the private persistence subnet ids.
+  # This is ignored if create_subnet_group=false.
+  subnet_ids = null
 
   # Timeout for DB updating
   updating_timeout = "80m"
@@ -483,14 +483,6 @@ The port the DB will listen on (e.g. 3306)
 <HclListItemDescription>
 
 An ID of the primary DB instance to create read replicas from
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="subnet_ids" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-A list of subnet ids where the database should be deployed. In the standard Gruntwork VPC setup, these should be the private persistence subnet ids. This is ignored if create_subnet_group=false.
 
 </HclListItemDescription>
 </HclListItem>
@@ -802,6 +794,15 @@ The type of storage to use for the primary instance. Must be one of 'standard' (
 <HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
 </HclListItem>
 
+<HclListItem name="subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of subnet ids where the database should be deployed. In the standard Gruntwork VPC setup, these should be the private persistence subnet ids. This is ignored if create_subnet_group=false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="updating_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -844,6 +845,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F355_subnet/modules/rds-replicas/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5d46fddf711d95765eddd04d8c5af632"
+  "hash": "c6b927ebd0f6b88d357cdc4720722143"
 }
 ##DOCS-SOURCER-END -->
