@@ -55,7 +55,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - There is a timing bug with IAM role and instance profile creation that causes the initial `terraform apply` to fail for code using the `server-group` module. This release addresses that by adding a sleep to wait for IAM resource propagation after creation.
 
@@ -72,7 +72,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
@@ -95,7 +95,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
 
@@ -120,7 +120,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release updates `terraform-helpers/terraform-update-variable` for better terraform 0.12 and terragrunt 0.19 compatibility. Here are the changes:
 
@@ -141,7 +141,7 @@ This release updates `terraform-helpers/terraform-update-variable` for better te
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Fixes a bug where `var.allow_incoming_http_from_security_group_ids` was not creating the required security group rules due to a regression from upgrading module-load-balancer/alb, which required explicitly specifying the number of security group IDs being passed in.
 
@@ -158,7 +158,7 @@ Fixes a bug where `var.allow_incoming_http_from_security_group_ids` was not crea
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - This release fixes a regression in the `setup-minikube` script in the `kubernetes-circleci-helpers` module, caused by the removal of the specific docker version we depended on from the ubuntu apt caches.
 - The `install-jenkins` module is now verified to work with Ubuntu 18.04.
@@ -181,7 +181,7 @@ Fixes a bug where `var.allow_incoming_http_from_security_group_ids` was not crea
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - If the `allow_connections_from_cidr_blocks` argument of the `rds` module is empty, no security group rule will be created at all now. This makes CIDR based rules completely optional.
 
@@ -202,7 +202,7 @@ Fixes a bug where `var.allow_incoming_http_from_security_group_ids` was not crea
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixes a bug where the `health_check_timeout` variable was not used for setting the timeout to LB target group health check.
 
@@ -222,7 +222,7 @@ Fixes a bug where `var.allow_incoming_http_from_security_group_ids` was not crea
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
 
@@ -247,7 +247,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
 
@@ -272,7 +272,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now disable yellow cluster status alarms for Elasticsearch by setting `var.disable_status_yellow_alarm` to `true`.
 
@@ -288,7 +288,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now disable yellow cluster status alarms for Elasticsearch by setting `var.disable_status_yellow_alarm` to `true`.
 
@@ -308,9 +308,9 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- Make GP2 the default root volume type to match what is created in the console
+- Make GP2 the default root volume type to match what is created in the console 
 
 
 
@@ -329,7 +329,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Starting this release, all the modules are tested and verified to work with Ubuntu 18.04.
 
@@ -350,7 +350,7 @@ Starting this release, all the modules are tested and verified to work with Ubun
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix `mount-ebs-volume` so it works properly on Amazon Linux.
 
@@ -366,7 +366,7 @@ Starting this release, all the modules are tested and verified to work with Ubun
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Starting this release, all the scripts are now tested and verified to work with Ubuntu 18.04. No change has been made to the scripts themselves.
 
@@ -387,7 +387,7 @@ Starting this release, all the scripts are now tested and verified to work with 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add support for Lambda @ Edge by allowing you to associate lambda functions to the cloudfront distribution. This can be done by passing in the new `var.default_lambda_associations` list.
 
@@ -404,7 +404,7 @@ Starting this release, all the scripts are now tested and verified to work with 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixes a bug where the IAM certs were not being properly used in `s3-cloudfront`.
 - Fixes a perpetual diff caused when specifying both IAM or ACM certs and default certs.
@@ -422,7 +422,7 @@ Starting this release, all the scripts are now tested and verified to work with 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 * `s3-cloudfront`
 
@@ -430,7 +430,7 @@ Starting this release, all the scripts are now tested and verified to work with 
 * The `s3-cloudfront` module now supports the use of an Origin Group for the ability to failover automatically in the event your primary bucket is not accessible
 
 
-* #22
+* #22 
 
 </div>
 
@@ -472,7 +472,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix a bug where the `availability_zones` outputs of `vpc-app` and `vpc-mgmt` had an extra layer of nesting, so you ended up with a list of lists, rather than a single, flat list.
 
@@ -492,7 +492,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Improve testing: test latest version of `kubergrunt` and update `setup-minikube` script for CI.
 - Fix typo in root example where the helm client TLS public certificate was not being returned.
@@ -507,6 +507,6 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "da175f385fbcc0c52f0cb2304c8ac908"
+  "hash": "e9685ab645c6ac61b25a9ccdd7e22718"
 }
 ##DOCS-SOURCER-END -->

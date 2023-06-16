@@ -87,7 +87,7 @@ Here are the repos that were updated:
 
   Another fix for generating for-production examples.
 
-* #340
+* #340  
 
 
 </div>
@@ -103,7 +103,7 @@ Here are the repos that were updated:
 
   Attempts to fix issues with generating the for-production examples.
 
-* #338
+* #338 
 
 
 </div>
@@ -135,7 +135,7 @@ Here are the repos that were updated:
 
   Fixes an issue with testing when on a tag ref vs a branch.
 
-* #330
+* #330 
 
 
 </div>
@@ -153,14 +153,14 @@ Here are the repos that were updated:
 * Adds CI build step to generate for-production examples in the service catalogs
 * Fixes the source URL in the CIS service catalog for-production examples
 
-* #328
-* #205
-* #255
-* #310
-* #297
-* #327
+* #328 
+* #205 
+* #255 
+* #310 
+* #297 
+* #327 
 * #322
-* #295
+* #295 
 
 </div>
 
@@ -173,25 +173,25 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - Hand off text generated now as part of the repo root, in QUICK_START.md.
 - Bunch of other updates!
 
 
 - #300
-- #301
-- #302
-- #304
-- #305
-- #306
-- #307
-- #298
-- #316
-- #318
-- #317
-- #319
-- #320
-- #196
+- #301 
+- #302 
+- #304 
+- #305 
+- #306 
+- #307 
+- #298 
+- #316 
+- #318 
+- #317 
+- #319 
+- #320 
+- #196 
 
 
 </div>
@@ -209,7 +209,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix bug where the IAM permissions were not being attached before the ASG was created
 
@@ -231,7 +231,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - `infrastructure-deployer` now supports AWS SSO and `~/.aws/config`.
 - Fix typos in various docs.
@@ -249,7 +249,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add toggles for backup routines in Jenkins example
 
@@ -266,7 +266,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The `jenkins` module now supports Ubuntu 20.04. Note that starting this release, support for Ubuntu 16.04 is dropped.
 
@@ -287,7 +287,7 @@ The `jenkins` module now supports Ubuntu 20.04. Note that starting this release,
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Remove unused code from SecurityHub codegen and fix run_tests
 - Expose missing bucket variables for Account Baseline Root
@@ -305,7 +305,7 @@ The `jenkins` module now supports Ubuntu 20.04. Note that starting this release,
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add Terraform Validate test
 - Update for-production examples for architecture catalog v0.0.15
@@ -327,7 +327,7 @@ The `jenkins` module now supports Ubuntu 20.04. Note that starting this release,
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 Update underlying dependencies:
 - gruntwork-io/terraform-aws-monitoring to v0.29.1
 - gruntwork-io/terraform-aws-security to v0.49.3
@@ -346,7 +346,7 @@ Update underlying dependencies:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Introduce `aws_securityhub_invite_accepter` **[BACKWARDS INCOMPATIBLE]**
 - Port run_test functionality from terraform-aws-service-catalog
@@ -363,9 +363,9 @@ Update underlying dependencies:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- Adds a locking mechanism to Securityhub tests, to prevent a race condition that happened during concurrent runs of these tests.
+- Adds a locking mechanism to Securityhub tests, to prevent a race condition that happened during concurrent runs of these tests. 
 - Adds `for-production` examples.
 - Updates variable description for the Security Hub&apos;s email.
 - Cleans up unused variables in `account-baseline-root`.
@@ -386,7 +386,7 @@ Update underlying dependencies:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixes in a bug in the password policies where all credentials would get expired after 90 days, and not just unused ones. It also amends the 90 days period to 45 days, to comply with the new 1.4 version of the CIS AWS Benchmark.
 - Updates dependencies:
@@ -407,7 +407,7 @@ Update underlying dependencies:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 
 </div>
@@ -421,7 +421,7 @@ Update underlying dependencies:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 Update the underlying versions of the following modules
 - gruntwork-io/terraform-aws-vpc to v0.15.4
 - gruntwork-io/terraform-aws-security to v0.49.1
@@ -443,7 +443,7 @@ The `terraform-aws-service-catalog` update contains **backwards incompatible cha
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release adds a new Landing Zone service: Account Baseline Root.
 
@@ -468,7 +468,7 @@ It also removes the `iam_group_name_cross_account_access_all` variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now configure timeouts in the `rds` module using the new `creating_timeout`, `updating_timeout`, and `deleting_timeout` input variables.
 
@@ -489,7 +489,7 @@ It also removes the `iam_group_name_cross_account_access_all` variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix a bug in the `ecs-service` module where it was failing to create the Assume Role Policy in some cases where it needed to.
 
@@ -512,7 +512,7 @@ It also removes the `iam_group_name_cross_account_access_all` variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Make default configurations for Managed Node Groups more ergonomical by separating out single object into separate variables. This makes it easy to override a subset of the values (as you do not need to define the full object).
 - Provide ability to assist Managed Node Group `for_each` call when the `node_group_configurations` variable depends on a resource (e.g., if you are creating the launch templates in the same module). This can be done by statically defining the node group names using the `node_group_names` variable.
@@ -532,7 +532,7 @@ It also removes the `iam_group_name_cross_account_access_all` variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add support for skipping individual components during cluster upgrades. Note that you will need `kubergrunt` version `v0.7.1` and above to take advantage of the skip feature.
 
@@ -553,7 +553,7 @@ It also removes the `iam_group_name_cross_account_access_all` variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now disable metrics reporting using the new `--disable-cpu-metrics`, `--disable-mem-metrics`, and `--disable-disk-metrics` args of the `configure-cloudwatch-agent.sh` script.
 
@@ -570,7 +570,7 @@ It also removes the `iam_group_name_cross_account_access_all` variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The CloudWatch Agent is now configured to report disk usage percent and memory usage percent metrics.
 - The EC2 and ASG alarms have been adjusted to be consistent `cloudwatch-agent`. This means that the new alarms are not compatible with the old `cloudwatch-memory-disk-metrics-scripts`. If you wish to retain the old compatibility, you can set the namespace and metric name to the old values. See below migration guide for more info.
@@ -587,7 +587,7 @@ It also removes the `iam_group_name_cross_account_access_all` variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix wrong error message in `configure-cloudwatch-agent.sh`
 
@@ -604,7 +604,7 @@ It also removes the `iam_group_name_cross_account_access_all` variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix bug in `agents/cloudwatch-agent` module where the metrics were not being reported under the `InstanceId` dimension.
 - The `logs/cloudwatch-log-aggregation-scripts` and `metrics/cloudwatch-memory-disk-metrics-scripts` modules have been removed, as they are now functionally replaced by `agents/cloudwatch-agent`. Refer to the following pages for migration information:
@@ -628,7 +628,7 @@ It also removes the `iam_group_name_cross_account_access_all` variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now attach inline custom IAM policies on the IAM group/role managed by `custom-iam-entity`.
 
@@ -645,7 +645,7 @@ It also removes the `iam_group_name_cross_account_access_all` variable.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Setting `sse_algorithm` to `null` will now disable encryption on S3 buckets.
 
@@ -662,7 +662,7 @@ Setting `sse_algorithm` to `null` will now disable encryption on S3 buckets.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Adds a new AWS Config rule for checking unused credentials. Introduces two new variables `enable_iam_user_unused_credentials_check` and `iam_user_max_credential_usage_age` in both `aws-config-rules` and `aws-config-multi-region` modules.
 
@@ -680,7 +680,7 @@ Adds a new AWS Config rule for checking unused credentials. Introduces two new v
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Adds a new feature to the `custom-iam-entity` module to make it easier to create an IAM group that only has permissions to assume one or more IAM roles. See [`iam_group_assume_role_arns`](https://github.com/gruntwork-io/terraform-aws-security/blob/master/modules/custom-iam-entity/variables.tf#L37) for more information.
 
@@ -702,7 +702,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix error message when describing vols by tag
 - Add retry logic when pulling new interface ID in `attach-eni` script.
@@ -725,7 +725,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix bug where `eks-cluster` required both worker types.
 
@@ -743,7 +743,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - k8s-service: add support for custom resources
 
@@ -760,7 +760,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now avoid creating the default ACM certificate in the `route53` module by setting `provision_certificates` on the input parameter.
 
@@ -778,7 +778,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Expose several new variables in the Landing Zone modules (`account-baseline-app`, `account-baseline-root`, `account-baseline-security`) for configuring CloudTrail:
     - `is_multi_region_trail`
@@ -789,7 +789,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
     - `cloudtrail_data_logging_include_management_events`
     - `cloudtrail_data_logging_resource_type`
     - `cloudtrail_data_logging_resource_values`
-
+ 
 
 
 
@@ -804,7 +804,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `services/ec2-instance` [**NEW**]
 * `mgmt`
 
@@ -832,7 +832,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now expose the type of traffic to capture in VPC flow logs in the `vpc` module using the new `traffic_type` input variable.
 
@@ -852,7 +852,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now get the ID of the default security group from the `vpc` module using the new `default_security_group_id` output variable.
 - Updated the `for-production` examples to the latest.
@@ -871,7 +871,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Jenkins module backup function is now converted to use AWS Data Lifecycle Manager instead of a custom lambda function. If you wish to continue to use the lambda based backup function, you can set `backup_using_lambda = true`.
 - The dashboard widgets and alarms for EC2 and ASG based modules have been updated to work with the new CloudWatch agent instead of `cloudwatch-memory-disk-metrics`. To ensure compatibility, make sure to rebuild your server AMIs to align with this version.
@@ -889,7 +889,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - **[BACKWARDS INCOMPATIBLE]** Updates dependency gruntwork-io/terraform-aws-monitoring to v0.28.0. As a result of this, server metrics are now shipped via the `cloudwatch-agent` instead of the `cloudwatch-memory-disk-metrics` script. Note that the metric namespaces have changed from `System/Linux` to `CWAgent` as a result of this change. You may need to update dashboards or consumers of these metrics accordingly.
 - CloudWatch Logs group names are now configurable for ECS cluster
@@ -908,7 +908,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update dependency gruntwork-io/bash-commons to v0.1.7
 - [ec2-baseline] Make sure each log file managed by `cloudwatch-agent` goes to separate streams
@@ -927,7 +927,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update all `kubergrunt` and `terraform-aws-eks` references to `v0.7.1` and `v0.41.0`
 - Create a new module `eks-workers` that lets you manage EKS worker groups (self-managed ASGs and Manged Node Groups) separately from the EKS cluster.
@@ -947,7 +947,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update dependency hashicorp/terraform to v0.15.5
 - Update dependency hashicorp/packer to v1.7.2
@@ -968,7 +968,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update dependency helm/helm to v3.6.0
 - Update dependency gruntwork-io/gruntkms to v0.0.10
@@ -989,7 +989,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update dependency gruntwork-io/terraform-aws-cache to v0.15.0
 - Update dependency gruntwork-io/terraform-aws-vpc to v0.15.4
@@ -1012,7 +1012,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update dependency gruntwork-io/bash-commons to v0.1.4
 - Update dependency gruntwork-io/terraform-aws-load-balancer to v0.26.0
@@ -1031,7 +1031,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - AMIs updated to use Ubuntu 20.04 as base
 
@@ -1048,7 +1048,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now override the sources of the `external-dns` app in `eks-core-services`
 
@@ -1065,7 +1065,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now configure the subnet spacing / sizing in the `vpc` module using the new input variables `subnet_spacing`, `private_subnet_spacing`, `persistence_subnet_spacing`, `public_subnet_bits`, `private_subnet_bits`, and `persistence_subnet_bits`.
 
@@ -1082,7 +1082,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Adds support for tags to the redis module.
 
@@ -1100,7 +1100,7 @@ Adds support for tags to the redis module.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix a bug in the `vpc` module where, if you disabled a subnet tier, it would still try to create NACLs for that subnet tier. You can now also independently control whether the NACLs for each subnet tier will be created using the new `create_public_subnet_nacls`, `create_private_app_subnet_nacls`, and `create_private_persistence_subnet_nacls` input variables. Finally, you can also control if the default security group is created using the new `enable_default_security_group` input variable.
 
@@ -1117,7 +1117,7 @@ Adds support for tags to the redis module.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now configure whether image tags are mutable or not in the `ecr-repos` module using the new `image_tag_mutability` field in the `repositories` input variable.
 - Fix a bug in the `rds` module where it would create a new KMS key, but wasn&apos;t actually using it, and was using the default RDS key instead. The API has changed now: to create and use a custom KMS key, set `create_custom_kms_key` to `true`; to use an existing KMS key, set `create_custom_kms_key` to `false` and pass in the KMS key to use via `kms_key_arn`. If `create_custom_kms_key` is `false` and you don&apos;t pass in a custom KMS key, the module will use the default RDS key.
@@ -1135,7 +1135,7 @@ Adds support for tags to the redis module.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Remove dependency between Cloudtrail and Config their respective buckets, and rename the `cloudtrail_s3_bucket_already_exists` variable.
 
@@ -1155,7 +1155,7 @@ Adds support for tags to the redis module.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update the `vpc-flow-logs` module to add the necessary IAM permissions to allow the VPC flow logs service to write to the S3 bucket.
 
@@ -1172,6 +1172,6 @@ Adds support for tags to the redis module.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "0c5a6119458b454dadd2d96f77352ac8"
+  "hash": "79d4315213420d3e061acd5520fe604f"
 }
 ##DOCS-SOURCER-END -->

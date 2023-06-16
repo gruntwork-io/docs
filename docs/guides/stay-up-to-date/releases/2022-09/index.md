@@ -27,7 +27,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Allows setting IOPS for ebs volumes of types `io2` and `gp3` on `server-group` module.
 
@@ -44,7 +44,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add var to `server-group` for `protect_from_scale_in`.
 
@@ -61,7 +61,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added support to configure Instance Metadata Service in the Auto Scaling Groups managed by the `server-group` module.
 
@@ -82,7 +82,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Internal updates:
   - CircleCI config updates
@@ -106,7 +106,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixes policy to allow API gateway to publish access logs to cloudwatch in `lambda-http-api-gateway` module.
 
@@ -122,7 +122,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - Improved error message on failure to validate inputs.
 
 
@@ -142,7 +142,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Tags var added to modules `cloudwatch-logs-filters` and `sns-to-slack`
 
@@ -156,6 +156,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a0ddc1868392d5ff3ad61aa183cd834e"
+  "hash": "15dacf93035dbdde253a6909c4495c4b"
 }
 ##DOCS-SOURCER-END -->

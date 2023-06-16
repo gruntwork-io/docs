@@ -110,7 +110,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-ci/pull/58:
+  https://github.com/gruntwork-io/module-ci/pull/58: 
 
 BACKWARDS INCOMPATIBLE CHANGES
 
@@ -128,9 +128,9 @@ BACKWARDS INCOMPATIBLE CHANGES
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-ci/pull/56:
+  https://github.com/gruntwork-io/module-ci/pull/56: 
 
-BACKWARDS INCOMPATIBLE CHANGE.
+BACKWARDS INCOMPATIBLE CHANGE. 
 
 All the pre-commit hooks that were in `modules/pre-commit` are now in their own open source repo: https://github.com/gruntwork-io/pre-commit. Please update your `.pre-commit-config.yml` files to point to the new repo and its version numbers.
 
@@ -205,7 +205,7 @@ All the pre-commit hooks that were in `modules/pre-commit` are now in their own 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -218,7 +218,7 @@ All the pre-commit hooks that were in `modules/pre-commit` are now in their own 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -252,7 +252,7 @@ All the pre-commit hooks that were in `modules/pre-commit` are now in their own 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 ```bash
 terragrunt state mv module.&lt;module&gt;.aws_lb.nlb module.&lt;module&gt;.aws_lb.nlb_&lt;num&gt;_az
 ```
@@ -274,7 +274,7 @@ Replace `&lt;module&gt;` with the name of your module and `&lt;num&gt;` with the
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -287,7 +287,7 @@ Replace `&lt;module&gt;` with the name of your module and `&lt;num&gt;` with the
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -353,6 +353,6 @@ BACKWARDS INCOMPATIBLE CHANGES
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "09ee052dff2fd05f7506958791a72230"
+  "hash": "6855a9d7e37e3f24483ade32e1076600"
 }
 ##DOCS-SOURCER-END -->

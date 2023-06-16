@@ -15,7 +15,6 @@ Here are the repos that were updated:
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
-- [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-server](#terraform-aws-server)
 
 
@@ -30,7 +29,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - We&apos;ve updated our CI build job to use Go 1.7.3. Before, we were using Go 1.6.x, which apparently [does not work with the latest version of OS X](https://golang.org/doc/go1.7#ports).
+  - We&apos;ve updated our CI build job to use Go 1.7.3. Before, we were using Go 1.6.x, which apparently [does not work with the latest version of OS X](https://golang.org/doc/go1.7#ports). 
 
 
 </div>
@@ -106,7 +105,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - The `configure-environment-for-gruntwork-module` script now installs Go 1.7.3 by default. CircleCi has Go 1.6.x installed, but binaries built with that version of Go [do not work on the latest version of OS X](https://golang.org/doc/go1.7#ports), so we have to upgrade. You can control the version of Go using the `--go-version` option.
+  - The `configure-environment-for-gruntwork-module` script now installs Go 1.7.3 by default. CircleCi has Go 1.6.x installed, but binaries built with that version of Go [do not work on the latest version of OS X](https://golang.org/doc/go1.7#ports), so we have to upgrade. You can control the version of Go using the `--go-version` option. 
 
 
 </div>
@@ -121,7 +120,7 @@ Here are the repos that were updated:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   - BREAKING CHANGE, `terraform-deploy`: this script has been removed. You should use [Terragrunt](https://github.com/gruntwork-io/terragrunt) instead.
-- BREAKING CHANGE, `build-docker-image`: this script will now look for the specified image/tag already in your Docker registry and if it exists, it will NOT replace it. In part, this is because want our artifacts to be immutable. In part, this makes it easy to use this script and automatically “promote” the same artifact from one environment to another (e.g. stage to prod).
+- BREAKING CHANGE, `build-docker-image`: this script will now look for the specified image/tag already in your Docker registry and if it exists, it will NOT replace it. In part, this is because want our artifacts to be immutable. In part, this makes it easy to use this script and automatically “promote” the same artifact from one environment to another (e.g. stage to prod). 
 - ENHANCEMENT, `terraform-update-variable: this script now accepts`--git-url`and`--git-checkout-path` parameters to check out a Git repo before making the Terraform changes.
 - MINOR CHANGE, `build-docker-image`: the `--output-properties-file` parameter is now optional.
 
@@ -213,47 +212,6 @@ Here are the repos that were updated:
 
 
 
-## terraform-aws-security
-
-
-### [v0.4.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/17/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  This release updates the `cloudtrail` module to support archiving of logs.
-
-Previously, you could either store logs in S3 (for $0.023 per GB) or delete them. Now, you can choose to archive [CloudTrail](https://aws.amazon.com/cloudtrail/) logs to AWS Glacier after a certain number of days, where you&apos;ll pay just $0.004 per GB.
-- ENHANCEMENT: The `cloudtrail` module now exposes a new var, `num_days_after_which_archive_log_data`. If set to `0`, archiving is disabled. Otherwise, log files are automatically archived after the specified number of days.
-
-This change is fully backwards-compatible in terms of the vars and outputs, but it makes use of features new to Terraform v0.8 such as conditionals, and therefore requires that you upgrade to Terraform v0.8.1  or higher before using. For that reason we have indicated in the version release that this is a &quot;breaking&quot; change.
-
-
-</div>
-
-
-### [v0.3.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.3.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/13/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.3.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  This release adds two new features to the `iam-groups` module:
-- ENHANCEMENT: `iam-groups` now exposes the Terraform variable `should_require_mfa`. If true, an IAM User must use multi-factor authentication (MFA) to access any AWS services, with the exception of a very limited set of permissions the IAM User needs to initialize her MFA Device and reset her password.
-- ENHANCEMENT: `iam-groups` now adds the IAM Group `developers` by default (though it&apos;s still optional). Some teams will add all IAM Users to the `full-access` IAM Group. But for those teams that wish to create an IAM User whose permissions go beyond `read-only` but below `full-access`, the `developers` IAM Group offers such an option.
-
-  You can customize which set of AWS Services IAM Users in `developers` will receive full access to through the `iam_group_developers_permitted_services` Terraform variable. In addition, the `developers` IAM Group grants IAM Users access to a personal S3 Bucket.
-
-
-</div>
-
-
-
 ## terraform-aws-server
 
 
@@ -290,6 +248,6 @@ This change is fully backwards-compatible in terms of the vars and outputs, but 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "8671d9acd420210f7257b62f5e1cba30"
+  "hash": "90752f3a1650057aff0626c02fbbcba0"
 }
 ##DOCS-SOURCER-END -->

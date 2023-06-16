@@ -97,7 +97,7 @@ If you were relying on either of these behaviors, please file a GitHub issue wit
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixes attachment of security groups in the `server-group` module when using both the option to create ENIs and externally attaching additional security groups.
 
@@ -117,7 +117,7 @@ If you were relying on either of these behaviors, please file a GitHub issue wit
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated `ecs-deploy-runner` to support tagging of multiple images
 
@@ -135,7 +135,7 @@ If you were relying on either of these behaviors, please file a GitHub issue wit
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixed bug in upgrade testing module find and replace where it matched modules with the same prefix.
 
@@ -153,7 +153,7 @@ If you were relying on either of these behaviors, please file a GitHub issue wit
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added option `--no-push` to `docker-image-builder` to perform only building of container images and avoid pushing to registry.
 
@@ -170,7 +170,7 @@ If you were relying on either of these behaviors, please file a GitHub issue wit
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated refs for `terraform-aws-ci` in Dockerfiles for `ecs-deploy-runner`.
 - Added patch testing on PRs within the upgrade test runner.
@@ -195,7 +195,7 @@ If you were relying on either of these behaviors, please file a GitHub issue wit
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `steampipe-runner`
 
 - Updated default version of `steampipe` to latest patch release: `v0.15.0` =&gt; `v0.15.3`
@@ -213,7 +213,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/30
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `steampipe-runner`
 - `ecs-deploy-runner-steampipe-standard-configuration`
 
@@ -232,7 +232,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/29
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `steampipe-runner`
 - `ecs-deploy-runner-with-steampipe-runner`
 - `ecs-deploy-runner-steampipe-standard-configuration`
@@ -258,7 +258,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated dependencies:
     - `terraform-aws-monitoring`: `v0.35.1` to `v0.35.2`
@@ -282,7 +282,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Exposed flag `enable_root_account_mfa_rule` for AWS Config to allow disabling the root user MFA AWS Config rule. This should only be turned off for AWS partitions that do not support a root user (e.g., GovCloud).
 
@@ -299,7 +299,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated hardcoded ARNs to lookup AWS partition information to support deployment into alternative partitions such as GovCloud.
 - Update dependencies:
@@ -321,7 +321,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Exposed the ability to configure cross account SNS Topic access. You can use the new `cloudtrail_benchmark_alarm_external_aws_account_ids_with_publish_access` and `cloudtrail_benchmark_alarm_external_iam_entities_with_list_subscription_access` input variables to configure cross account access for various scenarios.
 
@@ -340,7 +340,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated `cloudtrail` to configure object level data logging for ALL S3 buckets, not just the CloudTrail bucket. Previously the compliance requirement 3.10 and 3.11 was misinterpreted to mean only the CloudTrail bucket when in reality all S3 buckets in the account required to be monitored.
 - Exposed the `additional_data_logging_resources` input variable in the `account-baseline` modules to configure additional data logging resources on the CloudTrail instance.
@@ -359,7 +359,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added the ability to configure a subscription to the SNS Topic for CloudTrail CIS benchmark alarms that sends the alerts to a Slack Channel.
 
@@ -376,7 +376,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated the AWS Config Aggregator to force to aggregating all regions. This is due to the CIS control 3.5 that requires AWS Config be enabled in all regions, so it makes sense to always require aggregating all regions.
 - Updated dependencies:
@@ -396,7 +396,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixed a CIS Compliance misinterpretation for control 5.1 (VPC NACLs). Control 5.1 states `Ensure no Network ACLs allow ingress from `0.0.0.0/0` to remote server administration ports`, which was originally interpreted to mean that there should be no network ACL that effectively allows ingress from `0.0.0.0/0` on admin ports, but the popular interpretation is that there should be no network ACL rule that allows ingress from `0.0.0.0/0`, even if a higher priority rule explicitly denies access. As such, starting this release, the network ACL rules are adjusted to ensure that no rule allows ingress from `0.0.0.0/0` in all rules configured.
 
@@ -414,7 +414,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added the ability to configure an aggregator region to roll up the findings to in Security Hub. Note that only administrator accounts can designate an aggregator region.
 
@@ -430,7 +430,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added the ability to disable private SSH and RDP access at the NACL level, using the new `enable_administrative_remote_access_private_subnets_from_self` (for mgmt VPC), `enable_administrative_remote_access_private_app_subnets_from_self` and `enable_administrative_remote_access_private_persistence_subnets_from_self` (for app VPC) variables.
 - Added the ability to configure the remote administrative ports for the NACLs from the VPC layer using the new `remote_administrative_ports` variable.
@@ -448,7 +448,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Exposed the ability to configure `max_password_age` and password `hard_expiry` for the IAM Password Policy from `account-baseline-security`.
 
@@ -468,7 +468,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixed bug where `aurora` module could not be configured with a `restore_to_time` setting due to mutual exclusivity.
 
@@ -485,7 +485,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added the ability to configure the character sets for the RDS Database for Oracle and MSSQL types.
 
@@ -503,7 +503,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - **Unlock AWS provider v4. Require minimum 3.75.1.** This update includes a few tests that make sure upgrading to this module from the last release is easy. However, you may need to bump your AWS provider version. See the migration guide notes below for more.
     - Fixed a perpetual diff problem in `examples/rds-mysql-with-cross-region-replica`. If you&apos;ve used this example, you&apos;ve probably already noticed this in your own code when re-running apply. We&apos;ve updated the example to include the `var.storage_encrypted` setting in all example code that references the `modules/rds` module.
@@ -525,7 +525,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added the ability to configure multiple secrets manager entries for container based Lambda functions in the `run-lambda-entrypoint` command.
 
@@ -543,7 +543,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add patch that automates upgrading from `v0.16.x` to `v0.17.0`.
 - Adds `tracing_config` variable
@@ -562,13 +562,13 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - **Unlock AWS provider v4. Require minimum 3.75.1.** This update includes a few tests that make sure upgrading to this module from the last release is easy. However, you may need to bump your AWS provider version. See the migration guide notes below for more info.
 - Internal updates:
     - Updated code owners
     - Added upgrade testing
-    - Patches added:
+    - Patches added: 
 		    - `v0.15.0`
 		    - `v0.16.0`
 		    - `v0.14.0`
@@ -589,7 +589,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 
 - Add variable to configure how to treat missing data for Memcached and Redis alarms
@@ -607,7 +607,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added the ability to configure the SNS Topic with cross account access for publish and list subscriptions.
 
@@ -625,7 +625,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated `sns-to-slack` module to require passing through the Slack webhook URL using AWS Secrets Manager instead of directly as module variables. This is to treat the webhook URL more like a Secret as recommended by Slack.
 
@@ -645,7 +645,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated Go dependencies of `ssh-grunt` and `codegen` utilities. There are no updates to the functionality of the CLI tools.
 
@@ -663,7 +663,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added partial support for deploying AWS Config in previously unsupported region `ap-northeast-3`.
 
@@ -685,7 +685,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Replaces hardcoded IAM arn with a data source, for compatibility with multiple partitions
 
@@ -702,7 +702,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixes bug where IAM roles that were created through the AWS console could not be passed to the `single-server` module because of duplicate instance profile. Allows disabling the creation of instance profile internally inside the module.
 
@@ -724,7 +724,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 -  **Unlock AWS provider v4. Require minimum 3.75.1 just for Landing Zone modules.** This update includes a few tests that make sure upgrading to this module from the last release is easy. However, you may need to bump your AWS provider version. See the migration guide notes below for more info.
 
@@ -741,7 +741,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 
 - Exposed the ability to specify tags on `ecs-cluster` resources.
@@ -764,7 +764,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added documentation for a hidden parameter `lifecycle_policy_rules` for ECR Repos.
 - Added documentation for a hidden parameter `taints` for Managed Node Groups.
@@ -775,7 +775,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
     - `terraform-aws-lambda`
     - `terraform-aws-data-storage`
     - `terraform-aws-vpc`
-    - `terraform-aws-ci`
+    - `terraform-aws-ci` 
 
 
 
@@ -794,7 +794,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added support for associating CloudFront functions with the CloudFront distribution managed with the `s3-cloudfront` module.
 - Updated the website S3 bucket with additional security configurations when operating in private bucket mode:
@@ -815,7 +815,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Adds `cloudfront_distribution_domain_name` as output var
 
@@ -836,7 +836,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added a new input variable `exclude_ports_from_inbound_all` that can be used to exclude a list of ports from the inbound global CIDR rules in the network acl modules. This is useful for adhering to certain compliance standards like CIS that explicitly deny any allow rule for administrative ports.
 
@@ -854,7 +854,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Removed the `log:CreateLogGroup` permissions from the VPC Flow Logs. This was unnecessary as the Log Groups are managed in Terraform, and in fact can lead to a race condition where the Log Group gets recreated after deletion.
 
@@ -869,6 +869,6 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "0a4764572ab6d455af2565e0c80f7c71"
+  "hash": "779d65c7bd5d1ac4b012232adda5609a"
 }
 ##DOCS-SOURCER-END -->

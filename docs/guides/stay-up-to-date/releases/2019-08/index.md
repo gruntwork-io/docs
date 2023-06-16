@@ -46,7 +46,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add support for Duo OpenVPN Plugin for 2fa
 
@@ -67,7 +67,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release adds a module for [AWS Config](https://aws.amazon.com/config/). The module creates an S3 bucket and an SNS topic (or accepts an existing bucket/topic) and creates a config recorder in the given region. The module does not manage Config Rules. In a future update we may add a recommended set of Config Rules.
 
@@ -85,7 +85,7 @@ This release adds a module for [AWS Config](https://aws.amazon.com/config/). The
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - The CloudTrail S3 bucket now has [public access disabled](https://www.terraform.io/docs/providers/aws/r/s3_bucket_public_access_block.html).
 - S3 Server Access Logging: This release adds an option to enable [Server Access Logging](https://docs.aws.amazon.com/AmazonS3/latest/dev/cloudtrail-logging.html#cloudtrail-logging-vs-server-logs) for the CloudTrail S3 bucket. To use this feature, simply set `enable_s3_server_access_logging` to `true` (defaults to `false`). It will create a bucket for Access Logs, make sure the bucket does not allow public access policies, and enable S3 Access Logging to the new bucket on the Cloudtrail Bucket.
 - CloudWatch Logs integration: This release adds [integration for CloudTrail with CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/logging_cw_api_calls_cwl.html). To enable this feature, provide a CloudWatch Logs group name by setting the `cloudwatch_logs_group_name` variable. The module will create the log group and configure CloudTrail accordingly.
@@ -103,7 +103,7 @@ This release adds a module for [AWS Config](https://aws.amazon.com/config/). The
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - We&apos;ve added a new module called `iam-users` that you can use to create and manage IAM users as code. The module can create IAM users, add them to IAM groups, and generate console passwords and access keys for them, encrypting each with PGP so they don&apos;t end up in plaintext in Terraform state.
 
@@ -120,7 +120,7 @@ This release adds a module for [AWS Config](https://aws.amazon.com/config/). The
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The cloudtrail and kms-master-key modules each create KMS key resources. Previously, [key rotation](https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html) was disabled on these keys. This change enables key rotation by default. Any existing keys will be updated in place to have key rotation enabled. If you prefer to have to key rotation enabled, set `enable_key_rotation=false`
 
@@ -137,7 +137,7 @@ The cloudtrail and kms-master-key modules each create KMS key resources. Previou
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix bug where when upgrading the `iam-groups` module to tf12 with existing resources, `terraform` gets into a state where you can&apos;t `apply`, `plan`, or `destroy`.
 
@@ -154,7 +154,7 @@ The cloudtrail and kms-master-key modules each create KMS key resources. Previou
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `ssh-grunt` now supports passing in multiple IAM groups (by passing in `--iam-group` and `--iam-group-sudo` multiple times) to sync. When multiple groups are passed, users who are in at least one of the list of groups passed in will be synced to the server.
 
@@ -176,7 +176,7 @@ The cloudtrail and kms-master-key modules each create KMS key resources. Previou
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - `single-server` now properly returns the public IP when `attach_eip` is `false`.
 
@@ -197,7 +197,7 @@ The cloudtrail and kms-master-key modules each create KMS key resources. Previou
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix `type` constraint on the `cors_rule` input variable in `s3-static-website`.
 
@@ -217,7 +217,7 @@ The cloudtrail and kms-master-key modules each create KMS key resources. Previou
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The key managers for a KMS key used to encrypt VPC flow logs must now be provided as a variable. This is to avoid the situation in which different users running terraform will cause updates to the KMS key policy on each invocation.
 
@@ -233,7 +233,7 @@ The cloudtrail and kms-master-key modules each create KMS key resources. Previou
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Conditionally create a key (fixes #75) - previously, if a KMS key was specified when creating a flow log, the module would still create an (unused) KMS key. This release fixes that issue and adds regression tests to catch potential future related issues.
 
@@ -250,8 +250,8 @@ The cloudtrail and kms-master-key modules each create KMS key resources. Previou
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
-This release adds a new submodule for managing [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html). Flow Logs capture IP traffic information, allowing you to observe, debug, and evaluate the network traffic to and from resources in a VPC.
+  
+This release adds a new submodule for managing [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html). Flow Logs capture IP traffic information, allowing you to observe, debug, and evaluate the network traffic to and from resources in a VPC. 
 
 The module has support for the following features:
 * Manage flow logs for VPCs, subnets, and Elastic Network Interfaces (ENIs)
@@ -273,7 +273,7 @@ The module has support for the following features:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `vpc-app-network-acls` module now sets `allow_access_from_mgmt_vpc` to `false` by default. This is a more sane default because (a) it&apos;s more secure and (b) `mgmt_vpc_cidr_block` is `null` by default, so if you left all parameters at their defaults, it doesn&apos;t actually work. If you are upgrading to this new version and you want to allow access to an app VPC from a mgmt VPC via VPC peering, you must now explicitly set `allow_access_from_mgmt_vpc` to true.
 
@@ -287,6 +287,6 @@ The module has support for the following features:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "ae720f3058f7031832dd849c0e74531a"
+  "hash": "51a30d1a4bd13316ba62576864de12b4"
 }
 ##DOCS-SOURCER-END -->

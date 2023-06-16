@@ -143,7 +143,7 @@ The `alb` module includes a change to how the ALB Access Log S3 bucket is manage
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - `build-helpers`: A bug has been fixed in `build-packer-artifact` where multiple filters were not producing the desired result.
 - `ecs-deploy-runner`: The `Dockerfile` for the `ecs-deploy-runner` Docker image has been updated to use the new `build-packer-artifact` script. The image also now install Terraform 0.13.5 and newer versions of Terragrunt and Kubergrunt by default.
@@ -163,7 +163,7 @@ The `alb` module includes a change to how the ALB Access Log S3 bucket is manage
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release fixes a bug in `build-packer-artifact` script, where the `--idempotency` flag did not properly handle images with multiple tags.
 
@@ -180,7 +180,7 @@ This release fixes a bug in `build-packer-artifact` script, where the `--idempot
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The default version of tools installed in the `ecs-deploy-runner` docker containers have been updated: `module_ci_version` is now `v0.29.2`, and `kaniko` is now `v1.3.0`.
 
@@ -201,7 +201,7 @@ This release fixes a bug in `build-packer-artifact` script, where the `--idempot
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Configures data event logging for cloudtrail buckets, as per the 3.10 and 3.11 requirements of CIS AWS Foundations Benchmark.
 
@@ -221,7 +221,7 @@ Configures data event logging for cloudtrail buckets, as per the 3.10 and 3.11 r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Adds a new module `cleanup-expired-certs` to ensure that all expired SSL/TLS certificates stored in AWS IAM are removed as per the 1.19 requirement of the CIS AWS Foundations Benchmark.
 - Add metric filter and alarm for AWS Organizations changes, as per the 4.15 requirement of CIS AWS Foundations Benchmark.
@@ -244,7 +244,7 @@ Configures data event logging for cloudtrail buckets, as per the 3.10 and 3.11 r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now tell the `rds` and `aurora` modules to ignore changes to the `master_password` parameter by setting the new `ignore_password_changes` input variable to `true`. This is useful when managing the password outside of Terraform, such as with auto-rotating passwords in AWS Secrets Manager.
 
@@ -265,7 +265,7 @@ Configures data event logging for cloudtrail buckets, as per the 3.10 and 3.11 r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 You can now enable container insights on the ECS cluster deployed with the `ecs-cluster` module.
 
@@ -282,7 +282,7 @@ You can now enable container insights on the ECS cluster deployed with the `ecs-
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You  can now configure the `ecs-cluster` to create one capacity provider and one ASG per AZ / subnet by setting the `multi_az_capacity_provider` input variable to true.
 
@@ -303,7 +303,7 @@ You can now enable container insights on the ECS cluster deployed with the `ecs-
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now configure the EKS control plane with additional security groups that are managed outside the module. (NOTE: You will need to recreate the EKS cluster to append additional security groups to the control plane).
 - Fix a bug where certain cases can cause list indexing errors.
@@ -322,7 +322,7 @@ You can now enable container insights on the ECS cluster deployed with the `ecs-
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - This release is a minor bugfix to use the latest kubergrunt (v0.6.8) required dependency.
 
 
@@ -337,7 +337,7 @@ You can now enable container insights on the ECS cluster deployed with the `ecs-
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Various instance parameters are now overrideable in the `autoscaling_group_configurations`. Refer to the updated [variable definition](https://github.com/gruntwork-io/terraform-aws-eks/blob/5d829c98ef2bd8b50db2de49ac831118bfb09a8d/modules/eks-cluster-workers/variables.tf#L15) for more details on which attributes are available to override.
 
@@ -378,7 +378,7 @@ We can no longer dynamically configure destroy provisioners starting with Terraf
 
 We no longer allow `kubergrunt_install_dir` to be configurable. Kubergrunt is primarily used for helping us clean up leftover resources, which are otherwise not cleaned up, when running terraform destroy to destroy the EKS cluster and any other related resources, using this module. Because Terraform &gt;= `0.13.0` can no longer reference any variables in destroy provisioners, we must hardcode kubergrunt&apos;s `install_dir` so that this module can reliably call it from a known location to clean up leftover resources.
 
-- **var.kubergrunt_install_dir**
+- **var.kubergrunt_install_dir** 
 
 - These steps assume you have a running EKS cluster that was deployed using an earlier version of terraform-aws-eks and using terraform `0.12.x`. The following steps have been verified using terraform `0.12.26`, so if you have an older version of terraform, you may run into some unforeseen issues. You may first want to upgrade your terraform to at least `0.12.26` (but still not `0.13.x`) before proceeding.
 - :tada: Terraform `0.12.29` handles the changes to state much better than previous versions of `0.12`. This means you can probably skip steps 5-7 below!
@@ -458,7 +458,7 @@ The destroy step depends on Kubergrunt version ~0.6.7. Normally if you use the `
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now set the `capacity_type` on the Managed Node Groups created with `eks-cluster-managed-workers`
 
@@ -475,7 +475,7 @@ The destroy step depends on Kubergrunt version ~0.6.7. Normally if you use the `
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The type of `pod_tolerations` input var was incorrect for `eks-alb-ingress-controller`, `eks-k8s-cluster-autoscaler`, `eks-k8s-external-dns`.
 - `eks-cluster-managed-workers` now supports specifying launch templates.
@@ -519,7 +519,7 @@ The `load-balancer-access-logs` module has been refactored to use the `private-s
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 **This release contains backwards incompatible changes. Make sure to follow the instructions in the migration guide below!**
 
 The `openvpn-server` module has been refactored to use the `private-s3-bucket` module under the hood to configure the S3 bucket.
@@ -541,13 +541,13 @@ The `openvpn-server` module has been refactored to use the `private-s3-bucket` m
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-As part of upgrading module to align with [CIS 1.3.0](https://www.cisecurity.org/benchmark/amazon_web_services/) compliance, as is recommended, the IAM Access Analyzer needs to be enabled across all used AWS regions.
+As part of upgrading module to align with [CIS 1.3.0](https://www.cisecurity.org/benchmark/amazon_web_services/) compliance, as is recommended, the IAM Access Analyzer needs to be enabled across all used AWS regions. 
 
 In this release:
 * We&apos;ve added a new module wrapper `iam-access-analyzer-multi-region` for the IAM Access Analyzer service for multiple AWS regions and a related example.
-* We&apos;ve updated `account-baseline-root` and `account-baseline-security` and their respective code examples to showcase using the new module.
+* We&apos;ve updated `account-baseline-root` and `account-baseline-security` and their respective code examples to showcase using the new module. 
 
 The `iam-access-analyzer-multi-region` has been added, but is disabled at the level of the _Landing Zone_ product (`account-baseline-*` modules) for backward compatibility. To enable the use of this feature, users will need to `enable_iam_access_analyzer` to `true` in the `variables.tf` for each of these modules or examples.
 
@@ -566,7 +566,7 @@ The `iam-access-analyzer-multi-region` has been added, but is disabled at the le
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release adds support for configuring [data event logging](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html) for cloudtrail buckets. Data event logging is configured using the newly introduced variables: `data_logging_enabled`, `data_logging_read_write_type`, `data_logging_include_management_events`, `data_logging_resource_type` and `data_logging_resource_values`. For detailed instructions see the [descriptions of these variables](https://github.com/gruntwork-io/module-security/blob/master/modules/cloudtrail/variables.tf#L158).
 
@@ -584,7 +584,7 @@ This release adds support for configuring [data event logging](https://docs.aws.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 This fixes a bug that was introduced in `v0.44.3`, where the `cloudtrail` module now needed `kms:DescribeKey` access to the KMS key, which was not provided by default. This release reverts back to the behavior in `v0.44.2`, unless you enable the following flags:
 
 - `allow_kms_describe_key_to_external_aws_accounts = true`
@@ -605,7 +605,7 @@ You can now attach `kms:DescribeKey` permissions to IAM entities on CMKs managed
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This fixes a perpetual diff issue with `cloudtrail` module when `kms_key_arn` is a loose KMS ID (e.g., KMS Alias).
 
@@ -622,7 +622,7 @@ This fixes a perpetual diff issue with `cloudtrail` module when `kms_key_arn` is
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `kms-grant-multi-region` now supports using aliases for KMS Key IDs.
 
@@ -639,7 +639,7 @@ This fixes a perpetual diff issue with `cloudtrail` module when `kms_key_arn` is
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now configure the bucket ownership settings using the new `bucket_ownership` input variable in `private-s3-bucket`.
 
@@ -662,7 +662,7 @@ This fixes a perpetual diff issue with `cloudtrail` module when `kms_key_arn` is
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Replace `template_file` usage with `locals` to avoid data source dependency graphs.
 
@@ -684,9 +684,9 @@ This fixes a perpetual diff issue with `cloudtrail` module when `kms_key_arn` is
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- The `ecs-service` module accepts a new optional variable, `secrets_access`, which can be used to automatically create an IAM policy with `GetSecretValue` permission on the given secrets.
+- The `ecs-service` module accepts a new optional variable, `secrets_access`, which can be used to automatically create an IAM policy with `GetSecretValue` permission on the given secrets. 
 - Update dependency `gruntwork-io/module-ci` to v0.29.5 ([release notes](https://togithub.com/gruntwork-io/module-ci/releases/tag/v0.29.5))
 - Update dependency `gruntwork-io/terraform-aws-vpc` to v0.12.4 ([release notes](https://togithub.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.12.4))
 - Update dependency `gruntwork-io/module-server` to v0.9.4 ([release notes](https://togithub.com/gruntwork-io/module-server/releases/tag/v0.9.4))
@@ -709,7 +709,7 @@ This fixes a perpetual diff issue with `cloudtrail` module when `kms_key_arn` is
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update dependency `gruntwork-io/module-security`: `v0.44.3` =&gt; `v0.44.4` (Release notes: [v0.44.4](https://github.com/gruntwork-io/module-security/releases/tag/v0.44.4)).
 
@@ -728,7 +728,7 @@ This fixes a perpetual diff issue with `cloudtrail` module when `kms_key_arn` is
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update dependency `gruntwork-io/module-security`: `v0.44.2` =&gt; `v0.44.3` (Release notes: [v0.44.3](https://github.com/gruntwork-io/module-security/releases/tag/v0.44.3)).
 - Update dependency `gruntwork-io/terraform-aws-vpc`: `v0.12.2` =&gt; `v0.12.3` (Release notes: [v0.12.3](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.12.3)).
@@ -755,7 +755,7 @@ This fixes a perpetual diff issue with `cloudtrail` module when `kms_key_arn` is
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update dependency `gruntwork-io/module-data-storage`: `v0.16.3` =&gt; `v0.17.1` (Release notes: [v0.17.0](https://github.com/gruntwork-io/module-data-storage/releases/tag/v0.17.0) ; [v0.17.1](https://github.com/gruntwork-io/module-data-storage/releases/tag/v0.17.1)).
 - Update dependency `gruntwork-io/terraform-aws-vpc`: `v0.11.0` =&gt; `v0.12.2` (Release notes: [v0.12.0](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.12.0) ; [v0.12.1](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.12.1) ; [v0.12.2](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.12.2)). **NOTE: This includes a backwards incompatible change. Please read [the migration guide](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.12.0) in the `terraform-aws-vpc` module release notes for more details!**
@@ -775,7 +775,7 @@ This fixes a perpetual diff issue with `cloudtrail` module when `kms_key_arn` is
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Exposed SSE algorithm settings in `s3-bucket`: `bucket_sse_algorithm` and `replica_sse_algorithm`.
 
@@ -795,7 +795,7 @@ This fixes a perpetual diff issue with `cloudtrail` module when `kms_key_arn` is
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update dependency `gruntwork-io/terragrunt` to v0.26.7
 - Access permissions for the access log and replica buckets in `s3-bucket` are now controlled via the separate input variables `access_logging_bucket_policy_statements` and `replica_bucket_policy_statements` instead. **This is a backwards incompatible change. See Migration Guide below.**
@@ -813,7 +813,7 @@ This fixes a perpetual diff issue with `cloudtrail` module when `kms_key_arn` is
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Expose the redis parameter group name from the underlying module (input variable `parameter_group_name`).
 - Expose `engine_version` for Aurora.
@@ -836,9 +836,9 @@ This fixes a perpetual diff issue with `cloudtrail` module when `kms_key_arn` is
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- Fix a bug where `vpc-app-network-acls` would not work correctly if some of the subnet tiers in the VPC were disabled.
+- Fix a bug where `vpc-app-network-acls` would not work correctly if some of the subnet tiers in the VPC were disabled. 
 
 
 
@@ -855,7 +855,7 @@ This fixes a perpetual diff issue with `cloudtrail` module when `kms_key_arn` is
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `vpc-app` module now allows you to configure the ingress and egress rules for the default Security Group and NACL using the new `default_security_group_ingress_rules`, `default_security_group_egress_rules`, `default_nacl_ingress_rules`, and `default_nacl_egress_rules` input variables. You can also control tags on these resources using the existing `custom_tags` input variable.
 
@@ -872,9 +872,9 @@ This fixes a perpetual diff issue with `cloudtrail` module when `kms_key_arn` is
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- Fix a bug in how the `vpc-flow-logs` module looked up the KMS key when `create_resources` was set to `false`.
+- Fix a bug in how the `vpc-flow-logs` module looked up the KMS key when `create_resources` was set to `false`. 
 
 
 
@@ -892,12 +892,12 @@ This fixes a perpetual diff issue with `cloudtrail` module when `kms_key_arn` is
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- The `vpc-app` module now allows you to disable any of the three tiers of subnets (public, private-app, private-persistence) by setting the new input variables `create_public_subnets`, `create_private_app_subnets`, or `create_private_persistence_subnets` to `false`. This is convenient, for example, if you want to create a VPC with no public subnets because you get all public Internet access through some other mechanism (e.g., Direct Connect, VPC peering, etc).
-- **IMPORTANT NOTE: as of this release, `vpc-mgmt` is now deprecated**: The main difference between `vpc-mgmt` and `vpc-app` was that `vpc-app` had three tiers of subnets (public, private-app, private-persistence) and `vpc-mgmt` had two (public, private). As of
+- The `vpc-app` module now allows you to disable any of the three tiers of subnets (public, private-app, private-persistence) by setting the new input variables `create_public_subnets`, `create_private_app_subnets`, or `create_private_persistence_subnets` to `false`. This is convenient, for example, if you want to create a VPC with no public subnets because you get all public Internet access through some other mechanism (e.g., Direct Connect, VPC peering, etc). 
+- **IMPORTANT NOTE: as of this release, `vpc-mgmt` is now deprecated**: The main difference between `vpc-mgmt` and `vpc-app` was that `vpc-app` had three tiers of subnets (public, private-app, private-persistence) and `vpc-mgmt` had two (public, private). As of 
 this release, since `vpc-app` allows you to disable any of the subnet tiers, it can now support 1, 2, or 3 tiers of subnets, as needed. Therefore, we recommend using `vpc-app` for all your VPCs in the future. If you&apos;re already using `vpc-mgmt`, we will continue to maintain it for a little while longer, but please be aware that, in a future release, once we feel the new functionality in `vpc-app` is fully baked, we will remove `vpc-mgmt` entirely.
-
+ 
 
 
 
@@ -914,7 +914,7 @@ this release, since `vpc-app` allows you to disable any of the subnet tiers, it 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 **This release contains backwards incompatible changes. Make sure to follow the instructions in the migration guide below!**
 
 The `vpc-flow-logs` module has been refactored to use the `private-s3-bucket` module under the hood to configure the S3 bucket.
@@ -946,6 +946,6 @@ The `vpc-flow-logs` module has been refactored to use the `private-s3-bucket` mo
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e17526f15c54dd8549c34994e1b8837c"
+  "hash": "ffa3d966ec5fd4a5ccedd546d10d8384"
 }
 ##DOCS-SOURCER-END -->

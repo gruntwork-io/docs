@@ -118,7 +118,7 @@ Here are the repos that were updated:
 
 BACKWARDS INCOMPATIBLE CHANGE
 
-The `iam_groups_for_cross_account_access` input parameter of the `iam-groups` module is now a list of maps rather than a map. This keeps the order of groups more constant when you add groups, rather than trying to delete and recreate all the old groups (note that if you remove a group, the order will still change, which is an unfortunate Terraform limitation: https://github.com/hashicorp/terraform/issues/14275).
+The `iam_groups_for_cross_account_access` input parameter of the `iam-groups` module is now a list of maps rather than a map. This keeps the order of groups more constant when you add groups, rather than trying to delete and recreate all the old groups (note that if you remove a group, the order will still change, which is an unfortunate Terraform limitation: https://github.com/hashicorp/terraform/issues/14275). 
 
 To use the new version of the `iam-groups` module, instead of specifying a map:
 
@@ -193,7 +193,7 @@ iam_groups_for_cross_account_access = [
 
 https://github.com/gruntwork-io/package-static-assets/pull/3: The `s3-cloudfront` module now allows you to use multiple domain names with your CloudFront distribution. To support this, the following parameters have been renamed:
 
-* Input: `create_route53_entry` -&gt; `create_route53_entries`
+* Input: `create_route53_entry` -&gt; `create_route53_entries` 
 * Input: `domain_name` -&gt; `domain_names` and is now a list
 * Output: `cloudfront_domain_name` -&gt; `cloudfront_domain_names` and is now a list
 
@@ -207,6 +207,6 @@ https://github.com/gruntwork-io/package-static-assets/pull/3: The `s3-cloudfront
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "f368c1c532d9b2bc04061d5349a4bdae"
+  "hash": "6301936af182661c703453907ea648e8"
 }
 ##DOCS-SOURCER-END -->

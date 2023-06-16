@@ -17,7 +17,6 @@ Here are the repos that were updated:
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
-- [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-vpc](#terraform-aws-vpc)
 
@@ -421,24 +420,6 @@ Here are the repos that were updated:
 
 
 
-## terraform-aws-security
-
-
-### [v0.0.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.0.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/26/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.0.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  - First release!
-
-
-</div>
-
-
-
 ## terraform-aws-server
 
 
@@ -478,7 +459,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  Add two new modules:
+  Add two new modules: 
 - `persistent-ebs-volume`: Scripts for mounting and unmounting EBS Volumes on your EC2 Instances for Volumes that need to persist between redeploys of the Instance.
 - `route53-helpers`: Scripts for working with Amazon&apos;s DNS Service, Route 53, including a script to add a DNS A record pointing to the instance&apos;s IP address.
 
@@ -553,6 +534,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e776bf157730d232de47e3f7481b7092"
+  "hash": "9eb1f5ecff042d88bf70a2a60f219741"
 }
 ##DOCS-SOURCER-END -->

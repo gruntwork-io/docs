@@ -52,7 +52,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - This release adds a wrapper module for the [`cloudwatch-logs-metric-filters&apos; module](https://github.com/gruntwork-io/module-aws-monitoring/blob/master/modules/logs/cloudwatch-logs-metric-filters/README.md). The wrapper creates metric filters as required by the CIS Foundations Benchmark.
 
@@ -69,7 +69,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release ships the tool [`generate-aws-config`](https://github.com/gruntwork-io/cis-compliance-aws/tree/master/modules/generate-aws-config) which can be used to generate a Terraform module that will provision and configure [AWS Config](https://aws.amazon.com/config/) on all enabled regions for the account.
 
@@ -90,7 +90,7 @@ This release ships the tool [`generate-aws-config`](https://github.com/gruntwork
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `rds` module now supports storage auto scaling by allowing you to set a new optional input variable called `max_allocated_storage`. To make this work, we have also changed the default storage type from `standard` (i.e., magnetic) to `gp2` (i.e., SSD). This is a **backwards incompatible** change; if you were using magnetic storage and wish to keep using it, you can override the default storage type by using the `storage_type` input variable.
 
@@ -106,7 +106,7 @@ This release ships the tool [`generate-aws-config`](https://github.com/gruntwork
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add support for Aurora Global Clusters and include an example.
 
@@ -122,7 +122,7 @@ This release ships the tool [`generate-aws-config`](https://github.com/gruntwork
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added the `cluster_resource_id` output to the Aurora module.
 - Fix for Broken Nightly Builds.
@@ -144,9 +144,9 @@ This release ships the tool [`generate-aws-config`](https://github.com/gruntwork
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- Fix a bug in the `run-ecs-task` script where it was not forcing the `aws` CLI output to be JSON, so the script would fail if a user had overridden the default on their systems to have text output.
+- Fix a bug in the `run-ecs-task` script where it was not forcing the `aws` CLI output to be JSON, so the script would fail if a user had overridden the default on their systems to have text output. 
 
 
 
@@ -161,7 +161,7 @@ This release ships the tool [`generate-aws-config`](https://github.com/gruntwork
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Switch the `ecs-service-with-alb` module from using `template_file` data sources to `local` variables for intermediate variables. This fixes an issue where `terraform plan` was incorrectly reporting ECS services being recreated.
 
@@ -179,7 +179,7 @@ This release ships the tool [`generate-aws-config`](https://github.com/gruntwork
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `ecs-fargate` module has been updated to only enable ecs deployment check when desired tasks &gt; 0. This allows you to set `desired_tasks` to 0 to scale down your service.
 - The `ecs-fargate` module has been updated to add task definition ARN as an output, under the name `aws_ecs_task_definition_arn`.
@@ -200,7 +200,7 @@ This release ships the tool [`generate-aws-config`](https://github.com/gruntwork
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix a bug in the `upgrade_cluster` script used in the `eks-cluster-control-plane` module where the script incorrectly redeployed the plugins when using a region other than `us-west-2`, even though the versions were already up to date.
 
@@ -217,7 +217,7 @@ This release ships the tool [`generate-aws-config`](https://github.com/gruntwork
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Docs improvements.
 - Improves module stability. Specifically, IAM resources now have a 30 second wait to avoid propagation errors.
@@ -235,7 +235,7 @@ This release ships the tool [`generate-aws-config`](https://github.com/gruntwork
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `eks-cluster-control-plane` now sets up the [IAM Roles for Service Accounts](https://aws.amazon.com/blogs/opensource/introducing-fine-grained-iam-roles-service-accounts/) feature by provisioning an OpenID Connect Provider that can be used by EKS to exchange Kubernetes Service Account Tokens for IAM credentials. As a part of this, we also released the [eks-iam-role-assume-role-policy-for-service-account module](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-iam-role-assume-role-policy-for-service-account), which can be used to construct the IAM policy to allow Service Accounts to assume the IAM Role. Refer to [the updated README](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-control-plane#how-do-i-associate-iam-roles-to-the-pods) for more information.
 
@@ -252,7 +252,7 @@ This release ships the tool [`generate-aws-config`](https://github.com/gruntwork
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The cluster upgrade script that runs to update the Kubernetes plugins installed in the EKS cluster now only updates the components when the versions mismatch.
 - The cluster upgrade script can now be turned off by setting the `use_upgrade_cluster_script` input variable to `false`.
@@ -270,7 +270,7 @@ This release ships the tool [`generate-aws-config`](https://github.com/gruntwork
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `eks-cluster-control-plane` module now supports upgrading Kubernetes components to the expected version for the Kubernetes version deployed on EKS. This is handled using a python script that is run everytime the kubernetes version is updated on the cluster. The deployed versions of each component follows what is described in [the official upgrade guide](https://docs.aws.amazon.com/eks/latest/userguide/update-cluster.html)
 
@@ -292,7 +292,7 @@ Additionally, this release includes a few code formatting and example updates th
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `nlb` [**REMOVED**]
 
 
@@ -315,7 +315,7 @@ Refer to the provided [migration guide](https://github.com/gruntwork-io/module-l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `alb`
 
 
@@ -339,7 +339,7 @@ Refer to the provided [migration guide](https://github.com/gruntwork-io/module-l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `cloudwatch-logs-metric-filters` module uses syntax that wasn&apos;t available prior to Terraform version `0.12.6`. This version is now required by the module.
 
@@ -356,7 +356,7 @@ Refer to the provided [migration guide](https://github.com/gruntwork-io/module-l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - This release adds the `cloudwatch-logs-metric-filters` module. The module accepts a map of filter objects and creates a metric filter with associated metric alarm. Use this module to monitor a CloudWatch Logs group for a particular pattern and be notified via SNS when the pattern is matched.
 - The update also bumps the sns-to-slack example to use an ubuntu18 server
 
@@ -377,7 +377,7 @@ Refer to the provided [migration guide](https://github.com/gruntwork-io/module-l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix bug where the `install-openvpn` script was ignoring all command-line args passed to it!
 - Add [documentation on how to connect to multiple VPN servers at the same time](https://github.com/gruntwork-io/package-openvpn#connecting-to-multiple-vpns).
@@ -394,7 +394,7 @@ Refer to the provided [migration guide](https://github.com/gruntwork-io/module-l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix a bug where command-line arguments were not being passed to the `install-openvpn` script.
 
@@ -414,7 +414,7 @@ Refer to the provided [migration guide](https://github.com/gruntwork-io/module-l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - We recently [added CloudWatch Logs support](https://github.com/gruntwork-io/module-security/releases/tag/v0.18.4) to this module. A regression was introduced that causes a perpetual diff on the cloudtrail resource. This release fixes the perpetual diff.
 
@@ -431,7 +431,7 @@ Refer to the provided [migration guide](https://github.com/gruntwork-io/module-l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add state machine permissions to `read_only` policy in `iam-policies` module.
 
@@ -447,7 +447,7 @@ Refer to the provided [migration guide](https://github.com/gruntwork-io/module-l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - A new variable, `sns_topic_already_exists`, is now required for the `aws-config` module. This addresses an issue with using `sns_topic_arn`. If the SNS topic was created in Terraform and the ARN was passed in via interpolation, the module would crash because Terraform can&apos;t resolve the count at plan time. We work around this limitation by instead using a boolean value which can be hard coded to `true` or `false` and thus does not hit this limitation.
 - Updated the IAM role in `aws-config` to account for a policy change made by AWS.
@@ -465,7 +465,7 @@ Refer to the provided [migration guide](https://github.com/gruntwork-io/module-l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 
 - Added some new policies to the `iam-policies` module: an &quot;IAM admin&quot; policy that permits `iam:*` (with MFA) but nothing else, and a new &quot;require MFA&quot; policy. It denies access to all actions except MFA self-management unless an MFA device is already enabled. You can attach this policy to users, groups, or roles alongside other policies that do not have an MFA condition of their own to ensure that an MFA device is be required for any of the combined actions to be allowed. For example, the AWS managed policies do not have an MFA condition, but if you attach this alongside them, MFA will be required.
@@ -490,9 +490,9 @@ Refer to the provided [migration guide](https://github.com/gruntwork-io/module-l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- The `s3-cloudfront` module now supports specifying multiple origin groups, which allows you to specify one or more S3 buckets to use as failovers in case the primary one fails. You can specify the failover buckets using the new input variables `failover_buckets` and `failover_bucket_website_endpoints`.
+- The `s3-cloudfront` module now supports specifying multiple origin groups, which allows you to specify one or more S3 buckets to use as failovers in case the primary one fails. You can specify the failover buckets using the new input variables `failover_buckets` and `failover_bucket_website_endpoints`. 
 
 
 </div>
@@ -510,7 +510,7 @@ Refer to the provided [migration guide](https://github.com/gruntwork-io/module-l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `run-pex-as-resource`
 - `run-pex-as-data-source`
 
@@ -531,7 +531,7 @@ The `run-pex-as-resource` and `run-pex-as-data-source` modules now exposes a var
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `run-pex-as-resource`
 
 
@@ -555,7 +555,7 @@ The `run-pex-as-resource` module now exposes the `null_resource` triggers and th
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `vpc-mgmt` module now adds a `Name` tag to its NAT Gateway(s) and allows you to specify custom tags via the optional `nat_gateway_custom_tags` input variable.
 
@@ -569,6 +569,6 @@ The `run-pex-as-resource` module now exposes the `null_resource` triggers and th
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "982238a973bdde0fd082cbbd3fd178de"
+  "hash": "0eaeb1c8abd8c614ace92f8cb922c042"
 }
 ##DOCS-SOURCER-END -->

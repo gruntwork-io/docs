@@ -146,7 +146,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  Add 3 new helpers to the `gruntwork-module-circleci-helpers` module:
+  Add 3 new helpers to the `gruntwork-module-circleci-helpers` module: 
 - `build-go-binaries`: automatically build binaries for Go apps.
 - `git-add-commit-push`: automatically add, commit, and push changes to Git.
 - `upload-github-release-assets`: automatically upload assets to a GitHub release.
@@ -565,6 +565,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "7fd5363bf8afe548739a882c117df835"
+  "hash": "5801a2d159de902949cdf7be8fec28aa"
 }
 ##DOCS-SOURCER-END -->

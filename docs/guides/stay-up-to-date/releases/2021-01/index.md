@@ -158,9 +158,9 @@ https://github.com/gruntwork-io/repo-copier/pull/45: Optimize Go module processi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- Fixes GitLab repo configuration
+- Fixes GitLab repo configuration 
 - Adds blueprint for RDS
 
 
@@ -181,7 +181,7 @@ https://github.com/gruntwork-io/repo-copier/pull/45: Optimize Go module processi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we&apos;ve updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
 
@@ -200,7 +200,7 @@ https://github.com/gruntwork-io/repo-copier/pull/45: Optimize Go module processi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Custom tags you pass to the `server-group` module via the `custom_tags` input variable will now be applied to the IAM role too.
 
@@ -221,7 +221,7 @@ https://github.com/gruntwork-io/repo-copier/pull/45: Optimize Go module processi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we&apos;ve updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
 
@@ -245,7 +245,7 @@ https://github.com/gruntwork-io/repo-copier/pull/45: Optimize Go module processi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix an interpolation-only expression so we no longer get a deprecation warning from Terraform.
 
@@ -262,7 +262,7 @@ https://github.com/gruntwork-io/repo-copier/pull/45: Optimize Go module processi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Fix bug in `jenkins-server` where it errors out when `snapshot_id` is not provided.
 
@@ -280,7 +280,7 @@ Fix bug in `jenkins-server` where it errors out when `snapshot_id` is not provid
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Fixes a bug in the `ecs-deploy-runner` module where the IAM permissions to grant access to the `repository_credentials_secrets_manager_arn` Secrets Manager entry to the ECS task execution role was not being configured.
 
@@ -301,7 +301,7 @@ Fixes a bug in the `ecs-deploy-runner` module where the IAM permissions to grant
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Refactor the NACL modules to allow specifying different CIDR blocks per subnet tier for allowing remote admin (e.g., SSH/RDP) access. This is important as the IP addresses you see in public subnets will be different than those in private subnets. **This was a backwards incompatible change, so make sure to read the migration guide below.**
 
@@ -317,7 +317,7 @@ Fixes a bug in the `ecs-deploy-runner` module where the IAM permissions to grant
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The two new modules `vpc-app-network-acls` and `vpc-mgmt-network-acls` were made on top of the existing modules from `terraform-aws-vpc`. They ensure that no Network ACLs allow ingress from 0.0.0.0/0 to remote server administration ports, as per the 5.1 requirement of CIS AWS Foundations Benchmark.
 
@@ -341,7 +341,7 @@ We are publishing soon a migration guide from CIS 1.2.0 to 1.3.0!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we&apos;ve updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
 
@@ -364,7 +364,7 @@ We are publishing soon a migration guide from CIS 1.2.0 to 1.3.0!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we&apos;ve updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
 
@@ -383,10 +383,10 @@ We are publishing soon a migration guide from CIS 1.2.0 to 1.3.0!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 
-
-- This release replaces the [legacy custom IAM role for ECS Auto Scaling](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-legacy-iam-roles.html) (This page now returns a 302 redirect. The original page remains [archived here](https://web.archive.org/web/20200923075721/https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-legacy-iam-roles.html).) with a [service-linked role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using-service-linked-roles.html) that is managed by AWS.
+- This release replaces the [legacy custom IAM role for ECS Auto Scaling](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-legacy-iam-roles.html) (This page now returns a 302 redirect. The original page remains [archived here](https://web.archive.org/web/20200923075721/https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-legacy-iam-roles.html).) with a [service-linked role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using-service-linked-roles.html) that is managed by AWS. 
 
 
 </div>
@@ -400,7 +400,7 @@ We are publishing soon a migration guide from CIS 1.2.0 to 1.3.0!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - We added parameters to supply existing IAM roles for the `ecs-service` module. These will be used in place of creating a new role: `existing_ecs_task_role_name` and `existing_ecs_task_execution_role_name`.
 - Small documentation corrections.
 
@@ -422,7 +422,7 @@ We are publishing soon a migration guide from CIS 1.2.0 to 1.3.0!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now turn off the default Fargate IAM Role created by the `eks-cluster-control-plane` module using the `create_default_fargate_iam_role` input variable.
 - You can now selectively control which Node Groups use the `instance_types` attribute on the Node Group or on the Launch Template by setting the `instance_types` attribute to `null`.
@@ -441,7 +441,7 @@ We are publishing soon a migration guide from CIS 1.2.0 to 1.3.0!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `aws-auth-merger` app now uses an informer for watching the config maps, making it more robust to connectivity issues and API refresh problems.
 
@@ -459,7 +459,7 @@ We are publishing soon a migration guide from CIS 1.2.0 to 1.3.0!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The core services modules are now compatible with helm provider 2.x. Note that support for helm provider 1.x is dropped. You will need to update your provider blocks to ensure they pull in the 2.x series of the provider in order to update to this release.
 
@@ -475,7 +475,7 @@ The core services modules are now compatible with helm provider 2.x. Note that s
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - This release is a minor bugfix to use the latest kubergrunt ([v0.6.9](https://github.com/gruntwork-io/kubergrunt/releases/tag/v0.6.9)) required dependency.
 
@@ -497,7 +497,7 @@ The core services modules are now compatible with helm provider 2.x. Note that s
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now set custom tags for the dead letter queue using the new `custom_dlq_tags` input variable.
 
@@ -518,7 +518,7 @@ The core services modules are now compatible with helm provider 2.x. Note that s
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we&apos;ve updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
 
@@ -541,7 +541,7 @@ The core services modules are now compatible with helm provider 2.x. Note that s
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - We have added support for Ubuntu 20.04 in testing and dropped support for Ubuntu 16.04
 - We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we&apos;ve updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
@@ -567,7 +567,7 @@ The core services modules are now compatible with helm provider 2.x. Note that s
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Warn user and error out if ec2-instance-connect is installed
 
@@ -587,7 +587,7 @@ The core services modules are now compatible with helm provider 2.x. Note that s
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 
 - Adds a new input to the `private-s3-bucket` module to configure [CORS](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html).
@@ -605,7 +605,7 @@ The core services modules are now compatible with helm provider 2.x. Note that s
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixes broken links on the website&apos;s repo browser by using root-relative links for README &amp; LICENSE file references.
 
@@ -625,7 +625,7 @@ The core services modules are now compatible with helm provider 2.x. Note that s
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 
 
@@ -644,7 +644,7 @@ The core services modules are now compatible with helm provider 2.x. Note that s
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - All the modules now support Ubuntu 20.04. Note that starting this release, support for Ubuntu 16.04 is dropped.
 - Fix a bug with CentOS 7.9 that prevented the public IP from being restored when attaching a new ENI to the instance.
@@ -668,7 +668,7 @@ NOTE: Starting this release, the `attach-eni` module no longer works with Ubuntu
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we&apos;ve updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
 
@@ -688,7 +688,7 @@ NOTE: Starting this release, the `attach-eni` module no longer works with Ubuntu
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now configure the update timeout for the `elasticsearch` module using the new `update_timeout` input variable. The default timeout has been increased from 60m to 90m, as we were seeing some intermittent timeouts on creation.
 - Bumped the `terraform-aws-ci` version number in the `mgmt` modules. This is mainly to pick up a fix for the `jenkins` module related to the default `snapshot_id` value.
@@ -708,7 +708,7 @@ NOTE: Starting this release, the `attach-eni` module no longer works with Ubuntu
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updates gruntwork-io/module-ci to v0.29.6
 - Updates gruntwork-io/kubergrunt to v0.6.9
@@ -722,7 +722,7 @@ NOTE: Starting this release, the `attach-eni` module no longer works with Ubuntu
 - Removes unused variable from memcached
 - Updates gruntwork-io/module-security to v0.44.7
 - Updates gruntwork-io/terraform-aws-eks to v0.32.0. This update is **backwards incompatible**. Please refer to [the terraform-aws-eks release notes](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.32.0) for more information.
-- Updates gruntwork-io/module-server to v0.10.0.
+- Updates gruntwork-io/module-server to v0.10.0. 
 
 
 
@@ -738,8 +738,8 @@ NOTE: Starting this release, the `attach-eni` module no longer works with Ubuntu
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
-- Updated the `landingzone/account-baseline-root` &amp; `landingzone/account-baseline-security` modules to include the new `iam-access-analyzer` module in order to be compliant with CIS 1.3.0. The additional `iam-access-analyzer` module is disabled by default to aid consistency and backwards compatibility between versions of the `landingzone`.
+  
+- Updated the `landingzone/account-baseline-root` &amp; `landingzone/account-baseline-security` modules to include the new `iam-access-analyzer` module in order to be compliant with CIS 1.3.0. The additional `iam-access-analyzer` module is disabled by default to aid consistency and backwards compatibility between versions of the `landingzone`. 
 - Updated the related examples to showcase how the `landingzone` module could use the `iam-access-analyzer` module. To enable the use of this feature, users will need to set `enable_iam_access_analyzer` to true in the variables.tf for each of these modules or examples.
 - Once all our libraries are upgraded and tested to be compatible with CIS 1.3.0 we’ll publish a migration guide to help you update.
 
@@ -756,7 +756,7 @@ NOTE: Starting this release, the `attach-eni` module no longer works with Ubuntu
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated the `vpc` service to expose several optional parameters available in the underlying `vpc-app` module that were not exposed before:
     - `custom_tags`, `vpc_custom_tags`, `public_subnet_custom_tags`, `private_app_subnet_custom_tags`, `private_persistence_subnet_custom_tags`, and `nat_gateway_custom_tags` for setting custom tags on the various resources in the VPC.
@@ -778,7 +778,7 @@ NOTE: Starting this release, the `attach-eni` module no longer works with Ubuntu
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 You can now pass in the `hosted_zone_id` directly as opposed to looking it up via domain names when configuring route 53 records in the `public-static-website` module.
 
@@ -799,10 +799,10 @@ You can now pass in the `hosted_zone_id` directly as opposed to looking it up vi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - CircleCI improvements: Fix CircleCI Contexts and switch from Dep to Go Modules
-- **[NEW MODULE]** Request quota increase for an AWS resource
+- **[NEW MODULE]** Request quota increase for an AWS resource 
 
 
 </div>
@@ -820,11 +820,11 @@ You can now pass in the `hosted_zone_id` directly as opposed to looking it up vi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
+In [v0.12.3](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.12.3), we added support for managing the [default network ACL](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl). However, we also associated the default NACL with the subnets in the VPC. This caused a perpetual diff problem for users that manage the network ACLs separately, such as when using the `vpc-app-network-acls` module. 
 
-In [v0.12.3](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.12.3), we added support for managing the [default network ACL](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl). However, we also associated the default NACL with the subnets in the VPC. This caused a perpetual diff problem for users that manage the network ACLs separately, such as when using the `vpc-app-network-acls` module.
-
-In this release, we have updated the behavior to not explicitly apply the default network ACL by default.
+In this release, we have updated the behavior to not explicitly apply the default network ACL by default. 
 
 
 </div>
@@ -838,7 +838,7 @@ In this release, we have updated the behavior to not explicitly apply the defaul
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we&apos;ve updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
 
@@ -855,6 +855,6 @@ In this release, we have updated the behavior to not explicitly apply the defaul
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "0494737cf1e527276b305ae20b8d8fb0"
+  "hash": "ae276dbdc21264e8d0c5279e94e365f6"
 }
 ##DOCS-SOURCER-END -->

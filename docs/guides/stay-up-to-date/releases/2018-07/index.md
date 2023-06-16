@@ -87,7 +87,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -104,7 +104,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-security/pull/103:
+  https://github.com/gruntwork-io/module-security/pull/103: 
 
 1. `ssh-grunt` now signs all requests to Houston with its AWS credentials. This is a backwards incompatible change: all `ssh-grunt houston xxx` commands now all take in a required `--houston-region` param (AWS region where Houston is deployed) and an optional `--iam-role` param (IAM role to assume when signing the request).
 
@@ -118,6 +118,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "4f879adcb0621c302e712c7f6d102fde"
+  "hash": "c2139f387a2c1355ad5ff4e0b3303cc3"
 }
 ##DOCS-SOURCER-END -->

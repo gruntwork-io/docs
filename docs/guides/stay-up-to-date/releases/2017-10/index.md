@@ -130,7 +130,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-asg/pull/12: Clean up the tmp folder for boto3 before trying to extract into it again.
+  https://github.com/gruntwork-io/module-asg/pull/12: Clean up the tmp folder for boto3 before trying to extract into it again. 
 
 </div>
 
@@ -147,7 +147,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -227,7 +227,7 @@ package-openvpn now has better support for multi-account setups. That is, if you
 This change is backwards compatible from a code perspective, but it changes the name of your SQS queues and their permissions, so you will need to redeploy your OpenVPN server to pick up the changes:
 
 1. Build a new OpenVPN AMI with this version of the `install-openvpn` module.
-1. Deploy the new AMI with this version of the `openvpn-server` module.
+1. Deploy the new AMI with this version of the `openvpn-server` module. 
 
 </div>
 
@@ -267,6 +267,6 @@ This change is backwards compatible from a code perspective, but it changes the 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "cb2e955c0470e0458e45949888ca36c4"
+  "hash": "150e76164bebd15ee8f3b904e475fac4"
 }
 ##DOCS-SOURCER-END -->

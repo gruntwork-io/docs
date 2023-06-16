@@ -145,7 +145,7 @@ Updates in this version:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The `availability_zones` input has been dropped from the `asg-rolling-deploy` module, which is only used in EC2-Classic mode. To control availability zones, use the `vpc_subnet_ids` input variable instead.
 
@@ -162,7 +162,7 @@ The `availability_zones` input has been dropped from the `asg-rolling-deploy` mo
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Adds the `arn` of the ASG as an output.
 
@@ -184,7 +184,7 @@ Adds the `arn` of the ASG as an output.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix the default parameter-group setting value when using clustered mode.
 
@@ -205,7 +205,7 @@ Adds the `arn` of the ASG as an output.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `build-packer-artifact` now supports a new `--idempotent` flag. When set as `true` (e.g. `--idempotent true`), the `build-packer-artifact` script will search your AWS account for an AMI that matches the template, and if it exists, will not attempt to build a new AMI. This is useful for preserving the integrity of AMI versions in CI/CD workflows.
 
@@ -225,7 +225,7 @@ See [the updated docs](https://github.com/gruntwork-io/module-ci/tree/master/mod
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update `install-jenkins` to the latest Jenkins version (`2.235.5`), switch to `https` URLs for the APT sources, and add `DEBIAN_FRONTEND=noninteractive` to all `apt-get` calls to ensure the installs don&apos;t show interactive prompts.
 
@@ -242,7 +242,7 @@ See [the updated docs](https://github.com/gruntwork-io/module-ci/tree/master/mod
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 You can now query the available containers and scripts in the `ecs-deploy-runner` using the `--describe-containers` command. Refer to [the updated documentation](https://github.com/gruntwork-io/module-ci/blob/master/modules/infrastructure-deployer/core-concepts.md#how-do-i-invoke-the-ecs-deploy-runner) for more info.
 
@@ -261,7 +261,7 @@ Note that to use the new feature, you will need to update both `ecs-deploy-runne
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Starting this release, tests are run against v3.x series of the AWS provider. Note that this release is backwards compatible with v2.x of the AWS provider. However, there is no guarantee that backwards compatibility with v2.x of the AWS provider will be maintained going forward.
 
@@ -278,7 +278,7 @@ Starting this release, tests are run against v3.x series of the AWS provider. No
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release allows users to include environment variables in the ECS deploy-runner containers. To include an environment variable, use the `environment_vars` field of the `container_images` variable in the `ecs-deploy-runner` and `ecs-deploy-runner-standard-configuration` modules.
 
@@ -294,7 +294,7 @@ This release allows users to include environment variables in the ECS deploy-run
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `ecs-deploy-runner` now returns the ECS cluster EC2 worker pool IAM role and ASG name.
 
@@ -315,7 +315,7 @@ This release allows users to include environment variables in the ECS deploy-run
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The `cross-account-iam-roles` module has been updated to include a support role, which is required for compliance with the Benchmark.
 
@@ -333,7 +333,7 @@ The `cloudtrail` module has been updated to work with AWS provider v3.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Starting this release, tests are run against v3.x series of the AWS provider. Note that this release is backwards compatible with v2.x of the AWS provider. However, there is no guarantee that backwards compatibility with v2.x of the AWS provider will be maintained going forward.
 
@@ -350,7 +350,7 @@ Starting this release, tests are run against v3.x series of the AWS provider. No
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `custom-iam-entity` module now supports updating the max session duration of the IAM role.
 
@@ -371,7 +371,7 @@ Starting this release, tests are run against v3.x series of the AWS provider. No
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Set a `default_capacity_provider_strategy` when providing capacity providers for the ECS cluster.
 
@@ -388,7 +388,7 @@ Set a `default_capacity_provider_strategy` when providing capacity providers for
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Add prefix to the ECS capacity providers to support ECS cluster names that begin with `ecs` or `aws`. Note that upgrading to this release will recreate the capacity providers, but will not cause downtime to your services or ECS cluster.
 
@@ -405,7 +405,7 @@ Add prefix to the ECS capacity providers to support ECS cluster names that begin
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 *Update: when doing this upgrade, we accidentally missed updating the `ecs-daemon-service` module, so it&apos;s still pinned to AWS Provider 2.x. If you&apos;re using that module, please update to release [v0.22.0](https://github.com/gruntwork-io/module-ecs/releases/tag/v0.22.0) instead.*
 
@@ -424,9 +424,9 @@ Starting this release, tests are run against v3.x series of the AWS provider. No
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-This release implements a workaround to an issue that can occur when the AWS API rejects updates made to ECS tasks of the same family that occur too closely together in time. This is sometimes encountered when attempting to update both the regular and canary task definitions simultaneously.
+This release implements a workaround to an issue that can occur when the AWS API rejects updates made to ECS tasks of the same family that occur too closely together in time. This is sometimes encountered when attempting to update both the regular and canary task definitions simultaneously. 
 
 
 
@@ -447,7 +447,7 @@ This release implements a workaround to an issue that can occur when the AWS API
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix issue an issue with how the `ecs-scripts` module could exit with an error when editing `crontab`. Fix a number of ShellCheck warnings.
 
@@ -470,7 +470,7 @@ This release implements a workaround to an issue that can occur when the AWS API
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The EKS cluster control plane upgrade script now uses the right image tags for the core components. Additionally, this release drops support for k8s `1.13` and `1.14` in the upgrade script.
 
@@ -486,7 +486,7 @@ The EKS cluster control plane upgrade script now uses the right image tags for t
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Fix bug where the control plane upgrade scripts fail on python3.
 
@@ -502,7 +502,7 @@ Fix bug where the control plane upgrade scripts fail on python3.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `eks-cluster-managed-workers` will now ignore changes to `desired_size` after the initial deployment, to be compatible with the cluster autoscaler.
 
@@ -523,7 +523,7 @@ Fix bug where the control plane upgrade scripts fail on python3.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `lb-listener-rules` module now lets you use HTTP headers in conditions via the `http_headers` param.
 
@@ -540,7 +540,7 @@ Fix bug where the control plane upgrade scripts fail on python3.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The [`arn_suffix`](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb#arn_suffix) attribute is now available as an output from the `alb` module.
 
@@ -562,7 +562,7 @@ The [`arn_suffix`](https://registry.terraform.io/providers/hashicorp/aws/latest/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Use python to manage sleeps to delay resource creation for IAM propagation. This means that you must have python installed on your machine to use this module.
 
@@ -583,7 +583,7 @@ Use python to manage sleeps to delay resource creation for IAM propagation. This
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Resolve `shellcheck` issues in `aws-auth`.
 
@@ -600,7 +600,7 @@ Resolve `shellcheck` issues in `aws-auth`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 You can now set the max session duration for human and machine cross account IAM roles managed in the `account-baseline` modules using the `max_session_duration_human_users` and `max_session_duration_machine_users` input vars.
 
@@ -617,7 +617,7 @@ You can now set the max session duration for human and machine cross account IAM
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release introduces a new module `kms-grant-multi-region` that allows you to manage KMS grants for KMS keys across multiple regions.
 
@@ -634,18 +634,18 @@ This release introduces a new module `kms-grant-multi-region` that allows you to
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 **This release contains backwards incompatible changes. Make sure to follow the instructions in the migration guide below!**
 
 * Refactored the `account-baseline-xxx` modules to work around several chicken-and-egg problems related to AWS Config / CloudTrail. The initial deployment, as well as adding subsequent child accounts, can now be done in a single `apply` per account, rather than the previous process, which required lots of back-and-forth and multiple `apply` calls. Here&apos;s an overview of the changes:
 
-    * Add first-class support for marking one of the child accounts as a &quot;logs account&quot; that should be used for aggregating AWS Config and CloudTrail data from all accounts. The `account-baseline-root` module can now automatically create the logs account, authenticate to it, create an S3 bucket for AWS Config and an S3 bucket and KMS CMK for CloudTrail in that account, and then configure the root account to send all AWS Config and CloudTrail data to those S3 buckets. In the past, you had to disable AWS Config and CloudTrail on the very initial deployment, as the logs account did not exist, but with this release, you can leave it enabled, run `apply` once,
+    * Add first-class support for marking one of the child accounts as a &quot;logs account&quot; that should be used for aggregating AWS Config and CloudTrail data from all accounts. The `account-baseline-root` module can now automatically create the logs account, authenticate to it, create an S3 bucket for AWS Config and an S3 bucket and KMS CMK for CloudTrail in that account, and then configure the root account to send all AWS Config and CloudTrail data to those S3 buckets. In the past, you had to disable AWS Config and CloudTrail on the very initial deployment, as the logs account did not exist, but with this release, you can leave it enabled, run `apply` once, 
     and everything will &quot;just work.&quot;
 
     * Switch from org-level AWS Config Rules to account-level AWS Config Rules. The Rules are exactly the same, but are now managed within each account, rather than solely at the root account. This is slightly less convenient / secure, but it works around a major chicken-and-egg problem when creating new child accounts. Org-level rules require every single child account to have a Config Recorder or deployment fails, so in the past, you had to initially disable Config Rules whenever you added a new child account, then create a Config Recorder in that account, and then re-enable the Rules. This process has now been reduced to a single `apply` per account.
 
-* Updated the `cloudtrail` module to:
+* Updated the `cloudtrail` module to: 
     * Use the `kms-master-key` module to create and manage the KMS CMK rather than custom code. This makes the code more DRY and maintainable.
     * Properly support sharing a KMS CMK across multiple accounts. In the past, the `cloudtrail` module didn&apos;t have this ability and the `account-baseline-xxx` modules were backfilling the missing permissions, but now it&apos;s all consolidated into the `cloudtrail` module.
 
@@ -677,7 +677,7 @@ This release introduces a new module `kms-grant-multi-region` that allows you to
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Starting this release, tests are run against v3.x series of the AWS provider. Note that this release is backwards compatible with v2.x of the AWS provider. However, there is no guarantee that backwards compatibility with v2.x of the AWS provider will be maintained going forward.
 
@@ -694,7 +694,7 @@ Starting this release, tests are run against v3.x series of the AWS provider. No
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - There appears to be a [Terraform bug](https://github.com/gruntwork-io/module-security/issues/312) where, when you run `destroy`, you can get errors about (valid) references to resources that use `count` or `for_each` (e.g., `foo.bar[0]`). This release has a workaround for this issue, so hopefully, `destroy` works correctly now.
 
@@ -714,7 +714,7 @@ Starting this release, tests are run against v3.x series of the AWS provider. No
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release adds read only permissions to the `read_only` IAM policy for the [Performance Insights](https://aws.amazon.com/rds/performance-insights/) service.
 
@@ -731,7 +731,7 @@ This release adds read only permissions to the `read_only` IAM policy for the [P
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 
 Allows an empty list of users and admins in cloudtrail-created KMS keys. Previously, the `kms_key_user_iam_arns` and `kms_key_administrator_iam_arns` variables were required. They are now optional and default to an empty list. If they are left as empty, then `allow_cloudtrail_access_with_iam` must be `true`.
@@ -753,7 +753,7 @@ Allows an empty list of users and admins in cloudtrail-created KMS keys. Previou
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release includes a fix for the `ec2-backup` module, making its tag configurations more flexible. It also fixes a few links in the `module-server` documentation.
 
@@ -779,7 +779,7 @@ This release includes a fix for the `ec2-backup` module, making its tag configur
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 **Updates to `ecs-service` and `ecs-cluster`**
 This release introduces a number of bug fixes for the `ecs-service` and `ecs-cluster` modules. For details, see #158 and #163.
@@ -797,7 +797,7 @@ This release introduces a number of bug fixes for the `ecs-service` and `ecs-clu
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 All packer templates now support using a custom KMS CMK for encrypting the snapshot and root volume.
 
@@ -814,7 +814,7 @@ All packer templates now support using a custom KMS CMK for encrypting the snaps
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updates the ec2-baseline to use the latest version of module-security
 - Updates each of the `account-baseline-*` modules to use the latest version of module-security
@@ -837,7 +837,7 @@ All packer templates now support using a custom KMS CMK for encrypting the snaps
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 New Modules:
 
@@ -911,7 +911,7 @@ Service Management (`services`)
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release introduces two changes:
 
@@ -931,6 +931,6 @@ This release introduces two changes:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "2bf643fdcd24a0bc6d88eeeebd270d05"
+  "hash": "cf4b0d6cc6b3a0a2b7eca57af93c4faf"
 }
 ##DOCS-SOURCER-END -->

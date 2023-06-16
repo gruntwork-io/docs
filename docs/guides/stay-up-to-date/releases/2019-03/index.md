@@ -29,7 +29,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `ec2-backup`
 
 
@@ -49,7 +49,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `jenkins-server`
 
 
@@ -73,7 +73,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `ecs-service` [**BREAKING**]
 * `ecs-service-with-alb` [**BREAKING**]
 
@@ -110,7 +110,7 @@ Special thanks to @fieldawarepiotr for contributions to help implement the chang
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release introduces `eks-scripts`, a new module that contains helper scripts for working with EKS. The release ships with the script `map-ec2-tags-to-node-labels`, a python script that can run on the EC2 instance acting as an EKS worker to pull in the tags associated with the EC2 instance and map it to kubernetes node labels. You can then take the output to pass to the bootstrap script to set the labels in kubernetes.
 
@@ -133,7 +133,7 @@ Additionally, this release introduces a few bug fixes for working with multiple 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release does not introduce any changes to the underlying module features. Instead, this release focuses on documentation, examples, and test stability:
 
@@ -160,14 +160,14 @@ This release does not introduce any changes to the underlying module features. I
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `kinesis`
 
 
 The `kinesis` module now supports server-side encryption.
 
 
-* #16
+* #16 
 
 
 </div>
@@ -185,14 +185,14 @@ The `kinesis` module now supports server-side encryption.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `s3-cloudfront`
 
 
-* Fix compatibility issues with AWS provider 2.0.0
+* Fix compatibility issues with AWS provider 2.0.0 
 
 
-* #19
+* #19 
 
 </div>
 
@@ -209,7 +209,7 @@ The `kinesis` module now supports server-side encryption.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `vpc-app`
 * `vpc-peering`
 
@@ -232,6 +232,6 @@ The `kinesis` module now supports server-side encryption.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "eff3f2e57f3d00bb4a90099c0d01a270"
+  "hash": "03af06a544da1523efa37729ca19d383"
 }
 ##DOCS-SOURCER-END -->

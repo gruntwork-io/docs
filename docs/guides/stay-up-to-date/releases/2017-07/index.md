@@ -135,7 +135,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -234,7 +234,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-ecs/pull/34:
+  https://github.com/gruntwork-io/module-ecs/pull/34: 
 
 * Fix the AWS `get-login` command we use in the `ecs-scripts` module so it works with the latest versions of Docker.
 * Add support for using the GitLab Docker registry.
@@ -331,7 +331,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -462,6 +462,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "01b41ccfdbf308ed4b35e7b5e1127fe5"
+  "hash": "f8a9aad5615a43ef393be8c66b90fa2e"
 }
 ##DOCS-SOURCER-END -->

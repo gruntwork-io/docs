@@ -126,7 +126,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Bumped underlying `kaniko` image version to `1.7.0`
 
@@ -144,7 +144,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Exposed ability to set the version of `packer` that gets installed by `build-packer-artifact` when it is not available.
 
@@ -161,7 +161,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Bumped the default versions of various tools in ECS Deploy Runner. The following versions were updated:
 
@@ -185,7 +185,7 @@ If you wish to keep the old version, pass in the respective variables as build a
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 
 - Bumped default `kaniko` version installed to `v1.5.2`
@@ -209,7 +209,7 @@ If you wish to keep the old version, pass in the respective variables as build a
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - chore(deps): update dependency gruntwork-io/terraform-aws-service-catalog to v0.63.1
 - chore(deps): update dependency gruntwork-io/terraform-aws-vpc to v0.17.7
@@ -228,7 +228,7 @@ If you wish to keep the old version, pass in the respective variables as build a
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - `vpc`: Makes Flow Logs CloudWatch IAM role and log group name configurable
 - Updates dependency `gruntwork-io/terraform-aws-security` to `v0.55.4`
@@ -247,7 +247,7 @@ If you wish to keep the old version, pass in the respective variables as build a
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Introduces two improvements to the `vpc` module:
 - NACLs creation will no longer be attempted for the subnets that are not created
@@ -273,7 +273,7 @@ This release also updates the following dependency version:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Exposed ability to configure `deployment_controller` on ECS services.
 
@@ -290,7 +290,7 @@ This release also updates the following dependency version:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated `roll-out-ecs-cluster-update.py` script to increase the max size of the ASG if there is not enough capacity to replace all the nodes.
 - Various updates to docs and tests.
@@ -312,7 +312,7 @@ This release also updates the following dependency version:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated to the latest chart and app versions (`v1.3.2` and `v2.3.0`) of AWS LB Controller.
     - Note that this release is marked as backward compatible despite the underlying version bump being marked as backward incompatible. This is because the backward incompatibilities are addressed in the module. No change is necessary to your configuration of Services and Ingress resources when updating to this version.
@@ -334,7 +334,7 @@ This release also updates the following dependency version:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated `map_ec2_tags_to_node_labels.py` to use IMDSv2
 
@@ -352,7 +352,7 @@ This release also updates the following dependency version:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Refactored resource naming to use `name_prefix` instead of `name` to support create before destroy lifecycle rules.
 
@@ -368,7 +368,7 @@ This release also updates the following dependency version:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Expose `permissions_boundary` field for cluster IAM role
 
@@ -385,7 +385,7 @@ This release also updates the following dependency version:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated the `kubergrunt` version that gets installed to latest.
 
@@ -407,7 +407,7 @@ This release also updates the following dependency version:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix security group preventing lambda-vpc example from working. Update known issues
 
@@ -427,7 +427,7 @@ This release also updates the following dependency version:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated cross dependencies in examples to latest version
 - Fix outdated docs on setting up cloudfront with lambda edge
@@ -435,7 +435,7 @@ This release also updates the following dependency version:
 - Upgrade to python runtime 3.9
 - Fix minor typos
 - Fix line break in middle of paragraph
-- Fix typo: lamda -&gt; lambda **[BACKWARD INCOMPATIBLE].**
+- Fix typo: lamda -&gt; lambda **[BACKWARD INCOMPATIBLE].** 
 
 This release fixes a typo in the aws_iam_role_policy resource, changing the name from &quot;network_interfaces_for_lamda&quot; to &quot;network_interfaces_for_lambda&quot;. This is a backward incompatible change, requiring re-creation of the aws_iam_role_policy.
 
@@ -465,9 +465,9 @@ If you wish to avoid this brief downtime, you can use the terraform state mv ope
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- Migrate openvpn-host example to IMDSv2. This is a backward compatible change that uses AWS EC2 Instance Metadata Service Version 2 for enhanced security.
+- Migrate openvpn-host example to IMDSv2. This is a backward compatible change that uses AWS EC2 Instance Metadata Service Version 2 for enhanced security. 
 
 
 
@@ -491,9 +491,9 @@ If you wish to avoid this brief downtime, you can use the terraform state mv ope
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-With this release, we are improving the documentation around how to best use this module for development and learning purposes, and how to use it for production environments. The aim is to make it easier to onboard new users and maintainers of this repo.
+With this release, we are improving the documentation around how to best use this module for development and learning purposes, and how to use it for production environments. The aim is to make it easier to onboard new users and maintainers of this repo. 
 
 
 
@@ -514,7 +514,7 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `iam-users` module can now store the access keys for an IAM user in AWS Secrets Manager (if you set `store_access_keys_in_secrets_mgr` to `true`) in addition to encrypting the access keys with PGP. This is primarily useful for machine users, where you want the access keys stored somewhere multiple team members can access them (whereas with PGP, typically only one person has the private key).
 
@@ -535,7 +535,7 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Migrate example: persistent-ebs-volume to IMDSv2. These changes update the `user-data.sh` script and the example itself to use Instance Metadata Service (IMDS) Version 2, which is specially hardened against several attack attack vectors.
 - **[New Module]** `require-instance-metadata-version`. This module allows you to require use of a particular version of the Instance Metadata Service. See the module for more details and usage instructions.
@@ -556,7 +556,7 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added ability to bring your own IAM role to single-server. There is now a new input variable `create_iam_role` (default `true`), and when it is `false`, the module will lookup the IAM role using the `iam_role_name` variable instead of creating a new one.
 
@@ -578,7 +578,7 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Exposed feature flags to shut off `kubergrunt` features when deploying an EKS cluster with the `eks-cluster` module.
 - Exposed ability to set `terminationGracePeriodSeconds` on pods deployed with the `k8s-service` module.
@@ -596,7 +596,7 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update dependency gruntwork-io/terraform-aws-static-assets to v0.12.2
 - Update kubernetes provider version to workaround bug
@@ -613,11 +613,11 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Exposed the ability to set custom tags on Jenkins.
 - Updated `ecs-cluster` to allow disallowing certain Availability Zones for the worker pool.
-- Updated variable description for container definitions in `ecs-service` to be more accurate with what is expected
+- Updated variable description for container definitions in `ecs-service` to be more accurate with what is expected 
 - Bumped the following dependencies to latest:
     - Update dependency gruntwork-io/terratest to v0.38.2
     - Update dependency helm/helm to v3.7.1
@@ -646,7 +646,7 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixed source of perpetual diff in eks-cluster module
 - Exposed `permissions_boundary` field on IAM roles for EKS cluster
@@ -665,7 +665,7 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Switches the python-based `sleep` `null_resource` to use the native `time_sleep` resource to wait for account creation.
 
@@ -683,7 +683,7 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Exposed the ability to pass arbitrary args to `bootstrap.sh` script on EKS worker nodes.
 
@@ -700,7 +700,7 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updates dependency gruntwork-io/terraform-aws-monitoring to v0.30.2
 - Updates dependency gruntwork-io/terraform-aws-vpc to v0.17.7
@@ -718,7 +718,7 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update dependency gruntwork-io/terraform-aws-ecs to v0.31.5
 - Update dependency gruntwork-io/terraform-aws-static-assets to v0.12.1. NOTE: This release is backward incompatible. Please refer to the [migration guide](https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.12.0) from the underlying module for more info.
@@ -736,7 +736,7 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added the ability to modify the VPC flowlogs CloudWatch IAM role and name of the CloudWatch Log Group.
 
@@ -753,7 +753,7 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added ability to manage non-alias subdomain records on public zones in the `route53` module. Use the newly added `subdomains` field on the `public_zones` input variable to configure the records.
 
@@ -770,7 +770,7 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Exposed ability to manually configure the CIDR blocks for the subnets on the VPC.
 
@@ -787,7 +787,7 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Bump terraform-aws-security to v0.53.7
 
@@ -805,7 +805,7 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Pass through `routing_rules` and `viewer_protocol_policy` through to the underlying modules in the public-static-website service.
 
@@ -826,7 +826,7 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update CODEOWNERS
 - Enhance public s3-cloudfront example to include lambda@edge
@@ -849,7 +849,7 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Bugfix, EFS endpoint does not support creating a SecurityGroup
 - Support for ECS telemetry endpoint added
@@ -867,7 +867,7 @@ With this release, we are improving the documentation around how to best use thi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Adds `policy` variable for the VPC Gateway Endpoint resources
 - Adds SES Interface Endpoint
@@ -882,6 +882,6 @@ With this release, we are improving the documentation around how to best use thi
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "c3e7afc821b276c0989be5b1dd9782db"
+  "hash": "51406ebe32dca0296379e8d4c7efd827"
 }
 ##DOCS-SOURCER-END -->

@@ -42,10 +42,10 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+  
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -62,7 +62,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add Terraform validation test that will scan the entire repo for Terraform modules and run `terraform init` and `terraform validate` on each.
 - Replace `gofmt` with `goimports`
@@ -85,12 +85,12 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -107,7 +107,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add Terraform Validate test
 - Replace `gofmt` with `goimports`
@@ -130,7 +130,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Gracefully handle error messages for starting the deploy runner task
 
@@ -148,11 +148,11 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -170,7 +170,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated default `terraform-aws-ci` version tag used in `deploy-runner` image to use `0.37.2`.
 
@@ -187,7 +187,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Added a new module `monorepo-helpers` that contains scripts that help with adapting CI/CD pipelines for infrastructure code to monorepo setups. These scripts can be used to setup pipelines that only run tests on the infrastructure modules that changed (as opposed to always running all tests on every change). Refer to [the module docs](https://github.com/gruntwork-io/terraform-aws-ci/tree/master/modules/monorepo-helpers) for more info.
 
@@ -232,9 +232,9 @@ Added a new module `monorepo-helpers` that contains scripts that help with adapt
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- Replace `gofmt` with `goimports` in the pre-commit configuration.
+- Replace `gofmt` with `goimports` in the pre-commit configuration. 
 
 
 
@@ -251,7 +251,7 @@ Added a new module `monorepo-helpers` that contains scripts that help with adapt
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 You can now filter in or out deleted folders when calling `git-updated-folders`. This can be used to implement destroy workflows in your pipelines. Refer to [the updated documentation](https://github.com/gruntwork-io/terraform-aws-ci/tree/master/modules/terraform-helpers#deleted-folders) for more information about this feature.
 
@@ -268,9 +268,9 @@ You can now filter in or out deleted folders when calling `git-updated-folders`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- You can now enable deletion protection for the ALB that is created for the Jenkins server.
+- You can now enable deletion protection for the ALB that is created for the Jenkins server. 
 
 
 
@@ -289,7 +289,7 @@ You can now filter in or out deleted folders when calling `git-updated-folders`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - We have changed an upstream module that creates S3 buckets to require MFA when performing delete operations. From this release, only the bucket owner that is logged in as AWS root account can enable MFA Delete feature and perform DELETE actions on S3 buckets. This is a more secure default and the one recommended by the CIS AWS Foundations v1.4 benchmark. This is a backwards incompatible change, so please see the migration guide below. This applies to the `cloudtrail`, `aws-config-multi-region` and account baseline modules.
 - Dependency updates
@@ -308,7 +308,7 @@ You can now filter in or out deleted folders when calling `git-updated-folders`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added ability to control password policy variables that CIS has no preference on
 - Added validation logic to ensure minimum password length can not be set below 14
@@ -326,7 +326,7 @@ You can now filter in or out deleted folders when calling `git-updated-folders`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix bug where VPC module did not plumb through the variables for configuring NACL rules for peering.
 
@@ -343,7 +343,7 @@ You can now filter in or out deleted folders when calling `git-updated-folders`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Remove parallelism limit for go tests
 - Update CODEOWNERS
@@ -377,11 +377,11 @@ You can now filter in or out deleted folders when calling `git-updated-folders`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -398,7 +398,7 @@ You can now filter in or out deleted folders when calling `git-updated-folders`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now allow major version upgrades on the `aurora` module by setting the new `allow_major_version_upgrade` input variable.
 
@@ -415,7 +415,7 @@ You can now filter in or out deleted folders when calling `git-updated-folders`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Added ability to set `backup_retention_period` on RDS read replicas via the `replica_backup_retention_period` input variable.
 
@@ -433,7 +433,7 @@ Added ability to set `backup_retention_period` on RDS read replicas via the `rep
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Replace `go fmt` in the pre-commit configuration file with `goimports`
 
@@ -452,7 +452,7 @@ Added ability to set `backup_retention_period` on RDS read replicas via the `rep
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The `apply_immediately` flag now propagates to the replica instances for the `rds` module. Previously it was only being set on the leader instance.
 
@@ -473,7 +473,7 @@ The `apply_immediately` flag now propagates to the replica instances for the `rd
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added ability to configure `associate_public_ip_address` in the Launch Configuration used to manage the ASG for the ECS cluster.
 
@@ -490,12 +490,12 @@ The `apply_immediately` flag now propagates to the replica instances for the `rd
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -511,7 +511,7 @@ The `apply_immediately` flag now propagates to the replica instances for the `rd
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - A minor update to the CODEOWNERS file.
 - We made `load_balancing_algorithm_type` configurable.
@@ -528,7 +528,7 @@ The `apply_immediately` flag now propagates to the replica instances for the `rd
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add terraform validate test
 - Replace `gofmt` with `goimports`
@@ -549,7 +549,7 @@ The `apply_immediately` flag now propagates to the replica instances for the `rd
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The default Kubernetes version deployed by the control plane module has been updated to `1.21`. If you wish to maintain backward compatibility with your existing setup, you will want to configure the `kubernetes_version` parameter to the version of Kubernetes you are currently using. Note that `1.21` requires kubergrunt version `0.7.3` and above.
 - The default cluster-autoscaler version has been updated to `1.21`. If you wish to maintain backward compatibility with your existing setup, you will want to configure the `cluster_autoscaler_version` input variable.
@@ -567,12 +567,12 @@ The `apply_immediately` flag now propagates to the replica instances for the `rd
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated `eks-aws-auth-merger` and `eks-k8s-role-mapping` modules to use kubernetes terraform provider version 2.x. You must update your provider configuration to be compatible with version 2.x. Refer to [the official upgrade guide](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/guides/v2-upgrade-guide) for more information.
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -589,7 +589,7 @@ The `apply_immediately` flag now propagates to the replica instances for the `rd
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added new variable `pod_resources` which can be used to control the resource allocation for the `cluster-autoscaler`.
 
@@ -606,7 +606,7 @@ The `apply_immediately` flag now propagates to the replica instances for the `rd
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added ability to pass in an IAM role ARN directly to avoid depending on a data source in the workers modules, which can be a source of perpetual diffs.
 
@@ -624,7 +624,7 @@ The `apply_immediately` flag now propagates to the replica instances for the `rd
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix RBAC permissions for `aws-auth-merger` so that it can create a new `aws-auth` ConfigMap when it doesn&apos;t exist.
 
@@ -641,7 +641,7 @@ The `apply_immediately` flag now propagates to the replica instances for the `rd
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Fix undocumented variable `multi_instance_overrides` so you can also set `weighted_capacity`. Also add field to documentation.
 
@@ -686,7 +686,7 @@ Update the `multi_instance_overrides` field to:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add ability to update the aws-for-fluent-bit version that is installed (`var.aws_for_fluent_bit_version`)
 
@@ -707,11 +707,11 @@ Update the `multi_instance_overrides` field to:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -728,7 +728,7 @@ Update the `multi_instance_overrides` field to:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Added new modules for configuring API Gateway:
 
@@ -751,7 +751,7 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - Add Terraform validation test that will scan the entire repo for Terraform modules and run terraform init and terraform validate on each.
 - Replace `go fmt` in the pre-commit configuration file with `goimports`
 
@@ -773,11 +773,11 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -795,7 +795,7 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix a bug that was introduced in `v0.26.2`, where the domain validation options filter was case sensitive, when the domain names are not.
 
@@ -812,7 +812,7 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix timeout bug when `acm-tls-certificates` with Subject Alternative Names are created with verification records.
 
@@ -829,7 +829,7 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - Add Terraform validation test that will scan the entire repo for Terraform modules and run terraform init and terraform validate on each.
 - Replace `go fmt` in the pre-commit configuration file with `goimports`
 
@@ -852,7 +852,7 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now configure consumer deletion in the `kinesis` module using the new `enforce_consumer_deletion` input variable.
 
@@ -869,11 +869,11 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -889,7 +889,7 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now configure deduplication and FIFO throughput limits on the `sqs` module using the new `deduplication_scope` and `fifo_throughput_limit` input variables, respectively.
 
@@ -906,7 +906,7 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - Add Terraform validation test that will scan the entire repo for Terraform modules and run terraform init and terraform validate on each.
 - Replace `go fmt` in the pre-commit configuration file with `goimports`
 
@@ -928,11 +928,11 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -948,7 +948,7 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Replace `gofmt` with `goimports`
 
@@ -964,7 +964,7 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `elasticache-redis-alarms` module now supports several additional alarms:
     - Engine CPU usage: now on by default.
@@ -990,11 +990,11 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -1010,7 +1010,7 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - Add Terraform validation test that will scan the entire repo for Terraform modules and run terraform init and terraform validate on each.
 - Replace `go fmt` in the pre-commit configuration file with `goimports`
 
@@ -1033,11 +1033,11 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -1055,7 +1055,7 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add Terraform Validate test
 - Replace `gofmt` with `goimports`
@@ -1077,7 +1077,7 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add Cloudtrail tags to the Cloudwatch Log Group
 - Improve docs for MFA Delete (private-s3-bucket)
@@ -1094,7 +1094,7 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Set MFA Delete to false by default. This release reverts [v0.50.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.50.0). There is a manual step required to enable MFA Delete in the S3 bucket, so it is not possible to create a bucket with `mfa_delete = true` by default. Read more about it at the [`private-s3-bucket` README](https://github.com/gruntwork-io/terraform-aws-security/blob/master/modules/private-s3-bucket/README.md#how-do-you-enable-mfa-delete).
 
@@ -1111,11 +1111,11 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -1133,7 +1133,7 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - We have removed the `opt_out_regions` input variable from all the `multi-region` modules (e.g., `aws-config-multi-region`). This should have been done in [v0.51.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.51.0), but was accidentally missed. If you were setting this variable before, please remove it from your code, and instead, exclude those regions from `opt_in_regions` (which is now a required parameter).
 - We have updated the examples to not include `ap-northeast-3` in `opt_in_regions`. This is a brand new AWS region and many services, such as AWS Config, are not yet fully supported in that region. We recommend excluding it from your `opt_in_regions` variables too, as otherwise, you may get a number of confusing errors.
@@ -1155,7 +1155,7 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - We have refactored all our multi-region modules (the ones that have `-multi-region` in the name) to no longer create nested `provider` blocks. Instead, providers must be passed in now via the `providers` map. This reduces the number of providers that Terraform must instantiate, making the multi-region modules much faster and more stable to use. It also gives you full control over how to authenticate to your various AWS accounts. However, **this is a backwards incompatible change**, so make sure to [read the migration guide below](#migration-guide-for-multi-region-modules).
 - To update the multi-region modules, we updated the Golang `generator` code too. It no longer creates nested `provider` blocks or the `local.all_regions` variable and no longer supports a `SeedRegion` param. However, it does support new params to configure Terraform and AWS provider version constraints. **These changes are also backwards incompatible**, so make sure to [read the migration guide below](#migration-guide-for-the-golang-generator-code).
@@ -1173,7 +1173,7 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Replace `go fmt` in the pre-commit configuration with `goimports`
 
@@ -1192,7 +1192,7 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Set `mfa_delete = true` for S3 buckets **[BACKWARDS INCOMPATIBLE]**
 For the `private-s3-bucket` module, and all modules that depend on it (e.g., `aws-config-bucket`, `cloudtrail-bucket`), we have changed the default for MFA delete to be enabled. This is a more secure default and the one recommended by the CIS AWS Foundations v1.4 benchmark. This is a backwards incompatible change, so please see the migration guide below.
@@ -1213,11 +1213,11 @@ For the `private-s3-bucket` module, and all modules that depend on it (e.g., `aw
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -1234,7 +1234,7 @@ For the `private-s3-bucket` module, and all modules that depend on it (e.g., `aw
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added ability to set `secondary_private_ips` variable.
 
@@ -1251,7 +1251,7 @@ For the `private-s3-bucket` module, and all modules that depend on it (e.g., `aw
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add Terraform validate test
 - Replace `gofmt` with `goimports`
@@ -1272,7 +1272,7 @@ For the `private-s3-bucket` module, and all modules that depend on it (e.g., `aw
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 
 - Updated modules to use kubernetes terraform provider version 2.x. You must update your provider configuration to be compatible with version 2.x. Refer to [the official upgrade guide](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/guides/v2-upgrade-guide) for more information.
@@ -1299,7 +1299,7 @@ For the `private-s3-bucket` module, and all modules that depend on it (e.g., `aw
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - **Update `account-baseline-xxx` modules to new multi-region approach**. In [v0.51.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.51.0) of `terraform-aws-security`, we refactored how we build multi-region modules—that is, those modules that deploy resources across every single AWS region, such as `aws-config-multi-region`—to no longer create nested `provider` blocks, and instead, have users pass in providers via the `providers` map. In this release, we have updated the `account-baseline-xxx` modules (e.g., `account-baseline-root`) to use this new release of `terraform-aws-security` and to use the same behavior with providers. This reduces the number of providers that Terraform must instantiate, making the `account-baseline-xxx` modules _much_ faster and more stable to use. It also gives you full control over how to authenticate to your various AWS accounts. However, this is a backwards incompatible change, so [make sure to read the migration guide below](#migration-guide).
 
@@ -1335,7 +1335,7 @@ For the `private-s3-bucket` module, and all modules that depend on it (e.g., `aw
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update dependency gruntwork-io/terragrunt to v0.31.1
 - Update dependency gruntwork-io/terraform-aws-vpc to v0.16.0. This is a **backward incompatible** update. Refer to [the underlying release note](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.16.0) for more information on the update.
@@ -1353,7 +1353,7 @@ For the `private-s3-bucket` module, and all modules that depend on it (e.g., `aw
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update dependency gruntwork-io/terraform-aws-eks to v0.42.2
 - Updated docs and comments for a few variables in `eks-cluster` and `route53`.
@@ -1372,7 +1372,7 @@ For the `private-s3-bucket` module, and all modules that depend on it (e.g., `aw
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added ability to configure `replica_backup_retention_period`. This can be used to enable automated backups of RDS read replica instances.
 - Update dependency gruntwork-io/terraform-kubernetes-namespace to v0.3.1
@@ -1392,7 +1392,7 @@ For the `private-s3-bucket` module, and all modules that depend on it (e.g., `aw
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Exposes the ability to pass through volumes (including EFS volumes) to the wrapped ecs-service module.
 
@@ -1410,7 +1410,7 @@ Exposes the ability to pass through volumes (including EFS volumes) to the wrapp
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - We made it easier to pass in EC2 instance type for the ECS packer template.
 - We lightly refactored test_helpers.go, so that changes to test_helpers.go doesn&apos;t trigger so many full-suite test runs in the future.
@@ -1429,7 +1429,7 @@ Exposes the ability to pass through volumes (including EFS volumes) to the wrapp
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Added ability to associate multiple VPCs to private route 53 hosted zone. This is a backward incompatible change. Refer to the migration guide below for how to update to this version.
 
@@ -1445,7 +1445,7 @@ Added ability to associate multiple VPCs to private route 53 hosted zone. This i
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix bug where `eks-cluster` errors out when trying to lookup IAM role for Managed Node Groups or Self Managed Workers after having none.
 - `route53` module now supports creating NS records for creating delegated public hosted zones.
@@ -1470,7 +1470,7 @@ Added ability to associate multiple VPCs to private route 53 hosted zone. This i
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update dependency gruntwork-io/terraform-aws-eks to v0.42.1. With this change, you can now configure self managed workers to use multiple instance types for a single pool (using the newly exposed `multi_instances_overrides` attribute).
 
@@ -1487,7 +1487,7 @@ Added ability to associate multiple VPCs to private route 53 hosted zone. This i
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update dependency gruntwork-io/terraform-aws-asg to v0.14.3
 - Update dependency gruntwork-io/terraform-aws-server to v0.12.2
@@ -1511,7 +1511,7 @@ Added ability to associate multiple VPCs to private route 53 hosted zone. This i
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - `k8s-service` now exposes a way to configure side car containers.
 
@@ -1527,7 +1527,7 @@ Added ability to associate multiple VPCs to private route 53 hosted zone. This i
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Jenkins server AMI now contains aws-auth
 
@@ -1545,7 +1545,7 @@ Added ability to associate multiple VPCs to private route 53 hosted zone. This i
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 You can now attach custom security group rules to the EKS worker pool managed by `eks-cluster` and `eks-workers`. For `eks-workers` module, use the new `custom_ingress_security_group_rules` and `custom_egress_security_group_rules` input variables. For `eks-cluster`, use the new `custom_worker_ingress_security_group_rules` and `custom_worker_egress_security_group_rules` input variables.
 
@@ -1562,7 +1562,7 @@ You can now attach custom security group rules to the EKS worker pool managed by
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add new module for managing IAM Users and Groups only in Landing Zone. Refer to [the module docs](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/iam-users-and-groups) for more information on when you might want to use this over the same feature in `account-baseline-security`.
 
@@ -1580,7 +1580,7 @@ You can now attach custom security group rules to the EKS worker pool managed by
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix bug in `services/ec2-instance` where `ip-lockdown` referenced a non-existant user.
 - Expose `root_volume_size` configuration option for `services/ec2-instance`
@@ -1600,7 +1600,7 @@ You can now attach custom security group rules to the EKS worker pool managed by
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add docs on why we are not using module count/for_each for the `eks-worker` modules
 - Add docs on the IAM roles and `aws-auth` for `eks-workers`
@@ -1623,12 +1623,12 @@ You can now attach custom security group rules to the EKS worker pool managed by
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -1645,7 +1645,7 @@ You can now attach custom security group rules to the EKS worker pool managed by
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add Terraform validation test that will scan the entire repo for Terraform modules and run terraform init and terraform validate on each.
 - Replace `go fmt` in the pre-commit configuration with `goimports`
@@ -1669,10 +1669,10 @@ You can now attach custom security group rules to the EKS worker pool managed by
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+  
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -1689,7 +1689,7 @@ You can now attach custom security group rules to the EKS worker pool managed by
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 Replace `gofmt` with `goimports`
 
 
@@ -1710,11 +1710,11 @@ Replace `gofmt` with `goimports`
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -1731,7 +1731,7 @@ Replace `gofmt` with `goimports`
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Fixed bug with configuring default NACLs, where default NACLs were applied and configured even when `apply_default_nacl_rules` was `false`. Now the default NACLs are only touched and updated if `apply_default_nacl_rules` is `true`.
 
@@ -1750,7 +1750,7 @@ Fixed bug with configuring default NACLs, where default NACLs were applied and c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added the ability to specify availability zones to use for the subnets directly to `vpc-app` module.
 - Added the ability to configure timeouts on route resources.
@@ -1769,7 +1769,7 @@ Fixed bug with configuring default NACLs, where default NACLs were applied and c
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add Terraform validate test
 - Replace `gofmt` with `goimports`
@@ -1785,6 +1785,6 @@ Fixed bug with configuring default NACLs, where default NACLs were applied and c
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "490ffca8f7755565c4c5404cf66a05e2"
+  "hash": "b20c343d0bf0a573f936e36bd11b6632"
 }
 ##DOCS-SOURCER-END -->

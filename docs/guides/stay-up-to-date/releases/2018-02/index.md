@@ -61,7 +61,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-ci/pull/52:
+  https://github.com/gruntwork-io/module-ci/pull/52: 
 
 Warning: this release contains BACKWARDS INCOMPATIBLE CHANGES to `scheduled-lambda-job`.
 
@@ -105,7 +105,7 @@ Warning: this release contains BACKWARDS INCOMPATIBLE CHANGES to `scheduled-lamb
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -122,7 +122,7 @@ Warning: this release contains BACKWARDS INCOMPATIBLE CHANGES to `scheduled-lamb
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -173,7 +173,7 @@ Warning: this release contains BACKWARDS INCOMPATIBLE CHANGES to `scheduled-lamb
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -207,6 +207,6 @@ Note, this release contains BACKWARDS INCOMPATIBLE CHANGES to the `single-server
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "152faba4aaeab266aef4a6ad9e0288a6"
+  "hash": "71c4b1e7604bad23b20bf0be4ff15eae"
 }
 ##DOCS-SOURCER-END -->

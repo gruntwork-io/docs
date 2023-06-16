@@ -59,7 +59,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 **Note:** If you update to this version, you may experience issues resulting from now using the latest versions of Packer, Terraform and Terragrunt. You can always specify `--packer-version`, `--terraform-version` or `--terragrunt-version` parameters to pin to older versions until you are ready to migrate.
 
 </div>
@@ -73,7 +73,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 Special thanks to @natefaerber for the contribution!
 
 </div>
@@ -104,7 +104,7 @@ Special thanks to @natefaerber for the contribution!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -163,12 +163,12 @@ Special thanks to @natefaerber for the contribution!
 
   https://github.com/gruntwork-io/module-ecs/pull/75: Add module `ecs-with-service-discovery`
 
-This module allows you to deploy an ECS Service with Service discovery in AWS, taking care of registering the discovery service with the ECS service, configuring the network and making a the necessary Route 53 alias for public hostnames.
+This module allows you to deploy an ECS Service with Service discovery in AWS, taking care of registering the discovery service with the ECS service, configuring the network and making a the necessary Route 53 alias for public hostnames. 
 
 There are many advantages of using ECS Service Discovery instead of reaching your container through a Load Balancer, for example:
 
 * Direct communication with the container run by your service
-* Lower latency, if using AWS internal network and private namespace
+* Lower latency, if using AWS internal network and private namespace 
 * You can do service-to-service authentication
 * Not having a Load Balancer also means fewer resources to manage
 * You can configure a Health Check and associate it with all records within a namespace
@@ -200,10 +200,10 @@ Currently our module supports public or private hostnames, examples are provided
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 Originally, we developed the `ecs-service` module first. Then AWS announced the ALB and we realized that we needed to make some improvements to the interface in order to support the ALB and arbitrary ECS Task Definitions. Thanks to @bendavies, the `ecs-service` module now enjoys those same benefits.
 
-Unfortunately, this does constitute a breaking change for the `ecs-service` module.
+Unfortunately, this does constitute a breaking change for the `ecs-service` module. 
 
 </div>
 
@@ -220,8 +220,8 @@ Unfortunately, this does constitute a breaking change for the `ecs-service` modu
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
-**Important:** If you are using `var.allow_inbound_from_security_group_ids` you will now **need** to set `var.allow_inbound_from_security_group_ids_num` because the default is `0`. If your code was already working correctly with the old approach, there is no reason why you can&apos;t just set `var.allow_inbound_from_security_group_ids_num` to be `length(var.allow_inbound_from_security_group_ids)`.
+  
+**Important:** If you are using `var.allow_inbound_from_security_group_ids` you will now **need** to set `var.allow_inbound_from_security_group_ids_num` because the default is `0`. If your code was already working correctly with the old approach, there is no reason why you can&apos;t just set `var.allow_inbound_from_security_group_ids_num` to be `length(var.allow_inbound_from_security_group_ids)`. 
 
 The only reason for changing the behavior in the module is to address the issue when someone has dynamic resources in the `var.allow_inbound_from_security_group_ids` array (For example, you specify an array with exactly one thing in it, the security group id that is an _output_ variable from another module).
 
@@ -237,7 +237,7 @@ The only reason for changing the behavior in the module is to address the issue 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - #36: The ALB no longer sets a default value for the TLS/SSL policy, which is used to determine which TLS versions will be accepted when a client attempts to create an HTTPS connection to the ALB.
+  - #36: The ALB no longer sets a default value for the TLS/SSL policy, which is used to determine which TLS versions will be accepted when a client attempts to create an HTTPS connection to the ALB. 
 
     This change forces the user to think carefully about which TLS versions they want to support, which involves balancing better security with broader compatibility. Note that the previous default value was `ELBSecurityPolicy-2015-05`, which was outdated. For additional info, see the [Amazon Docs]( https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies).
 
@@ -271,7 +271,7 @@ The only reason for changing the behavior in the module is to address the issue 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-security/pull/107:
+  https://github.com/gruntwork-io/module-security/pull/107: 
 
 
 This PR contains a BACKWARDS INCOMPATIBLE CHANGE to the `iam-policies` module. Instead of a `should_require_mfa` parameter, it now takes in two parameters:
@@ -283,7 +283,7 @@ This PR contains a BACKWARDS INCOMPATIBLE CHANGE to the `iam-policies` module. I
 Per the above, the `cross-account-iam-policy` module now sets `trust_policy_should_require_mfa` based on the specified `should_require_mfa` input and always sets `iam_policy_should_require_mfa` to false.
 
 
-Fix a bug in the `aws-auth` script so that you can now assume an IAM role _and_ use MFA _and_ set a longer expiration time (longer than the 1h default) all in one command.
+Fix a bug in the `aws-auth` script so that you can now assume an IAM role _and_ use MFA _and_ set a longer expiration time (longer than the 1h default) all in one command. 
 
 </div>
 
@@ -293,6 +293,6 @@ Fix a bug in the `aws-auth` script so that you can now assume an IAM role _and_ 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "233263cd50586ebad4e0c06a833697aa"
+  "hash": "a75b0aec4cd605abf17a3c7b121f7b76"
 }
 ##DOCS-SOURCER-END -->

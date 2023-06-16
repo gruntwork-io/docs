@@ -40,7 +40,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix bug where `var.enable_elastic_ips` was not properly used in the conditional logic to control Route 53 records in `modules/server-group`. This led to syntax errors when you had the right inputs to enable the resource.
 
@@ -57,7 +57,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
 
@@ -78,7 +78,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `redis`
 
 
@@ -98,7 +98,7 @@ This release fixes a bug where the module errors on the output if you set both `
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `redis` [**BACKWARDS INCOMPATIBLE**]
 - `memcached` [**BACKWARDS INCOMPATIBLE**]
 
@@ -127,7 +127,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
 
@@ -148,7 +148,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add a variable for `aws_alb_target_group.health_check.matcher` to the `jenkins-server` module.
 
@@ -165,7 +165,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - Use latest jenkins version, because the package repo is throttling super old version
 - Update CODEOWNERS
 - Fix test summary and use different port
@@ -189,7 +189,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
 
@@ -210,7 +210,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - When `allow_connections_from_cidr_blocks` is empty, do not create the `allow_connections_from_cidr_blocks` security rule.
 
@@ -230,7 +230,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
 
@@ -251,7 +251,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release introduces the ability to extend the AWS principals that can assume the ECS task role. For each module that provisions an ECS task, there is a new variable `additional_task_assume_role_policy_principals` that allows you to extend the list of allowed principals.
 
@@ -271,7 +271,7 @@ This release introduces the ability to extend the AWS principals that can assume
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix bug where IAM to RBAC mapping did not work with capital letters in the entity name. This caused login issues because the script would naively use the IAM role / user name as the Kubernetes username, which were invalid when they contained upper case letters.
 - Documentation updates and fixes.
@@ -293,7 +293,7 @@ This release introduces the ability to extend the AWS principals that can assume
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
 
@@ -318,7 +318,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `nlb`
 
 
@@ -338,7 +338,7 @@ Fixes a bug that arises when using terraform &gt;=0.12.2 with the `nlb` module. 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `alb` [**BACKWARDS INCOMPATIBLE**]
 * `nlb` [**BACKWARDS INCOMPATIBLE**]
 * `acm-tls-certificate` [**BACKWARDS INCOMPATIBLE**]
@@ -368,7 +368,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `kinesis` **[BACKWARDS INCOMPATIBLE]**
 * `sns` **[BACKWARDS INCOMPATIBLE]**
 * `sqs` **[BACKWARDS INCOMPATIBLE]**
@@ -398,7 +398,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix `type` constraint on the `metrics` variable of the `cloudwatch-dashboard-metric-widget` module to allow non-string types in the inner list, including map values.
 
@@ -415,7 +415,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - This release verifies compatibility of various module scripts in the repo with Ubuntu 18.04. Prior to this version, all modules except for `logs/cloudwatch-log-aggregation-scripts` worked with Ubuntu 18.04. This release fixes the `logs/cloudwatch-log-aggregation-scripts` module to also be compatible with Ubuntu 18.04.
 
@@ -432,7 +432,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
 
@@ -453,7 +453,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - #95: Fix default statistic for asg-memory-alarms
 
@@ -470,7 +470,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `alarms/sqs-alarms`
 
 
@@ -497,7 +497,7 @@ Thanks to @bendavies for the PR!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Populate DNS server from proper location on Ubuntu 18.04. This should fix DNS resolution on client machines.
 
@@ -513,7 +513,7 @@ Thanks to @bendavies for the PR!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix bug where the IAM role for the openvpn server did not have a lifecycle config for `create_before_destroy`, leading to issues when trying to do a rolling update.
 
@@ -530,7 +530,7 @@ Thanks to @bendavies for the PR!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
 
@@ -551,7 +551,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release introduces the ability to set an expiration lifecycle on the objects in the S3 backup bucket for the `openvpn-server` module. To enable expiration, set the `enable_backup_bucket_noncurrent_version_expiration` input variable to `true`. You can configure the days to expiration using the input variable `backup_bucket_noncurrent_version_expiration_days` (defaults to `30`).
 
@@ -568,7 +568,7 @@ This release introduces the ability to set an expiration lifecycle on the object
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - `install-openvpn` has been updated to support ubuntu 18.04.
 
@@ -589,7 +589,7 @@ This release introduces the ability to set an expiration lifecycle on the object
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module. For `gruntsam`, this means the generated code is only compatible with terraform 0.12.
 
@@ -615,7 +615,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix a bug where the crontab configured by `ssh-grunt install` was missing the `--force-user-deletion` flag.
 
@@ -631,7 +631,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
 
@@ -652,7 +652,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release introduces a new module `ssm-healthchecks-iam-permissions` which provides IAM policies that you can attach to instance profiles that grants the EC2 instance the requisite permissions to run SSM healthchecks, which are enabled by default on many base AWS AMIs such as Ubuntu.
 
@@ -669,7 +669,7 @@ This release introduces a new module `ssm-healthchecks-iam-permissions` which pr
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Allow cross account usage for CMK keys by granting the requisite IAM permissions to allow an external account to grant access to the KMS key to IAM entities within that account. You can use the new `cmk_external_user_iam_arns` input variable to specify which accounts should have this capability.
 
@@ -689,7 +689,7 @@ This release introduces a new module `ssm-healthchecks-iam-permissions` which pr
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
 
@@ -711,7 +711,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The `attach-eni` script is now compatible with Ubuntu 18.04.
 
@@ -732,7 +732,7 @@ The `attach-eni` script is now compatible with Ubuntu 18.04.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `prepare-pex-environment`
 
 
@@ -752,7 +752,7 @@ This fixes a bug that was introduced in upgrading to terraform 0.12, where `prep
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `intermediate-variable` [**REMOVED**]
 - `list-remove` [**BREAKING**]
 - `join-path` [**BREAKING**]
@@ -789,7 +789,7 @@ Additionally, we have deprecated and removed the `intermediate-variable` module 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
 
@@ -811,7 +811,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - `var.custom_tags` now propagate to EIP resources created in the VPCs.
 
@@ -831,7 +831,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
 
@@ -852,6 +852,6 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "011ebcfb915116fcf30a8fb5da73ba49"
+  "hash": "fd94c4383e6720466f57bb83f7abd64f"
 }
 ##DOCS-SOURCER-END -->

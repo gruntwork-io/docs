@@ -52,7 +52,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixes https://github.com/gruntwork-io/module-asg/issues/63, where ALB/ELB health checks were being skipped in the rolling deployment script for the server-group module when using python3.
 
@@ -72,7 +72,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `terraform-helpers`
 
 
@@ -96,14 +96,14 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `ecs-cluster`
 
 
-* Fix bug in `roll-out-ecs-cluster-update.py` where it wouldn&apos;t do the proper rollout for clusters bigger than 10 instances.
+* Fix bug in `roll-out-ecs-cluster-update.py` where it wouldn&apos;t do the proper rollout for clusters bigger than 10 instances. 
 
 
-* #118
+* #118 
 
 </div>
 
@@ -116,7 +116,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `ecs-cluster`
 
 
@@ -140,7 +140,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `lambda`
 
 
@@ -167,7 +167,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `alb`
 
 
@@ -191,7 +191,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix errors in the new connection count and low request count alarms to remove the &quot;client-tls-negotiation-error&quot; portion that was accidentally copy/pasted into them.
 
@@ -208,7 +208,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The alarms in `alb-alarms`, `alb-target-group-alarms`, and `rds-alarms` now support directly setting the `datapoints_to_alarm` setting. You can read more about `datapoints_to_alarm` in [the official AWS documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html).
 
@@ -231,7 +231,7 @@ Special thanks to @ksemaev for these contributions.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - This release adds support for lambda Layers in the `gruntsam` utility. Refer to [the README](https://github.com/gruntwork-io/package-sam/tree/master/modules/gruntsam) for more information.
 
@@ -251,7 +251,7 @@ Special thanks to @ksemaev for these contributions.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update the `fail2ban` module so it works properly on Amazon Linux 2. We&apos;ve also updated how we install it on Ubuntu (using `pip` to install `aws` instead of `apt`) and changed the jail files a bit to take advantage of fail2ban interpolation
 - Update the `ami-builder` in `os-hardening` to support a new `parallel_build` param that lets you control whether the builds run in parallel. It&apos;s set to true `true` by default, as before, but you may need to disable it for use with nvme.
@@ -271,7 +271,7 @@ Special thanks to @ksemaev for these contributions.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - `iam-groups` module now creates an additional IAM group that has the `iam-user-self-mgmt` IAM policy already attached to make it easier to associate the rules of that policy to an IAM user via the group.
 
@@ -292,7 +292,7 @@ Special thanks to @ksemaev for these contributions.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `persistent-ebs-volume`
 
 
@@ -316,7 +316,7 @@ This release introduces automated tests for the nvme features of the `mount-ebs-
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `s3-cloudfront`
 
 
@@ -340,7 +340,7 @@ This release introduces automated tests for the nvme features of the `mount-ebs-
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - This release adds another set of permissions to the `rbac_tiller_resource_access` role that allows Tiller to manage `PodDisruptionBudgets`.
 - In the `k8s-tiller-minikube` example, sometimes the Tiller `undeploy` fails because it removes the service account role before `undeploy`, stripping the Tiller pod of its ability to nuke itself. This fixes that by adding a `depends_on` to the service account output so that we delete the role binding when all resources referencing the service acocunt is deleted.
@@ -360,7 +360,7 @@ This release introduces automated tests for the nvme features of the `mount-ebs-
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - We broke out the role creation pieces of `k8s-namespace` into its own submodule, `k8s-namespace-roles`. This allows you to create the same roles on a preexisting namespace (e.g `default` or `kube-system`).
 
@@ -377,7 +377,7 @@ This release introduces automated tests for the nvme features of the `mount-ebs-
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This introduces an example terraform module that deploys Tiller using `kubergrunt`. This example shows how to setup a `Namespace` and `ServiceAccount` for Tiller as well. See [the example quickstart guide](https://github.com/gruntwork-io/terraform-kubernetes-helm/tree/master/examples/k8s-tiller-minikube) for an example of how you can combine the modules in this repo with `kubergrunt` to deploy a best practices Tiller instance.
 
@@ -398,7 +398,7 @@ Other changes:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - `k8s-namespace` and `k8s-service-account` now implement the input variable `dependencies` that can be used to specify module dependencies.
 - `k8s-service-account` now also requires RBAC role namespaces to be included when binding rbac roles. This is to allow binding roles that are not in the same namespace as the created `ServiceAccount`. As a result, the `rbac_roles` input variable is now a list of maps containing the keys `name` and `namespace`.
@@ -413,6 +413,6 @@ Other changes:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e148019cc2009c7fd5a758c1797cecb2"
+  "hash": "a45320f789ab453a1c2f65205463e263"
 }
 ##DOCS-SOURCER-END -->

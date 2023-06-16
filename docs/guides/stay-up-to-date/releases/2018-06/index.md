@@ -124,7 +124,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -183,20 +183,20 @@ This release includes MAJOR changes to `ssh-iam` that are backwards incompatible
 
 1. All `ssh-iam` commands now use the form `ssh-grunt &lt;idp&gt; &lt;command&gt;`. For example, `ssh-iam install` is now `ssh-grunt iam install` and `ssh-iam print-keys` is now `ssh-grunt iam print-keys`. This allows us to add other IdPs in the future.
 
-1. When a user is removed from an `ssh-grunt` managed IdP group (e.g., a user is removed from an IAM group), `ssh-grunt` will delete the synced OS user from your server, but it will no longer delete that user&apos;s home directory. You can enable the old behavior with `--force-user-deletion`.
+1. When a user is removed from an `ssh-grunt` managed IdP group (e.g., a user is removed from an IAM group), `ssh-grunt` will delete the synced OS user from your server, but it will no longer delete that user&apos;s home directory. You can enable the old behavior with `--force-user-deletion`. 
 
 
 If you&apos;re already using `ssh-iam`, here is how to upgrade to `ssh-grunt`:
 
 1. Update your Packer templates:
 
-    1. Change the `--binary-name` param from `ssh-iam` to `ssh-grunt`.
-    1. If you&apos;re using SELinux (e.g., you&apos;re on CentOS), update `ssh-iam-selinux-policy` to `ssh-grunt-selinux-policy` in your Packer template too.
+    1. Change the `--binary-name` param from `ssh-iam` to `ssh-grunt`. 
+    1. If you&apos;re using SELinux (e.g., you&apos;re on CentOS), update `ssh-iam-selinux-policy` to `ssh-grunt-selinux-policy` in your Packer template too. 
     1. Change `ssh-iam install` to `ssh-grunt iam install` (all other params remain the same).
-    1. Build a new AMI and update your Terraform code to deploy it.
+    1. Build a new AMI and update your Terraform code to deploy it. 
 
 1. If you update to the new `cross-account-iam-roles`, `iam-groups`, or `saml-iam-roles` modules, you will need to:
-    1. Rename any parameters you&apos;re passing as inputs to these modules, and any variables you&apos;re reading as outputs from these modules, form the form `xxx_ssh_iam_xxx` to the form `xxx_ssh_grunt_xxx`. For example, `allow_ssh_iam_access_from_other_account_arns` is now `allow_ssh_grunt_access_from_other_account_arns`.
+    1. Rename any parameters you&apos;re passing as inputs to these modules, and any variables you&apos;re reading as outputs from these modules, form the form `xxx_ssh_iam_xxx` to the form `xxx_ssh_grunt_xxx`. For example, `allow_ssh_iam_access_from_other_account_arns` is now `allow_ssh_grunt_access_from_other_account_arns`. 
     1. Explicitly set the names of any `ssh-iam` / `ssh-grunt` IAM roles and groups created by these modules so you retain the old names you had before. The output of the `plan` command will tell if you any are being renamed and what the old names were.
 
 
@@ -267,7 +267,7 @@ The `saml-iam-roles` module now sets a default max expiration of 12 hours for IA
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -277,6 +277,6 @@ The `saml-iam-roles` module now sets a default max expiration of 12 hours for IA
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e513cfe1fe58e591c50e8ca140136594"
+  "hash": "6d36a88ff361b27e626e02905975a0cf"
 }
 ##DOCS-SOURCER-END -->

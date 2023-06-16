@@ -73,8 +73,8 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  This release contains updates to the formatting of any `go` code, and an update to documentation on how to run and configure automated tests with the trial license.
-- Replaced `gofmt` with `goimports`.
+  This release contains updates to the formatting of any `go` code, and an update to documentation on how to run and configure automated tests with the trial license. 
+- Replaced `gofmt` with `goimports`. 
 - Updated documentation to detail how to update trial licenses
 
 
@@ -136,7 +136,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Removed references to deprecated `template` provider and replaced with official replacements.
 
@@ -157,7 +157,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Removed references to deprecated `template` provider
 
@@ -179,7 +179,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now pass through `terragrunt-log-level` as `command-args` in EDR to `infrastructure-deploy-script`
 
@@ -196,7 +196,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Bump to latest kubergrunt version in `ecs-deploy-runner` container.
 
@@ -215,7 +215,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updates edrhelpers test assertion with a new expected string value. No functional impact for users.
 
@@ -234,7 +234,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Updates the ecs-deploy-runner `Dockerfile` to use the correct version of `terraform-aws-ci` with updated and fixed build scripts.
 
@@ -252,7 +252,7 @@ Updates the ecs-deploy-runner `Dockerfile` to use the correct version of `terraf
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `ecs-deploy-runner-standard-configuration`
 - `infrastructure-deploy-script`
 
@@ -279,7 +279,7 @@ Updates the ecs-deploy-runner `Dockerfile` to use the correct version of `terraf
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `build-packer-artifact` now supports HCL Packer templates. The ecs-deploy-runner `Dockerfile` has been updated to include [`hcl2json`](https://github.com/tmccombs/hcl2json) which is needed by the updated `build-packer-artifact`.
 
@@ -297,7 +297,7 @@ Updates the ecs-deploy-runner `Dockerfile` to use the correct version of `terraf
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - ECS Deploy Runner now defaults to installing packer 1.7.4 and `terraform-aws-ci` version `0.38.2`
 
@@ -315,7 +315,7 @@ Updates the ecs-deploy-runner `Dockerfile` to use the correct version of `terraf
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated `build-packer-artifact` to be compatible with provider download specifications from packer 1.7. The script will now call `packer init` if the target template is non-json and the underlying packer version supports `init`.
 
@@ -336,7 +336,7 @@ Updates the ecs-deploy-runner `Dockerfile` to use the correct version of `terraf
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - This release reverts [v0.24.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.24.0), updating MFA Delete = false for S3 Buckets.
 
@@ -352,7 +352,7 @@ Updates the ecs-deploy-runner `Dockerfile` to use the correct version of `terraf
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update dependency gruntwork-io/terraform-aws-vpc to v0.17.3
 - Update dependency gruntwork-io/terraform-aws-security to v0.54.0
@@ -371,7 +371,7 @@ Updates the ecs-deploy-runner `Dockerfile` to use the correct version of `terraf
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Integrates Macie into the Landing Zone modules. This release also makes the `buckets_to_analyze` variable optional and defaults it to empty. When `buckets_to_analyze` has no entry for a particular region, the resource `aws_macie2_classification_job` will not be created in that region.
 
@@ -389,7 +389,7 @@ Integrates Macie into the Landing Zone modules. This release also makes the `buc
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - **macie: Add support for multi-account setup**. Add two additional resources to the macie module: `aws_macie2_member` and `aws_macie2_invitation_accepter`, whereby adding support for the multi-account setup. The multi-account setup functions in a similar way to Security Hub: administrator account will have a number of `aws_macie2_member` created in it (in each enabled region), one for each member account. This is controlled by the `external_member_accounts` variable. Member accounts will each have a `aws_macie2_invitation_accepter` resource created in them (in each enabled region). This is controlled by the `administrator_account_id` variable.
 
 - This release also updates a number of dependencies:
@@ -413,11 +413,11 @@ Integrates Macie into the Landing Zone modules. This release also makes the `buc
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
@@ -434,7 +434,7 @@ Integrates Macie into the Landing Zone modules. This release also makes the `buc
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 Add a module for deploying and configuring Amazon Macie.
 
 This release also configures the RenovateBot not to update this repo itself, as well as updates the following dependencies:
@@ -455,7 +455,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 
 - **Update the codebase to new multi-region approach**. In [v0.51.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.51.0) of `terraform-aws-security`, we refactored how we build multi-region modules—that is, those modules that deploy resources across every single AWS region, such as `aws-config-multi-region`—to no longer create nested `provider` blocks, and instead, have users pass in providers via the `providers` map. In this release, we have updated the modules in this repo to use this new release of `terraform-aws-security` and to use the same behavior with providers. This reduces the number of providers that Terraform must instantiate, making the modules _much_ faster and more stable to use. It also gives you full control over how to authenticate to your various AWS accounts. However, this is a backwards incompatible change, so [make sure to read the migration guide below](#migration-guide).
@@ -481,7 +481,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Override renovate.json ignorePaths so that it won&apos;t ignore examples or tests
 - vpc: Expose default security group ID in outputs
@@ -503,7 +503,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Removed references to `template` provider and replaced with official alternatives.
 
@@ -524,7 +524,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added support for [`protocol_version`](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group#protocol_version) in the ECS service target group.
 - **Note:** the AWS provider for this release has been updated from `2.0` to `3.27`, making the release backward incompatible. Refer to the [Terraform AWS Provider Version 3 Upgrade Guide](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/version-3-upgrade).
@@ -542,7 +542,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated to expose `proxy_configuration` subblock for the `aws_ecs_task_definition` resource to support App Mesh.
 
@@ -559,7 +559,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Removed references to the deprecated `template` provider and replaced with official recommendation.
 
@@ -578,7 +578,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now enable the ECS &quot;circuit breaker&quot; feature via the new `deployment_circuit_breaker` input variable.
 
@@ -599,7 +599,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated the `kubergrunt` version that gets automatically installed to `v0.7.9`
 
@@ -616,7 +616,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Bump default kubergrunt download URL to the latest version
 
@@ -635,7 +635,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Exposed `extraFilters` helm chart input value with the `extra_filters` var in the `eks-container-logs` module.
 
@@ -652,7 +652,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated Cluster Autoscaler IAM permissions to allow describing launch templates
 
@@ -669,7 +669,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Removed usage of the deprecated `template` provider and replaced them with HashiCorp recommended replacements.
 
@@ -687,7 +687,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Upgraded dependencies of `aws-auth-merger`.
 - Updated examples to use packer 1.7 with HCL2.
@@ -711,7 +711,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add a `required_providers` block to the `lambda-edge` module so you can pass in a custom provider and not get warnings in Terraform 0.15 and above.
 
@@ -728,7 +728,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now have the `lambda` module use an existing IAM role, rather than creating a new one, by passing in the IAM role&apos;s ARN via the new `existing_role_arn` input variable.
 
@@ -745,7 +745,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Removed usage of the `template` provider which is now deprecated.
 
@@ -766,7 +766,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Examples have been updated to not use the deprecated `template` provider. No changes to modules.
 
@@ -787,7 +787,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Removed references to the deprecated `template` provider
 
@@ -808,9 +808,9 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- Fix copy/paste error in the `curr_connections` and `replication-lag` alarm names in `elasticache-redis-alarms`.
+- Fix copy/paste error in the `curr_connections` and `replication-lag` alarm names in `elasticache-redis-alarms`. 
 - Several fixes to stabilize automated tests in this repo.
 
 
@@ -826,7 +826,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Removed references to deprecated `template` provider and replaced with official Hashicorp alternatives.
 
@@ -847,7 +847,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Removed references to deprecated `template` provider in examples (no changes to underlying modules).
 
@@ -869,7 +869,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Remove variable `enable_lifecycle_rules` (introduced at [v0.53.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.53.1)) from Config and Cloudtrail buckets
   This variable was only being used when `mfa_delete=true`, to reduce complexity we removed it and `mfa_delete` is being used as a toggle for the Lifecycle rules.
@@ -886,7 +886,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added a new boolean flag, `var.enable_sse`, that dictates whether or not to enable SSE on S3 buckets.
 
@@ -904,7 +904,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now control if the `aws-config` module tries to attach IAM policies to the IAM role using the new `should_attach_sns_policy` input variable.
 
@@ -921,7 +921,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Removed references to the deprecated `template` provider and replaced with official recommendations.
 
@@ -938,7 +938,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Clarifies optional direct usage of cloudtrail-bucket module
 - Explains how to configure the cloudtrail bucket to exist outside of the management account
@@ -957,7 +957,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Introduced `enable_all_regions_for_config_aggregator` which can be used to configure whether AWS should set the config aggregator to all regions regardless of `opt_in_regions`.
 
@@ -979,7 +979,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added variable for passing a map of tags to set on the root volume.
 
@@ -996,7 +996,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Removed references to deprecated `template` provider
 
@@ -1014,7 +1014,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now configure the `single-server` module to point the Route 53 DNS record at the private IP of the EIP rather than the public IP by setting the new `dns_uses_private_ip` variable to `true`.
 
@@ -1035,7 +1035,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update ecs-service module with newly added inputs to configure App Mesh behavior
 
@@ -1052,7 +1052,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Optionally create service-linked roles for security account using `var.service_linked_roles`.
 
@@ -1069,7 +1069,7 @@ Optionally create service-linked roles for security account using `var.service_l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated `eks-workers` module to allow specifying per Managed Node Group (MNG) `--kublet-extra-args`. You can now configure `eks_kubelet_extra_args` on each MNG group to override the extra args that should be passed to the underlying kubelet process. You can also configure different user data boot scripts for each worker by setting the `cloud_init_parts` field on the MNG configuration.
 
@@ -1088,7 +1088,7 @@ Optionally create service-linked roles for security account using `var.service_l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated `eks-workers` module to allow specifying per ASG `--kublet-extra-args`. You can now configure `eks_kubelet_extra_args` on each ASG group to override the extra args that should be passed to the underlying kubelet process. You can also configure different user data boot scripts for each worker by setting the `cloud_init_parts` field on the ASG configuration.
 
@@ -1105,7 +1105,7 @@ Optionally create service-linked roles for security account using `var.service_l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Set MFA Delete to false by default on S3 buckets **[BACKWARDS INCOMPATIBLE]**
 - Adding `apply_default_nacl_rules` to the VPC module
@@ -1122,7 +1122,7 @@ Optionally create service-linked roles for security account using `var.service_l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add a new boolean flag, `var.enable_sse`, that dictates whether or not to enable SSE on S3 buckets.
 - Update dependency gruntwork-io/terraform-aws-ci to v0.38.6
@@ -1140,7 +1140,7 @@ Optionally create service-linked roles for security account using `var.service_l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - Added ability to configure additional filters on `fluent-bit` in `eks-core-services` module
 - Update dependency gruntwork-io/kubergrunt to v0.7.6
 - Update dependency gruntwork-io/terraform-aws-eks to v0.44.4
@@ -1170,7 +1170,7 @@ Optionally create service-linked roles for security account using `var.service_l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 -  Add support for passing CORS Rules via `var.cors_rules`
 
@@ -1187,7 +1187,7 @@ Optionally create service-linked roles for security account using `var.service_l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - When you set `dns_zone_is_private` to `true`, the `ec2-instance` module will now associate the private IP of the instance with the Route 53 private zone.
 
@@ -1204,7 +1204,7 @@ Optionally create service-linked roles for security account using `var.service_l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Allow the Elastic IP to not be created in the ec2-instance module.
 - The following dependencies were updated to:
@@ -1230,7 +1230,7 @@ Optionally create service-linked roles for security account using `var.service_l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added the ability to track external Fargate Profile executor IAM roles in the aws-auth configmap
 - Fixed bug where managed node groups could not be updated post deployment due to an error message about MIME format.
@@ -1249,7 +1249,7 @@ Optionally create service-linked roles for security account using `var.service_l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The default Kubernetes version deployed by the `eks-cluster` module has been updated to `1.21`. If you wish to maintain backward compatibility with your existing setup, you will want to configure the `kubernetes_version` parameter to the version of Kubernetes you are currently using. Note that `1.21` requires kubergrunt version `0.7.3` and above.
 - The default Kubernetes version used by the EKS worker packer template has been updated to `1.21`. If you wish to maintain backward compatibility with your existing setup, you will want to configured the `kubernetes_version` packer parameter to the version of Kubernetes you are currently using.
@@ -1270,7 +1270,7 @@ Optionally create service-linked roles for security account using `var.service_l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added support for configuring Horizontal Pod Autoscaler (via the `horizontal_pod_autoscaler` input variable) and overriding chart inputs (via the `override_chart_inputs` input variable).
 
@@ -1287,7 +1287,7 @@ Optionally create service-linked roles for security account using `var.service_l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Exposed `additional_security_group_ids` in `ec2-instance` module
 
@@ -1305,7 +1305,7 @@ Optionally create service-linked roles for security account using `var.service_l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - **[BACKWARD INCOMPATIBLE]** This release updates all the Packer templates to HCL2. See [the Getting started guide from HashiCorp](https://www.packer.io/guides/hcl) for details on HCL2.
 - Template data sources have been moved to `local` values to avoid dependency issues.
@@ -1325,7 +1325,7 @@ Optionally create service-linked roles for security account using `var.service_l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 -  Increase default max resources for ecs-deploy-runner
 -  wrap with trimspace to we dont keep changing userdata, This changes fixes a perpetual diff that could occur on the `userdata` field.
@@ -1343,7 +1343,7 @@ Optionally create service-linked roles for security account using `var.service_l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Expose variable from inner module to bastion host
 
@@ -1362,7 +1362,7 @@ Optionally create service-linked roles for security account using `var.service_l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - install gruntkms in jenkins
 
@@ -1379,11 +1379,11 @@ Optionally create service-linked roles for security account using `var.service_l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`!
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon!
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`.
+- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
+    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
     - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 - Fixed a bug in the `ec2-instance` service module that prevented customization of the EBS volumes.
@@ -1415,7 +1415,7 @@ Optionally create service-linked roles for security account using `var.service_l
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Updated the `s3-cloudfront` module to create the S3 bucket for access logs using the `private-s3-bucket` module under the hood. This adds several extra layers of protection for the access logs bucket, including blocking all public access, enabling encryption at rest, and requiring encryption in transit. This is a backwards incompatible change, so see the migration guide for upgrade instructions.
 
@@ -1437,7 +1437,7 @@ Updated the `s3-cloudfront` module to create the S3 bucket for access logs using
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 -  Add VPC Interface Endpoint for Redshift Data API Service
 
@@ -1454,7 +1454,7 @@ Updated the `s3-cloudfront` module to create the S3 bucket for access logs using
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `vpc-interface-endpoint` module can now automatically create a security group that allows HTTPS ingress to the endpoints from your VPC if you set `create_https_security_group` to `true`.
 
@@ -1471,7 +1471,7 @@ Updated the `s3-cloudfront` module to create the S3 bucket for access logs using
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added support for EBS and Lambda interface endpoints.
 - Removed usage of the deprecated `template` provider.
@@ -1486,6 +1486,6 @@ Updated the `s3-cloudfront` module to create the S3 bucket for access logs using
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "55e07d876f672f8c74a2c68c652f1efd"
+  "hash": "7eda5e5dc2dff941ba00f7ec0eaa1195"
 }
 ##DOCS-SOURCER-END -->

@@ -41,7 +41,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - NEW MODULE: We&apos;ve added a new module [publish-ami](https://github.com/gruntwork-io/module-ci/tree/e0cbe8ee0a7c6b60a6ff59d6cc198082e7baa5c5/modules/aws-helpers) that will copy the given AMI to the desired AWS regions (or all AWS regions) and make it public.
+  - NEW MODULE: We&apos;ve added a new module [publish-ami](https://github.com/gruntwork-io/module-ci/tree/e0cbe8ee0a7c6b60a6ff59d6cc198082e7baa5c5/modules/aws-helpers) that will copy the given AMI to the desired AWS regions (or all AWS regions) and make it public. 
 
   We added this module because Gruntwork will soon be releasing open source modules for Vault, Nomad, and Consul and we needed a way to make AMIs built by those modules globally available and usable by anyone.
 
@@ -88,11 +88,11 @@ Here are the repos that were updated:
 
   POTENTIAL DOWNTIME
 
-https://github.com/gruntwork-io/module-data-storage/pull/20: Fix a bug where the RDS and Aurora module would exit with an error if you set `storage_encrypted` to false.
+https://github.com/gruntwork-io/module-data-storage/pull/20: Fix a bug where the RDS and Aurora module would exit with an error if you set `storage_encrypted` to false. 
 
-**Note**: that if you update to this new version of `module-data-storage` and run `apply`, it will undeploy your old DB and deploy a new one to replace it. That&apos;s because fixing this bug required renaming the DB resources, which Terraform sees as a delete + create.
+**Note**: that if you update to this new version of `module-data-storage` and run `apply`, it will undeploy your old DB and deploy a new one to replace it. That&apos;s because fixing this bug required renaming the DB resources, which Terraform sees as a delete + create. 
 
-To avoid this, you will need to use the `terraform state mv` command.
+To avoid this, you will need to use the `terraform state mv` command. 
 
 **Aurora**
 
@@ -313,6 +313,6 @@ terraform state mv module.database.aws_db_instance.replicas module.database.aws_
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e63180bb82b1b3a71500d13b65c777e6"
+  "hash": "c1b22cc4bc2c0303805639ec9bbd1865"
 }
 ##DOCS-SOURCER-END -->

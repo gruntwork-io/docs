@@ -35,7 +35,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `kubergrunt`
 
 
@@ -63,7 +63,7 @@ The command will then:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `eks-k8s-role-mapping`
 - `eks-cluster-control-plane`
 
@@ -136,11 +136,11 @@ ap-northeast-1
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `eks-k8s-role-mapping`
-- `kubergrunt` **[New]**
-- `k8s-scripts` **[Breaking Change]**
-- `install-aws-iam-authenticator` **[Breaking Change]**
+- `kubergrunt` **[New]** 
+- `k8s-scripts` **[Breaking Change]** 
+- `install-aws-iam-authenticator` **[Breaking Change]** 
 
 
 - `eks-k8s-role-mapping` scripts are no longer baked into the PEX binary and instead loaded via the `PYTHONPATH`.
@@ -175,7 +175,7 @@ To upgrade to this version, install `kubergrunt` by following [the installation 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `server-group`
 
 
@@ -195,7 +195,7 @@ To upgrade to this version, install `kubergrunt` by following [the installation 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `server-group`
 
 
@@ -215,7 +215,7 @@ To upgrade to this version, install `kubergrunt` by following [the installation 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `server-group`
 
 
@@ -239,7 +239,7 @@ To upgrade to this version, install `kubergrunt` by following [the installation 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 Added extra retry logic to application_deployer
 
 </div>
@@ -266,7 +266,7 @@ Added extra retry logic to application_deployer
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 This is needed because:
 1. It is cleaner to package up the implementation behind a module
 1. It&apos;s not possible to refer to the actual python script with a relative path based of of `path.module` so we actually need this code to be wrapped
@@ -312,7 +312,7 @@ See the main README for more information.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `jenkins-server`
 
 
@@ -332,7 +332,7 @@ See the main README for more information.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `jenkins-server`
 
 
@@ -356,14 +356,14 @@ See the main README for more information.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
  * `rds`
 
 
 Postgres 10 on RDS uses a slightly different format for the default parameter group names. This resolves issue #55 where using the `rds` module to create a Postgres 10 database would throw an error. This release also splits the RDS example into multiple examples for a variety of supported database engines.
 
 
-* #55
+* #55 
 * #66
 
 </div>
@@ -377,7 +377,7 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `lambda-cleanup-snapshots`
 * `lambda-copy-shared-snapshot`
 * `lambda-create-snapshot`
@@ -400,7 +400,7 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `lambda-cleanup-snapshots`
 * `lambda-copy-shared-snapshot`
 * `lambda-create-snapshot`
@@ -427,7 +427,7 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `ecs-cluster`
 
 
@@ -451,9 +451,9 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
-- `lambda` **[Breaking Change]**
-- `lambda_edge` **[Breaking Change]**
+  
+- `lambda` **[Breaking Change]** 
+- `lambda_edge` **[Breaking Change]** 
 
 
 - **Breaking Change**: the `lambda` and `lambda_edge` modules no longer export the zip file to the `source_dir`, but rather to the module path under the name `$&#x7B;var.name&#x7D;-lambda.zip`. This is customizable using the `zip_output_path`. You can set this to variable to `$&#x7B;var.source_dir&#x7D;/lambda.zip` to get the old behavior.
@@ -473,8 +473,8 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
-- `lambda` **[Breaking Change]**
+  
+- `lambda` **[Breaking Change]** 
 
 
 - **Breaking Change**: the `lambda` module removes the `wait_for` variable as it was not working as intended due to a limitation in terraform&apos;s use of `depends_on` with data sources. Additionally, the implementation of `wait_for` introduced a perpetual diff issue where the `plan` would always detect a change. The removal of `wait_for` fixes that.
@@ -500,7 +500,7 @@ To upgrade to this version, remove the `wait_for` input parameter in all calls t
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `sqs`
 
 
@@ -525,7 +525,7 @@ The `sqs` module now exposes several new input parameters:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `sqs`
 
 
@@ -549,14 +549,14 @@ The `sqs` module now exposes several new input parameters:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `install-mongodb` **[Breaking Change]**
 
 
 * `install-mongodb` no longer tries to upgrade `pip`, as this causes issues with `pip` disappearing from the `PATH`. We recommend removing `pip` upgrade steps from your Packer templates too.
 
 
-* https://github.com/gruntwork-io/package-mongodb/pull/27:
+* https://github.com/gruntwork-io/package-mongodb/pull/27: 
 
 </div>
 
@@ -573,7 +573,7 @@ The `sqs` module now exposes several new input parameters:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `cloudwatch-dashboard-metric-widget`
 - `cloudwatch-dashboard-text-widget`
 
@@ -599,7 +599,7 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -616,7 +616,7 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `cloudtrail`
 
 
@@ -640,7 +640,7 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `persistent-ebs-volume`
 
 
@@ -660,11 +660,11 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `persistent-ebs-volume`
 
 
-* Fix `volume_ids: readonly variable` bug that would show up on Ubuntu 18.04 for `mount-ebs-volume`.
+* Fix `volume_ids: readonly variable` bug that would show up on Ubuntu 18.04 for `mount-ebs-volume`. 
 * Fix bug with missing `is_nvme` function in `unmount-ebs-volume`.
 * Clean up bash syntax in both scripts.
 
@@ -679,6 +679,6 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "206a8b99f4cc209c2e7bfe236ce6e517"
+  "hash": "c3406b2cc0c663c28b79e9329d78f766"
 }
 ##DOCS-SOURCER-END -->

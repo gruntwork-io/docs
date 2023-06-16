@@ -40,7 +40,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - Updated decryption routine to decrypt multiple ciphertexts in the input concurrently to improve performance.
 
 
@@ -78,11 +78,11 @@ https://github.com/gruntwork-io/gruntkms/pull/36
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  This release adds two new commands:
-* `gruntwork vault login` - quickly log into any account defined in your [aws-vault](https://github.com/99designs/aws-vault) account profiles
-* `gruntwork vault exec` - quickly execute an arbitrary command against any account defined in your aws-vault account profiles
+  This release adds two new commands: 
+* `gruntwork vault login` - quickly log into any account defined in your [aws-vault](https://github.com/99designs/aws-vault) account profiles 
+* `gruntwork vault exec` - quickly execute an arbitrary command against any account defined in your aws-vault account profiles 
 
-These commands are intended to be used in conjunction with the `gruntwork vault generate` command, for scaffolding aws-vault account profiles from your infrastructure-live repository.
+These commands are intended to be used in conjunction with the `gruntwork vault generate` command, for scaffolding aws-vault account profiles from your infrastructure-live repository. 
 
 </div>
 
@@ -215,7 +215,7 @@ These commands are intended to be used in conjunction with the `gruntwork vault 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 (none)
 
 
@@ -241,7 +241,7 @@ These commands are intended to be used in conjunction with the `gruntwork vault 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Some housekeeping updates.
 - **Unlock AWS provider v4. Require minimum 3.75.1.** This update includes a few tests that make sure upgrading to this module from the last release is easy. However, you may need to bump your AWS provider version. See the migration guide notes below for more.
@@ -262,7 +262,7 @@ These commands are intended to be used in conjunction with the `gruntwork vault 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated `terraform-update-variable` to make the formatting step optional, allowing you to run it without `terraform` being available in the `PATH`.
 
@@ -280,7 +280,7 @@ These commands are intended to be used in conjunction with the `gruntwork vault 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added support in `build-docker-image` ECS Deploy Runner script for injecting docker buildkit compatible secrets into Kaniko builds via the `--env-secret` parameter.
 
@@ -298,7 +298,7 @@ These commands are intended to be used in conjunction with the `gruntwork vault 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Improvements to upgrade testing
 
@@ -321,7 +321,7 @@ These commands are intended to be used in conjunction with the `gruntwork vault 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `ecs-deploy-runner-with-steampipe`
 - `steampipe-runner`
 
@@ -347,15 +347,15 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated for-production examples for Reference Architecture
 - Updated dependencies:
     - `terraform-aws-service-catalog`: `v0.95.0` to `v0.96.1`
 - **Unlocked AWS provider v4. Require minimum 3.75.1.**
-    - In [v0.39.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.39.0), we missed several module updates in the underlying `terraform-aws-service-catalog` dependency of this repo.
-    - That has been remedied in [gruntwork-io/terraform-aws-service-catalog@v0.96.1 (release)](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.96.1).
-    - Now we&apos;ve updated all references in `terraform-aws-cis-service-catalog` to point to the latest, AWS Provider v4 unlocked, version of `terraform-aws-service-catalog`.
+    - In [v0.39.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.39.0), we missed several module updates in the underlying `terraform-aws-service-catalog` dependency of this repo. 
+    - That has been remedied in [gruntwork-io/terraform-aws-service-catalog@v0.96.1 (release)](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.96.1). 
+    - Now we&apos;ve updated all references in `terraform-aws-cis-service-catalog` to point to the latest, AWS Provider v4 unlocked, version of `terraform-aws-service-catalog`. 
     - No configuration changes are required by you. Please see the migration guide below.
 
 
@@ -370,7 +370,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update dependencies:
     - `terraform-aws-service-catalog`: `v0.94.0` to `v0.95.0`
@@ -391,7 +391,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Renamed variable `associate_to_master_account_id` to `associate_to_admin_account_id` in `aws-securityhub` module to align with latest AWS documentation.
 
@@ -407,7 +407,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - **Unlock AWS provider v4. Require minimum 3.75.1.** This update includes a few tests that make sure upgrading to this module from the last release is easy. However, you may need to bump your AWS provider version. See the migration guide notes below for more info.
 
@@ -427,7 +427,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated `ecs-cluster` module to use the `aws_ecs_cluster_capacity_providers` to avoid the need for a python script on destroy.
 
@@ -445,7 +445,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Internal housekeeping changes
   - Added patch for `v0.32.0`
@@ -470,7 +470,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Housekeeping fixes:
   - Fixed Helm link in `alb-ingress-controller` `README`
@@ -494,7 +494,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated `run-lambda-entrypoint` CLI to support loading Secrets Manager entries by name instead of ARN. You can now pass a Secrets Manager name to the `_ARN` environment variables that the entrypoint CLI supports.
 
@@ -516,7 +516,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - No functional changes were introduced with this release!
 - Updated incorrect go package reference.
 
@@ -536,7 +536,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - **Unlock AWS provider v4. Require minimum 3.75.1.** This update includes a few tests that make sure upgrading to this module from the last release is easy. However, you may need to bump your AWS provider version. See the migration guide notes below for more.
 
 
@@ -555,7 +555,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - No functional changes were introduced in this release!
 - Updated incorrect go package reference.
 
@@ -572,7 +572,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - **Unlock AWS provider v4. Require minimum 3.75.1.** This update includes a few tests that make sure upgrading to this module from the last release is easy. However, you may need to bump your AWS provider version. See the migration guide notes below for more.
 
@@ -592,7 +592,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - `modules/logs` updated to only install logrotate from source if the RPM isn&apos;t already installed
 
@@ -609,7 +609,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated all alarms module to expose `treat_missing_data` as a configurable parameter.
 
@@ -628,7 +628,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Renamed legacy `vars.tf` files to `variables.tf`.
 
@@ -651,7 +651,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update dependencies of `openvpn-admin` utility to support usage with AWS SSO.
 
@@ -670,7 +670,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add retroactive patches for backward incompatible versions `v0.20.0` to `v0.24.0`
 
@@ -693,7 +693,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - No functional changes were introduced in this release!
 - Updated incorrect go package reference
 
@@ -711,7 +711,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - **Unlock AWS provider v4. Require minimum 3.75.1.** This update includes a few tests that make sure upgrading to this module from the last release is easy. However, you may need to bump your AWS provider version. See the migration guide notes below for more.
 
@@ -731,7 +731,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Exposed the `cleanup_on_fail` parameter in `k8s-service` module&apos;s `helm_release` resource.
 - Updated `landingzone/account-baseline-root` to expose `advanced_event_selectors` for Cloudtrail as `cloudtrail_advanced_event_selectors`.
@@ -753,14 +753,14 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - **Unlock AWS Provider v4. Require minimum 3.75.1.** In https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.96.0, we missed a few spots. This release updates the above modules with the same minimum version of 3.75.1, with no upper limit. These updates arose from bumping the following underlying library modules:
   - `terraform-aws-server`
   - `terraform-aws-load-balancer`
   - `terraform-aws-cache`
   - `terraform-aws-messaging`
-
+ 
 Special thanks to @lorelei-rupp-imprivata for catching this issue!
 
 
@@ -776,7 +776,7 @@ Special thanks to @lorelei-rupp-imprivata for catching this issue!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Module dependency updates, to unlock Terraform AWS Provider v4:
   - Update Terraform github.com/gruntwork-io/terraform-aws-eks to v0.53.0
@@ -795,7 +795,7 @@ Special thanks to @lorelei-rupp-imprivata for catching this issue!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Exposed the ability to set AWS Tags on the resources managed by the `ecs-deploy-runner` module.
 - Updated dependencies:
@@ -816,7 +816,7 @@ Special thanks to @lorelei-rupp-imprivata for catching this issue!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated dependencies:
     - `terraform-aws-ci`: `v0.50.3` to `v0.50.6`
@@ -835,7 +835,7 @@ Special thanks to @lorelei-rupp-imprivata for catching this issue!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated dependency `terraform-aws-data-storage` from `v0.24.0` to `v0.24.2`
 - Exposed new parameters to pass through permission boundaries to IAM Roles managed by the `account-baseline` modules.
@@ -853,7 +853,7 @@ Special thanks to @lorelei-rupp-imprivata for catching this issue!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated `aurora` module to output the generated security group ID.
 - Updated the website S3 bucket created in the `public-static-website` module with additional security configurations when operating in private bucket mode. The following changes are backward compatible with existing websites.
@@ -881,7 +881,7 @@ Special thanks to @lorelei-rupp-imprivata for catching this issue!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add support for s3 buckets with v4 Auth
 
@@ -895,6 +895,6 @@ Special thanks to @lorelei-rupp-imprivata for catching this issue!
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "c94e401691aa19ca75a1fedcb3e6d51c"
+  "hash": "f35dc2e64dbabc490f76cffeb5788545"
 }
 ##DOCS-SOURCER-END -->

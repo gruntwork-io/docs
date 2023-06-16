@@ -31,7 +31,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * Create CODEOWNERS by @rhoboat in https://github.com/gruntwork-io/repo-copier/pull/120
 * Use terratest_log_parser to summarize test results in circleci by @yorinasub17 in https://github.com/gruntwork-io/repo-copier/pull/119
 * Update CODEOWNERS by @yorinasub17 in https://github.com/gruntwork-io/repo-copier/pull/121
@@ -61,7 +61,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Use BuildKit pattern for passing secrets in the CircleCI build **[BACKWARD INCOMPATIBLE]**
 - Fix intermittent test failure
@@ -87,7 +87,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Move the generated `.tflint.hcl` by the `tflint` patch to be at the root level, instead of at the module directory level.
 
@@ -104,7 +104,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix tflint patch to add block for including the parent TG config
 
@@ -120,7 +120,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - Add patch for tflint hook setup for CIS RefArch users
 
 
@@ -139,7 +139,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix project&apos;s name on goreleaser. Also added docs for the CIDR block rule.
 
@@ -156,7 +156,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - New golang module: `tflint-ruleset-aws-cis`. It will be used to validate CIDR blocks.
 
@@ -177,7 +177,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixes perpetual diff issue on `terragrunt plan` when using relative paths for the Lambda function&apos;s source path, and adds the option to configure the files to exclude when zipping the Lambda&apos;s code
 
@@ -194,7 +194,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixes permissions for Lambda&apos;s ENI management when running in VPC.
 
@@ -215,7 +215,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Deprecate `vpc_id` variable
 
@@ -236,7 +236,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `ntp`
 - `private-s3-bucket`
 
@@ -271,7 +271,7 @@ Special thanks to the following user for their contribution!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - Update the CIS RDS Patch to include state migrations
 - IMDSv1 passthru variable for ASG launch configurations
 
@@ -288,7 +288,7 @@ Special thanks to the following user for their contribution!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add `Name` tag (cluster name) for managed EKS workers
 
@@ -309,16 +309,16 @@ Special thanks to the following user for their contribution!
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updating terraform-aws-security to latest version: When the flow-logs module was instantiate, and an S3 bucket was created, a warning about a deprecated attribute was thrown. Updating the version of the upstream code.
 ```
 │ Warning: Argument is deprecated
-│
+│ 
 │   with module.vpc_flow_log.module.s3_bucket.aws_s3_bucket.bucket,
 │   on .terraform/modules/vpc_flow_log.s3_bucket/modules/private-s3-bucket/main.tf line 19, in resource &quot;aws_s3_bucket&quot; &quot;bucket&quot;:
 │   19: resource &quot;aws_s3_bucket&quot; &quot;bucket&quot; &#x7B;
-│
+│ 
 │ Use the top-level parameter object_lock_enabled and the
 │ aws_s3_bucket_object_lock_configuration resource instead
 ```
@@ -333,6 +333,6 @@ Special thanks to the following user for their contribution!
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "7db14652049938493eac0773e4096524"
+  "hash": "6afb75d56bf249e96b309c30f7d81525"
 }
 ##DOCS-SOURCER-END -->

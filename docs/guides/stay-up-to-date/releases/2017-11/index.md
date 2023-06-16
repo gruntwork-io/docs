@@ -169,7 +169,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -182,7 +182,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -212,7 +212,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-data-storage/pull/30: The `rds` module now sets a default `license_model` to work around https://github.com/terraform-providers/terraform-provider-aws/issues/2468.
+  https://github.com/gruntwork-io/module-data-storage/pull/30: The `rds` module now sets a default `license_model` to work around https://github.com/terraform-providers/terraform-provider-aws/issues/2468. 
 
 </div>
 
@@ -344,7 +344,7 @@ https_listener_ports_and_acm_ssl_certs = [
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -383,7 +383,7 @@ https_listener_ports_and_acm_ssl_certs = [
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-security/pull/52:
+  https://github.com/gruntwork-io/module-security/pull/52: 
 
 1. You can now disable the full-access IAM group in the `iam-groups` module using the `should_create_iam_group_full_access` parameter.
 
@@ -427,6 +427,6 @@ https_listener_ports_and_acm_ssl_certs = [
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "ce17f556f0a49e6ba41a8e38b9c91d4d"
+  "hash": "2dc5d8ee339f3a7015bfc63cd65f850d"
 }
 ##DOCS-SOURCER-END -->

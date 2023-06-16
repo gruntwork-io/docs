@@ -64,7 +64,7 @@ This also adds additional logging that shows you which github user you are authe
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 Here&apos;s an example of how to first launch Module A and then launch Module B:
 
 ```hcl
@@ -128,11 +128,11 @@ module &quot;b&quot; &#x7B;
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-data-storage/pull/54:
+  https://github.com/gruntwork-io/module-data-storage/pull/54: 
 
 
 
-Changes to the `lambda-cleanup-snapshots`, `lambda-copy-shared-snapshot`, `lambda-create-snapshot`, and `lambda-share-snapshot` modules:
+Changes to the `lambda-cleanup-snapshots`, `lambda-copy-shared-snapshot`, `lambda-create-snapshot`, and `lambda-share-snapshot` modules: 
 
 1. They now all use [package-lambda](https://github.com/gruntwork-io/package-lambda/) under the hood instead of the older lambda code that used to live in `module-ci`. The new version renames some resources and changes the name of the CloudWatch events/targets to be a bit shorter to help avoid exceeding the max length allowed by AWS.
 
@@ -208,11 +208,11 @@ This is a backwards incompatible change for the `ecs-service-with-discovery` mod
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/package-lambda/pull/22:
+  https://github.com/gruntwork-io/package-lambda/pull/22: 
 
 BACKWARDS INCOMPATIBLE CHANGE
 
-The `scheduled-lambda-job` module now namespaces all of its resources with the format `&quot;$&#x7B;var.lambda_function_name&#x7D;-scheduled&quot;` instead of `&quot;$&#x7B;var.lambda_function_name&#x7D;-scheduled-lambda-job&quot;`. This makes names shorter and less likely to exceed AWS name length limits. If you `apply` this new version, your CloudWatch events, targets, and permissions will be destroyed and recreated, which is typically harmless. If you wish to override the namespacing behavior, you now set a new input variable called `namespace`.
+The `scheduled-lambda-job` module now namespaces all of its resources with the format `&quot;$&#x7B;var.lambda_function_name&#x7D;-scheduled&quot;` instead of `&quot;$&#x7B;var.lambda_function_name&#x7D;-scheduled-lambda-job&quot;`. This makes names shorter and less likely to exceed AWS name length limits. If you `apply` this new version, your CloudWatch events, targets, and permissions will be destroyed and recreated, which is typically harmless. If you wish to override the namespacing behavior, you now set a new input variable called `namespace`. 
 
 </div>
 
@@ -229,7 +229,7 @@ The `scheduled-lambda-job` module now namespaces all of its resources with the f
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-aws-monitoring/pull/54: Fix the alarm name used by the `asg-disk-alarms` module to include the file system and mount path. This ensures that if you create multiple alarms for multiple disks on the same auto scaling groups, they each get a unique name, rather than overwriting each other.
+  https://github.com/gruntwork-io/module-aws-monitoring/pull/54: Fix the alarm name used by the `asg-disk-alarms` module to include the file system and mount path. This ensures that if you create multiple alarms for multiple disks on the same auto scaling groups, they each get a unique name, rather than overwriting each other. 
 
 </div>
 
@@ -272,7 +272,7 @@ The `scheduled-lambda-job` module now namespaces all of its resources with the f
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/package-openvpn/pull/53:
+  https://github.com/gruntwork-io/package-openvpn/pull/53: 
 
 **BACKWARDS INCOMPATIBLE CHANGE**
 
@@ -297,7 +297,7 @@ gruntwork-install --module-name &apos;bash-commons&apos; --repo &apos;https://gi
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - #115: Fix test failures caused by #114
+  - #115: Fix test failures caused by #114 
 
 - #116: Update the `os-hardening` module to the latest Gruntwork best practices and dependencies
 
@@ -327,6 +327,6 @@ A special thanks to @jeckhart for contributing all of these PRs!
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "ec8a47847ff5f4a188dedd729570db87"
+  "hash": "2302597a055e6c0f12a29237e667606d"
 }
 ##DOCS-SOURCER-END -->

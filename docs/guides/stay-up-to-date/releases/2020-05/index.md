@@ -71,7 +71,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now enable encryption for the root block device by using the `root_block_device_encrypted` input variable.
 
@@ -92,7 +92,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `ecs-deploy-runner` now outputs the security group used by the ECS task so that you can append additional rules to it.
 
@@ -109,7 +109,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release bumps the version of [the ALB module](https://github.com/gruntwork-io/module-load-balancer/tree/master/modules/alb) used by Jenkins to `v0.20.1` to fix an issue related to outputs from the ALB module.
 
@@ -130,7 +130,7 @@ The `jenkins-server` module no longer takes the `aws_account_id` variable. To up
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The `infrastructure-deployer` now supports selecting the container to run in a multi container deployment for the `ecs-deploy-runner`. Note that this version of the `infrastructure-deployer` is only compatible with an `ecs-deploy-runner` that is deployed with this version.
 
@@ -148,7 +148,7 @@ The `infrastructure-deployer` now supports selecting the container to run in a m
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The `infrastructure-deploy-script` now supports running `destroy`. Note that the threat model of running `destroy` in the CI/CD pipeline is not well thought out and is not recommended. Instead, directly call the ECS task to run destroy using privileged credentials.
 
@@ -165,7 +165,7 @@ The `infrastructure-deploy-script` now supports running `destroy`. Note that the
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `build-packer-artifact` now supports building a packer template from a git repository. See [the updated docs](https://github.com/gruntwork-io/module-ci/tree/master/modules/build-helpers#remote-packer-templates) for more info.
 
@@ -182,7 +182,7 @@ The `infrastructure-deploy-script` now supports running `destroy`. Note that the
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 `ecs-deploy-runner` now supports specifying multiple container images, and choosing a container image based on a user defined name. This allows you to configure and use different Docker containers for different purposes of your infrastructure pipeline.
 
 
@@ -199,7 +199,7 @@ The `infrastructure-deploy-script` now supports running `destroy`. Note that the
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The CLI arg for setting the log level in `infrastructure-deployer` and `infrastructure-deploy-script` has been renamed to `--log-level` instead of `--loglevel`.
 
@@ -224,7 +224,7 @@ The `infrastructure-deploy-script` now supports running `destroy`. Note that the
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `aws-securityhub` no longer depends on python to get enabled regions, and instead uses a terraform native data source.
 
@@ -245,7 +245,7 @@ The `infrastructure-deploy-script` now supports running `destroy`. Note that the
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now enable cross-region replication for Aurora by setting `source_region` and `replication_source_identifier` to the region and ARN, respectively, of a primary Aurora DB.
 
@@ -263,7 +263,7 @@ The `infrastructure-deploy-script` now supports running `destroy`. Note that the
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Allow changing the auto minor version upgrade behavior
 
@@ -280,7 +280,7 @@ The `infrastructure-deploy-script` now supports running `destroy`. Note that the
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Bugfix for EFS: create mount targets in correct security group
 
@@ -297,7 +297,7 @@ The `infrastructure-deploy-script` now supports running `destroy`. Note that the
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release adds a new module for [Amazon Elastic Filesystem (EFS)](https://aws.amazon.com/efs/).
 
@@ -313,7 +313,7 @@ This release adds a new module for [Amazon Elastic Filesystem (EFS)](https://aws
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now pass in an optional list of IAM roles to attach to the Aurora cluster using the new `cluster_iam_roles` input variable.
 
@@ -329,7 +329,7 @@ This release adds a new module for [Amazon Elastic Filesystem (EFS)](https://aws
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 You can now provide an existing DB subnet group to use with the RDS clusters instead of creating a new one.
 
@@ -350,7 +350,7 @@ You can now provide an existing DB subnet group to use with the RDS clusters ins
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 You can now configure the platform version of ECS Fargate using the `platform_version` variable.
 
@@ -371,7 +371,7 @@ You can now configure the platform version of ECS Fargate using the `platform_ve
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release introduces first class support for using [the EKS cluster security group](https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html#cluster-sg) with self managed workers:
 
@@ -395,7 +395,7 @@ This release also fixes a bug with the `eks-k8s-role-mapping` module, where prev
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `eks-k8s-role-mapping` is now a pure terraform module and no longer uses python to assist in generating the role mapping. Note that this will cause a drift in the configuration state due to some of the attributes being reorganized, but the configuration is semantically equivalent (thus the roll out is backwards compatible).
 
@@ -413,7 +413,7 @@ This release also fixes a bug with the `eks-k8s-role-mapping` module, where prev
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 You can now specify the `max_instance_lifetime` on the autoscaling group created with `eks-cluster-workers`.
 
@@ -429,7 +429,7 @@ You can now specify the `max_instance_lifetime` on the autoscaling group created
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `eks-cluster-control-plane` module will now automatically download and install `kubergrunt` if it is not available in the target system. This behavior can be disabled by setting the input variable `auto_install_kubergrunt` to `false`.
 
@@ -452,7 +452,7 @@ This release also includes several documentation fixes to READMEs of various mod
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The `lambda` module is now more robust to partial failures in the module. Previously you could end up in a state where you couldn&apos;t `apply` or `destroy` the module if it only partially applied the resources due to output errors. This release addresses that by changing the output logic.
 
@@ -474,7 +474,7 @@ Note that previously this module output `null` for all the outputs when `create_
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - ALB outputs have been adjusted to use `for` syntax as opposed to `zipmap` for the listener port =&gt; cert ARN mapping. This was due to [an obscure Terraform bug](https://github.com/hashicorp/terraform/pull/24083) that is not yet fixed/released.
 
@@ -495,7 +495,7 @@ Note that previously this module output `null` for all the outputs when `create_
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added alarms for Replica Lag and Replication Errors.
 
@@ -512,7 +512,7 @@ Note that previously this module output `null` for all the outputs when `create_
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update README.md (fixes minor typo)
 - Add RDS storage alarms for Aurora engine type
@@ -530,9 +530,9 @@ Note that previously this module output `null` for all the outputs when `create_
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- The `install.sh` scripts for the `cloudwatch-log-aggregation-scripts`, `syslog`, and `cloudwatch-memory-disk-metrics-scripts` modules were unnecessarily using `eval` to execute scripts used in the install steps. This led to unexpected behavior, such as `--module-param` arguments being shell expanded. We&apos;ve removed the calls to `eval` and replaced with a straight call to the underlying scripts.
+- The `install.sh` scripts for the `cloudwatch-log-aggregation-scripts`, `syslog`, and `cloudwatch-memory-disk-metrics-scripts` modules were unnecessarily using `eval` to execute scripts used in the install steps. This led to unexpected behavior, such as `--module-param` arguments being shell expanded. We&apos;ve removed the calls to `eval` and replaced with a straight call to the underlying scripts. 
 
 _This release is marked as backwards incompatible, but this only applies if you were (intentionally or otherwise) relying on the `eval` behavior (which is not likely or recommended!)._
 
@@ -553,7 +553,7 @@ _This release is marked as backwards incompatible, but this only applies if you 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `kms-master-key` now supports configuring service principal permissions with conditions. As part of this change, the way CloudTrail is setup in the Landing Zone modules have been updated to better support the multiaccount configuration. Refer to [the updated docs on multiaccount CloudTrail](https://github.com/gruntwork-io/module-security/blob/master/modules/cloudtrail/core-concepts.md#multi-account-cloudtrail-setup) for more information.
 
@@ -570,7 +570,7 @@ _This release is marked as backwards incompatible, but this only applies if you 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The `cloudtrail` module now supports reusing an existing KMS key in your account, as opposed to creating a new one. To use an existing key, set the `kms_key_already_exists` variable to `true` and provide the ARN of the key to the variable `kms_key_arn`.
 
@@ -589,10 +589,10 @@ Note that as part of this change, the `aws_account_id` variable was removed from
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `iam-policies` module now allows sts:TagSession for the automation users
-- In v0.29.0, we updated `account-baseline-app` and `account-baseline-security` to allow for centralizing Config output in a single bucket. In this release, we take the same approach with `account-baseline-root`. It now supports using config bucket in security account.
+- In v0.29.0, we updated `account-baseline-app` and `account-baseline-security` to allow for centralizing Config output in a single bucket. In this release, we take the same approach with `account-baseline-root`. It now supports using config bucket in security account. 
 
 **Migration guide**
 To centralize logs in S3, use [the same migration guide as in v0.29.0](https://github.com/gruntwork-io/module-security/releases/tag/v0.29.0).
@@ -612,7 +612,7 @@ To keep logs in the existing S3 bucket and make no change, set `should_create_s3
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 This release grants permissions to describe/list EKS clusters to the read-only policy.
 
 
@@ -629,7 +629,7 @@ This release grants permissions to describe/list EKS clusters to the read-only p
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The `aws-config` module has been refactored to better support multi-region, multi-account configurations. Previously, running the `aws-config-multi-region` would create an S3 bucket, an IAM role, and an SNS topic in each region. When run in multiple accounts, such as when using the Gruntwork reference architecture, each account would have the aforementioned resources within each region. This configuration was impractical to use since Config would be publishing data to dozens of buckets and topics, making it difficult to monitor and triage.
 
@@ -642,8 +642,8 @@ With this release, the `aws-config-multi-region` module has been modified as fol
 
 In addition, the `account-baseline-*` modules can now be configured in the following way:
 
-1. The `account-baseline-security` module can be configured as the “central” account in which to aggregate all other accounts.
-1. The `account-baseline-app` module can be configured to use the central/security account.
+1. The `account-baseline-security` module can be configured as the “central” account in which to aggregate all other accounts. 
+1. The `account-baseline-app` module can be configured to use the central/security account. 
 
 In this configuration, the central account will be configured with an S3 Bucket in the same region as the `global_recorder_region` and an SNS topic will be created in each region. Any account configured with `account-baseline-app` can publish to the S3 bucket in the central account, and to send SNS notifications to the topic in the corresponding region of the central account. In addition, all configuration recorders across all accounts will be aggregated to the `global_recorder_region` of the central account.
 
@@ -662,9 +662,9 @@ Find additional migration instructions below for the modules affected by this ch
 For `aws-config`:
 
 * `s3_bucket_name` remains a required variable.
-* If `should_create_s3_bucket=true` (the default), an S3 bucket will be created. If it is `false`, AWS Config will be configured to use an existing bucket with the name provided by `s3_bucket_name`.
+* If `should_create_s3_bucket=true` (the default), an S3 bucket will be created. If it is `false`, AWS Config will be configured to use an existing bucket with the name provided by `s3_bucket_name`. 
 * `sns_topic_name` is now optional. If `sns_topic_name` is provided, an SNS topic will be created. If `sns_topic_arn` is provided, AWS Config will be configured to use that topic.
-* If `should_create_iam_role` is true (the default), an IAM role will be created with the default name of `AWSConfigRole`.
+* If `should_create_iam_role` is true (the default), an IAM role will be created with the default name of `AWSConfigRole`. 
 
 For `aws-config-multi-region`:
 * `global_recorder_region` is no longer required. The default is now `us-east-1`.
@@ -682,7 +682,7 @@ For `account-baseline-security`:
 
 For `account-baseline-app`:
 
-* The `config_central_account_id` variable should be configured with the ID of the account that contains the S3 bucket and SNS topic. This will typically be the account that is configured with `account-baseline-security`.
+* The `config_central_account_id` variable should be configured with the ID of the account that contains the S3 bucket and SNS topic. This will typically be the account that is configured with `account-baseline-security`. 
 
 * If the `config_s3_bucket_name` variable is provided, AWS Config will be configured to use that name (but the bucket will not be created within the account). If no name is provided, AWS Config will be configured to use a default name of `$&#x7B;var.name_prefix&#x7D;-config`. This bucket must already exist and should have appropriate permissions to allow access from this account. To set up permissions, provide this account ID in the `config_linked_accounts` of the `account-baseline-security` modules.
 
@@ -704,7 +704,7 @@ For `account-baseline-app`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `enabled-aws-regions` has been removed as there is now [a new data source in the `aws` provider that has the same functionality](https://www.terraform.io/docs/providers/aws/d/regions.html). Replace usage of the module with the `aws_regions` data source
 
@@ -721,7 +721,7 @@ For `account-baseline-app`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added a new module called `executable-dependency` that can be used to install an executable if it&apos;s not installed already. This is useful if your Terraform code depends on external dependencies, such as `terraform-aws-eks`, which depends on `kubergrunt`.
 
@@ -742,7 +742,7 @@ For `account-baseline-app`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The `vpc-peering` module can now optionally create resources using the `create_resources` variable. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if the VPC Peering function and other resources should be created or not.
 
@@ -759,9 +759,9 @@ The `vpc-peering` module can now optionally create resources using the `create_r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- This fixes a bug with `vpc-app`. Previously the dynamodb endpoint routes mistakenly referenced the S3 endpoint.
+- This fixes a bug with `vpc-app`. Previously the dynamodb endpoint routes mistakenly referenced the S3 endpoint. 
 
 Special thanks to @jdhornsby for the fix!
 
@@ -776,6 +776,6 @@ Special thanks to @jdhornsby for the fix!
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "07cc0ec46315612b9151a72c3c113ea7"
+  "hash": "161c1e5b2731f4507eec7f24d5e20b25"
 }
 ##DOCS-SOURCER-END -->

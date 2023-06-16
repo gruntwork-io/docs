@@ -37,7 +37,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -54,9 +54,9 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- Update CircleCi Packer from 1.3.3 to 1.5.4
+- Update CircleCi Packer from 1.3.3 to 1.5.4 
 
 The Packer template used to generate machine images now uses the `clean_resource_name` function when generating the artifact&apos;s image name (changed from `clean_ami_name`). Note that the `clean_ami_name` function was deprecated in Packer&apos;s [1.5.0 release](https://github.com/hashicorp/packer/blob/master/CHANGELOG.md#150-december-18-2019).
 
@@ -73,7 +73,7 @@ The Packer template used to generate machine images now uses the `clean_resource
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `server-group` module now exposes a new `user_data_base64` parameter that you can use to pass in Base64-encoded data (e.g., gzipped cloud-init script).
 
@@ -94,7 +94,7 @@ The Packer template used to generate machine images now uses the `clean_resource
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add count to `var.allow_connections_from_cidr_blocks`.
 
@@ -114,7 +114,7 @@ The Packer template used to generate machine images now uses the `clean_resource
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now configure the health check max retries and time between retries for Jenkins using the new input variables `deployment_health_check_max_retries` and `deployment_health_check_retry_interval_in_seconds`, respectively. Changed the default settings to be ten minutes worth of retries instead of one hour.
 
@@ -131,13 +131,13 @@ The Packer template used to generate machine images now uses the `clean_resource
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Made several updates to the `jenkins-server` module:
 
 - Expose a new `user_data_base64` input variable that allows you to pass in Base64-encoded User Data (e.g., such as a gzipped cloud-init script).
 - Fixed deprecation warnings with the ALB listener rules.
-- Updated the version of the `alb` module used under the hood. This new version no longer sets the `Environment` tag on the load balancer. Therefore, the `jenkins-server` module no longer takes an `environment_name` variable as an input variable, so if you&apos;re upgrading, you&apos;ll need to remove this variable.
+- Updated the version of the `alb` module used under the hood. This new version no longer sets the `Environment` tag on the load balancer. Therefore, the `jenkins-server` module no longer takes an `environment_name` variable as an input variable, so if you&apos;re upgrading, you&apos;ll need to remove this variable. 
 
 
 
@@ -152,7 +152,7 @@ Made several updates to the `jenkins-server` module:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release introduces the ECS Deploy Runner stack, a collection of CLI utilities, modules, and scripts that can be used for implementing a secure Terraform / Terragrunt CI/CD pipeline. Refer to [the overview documentation](https://github.com/gruntwork-io/module-ci/blob/master/README-Terraform-Terragrunt-Pipeline.adoc) for more details. The following is a summary of the components:
 
@@ -176,7 +176,7 @@ This release also adds a new script to the `terraform-helpers` module, `git-upda
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 When running with `-t`, `go get` will pull versions of packages that might
 be needed for testing but not for the functionality of the dependency
@@ -200,7 +200,7 @@ incompatibilities.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `aws-config` has been migrated to `module-security` as the module `aws-config-multi-region`. If you were using the `aws-config` module before, replace with the URL to `module-security`. See the migration guide for more details.
 
@@ -222,7 +222,7 @@ As a result of this change, both `aws-config-multi-region` and `aws-securityhub`
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Make `var.allow_connections_from_cidr_blocks` optional.
 
@@ -238,7 +238,7 @@ As a result of this change, both `aws-config-multi-region` and `aws-securityhub`
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add the ability to enable [Performance Insights](https://aws.amazon.com/rds/performance-insights/) in the `rds` module.
 - Add `copy_tags_to_snapshot` support to the `rds` module.
@@ -256,7 +256,7 @@ As a result of this change, both `aws-config-multi-region` and `aws-securityhub`
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add the ability to enable `deletion_protection` in the `rds` module.
 
@@ -272,7 +272,7 @@ As a result of this change, both `aws-config-multi-region` and `aws-securityhub`
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Allow specifying the Certificate Authority (CA) bundle to use in the `aurora` module via the `ca_cert_identifier` input variable.
 - Update the `ca_cert_identifier` input variable in the `rds` module to set the default to `null` instead of hard-coding it to `rds-ca-2019`. This means this module (and the `aurora` module) will now use whatever default is set by the underlying RDS resources in the AWS provider. This is why this release is marked as backwards incompatible.
@@ -289,9 +289,9 @@ As a result of this change, both `aws-config-multi-region` and `aws-securityhub`
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- You can now configure backtracking (in-place, destructive rollback to a previous point-in-time) on Aurora clusters using the `backtrack_window` variable.
+- You can now configure backtracking (in-place, destructive rollback to a previous point-in-time) on Aurora clusters using the `backtrack_window` variable. 
 
 
 </div>
@@ -309,7 +309,7 @@ As a result of this change, both `aws-config-multi-region` and `aws-securityhub`
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Add `logs:CreateLogGroup` to the IAM permissions for the ECS task execution role. This is necessary for ECS to create a new log group if the configured log group does not already exist.
 
@@ -326,7 +326,7 @@ Add `logs:CreateLogGroup` to the IAM permissions for the ECS task execution role
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The `ecs-service` module now exposes `task_role_permissions_boundary_arn` and `task_execution_role_permissions_boundary_arn` input parameters that can be used to set permission boundaries on the IAM roles created by this module.
 
@@ -347,7 +347,7 @@ The `ecs-service` module now exposes `task_role_permissions_boundary_arn` and `t
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The `clean_up_cluster_resources` script now cleans up residual security groups from the ALB ingress controller.
 
@@ -364,7 +364,7 @@ The `clean_up_cluster_resources` script now cleans up residual security groups f
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The IAM Role for Service Accounts (IRSA) input variables for the application modules (`eks-k8s-external-dns`, `eks-k8s-cluster-autoscaler`, `eks-cloudwatch-container-logs`, and `eks-alb-ingress-controller`) are now required. Previously, we defaulted `use_iam_role_for_service_accounts` to true, but this meant that you needed to provide two required variables `eks_openid_connect_provider_arn` and `eks_openid_connect_provider_url`. However, these had defaults of empty string and do not cause an error in the terraform config, which means that you would have a successful deployment even if they weren&apos;t set. This can be confusing because each of these services will silently fail since they will not have access to the AWS resources they need to manage. Starting this release the IRSA input variables have been consolidated to a single required variable `iam_role_for_service_accounts_config`.
 
@@ -385,7 +385,7 @@ The IAM Role for Service Accounts (IRSA) input variables for the application mod
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 You can now set the permissions boundary on the IAM role created for the lambda function.
 
@@ -402,7 +402,7 @@ You can now set the permissions boundary on the IAM role created for the lambda 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Bump all examples and modules to use nodejs12.x as the runtime, as 6.x and 8.x have been deprecated.
 
@@ -423,14 +423,14 @@ You can now set the permissions boundary on the IAM role created for the lambda 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `alb` module no longer exposes an `environment_name` input variable. This variable was solely used to set an `Environment` tag on the load balancer. To upgrade to this version, you will need to remove the `environment_name` parameter from your code. If you wish to maintain the tag for backwards compatibility, set it in the `custom_tags` parameter as follows:
 
     ```hcl
     custom_tags = &#x7B;
       Environment = &quot;whatever value you were setting for environment_name before&quot;
-    &#x7D;
+    &#x7D; 
     ```
 
 
@@ -447,7 +447,7 @@ You can now set the permissions boundary on the IAM role created for the lambda 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `alb`
 
 
@@ -471,7 +471,7 @@ This release fixes a bug in `outputs.tf` when removing a port from a listener. T
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - We now use the Ubuntu 18.04 base AMI for the test server
 - Fixed several broken links
@@ -495,9 +495,9 @@ This release fixes a bug in `outputs.tf` when removing a port from a listener. T
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- Added a `create_resources` input variable to `cloudwatch-custom-metrics-iam-policy` so you can turn the module on and off (this is a workaround for Terraform not supporting `count` in `module`).
+- Added a `create_resources` input variable to `cloudwatch-custom-metrics-iam-policy` so you can turn the module on and off (this is a workaround for Terraform not supporting `count` in `module`). 
 - The `cloudwatch-custom-metrics-iam-policy` and `cloudwatch-log-aggregation-iam-policy` modules now output the JSON for the policies they create. This allows you to set `create_resources = false` to not create the standalone IAM policies and instead, add the JSON from those policies to an IAM entity of your choice (e.g., an IAM role).
 
 
@@ -513,9 +513,9 @@ This release fixes a bug in `outputs.tf` when removing a port from a listener. T
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- Fix bug in the `run-cloudwatch-logs-agent.sh` where the first argument passed to `--extra-log-files` was being skipped.
+- Fix bug in the `run-cloudwatch-logs-agent.sh` where the first argument passed to `--extra-log-files` was being skipped. 
 
 
 </div>
@@ -529,7 +529,7 @@ This release fixes a bug in `outputs.tf` when removing a port from a listener. T
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Correct the docs and usage instructions for the `cloudwatch-log-aggregation-scripts` module to correctly indicate that `--log-group-name` is required.
 
@@ -546,7 +546,7 @@ This release fixes a bug in `outputs.tf` when removing a port from a listener. T
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The `cloudwatch-memory-disk-metrics` module now creates and sets up a new OS user `cwmonitoring` to run the monitoring scripts as. Previously this was using the user who was calling `gruntwork-install`, which is typically the default user for the cloud (e.g `ubuntu` for ubuntu and `ec2-user` for Amazon Linux). You can control which user to use by setting the module parameter `cron-user`.
 
@@ -562,7 +562,7 @@ The `cloudwatch-memory-disk-metrics` module now creates and sets up a new OS use
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - All the modules under `alarms` now expose a `create_resources` parameter that you can set to `false` to disable the module so it creates no resources. This is a workaround for Terraform not supporting `count` or `for_each` on `module`. Note that this change is backwards incompatible solely because the `route53-health-check-alarms` module already exposed an identical `enabled` parameter, but for consistency with all our other modules and repos, we&apos;ve renamed it to `create_resources`. If you were using this `enabled` parameter on the `route53-health-check-alarms` module, please rename it to `create_resources` now.
 
@@ -579,9 +579,9 @@ The `cloudwatch-memory-disk-metrics` module now creates and sets up a new OS use
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
-
-- The `run-cloudwatch-logs-agent.sh` no longer takes in a `--vpc-name` parameter, which was only used to set a log group name if `--log-group-name` was not passed in. The `--log-group-name` is now required, which is simpler and makes the intent clearer. If you wish to preserve backwards compatibility with the log group name you were using before, set `--log-group-name` to `$&#x7B;vpc_name&#x7D;-ec2-syslog`.
+- The `run-cloudwatch-logs-agent.sh` no longer takes in a `--vpc-name` parameter, which was only used to set a log group name if `--log-group-name` was not passed in. The `--log-group-name` is now required, which is simpler and makes the intent clearer. If you wish to preserve backwards compatibility with the log group name you were using before, set `--log-group-name` to `$&#x7B;vpc_name&#x7D;-ec2-syslog`. 
 
 
 
@@ -600,7 +600,7 @@ The `cloudwatch-memory-disk-metrics` module now creates and sets up a new OS use
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release fixes a regression in the `fail2ban` module that prevented it from starting up on Amazon Linux 2.
 
@@ -617,7 +617,7 @@ This release fixes a regression in the `fail2ban` module that prevented it from 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release introduces security baseline modules for AWS Landing Zone with examples of how to configure accounts including setting up AWS Config, AWS CloudTrail, Amazon Guard Duty, IAM users, IAM groups, IAM password policies, and more.
 
@@ -637,7 +637,7 @@ The following additional fixes are also included in this release:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 Previously, CloudWatch did not have the necessary permissions to deliver notifications to SNS. This release sets permissions correctly, and also fixes the associated GuardDuty test.
 
 
@@ -653,7 +653,7 @@ Previously, CloudWatch did not have the necessary permissions to deliver notific
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `kms-master-key` module now exposes a `customer_master_key_spec` variable that allows you to specify whether the key contains a symmetric key or an asymmetric key pair and the encryption algorithms or signing algorithms that the key supports. The module now also grants `kms:GetPublicKey` permissions, which is why this release was marked as &quot;backwards incompatible.&quot;
 
@@ -673,7 +673,7 @@ Previously, CloudWatch did not have the necessary permissions to deliver notific
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 This release adds the `icmp_type` and `icmp_code` variables to the network ACL modules, allowing you to specify ICMP rules.
 
 
@@ -690,7 +690,7 @@ This release adds the `icmp_type` and `icmp_code` variables to the network ACL m
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Use route table associations for VPC endpoints
 
@@ -716,6 +716,6 @@ Now it&apos;s possible to fully deactivate the `vpc-flow-logs` module passing th
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "5abed6bb9a0069f72e7725ccf7259726"
+  "hash": "1bc12bc0c766de47231f134506e8031e"
 }
 ##DOCS-SOURCER-END -->

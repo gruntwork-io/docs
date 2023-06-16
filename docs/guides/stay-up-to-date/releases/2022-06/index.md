@@ -115,7 +115,7 @@ https://github.com/gruntwork-io/repo-copier/pull/118
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - **Unlock AWS provider v4. Require minimum 3.75.1.** This update includes a few tests that make sure upgrading to this module from the last release is easy. However, you may need to bump your AWS provider version. See the migration guide notes below for more.
 
@@ -131,7 +131,7 @@ https://github.com/gruntwork-io/repo-copier/pull/118
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added `max_instance_lifetime` var to `asg-rolling-deploy` module
 
@@ -148,7 +148,7 @@ https://github.com/gruntwork-io/repo-copier/pull/118
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated examples to be compatible with `terraform-provider-aws` v4.
 - Updated tests to include additional cases and OSes.
@@ -170,7 +170,7 @@ https://github.com/gruntwork-io/repo-copier/pull/118
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated the Fargate platform version to default to `1.4.0` instead of `1.3.0`.
 - Fixed bug where very short ECS tasks oftentimes end up with no streaming logs despite the logs showing up in CloudWatch. We have identified this to be a race condition between retrieving log events and the first logs to show up from the ECS task. This is addressed by adding a short delay between the ECS task starting, and the `infrastructure-deployer` CLI reading log events.
@@ -188,7 +188,7 @@ https://github.com/gruntwork-io/repo-copier/pull/118
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added the ability to `ecs-deploy-runner` to init and update submodules in the infra live repo.
 
@@ -205,7 +205,7 @@ https://github.com/gruntwork-io/repo-copier/pull/118
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated dependency `terraform-aws-asg` from `v0.13.0` to `v0.18.0` in `jenkins-server` module.
 
@@ -221,7 +221,7 @@ https://github.com/gruntwork-io/repo-copier/pull/118
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated upgrade testing framework to run `apply -refresh-only` to avoid terraform output changes causing resource counting to fail.
 
@@ -239,7 +239,7 @@ https://github.com/gruntwork-io/repo-copier/pull/118
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Made the repo name configurable in upgrade testing framework.
 
@@ -257,7 +257,7 @@ https://github.com/gruntwork-io/repo-copier/pull/118
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added a new go package for upgrade tests.
 - Added the ability to install multiple terraform versions into the `deploy-runner` docker container by using the build arg `additional_terraform_versions`. Example: `--build-arg additional_terraform_versions=0.12.31,0.15.1`
@@ -280,7 +280,7 @@ https://github.com/gruntwork-io/repo-copier/pull/118
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `steampipe-runner` [**BACKWARD INCOMPATIBLE**]
 - `ecs-deploy-runner-with-steampipe-runner` [**BACKWARD INCOMPATIBLE**]
 
@@ -313,7 +313,7 @@ This release is functionally equivalent and backward compatible with the previou
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixed bug where CloudWatch could not access the SNS Topic for the log metric filters when they are encrypted with KMS.
 
@@ -331,7 +331,7 @@ This release is functionally equivalent and backward compatible with the previou
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added a new option `enable_cis_check` (`security_hub_enable_cis_check` in `landingzone` modules) which can be used to disable the CIS standards check in AWS SecurityHub. These are enabled by default to preserve current behavior. DIsabling them is useful if you are using another tool to run the checks, such as Steampipe.
 
@@ -350,7 +350,7 @@ This release is functionally equivalent and backward compatible with the previou
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated dependencies:
     - `terraform-aws-lambda`: `v0.16.0` =&gt; `v0.19.3`
@@ -383,7 +383,7 @@ NOTE: Many dependencies were updated across backward incompatible versions, but 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated `backup-plan` to attach S3 backup and restore policies to the Vault.
 - Added the ability to specify custom access policies for the Backup Vault. This is useful for configuring cross account access.
@@ -405,7 +405,7 @@ NOTE: Many dependencies were updated across backward incompatible versions, but 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added variable `listener_rule_ids` to make sure that external listeners are created before ECS service
 
@@ -431,7 +431,7 @@ NOTE: Many dependencies were updated across backward incompatible versions, but 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - Added the ability to restrict IMDS on self managed workers. Additionally, the launch template is now updated to restrict the service to require tokens by default (IMDS v2).
 
 
@@ -446,7 +446,7 @@ NOTE: Many dependencies were updated across backward incompatible versions, but 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added better support for Windows to the `local-exec` calls in the `eks-cluster-control-plane` module.
 
@@ -464,7 +464,7 @@ NOTE: Many dependencies were updated across backward incompatible versions, but 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added the ability to mirror the tags applied to Managed Node Groups to the underlying ASGs. Note that this feature depends on an assumption that there is only one ASG per MNG to work around an issue with Terraform `for_each` and `count`. If your environment has more than one ASG mapped to the MNG, then it is recommended to call the `aws_autoscaling_group_tag` resource outside the `eks-cluster-managed-workers` module.
 
@@ -485,7 +485,7 @@ NOTE: Many dependencies were updated across backward incompatible versions, but 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated `run-lambda-entrypoint` to support wrapping the entrypoint call in the Runtime Interface Emulator for local testing. Note that you only need to use this feature if you are using a distroless container image for the Lambda function.
 
@@ -503,7 +503,7 @@ NOTE: Many dependencies were updated across backward incompatible versions, but 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 
 
@@ -520,7 +520,7 @@ NOTE: Many dependencies were updated across backward incompatible versions, but 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 
@@ -540,7 +540,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added support for attaching additional secondary certificates to the ALB listeners.
 
@@ -562,7 +562,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - **Unlock AWS Provider v4. Require minimum 3.75.1.** In https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.34.0, we missed a spot! This updates `logs/log-filter-to-slack` module with the same minimum version of 3.75.1, with no upper limit. See the [previous release notes](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.34.0) for details.
 
@@ -581,7 +581,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Small fix for `TestRdsAlarms` test.
 - **Unlock AWS provider v4. Require minimum 3.75.1.** This update includes a few tests that make sure upgrading to this module from the last release is easy. However, you may need to bump your AWS provider version. See the migration guide notes below for more.
@@ -600,7 +600,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - Updated dependency `terraform-aws-security` from `v0.65.2` to `v0.65.5`.
 - Exposed the ability to hook to the access logs S3 Bucket being fully configured in the `logs/load-balancer-access-logs` module. This is useful for ensuring the S3 Bucket configuration is set up to support linking to AWS ELB.
 
@@ -618,7 +618,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Data source update: use aws_subnets over aws_subnet_ids
 - Update terraform-aws-security/private-s3-bucket to v0.65.2
@@ -640,7 +640,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Bump target terraform to 1.2
 - Allow specifying a prefix for the openvpn server backup bucket server logs
@@ -662,7 +662,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Removed hard-coded AWS Partitions from ARNs. Now the partition is dynamically computed based on the configured provider.
 
@@ -679,7 +679,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add option to enable delete_marker_replication in the replication config
 
@@ -696,7 +696,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added a new output to `private-s3-bucket` that can be used to chain resources to the bucket being fully configured without using module `depends_on` (which has quirks that can lead to perpetual diffs). The primary use case would be when you are configuring an object upload in the same module that is creating the bucket, you would want to make sure all the configuration options are set on the bucket before uploading the first object.
 
@@ -715,7 +715,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added `.` to all permissions boundary variable descriptions
 - Addressed deprecation warning for `object_lock_configuration` on private s3 bucket.
@@ -738,7 +738,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added `host_id` var to `aws_instance` resource that will allow it to be created on a dedicated EC2 host.
 
@@ -757,7 +757,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Feature: add `get_password_data` parameter
 
@@ -778,7 +778,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added support for deploying `k8s-service` in [headless mode](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services).
 - Updated `default` user-data scripts to prefix the filename with `_` so that it is run first.
@@ -795,7 +795,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added support for making GuardDuty optional in `account-baseline` modules via the `enable_guardduty` variable. This is useful when setting up org level GuardDuty access.
 
@@ -811,7 +811,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added support for binding additional TLS/ACM certificates to an ALB, via the new `additional_ssl_certs_for_ports` input variable.
 - Updated dependencies:
@@ -838,7 +838,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added the ability to restrict IMDS on EKS workers (self managed and managed node groups). Additionally, the launch template is now updated to restrict the service to require tokens by default (IMDS v2).
 
@@ -854,10 +854,10 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix variable description typos
-- Add `var.preferred_backup_window` to aurora module
+- Add `var.preferred_backup_window` to aurora module 
 
 
 
@@ -872,7 +872,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated `public-static-website` to support restricting access to S3 Bucket to only CloudFront. This will make the S3 Bucket private instead of public. Note that this is only supported if the private bucket is deployed in `us-east-1`.
 
@@ -890,7 +890,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Exposed the ability to add service principals to the Cloudtrail key.
 
@@ -907,7 +907,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Locked version of `helm` provider to `&lt; 2.6.0` to work around an issue with the client authentication token. Refer to https://github.com/gruntwork-io/knowledge-base/discussions/478 for more information.
 - Updated the default version of tools installed in `jenkins`:
@@ -929,7 +929,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Exposed EKS Add-ons Variables
 - Update various dependencies:
@@ -950,7 +950,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Prefix base_domain_name references with var so that docs.gruntwork.io properly renders it.
 - Exposed variables to specify a custom s3 bucket for alb logs.
@@ -968,7 +968,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated dependency `terraform-aws-eks` from `v0.51.4` to `v0.51.5`
 - Exposed the ability to mirror tags on Managed Node Groups to the associated Auto Scaling Group.
@@ -986,7 +986,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated `eks-workers` and `eks-cluster` to support log aggregation of server system logs (`syslog` and `auth` logs). This is different from the log aggregation managed by `fluent-bit`, which ships container level logs. To enable, set `enable_cloudwatch_log_aggregation = true` in the `eks-workers` module call (or `enable_worker_cloudwatch_log_aggregation` in `eks-cluster`).
 - All packer templates have been updated to require `amazon` plugin version at least `1.0.6`.
@@ -1005,7 +1005,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixed bug where `alb` module may sometimes fail deploys due to race conditions in the S3 bucket.
 - Updated the default version of Tailscale that is installed from `v1.24.0` to `v1.26.0`. This is a backward compatible version update, and is compatible with older client versions of Tailscale.
@@ -1032,7 +1032,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated dependency `terraform-aws-security` from `v0.64.1` to `v0.65.2`
 
@@ -1050,7 +1050,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Exposed parameter in `public-static-websites` to prevent perpetual diff in older AWS Accounts.
 - Exposed `forward_headers` parameter in `public-static-websites`.
@@ -1069,7 +1069,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated documentation for VPC filter in `ec2-instance.pkr.hcl` packer template.
 - Added support for specifying the AWS Organizations and AWS Organizations Unit access for AMI access in all packer templates.
@@ -1088,7 +1088,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added the ability to configure the IMDS settings for EC2 Instances used as ECS workers in the `ecs-cluster` module.
 - Exposed the ability to configure minimum protocol version for viewer certificates in the public-static-website module.
@@ -1112,7 +1112,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated module dependencies:
     - `terraform-aws-lambda`: `0.18.4` =&gt; `v0.19.1`
@@ -1146,7 +1146,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Added a new output to indicate the S3 Bucket is fully configured. This is useful for ensuring the Bucket is ready to link to CloudFront prior to setting up the CloudFront Distribution.
 
@@ -1165,7 +1165,7 @@ Added a new output to indicate the S3 Bucket is fully configured. This is useful
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixed an outdated reference in a variable description.
 - In the `s3-static-website` module, we fixed a bug in how `routing_rule` is parsed.
@@ -1184,7 +1184,7 @@ Added a new output to indicate the S3 Bucket is fully configured. This is useful
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Exposed  the `response_headers_policy_id` attribute of the `aws_cloudfront_distribution` resource so that one could attach a custom response header policy to the CloudFront Distribution.
 
@@ -1202,7 +1202,7 @@ Added a new output to indicate the S3 Bucket is fully configured. This is useful
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixed bug where the S3 bucket configuration flip flopped due to missing lifecycle ignore rules.
 
@@ -1220,7 +1220,7 @@ Added a new output to indicate the S3 Bucket is fully configured. This is useful
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 Updated dependency `terraform-aws-security` to `v0.65.2`.
 
@@ -1242,7 +1242,7 @@ Updated dependency `terraform-aws-security` to `v0.65.2`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated the CircleCI config (internal to this repo only).
 - **Unlocked AWS provider v4. Require minimum 3.75.1.** This update includes a few upgrade tests that make sure upgrading to this module from the last release is easy. However, you may need to bump your AWS provider version. See the migration guide notes below for more.
@@ -1263,7 +1263,7 @@ Updated dependency `terraform-aws-security` to `v0.65.2`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Removed `aws_region` variable requirement. Now the region is derived from the provider configuration.
 
@@ -1281,7 +1281,7 @@ Updated dependency `terraform-aws-security` to `v0.65.2`.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Internal updates (PR template and patches)
 - **Unlocked AWS provider v4, requiring minimum 3.75.1.** This update includes a few tests that make sure upgrading to this module from the last release is easy. However, you may need to bump your AWS provider version. See the migration guide notes below for more.
@@ -1295,6 +1295,6 @@ Updated dependency `terraform-aws-security` to `v0.65.2`.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "943580eea99287522ae44c29be7f84e5"
+  "hash": "8d5814e693fef870052c853ead3c7ae3"
 }
 ##DOCS-SOURCER-END -->

@@ -126,7 +126,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -164,7 +164,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -181,7 +181,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -194,7 +194,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-aws-monitoring/pull/41: The `ecs-service-alarms` module now exposes `ecs_service_high_memory_utilization_treat_missing_data` and `ecs_service_high_cpu_utilization_treat_missing_data` input variables that you can use to configure what the alarms should do if no data is being emitted (default is `missing`).
+  https://github.com/gruntwork-io/module-aws-monitoring/pull/41: The `ecs-service-alarms` module now exposes `ecs_service_high_memory_utilization_treat_missing_data` and `ecs_service_high_cpu_utilization_treat_missing_data` input variables that you can use to configure what the alarms should do if no data is being emitted (default is `missing`). 
 
 </div>
 
@@ -241,7 +241,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -258,7 +258,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -275,7 +275,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -292,7 +292,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/package-static-assets/pull/4: The `cloudfront` module now enables gzip compression by default. This is a backwards incompatible change, so if for some reason you don&apos;t want to enable gzip compression, you&apos;ll need to set `compress = false`.
+  https://github.com/gruntwork-io/package-static-assets/pull/4: The `cloudfront` module now enables gzip compression by default. This is a backwards incompatible change, so if for some reason you don&apos;t want to enable gzip compression, you&apos;ll need to set `compress = false`. 
 
 </div>
 
@@ -334,6 +334,6 @@ add new tests for num_nat_gateways=0
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "86a725ff5aaacb3f150e191f3be556b7"
+  "hash": "c7031295398fb585810210978d6b808e"
 }
 ##DOCS-SOURCER-END -->

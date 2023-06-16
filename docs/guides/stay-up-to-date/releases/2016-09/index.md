@@ -17,7 +17,6 @@ Here are the repos that were updated:
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
-- [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-vpc](#terraform-aws-vpc)
 
@@ -106,7 +105,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - Add support for specifying a list of dependencies in `boilerplate.yml`. Each dependency is another `boilerplate` template, which allows you to chain templates together so that you can create more complicated templates out of simpler pieces.
+  - Add support for specifying a list of dependencies in `boilerplate.yml`. Each dependency is another `boilerplate` template, which allows you to chain templates together so that you can create more complicated templates out of simpler pieces. 
 
 
 </div>
@@ -124,7 +123,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features.
+  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features. 
 - In both `modules/asg-rolling-deploy-dynamic` and `modules/asg-rolling-deploy-static`, the input variables `vpc_subnet_ids`, `load_balancers`, and `availability_zones` are now lists.
 
 
@@ -173,7 +172,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - The redis module now properly handles boolean values for the input variable `enable_automatic_failover`.
+  - The redis module now properly handles boolean values for the input variable `enable_automatic_failover`. 
 
 
 </div>
@@ -201,7 +200,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features.
+  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features. 
 
 Changes in `modules/redis`:
 - The input variables `subnet_ids` and `allow_connections_from_cidr_blocks` are now lists.
@@ -302,9 +301,9 @@ Changes in `modules/memcached`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features.
+  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features. 
 
-`modules/aurora` changes:
+`modules/aurora` changes: 
 - No longer takes an `availability_zones` input variable.
 - Input variables `subnet_ids` and `allow_connections_from_cidr_blocks` are now both lists.
 - Output variables `instance_endpoints` and `instance_ids` are now both lists.
@@ -329,7 +328,7 @@ Changes in `modules/memcached`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features.
+  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features. 
 
 In `modules/ecs-cluster`:
 - Input variable `vpc_subnet_ids` is now a list.
@@ -492,101 +491,8 @@ In `modules/ecs-cluster`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features.
+  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features. 
 - All input variables named `alarm_sns_topic_arns` and `instance_ids` are now lists.
-
-
-</div>
-
-
-
-## terraform-aws-security
-
-
-### [v0.2.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.2.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/1/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.2.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  - NEW MODULE: In this release, we introduce the `cloudtrail` module, a streamlined way to setup [AWS CloudTrail](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)!
-
-
-</div>
-
-
-### [v0.2.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.2.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/29/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.2.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  - BREAKING CHANGE: We updated the `kms-master-key` module with a few changes:
-  - Previously, terraform would unnecessarily update the Key Policy on every `terraform apply`. This didn&apos;t break anything, but it confusingly reported 1 resource as being modified when in fact nothing was changed. This has now been fixed using the new [data.aws_iam_policy_document](https://www.terraform.io/docs/providers/aws/d/iam_policy_document.html).
-  - The var `key_root_user_iam_arns` has been replaced with  `var.allow_manage_key_permissions_with_iam` (accepts true/false) to better reflect the significance of setting this value. Note that the var `aws_account_id` is also now required.
-  - The vars `key_administrator_iam_arns` and `key_user_iam_arns` have been renamed to `cmk_administrator_iam_arns` and `cmk_user_iam_arns` to more accurately reflect that these vars grant access to a Customer Master Key (CMK).
-  - There is a new required input variable called `aws_account_id`.
-
-
-</div>
-
-
-### [v0.1.2](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.1.2)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/27/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.1.2">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  - We&apos;ve added a new module, `iam-groups` that configures a best-practices set of IAM Groups and corresponding IAM Policies (permissions) you can use to better manage the security of your AWS account.
-
-
-</div>
-
-
-### [v0.1.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.1.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/12/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.1.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  - On boot, `ssh-iam` now waits 90 seconds before executing to try to give other services (e.g. the EC2 metadata service) a chance to start. This should hopefully ensure that `ssh-iam` doesn&apos;t hit any errors when it configures SSH access on boot and you don&apos;t have to wait for the next cron job to run (by default, they run every 30m) before SSH access works.
-
-
-</div>
-
-
-### [v0.1.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.1.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/2/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.1.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features.
-- In `modules/kms-master-key`, the input variables `key_administrator_iam_arns`, `key_user_iam_arns`, and `key_root_user_iam_arns` are now all lists.
-
-
-</div>
-
-
-### [v0.0.4](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.0.4)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/1/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.0.4">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  - This release contains no new features. It just updates the version of the `docs-generator` we use to fix how the docs are created in https://github.com/gruntwork-io/module-security-public.
 
 
 </div>
@@ -619,7 +525,7 @@ In `modules/ecs-cluster`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features.
+  BREAKING CHANGE: We have updated this module to support [Terraform 0.7](https://www.hashicorp.com/blog/terraform-0-7.html) features. 
 - In `modules/single-server`, the input variable `allow_ssh_from_cidr_list` is now a list.
 
 
@@ -649,6 +555,6 @@ In `modules/ecs-cluster`:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "3dcf90c2f40eb53ffd6bf38dc19d42f1"
+  "hash": "b949732e4527ecab42d6399dbef52837"
 }
 ##DOCS-SOURCER-END -->

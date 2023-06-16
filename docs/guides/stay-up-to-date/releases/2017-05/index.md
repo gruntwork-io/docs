@@ -119,7 +119,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-aws-monitoring/pull/30: Fix a bug in the `alb-target-group-alarms` where there was a typo in the `comparison_operator` of the `tg_low_healthy_host_count` alarm.
+  https://github.com/gruntwork-io/module-aws-monitoring/pull/30: Fix a bug in the `alb-target-group-alarms` where there was a typo in the `comparison_operator` of the `tg_low_healthy_host_count` alarm. 
 
 </div>
 
@@ -149,7 +149,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 </div>
 
@@ -188,7 +188,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-security/pull/33: The `iam-groups` module now creates an IAM group that grants access to all external AWS accounts in `var.iam_groups_for_cross_account_access`.
+  https://github.com/gruntwork-io/module-security/pull/33: The `iam-groups` module now creates an IAM group that grants access to all external AWS accounts in `var.iam_groups_for_cross_account_access`. 
 
 </div>
 
@@ -228,6 +228,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "38b131ff64c6b52778b5af2fce03bae8"
+  "hash": "64b1c4e542b5c04554e5d2c7d0c03bf0"
 }
 ##DOCS-SOURCER-END -->

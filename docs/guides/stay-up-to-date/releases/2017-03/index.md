@@ -76,7 +76,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-ci/pull/22: The `scheduled-lambda-job` module now makes running in a VPC optional. It exposes a new input variable called `run_in_vpc` which, if set to true, will give the lambda function access to a VPC you specify via the `vpc_id` and `subnet_ids` input variables. However, by default, it&apos;s set to false, and you can omit `vpc_id` and `subnet_ids`.
+  https://github.com/gruntwork-io/module-ci/pull/22: The `scheduled-lambda-job` module now makes running in a VPC optional. It exposes a new input variable called `run_in_vpc` which, if set to true, will give the lambda function access to a VPC you specify via the `vpc_id` and `subnet_ids` input variables. However, by default, it&apos;s set to false, and you can omit `vpc_id` and `subnet_ids`. 
 
 This is useful for lambda functions that use the AWS APIs and don&apos;t need direct access to a VPC anyway. Moreover, a recent [bug in Terraform](https://github.com/hashicorp/terraform/issues/10272) causes issues when you try to delete a lambda function that was deployed into a VPC.
 
@@ -226,7 +226,7 @@ Two bug fixes:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-load-balancer/pull/8: To add an HTTPS listener, the ALB module originally had you pass in the `https_listener_ports_and_ssl_certs` input variable, which was a map of HTTPS ports to the ARNs of TLS certs (e.g. `443 = &quot;arn:aws:acm:us-east-1:123456789012:certificate/12345678&quot;`. The module now exposes a new input variable called `https_listener_ports_and_acm_ssl_certs` which is a more user-friendly map of HTTPS ports to the domain name of a TLS cert issues by the [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/) (e.g. `443 = *.foo.com`).
+  https://github.com/gruntwork-io/module-load-balancer/pull/8: To add an HTTPS listener, the ALB module originally had you pass in the `https_listener_ports_and_ssl_certs` input variable, which was a map of HTTPS ports to the ARNs of TLS certs (e.g. `443 = &quot;arn:aws:acm:us-east-1:123456789012:certificate/12345678&quot;`. The module now exposes a new input variable called `https_listener_ports_and_acm_ssl_certs` which is a more user-friendly map of HTTPS ports to the domain name of a TLS cert issues by the [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/) (e.g. `443 = *.foo.com`). 
 
 </div>
 
@@ -326,12 +326,12 @@ Two bug fixes:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - NEW MODULE: We are pleased to introduce the [os-hardening](https://github.com/gruntwork-io/module-security/tree/master/modules/os-hardening) module!
-
+  - NEW MODULE: We are pleased to introduce the [os-hardening](https://github.com/gruntwork-io/module-security/tree/master/modules/os-hardening) module! 
+  
   This module is our first step in providing a path to using a hardened OS Image based on the [Center for Internet Security Benchmarks](https://benchmarks.cisecurity.org/). These Benchmarks are freely downloadable and specific to a technology, which makes them straightforward to reference.
-
-  At present, we support only a hardened OS for Amazon Linux, though we are open to adding support for additional OS&apos;s if customers request it. The primary OS hardening implemented in this release is the ability to create multiple disk partitions on the root volume in a Packer build, and mount each disk partition to a file system path with unique mount options.
-
+  
+  At present, we support only a hardened OS for Amazon Linux, though we are open to adding support for additional OS&apos;s if customers request it. The primary OS hardening implemented in this release is the ability to create multiple disk partitions on the root volume in a Packer build, and mount each disk partition to a file system path with unique mount options. 
+  
   For example, we can now mount `/tmp` to its own disk partition so that a runaway program that fills up all of `/tmp` will not affect disk space available on other paths like `/var/log` where logs are stored. In addition, we can mount `/tmp` with the `nosuid`, `nodev`, and `noexec` options, which say that no file in `/tmp` should be allowed to assume the permissions of its file owner (a security risk), no external devices (like a block device) can be attached to `/tmp` and no files in `/tmp` can be executed, respectively.
 
 
@@ -346,7 +346,7 @@ Two bug fixes:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-security/pull/15: Added support for easy cross-account access. You can now define all your IAM users in one AWS account (e.g. a `users` account), give those IAM users access to specific IAM roles in your other AWS accounts (e.g. a `stage` or `prod` account), and they will be able to switch accounts in the AWS console with just a few clicks.
+  https://github.com/gruntwork-io/module-security/pull/15: Added support for easy cross-account access. You can now define all your IAM users in one AWS account (e.g. a `users` account), give those IAM users access to specific IAM roles in your other AWS accounts (e.g. a `stage` or `prod` account), and they will be able to switch accounts in the AWS console with just a few clicks. 
 
 To use this, you need to configure the new `iam_groups_for_cross_account_access` input variable in the [iam-groups module](https://github.com/gruntwork-io/module-security/tree/master/modules/iam-groups) in your `users` account and deploy the new [cross-account-iam-roles module](https://github.com/gruntwork-io/module-security/tree/master/modules/cross-account-iam-roles) in the `stage` and `prod` accounts.
 
@@ -380,7 +380,7 @@ To use this, you need to configure the new `iam_groups_for_cross_account_access`
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   - ENHANCEMENT: The [persistent-ebs-module](https://github.com/gruntwork-io/module-server/tree/master/modules/persistent-ebs-volume) script now supports a parameter that specifies file system mounting options, and explicitly supports creating file systems of type XFS.
-
+   
    Previously, you could pass in alternative file systems to this script, but since even blank EBS Volume are formatted as `ext4` by default, the script would not attempt to format the EBS Volume with the new file system type. That is now fixed.
 
 </div>
@@ -438,6 +438,6 @@ To use this, you need to configure the new `iam_groups_for_cross_account_access`
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "caae6d4f830d706f050d7eb7394a6595"
+  "hash": "3b56190709007255715ed1bf95509937"
 }
 ##DOCS-SOURCER-END -->

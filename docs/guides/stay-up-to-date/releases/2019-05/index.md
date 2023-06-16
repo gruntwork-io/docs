@@ -107,7 +107,7 @@ to using the new naming scheme, as they will be updated to use the sprig version
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - `gruntwork-module-circleci-helpers`: Ensure the latest golang version is always installed
 
@@ -128,7 +128,7 @@ to using the new naming scheme, as they will be updated to use the sprig version
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - All the ECS service modules now allow you to optionally specify a custom prefix to use for the IAM execution role. The default value is to use the service name as before.
 
@@ -145,7 +145,7 @@ to using the new naming scheme, as they will be updated to use the sprig version
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now set a custom name prefix for the IAM roles created by the `ecs-service` module using the new `task_execution_name_prefix` input variable. The default is `var.service_name`, as before.
 
@@ -162,7 +162,7 @@ to using the new naming scheme, as they will be updated to use the sprig version
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - This release fixes a bug where the `fargate_without_lb` resource incorrectly set a `health_check_grace_period_seconds`. From [the terraform documentation](https://www.terraform.io/docs/providers/aws/r/ecs_service.html), &quot;Health check grace period is only valid for services configured to use load balancers&quot;.
 
@@ -182,7 +182,7 @@ to using the new naming scheme, as they will be updated to use the sprig version
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Update package-terraform-utilities to latest version with terraform fmt to avoid drift
 - Add option to add load balancers to the eks worker asg
@@ -199,7 +199,7 @@ to using the new naming scheme, as they will be updated to use the sprig version
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release confirms that `external-dns` and ALB ingress controller support ACM certificates. Additionally, this release extends the timeout for EKS cluster creation as some regions take longer than 15 minutes to provision the EKS cluster.
 
@@ -220,7 +220,7 @@ This release confirms that `external-dns` and ALB ingress controller support ACM
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 * `sqs` **[BREAKING CHANGES]**
 
 
@@ -247,7 +247,7 @@ A huge thanks to @burtino for spotting this and providing a fix.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fixes policy principal so NLBs can write to S3 bucket
 
@@ -264,7 +264,7 @@ A huge thanks to @burtino for spotting this and providing a fix.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - This release adds conditional support for the `logs/load-balancer-access-logs` module. You can now set `create_resources = false` on the module call to avoid creating the S3 bucket.
 
@@ -281,10 +281,10 @@ A huge thanks to @burtino for spotting this and providing a fix.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now set tags on all the `alarms` modules via a new `tags` input variable.
-- You can now configure the snapshot period and snapshot evaluation period for the `elasticsearch-alarms` module using the new `snapshot_period` and `snapshot_evaluation_period` input variables, respectively.
+- You can now configure the snapshot period and snapshot evaluation period for the `elasticsearch-alarms` module using the new `snapshot_period` and `snapshot_evaluation_period` input variables, respectively. 
 - We made a few fixes/improvements to our examples and docs, including fixing a bug with `source_ami_filter` for the example CentOS Packer template and cleaning up some typos.
 
 
@@ -304,7 +304,7 @@ A huge thanks to @burtino for spotting this and providing a fix.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now configure an optional SNS delivery notification topic for the `cloudtrail` module using a new  `sns_delivery_topic` input variable.
 
@@ -320,7 +320,7 @@ A huge thanks to @burtino for spotting this and providing a fix.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now tell the `iam-groups` module to not create the &quot;access-all&quot; group by setting the new input variable `should_create_iam_group_cross_account_access_all` to false. This can help work around an AWS limitation where we exceed the max IAM policy length.
 
@@ -336,7 +336,7 @@ A huge thanks to @burtino for spotting this and providing a fix.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release fixes https://github.com/gruntwork-io/module-security/issues/89, where `fail2ban` was not correctly working on non-ubuntu instances. Specifically:
 
@@ -362,7 +362,7 @@ This release fixes https://github.com/gruntwork-io/module-security/issues/89, wh
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This brings in TLS generation into the `k8s-tiller` module. In particular, `k8s-tiller` has a new required variable `tiller_tls_gen_method` which indicates how the module should generate the TLS certificates. Currently there are three options:
 
@@ -395,7 +395,7 @@ You can refer to the [updated root example](https://github.com/gruntwork-io/terr
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This updates the READMEs in all the modules to be compatible with the Terraform registry.
 
@@ -412,7 +412,7 @@ This updates the READMEs in all the modules to be compatible with the Terraform 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - `k8s-namespace` and `k8s-namespace-roles` modules now support conditionally creating the namespace and roles via the `create_resources` input variable.
 
@@ -429,7 +429,7 @@ This updates the READMEs in all the modules to be compatible with the Terraform 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release introduces a new module `k8s-tiller`, which can be used to use manage Tiller deployments using Terraform. The difference with the `kubergrunt` approach is that this supports using Terraform to apply updates to the Tiller `Deployment` resource. E.g you can now upgrade Tiller using Terraform, or update the number of replicas of Tiller `Pods` to deploy. Note that you still need to use `kubergrunt` to manage the TLS certificates.
 
@@ -445,6 +445,6 @@ The other modules have backwards compatible minor changes in the way dependencie
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a77b35fd113013f6d62cdfc679adcde7"
+  "hash": "b5f0e02f238a349b058b0cc90d8e0704"
 }
 ##DOCS-SOURCER-END -->
