@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.27.2" lastModifiedVersion="0.27.2"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.28.0" lastModifiedVersion="0.27.2"/>
 
 # Backup Vault Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/backup-vault" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F355_subnet/modules/backup-vault" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -96,7 +96,7 @@ then you will end up with many potentially large recovery points that you cannot
 
 module "backup_vault" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-vault?ref=v0.27.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-vault?ref=v0.28.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -136,7 +136,7 @@ module "backup_vault" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-vault?ref=v0.27.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-vault?ref=v0.28.0"
 }
 
 inputs = {
@@ -287,11 +287,11 @@ A map of tags assigned to the vault resources, including those inherited from th
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/backup-vault/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/backup-vault/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/backup-vault/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F355_subnet/modules/backup-vault/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F355_subnet/modules/backup-vault/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F355_subnet/modules/backup-vault/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3e0da4455eae63dba77c2246e10bbf48"
+  "hash": "8680f7c892d66059be33c91c68b27e17"
 }
 ##DOCS-SOURCER-END -->
