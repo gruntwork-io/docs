@@ -9,16 +9,16 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.27.2" lastModifiedVersion="0.27.2"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.28.0" lastModifiedVersion="0.27.2"/>
 
 # How to use RDS Proxy Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/rds-proxy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/rds-proxy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 In order to setup a RDS proxy, you need to setup database credentials in AWS Secrets Manager and pass it to this module.
-Refer to the [examples/rds-proxy](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/examples/rds-proxy) or https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy-setup.html#rds-proxy-secrets-arns for more information.
+Refer to the [examples/rds-proxy](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/examples/rds-proxy) or https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy-setup.html#rds-proxy-secrets-arns for more information.
 
 Setting up a RDS proxy requires the following steps, which is handled by this module:
 
@@ -39,7 +39,7 @@ Setting up a RDS proxy requires the following steps, which is handled by this mo
 
 module "rds_proxy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-proxy?ref=v0.27.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-proxy?ref=v0.28.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -119,7 +119,7 @@ module "rds_proxy" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-proxy?ref=v0.27.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-proxy?ref=v0.28.0"
 }
 
 inputs = {
@@ -328,11 +328,11 @@ The number of seconds that a connection to the proxy can be inactive before the 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/rds-proxy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/rds-proxy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.2/modules/rds-proxy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/rds-proxy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/rds-proxy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/rds-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5ae13ed80f16c25b171ae2d0e3d2823e"
+  "hash": "a7f8b78b6eacc2b911af66ae86026e5a"
 }
 ##DOCS-SOURCER-END -->

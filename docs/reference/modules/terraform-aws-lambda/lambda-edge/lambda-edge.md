@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.10" lastModifiedVersion="0.21.10"/>
+<VersionBadge repoTitle="AWS Lambda" version="0.21.12" lastModifiedVersion="0.21.10"/>
 
 # Lambda@Edge Function Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/modules/lambda-edge" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -65,7 +65,7 @@ resource "aws_lambda_permission" "with_sns" {
 
 Lambda@Edge stores CloudWatch Logs in the AWS Regions closest to the location where the function receives traffic and is
 executed. That means a log group must be created in every region that have [Regional Edge Caches](https://aws.amazon.com/blogs/networking-and-content-delivery/aggregating-lambdaedge-logs/).
-Instructions on how to do this can be found at the   [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge-multi-region-log-groups). To see which regions are receiving traffic, you can find graphs of metrics for the
+Instructions on how to do this can be found at the   [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/modules/lambda-edge-multi-region-log-groups). To see which regions are receiving traffic, you can find graphs of metrics for the
 function on the CloudFront console and choose your region there.
 
 ## How to trigger this Lambda function from Cloudfront
@@ -94,7 +94,7 @@ triggers:
 
 module "lambda_edge" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v0.21.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v0.21.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -276,7 +276,7 @@ module "lambda_edge" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v0.21.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v0.21.12"
 }
 
 inputs = {
@@ -820,11 +820,11 @@ Name of the (optionally) created CloudWatch log groups for the lambda function.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.10/modules/lambda-edge/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/modules/lambda-edge/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/modules/lambda-edge/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/modules/lambda-edge/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e3d84f5cdaa86f8833cc52b434a2f018"
+  "hash": "691280c8553fbc5b264a928d8d07332a"
 }
 ##DOCS-SOURCER-END -->
