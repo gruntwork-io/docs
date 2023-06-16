@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # IAM Users
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/iam-users" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/iam-users" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -508,11 +508,11 @@ A map of usernames to that user's AWS SSH Security Credential ID
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/iam-users/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/iam-users/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/iam-users/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/iam-users/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/iam-users/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/iam-users/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5533eac665b0398f5a11209e05a436a4"
+  "hash": "79493ed3e99e9145350c05d979656ae8"
 }
 ##DOCS-SOURCER-END -->

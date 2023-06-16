@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Private S3 Bucket
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/private-s3-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/private-s3-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -1037,11 +1037,11 @@ The name of an IAM role that can be used to configure replication from various s
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/private-s3-bucket/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/private-s3-bucket/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/private-s3-bucket/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/private-s3-bucket/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/private-s3-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/private-s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3ee27520f88e7f262cccd73bed52ed69"
+  "hash": "e99a3281d7427cc4c88f2e3576304494"
 }
 ##DOCS-SOURCER-END -->

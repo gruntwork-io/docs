@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # AWS CloudTrail
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -39,25 +39,25 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What is CloudTrail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail/core-concepts.md#what-is-cloudtrail)
+*   [What is CloudTrail?](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail/core-concepts.md#what-is-cloudtrail)
 
-*   [Why use CloudTrail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail/core-concepts.md#why-use-cloudtrail)
+*   [Why use CloudTrail?](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail/core-concepts.md#why-use-cloudtrail)
 
-*   [What is a CloudTrail Trail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail/core-concepts.md#what-is-a-cloudtrail-trail)
+*   [What is a CloudTrail Trail?](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail/core-concepts.md#what-is-a-cloudtrail-trail)
 
-*   [What’s the difference between CloudTrail and AWS Config?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail/core-concepts.md#whats-the-difference-between-cloudtrail-and-aws-config)
+*   [What’s the difference between CloudTrail and AWS Config?](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail/core-concepts.md#whats-the-difference-between-cloudtrail-and-aws-config)
 
-*   [CloudTrail Threat Model](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail/core-concepts.md#cloudtrail-threat-model)
+*   [CloudTrail Threat Model](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail/core-concepts.md#cloudtrail-threat-model)
 
-*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail/core-concepts.md#resources-created)
+*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail/core-concepts.md#resources-created)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -65,7 +65,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/cloudtrail](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/examples/cloudtrail): The `examples/cloudtrail` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples/cloudtrail](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/examples/cloudtrail): The `examples/cloudtrail` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -81,15 +81,15 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Day-to-day operations
 
-*   [Where are CloudTrail logs stored?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail/core-concepts.md#where-are-cloudtrail-logs-stored)
+*   [Where are CloudTrail logs stored?](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail/core-concepts.md#where-are-cloudtrail-logs-stored)
 
-*   [What kind of data do CloudTrail log entries contain?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail/core-concepts.md#what-kind-of-data-do-cloudtrail-log-entries-contain)
+*   [What kind of data do CloudTrail log entries contain?](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail/core-concepts.md#what-kind-of-data-do-cloudtrail-log-entries-contain)
 
-*   [What’s the best way to view CloudTrail Log Data?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail/core-concepts.md#whats-the-best-way-to-view-cloudtrail-log-data)
+*   [What’s the best way to view CloudTrail Log Data?](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail/core-concepts.md#whats-the-best-way-to-view-cloudtrail-log-data)
 
 ### Major changes
 
-*   [Can you get alerted when certain API events occur?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail/core-concepts.md#can-you-get-alerted-when-certain-api-events-occur)
+*   [Can you get alerted when certain API events occur?](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail/core-concepts.md#can-you-get-alerted-when-certain-api-events-occur)
 
 ## Sample Usage
 
@@ -1405,11 +1405,11 @@ The name of the cloudtrail trail.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "79473858515b60da189482b8c158f2d3"
+  "hash": "cf82a4e83eab5799f1789540e87ca290"
 }
 ##DOCS-SOURCER-END -->

@@ -13,17 +13,17 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # CloudTrail Bucket
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an S3 bucket for storing CloudTrail data and a KMS Customer Master Key (CMK) for encrypting that
 data, including all the appropriate lifecycle, encryption, and permission settings for CloudTrail.
 
-This module is used under the hood in the [cloudtrail](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail)
-and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/account-baseline-root) modules.
+This module is used under the hood in the [cloudtrail](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail)
+and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/account-baseline-root) modules.
 
-It can also be used directly when configuring cross account access, for example when it is desirable to [have the central Cloudtrail S3 bucket exist outside of the management account.](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail/core-concepts.md#multi-account-cloudtrail-setup-storing-the-cloudtrail-bucket-in-an-account-other-than-the-management-account)
+It can also be used directly when configuring cross account access, for example when it is desirable to [have the central Cloudtrail S3 bucket exist outside of the management account.](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail/core-concepts.md#multi-account-cloudtrail-setup-storing-the-cloudtrail-bucket-in-an-account-other-than-the-management-account)
 
 ## Sample Usage
 
@@ -907,11 +907,11 @@ The name of the S3 bucket where cloudtrail logs are delivered.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail-bucket/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail-bucket/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cloudtrail-bucket/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail-bucket/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cloudtrail-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ac20d52c797e5c9edd55dc95a9f85122"
+  "hash": "20cc1389420d2972ecbae3161cfeaed5"
 }
 ##DOCS-SOURCER-END -->

@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # KMS Master Key Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/kms-master-key" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/kms-master-key" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -448,11 +448,11 @@ A map of CMK name to CMK ID.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/kms-master-key/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/kms-master-key/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/kms-master-key/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/kms-master-key/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/kms-master-key/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/kms-master-key/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "28cd181f0111b282dd33db6d4f976486"
+  "hash": "33d17d8b24abd08700e87b8b9a019f26"
 }
 ##DOCS-SOURCER-END -->

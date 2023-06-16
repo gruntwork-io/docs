@@ -13,11 +13,11 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # EBS Encryption Multi Region Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/ebs-encryption-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/ebs-encryption-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.66.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module wraps the [ebs-encryption core module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/ebs-encryption/README.md) to configure [AWS EBS encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html) in all enabled regions for the AWS Account.
+This module wraps the [ebs-encryption core module](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/ebs-encryption/README.md) to configure [AWS EBS encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html) in all enabled regions for the AWS Account.
 
 ## Features
 
@@ -37,17 +37,17 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 *   [AWS blog: Opt-in to Default Encryption for New EBS Volumes](https://aws.amazon.com/blogs/aws/new-opt-in-to-default-encryption-for-new-ebs-volumes/)
 
-*   [How to use a multi-region module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/codegen/core-concepts.md#how-to-use-a-multi-region-module)
+*   [How to use a multi-region module](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/codegen/core-concepts.md#how-to-use-a-multi-region-module)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [codegen](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/codegen): Code generation utilities that help generate modules in this repo.
+*   [codegen](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/codegen): Code generation utilities that help generate modules in this repo.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -219,11 +219,11 @@ A map from region to the ARN of the KMS key used for default EBS encryption for 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/ebs-encryption-multi-region/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/ebs-encryption-multi-region/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/ebs-encryption-multi-region/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/ebs-encryption-multi-region/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/ebs-encryption-multi-region/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/ebs-encryption-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "41fbf8486a162f9b8a2ecf057fa0043f"
+  "hash": "abb6553bb2a7b7c0de63d8bfea50cef9"
 }
 ##DOCS-SOURCER-END -->

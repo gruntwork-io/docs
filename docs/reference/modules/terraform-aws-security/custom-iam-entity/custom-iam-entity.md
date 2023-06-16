@@ -13,11 +13,11 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Custom IAM Entity
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/custom-iam-entity" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/custom-iam-entity" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This Gruntwork Terraform Module creates an IAM group and/or role and attaches a provided set of IAM managed policies to the group. This can be used in conjunction with the [iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/iam-groups), [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/cross-account-iam-roles), and [saml-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/saml-iam-roles) modules which create a set of groups and roles with smart defaults. Use this module to easily create IAM groups and roles with a defined set of permissions.
+This Gruntwork Terraform Module creates an IAM group and/or role and attaches a provided set of IAM managed policies to the group. This can be used in conjunction with the [iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/iam-groups), [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/cross-account-iam-roles), and [saml-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/saml-iam-roles) modules which create a set of groups and roles with smart defaults. Use this module to easily create IAM groups and roles with a defined set of permissions.
 
 ### Requirements
 
@@ -25,7 +25,7 @@ This Gruntwork Terraform Module creates an IAM group and/or role and attaches a 
 
 ### Instructions
 
-Check out the [custom-iam-entity example](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/examples/custom-iam-entity) for a working example.
+Check out the [custom-iam-entity example](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/examples/custom-iam-entity) for a working example.
 
 #### Resources Created
 
@@ -36,7 +36,7 @@ If neither role nor group are provided, this module does nothing.
 
 #### Resources NOT Created
 
-*   **IAM users** - This module does not create any IAM Users, nor assign any existing IAM Users to IAM Groups. You can use the [iam-users module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/iam-users) to create users.
+*   **IAM users** - This module does not create any IAM Users, nor assign any existing IAM Users to IAM Groups. You can use the [iam-users module](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/iam-users) to create users.
 *   **IAM policies** - This module only attaches policies by ARN or by name. It does not create any new policies.
 
 #### MFA support
@@ -51,7 +51,7 @@ The reason for this difference is difficult to explain, but boils down to limita
 ## Background Information
 
 For background information on IAM, IAM users, IAM policies, and more, check out the [background information docs in
-the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/iam-policies#background-information).
+the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/iam-policies#background-information).
 
 ## Sample Usage
 
@@ -486,11 +486,11 @@ The name of the IAM role.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/custom-iam-entity/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/custom-iam-entity/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/custom-iam-entity/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/custom-iam-entity/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/custom-iam-entity/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/custom-iam-entity/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d6e83cdc81976bf3cfd82f6d14a0356f"
+  "hash": "0eef57740cb0f83078314550ac887964"
 }
 ##DOCS-SOURCER-END -->

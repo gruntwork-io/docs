@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Security Modules
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/auto-update" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/auto-update" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -37,23 +37,23 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [How to install Auto Update](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/auto-update/core-concepts.md#installation)
+*   [How to install Auto Update](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/auto-update/core-concepts.md#installation)
 
-*   [How Auto Update works on Ubuntu](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/auto-update/core-concepts.md#ubuntu-support)
+*   [How Auto Update works on Ubuntu](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/auto-update/core-concepts.md#ubuntu-support)
 
-*   [How Auto Update works on Amazon Linux and CentOS](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/auto-update/core-concepts.md#amazon-linux-and-centos-support)
+*   [How Auto Update works on Amazon Linux and CentOS](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/auto-update/core-concepts.md#amazon-linux-and-centos-support)
 
-*   [Auto Update Limitations](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/auto-update/core-concepts.md#limitations)
+*   [Auto Update Limitations](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/auto-update/core-concepts.md#limitations)
 
-*   [Core Security Concepts](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/README.adoc#core-concepts)
+*   [Core Security Concepts](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/README.adoc#core-concepts)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -61,7 +61,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [auto-update example](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/examples/auto-update): The `examples/auto-update` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [auto-update example](https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/examples/auto-update): The `examples/auto-update` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -73,11 +73,11 @@ If you want to deploy this repo in production, check out the following resources
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/auto-update/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/auto-update/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.3/modules/auto-update/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/auto-update/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/auto-update/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/go-mod-cleanup/modules/auto-update/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "22185bd90d2bd1768b85e426afcfde8b"
+  "hash": "897f0fd29fdf9d332cf1078005bdd504"
 }
 ##DOCS-SOURCER-END -->
