@@ -37,11 +37,3 @@ You're welcome to do this, but it doesn't solve the full problem. A fully self-h
 ## How do I contribute changes back to Gruntwork if I self-host?
 
 Contribute your changes directly to our GitHub.com repos. Those changes will then propagate back to your locally hosted copy!
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "50cb24787ac5e5bd1d89e3e452190e6b"
-}
-##DOCS-SOURCER-END -->
