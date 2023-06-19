@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.11" lastModifiedVersion="0.104.12"/>
+<VersionBadge version="0.104.12" lastModifiedVersion="0.104.12"/>
 
 # EC2 Instance
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/ec2-instance" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ec2-instance" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fec2-instance" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -58,9 +58,9 @@ If you’ve never used the Service Catalog before, make sure to read
 
 ### Core concepts
 
-*   [How do I update my instance?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/ec2-instance/core-concepts.md#how-do-i-update-my-instance)
-*   [How do I use User Data?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/ec2-instance/core-concepts.md#how-do-i-use-user-data)
-*   [How do I mount an EBS volume?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/ec2-instance/core-concepts.md#how-do-i-mount-an-ebs-volume)
+*   [How do I update my instance?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ec2-instance/core-concepts.md#how-do-i-update-my-instance)
+*   [How do I use User Data?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ec2-instance/core-concepts.md#how-do-i-use-user-data)
+*   [How do I mount an EBS volume?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ec2-instance/core-concepts.md#how-do-i-mount-an-ebs-volume)
 
 ### The EC2 Instance AMI
 
@@ -85,7 +85,7 @@ This template configures the AMI to:
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-learning-and-testing): The `examples/for-learning-and-testing`
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-learning-and-testing): The `examples/for-learning-and-testing`
     folder contains standalone sample code optimized for learning, experimenting, and testing (but not direct
     production usage).
 
@@ -93,7 +93,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog, configure CI / CD for your apps and
@@ -113,7 +113,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "ec_2_instance" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ec2-instance?ref=v0.104.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ec2-instance?ref=v0.104.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -233,6 +233,22 @@ module "ec_2_instance" {
   # If true, be sure to set var.fully_qualified_domain_name.
   create_dns_record = true
 
+  # When true, this module will create a new IAM role to bind to the EC2
+  # instance. Set to false if you wish to use a preexisting IAM role. By
+  # default, this module will create an instance profile to pass this IAM role
+  # to the EC2 instance. Preexisting IAM roles created through the AWS console
+  # instead of programatically (e.g. withTerraform) will automatically create an
+  # instance profile with the same name. In that case, set
+  # create_instance_profile to false to avoid errors during Terraform apply.
+  create_iam_role = true
+
+  # When true, this module will create an instance profile to pass the IAM role,
+  # either the one created by this module or one passed externally, to the EC2
+  # instance. Set to false if you wish to use a preexisting instance profile.
+  # For more information see
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html.
+  create_instance_profile = true
+
   # The default OS user for the EC2 instance AMI. For AWS Ubuntu AMIs, which is
   # what the Packer template in ec2-instance.json uses, the default OS user is
   # 'ubuntu'.
@@ -285,11 +301,75 @@ module "ec_2_instance" {
   # used if create_dns_record is true.
   fully_qualified_domain_name = ""
 
+  # The period, in seconds, over which to measure the CPU utilization percentage
+  # for the instance.
+  high_instance_cpu_utilization_period = 60
+
+  # Trigger an alarm if the EC2 instance has a CPU utilization percentage above
+  # this threshold.
+  high_instance_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_instance_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the instance.
+  high_instance_disk_utilization_period = 60
+
+  # Trigger an alarm if the EC2 instance has a root disk utilization percentage
+  # above this threshold.
+  high_instance_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_instance_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization
+  # percentage for the instance.
+  high_instance_memory_utilization_period = 60
+
+  # Trigger an alarm if the EC2 instance has a Memory utilization percentage
+  # above this threshold.
+  high_instance_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_instance_memory_utilization_treat_missing_data = "missing"
+
+  # The name for the bastion host's IAM role and instance profile. If set to an
+  # empty string, will use var.name. Required when create_iam_role is false.
+  iam_role_name = ""
+
   # The name of a Key Pair that can be used to SSH to this instance. This
   # instance may have ssh-grunt installed. The preferred way to do SSH access is
   # with your own IAM user name and SSH key. This Key Pair is only as a
   # fallback.
   keypair_name = null
+
+  # Whether the metadata service is available. Valid values include enabled or
+  # disabled. Defaults to enabled.
+  metadata_http_endpoint = "enabled"
+
+  # Desired HTTP PUT response hop limit for instance metadata requests. The
+  # larger the number, the further instance metadata requests can travel. Valid
+  # values are integer from 1 to 64. Defaults to 1.
+  metadata_http_put_response_hop_limit = 1
+
+  # Whether or not the metadata service requires session tokens, also referred
+  # to as Instance Metadata Service Version 2 (IMDSv2). Valid values include
+  # optional or required. Defaults to optional.
+  metadata_http_tokens = "optional"
+
+  # Enables or disables access to instance tags from the instance metadata
+  # service. Valid values include enabled or disabled. Defaults to disabled.
+  metadata_tags = "disabled"
 
   # If set to true, the root volume will be deleted when the Instance is
   # terminated.
@@ -300,6 +380,10 @@ module "ec_2_instance" {
 
   # The root volume type. Must be one of: standard, gp2, io1.
   root_volume_type = "standard"
+
+  # A list of secondary private IPv4 addresses to assign to the instance's
+  # primary network interface (eth0) in a VPC
+  secondary_private_ips = []
 
   # When true, precreate the CloudWatch Log Group to use for log aggregation
   # from the EC2 instances. This is useful if you wish to customize the
@@ -347,7 +431,7 @@ module "ec_2_instance" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ec2-instance?ref=v0.104.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ec2-instance?ref=v0.104.12"
 }
 
 inputs = {
@@ -470,6 +554,22 @@ inputs = {
   # If true, be sure to set var.fully_qualified_domain_name.
   create_dns_record = true
 
+  # When true, this module will create a new IAM role to bind to the EC2
+  # instance. Set to false if you wish to use a preexisting IAM role. By
+  # default, this module will create an instance profile to pass this IAM role
+  # to the EC2 instance. Preexisting IAM roles created through the AWS console
+  # instead of programatically (e.g. withTerraform) will automatically create an
+  # instance profile with the same name. In that case, set
+  # create_instance_profile to false to avoid errors during Terraform apply.
+  create_iam_role = true
+
+  # When true, this module will create an instance profile to pass the IAM role,
+  # either the one created by this module or one passed externally, to the EC2
+  # instance. Set to false if you wish to use a preexisting instance profile.
+  # For more information see
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html.
+  create_instance_profile = true
+
   # The default OS user for the EC2 instance AMI. For AWS Ubuntu AMIs, which is
   # what the Packer template in ec2-instance.json uses, the default OS user is
   # 'ubuntu'.
@@ -522,11 +622,75 @@ inputs = {
   # used if create_dns_record is true.
   fully_qualified_domain_name = ""
 
+  # The period, in seconds, over which to measure the CPU utilization percentage
+  # for the instance.
+  high_instance_cpu_utilization_period = 60
+
+  # Trigger an alarm if the EC2 instance has a CPU utilization percentage above
+  # this threshold.
+  high_instance_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_instance_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the instance.
+  high_instance_disk_utilization_period = 60
+
+  # Trigger an alarm if the EC2 instance has a root disk utilization percentage
+  # above this threshold.
+  high_instance_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_instance_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization
+  # percentage for the instance.
+  high_instance_memory_utilization_period = 60
+
+  # Trigger an alarm if the EC2 instance has a Memory utilization percentage
+  # above this threshold.
+  high_instance_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_instance_memory_utilization_treat_missing_data = "missing"
+
+  # The name for the bastion host's IAM role and instance profile. If set to an
+  # empty string, will use var.name. Required when create_iam_role is false.
+  iam_role_name = ""
+
   # The name of a Key Pair that can be used to SSH to this instance. This
   # instance may have ssh-grunt installed. The preferred way to do SSH access is
   # with your own IAM user name and SSH key. This Key Pair is only as a
   # fallback.
   keypair_name = null
+
+  # Whether the metadata service is available. Valid values include enabled or
+  # disabled. Defaults to enabled.
+  metadata_http_endpoint = "enabled"
+
+  # Desired HTTP PUT response hop limit for instance metadata requests. The
+  # larger the number, the further instance metadata requests can travel. Valid
+  # values are integer from 1 to 64. Defaults to 1.
+  metadata_http_put_response_hop_limit = 1
+
+  # Whether or not the metadata service requires session tokens, also referred
+  # to as Instance Metadata Service Version 2 (IMDSv2). Valid values include
+  # optional or required. Defaults to optional.
+  metadata_http_tokens = "optional"
+
+  # Enables or disables access to instance tags from the instance metadata
+  # service. Valid values include enabled or disabled. Defaults to disabled.
+  metadata_tags = "disabled"
 
   # If set to true, the root volume will be deleted when the Instance is
   # terminated.
@@ -537,6 +701,10 @@ inputs = {
 
   # The root volume type. Must be one of: standard, gp2, io1.
   root_volume_type = "standard"
+
+  # A list of secondary private IPv4 addresses to assign to the instance's
+  # primary network interface (eth0) in a VPC
+  secondary_private_ips = []
 
   # When true, precreate the CloudWatch Log Group to use for log aggregation
   # from the EC2 instances. This is useful if you wish to customize the
@@ -856,6 +1024,24 @@ Set to true to create a DNS record in Route53 pointing to the EC2 instance. If t
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="create_iam_role" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, this module will create a new IAM role to bind to the EC2 instance. Set to false if you wish to use a preexisting IAM role. By default, this module will create an instance profile to pass this IAM role to the EC2 instance. Preexisting IAM roles created through the AWS console instead of programatically (e.g. withTerraform) will automatically create an instance profile with the same name. In that case, set create_instance_profile to false to avoid errors during Terraform apply.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="create_instance_profile" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, this module will create an instance profile to pass the IAM role, either the one created by this module or one passed externally, to the EC2 instance. Set to false if you wish to use a preexisting instance profile. For more information see https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="default_user" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -955,6 +1141,96 @@ The apex domain of the hostname for the EC2 instance (e.g., example.com). The co
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
+<HclListItem name="high_instance_cpu_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the CPU utilization percentage for the instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_instance_cpu_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the EC2 instance has a CPU utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_instance_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_instance_disk_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the root disk utilization percentage for the instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_instance_disk_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the EC2 instance has a root disk utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_instance_disk_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_instance_memory_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the Memory utilization percentage for the instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_instance_memory_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the EC2 instance has a Memory utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_instance_memory_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name for the bastion host's IAM role and instance profile. If set to an empty string, will use <a href="#name"><code>name</code></a>. Required when create_iam_role is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
 <HclListItem name="keypair_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -962,6 +1238,42 @@ The name of a Key Pair that can be used to SSH to this instance. This instance m
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="metadata_http_endpoint" requirement="optional" type="string">
+<HclListItemDescription>
+
+Whether the metadata service is available. Valid values include enabled or disabled. Defaults to enabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;enabled&quot;"/>
+</HclListItem>
+
+<HclListItem name="metadata_http_put_response_hop_limit" requirement="optional" type="number">
+<HclListItemDescription>
+
+Desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. Valid values are integer from 1 to 64. Defaults to 1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
+
+<HclListItem name="metadata_http_tokens" requirement="optional" type="string">
+<HclListItemDescription>
+
+Whether or not the metadata service requires session tokens, also referred to as Instance Metadata Service Version 2 (IMDSv2). Valid values include optional or required. Defaults to optional.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;optional&quot;"/>
+</HclListItem>
+
+<HclListItem name="metadata_tags" requirement="optional" type="string">
+<HclListItemDescription>
+
+Enables or disables access to instance tags from the instance metadata service. Valid values include enabled or disabled. Defaults to disabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;disabled&quot;"/>
 </HclListItem>
 
 <HclListItem name="root_volume_delete_on_termination" requirement="optional" type="bool">
@@ -989,6 +1301,15 @@ The root volume type. Must be one of: standard, gp2, io1.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;standard&quot;"/>
+</HclListItem>
+
+<HclListItem name="secondary_private_ips" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of secondary private IPv4 addresses to assign to the instance's primary network interface (eth0) in a VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
@@ -1135,11 +1456,11 @@ The input parameters for the EBS volumes.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/ec2-instance/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/ec2-instance/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/ec2-instance/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ec2-instance/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ec2-instance/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ec2-instance/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "afa46fa4d453ca05d8d9099e9f36120e"
+  "hash": "3757e91e8aa7cd713bc368d12b07cbda"
 }
 ##DOCS-SOURCER-END -->

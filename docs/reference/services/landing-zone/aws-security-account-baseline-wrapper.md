@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.11" lastModifiedVersion="0.98.0"/>
+<VersionBadge version="0.104.12" lastModifiedVersion="0.98.0"/>
 
 # Account Baseline for security account
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/landingzone/account-baseline-security" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/landingzone/account-baseline-security" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-security" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -59,13 +59,13 @@ If you’ve never used the Service Catalog before, make sure to read
 
 *   Learn more about each individual module, click the link in the [Features](#features) section.
 *   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
-*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
+*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -73,7 +73,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-learning-and-testing/landingzone): The
+*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-learning-and-testing/landingzone): The
     `examples/for-learning-and-testing/landingzone` folder contains standalone sample code optimized for learning,
     experimenting, and testing (but not direct production usage).
 
@@ -81,7 +81,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -101,7 +101,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "account_baseline_security" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/account-baseline-security?ref=v0.104.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/account-baseline-security?ref=v0.104.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -661,9 +661,6 @@ module "account_baseline_security" {
   # resources.
   iam_group_name_full_access = "full-access"
 
-  # The name of the IAM Group that allows access to houston CLI.
-  iam_group_name_houston_cli = "houston-cli-users"
-
   # The name to be used for the IAM Group that grants IAM administrative access.
   # Effectively grants administrator access.
   iam_group_name_iam_admin = "iam-admin"
@@ -837,10 +834,6 @@ module "account_baseline_security" {
   # AWS resources. (true or false)
   should_create_iam_group_full_access = true
 
-  # Should we create the IAM Group for houston CLI users? Allows users to use
-  # the houston CLI for managing and deploying services.
-  should_create_iam_group_houston_cli_users = false
-
   # Should we create the IAM Group for IAM administrator access? Allows users to
   # manage all IAM entities, effectively granting administrator access. (true or
   # false)
@@ -906,7 +899,7 @@ module "account_baseline_security" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/account-baseline-security?ref=v0.104.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/account-baseline-security?ref=v0.104.12"
 }
 
 inputs = {
@@ -1469,9 +1462,6 @@ inputs = {
   # resources.
   iam_group_name_full_access = "full-access"
 
-  # The name of the IAM Group that allows access to houston CLI.
-  iam_group_name_houston_cli = "houston-cli-users"
-
   # The name to be used for the IAM Group that grants IAM administrative access.
   # Effectively grants administrator access.
   iam_group_name_iam_admin = "iam-admin"
@@ -1644,10 +1634,6 @@ inputs = {
   # Should we create the IAM Group for full access? Allows full access to all
   # AWS resources. (true or false)
   should_create_iam_group_full_access = true
-
-  # Should we create the IAM Group for houston CLI users? Allows users to use
-  # the houston CLI for managing and deploying services.
-  should_create_iam_group_houston_cli_users = false
 
   # Should we create the IAM Group for IAM administrator access? Allows users to
   # manage all IAM entities, effectively granting administrator access. (true or
@@ -2767,15 +2753,6 @@ The name to be used for the IAM Group that grants full access to all AWS resourc
 <HclListItemDefaultValue defaultValue="&quot;full-access&quot;"/>
 </HclListItem>
 
-<HclListItem name="iam_group_name_houston_cli" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the IAM Group that allows access to houston CLI.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;houston-cli-users&quot;"/>
-</HclListItem>
-
 <HclListItem name="iam_group_name_iam_admin" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -3339,15 +3316,6 @@ Should we create the IAM Group for full access? Allows full access to all AWS re
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="should_create_iam_group_houston_cli_users" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Should we create the IAM Group for houston CLI users? Allows users to use the houston CLI for managing and deploying services.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="should_create_iam_group_iam_admin" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -3518,12 +3486,6 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItem name="allow_full_access_sign_in_url">
 </HclListItem>
 
-<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_arn">
-</HclListItem>
-
-<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_id">
-</HclListItem>
-
 <HclListItem name="allow_iam_admin_access_from_other_accounts_iam_role_arn">
 </HclListItem>
 
@@ -3558,15 +3520,6 @@ Any types represent complex values of variable type. For details, please consult
 </HclListItem>
 
 <HclListItem name="allow_ssh_grunt_access_sign_in_url">
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_arn">
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_id">
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_houston_access_sign_in_url">
 </HclListItem>
 
 <HclListItem name="allow_support_access_from_other_accounts_iam_role_arn">
@@ -3784,12 +3737,6 @@ The names of the SNS topic where findings are published if <a href="#publish_fin
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="houston_cli_users_iam_group_arn">
-</HclListItem>
-
-<HclListItem name="houston_cli_users_iam_group_name">
-</HclListItem>
-
 <HclListItem name="iam_admin_iam_group_arn">
 </HclListItem>
 
@@ -3918,11 +3865,11 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/landingzone/account-baseline-security/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/landingzone/account-baseline-security/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/landingzone/account-baseline-security/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/landingzone/account-baseline-security/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/landingzone/account-baseline-security/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/landingzone/account-baseline-security/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b2a850ff847e4cc6ff6a323080b102f8"
+  "hash": "33684b4ba11a4b38f3ee6331d5d30615"
 }
 ##DOCS-SOURCER-END -->

@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.11" lastModifiedVersion="0.100.0"/>
+<VersionBadge version="0.104.12" lastModifiedVersion="0.100.0"/>
 
 # Kubernetes Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/k8s-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/k8s-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fk8s-service" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -29,6 +29,8 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 This service contains [Terraform](https://www.terraform.io) code to deploy your web application containers using
 [the k8-service Gruntwork Helm Chart](https://github.com/gruntwork-io/helm-kubernetes-services/) on to
 [Kubernetes](https://kubernetes.io/) following best practices.
+
+If you want to deploy third-party applications already packaged as Helm Charts, such as those available in [bitnami](https://bitnami.com/stacks/helm), see the [`helm-service`](/reference/services/app-orchestration/helm-service) module.
 
 ![Kubernetes Service architecture](/img/reference/services/app-orchestration/k8s-service-architecture.png)
 
@@ -72,9 +74,9 @@ don’t have access to this repo, email <support@gruntwork.io>.
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -82,7 +84,7 @@ don’t have access to this repo, email <support@gruntwork.io>.
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -90,7 +92,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -109,7 +111,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "k_8_s_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/k8s-service?ref=v0.104.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/k8s-service?ref=v0.104.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -197,8 +199,9 @@ module "k_8_s_service" {
 
   # Kubernetes ConfigMaps to be injected into the container as volume mounts.
   # Each entry in the map represents a ConfigMap to be mounted, with the key
-  # representing the name of the ConfigMap and the value representing a file
-  # path on the container to mount the ConfigMap to.
+  # representing the name of the ConfigMap and the value as a map containing
+  # required mountPath (file path on the container to mount the ConfigMap to)
+  # and optional subPath (sub-path inside the referenced volume).
   configmaps_as_volumes = {}
 
   # The protocol on which this service's Docker container accepts traffic. Must
@@ -262,10 +265,13 @@ module "k_8_s_service" {
   force_destroy_ingress_access_logs = false
 
   # The version of the k8s-service helm chart to deploy.
-  helm_chart_version = "v0.2.13"
+  helm_chart_version = "v0.2.18"
 
-  # Configure the Horizontal Pod Autoscaler information for the associated
-  # Deployment. HPA is disabled when this variable is set to null.
+  # Configure the Horizontal Pod Autoscaler (HPA) information for the associated
+  # Deployment. HPA is disabled when this variable is set to null. Note that to
+  # use an HPA, you must have a corresponding service deployed to your cluster
+  # that exports the metrics (e.g., metrics-server
+  # https://github.com/kubernetes-sigs/metrics-server).
   horizontal_pod_autoscaler = null
 
   # An object defining the policy to attach to `iam_role_name` if the IAM role
@@ -424,8 +430,9 @@ module "k_8_s_service" {
 
   # Kubernetes Secrets to be injected into the container as volume mounts. Each
   # entry in the map represents a Secret to be mounted, with the key
-  # representing the name of the Secret and the value representing a file path
-  # on the container to mount the Secret to.
+  # representing the name of the Secret and the value as a map containing
+  # required mountPath (file path on the container to mount the Secret to) and
+  # optional subPath (sub-path inside the referenced volume).
   secrets_as_volumes = {}
 
   # When true, and service_account_name is not blank, lookup and assign an
@@ -490,7 +497,7 @@ module "k_8_s_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/k8s-service?ref=v0.104.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/k8s-service?ref=v0.104.12"
 }
 
 inputs = {
@@ -581,8 +588,9 @@ inputs = {
 
   # Kubernetes ConfigMaps to be injected into the container as volume mounts.
   # Each entry in the map represents a ConfigMap to be mounted, with the key
-  # representing the name of the ConfigMap and the value representing a file
-  # path on the container to mount the ConfigMap to.
+  # representing the name of the ConfigMap and the value as a map containing
+  # required mountPath (file path on the container to mount the ConfigMap to)
+  # and optional subPath (sub-path inside the referenced volume).
   configmaps_as_volumes = {}
 
   # The protocol on which this service's Docker container accepts traffic. Must
@@ -646,10 +654,13 @@ inputs = {
   force_destroy_ingress_access_logs = false
 
   # The version of the k8s-service helm chart to deploy.
-  helm_chart_version = "v0.2.13"
+  helm_chart_version = "v0.2.18"
 
-  # Configure the Horizontal Pod Autoscaler information for the associated
-  # Deployment. HPA is disabled when this variable is set to null.
+  # Configure the Horizontal Pod Autoscaler (HPA) information for the associated
+  # Deployment. HPA is disabled when this variable is set to null. Note that to
+  # use an HPA, you must have a corresponding service deployed to your cluster
+  # that exports the metrics (e.g., metrics-server
+  # https://github.com/kubernetes-sigs/metrics-server).
   horizontal_pod_autoscaler = null
 
   # An object defining the policy to attach to `iam_role_name` if the IAM role
@@ -808,8 +819,9 @@ inputs = {
 
   # Kubernetes Secrets to be injected into the container as volume mounts. Each
   # entry in the map represents a Secret to be mounted, with the key
-  # representing the name of the Secret and the value representing a file path
-  # on the container to mount the Secret to.
+  # representing the name of the Secret and the value as a map containing
+  # required mountPath (file path on the container to mount the Secret to) and
+  # optional subPath (sub-path inside the referenced volume).
   secrets_as_volumes = {}
 
   # When true, and service_account_name is not blank, lookup and assign an
@@ -1107,12 +1119,19 @@ map(map(string))
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="configmaps_as_volumes" requirement="optional" type="map(string)">
+<HclListItem name="configmaps_as_volumes" requirement="optional" type="map(any)">
 <HclListItemDescription>
 
-Kubernetes ConfigMaps to be injected into the container as volume mounts. Each entry in the map represents a ConfigMap to be mounted, with the key representing the name of the ConfigMap and the value representing a file path on the container to mount the ConfigMap to.
+Kubernetes ConfigMaps to be injected into the container as volume mounts. Each entry in the map represents a ConfigMap to be mounted, with the key representing the name of the ConfigMap and the value as a map containing required mountPath (file path on the container to mount the ConfigMap to) and optional subPath (sub-path inside the referenced volume).
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 <HclGeneralListItem title="Examples">
 <details>
@@ -1123,7 +1142,16 @@ Kubernetes ConfigMaps to be injected into the container as volume mounts. Each e
 
    Example: This will mount the ConfigMap myconfig to the path /etc/myconfig
    {
-     myconfig = "/etc/myconfig"
+     myconfig = {
+       mount_path = "/etc/myconfig"
+     }
+   }
+   Example: This will mount the ConfigMap myconfig to the path /etc/nginx/nginx.conf
+   {
+     myconfig = {
+       mount_path = "/etc/nginx/nginx.conf"
+       sub_path = "nginx.conf"
+     }
    }
 
 ```
@@ -1280,13 +1308,13 @@ A boolean that indicates whether the access logs bucket should be destroyed, eve
 The version of the k8s-service helm chart to deploy.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v0.2.13&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v0.2.18&quot;"/>
 </HclListItem>
 
 <HclListItem name="horizontal_pod_autoscaler" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-Configure the Horizontal Pod Autoscaler information for the associated Deployment. HPA is disabled when this variable is set to null.
+Configure the Horizontal Pod Autoscaler (HPA) information for the associated Deployment. HPA is disabled when this variable is set to null. Note that to use an HPA, you must have a corresponding service deployed to your cluster that exports the metrics (e.g., metrics-server https://github.com/kubernetes-sigs/metrics-server).
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1745,12 +1773,19 @@ map(map(string))
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="secrets_as_volumes" requirement="optional" type="map(string)">
+<HclListItem name="secrets_as_volumes" requirement="optional" type="map(any)">
 <HclListItemDescription>
 
-Kubernetes Secrets to be injected into the container as volume mounts. Each entry in the map represents a Secret to be mounted, with the key representing the name of the Secret and the value representing a file path on the container to mount the Secret to.
+Kubernetes Secrets to be injected into the container as volume mounts. Each entry in the map represents a Secret to be mounted, with the key representing the name of the Secret and the value as a map containing required mountPath (file path on the container to mount the Secret to) and optional subPath (sub-path inside the referenced volume).
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 <HclGeneralListItem title="Examples">
 <details>
@@ -1761,7 +1796,16 @@ Kubernetes Secrets to be injected into the container as volume mounts. Each entr
 
    Example: This will mount the Secret mysecret to the path /etc/mysecret
    {
-     mysecret = "/etc/mysecret"
+     mysecret = {
+       mount_path = "/etc/mysecret"
+     }
+   }
+   Example: This will mount the Secret mysecret to the path /etc/nginx/nginx.conf
+   {
+     mysecret = {
+       mount_path = "/etc/nginx/nginx.conf"
+       sub_path = "nginx.conf"
+     }
    }
 
 ```
@@ -1909,11 +1953,11 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/k8s-service/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/k8s-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/k8s-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/k8s-service/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/k8s-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/k8s-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5819525b026137fb0e0c24aeab689079"
+  "hash": "dd4b096a6fda9c3b3b8212817cf83d37"
 }
 ##DOCS-SOURCER-END -->

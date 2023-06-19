@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.11" lastModifiedVersion="0.95.1"/>
+<VersionBadge version="0.104.12" lastModifiedVersion="0.95.1"/>
 
 # Amazon ECS Cluster
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/ecs-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ecs-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fecs-cluster" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -108,9 +108,9 @@ For info on finding your Docker container logs and custom metrics in CloudWatch,
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -118,7 +118,7 @@ For info on finding your Docker container logs and custom metrics in CloudWatch,
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -126,7 +126,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -153,7 +153,7 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 module "ecs_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-cluster?ref=v0.104.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-cluster?ref=v0.104.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -352,14 +352,9 @@ module "ecs_cluster" {
   # this threshold. Only used if var.enable_ecs_cloudwatch_alarms is set to true
   high_cpu_utilization_threshold = 90
 
-  # The period, in seconds, over which to measure the disk utilization
-  # percentage. Only used if var.enable_ecs_cloudwatch_alarms is set to true
-  high_disk_utilization_period = 300
-
-  # Trigger an alarm if the EC2 instances in the ECS Cluster have a disk
-  # utilization percentage above this threshold. Only used if
-  # var.enable_ecs_cloudwatch_alarms is set to true
-  high_disk_utilization_threshold = 90
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must
+  # be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_cpu_utilization_treat_missing_data = "missing"
 
   # The number of periods over which data is compared to the specified threshold
   high_memory_utilization_evaluation_periods = 2
@@ -376,6 +371,10 @@ module "ecs_cluster" {
   # above this threshold. Only used if var.enable_ecs_cloudwatch_alarms is set
   # to true
   high_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must
+  # be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_memory_utilization_treat_missing_data = "missing"
 
   # The desired HTTP PUT response hop limit for instance metadata requests for
   # the workers.
@@ -412,10 +411,10 @@ module "ecs_cluster" {
   tenancy = "default"
 
   # Set this variable to true to enable the use of Instance Metadata Service
-  # Version 1 in this module's aws_launch_configuration. Note that while IMDsv2
-  # is preferred due to its special security hardening, we allow this in order
-  # to support the use case of AMIs built outside of these modules that depend
-  # on IMDSv1.
+  # Version 1 in this module's aws_launch_template. Note that while IMDsv2 is
+  # preferred due to its special security hardening, we allow this in order to
+  # support the use case of AMIs built outside of these modules that depend on
+  # IMDSv1.
   use_imdsv1 = true
 
   # When true, all IAM policies will be managed as dedicated policies rather
@@ -440,7 +439,7 @@ module "ecs_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-cluster?ref=v0.104.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-cluster?ref=v0.104.12"
 }
 
 inputs = {
@@ -642,14 +641,9 @@ inputs = {
   # this threshold. Only used if var.enable_ecs_cloudwatch_alarms is set to true
   high_cpu_utilization_threshold = 90
 
-  # The period, in seconds, over which to measure the disk utilization
-  # percentage. Only used if var.enable_ecs_cloudwatch_alarms is set to true
-  high_disk_utilization_period = 300
-
-  # Trigger an alarm if the EC2 instances in the ECS Cluster have a disk
-  # utilization percentage above this threshold. Only used if
-  # var.enable_ecs_cloudwatch_alarms is set to true
-  high_disk_utilization_threshold = 90
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must
+  # be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_cpu_utilization_treat_missing_data = "missing"
 
   # The number of periods over which data is compared to the specified threshold
   high_memory_utilization_evaluation_periods = 2
@@ -666,6 +660,10 @@ inputs = {
   # above this threshold. Only used if var.enable_ecs_cloudwatch_alarms is set
   # to true
   high_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must
+  # be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_memory_utilization_treat_missing_data = "missing"
 
   # The desired HTTP PUT response hop limit for instance metadata requests for
   # the workers.
@@ -702,10 +700,10 @@ inputs = {
   tenancy = "default"
 
   # Set this variable to true to enable the use of Instance Metadata Service
-  # Version 1 in this module's aws_launch_configuration. Note that while IMDsv2
-  # is preferred due to its special security hardening, we allow this in order
-  # to support the use case of AMIs built outside of these modules that depend
-  # on IMDSv1.
+  # Version 1 in this module's aws_launch_template. Note that while IMDsv2 is
+  # preferred due to its special security hardening, we allow this in order to
+  # support the use case of AMIs built outside of these modules that depend on
+  # IMDSv1.
   use_imdsv1 = true
 
   # When true, all IAM policies will be managed as dedicated policies rather
@@ -1162,22 +1160,13 @@ Trigger an alarm if the ECS Cluster has a CPU utilization percentage above this 
 <HclListItemDefaultValue defaultValue="90"/>
 </HclListItem>
 
-<HclListItem name="high_disk_utilization_period" requirement="optional" type="number">
+<HclListItem name="high_cpu_utilization_treat_missing_data" requirement="optional" type="string">
 <HclListItemDescription>
 
-The period, in seconds, over which to measure the disk utilization percentage. Only used if <a href="#enable_ecs_cloudwatch_alarms"><code>enable_ecs_cloudwatch_alarms</code></a> is set to true
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="300"/>
-</HclListItem>
-
-<HclListItem name="high_disk_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the EC2 instances in the ECS Cluster have a disk utilization percentage above this threshold. Only used if <a href="#enable_ecs_cloudwatch_alarms"><code>enable_ecs_cloudwatch_alarms</code></a> is set to true
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="high_memory_utilization_evaluation_periods" requirement="optional" type="number">
@@ -1214,6 +1203,15 @@ Trigger an alarm if the ECS Cluster has a memory utilization percentage above th
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_memory_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="http_put_response_hop_limit" requirement="optional" type="number">
@@ -1291,7 +1289,7 @@ The tenancy of this server. Must be one of: default, dedicated, or host.
 <HclListItem name="use_imdsv1" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_configuration. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
+Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -1349,10 +1347,10 @@ For configurations with multiple capacity providers, this contains a list of all
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ecs_cluster_launch_configuration_id">
+<HclListItem name="ecs_cluster_launch_template_id">
 <HclListItemDescription>
 
-The ID of the launch configuration used by the ECS cluster's auto scaling group (ASG)
+The ID of the launch template used by the ECS cluster's auto scaling group (ASG)
 
 </HclListItemDescription>
 </HclListItem>
@@ -1436,11 +1434,11 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/ecs-cluster/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/ecs-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/ecs-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ecs-cluster/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ecs-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e6356ded8f3d7cf5cf074cb4fb0a3f64"
+  "hash": "f2fb3fe713480da37819544594bf9d55"
 }
 ##DOCS-SOURCER-END -->

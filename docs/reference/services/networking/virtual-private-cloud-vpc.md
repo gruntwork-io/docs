@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.11" lastModifiedVersion="0.104.5"/>
+<VersionBadge version="0.104.12" lastModifiedVersion="0.104.5"/>
 
 # VPC
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fvpc" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -65,9 +65,9 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -105,14 +105,11 @@ If you want to deploy this repo in production, check out the following resources
 
 module "vpc" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/vpc?ref=v0.104.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/vpc?ref=v0.104.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
-
-  # The AWS region in which all resources will be created
-  aws_region = <string>
 
   # The IP address range of the VPC in CIDR notation. A prefix of /18 is
   # recommended. Do not use a prefix higher than /27. Examples include
@@ -153,6 +150,11 @@ module "vpc" {
   # Specific Availability Zones in which subnets SHOULD NOT be created. Useful
   # for when features / support is missing from a given AZ.
   availability_zone_exclude_names = []
+
+  # DEPRECATED. The AWS Region where this VPC will exist. This variable is no
+  # longer used and only kept around for backwards compatibility. We now
+  # automatically fetch the region using a data source.
+  aws_region = ""
 
   # Whether or not to create DNS forwarders from the Mgmt VPC to the App VPC to
   # resolve private Route 53 endpoints. This is most useful when you want to
@@ -262,6 +264,13 @@ module "vpc" {
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = true
 
+  # Additional IAM policies to apply to the S3 bucket to store flow logs. You
+  # can use this to grant read/write access beyond what is provided to the VPC.
+  # This should be a map, where each key is a unique statement ID (SID), and
+  # each value is an object that contains the parameters defined in the comment
+  # below.
+  flow_log_additional_s3_bucket_policy_statements = null
+
   # The name to use for the flow log IAM role. This can be useful if you
   # provision the VPC without admin privileges which needs setting IAM:PassRole
   # on deployment role. When null, a default name based on the VPC name will be
@@ -271,6 +280,33 @@ module "vpc" {
   # The name to use for the CloudWatch Log group used for storing flow log. When
   # null, a default name based on the VPC name will be chosen.
   flow_log_cloudwatch_log_group_name = null
+
+  # The destination for the flow log. Valid values are cloud-watch-logs or s3.
+  # Defaults to cloud-watch-logs.
+  flow_log_destination_type = "cloud-watch-logs"
+
+  # Boolean to determine whether flow logs should be deleted if the S3 bucket is
+  # removed by terraform. Defaults to false.
+  flow_log_force_destroy_bucket = false
+
+  # The name to use for the VPC flow logs S3 bucket.
+  flow_log_s3_bucket_name = null
+
+  # For s3 log destinations, the number of days after which to expire
+  # (permanently delete) flow logs. Defaults to 365.
+  flow_log_s3_expiration_transition = 365
+
+  # For s3 log destinations, the number of days after which to transition the
+  # flow log objects to glacier. Defaults to 180.
+  flow_log_s3_glacier_transition = 180
+
+  # For s3 log destinations, the number of days after which to transition the
+  # flow log objects to infrequent access. Defaults to 30.
+  flow_log_s3_infrequent_access_transition = 30
+
+  # if log_destination_type is s3, optionally specify a subfolder for flow log
+  # delivery.
+  flow_log_s3_subfolder = ""
 
   # The type of traffic to capture in the VPC flow log. Valid values include
   # ACCEPT, REJECT, or ALL. Defaults to REJECT. Only used if create_flow_logs is
@@ -293,6 +329,10 @@ module "vpc" {
   # VPC Flow Logs will be encrypted with a KMS Key (a Customer Master Key). The
   # IAM Users specified in this list will have access to this key.
   kms_key_user_iam_arns = null
+
+  # Specify true to indicate that instances launched into the public subnet
+  # should be assigned a public IP address (versus a private IP address)
+  map_public_ip_on_launch = false
 
   # A map of tags to apply to the NAT gateways, on top of the custom_tags. The
   # key is the tag name and the value is the tag value. Note that tags defined
@@ -485,7 +525,7 @@ module "vpc" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/vpc?ref=v0.104.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/vpc?ref=v0.104.12"
 }
 
 inputs = {
@@ -493,9 +533,6 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
-
-  # The AWS region in which all resources will be created
-  aws_region = <string>
 
   # The IP address range of the VPC in CIDR notation. A prefix of /18 is
   # recommended. Do not use a prefix higher than /27. Examples include
@@ -536,6 +573,11 @@ inputs = {
   # Specific Availability Zones in which subnets SHOULD NOT be created. Useful
   # for when features / support is missing from a given AZ.
   availability_zone_exclude_names = []
+
+  # DEPRECATED. The AWS Region where this VPC will exist. This variable is no
+  # longer used and only kept around for backwards compatibility. We now
+  # automatically fetch the region using a data source.
+  aws_region = ""
 
   # Whether or not to create DNS forwarders from the Mgmt VPC to the App VPC to
   # resolve private Route 53 endpoints. This is most useful when you want to
@@ -645,6 +687,13 @@ inputs = {
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = true
 
+  # Additional IAM policies to apply to the S3 bucket to store flow logs. You
+  # can use this to grant read/write access beyond what is provided to the VPC.
+  # This should be a map, where each key is a unique statement ID (SID), and
+  # each value is an object that contains the parameters defined in the comment
+  # below.
+  flow_log_additional_s3_bucket_policy_statements = null
+
   # The name to use for the flow log IAM role. This can be useful if you
   # provision the VPC without admin privileges which needs setting IAM:PassRole
   # on deployment role. When null, a default name based on the VPC name will be
@@ -654,6 +703,33 @@ inputs = {
   # The name to use for the CloudWatch Log group used for storing flow log. When
   # null, a default name based on the VPC name will be chosen.
   flow_log_cloudwatch_log_group_name = null
+
+  # The destination for the flow log. Valid values are cloud-watch-logs or s3.
+  # Defaults to cloud-watch-logs.
+  flow_log_destination_type = "cloud-watch-logs"
+
+  # Boolean to determine whether flow logs should be deleted if the S3 bucket is
+  # removed by terraform. Defaults to false.
+  flow_log_force_destroy_bucket = false
+
+  # The name to use for the VPC flow logs S3 bucket.
+  flow_log_s3_bucket_name = null
+
+  # For s3 log destinations, the number of days after which to expire
+  # (permanently delete) flow logs. Defaults to 365.
+  flow_log_s3_expiration_transition = 365
+
+  # For s3 log destinations, the number of days after which to transition the
+  # flow log objects to glacier. Defaults to 180.
+  flow_log_s3_glacier_transition = 180
+
+  # For s3 log destinations, the number of days after which to transition the
+  # flow log objects to infrequent access. Defaults to 30.
+  flow_log_s3_infrequent_access_transition = 30
+
+  # if log_destination_type is s3, optionally specify a subfolder for flow log
+  # delivery.
+  flow_log_s3_subfolder = ""
 
   # The type of traffic to capture in the VPC flow log. Valid values include
   # ACCEPT, REJECT, or ALL. Defaults to REJECT. Only used if create_flow_logs is
@@ -676,6 +752,10 @@ inputs = {
   # VPC Flow Logs will be encrypted with a KMS Key (a Customer Master Key). The
   # IAM Users specified in this list will have access to this key.
   kms_key_user_iam_arns = null
+
+  # Specify true to indicate that instances launched into the public subnet
+  # should be assigned a public IP address (versus a private IP address)
+  map_public_ip_on_launch = false
 
   # A map of tags to apply to the NAT gateways, on top of the custom_tags. The
   # key is the tag name and the value is the tag value. Note that tags defined
@@ -871,14 +951,6 @@ inputs = {
 
 ### Required
 
-<HclListItem name="aws_region" requirement="required" type="string">
-<HclListItemDescription>
-
-The AWS region in which all resources will be created
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="cidr_block" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -939,6 +1011,15 @@ Specific Availability Zones in which subnets SHOULD NOT be created. Useful for w
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="aws_region" requirement="optional" type="string">
+<HclListItemDescription>
+
+DEPRECATED. The AWS Region where this VPC will exist. This variable is no longer used and only kept around for backwards compatibility. We now automatically fetch the region using a data source.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="create_dns_forwarder" requirement="optional" type="bool">
@@ -1210,6 +1291,105 @@ If set to false, the default security groups will NOT be created.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="flow_log_additional_s3_bucket_policy_statements" requirement="optional" type="any">
+<HclListItemDescription>
+
+Additional IAM policies to apply to the S3 bucket to store flow logs. You can use this to grant read/write access beyond what is provided to the VPC. This should be a map, where each key is a unique statement ID (SID), and each value is an object that contains the parameters defined in the comment below.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   {
+      AllIamUsersReadAccess = {
+        effect     = "Allow"
+        actions    = ["s3:GetObject"]
+        principals = {
+          AWS = ["arn:aws:iam::111111111111:user/ann", "arn:aws:iam::111111111111:user/bob"]
+        }
+        condition = {
+          SourceVPCCheck = {
+            test = "StringEquals"
+            variable = "aws:SourceVpc"
+            values = ["vpc-abcd123"]
+          }
+        }
+      }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   See the 'statement' block in the aws_iam_policy_document data
+   source for context: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document
+  
+   - effect           string            (optional): Either "Allow" or "Deny", to specify whether this statement allows
+                                                    or denies the given actions.
+   - actions          list(string)      (optional): A list of actions that this statement either allows or denies. For
+                                                    example, ["s3:GetObject", "s3:PutObject"].
+   - not_actions      list(string)      (optional): A list of actions that this statement does NOT apply to. Used to
+                                                    apply a policy statement to all actions except those listed.
+   - principals       map(list(string)) (optional): The principals to which this statement applies. The keys are the
+                                                    principal type ("AWS", "Service", or "Federated") and the value is
+                                                    a list of identifiers.
+   - not_principals   map(list(string)) (optional): The principals to which this statement does NOT apply. The keys are
+                                                    the principal type ("AWS", "Service", or "Federated") and the value
+                                                    is a list of identifiers.
+   - keys             list(string)      (optional): A list of keys within the bucket to which this policy applies. For
+                                                    example, ["", "/*"] would apply to (a) the bucket itself and (b)
+                                                   all keys within the bucket. The default is [""].
+   - condition        map(object)       (optional): A nested configuration block (described below) that defines a
+                                                    further, possibly-service-specific condition that constrains
+                                                    whether this statement applies.
+  
+   condition is a map ndition to an object that can define the following properties:
+  
+   - test             string            (required): The name of the IAM condition operator to evaluate.
+   - variable         string            (required): The name of a Context Variable to apply the condition to. Context
+                                                    variables may either be standard AWS variables starting with aws:,
+                                                    or service-specific variables prefixed with the service name.
+   - values           list(string)      (required): The values to evaluate the condition against. If multiple values
+                                                    are provided, the condition matches if at least one of them
+                                                    applies. (That is, the tests are combined with the "OR" boolean
+                                                    operation.)
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+   Ideally, this would be a map(object({...})), but the Terraform object type constraint doesn't support optional
+   parameters, whereas IAM policy statements have many optional params. And we can't even use map(any), as the
+   Terraform map type constraint requires all values to have the same type ("shape"), but as each object in the map
+   may specify different optional params, this won't work either. So, sadly, we are forced to fall back to "any."
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 <HclListItem name="flow_log_cloudwatch_iam_role_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1226,6 +1406,69 @@ The name to use for the CloudWatch Log group used for storing flow log. When nul
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="flow_log_destination_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The destination for the flow log. Valid values are cloud-watch-logs or s3. Defaults to cloud-watch-logs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;cloud-watch-logs&quot;"/>
+</HclListItem>
+
+<HclListItem name="flow_log_force_destroy_bucket" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Boolean to determine whether flow logs should be deleted if the S3 bucket is removed by terraform. Defaults to false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="flow_log_s3_bucket_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name to use for the VPC flow logs S3 bucket.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="flow_log_s3_expiration_transition" requirement="optional" type="number">
+<HclListItemDescription>
+
+For s3 log destinations, the number of days after which to expire (permanently delete) flow logs. Defaults to 365.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="365"/>
+</HclListItem>
+
+<HclListItem name="flow_log_s3_glacier_transition" requirement="optional" type="number">
+<HclListItemDescription>
+
+For s3 log destinations, the number of days after which to transition the flow log objects to glacier. Defaults to 180.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="180"/>
+</HclListItem>
+
+<HclListItem name="flow_log_s3_infrequent_access_transition" requirement="optional" type="number">
+<HclListItemDescription>
+
+For s3 log destinations, the number of days after which to transition the flow log objects to infrequent access. Defaults to 30.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="30"/>
+</HclListItem>
+
+<HclListItem name="flow_log_s3_subfolder" requirement="optional" type="string">
+<HclListItemDescription>
+
+if log_destination_type is s3, optionally specify a subfolder for flow log delivery.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="flow_logs_traffic_type" requirement="optional" type="string">
@@ -1271,6 +1514,15 @@ VPC Flow Logs will be encrypted with a KMS Key (a Customer Master Key). The IAM 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="map_public_ip_on_launch" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specify true to indicate that instances launched into the public subnet should be assigned a public IP address (versus a private IP address)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="nat_gateway_custom_tags" requirement="optional" type="map(string)">
@@ -1866,11 +2118,11 @@ Indicates whether or not the VPC has finished creating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/networking/vpc/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/networking/vpc/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/networking/vpc/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/networking/vpc/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/networking/vpc/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "bd25130785a2f489e4a9cb2c5d330f7d"
+  "hash": "c8769d19ab65c5e900f20da0a8fd92ee"
 }
 ##DOCS-SOURCER-END -->

@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.11" lastModifiedVersion="0.104.3"/>
+<VersionBadge version="0.104.12" lastModifiedVersion="0.104.12"/>
 
 # Amazon ECS Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/ecs-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ecs-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fecs-service" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -63,10 +63,10 @@ more, see the documentation in the
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal
     submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/test): Automated tests for the modules and examples.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -74,14 +74,14 @@ more, see the documentation in the
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and testing (but not direct production usage).
 
 ### Production deployment
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -105,7 +105,7 @@ For information on how to manage your ECS service, see the documentation in the
 
 module "ecs_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-service?ref=v0.104.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-service?ref=v0.104.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -200,6 +200,11 @@ module "ecs_service" {
   # 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653, and 0. Select 0
   # to never expire. Only used if var.create_cloudwatch_log_group is true.
   cloudwatch_log_group_retention = null
+
+  # A map of tags to apply to the Cloudwatch log group. Each item in this list
+  # should be a map with the parameters key and value. Only used if
+  # var.create_cloudwatch_log_group is true.
+  cloudwatch_log_group_tags = {}
 
   # The number of CPU units to allocate to the ECS Service.
   cpu = 1
@@ -386,6 +391,10 @@ module "ecs_service" {
   # this threshold
   high_cpu_utilization_threshold = 90
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must
+  # be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_cpu_utilization_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the memory utilization
   # percentage
   high_memory_utilization_period = 300
@@ -393,6 +402,10 @@ module "ecs_service" {
   # Trigger an alarm if the ECS Service has a memory utilization percentage
   # above this threshold
   high_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must
+  # be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_memory_utilization_treat_missing_data = "missing"
 
   # The ID of the Route 53 hosted zone into which the Route 53 DNS record should
   # be written
@@ -530,7 +543,11 @@ module "ecs_service" {
   # A list of ARNs for Secrets Manager secrets that the ECS execution IAM policy
   # should be granted access to read. Note that this is different from the ECS
   # task IAM policy. The execution policy is concerned with permissions required
-  # to run the ECS task.
+  # to run the ECS task. The ARN can be either the complete ARN, including the
+  # randomly generated suffix, or the ARN without the suffix. If the latter, the
+  # module will look up the full ARN automatically. This is helpful in cases
+  # where you don't yet know the randomly generated suffix because the rest of
+  # the ARN is a predictable value.
   secrets_manager_arns = []
 
   # The ARN of the kms key associated with secrets manager
@@ -595,7 +612,7 @@ module "ecs_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-service?ref=v0.104.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-service?ref=v0.104.12"
 }
 
 inputs = {
@@ -694,6 +711,11 @@ inputs = {
   # to never expire. Only used if var.create_cloudwatch_log_group is true.
   cloudwatch_log_group_retention = null
 
+  # A map of tags to apply to the Cloudwatch log group. Each item in this list
+  # should be a map with the parameters key and value. Only used if
+  # var.create_cloudwatch_log_group is true.
+  cloudwatch_log_group_tags = {}
+
   # The number of CPU units to allocate to the ECS Service.
   cpu = 1
 
@@ -879,6 +901,10 @@ inputs = {
   # this threshold
   high_cpu_utilization_threshold = 90
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must
+  # be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_cpu_utilization_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the memory utilization
   # percentage
   high_memory_utilization_period = 300
@@ -886,6 +912,10 @@ inputs = {
   # Trigger an alarm if the ECS Service has a memory utilization percentage
   # above this threshold
   high_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must
+  # be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_memory_utilization_treat_missing_data = "missing"
 
   # The ID of the Route 53 hosted zone into which the Route 53 DNS record should
   # be written
@@ -1023,7 +1053,11 @@ inputs = {
   # A list of ARNs for Secrets Manager secrets that the ECS execution IAM policy
   # should be granted access to read. Note that this is different from the ECS
   # task IAM policy. The execution policy is concerned with permissions required
-  # to run the ECS task.
+  # to run the ECS task. The ARN can be either the complete ARN, including the
+  # randomly generated suffix, or the ARN without the suffix. If the latter, the
+  # module will look up the full ARN automatically. This is helpful in cases
+  # where you don't yet know the randomly generated suffix because the rest of
+  # the ARN is a predictable value.
   secrets_manager_arns = []
 
   # The ARN of the kms key associated with secrets manager
@@ -1360,6 +1394,15 @@ Number of days to retain log events. Possible values are: 1, 3, 5, 7, 14, 30, 60
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the Cloudwatch log group. Each item in this list should be a map with the parameters key and value. Only used if <a href="#create_cloudwatch_log_group"><code>create_cloudwatch_log_group</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="cpu" requirement="optional" type="number">
@@ -2019,6 +2062,15 @@ Trigger an alarm if the ECS Service has a CPU utilization percentage above this 
 <HclListItemDefaultValue defaultValue="90"/>
 </HclListItem>
 
+<HclListItem name="high_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="high_memory_utilization_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2035,6 +2087,15 @@ Trigger an alarm if the ECS Service has a memory utilization percentage above th
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_memory_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="hosted_zone_id" requirement="optional" type="string">
@@ -2513,7 +2574,7 @@ A list of ARNs of Secrets Manager secrets that the task should have permissions 
 <HclListItem name="secrets_manager_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-A list of ARNs for Secrets Manager secrets that the ECS execution IAM policy should be granted access to read. Note that this is different from the ECS task IAM policy. The execution policy is concerned with permissions required to run the ECS task.
+A list of ARNs for Secrets Manager secrets that the ECS execution IAM policy should be granted access to read. Note that this is different from the ECS task IAM policy. The execution policy is concerned with permissions required to run the ECS task. The ARN can be either the complete ARN, including the randomly generated suffix, or the ARN without the suffix. If the latter, the module will look up the full ARN automatically. This is helpful in cases where you don't yet know the randomly generated suffix because the rest of the ARN is a predictable value.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -2811,11 +2872,11 @@ The names of the ECS service's load balancer's target groups
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/ecs-service/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/ecs-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.11/modules/services/ecs-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ecs-service/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ecs-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "15a2e94051e0d53a349c75f000a13fd3"
+  "hash": "04fff7be00e1a60d21714b6753b4d1c3"
 }
 ##DOCS-SOURCER-END -->
