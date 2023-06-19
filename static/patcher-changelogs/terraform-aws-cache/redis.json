@@ -1,6 +1,9 @@
 {
   "module": "redis",
   "releases": {
+    "v0.20.2": {
+      "contains_changes": true
+    },
     "v0.20.1": {
       "contains_changes": true
     },

@@ -1,6 +1,9 @@
 {
   "module": "alarms/ec2-memory-alarms",
   "releases": {
+    "v0.36.1": {
+      "contains_changes": true
+    },
     "v0.36.0": {
       "contains_changes": false
     },

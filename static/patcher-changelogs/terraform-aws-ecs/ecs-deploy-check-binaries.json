@@ -1,6 +1,9 @@
 {
   "module": "ecs-deploy-check-binaries",
   "releases": {
+    "v0.35.6": {
+      "contains_changes": false
+    },
     "v0.35.5": {
       "contains_changes": false
     },
