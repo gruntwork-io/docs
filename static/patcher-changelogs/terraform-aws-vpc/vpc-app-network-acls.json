@@ -1,6 +1,9 @@
 {
   "module": "vpc-app-network-acls",
   "releases": {
+    "v0.23.1": {
+      "contains_changes": false
+    },
     "v0.23.0": {
       "contains_changes": false
     },

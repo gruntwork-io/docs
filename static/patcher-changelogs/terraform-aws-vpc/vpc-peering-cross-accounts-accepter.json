@@ -1,6 +1,9 @@
 {
   "module": "vpc-peering-cross-accounts-accepter",
   "releases": {
+    "v0.23.1": {
+      "contains_changes": true
+    },
     "v0.23.0": {
       "contains_changes": false
     },

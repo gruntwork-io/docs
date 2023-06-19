@@ -1,6 +1,12 @@
 {
   "module": "mgmt/tailscale-subnet-router",
   "releases": {
+    "v0.104.12": {
+      "contains_changes": false
+    },
+    "v0.104.11": {
+      "contains_changes": false
+    },
     "v0.104.10": {
       "contains_changes": false
     },
