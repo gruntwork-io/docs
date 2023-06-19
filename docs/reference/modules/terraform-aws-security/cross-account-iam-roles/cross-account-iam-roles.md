@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.2" lastModifiedVersion="0.67.10"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.4" lastModifiedVersion="0.67.10"/>
 
 # A best-practices set of IAM roles for cross-account access
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cross-account-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cross-account-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -34,7 +34,7 @@ This module creates the following IAM roles (all optional):
 These IAM Roles are intended to be assumed by human users (i.e., IAM Users in another AWS account). The default
 maximum session expiration for these roles is 12 hours (configurable via the `var.max_session_duration_human_users`).
 Note that these are the *maximum* session expirations; the actual value for session expiration is specified when
-making API calls to assume the IAM role (see [aws-auth](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-auth)).
+making API calls to assume the IAM role (see [aws-auth](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-auth)).
 
 *   **allow-read-only-access-from-other-accounts**: Users from the accounts in
     `var.allow_read_only_access_from_other_account_arns` will get read-only access to all services in this account.
@@ -65,11 +65,11 @@ making API calls to assume the IAM role (see [aws-auth](https://github.com/grunt
 These IAM Roles are intended to be assumed by machine users (i.e., an EC2 Instance in another AWS account). The default
 maximum session expiration for these roles is 1 hour (configurable via the `var.max_session_duration_machine_users`).
 Note that these are the *maximum* session expirations; the actual value for session expiration is specified when
-making API calls to assume the IAM role (see [aws-auth](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/aws-auth)).
+making API calls to assume the IAM role (see [aws-auth](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-auth)).
 
 *   **allow-ssh-grunt-access-from-other-accounts**: Users (or more likely, EC2 Instances) from the accounts in
     `var.allow_ssh_grunt_access_from_other_account_arns` will get read access to IAM Groups and public SSH keys. This is
-    useful to allow [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/ssh-grunt) running on EC2 Instances in other AWS accounts to validate SSH
+    useful to allow [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ssh-grunt) running on EC2 Instances in other AWS accounts to validate SSH
     connections against IAM users defined in this AWS account.
 
 *   **allow-auto-deploy-access-from-other-accounts**: Users from the accounts in `var.allow_auto_deploy_from_other_account_arns`
@@ -96,7 +96,7 @@ roles with the AWS CLI takes quite a few steps, so use the [aws-auth script](htt
 ## Background Information
 
 For background information on IAM, IAM users, IAM policies, and more, check out the [background information docs in
-the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-policies#background-information).
+the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-policies#background-information).
 
 ## Sample Usage
 
@@ -111,7 +111,7 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 
 module "cross_account_iam_roles" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.68.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -120,81 +120,82 @@ module "cross_account_iam_roles" {
   # The ID of the AWS Account.
   aws_account_id = <string>
 
-  # Should we require that all IAM Users use Multi-Factor Authentication for both
-  # AWS API calls and the AWS Web Console? (true or false)
+  # Should we require that all IAM Users use Multi-Factor Authentication for
+  # both AWS API calls and the AWS Web Console? (true or false)
   should_require_mfa = <bool>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Allow GitHub Actions to assume the auto deploy IAM role using an OpenID Connect
-  # Provider. Refer to the docs for github-actions-iam-role for more information.
-  # Note that this is mutually exclusive with
+  # Allow GitHub Actions to assume the auto deploy IAM role using an OpenID
+  # Connect Provider. Refer to the docs for github-actions-iam-role for more
+  # information. Note that this is mutually exclusive with
   # var.allow_auto_deploy_from_other_account_arns.
   allow_auto_deploy_from_github_actions = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed to assume the
-  # auto deploy IAM role that has the permissions in var.auto_deploy_permissions.
+  # A list of IAM ARNs from other AWS accounts that will be allowed to assume
+  # the auto deploy IAM role that has the permissions in
+  # var.auto_deploy_permissions.
   allow_auto_deploy_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role.
   allow_auto_deploy_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed full (read and
-  # write) access to the billing info for this account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed full (read
+  # and write) access to the billing info for this account.
   allow_billing_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role.
   allow_billing_access_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed full (read and
-  # write) access to the services in this account specified in
+  # A list of IAM ARNs from other AWS accounts that will be allowed full (read
+  # and write) access to the services in this account specified in
   # var.dev_permitted_services.
   allow_dev_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role.
   allow_dev_access_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed full (read and
-  # write) access to this account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed full (read
+  # and write) access to this account.
   allow_full_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role.
   allow_full_access_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed IAM admin access
-  # to this account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed IAM admin
+  # access to this account.
   allow_iam_admin_access_from_other_account_arns = []
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed read access to
-  # the logs in CloudTrail, AWS Config, and CloudWatch for this account. If
-  # var.cloudtrail_kms_key_arn is set, will also grant decrypt permissions for the
-  # KMS CMK.
+  # A list of IAM ARNs from other AWS accounts that will be allowed read access
+  # to the logs in CloudTrail, AWS Config, and CloudWatch for this account. If
+  # var.cloudtrail_kms_key_arn is set, will also grant decrypt permissions for
+  # the KMS CMK.
   allow_logs_access_from_other_account_arns = []
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed read-only access
-  # to this account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed read-only
+  # access to this account.
   allow_read_only_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role.
   allow_read_only_access_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed read access to
-  # IAM groups and publish SSH keys. This is used for ssh-grunt.
+  # A list of IAM ARNs from other AWS accounts that will be allowed read access
+  # to IAM groups and publish SSH keys. This is used for ssh-grunt.
   allow_ssh_grunt_access_from_other_account_arns = []
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed access to AWS
-  # support for this account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed access to
+  # AWS support for this account.
   allow_support_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role.
   allow_support_access_iam_role_permissions_boundary = null
 
   # What to name the auto deploy IAM role
@@ -207,26 +208,27 @@ module "cross_account_iam_roles" {
   # What to name the billing access IAM role
   billing_access_iam_role_name = "allow-billing-only-access-from-other-accounts"
 
-  # The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs IAM role
-  # will include permissions to decrypt using this CMK.
+  # The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs IAM
+  # role will include permissions to decrypt using this CMK.
   cloudtrail_kms_key_arn = null
 
   # Set to false to have this module create no resources. This weird parameter
-  # exists solely because Terraform does not support conditional modules. Therefore,
-  # this is a hack to allow you to conditionally decide if the resources should be
-  # created or not.
+  # exists solely because Terraform does not support conditional modules.
+  # Therefore, this is a hack to allow you to conditionally decide if the
+  # resources should be created or not.
   create_resources = true
 
   # What to name the dev access IAM role
   dev_access_iam_role_name = "allow-dev-access-from-other-accounts"
 
   # A list of AWS services for which the developers from the accounts in
-  # var.allow_dev_access_from_other_account_arns will receive full permissions. See
-  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-reso
-  # rces-contextkeys.html to find the service name. For example, to grant developers
-  # access only to EC2 and Amazon Machine Learning, use the value
-  # ["ec2","machinelearning"]. Do NOT add iam to the list of services, or that will
-  # grant Developers de facto admin access.
+  # var.allow_dev_access_from_other_account_arns will receive full permissions.
+  # See
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-resources-contextkeys.html
+  # to find the service name. For example, to grant developers access only to
+  # EC2 and Amazon Machine Learning, use the value ["ec2","machinelearning"]. Do
+  # NOT add iam to the list of services, or that will grant Developers de facto
+  # admin access.
   dev_permitted_services = []
 
   # What to name the full access IAM role
@@ -236,27 +238,29 @@ module "cross_account_iam_roles" {
   iam_admin_access_iam_role_name = "allow-iam-admin-access-from-other-accounts"
 
   # Include this value as a prefix in the name of every IAM role created by this
-  # module. This is useful to prepend, for example, '<account-name>-' to every IAM
-  # role name: e.g., allow-full-access-from-other-accounts becomes
+  # module. This is useful to prepend, for example, '<account-name>-' to every
+  # IAM role name: e.g., allow-full-access-from-other-accounts becomes
   # stage-allow-full-access-from-other-accounts.
   iam_role_name_prefix = ""
 
   # What to name the logs access IAM role
   logs_access_iam_role_name = "allow-logs-access-from-other-accounts"
 
-  # The maximum allowable session duration, in seconds, for the credentials you get
-  # when assuming the IAM roles created by this module. This variable applies to all
-  # IAM roles created by this module that are intended for people to use, such as
-  # allow-read-only-access-from-other-accounts. For IAM roles that are intended for
-  # machine users, such as allow-auto-deploy-from-other-accounts, see
+  # The maximum allowable session duration, in seconds, for the credentials you
+  # get when assuming the IAM roles created by this module. This variable
+  # applies to all IAM roles created by this module that are intended for people
+  # to use, such as allow-read-only-access-from-other-accounts. For IAM roles
+  # that are intended for machine users, such as
+  # allow-auto-deploy-from-other-accounts, see
   # var.max_session_duration_machine_users.
   max_session_duration_human_users = 43200
 
-  # The maximum allowable session duration, in seconds, for the credentials you get
-  # when assuming the IAM roles created by this module. This variable  applies to
-  # all IAM roles created by this module that are intended for machine users, such
-  # as allow-auto-deploy-from-other-accounts. For IAM roles that are intended for
-  # human users, such as allow-read-only-access-from-other-accounts, see
+  # The maximum allowable session duration, in seconds, for the credentials you
+  # get when assuming the IAM roles created by this module. This variable 
+  # applies to all IAM roles created by this module that are intended for
+  # machine users, such as allow-auto-deploy-from-other-accounts. For IAM roles
+  # that are intended for human users, such as
+  # allow-read-only-access-from-other-accounts, see
   # var.max_session_duration_human_users.
   max_session_duration_machine_users = 3600
 
@@ -272,11 +276,11 @@ module "cross_account_iam_roles" {
   # A map of tags to apply to the IAM roles.
   tags = {}
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
 }
@@ -294,7 +298,7 @@ module "cross_account_iam_roles" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.68.4"
 }
 
 inputs = {
@@ -306,81 +310,82 @@ inputs = {
   # The ID of the AWS Account.
   aws_account_id = <string>
 
-  # Should we require that all IAM Users use Multi-Factor Authentication for both
-  # AWS API calls and the AWS Web Console? (true or false)
+  # Should we require that all IAM Users use Multi-Factor Authentication for
+  # both AWS API calls and the AWS Web Console? (true or false)
   should_require_mfa = <bool>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Allow GitHub Actions to assume the auto deploy IAM role using an OpenID Connect
-  # Provider. Refer to the docs for github-actions-iam-role for more information.
-  # Note that this is mutually exclusive with
+  # Allow GitHub Actions to assume the auto deploy IAM role using an OpenID
+  # Connect Provider. Refer to the docs for github-actions-iam-role for more
+  # information. Note that this is mutually exclusive with
   # var.allow_auto_deploy_from_other_account_arns.
   allow_auto_deploy_from_github_actions = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed to assume the
-  # auto deploy IAM role that has the permissions in var.auto_deploy_permissions.
+  # A list of IAM ARNs from other AWS accounts that will be allowed to assume
+  # the auto deploy IAM role that has the permissions in
+  # var.auto_deploy_permissions.
   allow_auto_deploy_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role.
   allow_auto_deploy_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed full (read and
-  # write) access to the billing info for this account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed full (read
+  # and write) access to the billing info for this account.
   allow_billing_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role.
   allow_billing_access_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed full (read and
-  # write) access to the services in this account specified in
+  # A list of IAM ARNs from other AWS accounts that will be allowed full (read
+  # and write) access to the services in this account specified in
   # var.dev_permitted_services.
   allow_dev_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role.
   allow_dev_access_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed full (read and
-  # write) access to this account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed full (read
+  # and write) access to this account.
   allow_full_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role.
   allow_full_access_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed IAM admin access
-  # to this account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed IAM admin
+  # access to this account.
   allow_iam_admin_access_from_other_account_arns = []
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed read access to
-  # the logs in CloudTrail, AWS Config, and CloudWatch for this account. If
-  # var.cloudtrail_kms_key_arn is set, will also grant decrypt permissions for the
-  # KMS CMK.
+  # A list of IAM ARNs from other AWS accounts that will be allowed read access
+  # to the logs in CloudTrail, AWS Config, and CloudWatch for this account. If
+  # var.cloudtrail_kms_key_arn is set, will also grant decrypt permissions for
+  # the KMS CMK.
   allow_logs_access_from_other_account_arns = []
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed read-only access
-  # to this account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed read-only
+  # access to this account.
   allow_read_only_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role.
   allow_read_only_access_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed read access to
-  # IAM groups and publish SSH keys. This is used for ssh-grunt.
+  # A list of IAM ARNs from other AWS accounts that will be allowed read access
+  # to IAM groups and publish SSH keys. This is used for ssh-grunt.
   allow_ssh_grunt_access_from_other_account_arns = []
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed access to AWS
-  # support for this account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed access to
+  # AWS support for this account.
   allow_support_access_from_other_account_arns = []
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role.
   allow_support_access_iam_role_permissions_boundary = null
 
   # What to name the auto deploy IAM role
@@ -393,26 +398,27 @@ inputs = {
   # What to name the billing access IAM role
   billing_access_iam_role_name = "allow-billing-only-access-from-other-accounts"
 
-  # The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs IAM role
-  # will include permissions to decrypt using this CMK.
+  # The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs IAM
+  # role will include permissions to decrypt using this CMK.
   cloudtrail_kms_key_arn = null
 
   # Set to false to have this module create no resources. This weird parameter
-  # exists solely because Terraform does not support conditional modules. Therefore,
-  # this is a hack to allow you to conditionally decide if the resources should be
-  # created or not.
+  # exists solely because Terraform does not support conditional modules.
+  # Therefore, this is a hack to allow you to conditionally decide if the
+  # resources should be created or not.
   create_resources = true
 
   # What to name the dev access IAM role
   dev_access_iam_role_name = "allow-dev-access-from-other-accounts"
 
   # A list of AWS services for which the developers from the accounts in
-  # var.allow_dev_access_from_other_account_arns will receive full permissions. See
-  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-reso
-  # rces-contextkeys.html to find the service name. For example, to grant developers
-  # access only to EC2 and Amazon Machine Learning, use the value
-  # ["ec2","machinelearning"]. Do NOT add iam to the list of services, or that will
-  # grant Developers de facto admin access.
+  # var.allow_dev_access_from_other_account_arns will receive full permissions.
+  # See
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-resources-contextkeys.html
+  # to find the service name. For example, to grant developers access only to
+  # EC2 and Amazon Machine Learning, use the value ["ec2","machinelearning"]. Do
+  # NOT add iam to the list of services, or that will grant Developers de facto
+  # admin access.
   dev_permitted_services = []
 
   # What to name the full access IAM role
@@ -422,27 +428,29 @@ inputs = {
   iam_admin_access_iam_role_name = "allow-iam-admin-access-from-other-accounts"
 
   # Include this value as a prefix in the name of every IAM role created by this
-  # module. This is useful to prepend, for example, '<account-name>-' to every IAM
-  # role name: e.g., allow-full-access-from-other-accounts becomes
+  # module. This is useful to prepend, for example, '<account-name>-' to every
+  # IAM role name: e.g., allow-full-access-from-other-accounts becomes
   # stage-allow-full-access-from-other-accounts.
   iam_role_name_prefix = ""
 
   # What to name the logs access IAM role
   logs_access_iam_role_name = "allow-logs-access-from-other-accounts"
 
-  # The maximum allowable session duration, in seconds, for the credentials you get
-  # when assuming the IAM roles created by this module. This variable applies to all
-  # IAM roles created by this module that are intended for people to use, such as
-  # allow-read-only-access-from-other-accounts. For IAM roles that are intended for
-  # machine users, such as allow-auto-deploy-from-other-accounts, see
+  # The maximum allowable session duration, in seconds, for the credentials you
+  # get when assuming the IAM roles created by this module. This variable
+  # applies to all IAM roles created by this module that are intended for people
+  # to use, such as allow-read-only-access-from-other-accounts. For IAM roles
+  # that are intended for machine users, such as
+  # allow-auto-deploy-from-other-accounts, see
   # var.max_session_duration_machine_users.
   max_session_duration_human_users = 43200
 
-  # The maximum allowable session duration, in seconds, for the credentials you get
-  # when assuming the IAM roles created by this module. This variable  applies to
-  # all IAM roles created by this module that are intended for machine users, such
-  # as allow-auto-deploy-from-other-accounts. For IAM roles that are intended for
-  # human users, such as allow-read-only-access-from-other-accounts, see
+  # The maximum allowable session duration, in seconds, for the credentials you
+  # get when assuming the IAM roles created by this module. This variable 
+  # applies to all IAM roles created by this module that are intended for
+  # machine users, such as allow-auto-deploy-from-other-accounts. For IAM roles
+  # that are intended for human users, such as
+  # allow-read-only-access-from-other-accounts, see
   # var.max_session_duration_human_users.
   max_session_duration_machine_users = 3600
 
@@ -458,11 +466,11 @@ inputs = {
   # A map of tags to apply to the IAM roles.
   tags = {}
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
 }
@@ -1079,11 +1087,11 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cross-account-iam-roles/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cross-account-iam-roles/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cross-account-iam-roles/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cross-account-iam-roles/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cross-account-iam-roles/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cross-account-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9e2e8b21b0f1e11816587a89a8b61ffb"
+  "hash": "cc79d3e1cd9ab7fde86cc5931fe41031"
 }
 ##DOCS-SOURCER-END -->

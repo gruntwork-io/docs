@@ -1,6 +1,12 @@
 {
   "module": "ssh-iam",
   "releases": {
+    "v0.68.3": {
+      "contains_changes": false
+    },
+    "v0.68.2": {
+      "contains_changes": false
+    },
     "v0.68.1": {
       "contains_changes": false
     },

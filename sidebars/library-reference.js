@@ -5,9 +5,9 @@ const sidebar = [
     collapsible: false,
     items: [
       {
-        label: "Library Reference",
+        label: "Find a module",
         type: "doc",
-        id: "iac/reference/index",
+        id: "library/reference/index",
       },
       {
         type: "category",

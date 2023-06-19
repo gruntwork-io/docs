@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.9" lastModifiedVersion="0.21.9"/>
+<VersionBadge repoTitle="AWS Lambda" version="0.21.12" lastModifiedVersion="0.21.10"/>
 
 # API Gateway Proxy Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/api-gateway-proxy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/modules/api-gateway-proxy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an [API Gateway](https://aws.amazon.com/api-gateway/) that can be used to expose your serverless
 applications running in [AWS Lambda](https://aws.amazon.com/lambda/).
@@ -34,7 +34,7 @@ recommend using a framework like Serverless to avoid the verbose configuration o
 :::note
 
 If you are looking for a module to route different requests and methods to different Lambda functions, refer to the
-[lambda-http-api-gateway](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/lambda-http-api-gateway) module.
+[lambda-http-api-gateway](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/modules/lambda-http-api-gateway) module.
 
 :::
 
@@ -58,33 +58,33 @@ before, make sure to read [How to use the Gruntwork Infrastructure as Code Libra
 
 ### Core concepts
 
-*   [What is API Gateway?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/api-gateway-proxy/core-concepts.md#what-is-api-gateway)
+*   [What is API Gateway?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/modules/api-gateway-proxy/core-concepts.md#what-is-api-gateway)
 *   [What is the difference between the different endpoint
-    types?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/api-gateway-proxy/core-concepts.md#what-is-the-difference-between-the-different-endpoint-types)
+    types?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/modules/api-gateway-proxy/core-concepts.md#what-is-the-difference-between-the-different-endpoint-types)
 *   [API Gateway Documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html): Amazon's docs
     on API Gateway covering core concepts such as security, monitoring, and invoking APIs.
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/test): Automated tests for the modules and examples.
 
 ## Deploy
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples folder](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ## Manage
 
 ### Day-to-day operations
 
 *   [How do I expose AWS Lambda functions using API
-    Gateway?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/api-gateway-proxy/core-concepts.md#how-do-i-expose-aws-lambda-functions-using-api-gateway)
+    Gateway?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/modules/api-gateway-proxy/core-concepts.md#how-do-i-expose-aws-lambda-functions-using-api-gateway)
 *   [Can I expose additional lambda functions in a decentralized
-    manner?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/api-gateway-proxy/core-concepts.md#can-i-expose-additional-lambda-functions-in-a-decentralized-manner)
-*   [How do I pass in the us_east\_1 aws provider?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/api-gateway-proxy/core-concepts.md#how-do-i-pass-in-the-us_east\_1-aws-provider)
+    manner?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/modules/api-gateway-proxy/core-concepts.md#can-i-expose-additional-lambda-functions-in-a-decentralized-manner)
+*   [How do I pass in the us_east\_1 aws provider?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/modules/api-gateway-proxy/core-concepts.md#how-do-i-pass-in-the-us_east\_1-aws-provider)
 
 ## Sample Usage
 
@@ -99,7 +99,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 module "api_gateway_proxy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy?ref=v0.21.9"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy?ref=v0.21.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -108,51 +108,50 @@ module "api_gateway_proxy" {
   # Name of the API Gateway REST API.
   api_name = <string>
 
-  # Map of path prefixes to lambda functions to invoke. Any request that hits paths
-  # under the prefix will be routed to the lambda function. Note that this only
-  # supports single levels for now (e.g., you can configure to route `foo` and
-  # everything below that path like `foo/api/v1`, but you cannot configure to route
-  # something like `api/foo/*`). Use empty string for the path prefix if you wish to
-  # route all requests, including the root path, to the lambda function. Refer to
-  # the example for more info.
+  # Map of path prefixes to lambda functions to invoke. Any request that hits
+  # paths under the prefix will be routed to the lambda function. Note that this
+  # only supports single levels for now (e.g., you can configure to route `foo`
+  # and everything below that path like `foo/api/v1`, but you cannot configure
+  # to route something like `api/foo/*`). Use empty string for the path prefix
+  # if you wish to route all requests, including the root path, to the lambda
+  # function. Refer to the example for more info.
   lambda_functions = <map(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # List of binary media types supported by the REST API. The default only supports
-  # UTF-8 encoded text payloads.
+  # List of binary media types supported by the REST API. The default only
+  # supports UTF-8 encoded text payloads.
   api_binary_media_types = null
 
   # Description to set on the API Gateway REST API. If empty string, defaults to
-  # 'REST API that proxies to lambda function LAMBDA_FUNCTION_NAME'. Set to null if
-  # you wish to have an API with no description.
+  # 'REST API that proxies to lambda function LAMBDA_FUNCTION_NAME'. Set to null
+  # if you wish to have an API with no description.
   api_description = ""
 
-  # Configuration of the API endpoint for the API Gateway REST API. Defaults to EDGE
-  # configuration. 
+  # Configuration of the API endpoint for the API Gateway REST API. Defaults to
+  # EDGE configuration. 
   api_endpoint_configuration = null
 
   # Source of the API key for requests. Valid values are HEADER (default) and
   # AUTHORIZER.
   api_key_source = null
 
-  # Minimum response size to compress for the REST API. Must be a value between -1
-  # and 10485760 (10MB). Setting a value greater than -1 will enable compression, -1
-  # disables compression (default).
+  # Minimum response size to compress for the REST API. Must be a value between
+  # -1 and 10485760 (10MB). Setting a value greater than -1 will enable
+  # compression, -1 disables compression (default).
   api_minimum_compression_size = null
 
   # Map of HTTP methods (e.g., GET, POST, etc - * for all methods) to the API
   # settings to apply for that method. Refer to the terraform resource docs for
   # available settings:
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_
-  # ateway_method_settings#settings.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method_settings#settings.
   api_settings = {}
 
-  # ARN of the ACM certificate you wish to use for the bound domain name. When null,
-  # the module will look up an issued certificate that is bound to the given domain
-  # name, unless var.certificate_domain is set.
+  # ARN of the ACM certificate you wish to use for the bound domain name. When
+  # null, the module will look up an issued certificate that is bound to the
+  # given domain name, unless var.certificate_domain is set.
   certificate_arn = null
 
   # The domain to use when looking up the ACM certificate. This is useful for
@@ -160,26 +159,27 @@ module "api_gateway_proxy" {
   certificate_domain = null
 
   # Set to true to automatically create a Rest API policy if necessary, or use
-  # `var.rest_api_policy` to pass an external policy. A Rest API policy is necessary
-  # if using PRIVATE api_endpoint_configuration type.
+  # `var.rest_api_policy` to pass an external policy. A Rest API policy is
+  # necessary if using PRIVATE api_endpoint_configuration type.
   create_rest_api_policy = false
 
-  # Map of tags (where the key is the tag key and the value is tag value) to apply
-  # to the resources in this module.
+  # Map of tags (where the key is the tag key and the value is tag value) to
+  # apply to the resources in this module.
   custom_tags = {}
 
   # Description to apply to the API Gateway deployment. This can be useful to
   # identify the API Gateway deployment managed by this module.
   deployment_description = null
 
-  # An arbitrary identifier to assign to the API Gateway deployment. Updates to this
-  # value will trigger a redeploy of the API Gateway, which is necessary when any
-  # underlying configuration changes. This is the only way to trigger a redeployment
-  # of an existing API Gateway if force_deployment = false.
+  # An arbitrary identifier to assign to the API Gateway deployment. Updates to
+  # this value will trigger a redeploy of the API Gateway, which is necessary
+  # when any underlying configuration changes. This is the only way to trigger a
+  # redeployment of an existing API Gateway if force_deployment = false.
   deployment_id = ""
 
-  # Path segment that must be prepended to the path when accessing the API via the
-  # given domain. If omitted, the API is exposed at the root of the given domain.
+  # Path segment that must be prepended to the path when accessing the API via
+  # the given domain. If omitted, the API is exposed at the root of the given
+  # domain.
   domain_base_path = null
 
   # Full domain (e.g., api.example.com) you wish to bind to the API Gateway
@@ -190,21 +190,23 @@ module "api_gateway_proxy" {
   # clients to only access the API via the domain set on var.domain_name.
   enable_execute_api_endpoint = true
 
-  # When true, route the root path (URL or URL/) to the lambda function specified by
-  # root_lambda_function_name. This is useful when you want to route just the home
-  # route to a specific lambda function when configuring path based routing with
-  # var.lambda_functions. Conflicts with the catch all lambda function, which is
-  # configured using the empty string key in var.lambda_functions. Do not use this
-  # to configure a catch all lambda function.
+  # When true, route the root path (URL or URL/) to the lambda function
+  # specified by root_lambda_function_name. This is useful when you want to
+  # route just the home route to a specific lambda function when configuring
+  # path based routing with var.lambda_functions. Conflicts with the catch all
+  # lambda function, which is configured using the empty string key in
+  # var.lambda_functions. Do not use this to configure a catch all lambda
+  # function.
   enable_root_lambda_function = false
 
-  # When true, force a deployment on every touch. Ideally we can cause a deployment
-  # on the API Gateway only when a configuration changes, but terraform does not
-  # give reliable mechanisms for triggering a redeployment when any related resource
-  # changes. As such, we must either pessimistically redeploy on every touch, or
-  # have user control it. You must use the var.deployment_id input variable to
-  # trigger redeployments if this is false. Note that setting this to true will, by
-  # nature, cause a perpetual diff on the module.
+  # When true, force a deployment on every touch. Ideally we can cause a
+  # deployment on the API Gateway only when a configuration changes, but
+  # terraform does not give reliable mechanisms for triggering a redeployment
+  # when any related resource changes. As such, we must either pessimistically
+  # redeploy on every touch, or have user control it. You must use the
+  # var.deployment_id input variable to trigger redeployments if this is false.
+  # Note that setting this to true will, by nature, cause a perpetual diff on
+  # the module.
   force_deployment = true
 
   # Domain name to use when looking up the Route 53 hosted zone to bind the API
@@ -216,18 +218,18 @@ module "api_gateway_proxy" {
   # parameters.
   hosted_zone_id = null
 
-  # Tags to use when looking up the Route 53 hosted zone to bind the domain to. Only
-  # used if hosted_zone_id is null.
+  # Tags to use when looking up the Route 53 hosted zone to bind the domain to.
+  # Only used if hosted_zone_id is null.
   hosted_zone_tags = {}
 
   # Configuration for passing an external Rest API policy to be attached to API
   # Gateway, instead of the one created internally when setting
-  # `var.rest_api_policy` to true. A Rest API policy is necessary if using PRIVATE
-  # api_endpoint_configuration type.
+  # `var.rest_api_policy` to true. A Rest API policy is necessary if using
+  # PRIVATE api_endpoint_configuration type.
   override_rest_api_policy = null
 
-  # Name of the lambda function to invoke just for the root path (URL or URL/). Only
-  # used if enable_root_lambda_function is true.
+  # Name of the lambda function to invoke just for the root path (URL or URL/).
+  # Only used if enable_root_lambda_function is true.
   root_lambda_function_name = null
 
   # Description to set on the stage managed by the stage_name variable.
@@ -251,7 +253,7 @@ module "api_gateway_proxy" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy?ref=v0.21.9"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy?ref=v0.21.12"
 }
 
 inputs = {
@@ -263,51 +265,50 @@ inputs = {
   # Name of the API Gateway REST API.
   api_name = <string>
 
-  # Map of path prefixes to lambda functions to invoke. Any request that hits paths
-  # under the prefix will be routed to the lambda function. Note that this only
-  # supports single levels for now (e.g., you can configure to route `foo` and
-  # everything below that path like `foo/api/v1`, but you cannot configure to route
-  # something like `api/foo/*`). Use empty string for the path prefix if you wish to
-  # route all requests, including the root path, to the lambda function. Refer to
-  # the example for more info.
+  # Map of path prefixes to lambda functions to invoke. Any request that hits
+  # paths under the prefix will be routed to the lambda function. Note that this
+  # only supports single levels for now (e.g., you can configure to route `foo`
+  # and everything below that path like `foo/api/v1`, but you cannot configure
+  # to route something like `api/foo/*`). Use empty string for the path prefix
+  # if you wish to route all requests, including the root path, to the lambda
+  # function. Refer to the example for more info.
   lambda_functions = <map(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # List of binary media types supported by the REST API. The default only supports
-  # UTF-8 encoded text payloads.
+  # List of binary media types supported by the REST API. The default only
+  # supports UTF-8 encoded text payloads.
   api_binary_media_types = null
 
   # Description to set on the API Gateway REST API. If empty string, defaults to
-  # 'REST API that proxies to lambda function LAMBDA_FUNCTION_NAME'. Set to null if
-  # you wish to have an API with no description.
+  # 'REST API that proxies to lambda function LAMBDA_FUNCTION_NAME'. Set to null
+  # if you wish to have an API with no description.
   api_description = ""
 
-  # Configuration of the API endpoint for the API Gateway REST API. Defaults to EDGE
-  # configuration. 
+  # Configuration of the API endpoint for the API Gateway REST API. Defaults to
+  # EDGE configuration. 
   api_endpoint_configuration = null
 
   # Source of the API key for requests. Valid values are HEADER (default) and
   # AUTHORIZER.
   api_key_source = null
 
-  # Minimum response size to compress for the REST API. Must be a value between -1
-  # and 10485760 (10MB). Setting a value greater than -1 will enable compression, -1
-  # disables compression (default).
+  # Minimum response size to compress for the REST API. Must be a value between
+  # -1 and 10485760 (10MB). Setting a value greater than -1 will enable
+  # compression, -1 disables compression (default).
   api_minimum_compression_size = null
 
   # Map of HTTP methods (e.g., GET, POST, etc - * for all methods) to the API
   # settings to apply for that method. Refer to the terraform resource docs for
   # available settings:
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_
-  # ateway_method_settings#settings.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method_settings#settings.
   api_settings = {}
 
-  # ARN of the ACM certificate you wish to use for the bound domain name. When null,
-  # the module will look up an issued certificate that is bound to the given domain
-  # name, unless var.certificate_domain is set.
+  # ARN of the ACM certificate you wish to use for the bound domain name. When
+  # null, the module will look up an issued certificate that is bound to the
+  # given domain name, unless var.certificate_domain is set.
   certificate_arn = null
 
   # The domain to use when looking up the ACM certificate. This is useful for
@@ -315,26 +316,27 @@ inputs = {
   certificate_domain = null
 
   # Set to true to automatically create a Rest API policy if necessary, or use
-  # `var.rest_api_policy` to pass an external policy. A Rest API policy is necessary
-  # if using PRIVATE api_endpoint_configuration type.
+  # `var.rest_api_policy` to pass an external policy. A Rest API policy is
+  # necessary if using PRIVATE api_endpoint_configuration type.
   create_rest_api_policy = false
 
-  # Map of tags (where the key is the tag key and the value is tag value) to apply
-  # to the resources in this module.
+  # Map of tags (where the key is the tag key and the value is tag value) to
+  # apply to the resources in this module.
   custom_tags = {}
 
   # Description to apply to the API Gateway deployment. This can be useful to
   # identify the API Gateway deployment managed by this module.
   deployment_description = null
 
-  # An arbitrary identifier to assign to the API Gateway deployment. Updates to this
-  # value will trigger a redeploy of the API Gateway, which is necessary when any
-  # underlying configuration changes. This is the only way to trigger a redeployment
-  # of an existing API Gateway if force_deployment = false.
+  # An arbitrary identifier to assign to the API Gateway deployment. Updates to
+  # this value will trigger a redeploy of the API Gateway, which is necessary
+  # when any underlying configuration changes. This is the only way to trigger a
+  # redeployment of an existing API Gateway if force_deployment = false.
   deployment_id = ""
 
-  # Path segment that must be prepended to the path when accessing the API via the
-  # given domain. If omitted, the API is exposed at the root of the given domain.
+  # Path segment that must be prepended to the path when accessing the API via
+  # the given domain. If omitted, the API is exposed at the root of the given
+  # domain.
   domain_base_path = null
 
   # Full domain (e.g., api.example.com) you wish to bind to the API Gateway
@@ -345,21 +347,23 @@ inputs = {
   # clients to only access the API via the domain set on var.domain_name.
   enable_execute_api_endpoint = true
 
-  # When true, route the root path (URL or URL/) to the lambda function specified by
-  # root_lambda_function_name. This is useful when you want to route just the home
-  # route to a specific lambda function when configuring path based routing with
-  # var.lambda_functions. Conflicts with the catch all lambda function, which is
-  # configured using the empty string key in var.lambda_functions. Do not use this
-  # to configure a catch all lambda function.
+  # When true, route the root path (URL or URL/) to the lambda function
+  # specified by root_lambda_function_name. This is useful when you want to
+  # route just the home route to a specific lambda function when configuring
+  # path based routing with var.lambda_functions. Conflicts with the catch all
+  # lambda function, which is configured using the empty string key in
+  # var.lambda_functions. Do not use this to configure a catch all lambda
+  # function.
   enable_root_lambda_function = false
 
-  # When true, force a deployment on every touch. Ideally we can cause a deployment
-  # on the API Gateway only when a configuration changes, but terraform does not
-  # give reliable mechanisms for triggering a redeployment when any related resource
-  # changes. As such, we must either pessimistically redeploy on every touch, or
-  # have user control it. You must use the var.deployment_id input variable to
-  # trigger redeployments if this is false. Note that setting this to true will, by
-  # nature, cause a perpetual diff on the module.
+  # When true, force a deployment on every touch. Ideally we can cause a
+  # deployment on the API Gateway only when a configuration changes, but
+  # terraform does not give reliable mechanisms for triggering a redeployment
+  # when any related resource changes. As such, we must either pessimistically
+  # redeploy on every touch, or have user control it. You must use the
+  # var.deployment_id input variable to trigger redeployments if this is false.
+  # Note that setting this to true will, by nature, cause a perpetual diff on
+  # the module.
   force_deployment = true
 
   # Domain name to use when looking up the Route 53 hosted zone to bind the API
@@ -371,18 +375,18 @@ inputs = {
   # parameters.
   hosted_zone_id = null
 
-  # Tags to use when looking up the Route 53 hosted zone to bind the domain to. Only
-  # used if hosted_zone_id is null.
+  # Tags to use when looking up the Route 53 hosted zone to bind the domain to.
+  # Only used if hosted_zone_id is null.
   hosted_zone_tags = {}
 
   # Configuration for passing an external Rest API policy to be attached to API
   # Gateway, instead of the one created internally when setting
-  # `var.rest_api_policy` to true. A Rest API policy is necessary if using PRIVATE
-  # api_endpoint_configuration type.
+  # `var.rest_api_policy` to true. A Rest API policy is necessary if using
+  # PRIVATE api_endpoint_configuration type.
   override_rest_api_policy = null
 
-  # Name of the lambda function to invoke just for the root path (URL or URL/). Only
-  # used if enable_root_lambda_function is true.
+  # Name of the lambda function to invoke just for the root path (URL or URL/).
+  # Only used if enable_root_lambda_function is true.
   root_lambda_function_name = null
 
   # Description to set on the stage managed by the stage_name variable.
@@ -736,11 +740,11 @@ The URL of the API Gateway that you can use to invoke it.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/api-gateway-proxy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/api-gateway-proxy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.9/modules/api-gateway-proxy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/modules/api-gateway-proxy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/modules/api-gateway-proxy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.12/modules/api-gateway-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6d5cf50e188a11787e22e1d6fecf3654"
+  "hash": "666af33f95b881c58d6e4b2089e4c390"
 }
 ##DOCS-SOURCER-END -->

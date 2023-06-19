@@ -9,15 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.27.0" lastModifiedVersion="0.27.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.28.0" lastModifiedVersion="0.27.2"/>
 
 # Database backup
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/lambda-create-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-create-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module, along with the [lambda-share-snapshot](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/lambda-share-snapshot) and [lambda-copy-shared-snapshot](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/lambda-copy-shared-snapshot) modules, can be used to backup your RDS database to another AWS account (e.g., for disaster recovery) on a configurable schedule. Under the hood, each module runs a Lambda function that instructs your database to take a snapshot (this module), share the snapshot with another account (the `lambda-share-snapshot` module), and make a copy of the snapshot (`lambda-copy-shared-snapshot`).
+This module, along with the [lambda-share-snapshot](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-share-snapshot) and [lambda-copy-shared-snapshot](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-copy-shared-snapshot) modules, can be used to backup your RDS database to another AWS account (e.g., for disaster recovery) on a configurable schedule. Under the hood, each module runs a Lambda function that instructs your database to take a snapshot (this module), share the snapshot with another account (the `lambda-share-snapshot` module), and make a copy of the snapshot (`lambda-copy-shared-snapshot`).
 
 ![RDS architecture](/img/reference/modules/terraform-aws-data-storage/lambda-create-snapshot/data-backup-architecture.png)
 
@@ -29,7 +29,7 @@ This module, along with the [lambda-share-snapshot](https://github.com/gruntwork
 
 *   Configurable backup schedule (e.g., using cron expressions)
 
-*   Clean up old snapshots automatically using the [lambda-cleanup-snapshots](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/lambda-cleanup-snapshots) module.
+*   Clean up old snapshots automatically using the [lambda-cleanup-snapshots](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-cleanup-snapshots) module.
 
 ## Learn
 
@@ -39,9 +39,9 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What is Amazon RDS?](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/rds/core-concepts.md#what-is-amazon-rds)
+*   [What is Amazon RDS?](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/rds/core-concepts.md#what-is-amazon-rds)
 
-*   [How does this differ from RDS automatic snapshots?](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/lambda-create-snapshot/core-concepts.md#how-does-this-differ-from-rds-automatic-snapshots)
+*   [How does this differ from RDS automatic snapshots?](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-create-snapshot/core-concepts.md#how-does-this-differ-from-rds-automatic-snapshots)
 
 *   [RDS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html): Amazon’s docs for RDS that cover core concepts such as the types of databases supported, security, backup & restore, and monitoring.
 
@@ -53,7 +53,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -65,7 +65,7 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Day-to-day operations
 
-*   [How to backup RDS snapshots to a separate AWS account](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/lambda-create-snapshot/core-concepts.md#how-do-you-backup-your-rds-snapshots-to-a-separate-aws-account)
+*   [How to backup RDS snapshots to a separate AWS account](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-create-snapshot/core-concepts.md#how-do-you-backup-your-rds-snapshots-to-a-separate-aws-account)
 
 ### Major changes
 
@@ -84,7 +84,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "lambda_create_snapshot" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-create-snapshot?ref=v0.27.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-create-snapshot?ref=v0.28.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -96,8 +96,9 @@ module "lambda_create_snapshot" {
   # The identifier of the RDS database
   rds_db_identifier = <string>
 
-  # If set to true, this RDS database is an Amazon Aurora cluster. If set to false,
-  # it's running some other database, such as MySQL, Postgres, Oracle, etc.
+  # If set to true, this RDS database is an Amazon Aurora cluster. If set to
+  # false, it's running some other database, such as MySQL, Postgres, Oracle,
+  # etc.
   rds_db_is_aurora_cluster = <bool>
 
   # An expression that defines how often to run the lambda function to take
@@ -108,10 +109,10 @@ module "lambda_create_snapshot" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Set to false to have this module skip creating resources. This weird parameter
-  # exists solely because Terraform does not support conditional modules. Therefore,
-  # this is a hack to allow you to conditionally decide if this module should create
-  # anything or not.
+  # Set to false to have this module skip creating resources. This weird
+  # parameter exists solely because Terraform does not support conditional
+  # modules. Therefore, this is a hack to allow you to conditionally decide if
+  # this module should create anything or not.
   create_resources = true
 
   # Namespace all Lambda resources created by this module with this name. If not
@@ -119,15 +120,15 @@ module "lambda_create_snapshot" {
   # suffix.
   lambda_namespace = null
 
-  # If the DB is not in available state when this function runs, it will retry up to
-  # max_retries times.
+  # If the DB is not in available state when this function runs, it will retry
+  # up to max_retries times.
   max_retries = 60
 
-  # If set true, just before the lambda function finishes running, it will report a
-  # custom metric to CloudWatch, as specified by
-  # var.report_cloudwatch_metric_namespace and var.report_cloudwatch_metric_name.
-  # You can set an alarm on this metric to detect if the backup job failed to run to
-  # completion.
+  # If set true, just before the lambda function finishes running, it will
+  # report a custom metric to CloudWatch, as specified by
+  # var.report_cloudwatch_metric_namespace and
+  # var.report_cloudwatch_metric_name. You can set an alarm on this metric to
+  # detect if the backup job failed to run to completion.
   report_cloudwatch_metric = false
 
   # The name to use for the the custom CloudWatch metric. Only used if
@@ -138,29 +139,31 @@ module "lambda_create_snapshot" {
   # var.report_cloudwatch_metric is set to true.
   report_cloudwatch_metric_namespace = null
 
-  # Namespace all Lambda scheduling resources created by this module with this name.
-  # If not specified, the default is var.lambda_namespace with '-scheduled' as a
-  # suffix.
+  # Namespace all Lambda scheduling resources created by this module with this
+  # name. If not specified, the default is var.lambda_namespace with
+  # '-scheduled' as a suffix.
   schedule_namespace = null
 
   # The ARN of a lambda job to trigger to share the DB snapshot with another AWS
-  # account. Only used if var.share_snapshot_with_another_account is set to true.
+  # account. Only used if var.share_snapshot_with_another_account is set to
+  # true.
   share_snapshot_lambda_arn = null
 
   # The ID of an AWS account with which to share the RDS snapshot. Only used if
   # var.share_snapshot_with_another_account is set to true.
   share_snapshot_with_account_id = null
 
-  # If set to true, after this lambda function takes a snapshot of the RDS DB, it
-  # will trigger the lambda function specified in var.share_snapshot_lambda_arn to
-  # share the snapshot with another AWS account.
+  # If set to true, after this lambda function takes a snapshot of the RDS DB,
+  # it will trigger the lambda function specified in
+  # var.share_snapshot_lambda_arn to share the snapshot with another AWS
+  # account.
   share_snapshot_with_another_account = false
 
   # The amount of time, in seconds, between retries.
   sleep_between_retries_sec = 60
 
-  # Namespace all snapshots created by this module's jobs with this suffix. If not
-  # specified, only the database identifier and timestamp are used.
+  # Namespace all snapshots created by this module's jobs with this suffix. If
+  # not specified, only the database identifier and timestamp are used.
   snapshot_namespace = ""
 
 }
@@ -178,7 +181,7 @@ module "lambda_create_snapshot" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-create-snapshot?ref=v0.27.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-create-snapshot?ref=v0.28.0"
 }
 
 inputs = {
@@ -193,8 +196,9 @@ inputs = {
   # The identifier of the RDS database
   rds_db_identifier = <string>
 
-  # If set to true, this RDS database is an Amazon Aurora cluster. If set to false,
-  # it's running some other database, such as MySQL, Postgres, Oracle, etc.
+  # If set to true, this RDS database is an Amazon Aurora cluster. If set to
+  # false, it's running some other database, such as MySQL, Postgres, Oracle,
+  # etc.
   rds_db_is_aurora_cluster = <bool>
 
   # An expression that defines how often to run the lambda function to take
@@ -205,10 +209,10 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Set to false to have this module skip creating resources. This weird parameter
-  # exists solely because Terraform does not support conditional modules. Therefore,
-  # this is a hack to allow you to conditionally decide if this module should create
-  # anything or not.
+  # Set to false to have this module skip creating resources. This weird
+  # parameter exists solely because Terraform does not support conditional
+  # modules. Therefore, this is a hack to allow you to conditionally decide if
+  # this module should create anything or not.
   create_resources = true
 
   # Namespace all Lambda resources created by this module with this name. If not
@@ -216,15 +220,15 @@ inputs = {
   # suffix.
   lambda_namespace = null
 
-  # If the DB is not in available state when this function runs, it will retry up to
-  # max_retries times.
+  # If the DB is not in available state when this function runs, it will retry
+  # up to max_retries times.
   max_retries = 60
 
-  # If set true, just before the lambda function finishes running, it will report a
-  # custom metric to CloudWatch, as specified by
-  # var.report_cloudwatch_metric_namespace and var.report_cloudwatch_metric_name.
-  # You can set an alarm on this metric to detect if the backup job failed to run to
-  # completion.
+  # If set true, just before the lambda function finishes running, it will
+  # report a custom metric to CloudWatch, as specified by
+  # var.report_cloudwatch_metric_namespace and
+  # var.report_cloudwatch_metric_name. You can set an alarm on this metric to
+  # detect if the backup job failed to run to completion.
   report_cloudwatch_metric = false
 
   # The name to use for the the custom CloudWatch metric. Only used if
@@ -235,29 +239,31 @@ inputs = {
   # var.report_cloudwatch_metric is set to true.
   report_cloudwatch_metric_namespace = null
 
-  # Namespace all Lambda scheduling resources created by this module with this name.
-  # If not specified, the default is var.lambda_namespace with '-scheduled' as a
-  # suffix.
+  # Namespace all Lambda scheduling resources created by this module with this
+  # name. If not specified, the default is var.lambda_namespace with
+  # '-scheduled' as a suffix.
   schedule_namespace = null
 
   # The ARN of a lambda job to trigger to share the DB snapshot with another AWS
-  # account. Only used if var.share_snapshot_with_another_account is set to true.
+  # account. Only used if var.share_snapshot_with_another_account is set to
+  # true.
   share_snapshot_lambda_arn = null
 
   # The ID of an AWS account with which to share the RDS snapshot. Only used if
   # var.share_snapshot_with_another_account is set to true.
   share_snapshot_with_account_id = null
 
-  # If set to true, after this lambda function takes a snapshot of the RDS DB, it
-  # will trigger the lambda function specified in var.share_snapshot_lambda_arn to
-  # share the snapshot with another AWS account.
+  # If set to true, after this lambda function takes a snapshot of the RDS DB,
+  # it will trigger the lambda function specified in
+  # var.share_snapshot_lambda_arn to share the snapshot with another AWS
+  # account.
   share_snapshot_with_another_account = false
 
   # The amount of time, in seconds, between retries.
   sleep_between_retries_sec = 60
 
-  # Namespace all snapshots created by this module's jobs with this suffix. If not
-  # specified, only the database identifier and timestamp are used.
+  # Namespace all snapshots created by this module's jobs with this suffix. If
+  # not specified, only the database identifier and timestamp are used.
   snapshot_namespace = ""
 
 }
@@ -436,11 +442,11 @@ Namespace all snapshots created by this module's jobs with this suffix. If not s
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/lambda-create-snapshot/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/lambda-create-snapshot/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/lambda-create-snapshot/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-create-snapshot/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-create-snapshot/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-create-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1076bceb747788fc79d4fb71ea6837bf"
+  "hash": "63fc0b447252958b723f4392db6043d2"
 }
 ##DOCS-SOURCER-END -->

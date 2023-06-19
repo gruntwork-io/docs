@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.58.3" lastModifiedVersion="0.58.2"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.59.1" lastModifiedVersion="0.58.4"/>
 
 # EKS Container Logs Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.58.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.58.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module installs and configures
 [aws-for-fluent-bit](https://github.com/aws/aws-for-fluent-bit) on an EKS cluster, so that
@@ -25,7 +25,7 @@ Kinesis Firehose.
 This module uses the community helm chart, with a set of best practices inputs.
 
 **This module is for setting up log aggregation for EKS Pods on EC2 workers (self-managed or managed node groups). For
-Fargate pods, take a look at the [eks-fargate-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-fargate-container-logs) module.**
+Fargate pods, take a look at the [eks-fargate-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-fargate-container-logs) module.**
 
 ## How does this work?
 
@@ -105,18 +105,19 @@ fields @timestamp, @message
 
 module "eks_container_logs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.58.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.59.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Configuration for using the IAM role with Service Accounts feature to provide
-  # permissions to the helm charts. This expects a map with two properties:
-  # `openid_connect_provider_arn` and `openid_connect_provider_url`. The
-  # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
-  # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
-  # to null if you do not wish to use IAM role with Service Accounts.
+  # Configuration for using the IAM role with Service Accounts feature to
+  # provide permissions to the helm charts. This expects a map with two
+  # properties: `openid_connect_provider_arn` and `openid_connect_provider_url`.
+  # The `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider
+  # for EKS to retrieve IAM credentials, while `openid_connect_provider_url` is
+  # the URL. Set to null if you do not wish to use IAM role with Service
+  # Accounts.
   iam_role_for_service_accounts_config = <object(
     openid_connect_provider_arn = string
     openid_connect_provider_url = string
@@ -127,21 +128,22 @@ module "eks_container_logs" {
   # ----------------------------------------------------------------------------------------------------
 
   # Can be used to add more inputs. This string should be formatted according to
-  # Fluent Bit docs, as it will be injected directly into the fluent-bit.conf file.
+  # Fluent Bit docs, as it will be injected directly into the fluent-bit.conf
+  # file.
   additional_inputs = ""
 
-  # Configurations for forwarding logs to AWS managed Elasticsearch. Set to null if
-  # you do not wish to forward the logs to ES.
+  # Configurations for forwarding logs to AWS managed Elasticsearch. Set to null
+  # if you do not wish to forward the logs to ES.
   aws_elasticsearch_configuration = null
 
-  # The version of the aws-for-fluent-bit helm chart to deploy. Note that this is
-  # different from the app/container version (use var.aws_for_fluent_bit_version to
-  # control the app/container version).
+  # The version of the aws-for-fluent-bit helm chart to deploy. Note that this
+  # is different from the app/container version (use
+  # var.aws_for_fluent_bit_version to control the app/container version).
   aws_for_fluent_bit_chart_version = "0.1.23"
 
-  # The Container repository to use for looking up the aws-for-fluent-bit Container
-  # image when deploying the pods. When null, uses the default repository set in the
-  # chart.
+  # The Container repository to use for looking up the aws-for-fluent-bit
+  # Container image when deploying the pods. When null, uses the default
+  # repository set in the chart.
   aws_for_fluent_bit_image_repository = null
 
   # Which version of aws-for-fluent-bit to install. When null, uses the default
@@ -151,26 +153,26 @@ module "eks_container_logs" {
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
 
-  # Configurations for forwarding logs to CloudWatch Logs. Set to null if you do not
-  # wish to forward the logs to CloudWatch Logs.
+  # Configurations for forwarding logs to CloudWatch Logs. Set to null if you do
+  # not wish to forward the logs to CloudWatch Logs.
   cloudwatch_configuration = null
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
-  # resources in this module will now depend on the resources backing the values in
-  # this list such that those resources need to be created before the resources in
-  # this module, and the resources in this module need to be destroyed before the
-  # resources in the list.
+  # resources in this module will now depend on the resources backing the values
+  # in this list such that those resources need to be created before the
+  # resources in this module, and the resources in this module need to be
+  # destroyed before the resources in the list.
   dependencies = []
 
-  # Can be used to provide custom filtering of the log output. This string should be
-  # formatted according to Fluent Bit docs, as it will be injected directly into the
-  # fluent-bit.conf file.
+  # Can be used to provide custom filtering of the log output. This string
+  # should be formatted according to Fluent Bit docs, as it will be injected
+  # directly into the fluent-bit.conf file.
   extra_filters = ""
 
-  # Can be used to fan out the log output to multiple additional clients beyond the
-  # AWS ones. This string should be formatted according to Fluent Bit docs, as it
-  # will be injected directly into the fluent-bit.conf file.
+  # Can be used to fan out the log output to multiple additional clients beyond
+  # the AWS ones. This string should be formatted according to Fluent Bit docs,
+  # as it will be injected directly into the fluent-bit.conf file.
   extra_outputs = ""
 
   # Can be used to add additional log parsers. This string should be formatted
@@ -178,41 +180,41 @@ module "eks_container_logs" {
   # fluent-bit.conf file.
   extra_parsers = ""
 
-  # Configurations for forwarding logs to Kinesis Firehose. Set to null if you do
-  # not wish to forward the logs to Firehose.
+  # Configurations for forwarding logs to Kinesis Firehose. Set to null if you
+  # do not wish to forward the logs to Firehose.
   firehose_configuration = null
 
   # Used to name IAM roles for the service account. Recommended when
   # var.iam_role_for_service_accounts_config is configured.
   iam_role_name_prefix = null
 
-  # Configurations for forwarding logs to Kinesis stream. Set to null if you do not
-  # wish to forward the logs to Kinesis.
+  # Configurations for forwarding logs to Kinesis stream. Set to null if you do
+  # not wish to forward the logs to Kinesis.
   kinesis_configuration = null
 
-  # Configure affinity rules for the Pod to control which nodes to schedule on. Each
-  # item in the list should be a map with the keys `key`, `values`, and `operator`,
-  # corresponding to the 3 properties of matchExpressions. Note that all expressions
-  # must be satisfied to schedule on the node.
+  # Configure affinity rules for the Pod to control which nodes to schedule on.
+  # Each item in the list should be a map with the keys `key`, `values`, and
+  # `operator`, corresponding to the 3 properties of matchExpressions. Note that
+  # all expressions must be satisfied to schedule on the node.
   pod_node_affinity = []
 
-  # Specify the resource limits and requests for the fluent-bit pods. Set to null
-  # (default) to use chart defaults.
+  # Specify the resource limits and requests for the fluent-bit pods. Set to
+  # null (default) to use chart defaults.
   pod_resources = null
 
-  # Configure tolerations rules to allow the Pod to schedule on nodes that have been
-  # tainted. Each item in the list specifies a toleration rule.
+  # Configure tolerations rules to allow the Pod to schedule on nodes that have
+  # been tainted. Each item in the list specifies a toleration rule.
   pod_tolerations = []
 
-  # Optionally use a cri parser instead of the default Docker parser. This should be
-  # used for EKS v1.24 and later.
+  # Optionally use a cri parser instead of the default Docker parser. This
+  # should be used for EKS v1.24 and later.
   use_cri_parser_conf = true
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
 }
@@ -230,7 +232,7 @@ module "eks_container_logs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.58.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.59.1"
 }
 
 inputs = {
@@ -239,12 +241,13 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Configuration for using the IAM role with Service Accounts feature to provide
-  # permissions to the helm charts. This expects a map with two properties:
-  # `openid_connect_provider_arn` and `openid_connect_provider_url`. The
-  # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
-  # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
-  # to null if you do not wish to use IAM role with Service Accounts.
+  # Configuration for using the IAM role with Service Accounts feature to
+  # provide permissions to the helm charts. This expects a map with two
+  # properties: `openid_connect_provider_arn` and `openid_connect_provider_url`.
+  # The `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider
+  # for EKS to retrieve IAM credentials, while `openid_connect_provider_url` is
+  # the URL. Set to null if you do not wish to use IAM role with Service
+  # Accounts.
   iam_role_for_service_accounts_config = <object(
     openid_connect_provider_arn = string
     openid_connect_provider_url = string
@@ -255,21 +258,22 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # Can be used to add more inputs. This string should be formatted according to
-  # Fluent Bit docs, as it will be injected directly into the fluent-bit.conf file.
+  # Fluent Bit docs, as it will be injected directly into the fluent-bit.conf
+  # file.
   additional_inputs = ""
 
-  # Configurations for forwarding logs to AWS managed Elasticsearch. Set to null if
-  # you do not wish to forward the logs to ES.
+  # Configurations for forwarding logs to AWS managed Elasticsearch. Set to null
+  # if you do not wish to forward the logs to ES.
   aws_elasticsearch_configuration = null
 
-  # The version of the aws-for-fluent-bit helm chart to deploy. Note that this is
-  # different from the app/container version (use var.aws_for_fluent_bit_version to
-  # control the app/container version).
+  # The version of the aws-for-fluent-bit helm chart to deploy. Note that this
+  # is different from the app/container version (use
+  # var.aws_for_fluent_bit_version to control the app/container version).
   aws_for_fluent_bit_chart_version = "0.1.23"
 
-  # The Container repository to use for looking up the aws-for-fluent-bit Container
-  # image when deploying the pods. When null, uses the default repository set in the
-  # chart.
+  # The Container repository to use for looking up the aws-for-fluent-bit
+  # Container image when deploying the pods. When null, uses the default
+  # repository set in the chart.
   aws_for_fluent_bit_image_repository = null
 
   # Which version of aws-for-fluent-bit to install. When null, uses the default
@@ -279,26 +283,26 @@ inputs = {
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
 
-  # Configurations for forwarding logs to CloudWatch Logs. Set to null if you do not
-  # wish to forward the logs to CloudWatch Logs.
+  # Configurations for forwarding logs to CloudWatch Logs. Set to null if you do
+  # not wish to forward the logs to CloudWatch Logs.
   cloudwatch_configuration = null
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
-  # resources in this module will now depend on the resources backing the values in
-  # this list such that those resources need to be created before the resources in
-  # this module, and the resources in this module need to be destroyed before the
-  # resources in the list.
+  # resources in this module will now depend on the resources backing the values
+  # in this list such that those resources need to be created before the
+  # resources in this module, and the resources in this module need to be
+  # destroyed before the resources in the list.
   dependencies = []
 
-  # Can be used to provide custom filtering of the log output. This string should be
-  # formatted according to Fluent Bit docs, as it will be injected directly into the
-  # fluent-bit.conf file.
+  # Can be used to provide custom filtering of the log output. This string
+  # should be formatted according to Fluent Bit docs, as it will be injected
+  # directly into the fluent-bit.conf file.
   extra_filters = ""
 
-  # Can be used to fan out the log output to multiple additional clients beyond the
-  # AWS ones. This string should be formatted according to Fluent Bit docs, as it
-  # will be injected directly into the fluent-bit.conf file.
+  # Can be used to fan out the log output to multiple additional clients beyond
+  # the AWS ones. This string should be formatted according to Fluent Bit docs,
+  # as it will be injected directly into the fluent-bit.conf file.
   extra_outputs = ""
 
   # Can be used to add additional log parsers. This string should be formatted
@@ -306,41 +310,41 @@ inputs = {
   # fluent-bit.conf file.
   extra_parsers = ""
 
-  # Configurations for forwarding logs to Kinesis Firehose. Set to null if you do
-  # not wish to forward the logs to Firehose.
+  # Configurations for forwarding logs to Kinesis Firehose. Set to null if you
+  # do not wish to forward the logs to Firehose.
   firehose_configuration = null
 
   # Used to name IAM roles for the service account. Recommended when
   # var.iam_role_for_service_accounts_config is configured.
   iam_role_name_prefix = null
 
-  # Configurations for forwarding logs to Kinesis stream. Set to null if you do not
-  # wish to forward the logs to Kinesis.
+  # Configurations for forwarding logs to Kinesis stream. Set to null if you do
+  # not wish to forward the logs to Kinesis.
   kinesis_configuration = null
 
-  # Configure affinity rules for the Pod to control which nodes to schedule on. Each
-  # item in the list should be a map with the keys `key`, `values`, and `operator`,
-  # corresponding to the 3 properties of matchExpressions. Note that all expressions
-  # must be satisfied to schedule on the node.
+  # Configure affinity rules for the Pod to control which nodes to schedule on.
+  # Each item in the list should be a map with the keys `key`, `values`, and
+  # `operator`, corresponding to the 3 properties of matchExpressions. Note that
+  # all expressions must be satisfied to schedule on the node.
   pod_node_affinity = []
 
-  # Specify the resource limits and requests for the fluent-bit pods. Set to null
-  # (default) to use chart defaults.
+  # Specify the resource limits and requests for the fluent-bit pods. Set to
+  # null (default) to use chart defaults.
   pod_resources = null
 
-  # Configure tolerations rules to allow the Pod to schedule on nodes that have been
-  # tainted. Each item in the list specifies a toleration rule.
+  # Configure tolerations rules to allow the Pod to schedule on nodes that have
+  # been tainted. Each item in the list specifies a toleration rule.
   pod_tolerations = []
 
-  # Optionally use a cri parser instead of the default Docker parser. This should be
-  # used for EKS v1.24 and later.
+  # Optionally use a cri parser instead of the default Docker parser. This
+  # should be used for EKS v1.24 and later.
   use_cri_parser_conf = true
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
 }
@@ -355,11 +359,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-container-logs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-container-logs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-container-logs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-container-logs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-container-logs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3b4f2ba702ceca63d465b65760b62790"
+  "hash": "b3d4876599928937f9a2b6cade6bfd2b"
 }
 ##DOCS-SOURCER-END -->

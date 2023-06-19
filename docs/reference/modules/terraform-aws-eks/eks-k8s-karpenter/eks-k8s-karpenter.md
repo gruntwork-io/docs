@@ -9,24 +9,24 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.58.3" lastModifiedVersion="0.58.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.59.1" lastModifiedVersion="0.58.4"/>
 
 # EKS K8s Karpenter Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-k8s-karpenter" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-karpenter" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.58.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.58.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Module can be used to deploy [Karpenter](https://karpenter.sh/) as an alternative to the [Cluster Autoscaler](https://github.com/kubernetes/autoscaler/tree/b6d53e8/cluster-autoscaler) for autoscaling capabilities of an EKS cluster.
-This module will create all of the necessary resources for a functional installation of Karpenter as well as the installation of Karpenter. This module does not create Karpenter [Provisioners](https://karpenter.sh/v0.27.0/concepts/provisioners/) or [Node Templates](https://karpenter.sh/v0.27.0/concepts/node-templates/), only the installation of the Karpenter Controller. See the [Karpenter Example](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/examples/eks-cluster-with-karpenter/) for an example of how to deploy the additional `CRDs` (Provisioners, Node Templates, etc) to the EKS cluster.
+This module will create all of the necessary resources for a functional installation of Karpenter as well as the installation of Karpenter. This module does not create Karpenter [Provisioners](https://karpenter.sh/v0.27.0/concepts/provisioners/) or [Node Templates](https://karpenter.sh/v0.27.0/concepts/node-templates/), only the installation of the Karpenter Controller. See the [Karpenter Example](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/examples/eks-cluster-with-karpenter/) for an example of how to deploy the additional `CRDs` (Provisioners, Node Templates, etc) to the EKS cluster.
 
-> Note: For EKS cluster autoscaling capabilities, either `Karpenter` OR the `cluster-autoscaler` should be used; not both. To migrate to using `karpenter` instead of the `cluster-autoscaler` see [Migrating to Karpenter from the Cluster Autoscaler](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-k8s-karpenter/migrating-to-karpenter-from-cas.md)
+> Note: For EKS cluster autoscaling capabilities, either `Karpenter` OR the `cluster-autoscaler` should be used; not both. To migrate to using `karpenter` instead of the `cluster-autoscaler` see [Migrating to Karpenter from the Cluster Autoscaler](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-karpenter/migrating-to-karpenter-from-cas.md)
 
-To leverage the full power and potential of Karpenter, one must understand the [Karpenter Core Concepts](https://karpenter.sh/v0.27.0/concepts/). Deploying this module without additional configuration (ie deploying Karpenter CRDs) will not enable EKS cluster autoscaling. As use-cases are presented, we will do our best effort to continue to add meaningful examples to the [examples](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/examples/) folder to help ease the complexities of configuring Karpenter. At minimum, one should configure and deploy a default `Provisioner` and `Node Template` for just in time node provisioning via Karpenter.
+To leverage the full power and potential of Karpenter, one must understand the [Karpenter Core Concepts](https://karpenter.sh/v0.27.0/concepts/). Deploying this module without additional configuration (ie deploying Karpenter CRDs) will not enable EKS cluster autoscaling. As use-cases are presented, we will do our best effort to continue to add meaningful examples to the [examples](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/examples/) folder to help ease the complexities of configuring Karpenter. At minimum, one should configure and deploy a default `Provisioner` and `Node Template` for just in time node provisioning via Karpenter.
 
 ### Resources Created
 
-This module will create the following core resources, some of which are optional which are noted in the [input variables](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-k8s-karpenter/variables.tf):
+This module will create the following core resources, some of which are optional which are noted in the [input variables](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-karpenter/variables.tf):
 
 | AWS Resource | Description |
 | --- | --- |
@@ -69,7 +69,7 @@ For additional details and in-depth information on Karpenter, please see the [Ka
 
 module "eks_k_8_s_karpenter" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-karpenter?ref=v0.58.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-karpenter?ref=v0.59.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -100,8 +100,8 @@ module "eks_k_8_s_karpenter" {
   # Controller.
   create_karpenter_controller_irsa = true
 
-  # Conditional flag to create the Karpenter Node IAM Role. If this is set to false,
-  # then an existing IAM Role must be provided with the
+  # Conditional flag to create the Karpenter Node IAM Role. If this is set to
+  # false, then an existing IAM Role must be provided with the
   # `karpenter_node_iam_role_arn` variable
   create_karpenter_node_iam_role = true
 
@@ -124,8 +124,8 @@ module "eks_k_8_s_karpenter" {
   karpenter_chart_version = "v0.24.0"
 
   # Provide an existing IAM Role ARN to be used with the Karpenter Controller
-  # Service Account. This is required if `create_karpenter_controller_irsa` is set
-  # to false.
+  # Service Account. This is required if `create_karpenter_controller_irsa` is
+  # set to false.
   karpenter_controller_existing_role_arn = true
 
   # A tag that is used by Karpenter to discover resources.
@@ -151,8 +151,8 @@ module "eks_k_8_s_karpenter" {
   # Node role. Value can be between 3600 and 43200.
   karpenter_node_iam_role_max_session_duration = 3600
 
-  # Optionally provide a name for the Karpenter Node IAM Role. If unset, a name will
-  # be generated.
+  # Optionally provide a name for the Karpenter Node IAM Role. If unset, a name
+  # will be generated.
   karpenter_node_iam_role_name = null
 
   # Optionally provide a path to the Karpenter Node IAM Role.
@@ -186,7 +186,7 @@ module "eks_k_8_s_karpenter" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-karpenter?ref=v0.58.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-karpenter?ref=v0.59.1"
 }
 
 inputs = {
@@ -220,8 +220,8 @@ inputs = {
   # Controller.
   create_karpenter_controller_irsa = true
 
-  # Conditional flag to create the Karpenter Node IAM Role. If this is set to false,
-  # then an existing IAM Role must be provided with the
+  # Conditional flag to create the Karpenter Node IAM Role. If this is set to
+  # false, then an existing IAM Role must be provided with the
   # `karpenter_node_iam_role_arn` variable
   create_karpenter_node_iam_role = true
 
@@ -244,8 +244,8 @@ inputs = {
   karpenter_chart_version = "v0.24.0"
 
   # Provide an existing IAM Role ARN to be used with the Karpenter Controller
-  # Service Account. This is required if `create_karpenter_controller_irsa` is set
-  # to false.
+  # Service Account. This is required if `create_karpenter_controller_irsa` is
+  # set to false.
   karpenter_controller_existing_role_arn = true
 
   # A tag that is used by Karpenter to discover resources.
@@ -271,8 +271,8 @@ inputs = {
   # Node role. Value can be between 3600 and 43200.
   karpenter_node_iam_role_max_session_duration = 3600
 
-  # Optionally provide a name for the Karpenter Node IAM Role. If unset, a name will
-  # be generated.
+  # Optionally provide a name for the Karpenter Node IAM Role. If unset, a name
+  # will be generated.
   karpenter_node_iam_role_name = null
 
   # Optionally provide a path to the Karpenter Node IAM Role.
@@ -582,11 +582,11 @@ The name of the Karpenter Node IAM Role.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-k8s-karpenter/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-k8s-karpenter/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-k8s-karpenter/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-karpenter/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-karpenter/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-karpenter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ef929b452ef415ab0b55d770d12230d8"
+  "hash": "db1ee81efedf2252c2c3f3eba3067dd3"
 }
 ##DOCS-SOURCER-END -->

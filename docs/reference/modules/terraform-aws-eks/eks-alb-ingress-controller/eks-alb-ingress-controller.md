@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.58.3" lastModifiedVersion="0.56.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.59.1" lastModifiedVersion="0.59.1"/>
 
 # ALB Ingress Controller Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-alb-ingress-controller" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-alb-ingress-controller" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.56.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.59.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module installs and configures the [AWS ALB Ingress
 Controller](https://github.com/kubernetes-sigs/aws-alb-ingress-controller) on an EKS cluster, so that you can configure
@@ -110,7 +110,7 @@ correctly.
 
 You can use the `alb.ingress.kubernetes.io/subnets` annotation on `Ingress` resources to specify which subnets the controller should configure the ALB for.
 
-You can also omit the `alb.ingress.kubernetes.io/subnets` annotation, and the controller will [automatically discover subnets](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/controller/config/#subnet-auto-discovery) based on their tags. This method should work "out of the box", so long as you are using the [`eks-vpc-tags`](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-vpc-tags) module to tag your VPC subnets.
+You can also omit the `alb.ingress.kubernetes.io/subnets` annotation, and the controller will [automatically discover subnets](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/controller/config/#subnet-auto-discovery) based on their tags. This method should work "out of the box", so long as you are using the [`eks-vpc-tags`](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-vpc-tags) module to tag your VPC subnets.
 
 ### Security Groups
 
@@ -125,7 +125,7 @@ nodes.
 ### IAM permissions
 
 The container deployed in this module requires IAM permissions to manage ALB resources. See [the
-eks-alb-ingress-controller-iam-policy module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-alb-ingress-controller-iam-policy) for more information.
+eks-alb-ingress-controller-iam-policy module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-alb-ingress-controller-iam-policy) for more information.
 
 ## Using the Ingress Controller
 
@@ -200,7 +200,7 @@ nature of the controller in provisioning the ALBs.
 The AWS ALB Ingress Controller has first class support for
 [external-dns](https://github.com/kubernetes-incubator/external-dns), a third party tool that configures external DNS
 providers with domains to route to `Services` and `Ingresses` in Kubernetes. See our [eks-k8s-external-dns
-module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-k8s-external-dns) for more information on how to setup the tool.
+module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-external-dns) for more information on how to setup the tool.
 
 ## How do I deploy the Pods to Fargate?
 
@@ -234,7 +234,7 @@ instances under the hood, and thus the ALB can not be configured to route by ins
 
 module "eks_alb_ingress_controller" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller?ref=v0.58.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller?ref=v0.59.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -248,19 +248,20 @@ module "eks_alb_ingress_controller" {
   # Ingress controller will be prefixed with this value.
   eks_cluster_name = <string>
 
-  # Configuration for using the IAM role with Service Accounts feature to provide
-  # permissions to the helm charts. This expects a map with two properties:
-  # `openid_connect_provider_arn` and `openid_connect_provider_url`. The
-  # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
-  # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
-  # to null if you do not wish to use IAM role with Service Accounts.
+  # Configuration for using the IAM role with Service Accounts feature to
+  # provide permissions to the helm charts. This expects a map with two
+  # properties: `openid_connect_provider_arn` and `openid_connect_provider_url`.
+  # The `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider
+  # for EKS to retrieve IAM credentials, while `openid_connect_provider_url` is
+  # the URL. Set to null if you do not wish to use IAM role with Service
+  # Accounts.
   iam_role_for_service_accounts_config = <object(
     openid_connect_provider_arn = string
     openid_connect_provider_url = string
   )>
 
-  # The ID of the VPC where the EKS cluster resides. Used for determining where to
-  # deploy the ALB.
+  # The ID of the VPC where the EKS cluster resides. Used for determining where
+  # to deploy the ALB.
   vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
@@ -273,32 +274,32 @@ module "eks_alb_ingress_controller" {
   # The version of the aws-load-balancer-controller helmchart to use.
   chart_version = "1.4.6"
 
-  # ARN of permissions boundary to apply to the controller IAM role - the IAM role
-  # created for the Ingress Controller.
+  # ARN of permissions boundary to apply to the controller IAM role - the IAM
+  # role created for the Ingress Controller.
   controller_iam_role_permissions_boundary = null
 
   # When set to true, create a dedicated Fargate execution profile for the alb
-  # ingress controller. Note that this is not necessary to deploy to Fargate. For
-  # example, if you already have an execution profile for the kube-system Namespace,
-  # you do not need another one.
+  # ingress controller. Note that this is not necessary to deploy to Fargate.
+  # For example, if you already have an execution profile for the kube-system
+  # Namespace, you do not need another one.
   create_fargate_profile = false
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
-  # resources in this module will now depend on the resources backing the values in
-  # this list such that those resources need to be created before the resources in
-  # this module, and the resources in this module need to be destroyed before the
-  # resources in the list.
+  # resources in this module will now depend on the resources backing the values
+  # in this list such that those resources need to be created before the
+  # resources in this module, and the resources in this module need to be
+  # destroyed before the resources in the list.
   dependencies = []
 
   # Command to run before uninstalling the AWS ALB Ingress Controller during
-  # `terraform destroy`. Since the ingress controller manages AWS resources, you may
-  # want to remove Ingress objects from the cluster and give the application enough
-  # time time to notice and remove the associated resources from AWS.
+  # `terraform destroy`. Since the ingress controller manages AWS resources, you
+  # may want to remove Ingress objects from the cluster and give the application
+  # enough time time to notice and remove the associated resources from AWS.
   destroy_lifecycle_command = "exit 0"
 
-  # Environment variables that will be available when var.destroy_lifecycle_command
-  # runs
+  # Environment variables that will be available when
+  # var.destroy_lifecycle_command runs
   destroy_lifecycle_environment = {}
 
   # The repository of the docker image that should be deployed.
@@ -307,9 +308,9 @@ module "eks_alb_ingress_controller" {
   # The tag of the docker image that should be deployed.
   docker_image_tag = "v2.4.5"
 
-  # Enables restricted Security Group rules for the load balancers managed by the
-  # controller. When this is true, the load balancer will restrict the target group
-  # security group rules to only use the ports that it needs.
+  # Enables restricted Security Group rules for the load balancers managed by
+  # the controller. When this is true, the load balancer will restrict the
+  # target group security group rules to only use the ports that it needs.
   enable_restricted_sg_rules = false
 
   # Which Kubernetes Namespace to deploy the chart into.
@@ -326,22 +327,23 @@ module "eks_alb_ingress_controller" {
   # Labels to apply to the Pod that is deployed, as key value pairs.
   pod_labels = {}
 
-  # Configure affinity rules for the Pod to control which nodes to schedule on. Each
-  # item in the list should be a map with the keys `key`, `values`, and `operator`,
-  # corresponding to the 3 properties of matchExpressions. Note that all expressions
-  # must be satisfied to schedule on the node.
+  # Configure affinity rules for the Pod to control which nodes to schedule on.
+  # Each item in the list should be a map with the keys `key`, `values`, and
+  # `operator`, corresponding to the 3 properties of matchExpressions. Note that
+  # all expressions must be satisfied to schedule on the node.
   pod_node_affinity = []
 
   # Number of replicas of the ingress controller Pod to deploy.
   pod_replica_count = 1
 
-  # Configure tolerations rules to allow the Pod to schedule on nodes that have been
-  # tainted. Each item in the list specifies a toleration rule.
+  # Configure tolerations rules to allow the Pod to schedule on nodes that have
+  # been tainted. Each item in the list specifies a toleration rule.
   pod_tolerations = []
 
-  # A list of the subnets into which the EKS Cluster's administrative pods will be
-  # launched. These should usually be all private subnets and include one in each
-  # AWS Availability Zone. Required when var.create_fargate_profile is true.
+  # A list of the subnets into which the EKS Cluster's administrative pods will
+  # be launched. These should usually be all private subnets and include one in
+  # each AWS Availability Zone. Required when var.create_fargate_profile is
+  # true.
   vpc_worker_subnet_ids = []
 
 }
@@ -359,7 +361,7 @@ module "eks_alb_ingress_controller" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller?ref=v0.58.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller?ref=v0.59.1"
 }
 
 inputs = {
@@ -376,19 +378,20 @@ inputs = {
   # Ingress controller will be prefixed with this value.
   eks_cluster_name = <string>
 
-  # Configuration for using the IAM role with Service Accounts feature to provide
-  # permissions to the helm charts. This expects a map with two properties:
-  # `openid_connect_provider_arn` and `openid_connect_provider_url`. The
-  # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
-  # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
-  # to null if you do not wish to use IAM role with Service Accounts.
+  # Configuration for using the IAM role with Service Accounts feature to
+  # provide permissions to the helm charts. This expects a map with two
+  # properties: `openid_connect_provider_arn` and `openid_connect_provider_url`.
+  # The `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider
+  # for EKS to retrieve IAM credentials, while `openid_connect_provider_url` is
+  # the URL. Set to null if you do not wish to use IAM role with Service
+  # Accounts.
   iam_role_for_service_accounts_config = <object(
     openid_connect_provider_arn = string
     openid_connect_provider_url = string
   )>
 
-  # The ID of the VPC where the EKS cluster resides. Used for determining where to
-  # deploy the ALB.
+  # The ID of the VPC where the EKS cluster resides. Used for determining where
+  # to deploy the ALB.
   vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
@@ -401,32 +404,32 @@ inputs = {
   # The version of the aws-load-balancer-controller helmchart to use.
   chart_version = "1.4.6"
 
-  # ARN of permissions boundary to apply to the controller IAM role - the IAM role
-  # created for the Ingress Controller.
+  # ARN of permissions boundary to apply to the controller IAM role - the IAM
+  # role created for the Ingress Controller.
   controller_iam_role_permissions_boundary = null
 
   # When set to true, create a dedicated Fargate execution profile for the alb
-  # ingress controller. Note that this is not necessary to deploy to Fargate. For
-  # example, if you already have an execution profile for the kube-system Namespace,
-  # you do not need another one.
+  # ingress controller. Note that this is not necessary to deploy to Fargate.
+  # For example, if you already have an execution profile for the kube-system
+  # Namespace, you do not need another one.
   create_fargate_profile = false
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
-  # resources in this module will now depend on the resources backing the values in
-  # this list such that those resources need to be created before the resources in
-  # this module, and the resources in this module need to be destroyed before the
-  # resources in the list.
+  # resources in this module will now depend on the resources backing the values
+  # in this list such that those resources need to be created before the
+  # resources in this module, and the resources in this module need to be
+  # destroyed before the resources in the list.
   dependencies = []
 
   # Command to run before uninstalling the AWS ALB Ingress Controller during
-  # `terraform destroy`. Since the ingress controller manages AWS resources, you may
-  # want to remove Ingress objects from the cluster and give the application enough
-  # time time to notice and remove the associated resources from AWS.
+  # `terraform destroy`. Since the ingress controller manages AWS resources, you
+  # may want to remove Ingress objects from the cluster and give the application
+  # enough time time to notice and remove the associated resources from AWS.
   destroy_lifecycle_command = "exit 0"
 
-  # Environment variables that will be available when var.destroy_lifecycle_command
-  # runs
+  # Environment variables that will be available when
+  # var.destroy_lifecycle_command runs
   destroy_lifecycle_environment = {}
 
   # The repository of the docker image that should be deployed.
@@ -435,9 +438,9 @@ inputs = {
   # The tag of the docker image that should be deployed.
   docker_image_tag = "v2.4.5"
 
-  # Enables restricted Security Group rules for the load balancers managed by the
-  # controller. When this is true, the load balancer will restrict the target group
-  # security group rules to only use the ports that it needs.
+  # Enables restricted Security Group rules for the load balancers managed by
+  # the controller. When this is true, the load balancer will restrict the
+  # target group security group rules to only use the ports that it needs.
   enable_restricted_sg_rules = false
 
   # Which Kubernetes Namespace to deploy the chart into.
@@ -454,22 +457,23 @@ inputs = {
   # Labels to apply to the Pod that is deployed, as key value pairs.
   pod_labels = {}
 
-  # Configure affinity rules for the Pod to control which nodes to schedule on. Each
-  # item in the list should be a map with the keys `key`, `values`, and `operator`,
-  # corresponding to the 3 properties of matchExpressions. Note that all expressions
-  # must be satisfied to schedule on the node.
+  # Configure affinity rules for the Pod to control which nodes to schedule on.
+  # Each item in the list should be a map with the keys `key`, `values`, and
+  # `operator`, corresponding to the 3 properties of matchExpressions. Note that
+  # all expressions must be satisfied to schedule on the node.
   pod_node_affinity = []
 
   # Number of replicas of the ingress controller Pod to deploy.
   pod_replica_count = 1
 
-  # Configure tolerations rules to allow the Pod to schedule on nodes that have been
-  # tainted. Each item in the list specifies a toleration rule.
+  # Configure tolerations rules to allow the Pod to schedule on nodes that have
+  # been tainted. Each item in the list specifies a toleration rule.
   pod_tolerations = []
 
-  # A list of the subnets into which the EKS Cluster's administrative pods will be
-  # launched. These should usually be all private subnets and include one in each
-  # AWS Availability Zone. Required when var.create_fargate_profile is true.
+  # A list of the subnets into which the EKS Cluster's administrative pods will
+  # be launched. These should usually be all private subnets and include one in
+  # each AWS Availability Zone. Required when var.create_fargate_profile is
+  # true.
   vpc_worker_subnet_ids = []
 
 }
@@ -484,11 +488,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-alb-ingress-controller/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-alb-ingress-controller/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-alb-ingress-controller/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-alb-ingress-controller/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-alb-ingress-controller/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-alb-ingress-controller/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0fdc1540e61b21e618642f8b8f200434"
+  "hash": "f3256f63a5c177361ed97a1bbbffe8a6"
 }
 ##DOCS-SOURCER-END -->

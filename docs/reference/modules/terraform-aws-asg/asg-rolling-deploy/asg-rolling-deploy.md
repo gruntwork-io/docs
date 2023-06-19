@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.6" lastModifiedVersion="0.21.2"/>
+<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.7" lastModifiedVersion="0.21.7"/>
 
 # Auto Scaling Group with Rolling Deployment Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.6/modules/asg-rolling-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.7/modules/asg-rolling-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an Auto Scaling Group (ASG) that can do a zero-downtime rolling deployment. That means
 every time you update your app (e.g. publish a new AMI), all you have to do is run `terraform apply` and the new
@@ -56,7 +56,7 @@ update your launch templates (e.g. by specifying a new AMI to deploy), Terraform
 Note that if all we did was use `create_before_destroy`, on each redeploy, our ASG would reset to its hard-coded
 `desired_capacity`, losing the capacity changes from auto scaling policies. We solve this problem by using an
 [external data source](https://www.terraform.io/docs/providers/external/data_source.html) that runs the Python script
-[get-desired-capacity.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.6/modules/asg-rolling-deploy/describe-autoscaling-group/get-desired-capacity.py) to fetch the latest value of the
+[get-desired-capacity.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.7/modules/asg-rolling-deploy/describe-autoscaling-group/get-desired-capacity.py) to fetch the latest value of the
 `desired_capacity` parameter:
 
 *   If the script finds a value from an already-existing ASG, we use it, to ensure that the changes form auto scaling
@@ -77,21 +77,22 @@ Note that if all we did was use `create_before_destroy`, on each redeploy, our A
 
 module "asg_rolling_deploy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v0.21.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v0.21.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The desired number of EC2 Instances to run in the ASG initially. Note that auto
-  # scaling policies may change this value. If you're using auto scaling policies to
-  # dynamically resize the cluster, you should actually leave this value as null.
+  # The desired number of EC2 Instances to run in the ASG initially. Note that
+  # auto scaling policies may change this value. If you're using auto scaling
+  # policies to dynamically resize the cluster, you should actually leave this
+  # value as null.
   desired_capacity = <number>
 
-  # The ID and version of the Launch Template to use for each EC2 instance in this
-  # ASG. The version value MUST be an output of the Launch Template resource itself.
-  # This ensures that a new ASG is created every time a new Launch Template version
-  # is created.
+  # The ID and version of the Launch Template to use for each EC2 instance in
+  # this ASG. The version value MUST be an output of the Launch Template
+  # resource itself. This ensures that a new ASG is created every time a new
+  # Launch Template version is created.
   launch_template = <object(
     id      = string
     name    = string
@@ -114,18 +115,18 @@ module "asg_rolling_deploy" {
   # Override the auto-generated ASG name with this value.
   asg_name = ""
 
-  # A list of custom tags to apply to the EC2 Instances in this ASG. Each item in
-  # this list should be a map with the parameters key, value, and
+  # A list of custom tags to apply to the EC2 Instances in this ASG. Each item
+  # in this list should be a map with the parameters key, value, and
   # propagate_at_launch.
   custom_tags = []
 
   # Timeout value for deletion operations on autoscale groups.
   deletion_timeout = "10m"
 
-  # A list of metrics the ASG should enable for monitoring all instances in a group.
-  # The allowed values are GroupMinSize, GroupMaxSize, GroupDesiredCapacity,
-  # GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances,
-  # GroupTerminatingInstances, GroupTotalInstances.
+  # A list of metrics the ASG should enable for monitoring all instances in a
+  # group. The allowed values are GroupMinSize, GroupMaxSize,
+  # GroupDesiredCapacity, GroupInServiceInstances, GroupPendingInstances,
+  # GroupStandbyInstances, GroupTerminatingInstances, GroupTotalInstances.
   enabled_metrics = []
 
   # Time, in seconds, after an EC2 Instance comes into service before checking
@@ -136,34 +137,36 @@ module "asg_rolling_deploy" {
   # you're using the Application Load Balancer (ALB), see var.target_group_arns.
   load_balancers = []
 
-  # The maximum amount of time, in seconds, that an instance inside an ASG can be in
-  # service, values must be either equal to 0 or between 604800 and 31536000
-  # seconds.
+  # The maximum amount of time, in seconds, that an instance inside an ASG can
+  # be in service, values must be either equal to 0 or between 604800 and
+  # 31536000 seconds.
   max_instance_lifetime = null
 
-  # Wait for this number of EC2 Instances to show up healthy in the load balancer on
-  # creation.
+  # Wait for this number of EC2 Instances to show up healthy in the load
+  # balancer on creation.
   min_elb_capacity = 0
 
-  # The key for the tag that will be used to associate a unique identifier with this
-  # ASG. This identifier will persist between redeploys of the ASG, even though the
-  # underlying ASG is being deleted and replaced with a different one.
+  # The key for the tag that will be used to associate a unique identifier with
+  # this ASG. This identifier will persist between redeploys of the ASG, even
+  # though the underlying ASG is being deleted and replaced with a different
+  # one.
   tag_asg_id_key = "AsgId"
 
-  # A list of Application Load Balancer (ALB) target group ARNs to associate with
-  # this ASG. If you're using the Elastic Load Balancer (ELB), see
+  # A list of Application Load Balancer (ALB) target group ARNs to associate
+  # with this ASG. If you're using the Elastic Load Balancer (ELB), see
   # var.load_balancers.
   target_group_arns = []
 
-  # A list of policies to decide how the instances in the auto scale group should be
-  # terminated. The allowed values are OldestInstance, NewestInstance,
-  # OldestLaunchTemplate, AllocationStrategy, ClosestToNextInstanceHour, Default.
+  # A list of policies to decide how the instances in the auto scale group
+  # should be terminated. The allowed values are OldestInstance, NewestInstance,
+  # OldestLaunchTemplate, AllocationStrategy, ClosestToNextInstanceHour,
+  # Default.
   termination_policies = []
 
-  # Whether or not ELB or ALB health checks should be enabled. If set to true, the
-  # load_balancers or target_groups_arns variable should be set depending on the
-  # load balancer type you are using. Useful for testing connectivity before health
-  # check endpoints are available.
+  # Whether or not ELB or ALB health checks should be enabled. If set to true,
+  # the load_balancers or target_groups_arns variable should be set depending on
+  # the load balancer type you are using. Useful for testing connectivity before
+  # health check endpoints are available.
   use_elb_health_checks = true
 
   # A maximum duration that Terraform should wait for the EC2 Instances to be
@@ -185,7 +188,7 @@ module "asg_rolling_deploy" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v0.21.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v0.21.7"
 }
 
 inputs = {
@@ -194,15 +197,16 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The desired number of EC2 Instances to run in the ASG initially. Note that auto
-  # scaling policies may change this value. If you're using auto scaling policies to
-  # dynamically resize the cluster, you should actually leave this value as null.
+  # The desired number of EC2 Instances to run in the ASG initially. Note that
+  # auto scaling policies may change this value. If you're using auto scaling
+  # policies to dynamically resize the cluster, you should actually leave this
+  # value as null.
   desired_capacity = <number>
 
-  # The ID and version of the Launch Template to use for each EC2 instance in this
-  # ASG. The version value MUST be an output of the Launch Template resource itself.
-  # This ensures that a new ASG is created every time a new Launch Template version
-  # is created.
+  # The ID and version of the Launch Template to use for each EC2 instance in
+  # this ASG. The version value MUST be an output of the Launch Template
+  # resource itself. This ensures that a new ASG is created every time a new
+  # Launch Template version is created.
   launch_template = <object(
     id      = string
     name    = string
@@ -225,18 +229,18 @@ inputs = {
   # Override the auto-generated ASG name with this value.
   asg_name = ""
 
-  # A list of custom tags to apply to the EC2 Instances in this ASG. Each item in
-  # this list should be a map with the parameters key, value, and
+  # A list of custom tags to apply to the EC2 Instances in this ASG. Each item
+  # in this list should be a map with the parameters key, value, and
   # propagate_at_launch.
   custom_tags = []
 
   # Timeout value for deletion operations on autoscale groups.
   deletion_timeout = "10m"
 
-  # A list of metrics the ASG should enable for monitoring all instances in a group.
-  # The allowed values are GroupMinSize, GroupMaxSize, GroupDesiredCapacity,
-  # GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances,
-  # GroupTerminatingInstances, GroupTotalInstances.
+  # A list of metrics the ASG should enable for monitoring all instances in a
+  # group. The allowed values are GroupMinSize, GroupMaxSize,
+  # GroupDesiredCapacity, GroupInServiceInstances, GroupPendingInstances,
+  # GroupStandbyInstances, GroupTerminatingInstances, GroupTotalInstances.
   enabled_metrics = []
 
   # Time, in seconds, after an EC2 Instance comes into service before checking
@@ -247,34 +251,36 @@ inputs = {
   # you're using the Application Load Balancer (ALB), see var.target_group_arns.
   load_balancers = []
 
-  # The maximum amount of time, in seconds, that an instance inside an ASG can be in
-  # service, values must be either equal to 0 or between 604800 and 31536000
-  # seconds.
+  # The maximum amount of time, in seconds, that an instance inside an ASG can
+  # be in service, values must be either equal to 0 or between 604800 and
+  # 31536000 seconds.
   max_instance_lifetime = null
 
-  # Wait for this number of EC2 Instances to show up healthy in the load balancer on
-  # creation.
+  # Wait for this number of EC2 Instances to show up healthy in the load
+  # balancer on creation.
   min_elb_capacity = 0
 
-  # The key for the tag that will be used to associate a unique identifier with this
-  # ASG. This identifier will persist between redeploys of the ASG, even though the
-  # underlying ASG is being deleted and replaced with a different one.
+  # The key for the tag that will be used to associate a unique identifier with
+  # this ASG. This identifier will persist between redeploys of the ASG, even
+  # though the underlying ASG is being deleted and replaced with a different
+  # one.
   tag_asg_id_key = "AsgId"
 
-  # A list of Application Load Balancer (ALB) target group ARNs to associate with
-  # this ASG. If you're using the Elastic Load Balancer (ELB), see
+  # A list of Application Load Balancer (ALB) target group ARNs to associate
+  # with this ASG. If you're using the Elastic Load Balancer (ELB), see
   # var.load_balancers.
   target_group_arns = []
 
-  # A list of policies to decide how the instances in the auto scale group should be
-  # terminated. The allowed values are OldestInstance, NewestInstance,
-  # OldestLaunchTemplate, AllocationStrategy, ClosestToNextInstanceHour, Default.
+  # A list of policies to decide how the instances in the auto scale group
+  # should be terminated. The allowed values are OldestInstance, NewestInstance,
+  # OldestLaunchTemplate, AllocationStrategy, ClosestToNextInstanceHour,
+  # Default.
   termination_policies = []
 
-  # Whether or not ELB or ALB health checks should be enabled. If set to true, the
-  # load_balancers or target_groups_arns variable should be set depending on the
-  # load balancer type you are using. Useful for testing connectivity before health
-  # check endpoints are available.
+  # Whether or not ELB or ALB health checks should be enabled. If set to true,
+  # the load_balancers or target_groups_arns variable should be set depending on
+  # the load balancer type you are using. Useful for testing connectivity before
+  # health check endpoints are available.
   use_elb_health_checks = true
 
   # A maximum duration that Terraform should wait for the EC2 Instances to be
@@ -543,11 +549,11 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.6/modules/asg-rolling-deploy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.6/modules/asg-rolling-deploy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.6/modules/asg-rolling-deploy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.7/modules/asg-rolling-deploy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.7/modules/asg-rolling-deploy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.7/modules/asg-rolling-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3b7e020549e9f2030bd197f5abd59a6d"
+  "hash": "5d37a387fd50416ea53fd8ddfd1dfb33"
 }
 ##DOCS-SOURCER-END -->

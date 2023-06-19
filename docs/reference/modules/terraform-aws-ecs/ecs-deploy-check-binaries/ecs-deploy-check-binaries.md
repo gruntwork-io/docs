@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.4" lastModifiedVersion="0.35.3"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.35.7" lastModifiedVersion="0.35.3"/>
 
 # ECS Deploy Check Scripts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/modules/ecs-deploy-check-binaries" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-deploy-check-binaries" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.35.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -108,11 +108,11 @@ pyenv shell 3.8.0 3.9.0 3.10.0 3.11.0
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/modules/ecs-deploy-check-binaries/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/modules/ecs-deploy-check-binaries/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.4/modules/ecs-deploy-check-binaries/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-deploy-check-binaries/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-deploy-check-binaries/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-deploy-check-binaries/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4d19f18ce4be49fc1e4e32c740bd98f5"
+  "hash": "79eaf981c86c7053daaaa63034ffce19"
 }
 ##DOCS-SOURCER-END -->

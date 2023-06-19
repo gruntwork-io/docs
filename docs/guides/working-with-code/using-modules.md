@@ -1,5 +1,5 @@
 ---
-sidebar_label: Using Our Modules
+sidebar_label: Using our modules
 ---
 
 # Using Gruntwork Terraform Modules
@@ -770,6 +770,6 @@ Now that you have your Terraform module deployed, you can pull in updates as fol
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "2820ee930b54e06462e6cfc030d0c03a"
+  "hash": "f0581f3813ceab8975ca94cb979285dd"
 }
 ##DOCS-SOURCER-END -->

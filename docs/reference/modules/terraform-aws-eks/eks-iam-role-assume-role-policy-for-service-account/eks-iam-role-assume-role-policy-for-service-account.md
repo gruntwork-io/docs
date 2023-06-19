@@ -9,20 +9,20 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.58.3" lastModifiedVersion="0.53.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.59.1" lastModifiedVersion="0.58.4"/>
 
 # EKS IAM Role Assume Role Policy for Kubernetes Service Accounts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-iam-role-assume-role-policy-for-service-account" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-iam-role-assume-role-policy-for-service-account" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.53.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.58.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform module can be used to create Assume Role policies for IAM Roles such that they can be used with
 Kubernetes Service Accounts. This requires a compatible EKS cluster that supports the [IAM Roles for Service
 Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) feature.
 
 See the [corresponding section of the eks-cluster-control-plane module
-README](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-cluster-control-plane/README.md#how-do-i-associate-iam-roles-to-the-pods) for information on how to set
+README](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-cluster-control-plane/README.md#how-do-i-associate-iam-roles-to-the-pods) for information on how to set
 up IRSA and how it works.
 
 ## Sample Usage
@@ -38,7 +38,7 @@ up IRSA and how it works.
 
 module "eks_iam_role_assume_role_policy_for_service_account" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-iam-role-assume-role-policy-for-service-account?ref=v0.58.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-iam-role-assume-role-policy-for-service-account?ref=v0.59.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -50,16 +50,16 @@ module "eks_iam_role_assume_role_policy_for_service_account" {
   # URL of the OpenID Connect Provider provisioned for the EKS cluster.
   eks_openid_connect_provider_url = <string>
 
-  # The Kubernetes Namespaces that are allowed to assume the attached IAM Role. Only
-  # one of `var.namespaces` or `var.service_accounts` can be set. If both are set,
-  # you may end up with an impossible rule! If both are set to null, then this will
-  # allow all namespaces and all service accounts.
+  # The Kubernetes Namespaces that are allowed to assume the attached IAM Role.
+  # Only one of `var.namespaces` or `var.service_accounts` can be set. If both
+  # are set, you may end up with an impossible rule! If both are set to null,
+  # then this will allow all namespaces and all service accounts.
   namespaces = <list(string)>
 
   # The Kubernetes Service Accounts that are allowed to assume the attached IAM
-  # Role. Only one of `var.namespaces` or `var.service_accounts` can be set. If both
-  # are set, you may end up with an impossible rule! If both are set to null, then
-  # this will allow all namespaces and all service accounts.
+  # Role. Only one of `var.namespaces` or `var.service_accounts` can be set. If
+  # both are set, you may end up with an impossible rule! If both are set to
+  # null, then this will allow all namespaces and all service accounts.
   service_accounts = <list(object(
     name      = string
     namespace = string
@@ -69,9 +69,9 @@ module "eks_iam_role_assume_role_policy_for_service_account" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The string operator to use when evaluating the AWS IAM condition for determining
-  # which Service Accounts are allowed to assume the IAM role. Examples:
-  # StringEquals, StringLike, etc.
+  # The string operator to use when evaluating the AWS IAM condition for
+  # determining which Service Accounts are allowed to assume the IAM role.
+  # Examples: StringEquals, StringLike, etc.
   service_accounts_condition_operator = "StringEquals"
 
 }
@@ -89,7 +89,7 @@ module "eks_iam_role_assume_role_policy_for_service_account" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-iam-role-assume-role-policy-for-service-account?ref=v0.58.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-iam-role-assume-role-policy-for-service-account?ref=v0.59.1"
 }
 
 inputs = {
@@ -104,16 +104,16 @@ inputs = {
   # URL of the OpenID Connect Provider provisioned for the EKS cluster.
   eks_openid_connect_provider_url = <string>
 
-  # The Kubernetes Namespaces that are allowed to assume the attached IAM Role. Only
-  # one of `var.namespaces` or `var.service_accounts` can be set. If both are set,
-  # you may end up with an impossible rule! If both are set to null, then this will
-  # allow all namespaces and all service accounts.
+  # The Kubernetes Namespaces that are allowed to assume the attached IAM Role.
+  # Only one of `var.namespaces` or `var.service_accounts` can be set. If both
+  # are set, you may end up with an impossible rule! If both are set to null,
+  # then this will allow all namespaces and all service accounts.
   namespaces = <list(string)>
 
   # The Kubernetes Service Accounts that are allowed to assume the attached IAM
-  # Role. Only one of `var.namespaces` or `var.service_accounts` can be set. If both
-  # are set, you may end up with an impossible rule! If both are set to null, then
-  # this will allow all namespaces and all service accounts.
+  # Role. Only one of `var.namespaces` or `var.service_accounts` can be set. If
+  # both are set, you may end up with an impossible rule! If both are set to
+  # null, then this will allow all namespaces and all service accounts.
   service_accounts = <list(object(
     name      = string
     namespace = string
@@ -123,9 +123,9 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The string operator to use when evaluating the AWS IAM condition for determining
-  # which Service Accounts are allowed to assume the IAM role. Examples:
-  # StringEquals, StringLike, etc.
+  # The string operator to use when evaluating the AWS IAM condition for
+  # determining which Service Accounts are allowed to assume the IAM role.
+  # Examples: StringEquals, StringLike, etc.
   service_accounts_condition_operator = "StringEquals"
 
 }
@@ -217,11 +217,11 @@ JSON value for IAM Role Assume Role Policy that allows Kubernetes Service Accoun
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-iam-role-assume-role-policy-for-service-account/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-iam-role-assume-role-policy-for-service-account/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-iam-role-assume-role-policy-for-service-account/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-iam-role-assume-role-policy-for-service-account/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-iam-role-assume-role-policy-for-service-account/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-iam-role-assume-role-policy-for-service-account/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "257efa30dbd9a3add67de39c2d3f37b3"
+  "hash": "dfabdd83140e67ccbca7c8f2fbbee92c"
 }
 ##DOCS-SOURCER-END -->

@@ -9,77 +9,78 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.27.0" lastModifiedVersion="0.27.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.28.0" lastModifiedVersion="0.28.0"/>
 
 # RDS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.28.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module creates an Amazon Relational Database Service (RDS) cluster that can run MySQL, Postgres, MariaDB, Oracle, or SQL Server. The cluster is managed by AWS and automatically handles standby failover, read replicas, backups, patching, and encryption.
+This module creates an Amazon Relational Database Service (RDS) cluster that can run MySQL, Postgres, MariaDB, Oracle,
+or SQL Server. The cluster is managed by AWS and automatically handles standby failover, read replicas, backups,
+patching, and encryption.
 
-![RDS architecture](/img/reference/modules/terraform-aws-data-storage/rds/rds-architecture.png)
+![img](/img/reference/modules/terraform-aws-data-storage/rds/rds-architecture.png)
 
-## Features
+## About RDS
 
-*   Deploy a fully-managed relational database
+Amazon Relational Database Service (Amazon RDS) is a web service that makes it easier to set up, operate, and scale a
+relational database in the AWS Cloud. It provides cost-efficient, resizable capacity for an industry-standard relational
+database and manages common database administration tasks. Refer to
+the [What is Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html) page for more information.
 
-*   Supports MySQL, PostgreSQL, MariaDB, Oracle, and SQL Server
+## Common Gotcha's
 
-*   Automatic failover to a standby in another availability zone
+*   All RDS upgrades (version upgrades, instance type upgrades, etc.) require a few minutes of scheduled downtime.
+*   If an RDS instance that uses Multi-AZ fails, Amazon will automatically kick off a fail-over, but you will still
+    experience about 3 - 5 minutes of downtime.
+*   Based on the above, make sure you've written your app to gracefully handle database downtime.
+*   An RDS instance that runs out of disk space will stop working, so be sure to monitor and set an alert on the
+    FreeStorageSpace CloudWatch Metric. Consider monitoring other RDS CloudWatch Metrics as well.
 
-*   Read replicas
+## Minor version upgrades
 
-*   Automatic nightly snapshots
+RDS supports automatically installing minor version upgrades: e.g., automatically updating a MySQL database from 5.7.10
+to 5.7.11. To enable this functionality:
 
-## Learn
+1.  Set the `auto_minor_version_upgrade` parameter to `true`.
+2.  Set the `engine_version` parameter to `MAJOR.MINOR` and omit the `PATCH`: e.g., use 5.7 instead of 5.7.11. If you
+    include the `PATCH` number, you'll get state drift each time the minor version is updated. See the [`engine_version`
+    parameter docs](https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version) for details.
 
-Note
+## How do you scale this database?
 
-This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/)!
+*   **Storage**: Use the `allocated_storage` variable.
+*   **Vertical scaling**: To scale vertically (i.e. bigger DB instances with more CPU and RAM), use the `instance_type`,
+    `storage_type`, and `iops` input variables. For a list of AWS RDS server types, see [DB Instance
+    Class](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
+*   **Horizontal scaling**: To scale horizontally, you can add more replicas using the `num_read_replicas` input variable,
+    and RDS will automatically deploy the new instances, begin asynchronous replication, and make them available as read
+    replicas. For more info, see [Working with PostgreSQL, MySQL, and MariaDB Read
+    Replicas](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html#USER_ReadRepl.Overview).
+*   **Storage performance**: **N.B: only available when `var.storage_type` is set to `gp3`.** When you are using gp3, you
+    can
+    optionally fine-tune storage performance characteristics via the `storage_throughput` variable. See
+    the [RDS User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage) for
+    more information.
 
-### Core concepts
+## How do you connect to the database?
 
-*   [What is Amazon RDS?](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/rds/core-concepts.md#what-is-amazon-rds)
+This module provides the connection details as [Terraform output
+variables](https://www.terraform.io/intro/getting-started/outputs.html):
 
-*   [Common gotchas with RDS](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/rds/core-concepts.md#common-gotchas)
+1.  **Primary endpoint**: The endpoint for the primary DB. You should always use this URL for writes, as it points to
+    the primary.
+2.  **Read replica endpoints**: A comma-separated list of read replica URLs.
+3.  **Port**: The port to use to connect to the endpoints above.
 
-*   [RDS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html): Amazon’s docs for RDS that cover core concepts such as the types of databases supported, security, backup & restore, and monitoring.
+You can programmatically extract these variables in your Terraform templates and pass them to other resources (e.g.
+pass them to User Data in your EC2 instances). You'll also see the variables at the end of each `terraform apply` call
+or if you run `terraform output`.
 
-*   *[Designing Data Intensive Applications](https://dataintensive.net)*: the best book we’ve found for understanding data systems, including relational databases, NoSQL, replication, sharding, consistency, and so on.
-
-## Deploy
-
-### Non-production deployment (quick start for learning)
-
-If you just want to try this repo out for experimenting and learning, check out the following resources:
-
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
-
-### Production deployment
-
-If you want to deploy this repo in production, check out the following resources:
-
-*   [rds module in the Acme example Reference Architecture](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/tree/5fcefff/data-stores/rds): Production-ready sample code from the Acme Reference Architecture examples.
-
-## Manage
-
-### Day-to-day operations
-
-*   [How to connect to an RDS instance](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/rds/core-concepts.md#how-do-you-connect-to-the-database)
-
-*   [How to authenticate to RDS with IAM](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAM.html)
-
-*   [How to scale RDS](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/rds/core-concepts.md#how-do-you-scale-this-database)
-
-*   [How to backup RDS snapshots to a separate AWS account](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/lambda-create-snapshot#how-do-you-backup-your-rds-snapshots-to-a-separate-aws-account)
-
-### Major changes
-
-*   [Upgrading a DB instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Upgrading.html)
-
-*   [Restoring from a DB snapshot](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html)
+Note that the database is likely behind a Bastion Host, so you may need to first connect to the Bastion Host (or use SSH
+Tunneling) before you can connect to the database.
 
 ## Sample Usage
 
@@ -94,14 +95,14 @@ If you want to deploy this repo in production, check out the following resources
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.27.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.28.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The DB engine to use (e.g. mysql). Required unless var.replicate_source_db is
-  # set.
+  # The DB engine to use (e.g. mysql). Required unless var.replicate_source_db
+  # is set.
   engine = <string>
 
   # The version of var.engine to use (e.g. 5.7.11 for mysql). If
@@ -115,18 +116,18 @@ module "rds" {
   # The instance type to use for the db (e.g. db.t2.micro)
   instance_type = <string>
 
-  # The name used to namespace all resources created by these templates, including
-  # the DB instance (e.g. drupaldb). Must be unique for this region. May contain
-  # only lowercase alphanumeric characters, hyphens, underscores, periods, and
-  # spaces.
+  # The name used to namespace all resources created by these templates,
+  # including the DB instance (e.g. drupaldb). Must be unique for this region.
+  # May contain only lowercase alphanumeric characters, hyphens, underscores,
+  # periods, and spaces.
   name = <string>
 
   # The port the DB will listen on (e.g. 3306)
   port = <number>
 
   # A list of subnet ids where the database should be deployed. In the standard
-  # Gruntwork VPC setup, these should be the private persistence subnet ids. This is
-  # ignored if create_subnet_group=false.
+  # Gruntwork VPC setup, these should be the private persistence subnet ids.
+  # This is ignored if create_subnet_group=false.
   subnet_ids = <list(string)>
 
   # The id of the VPC in which this DB should be deployed.
@@ -139,49 +140,53 @@ module "rds" {
   # List of IDs of AWS Security Groups to attach to the primary RDS instance.
   additional_primary_instance_security_group_ids = []
 
-  # List of IDs of AWS Security Groups to attach to the read replica RDS instance.
+  # List of IDs of AWS Security Groups to attach to the read replica RDS
+  # instance.
   additional_read_replica_instance_security_group_ids = []
 
-  # The amount of storage space the DB should use, in GB. If max_allocated_storage
-  # is configured, this argument represents the initial storage allocation and
-  # differences from the configuration will be ignored automatically when Storage
-  # Autoscaling occurs. Required unless var.replicate_source_db is set.
+  # The amount of storage space the DB should use, in GB. If
+  # max_allocated_storage is configured, this argument represents the initial
+  # storage allocation and differences from the configuration will be ignored
+  # automatically when Storage Autoscaling occurs. Required unless
+  # var.replicate_source_db is set.
   allocated_storage = null
 
-  # A list of CIDR-formatted IP address ranges that can connect to this DB. Should
-  # typically be the CIDR blocks of the private app subnet in this VPC plus the
-  # private subnet in the mgmt VPC.
+  # A list of CIDR-formatted IP address ranges that can connect to this DB.
+  # Should typically be the CIDR blocks of the private app subnet in this VPC
+  # plus the private subnet in the mgmt VPC.
   allow_connections_from_cidr_blocks = []
 
   # A list of CIDR-formatted IP address ranges that can connect to read replica
-  # instances. If not set read replica instances will use the same security group as
-  # master instance.
+  # instances. If not set read replica instances will use the same security
+  # group as master instance.
   allow_connections_from_cidr_blocks_to_read_replicas = []
 
   # A list of Security Groups that can connect to this DB.
   allow_connections_from_security_groups = []
 
-  # A list of Security Groups that can connect to read replica instances. If not set
-  # read replica instances will use the same security group as master instance.
+  # A list of Security Groups that can connect to read replica instances. If not
+  # set read replica instances will use the same security group as master
+  # instance.
   allow_connections_from_security_groups_to_read_replicas = []
 
   # Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be
-  # permitted. Note that these updates must always be manually performed and will
-  # never automatically applied.
+  # permitted. Note that these updates must always be manually performed and
+  # will never automatically applied.
   allow_major_version_upgrade = true
 
-  # The availability zones within which it should be possible to spin up replicas
+  # The availability zones within which it should be possible to spin up
+  # replicas
   allowed_replica_zones = []
 
-  # Specifies whether any cluster modifications are applied immediately, or during
-  # the next maintenance window. Note that cluster modifications may cause degraded
-  # performance or downtime.
+  # Specifies whether any cluster modifications are applied immediately, or
+  # during the next maintenance window. Note that cluster modifications may
+  # cause degraded performance or downtime.
   apply_immediately = false
 
   # Indicates that minor engine upgrades will be applied automatically to the DB
   # instance during the maintenance window. If set to true, you should set
-  # var.engine_version to MAJOR.MINOR and omit the .PATCH at the end (e.g., use 5.7
-  # and not 5.7.11); otherwise, you'll get Terraform state drift. See
+  # var.engine_version to MAJOR.MINOR and omit the .PATCH at the end (e.g., use
+  # 5.7 and not 5.7.11); otherwise, you'll get Terraform state drift. See
   # https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version
   # for more details.
   auto_minor_version_upgrade = true
@@ -190,32 +195,35 @@ module "rds" {
   # 'Security group for the var.name DB' if not specified.
   aws_db_security_group_description = null
 
-  # The name of the aws_db_security_group that is created. Defaults to var.name if
-  # not specified.
+  # The name of the aws_db_security_group that is created. Defaults to var.name
+  # if not specified.
   aws_db_security_group_name = null
 
-  # The description of the aws_db_subnet_group that is created. Defaults to 'Subnet
-  # group for the var.name DB' if not specified.
+  # The description of the aws_db_subnet_group that is created. Defaults to
+  # 'Subnet group for the var.name DB' if not specified.
   aws_db_subnet_group_description = null
 
-  # The name of the aws_db_subnet_group that is created, or an existing one to use
-  # if create_subnet_group is false. Defaults to var.name if not specified.
+  # The name of the aws_db_subnet_group that is created, or an existing one to
+  # use if create_subnet_group is false. Defaults to var.name if not specified.
   aws_db_subnet_group_name = null
 
-  # How many days to keep backup snapshots around before cleaning them up. Must be 1
-  # or greater to support read replicas. 0 means disable automated backups.
+  # How many days to keep backup snapshots around before cleaning them up. Must
+  # be 1 or greater to support read replicas. 0 means disable automated backups.
   backup_retention_period = 21
 
   # The daily time range during which automated backups are created (e.g.
-  # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs.
+  # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup
+  # runs.
   backup_window = "06:00-07:00"
 
-  # The Certificate Authority (CA) certificates bundle to use on the RDS instance.
+  # The Certificate Authority (CA) certificates bundle to use on the RDS
+  # instance.
   ca_cert_identifier = null
 
   # The character set name to use for DB encoding in Oracle and Microsoft SQL
-  # instances (collation). This must be null for all other engine types. Note that
-  # this is only relevant at create time - it can not be changed after creation.
+  # instances (collation). This must be null for all other engine types. Note
+  # that this is only relevant at create time - it can not be changed after
+  # creation.
   character_set_name = null
 
   # Copy all the RDS instance tags to snapshots. Default is false.
@@ -228,20 +236,20 @@ module "rds" {
   # Timeout for DB creating
   creating_timeout = "40m"
 
-  # A map of custom tags to apply to the RDS Instance and the Security Group created
-  # for it. The key is the tag name and the value is the tag value.
+  # A map of custom tags to apply to the RDS Instance and the Security Group
+  # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do not
-  # provide a name, Amazon RDS will not create a database in the DB cluster you are
-  # creating.
+  # The name for your database of up to 8 alpha-numeric characters. If you do
+  # not provide a name, Amazon RDS will not create a database in the DB cluster
+  # you are creating.
   db_name = null
 
   # A map of the default license to use for each supported RDS engine.
   default_license_models = {"mariadb":"general-public-license","mysql":"general-public-license","oracle-ee":"bring-your-own-license","oracle-se":"bring-your-own-license","oracle-se1":"bring-your-own-license","oracle-se2":"bring-your-own-license","postgres":"postgresql-license","sqlserver-ee":"license-included","sqlserver-ex":"license-included","sqlserver-se":"license-included","sqlserver-web":"license-included"}
 
-  # Specifies whether to remove automated backups immediately after the DB instance
-  # is deleted
+  # Specifies whether to remove automated backups immediately after the DB
+  # instance is deleted
   delete_automated_backups = true
 
   # Timeout for DB deleting
@@ -252,33 +260,26 @@ module "rds" {
   deletion_protection = false
 
   # List of log types to enable for exporting to CloudWatch logs. If omitted, no
-  # logs will be exported. Valid values (depending on engine): alert, audit, error,
-  # general, listener, slowquery, trace, postgresql (PostgreSQL) and upgrade
-  # (PostgreSQL).
+  # logs will be exported. Valid values (depending on engine): alert, audit,
+  # error, general, listener, slowquery, trace, postgresql (PostgreSQL) and
+  # upgrade (PostgreSQL).
   enabled_cloudwatch_logs_exports = []
 
-  # The name of the final_snapshot_identifier. Defaults to var.name-final-snapshot
-  # if not specified.
+  # The name of the final_snapshot_identifier. Defaults to
+  # var.name-final-snapshot if not specified.
   final_snapshot_name = null
 
-  # Specifies whether IAM database authentication is enabled. This option is only
-  # available for MySQL and PostgreSQL engines.
+  # Specifies whether IAM database authentication is enabled. This option is
+  # only available for MySQL and PostgreSQL engines.
   iam_database_authentication_enabled = null
 
-  # Creates an instance that disables terraform from updating the master_password. 
-  # Useful when managing secrets outside of terraform (ex. using AWS Secrets Manager
-  # Rotations).  Note changing this value will switch the db instance resource.  To
-  # avoid deleting your old database and creating a new one, you will need to run
-  # `terraform state mv` when changing this variable
-  ignore_password_changes = false
-
-  # The amount of provisioned IOPS for the primary instance. Setting this implies a
-  # storage_type of 'io1','io2, or 'gp3'. Set to 0 to disable.
+  # The amount of provisioned IOPS for the primary instance. Setting this
+  # implies a storage_type of 'io1','io2, or 'gp3'. Set to 0 to disable.
   iops = 0
 
-  # The ARN of a KMS key that should be used to encrypt data on disk. Only used if
-  # var.storage_encrypted is true. If you leave this blank, the default RDS KMS key
-  # for the account will be used.
+  # The ARN of a KMS key that should be used to encrypt data on disk. Only used
+  # if var.storage_encrypted is true. If you leave this blank, the default RDS
+  # KMS key for the account will be used.
   kms_key_arn = null
 
   # The license model to use for this DB. Check the docs for your RDS DB for
@@ -286,58 +287,69 @@ module "rds" {
   # postgresql-license, license-included, bring-your-own-license.
   license_model = null
 
-  # The weekly day and time range during which system maintenance can occur (e.g.
-  # wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may
-  # even be a downtime during maintenance windows.
+  # The weekly day and time range during which system maintenance can occur
+  # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
+  # there may even be a downtime during maintenance windows.
   maintenance_window = "sun:07:00-sun:08:00"
 
-  # The password for the master user. If var.snapshot_identifier is non-empty, this
-  # value is ignored. Required unless var.replicate_source_db is set.
+  # Set to true to allow RDS to manage the master user password in Secrets
+  # Manager. Cannot be set if password is provided.
+  manage_master_user_password = null
+
+  # The password for the master user. If var.snapshot_identifier is non-empty,
+  # this value is ignored. Required unless var.replicate_source_db is set.
   master_password = null
+
+  # The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
+  # ARN, or alias name for the KMS key. To use a KMS key in a different Amazon
+  # Web Services account, specify the key ARN or alias ARN. If not specified,
+  # the default KMS key for your Amazon Web Services account is used.
+  master_user_secret_kms_key_id = null
 
   # The username for the master user. Required unless var.replicate_source_db is
   # set.
   master_username = null
 
-  # When configured, the upper limit to which Amazon RDS can automatically scale the
-  # storage of the DB instance. Configuring this will automatically ignore
+  # When configured, the upper limit to which Amazon RDS can automatically scale
+  # the storage of the DB instance. Configuring this will automatically ignore
   # differences to allocated_storage. Must be greater than or equal to
   # allocated_storage or 0 to disable Storage Autoscaling.
   max_allocated_storage = 0
 
-  # The interval, in seconds, between points when Enhanced Monitoring metrics are
-  # collected for the DB instance. To disable collecting Enhanced Monitoring
-  # metrics, specify 0. Valid Values: 0, 1, 5, 10, 15, 30, 60. Enhanced Monitoring
-  # metrics are useful when you want to see how different processes or threads on a
-  # DB instance use the CPU.
+  # The interval, in seconds, between points when Enhanced Monitoring metrics
+  # are collected for the DB instance. To disable collecting Enhanced Monitoring
+  # metrics, specify 0. Valid Values: 0, 1, 5, 10, 15, 30, 60. Enhanced
+  # Monitoring metrics are useful when you want to see how different processes
+  # or threads on a DB instance use the CPU.
   monitoring_interval = 0
 
-  # The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to
-  # CloudWatch Logs. If monitoring_interval is greater than 0, but
-  # monitoring_role_arn is let as an empty string, a default IAM role that allows
-  # enhanced monitoring will be created.
+  # The ARN for the IAM role that permits RDS to send enhanced monitoring
+  # metrics to CloudWatch Logs. If monitoring_interval is greater than 0, but
+  # monitoring_role_arn is let as an empty string, a default IAM role that
+  # allows enhanced monitoring will be created.
   monitoring_role_arn = null
 
-  # Optionally add a path to the IAM monitoring role. If left blank, it will default
-  # to just /.
+  # Optionally add a path to the IAM monitoring role. If left blank, it will
+  # default to just /.
   monitoring_role_arn_path = "/"
 
   # The name of the enhanced_monitoring_role that is created. Defaults to
   # var.name-monitoring-role if not specified.
   monitoring_role_name = null
 
-  # Specifies if a standby instance should be deployed in another availability zone.
-  # If the primary fails, this instance will automatically take over.
+  # Specifies if a standby instance should be deployed in another availability
+  # zone. If the primary fails, this instance will automatically take over.
   multi_az = true
 
-  # The national character set is used in the NCHAR, NVARCHAR2, and NCLOB data types
-  # for Oracle instances. This must be null for all other engine types. Note that
-  # this is only relevant at create time - it can not be changed after creation.
+  # The national character set is used in the NCHAR, NVARCHAR2, and NCLOB data
+  # types for Oracle instances. This must be null for all other engine types.
+  # Note that this is only relevant at create time - it can not be changed after
+  # creation.
   nchar_character_set_name = null
 
   # The number of read replicas to create. RDS will asynchronously replicate all
-  # data from the master to these replicas, which you can use to horizontally scale
-  # reads traffic.
+  # data from the master to these replicas, which you can use to horizontally
+  # scale reads traffic.
   num_read_replicas = 0
 
   # Name of a DB option group to associate.
@@ -346,63 +358,56 @@ module "rds" {
   # Name of a DB parameter group to associate.
   parameter_group_name = null
 
-  # Name of a DB parameter group to associate with read replica instances. Defaults
-  # to var.parameter_group_name if not set.
+  # Name of a DB parameter group to associate with read replica instances.
+  # Defaults to var.parameter_group_name if not set.
   parameter_group_name_for_read_replicas = null
 
-  # Specifies whether Performance Insights are enabled. Performance Insights can be
-  # enabled for specific versions of database engines. See
+  # Specifies whether Performance Insights are enabled. Performance Insights can
+  # be enabled for specific versions of database engines. See
   # https://aws.amazon.com/rds/performance-insights/ for more details.
   performance_insights_enabled = false
 
-  # The ARN for the KMS key to encrypt Performance Insights data. When specifying
-  # performance_insights_kms_key_id, performance_insights_enabled needs to be set to
-  # true. Once KMS key is set, it can never be changed. When set to `null` default
-  # aws/rds KMS for given region is used.
+  # The ARN for the KMS key to encrypt Performance Insights data. When
+  # specifying performance_insights_kms_key_id, performance_insights_enabled
+  # needs to be set to true. Once KMS key is set, it can never be changed. When
+  # set to `null` default aws/rds KMS for given region is used.
   performance_insights_kms_key_id = null
 
   # The amount of time in days to retain Performance Insights data. Either 7 (7
-  # days) or 731 (2 years). When specifying performance_insights_retention_period,
-  # performance_insights_enabled needs to be set to true. Defaults to `7`.
+  # days) or 731 (2 years). When specifying
+  # performance_insights_retention_period, performance_insights_enabled needs to
+  # be set to true. Defaults to `7`.
   performance_insights_retention_period = null
 
-  # The ARN of the policy that is used to set the permissions boundary for the role
-  # of enhanced monitoring role. This policy should be created outside of this
-  # module.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # role of enhanced monitoring role. This policy should be created outside of
+  # this module.
   permissions_boundary_arn = null
 
   # WARNING: - In nearly all cases a database should NOT be publicly accessible.
   # Only set this to true if you want the database open to the internet.
   publicly_accessible = false
 
-  # The amount of provisioned IOPS for read replicas. If null, the replica will use
-  # the same value as the primary, which is set in var.iops.
+  # The amount of provisioned IOPS for read replicas. If null, the replica will
+  # use the same value as the primary, which is set in var.iops.
   read_replica_iops = null
 
-  # The type of storage to use for read replicas. If null, the replica will use the
-  # same value as the primary, which is set in var.storage_type.
+  # The type of storage to use for read replicas. If null, the replica will use
+  # the same value as the primary, which is set in var.storage_type.
   read_replica_storage_type = null
 
   # How many days to keep backup snapshots around before cleaning them up on the
-  # read replicas. Must be 1 or greater to support read replicas. 0 means disable
-  # automated backups.
+  # read replicas. Must be 1 or greater to support read replicas. 0 means
+  # disable automated backups.
   replica_backup_retention_period = 0
 
-  # Specifies that this resource is a Replicate database, and to use this value as
-  # the source database. This correlates to the identifier of another Amazon RDS
-  # Database to replicate (if replicating within a single region) or ARN of the
-  # Amazon RDS Database to replicate (if replicating cross-region). Note that if you
-  # are creating a cross-region replica of an encrypted database you will also need
-  # to specify a kms_key_arn.
-  replicate_source_db = null
-
   # Determines whether a final DB snapshot is created before the DB instance is
-  # deleted. Be very careful setting this to true; if you do, and you delete this DB
-  # instance, you will not have any backups of the data!
+  # deleted. Be very careful setting this to true; if you do, and you delete
+  # this DB instance, you will not have any backups of the data!
   skip_final_snapshot = false
 
-  # If non-null, the RDS Instance will be restored from the given Snapshot ID. This
-  # is the Snapshot ID you'd find in the RDS console, e.g:
+  # If non-null, the RDS Instance will be restored from the given Snapshot ID.
+  # This is the Snapshot ID you'd find in the RDS console, e.g:
   # rds:production-2015-06-26-06-05.
   snapshot_identifier = null
 
@@ -410,15 +415,14 @@ module "rds" {
   storage_encrypted = true
 
   # The storage throughput value for the DB instance. Can only be set when
-  # var.storage_type is 'gp3'. Cannot be specified if the allocated_storage value is
-  # below a per-engine threshold. See the RDS User Guide:
-  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-sto
-  # age
+  # var.storage_type is 'gp3'. Cannot be specified if the allocated_storage
+  # value is below a per-engine threshold. See the RDS User Guide:
+  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage
   storage_throughput = null
 
-  # The type of storage to use for the primary instance. Must be one of 'standard'
-  # (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose SSD), io1'
-  # (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+  # The type of storage to use for the primary instance. Must be one of
+  # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
+  # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
   storage_type = "gp2"
 
   # Timeout for DB updating
@@ -439,7 +443,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.27.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.28.0"
 }
 
 inputs = {
@@ -448,8 +452,8 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The DB engine to use (e.g. mysql). Required unless var.replicate_source_db is
-  # set.
+  # The DB engine to use (e.g. mysql). Required unless var.replicate_source_db
+  # is set.
   engine = <string>
 
   # The version of var.engine to use (e.g. 5.7.11 for mysql). If
@@ -463,18 +467,18 @@ inputs = {
   # The instance type to use for the db (e.g. db.t2.micro)
   instance_type = <string>
 
-  # The name used to namespace all resources created by these templates, including
-  # the DB instance (e.g. drupaldb). Must be unique for this region. May contain
-  # only lowercase alphanumeric characters, hyphens, underscores, periods, and
-  # spaces.
+  # The name used to namespace all resources created by these templates,
+  # including the DB instance (e.g. drupaldb). Must be unique for this region.
+  # May contain only lowercase alphanumeric characters, hyphens, underscores,
+  # periods, and spaces.
   name = <string>
 
   # The port the DB will listen on (e.g. 3306)
   port = <number>
 
   # A list of subnet ids where the database should be deployed. In the standard
-  # Gruntwork VPC setup, these should be the private persistence subnet ids. This is
-  # ignored if create_subnet_group=false.
+  # Gruntwork VPC setup, these should be the private persistence subnet ids.
+  # This is ignored if create_subnet_group=false.
   subnet_ids = <list(string)>
 
   # The id of the VPC in which this DB should be deployed.
@@ -487,49 +491,53 @@ inputs = {
   # List of IDs of AWS Security Groups to attach to the primary RDS instance.
   additional_primary_instance_security_group_ids = []
 
-  # List of IDs of AWS Security Groups to attach to the read replica RDS instance.
+  # List of IDs of AWS Security Groups to attach to the read replica RDS
+  # instance.
   additional_read_replica_instance_security_group_ids = []
 
-  # The amount of storage space the DB should use, in GB. If max_allocated_storage
-  # is configured, this argument represents the initial storage allocation and
-  # differences from the configuration will be ignored automatically when Storage
-  # Autoscaling occurs. Required unless var.replicate_source_db is set.
+  # The amount of storage space the DB should use, in GB. If
+  # max_allocated_storage is configured, this argument represents the initial
+  # storage allocation and differences from the configuration will be ignored
+  # automatically when Storage Autoscaling occurs. Required unless
+  # var.replicate_source_db is set.
   allocated_storage = null
 
-  # A list of CIDR-formatted IP address ranges that can connect to this DB. Should
-  # typically be the CIDR blocks of the private app subnet in this VPC plus the
-  # private subnet in the mgmt VPC.
+  # A list of CIDR-formatted IP address ranges that can connect to this DB.
+  # Should typically be the CIDR blocks of the private app subnet in this VPC
+  # plus the private subnet in the mgmt VPC.
   allow_connections_from_cidr_blocks = []
 
   # A list of CIDR-formatted IP address ranges that can connect to read replica
-  # instances. If not set read replica instances will use the same security group as
-  # master instance.
+  # instances. If not set read replica instances will use the same security
+  # group as master instance.
   allow_connections_from_cidr_blocks_to_read_replicas = []
 
   # A list of Security Groups that can connect to this DB.
   allow_connections_from_security_groups = []
 
-  # A list of Security Groups that can connect to read replica instances. If not set
-  # read replica instances will use the same security group as master instance.
+  # A list of Security Groups that can connect to read replica instances. If not
+  # set read replica instances will use the same security group as master
+  # instance.
   allow_connections_from_security_groups_to_read_replicas = []
 
   # Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be
-  # permitted. Note that these updates must always be manually performed and will
-  # never automatically applied.
+  # permitted. Note that these updates must always be manually performed and
+  # will never automatically applied.
   allow_major_version_upgrade = true
 
-  # The availability zones within which it should be possible to spin up replicas
+  # The availability zones within which it should be possible to spin up
+  # replicas
   allowed_replica_zones = []
 
-  # Specifies whether any cluster modifications are applied immediately, or during
-  # the next maintenance window. Note that cluster modifications may cause degraded
-  # performance or downtime.
+  # Specifies whether any cluster modifications are applied immediately, or
+  # during the next maintenance window. Note that cluster modifications may
+  # cause degraded performance or downtime.
   apply_immediately = false
 
   # Indicates that minor engine upgrades will be applied automatically to the DB
   # instance during the maintenance window. If set to true, you should set
-  # var.engine_version to MAJOR.MINOR and omit the .PATCH at the end (e.g., use 5.7
-  # and not 5.7.11); otherwise, you'll get Terraform state drift. See
+  # var.engine_version to MAJOR.MINOR and omit the .PATCH at the end (e.g., use
+  # 5.7 and not 5.7.11); otherwise, you'll get Terraform state drift. See
   # https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version
   # for more details.
   auto_minor_version_upgrade = true
@@ -538,32 +546,35 @@ inputs = {
   # 'Security group for the var.name DB' if not specified.
   aws_db_security_group_description = null
 
-  # The name of the aws_db_security_group that is created. Defaults to var.name if
-  # not specified.
+  # The name of the aws_db_security_group that is created. Defaults to var.name
+  # if not specified.
   aws_db_security_group_name = null
 
-  # The description of the aws_db_subnet_group that is created. Defaults to 'Subnet
-  # group for the var.name DB' if not specified.
+  # The description of the aws_db_subnet_group that is created. Defaults to
+  # 'Subnet group for the var.name DB' if not specified.
   aws_db_subnet_group_description = null
 
-  # The name of the aws_db_subnet_group that is created, or an existing one to use
-  # if create_subnet_group is false. Defaults to var.name if not specified.
+  # The name of the aws_db_subnet_group that is created, or an existing one to
+  # use if create_subnet_group is false. Defaults to var.name if not specified.
   aws_db_subnet_group_name = null
 
-  # How many days to keep backup snapshots around before cleaning them up. Must be 1
-  # or greater to support read replicas. 0 means disable automated backups.
+  # How many days to keep backup snapshots around before cleaning them up. Must
+  # be 1 or greater to support read replicas. 0 means disable automated backups.
   backup_retention_period = 21
 
   # The daily time range during which automated backups are created (e.g.
-  # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs.
+  # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup
+  # runs.
   backup_window = "06:00-07:00"
 
-  # The Certificate Authority (CA) certificates bundle to use on the RDS instance.
+  # The Certificate Authority (CA) certificates bundle to use on the RDS
+  # instance.
   ca_cert_identifier = null
 
   # The character set name to use for DB encoding in Oracle and Microsoft SQL
-  # instances (collation). This must be null for all other engine types. Note that
-  # this is only relevant at create time - it can not be changed after creation.
+  # instances (collation). This must be null for all other engine types. Note
+  # that this is only relevant at create time - it can not be changed after
+  # creation.
   character_set_name = null
 
   # Copy all the RDS instance tags to snapshots. Default is false.
@@ -576,20 +587,20 @@ inputs = {
   # Timeout for DB creating
   creating_timeout = "40m"
 
-  # A map of custom tags to apply to the RDS Instance and the Security Group created
-  # for it. The key is the tag name and the value is the tag value.
+  # A map of custom tags to apply to the RDS Instance and the Security Group
+  # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do not
-  # provide a name, Amazon RDS will not create a database in the DB cluster you are
-  # creating.
+  # The name for your database of up to 8 alpha-numeric characters. If you do
+  # not provide a name, Amazon RDS will not create a database in the DB cluster
+  # you are creating.
   db_name = null
 
   # A map of the default license to use for each supported RDS engine.
   default_license_models = {"mariadb":"general-public-license","mysql":"general-public-license","oracle-ee":"bring-your-own-license","oracle-se":"bring-your-own-license","oracle-se1":"bring-your-own-license","oracle-se2":"bring-your-own-license","postgres":"postgresql-license","sqlserver-ee":"license-included","sqlserver-ex":"license-included","sqlserver-se":"license-included","sqlserver-web":"license-included"}
 
-  # Specifies whether to remove automated backups immediately after the DB instance
-  # is deleted
+  # Specifies whether to remove automated backups immediately after the DB
+  # instance is deleted
   delete_automated_backups = true
 
   # Timeout for DB deleting
@@ -600,33 +611,26 @@ inputs = {
   deletion_protection = false
 
   # List of log types to enable for exporting to CloudWatch logs. If omitted, no
-  # logs will be exported. Valid values (depending on engine): alert, audit, error,
-  # general, listener, slowquery, trace, postgresql (PostgreSQL) and upgrade
-  # (PostgreSQL).
+  # logs will be exported. Valid values (depending on engine): alert, audit,
+  # error, general, listener, slowquery, trace, postgresql (PostgreSQL) and
+  # upgrade (PostgreSQL).
   enabled_cloudwatch_logs_exports = []
 
-  # The name of the final_snapshot_identifier. Defaults to var.name-final-snapshot
-  # if not specified.
+  # The name of the final_snapshot_identifier. Defaults to
+  # var.name-final-snapshot if not specified.
   final_snapshot_name = null
 
-  # Specifies whether IAM database authentication is enabled. This option is only
-  # available for MySQL and PostgreSQL engines.
+  # Specifies whether IAM database authentication is enabled. This option is
+  # only available for MySQL and PostgreSQL engines.
   iam_database_authentication_enabled = null
 
-  # Creates an instance that disables terraform from updating the master_password. 
-  # Useful when managing secrets outside of terraform (ex. using AWS Secrets Manager
-  # Rotations).  Note changing this value will switch the db instance resource.  To
-  # avoid deleting your old database and creating a new one, you will need to run
-  # `terraform state mv` when changing this variable
-  ignore_password_changes = false
-
-  # The amount of provisioned IOPS for the primary instance. Setting this implies a
-  # storage_type of 'io1','io2, or 'gp3'. Set to 0 to disable.
+  # The amount of provisioned IOPS for the primary instance. Setting this
+  # implies a storage_type of 'io1','io2, or 'gp3'. Set to 0 to disable.
   iops = 0
 
-  # The ARN of a KMS key that should be used to encrypt data on disk. Only used if
-  # var.storage_encrypted is true. If you leave this blank, the default RDS KMS key
-  # for the account will be used.
+  # The ARN of a KMS key that should be used to encrypt data on disk. Only used
+  # if var.storage_encrypted is true. If you leave this blank, the default RDS
+  # KMS key for the account will be used.
   kms_key_arn = null
 
   # The license model to use for this DB. Check the docs for your RDS DB for
@@ -634,58 +638,69 @@ inputs = {
   # postgresql-license, license-included, bring-your-own-license.
   license_model = null
 
-  # The weekly day and time range during which system maintenance can occur (e.g.
-  # wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may
-  # even be a downtime during maintenance windows.
+  # The weekly day and time range during which system maintenance can occur
+  # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
+  # there may even be a downtime during maintenance windows.
   maintenance_window = "sun:07:00-sun:08:00"
 
-  # The password for the master user. If var.snapshot_identifier is non-empty, this
-  # value is ignored. Required unless var.replicate_source_db is set.
+  # Set to true to allow RDS to manage the master user password in Secrets
+  # Manager. Cannot be set if password is provided.
+  manage_master_user_password = null
+
+  # The password for the master user. If var.snapshot_identifier is non-empty,
+  # this value is ignored. Required unless var.replicate_source_db is set.
   master_password = null
+
+  # The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
+  # ARN, or alias name for the KMS key. To use a KMS key in a different Amazon
+  # Web Services account, specify the key ARN or alias ARN. If not specified,
+  # the default KMS key for your Amazon Web Services account is used.
+  master_user_secret_kms_key_id = null
 
   # The username for the master user. Required unless var.replicate_source_db is
   # set.
   master_username = null
 
-  # When configured, the upper limit to which Amazon RDS can automatically scale the
-  # storage of the DB instance. Configuring this will automatically ignore
+  # When configured, the upper limit to which Amazon RDS can automatically scale
+  # the storage of the DB instance. Configuring this will automatically ignore
   # differences to allocated_storage. Must be greater than or equal to
   # allocated_storage or 0 to disable Storage Autoscaling.
   max_allocated_storage = 0
 
-  # The interval, in seconds, between points when Enhanced Monitoring metrics are
-  # collected for the DB instance. To disable collecting Enhanced Monitoring
-  # metrics, specify 0. Valid Values: 0, 1, 5, 10, 15, 30, 60. Enhanced Monitoring
-  # metrics are useful when you want to see how different processes or threads on a
-  # DB instance use the CPU.
+  # The interval, in seconds, between points when Enhanced Monitoring metrics
+  # are collected for the DB instance. To disable collecting Enhanced Monitoring
+  # metrics, specify 0. Valid Values: 0, 1, 5, 10, 15, 30, 60. Enhanced
+  # Monitoring metrics are useful when you want to see how different processes
+  # or threads on a DB instance use the CPU.
   monitoring_interval = 0
 
-  # The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to
-  # CloudWatch Logs. If monitoring_interval is greater than 0, but
-  # monitoring_role_arn is let as an empty string, a default IAM role that allows
-  # enhanced monitoring will be created.
+  # The ARN for the IAM role that permits RDS to send enhanced monitoring
+  # metrics to CloudWatch Logs. If monitoring_interval is greater than 0, but
+  # monitoring_role_arn is let as an empty string, a default IAM role that
+  # allows enhanced monitoring will be created.
   monitoring_role_arn = null
 
-  # Optionally add a path to the IAM monitoring role. If left blank, it will default
-  # to just /.
+  # Optionally add a path to the IAM monitoring role. If left blank, it will
+  # default to just /.
   monitoring_role_arn_path = "/"
 
   # The name of the enhanced_monitoring_role that is created. Defaults to
   # var.name-monitoring-role if not specified.
   monitoring_role_name = null
 
-  # Specifies if a standby instance should be deployed in another availability zone.
-  # If the primary fails, this instance will automatically take over.
+  # Specifies if a standby instance should be deployed in another availability
+  # zone. If the primary fails, this instance will automatically take over.
   multi_az = true
 
-  # The national character set is used in the NCHAR, NVARCHAR2, and NCLOB data types
-  # for Oracle instances. This must be null for all other engine types. Note that
-  # this is only relevant at create time - it can not be changed after creation.
+  # The national character set is used in the NCHAR, NVARCHAR2, and NCLOB data
+  # types for Oracle instances. This must be null for all other engine types.
+  # Note that this is only relevant at create time - it can not be changed after
+  # creation.
   nchar_character_set_name = null
 
   # The number of read replicas to create. RDS will asynchronously replicate all
-  # data from the master to these replicas, which you can use to horizontally scale
-  # reads traffic.
+  # data from the master to these replicas, which you can use to horizontally
+  # scale reads traffic.
   num_read_replicas = 0
 
   # Name of a DB option group to associate.
@@ -694,63 +709,56 @@ inputs = {
   # Name of a DB parameter group to associate.
   parameter_group_name = null
 
-  # Name of a DB parameter group to associate with read replica instances. Defaults
-  # to var.parameter_group_name if not set.
+  # Name of a DB parameter group to associate with read replica instances.
+  # Defaults to var.parameter_group_name if not set.
   parameter_group_name_for_read_replicas = null
 
-  # Specifies whether Performance Insights are enabled. Performance Insights can be
-  # enabled for specific versions of database engines. See
+  # Specifies whether Performance Insights are enabled. Performance Insights can
+  # be enabled for specific versions of database engines. See
   # https://aws.amazon.com/rds/performance-insights/ for more details.
   performance_insights_enabled = false
 
-  # The ARN for the KMS key to encrypt Performance Insights data. When specifying
-  # performance_insights_kms_key_id, performance_insights_enabled needs to be set to
-  # true. Once KMS key is set, it can never be changed. When set to `null` default
-  # aws/rds KMS for given region is used.
+  # The ARN for the KMS key to encrypt Performance Insights data. When
+  # specifying performance_insights_kms_key_id, performance_insights_enabled
+  # needs to be set to true. Once KMS key is set, it can never be changed. When
+  # set to `null` default aws/rds KMS for given region is used.
   performance_insights_kms_key_id = null
 
   # The amount of time in days to retain Performance Insights data. Either 7 (7
-  # days) or 731 (2 years). When specifying performance_insights_retention_period,
-  # performance_insights_enabled needs to be set to true. Defaults to `7`.
+  # days) or 731 (2 years). When specifying
+  # performance_insights_retention_period, performance_insights_enabled needs to
+  # be set to true. Defaults to `7`.
   performance_insights_retention_period = null
 
-  # The ARN of the policy that is used to set the permissions boundary for the role
-  # of enhanced monitoring role. This policy should be created outside of this
-  # module.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # role of enhanced monitoring role. This policy should be created outside of
+  # this module.
   permissions_boundary_arn = null
 
   # WARNING: - In nearly all cases a database should NOT be publicly accessible.
   # Only set this to true if you want the database open to the internet.
   publicly_accessible = false
 
-  # The amount of provisioned IOPS for read replicas. If null, the replica will use
-  # the same value as the primary, which is set in var.iops.
+  # The amount of provisioned IOPS for read replicas. If null, the replica will
+  # use the same value as the primary, which is set in var.iops.
   read_replica_iops = null
 
-  # The type of storage to use for read replicas. If null, the replica will use the
-  # same value as the primary, which is set in var.storage_type.
+  # The type of storage to use for read replicas. If null, the replica will use
+  # the same value as the primary, which is set in var.storage_type.
   read_replica_storage_type = null
 
   # How many days to keep backup snapshots around before cleaning them up on the
-  # read replicas. Must be 1 or greater to support read replicas. 0 means disable
-  # automated backups.
+  # read replicas. Must be 1 or greater to support read replicas. 0 means
+  # disable automated backups.
   replica_backup_retention_period = 0
 
-  # Specifies that this resource is a Replicate database, and to use this value as
-  # the source database. This correlates to the identifier of another Amazon RDS
-  # Database to replicate (if replicating within a single region) or ARN of the
-  # Amazon RDS Database to replicate (if replicating cross-region). Note that if you
-  # are creating a cross-region replica of an encrypted database you will also need
-  # to specify a kms_key_arn.
-  replicate_source_db = null
-
   # Determines whether a final DB snapshot is created before the DB instance is
-  # deleted. Be very careful setting this to true; if you do, and you delete this DB
-  # instance, you will not have any backups of the data!
+  # deleted. Be very careful setting this to true; if you do, and you delete
+  # this DB instance, you will not have any backups of the data!
   skip_final_snapshot = false
 
-  # If non-null, the RDS Instance will be restored from the given Snapshot ID. This
-  # is the Snapshot ID you'd find in the RDS console, e.g:
+  # If non-null, the RDS Instance will be restored from the given Snapshot ID.
+  # This is the Snapshot ID you'd find in the RDS console, e.g:
   # rds:production-2015-06-26-06-05.
   snapshot_identifier = null
 
@@ -758,15 +766,14 @@ inputs = {
   storage_encrypted = true
 
   # The storage throughput value for the DB instance. Can only be set when
-  # var.storage_type is 'gp3'. Cannot be specified if the allocated_storage value is
-  # below a per-engine threshold. See the RDS User Guide:
-  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-sto
-  # age
+  # var.storage_type is 'gp3'. Cannot be specified if the allocated_storage
+  # value is below a per-engine threshold. See the RDS User Guide:
+  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage
   storage_throughput = null
 
-  # The type of storage to use for the primary instance. Must be one of 'standard'
-  # (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose SSD), io1'
-  # (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+  # The type of storage to use for the primary instance. Must be one of
+  # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
+  # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
   storage_type = "gp2"
 
   # Timeout for DB updating
@@ -1145,15 +1152,6 @@ Specifies whether IAM database authentication is enabled. This option is only av
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="ignore_password_changes" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Creates an instance that disables terraform from updating the master_password.  Useful when managing secrets outside of terraform (ex. using AWS Secrets Manager Rotations).  Note changing this value will switch the db instance resource.  To avoid deleting your old database and creating a new one, you will need to run `terraform state mv` when changing this variable
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="iops" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1190,10 +1188,28 @@ The weekly day and time range during which system maintenance can occur (e.g. we
 <HclListItemDefaultValue defaultValue="&quot;sun:07:00-sun:08:00&quot;"/>
 </HclListItem>
 
+<HclListItem name="manage_master_user_password" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to allow RDS to manage the master user password in Secrets Manager. Cannot be set if password is provided.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="master_password" requirement="optional" type="string">
 <HclListItemDescription>
 
 The password for the master user. If <a href="#snapshot_identifier"><code>snapshot_identifier</code></a> is non-empty, this value is ignored. Required unless <a href="#replicate_source_db"><code>replicate_source_db</code></a> is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="master_user_secret_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Amazon Web Services KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the KMS key. To use a KMS key in a different Amazon Web Services account, specify the key ARN or alias ARN. If not specified, the default KMS key for your Amazon Web Services account is used.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1379,15 +1395,6 @@ How many days to keep backup snapshots around before cleaning them up on the rea
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
-<HclListItem name="replicate_source_db" requirement="optional" type="string">
-<HclListItemDescription>
-
-Specifies that this resource is a Replicate database, and to use this value as the source database. This correlates to the identifier of another Amazon RDS Database to replicate (if replicating within a single region) or ARN of the Amazon RDS Database to replicate (if replicating cross-region). Note that if you are creating a cross-region replica of an encrypted database you will also need to specify a kms_key_arn.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1451,9 +1458,6 @@ Timeout for DB updating
 <HclListItem name="name">
 </HclListItem>
 
-<HclListItem name="parameter_group_name">
-</HclListItem>
-
 <HclListItem name="port">
 </HclListItem>
 
@@ -1491,11 +1495,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/rds/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/rds/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "19b34dbd2878aaa65f6e41bbdd00d21e"
+  "hash": "d97c10ab331d25d92d14e76dda1fa61c"
 }
 ##DOCS-SOURCER-END -->

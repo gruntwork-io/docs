@@ -1,6 +1,18 @@
 {
   "module": "keep-warm",
   "releases": {
+    "v0.21.12": {
+      "contains_changes": false
+    },
+    "v0.21.11": {
+      "contains_changes": true
+    },
+    "v0.21.10": {
+      "contains_changes": true
+    },
+    "v0.21.9": {
+      "contains_changes": false
+    },
     "v0.21.8": {
       "contains_changes": false
     },

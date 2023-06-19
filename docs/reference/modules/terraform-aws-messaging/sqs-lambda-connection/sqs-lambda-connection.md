@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="0.12.0" lastModifiedVersion="0.9.0"/>
+<VersionBadge repoTitle="AWS Messaging" version="0.12.1" lastModifiedVersion="0.9.0"/>
 
 # Simple Queuing Service (SQS) To Lambda Connection Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/sqs-lambda-connection" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs-lambda-connection" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.9.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -32,7 +32,7 @@ This module wraps the basics for using SQS to trigger a Lambda for processing
 
 module "sqs_lambda_connection" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs-lambda-connection?ref=v0.12.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs-lambda-connection?ref=v0.12.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -48,8 +48,8 @@ module "sqs_lambda_connection" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The largest number of records that Lambda will retrieve from your event source
-  # at the time of invocation. Defaults to 10 for SQS
+  # The largest number of records that Lambda will retrieve from your event
+  # source at the time of invocation. Defaults to 10 for SQS
   batch_size = 10
 
 }
@@ -67,7 +67,7 @@ module "sqs_lambda_connection" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs-lambda-connection?ref=v0.12.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs-lambda-connection?ref=v0.12.1"
 }
 
 inputs = {
@@ -86,8 +86,8 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The largest number of records that Lambda will retrieve from your event source
-  # at the time of invocation. Defaults to 10 for SQS
+  # The largest number of records that Lambda will retrieve from your event
+  # source at the time of invocation. Defaults to 10 for SQS
   batch_size = 10
 
 }
@@ -148,11 +148,11 @@ The largest number of records that Lambda will retrieve from your event source a
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/sqs-lambda-connection/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/sqs-lambda-connection/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.0/modules/sqs-lambda-connection/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs-lambda-connection/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs-lambda-connection/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs-lambda-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "11518cae98fdd35abfecdbe63c6ac309"
+  "hash": "9bfab4e1657246ab52c43cfa19b96bf7"
 }
 ##DOCS-SOURCER-END -->

@@ -9,25 +9,25 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Static Assets Modules" version="0.17.0" lastModifiedVersion="0.17.0"/>
+<VersionBadge repoTitle="Static Assets Modules" version="0.17.1" lastModifiedVersion="0.17.1"/>
 
 # S3 CloudFront Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.0/modules/s3-cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.1/modules/s3-cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.17.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.17.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module deploys a [CloudFront](https://aws.amazon.com/cloudfront/) distribution as a Content Distribution Network
 (CDN) in front of an [S3 bucket](https://aws.amazon.com/s3/). This reduces latency for your users, by caching your
 static content in servers around the world. It also allows you to use SSL with the static content in an S3 bucket.
 
-See the [s3-static-website module](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.0/modules/s3-static-website) for how to deploy static content in an S3 bucket.
+See the [s3-static-website module](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.1/modules/s3-static-website) for how to deploy static content in an S3 bucket.
 
 ## Quick Start
 
-*   See the [cloudfront-s3-public](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.0/examples/cloudfront-s3-public) and
-    [cloudfront-s3-private](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.0/examples/cloudfront-s3-private) examples for working sample code.
-*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.0/modules/s3-cloudfront/vars.tf) for all parameters you can set for this module.
+*   See the [cloudfront-s3-public](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.1/examples/cloudfront-s3-public) and
+    [cloudfront-s3-private](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.1/examples/cloudfront-s3-private) examples for working sample code.
+*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.1/modules/s3-cloudfront/vars.tf) for all parameters you can set for this module.
 
 ## Public vs private S3 buckets
 
@@ -130,7 +130,7 @@ most use cases, but is not particularly flexible. In particular, the limitations
 *   Only one default cache behavior is supported
     ([cache behaviors](https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#cache-behavior-arguments)
     is an inline block). You can control the default cache settings using a number of parameters, including
-    `cached_methods`, `default_ttl`, `min_ttl`, `max_ttl`, and many others (see [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.0/modules/s3-cloudfront/vars.tf) for the full list).
+    `cached_methods`, `default_ttl`, `min_ttl`, `max_ttl`, and many others (see [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.1/modules/s3-cloudfront/vars.tf) for the full list).
 
 *   Only two error responses are supported
     ([error responses](https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#custom-error-response-arguments)
@@ -162,7 +162,7 @@ into your own codebase, using it as a guide, and adding the tweaks you need.
 
 module "s_3_cloudfront" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-cloudfront?ref=v0.17.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-cloudfront?ref=v0.17.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -171,32 +171,32 @@ module "s_3_cloudfront" {
   # The name of the S3 bucket.
   bucket_name = <string>
 
-  # The default amount of time, in seconds, that an object is in a CloudFront cache
-  # before CloudFront forwards another request in the absence of an 'Cache-Control
-  # max-age' or 'Expires' header.
+  # The default amount of time, in seconds, that an object is in a CloudFront
+  # cache before CloudFront forwards another request in the absence of an
+  # 'Cache-Control max-age' or 'Expires' header.
   default_ttl = <number>
 
-  # The path that you want CloudFront to query on the origin server when an end user
-  # requests the root URL (e.g. index.html).
+  # The path that you want CloudFront to query on the origin server when an end
+  # user requests the root URL (e.g. index.html).
   index_document = <string>
 
-  # The maximum amount of time, in seconds, that an object is in a CloudFront cache
-  # before CloudFront forwards another request to your origin to determine whether
-  # the object has been updated. Only effective in the presence of 'Cache-Control
-  # max-age', 'Cache-Control s-maxage', and 'Expires' headers.
+  # The maximum amount of time, in seconds, that an object is in a CloudFront
+  # cache before CloudFront forwards another request to your origin to determine
+  # whether the object has been updated. Only effective in the presence of
+  # 'Cache-Control max-age', 'Cache-Control s-maxage', and 'Expires' headers.
   max_ttl = <number>
 
-  # The minimum amount of time that you want objects to stay in CloudFront caches
-  # before CloudFront queries your origin to see whether the object has been
-  # updated.
+  # The minimum amount of time that you want objects to stay in CloudFront
+  # caches before CloudFront queries your origin to see whether the object has
+  # been updated.
   min_ttl = <number>
 
   # Set to true if your S3 bucket is configured as a website and publicly
   # accessible. Set to false if it's a regular S3 bucket and only privately
   # accessible to CloudFront. If it's a public website, you can use all the S3
-  # website features (e.g. routing, error pages), but users can bypass CloudFront
-  # and talk to S3 directly. If it's a private S3 bucket, users can only reach it
-  # via CloudFront, but you don't get all the website features.
+  # website features (e.g. routing, error pages), but users can bypass
+  # CloudFront and talk to S3 directly. If it's a private S3 bucket, users can
+  # only reach it via CloudFront, but you don't get all the website features.
   s3_bucket_is_public_website = <string>
 
   # ----------------------------------------------------------------------------------------------------
@@ -210,8 +210,8 @@ module "s_3_cloudfront" {
   access_logs_bucket_suffix = "cloudfront-logs"
 
   # Set to true to enable versioning for the access logs S3 bucket. If enabled,
-  # instead of overriding objects, the S3 bucket will always create a new version of
-  # each object, so all the old values are retained.
+  # instead of overriding objects, the S3 bucket will always create a new
+  # version of each object, so all the old values are retained.
   access_logs_enable_versioning = false
 
   # How many days to keep access logs around for before deleting them.
@@ -219,38 +219,38 @@ module "s_3_cloudfront" {
 
   # The ARN of the AWS Certificate Manager certificate that you wish to use with
   # this distribution. The ACM certificate must be in us-east-1. You must set
-  # exactly one of var.use_cloudfront_default_certificate, var.acm_certificate_arn,
-  # or var.iam_certificate_id.
+  # exactly one of var.use_cloudfront_default_certificate,
+  # var.acm_certificate_arn, or var.iam_certificate_id.
   acm_certificate_arn = ""
 
-  # A Map with the bucket name as key and the additional information about region
-  # and v4_auth as values.
+  # A Map with the bucket name as key and the additional information about
+  # region and v4_auth as values.
   additional_bucket_information = {}
 
   # Controls which HTTP methods CloudFront will forward to the S3 bucket.
   allowed_methods = ["DELETE","GET","HEAD","OPTIONS","PATCH","POST","PUT"]
 
-  # Controls which HTTP methods CloudFront will forward to Origin Group. Currently
-  # only allows GET,HEAD, and OPTIONS
+  # Controls which HTTP methods CloudFront will forward to Origin Group.
+  # Currently only allows GET,HEAD, and OPTIONS
   allowed_origin_group_methods = ["GET","HEAD","OPTIONS"]
 
   # The domain name associated with a hosted zone in Route 53. Usually the base
-  # domain name of one of the var.domain_names (e.g. foo.com). This is used to find
-  # the hosted zone that will be used for the CloudFront distribution.
+  # domain name of one of the var.domain_names (e.g. foo.com). This is used to
+  # find the hosted zone that will be used for the CloudFront distribution.
   base_domain_name = null
 
   # The tags associated with var.base_domain_name. If there are multiple hosted
-  # zones for the same base_domain_name, this will help filter the hosted zones so
-  # that the correct hosted zone is found.
+  # zones for the same base_domain_name, this will help filter the hosted zones
+  # so that the correct hosted zone is found.
   base_domain_name_tags = {}
 
   # The origin protocol policy to apply to the S3 bucket origin. Must be one of
   # http-only, https-only, and match-viewer.
   bucket_origin_config_protocol_policy = "http-only"
 
-  # The SSL/TLS protocols that you want CloudFront to use when communicating with
-  # the S3 bucket over HTTPS. A list of one or more of SSLv3, TLSv1, TLSv1.1, and
-  # TLSv1.2.
+  # The SSL/TLS protocols that you want CloudFront to use when communicating
+  # with the S3 bucket over HTTPS. A list of one or more of SSLv3, TLSv1,
+  # TLSv1.1, and TLSv1.2.
   bucket_origin_config_ssl_protocols = ["TLSv1.2"]
 
   # The website endpoint for this S3 bucket. This value should be of the format
@@ -261,16 +261,16 @@ module "s_3_cloudfront" {
   # CloudFront will cache the responses for these methods.
   cached_methods = ["GET","HEAD"]
 
-  # Whether you want CloudFront to automatically compress content for web requests
-  # that include 'Accept-Encoding: gzip' in the request header.
+  # Whether you want CloudFront to automatically compress content for web
+  # requests that include 'Accept-Encoding: gzip' in the request header.
   compress = true
 
   # If set to true, create a DNS A Record in Route 53 with each domain name in
   # var.domain_names.
   create_route53_entries = false
 
-  # A map of custom tags to apply to the S3 bucket and Cloudfront Distribution. The
-  # key is the tag name and the value is the tag value.
+  # A map of custom tags to apply to the S3 bucket and Cloudfront Distribution.
+  # The key is the tag name and the value is the tag value.
   custom_tags = {}
 
   # A list of existing CloudFront functions to associate with the default cached
@@ -278,21 +278,20 @@ module "s_3_cloudfront" {
   # high-scale, latency sensitive CDN customizations
   default_function_associations = []
 
-  # A list of existing Lambda@Edge functions to associate with the default cached
-  # behavior. Lambda version must be a published version and cannot be `$LATEST`
-  # (See
-  # https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#lambd
-  # _function_association for available options).
+  # A list of existing Lambda@Edge functions to associate with the default
+  # cached behavior. Lambda version must be a published version and cannot be
+  # `$LATEST` (See
+  # https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#lambda_function_association
+  # for available options).
   default_lambda_associations = []
 
-  # Option to disable cloudfront log delivery to s3.  This is required in regions
-  # where cloudfront cannot deliver logs to s3, see
-  # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.ht
-  # l#access-logs-choosing-s3-bucket
+  # Option to disable cloudfront log delivery to s3.  This is required in
+  # regions where cloudfront cannot deliver logs to s3, see
+  # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html#access-logs-choosing-s3-bucket
   disable_logging = false
 
-  # The custom domain name to use instead of the default cloudfront.net domain name
-  # (e.g. static.foo.com). Only used if var.create_route53_entries is true.
+  # The custom domain name to use instead of the default cloudfront.net domain
+  # name (e.g. static.foo.com). Only used if var.create_route53_entries is true.
   domain_names = []
 
   # Whether the distribution is enabled to accept end user requests for content.
@@ -301,41 +300,42 @@ module "s_3_cloudfront" {
   # The error responses you want CloudFront to return to the viewer.
   error_responses = null
 
-  # The website endpoints for each failover S3 bucket. This value of each should be
-  # of the format <BUCKET_NAME>.s3-website-<AWS_REGION>.amazonaws.com. Only used if
-  # var.s3_bucket_is_public_website is true, and if you are providing a failover S3
-  # bucket to be used in a CloudFront Origin Group configuration.
+  # The website endpoints for each failover S3 bucket. This value of each should
+  # be of the format <BUCKET_NAME>.s3-website-<AWS_REGION>.amazonaws.com. Only
+  # used if var.s3_bucket_is_public_website is true, and if you are providing a
+  # failover S3 bucket to be used in a CloudFront Origin Group configuration.
   failover_bucket_website_endpoints = []
 
   # The list of the names of the failover S3 buckets. Provide if you wish to
   # configure a CloudFront distribution with an Origin Group.
   failover_buckets = []
 
-  # List of HTTP status codes to configure the Origin Group to fail over on. Provide
-  # if you wish to not failover on all provided 4xx and 5xx status codes.
+  # List of HTTP status codes to configure the Origin Group to fail over on.
+  # Provide if you wish to not failover on all provided 4xx and 5xx status
+  # codes.
   failover_status_codes = [500,502,503,504,404,403]
 
-  # If set to true, this will force the delete of the access logs S3 bucket when you
-  # run terraform destroy, even if there is still content in it. This is only meant
-  # for testing and should not be used in production.
+  # If set to true, this will force the delete of the access logs S3 bucket when
+  # you run terraform destroy, even if there is still content in it. This is
+  # only meant for testing and should not be used in production.
   force_destroy_access_logs_bucket = false
 
-  # Specifies whether you want CloudFront to forward cookies to the origin that is
-  # associated with this cache behavior. You can specify all, none or whitelist. If
-  # whitelist, you must define var.whitelisted_cookie_names.
+  # Specifies whether you want CloudFront to forward cookies to the origin that
+  # is associated with this cache behavior. You can specify all, none or
+  # whitelist. If whitelist, you must define var.whitelisted_cookie_names.
   forward_cookies = "none"
 
-  # The headers you want CloudFront to forward to the origin. Set to * to forward
-  # all headers.
+  # The headers you want CloudFront to forward to the origin. Set to * to
+  # forward all headers.
   forward_headers = []
 
-  # Indicates whether you want CloudFront to forward query strings to the origin. If
-  # set to true, CloudFront will cache all query string parameters.
+  # Indicates whether you want CloudFront to forward query strings to the
+  # origin. If set to true, CloudFront will cache all query string parameters.
   forward_query_string = true
 
-  # The ISO 3166-1-alpha-2 codes for which you want CloudFront either to distribute
-  # your content (if var.geo_restriction_type is whitelist) or not distribute your
-  # content (if var.geo_restriction_type is blacklist).
+  # The ISO 3166-1-alpha-2 codes for which you want CloudFront either to
+  # distribute your content (if var.geo_restriction_type is whitelist) or not
+  # distribute your content (if var.geo_restriction_type is blacklist).
   geo_locations_list = []
 
   # The method that you want to use to restrict distribution of your content by
@@ -343,7 +343,8 @@ module "s_3_cloudfront" {
   geo_restriction_type = "none"
 
   # The ID of the Route 53 Hosted Zone in which to create the DNS A Records
-  # specified in var.domain_names. Only used if var.create_route53_entries is true.
+  # specified in var.domain_names. Only used if var.create_route53_entries is
+  # true.
   hosted_zone_id = null
 
   # The maximum HTTP version to support on the distribution. Allowed values are
@@ -363,19 +364,21 @@ module "s_3_cloudfront" {
   is_ipv6_enabled = true
 
   # The minimum version of the SSL protocol that you want CloudFront to use for
-  # HTTPS connections. One of SSLv3 or TLSv1. Default: SSLv3. NOTE: If you are using
-  # a custom certificate (specified with acm_certificate_arn or iam_certificate_id),
-  # and have specified sni-only in ssl_support_method, TLSv1 must be specified.
+  # HTTPS connections. One of SSLv3 or TLSv1. Default: SSLv3. NOTE: If you are
+  # using a custom certificate (specified with acm_certificate_arn or
+  # iam_certificate_id), and have specified sni-only in ssl_support_method,
+  # TLSv1 must be specified.
   minimum_protocol_version = "TLSv1"
 
-  # An ordered list of cache behaviors resource for this distribution. List from top
-  # to bottom in order of precedence. The topmost cache behavior will have
+  # An ordered list of cache behaviors resource for this distribution. List from
+  # top to bottom in order of precedence. The topmost cache behavior will have
   # precedence 0.
   ordered_cache_behaviors = []
 
-  # The price class for this distribution. One of PriceClass_All, PriceClass_200,
-  # PriceClass_100. Higher price classes support more edge locations, but cost more.
-  # See: https://aws.amazon.com/cloudfront/pricing/#price-classes.
+  # The price class for this distribution. One of PriceClass_All,
+  # PriceClass_200, PriceClass_100. Higher price classes support more edge
+  # locations, but cost more. See:
+  # https://aws.amazon.com/cloudfront/pricing/#price-classes.
   price_class = "PriceClass_100"
 
   # Whether the Route 53 Hosted Zone associated with var.base_domain_name is
@@ -385,14 +388,14 @@ module "s_3_cloudfront" {
   # ID of response headers policy to apply to this CloudFront distribution.
   response_headers_policy_id = null
 
-  # If set, CloudFront will request all content from the specified folder, rather
-  # than the root of the S3 bucket.
+  # If set, CloudFront will request all content from the specified folder,
+  # rather than the root of the S3 bucket.
   s3_bucket_base_path = null
 
   # Specifies how you want CloudFront to serve HTTPS requests. One of vip or
   # sni-only. Required if you specify acm_certificate_arn or iam_certificate_id.
-  # NOTE: vip causes CloudFront to use a dedicated IP address and may incur extra
-  # charges.
+  # NOTE: vip causes CloudFront to use a dedicated IP address and may incur
+  # extra charges.
   ssl_support_method = "sni-only"
 
   # The list of key group IDs that CloudFront can use to validate signed URLs or
@@ -403,37 +406,38 @@ module "s_3_cloudfront" {
   # private content.
   trusted_signers = []
 
-  # In older AWS accounts, you must set this variable to true to use the ARN of the
-  # CloudFront log delivery AWS account in the access log bucket policy. In newer
-  # AWS accounts, you must set this variable to false to use the CanonicalUser ID of
-  # the CloudFront log delivery account. If you pick the wrong value, you'll get a
-  # perpetual diff on the IAM policy. See
-  # https://github.com/terraform-providers/terraform-provider-aws/issues/10158 for
-  # context.
+  # In older AWS accounts, you must set this variable to true to use the ARN of
+  # the CloudFront log delivery AWS account in the access log bucket policy. In
+  # newer AWS accounts, you must set this variable to false to use the
+  # CanonicalUser ID of the CloudFront log delivery account. If you pick the
+  # wrong value, you'll get a perpetual diff on the IAM policy. See
+  # https://github.com/terraform-providers/terraform-provider-aws/issues/10158
+  # for context.
   use_cloudfront_arn_for_bucket_policy = false
 
-  # Set to true if you want viewers to use HTTPS to request your objects and you're
-  # using the CloudFront domain name for your distribution. You must set exactly one
-  # of var.use_cloudfront_default_certificate, var.acm_certificate_arn, or
-  # var.iam_certificate_id.
+  # Set to true if you want viewers to use HTTPS to request your objects and
+  # you're using the CloudFront domain name for your distribution. You must set
+  # exactly one of var.use_cloudfront_default_certificate,
+  # var.acm_certificate_arn, or var.iam_certificate_id.
   use_cloudfront_default_certificate = true
 
-  # Use this element to specify the protocol that users can use to access the files
-  # in the origin specified by TargetOriginId when a request matches the path
-  # pattern in PathPattern. One of allow-all, https-only, or redirect-to-https.
+  # Use this element to specify the protocol that users can use to access the
+  # files in the origin specified by TargetOriginId when a request matches the
+  # path pattern in PathPattern. One of allow-all, https-only, or
+  # redirect-to-https.
   viewer_protocol_policy = "allow-all"
 
-  # If enabled, the resource will wait for the distribution status to change from
-  # InProgress to Deployed, which can take quite a long time in Cloudfront's case.
-  # Setting this to false will skip the process.
+  # If enabled, the resource will wait for the distribution status to change
+  # from InProgress to Deployed, which can take quite a long time in
+  # Cloudfront's case. Setting this to false will skip the process.
   wait_for_deployment = true
 
-  # If you're using AWS WAF to filter CloudFront requests, the Id of the AWS WAF web
-  # ACL that is associated with the distribution.
+  # If you're using AWS WAF to filter CloudFront requests, the Id of the AWS WAF
+  # web ACL that is associated with the distribution.
   web_acl_id = null
 
-  # If you have specified whitelist in var.forward_cookies, the whitelisted cookies
-  # that you want CloudFront to forward to your origin.
+  # If you have specified whitelist in var.forward_cookies, the whitelisted
+  # cookies that you want CloudFront to forward to your origin.
   whitelisted_cookie_names = []
 
 }
@@ -451,7 +455,7 @@ module "s_3_cloudfront" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-cloudfront?ref=v0.17.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-cloudfront?ref=v0.17.1"
 }
 
 inputs = {
@@ -463,32 +467,32 @@ inputs = {
   # The name of the S3 bucket.
   bucket_name = <string>
 
-  # The default amount of time, in seconds, that an object is in a CloudFront cache
-  # before CloudFront forwards another request in the absence of an 'Cache-Control
-  # max-age' or 'Expires' header.
+  # The default amount of time, in seconds, that an object is in a CloudFront
+  # cache before CloudFront forwards another request in the absence of an
+  # 'Cache-Control max-age' or 'Expires' header.
   default_ttl = <number>
 
-  # The path that you want CloudFront to query on the origin server when an end user
-  # requests the root URL (e.g. index.html).
+  # The path that you want CloudFront to query on the origin server when an end
+  # user requests the root URL (e.g. index.html).
   index_document = <string>
 
-  # The maximum amount of time, in seconds, that an object is in a CloudFront cache
-  # before CloudFront forwards another request to your origin to determine whether
-  # the object has been updated. Only effective in the presence of 'Cache-Control
-  # max-age', 'Cache-Control s-maxage', and 'Expires' headers.
+  # The maximum amount of time, in seconds, that an object is in a CloudFront
+  # cache before CloudFront forwards another request to your origin to determine
+  # whether the object has been updated. Only effective in the presence of
+  # 'Cache-Control max-age', 'Cache-Control s-maxage', and 'Expires' headers.
   max_ttl = <number>
 
-  # The minimum amount of time that you want objects to stay in CloudFront caches
-  # before CloudFront queries your origin to see whether the object has been
-  # updated.
+  # The minimum amount of time that you want objects to stay in CloudFront
+  # caches before CloudFront queries your origin to see whether the object has
+  # been updated.
   min_ttl = <number>
 
   # Set to true if your S3 bucket is configured as a website and publicly
   # accessible. Set to false if it's a regular S3 bucket and only privately
   # accessible to CloudFront. If it's a public website, you can use all the S3
-  # website features (e.g. routing, error pages), but users can bypass CloudFront
-  # and talk to S3 directly. If it's a private S3 bucket, users can only reach it
-  # via CloudFront, but you don't get all the website features.
+  # website features (e.g. routing, error pages), but users can bypass
+  # CloudFront and talk to S3 directly. If it's a private S3 bucket, users can
+  # only reach it via CloudFront, but you don't get all the website features.
   s3_bucket_is_public_website = <string>
 
   # ----------------------------------------------------------------------------------------------------
@@ -502,8 +506,8 @@ inputs = {
   access_logs_bucket_suffix = "cloudfront-logs"
 
   # Set to true to enable versioning for the access logs S3 bucket. If enabled,
-  # instead of overriding objects, the S3 bucket will always create a new version of
-  # each object, so all the old values are retained.
+  # instead of overriding objects, the S3 bucket will always create a new
+  # version of each object, so all the old values are retained.
   access_logs_enable_versioning = false
 
   # How many days to keep access logs around for before deleting them.
@@ -511,38 +515,38 @@ inputs = {
 
   # The ARN of the AWS Certificate Manager certificate that you wish to use with
   # this distribution. The ACM certificate must be in us-east-1. You must set
-  # exactly one of var.use_cloudfront_default_certificate, var.acm_certificate_arn,
-  # or var.iam_certificate_id.
+  # exactly one of var.use_cloudfront_default_certificate,
+  # var.acm_certificate_arn, or var.iam_certificate_id.
   acm_certificate_arn = ""
 
-  # A Map with the bucket name as key and the additional information about region
-  # and v4_auth as values.
+  # A Map with the bucket name as key and the additional information about
+  # region and v4_auth as values.
   additional_bucket_information = {}
 
   # Controls which HTTP methods CloudFront will forward to the S3 bucket.
   allowed_methods = ["DELETE","GET","HEAD","OPTIONS","PATCH","POST","PUT"]
 
-  # Controls which HTTP methods CloudFront will forward to Origin Group. Currently
-  # only allows GET,HEAD, and OPTIONS
+  # Controls which HTTP methods CloudFront will forward to Origin Group.
+  # Currently only allows GET,HEAD, and OPTIONS
   allowed_origin_group_methods = ["GET","HEAD","OPTIONS"]
 
   # The domain name associated with a hosted zone in Route 53. Usually the base
-  # domain name of one of the var.domain_names (e.g. foo.com). This is used to find
-  # the hosted zone that will be used for the CloudFront distribution.
+  # domain name of one of the var.domain_names (e.g. foo.com). This is used to
+  # find the hosted zone that will be used for the CloudFront distribution.
   base_domain_name = null
 
   # The tags associated with var.base_domain_name. If there are multiple hosted
-  # zones for the same base_domain_name, this will help filter the hosted zones so
-  # that the correct hosted zone is found.
+  # zones for the same base_domain_name, this will help filter the hosted zones
+  # so that the correct hosted zone is found.
   base_domain_name_tags = {}
 
   # The origin protocol policy to apply to the S3 bucket origin. Must be one of
   # http-only, https-only, and match-viewer.
   bucket_origin_config_protocol_policy = "http-only"
 
-  # The SSL/TLS protocols that you want CloudFront to use when communicating with
-  # the S3 bucket over HTTPS. A list of one or more of SSLv3, TLSv1, TLSv1.1, and
-  # TLSv1.2.
+  # The SSL/TLS protocols that you want CloudFront to use when communicating
+  # with the S3 bucket over HTTPS. A list of one or more of SSLv3, TLSv1,
+  # TLSv1.1, and TLSv1.2.
   bucket_origin_config_ssl_protocols = ["TLSv1.2"]
 
   # The website endpoint for this S3 bucket. This value should be of the format
@@ -553,16 +557,16 @@ inputs = {
   # CloudFront will cache the responses for these methods.
   cached_methods = ["GET","HEAD"]
 
-  # Whether you want CloudFront to automatically compress content for web requests
-  # that include 'Accept-Encoding: gzip' in the request header.
+  # Whether you want CloudFront to automatically compress content for web
+  # requests that include 'Accept-Encoding: gzip' in the request header.
   compress = true
 
   # If set to true, create a DNS A Record in Route 53 with each domain name in
   # var.domain_names.
   create_route53_entries = false
 
-  # A map of custom tags to apply to the S3 bucket and Cloudfront Distribution. The
-  # key is the tag name and the value is the tag value.
+  # A map of custom tags to apply to the S3 bucket and Cloudfront Distribution.
+  # The key is the tag name and the value is the tag value.
   custom_tags = {}
 
   # A list of existing CloudFront functions to associate with the default cached
@@ -570,21 +574,20 @@ inputs = {
   # high-scale, latency sensitive CDN customizations
   default_function_associations = []
 
-  # A list of existing Lambda@Edge functions to associate with the default cached
-  # behavior. Lambda version must be a published version and cannot be `$LATEST`
-  # (See
-  # https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#lambd
-  # _function_association for available options).
+  # A list of existing Lambda@Edge functions to associate with the default
+  # cached behavior. Lambda version must be a published version and cannot be
+  # `$LATEST` (See
+  # https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#lambda_function_association
+  # for available options).
   default_lambda_associations = []
 
-  # Option to disable cloudfront log delivery to s3.  This is required in regions
-  # where cloudfront cannot deliver logs to s3, see
-  # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.ht
-  # l#access-logs-choosing-s3-bucket
+  # Option to disable cloudfront log delivery to s3.  This is required in
+  # regions where cloudfront cannot deliver logs to s3, see
+  # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html#access-logs-choosing-s3-bucket
   disable_logging = false
 
-  # The custom domain name to use instead of the default cloudfront.net domain name
-  # (e.g. static.foo.com). Only used if var.create_route53_entries is true.
+  # The custom domain name to use instead of the default cloudfront.net domain
+  # name (e.g. static.foo.com). Only used if var.create_route53_entries is true.
   domain_names = []
 
   # Whether the distribution is enabled to accept end user requests for content.
@@ -593,41 +596,42 @@ inputs = {
   # The error responses you want CloudFront to return to the viewer.
   error_responses = null
 
-  # The website endpoints for each failover S3 bucket. This value of each should be
-  # of the format <BUCKET_NAME>.s3-website-<AWS_REGION>.amazonaws.com. Only used if
-  # var.s3_bucket_is_public_website is true, and if you are providing a failover S3
-  # bucket to be used in a CloudFront Origin Group configuration.
+  # The website endpoints for each failover S3 bucket. This value of each should
+  # be of the format <BUCKET_NAME>.s3-website-<AWS_REGION>.amazonaws.com. Only
+  # used if var.s3_bucket_is_public_website is true, and if you are providing a
+  # failover S3 bucket to be used in a CloudFront Origin Group configuration.
   failover_bucket_website_endpoints = []
 
   # The list of the names of the failover S3 buckets. Provide if you wish to
   # configure a CloudFront distribution with an Origin Group.
   failover_buckets = []
 
-  # List of HTTP status codes to configure the Origin Group to fail over on. Provide
-  # if you wish to not failover on all provided 4xx and 5xx status codes.
+  # List of HTTP status codes to configure the Origin Group to fail over on.
+  # Provide if you wish to not failover on all provided 4xx and 5xx status
+  # codes.
   failover_status_codes = [500,502,503,504,404,403]
 
-  # If set to true, this will force the delete of the access logs S3 bucket when you
-  # run terraform destroy, even if there is still content in it. This is only meant
-  # for testing and should not be used in production.
+  # If set to true, this will force the delete of the access logs S3 bucket when
+  # you run terraform destroy, even if there is still content in it. This is
+  # only meant for testing and should not be used in production.
   force_destroy_access_logs_bucket = false
 
-  # Specifies whether you want CloudFront to forward cookies to the origin that is
-  # associated with this cache behavior. You can specify all, none or whitelist. If
-  # whitelist, you must define var.whitelisted_cookie_names.
+  # Specifies whether you want CloudFront to forward cookies to the origin that
+  # is associated with this cache behavior. You can specify all, none or
+  # whitelist. If whitelist, you must define var.whitelisted_cookie_names.
   forward_cookies = "none"
 
-  # The headers you want CloudFront to forward to the origin. Set to * to forward
-  # all headers.
+  # The headers you want CloudFront to forward to the origin. Set to * to
+  # forward all headers.
   forward_headers = []
 
-  # Indicates whether you want CloudFront to forward query strings to the origin. If
-  # set to true, CloudFront will cache all query string parameters.
+  # Indicates whether you want CloudFront to forward query strings to the
+  # origin. If set to true, CloudFront will cache all query string parameters.
   forward_query_string = true
 
-  # The ISO 3166-1-alpha-2 codes for which you want CloudFront either to distribute
-  # your content (if var.geo_restriction_type is whitelist) or not distribute your
-  # content (if var.geo_restriction_type is blacklist).
+  # The ISO 3166-1-alpha-2 codes for which you want CloudFront either to
+  # distribute your content (if var.geo_restriction_type is whitelist) or not
+  # distribute your content (if var.geo_restriction_type is blacklist).
   geo_locations_list = []
 
   # The method that you want to use to restrict distribution of your content by
@@ -635,7 +639,8 @@ inputs = {
   geo_restriction_type = "none"
 
   # The ID of the Route 53 Hosted Zone in which to create the DNS A Records
-  # specified in var.domain_names. Only used if var.create_route53_entries is true.
+  # specified in var.domain_names. Only used if var.create_route53_entries is
+  # true.
   hosted_zone_id = null
 
   # The maximum HTTP version to support on the distribution. Allowed values are
@@ -655,19 +660,21 @@ inputs = {
   is_ipv6_enabled = true
 
   # The minimum version of the SSL protocol that you want CloudFront to use for
-  # HTTPS connections. One of SSLv3 or TLSv1. Default: SSLv3. NOTE: If you are using
-  # a custom certificate (specified with acm_certificate_arn or iam_certificate_id),
-  # and have specified sni-only in ssl_support_method, TLSv1 must be specified.
+  # HTTPS connections. One of SSLv3 or TLSv1. Default: SSLv3. NOTE: If you are
+  # using a custom certificate (specified with acm_certificate_arn or
+  # iam_certificate_id), and have specified sni-only in ssl_support_method,
+  # TLSv1 must be specified.
   minimum_protocol_version = "TLSv1"
 
-  # An ordered list of cache behaviors resource for this distribution. List from top
-  # to bottom in order of precedence. The topmost cache behavior will have
+  # An ordered list of cache behaviors resource for this distribution. List from
+  # top to bottom in order of precedence. The topmost cache behavior will have
   # precedence 0.
   ordered_cache_behaviors = []
 
-  # The price class for this distribution. One of PriceClass_All, PriceClass_200,
-  # PriceClass_100. Higher price classes support more edge locations, but cost more.
-  # See: https://aws.amazon.com/cloudfront/pricing/#price-classes.
+  # The price class for this distribution. One of PriceClass_All,
+  # PriceClass_200, PriceClass_100. Higher price classes support more edge
+  # locations, but cost more. See:
+  # https://aws.amazon.com/cloudfront/pricing/#price-classes.
   price_class = "PriceClass_100"
 
   # Whether the Route 53 Hosted Zone associated with var.base_domain_name is
@@ -677,14 +684,14 @@ inputs = {
   # ID of response headers policy to apply to this CloudFront distribution.
   response_headers_policy_id = null
 
-  # If set, CloudFront will request all content from the specified folder, rather
-  # than the root of the S3 bucket.
+  # If set, CloudFront will request all content from the specified folder,
+  # rather than the root of the S3 bucket.
   s3_bucket_base_path = null
 
   # Specifies how you want CloudFront to serve HTTPS requests. One of vip or
   # sni-only. Required if you specify acm_certificate_arn or iam_certificate_id.
-  # NOTE: vip causes CloudFront to use a dedicated IP address and may incur extra
-  # charges.
+  # NOTE: vip causes CloudFront to use a dedicated IP address and may incur
+  # extra charges.
   ssl_support_method = "sni-only"
 
   # The list of key group IDs that CloudFront can use to validate signed URLs or
@@ -695,37 +702,38 @@ inputs = {
   # private content.
   trusted_signers = []
 
-  # In older AWS accounts, you must set this variable to true to use the ARN of the
-  # CloudFront log delivery AWS account in the access log bucket policy. In newer
-  # AWS accounts, you must set this variable to false to use the CanonicalUser ID of
-  # the CloudFront log delivery account. If you pick the wrong value, you'll get a
-  # perpetual diff on the IAM policy. See
-  # https://github.com/terraform-providers/terraform-provider-aws/issues/10158 for
-  # context.
+  # In older AWS accounts, you must set this variable to true to use the ARN of
+  # the CloudFront log delivery AWS account in the access log bucket policy. In
+  # newer AWS accounts, you must set this variable to false to use the
+  # CanonicalUser ID of the CloudFront log delivery account. If you pick the
+  # wrong value, you'll get a perpetual diff on the IAM policy. See
+  # https://github.com/terraform-providers/terraform-provider-aws/issues/10158
+  # for context.
   use_cloudfront_arn_for_bucket_policy = false
 
-  # Set to true if you want viewers to use HTTPS to request your objects and you're
-  # using the CloudFront domain name for your distribution. You must set exactly one
-  # of var.use_cloudfront_default_certificate, var.acm_certificate_arn, or
-  # var.iam_certificate_id.
+  # Set to true if you want viewers to use HTTPS to request your objects and
+  # you're using the CloudFront domain name for your distribution. You must set
+  # exactly one of var.use_cloudfront_default_certificate,
+  # var.acm_certificate_arn, or var.iam_certificate_id.
   use_cloudfront_default_certificate = true
 
-  # Use this element to specify the protocol that users can use to access the files
-  # in the origin specified by TargetOriginId when a request matches the path
-  # pattern in PathPattern. One of allow-all, https-only, or redirect-to-https.
+  # Use this element to specify the protocol that users can use to access the
+  # files in the origin specified by TargetOriginId when a request matches the
+  # path pattern in PathPattern. One of allow-all, https-only, or
+  # redirect-to-https.
   viewer_protocol_policy = "allow-all"
 
-  # If enabled, the resource will wait for the distribution status to change from
-  # InProgress to Deployed, which can take quite a long time in Cloudfront's case.
-  # Setting this to false will skip the process.
+  # If enabled, the resource will wait for the distribution status to change
+  # from InProgress to Deployed, which can take quite a long time in
+  # Cloudfront's case. Setting this to false will skip the process.
   wait_for_deployment = true
 
-  # If you're using AWS WAF to filter CloudFront requests, the Id of the AWS WAF web
-  # ACL that is associated with the distribution.
+  # If you're using AWS WAF to filter CloudFront requests, the Id of the AWS WAF
+  # web ACL that is associated with the distribution.
   web_acl_id = null
 
-  # If you have specified whitelist in var.forward_cookies, the whitelisted cookies
-  # that you want CloudFront to forward to your origin.
+  # If you have specified whitelist in var.forward_cookies, the whitelisted
+  # cookies that you want CloudFront to forward to your origin.
   whitelisted_cookie_names = []
 
 }
@@ -1405,11 +1413,11 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.0/modules/s3-cloudfront/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.0/modules/s3-cloudfront/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.0/modules/s3-cloudfront/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.1/modules/s3-cloudfront/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.1/modules/s3-cloudfront/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.1/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "04bba1ec06ab48066cb80cd381583ffa"
+  "hash": "7acd49aeb1b1157e6ceada26b7d8f036"
 }
 ##DOCS-SOURCER-END -->

@@ -9,15 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.2" lastModifiedVersion="0.67.3"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.4" lastModifiedVersion="0.67.3"/>
 
 # Custom IAM Entity
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/custom-iam-entity" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/custom-iam-entity" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This Gruntwork Terraform Module creates an IAM group and/or role and attaches a provided set of IAM managed policies to the group. This can be used in conjunction with the [iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-groups), [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cross-account-iam-roles), and [saml-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/saml-iam-roles) modules which create a set of groups and roles with smart defaults. Use this module to easily create IAM groups and roles with a defined set of permissions.
+This Gruntwork Terraform Module creates an IAM group and/or role and attaches a provided set of IAM managed policies to the group. This can be used in conjunction with the [iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-groups), [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cross-account-iam-roles), and [saml-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/saml-iam-roles) modules which create a set of groups and roles with smart defaults. Use this module to easily create IAM groups and roles with a defined set of permissions.
 
 ### Requirements
 
@@ -25,7 +25,7 @@ This Gruntwork Terraform Module creates an IAM group and/or role and attaches a 
 
 ### Instructions
 
-Check out the [custom-iam-entity example](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/examples/custom-iam-entity) for a working example.
+Check out the [custom-iam-entity example](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/examples/custom-iam-entity) for a working example.
 
 #### Resources Created
 
@@ -36,7 +36,7 @@ If neither role nor group are provided, this module does nothing.
 
 #### Resources NOT Created
 
-*   **IAM users** - This module does not create any IAM Users, nor assign any existing IAM Users to IAM Groups. You can use the [iam-users module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-users) to create users.
+*   **IAM users** - This module does not create any IAM Users, nor assign any existing IAM Users to IAM Groups. You can use the [iam-users module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-users) to create users.
 *   **IAM policies** - This module only attaches policies by ARN or by name. It does not create any new policies.
 
 #### MFA support
@@ -51,7 +51,7 @@ The reason for this difference is difficult to explain, but boils down to limita
 ## Background Information
 
 For background information on IAM, IAM users, IAM policies, and more, check out the [background information docs in
-the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-policies#background-information).
+the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-policies#background-information).
 
 ## Sample Usage
 
@@ -66,35 +66,35 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 
 module "custom_iam_entity" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/custom-iam-entity?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/custom-iam-entity?ref=v0.68.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Should we require that all IAM Users use Multi-Factor Authentication for both
-  # AWS API calls and the AWS Web Console? (true or false)
+  # Should we require that all IAM Users use Multi-Factor Authentication for
+  # both AWS API calls and the AWS Web Console? (true or false)
   should_require_mfa = <bool>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # A list of IAM ARNs (users, groups, or roles) that can assume this role. Required
-  # if should_create_iam_role is true.
+  # A list of IAM ARNs (users, groups, or roles) that can assume this role.
+  # Required if should_create_iam_role is true.
   assume_role_arns = []
 
-  # Map of custom conditions to apply to the assume role policy for the custom IAM
-  # role. The input is a map of objects where the map keys are arbitrary unique IDs
-  # and the values are objects that define the condition blocks. Refer to
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/i
-  # m_policy_document#condition for more information on the supported condition
-  # fields.
+  # Map of custom conditions to apply to the assume role policy for the custom
+  # IAM role. The input is a map of objects where the map keys are arbitrary
+  # unique IDs and the values are objects that define the condition blocks.
+  # Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document#condition
+  # for more information on the supported condition fields.
   assume_role_custom_conditions = {}
 
-  # Custom IAM policy JSON for the IAM Role to control assume role settings. Note
-  # that when an assume role policy is passed in this manner, var.should_require_mfa
-  # is ignored.
+  # Custom IAM policy JSON for the IAM Role to control assume role settings.
+  # Note that when an assume role policy is passed in this manner,
+  # var.should_require_mfa is ignored.
   assume_role_iam_policy_json = null
 
   # The name to use for the custom inline IAM policy that is attached to the
@@ -110,8 +110,8 @@ module "custom_iam_entity" {
   # A list of IAM roles that this members of this group can assume.
   iam_group_assume_role_arns = null
 
-  # The name of an IAM Group to create. Required when var.should_create_iam_group is
-  # true.
+  # The name of an IAM Group to create. Required when
+  # var.should_create_iam_group is true.
   iam_group_name = null
 
   # A list of policies (by ARN) to attach to this group.
@@ -125,23 +125,23 @@ module "custom_iam_entity" {
   # var.iam_policy_json is configured.
   iam_policy_json_name = "CustomIAMPolicyFromJSON"
 
-  # The name of an IAM role to create. Required when var.should_create_iam_role is
-  # true.
+  # The name of an IAM role to create. Required when var.should_create_iam_role
+  # is true.
   iam_role_name = null
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
   iam_role_permissions_boundary = null
 
-  # The maximum allowable session duration, in seconds, for the credentials you get
-  # when assuming the IAM roles created by this module.
+  # The maximum allowable session duration, in seconds, for the credentials you
+  # get when assuming the IAM roles created by this module.
   max_session_duration = 43200
 
-  # A list of AWS services for which the IAM role will receive full permissions. See
-  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-reso
-  # rces-contextkeys.html to find the service name. For example, to grant developers
-  # access only to EC2 and Amazon Machine Learning, use the value
-  # ["ec2","machinelearning"].
+  # A list of AWS services for which the IAM role will receive full permissions.
+  # See
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-resources-contextkeys.html
+  # to find the service name. For example, to grant developers access only to
+  # EC2 and Amazon Machine Learning, use the value ["ec2","machinelearning"].
   permitted_full_access_services = []
 
   # Should we create an IAM group with the attached policies? (default false)
@@ -165,7 +165,7 @@ module "custom_iam_entity" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/custom-iam-entity?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/custom-iam-entity?ref=v0.68.4"
 }
 
 inputs = {
@@ -174,29 +174,29 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Should we require that all IAM Users use Multi-Factor Authentication for both
-  # AWS API calls and the AWS Web Console? (true or false)
+  # Should we require that all IAM Users use Multi-Factor Authentication for
+  # both AWS API calls and the AWS Web Console? (true or false)
   should_require_mfa = <bool>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # A list of IAM ARNs (users, groups, or roles) that can assume this role. Required
-  # if should_create_iam_role is true.
+  # A list of IAM ARNs (users, groups, or roles) that can assume this role.
+  # Required if should_create_iam_role is true.
   assume_role_arns = []
 
-  # Map of custom conditions to apply to the assume role policy for the custom IAM
-  # role. The input is a map of objects where the map keys are arbitrary unique IDs
-  # and the values are objects that define the condition blocks. Refer to
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/i
-  # m_policy_document#condition for more information on the supported condition
-  # fields.
+  # Map of custom conditions to apply to the assume role policy for the custom
+  # IAM role. The input is a map of objects where the map keys are arbitrary
+  # unique IDs and the values are objects that define the condition blocks.
+  # Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document#condition
+  # for more information on the supported condition fields.
   assume_role_custom_conditions = {}
 
-  # Custom IAM policy JSON for the IAM Role to control assume role settings. Note
-  # that when an assume role policy is passed in this manner, var.should_require_mfa
-  # is ignored.
+  # Custom IAM policy JSON for the IAM Role to control assume role settings.
+  # Note that when an assume role policy is passed in this manner,
+  # var.should_require_mfa is ignored.
   assume_role_iam_policy_json = null
 
   # The name to use for the custom inline IAM policy that is attached to the
@@ -212,8 +212,8 @@ inputs = {
   # A list of IAM roles that this members of this group can assume.
   iam_group_assume_role_arns = null
 
-  # The name of an IAM Group to create. Required when var.should_create_iam_group is
-  # true.
+  # The name of an IAM Group to create. Required when
+  # var.should_create_iam_group is true.
   iam_group_name = null
 
   # A list of policies (by ARN) to attach to this group.
@@ -227,23 +227,23 @@ inputs = {
   # var.iam_policy_json is configured.
   iam_policy_json_name = "CustomIAMPolicyFromJSON"
 
-  # The name of an IAM role to create. Required when var.should_create_iam_role is
-  # true.
+  # The name of an IAM role to create. Required when var.should_create_iam_role
+  # is true.
   iam_role_name = null
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
   iam_role_permissions_boundary = null
 
-  # The maximum allowable session duration, in seconds, for the credentials you get
-  # when assuming the IAM roles created by this module.
+  # The maximum allowable session duration, in seconds, for the credentials you
+  # get when assuming the IAM roles created by this module.
   max_session_duration = 43200
 
-  # A list of AWS services for which the IAM role will receive full permissions. See
-  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-reso
-  # rces-contextkeys.html to find the service name. For example, to grant developers
-  # access only to EC2 and Amazon Machine Learning, use the value
-  # ["ec2","machinelearning"].
+  # A list of AWS services for which the IAM role will receive full permissions.
+  # See
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-resources-contextkeys.html
+  # to find the service name. For example, to grant developers access only to
+  # EC2 and Amazon Machine Learning, use the value ["ec2","machinelearning"].
   permitted_full_access_services = []
 
   # Should we create an IAM group with the attached policies? (default false)
@@ -486,11 +486,11 @@ The name of the IAM role.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/custom-iam-entity/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/custom-iam-entity/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/custom-iam-entity/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/custom-iam-entity/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/custom-iam-entity/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/custom-iam-entity/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e3bf78e29a456db1e944a0fc3de42b2d"
+  "hash": "c2038847c3827d317ea6676b0ea20933"
 }
 ##DOCS-SOURCER-END -->

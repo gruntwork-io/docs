@@ -4,6 +4,7 @@ algolia:
   appId: 7AWZHGNJE2
   apiKey: f799a6e9a302535bd92bbfab65fb6311 # This is a search only API key. It's safe to check in.
   indexName: docs_site_dev
+  libraryIndexName: dev_docs_sourcer-library-reference
 
 googleAnalytics:
   trackingID: UA-154792164-4

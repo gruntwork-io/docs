@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.2" lastModifiedVersion="0.68.2"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.4" lastModifiedVersion="0.68.2"/>
 
 # AWS GuardDuty
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/guardduty" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/guardduty" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -37,29 +37,29 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What Is GuardDuty?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/guardduty/core-concepts.md#what-is-guardduty)
+*   [What Is GuardDuty?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/guardduty/core-concepts.md#what-is-guardduty)
 
-*   [Why Use GuardDuty?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/guardduty/core-concepts.md#why-use-guardduty)
+*   [Why Use GuardDuty?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/guardduty/core-concepts.md#why-use-guardduty)
 
-*   [What Is A Finding?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/guardduty/core-concepts.md#what-is-a-finding)
+*   [What Is A Finding?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/guardduty/core-concepts.md#what-is-a-finding)
 
-*   [Where Should I Enable GuardDuty?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/guardduty/core-concepts.md#where-should-i-enable-guardduty)
+*   [Where Should I Enable GuardDuty?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/guardduty/core-concepts.md#where-should-i-enable-guardduty)
 
-*   [Resources Created](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/guardduty/core-concepts.md#resources-created)
+*   [Resources Created](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/guardduty/core-concepts.md#resources-created)
 
-*   [Gotchas](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/guardduty/core-concepts.md#gotchas)
+*   [Gotchas](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/guardduty/core-concepts.md#gotchas)
 
-*   [Known Issues](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/guardduty/core-concepts.md#known-issues)
+*   [Known Issues](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/guardduty/core-concepts.md#known-issues)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [codegen](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/codegen): Code generation utilities that help generate modules in this repo.
+*   [codegen](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/codegen): Code generation utilities that help generate modules in this repo.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -67,7 +67,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this module out, check out the following resources:
 
-*   [guardduty example](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/examples/guardduty).
+*   [guardduty example](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/examples/guardduty).
 
 ### Production deployment
 
@@ -75,7 +75,7 @@ If you want to deploy this module in production, check out the following resourc
 
 *   ***Coming soon***. We have not yet added this module to the [Acme example Reference Architecture](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme).
 
-*   [Terraform Module to enable GuardDuty in all enabled regions of an AWS Account](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/guardduty-multi-region).
+*   [Terraform Module to enable GuardDuty in all enabled regions of an AWS Account](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/guardduty-multi-region).
 
 *   [How to configure a production-grade AWS account structure](https://gruntwork.io/guides/foundations/how-to-configure-production-grade-aws-account-structure/)
 
@@ -92,7 +92,7 @@ If you want to deploy this module in production, check out the following resourc
 
 module "guardduty" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty?ref=v0.68.4"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -104,13 +104,13 @@ module "guardduty" {
   # Create the GuardDuty Member Detector resource
   create_detector = true
 
-  # Enable or disable creation of the resources of this module. Necessary workaround
-  # when it is desired to set count = 0 for modules, which is not yet possible as of
-  # terraform 0.12.17
+  # Enable or disable creation of the resources of this module. Necessary
+  # workaround when it is desired to set count = 0 for modules, which is not yet
+  # possible as of terraform 0.12.17
   create_resources = true
 
-  # The type of GuardDuty event to match. Setting this to anything other than the
-  # default will generate noise. This usually only needs to be adjusted for
+  # The type of GuardDuty event to match. Setting this to anything other than
+  # the default will generate noise. This usually only needs to be adjusted for
   # automated testing purposes.
   detail_type = "GuardDuty Finding"
 
@@ -122,9 +122,9 @@ module "guardduty" {
   # occurrences. If the detector is a GuardDuty member account, the value is
   # determined by the GuardDuty administrator account and cannot be modified,
   # otherwise defaults to SIX_HOURS. For standalone and GuardDuty administrator
-  # accounts, it must be configured in Terraform to enable drift detection. Valid
-  # values for standalone and administrator accounts: FIFTEEN_MINUTES, ONE_HOUR,
-  # SIX_HOURS.
+  # accounts, it must be configured in Terraform to enable drift detection.
+  # Valid values for standalone and administrator accounts: FIFTEEN_MINUTES,
+  # ONE_HOUR, SIX_HOURS.
   finding_publishing_frequency = null
 
   # Specifies a name for the created SNS topic where findings are published.
@@ -154,7 +154,7 @@ module "guardduty" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty?ref=v0.68.4"
 }
 
 inputs = {
@@ -169,13 +169,13 @@ inputs = {
   # Create the GuardDuty Member Detector resource
   create_detector = true
 
-  # Enable or disable creation of the resources of this module. Necessary workaround
-  # when it is desired to set count = 0 for modules, which is not yet possible as of
-  # terraform 0.12.17
+  # Enable or disable creation of the resources of this module. Necessary
+  # workaround when it is desired to set count = 0 for modules, which is not yet
+  # possible as of terraform 0.12.17
   create_resources = true
 
-  # The type of GuardDuty event to match. Setting this to anything other than the
-  # default will generate noise. This usually only needs to be adjusted for
+  # The type of GuardDuty event to match. Setting this to anything other than
+  # the default will generate noise. This usually only needs to be adjusted for
   # automated testing purposes.
   detail_type = "GuardDuty Finding"
 
@@ -187,9 +187,9 @@ inputs = {
   # occurrences. If the detector is a GuardDuty member account, the value is
   # determined by the GuardDuty administrator account and cannot be modified,
   # otherwise defaults to SIX_HOURS. For standalone and GuardDuty administrator
-  # accounts, it must be configured in Terraform to enable drift detection. Valid
-  # values for standalone and administrator accounts: FIFTEEN_MINUTES, ONE_HOUR,
-  # SIX_HOURS.
+  # accounts, it must be configured in Terraform to enable drift detection.
+  # Valid values for standalone and administrator accounts: FIFTEEN_MINUTES,
+  # ONE_HOUR, SIX_HOURS.
   finding_publishing_frequency = null
 
   # Specifies a name for the created SNS topic where findings are published.
@@ -369,11 +369,11 @@ The ID of the GuardDuty detector.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/guardduty/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/guardduty/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/guardduty/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/guardduty/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/guardduty/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/guardduty/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5e701146bfa9ff7fe6682885a10c3ada"
+  "hash": "e9b1ebf634da39eeeeb0d0d6e6141ec3"
 }
 ##DOCS-SOURCER-END -->

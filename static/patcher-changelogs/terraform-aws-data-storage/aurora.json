@@ -1,6 +1,18 @@
 {
   "module": "aurora",
   "releases": {
+    "v0.28.0": {
+      "contains_changes": true
+    },
+    "v0.27.2": {
+      "contains_changes": true
+    },
+    "v0.27.1": {
+      "contains_changes": true
+    },
+    "v0.27.0": {
+      "contains_changes": true
+    },
     "v0.26.0": {
       "contains_changes": true
     },

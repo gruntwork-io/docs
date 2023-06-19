@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.27.0" lastModifiedVersion="0.25.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.28.0" lastModifiedVersion="0.27.2"/>
 
 # EFS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/efs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/efs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.25.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Elastic File System (EFS) file system that provides NFSv4-compatible storage that can be used with other AWS services, such as EC2 instances.
 
@@ -45,13 +45,13 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [efs module variables](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/efs/variables.tf): Configuration variables available for the EFS module. At minimum, you should configure the `allow_connections_from_cidr_blocks` and `allow_connections_from_security_groups` values to only allow access from your private VPC(s). You may also want to enable `storage_encrypted` to encrypt data at-rest.
+*   [efs module variables](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/efs/variables.tf): Configuration variables available for the EFS module. At minimum, you should configure the `allow_connections_from_cidr_blocks` and `allow_connections_from_security_groups` values to only allow access from your private VPC(s). You may also want to enable `storage_encrypted` to encrypt data at-rest.
 
 ## Manage
 
@@ -74,19 +74,21 @@ If you want to deploy this repo in production, check out the following resources
 
 module "efs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/efs?ref=v0.27.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/efs?ref=v0.28.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The name used to namespace all resources created by these templates, including
-  # the EFS file system. Must be unique for this region. May contain only lowercase
-  # alphanumeric characters, hyphens, underscores, periods, and spaces.
+  # The name used to namespace all resources created by these templates,
+  # including the EFS file system. Must be unique for this region. May contain
+  # only lowercase alphanumeric characters, hyphens, underscores, periods, and
+  # spaces.
   name = <string>
 
-  # A list of subnet ids where the file system should be deployed. In the standard
-  # Gruntwork VPC setup, these should be the private persistence subnet ids.
+  # A list of subnet ids where the file system should be deployed. In the
+  # standard Gruntwork VPC setup, these should be the private persistence subnet
+  # ids.
   subnet_ids = <list(string)>
 
   # The id of the VPC in which this file system should be deployed.
@@ -97,13 +99,13 @@ module "efs" {
   # ----------------------------------------------------------------------------------------------------
 
   # (Optional) Allow access to the EFS file system via mount targets. If set to
-  # true, any clients connecting to a mount target (i.e. from within the private app
-  # subnet) will be allowed access.
+  # true, any clients connecting to a mount target (i.e. from within the private
+  # app subnet) will be allowed access.
   allow_access_via_mount_target = false
 
-  # A list of CIDR-formatted IP address ranges that can connect to this file system.
-  # Should typically be the CIDR blocks of the private app subnet in this VPC plus
-  # the private subnet in the mgmt VPC.
+  # A list of CIDR-formatted IP address ranges that can connect to this file
+  # system. Should typically be the CIDR blocks of the private app subnet in
+  # this VPC plus the private subnet in the mgmt VPC.
   allow_connections_from_cidr_blocks = []
 
   # A list of Security Groups that can connect to this file system.
@@ -113,17 +115,17 @@ module "efs" {
   # 'Security group for the var.name file system' if not specified.
   aws_efs_security_group_description = null
 
-  # The name of the aws_efs_security_group that is created. Defaults to var.name if
-  # not specified.
+  # The name of the aws_efs_security_group that is created. Defaults to var.name
+  # if not specified.
   aws_efs_security_group_name = null
 
   # A map of custom tags to apply to the EFS file system and the Security Group
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # (Optional) A list of EFS access points to be created and their settings. This is
-  # a map where the keys are the access point names and the values are objects that
-  # should have the fields described in
+  # (Optional) A list of EFS access points to be created and their settings.
+  # This is a map where the keys are the access point names and the values are
+  # objects that should have the fields described in
   # https://www.terraform.io/docs/providers/aws/r/efs_access_point.html.
   efs_access_points = {}
 
@@ -132,13 +134,13 @@ module "efs" {
   # will be denied via an IAM policy.
   enforce_in_transit_encryption = true
 
-  # The ARN of a KMS key that should be used to encrypt data on disk. Only used if
-  # var.storage_encrypted is true. If you leave this blank, the default EFS KMS key
-  # for the account will be used.
+  # The ARN of a KMS key that should be used to encrypt data on disk. Only used
+  # if var.storage_encrypted is true. If you leave this blank, the default EFS
+  # KMS key for the account will be used.
   kms_key_arn = null
 
-  # The file system performance mode. Can be either "generalPurpose" or "maxIO". For
-  # more details:
+  # The file system performance mode. Can be either "generalPurpose" or "maxIO".
+  # For more details:
   # https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes
   performance_mode = "generalPurpose"
 
@@ -149,8 +151,9 @@ module "efs" {
   # Specifies whether the EFS file system is encrypted.
   storage_encrypted = true
 
-  # Throughput mode for the file system. Valid values: "bursting", "provisioned".
-  # When using "provisioned", also set "provisioned_throughput_in_mibps".
+  # Throughput mode for the file system. Valid values: "bursting",
+  # "provisioned". When using "provisioned", also set
+  # "provisioned_throughput_in_mibps".
   throughput_mode = "bursting"
 
   # If specified, files will be transitioned to the IA storage class after the
@@ -173,7 +176,7 @@ module "efs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/efs?ref=v0.27.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/efs?ref=v0.28.0"
 }
 
 inputs = {
@@ -182,13 +185,15 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The name used to namespace all resources created by these templates, including
-  # the EFS file system. Must be unique for this region. May contain only lowercase
-  # alphanumeric characters, hyphens, underscores, periods, and spaces.
+  # The name used to namespace all resources created by these templates,
+  # including the EFS file system. Must be unique for this region. May contain
+  # only lowercase alphanumeric characters, hyphens, underscores, periods, and
+  # spaces.
   name = <string>
 
-  # A list of subnet ids where the file system should be deployed. In the standard
-  # Gruntwork VPC setup, these should be the private persistence subnet ids.
+  # A list of subnet ids where the file system should be deployed. In the
+  # standard Gruntwork VPC setup, these should be the private persistence subnet
+  # ids.
   subnet_ids = <list(string)>
 
   # The id of the VPC in which this file system should be deployed.
@@ -199,13 +204,13 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # (Optional) Allow access to the EFS file system via mount targets. If set to
-  # true, any clients connecting to a mount target (i.e. from within the private app
-  # subnet) will be allowed access.
+  # true, any clients connecting to a mount target (i.e. from within the private
+  # app subnet) will be allowed access.
   allow_access_via_mount_target = false
 
-  # A list of CIDR-formatted IP address ranges that can connect to this file system.
-  # Should typically be the CIDR blocks of the private app subnet in this VPC plus
-  # the private subnet in the mgmt VPC.
+  # A list of CIDR-formatted IP address ranges that can connect to this file
+  # system. Should typically be the CIDR blocks of the private app subnet in
+  # this VPC plus the private subnet in the mgmt VPC.
   allow_connections_from_cidr_blocks = []
 
   # A list of Security Groups that can connect to this file system.
@@ -215,17 +220,17 @@ inputs = {
   # 'Security group for the var.name file system' if not specified.
   aws_efs_security_group_description = null
 
-  # The name of the aws_efs_security_group that is created. Defaults to var.name if
-  # not specified.
+  # The name of the aws_efs_security_group that is created. Defaults to var.name
+  # if not specified.
   aws_efs_security_group_name = null
 
   # A map of custom tags to apply to the EFS file system and the Security Group
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # (Optional) A list of EFS access points to be created and their settings. This is
-  # a map where the keys are the access point names and the values are objects that
-  # should have the fields described in
+  # (Optional) A list of EFS access points to be created and their settings.
+  # This is a map where the keys are the access point names and the values are
+  # objects that should have the fields described in
   # https://www.terraform.io/docs/providers/aws/r/efs_access_point.html.
   efs_access_points = {}
 
@@ -234,13 +239,13 @@ inputs = {
   # will be denied via an IAM policy.
   enforce_in_transit_encryption = true
 
-  # The ARN of a KMS key that should be used to encrypt data on disk. Only used if
-  # var.storage_encrypted is true. If you leave this blank, the default EFS KMS key
-  # for the account will be used.
+  # The ARN of a KMS key that should be used to encrypt data on disk. Only used
+  # if var.storage_encrypted is true. If you leave this blank, the default EFS
+  # KMS key for the account will be used.
   kms_key_arn = null
 
-  # The file system performance mode. Can be either "generalPurpose" or "maxIO". For
-  # more details:
+  # The file system performance mode. Can be either "generalPurpose" or "maxIO".
+  # For more details:
   # https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes
   performance_mode = "generalPurpose"
 
@@ -251,8 +256,9 @@ inputs = {
   # Specifies whether the EFS file system is encrypted.
   storage_encrypted = true
 
-  # Throughput mode for the file system. Valid values: "bursting", "provisioned".
-  # When using "provisioned", also set "provisioned_throughput_in_mibps".
+  # Throughput mode for the file system. Valid values: "bursting",
+  # "provisioned". When using "provisioned", also set
+  # "provisioned_throughput_in_mibps".
   throughput_mode = "bursting"
 
   # If specified, files will be transitioned to the IA storage class after the
@@ -541,11 +547,11 @@ The IDs of the security groups created for the file system.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/efs/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/efs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/efs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/efs/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/efs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/efs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "034874f5c13efd70843e3d059c378ffd"
+  "hash": "217a5848217d106f331070db449f2555"
 }
 ##DOCS-SOURCER-END -->

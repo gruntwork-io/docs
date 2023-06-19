@@ -2,7 +2,7 @@
 
 ## Gruntwork IaC Library
 
-A battle-tested, production-grade _[catalog](/iac/reference/)_ of infrastructure code that contains the core “building blocks” of infrastructure. It includes everything you’ll need to set up:
+A battle-tested, production-grade _[catalog](/library/reference/)_ of infrastructure code that contains the core “building blocks” of infrastructure. It includes everything you’ll need to set up:
 
 - A Multi-account structure
 - An infrastructure CI/CD Pipeline
@@ -10,7 +10,7 @@ A battle-tested, production-grade _[catalog](/iac/reference/)_ of infrastructure
 - App orchestration — ECS, EC2, Kubernetes, and more
 - Data storage — Aurora, Elasticache, RDS, and more
 - Best-practice security baselines
-- _and [more…](/iac/reference/)_
+- _and [more…](/library/reference/)_
 
 ## Gruntwork Compliance
 
@@ -44,6 +44,6 @@ Gruntwork offers basic and paid support options:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7797c7773cacd3bf8f83d75d8def11b7"
+  "hash": "461b12c248df4fce98bb4b891bc1c9e4"
 }
 ##DOCS-SOURCER-END -->

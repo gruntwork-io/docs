@@ -9,23 +9,23 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.27.0" lastModifiedVersion="0.27.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.28.0" lastModifiedVersion="0.27.2"/>
 
 # Share Snapshot Lambda Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/lambda-share-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-share-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an [AWS Lambda](https://aws.amazon.com/lambda/) function that can share snapshots of an [Amazon
 Relational Database (RDS)](https://aws.amazon.com/rds/) database with another AWS account. Typically, the snapshots
-are created by the [lambda-create-snapshot module](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/lambda-create-snapshot), which can be configured to
+are created by the [lambda-create-snapshot module](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-create-snapshot), which can be configured to
 automatically trigger this lambda function after each run.
 
 ## Background info
 
 For more info on how to backup RDS snapshots to a separate AWS account, check out the [lambda-create-snapshot module
-documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/lambda-create-snapshot).
+documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-create-snapshot).
 
 ## Sample Usage
 
@@ -40,7 +40,7 @@ documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v
 
 module "lambda_share_snapshot" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-share-snapshot?ref=v0.27.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-share-snapshot?ref=v0.28.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -53,18 +53,18 @@ module "lambda_share_snapshot" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Set to false to have this module skip creating resources. This weird parameter
-  # exists solely because Terraform does not support conditional modules. Therefore,
-  # this is a hack to allow you to conditionally decide if this module should create
-  # anything or not.
+  # Set to false to have this module skip creating resources. This weird
+  # parameter exists solely because Terraform does not support conditional
+  # modules. Therefore, this is a hack to allow you to conditionally decide if
+  # this module should create anything or not.
   create_resources = true
 
-  # The maximum number of retries the lambda function will make while waiting for
-  # the snapshot to be available
+  # The maximum number of retries the lambda function will make while waiting
+  # for the snapshot to be available
   max_retries = 60
 
-  # The name for the lambda function and other resources created by these Terraform
-  # configurations
+  # The name for the lambda function and other resources created by these
+  # Terraform configurations
   name = "share-rds-snapshot"
 
   # The amount of time, in seconds, between retries.
@@ -85,7 +85,7 @@ module "lambda_share_snapshot" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-share-snapshot?ref=v0.27.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-share-snapshot?ref=v0.28.0"
 }
 
 inputs = {
@@ -101,18 +101,18 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Set to false to have this module skip creating resources. This weird parameter
-  # exists solely because Terraform does not support conditional modules. Therefore,
-  # this is a hack to allow you to conditionally decide if this module should create
-  # anything or not.
+  # Set to false to have this module skip creating resources. This weird
+  # parameter exists solely because Terraform does not support conditional
+  # modules. Therefore, this is a hack to allow you to conditionally decide if
+  # this module should create anything or not.
   create_resources = true
 
-  # The maximum number of retries the lambda function will make while waiting for
-  # the snapshot to be available
+  # The maximum number of retries the lambda function will make while waiting
+  # for the snapshot to be available
   max_retries = 60
 
-  # The name for the lambda function and other resources created by these Terraform
-  # configurations
+  # The name for the lambda function and other resources created by these
+  # Terraform configurations
   name = "share-rds-snapshot"
 
   # The amount of time, in seconds, between retries.
@@ -198,11 +198,11 @@ The amount of time, in seconds, between retries.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/lambda-share-snapshot/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/lambda-share-snapshot/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/lambda-share-snapshot/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-share-snapshot/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-share-snapshot/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-share-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a6d40a1ab88c2991c6327047e5326075"
+  "hash": "e0539173bbe224a2182e5557070d7ec9"
 }
 ##DOCS-SOURCER-END -->

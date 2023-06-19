@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.1" lastModifiedVersion="0.9.0"/>
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.2" lastModifiedVersion="0.9.2"/>
 
 # Instance Type
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/instance-type" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/instance-type" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.9.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.9.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This is a module that can be used to look up a list of EC2 instance types and determine which of them is available in
 all Availability Zones (AZs) in the current AWS Region. This is useful because certain instance types, such as
@@ -25,7 +25,7 @@ module to automatically figure out which instance type you should use.
 
 ## Example code
 
-See the [instance-type example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/examples/instance-type) for working sample code.
+See the [instance-type example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/examples/instance-type) for working sample code.
 
 ## Usage
 
@@ -67,7 +67,7 @@ will be `t2.micro`, as that's available in all AZs in `eu-west-1`. However, if y
 
 module "instance_type" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/instance-type?ref=v0.9.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/instance-type?ref=v0.9.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -75,8 +75,8 @@ module "instance_type" {
 
   # A list of instance types to look up in the current AWS region. We recommend
   # putting them in order of preference, as the recommended_instance_type output
-  # variable will contain the first instance type from this list that is available
-  # in all AZs.
+  # variable will contain the first instance type from this list that is
+  # available in all AZs.
   instance_types = <list(string)>
 
 }
@@ -94,7 +94,7 @@ module "instance_type" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/instance-type?ref=v0.9.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/instance-type?ref=v0.9.2"
 }
 
 inputs = {
@@ -105,8 +105,8 @@ inputs = {
 
   # A list of instance types to look up in the current AWS region. We recommend
   # putting them in order of preference, as the recommended_instance_type output
-  # variable will contain the first instance type from this list that is available
-  # in all AZs.
+  # variable will contain the first instance type from this list that is
+  # available in all AZs.
   instance_types = <list(string)>
 
 }
@@ -161,11 +161,11 @@ The recommended instance type to use in this AWS region. This will be the first 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/instance-type/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/instance-type/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/instance-type/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/instance-type/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/instance-type/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/instance-type/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "80f984da9fa1b5281e8420334eba49b6"
+  "hash": "d3e40618cadd6d50ecb02790be65ec7e"
 }
 ##DOCS-SOURCER-END -->

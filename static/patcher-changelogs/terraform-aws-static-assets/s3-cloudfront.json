@@ -1,6 +1,12 @@
 {
   "module": "s3-cloudfront",
   "releases": {
+    "v0.17.1": {
+      "contains_changes": true
+    },
+    "v0.17.0": {
+      "contains_changes": true
+    },
     "v0.16.1": {
       "contains_changes": false
     },

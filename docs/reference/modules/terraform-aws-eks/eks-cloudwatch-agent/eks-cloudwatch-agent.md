@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.58.3" lastModifiedVersion="0.53.1"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.59.1" lastModifiedVersion="0.58.4"/>
 
 # EKS CloudWatch Agent Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-cloudwatch-agent" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-cloudwatch-agent" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.53.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.58.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module installs and configures
 [Amazon CloudWatch Agent](https://github.com/aws/amazon-cloudwatch-agent/) on an EKS cluster, so that
@@ -67,7 +67,7 @@ docs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContainerIn
 
 module "eks_cloudwatch_agent" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v0.58.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v0.59.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -76,12 +76,13 @@ module "eks_cloudwatch_agent" {
   # Name of the EKS cluster where resources are deployed to.
   eks_cluster_name = <string>
 
-  # Configuration for using the IAM role with Service Accounts feature to provide
-  # permissions to the helm charts. This expects a map with two properties:
-  # `openid_connect_provider_arn` and `openid_connect_provider_url`. The
-  # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
-  # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
-  # to null if you do not wish to use IAM role with Service Accounts.
+  # Configuration for using the IAM role with Service Accounts feature to
+  # provide permissions to the helm charts. This expects a map with two
+  # properties: `openid_connect_provider_arn` and `openid_connect_provider_url`.
+  # The `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider
+  # for EKS to retrieve IAM credentials, while `openid_connect_provider_url` is
+  # the URL. Set to null if you do not wish to use IAM role with Service
+  # Accounts.
   iam_role_for_service_accounts_config = <object(
     openid_connect_provider_arn = string
     openid_connect_provider_url = string
@@ -91,26 +92,26 @@ module "eks_cloudwatch_agent" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The Container repository to use for looking up the cloudwatch-agent Container
-  # image when deploying the pods. When null, uses the default repository set in the
-  # chart.
+  # The Container repository to use for looking up the cloudwatch-agent
+  # Container image when deploying the pods. When null, uses the default
+  # repository set in the chart.
   aws_cloudwatch_agent_image_repository = null
 
-  # Which version of amazon/cloudwatch-agent to install. When null, uses the default
-  # version set in the chart.
+  # Which version of amazon/cloudwatch-agent to install. When null, uses the
+  # default version set in the chart.
   aws_cloudwatch_agent_version = null
 
-  # The version of the aws-cloudwatch-metrics helm chart to deploy. Note that this
-  # is different from the app/container version (use
+  # The version of the aws-cloudwatch-metrics helm chart to deploy. Note that
+  # this is different from the app/container version (use
   # var.aws_cloudwatch_agent_version to control the app/container version).
   aws_cloudwatch_metrics_chart_version = "0.0.7"
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
-  # resources in this module will now depend on the resources backing the values in
-  # this list such that those resources need to be created before the resources in
-  # this module, and the resources in this module need to be destroyed before the
-  # resources in the list.
+  # resources in this module will now depend on the resources backing the values
+  # in this list such that those resources need to be created before the
+  # resources in this module, and the resources in this module need to be
+  # destroyed before the resources in the list.
   dependencies = []
 
   # Used to name IAM roles for the service account. Recommended when
@@ -120,18 +121,18 @@ module "eks_cloudwatch_agent" {
   # Namespace to create the resources in.
   namespace = "kube-system"
 
-  # Configure affinity rules for the Pod to control which nodes to schedule on. Each
-  # item in the list should be a map with the keys `key`, `values`, and `operator`,
-  # corresponding to the 3 properties of matchExpressions. Note that all expressions
-  # must be satisfied to schedule on the node.
+  # Configure affinity rules for the Pod to control which nodes to schedule on.
+  # Each item in the list should be a map with the keys `key`, `values`, and
+  # `operator`, corresponding to the 3 properties of matchExpressions. Note that
+  # all expressions must be satisfied to schedule on the node.
   pod_node_affinity = []
 
-  # Specify the resource limits and requests for the cloudwatch-agent pods. Set to
-  # null (default) to use chart defaults.
+  # Specify the resource limits and requests for the cloudwatch-agent pods. Set
+  # to null (default) to use chart defaults.
   pod_resources = null
 
-  # Configure tolerations rules to allow the Pod to schedule on nodes that have been
-  # tainted. Each item in the list specifies a toleration rule.
+  # Configure tolerations rules to allow the Pod to schedule on nodes that have
+  # been tainted. Each item in the list specifies a toleration rule.
   pod_tolerations = []
 
 }
@@ -149,7 +150,7 @@ module "eks_cloudwatch_agent" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v0.58.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v0.59.1"
 }
 
 inputs = {
@@ -161,12 +162,13 @@ inputs = {
   # Name of the EKS cluster where resources are deployed to.
   eks_cluster_name = <string>
 
-  # Configuration for using the IAM role with Service Accounts feature to provide
-  # permissions to the helm charts. This expects a map with two properties:
-  # `openid_connect_provider_arn` and `openid_connect_provider_url`. The
-  # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
-  # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
-  # to null if you do not wish to use IAM role with Service Accounts.
+  # Configuration for using the IAM role with Service Accounts feature to
+  # provide permissions to the helm charts. This expects a map with two
+  # properties: `openid_connect_provider_arn` and `openid_connect_provider_url`.
+  # The `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider
+  # for EKS to retrieve IAM credentials, while `openid_connect_provider_url` is
+  # the URL. Set to null if you do not wish to use IAM role with Service
+  # Accounts.
   iam_role_for_service_accounts_config = <object(
     openid_connect_provider_arn = string
     openid_connect_provider_url = string
@@ -176,26 +178,26 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The Container repository to use for looking up the cloudwatch-agent Container
-  # image when deploying the pods. When null, uses the default repository set in the
-  # chart.
+  # The Container repository to use for looking up the cloudwatch-agent
+  # Container image when deploying the pods. When null, uses the default
+  # repository set in the chart.
   aws_cloudwatch_agent_image_repository = null
 
-  # Which version of amazon/cloudwatch-agent to install. When null, uses the default
-  # version set in the chart.
+  # Which version of amazon/cloudwatch-agent to install. When null, uses the
+  # default version set in the chart.
   aws_cloudwatch_agent_version = null
 
-  # The version of the aws-cloudwatch-metrics helm chart to deploy. Note that this
-  # is different from the app/container version (use
+  # The version of the aws-cloudwatch-metrics helm chart to deploy. Note that
+  # this is different from the app/container version (use
   # var.aws_cloudwatch_agent_version to control the app/container version).
   aws_cloudwatch_metrics_chart_version = "0.0.7"
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
-  # resources in this module will now depend on the resources backing the values in
-  # this list such that those resources need to be created before the resources in
-  # this module, and the resources in this module need to be destroyed before the
-  # resources in the list.
+  # resources in this module will now depend on the resources backing the values
+  # in this list such that those resources need to be created before the
+  # resources in this module, and the resources in this module need to be
+  # destroyed before the resources in the list.
   dependencies = []
 
   # Used to name IAM roles for the service account. Recommended when
@@ -205,18 +207,18 @@ inputs = {
   # Namespace to create the resources in.
   namespace = "kube-system"
 
-  # Configure affinity rules for the Pod to control which nodes to schedule on. Each
-  # item in the list should be a map with the keys `key`, `values`, and `operator`,
-  # corresponding to the 3 properties of matchExpressions. Note that all expressions
-  # must be satisfied to schedule on the node.
+  # Configure affinity rules for the Pod to control which nodes to schedule on.
+  # Each item in the list should be a map with the keys `key`, `values`, and
+  # `operator`, corresponding to the 3 properties of matchExpressions. Note that
+  # all expressions must be satisfied to schedule on the node.
   pod_node_affinity = []
 
-  # Specify the resource limits and requests for the cloudwatch-agent pods. Set to
-  # null (default) to use chart defaults.
+  # Specify the resource limits and requests for the cloudwatch-agent pods. Set
+  # to null (default) to use chart defaults.
   pod_resources = null
 
-  # Configure tolerations rules to allow the Pod to schedule on nodes that have been
-  # tainted. Each item in the list specifies a toleration rule.
+  # Configure tolerations rules to allow the Pod to schedule on nodes that have
+  # been tainted. Each item in the list specifies a toleration rule.
   pod_tolerations = []
 
 }
@@ -231,11 +233,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-cloudwatch-agent/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-cloudwatch-agent/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.58.3/modules/eks-cloudwatch-agent/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-cloudwatch-agent/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-cloudwatch-agent/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-cloudwatch-agent/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3b8960e202ff92f9778e8d897f02ea8d"
+  "hash": "b8a36ef7213ed1c6f274126045aeb396"
 }
 ##DOCS-SOURCER-END -->

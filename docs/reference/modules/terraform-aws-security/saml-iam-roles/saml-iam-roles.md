@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.2" lastModifiedVersion="0.65.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.4" lastModifiedVersion="0.65.0"/>
 
 # A best-practices set of IAM roles for SAML access
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/saml-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/saml-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -47,7 +47,7 @@ This module creates the following IAM roles (all optional):
 
 *   **allow-ssh-grunt-access-from-saml**: Users authenticated by the SAML providers in
     `var.allow_ssh_grunt_access_from_saml_provider_arns` will get read access to IAM Groups and public SSH keys. This is
-    useful to allow [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/ssh-grunt) running on EC2 Instances in other AWS accounts to validate SSH
+    useful to allow [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ssh-grunt) running on EC2 Instances in other AWS accounts to validate SSH
     connections against IAM users defined in this AWS account.
 
 *   **allow-dev-access-from-saml**:Users authenticated by the SAML providers in
@@ -78,7 +78,7 @@ This module creates the following IAM roles (all optional):
 
 module "saml_iam_roles" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v0.68.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -91,66 +91,68 @@ module "saml_iam_roles" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # A flag to indicate if auto deploy access will be delegated to SAML providers.
+  # A flag to indicate if auto deploy access will be delegated to SAML
+  # providers.
   allow_auto_deploy_access_from_saml_provider = false
 
-  # A list of IAM ARNs of Identity Providers that will be delegated the auto deploy
-  # IAM role that has the permissions in var.auto_deploy_permissions.
+  # A list of IAM ARNs of Identity Providers that will be delegated the auto
+  # deploy IAM role that has the permissions in var.auto_deploy_permissions.
   allow_auto_deploy_from_saml_provider_arns = []
 
   # A flag to indicate if billing access will be delegated to SAML providers.
   allow_billing_access_from_saml_provider = false
 
-  # A list of IAM ARNs of Identity Providers that will be delegated full (read and
-  # write) access to the billing info for this account.
+  # A list of IAM ARNs of Identity Providers that will be delegated full (read
+  # and write) access to the billing info for this account.
   allow_billing_access_from_saml_provider_arns = []
 
   # A flag to indicate if dev access will be delegated to SAML providers.
   allow_dev_access_from_saml_provider = false
 
-  # A list of IAM ARNs of Identity Providers that will be delegated full (read and
-  # write) access to the services in this account specified in
+  # A list of IAM ARNs of Identity Providers that will be delegated full (read
+  # and write) access to the services in this account specified in
   # var.dev_permitted_services.
   allow_dev_access_from_saml_provider_arns = []
 
   # A flag to indicate if full access will be delegated to SAML providers.
   allow_full_access_from_saml_provider = false
 
-  # A list of IAM ARNs of Identity Providers that will be delegated full (read and
-  # write) access to this account.
+  # A list of IAM ARNs of Identity Providers that will be delegated full (read
+  # and write) access to this account.
   allow_full_access_from_saml_provider_arns = []
 
   # A flag to indicate if IAM admin access will be delegated to SAML providers.
   allow_iam_admin_access_from_saml_provider = false
 
-  # A list of IAM ARNs of Identity Providers that will be delegated IAM admin access
-  # to this account.
+  # A list of IAM ARNs of Identity Providers that will be delegated IAM admin
+  # access to this account.
   allow_iam_admin_access_from_saml_provider_arns = []
 
   # A flag to indicate if logs access will be delegated to SAML providers.
   allow_logs_access_from_saml_provider = false
 
-  # A list of IAM ARNs of Identity Providers that will be delegated read access to
-  # the logs in CloudTrail, AWS Config, and CloudWatch for this account. If
-  # var.cloudtrail_kms_key_arn is set, the users will also be delegated access to
-  # decrypt using this KMS CMK.
+  # A list of IAM ARNs of Identity Providers that will be delegated read access
+  # to the logs in CloudTrail, AWS Config, and CloudWatch for this account. If
+  # var.cloudtrail_kms_key_arn is set, the users will also be delegated access
+  # to decrypt using this KMS CMK.
   allow_logs_access_from_saml_provider_arns = []
 
   # A flag to indicate if read only access will be delegated to SAML providers.
   allow_read_only_access_from_saml_provider = false
 
-  # A list of IAM ARNs of Identity Providers that will be delegated read-only access
-  # to this account.
+  # A list of IAM ARNs of Identity Providers that will be delegated read-only
+  # access to this account.
   allow_read_only_access_from_saml_provider_arns = []
 
   # A flag to indicate if ssh-grunt access will be delegated to SAML providers.
   allow_ssh_grunt_access_from_saml_provider = false
 
-  # A list of IAM ARNs of Identity Providers that will be delegated read access to
-  # IAM groups and publish SSH keys. This is used for ssh-grunt.
+  # A list of IAM ARNs of Identity Providers that will be delegated read access
+  # to IAM groups and publish SSH keys. This is used for ssh-grunt.
   allow_ssh_grunt_access_from_saml_provider_arns = []
 
-  # A flag to indicate if AWS support access will be delegated to SAML providers.
+  # A flag to indicate if AWS support access will be delegated to SAML
+  # providers.
   allow_support_access_from_saml_provider = false
 
   # A list of IAM ARNs of Identity Providers that will be delegated AWS support
@@ -167,19 +169,19 @@ module "saml_iam_roles" {
   # What to name the billing access IAM role
   billing_access_iam_role_name = "allow-billing-only-access-from-saml"
 
-  # The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs IAM roles
-  # will include permissions to decrypt using this CMK.
+  # The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs IAM
+  # roles will include permissions to decrypt using this CMK.
   cloudtrail_kms_key_arn = null
 
   # What to name the dev access IAM role
   dev_access_iam_role_name = "allow-dev-access-from-saml"
 
   # A list of AWS services for which the developers from the accounts in
-  # var.allow_dev_access_from_other_account_arns will receive full permissions. See
-  # https://goo.gl/ZyoHlz to find the IAM Service name. For example, to grant
-  # developers access only to EC2 and Amazon Machine Learning, use the value
-  # ["ec2","machinelearning"]. Do NOT add iam to the list of services, or that will
-  # grant Developers de facto admin access.
+  # var.allow_dev_access_from_other_account_arns will receive full permissions.
+  # See https://goo.gl/ZyoHlz to find the IAM Service name. For example, to
+  # grant developers access only to EC2 and Amazon Machine Learning, use the
+  # value ["ec2","machinelearning"]. Do NOT add iam to the list of services, or
+  # that will grant Developers de facto admin access.
   dev_permitted_services = []
 
   # What to name the full access IAM role
@@ -191,19 +193,20 @@ module "saml_iam_roles" {
   # What to name the logs access IAM role
   logs_access_iam_role_name = "allow-logs-access-from-saml"
 
-  # The maximum allowable session duration, in seconds, for the credentials you get
-  # when assuming the IAM roles created by this module. This variable applies to all
-  # IAM roles created by this module that are intended for people to use, such as
-  # allow-read-only-access-from-saml. For IAM roles that are intended for machine
-  # users, such as allow-auto-deploy-from-other-accounts, see
-  # var.max_session_duration_machine_users.
+  # The maximum allowable session duration, in seconds, for the credentials you
+  # get when assuming the IAM roles created by this module. This variable
+  # applies to all IAM roles created by this module that are intended for people
+  # to use, such as allow-read-only-access-from-saml. For IAM roles that are
+  # intended for machine users, such as allow-auto-deploy-from-other-accounts,
+  # see var.max_session_duration_machine_users.
   max_session_duration_human_users = 43200
 
-  # The maximum allowable session duration, in seconds, for the credentials you get
-  # when assuming the IAM roles created by this module. This variable  applies to
-  # all IAM roles created by this module that are intended for machine users, such
-  # as allow-auto-deploy-from-saml. For IAM roles that are intended for human users,
-  # such as allow-read-only-access-from-other-accounts, see
+  # The maximum allowable session duration, in seconds, for the credentials you
+  # get when assuming the IAM roles created by this module. This variable 
+  # applies to all IAM roles created by this module that are intended for
+  # machine users, such as allow-auto-deploy-from-saml. For IAM roles that are
+  # intended for human users, such as
+  # allow-read-only-access-from-other-accounts, see
   # var.max_session_duration_human_users.
   max_session_duration_machine_users = 3600
 
@@ -234,7 +237,7 @@ module "saml_iam_roles" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v0.68.4"
 }
 
 inputs = {
@@ -250,66 +253,68 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # A flag to indicate if auto deploy access will be delegated to SAML providers.
+  # A flag to indicate if auto deploy access will be delegated to SAML
+  # providers.
   allow_auto_deploy_access_from_saml_provider = false
 
-  # A list of IAM ARNs of Identity Providers that will be delegated the auto deploy
-  # IAM role that has the permissions in var.auto_deploy_permissions.
+  # A list of IAM ARNs of Identity Providers that will be delegated the auto
+  # deploy IAM role that has the permissions in var.auto_deploy_permissions.
   allow_auto_deploy_from_saml_provider_arns = []
 
   # A flag to indicate if billing access will be delegated to SAML providers.
   allow_billing_access_from_saml_provider = false
 
-  # A list of IAM ARNs of Identity Providers that will be delegated full (read and
-  # write) access to the billing info for this account.
+  # A list of IAM ARNs of Identity Providers that will be delegated full (read
+  # and write) access to the billing info for this account.
   allow_billing_access_from_saml_provider_arns = []
 
   # A flag to indicate if dev access will be delegated to SAML providers.
   allow_dev_access_from_saml_provider = false
 
-  # A list of IAM ARNs of Identity Providers that will be delegated full (read and
-  # write) access to the services in this account specified in
+  # A list of IAM ARNs of Identity Providers that will be delegated full (read
+  # and write) access to the services in this account specified in
   # var.dev_permitted_services.
   allow_dev_access_from_saml_provider_arns = []
 
   # A flag to indicate if full access will be delegated to SAML providers.
   allow_full_access_from_saml_provider = false
 
-  # A list of IAM ARNs of Identity Providers that will be delegated full (read and
-  # write) access to this account.
+  # A list of IAM ARNs of Identity Providers that will be delegated full (read
+  # and write) access to this account.
   allow_full_access_from_saml_provider_arns = []
 
   # A flag to indicate if IAM admin access will be delegated to SAML providers.
   allow_iam_admin_access_from_saml_provider = false
 
-  # A list of IAM ARNs of Identity Providers that will be delegated IAM admin access
-  # to this account.
+  # A list of IAM ARNs of Identity Providers that will be delegated IAM admin
+  # access to this account.
   allow_iam_admin_access_from_saml_provider_arns = []
 
   # A flag to indicate if logs access will be delegated to SAML providers.
   allow_logs_access_from_saml_provider = false
 
-  # A list of IAM ARNs of Identity Providers that will be delegated read access to
-  # the logs in CloudTrail, AWS Config, and CloudWatch for this account. If
-  # var.cloudtrail_kms_key_arn is set, the users will also be delegated access to
-  # decrypt using this KMS CMK.
+  # A list of IAM ARNs of Identity Providers that will be delegated read access
+  # to the logs in CloudTrail, AWS Config, and CloudWatch for this account. If
+  # var.cloudtrail_kms_key_arn is set, the users will also be delegated access
+  # to decrypt using this KMS CMK.
   allow_logs_access_from_saml_provider_arns = []
 
   # A flag to indicate if read only access will be delegated to SAML providers.
   allow_read_only_access_from_saml_provider = false
 
-  # A list of IAM ARNs of Identity Providers that will be delegated read-only access
-  # to this account.
+  # A list of IAM ARNs of Identity Providers that will be delegated read-only
+  # access to this account.
   allow_read_only_access_from_saml_provider_arns = []
 
   # A flag to indicate if ssh-grunt access will be delegated to SAML providers.
   allow_ssh_grunt_access_from_saml_provider = false
 
-  # A list of IAM ARNs of Identity Providers that will be delegated read access to
-  # IAM groups and publish SSH keys. This is used for ssh-grunt.
+  # A list of IAM ARNs of Identity Providers that will be delegated read access
+  # to IAM groups and publish SSH keys. This is used for ssh-grunt.
   allow_ssh_grunt_access_from_saml_provider_arns = []
 
-  # A flag to indicate if AWS support access will be delegated to SAML providers.
+  # A flag to indicate if AWS support access will be delegated to SAML
+  # providers.
   allow_support_access_from_saml_provider = false
 
   # A list of IAM ARNs of Identity Providers that will be delegated AWS support
@@ -326,19 +331,19 @@ inputs = {
   # What to name the billing access IAM role
   billing_access_iam_role_name = "allow-billing-only-access-from-saml"
 
-  # The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs IAM roles
-  # will include permissions to decrypt using this CMK.
+  # The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs IAM
+  # roles will include permissions to decrypt using this CMK.
   cloudtrail_kms_key_arn = null
 
   # What to name the dev access IAM role
   dev_access_iam_role_name = "allow-dev-access-from-saml"
 
   # A list of AWS services for which the developers from the accounts in
-  # var.allow_dev_access_from_other_account_arns will receive full permissions. See
-  # https://goo.gl/ZyoHlz to find the IAM Service name. For example, to grant
-  # developers access only to EC2 and Amazon Machine Learning, use the value
-  # ["ec2","machinelearning"]. Do NOT add iam to the list of services, or that will
-  # grant Developers de facto admin access.
+  # var.allow_dev_access_from_other_account_arns will receive full permissions.
+  # See https://goo.gl/ZyoHlz to find the IAM Service name. For example, to
+  # grant developers access only to EC2 and Amazon Machine Learning, use the
+  # value ["ec2","machinelearning"]. Do NOT add iam to the list of services, or
+  # that will grant Developers de facto admin access.
   dev_permitted_services = []
 
   # What to name the full access IAM role
@@ -350,19 +355,20 @@ inputs = {
   # What to name the logs access IAM role
   logs_access_iam_role_name = "allow-logs-access-from-saml"
 
-  # The maximum allowable session duration, in seconds, for the credentials you get
-  # when assuming the IAM roles created by this module. This variable applies to all
-  # IAM roles created by this module that are intended for people to use, such as
-  # allow-read-only-access-from-saml. For IAM roles that are intended for machine
-  # users, such as allow-auto-deploy-from-other-accounts, see
-  # var.max_session_duration_machine_users.
+  # The maximum allowable session duration, in seconds, for the credentials you
+  # get when assuming the IAM roles created by this module. This variable
+  # applies to all IAM roles created by this module that are intended for people
+  # to use, such as allow-read-only-access-from-saml. For IAM roles that are
+  # intended for machine users, such as allow-auto-deploy-from-other-accounts,
+  # see var.max_session_duration_machine_users.
   max_session_duration_human_users = 43200
 
-  # The maximum allowable session duration, in seconds, for the credentials you get
-  # when assuming the IAM roles created by this module. This variable  applies to
-  # all IAM roles created by this module that are intended for machine users, such
-  # as allow-auto-deploy-from-saml. For IAM roles that are intended for human users,
-  # such as allow-read-only-access-from-other-accounts, see
+  # The maximum allowable session duration, in seconds, for the credentials you
+  # get when assuming the IAM roles created by this module. This variable 
+  # applies to all IAM roles created by this module that are intended for
+  # machine users, such as allow-auto-deploy-from-saml. For IAM roles that are
+  # intended for human users, such as
+  # allow-read-only-access-from-other-accounts, see
   # var.max_session_duration_human_users.
   max_session_duration_machine_users = 3600
 
@@ -890,11 +896,11 @@ A map of tags to apply to the IAM roles.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/saml-iam-roles/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/saml-iam-roles/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/saml-iam-roles/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/saml-iam-roles/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/saml-iam-roles/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/saml-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "66fc5ba53efc022f32c9110a072fec43"
+  "hash": "61e59f3fe22fb347c7203a0f415c35c6"
 }
 ##DOCS-SOURCER-END -->

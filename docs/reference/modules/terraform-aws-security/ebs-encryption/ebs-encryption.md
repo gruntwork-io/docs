@@ -9,18 +9,18 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.2" lastModifiedVersion="0.66.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.4" lastModifiedVersion="0.66.0"/>
 
 # Elastic Block Storage Encryption
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/ebs-encryption" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ebs-encryption" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.66.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module configures EC2 Elastic Block Storage encryption defaults, allowing encryption to be enabled for all new EBS
 volumes and selection of a KMS Customer Managed Key to use by default.
 
-This module is not meant to be used directly. Instead, it's used under the hood in the [account-baseline-\*](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules)
+This module is not meant to be used directly. Instead, it's used under the hood in the [account-baseline-\*](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules)
 modules. Please see those modules for more information.
 
 ## Background Information
@@ -42,16 +42,16 @@ modules. Please see those modules for more information.
 
 module "ebs_encryption" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ebs-encryption?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ebs-encryption?ref=v0.68.4"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Set to false to have this module skip creating resources. This weird parameter
-  # exists solely because Terraform does not support conditional modules. Therefore,
-  # this is a hack to allow you to conditionally decide if the resources in this
-  # module should be created or not.
+  # Set to false to have this module skip creating resources. This weird
+  # parameter exists solely because Terraform does not support conditional
+  # modules. Therefore, this is a hack to allow you to conditionally decide if
+  # the resources in this module should be created or not.
   create_resources = false
 
   # If set to true, all new EBS volumes will have encryption enabled by default
@@ -62,8 +62,8 @@ module "ebs_encryption" {
   kms_key_arn = null
 
   # Whether or not to use the existing key specified in var.kms_key_arn. We need
-  # this weird parameter because `count` must be a known value at plan time, so we
-  # cannot calculate whether or not to use the key dynamically.
+  # this weird parameter because `count` must be a known value at plan time, so
+  # we cannot calculate whether or not to use the key dynamically.
   use_existing_kms_key = false
 
 }
@@ -81,7 +81,7 @@ module "ebs_encryption" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ebs-encryption?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ebs-encryption?ref=v0.68.4"
 }
 
 inputs = {
@@ -90,10 +90,10 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Set to false to have this module skip creating resources. This weird parameter
-  # exists solely because Terraform does not support conditional modules. Therefore,
-  # this is a hack to allow you to conditionally decide if the resources in this
-  # module should be created or not.
+  # Set to false to have this module skip creating resources. This weird
+  # parameter exists solely because Terraform does not support conditional
+  # modules. Therefore, this is a hack to allow you to conditionally decide if
+  # the resources in this module should be created or not.
   create_resources = false
 
   # If set to true, all new EBS volumes will have encryption enabled by default
@@ -104,8 +104,8 @@ inputs = {
   kms_key_arn = null
 
   # Whether or not to use the existing key specified in var.kms_key_arn. We need
-  # this weird parameter because `count` must be a known value at plan time, so we
-  # cannot calculate whether or not to use the key dynamically.
+  # this weird parameter because `count` must be a known value at plan time, so
+  # we cannot calculate whether or not to use the key dynamically.
   use_existing_kms_key = false
 
 }
@@ -188,11 +188,11 @@ The default KMS key used for EBS encryption.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/ebs-encryption/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/ebs-encryption/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/ebs-encryption/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ebs-encryption/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ebs-encryption/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ebs-encryption/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2f05ca620411c51e2185ad350b677f5f"
+  "hash": "d4d1c6cdc915f48c12030164f8c14115"
 }
 ##DOCS-SOURCER-END -->

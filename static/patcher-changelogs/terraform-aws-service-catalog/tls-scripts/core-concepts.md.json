@@ -1,6 +1,24 @@
 {
   "module": "tls-scripts/core-concepts.md",
   "releases": {
+    "v0.104.12": {
+      "contains_changes": false
+    },
+    "v0.104.11": {
+      "contains_changes": false
+    },
+    "v0.104.10": {
+      "contains_changes": false
+    },
+    "v0.104.9": {
+      "contains_changes": false
+    },
+    "v0.104.8": {
+      "contains_changes": false
+    },
+    "v0.104.7": {
+      "contains_changes": false
+    },
     "v0.104.6": {
       "contains_changes": false
     },

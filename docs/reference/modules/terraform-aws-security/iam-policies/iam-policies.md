@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.2" lastModifiedVersion="0.67.10"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.4" lastModifiedVersion="0.67.10"/>
 
 # A Best-Practices Set of IAM Policy Documents
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -25,7 +25,7 @@ Note that these documents are Terraform [data sources](https://www.terraform.io/
 so they don't create anything themselves and are not intended to be used on their own. The way to use them is to take
 the outputs from this module (which are all JSON IAM documents) and plug them into other Terraform resources, such
 as `aws_iam_policy`, `aws_iam_user_policy`, `aws_iam_group_policy`, and `aws_iam_role_policy`. See the
-[iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-groups) and [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cross-account-iam-roles) modules for examples.
+[iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-groups) and [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cross-account-iam-roles) modules for examples.
 
 If you're not familiar with IAM concepts, start with the [Background Information](#background-information) section as a
 way to familiarize yourself with the terminology.
@@ -82,7 +82,7 @@ This module creates the following IAM Policy documents:
     certain IAM roles in other AWS accounts (e.g. stage, prod). The documents that are created and which IAM roles they
     have access to is controlled by the variable `var.allow_access_from_other_account_arns`.
 
-*   **ssh_grunt_permissions**: provides the permissions [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/ssh-grunt) needs to validate SSH keys with
+*   **ssh_grunt_permissions**: provides the permissions [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ssh-grunt) needs to validate SSH keys with
     IAM.
 
 *   **auto_deploy_permissions**: provides the permissions in `var.auto_deploy_permissions` to do automated deployment.
@@ -263,7 +263,7 @@ Instead, use these Terraform resources so you don't have to worry about this pro
 
 module "iam_policies" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-policies?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-policies?ref=v0.68.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -276,13 +276,13 @@ module "iam_policies" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed to access this
-  # account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed to access
+  # this account.
   allow_access_from_other_account_arns = []
 
-  # A flag to indicate if access will be delegated to SAML providers. The ARNs of
-  # the specific IdPs to trust are specified through the allow_access_from_saml_arns
-  # variable below. 
+  # A flag to indicate if access will be delegated to SAML providers. The ARNs
+  # of the specific IdPs to trust are specified through the
+  # allow_access_from_saml_arns variable below. 
   allow_access_from_saml = false
 
   # A list of IAM Identity Provider ARNs that access to this account will be
@@ -290,43 +290,47 @@ module "iam_policies" {
   allow_access_from_saml_arns = []
 
   # A map of lists of IAM roles in other accounts that IAM users in this account
-  # should be able to assume. Use group names as keys, and a corresponding list of
-  # roles for that group as the value. One IAM policy allowing sts:AssumeRole will
-  # be created for each key. If the corresponding list has more than one ARN, the
-  # policy will be created with AssumeRole permission for each ARN in the list.
+  # should be able to assume. Use group names as keys, and a corresponding list
+  # of roles for that group as the value. One IAM policy allowing sts:AssumeRole
+  # will be created for each key. If the corresponding list has more than one
+  # ARN, the policy will be created with AssumeRole permission for each ARN in
+  # the list.
   allow_access_to_other_account_arns = {}
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed to assume the
-  # auto deploy IAM role that has the permissions in var.auto_deploy_permissions.
+  # A list of IAM ARNs from other AWS accounts that will be allowed to assume
+  # the auto deploy IAM role that has the permissions in
+  # var.auto_deploy_permissions.
   allow_auto_deploy_from_other_account_arns = []
 
   # A list of IAM permissions (e.g. ec2:*) which will be granted for automated
   # deployment.
   auto_deploy_permissions = []
 
-  # The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs policy
-  # will include permissions to decrypt using this CMK.
+  # The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs
+  # policy will include permissions to decrypt using this CMK.
   cloudtrail_kms_key_arn = null
 
-  # A list of IAM permissions to grant to developers. For example, ['s3:PutObject',
-  # 'sns'] would grant 'PutObject' permissions for S3, and '*' permissions for sns.
-  # See https://goo.gl/ZyoHlz to find the IAM Service name. Do NOT add 'iam' to the
-  # list of services, or that will grant developers de facto admin access!
+  # A list of IAM permissions to grant to developers. For example,
+  # ['s3:PutObject', 'sns'] would grant 'PutObject' permissions for S3, and '*'
+  # permissions for sns. See https://goo.gl/ZyoHlz to find the IAM Service name.
+  # Do NOT add 'iam' to the list of services, or that will grant developers de
+  # facto admin access!
   dev_permitted_services = []
 
-  # The prefix of the S3 Bucket Name to which an individual IAM User will have full
-  # access. For example, if the prefix is acme.user-, then IAM User john.doe will
-  # have access to S3 Bucket acme.user-john.doe.
+  # The prefix of the S3 Bucket Name to which an individual IAM User will have
+  # full access. For example, if the prefix is acme.user-, then IAM User
+  # john.doe will have access to S3 Bucket acme.user-john.doe.
   dev_s3_bucket_prefix = "your-org-name.user-"
 
-  # If set to true, all the Policies created by this module that are used to grant
-  # IAM permissions will require an MFA Token to be present. Use
-  # var.trust_policy_should_require_mfa to require MFA for IAM Role Trust Policies.
+  # If set to true, all the Policies created by this module that are used to
+  # grant IAM permissions will require an MFA Token to be present. Use
+  # var.trust_policy_should_require_mfa to require MFA for IAM Role Trust
+  # Policies.
   iam_policy_should_require_mfa = true
 
-  # If set to true, all the Policies created by this module that are used as Trust
-  # Policies for IAM Roles (this that allow sts:AssumeRole) will require an MFA
-  # Token to be present to assume that IAM Role. Use
+  # If set to true, all the Policies created by this module that are used as
+  # Trust Policies for IAM Roles (this that allow sts:AssumeRole) will require
+  # an MFA Token to be present to assume that IAM Role. Use
   # var.iam_policy_should_require_mfa to require MFA for all other types of
   # Policies.
   trust_policy_should_require_mfa = true
@@ -346,7 +350,7 @@ module "iam_policies" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-policies?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-policies?ref=v0.68.4"
 }
 
 inputs = {
@@ -362,13 +366,13 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed to access this
-  # account.
+  # A list of IAM ARNs from other AWS accounts that will be allowed to access
+  # this account.
   allow_access_from_other_account_arns = []
 
-  # A flag to indicate if access will be delegated to SAML providers. The ARNs of
-  # the specific IdPs to trust are specified through the allow_access_from_saml_arns
-  # variable below. 
+  # A flag to indicate if access will be delegated to SAML providers. The ARNs
+  # of the specific IdPs to trust are specified through the
+  # allow_access_from_saml_arns variable below. 
   allow_access_from_saml = false
 
   # A list of IAM Identity Provider ARNs that access to this account will be
@@ -376,43 +380,47 @@ inputs = {
   allow_access_from_saml_arns = []
 
   # A map of lists of IAM roles in other accounts that IAM users in this account
-  # should be able to assume. Use group names as keys, and a corresponding list of
-  # roles for that group as the value. One IAM policy allowing sts:AssumeRole will
-  # be created for each key. If the corresponding list has more than one ARN, the
-  # policy will be created with AssumeRole permission for each ARN in the list.
+  # should be able to assume. Use group names as keys, and a corresponding list
+  # of roles for that group as the value. One IAM policy allowing sts:AssumeRole
+  # will be created for each key. If the corresponding list has more than one
+  # ARN, the policy will be created with AssumeRole permission for each ARN in
+  # the list.
   allow_access_to_other_account_arns = {}
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed to assume the
-  # auto deploy IAM role that has the permissions in var.auto_deploy_permissions.
+  # A list of IAM ARNs from other AWS accounts that will be allowed to assume
+  # the auto deploy IAM role that has the permissions in
+  # var.auto_deploy_permissions.
   allow_auto_deploy_from_other_account_arns = []
 
   # A list of IAM permissions (e.g. ec2:*) which will be granted for automated
   # deployment.
   auto_deploy_permissions = []
 
-  # The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs policy
-  # will include permissions to decrypt using this CMK.
+  # The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs
+  # policy will include permissions to decrypt using this CMK.
   cloudtrail_kms_key_arn = null
 
-  # A list of IAM permissions to grant to developers. For example, ['s3:PutObject',
-  # 'sns'] would grant 'PutObject' permissions for S3, and '*' permissions for sns.
-  # See https://goo.gl/ZyoHlz to find the IAM Service name. Do NOT add 'iam' to the
-  # list of services, or that will grant developers de facto admin access!
+  # A list of IAM permissions to grant to developers. For example,
+  # ['s3:PutObject', 'sns'] would grant 'PutObject' permissions for S3, and '*'
+  # permissions for sns. See https://goo.gl/ZyoHlz to find the IAM Service name.
+  # Do NOT add 'iam' to the list of services, or that will grant developers de
+  # facto admin access!
   dev_permitted_services = []
 
-  # The prefix of the S3 Bucket Name to which an individual IAM User will have full
-  # access. For example, if the prefix is acme.user-, then IAM User john.doe will
-  # have access to S3 Bucket acme.user-john.doe.
+  # The prefix of the S3 Bucket Name to which an individual IAM User will have
+  # full access. For example, if the prefix is acme.user-, then IAM User
+  # john.doe will have access to S3 Bucket acme.user-john.doe.
   dev_s3_bucket_prefix = "your-org-name.user-"
 
-  # If set to true, all the Policies created by this module that are used to grant
-  # IAM permissions will require an MFA Token to be present. Use
-  # var.trust_policy_should_require_mfa to require MFA for IAM Role Trust Policies.
+  # If set to true, all the Policies created by this module that are used to
+  # grant IAM permissions will require an MFA Token to be present. Use
+  # var.trust_policy_should_require_mfa to require MFA for IAM Role Trust
+  # Policies.
   iam_policy_should_require_mfa = true
 
-  # If set to true, all the Policies created by this module that are used as Trust
-  # Policies for IAM Roles (this that allow sts:AssumeRole) will require an MFA
-  # Token to be present to assume that IAM Role. Use
+  # If set to true, all the Policies created by this module that are used as
+  # Trust Policies for IAM Roles (this that allow sts:AssumeRole) will require
+  # an MFA Token to be present to assume that IAM Role. Use
   # var.iam_policy_should_require_mfa to require MFA for all other types of
   # Policies.
   trust_policy_should_require_mfa = true
@@ -673,11 +681,11 @@ If set to true, all the Policies created by this module that are used as Trust P
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-policies/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-policies/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/iam-policies/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-policies/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-policies/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "16fbb35484912b93c24e1ebad6b4d91f"
+  "hash": "304870a4d3e27fa5b50bb4b3d598a1e6"
 }
 ##DOCS-SOURCER-END -->

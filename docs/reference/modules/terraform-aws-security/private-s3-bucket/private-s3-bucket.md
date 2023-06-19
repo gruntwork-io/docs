@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.2" lastModifiedVersion="0.68.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.4" lastModifiedVersion="0.68.3"/>
 
 # Private S3 Bucket
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/private-s3-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/private-s3-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to create and manage an [Amazon S3](https://aws.amazon.com/s3/) bucket that enforces
 best practices for private access:
@@ -86,19 +86,19 @@ aws-vault exec --no-session root-prod -- ./mfa-delete.sh --account-id 2264865421
 
 module "private_s_3_bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.68.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The canned ACL to apply. This can be 'null' if you don't want to use ACLs. See
-  # comment above for the list of possible ACLs. If not `null` bucket_ownership
-  # cannot be BucketOwnerEnforced
+  # The canned ACL to apply. This can be 'null' if you don't want to use ACLs.
+  # See comment above for the list of possible ACLs. If not `null`
+  # bucket_ownership cannot be BucketOwnerEnforced
   acl = <string>
 
-  # What to name the S3 bucket. Note that S3 bucket names must be globally unique
-  # across all AWS users!
+  # What to name the S3 bucket. Note that S3 bucket names must be globally
+  # unique across all AWS users!
   name = <string>
 
   # ----------------------------------------------------------------------------------------------------
@@ -109,13 +109,13 @@ module "private_s_3_bucket" {
   # Suspended.
   acceleration_status = null
 
-  # The S3 bucket where access logs for this bucket should be stored. Only used if
-  # access_logging_enabled is true.
+  # The S3 bucket where access logs for this bucket should be stored. Only used
+  # if access_logging_enabled is true.
   access_logging_bucket = null
 
-  # Set to true to enable access logging for this bucket. You can set the name of
-  # the bucket where access logs should be stored using the access_logging_bucket
-  # parameter.
+  # Set to true to enable access logging for this bucket. You can set the name
+  # of the bucket where access logs should be stored using the
+  # access_logging_bucket parameter.
   access_logging_enabled = false
 
   # A prefix (i.e., folder path) to use for all access logs stored in
@@ -125,37 +125,38 @@ module "private_s_3_bucket" {
   # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
   bucket_key_enabled = false
 
-  # Configure who will be the default owner of objects uploaded to this S3 bucket:
-  # must be one of BucketOwnerPreferred (the bucket owner owns objects),
-  # ObjectWriter (the writer of each object owns that object), BucketOwnerEnforced
-  # [Recommended] (the bucket owner automatically owns and has full control over
-  # every object in the bucket), or null (don't configure this feature). Note that
-  # BucketOwnerEnforced disables ACLs, and ObjectWriter only takes effect if the
-  # object is uploaded with the bucket-owner-full-control canned ACL. See
-  # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
-  # more info.
+  # Configure who will be the default owner of objects uploaded to this S3
+  # bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects),
+  # ObjectWriter (the writer of each object owns that object),
+  # BucketOwnerEnforced [Recommended] (the bucket owner automatically owns and
+  # has full control over every object in the bucket), or null (don't configure
+  # this feature). Note that BucketOwnerEnforced disables ACLs, and ObjectWriter
+  # only takes effect if the object is uploaded with the
+  # bucket-owner-full-control canned ACL. See
+  # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html
+  # for more info.
   bucket_ownership = "BucketOwnerEnforced"
 
-  # The IAM policy to apply to this S3 bucket. You can use this to grant read/write
-  # access. This should be a map, where each key is a unique statement ID (SID), and
-  # each value is an object that contains the parameters defined in the comment
-  # above.
+  # The IAM policy to apply to this S3 bucket. You can use this to grant
+  # read/write access. This should be a map, where each key is a unique
+  # statement ID (SID), and each value is an object that contains the parameters
+  # defined in the comment above.
   bucket_policy_statements = {}
 
   # CORS rules to set on this S3 bucket
   cors_rules = []
 
-  # When true, provision an IAM role that allows various source buckets to replicate
-  # to this bucket. Note that this setting should be used if you intend to use this
-  # bucket as a replication destination, NOT replication source. For configuring
-  # replication from the bucket, refer to the var.replication_enabled input
-  # variable.
+  # When true, provision an IAM role that allows various source buckets to
+  # replicate to this bucket. Note that this setting should be used if you
+  # intend to use this bucket as a replication destination, NOT replication
+  # source. For configuring replication from the bucket, refer to the
+  # var.replication_enabled input variable.
   create_replication_iam_role_to_bucket = false
 
-  # Set to false to have this module skip creating resources. This weird parameter
-  # exists solely because Terraform does not support conditional modules. Therefore,
-  # this is a hack to allow you to conditionally decide if the resources in this
-  # module should be created or not.
+  # Set to false to have this module skip creating resources. This weird
+  # parameter exists solely because Terraform does not support conditional
+  # modules. Therefore, this is a hack to allow you to conditionally decide if
+  # the resources in this module should be created or not.
   create_resources = true
 
   # The name to use for the IAM role for replication access to this bucket. When
@@ -163,8 +164,8 @@ module "private_s_3_bucket" {
   # var.create_replication_iam_role_to_bucket is true.
   custom_iam_role_name_for_replication_role = null
 
-  # Set to true to enable server-side encryption for this bucket. You can control
-  # the algorithm using var.sse_algorithm.
+  # Set to true to enable server-side encryption for this bucket. You can
+  # control the algorithm using var.sse_algorithm.
   enable_sse = true
 
   # Set to true to enable versioning for this bucket. If enabled, instead of
@@ -172,99 +173,104 @@ module "private_s_3_bucket" {
   # object, so all the old values are retained.
   enable_versioning = true
 
-  # If set to true, when you run 'terraform destroy', delete all objects from the
-  # bucket so that the bucket can be destroyed without error. Warning: these objects
-  # are not recoverable so only use this if you're absolutely sure you want to
-  # permanently delete everything!
+  # If set to true, when you run 'terraform destroy', delete all objects from
+  # the bucket so that the bucket can be destroyed without error. Warning: these
+  # objects are not recoverable so only use this if you're absolutely sure you
+  # want to permanently delete everything!
   force_destroy = false
 
-  # Optional KMS key to use for encrypting data in the S3 bucket. If null, data in
-  # S3 will be encrypted using the default aws/s3 key. If provided, the key policy
-  # of the provided key must allow whoever is writing to this bucket to use that
-  # key.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
+  iam_role_permissions_boundary = null
+
+  # Optional KMS key to use for encrypting data in the S3 bucket. If null, data
+  # in S3 will be encrypted using the default aws/s3 key. If provided, the key
+  # policy of the provided key must allow whoever is writing to this bucket to
+  # use that key.
   kms_key_arn = null
 
   # The lifecycle rules for this S3 bucket. These can be used to change storage
-  # types or delete objects based on customizable rules. This should be a map, where
-  # each key is a unique ID for the lifecycle rule, and each value is an object that
-  # contains the parameters defined in the comment above.
+  # types or delete objects based on customizable rules. This should be a map,
+  # where each key is a unique ID for the lifecycle rule, and each value is an
+  # object that contains the parameters defined in the comment above.
   lifecycle_rules = {}
 
   # Enable MFA delete for either 'Change the versioning state of your bucket' or
   # 'Permanently delete an object version'. This cannot be used to toggle this
-  # setting but is available to allow managed buckets to reflect the state in AWS.
-  # Only used if enable_versioning is true. CIS v1.4 requires this variable to be
-  # true. If you do not wish to be CIS-compliant, you can set it to false.
+  # setting but is available to allow managed buckets to reflect the state in
+  # AWS. Only used if enable_versioning is true. CIS v1.4 requires this variable
+  # to be true. If you do not wish to be CIS-compliant, you can set it to false.
   mfa_delete = false
 
-  # The number of days that you want to specify for the default retention period for
-  # Object Locking. Only one of object_lock_days or object_lock_years can be
+  # The number of days that you want to specify for the default retention period
+  # for Object Locking. Only one of object_lock_days or object_lock_years can be
   # configured. Only used if object_lock_enabled and
   # object_lock_default_retention_enabled are true.
   object_lock_days = null
 
-  # Set to true to configure a default retention period for object locks when Object
-  # Locking is enabled. When disabled, objects will not be protected with locking by
-  # default unless explicitly configured at object creation time. Only used if
-  # object_lock_enabled is true.
+  # Set to true to configure a default retention period for object locks when
+  # Object Locking is enabled. When disabled, objects will not be protected with
+  # locking by default unless explicitly configured at object creation time.
+  # Only used if object_lock_enabled is true.
   object_lock_default_retention_enabled = true
 
-  # Set to true to enable Object Locking. This prevents objects from being deleted
-  # for a customizable period of time. Note that this MUST be configured at bucket
-  # creation time - you cannot update an existing bucket to enable object locking
-  # unless you go through AWS support. Additionally, this is not reversible - once a
-  # bucket is created with object lock enabled, you cannot disable object locking
-  # even with this setting. Note that enabling object locking will automatically
-  # enable bucket versioning.
+  # Set to true to enable Object Locking. This prevents objects from being
+  # deleted for a customizable period of time. Note that this MUST be configured
+  # at bucket creation time - you cannot update an existing bucket to enable
+  # object locking unless you go through AWS support. Additionally, this is not
+  # reversible - once a bucket is created with object lock enabled, you cannot
+  # disable object locking even with this setting. Note that enabling object
+  # locking will automatically enable bucket versioning.
   object_lock_enabled = false
 
-  # The default Object Lock retention mode you want to apply to new objects placed
-  # in this bucket. Valid values are GOVERNANCE and COMPLIANCE. Only used if
-  # object_lock_enabled and object_lock_default_retention_enabled are true.
+  # The default Object Lock retention mode you want to apply to new objects
+  # placed in this bucket. Valid values are GOVERNANCE and COMPLIANCE. Only used
+  # if object_lock_enabled and object_lock_default_retention_enabled are true.
   object_lock_mode = null
 
-  # The number of years that you want to specify for the default retention period
-  # for Object Locking. Only one of object_lock_days or object_lock_years can be
-  # configured. Only used if object_lock_enabled and
+  # The number of years that you want to specify for the default retention
+  # period for Object Locking. Only one of object_lock_days or object_lock_years
+  # can be configured. Only used if object_lock_enabled and
   # object_lock_default_retention_enabled are true.
   object_lock_years = null
 
-  # Set to true to enable replication for this bucket. You can set the role to use
-  # for replication using the replication_role parameter and the rules for
+  # Set to true to enable replication for this bucket. You can set the role to
+  # use for replication using the replication_role parameter and the rules for
   # replication using the replication_rules parameter.
   replication_enabled = false
 
-  # The ARN of the IAM role for Amazon S3 to assume when replicating objects. Only
-  # used if replication_enabled is set to true.
+  # The ARN of the IAM role for Amazon S3 to assume when replicating objects.
+  # Only used if replication_enabled is set to true.
   replication_role = null
 
-  # The rules for managing replication. Only used if replication_enabled is set to
-  # true. This should be a map, where the key is a unique ID for each replication
-  # rule and the value is an object of the form explained in a comment above.
+  # The rules for managing replication. Only used if replication_enabled is set
+  # to true. This should be a map, where the key is a unique ID for each
+  # replication rule and the value is an object of the form explained in a
+  # comment above.
   replication_rules = {}
 
-  # List of buckets that should be allowed to replicate to this bucket. Only used if
-  # var.create_replication_iam_role_to_bucket is true.
+  # List of buckets that should be allowed to replicate to this bucket. Only
+  # used if var.create_replication_iam_role_to_bucket is true.
   replication_source_buckets = []
 
   # Specifies who should bear the cost of Amazon S3 data transfer. Can be either
-  # BucketOwner or Requester. By default, the owner of the S3 bucket would incur the
-  # costs of any data transfer.
+  # BucketOwner or Requester. By default, the owner of the S3 bucket would incur
+  # the costs of any data transfer.
   request_payer = null
 
   # The server-side encryption algorithm to use. Valid values are AES256 and
   # aws:kms. To disable server-side encryption, set var.enable_sse to false.
   sse_algorithm = "aws:kms"
 
-  # A map of tags to apply to the S3 Bucket. The key is the tag name and the value
-  # is the tag value.
+  # A map of tags to apply to the S3 Bucket. The key is the tag name and the
+  # value is the tag value.
   tags = {}
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
 }
@@ -282,7 +288,7 @@ module "private_s_3_bucket" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.68.4"
 }
 
 inputs = {
@@ -291,13 +297,13 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The canned ACL to apply. This can be 'null' if you don't want to use ACLs. See
-  # comment above for the list of possible ACLs. If not `null` bucket_ownership
-  # cannot be BucketOwnerEnforced
+  # The canned ACL to apply. This can be 'null' if you don't want to use ACLs.
+  # See comment above for the list of possible ACLs. If not `null`
+  # bucket_ownership cannot be BucketOwnerEnforced
   acl = <string>
 
-  # What to name the S3 bucket. Note that S3 bucket names must be globally unique
-  # across all AWS users!
+  # What to name the S3 bucket. Note that S3 bucket names must be globally
+  # unique across all AWS users!
   name = <string>
 
   # ----------------------------------------------------------------------------------------------------
@@ -308,13 +314,13 @@ inputs = {
   # Suspended.
   acceleration_status = null
 
-  # The S3 bucket where access logs for this bucket should be stored. Only used if
-  # access_logging_enabled is true.
+  # The S3 bucket where access logs for this bucket should be stored. Only used
+  # if access_logging_enabled is true.
   access_logging_bucket = null
 
-  # Set to true to enable access logging for this bucket. You can set the name of
-  # the bucket where access logs should be stored using the access_logging_bucket
-  # parameter.
+  # Set to true to enable access logging for this bucket. You can set the name
+  # of the bucket where access logs should be stored using the
+  # access_logging_bucket parameter.
   access_logging_enabled = false
 
   # A prefix (i.e., folder path) to use for all access logs stored in
@@ -324,37 +330,38 @@ inputs = {
   # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
   bucket_key_enabled = false
 
-  # Configure who will be the default owner of objects uploaded to this S3 bucket:
-  # must be one of BucketOwnerPreferred (the bucket owner owns objects),
-  # ObjectWriter (the writer of each object owns that object), BucketOwnerEnforced
-  # [Recommended] (the bucket owner automatically owns and has full control over
-  # every object in the bucket), or null (don't configure this feature). Note that
-  # BucketOwnerEnforced disables ACLs, and ObjectWriter only takes effect if the
-  # object is uploaded with the bucket-owner-full-control canned ACL. See
-  # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
-  # more info.
+  # Configure who will be the default owner of objects uploaded to this S3
+  # bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects),
+  # ObjectWriter (the writer of each object owns that object),
+  # BucketOwnerEnforced [Recommended] (the bucket owner automatically owns and
+  # has full control over every object in the bucket), or null (don't configure
+  # this feature). Note that BucketOwnerEnforced disables ACLs, and ObjectWriter
+  # only takes effect if the object is uploaded with the
+  # bucket-owner-full-control canned ACL. See
+  # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html
+  # for more info.
   bucket_ownership = "BucketOwnerEnforced"
 
-  # The IAM policy to apply to this S3 bucket. You can use this to grant read/write
-  # access. This should be a map, where each key is a unique statement ID (SID), and
-  # each value is an object that contains the parameters defined in the comment
-  # above.
+  # The IAM policy to apply to this S3 bucket. You can use this to grant
+  # read/write access. This should be a map, where each key is a unique
+  # statement ID (SID), and each value is an object that contains the parameters
+  # defined in the comment above.
   bucket_policy_statements = {}
 
   # CORS rules to set on this S3 bucket
   cors_rules = []
 
-  # When true, provision an IAM role that allows various source buckets to replicate
-  # to this bucket. Note that this setting should be used if you intend to use this
-  # bucket as a replication destination, NOT replication source. For configuring
-  # replication from the bucket, refer to the var.replication_enabled input
-  # variable.
+  # When true, provision an IAM role that allows various source buckets to
+  # replicate to this bucket. Note that this setting should be used if you
+  # intend to use this bucket as a replication destination, NOT replication
+  # source. For configuring replication from the bucket, refer to the
+  # var.replication_enabled input variable.
   create_replication_iam_role_to_bucket = false
 
-  # Set to false to have this module skip creating resources. This weird parameter
-  # exists solely because Terraform does not support conditional modules. Therefore,
-  # this is a hack to allow you to conditionally decide if the resources in this
-  # module should be created or not.
+  # Set to false to have this module skip creating resources. This weird
+  # parameter exists solely because Terraform does not support conditional
+  # modules. Therefore, this is a hack to allow you to conditionally decide if
+  # the resources in this module should be created or not.
   create_resources = true
 
   # The name to use for the IAM role for replication access to this bucket. When
@@ -362,8 +369,8 @@ inputs = {
   # var.create_replication_iam_role_to_bucket is true.
   custom_iam_role_name_for_replication_role = null
 
-  # Set to true to enable server-side encryption for this bucket. You can control
-  # the algorithm using var.sse_algorithm.
+  # Set to true to enable server-side encryption for this bucket. You can
+  # control the algorithm using var.sse_algorithm.
   enable_sse = true
 
   # Set to true to enable versioning for this bucket. If enabled, instead of
@@ -371,99 +378,104 @@ inputs = {
   # object, so all the old values are retained.
   enable_versioning = true
 
-  # If set to true, when you run 'terraform destroy', delete all objects from the
-  # bucket so that the bucket can be destroyed without error. Warning: these objects
-  # are not recoverable so only use this if you're absolutely sure you want to
-  # permanently delete everything!
+  # If set to true, when you run 'terraform destroy', delete all objects from
+  # the bucket so that the bucket can be destroyed without error. Warning: these
+  # objects are not recoverable so only use this if you're absolutely sure you
+  # want to permanently delete everything!
   force_destroy = false
 
-  # Optional KMS key to use for encrypting data in the S3 bucket. If null, data in
-  # S3 will be encrypted using the default aws/s3 key. If provided, the key policy
-  # of the provided key must allow whoever is writing to this bucket to use that
-  # key.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role
+  iam_role_permissions_boundary = null
+
+  # Optional KMS key to use for encrypting data in the S3 bucket. If null, data
+  # in S3 will be encrypted using the default aws/s3 key. If provided, the key
+  # policy of the provided key must allow whoever is writing to this bucket to
+  # use that key.
   kms_key_arn = null
 
   # The lifecycle rules for this S3 bucket. These can be used to change storage
-  # types or delete objects based on customizable rules. This should be a map, where
-  # each key is a unique ID for the lifecycle rule, and each value is an object that
-  # contains the parameters defined in the comment above.
+  # types or delete objects based on customizable rules. This should be a map,
+  # where each key is a unique ID for the lifecycle rule, and each value is an
+  # object that contains the parameters defined in the comment above.
   lifecycle_rules = {}
 
   # Enable MFA delete for either 'Change the versioning state of your bucket' or
   # 'Permanently delete an object version'. This cannot be used to toggle this
-  # setting but is available to allow managed buckets to reflect the state in AWS.
-  # Only used if enable_versioning is true. CIS v1.4 requires this variable to be
-  # true. If you do not wish to be CIS-compliant, you can set it to false.
+  # setting but is available to allow managed buckets to reflect the state in
+  # AWS. Only used if enable_versioning is true. CIS v1.4 requires this variable
+  # to be true. If you do not wish to be CIS-compliant, you can set it to false.
   mfa_delete = false
 
-  # The number of days that you want to specify for the default retention period for
-  # Object Locking. Only one of object_lock_days or object_lock_years can be
+  # The number of days that you want to specify for the default retention period
+  # for Object Locking. Only one of object_lock_days or object_lock_years can be
   # configured. Only used if object_lock_enabled and
   # object_lock_default_retention_enabled are true.
   object_lock_days = null
 
-  # Set to true to configure a default retention period for object locks when Object
-  # Locking is enabled. When disabled, objects will not be protected with locking by
-  # default unless explicitly configured at object creation time. Only used if
-  # object_lock_enabled is true.
+  # Set to true to configure a default retention period for object locks when
+  # Object Locking is enabled. When disabled, objects will not be protected with
+  # locking by default unless explicitly configured at object creation time.
+  # Only used if object_lock_enabled is true.
   object_lock_default_retention_enabled = true
 
-  # Set to true to enable Object Locking. This prevents objects from being deleted
-  # for a customizable period of time. Note that this MUST be configured at bucket
-  # creation time - you cannot update an existing bucket to enable object locking
-  # unless you go through AWS support. Additionally, this is not reversible - once a
-  # bucket is created with object lock enabled, you cannot disable object locking
-  # even with this setting. Note that enabling object locking will automatically
-  # enable bucket versioning.
+  # Set to true to enable Object Locking. This prevents objects from being
+  # deleted for a customizable period of time. Note that this MUST be configured
+  # at bucket creation time - you cannot update an existing bucket to enable
+  # object locking unless you go through AWS support. Additionally, this is not
+  # reversible - once a bucket is created with object lock enabled, you cannot
+  # disable object locking even with this setting. Note that enabling object
+  # locking will automatically enable bucket versioning.
   object_lock_enabled = false
 
-  # The default Object Lock retention mode you want to apply to new objects placed
-  # in this bucket. Valid values are GOVERNANCE and COMPLIANCE. Only used if
-  # object_lock_enabled and object_lock_default_retention_enabled are true.
+  # The default Object Lock retention mode you want to apply to new objects
+  # placed in this bucket. Valid values are GOVERNANCE and COMPLIANCE. Only used
+  # if object_lock_enabled and object_lock_default_retention_enabled are true.
   object_lock_mode = null
 
-  # The number of years that you want to specify for the default retention period
-  # for Object Locking. Only one of object_lock_days or object_lock_years can be
-  # configured. Only used if object_lock_enabled and
+  # The number of years that you want to specify for the default retention
+  # period for Object Locking. Only one of object_lock_days or object_lock_years
+  # can be configured. Only used if object_lock_enabled and
   # object_lock_default_retention_enabled are true.
   object_lock_years = null
 
-  # Set to true to enable replication for this bucket. You can set the role to use
-  # for replication using the replication_role parameter and the rules for
+  # Set to true to enable replication for this bucket. You can set the role to
+  # use for replication using the replication_role parameter and the rules for
   # replication using the replication_rules parameter.
   replication_enabled = false
 
-  # The ARN of the IAM role for Amazon S3 to assume when replicating objects. Only
-  # used if replication_enabled is set to true.
+  # The ARN of the IAM role for Amazon S3 to assume when replicating objects.
+  # Only used if replication_enabled is set to true.
   replication_role = null
 
-  # The rules for managing replication. Only used if replication_enabled is set to
-  # true. This should be a map, where the key is a unique ID for each replication
-  # rule and the value is an object of the form explained in a comment above.
+  # The rules for managing replication. Only used if replication_enabled is set
+  # to true. This should be a map, where the key is a unique ID for each
+  # replication rule and the value is an object of the form explained in a
+  # comment above.
   replication_rules = {}
 
-  # List of buckets that should be allowed to replicate to this bucket. Only used if
-  # var.create_replication_iam_role_to_bucket is true.
+  # List of buckets that should be allowed to replicate to this bucket. Only
+  # used if var.create_replication_iam_role_to_bucket is true.
   replication_source_buckets = []
 
   # Specifies who should bear the cost of Amazon S3 data transfer. Can be either
-  # BucketOwner or Requester. By default, the owner of the S3 bucket would incur the
-  # costs of any data transfer.
+  # BucketOwner or Requester. By default, the owner of the S3 bucket would incur
+  # the costs of any data transfer.
   request_payer = null
 
   # The server-side encryption algorithm to use. Valid values are AES256 and
   # aws:kms. To disable server-side encryption, set var.enable_sse to false.
   sse_algorithm = "aws:kms"
 
-  # A map of tags to apply to the S3 Bucket. The key is the tag name and the value
-  # is the tag value.
+  # A map of tags to apply to the S3 Bucket. The key is the tag name and the
+  # value is the tag value.
   tags = {}
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
 }
@@ -733,6 +745,15 @@ If set to true, when you run 'terraform destroy', delete all objects from the bu
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the IAM role
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="kms_key_arn" requirement="optional" type="string">
@@ -1016,11 +1037,11 @@ The name of an IAM role that can be used to configure replication from various s
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/private-s3-bucket/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/private-s3-bucket/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/private-s3-bucket/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/private-s3-bucket/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/private-s3-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/private-s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "62e64b299093777d97baebc6af8fe551"
+  "hash": "7d6d1fa847b4d221de8e1ba62ada3b8d"
 }
 ##DOCS-SOURCER-END -->

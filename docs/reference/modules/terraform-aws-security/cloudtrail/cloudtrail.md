@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.2" lastModifiedVersion="0.68.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.4" lastModifiedVersion="0.68.0"/>
 
 # AWS CloudTrail
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cloudtrail" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cloudtrail" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -39,25 +39,25 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What is CloudTrail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cloudtrail/core-concepts.md#what-is-cloudtrail)
+*   [What is CloudTrail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cloudtrail/core-concepts.md#what-is-cloudtrail)
 
-*   [Why use CloudTrail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cloudtrail/core-concepts.md#why-use-cloudtrail)
+*   [Why use CloudTrail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cloudtrail/core-concepts.md#why-use-cloudtrail)
 
-*   [What is a CloudTrail Trail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cloudtrail/core-concepts.md#what-is-a-cloudtrail-trail)
+*   [What is a CloudTrail Trail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cloudtrail/core-concepts.md#what-is-a-cloudtrail-trail)
 
-*   [What’s the difference between CloudTrail and AWS Config?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cloudtrail/core-concepts.md#whats-the-difference-between-cloudtrail-and-aws-config)
+*   [What’s the difference between CloudTrail and AWS Config?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cloudtrail/core-concepts.md#whats-the-difference-between-cloudtrail-and-aws-config)
 
-*   [CloudTrail Threat Model](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cloudtrail/core-concepts.md#cloudtrail-threat-model)
+*   [CloudTrail Threat Model](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cloudtrail/core-concepts.md#cloudtrail-threat-model)
 
-*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cloudtrail/core-concepts.md#resources-created)
+*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cloudtrail/core-concepts.md#resources-created)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -65,7 +65,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/cloudtrail](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/examples/cloudtrail): The `examples/cloudtrail` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples/cloudtrail](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/examples/cloudtrail): The `examples/cloudtrail` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -81,15 +81,15 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Day-to-day operations
 
-*   [Where are CloudTrail logs stored?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cloudtrail/core-concepts.md#where-are-cloudtrail-logs-stored)
+*   [Where are CloudTrail logs stored?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cloudtrail/core-concepts.md#where-are-cloudtrail-logs-stored)
 
-*   [What kind of data do CloudTrail log entries contain?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cloudtrail/core-concepts.md#what-kind-of-data-do-cloudtrail-log-entries-contain)
+*   [What kind of data do CloudTrail log entries contain?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cloudtrail/core-concepts.md#what-kind-of-data-do-cloudtrail-log-entries-contain)
 
-*   [What’s the best way to view CloudTrail Log Data?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cloudtrail/core-concepts.md#whats-the-best-way-to-view-cloudtrail-log-data)
+*   [What’s the best way to view CloudTrail Log Data?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cloudtrail/core-concepts.md#whats-the-best-way-to-view-cloudtrail-log-data)
 
 ### Major changes
 
-*   [Can you get alerted when certain API events occur?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cloudtrail/core-concepts.md#can-you-get-alerted-when-certain-api-events-occur)
+*   [Can you get alerted when certain API events occur?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cloudtrail/core-concepts.md#can-you-get-alerted-when-certain-api-events-occur)
 
 ## Sample Usage
 
@@ -104,7 +104,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "cloudtrail" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail?ref=v0.68.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -122,138 +122,139 @@ module "cloudtrail" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The S3 bucket where access logs for this bucket should be stored. Only used if
-  # access_logging_enabled is true.
+  # The S3 bucket where access logs for this bucket should be stored. Only used
+  # if access_logging_enabled is true.
   access_logging_bucket = null
 
   # A prefix (i.e., folder path) to use for all access logs stored in
   # access_logging_bucket. Only used if access_logging_enabled is true.
   access_logging_prefix = null
 
-  # Additional IAM policies to apply to the Cloudtrail S3 bucket. You can use this
-  # to grant read/write access beyond what is provided to Cloudtrail. This should be
-  # a map, where each key is a unique statement ID (SID), and each value is an
-  # object that contains the parameters defined in the comment below.
+  # Additional IAM policies to apply to the Cloudtrail S3 bucket. You can use
+  # this to grant read/write access beyond what is provided to Cloudtrail. This
+  # should be a map, where each key is a unique statement ID (SID), and each
+  # value is an object that contains the parameters defined in the comment
+  # below.
   additional_bucket_policy_statements = null
 
-  # Map of advanced event selector name to list of field selectors to apply for that
-  # event selector. Advanced event selectors allow for more fine grained data
-  # logging of events.
+  # Map of advanced event selector name to list of field selectors to apply for
+  # that event selector. Advanced event selectors allow for more fine grained
+  # data logging of events.
 
 Note that you can not configure basic data logging
   # (var.data_logging_enabled) if advanced event logging is enabled.
 
-Refer to the
-  # AWS docs on data event selection for more details on the difference between
-  # basic data logging and advanced data logging.
-
+Refer to
+  # the AWS docs on data event selection for more details on the difference
+  # between basic data logging and advanced data logging.
   advanced_event_selectors = {}
 
   # Whether or not to allow kms:DescribeKey to external AWS accounts with write
-  # access to the bucket. This is useful during deployment so that you don't have to
-  # pass around the KMS key ARN.
+  # access to the bucket. This is useful during deployment so that you don't
+  # have to pass around the KMS key ARN.
   allow_kms_describe_key_to_external_aws_accounts = false
 
   # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
   bucket_key_enabled = false
 
   # If defined, uses this value as the name of the CloudTrail IAM role. If not
-  # defined, and cloudwatch_logs_group_name is defined, uses that name for the role.
-  # If cloudwatch_logs_group_name is not defined, this resource is not created.
+  # defined, and cloudwatch_logs_group_name is defined, uses that name for the
+  # role. If cloudwatch_logs_group_name is not defined, this resource is not
+  # created.
   cloudtrail_iam_role_name = null
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role.
   cloudtrail_iam_role_permissions_boundary = null
 
-  # The name to assign to the CloudTrail 'trail' that will be used to track all API
-  # calls in your AWS account.
+  # The name to assign to the CloudTrail 'trail' that will be used to track all
+  # API calls in your AWS account.
   cloudtrail_trail_name = "full-account"
 
   # If defined, creates a CloudWatch Logs group with the specified name and
-  # configures the trail to publish logs to the group. If undefined, cloudwatch logs
-  # group is not created.
+  # configures the trail to publish logs to the group. If undefined, cloudwatch
+  # logs group is not created.
   cloudwatch_logs_group_name = null
 
-  # Set to false to have this module skip creating resources. This weird parameter
-  # exists solely because Terraform does not support conditional modules. Therefore,
-  # this is a hack to allow you to conditionally decide if the resources in this
-  # module should be created or not.
+  # Set to false to have this module skip creating resources. This weird
+  # parameter exists solely because Terraform does not support conditional
+  # modules. Therefore, this is a hack to allow you to conditionally decide if
+  # the resources in this module should be created or not.
   create_resources = true
 
   # If true, logging of data events will be enabled.
   data_logging_enabled = false
 
-  # Specify if you want your event selector to include management events for your
-  # trail.
+  # Specify if you want your event selector to include management events for
+  # your trail.
   data_logging_include_management_events = true
 
-  # Specify if you want your trail to log read-only events, write-only events, or
-  # all. Possible values are: ReadOnly, WriteOnly, All.
+  # Specify if you want your trail to log read-only events, write-only events,
+  # or all. Possible values are: ReadOnly, WriteOnly, All.
   data_logging_read_write_type = "All"
 
-  # Data resources for which to log data events. This should be a map, where each
-  # key is a data resource type, and each value is a list of data resource values.
-  # Possible values for data resource types are: AWS::S3::Object,
-  # AWS::Lambda::Function and AWS::DynamoDB::Table. See the 'data_resource' block
-  # within the 'event_selector' block of the 'aws_cloudtrail' resource for context:
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
-  # trail#data_resource.
+  # Data resources for which to log data events. This should be a map, where
+  # each key is a data resource type, and each value is a list of data resource
+  # values. Possible values for data resource types are: AWS::S3::Object,
+  # AWS::Lambda::Function and AWS::DynamoDB::Table. See the 'data_resource'
+  # block within the 'event_selector' block of the 'aws_cloudtrail' resource for
+  # context:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#data_resource.
   data_logging_resources = {}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
-  # resources in this module will now depend on the resources backing the values in
-  # this list such that those resources need to be created before the resources in
-  # this module, and the resources in this module need to be destroyed before the
-  # resources in the list.
+  # resources in this module will now depend on the resources backing the values
+  # in this list such that those resources need to be created before the
+  # resources in this module, and the resources in this module need to be
+  # destroyed before the resources in the list.
   dependencies = []
 
-  # Enables logging for the trail. Setting this to false will pause logging. (true
-  # or false)
+  # Enables logging for the trail. Setting this to false will pause logging.
+  # (true or false)
   enable_cloudtrail = true
 
-  # Whether or not to enable automatic annual rotation of the KMS key. Defaults to
-  # true.
+  # Whether or not to enable automatic annual rotation of the KMS key. Defaults
+  # to true.
   enable_key_rotation = true
 
-  # Enables S3 server access logging which sends detailed records for the requests
-  # that are made to the bucket. Defaults to false.
+  # Enables S3 server access logging which sends detailed records for the
+  # requests that are made to the bucket. Defaults to false.
   enable_s3_server_access_logging = false
 
-  # A list of external AWS accounts that should be given write access for CloudTrail
-  # logs to this S3 bucket. This is useful when aggregating CloudTrail logs for
-  # multiple AWS accounts in one common S3 bucket.
+  # A list of external AWS accounts that should be given write access for
+  # CloudTrail logs to this S3 bucket. This is useful when aggregating
+  # CloudTrail logs for multiple AWS accounts in one common S3 bucket.
   external_aws_account_ids_with_write_access = []
 
-  # If set to true, when you run 'terraform destroy', delete all objects from the
-  # bucket so that the bucket can be destroyed without error. Warning: these objects
-  # are not recoverable so only use this if you're absolutely sure you want to
-  # permanently delete everything!
+  # If set to true, when you run 'terraform destroy', delete all objects from
+  # the bucket so that the bucket can be destroyed without error. Warning: these
+  # objects are not recoverable so only use this if you're absolutely sure you
+  # want to permanently delete everything!
   force_destroy = false
 
   # Type of insights to log on a trail. Valid values are: ApiCallRateInsight and
   # ApiErrorRateInsight.
   insight_selector = []
 
-  # Specifies whether CloudTrail will log only API calls in the current region or in
-  # all regions. (true or false)
+  # Specifies whether CloudTrail will log only API calls in the current region
+  # or in all regions. (true or false)
   is_multi_region_trail = true
 
-  # Specifies whether the trail is an AWS Organizations trail. Organization trails
-  # log events for the root account and all member accounts. Can only be created in
-  # the organization root account. (true or false)
+  # Specifies whether the trail is an AWS Organizations trail. Organization
+  # trails log events for the root account and all member accounts. Can only be
+  # created in the organization root account. (true or false)
   is_organization_trail = false
 
   # All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key)
-  # that governs access to write API calls older than 7 days and all read API calls.
-  # The IAM Users specified in this list will have rights to change who can access
-  # this extended log data. This is optional if allow_cloudtrail_access_with_iam is
-  # true, otherwise it is required.
+  # that governs access to write API calls older than 7 days and all read API
+  # calls. The IAM Users specified in this list will have rights to change who
+  # can access this extended log data. This is optional if
+  # allow_cloudtrail_access_with_iam is true, otherwise it is required.
   kms_key_administrator_iam_arns = []
 
-  # If set to true, that means the KMS key you're using already exists, and does not
-  # need to be created.
+  # If set to true, that means the KMS key you're using already exists, and does
+  # not need to be created.
   kms_key_already_exists = false
 
   # If you wish to specify a custom KMS key, then specify the key arn using this
@@ -261,72 +262,74 @@ Refer to the
   # accounts, so the logs are all encrypted using the same key.
   kms_key_arn = null
 
-  # If the kms_key_arn provided is an alias or alias ARN, then this must be set to
-  # true so that the module will exchange the alias for a CMK ARN. Setting this to
-  # true and using aliases requires
+  # If the kms_key_arn provided is an alias or alias ARN, then this must be set
+  # to true so that the module will exchange the alias for a CMK ARN. Setting
+  # this to true and using aliases requires
   # var.allow_kms_describe_key_to_external_aws_accounts to also be true for
   # multi-account scenarios.
   kms_key_arn_is_alias = false
 
-  # The number of days to keep this KMS Key (a Customer Master Key) around after it
-  # has been marked for deletion.
+  # The number of days to keep this KMS Key (a Customer Master Key) around after
+  # it has been marked for deletion.
   kms_key_deletion_window_in_days = 15
 
-  # Additional service principals beyond CloudTrail that should have access to the
-  # KMS key used to encrypt the logs. This is useful for granting access to the logs
-  # for the purposes of constructing metric filters.
+  # Additional service principals beyond CloudTrail that should have access to
+  # the KMS key used to encrypt the logs. This is useful for granting access to
+  # the logs for the purposes of constructing metric filters.
   kms_key_service_principals = []
 
   # All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key)
-  # that governs access to write API calls older than 7 days and all read API calls.
-  # The IAM Users specified in this list will have read-only access to this extended
-  # log data.
+  # that governs access to write API calls older than 7 days and all read API
+  # calls. The IAM Users specified in this list will have read-only access to
+  # this extended log data.
   kms_key_user_iam_arns = []
 
-  # After this number of days, log files should be transitioned from S3 to Glacier.
-  # Enter 0 to never archive log data.
+  # After this number of days, log files should be transitioned from S3 to
+  # Glacier. Enter 0 to never archive log data.
   num_days_after_which_archive_log_data = 30
 
-  # After this number of days, log files should be deleted from S3. If null, never
-  # delete.
+  # After this number of days, log files should be deleted from S3. If null,
+  # never delete.
   num_days_after_which_delete_log_data = null
 
-  # After this number of days, logs stored in CloudWatch will be deleted. Possible
-  # values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827,
-  # 3653, and 0 (default). When set to 0, logs will be retained indefinitely.
+  # After this number of days, logs stored in CloudWatch will be deleted.
+  # Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400,
+  # 545, 731, 1827, 3653, and 0 (default). When set to 0, logs will be retained
+  # indefinitely.
   num_days_to_retain_cloudwatch_logs = 0
 
-  # The ID of the organization. Required only if an organization wide CloudTrail is
-  # being setup. In such a case, this ensures that the entire organization is
+  # The ID of the organization. Required only if an organization wide CloudTrail
+  # is being setup. In such a case, this ensures that the entire organization is
   # whitelisted in the CloudTrail bucket write policy.
   organization_id = null
 
-  # Set to true to enable replication for this bucket. You can set the role to use
-  # for replication using the replication_role parameter and the rules for
+  # Set to true to enable replication for this bucket. You can set the role to
+  # use for replication using the replication_role parameter and the rules for
   # replication using the replication_rules parameter.
   replication_enabled = false
 
-  # The ARN of the IAM role for Amazon S3 to assume when replicating objects. Only
-  # used if replication_enabled is set to true.
+  # The ARN of the IAM role for Amazon S3 to assume when replicating objects.
+  # Only used if replication_enabled is set to true.
   replication_role = null
 
-  # The rules for managing replication. Only used if replication_enabled is set to
-  # true. This should be a map, where the key is a unique ID for each replication
-  # rule and the value is an object of the form explained in a comment above.
+  # The rules for managing replication. Only used if replication_enabled is set
+  # to true. This should be a map, where the key is a unique ID for each
+  # replication rule and the value is an object of the form explained in a
+  # comment above.
   replication_rules = {}
 
-  # If set to true, that means the S3 bucket you're using already exists, and does
-  # not need to be created. This is especially useful when using CloudTrail with
-  # multiple AWS accounts, with a common S3 bucket shared by all of them.
+  # If set to true, that means the S3 bucket you're using already exists, and
+  # does not need to be created. This is especially useful when using CloudTrail
+  # with multiple AWS accounts, with a common S3 bucket shared by all of them.
   s3_bucket_already_exists = false
 
   # Enable MFA delete for either 'Change the versioning state of your bucket' or
-  # 'Permanently delete an object version'. This setting only applies to the bucket
-  # used to storage Cloudtrail data. This cannot be used to toggle this setting but
-  # is available to allow managed buckets to reflect the state in AWS. For
-  # instructions on how to enable MFA Delete, check out the README from the
-  # private-s3-bucket module. CIS v1.4 requires this variable to be true. If you do
-  # not wish to be CIS-compliant, you can set it to false.
+  # 'Permanently delete an object version'. This setting only applies to the
+  # bucket used to storage Cloudtrail data. This cannot be used to toggle this
+  # setting but is available to allow managed buckets to reflect the state in
+  # AWS. For instructions on how to enable MFA Delete, check out the README from
+  # the private-s3-bucket module. CIS v1.4 requires this variable to be true. If
+  # you do not wish to be CIS-compliant, you can set it to false.
   s3_mfa_delete = false
 
   # SNS topic for S3 log delivery notifications.
@@ -336,11 +339,11 @@ Refer to the
   # itself. The key is the tag name and the value is the tag value.
   tags = {}
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
 }
@@ -358,7 +361,7 @@ Refer to the
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail?ref=v0.68.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail?ref=v0.68.4"
 }
 
 inputs = {
@@ -379,138 +382,139 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The S3 bucket where access logs for this bucket should be stored. Only used if
-  # access_logging_enabled is true.
+  # The S3 bucket where access logs for this bucket should be stored. Only used
+  # if access_logging_enabled is true.
   access_logging_bucket = null
 
   # A prefix (i.e., folder path) to use for all access logs stored in
   # access_logging_bucket. Only used if access_logging_enabled is true.
   access_logging_prefix = null
 
-  # Additional IAM policies to apply to the Cloudtrail S3 bucket. You can use this
-  # to grant read/write access beyond what is provided to Cloudtrail. This should be
-  # a map, where each key is a unique statement ID (SID), and each value is an
-  # object that contains the parameters defined in the comment below.
+  # Additional IAM policies to apply to the Cloudtrail S3 bucket. You can use
+  # this to grant read/write access beyond what is provided to Cloudtrail. This
+  # should be a map, where each key is a unique statement ID (SID), and each
+  # value is an object that contains the parameters defined in the comment
+  # below.
   additional_bucket_policy_statements = null
 
-  # Map of advanced event selector name to list of field selectors to apply for that
-  # event selector. Advanced event selectors allow for more fine grained data
-  # logging of events.
+  # Map of advanced event selector name to list of field selectors to apply for
+  # that event selector. Advanced event selectors allow for more fine grained
+  # data logging of events.
 
 Note that you can not configure basic data logging
   # (var.data_logging_enabled) if advanced event logging is enabled.
 
-Refer to the
-  # AWS docs on data event selection for more details on the difference between
-  # basic data logging and advanced data logging.
-
+Refer to
+  # the AWS docs on data event selection for more details on the difference
+  # between basic data logging and advanced data logging.
   advanced_event_selectors = {}
 
   # Whether or not to allow kms:DescribeKey to external AWS accounts with write
-  # access to the bucket. This is useful during deployment so that you don't have to
-  # pass around the KMS key ARN.
+  # access to the bucket. This is useful during deployment so that you don't
+  # have to pass around the KMS key ARN.
   allow_kms_describe_key_to_external_aws_accounts = false
 
   # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
   bucket_key_enabled = false
 
   # If defined, uses this value as the name of the CloudTrail IAM role. If not
-  # defined, and cloudwatch_logs_group_name is defined, uses that name for the role.
-  # If cloudwatch_logs_group_name is not defined, this resource is not created.
+  # defined, and cloudwatch_logs_group_name is defined, uses that name for the
+  # role. If cloudwatch_logs_group_name is not defined, this resource is not
+  # created.
   cloudtrail_iam_role_name = null
 
-  # The ARN of the policy that is used to set the permissions boundary for the IAM
-  # role.
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role.
   cloudtrail_iam_role_permissions_boundary = null
 
-  # The name to assign to the CloudTrail 'trail' that will be used to track all API
-  # calls in your AWS account.
+  # The name to assign to the CloudTrail 'trail' that will be used to track all
+  # API calls in your AWS account.
   cloudtrail_trail_name = "full-account"
 
   # If defined, creates a CloudWatch Logs group with the specified name and
-  # configures the trail to publish logs to the group. If undefined, cloudwatch logs
-  # group is not created.
+  # configures the trail to publish logs to the group. If undefined, cloudwatch
+  # logs group is not created.
   cloudwatch_logs_group_name = null
 
-  # Set to false to have this module skip creating resources. This weird parameter
-  # exists solely because Terraform does not support conditional modules. Therefore,
-  # this is a hack to allow you to conditionally decide if the resources in this
-  # module should be created or not.
+  # Set to false to have this module skip creating resources. This weird
+  # parameter exists solely because Terraform does not support conditional
+  # modules. Therefore, this is a hack to allow you to conditionally decide if
+  # the resources in this module should be created or not.
   create_resources = true
 
   # If true, logging of data events will be enabled.
   data_logging_enabled = false
 
-  # Specify if you want your event selector to include management events for your
-  # trail.
+  # Specify if you want your event selector to include management events for
+  # your trail.
   data_logging_include_management_events = true
 
-  # Specify if you want your trail to log read-only events, write-only events, or
-  # all. Possible values are: ReadOnly, WriteOnly, All.
+  # Specify if you want your trail to log read-only events, write-only events,
+  # or all. Possible values are: ReadOnly, WriteOnly, All.
   data_logging_read_write_type = "All"
 
-  # Data resources for which to log data events. This should be a map, where each
-  # key is a data resource type, and each value is a list of data resource values.
-  # Possible values for data resource types are: AWS::S3::Object,
-  # AWS::Lambda::Function and AWS::DynamoDB::Table. See the 'data_resource' block
-  # within the 'event_selector' block of the 'aws_cloudtrail' resource for context:
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
-  # trail#data_resource.
+  # Data resources for which to log data events. This should be a map, where
+  # each key is a data resource type, and each value is a list of data resource
+  # values. Possible values for data resource types are: AWS::S3::Object,
+  # AWS::Lambda::Function and AWS::DynamoDB::Table. See the 'data_resource'
+  # block within the 'event_selector' block of the 'aws_cloudtrail' resource for
+  # context:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#data_resource.
   data_logging_resources = {}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
-  # resources in this module will now depend on the resources backing the values in
-  # this list such that those resources need to be created before the resources in
-  # this module, and the resources in this module need to be destroyed before the
-  # resources in the list.
+  # resources in this module will now depend on the resources backing the values
+  # in this list such that those resources need to be created before the
+  # resources in this module, and the resources in this module need to be
+  # destroyed before the resources in the list.
   dependencies = []
 
-  # Enables logging for the trail. Setting this to false will pause logging. (true
-  # or false)
+  # Enables logging for the trail. Setting this to false will pause logging.
+  # (true or false)
   enable_cloudtrail = true
 
-  # Whether or not to enable automatic annual rotation of the KMS key. Defaults to
-  # true.
+  # Whether or not to enable automatic annual rotation of the KMS key. Defaults
+  # to true.
   enable_key_rotation = true
 
-  # Enables S3 server access logging which sends detailed records for the requests
-  # that are made to the bucket. Defaults to false.
+  # Enables S3 server access logging which sends detailed records for the
+  # requests that are made to the bucket. Defaults to false.
   enable_s3_server_access_logging = false
 
-  # A list of external AWS accounts that should be given write access for CloudTrail
-  # logs to this S3 bucket. This is useful when aggregating CloudTrail logs for
-  # multiple AWS accounts in one common S3 bucket.
+  # A list of external AWS accounts that should be given write access for
+  # CloudTrail logs to this S3 bucket. This is useful when aggregating
+  # CloudTrail logs for multiple AWS accounts in one common S3 bucket.
   external_aws_account_ids_with_write_access = []
 
-  # If set to true, when you run 'terraform destroy', delete all objects from the
-  # bucket so that the bucket can be destroyed without error. Warning: these objects
-  # are not recoverable so only use this if you're absolutely sure you want to
-  # permanently delete everything!
+  # If set to true, when you run 'terraform destroy', delete all objects from
+  # the bucket so that the bucket can be destroyed without error. Warning: these
+  # objects are not recoverable so only use this if you're absolutely sure you
+  # want to permanently delete everything!
   force_destroy = false
 
   # Type of insights to log on a trail. Valid values are: ApiCallRateInsight and
   # ApiErrorRateInsight.
   insight_selector = []
 
-  # Specifies whether CloudTrail will log only API calls in the current region or in
-  # all regions. (true or false)
+  # Specifies whether CloudTrail will log only API calls in the current region
+  # or in all regions. (true or false)
   is_multi_region_trail = true
 
-  # Specifies whether the trail is an AWS Organizations trail. Organization trails
-  # log events for the root account and all member accounts. Can only be created in
-  # the organization root account. (true or false)
+  # Specifies whether the trail is an AWS Organizations trail. Organization
+  # trails log events for the root account and all member accounts. Can only be
+  # created in the organization root account. (true or false)
   is_organization_trail = false
 
   # All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key)
-  # that governs access to write API calls older than 7 days and all read API calls.
-  # The IAM Users specified in this list will have rights to change who can access
-  # this extended log data. This is optional if allow_cloudtrail_access_with_iam is
-  # true, otherwise it is required.
+  # that governs access to write API calls older than 7 days and all read API
+  # calls. The IAM Users specified in this list will have rights to change who
+  # can access this extended log data. This is optional if
+  # allow_cloudtrail_access_with_iam is true, otherwise it is required.
   kms_key_administrator_iam_arns = []
 
-  # If set to true, that means the KMS key you're using already exists, and does not
-  # need to be created.
+  # If set to true, that means the KMS key you're using already exists, and does
+  # not need to be created.
   kms_key_already_exists = false
 
   # If you wish to specify a custom KMS key, then specify the key arn using this
@@ -518,72 +522,74 @@ Refer to the
   # accounts, so the logs are all encrypted using the same key.
   kms_key_arn = null
 
-  # If the kms_key_arn provided is an alias or alias ARN, then this must be set to
-  # true so that the module will exchange the alias for a CMK ARN. Setting this to
-  # true and using aliases requires
+  # If the kms_key_arn provided is an alias or alias ARN, then this must be set
+  # to true so that the module will exchange the alias for a CMK ARN. Setting
+  # this to true and using aliases requires
   # var.allow_kms_describe_key_to_external_aws_accounts to also be true for
   # multi-account scenarios.
   kms_key_arn_is_alias = false
 
-  # The number of days to keep this KMS Key (a Customer Master Key) around after it
-  # has been marked for deletion.
+  # The number of days to keep this KMS Key (a Customer Master Key) around after
+  # it has been marked for deletion.
   kms_key_deletion_window_in_days = 15
 
-  # Additional service principals beyond CloudTrail that should have access to the
-  # KMS key used to encrypt the logs. This is useful for granting access to the logs
-  # for the purposes of constructing metric filters.
+  # Additional service principals beyond CloudTrail that should have access to
+  # the KMS key used to encrypt the logs. This is useful for granting access to
+  # the logs for the purposes of constructing metric filters.
   kms_key_service_principals = []
 
   # All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key)
-  # that governs access to write API calls older than 7 days and all read API calls.
-  # The IAM Users specified in this list will have read-only access to this extended
-  # log data.
+  # that governs access to write API calls older than 7 days and all read API
+  # calls. The IAM Users specified in this list will have read-only access to
+  # this extended log data.
   kms_key_user_iam_arns = []
 
-  # After this number of days, log files should be transitioned from S3 to Glacier.
-  # Enter 0 to never archive log data.
+  # After this number of days, log files should be transitioned from S3 to
+  # Glacier. Enter 0 to never archive log data.
   num_days_after_which_archive_log_data = 30
 
-  # After this number of days, log files should be deleted from S3. If null, never
-  # delete.
+  # After this number of days, log files should be deleted from S3. If null,
+  # never delete.
   num_days_after_which_delete_log_data = null
 
-  # After this number of days, logs stored in CloudWatch will be deleted. Possible
-  # values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827,
-  # 3653, and 0 (default). When set to 0, logs will be retained indefinitely.
+  # After this number of days, logs stored in CloudWatch will be deleted.
+  # Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400,
+  # 545, 731, 1827, 3653, and 0 (default). When set to 0, logs will be retained
+  # indefinitely.
   num_days_to_retain_cloudwatch_logs = 0
 
-  # The ID of the organization. Required only if an organization wide CloudTrail is
-  # being setup. In such a case, this ensures that the entire organization is
+  # The ID of the organization. Required only if an organization wide CloudTrail
+  # is being setup. In such a case, this ensures that the entire organization is
   # whitelisted in the CloudTrail bucket write policy.
   organization_id = null
 
-  # Set to true to enable replication for this bucket. You can set the role to use
-  # for replication using the replication_role parameter and the rules for
+  # Set to true to enable replication for this bucket. You can set the role to
+  # use for replication using the replication_role parameter and the rules for
   # replication using the replication_rules parameter.
   replication_enabled = false
 
-  # The ARN of the IAM role for Amazon S3 to assume when replicating objects. Only
-  # used if replication_enabled is set to true.
+  # The ARN of the IAM role for Amazon S3 to assume when replicating objects.
+  # Only used if replication_enabled is set to true.
   replication_role = null
 
-  # The rules for managing replication. Only used if replication_enabled is set to
-  # true. This should be a map, where the key is a unique ID for each replication
-  # rule and the value is an object of the form explained in a comment above.
+  # The rules for managing replication. Only used if replication_enabled is set
+  # to true. This should be a map, where the key is a unique ID for each
+  # replication rule and the value is an object of the form explained in a
+  # comment above.
   replication_rules = {}
 
-  # If set to true, that means the S3 bucket you're using already exists, and does
-  # not need to be created. This is especially useful when using CloudTrail with
-  # multiple AWS accounts, with a common S3 bucket shared by all of them.
+  # If set to true, that means the S3 bucket you're using already exists, and
+  # does not need to be created. This is especially useful when using CloudTrail
+  # with multiple AWS accounts, with a common S3 bucket shared by all of them.
   s3_bucket_already_exists = false
 
   # Enable MFA delete for either 'Change the versioning state of your bucket' or
-  # 'Permanently delete an object version'. This setting only applies to the bucket
-  # used to storage Cloudtrail data. This cannot be used to toggle this setting but
-  # is available to allow managed buckets to reflect the state in AWS. For
-  # instructions on how to enable MFA Delete, check out the README from the
-  # private-s3-bucket module. CIS v1.4 requires this variable to be true. If you do
-  # not wish to be CIS-compliant, you can set it to false.
+  # 'Permanently delete an object version'. This setting only applies to the
+  # bucket used to storage Cloudtrail data. This cannot be used to toggle this
+  # setting but is available to allow managed buckets to reflect the state in
+  # AWS. For instructions on how to enable MFA Delete, check out the README from
+  # the private-s3-bucket module. CIS v1.4 requires this variable to be true. If
+  # you do not wish to be CIS-compliant, you can set it to false.
   s3_mfa_delete = false
 
   # SNS topic for S3 log delivery notifications.
@@ -593,11 +599,11 @@ Refer to the
   # itself. The key is the tag name and the value is the tag value.
   tags = {}
 
-  # When true, all IAM policies will be managed as dedicated policies rather than
-  # inline policies attached to the IAM roles. Dedicated managed policies are
-  # friendlier to automated policy checkers, which may scan a single resource for
-  # findings. As such, it is important to avoid inline policies when targeting
-  # compliance with various security standards.
+  # When true, all IAM policies will be managed as dedicated policies rather
+  # than inline policies attached to the IAM roles. Dedicated managed policies
+  # are friendlier to automated policy checkers, which may scan a single
+  # resource for findings. As such, it is important to avoid inline policies
+  # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
 }
@@ -1399,11 +1405,11 @@ The name of the cloudtrail trail.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cloudtrail/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cloudtrail/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.2/modules/cloudtrail/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cloudtrail/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cloudtrail/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cloudtrail/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7f5f4cf16a37843b3f38f0d304e04bb1"
+  "hash": "2184eefbb12144b3b26c8c42be4c14c3"
 }
 ##DOCS-SOURCER-END -->
