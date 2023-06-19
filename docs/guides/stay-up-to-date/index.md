@@ -16,7 +16,22 @@ import CardGroup from "/src/components/CardGroup"
 
 <CardGroup cols={1} gap="1rem" stacked equalHeightRows={false} commonCardProps={{padding: "1.25rem"}}>
 
-<!-- replaced-by-docs-sourcer-automatically-do-not-edit -->
+<Card title="Update to 2023-05" href="/guides/stay-up-to-date/releases/2023-05" />
+<Card title="Update to 2023-04" href="/guides/stay-up-to-date/releases/2023-04" />
+<Card title="Update to 2023-03" href="/guides/stay-up-to-date/releases/2023-03" />
+<Card title="Update to 2023-02" href="/guides/stay-up-to-date/releases/2023-02" />
+<Card title="Update to 2023-01" href="/guides/stay-up-to-date/releases/2023-01" />
+<Card title="Update to 2022-12" href="/guides/stay-up-to-date/releases/2022-12" />
+<Card title="Update to 2022-11" href="/guides/stay-up-to-date/releases/2022-11" />
+<Card title="Update to 2022-10" href="/guides/stay-up-to-date/releases/2022-10" />
+<Card title="Update to 2022-09" href="/guides/stay-up-to-date/releases/2022-09" />
+<Card title="Update to 2022-08" href="/guides/stay-up-to-date/releases/2022-08" />
+<Card title="Update to 2022-07" href="/guides/stay-up-to-date/releases/2022-07" />
+<Card title="Update to 2022-06" href="/guides/stay-up-to-date/releases/2022-06" />
+<Card title="Update to 2022-05" href="/guides/stay-up-to-date/releases/2022-05" />
+<Card title="Update to 2022-04" href="/guides/stay-up-to-date/releases/2022-04" />
+<Card title="Update to 2022-03" href="/guides/stay-up-to-date/releases/2022-03" />
+<Card title="See older releases" href="/guides/stay-up-to-date/releases" />
 
 </CardGroup>
 
@@ -33,37 +48,37 @@ title="Update to version 1.1"
 href="/guides/stay-up-to-date/terraform/terraform-1.1"
 />
 <Card
-  title="Update to version 1.X"
-  href="/guides/stay-up-to-date/terraform/terraform-1.x"
-  />
+title="Update to version 1.X"
+href="/guides/stay-up-to-date/terraform/terraform-1.x"
+/>
 <Card
-  title="Update to Terraform 15"
-  href="/guides/stay-up-to-date/terraform/terraform-15"
-  />
+title="Update to Terraform 15"
+href="/guides/stay-up-to-date/terraform/terraform-15"
+/>
 <Card
-  title="Update to Terraform 14"
-  href="/guides/stay-up-to-date/terraform/terraform-14"
-  />
+title="Update to Terraform 14"
+href="/guides/stay-up-to-date/terraform/terraform-14"
+/>
 <Card
-  title="Update to Terraform 13"
-  href="/guides/stay-up-to-date/terraform/terraform-13"
-  />
+title="Update to Terraform 13"
+href="/guides/stay-up-to-date/terraform/terraform-13"
+/>
 <Card
-  title="Update to Terraform 12"
-  href="/guides/stay-up-to-date/terraform/terraform-12"
-  />
+title="Update to Terraform 12"
+href="/guides/stay-up-to-date/terraform/terraform-12"
+/>
 <Card
-  title="Update to Version 4 of the Terraform provider"
-  href="/guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v4"
-  />
+title="Update to Version 4 of the Terraform provider"
+href="/guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v4"
+/>
 <Card
-  title="Update to Version 3 of the Terraform provider"
-  href="/guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v3"
-  />
+title="Update to Version 3 of the Terraform provider"
+href="/guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v3"
+/>
 <Card
-  title="DRY your Reference Architecture"
-  href="/guides/stay-up-to-date/terraform/how-to-dry-your-reference-architecture"
-  />
+title="DRY your Reference Architecture"
+href="/guides/stay-up-to-date/terraform/how-to-dry-your-reference-architecture"
+/>
 
 </CardGroup>
 
@@ -81,13 +96,13 @@ href="/guides/stay-up-to-date/cis/cis-1.5.0"
 />
 
 <Card
-  title="Update to version 1.4.0"
-  href="/guides/stay-up-to-date/cis/cis-1.4.0"
-  />
+title="Update to version 1.4.0"
+href="/guides/stay-up-to-date/cis/cis-1.4.0"
+/>
 <Card
-  title="Update to version 1.3.0"
-  href="/guides/stay-up-to-date/cis/cis-1.3.0"
-  />
+title="Update to version 1.3.0"
+href="/guides/stay-up-to-date/cis/cis-1.3.0"
+/>
 
 </CardGroup>
 
@@ -98,7 +113,7 @@ href="/guides/stay-up-to-date/cis/cis-1.5.0"
 
 <!-- ##DOCS-SOURCER-START
 {
-  "sourcePlugin": "local-copier",
-  "hash": "83b5997fd4c9852bc578ed27cb2e494e"
+  "sourcePlugin": "releases",
+  "hash": "3fa2edea88fe3cc62d7be31ef4069fe5"
 }
 ##DOCS-SOURCER-END -->
