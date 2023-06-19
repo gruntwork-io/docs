@@ -48,37 +48,37 @@ title="Update to version 1.1"
 href="/guides/stay-up-to-date/terraform/terraform-1.1"
 />
 <Card
-title="Update to version 1.X"
-href="/guides/stay-up-to-date/terraform/terraform-1.x"
-/>
+  title="Update to version 1.X"
+  href="/guides/stay-up-to-date/terraform/terraform-1.x"
+  />
 <Card
-title="Update to Terraform 15"
-href="/guides/stay-up-to-date/terraform/terraform-15"
-/>
+  title="Update to Terraform 15"
+  href="/guides/stay-up-to-date/terraform/terraform-15"
+  />
 <Card
-title="Update to Terraform 14"
-href="/guides/stay-up-to-date/terraform/terraform-14"
-/>
+  title="Update to Terraform 14"
+  href="/guides/stay-up-to-date/terraform/terraform-14"
+  />
 <Card
-title="Update to Terraform 13"
-href="/guides/stay-up-to-date/terraform/terraform-13"
-/>
+  title="Update to Terraform 13"
+  href="/guides/stay-up-to-date/terraform/terraform-13"
+  />
 <Card
-title="Update to Terraform 12"
-href="/guides/stay-up-to-date/terraform/terraform-12"
-/>
+  title="Update to Terraform 12"
+  href="/guides/stay-up-to-date/terraform/terraform-12"
+  />
 <Card
-title="Update to Version 4 of the Terraform provider"
-href="/guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v4"
-/>
+  title="Update to Version 4 of the Terraform provider"
+  href="/guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v4"
+  />
 <Card
-title="Update to Version 3 of the Terraform provider"
-href="/guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v3"
-/>
+  title="Update to Version 3 of the Terraform provider"
+  href="/guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v3"
+  />
 <Card
-title="DRY your Reference Architecture"
-href="/guides/stay-up-to-date/terraform/how-to-dry-your-reference-architecture"
-/>
+  title="DRY your Reference Architecture"
+  href="/guides/stay-up-to-date/terraform/how-to-dry-your-reference-architecture"
+  />
 
 </CardGroup>
 
@@ -96,13 +96,13 @@ href="/guides/stay-up-to-date/cis/cis-1.5.0"
 />
 
 <Card
-title="Update to version 1.4.0"
-href="/guides/stay-up-to-date/cis/cis-1.4.0"
-/>
+  title="Update to version 1.4.0"
+  href="/guides/stay-up-to-date/cis/cis-1.4.0"
+  />
 <Card
-title="Update to version 1.3.0"
-href="/guides/stay-up-to-date/cis/cis-1.3.0"
-/>
+  title="Update to version 1.3.0"
+  href="/guides/stay-up-to-date/cis/cis-1.3.0"
+  />
 
 </CardGroup>
 
