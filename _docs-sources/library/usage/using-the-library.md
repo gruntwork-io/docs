@@ -222,6 +222,27 @@ For this guide, we'll run `terraform plan` and `terraform apply` locally. We rec
 
 :::
 
+### Init
+
+Before you can run a `plan` or `apply`, you need to run an `init`, which performs a series of initialization steps to prepare the working directory for use with Terraform.
+
+<Tabs groupId="tool-choice">
+<TabItem value="Terraform" label="Terraform" default>
+
+```bash
+terraform init
+```
+
+</TabItem>
+<TabItem value="Terragrunt" label="Terragrunt" default>
+
+```bash
+terragrunt init
+```
+
+</TabItem>
+</Tabs>
+
 ### Plan
 
 Now that you have created a module and a reference that is specific to a single environment and AWS region, you can run a `plan` to see the infrastructure resources that will be provisioned by the module.
