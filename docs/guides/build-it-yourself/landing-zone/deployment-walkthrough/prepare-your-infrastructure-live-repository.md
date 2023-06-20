@@ -6,7 +6,7 @@ This guide uses [Terragrunt](https://github.com/gruntwork-io/terragrunt) and its
 structure to deploy Terraform modules. Please note that **Terragrunt is NOT required for using Terraform modules from
 the Gruntwork Infrastructure as Code Library.** Check out our [Introduction to Gruntwork](/intro/overview/intro-to-gruntwork)
 for instructions on alternative options, such as
-[deploying with plain Terraform](/intro/first-deployment/deploy#deploy-using-plain-terraform).
+[deploying with plain Terraform](/library/getting-started/deploying-a-module).
 
 :::
 
@@ -178,6 +178,6 @@ locals {
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "35887123ab1bc3a011216db14a532073"
+  "hash": "dca1b41f4f2d07965ce93a3a9c47b613"
 }
 ##DOCS-SOURCER-END -->

@@ -7,7 +7,7 @@ sidebar_label: Update Gruntwork IaC module references
 In order to take advantage of the Terraform 0.13, you need to update your references to the Gruntwork
 Infrastructure as Code Library to use a compatible version. We (Gruntwork) have gone through all our modules in the
 library to test and update the code to be compatible with Terraform 0.13. As a customer, you need to update to
-the proper versions of the Gruntwork library to pick up the fixes/changes that were made to be compatible. Refer to our ["Updating to new versions"](/guides/working-with-code/versioning#updating-to-new-versions) guide for instructions on how to update the
+the proper versions of the Gruntwork library to pick up the fixes/changes that were made to be compatible. Refer to our ["Updating to new versions"](/library/stay-up-to-date/updating) guide for instructions on how to update the
 versions in your code.
 
 For the vast majority of the repos, the only change that will be necessary is a version number bump, but several repos
@@ -19,7 +19,7 @@ user, pay special attention to the release notes!
 :::caution
 
 Gruntwork follows [semantic
-versioning](/guides/working-with-code/versioning#semantic-versioning).
+versioning](/library/stay-up-to-date/versioning).
 For any pre-1.0 modules, this means that version updates to the minor version
 are considered backwards incompatible releases for any version updates prior to
 1.0.0 release. Make sure to read the release notes for the relevant modules any

@@ -15,7 +15,7 @@ Before anything else, check out our introductory guide to set up your account, p
 <Card
   title="The Gruntwork Production Framework"
   href="/guides/production-framework">
-We present a comprehensive model to help you establish a robust infrastructure platform, and explain how Gruntwork can accelarate its adoption in your org.
+We present a comprehensive model to help you establish a robust infrastructure platform, and explain how Gruntwork can accelerate its adoption in your org.
 </Card>
 
 </CardGroup>

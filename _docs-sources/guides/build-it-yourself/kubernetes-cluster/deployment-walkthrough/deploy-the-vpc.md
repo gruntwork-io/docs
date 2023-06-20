@@ -107,10 +107,7 @@ module "dns_mgmt_to_app" {
 ```
 
 At this point, you’ll want to test your code. See
-[Manual tests for Terraform code](/intro/first-deployment/testing#manual-tests-for-terraform-code)
-and
-[Automated tests for Terraform code](/intro/first-deployment/testing#automated-tests-for-terraform-code)
-for instructions.
+[Manual tests for Terraform code](/library/usage/using-the-library#testing-terraform-only) for instructions.
 
 Once your updated `vpc-app` wrapper module is working the way you want, submit a pull request, get your changes merged
 into the `master` branch, and create a new versioned release by using a Git tag. For example, to create a `v0.5.0`
@@ -128,7 +125,7 @@ structure to deploy Terraform modules. Please note that **Terragrunt is NOT requ
 the Gruntwork Infrastructure as Code Library.** Check out
 our [Introduction to Gruntwork](/intro/overview/intro-to-gruntwork) for instructions
 on alternative options, such as how to
-[Deploy using plain Terraform](/intro/first-deployment/deploy#deploy-using-plain-terraform).
+[Deploy using plain Terraform](/library/getting-started/deploying-a-module).
 
 :::
 

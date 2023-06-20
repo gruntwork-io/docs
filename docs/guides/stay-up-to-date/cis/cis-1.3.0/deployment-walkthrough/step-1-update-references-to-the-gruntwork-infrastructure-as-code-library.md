@@ -18,7 +18,7 @@ To update to the CIS AWS Foundations Benchmark v1.3.0, you need to update your r
 Infrastructure as Code Library to use compatible versions. We (Gruntwork) have reviewed and updated all the library modules for compatibility with the new version of the Benchmark. As a customer, you need to update to
 the proper versions of the Gruntwork library to pick up the fixes/changes made to be compatible. Refer to
 [the
-"Updating to new versions" section of "Stay Up to Date"](/guides/working-with-code/versioning#updating-to-new-versions) for instructions on how to update the
+"Updating to new versions" section of "Stay Up to Date"](/library/stay-up-to-date/updating) for instructions on how to update the
 versions in your code.
 
 For the vast majority of the repos, the only change that will be necessary is a version number bump, but several repos
@@ -30,7 +30,7 @@ version.**
 
 Gruntwork follows
 [semantic
-versioning](/guides/working-with-code/versioning#semantic-versioning). For any pre-1.0 modules, this means that version updates to the minor version are considered backward
+versioning](/library/stay-up-to-date/versioning). For any pre-1.0 modules, this means that version updates to the minor version are considered backward
 incompatible releases for any version updates before the 1.0.0 release. Make sure to read the release notes for the
 relevant modules any time you are updating minor versions! Note that you will want to read the release notes for each
 minor version that is updated (e.g., if you are going from v0.5.x to v0.9.x, you will want to read the notes for v0.6.0,
@@ -189,6 +189,6 @@ compatible with CIS AWS v1.3.0:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "5d834f1ec7d61ca84a6b9c44079b4a27"
+  "hash": "df4c2eb967c8e044940b34b0b95dc64e"
 }
 ##DOCS-SOURCER-END -->

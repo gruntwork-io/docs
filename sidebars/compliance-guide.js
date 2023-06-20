@@ -1,11 +1,5 @@
 const sidebar = [
   {
-    label: "Build Your Own Architecture",
-    type: "link",
-    href: "/guides/build-it-yourself",
-    className: "back-button",
-  },
-  {
     label: "CIS Benchmark Compliance Guide",
     type: "category",
     link: {

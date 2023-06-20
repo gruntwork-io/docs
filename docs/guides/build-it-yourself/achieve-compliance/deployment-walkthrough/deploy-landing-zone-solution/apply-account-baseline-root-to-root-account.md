@@ -60,7 +60,7 @@ We’ll be using the `landingzone/account-baseline-root` module from [terraform-
 This guide will use [Terragrunt](https://github.com/gruntwork-io/terragrunt) and its associated file and folder
 structure to deploy Terraform modules. Please note that **Terragrunt is NOT required for using Terraform modules from the Gruntwork Infrastructure as Code Library.** Check out our [Introduction to Gruntwork](/intro/overview/intro-to-gruntwork) section
 for instructions on alternative options, such as how to
-[deploying how to use plain terraform](/intro/first-deployment/deploy#deploy-using-plain-terraform).
+[deploying how to use plain terraform](/library/getting-started/deploying-a-module).
 
 :::
 
@@ -589,6 +589,6 @@ those root users again.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "16a777737a8d6c48de0fe2f6ca292c5a"
+  "hash": "85c7d13e3ed847c86ba58be0abf99398"
 }
 ##DOCS-SOURCER-END -->

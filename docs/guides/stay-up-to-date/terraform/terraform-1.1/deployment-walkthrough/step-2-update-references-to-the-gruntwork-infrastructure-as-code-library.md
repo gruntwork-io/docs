@@ -10,7 +10,7 @@ version. We (Gruntwork) have gone through all our modules in the library to test
 and update the code to be compatible with Terraform 1.1. As a customer, you need
 to update to the proper versions of the Gruntwork library to pick up the
 fixes/changes that we made to be compatible. Refer to [the "Updating to new versions" section of
-"Stay Up to Date"](/guides/working-with-code/versioning#updating-to-new-versions#updating)
+"Stay Up to Date"](/library/stay-up-to-date/updating#updating)
 for instructions on how to update the versions in your code.
 
 The releases of the modules from the Gruntwork Infrastructure as Code Library that correspond with the
@@ -20,7 +20,7 @@ Therefore, the only changes that you will need to do are version number bumps.
 :::caution
 
 Gruntwork follows [semantic
-versioning](/guides/working-with-code/versioning#semantic-versioning).
+versioning](/library/stay-up-to-date/versioning).
 For any pre-1.0 modules, this means that version updates to the minor version
 are considered backwards incompatible releases for any version updates prior to
 1.0.0 release. Make sure to read the release notes for the relevant modules any
@@ -142,6 +142,6 @@ and the respective versions that are compatible with Terraform 1.1:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "2b2b98d7e75d84cb9b1df09cf54a734e"
+  "hash": "217df2842415cae7425ba67ad9e8ddae"
 }
 ##DOCS-SOURCER-END -->

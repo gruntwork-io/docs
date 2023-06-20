@@ -19,7 +19,7 @@ This portion of the guide focuses on building Docker images for application repo
 <Tabs groupId="deployment-type">
 <TabItem value="RefArch" label="RefArch" default>
 
-If you’ve deployed Pipelines as a part of your Reference Architecture, we recommend following the guide on [how to deploy your apps into the Reference Architecture](../../guides/reference-architecture/example-usage-guide/deploy-apps/intro) to learn how to define a module for your application.
+If you’ve deployed Pipelines as a part of your Reference Architecture, we recommend following the guide on [how to deploy your apps into the Reference Architecture](../../refarch/usage/maintain-your-refarch//deploying-your-apps.md) to learn how to define a module for your application.
 
 To allow Pipelines jobs to be started by events in your repository, open `shared/<your region>/mgmt/ecs-deploy-runner/terragrunt.hcl` and update `docker_image_builder_config.allowed_repos` to include the HTTPS Git URL of the application repo for which you would like to deploy Docker images.
 
@@ -140,6 +140,6 @@ If you need to run a custom script in the `deploy-runner`, you must fork the ima
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d85a12c41096fd3a1a9b010b8a5194b4"
+  "hash": "c8ec2f6a221df197431a0b5a898827e3"
 }
 ##DOCS-SOURCER-END -->

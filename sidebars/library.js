@@ -32,7 +32,7 @@ const sidebar = [
           "library/usage/using-the-library",
           "library/usage/composing-your-own-service",
           "library/usage/customizing-modules",
-          "guides/working-with-code/tfc-integration",
+          "library/usage/tfc-integration",
           "library/usage/contributing",
           "library/usage/self-hosting",
         ],
