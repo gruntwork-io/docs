@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.6" lastModifiedVersion="0.35.5"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.35.7" lastModifiedVersion="0.35.5"/>
 
 # ECS Daemon Service Module
 
@@ -82,7 +82,7 @@ EOF
 
 module "ecs_daemon_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.35.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.35.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -207,7 +207,7 @@ module "ecs_daemon_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.35.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.35.7"
 }
 
 inputs = {
@@ -608,6 +608,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/firelens/modules/ecs-daemon-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6c331e8396067fceaf53b81af467268f"
+  "hash": "c82be408000c46363e2f10df4b6209b7"
 }
 ##DOCS-SOURCER-END -->

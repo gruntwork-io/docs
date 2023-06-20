@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.6" lastModifiedVersion="0.24.1"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.35.7" lastModifiedVersion="0.24.1"/>
 
 # ECS Service with Discovery
 
@@ -29,6 +29,6 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/firelens/modules/ecs-service-with-discovery/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0221fe9536ef877983327387f2de7dde"
+  "hash": "8e76bb0702adbce6eae8b6a528f99a94"
 }
 ##DOCS-SOURCER-END -->

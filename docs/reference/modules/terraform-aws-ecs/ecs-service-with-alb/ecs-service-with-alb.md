@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.6" lastModifiedVersion="0.24.1"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.35.7" lastModifiedVersion="0.24.1"/>
 
 # ECS Service with ALB
 
@@ -29,6 +29,6 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/firelens/modules/ecs-service-with-alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c45f309322c8598066070c33a9e976a6"
+  "hash": "2f4efc72c7b8d28e1033cd8b1b1601f3"
 }
 ##DOCS-SOURCER-END -->

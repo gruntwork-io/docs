@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.6" lastModifiedVersion="0.35.3"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.35.7" lastModifiedVersion="0.35.3"/>
 
 # ECS Deploy Check Scripts
 
@@ -113,6 +113,6 @@ pyenv shell 3.8.0 3.9.0 3.10.0 3.11.0
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/firelens/modules/ecs-deploy-check-binaries/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1050b9f710234138c1a99c1ac910f4c3"
+  "hash": "f8e8b461127c9f012a38aad6fe99724a"
 }
 ##DOCS-SOURCER-END -->

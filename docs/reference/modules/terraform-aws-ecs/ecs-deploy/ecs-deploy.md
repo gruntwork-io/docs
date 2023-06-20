@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.6" lastModifiedVersion="0.35.3"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.35.7" lastModifiedVersion="0.35.3"/>
 
 # ECS Deployment Scripts
 
@@ -101,6 +101,6 @@ container instead of the command configured in the Task Definition.
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/firelens/modules/ecs-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f745cf49b3ca1792ada1401f3020f08d"
+  "hash": "68ff48d7c85b9795718cc46401b2fa92"
 }
 ##DOCS-SOURCER-END -->

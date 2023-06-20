@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.6" lastModifiedVersion="0.35.5"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.35.7" lastModifiedVersion="0.35.7"/>
 
 # ECS Service
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/firelens/modules/ecs-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.35.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.35.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an [Elastic Container Service (ECS) Service](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) that you can use to run one or more related, long-running Docker containers, such as a web service. An ECS service can automatically deploy multiple instances of your Docker containers across an ECS cluster (see the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/firelens/modules/ecs-cluster)), restart any failed Docker containers, route traffic across your containers using an optional Elastic Load Balancer (ELB), and optionally register the services to AWS Service Discovery Service.
 
@@ -146,7 +146,7 @@ Production-ready sample code from the Reference Architecture:
 
 module "ecs_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-service?ref=v0.35.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-service?ref=v0.35.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -536,7 +536,7 @@ module "ecs_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-service?ref=v0.35.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-service?ref=v0.35.7"
 }
 
 inputs = {
@@ -1863,6 +1863,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/firelens/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "81f2c9421876a5efb305c609b90d6067"
+  "hash": "61e472c7f342ffe1d74eef4e6563f404"
 }
 ##DOCS-SOURCER-END -->

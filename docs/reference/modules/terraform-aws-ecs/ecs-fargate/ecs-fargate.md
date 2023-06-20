@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.6" lastModifiedVersion="0.24.1"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.35.7" lastModifiedVersion="0.24.1"/>
 
 # Fargate Module
 
@@ -29,6 +29,6 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/firelens/modules/ecs-fargate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "301f1206e437035db150c21f6142dd37"
+  "hash": "d3469dd15ea86d92a58a3323021b5046"
 }
 ##DOCS-SOURCER-END -->

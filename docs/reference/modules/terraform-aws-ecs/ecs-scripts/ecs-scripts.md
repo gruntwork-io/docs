@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.6" lastModifiedVersion="0.32.1"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.35.7" lastModifiedVersion="0.32.1"/>
 
 # ECS Scripts
 
@@ -85,6 +85,6 @@ Run `configure-ecs-instance --help` to see all available options.
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/firelens/modules/ecs-scripts/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cad803588e5fcfeab2f5c421e3addf4b"
+  "hash": "fe1ada4dd82ca99668c28b5581232013"
 }
 ##DOCS-SOURCER-END -->

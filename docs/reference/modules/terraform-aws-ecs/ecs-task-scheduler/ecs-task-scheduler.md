@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.6" lastModifiedVersion="0.34.2"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.35.7" lastModifiedVersion="0.34.2"/>
 
 # ECS Task Scheduler Module
 
@@ -195,7 +195,7 @@ See [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/firele
 
 module "ecs_task_scheduler" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-task-scheduler?ref=v0.35.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-task-scheduler?ref=v0.35.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -277,7 +277,7 @@ module "ecs_task_scheduler" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-task-scheduler?ref=v0.35.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-task-scheduler?ref=v0.35.7"
 }
 
 inputs = {
@@ -552,6 +552,6 @@ The scheduling expression to use (rate or cron - see README for usage examples).
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/firelens/modules/ecs-task-scheduler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c0aeec7e00fc0614b53aca450da3a849"
+  "hash": "276cf11601392338a8feee9a3f3744dd"
 }
 ##DOCS-SOURCER-END -->
