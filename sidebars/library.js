@@ -34,6 +34,7 @@ const sidebar = [
           "library/usage/customizing-modules",
           "library/usage/tfc-integration",
           "library/usage/contributing",
+          "library/usage/self-hosting",
         ],
       },
       {

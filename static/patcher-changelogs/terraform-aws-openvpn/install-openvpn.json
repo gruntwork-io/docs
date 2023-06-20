@@ -1,6 +1,9 @@
 {
   "module": "install-openvpn",
   "releases": {
+    "v0.26.3": {
+      "contains_changes": false
+    },
     "v0.26.2": {
       "contains_changes": false
     },

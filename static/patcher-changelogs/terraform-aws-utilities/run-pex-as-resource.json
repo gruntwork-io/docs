@@ -1,6 +1,9 @@
 {
   "module": "run-pex-as-resource",
   "releases": {
+    "v0.9.2": {
+      "contains_changes": false
+    },
     "v0.9.1": {
       "contains_changes": false
     },

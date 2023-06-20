@@ -21,12 +21,28 @@ references:
   # Build steps
   ######################################################################################################################
 
+  install_gh: &install_gh
+    run:
+      name: install gh cli
+      command: |
+        type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
+        curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+        && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+        && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+        && sudo apt update \
+        && sudo apt install gh -y
+
   install_bash_commons: &install_bash_commons
     run:
       name: install bash commons
       command: |
         curl -Ls https://raw.githubusercontent.com/gruntwork-io/gruntwork-installer/master/bootstrap-gruntwork-installer.sh | bash /dev/stdin --version v0.0.21
         gruntwork-install --module-name bash-commons --repo https://github.com/gruntwork-io/bash-commons --tag "v0.1.2"
+
+  install_deps: &install_deps
+    run:
+      name: install deps
+      command: yarn install
 
   build_docs: &build_docs
     run:
@@ -63,6 +79,13 @@ references:
         export AWS_EXPIRATION=`echo ${CREDENTIALS} | jq -r '.Credentials.Expiration'`
         export ALGOLIA_LIBRARY_INDEX_NAME="prod_docs_sourcer-library-reference"
         ./scripts/push-to-s3-prod.sh
+
+  create_releases_pr: &create_releases_pr
+    run:
+      name: create releases pr
+      command: ./scripts/create_releases_pr.sh
+      environment:
+        CONFIGURE_GIT: 0 # Tell the script that we're in CI and need to configure git for gruntwork-ci user
 
   notify_slack_staging: &notify_slack_staging
     slack/status:
@@ -103,6 +126,12 @@ references:
     slack/status:
       failure_message: "[Docs] :red_circle: Re-indexing stage has failed! Build triggered by: $CIRCLE_USERNAME. Please investigate."
       success_message: ":tada: Successfully rebuilt the search index for staging docs site version $CIRCLE_TAG. See: https://docs.dogfood-stage.com"
+      channel: "C01J73HUKEF" # #team-platform-notifications
+
+  notify_slack_releases_pr_ready: &notify_slack_releases_pr_ready
+    slack/status:
+      failure_message: "[Docs] :red_circle: Creating a PR for Gruntwork Releases has failed. Please investigate."
+      success_message: "[Docs] :tada: Monthly PR created for Gruntwork Releases. Please check PRs on docs repo."
       channel: "C01J73HUKEF" # #team-platform-notifications
 
 #######################################################################################################################
@@ -148,6 +177,16 @@ jobs:
       - *rebuild_prod_search_index
       - *notify_slack_prod_reindex
 
+  create-releases-pr:
+    <<: *base_container
+    description: Create Releases Pull Request
+    steps:
+      - checkout
+      - *install_gh
+      - *install_deps
+      - *create_releases_pr
+      - *notify_slack_releases_pr_ready
+
 # ---------------------------------------------------------------------------------------------------------------------
 # Here we combine the jobs defined above into various workflows that can run in parallel or sequentially, define
 # dependencies on each other, and only run on certain branches/tags.
@@ -156,12 +195,20 @@ jobs:
 workflows:
   version: 2
   validate_build:
+    # Make sure this pipeline doesn't run when a schedule is triggered
+    when:
+      not:
+        equal: [scheduled_pipeline, << pipeline.trigger_source >>]
     jobs:
       - validate-build:
           filters:
             branches:
               ignore: master
   stage_deployment:
+    # Make sure this pipeline doesn't run when a schedule is triggered
+    when:
+      not:
+        equal: [scheduled_pipeline, << pipeline.trigger_source >>]
     jobs:
       - validate-build:
           filters:
@@ -178,6 +225,10 @@ workflows:
             branches:
               only: master
   prod_deployment:
+    # Make sure this pipeline doesn't run when a schedule is triggered
+    when:
+      not:
+        equal: [scheduled_pipeline, << pipeline.trigger_source >>]
     jobs:
       - validate-build:
           filters:
@@ -197,3 +248,20 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
+  create_releases_pull_request:
+    when:
+      and:
+        # Docs:
+        # https://circleci.com/docs/selecting-a-workflow-to-run-using-pipeline-parameters/
+        # https://circleci.com/docs/schedule-pipelines-with-multiple-workflows/
+
+        # Only trigger the pipeline when BOTH conditions are met
+        # 1. Trigger source is scheduled pipeline (other options are api, and webhook, which we don't want)
+        - equal: [scheduled_pipeline, << pipeline.trigger_source >>]
+        # 2. A scheduled job with the name "monthly"
+        - equal: ["monthly", << pipeline.schedule.name >>]
+    jobs:
+      - create-releases-pr:
+          context:
+            - SLACK__WEBHOOK__team-platform
+            - GITHUB__PAT__gruntwork-ci

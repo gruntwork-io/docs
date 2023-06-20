@@ -1,6 +1,15 @@
 {
   "module": "landingzone/account-baseline-security",
   "releases": {
+    "v0.47.4": {
+      "contains_changes": true
+    },
+    "v0.47.3": {
+      "contains_changes": true
+    },
+    "v0.47.2": {
+      "contains_changes": false
+    },
     "v0.47.1": {
       "contains_changes": false
     },
