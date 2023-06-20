@@ -3,15 +3,16 @@
 
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2023-03</small></p>
 
-This page is lists all the updates to the [Gruntwork Infrastructure as Code 
-Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2023-03. For instructions 
-on how to use these updates in your code, check out the [updating 
-documentation](/guides/working-with-code/using-modules#updating).
+This page is lists all the updates to the [Gruntwork Infrastructure as Code
+Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2023-03. For instructions
+on how to use these updates in your code, check out the [updating
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
 - [aws-sample-app](#aws-sample-app)
 - [gruntwork](#gruntwork)
+- [patcher-cli](#patcher-cli)
 - [terraform-aws-architecture-catalog](#terraform-aws-architecture-catalog)
 - [terraform-aws-cache](#terraform-aws-cache)
 - [terraform-aws-ci](#terraform-aws-ci)
@@ -83,6 +84,47 @@ Here are the repos that were updated:
 
 
 **Full Changelog**: https://github.com/gruntwork-io/gruntwork/compare/v0.4.11...v0.4.12
+
+</div>
+
+
+
+## patcher-cli
+
+
+### [v0.1.2](https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.1.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 3/21/2023 | <a href="https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.1.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+Fixed a bug where Terragrunt files without the `source` attribute caused Patcher to crash.
+
+</div>
+
+
+### [v0.1.1](https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.1.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 3/20/2023 | <a href="https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.1.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+This release adds functionality to pins the allowed versions number range for each module in the CIS upgrade plan. This is to ensure the prerequisites for the CIS v1.4 to v1.5 upgrade are met. If the version of the module you are currently using is outside the allowed range Patcher will output a warning and skip that module.
+
+| Gruntwork Repo | Minimum Version | Maximum Version |
+| :--- | :---: | :---: |
+| terraform-aws-cis-service-catalog | 0.40.1 | 0.43.0 |
+| terraform-aws-service-catalog | 0.95.0 | 0.101.0 |
+| terraform-aws-security | 0.65.9 | 0.67.2 |
+
+
+[CIS 1.5.0 Update Guide - Step 2: Update references to the Gruntwork Infrastructure as Code Library](https://docs.gruntwork.io/guides/stay-up-to-date/cis/cis-1.5.0/deployment-walkthrough/step-2-update-references-to-the-gruntwork-infrastructure-as-code-library)
 
 </div>
 
@@ -736,6 +778,6 @@ ingress from 443 is created.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "b2bcd4da5b18d5e740f536fc84cdecc1"
+  "hash": "1ef0e1c9fcaf6aebb6359a75c4389e20"
 }
 ##DOCS-SOURCER-END -->

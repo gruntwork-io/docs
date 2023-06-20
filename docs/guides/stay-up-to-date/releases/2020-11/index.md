@@ -3,10 +3,10 @@
 
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2020-11</small></p>
 
-This page is lists all the updates to the [Gruntwork Infrastructure as Code 
-Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2020-11. For instructions 
-on how to use these updates in your code, check out the [updating 
-documentation](/guides/working-with-code/using-modules#updating).
+This page is lists all the updates to the [Gruntwork Infrastructure as Code
+Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2020-11. For instructions
+on how to use these updates in your code, check out the [updating
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -856,6 +856,6 @@ This release updates the default names set for the VPC DNS resolvers. The names 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "526438323887dbdca57f2c3580eca0c3"
+  "hash": "d6a6f3b2e30dbd5ed3862c6b2d9d6843"
 }
 ##DOCS-SOURCER-END -->

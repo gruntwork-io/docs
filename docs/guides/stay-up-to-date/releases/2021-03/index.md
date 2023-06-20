@@ -3,10 +3,10 @@
 
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2021-03</small></p>
 
-This page is lists all the updates to the [Gruntwork Infrastructure as Code 
-Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2021-03. For instructions 
-on how to use these updates in your code, check out the [updating 
-documentation](/guides/working-with-code/using-modules#updating).
+This page is lists all the updates to the [Gruntwork Infrastructure as Code
+Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2021-03. For instructions
+on how to use these updates in your code, check out the [updating
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -1464,6 +1464,6 @@ Support for optional resource creation via the `create_resources` parameter was 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "06d834f3ea5ba985a31f59b691406e23"
+  "hash": "78dddd1de8540aecdcd73a32e988f35c"
 }
 ##DOCS-SOURCER-END -->

@@ -3,10 +3,10 @@
 
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2019-12</small></p>
 
-This page is lists all the updates to the [Gruntwork Infrastructure as Code 
-Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2019-12. For instructions 
-on how to use these updates in your code, check out the [updating 
-documentation](/guides/working-with-code/using-modules#updating).
+This page is lists all the updates to the [Gruntwork Infrastructure as Code
+Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2019-12. For instructions
+on how to use these updates in your code, check out the [updating
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -703,6 +703,6 @@ This release introduces the ability to tag just the VPC, but not any of the othe
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "036322bdb17bda678c0505396783aa4a"
+  "hash": "e7b941c8320b65575fb74bb7bf70838f"
 }
 ##DOCS-SOURCER-END -->

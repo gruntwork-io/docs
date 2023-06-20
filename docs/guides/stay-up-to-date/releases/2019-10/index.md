@@ -3,10 +3,10 @@
 
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2019-10</small></p>
 
-This page is lists all the updates to the [Gruntwork Infrastructure as Code 
-Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2019-10. For instructions 
-on how to use these updates in your code, check out the [updating 
-documentation](/guides/working-with-code/using-modules#updating).
+This page is lists all the updates to the [Gruntwork Infrastructure as Code
+Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2019-10. For instructions
+on how to use these updates in your code, check out the [updating
+documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -684,6 +684,6 @@ Listening on localhost is now optional. To disable localhost listening, set the 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "9c6995849e70467c394964220957bec5"
+  "hash": "daf5a3a221a96142d7422820b09ff3d4"
 }
 ##DOCS-SOURCER-END -->
