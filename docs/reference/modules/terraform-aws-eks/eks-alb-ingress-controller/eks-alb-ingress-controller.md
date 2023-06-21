@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ALB Ingress Controller Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-alb-ingress-controller" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/modules/eks-alb-ingress-controller" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.59.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -110,7 +110,7 @@ correctly.
 
 You can use the `alb.ingress.kubernetes.io/subnets` annotation on `Ingress` resources to specify which subnets the controller should configure the ALB for.
 
-You can also omit the `alb.ingress.kubernetes.io/subnets` annotation, and the controller will [automatically discover subnets](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/controller/config/#subnet-auto-discovery) based on their tags. This method should work "out of the box", so long as you are using the [`eks-vpc-tags`](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-vpc-tags) module to tag your VPC subnets.
+You can also omit the `alb.ingress.kubernetes.io/subnets` annotation, and the controller will [automatically discover subnets](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/controller/config/#subnet-auto-discovery) based on their tags. This method should work "out of the box", so long as you are using the [`eks-vpc-tags`](https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/modules/eks-vpc-tags) module to tag your VPC subnets.
 
 ### Security Groups
 
@@ -125,7 +125,7 @@ nodes.
 ### IAM permissions
 
 The container deployed in this module requires IAM permissions to manage ALB resources. See [the
-eks-alb-ingress-controller-iam-policy module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-alb-ingress-controller-iam-policy) for more information.
+eks-alb-ingress-controller-iam-policy module](https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/modules/eks-alb-ingress-controller-iam-policy) for more information.
 
 ## Using the Ingress Controller
 
@@ -200,7 +200,7 @@ nature of the controller in provisioning the ALBs.
 The AWS ALB Ingress Controller has first class support for
 [external-dns](https://github.com/kubernetes-incubator/external-dns), a third party tool that configures external DNS
 providers with domains to route to `Services` and `Ingresses` in Kubernetes. See our [eks-k8s-external-dns
-module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-external-dns) for more information on how to setup the tool.
+module](https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/modules/eks-k8s-external-dns) for more information on how to setup the tool.
 
 ## How do I deploy the Pods to Fargate?
 
@@ -488,11 +488,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-alb-ingress-controller/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-alb-ingress-controller/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-alb-ingress-controller/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/modules/eks-alb-ingress-controller/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/modules/eks-alb-ingress-controller/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/modules/eks-alb-ingress-controller/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f3256f63a5c177361ed97a1bbbffe8a6"
+  "hash": "c4b6c04a398635e3908d2f2d553da3a5"
 }
 ##DOCS-SOURCER-END -->

@@ -13,20 +13,20 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # EKS K8s Karpenter Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-karpenter" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/modules/eks-k8s-karpenter" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.58.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Module can be used to deploy [Karpenter](https://karpenter.sh/) as an alternative to the [Cluster Autoscaler](https://github.com/kubernetes/autoscaler/tree/b6d53e8/cluster-autoscaler) for autoscaling capabilities of an EKS cluster.
-This module will create all of the necessary resources for a functional installation of Karpenter as well as the installation of Karpenter. This module does not create Karpenter [Provisioners](https://karpenter.sh/v0.27.0/concepts/provisioners/) or [Node Templates](https://karpenter.sh/v0.27.0/concepts/node-templates/), only the installation of the Karpenter Controller. See the [Karpenter Example](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/examples/eks-cluster-with-karpenter/) for an example of how to deploy the additional `CRDs` (Provisioners, Node Templates, etc) to the EKS cluster.
+This module will create all of the necessary resources for a functional installation of Karpenter as well as the installation of Karpenter. This module does not create Karpenter [Provisioners](https://karpenter.sh/v0.27.0/concepts/provisioners/) or [Node Templates](https://karpenter.sh/v0.27.0/concepts/node-templates/), only the installation of the Karpenter Controller. See the [Karpenter Example](https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/examples/eks-cluster-with-karpenter/) for an example of how to deploy the additional `CRDs` (Provisioners, Node Templates, etc) to the EKS cluster.
 
-> Note: For EKS cluster autoscaling capabilities, either `Karpenter` OR the `cluster-autoscaler` should be used; not both. To migrate to using `karpenter` instead of the `cluster-autoscaler` see [Migrating to Karpenter from the Cluster Autoscaler](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-karpenter/migrating-to-karpenter-from-cas.md)
+> Note: For EKS cluster autoscaling capabilities, either `Karpenter` OR the `cluster-autoscaler` should be used; not both. To migrate to using `karpenter` instead of the `cluster-autoscaler` see [Migrating to Karpenter from the Cluster Autoscaler](https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/modules/eks-k8s-karpenter/migrating-to-karpenter-from-cas.md)
 
-To leverage the full power and potential of Karpenter, one must understand the [Karpenter Core Concepts](https://karpenter.sh/v0.27.0/concepts/). Deploying this module without additional configuration (ie deploying Karpenter CRDs) will not enable EKS cluster autoscaling. As use-cases are presented, we will do our best effort to continue to add meaningful examples to the [examples](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/examples/) folder to help ease the complexities of configuring Karpenter. At minimum, one should configure and deploy a default `Provisioner` and `Node Template` for just in time node provisioning via Karpenter.
+To leverage the full power and potential of Karpenter, one must understand the [Karpenter Core Concepts](https://karpenter.sh/v0.27.0/concepts/). Deploying this module without additional configuration (ie deploying Karpenter CRDs) will not enable EKS cluster autoscaling. As use-cases are presented, we will do our best effort to continue to add meaningful examples to the [examples](https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/examples/) folder to help ease the complexities of configuring Karpenter. At minimum, one should configure and deploy a default `Provisioner` and `Node Template` for just in time node provisioning via Karpenter.
 
 ### Resources Created
 
-This module will create the following core resources, some of which are optional which are noted in the [input variables](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-karpenter/variables.tf):
+This module will create the following core resources, some of which are optional which are noted in the [input variables](https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/modules/eks-k8s-karpenter/variables.tf):
 
 | AWS Resource | Description |
 | --- | --- |
@@ -107,6 +107,11 @@ module "eks_k_8_s_karpenter" {
 
   # Conditional flag to optionally create resources in this module.
   create_resources = true
+
+  # Additional Helm chart values to pass to the Karpenter Helm chart. See the
+  # official Karpenter Helm chart values file and documentation for available
+  # configuration options.
+  karpenter_chart_additional_values = {}
 
   # The Helm chart name for the Karpenter chart.
   karpenter_chart_name = "karpenter"
@@ -227,6 +232,11 @@ inputs = {
 
   # Conditional flag to optionally create resources in this module.
   create_resources = true
+
+  # Additional Helm chart values to pass to the Karpenter Helm chart. See the
+  # official Karpenter Helm chart values file and documentation for available
+  # configuration options.
+  karpenter_chart_additional_values = {}
 
   # The Helm chart name for the Karpenter chart.
   karpenter_chart_name = "karpenter"
@@ -376,6 +386,22 @@ Conditional flag to optionally create resources in this module.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="karpenter_chart_additional_values" requirement="optional" type="any">
+<HclListItemDescription>
+
+Additional Helm chart values to pass to the Karpenter Helm chart. See the official Karpenter Helm chart values file and documentation for available configuration options.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="karpenter_chart_name" requirement="optional" type="string">
@@ -582,11 +608,11 @@ The name of the Karpenter Node IAM Role.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-karpenter/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-karpenter/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-karpenter/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/modules/eks-k8s-karpenter/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/modules/eks-k8s-karpenter/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/modules/eks-k8s-karpenter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "db1ee81efedf2252c2c3f3eba3067dd3"
+  "hash": "bc0d098e0d197bff73f1a8bcc4dae415"
 }
 ##DOCS-SOURCER-END -->

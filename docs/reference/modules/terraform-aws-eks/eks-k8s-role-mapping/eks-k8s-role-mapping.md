@@ -13,13 +13,13 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # EKS K8S Role Mapping Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-role-mapping" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/modules/eks-k8s-role-mapping" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.58.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 **NOTE: This module manages a single ConfigMap to use with Kubernetes AWS IAM authentication. If you wish to break up
 the ConfigMap across multiple smaller ConfigMaps to manage entries in isolated modules (e.g., when you add a new IAM
-role in a separate module from the EKS cluster), refer to the [eks-aws-auth-merger](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-aws-auth-merger).**
+role in a separate module from the EKS cluster), refer to the [eks-aws-auth-merger](https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/modules/eks-aws-auth-merger).**
 
 This Module can be used to manage the mapping of AWS IAM roles and users to Kubernetes RBAC groups for finer grained
 access control of your EKS Cluster.
@@ -59,7 +59,7 @@ as much or as little permissions as necessary when accessing resources in the AW
 
 This Module provides code for you to manage the mapping between AWS IAM roles and Kubernetes RBAC roles so that you can
 maintain a consistent set of mappings between the two systems. This works hand in hand with the [EKS authentication
-system](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/core-concepts.md#how-do-i-authenticate-kubectl-to-the-eks-cluster), providing the information to Kubernetes to resolve the user to the right RBAC group based on the provided IAM role credentials.
+system](https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/core-concepts.md#how-do-i-authenticate-kubectl-to-the-eks-cluster), providing the information to Kubernetes to resolve the user to the right RBAC group based on the provided IAM role credentials.
 
 ## Examples
 
@@ -543,11 +543,11 @@ The name of the ConfigMap created to store the mapping. This exists so that down
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-role-mapping/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-role-mapping/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-role-mapping/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/modules/eks-k8s-role-mapping/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/modules/eks-k8s-role-mapping/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/issue-540/modules/eks-k8s-role-mapping/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b86d270eccc7ab36a4bd8a8f1a67a1f2"
+  "hash": "4cc7494961d2b38b1ec71b220dfd3e94"
 }
 ##DOCS-SOURCER-END -->
