@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.10" lastModifiedVersion="0.103.0"/>
+<VersionBadge version="0.104.12" lastModifiedVersion="0.103.0"/>
 
 # Application Load Balancer
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/networking/alb" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/networking/alb" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Falb" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -62,7 +62,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -70,7 +70,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -89,7 +89,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "alb" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/alb?ref=v0.104.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/alb?ref=v0.104.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -98,16 +98,16 @@ module "alb" {
   # The name of the ALB.
   alb_name = <string>
 
-  # If the ALB should only accept traffic from within the VPC, set this to true. If
-  # it should accept traffic from the public Internet, set it to false.
+  # If the ALB should only accept traffic from within the VPC, set this to true.
+  # If it should accept traffic from the public Internet, set it to false.
   is_internal_alb = <bool>
 
-  # After this number of days, log files should be transitioned from S3 to Glacier.
-  # Enter 0 to never archive log data.
+  # After this number of days, log files should be transitioned from S3 to
+  # Glacier. Enter 0 to never archive log data.
   num_days_after_which_archive_log_data = <number>
 
-  # After this number of days, log files should be deleted from S3. Enter 0 to never
-  # delete log data.
+  # After this number of days, log files should be deleted from S3. Enter 0 to
+  # never delete log data.
   num_days_after_which_delete_log_data = <number>
 
   # ID of the VPC where the ALB will be deployed
@@ -120,8 +120,8 @@ module "alb" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The name to use for the S3 bucket where the ALB access logs will be stored. If
-  # you set this to null, a name will be generated automatically based on
+  # The name to use for the S3 bucket where the ALB access logs will be stored.
+  # If you set this to null, a name will be generated automatically based on
   # var.alb_name.
   access_logs_s3_bucket_name = null
 
@@ -142,16 +142,16 @@ module "alb" {
   # var.https_listener_ports_and_acm_ssl_certs. The keys are the listener ports.
   additional_ssl_certs_for_ports = {}
 
-  # Set to true to enable all outbound traffic on this ALB. If set to false, the ALB
-  # will allow no outbound traffic by default. This will make the ALB unusuable, so
-  # some other code must then update the ALB Security Group to enable outbound
-  # access!
+  # Set to true to enable all outbound traffic on this ALB. If set to false, the
+  # ALB will allow no outbound traffic by default. This will make the ALB
+  # unusuable, so some other code must then update the ALB Security Group to
+  # enable outbound access!
   allow_all_outbound = true
 
   # The CIDR-formatted IP Address range from which this ALB will allow incoming
   # requests. If var.is_internal_alb is false, use the default value. If
-  # var.is_internal_alb is true, consider setting this to the VPC's CIDR Block, or
-  # something even more restrictive.
+  # var.is_internal_alb is true, consider setting this to the VPC's CIDR Block,
+  # or something even more restrictive.
   allow_inbound_from_cidr_blocks = []
 
   # The list of IDs of security groups that should have access to the ALB
@@ -160,33 +160,33 @@ module "alb" {
   # Set to true to create a Route 53 DNS A record for this ALB?
   create_route53_entry = false
 
-  # Prefix to use for access logs to create a sub-folder in S3 Bucket name where ALB
-  # logs should be stored. Only used if var.enable_custom_alb_access_logs_s3_prefix
-  # is true.
+  # Prefix to use for access logs to create a sub-folder in S3 Bucket name where
+  # ALB logs should be stored. Only used if
+  # var.enable_custom_alb_access_logs_s3_prefix is true.
   custom_alb_access_logs_s3_prefix = null
 
-  # A map of custom tags to apply to the ALB and its Security Group. The key is the
-  # tag name and the value is the tag value.
+  # A map of custom tags to apply to the ALB and its Security Group. The key is
+  # the tag name and the value is the tag value.
   custom_tags = {}
 
-  # If a request to the load balancer does not match any of your listener rules, the
-  # default action will return a fixed response with this body.
+  # If a request to the load balancer does not match any of your listener rules,
+  # the default action will return a fixed response with this body.
   default_action_body = null
 
-  # If a request to the load balancer does not match any of your listener rules, the
-  # default action will return a fixed response with this content type.
+  # If a request to the load balancer does not match any of your listener rules,
+  # the default action will return a fixed response with this content type.
   default_action_content_type = "text/plain"
 
-  # If a request to the load balancer does not match any of your listener rules, the
-  # default action will return a fixed response with this status code.
+  # If a request to the load balancer does not match any of your listener rules,
+  # the default action will return a fixed response with this status code.
   default_action_status_code = 404
 
   # The list of domain names for the DNS A record to add for the ALB (e.g.
   # alb.foo.com). Only used if var.create_route53_entry is true.
   domain_names = []
 
-  # If true, the ALB will drop invalid headers. Elastic Load Balancing requires that
-  # message header names contain only alphanumeric characters and hyphens.
+  # If true, the ALB will drop invalid headers. Elastic Load Balancing requires
+  # that message header names contain only alphanumeric characters and hyphens.
   drop_invalid_header_fields = false
 
   # Set to true to use the value of alb_access_logs_s3_prefix for access logs
@@ -199,65 +199,65 @@ module "alb" {
   enable_deletion_protection = false
 
   # A boolean that indicates whether the access logs bucket should be destroyed,
-  # even if there are files in it, when you run Terraform destroy. Unless you are
-  # using this bucket only for test purposes, you'll want to leave this variable set
-  # to false.
+  # even if there are files in it, when you run Terraform destroy. Unless you
+  # are using this bucket only for test purposes, you'll want to leave this
+  # variable set to false.
   force_destroy = false
 
-  # The ID of the hosted zone for the DNS A record to add for the ALB. Only used if
-  # var.create_route53_entry is true.
+  # The ID of the hosted zone for the DNS A record to add for the ALB. Only used
+  # if var.create_route53_entry is true.
   hosted_zone_id = null
 
-  # A list of ports for which an HTTP Listener should be created on the ALB. Tip:
-  # When you define Listener Rules for these Listeners, be sure that, for each
-  # Listener, at least one Listener Rule  uses the '*' path to ensure that every
-  # possible request path for that Listener is handled by a Listener Rule. Otherwise
-  # some requests won't route to any Target Group.
+  # A list of ports for which an HTTP Listener should be created on the ALB.
+  # Tip: When you define Listener Rules for these Listeners, be sure that, for
+  # each Listener, at least one Listener Rule  uses the '*' path to ensure that
+  # every possible request path for that Listener is handled by a Listener Rule.
+  # Otherwise some requests won't route to any Target Group.
   http_listener_ports = []
 
-  # A list of the ports for which an HTTPS Listener should be created on the ALB.
-  # Each item in the list should be a map with the keys 'port', the port number to
-  # listen on, and 'tls_domain_name', the domain name of an SSL/TLS certificate
-  # issued by the Amazon Certificate Manager (ACM) to associate with the Listener to
-  # be created. If your certificate isn't issued by ACM, specify
-  # var.https_listener_ports_and_ssl_certs instead. Tip: When you define Listener
-  # Rules for these Listeners, be sure that, for each Listener, at least one
-  # Listener Rule  uses the '*' path to ensure that every possible request path for
-  # that Listener is handled by a Listener Rule. Otherwise some requests won't route
-  # to any Target Group.
+  # A list of the ports for which an HTTPS Listener should be created on the
+  # ALB. Each item in the list should be a map with the keys 'port', the port
+  # number to listen on, and 'tls_domain_name', the domain name of an SSL/TLS
+  # certificate issued by the Amazon Certificate Manager (ACM) to associate with
+  # the Listener to be created. If your certificate isn't issued by ACM, specify
+  # var.https_listener_ports_and_ssl_certs instead. Tip: When you define
+  # Listener Rules for these Listeners, be sure that, for each Listener, at
+  # least one Listener Rule  uses the '*' path to ensure that every possible
+  # request path for that Listener is handled by a Listener Rule. Otherwise some
+  # requests won't route to any Target Group.
   https_listener_ports_and_acm_ssl_certs = []
 
-  # A list of the ports for which an HTTPS Listener should be created on the ALB.
-  # Each item in the list should be a map with the keys 'port', the port number to
-  # listen on, and 'tls_arn', the Amazon Resource Name (ARN) of the SSL/TLS
-  # certificate to associate with the Listener to be created. If your certificate is
-  # issued by the Amazon Certificate Manager (ACM), specify
+  # A list of the ports for which an HTTPS Listener should be created on the
+  # ALB. Each item in the list should be a map with the keys 'port', the port
+  # number to listen on, and 'tls_arn', the Amazon Resource Name (ARN) of the
+  # SSL/TLS certificate to associate with the Listener to be created. If your
+  # certificate is issued by the Amazon Certificate Manager (ACM), specify
   # var.https_listener_ports_and_acm_ssl_certs instead. Tip: When you define
-  # Listener Rules for these Listeners, be sure that, for each Listener, at least
-  # one Listener Rule  uses the '*' path to ensure that every possible request path
-  # for that Listener is handled by a Listener Rule. Otherwise some requests won't
-  # route to any Target Group.
+  # Listener Rules for these Listeners, be sure that, for each Listener, at
+  # least one Listener Rule  uses the '*' path to ensure that every possible
+  # request path for that Listener is handled by a Listener Rule. Otherwise some
+  # requests won't route to any Target Group.
   https_listener_ports_and_ssl_certs = []
 
-  # The time in seconds that the client TCP connection to the ALB is allowed to be
-  # idle before the ALB closes the TCP connection.
+  # The time in seconds that the client TCP connection to the ALB is allowed to
+  # be idle before the ALB closes the TCP connection.
   idle_timeout = 60
 
   # If true, create a new S3 bucket for access logs with the name in
-  # var.access_logs_s3_bucket_name. If false, assume the S3 bucket for access logs
-  # with the name in  var.access_logs_s3_bucket_name already exists, and don't
-  # create a new one. Note that if you set this to false, it's up to you to ensure
-  # that the S3 bucket has a bucket policy that grants Elastic Load Balancing
-  # permission to write the access logs to your bucket.
+  # var.access_logs_s3_bucket_name. If false, assume the S3 bucket for access
+  # logs with the name in  var.access_logs_s3_bucket_name already exists, and
+  # don't create a new one. Note that if you set this to false, it's up to you
+  # to ensure that the S3 bucket has a bucket policy that grants Elastic Load
+  # Balancing permission to write the access logs to your bucket.
   should_create_access_logs_bucket = true
 
-  # The AWS predefined TLS/SSL policy for the ALB. A List of policies can be found
-  # here:
-  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https
-  # listener.html#describe-ssl-policies. AWS recommends ELBSecurityPolicy-2016-08
-  # policy for general use but this policy includes TLSv1.0 which is rapidly being
-  # phased out. ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't
-  # include TLSv1.0.
+  # The AWS predefined TLS/SSL policy for the ALB. A List of policies can be
+  # found here:
+  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies.
+  # AWS recommends ELBSecurityPolicy-2016-08 policy for general use but this
+  # policy includes TLSv1.0 which is rapidly being phased out.
+  # ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't include
+  # TLSv1.0.
   ssl_policy = "ELBSecurityPolicy-2016-08"
 
 }
@@ -275,7 +275,7 @@ module "alb" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/alb?ref=v0.104.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/alb?ref=v0.104.12"
 }
 
 inputs = {
@@ -287,16 +287,16 @@ inputs = {
   # The name of the ALB.
   alb_name = <string>
 
-  # If the ALB should only accept traffic from within the VPC, set this to true. If
-  # it should accept traffic from the public Internet, set it to false.
+  # If the ALB should only accept traffic from within the VPC, set this to true.
+  # If it should accept traffic from the public Internet, set it to false.
   is_internal_alb = <bool>
 
-  # After this number of days, log files should be transitioned from S3 to Glacier.
-  # Enter 0 to never archive log data.
+  # After this number of days, log files should be transitioned from S3 to
+  # Glacier. Enter 0 to never archive log data.
   num_days_after_which_archive_log_data = <number>
 
-  # After this number of days, log files should be deleted from S3. Enter 0 to never
-  # delete log data.
+  # After this number of days, log files should be deleted from S3. Enter 0 to
+  # never delete log data.
   num_days_after_which_delete_log_data = <number>
 
   # ID of the VPC where the ALB will be deployed
@@ -309,8 +309,8 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The name to use for the S3 bucket where the ALB access logs will be stored. If
-  # you set this to null, a name will be generated automatically based on
+  # The name to use for the S3 bucket where the ALB access logs will be stored.
+  # If you set this to null, a name will be generated automatically based on
   # var.alb_name.
   access_logs_s3_bucket_name = null
 
@@ -331,16 +331,16 @@ inputs = {
   # var.https_listener_ports_and_acm_ssl_certs. The keys are the listener ports.
   additional_ssl_certs_for_ports = {}
 
-  # Set to true to enable all outbound traffic on this ALB. If set to false, the ALB
-  # will allow no outbound traffic by default. This will make the ALB unusuable, so
-  # some other code must then update the ALB Security Group to enable outbound
-  # access!
+  # Set to true to enable all outbound traffic on this ALB. If set to false, the
+  # ALB will allow no outbound traffic by default. This will make the ALB
+  # unusuable, so some other code must then update the ALB Security Group to
+  # enable outbound access!
   allow_all_outbound = true
 
   # The CIDR-formatted IP Address range from which this ALB will allow incoming
   # requests. If var.is_internal_alb is false, use the default value. If
-  # var.is_internal_alb is true, consider setting this to the VPC's CIDR Block, or
-  # something even more restrictive.
+  # var.is_internal_alb is true, consider setting this to the VPC's CIDR Block,
+  # or something even more restrictive.
   allow_inbound_from_cidr_blocks = []
 
   # The list of IDs of security groups that should have access to the ALB
@@ -349,33 +349,33 @@ inputs = {
   # Set to true to create a Route 53 DNS A record for this ALB?
   create_route53_entry = false
 
-  # Prefix to use for access logs to create a sub-folder in S3 Bucket name where ALB
-  # logs should be stored. Only used if var.enable_custom_alb_access_logs_s3_prefix
-  # is true.
+  # Prefix to use for access logs to create a sub-folder in S3 Bucket name where
+  # ALB logs should be stored. Only used if
+  # var.enable_custom_alb_access_logs_s3_prefix is true.
   custom_alb_access_logs_s3_prefix = null
 
-  # A map of custom tags to apply to the ALB and its Security Group. The key is the
-  # tag name and the value is the tag value.
+  # A map of custom tags to apply to the ALB and its Security Group. The key is
+  # the tag name and the value is the tag value.
   custom_tags = {}
 
-  # If a request to the load balancer does not match any of your listener rules, the
-  # default action will return a fixed response with this body.
+  # If a request to the load balancer does not match any of your listener rules,
+  # the default action will return a fixed response with this body.
   default_action_body = null
 
-  # If a request to the load balancer does not match any of your listener rules, the
-  # default action will return a fixed response with this content type.
+  # If a request to the load balancer does not match any of your listener rules,
+  # the default action will return a fixed response with this content type.
   default_action_content_type = "text/plain"
 
-  # If a request to the load balancer does not match any of your listener rules, the
-  # default action will return a fixed response with this status code.
+  # If a request to the load balancer does not match any of your listener rules,
+  # the default action will return a fixed response with this status code.
   default_action_status_code = 404
 
   # The list of domain names for the DNS A record to add for the ALB (e.g.
   # alb.foo.com). Only used if var.create_route53_entry is true.
   domain_names = []
 
-  # If true, the ALB will drop invalid headers. Elastic Load Balancing requires that
-  # message header names contain only alphanumeric characters and hyphens.
+  # If true, the ALB will drop invalid headers. Elastic Load Balancing requires
+  # that message header names contain only alphanumeric characters and hyphens.
   drop_invalid_header_fields = false
 
   # Set to true to use the value of alb_access_logs_s3_prefix for access logs
@@ -388,65 +388,65 @@ inputs = {
   enable_deletion_protection = false
 
   # A boolean that indicates whether the access logs bucket should be destroyed,
-  # even if there are files in it, when you run Terraform destroy. Unless you are
-  # using this bucket only for test purposes, you'll want to leave this variable set
-  # to false.
+  # even if there are files in it, when you run Terraform destroy. Unless you
+  # are using this bucket only for test purposes, you'll want to leave this
+  # variable set to false.
   force_destroy = false
 
-  # The ID of the hosted zone for the DNS A record to add for the ALB. Only used if
-  # var.create_route53_entry is true.
+  # The ID of the hosted zone for the DNS A record to add for the ALB. Only used
+  # if var.create_route53_entry is true.
   hosted_zone_id = null
 
-  # A list of ports for which an HTTP Listener should be created on the ALB. Tip:
-  # When you define Listener Rules for these Listeners, be sure that, for each
-  # Listener, at least one Listener Rule  uses the '*' path to ensure that every
-  # possible request path for that Listener is handled by a Listener Rule. Otherwise
-  # some requests won't route to any Target Group.
+  # A list of ports for which an HTTP Listener should be created on the ALB.
+  # Tip: When you define Listener Rules for these Listeners, be sure that, for
+  # each Listener, at least one Listener Rule  uses the '*' path to ensure that
+  # every possible request path for that Listener is handled by a Listener Rule.
+  # Otherwise some requests won't route to any Target Group.
   http_listener_ports = []
 
-  # A list of the ports for which an HTTPS Listener should be created on the ALB.
-  # Each item in the list should be a map with the keys 'port', the port number to
-  # listen on, and 'tls_domain_name', the domain name of an SSL/TLS certificate
-  # issued by the Amazon Certificate Manager (ACM) to associate with the Listener to
-  # be created. If your certificate isn't issued by ACM, specify
-  # var.https_listener_ports_and_ssl_certs instead. Tip: When you define Listener
-  # Rules for these Listeners, be sure that, for each Listener, at least one
-  # Listener Rule  uses the '*' path to ensure that every possible request path for
-  # that Listener is handled by a Listener Rule. Otherwise some requests won't route
-  # to any Target Group.
+  # A list of the ports for which an HTTPS Listener should be created on the
+  # ALB. Each item in the list should be a map with the keys 'port', the port
+  # number to listen on, and 'tls_domain_name', the domain name of an SSL/TLS
+  # certificate issued by the Amazon Certificate Manager (ACM) to associate with
+  # the Listener to be created. If your certificate isn't issued by ACM, specify
+  # var.https_listener_ports_and_ssl_certs instead. Tip: When you define
+  # Listener Rules for these Listeners, be sure that, for each Listener, at
+  # least one Listener Rule  uses the '*' path to ensure that every possible
+  # request path for that Listener is handled by a Listener Rule. Otherwise some
+  # requests won't route to any Target Group.
   https_listener_ports_and_acm_ssl_certs = []
 
-  # A list of the ports for which an HTTPS Listener should be created on the ALB.
-  # Each item in the list should be a map with the keys 'port', the port number to
-  # listen on, and 'tls_arn', the Amazon Resource Name (ARN) of the SSL/TLS
-  # certificate to associate with the Listener to be created. If your certificate is
-  # issued by the Amazon Certificate Manager (ACM), specify
+  # A list of the ports for which an HTTPS Listener should be created on the
+  # ALB. Each item in the list should be a map with the keys 'port', the port
+  # number to listen on, and 'tls_arn', the Amazon Resource Name (ARN) of the
+  # SSL/TLS certificate to associate with the Listener to be created. If your
+  # certificate is issued by the Amazon Certificate Manager (ACM), specify
   # var.https_listener_ports_and_acm_ssl_certs instead. Tip: When you define
-  # Listener Rules for these Listeners, be sure that, for each Listener, at least
-  # one Listener Rule  uses the '*' path to ensure that every possible request path
-  # for that Listener is handled by a Listener Rule. Otherwise some requests won't
-  # route to any Target Group.
+  # Listener Rules for these Listeners, be sure that, for each Listener, at
+  # least one Listener Rule  uses the '*' path to ensure that every possible
+  # request path for that Listener is handled by a Listener Rule. Otherwise some
+  # requests won't route to any Target Group.
   https_listener_ports_and_ssl_certs = []
 
-  # The time in seconds that the client TCP connection to the ALB is allowed to be
-  # idle before the ALB closes the TCP connection.
+  # The time in seconds that the client TCP connection to the ALB is allowed to
+  # be idle before the ALB closes the TCP connection.
   idle_timeout = 60
 
   # If true, create a new S3 bucket for access logs with the name in
-  # var.access_logs_s3_bucket_name. If false, assume the S3 bucket for access logs
-  # with the name in  var.access_logs_s3_bucket_name already exists, and don't
-  # create a new one. Note that if you set this to false, it's up to you to ensure
-  # that the S3 bucket has a bucket policy that grants Elastic Load Balancing
-  # permission to write the access logs to your bucket.
+  # var.access_logs_s3_bucket_name. If false, assume the S3 bucket for access
+  # logs with the name in  var.access_logs_s3_bucket_name already exists, and
+  # don't create a new one. Note that if you set this to false, it's up to you
+  # to ensure that the S3 bucket has a bucket policy that grants Elastic Load
+  # Balancing permission to write the access logs to your bucket.
   should_create_access_logs_bucket = true
 
-  # The AWS predefined TLS/SSL policy for the ALB. A List of policies can be found
-  # here:
-  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https
-  # listener.html#describe-ssl-policies. AWS recommends ELBSecurityPolicy-2016-08
-  # policy for general use but this policy includes TLSv1.0 which is rapidly being
-  # phased out. ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't
-  # include TLSv1.0.
+  # The AWS predefined TLS/SSL policy for the ALB. A List of policies can be
+  # found here:
+  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies.
+  # AWS recommends ELBSecurityPolicy-2016-08 policy for general use but this
+  # policy includes TLSv1.0 which is rapidly being phased out.
+  # ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't include
+  # TLSv1.0.
   ssl_policy = "ELBSecurityPolicy-2016-08"
 
 }
@@ -918,11 +918,11 @@ The AWS-managed DNS name assigned to the ALB.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/networking/alb/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/networking/alb/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.10/modules/networking/alb/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/networking/alb/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/networking/alb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/networking/alb/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3a4bba28ee54fac87dc418fd5abb29ad"
+  "hash": "d0235c331d495fc174cfc5e8d8b93515"
 }
 ##DOCS-SOURCER-END -->
