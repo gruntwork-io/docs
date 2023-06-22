@@ -71,10 +71,9 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
-        googleAnalytics: enableGoogleAnalytics
+        googleTagManager: enableGoogleAnalytics
           ? {
-            trackingID: googleAnalyticsConfig.trackingID,
-            anonymizeIP: true,
+            containerId: googleAnalyticsConfig.trackingID,
           }
           : undefined,
       },
