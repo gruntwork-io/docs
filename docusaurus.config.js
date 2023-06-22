@@ -68,7 +68,7 @@ const config = {
         },
         googleTagManager: enableGoogleAnalytics
           ? {
-            trackingID: googleAnalyticsConfig.trackingID,
+            containerId: googleAnalyticsConfig.trackingID,
           }
           : undefined,
       },
