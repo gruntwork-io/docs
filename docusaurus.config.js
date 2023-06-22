@@ -69,7 +69,6 @@ const config = {
         googleTagManager: enableGoogleAnalytics
           ? {
             trackingID: googleAnalyticsConfig.trackingID,
-            anonymizeIP: true,
           }
           : undefined,
       },
