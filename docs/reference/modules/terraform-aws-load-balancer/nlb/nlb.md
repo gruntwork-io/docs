@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Network Load Balancer (NLB) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/nlb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/remove-zack-from-codeowners/modules/nlb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.23.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -29,11 +29,11 @@ For information on why the module was removed, refer to the discussion in [PR
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/nlb/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/nlb/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/nlb/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/remove-zack-from-codeowners/modules/nlb/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/remove-zack-from-codeowners/modules/nlb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/remove-zack-from-codeowners/modules/nlb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "036acdce771e5eaf50d06bb2d6d3c157"
+  "hash": "c16e4c2359554f11f589c061bc01622e"
 }
 ##DOCS-SOURCER-END -->
