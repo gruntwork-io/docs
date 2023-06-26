@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # EC2 Backup Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.5/modules/ec2-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/remove-zack-from-codeowners/modules/ec2-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.15.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -305,11 +305,11 @@ The name of the IAM role associated with the data lifecycle manager
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.5/modules/ec2-backup/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.5/modules/ec2-backup/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.5/modules/ec2-backup/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/remove-zack-from-codeowners/modules/ec2-backup/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/remove-zack-from-codeowners/modules/ec2-backup/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/remove-zack-from-codeowners/modules/ec2-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0d33f8e2c9c43c23a473e9c874f62714"
+  "hash": "3081c530c019fd6e9b77cb5099049425"
 }
 ##DOCS-SOURCER-END -->

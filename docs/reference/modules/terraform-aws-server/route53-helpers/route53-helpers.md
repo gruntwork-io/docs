@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Route 53 Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.5/modules/route53-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/remove-zack-from-codeowners/modules/route53-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.13.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -23,7 +23,7 @@ The helpers are:
 *   `add-dns-a-record`: A script that can be run on an EC2 instance to add a DNS A record pointing to the instance's IP
     address.
 
-Check out the [route53-helpers example](https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.5/examples/route53-helpers) for how to use these scripts with Terraform.
+Check out the [route53-helpers example](https://github.com/gruntwork-io/terraform-aws-server/tree/remove-zack-from-codeowners/examples/route53-helpers) for how to use these scripts with Terraform.
 
 ## Installing the helpers
 
@@ -69,17 +69,17 @@ Here is an example of an IAM policy your EC2 instance needs attached to its IAM 
 }
 ```
 
-Check out the [route53-helpers example](https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.5/examples/route53-helpers) to see what this looks like in action.
+Check out the [route53-helpers example](https://github.com/gruntwork-io/terraform-aws-server/tree/remove-zack-from-codeowners/examples/route53-helpers) to see what this looks like in action.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.5/modules/route53-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.5/modules/route53-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.5/modules/route53-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/remove-zack-from-codeowners/modules/route53-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/remove-zack-from-codeowners/modules/route53-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/remove-zack-from-codeowners/modules/route53-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f9909b5b3321361c5f0725dbfece3031"
+  "hash": "802af7d11d6f4cd480f54b5faba80e3a"
 }
 ##DOCS-SOURCER-END -->
