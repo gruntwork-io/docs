@@ -1,6 +1,9 @@
 {
   "module": "observability/cloudwatch-logs-metric-filters",
   "releases": {
+    "v0.47.5": {
+      "contains_changes": false
+    },
     "v0.47.4": {
       "contains_changes": false
     },

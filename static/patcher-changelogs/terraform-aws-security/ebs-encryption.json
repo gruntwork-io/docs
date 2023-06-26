@@ -1,6 +1,9 @@
 {
   "module": "ebs-encryption",
   "releases": {
+    "v0.68.4": {
+      "contains_changes": false
+    },
     "v0.68.3": {
       "contains_changes": false
     },
