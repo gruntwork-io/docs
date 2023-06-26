@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ElasticCache Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/modules/elastic-cache" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/remove-zack-from-codeowners/modules/elastic-cache" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.20.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -404,11 +404,11 @@ A set of tags to set for the ElastiCache Cluster.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/modules/elastic-cache/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/modules/elastic-cache/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/modules/elastic-cache/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/remove-zack-from-codeowners/modules/elastic-cache/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/remove-zack-from-codeowners/modules/elastic-cache/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/remove-zack-from-codeowners/modules/elastic-cache/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "005f006f617bc3717b9578e0ee2bbafb"
+  "hash": "9ad91faafa7021a264fa4f2670046998"
 }
 ##DOCS-SOURCER-END -->

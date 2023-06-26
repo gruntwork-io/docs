@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Redis Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/remove-zack-from-codeowners/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.20.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -84,7 +84,7 @@ here: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/ParameterGroup
 #### Choosing Cluster Mode vs. Single Instance
 
 You can use `var.enable_single_instance_mode=true` to deploy a single node Redis instance. Refer
-to [examples/redis_single_instance](https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/examples/redis_single_instance) as an example.
+to [examples/redis_single_instance](https://github.com/gruntwork-io/terraform-aws-cache/tree/remove-zack-from-codeowners/examples/redis_single_instance) as an example.
 
 Here are some of the points you may consider while choosing which mode to run:
 
@@ -1159,11 +1159,11 @@ This is a list of user IDs  that should be added to the group defined in the 'us
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/modules/redis/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/modules/redis/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/modules/redis/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/remove-zack-from-codeowners/modules/redis/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/remove-zack-from-codeowners/modules/redis/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/remove-zack-from-codeowners/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "26c10706c13cf700c9a4620cf4d8fec0"
+  "hash": "677bc73a4b4cd94f3c0ac314f50013f9"
 }
 ##DOCS-SOURCER-END -->
