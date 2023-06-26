@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Require Executable Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/require-executable" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/require-executable" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.9.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -28,7 +28,7 @@ This module uses Python under the hood, so Python must be installed and availabl
 
 ## Example code
 
-See the [require-executable example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/examples/require-executable) for working sample code.
+See the [require-executable example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/examples/require-executable) for working sample code.
 
 ## Conditional check
 
@@ -170,11 +170,11 @@ A map of the executables to the resolved path where they reside.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/require-executable/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/require-executable/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/require-executable/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/require-executable/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/require-executable/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/require-executable/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9db41390f538aa3cb6ccfdbc3a93c0e3"
+  "hash": "349cd40e322cc0eb120dc09bbab6a7b8"
 }
 ##DOCS-SOURCER-END -->

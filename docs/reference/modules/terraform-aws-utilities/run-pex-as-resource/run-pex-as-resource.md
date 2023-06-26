@@ -13,15 +13,15 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Run PEX as Resource
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/run-pex-as-resource" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/run-pex-as-resource" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.8.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module runs the provided PEX binary in a portable manner that works with multiple platforms and python versions, in
 the context of a [local-exec provisioner](https://www.terraform.io/docs/provisioners/local-exec.html) in Terraform.
 
-This module uses [`prepare-pex-environment`](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/prepare-pex-environment) under the hood. See [What is
-PEX?](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/prepare-pex-environment/README.md#what-is-pex) for more details on what is a PEX file and how to construct one
+This module uses [`prepare-pex-environment`](https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/prepare-pex-environment) under the hood. See [What is
+PEX?](https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/prepare-pex-environment/README.md#what-is-pex) for more details on what is a PEX file and how to construct one
 for use with this module.
 
 ## Data Source vs Resource
@@ -34,7 +34,7 @@ allow you to call out to arbitrary binaries available on the operator machine. T
 *   [local-exec Provisioners](https://www.terraform.io/docs/provisioners/local-exec.html), where you can run the binary to
     provision a resource.
 
-This module uses the Provisioner approach (you can see the [run-pex-as-data-source module](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/run-pex-as-data-source)
+This module uses the Provisioner approach (you can see the [run-pex-as-data-source module](https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/run-pex-as-data-source)
 for running it as a data source). Which approach to use depends on your needs:
 
 *   Data sources are calculated every time a terraform state needs to be refreshed. This includes all `plan` and `apply`
@@ -308,11 +308,11 @@ This output is populated when the pex script successfully runs to completion. As
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/run-pex-as-resource/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/run-pex-as-resource/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/run-pex-as-resource/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/run-pex-as-resource/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/run-pex-as-resource/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/run-pex-as-resource/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "328a1d49b4baef733d7e4797f398738d"
+  "hash": "d0cd726bdaa8b29609638ce7115ad7b5"
 }
 ##DOCS-SOURCER-END -->

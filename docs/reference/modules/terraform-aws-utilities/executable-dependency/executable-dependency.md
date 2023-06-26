@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Executable Dependency
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/executable-dependency" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/executable-dependency" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.8.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -27,7 +27,7 @@ if it's not installed already: e.g., [terraform-aws-eks](https://github.com/grun
 
 ## Example code
 
-See the [executable-dependency example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/examples/executable-dependency) for working sample code.
+See the [executable-dependency example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/examples/executable-dependency) for working sample code.
 
 ## Usage
 
@@ -247,11 +247,11 @@ The path to use to run the executable. Will either be the path of the executable
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/executable-dependency/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/executable-dependency/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/executable-dependency/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/executable-dependency/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/executable-dependency/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/executable-dependency/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1cb485bbacaf47d985a0a04297985dfd"
+  "hash": "93f75bbf74f7e020cf64e8a9c39e869b"
 }
 ##DOCS-SOURCER-END -->

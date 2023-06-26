@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # List Remove Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/list-remove" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/list-remove" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.7.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -43,7 +43,7 @@ The output `new_list` should be the list `["us-east-1a", "us-east-1d", "us-east-
 
 ## Example code
 
-See the [list-remove example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/examples/list-remove) for working sample code.
+See the [list-remove example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/examples/list-remove) for working sample code.
 
 ## Sample Usage
 
@@ -161,11 +161,11 @@ Any types represent complex values of variable type. For details, please consult
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/list-remove/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/list-remove/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/list-remove/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/list-remove/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/list-remove/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/list-remove/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "891cdad4cbab7df33fc0abdb06fdad12"
+  "hash": "12d291add0b85d210cd1fd44c3a30db1"
 }
 ##DOCS-SOURCER-END -->

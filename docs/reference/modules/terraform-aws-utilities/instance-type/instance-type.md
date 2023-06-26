@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Instance Type
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/instance-type" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/instance-type" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.9.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -25,7 +25,7 @@ module to automatically figure out which instance type you should use.
 
 ## Example code
 
-See the [instance-type example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/examples/instance-type) for working sample code.
+See the [instance-type example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/examples/instance-type) for working sample code.
 
 ## Usage
 
@@ -161,11 +161,11 @@ The recommended instance type to use in this AWS region. This will be the first 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/instance-type/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/instance-type/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/instance-type/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/instance-type/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/instance-type/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/remove-zack-from-codeowners/modules/instance-type/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d3e40618cadd6d50ecb02790be65ec7e"
+  "hash": "22ea3b1b5aa10e27b4ae5edbe8e953b2"
 }
 ##DOCS-SOURCER-END -->
