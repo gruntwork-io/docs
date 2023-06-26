@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Kinesis Firehose Delivery Stream Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/kinesis-firehose" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/remove-zack-from-codeowners/modules/kinesis-firehose" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases?q=kinesis-firehose" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -155,11 +155,11 @@ Name of the Kinesis Firehose delivery stream.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/kinesis-firehose/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/kinesis-firehose/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/kinesis-firehose/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/remove-zack-from-codeowners/modules/kinesis-firehose/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/remove-zack-from-codeowners/modules/kinesis-firehose/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/remove-zack-from-codeowners/modules/kinesis-firehose/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fbb2dcf64f96eec63942d03096dbda93"
+  "hash": "4bff0e9ab4dcd6ecfe203629a5a7608d"
 }
 ##DOCS-SOURCER-END -->

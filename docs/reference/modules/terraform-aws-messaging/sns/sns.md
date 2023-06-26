@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Simple Notification Service (SNS) Topic Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/remove-zack-from-codeowners/modules/sns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.11.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -335,11 +335,11 @@ A map of key value pairs to apply as tags to the SNS topic.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sns/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sns/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sns/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/remove-zack-from-codeowners/modules/sns/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/remove-zack-from-codeowners/modules/sns/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/remove-zack-from-codeowners/modules/sns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5dd80ce6a0e2bd45d658822edac43d84"
+  "hash": "91a3f39dff6dec28e30e4425e9e7a50d"
 }
 ##DOCS-SOURCER-END -->

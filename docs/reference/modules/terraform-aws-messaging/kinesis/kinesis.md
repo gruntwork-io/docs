@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Kinesis Data Stream Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/kinesis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/remove-zack-from-codeowners/modules/kinesis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.12.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -459,11 +459,11 @@ A map of key value pairs to apply as tags to the Kinesis stream.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/kinesis/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/kinesis/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/kinesis/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/remove-zack-from-codeowners/modules/kinesis/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/remove-zack-from-codeowners/modules/kinesis/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/remove-zack-from-codeowners/modules/kinesis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0e3daa13e284f3f21609770e56b6f66e"
+  "hash": "7f35f386e60e6f12a80bad1123b1eb33"
 }
 ##DOCS-SOURCER-END -->

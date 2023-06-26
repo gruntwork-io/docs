@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Simple Queuing Service (SQS) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/remove-zack-from-codeowners/modules/sqs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.11.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -636,11 +636,11 @@ The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/remove-zack-from-codeowners/modules/sqs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/remove-zack-from-codeowners/modules/sqs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/remove-zack-from-codeowners/modules/sqs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bbfaf31676b6679d5c17011906e2127d"
+  "hash": "3961e8f45bd2ffb91683fa4530efe75b"
 }
 ##DOCS-SOURCER-END -->
