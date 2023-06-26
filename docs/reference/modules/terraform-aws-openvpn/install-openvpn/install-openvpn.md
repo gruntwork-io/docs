@@ -13,23 +13,23 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Install OpenVPN Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/install-openvpn" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/remove-zack-from-codeowners/modules/install-openvpn" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.19.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module is used to install the OpenVPN package and related template files onto a server. It is expected that
-the [init-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/init-openvpn) module will be run on the server during boot to configure the OpenVPN server installed by this
+the [init-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/remove-zack-from-codeowners/modules/init-openvpn) module will be run on the server during boot to configure the OpenVPN server installed by this
 package.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/install-openvpn/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/install-openvpn/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/install-openvpn/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/remove-zack-from-codeowners/modules/install-openvpn/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/remove-zack-from-codeowners/modules/install-openvpn/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/remove-zack-from-codeowners/modules/install-openvpn/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0b682330c01dd355eb83a96c27412c24"
+  "hash": "f490c2a607afc025323253eb4d9d58fc"
 }
 ##DOCS-SOURCER-END -->
