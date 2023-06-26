@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Copy Snapshot Lambda Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-copy-shared-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/rds_proxy_test/modules/lambda-copy-shared-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -108,7 +108,7 @@ account 222222222222. To be able to make a copy of that snapshot in account 2222
 ## Background info
 
 For more info on how to backup RDS snapshots to a separate AWS account, check out the [lambda-create-snapshot module
-documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-create-snapshot).
+documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/rds_proxy_test/modules/lambda-create-snapshot).
 
 ## Sample Usage
 
@@ -394,11 +394,11 @@ Namespace all Lambda scheduling resources created by this module with this name.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-copy-shared-snapshot/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-copy-shared-snapshot/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/lambda-copy-shared-snapshot/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/rds_proxy_test/modules/lambda-copy-shared-snapshot/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/rds_proxy_test/modules/lambda-copy-shared-snapshot/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/rds_proxy_test/modules/lambda-copy-shared-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b265e3845c14f8cb3aed6cc9a042938c"
+  "hash": "c7ec642644e88497cbc7d2c7eacf8eef"
 }
 ##DOCS-SOURCER-END -->

@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # RDS Read Replicas Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/rds-replicas" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/rds_proxy_test/modules/rds-replicas" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases?q=rds-replicas" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -103,6 +103,14 @@ module "rds_replicas" {
   # for more details.
   auto_minor_version_upgrade = true
 
+  # The description of the aws_db_subnet_group that is created. Defaults to
+  # 'Subnet group for the var.name DB' if not specified.
+  aws_db_subnet_group_description = null
+
+  # The name of the aws_db_subnet_group that is created, or an existing one to
+  # use if create_subnet_group is false. Defaults to var.name if not specified.
+  aws_db_subnet_group_name = null
+
   # How many days to keep backup snapshots around before cleaning them up. Must
   # be 1 or greater to support read replicas. 0 means disable automated backups.
   backup_retention_period = 21
@@ -113,6 +121,11 @@ module "rds_replicas" {
 
   # Copy all the RDS instance tags to snapshots. Default is false.
   copy_tags_to_snapshot = false
+
+  # When working with read replicas, only configure db subnet group if the
+  # source database specifies an instance in another AWS Region. If true, it
+  # will create a new subnet group.
+  create_subnet_group = false
 
   # Timeout for DB creating
   creating_timeout = "40m"
@@ -166,6 +179,10 @@ module "rds_replicas" {
   # allows enhanced monitoring will be created.
   monitoring_role_arn = null
 
+  # Specifies if a standby instance should be deployed in another availability
+  # zone. If the primary fails, this instance will automatically take over.
+  multi_az = false
+
   # The number of read replicas to create. RDS will asynchronously replicate all
   # data from the master to these replicas, which you can use to horizontally
   # scale reads traffic.
@@ -207,6 +224,11 @@ module "rds_replicas" {
   # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
   # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
   storage_type = "gp2"
+
+  # A list of subnet ids where the database should be deployed. In the standard
+  # Gruntwork VPC setup, these should be the private persistence subnet ids.
+  # This is ignored if create_subnet_group=false.
+  subnet_ids = null
 
   # Timeout for DB updating
   updating_timeout = "80m"
@@ -293,6 +315,14 @@ inputs = {
   # for more details.
   auto_minor_version_upgrade = true
 
+  # The description of the aws_db_subnet_group that is created. Defaults to
+  # 'Subnet group for the var.name DB' if not specified.
+  aws_db_subnet_group_description = null
+
+  # The name of the aws_db_subnet_group that is created, or an existing one to
+  # use if create_subnet_group is false. Defaults to var.name if not specified.
+  aws_db_subnet_group_name = null
+
   # How many days to keep backup snapshots around before cleaning them up. Must
   # be 1 or greater to support read replicas. 0 means disable automated backups.
   backup_retention_period = 21
@@ -303,6 +333,11 @@ inputs = {
 
   # Copy all the RDS instance tags to snapshots. Default is false.
   copy_tags_to_snapshot = false
+
+  # When working with read replicas, only configure db subnet group if the
+  # source database specifies an instance in another AWS Region. If true, it
+  # will create a new subnet group.
+  create_subnet_group = false
 
   # Timeout for DB creating
   creating_timeout = "40m"
@@ -356,6 +391,10 @@ inputs = {
   # allows enhanced monitoring will be created.
   monitoring_role_arn = null
 
+  # Specifies if a standby instance should be deployed in another availability
+  # zone. If the primary fails, this instance will automatically take over.
+  multi_az = false
+
   # The number of read replicas to create. RDS will asynchronously replicate all
   # data from the master to these replicas, which you can use to horizontally
   # scale reads traffic.
@@ -397,6 +436,11 @@ inputs = {
   # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
   # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
   storage_type = "gp2"
+
+  # A list of subnet ids where the database should be deployed. In the standard
+  # Gruntwork VPC setup, these should be the private persistence subnet ids.
+  # This is ignored if create_subnet_group=false.
+  subnet_ids = null
 
   # Timeout for DB updating
   updating_timeout = "80m"
@@ -524,6 +568,24 @@ Indicates that minor engine upgrades will be applied automatically to the DB ins
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="aws_db_subnet_group_description" requirement="optional" type="string">
+<HclListItemDescription>
+
+The description of the aws_db_subnet_group that is created. Defaults to 'Subnet group for the <a href="#name"><code>name</code></a> DB' if not specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="aws_db_subnet_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the aws_db_subnet_group that is created, or an existing one to use if create_subnet_group is false. Defaults to <a href="#name"><code>name</code></a> if not specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="backup_retention_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -546,6 +608,15 @@ The Certificate Authority (CA) certificates bundle to use on the RDS instance.
 <HclListItemDescription>
 
 Copy all the RDS instance tags to snapshots. Default is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="create_subnet_group" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When working with read replicas, only configure db subnet group if the source database specifies an instance in another AWS Region. If true, it will create a new subnet group.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -650,6 +721,15 @@ The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="multi_az" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies if a standby instance should be deployed in another availability zone. If the primary fails, this instance will automatically take over.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="num_read_replicas" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -731,6 +811,15 @@ The type of storage to use for the primary instance. Must be one of 'standard' (
 <HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
 </HclListItem>
 
+<HclListItem name="subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of subnet ids where the database should be deployed. In the standard Gruntwork VPC setup, these should be the private persistence subnet ids. This is ignored if create_subnet_group=false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="updating_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -768,11 +857,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/rds-replicas/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/rds-replicas/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/rds-replicas/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/rds_proxy_test/modules/rds-replicas/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/rds_proxy_test/modules/rds-replicas/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/rds_proxy_test/modules/rds-replicas/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7a85472b91445dc1187e19b8e281ab54"
+  "hash": "f882ffafa9b14da37aa6c69431ee789e"
 }
 ##DOCS-SOURCER-END -->
