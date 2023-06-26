@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # \[DEPRECATED] VPC-Mgmt Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-mgmt" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-mgmt" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -27,7 +27,7 @@ aware that, in a future release, once we feel the new functionality in `vpc-app`
 `vpc-mgmt` entirely.
 
 This Terraform Module launches a single VPC meant to house DevOps and other management services. By contrast, the apps
-that power your business should run in an "app" VPC. (See the [vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-app) module.)
+that power your business should run in an "app" VPC. (See the [vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-app) module.)
 
 ## What's a VPC?
 
@@ -65,7 +65,7 @@ To summarize:
 
 ## VPC Peering
 
-Learn more about VPC Peering in the [vpc-peering](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-peering) module.
+Learn more about VPC Peering in the [vpc-peering](https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-peering) module.
 
 ## SSH Access via the Bastion Host
 
@@ -79,7 +79,7 @@ examples](https://github.com/gruntwork-io/terraform-aws-server/tree/main/example
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
 
 ## Sample Usage
 
@@ -1011,11 +1011,11 @@ A null_resource that indicates that the VPC is ready, including all of its resou
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-mgmt/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-mgmt/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-mgmt/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-mgmt/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-mgmt/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6618991dac247d00f9adf39aeb916ece"
+  "hash": "0082ab7d1a19b35472d2f7c59a596e68"
 }
 ##DOCS-SOURCER-END -->

@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Network ACL Outbound Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/network-acl-outbound" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/network-acl-outbound" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -24,7 +24,7 @@ because they are stateless, which means that opening an outbound port is often n
 which the remote services can use to respond. This can be very easy to forget, so this module adds not only the
 outbound to an ACL, but also the ephemeral inbound ports for return traffic.
 
-See the [network-acl-inbound](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/network-acl-inbound) module for the analogous version of this module, but for opening
+See the [network-acl-inbound](https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/network-acl-inbound) module for the analogous version of this module, but for opening
 inbound ports.
 
 ## What's a Network ACL?
@@ -221,11 +221,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/network-acl-outbound/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/network-acl-outbound/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/network-acl-outbound/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/network-acl-outbound/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/network-acl-outbound/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/network-acl-outbound/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b38d69a53718dd4d333f0a834590f2b8"
+  "hash": "05374feb1aeeadbf3563e02cf311ff93"
 }
 ##DOCS-SOURCER-END -->

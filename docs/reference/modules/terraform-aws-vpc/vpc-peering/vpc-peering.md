@@ -13,15 +13,15 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # VPC-Peering Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-peering" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-peering" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.23.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates [VPC Peering
 Connections](http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide/Welcome.html) between VPCs. Normally, VPCs are
 completely isolated from each other, but sometimes, you want to allow traffic to flow between them, such as allowing
-DevOps tools running in a Mgmt VPC (see [vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-mgmt)) to talk to apps running in a Stage or Prod VPC (see
-[vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-app)). This module can create peering connections and route table entries that make this sort of
+DevOps tools running in a Mgmt VPC (see [vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-mgmt)) to talk to apps running in a Stage or Prod VPC (see
+[vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-app)). This module can create peering connections and route table entries that make this sort of
 cross-VPC communication possible.
 
 ## What's a VPC?
@@ -241,11 +241,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-peering/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-peering/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-peering/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-peering/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-peering/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-peering/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8f0f0aff236024662c5a2769f3378c06"
+  "hash": "4900aa17ab60f3ae3067daa3d2c5b7fd"
 }
 ##DOCS-SOURCER-END -->

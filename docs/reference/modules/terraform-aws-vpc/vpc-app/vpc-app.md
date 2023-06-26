@@ -13,12 +13,12 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # VPC-App Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches a single VPC meant to house applications. By contrast, DevOps-related services such as
-Jenkins or InfluxDB should be in a "mgmt" VPC. (See the [vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-mgmt) module.)
+Jenkins or InfluxDB should be in a "mgmt" VPC. (See the [vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-mgmt) module.)
 
 ## What's a VPC?
 
@@ -58,8 +58,8 @@ To summarize:
 *   In a given subnet tier, there are usually three or four actual subnets, one for each Availability Zone.
 *   Therefore, if we created a single VPC in the `us-west-2` region, which has Availability Zones `us-west-2a`,`us-west-2b`,
     and `us-west-2c`, each subnet tier would have three subnets (one per Availability Zone) for a total of 9 subnets in all.
-*   The only way to reach this VPC is from the public Internet via a publicly exposed sevice, or via the [mgmt VPC](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-mgmt),
-    which uses [VPC Peering](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-peering) to make this VPC accessible from the mgmt VPC.
+*   The only way to reach this VPC is from the public Internet via a publicly exposed sevice, or via the [mgmt VPC](https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-mgmt),
+    which uses [VPC Peering](https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-peering) to make this VPC accessible from the mgmt VPC.
 *   Philosophically, everything in a VPC should be isolated from all resources in any other VPC. In particular, we want
     to ensure that our stage environment is completely independent from prod. This architecture helps to reinforce that.
 
@@ -74,7 +74,7 @@ nearly all use-cases, and is consistent with many examples and existing document
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
 
 ## Sample Usage
 
@@ -1452,11 +1452,11 @@ A map of all public subnets, with the subnet name as the key, and all `aws-subne
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-app/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-app/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-app/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-app/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-app/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/remove-zack-from-codeowners/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6af8c8f7051c17c12743d6d939fda28e"
+  "hash": "4997cdc8da9f3642fca4adb6eef7d7e5"
 }
 ##DOCS-SOURCER-END -->
