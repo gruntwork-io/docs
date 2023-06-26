@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Gruntwork Module CircleCI Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/gruntwork-module-circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/remove-zack-from-codeowners/modules/gruntwork-module-circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.51.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -192,11 +192,11 @@ variables](https://circleci.com/docs/environment-variables/).
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/gruntwork-module-circleci-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/gruntwork-module-circleci-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/gruntwork-module-circleci-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/remove-zack-from-codeowners/modules/gruntwork-module-circleci-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/remove-zack-from-codeowners/modules/gruntwork-module-circleci-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/remove-zack-from-codeowners/modules/gruntwork-module-circleci-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ee3c638da0898ec487dfd9b17ee5e72b"
+  "hash": "22914f71577ca0754d4f22de658df886"
 }
 ##DOCS-SOURCER-END -->

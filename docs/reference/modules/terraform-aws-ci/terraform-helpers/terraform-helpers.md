@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Terraform Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/terraform-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/remove-zack-from-codeowners/modules/terraform-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -38,7 +38,7 @@ You can install these scripts using the [Gruntwork Installer](https://github.com
 gruntwork-install --module-name "terraform-helpers" --repo "https://github.com/gruntwork-io/terraform-aws-ci" --tag "0.0.1"
 ```
 
-Note that `terraform-update-variable` depends on the [git-helpers module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/git-helpers) being installed!
+Note that `terraform-update-variable` depends on the [git-helpers module](https://github.com/gruntwork-io/terraform-aws-ci/tree/remove-zack-from-codeowners/modules/git-helpers) being installed!
 
 See the examples in the next section for how to use them.
 
@@ -341,11 +341,11 @@ and `apply` actions so that Terraform/Terragrunt can run. If you wish to impleme
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/terraform-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/terraform-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/terraform-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/remove-zack-from-codeowners/modules/terraform-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/remove-zack-from-codeowners/modules/terraform-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/remove-zack-from-codeowners/modules/terraform-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c347652289d1197f849b1e2582c16d43"
+  "hash": "5c0bfd0d23e56fc5060c7680e0d58701"
 }
 ##DOCS-SOURCER-END -->
