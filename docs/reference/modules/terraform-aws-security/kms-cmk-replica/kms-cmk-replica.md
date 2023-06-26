@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # KMS Customer Managed Key Multi-Region Replication module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/kms-cmk-replica" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/kms-cmk-replica" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -22,7 +22,7 @@ Key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#custome
 [the multi-region replication feature of
 KMS](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html).
 
-This module is intended to be used in conjunction with the [kms-master-key module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/kms-master-key) to replicate a KMS
+This module is intended to be used in conjunction with the [kms-master-key module](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/kms-master-key) to replicate a KMS
 key managed with that module to other regions. Note that the KMS key must be marked as multi-region in order to support
 multi-region replication.
 
@@ -373,11 +373,11 @@ A map of CMK name to CMK ID.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/kms-cmk-replica/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/kms-cmk-replica/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/kms-cmk-replica/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/kms-cmk-replica/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/kms-cmk-replica/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/kms-cmk-replica/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1f6c29ae00d4958489cd7f904fd1733a"
+  "hash": "eb07ba8bb60f8140dd0c3545189088f5"
 }
 ##DOCS-SOURCER-END -->

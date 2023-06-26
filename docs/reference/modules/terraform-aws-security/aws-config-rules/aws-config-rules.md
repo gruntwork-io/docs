@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # AWS Organizations Config Rules
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/aws-config-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -41,27 +41,27 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What is AWS Organizations?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-organizations/core-concepts.md#what-is-aws-organizations)
+*   [What is AWS Organizations?](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/aws-organizations/core-concepts.md#what-is-aws-organizations)
 
-*   [What is AWS Config?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config/core-concepts.md#what-is-aws-config)
+*   [What is AWS Config?](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/aws-config/core-concepts.md#what-is-aws-config)
 
-*   [What are Config Rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config/core-concepts.md#what-are-config-rules)
+*   [What are Config Rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/aws-config/core-concepts.md#what-are-config-rules)
 
-*   [What are Managed Config Rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config-rules/core-concepts.md#what-are-managed-config-rules)
+*   [What are Managed Config Rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/aws-config-rules/core-concepts.md#what-are-managed-config-rules)
 
-*   [How do Organization-Level Config Rules Compare to Account-Level Config Rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config-rules/core-concepts.md#how-do-organization-level-config-rules-compare-to-account-level-config-rules)
+*   [How do Organization-Level Config Rules Compare to Account-Level Config Rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/aws-config-rules/core-concepts.md#how-do-organization-level-config-rules-compare-to-account-level-config-rules)
 
-*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config-rules/core-concepts.md#what-resources-does-this-module-create)
+*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/aws-config-rules/core-concepts.md#what-resources-does-this-module-create)
 
 *   [How to configure a production-grade AWS account structure](https://gruntwork.io/guides/foundations/how-to-configure-production-grade-aws-account-structure/)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -69,7 +69,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/aws-config-rules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/examples/aws-config-rules): The `examples/aws-organizations-config-rules` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples/aws-config-rules](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/examples/aws-config-rules): The `examples/aws-organizations-config-rules` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -83,11 +83,11 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Day-to-day operations
 
-*   [How do I configure the rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config-rules/core-concepts.md#how-do-i-configure-the-rules)
+*   [How do I configure the rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/aws-config-rules/core-concepts.md#how-do-i-configure-the-rules)
 
-*   [How do I add additional rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config-rules/core-concepts.md#how-do-i-add-additional-rules)
+*   [How do I add additional rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/aws-config-rules/core-concepts.md#how-do-i-add-additional-rules)
 
-*   [How do I exclude specific accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config-rules/core-concepts.md#how-do-i-exclude-specific-accounts)
+*   [How do I exclude specific accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/aws-config-rules/core-concepts.md#how-do-i-exclude-specific-accounts)
 
 ## Sample Usage
 
@@ -678,11 +678,11 @@ Map of config rule ARNs. Key is rule ID, value is rule ARN
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config-rules/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config-rules/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config-rules/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/aws-config-rules/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/aws-config-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/aws-config-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6460f44a03fdbb94ed67c7adb7a1b563"
+  "hash": "223d7c23ddaf20866bd2adbc473b561a"
 }
 ##DOCS-SOURCER-END -->

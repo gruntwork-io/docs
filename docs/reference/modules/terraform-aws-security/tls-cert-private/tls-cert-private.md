@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Generate a TLS/SSL Certificate for a Private Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/tls-cert-private" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/tls-cert-private" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.47.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -35,7 +35,7 @@ using a commercial CA or public, free CA like [Let's Encrypt](https://letsencryp
 1.  Edit the `docker-compose.yml` file and fill in your desired argument values.
 2.  Now run `docker-compose up` and your TLS certs will output to a local `output` directory!
 
-To see documentation on the arguments in `docker-compose.yml`, see the [main.sh](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/tls-cert-private/scripts/main.sh) file.
+To see documentation on the arguments in `docker-compose.yml`, see the [main.sh](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/tls-cert-private/scripts/main.sh) file.
 
 Note that the Docker Compose file mounts the local machine folder `./output` in the Docker container. Mac and Windows
 users sohuld take note that, in some cases, volume mounting may be extremely slow, or even one-way-only if you use an
@@ -177,11 +177,11 @@ TLS certificates for any public services.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/tls-cert-private/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/tls-cert-private/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/tls-cert-private/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/tls-cert-private/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/tls-cert-private/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/tls-cert-private/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4f021131e89c39755e3b73922917af84"
+  "hash": "a75143f03ffea6ec20f998ed4a065abd"
 }
 ##DOCS-SOURCER-END -->

@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # A Best-Practices Set of IAM Policy Documents
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -25,7 +25,7 @@ Note that these documents are Terraform [data sources](https://www.terraform.io/
 so they don't create anything themselves and are not intended to be used on their own. The way to use them is to take
 the outputs from this module (which are all JSON IAM documents) and plug them into other Terraform resources, such
 as `aws_iam_policy`, `aws_iam_user_policy`, `aws_iam_group_policy`, and `aws_iam_role_policy`. See the
-[iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-groups) and [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/cross-account-iam-roles) modules for examples.
+[iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/iam-groups) and [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/cross-account-iam-roles) modules for examples.
 
 If you're not familiar with IAM concepts, start with the [Background Information](#background-information) section as a
 way to familiarize yourself with the terminology.
@@ -82,7 +82,7 @@ This module creates the following IAM Policy documents:
     certain IAM roles in other AWS accounts (e.g. stage, prod). The documents that are created and which IAM roles they
     have access to is controlled by the variable `var.allow_access_from_other_account_arns`.
 
-*   **ssh_grunt_permissions**: provides the permissions [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ssh-grunt) needs to validate SSH keys with
+*   **ssh_grunt_permissions**: provides the permissions [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/ssh-grunt) needs to validate SSH keys with
     IAM.
 
 *   **auto_deploy_permissions**: provides the permissions in `var.auto_deploy_permissions` to do automated deployment.
@@ -681,11 +681,11 @@ If set to true, all the Policies created by this module that are used as Trust P
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-policies/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-policies/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-policies/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/iam-policies/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/iam-policies/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "304870a4d3e27fa5b50bb4b3d598a1e6"
+  "hash": "ee5997a8b2a3143dba32d37152777acb"
 }
 ##DOCS-SOURCER-END -->

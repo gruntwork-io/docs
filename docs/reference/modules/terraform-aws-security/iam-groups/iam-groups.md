@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # A Best-Practices Set of IAM Groups
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/iam-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -52,7 +52,7 @@ This module optionally creates the following IAM Groups:
     since users can grant arbitrary permissions!
 *   **use-existing-iam-roles:** IAM Users in this group can pass *existing* IAM Roles to AWS resources to which they have
     been granted access. These IAM Users cannot create *new* IAM Roles, only use existing ones. See
-    [the three levels of IAM permissions](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-policies#the-three-levels-of-iam-permissions) for more information.
+    [the three levels of IAM permissions](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/iam-policies#the-three-levels-of-iam-permissions) for more information.
 *   **ssh-grunt-sudo-users:** IAM Users in this group have SSH access with `sudo` privileges to any EC2 Instance configured
     to use this group to manage SSH logins.
 *   **ssh-grunt-users:** IAM Users in this group have SSH access without `sudo` privileges to any EC2 Instance configured
@@ -83,7 +83,7 @@ own account unless this IAM Policy is attached to his account.
 
 ### IAM Users
 
-This module does not create any IAM Users, nor assign any existing IAM Users to IAM Groups. You can use the [iam-users module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-users) to create users.
+This module does not create any IAM Users, nor assign any existing IAM Users to IAM Groups. You can use the [iam-users module](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/iam-users) to create users.
 
 ### IAM Roles
 
@@ -108,7 +108,7 @@ otherwise enable IAM Users to access the billing console:
 ## Background Information
 
 For background information on IAM, IAM users, IAM policies, and more, check out the [background information docs in
-the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-policies#background-information).
+the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/iam-policies#background-information).
 
 ## Sample Usage
 
@@ -954,11 +954,11 @@ Should we create the IAM Group for user self-management? Allows users to manage 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-groups/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-groups/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-groups/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/iam-groups/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/iam-groups/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/remove-zack-from-codeowners/modules/iam-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "89bee0e0602f6a759381fa9d195ca754"
+  "hash": "498286f2f707c56a9aea14c0f65872ac"
 }
 ##DOCS-SOURCER-END -->
