@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ip-lockdown Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ip-lockdown" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/ip-lockdown" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.44.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -33,7 +33,7 @@ In the example below we restrict access to [ec2-instance-metadata endpoint](http
 
 Normally users make a `curl` call to get metadata like the AWS region or credentials associated with this EC2 Instance's IAM Role. Following the invocation of ip-lockdown, only users foo, bar, and root can query that data.
 
-The complete example of using terraform to deploy a generated AMI into your AWS account and automatically invoke `ip-lockdown` from the `User Data` is also available in the [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/examples/ip-lockdown/aws-example) folder.
+The complete example of using terraform to deploy a generated AMI into your AWS account and automatically invoke `ip-lockdown` from the `User Data` is also available in the [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/examples/ip-lockdown/aws-example) folder.
 
 #### Installation
 
@@ -62,11 +62,11 @@ gruntwork-install --module-name ip-lockdown --tag <MODULE_SECURITY_VERSION> --re
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ip-lockdown/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ip-lockdown/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ip-lockdown/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/ip-lockdown/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/ip-lockdown/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/ip-lockdown/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "88c72884ac7527122c8249876f143c5e"
+  "hash": "878bfa0c2d34f82bab7e2d9c8a96ba3a"
 }
 ##DOCS-SOURCER-END -->

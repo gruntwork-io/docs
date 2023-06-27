@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # A best-practices set of IAM roles for SAML access
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/saml-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/saml-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -47,7 +47,7 @@ This module creates the following IAM roles (all optional):
 
 *   **allow-ssh-grunt-access-from-saml**: Users authenticated by the SAML providers in
     `var.allow_ssh_grunt_access_from_saml_provider_arns` will get read access to IAM Groups and public SSH keys. This is
-    useful to allow [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ssh-grunt) running on EC2 Instances in other AWS accounts to validate SSH
+    useful to allow [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/ssh-grunt) running on EC2 Instances in other AWS accounts to validate SSH
     connections against IAM users defined in this AWS account.
 
 *   **allow-dev-access-from-saml**:Users authenticated by the SAML providers in
@@ -896,11 +896,11 @@ A map of tags to apply to the IAM roles.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/saml-iam-roles/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/saml-iam-roles/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/saml-iam-roles/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/saml-iam-roles/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/saml-iam-roles/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/saml-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "61e59f3fe22fb347c7203a0f415c35c6"
+  "hash": "d541bb2de5a1fd27cb54c38050106c4d"
 }
 ##DOCS-SOURCER-END -->

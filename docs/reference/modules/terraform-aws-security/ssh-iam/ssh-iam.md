@@ -13,22 +13,22 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ssh-iam has been renamed!
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ssh-iam" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/ssh-iam" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.13.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-`ssh-iam` has been renamed to [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ssh-grunt). Please update all links to point to
-[ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ssh-grunt)!
+`ssh-iam` has been renamed to [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/ssh-grunt). Please update all links to point to
+[ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/ssh-grunt)!
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ssh-iam/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ssh-iam/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/ssh-iam/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/ssh-iam/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/ssh-iam/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/ssh-iam/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "776dd2bd111fa629bdf7282e52c5c65f"
+  "hash": "fa8b902ee1a8269ecf939dcfdfcbf2e0"
 }
 ##DOCS-SOURCER-END -->

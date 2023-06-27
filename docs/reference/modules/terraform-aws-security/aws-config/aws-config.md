@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # AWS Config
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/aws-config" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -39,19 +39,19 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What is AWS Config?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config/core-concepts.md#what-is-aws-config)
+*   [What is AWS Config?](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/aws-config/core-concepts.md#what-is-aws-config)
 
-*   [What are Config Rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config/core-concepts.md#what-are-config-rules)
+*   [What are Config Rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/aws-config/core-concepts.md#what-are-config-rules)
 
-*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config/core-concepts.md#what-resources-does-this-module-create)
+*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/aws-config/core-concepts.md#what-resources-does-this-module-create)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -59,7 +59,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/aws-config](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/examples/aws-config): The `examples/aws-config` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples/aws-config](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/examples/aws-config): The `examples/aws-config` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -71,9 +71,9 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Day-to-day operations
 
-*   [What does a configuration item look like, and how do I view it?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config/core-concepts.md#what-does-a-configuration-item-look-like-and-how-do-i-view-it)
+*   [What does a configuration item look like, and how do I view it?](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/aws-config/core-concepts.md#what-does-a-configuration-item-look-like-and-how-do-i-view-it)
 
-*   [How does Config work with multiple AWS accounts and multiple regions?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config-multi-region/core-concepts.md#how-does-config-work-with-multiple-aws-accounts-and-multiple-regions)
+*   [How does Config work with multiple AWS accounts and multiple regions?](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/aws-config-multi-region/core-concepts.md#how-does-config-work-with-multiple-aws-accounts-and-multiple-regions)
 
 ## Sample Usage
 
@@ -966,11 +966,11 @@ The ARN of the SNS topic to which Config delivers notifications.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/aws-config/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/aws-config/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/aws-config/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "af9fbd24355d1f123fa5e4c0e5cd0bd3"
+  "hash": "2d882f2813246c2ba11be3e9fb660e60"
 }
 ##DOCS-SOURCER-END -->
