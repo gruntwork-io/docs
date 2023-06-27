@@ -16,10 +16,7 @@ After scanning for dependencies, Patcher will show you the 'Modules View', simil
 
 ![Patcher Changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-report-changelog.png)
 
-:::info
-Some modules do not have a CHANGELOGS.md file. In this case, press `o` to open the releases page for that repository.
-
-:::
+Some modules including third party modules may not have a CHANGELOGS.md file. In this case, press `o` to open the releases page for that repository.
 
 ![Patcher No Changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-report-no-changelog.png)
 
@@ -29,6 +26,6 @@ Some modules do not have a CHANGELOGS.md file. In this case, press `o` to open t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d6f9fd3e76d5fd54e54c22b3a2433cca"
+  "hash": "d9e52c9bd48578c91966f68267dc560d"
 }
 ##DOCS-SOURCER-END -->

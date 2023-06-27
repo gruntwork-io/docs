@@ -49,10 +49,7 @@ When you quit Patcher, it writes the details of all the updates to stdout in YAM
 
 ![Patcher Changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-update-changelog.png)
 
-:::info
-Some modules do not have a CHANGELOGS.md file. In this case, press `o` to open the releases page for that repository.
-
-:::
+Some modules including third party modules may not have a CHANGELOGS.md file. In this case, press `o` to open the releases page for that repository.
 
 ![Patcher No Changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-update-no-changelog.png)
 
