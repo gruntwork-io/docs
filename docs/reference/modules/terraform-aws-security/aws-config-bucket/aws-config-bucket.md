@@ -13,15 +13,15 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # AWS Config Bucket
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/aws-config-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an S3 bucket for storing AWS Config data, including all the appropriate lifecycle, encryption, and
 permission settings for AWS Config.
 
-This module is not meant to be used directly. Instead, it's used under the hood in the [aws-config](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config)
-and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/account-baseline-root) modules. Please see those modules for more information.
+This module is not meant to be used directly. Instead, it's used under the hood in the [aws-config](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/aws-config)
+and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/account-baseline-root) modules. Please see those modules for more information.
 
 ## Sample Usage
 
@@ -497,11 +497,11 @@ The name of the S3 bucket used by AWS Config to store configuration items.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config-bucket/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config-bucket/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/aws-config-bucket/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/aws-config-bucket/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/aws-config-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/aws-config-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "23986e5da58ab1a948590474bc6a7845"
+  "hash": "e81f11c32f97a4dd97faf0de1bd1b38a"
 }
 ##DOCS-SOURCER-END -->
