@@ -12,8 +12,6 @@ After scanning for dependencies, Patcher will show you the 'Modules View', simil
 
 ![Patcher Usages screenshot](/img/guides/stay-up-to-date/patcher/patcher-report-usages.png)
 
-@@TODO explain "next safe" and "next breaking"
-
 2. While in the modules view, press `v` to see the changelogs from a module. Press `o` to open the page in the browser.
 
 ![Patcher Changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-report-changelog.png)
@@ -31,6 +29,6 @@ Some modules do not have a CHANGELOGS.md file. In this case, press `o` to open t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "1d8e82ac51b171ba51e3ca666a52d2ed"
+  "hash": "d6f9fd3e76d5fd54e54c22b3a2433cca"
 }
 ##DOCS-SOURCER-END -->

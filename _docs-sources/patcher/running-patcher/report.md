@@ -12,8 +12,6 @@ After scanning for dependencies, Patcher will show you the 'Modules View', simil
 
 ![Patcher Usages screenshot](/img/guides/stay-up-to-date/patcher/patcher-report-usages.png)
 
-@@TODO explain "next safe" and "next breaking"
-
 2. While in the modules view, press `v` to see the changelogs from a module. Press `o` to open the page in the browser.
 
 ![Patcher Changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-report-changelog.png)
