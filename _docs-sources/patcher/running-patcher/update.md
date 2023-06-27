@@ -25,7 +25,7 @@ If Patcher can update one or more usages of a module to a newer version, then Pa
 
 * "Hit «b» to update all usages to the next version, even if it's a breaking change."
 
-![Patcher Update screenshot showing dependency that can be updated](/img/guides/stay-up-to-date/patcher/patcher-update-overview-update-available.png)
+![Patcher update screenshot showing dependency that can be updated](/img/guides/stay-up-to-date/patcher/patcher-update-overview-update-available.png)
 
 Pressing `ENTER` will update all the usages of that module to either the highest version before the next closest breaking change or the latest version of the dependecy, whichever is encountered first.
 
@@ -33,25 +33,25 @@ Pressing `b` will update all the usages of that module to either the next closes
 
 After updating the "Up to date" column is changed to show "Updated". This indicates that at least one of the dependencies on that module have been updated.
 
-![Patcher Update screenshot showing dependency that has been updated](/img/guides/stay-up-to-date/patcher/patcher-update-overview-updated.png)
+![Patcher update screenshot showing dependency that has been updated](/img/guides/stay-up-to-date/patcher/patcher-update-overview-updated.png)
 
 When you quit Patcher, it writes the details of all the updates to stdout in YAML format, for example:
 
-![Patcher Update screenshot showing YAML output](/img/guides/stay-up-to-date/patcher/patcher-update-yaml-output.png)
+![Patcher update screenshot showing YAML output](/img/guides/stay-up-to-date/patcher/patcher-update-yaml-output.png)
 
 ### Navigation commands
 
 1. While in the modules view, press `u` to see the usages. It shows all places where module is being used:
 
-![Patcher Usages screenshot showing module with multiple usages](/img/guides/stay-up-to-date/patcher/patcher-update-usages-update-available.png)
+![Patcher usages screenshot showing module with multiple usages](/img/guides/stay-up-to-date/patcher/patcher-update-usages-update-available.png)
 
 2. While in the modules view, press `v` to see the changelogs from a module. Press `o` to open the page in the browser.
 
-![Patcher Changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-update-changelog.png)
+![Patcher changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-update-changelog.png)
 
 Some modules including third party modules may not have a CHANGELOGS.md file. In this case, press `o` to open the releases page for that repository.
 
-![Patcher No Changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-update-no-changelog.png)
+![Patcher no changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-update-no-changelog.png)
 
 ## Non-Interactive Mode
 
@@ -85,7 +85,7 @@ patcher update --non-interactive --update-strategy next-breaking
 
 ## Support for Third Party Modules
 
-Starting in `0.3.3`, Patcher provides limited support for updating third party modules, including your own modules. The updates to third party module are limited to bumping the semver patch version.
+Beginning with version `0.3.3`, Patcher provides limited support for updating third party modules, including your own modules. The updates to third party module are limited to bumping the semver patch version.
 
 Third party modules are supported in both interactive mode and non-interactive mode.
 
