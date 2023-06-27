@@ -88,7 +88,7 @@ patcher update --non-interactive --update-strategy next-breaking
 
 ## Support for Third Party Modules
 
-Starting in `0.3.3`, Patcher provides limited support for updating third party modules, this includes your own modules. The updates to third party module are limited to bumping the semver patch version.
+Starting in `0.3.3`, Patcher provides limited support for updating third party modules, including your own modules. The updates to third party module are limited to bumping the semver patch version.
 
 Third party modules are supported in both interactive mode and non-interactive mode.
 

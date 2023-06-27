@@ -45,11 +45,11 @@ This is an example of the YAML that Patcher writes to `stdout` describing these 
 
 The **next breaking** strategy will update a dependency to either the next closest breaking change or the latest version of the dependency, whichever is encountered first.
 
-So if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the version with the breaking change and stop. Otherwise, if no breaking chnages are encountered it will update the dependencies the latest version of that module.
+So if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the version with the breaking change and stop. Otherwise, if no breaking changes are encountered it will update the dependencies the latest version of that module.
 
 This may result in an update that requires manual intervention. If so, Patcher will provide additional information to help you understand what needs to be done.
 
-Patcher does this by writing a `README-TO-COMPLETE-UPDATE.md` into the folder containing the dependendency. If more than one dependency in a folder has been update to a breaking version, then the `README-TO-COMPLETE-UPDATE.md` file will contain a release note extracts for each breaking change in that folder.
+Patcher does this by writing a `README-TO-COMPLETE-UPDATE.md` into the folder containing the dependency. If more than one dependency in a folder has been updated to a breaking version, then the `README-TO-COMPLETE-UPDATE.md` file will contain a release note extract for each breaking change in that folder.
 
 For example, for the dependencies on `terraform-aws-security/custom-iam-entity` in `infrastructure-live/dev`:
 - `_global/ops-admin-role/terragrunt.hcl` will be updated from `0.65.6` to `0.68.2`, the latest version
@@ -99,6 +99,6 @@ Here are the release notes for version v0.62.0:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "8d061baf95ac0bf189c1a5f0b390e965"
+  "hash": "10db644584a7900aa21dbf422a64586f"
 }
 ##DOCS-SOURCER-END -->
