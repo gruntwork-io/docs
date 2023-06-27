@@ -42,17 +42,20 @@ export const Modal: React.FC<ModalProps> = ({
     return false
   }
 
-  useEffect(() => {
-    if (showModal) {
-      document.body.style.overflow = "hidden"
-    }
-    const timer = setTimeout(() => {
-      if (!showModal) {
+  useEffect(
+    function preventScrollWhenDisplayingModal() {
+      document.body.style.overflow = showModal ? "hidden" : "unset"
+
+      // The statement above would ordinarily suffice except in instances where
+      // the component is unmounted from the DOM and therefore can not reset the
+      // overflow property. Hence, we have to use the useEffect cleanup function
+      // to ensure that the overflow property is reset to its default value.
+      return () => {
         document.body.style.overflow = "unset"
       }
-    }, 300)
-    return () => clearTimeout(timer)
-  }, [showModal])
+    },
+    [showModal]
+  )
 
   useEffect(() => {
     const listener = (e: any) => {
