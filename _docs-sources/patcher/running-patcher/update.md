@@ -19,11 +19,11 @@ If all the dependencies are fully up to date, then Patcher shows a tick in the "
 
 ![Patcher update screenshot showing dependendency that is fully up to date](/img/guides/stay-up-to-date/patcher/patcher-update-overview-futd.png)
 
-If the next available version for a module dependency contains a breaking change that Patcher cannot patch, then a warning message is shown at the bottom of the screen. You can view the individual usages of the module but you are not able to update them.
+If Patcher can update one or more usages of a module to a newer version, then Patcher offers two options:
 
-![Patcher Update screenshot showing dependency that has a breaking change next](/img/guides/stay-up-to-date/patcher/patcher-update-overview-breaking-change.png)
+* "Hit «ENTER» to update all usages to the next safe version."
 
-If Patcher can update one or more usages of a module to a newer version, then Patcher shows the message "Hit «ENTER» to update all usages to the next safe version."
+* "Hit «b» to update all usages to the next version, even if it's a breaking change."
 
 ![Patcher Update screenshot showing dependency that can be updated](/img/guides/stay-up-to-date/patcher/patcher-update-overview-update-available.png)
 
@@ -31,7 +31,7 @@ Pressing `ENTER` will update all the usages of that module to either the highest
 
 Pressing `b` will update all the usages of that module to either the next closest breaking change or the latest version of the dependency, whichever is encountered first.
 
-The "Up to date" column is changed to show "Updated". This indicates that at least one of the dependencies on that module have been updated.
+After updating the "Up to date" column is changed to show "Updated". This indicates that at least one of the dependencies on that module have been updated.
 
 ![Patcher Update screenshot showing dependency that has been updated](/img/guides/stay-up-to-date/patcher/patcher-update-overview-updated.png)
 
