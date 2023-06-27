@@ -1,16 +1,16 @@
 const sidebar = [
     {
-        label: "Patcher",
-        type: "category",
-        collapsible: false,
-        items: [
-            {
-                label: "Getting Started",
-                type: "doc",
-                id: "patcher/index",
-            }
-        ]
+      "label": "Patcher",
+      "type": "category",
+      "link": {
+        "type": "doc",
+        "id": "patcher/index"
+      },
+      "items": [
+        "patcher/telemetry",
+        "patcher/update-strategies"
+      ]
     }
-]
-
+  ]
+  
 module.exports = sidebar
