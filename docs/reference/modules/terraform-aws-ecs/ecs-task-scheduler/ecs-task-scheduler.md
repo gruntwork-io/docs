@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ECS Task Scheduler Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-task-scheduler" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/feature%2F395-block_device_mappings-optional/modules/ecs-task-scheduler" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.34.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -26,7 +26,7 @@ This module provides two options for defining when ECS tasks will be run:
 *   [Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html)
 *   [Schedule Expressions](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html#eb-rate-expressions)
 
-In [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-task-scheduler/variables.tf) there are two variables (`task_event_pattern` and `task_schedule_expression`) that can be provided in the module definition. At least one, but not both of these fields, must be provided. This is what is passed to the EventBridge rule to determine when to invoke your ECS task.
+In [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/feature%2F395-block_device_mappings-optional/modules/ecs-task-scheduler/variables.tf) there are two variables (`task_event_pattern` and `task_schedule_expression`) that can be provided in the module definition. At least one, but not both of these fields, must be provided. This is what is passed to the EventBridge rule to determine when to invoke your ECS task.
 
 Note that this approach has AWS limitations with monitoring the event trigger and ECS task. AWS EventBridge fires the event but does not monitor whether the task ran successfully so if there is a failure, EventBridge does not attempt any retries or report failures.
 
@@ -180,7 +180,7 @@ This module provides support for passing the following additional inputs and ove
     }
     ```
 
-See [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-task-scheduler/variables.tf) for specific variable definitions.
+See [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/feature%2F395-block_device_mappings-optional/modules/ecs-task-scheduler/variables.tf) for specific variable definitions.
 
 ## Sample Usage
 
@@ -547,11 +547,11 @@ The scheduling expression to use (rate or cron - see README for usage examples).
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-task-scheduler/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-task-scheduler/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-task-scheduler/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/feature%2F395-block_device_mappings-optional/modules/ecs-task-scheduler/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/feature%2F395-block_device_mappings-optional/modules/ecs-task-scheduler/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/feature%2F395-block_device_mappings-optional/modules/ecs-task-scheduler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "22e4f6f54494a23a88807a0e270decc0"
+  "hash": "dcca72b197407d7c0076b2cefb2c4249"
 }
 ##DOCS-SOURCER-END -->

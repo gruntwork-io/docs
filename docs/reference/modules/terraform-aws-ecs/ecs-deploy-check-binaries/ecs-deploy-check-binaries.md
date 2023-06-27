@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ECS Deploy Check Scripts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-deploy-check-binaries" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/feature%2F395-block_device_mappings-optional/modules/ecs-deploy-check-binaries" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.35.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -108,11 +108,11 @@ pyenv shell 3.8.0 3.9.0 3.10.0 3.11.0
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-deploy-check-binaries/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-deploy-check-binaries/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-deploy-check-binaries/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/feature%2F395-block_device_mappings-optional/modules/ecs-deploy-check-binaries/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/feature%2F395-block_device_mappings-optional/modules/ecs-deploy-check-binaries/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/feature%2F395-block_device_mappings-optional/modules/ecs-deploy-check-binaries/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "79eaf981c86c7053daaaa63034ffce19"
+  "hash": "d9276700161558891238e1dd99c99062"
 }
 ##DOCS-SOURCER-END -->

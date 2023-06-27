@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ECS Service with ALB
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-service-with-alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/feature%2F395-block_device_mappings-optional/modules/ecs-service-with-alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.24.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -24,11 +24,11 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-service-with-alb/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-service-with-alb/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-service-with-alb/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/feature%2F395-block_device_mappings-optional/modules/ecs-service-with-alb/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/feature%2F395-block_device_mappings-optional/modules/ecs-service-with-alb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/feature%2F395-block_device_mappings-optional/modules/ecs-service-with-alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "384c894e23cc73909fbab4bae47880d0"
+  "hash": "200607cb94452cfe2a102d262d907d87"
 }
 ##DOCS-SOURCER-END -->
