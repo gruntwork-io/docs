@@ -177,7 +177,7 @@ module "account_baseline_app" {
   # repositories. Refer to the docs for github-actions-iam-role for more
   # information. Note that this is mutually exclusive with
   # var.allow_auto_deploy_from_other_account_arns. Only used if
-  # var.enable_github_actions_access is true. 
+  # var.enable_github_actions_access is true.
   allow_auto_deploy_from_github_actions_for_sources = {}
 
   # A list of IAM ARNs from other AWS accounts that will be allowed to assume
@@ -833,7 +833,7 @@ module "account_baseline_app" {
   max_session_duration_human_users = 43200
 
   # The maximum allowable session duration, in seconds, for the credentials you
-  # get when assuming the IAM roles created by this module. This variable 
+  # get when assuming the IAM roles created by this module. This variable
   # applies to all IAM roles created by this module that are intended for
   # machine users, such as allow-auto-deploy-from-other-accounts. For IAM roles
   # that are intended for human users, such as
@@ -845,7 +845,7 @@ module "account_baseline_app" {
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
 
-  # The mode for AWS Config to record configuration changes. 
+  # The mode for AWS Config to record configuration changes.
   #
   # recording_frequency:
   # The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
@@ -862,7 +862,7 @@ module "account_baseline_app" {
   #     - DAILY
   #   resource_types:
   #     A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
-  #     
+  #
   # See the following for more information:
   # https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
   #
@@ -997,7 +997,7 @@ inputs = {
   # repositories. Refer to the docs for github-actions-iam-role for more
   # information. Note that this is mutually exclusive with
   # var.allow_auto_deploy_from_other_account_arns. Only used if
-  # var.enable_github_actions_access is true. 
+  # var.enable_github_actions_access is true.
   allow_auto_deploy_from_github_actions_for_sources = {}
 
   # A list of IAM ARNs from other AWS accounts that will be allowed to assume
@@ -1653,7 +1653,7 @@ inputs = {
   max_session_duration_human_users = 43200
 
   # The maximum allowable session duration, in seconds, for the credentials you
-  # get when assuming the IAM roles created by this module. This variable 
+  # get when assuming the IAM roles created by this module. This variable
   # applies to all IAM roles created by this module that are intended for
   # machine users, such as allow-auto-deploy-from-other-accounts. For IAM roles
   # that are intended for human users, such as
@@ -1665,7 +1665,7 @@ inputs = {
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
 
-  # The mode for AWS Config to record configuration changes. 
+  # The mode for AWS Config to record configuration changes.
   #
   # recording_frequency:
   # The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
@@ -1682,7 +1682,7 @@ inputs = {
   #     - DAILY
   #   resource_types:
   #     A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
-  #     
+  #
   # See the following for more information:
   # https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
   #
@@ -1857,7 +1857,7 @@ map(object({
 <HclListItem name="allow_auto_deploy_from_github_actions_for_sources" requirement="optional" type="map(list(…))">
 <HclListItemDescription>
 
-Map of github repositories to the list of branches that are allowed to assume the IAM role. The repository should be encoded as org/repo-name (e.g., gruntwork-io/terrraform-aws-ci). Allows GitHub Actions to assume the auto deploy IAM role using an OpenID Connect Provider for the given repositories. Refer to the docs for github-actions-iam-role for more information. Note that this is mutually exclusive with <a href="#allow_auto_deploy_from_other_account_arns"><code>allow_auto_deploy_from_other_account_arns</code></a>. Only used if <a href="#enable_github_actions_access"><code>enable_github_actions_access</code></a> is true. 
+Map of github repositories to the list of branches that are allowed to assume the IAM role. The repository should be encoded as org/repo-name (e.g., gruntwork-io/terrraform-aws-ci). Allows GitHub Actions to assume the auto deploy IAM role using an OpenID Connect Provider for the given repositories. Refer to the docs for github-actions-iam-role for more information. Note that this is mutually exclusive with <a href="#allow_auto_deploy_from_other_account_arns"><code>allow_auto_deploy_from_other_account_arns</code></a>. Only used if <a href="#enable_github_actions_access"><code>enable_github_actions_access</code></a> is true.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -2072,7 +2072,7 @@ Any types represent complex values of variable type. For details, please consult
 
    See the 'statement' block in the aws_iam_policy_document data
    source for context: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document
-  
+
    - effect                                      string            (optional): Either "Allow" or "Deny", to specify whether this statement allows or denies the given actions.
    - actions                                     list(string)      (optional): A list of actions that this statement either allows or denies. For example, ["s3:GetObject", "s3:PutObject"].
    - not_actions                                 list(string)      (optional): A list of actions that this statement does NOT apply to. Used to apply a policy statement to all actions except those listed.
@@ -2080,9 +2080,9 @@ Any types represent complex values of variable type. For details, please consult
    - not_principals                              map(list(string)) (optional): The principals to which this statement does NOT apply. The keys are the principal type ("AWS", "Service", or "Federated") and the value is a list of identifiers.
    - keys                                        list(string)      (optional): A list of keys within the bucket to which this policy applies. For example, ["", "/*"] would apply to (a) the bucket itself and (b) all keys within the bucket. The default is [""].
    - condition                                   map(object)       (optional): A nested configuration block (described below) that defines a further, possibly-service-specific condition that constrains whether this statement applies.
-  
+
    condition is a map from a unique ID for the condition to an object that can define the following properties:
-  
+
    - test                                        string            (required): The name of the IAM condition operator to evaluate.
    - variable                                    string            (required): The name of a Context Variable to apply the condition to. Context variables may either be standard AWS variables starting with aws:, or service-specific variables prefixed with the service name.
    - values                                      list(string)      (required):  The values to evaluate the condition against. If multiple values are provided, the condition matches if at least one of them applies. (That is, the tests are combined with the "OR" boolean operation.)
@@ -3325,7 +3325,7 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map supports the following attributes:
-  
+
    OPTIONAL (defaults to value of corresponding module input):
    - region                                  string                : The region (e.g., us-west-2) where the key should be created. If null or
                                                                      omitted, the key will be created in all enabled regions. Any keys
@@ -3373,7 +3373,7 @@ Any types represent complex values of variable type. For details, please consult
                                                                               permissions to use this CMK (e.g. s3.amazonaws.com). See
                                                                               below for the structure of the object that should be passed
                                                                               in.
-  
+
    Structure of ServicePrincipal object:
    - name          string                   : The name of the service principal (e.g.: s3.amazonaws.com).
    - actions       list(string)             : The list of actions that the given service principal is allowed to
@@ -3430,7 +3430,7 @@ Any types represent complex values of variable type. For details, please consult
        allow_manage_key_permissions_with_iam = true
         Override the default value for all keys configured with var.default_deletion_window_in_days
        deletion_window_in_days = 7
-  
+
         Set extra tags on the CMK for prod
        tags = {
          Environment = "prod"
@@ -3538,7 +3538,7 @@ KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS stor
 <HclListItem name="recording_mode" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-The mode for AWS Config to record configuration changes. 
+The mode for AWS Config to record configuration changes.
 
 recording_frequency:
 The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
@@ -3555,7 +3555,7 @@ recording_mode_override:
     - DAILY
   resource_types:
     A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
-    
+
 See the following for more information:
 https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
 
