@@ -255,7 +255,7 @@ module "eks_core_services" {
   # major/minor version (e.g., v1.20) of your Kubernetes Installation. See
   # https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases
   # for a list of versions.
-  cluster_autoscaler_version = "v1.25.0"
+  cluster_autoscaler_version = "v1.26.0"
 
   # Whether or not to enable the AWS LB Ingress controller.
   enable_alb_ingress_controller = true
@@ -674,7 +674,7 @@ inputs = {
   # major/minor version (e.g., v1.20) of your Kubernetes Installation. See
   # https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases
   # for a list of versions.
-  cluster_autoscaler_version = "v1.25.0"
+  cluster_autoscaler_version = "v1.26.0"
 
   # Whether or not to enable the AWS LB Ingress controller.
   enable_alb_ingress_controller = true
@@ -1530,7 +1530,7 @@ Specifies an 'expander' for the cluster autoscaler. This helps determine which A
 Which version of the cluster autoscaler to install. This should match the major/minor version (e.g., v1.20) of your Kubernetes Installation. See https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases for a list of versions.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v1.25.0&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v1.26.0&quot;"/>
 </HclListItem>
 
 <HclListItem name="enable_alb_ingress_controller" requirement="optional" type="bool">
@@ -2288,6 +2288,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "63e44de85b7c209353434346e7642aef"
+  "hash": "bc54eac5f8c30740d377b81af868199c"
 }
 ##DOCS-SOURCER-END -->
