@@ -13,14 +13,14 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ECS Deploy Runner Invoke IAM Policies module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.4/modules/ecs-deploy-runner-invoke-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Fjenkins-543/modules/ecs-deploy-runner-invoke-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module defines an [IAM
 policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) that
 defines the minimal set of permissions necessary to trigger a deployment event for the deployment pipeline implemented
-in the [ecs-deploy-runner module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.4/modules/ecs-deploy-runner).
+in the [ecs-deploy-runner module](https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Fjenkins-543/modules/ecs-deploy-runner).
 
 ## Attaching IAM policy to IAM roles
 
@@ -211,11 +211,11 @@ The name of the IAM policy created with the permissions for invoking the ECS Dep
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.4/modules/ecs-deploy-runner-invoke-iam-policy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.4/modules/ecs-deploy-runner-invoke-iam-policy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.4/modules/ecs-deploy-runner-invoke-iam-policy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Fjenkins-543/modules/ecs-deploy-runner-invoke-iam-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Fjenkins-543/modules/ecs-deploy-runner-invoke-iam-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Fjenkins-543/modules/ecs-deploy-runner-invoke-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0427d2da92acb55d69d08ccd8c626b47"
+  "hash": "0537460a8ee37f0821fcd2880f4103e2"
 }
 ##DOCS-SOURCER-END -->

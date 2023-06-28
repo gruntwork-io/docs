@@ -13,12 +13,12 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ECS Deploy Runner Standard Configuration module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.4/modules/ecs-deploy-runner-standard-configuration" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Fjenkins-543/modules/ecs-deploy-runner-standard-configuration" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module provides a streamlined interface to configure the [ecs-deploy-runner
-module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.4/modules/ecs-deploy-runner) for a standard infrastructure and applications pipeline. This includes:
+module](https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Fjenkins-543/modules/ecs-deploy-runner) for a standard infrastructure and applications pipeline. This includes:
 
 *   Base pipeline of build image, update variables, deploy infrastructure with Terraform/Terragrunt.
 *   Restricting git repos that can deploy infrastructure.
@@ -100,8 +100,8 @@ for more information).
 
 ## How do I invoke scripts in a given container?
 
-You can use the [infrastructure-deployer CLI](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.4/modules/infrastructure-deployer) to invoke a deployed ECS deploy runner. Refer
-to [How do I invoke the ECS deploy runner](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.4/modules/infrastructure-deployer/core-concepts.md#how-do-i-invoke-the-ecs-deploy-runner)
+You can use the [infrastructure-deployer CLI](https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Fjenkins-543/modules/infrastructure-deployer) to invoke a deployed ECS deploy runner. Refer
+to [How do I invoke the ECS deploy runner](https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Fjenkins-543/modules/infrastructure-deployer/core-concepts.md#how-do-i-invoke-the-ecs-deploy-runner)
 for more information.
 
 ## Sample Usage
@@ -916,11 +916,11 @@ Configuration map for the ecs-deploy-runner module that can be passed straight i
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.4/modules/ecs-deploy-runner-standard-configuration/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.4/modules/ecs-deploy-runner-standard-configuration/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.4/modules/ecs-deploy-runner-standard-configuration/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Fjenkins-543/modules/ecs-deploy-runner-standard-configuration/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Fjenkins-543/modules/ecs-deploy-runner-standard-configuration/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Fjenkins-543/modules/ecs-deploy-runner-standard-configuration/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8f4234bcd68269f0fd7e1d42675af8ce"
+  "hash": "a0c286aee59536ceaa0f7134d462f887"
 }
 ##DOCS-SOURCER-END -->
