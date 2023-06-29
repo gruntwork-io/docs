@@ -1,6 +1,9 @@
 {
   "module": "services/k8s-service",
   "releases": {
+    "v0.104.13": {
+      "contains_changes": true
+    },
     "v0.104.12": {
       "contains_changes": false
     },
