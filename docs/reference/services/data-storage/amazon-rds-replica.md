@@ -1,13 +1,13 @@
 ---
 type: "service"
-name: "Amazon RDS"
-description: "Deploy and manage Amazon Relational Database Service (RDS)."
+name: "Amazon RDS Replica"
+description: "Deploy and manage Amazon Relational Database Service (RDS) Replica."
 category: "database"
 cloud: "aws"
-tags: ["data","database","sql","rds","postgresql","mysql"]
+tags: ["data","database","sql","rds","postgresql","mysql","replica"]
 license: "gruntwork"
 built-with: "terraform"
-title: "Amazon Relational Database Service"
+title: "RDS Read Replicas Module"
 hide_title: true
 ---
 
@@ -16,73 +16,23 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.14" lastModifiedVersion="0.104.13"/>
+<VersionBadge version="0.104.14" />
 
-# Amazon Relational Database Service
+# RDS Read Replicas Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+This module creates a read replica (read-only copy) of a DB instance.
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Frds" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/modules/data-stores/rds-replica" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
-## Overview
-
-This service contains code to deploy an Amazon Relational Database Service (RDS) cluster that can run MySQL, PostgreSQL,
-SQL Server, Oracle, or MariaDB. The cluster is managed by AWS and automatically handles standby failover, read replicas,
-backups, patching, and encryption. For Aurora, use the [Aurora](/reference/services/data-storage/amazon-aurora) service.
-
-![RDS architecture](/img/reference/services/data-storage/rds-architecture.png)
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Frds-replica" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
 ## Features
 
-*   Deploy a fully-managed native relational database
+*   Deploy a fully-managed native relational database replica
 *   Supports, MySQL, PostgreSQL, SQL Server, Oracle, and MariaDB
-*   Automatic failover to a standby in another availability zone
-*   Read replicas
-*   Automatic nightly snapshots
-*   Automatic cross account snapshots
 *   Automatic scaling of storage
 *   CloudWatch Alarms for alerting when CPU, memory, and disk metrics exceed certain thresholds
 *   CloudWatch dashboard widgets for RDS statistics
-*   Integrate with Kubernetes Service Discovery
-
-## Learn
-
-:::note
-
-This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
-a collection of reusable, battle-tested, production ready infrastructure code.
-If you’ve never used the Service Catalog before, make sure to read
-[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
-
-:::
-
-*   [What is Amazon RDS?](https://github.com/gruntwork-io/terraform-aws-data-storage/blob/master/modules/rds/core-concepts.md#what-is-amazon-rds)
-*   [Common gotchas with RDS](https://github.com/gruntwork-io/terraform-aws-data-storage/blob/master/modules/rds/core-concepts.md#common-gotchas)
-*   [RDS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html): Amazon’s docs for RDS that
-    cover core concepts such as the types of databases supported, security, backup & restore, and monitoring.
-*   *[Designing Data Intensive Applications](https://dataintensive.net)*: the best book we’ve found for understanding data
-    systems, including relational databases, NoSQL, replication, sharding, consistency, and so on.
-
-## Deploy
-
-### Non-production deployment (quick start for learning)
-
-If you just want to try this repo out for experimenting and learning, check out the following resources:
-
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/examples/for-learning-and-testing): The
-    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
-    testing (but not direct production usage).
-
-### Production deployment
-
-If you want to deploy this repo in production, check out the following resources:
-
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/examples/for-production): The `examples/for-production` folder contains sample code
-    optimized for direct usage in production. This is code from the
-    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
-    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
-
-*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
 
 
 ## Sample Usage
@@ -93,36 +43,24 @@ If you want to deploy this repo in production, check out the following resources
 ```hcl title="main.tf"
 
 # ------------------------------------------------------------------------------------------------------
-# DEPLOY GRUNTWORK'S RDS MODULE
-#
-# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE".
-# When using values other than defaults for these variables, set them through environment variables or
-# another secure method.
-#
+# DEPLOY GRUNTWORK'S RDS-REPLICA MODULE
 # ------------------------------------------------------------------------------------------------------
 
-module "rds" {
+module "rds_replica" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/rds?ref=v0.104.14"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/rds-replica?ref=v0.104.14"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
-
-  # The amount of storage space the DB should use, in GB.
-  allocated_storage = <number>
-
-  # The version of var.engine to use (e.g. 8.0.17 for mysql).
-  engine_version = <string>
 
   # The name used to namespace all the RDS resources created by these templates,
   # including the cluster and cluster instances (e.g. mysql-stage). Must be
   # unique in this region. Must be a lowercase string.
   name = <string>
 
-  # The list of IDs of the subnets in which to deploy RDS. The list must only
-  # contain subnets in var.vpc_id.
-  subnet_ids = <list(string)>
+  # An ID of the primary DB instance to create read replicas from
+  primary_instance_id = <string>
 
   # The ID of the VPC in which to deploy RDS.
   vpc_id = <string>
@@ -174,31 +112,9 @@ module "rds" {
   # for more details.
   auto_minor_version_upgrade = true
 
-  # The name of the aws_db_security_group that is created. Defaults to var.name
-  # if not specified.
-  aws_db_security_group_name = null
-
-  # How often, in seconds, the backup job is expected to run. This is the same
-  # as var.schedule_expression, but unfortunately, Terraform offers no way to
-  # convert rate expressions to seconds. We add a CloudWatch alarm that triggers
-  # if the metric in var.create_snapshot_cloudwatch_metric_namespace isn't
-  # updated within this time period, as that indicates the backup failed to run.
-  backup_job_alarm_period = 3600
-
-  # Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA
-  # state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  backup_job_alarm_treat_missing_data = "missing"
-
   # How many days to keep backup snapshots around before cleaning them up. Must
   # be 1 or greater to support read replicas.
   backup_retention_period = 30
-
-  # The daily time range during which automated backups are created (e.g.
-  # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup
-  # runs.
-  backup_window = "06:00-07:00"
 
   # A list of IAM ARNs for users who should be given administrator access to
   # this CMK (e.g. arn:aws:iam::<aws-account-id>:user/<iam-user-arn>). If this
@@ -228,12 +144,6 @@ module "rds" {
   # Set to true if you want a DNS record automatically created and pointed at
   # the RDS endpoints.
   create_route53_entry = false
-
-  # The namespace to use for the CloudWatch metric we report every time a new
-  # RDS snapshot is created. We add a CloudWatch alarm on this metric to notify
-  # us if the backup job fails to run for any reason. Defaults to the cluster
-  # name.
-  create_snapshot_cloudwatch_metric_namespace = null
 
   # Configure a custom parameter group for the RDS DB. This will create a new
   # parameter group with the given parameters. When null, the database will be
@@ -268,28 +178,6 @@ module "rds" {
   # dashboard.
   dashboard_write_latency_widget_parameters = {"height":6,"period":60,"width":8}
 
-  # The friendly name or ARN of an AWS Secrets Manager secret that contains
-  # database configuration information in the format outlined by this document:
-  # https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html.
-  # The engine, username, password, dbname, and port fields must be included in
-  # the JSON. Note that even with this precaution, this information will be
-  # stored in plaintext in the Terraform state file! See the following blog post
-  # for more details:
-  # https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terraform-code-1d586955ace1.
-  # If you do not wish to use Secrets Manager, leave this as null, and use the
-  # master_username, master_password, db_name, engine, and port variables.
-  db_config_secrets_manager_id = null
-
-  # The name for your database of up to 8 alpha-numeric characters. If you do
-  # not provide a name, Amazon RDS will not create an empty database on the RDS
-  # instance. This can also be provided via AWS Secrets Manager. See the
-  # description of db_config_secrets_manager_id.
-  db_name = null
-
-  # Specifies whether to remove automated backups immediately after the DB
-  # instance is deleted
-  delete_automated_backups = true
-
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
   # topics to send notifications to using var.alarms_sns_topic_arn.
@@ -309,20 +197,11 @@ module "rds" {
   # too unpredictable.
   enable_perf_alarms = true
 
-  # When true, enable CloudWatch alarms for the manual snapshots created for the
-  # purpose of sharing with another account. Only used if
-  # var.share_snapshot_with_another_account is true.
-  enable_share_snapshot_cloudwatch_alarms = true
-
   # List of log types to enable for exporting to CloudWatch logs. If omitted, no
   # logs will be exported. Valid values (depending on engine): alert, audit,
   # error, general, listener, slowquery, trace, postgresql (PostgreSQL) and
   # upgrade (PostgreSQL).
   enabled_cloudwatch_logs_exports = []
-
-  # The DB engine to use (e.g. mysql). This can also be provided via AWS Secrets
-  # Manager. See the description of db_config_secrets_manager_id.
-  engine = null
 
   # The period, in seconds, over which to measure the CPU utilization
   # percentage.
@@ -375,10 +254,6 @@ module "rds" {
   # key will be created and used instead.
   kms_key_arn = null
 
-  # The license model to use for this DB. Check the docs for your RDS DB for
-  # available license models. Set to an empty string to use the default.
-  license_model = null
-
   # The period, in seconds, over which to measure the available free disk space.
   low_disk_space_available_period = 60
 
@@ -405,57 +280,14 @@ module "rds" {
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   low_memory_available_treat_missing_data = "missing"
 
-  # The weekly day and time range during which system maintenance can occur
-  # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
-  # there may even be a downtime during maintenance windows.
-  maintenance_window = "sun:07:00-sun:08:00"
-
-  # The value to use for the master password of the database. This can also be
-  # provided via AWS Secrets Manager. See the description of
-  # db_config_secrets_manager_id.
-  master_password = null # SENSITIVE
-
-  # The value to use for the master username of the database. This can also be
-  # provided via AWS Secrets Manager. See the description of
-  # db_config_secrets_manager_id.
-  master_username = null
-
   # When configured, the upper limit to which Amazon RDS can automatically scale
   # the storage of the DB instance. Configuring this will automatically ignore
   # differences to allocated_storage. Must be greater than or equal to
   # allocated_storage or 0 to disable Storage Autoscaling.
   max_allocated_storage = 0
 
-  # The interval, in seconds, between points when Enhanced Monitoring metrics
-  # are collected for the DB instance. To disable collecting Enhanced Monitoring
-  # metrics, specify 0. Valid Values: 0, 1, 5, 10, 15, 30, 60. Enhanced
-  # Monitoring metrics are useful when you want to see how different processes
-  # or threads on a DB instance use the CPU.
-  monitoring_interval = 0
-
-  # The ARN for the IAM role that permits RDS to send enhanced monitoring
-  # metrics to CloudWatch Logs. If monitoring_interval is greater than 0, but
-  # monitoring_role_arn is left as an empty string, a default IAM role that
-  # allows enhanced monitoring will be created.
-  monitoring_role_arn = null
-
-  # Optionally add a path to the IAM monitoring role. If left blank, it will
-  # default to just /.
-  monitoring_role_arn_path = "/"
-
-  # The name of the enhanced_monitoring_role that is created. Defaults to
-  # var.name-monitoring-role if not specified.
-  monitoring_role_name = null
-
-  # Specifies if a standby instance should be deployed in another availability
-  # zone. If the primary fails, this instance will automatically take over.
-  multi_az = false
-
   # The number of read replicas to deploy
   num_read_replicas = 0
-
-  # Name of a DB option group to associate.
-  option_group_name = null
 
   # Specifies whether Performance Insights are enabled. Performance Insights can
   # be enabled for specific versions of database engines. See
@@ -467,10 +299,6 @@ module "rds" {
   # db_config_secrets_manager_id.
   port = null
 
-  # The domain name to create a route 53 record for the primary endpoint of the
-  # RDS database.
-  primary_domain_name = null
-
   # If you wish to make your database accessible from the public Internet, set
   # this flag to true (WARNING: NOT RECOMMENDED FOR REGULAR USAGE!!). The
   # default is false, which means the database is only accessible from within
@@ -478,34 +306,9 @@ module "rds" {
   # mode.
   publicly_accessible = false
 
-  # How many days to keep backup snapshots around before cleaning them up on the
-  # read replicas. Must be 1 or greater to support read replicas. 0 means
-  # disable automated backups.
-  replica_backup_retention_period = 0
-
   # The domain name to create a route 53 record for the read replicas of the RDS
   # database.
   replica_domain_name = null
-
-  # The maximum number of snapshots to keep around for the purpose of cross
-  # account sharing. Once this number is exceeded, a lambda function will delete
-  # the oldest snapshots. Only used if var.share_snapshot_with_another_account
-  # is true.
-  share_snapshot_max_snapshots = 30
-
-  # An expression that defines how often to run the lambda function to take
-  # snapshots for the purpose of cross account sharing. For example, cron(0 20 *
-  # * ? *) or rate(5 minutes). Required if
-  # var.share_snapshot_with_another_account is true
-  share_snapshot_schedule_expression = null
-
-  # The ID of the AWS Account that the snapshot should be shared with. Required
-  # if var.share_snapshot_with_another_account is true.
-  share_snapshot_with_account_id = null
-
-  # If set to true, take periodic snapshots of the RDS DB that should be shared
-  # with another account.
-  share_snapshot_with_another_account = false
 
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
@@ -513,11 +316,6 @@ module "rds" {
   # never want to set this to true, unless you are doing automated or manual
   # testing.
   skip_final_snapshot = false
-
-  # If non-null, the RDS Instance will be restored from the given Snapshot ID.
-  # This is the Snapshot ID you'd find in the RDS console, e.g:
-  # rds:production-2015-06-26-06-05.
-  snapshot_identifier = null
 
   # Specifies whether the DB instance is encrypted.
   storage_encrypted = true
@@ -548,16 +346,11 @@ module "rds" {
 ```hcl title="terragrunt.hcl"
 
 # ------------------------------------------------------------------------------------------------------
-# DEPLOY GRUNTWORK'S RDS MODULE
-#
-# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE".
-# When using values other than defaults for these variables, set them through environment variables or
-# another secure method.
-#
+# DEPLOY GRUNTWORK'S RDS-REPLICA MODULE
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/rds?ref=v0.104.14"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/rds-replica?ref=v0.104.14"
 }
 
 inputs = {
@@ -566,20 +359,13 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The amount of storage space the DB should use, in GB.
-  allocated_storage = <number>
-
-  # The version of var.engine to use (e.g. 8.0.17 for mysql).
-  engine_version = <string>
-
   # The name used to namespace all the RDS resources created by these templates,
   # including the cluster and cluster instances (e.g. mysql-stage). Must be
   # unique in this region. Must be a lowercase string.
   name = <string>
 
-  # The list of IDs of the subnets in which to deploy RDS. The list must only
-  # contain subnets in var.vpc_id.
-  subnet_ids = <list(string)>
+  # An ID of the primary DB instance to create read replicas from
+  primary_instance_id = <string>
 
   # The ID of the VPC in which to deploy RDS.
   vpc_id = <string>
@@ -631,31 +417,9 @@ inputs = {
   # for more details.
   auto_minor_version_upgrade = true
 
-  # The name of the aws_db_security_group that is created. Defaults to var.name
-  # if not specified.
-  aws_db_security_group_name = null
-
-  # How often, in seconds, the backup job is expected to run. This is the same
-  # as var.schedule_expression, but unfortunately, Terraform offers no way to
-  # convert rate expressions to seconds. We add a CloudWatch alarm that triggers
-  # if the metric in var.create_snapshot_cloudwatch_metric_namespace isn't
-  # updated within this time period, as that indicates the backup failed to run.
-  backup_job_alarm_period = 3600
-
-  # Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA
-  # state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  backup_job_alarm_treat_missing_data = "missing"
-
   # How many days to keep backup snapshots around before cleaning them up. Must
   # be 1 or greater to support read replicas.
   backup_retention_period = 30
-
-  # The daily time range during which automated backups are created (e.g.
-  # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup
-  # runs.
-  backup_window = "06:00-07:00"
 
   # A list of IAM ARNs for users who should be given administrator access to
   # this CMK (e.g. arn:aws:iam::<aws-account-id>:user/<iam-user-arn>). If this
@@ -685,12 +449,6 @@ inputs = {
   # Set to true if you want a DNS record automatically created and pointed at
   # the RDS endpoints.
   create_route53_entry = false
-
-  # The namespace to use for the CloudWatch metric we report every time a new
-  # RDS snapshot is created. We add a CloudWatch alarm on this metric to notify
-  # us if the backup job fails to run for any reason. Defaults to the cluster
-  # name.
-  create_snapshot_cloudwatch_metric_namespace = null
 
   # Configure a custom parameter group for the RDS DB. This will create a new
   # parameter group with the given parameters. When null, the database will be
@@ -725,28 +483,6 @@ inputs = {
   # dashboard.
   dashboard_write_latency_widget_parameters = {"height":6,"period":60,"width":8}
 
-  # The friendly name or ARN of an AWS Secrets Manager secret that contains
-  # database configuration information in the format outlined by this document:
-  # https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html.
-  # The engine, username, password, dbname, and port fields must be included in
-  # the JSON. Note that even with this precaution, this information will be
-  # stored in plaintext in the Terraform state file! See the following blog post
-  # for more details:
-  # https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terraform-code-1d586955ace1.
-  # If you do not wish to use Secrets Manager, leave this as null, and use the
-  # master_username, master_password, db_name, engine, and port variables.
-  db_config_secrets_manager_id = null
-
-  # The name for your database of up to 8 alpha-numeric characters. If you do
-  # not provide a name, Amazon RDS will not create an empty database on the RDS
-  # instance. This can also be provided via AWS Secrets Manager. See the
-  # description of db_config_secrets_manager_id.
-  db_name = null
-
-  # Specifies whether to remove automated backups immediately after the DB
-  # instance is deleted
-  delete_automated_backups = true
-
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
   # topics to send notifications to using var.alarms_sns_topic_arn.
@@ -766,20 +502,11 @@ inputs = {
   # too unpredictable.
   enable_perf_alarms = true
 
-  # When true, enable CloudWatch alarms for the manual snapshots created for the
-  # purpose of sharing with another account. Only used if
-  # var.share_snapshot_with_another_account is true.
-  enable_share_snapshot_cloudwatch_alarms = true
-
   # List of log types to enable for exporting to CloudWatch logs. If omitted, no
   # logs will be exported. Valid values (depending on engine): alert, audit,
   # error, general, listener, slowquery, trace, postgresql (PostgreSQL) and
   # upgrade (PostgreSQL).
   enabled_cloudwatch_logs_exports = []
-
-  # The DB engine to use (e.g. mysql). This can also be provided via AWS Secrets
-  # Manager. See the description of db_config_secrets_manager_id.
-  engine = null
 
   # The period, in seconds, over which to measure the CPU utilization
   # percentage.
@@ -832,10 +559,6 @@ inputs = {
   # key will be created and used instead.
   kms_key_arn = null
 
-  # The license model to use for this DB. Check the docs for your RDS DB for
-  # available license models. Set to an empty string to use the default.
-  license_model = null
-
   # The period, in seconds, over which to measure the available free disk space.
   low_disk_space_available_period = 60
 
@@ -862,57 +585,14 @@ inputs = {
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   low_memory_available_treat_missing_data = "missing"
 
-  # The weekly day and time range during which system maintenance can occur
-  # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
-  # there may even be a downtime during maintenance windows.
-  maintenance_window = "sun:07:00-sun:08:00"
-
-  # The value to use for the master password of the database. This can also be
-  # provided via AWS Secrets Manager. See the description of
-  # db_config_secrets_manager_id.
-  master_password = null # SENSITIVE
-
-  # The value to use for the master username of the database. This can also be
-  # provided via AWS Secrets Manager. See the description of
-  # db_config_secrets_manager_id.
-  master_username = null
-
   # When configured, the upper limit to which Amazon RDS can automatically scale
   # the storage of the DB instance. Configuring this will automatically ignore
   # differences to allocated_storage. Must be greater than or equal to
   # allocated_storage or 0 to disable Storage Autoscaling.
   max_allocated_storage = 0
 
-  # The interval, in seconds, between points when Enhanced Monitoring metrics
-  # are collected for the DB instance. To disable collecting Enhanced Monitoring
-  # metrics, specify 0. Valid Values: 0, 1, 5, 10, 15, 30, 60. Enhanced
-  # Monitoring metrics are useful when you want to see how different processes
-  # or threads on a DB instance use the CPU.
-  monitoring_interval = 0
-
-  # The ARN for the IAM role that permits RDS to send enhanced monitoring
-  # metrics to CloudWatch Logs. If monitoring_interval is greater than 0, but
-  # monitoring_role_arn is left as an empty string, a default IAM role that
-  # allows enhanced monitoring will be created.
-  monitoring_role_arn = null
-
-  # Optionally add a path to the IAM monitoring role. If left blank, it will
-  # default to just /.
-  monitoring_role_arn_path = "/"
-
-  # The name of the enhanced_monitoring_role that is created. Defaults to
-  # var.name-monitoring-role if not specified.
-  monitoring_role_name = null
-
-  # Specifies if a standby instance should be deployed in another availability
-  # zone. If the primary fails, this instance will automatically take over.
-  multi_az = false
-
   # The number of read replicas to deploy
   num_read_replicas = 0
-
-  # Name of a DB option group to associate.
-  option_group_name = null
 
   # Specifies whether Performance Insights are enabled. Performance Insights can
   # be enabled for specific versions of database engines. See
@@ -924,10 +604,6 @@ inputs = {
   # db_config_secrets_manager_id.
   port = null
 
-  # The domain name to create a route 53 record for the primary endpoint of the
-  # RDS database.
-  primary_domain_name = null
-
   # If you wish to make your database accessible from the public Internet, set
   # this flag to true (WARNING: NOT RECOMMENDED FOR REGULAR USAGE!!). The
   # default is false, which means the database is only accessible from within
@@ -935,34 +611,9 @@ inputs = {
   # mode.
   publicly_accessible = false
 
-  # How many days to keep backup snapshots around before cleaning them up on the
-  # read replicas. Must be 1 or greater to support read replicas. 0 means
-  # disable automated backups.
-  replica_backup_retention_period = 0
-
   # The domain name to create a route 53 record for the read replicas of the RDS
   # database.
   replica_domain_name = null
-
-  # The maximum number of snapshots to keep around for the purpose of cross
-  # account sharing. Once this number is exceeded, a lambda function will delete
-  # the oldest snapshots. Only used if var.share_snapshot_with_another_account
-  # is true.
-  share_snapshot_max_snapshots = 30
-
-  # An expression that defines how often to run the lambda function to take
-  # snapshots for the purpose of cross account sharing. For example, cron(0 20 *
-  # * ? *) or rate(5 minutes). Required if
-  # var.share_snapshot_with_another_account is true
-  share_snapshot_schedule_expression = null
-
-  # The ID of the AWS Account that the snapshot should be shared with. Required
-  # if var.share_snapshot_with_another_account is true.
-  share_snapshot_with_account_id = null
-
-  # If set to true, take periodic snapshots of the RDS DB that should be shared
-  # with another account.
-  share_snapshot_with_another_account = false
 
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
@@ -970,11 +621,6 @@ inputs = {
   # never want to set this to true, unless you are doing automated or manual
   # testing.
   skip_final_snapshot = false
-
-  # If non-null, the RDS Instance will be restored from the given Snapshot ID.
-  # This is the Snapshot ID you'd find in the RDS console, e.g:
-  # rds:production-2015-06-26-06-05.
-  snapshot_identifier = null
 
   # Specifies whether the DB instance is encrypted.
   storage_encrypted = true
@@ -1012,22 +658,6 @@ inputs = {
 
 ### Required
 
-<HclListItem name="allocated_storage" requirement="required" type="number">
-<HclListItemDescription>
-
-The amount of storage space the DB should use, in GB.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="engine_version" requirement="required" type="string">
-<HclListItemDescription>
-
-The version of <a href="#engine"><code>engine</code></a> to use (e.g. 8.0.17 for mysql).
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="name" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -1036,10 +666,10 @@ The name used to namespace all the RDS resources created by these templates, inc
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="subnet_ids" requirement="required" type="list(string)">
+<HclListItem name="primary_instance_id" requirement="required" type="string">
 <HclListItemDescription>
 
-The list of IDs of the subnets in which to deploy RDS. The list must only contain subnets in <a href="#vpc_id"><code>vpc_id</code></a>.
+An ID of the primary DB instance to create read replicas from
 
 </HclListItemDescription>
 </HclListItem>
@@ -1117,45 +747,6 @@ Indicates that minor engine upgrades will be applied automatically to the DB ins
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="aws_db_security_group_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the aws_db_security_group that is created. Defaults to <a href="#name"><code>name</code></a> if not specified.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="backup_job_alarm_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-How often, in seconds, the backup job is expected to run. This is the same as <a href="#schedule_expression"><code>schedule_expression</code></a>, but unfortunately, Terraform offers no way to convert rate expressions to seconds. We add a CloudWatch alarm that triggers if the metric in <a href="#create_snapshot_cloudwatch_metric_namespace"><code>create_snapshot_cloudwatch_metric_namespace</code></a> isn't updated within this time period, as that indicates the backup failed to run.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="3600"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Default to hourly
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="backup_job_alarm_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="backup_retention_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1163,15 +754,6 @@ How many days to keep backup snapshots around before cleaning them up. Must be 1
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="30"/>
-</HclListItem>
-
-<HclListItem name="backup_window" requirement="optional" type="string">
-<HclListItemDescription>
-
-The daily time range during which automated backups are created (e.g. 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;06:00-07:00&quot;"/>
 </HclListItem>
 
 <HclListItem name="cmk_administrator_iam_arns" requirement="optional" type="list(string)">
@@ -1261,15 +843,6 @@ Set to true if you want a DNS record automatically created and pointed at the RD
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="create_snapshot_cloudwatch_metric_namespace" requirement="optional" type="string">
-<HclListItemDescription>
-
-The namespace to use for the CloudWatch metric we report every time a new RDS snapshot is created. We add a CloudWatch alarm on this metric to notify us if the backup job fails to run for any reason. Defaults to the cluster name.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="custom_parameter_group" requirement="optional" type="object(…)">
@@ -1639,33 +1212,6 @@ object({
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="db_config_secrets_manager_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The friendly name or ARN of an AWS Secrets Manager secret that contains database configuration information in the format outlined by this document: https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html. The engine, username, password, dbname, and port fields must be included in the JSON. Note that even with this precaution, this information will be stored in plaintext in the Terraform state file! See the following blog post for more details: https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terraform-code-1d586955ace1. If you do not wish to use Secrets Manager, leave this as null, and use the master_username, master_password, db_name, engine, and port variables.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="db_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name for your database of up to 8 alpha-numeric characters. If you do not provide a name, Amazon RDS will not create an empty database on the RDS instance. This can also be provided via AWS Secrets Manager. See the description of db_config_secrets_manager_id.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="delete_automated_backups" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Specifies whether to remove automated backups immediately after the DB instance is deleted
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1702,15 +1248,6 @@ Set to true to enable alarms related to performance, such as read and write late
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="enable_share_snapshot_cloudwatch_alarms" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When true, enable CloudWatch alarms for the manual snapshots created for the purpose of sharing with another account. Only used if <a href="#share_snapshot_with_another_account"><code>share_snapshot_with_another_account</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="enabled_cloudwatch_logs_exports" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1718,15 +1255,6 @@ List of log types to enable for exporting to CloudWatch logs. If omitted, no log
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="engine" requirement="optional" type="string">
-<HclListItemDescription>
-
-The DB engine to use (e.g. mysql). This can also be provided via AWS Secrets Manager. See the description of db_config_secrets_manager_id.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="high_cpu_utilization_period" requirement="optional" type="number">
@@ -1837,15 +1365,6 @@ The Amazon Resource Name (ARN) of an existing KMS customer master key (CMK) that
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="license_model" requirement="optional" type="string">
-<HclListItemDescription>
-
-The license model to use for this DB. Check the docs for your RDS DB for available license models. Set to an empty string to use the default.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="low_disk_space_available_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1924,33 +1443,6 @@ Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
 <HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
-<HclListItem name="maintenance_window" requirement="optional" type="string">
-<HclListItemDescription>
-
-The weekly day and time range during which system maintenance can occur (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may even be a downtime during maintenance windows.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;sun:07:00-sun:08:00&quot;"/>
-</HclListItem>
-
-<HclListItem name="master_password" requirement="optional" type="string">
-<HclListItemDescription>
-
-The value to use for the master password of the database. This can also be provided via AWS Secrets Manager. See the description of db_config_secrets_manager_id.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="master_username" requirement="optional" type="string">
-<HclListItemDescription>
-
-The value to use for the master username of the database. This can also be provided via AWS Secrets Manager. See the description of db_config_secrets_manager_id.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="max_allocated_storage" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1960,51 +1452,6 @@ When configured, the upper limit to which Amazon RDS can automatically scale the
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
-<HclListItem name="monitoring_interval" requirement="optional" type="number">
-<HclListItemDescription>
-
-The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0. Valid Values: 0, 1, 5, 10, 15, 30, 60. Enhanced Monitoring metrics are useful when you want to see how different processes or threads on a DB instance use the CPU.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
-</HclListItem>
-
-<HclListItem name="monitoring_role_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs. If monitoring_interval is greater than 0, but monitoring_role_arn is left as an empty string, a default IAM role that allows enhanced monitoring will be created.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="monitoring_role_arn_path" requirement="optional" type="string">
-<HclListItemDescription>
-
-Optionally add a path to the IAM monitoring role. If left blank, it will default to just /.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;/&quot;"/>
-</HclListItem>
-
-<HclListItem name="monitoring_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the enhanced_monitoring_role that is created. Defaults to <a href="#name"><code>name</code></a>-monitoring-role if not specified.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="multi_az" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Specifies if a standby instance should be deployed in another availability zone. If the primary fails, this instance will automatically take over.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="num_read_replicas" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2012,15 +1459,6 @@ The number of read replicas to deploy
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="0"/>
-</HclListItem>
-
-<HclListItem name="option_group_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Name of a DB option group to associate.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="performance_insights_enabled" requirement="optional" type="bool">
@@ -2041,15 +1479,6 @@ The port the DB will listen on (e.g. 3306). Alternatively, this can be provided 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="primary_domain_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The domain name to create a route 53 record for the primary endpoint of the RDS database.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="publicly_accessible" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2057,15 +1486,6 @@ If you wish to make your database accessible from the public Internet, set this 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="replica_backup_retention_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-How many days to keep backup snapshots around before cleaning them up on the read replicas. Must be 1 or greater to support read replicas. 0 means disable automated backups.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
 <HclListItem name="replica_domain_name" requirement="optional" type="string">
@@ -2077,42 +1497,6 @@ The domain name to create a route 53 record for the read replicas of the RDS dat
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="share_snapshot_max_snapshots" requirement="optional" type="number">
-<HclListItemDescription>
-
-The maximum number of snapshots to keep around for the purpose of cross account sharing. Once this number is exceeded, a lambda function will delete the oldest snapshots. Only used if <a href="#share_snapshot_with_another_account"><code>share_snapshot_with_another_account</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="30"/>
-</HclListItem>
-
-<HclListItem name="share_snapshot_schedule_expression" requirement="optional" type="string">
-<HclListItemDescription>
-
-An expression that defines how often to run the lambda function to take snapshots for the purpose of cross account sharing. For example, cron(0 20 * * ? *) or rate(5 minutes). Required if <a href="#share_snapshot_with_another_account"><code>share_snapshot_with_another_account</code></a> is true
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="share_snapshot_with_account_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID of the AWS Account that the snapshot should be shared with. Required if <a href="#share_snapshot_with_another_account"><code>share_snapshot_with_another_account</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="share_snapshot_with_another_account" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, take periodic snapshots of the RDS DB that should be shared with another account.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2120,15 +1504,6 @@ Determines whether a final DB snapshot is created before the DB instance is dele
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="snapshot_identifier" requirement="optional" type="string">
-<HclListItemDescription>
-
-If non-null, the RDS Instance will be restored from the given Snapshot ID. This is the Snapshot ID you'd find in the RDS console, e.g: rds:production-2015-06-26-06-05.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="storage_encrypted" requirement="optional" type="bool">
@@ -2187,14 +1562,6 @@ Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
 <HclListItemDescription>
 
 A list of all the CloudWatch Dashboard metric widgets available in this module.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="db_name">
-<HclListItemDescription>
-
-The name of the empty database created on this RDS DB instance.
 
 </HclListItemDescription>
 </HclListItem>
@@ -2271,38 +1638,6 @@ The port of the RDS DB instance.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="primary_arn">
-<HclListItemDescription>
-
-The ARN of the RDS DB instance.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="primary_endpoint">
-<HclListItemDescription>
-
-The endpoint of the RDS DB instance that you can make requests to.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="primary_host">
-<HclListItemDescription>
-
-The host portion of the RDS DB instance endpoint. primary_endpoint is in the form '&lt;host>:&lt;port>', and this output returns just the host part.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="primary_id">
-<HclListItemDescription>
-
-The ID of the RDS DB instance.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="read_replica_arns">
 <HclListItemDescription>
 
@@ -2327,14 +1662,6 @@ A list of IDs of the RDS DB instance's read replicas.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="security_group_id">
-<HclListItemDescription>
-
-The ID of the Security Group that controls access to the RDS DB instance.
-
-</HclListItemDescription>
-</HclListItem>
-
 </TabItem>
 </Tabs>
 
@@ -2342,11 +1669,11 @@ The ID of the Security Group that controls access to the RDS DB instance.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/modules/data-stores/rds/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/modules/data-stores/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/modules/data-stores/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/modules/data-stores/rds-replica/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/modules/data-stores/rds-replica/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/modules/data-stores/rds-replica/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b4ea8b74e1b38ad069ec933acf5731e8"
+  "hash": "7e9d84edce2100f71581489685446d10"
 }
 ##DOCS-SOURCER-END -->
