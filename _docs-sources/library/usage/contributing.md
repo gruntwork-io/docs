@@ -42,7 +42,7 @@ the tests locally.
 
 ### Update the code
 
-At this point, you can now make your code changes and use your new test case to verify that everything is working.
+At this point, you can make your code changes and use your new test case to verify that everything is working.
 
 ### Create a pull request
 
