@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # VPC Flow Logs Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-flow-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/pete%2FKB-743%2Fflow-log-params/modules/vpc-flow-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.23.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -154,6 +154,11 @@ module "vpc_flow_logs" {
   # for more information including the list of allowed fields.
   log_format = null
 
+  # The maximum interval of time during which a flow of packets is captured and
+  # aggregated into a flow log record. Valid Values: 60 seconds (1 minute) or
+  # 600 seconds (10 minutes)
+  max_aggregation_interval = 600
+
   # The name to use for the S3 bucket.
   s3_bucket_name = null
 
@@ -278,6 +283,11 @@ inputs = {
   # https://aws.amazon.com/blogs/aws/learn-from-your-vpc-flow-logs-with-additional-meta-data/
   # for more information including the list of allowed fields.
   log_format = null
+
+  # The maximum interval of time during which a flow of packets is captured and
+  # aggregated into a flow log record. Valid Values: 60 seconds (1 minute) or
+  # 600 seconds (10 minutes)
+  max_aggregation_interval = 600
 
   # The name to use for the S3 bucket.
   s3_bucket_name = null
@@ -552,6 +562,15 @@ The fields to include in the flow log record, in the order in which they should 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="max_aggregation_interval" requirement="optional" type="number">
+<HclListItemDescription>
+
+The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record. Valid Values: 60 seconds (1 minute) or 600 seconds (10 minutes)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="600"/>
+</HclListItem>
+
 <HclListItem name="s3_bucket_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -691,11 +710,11 @@ The name of the S3 bucket where flow logs are published.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-flow-logs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-flow-logs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-flow-logs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/pete%2FKB-743%2Fflow-log-params/modules/vpc-flow-logs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/pete%2FKB-743%2Fflow-log-params/modules/vpc-flow-logs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/pete%2FKB-743%2Fflow-log-params/modules/vpc-flow-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "423c9b59d7760e6bb0131e876efd1649"
+  "hash": "b04501d8491a6670ab22fd608d8bbe9b"
 }
 ##DOCS-SOURCER-END -->
