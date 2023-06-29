@@ -140,6 +140,11 @@ module "eks_karpenter" {
   # Conditional flag to optionally create resources in this module.
   create_resources = true
 
+  # Additional Helm chart values to pass to the Karpenter Helm chart. See the
+  # official Karpenter Helm chart values file and documentation for available
+  # configuration options.
+  karpenter_chart_additional_values = {}
+
   # The Helm chart name for the Karpenter chart.
   karpenter_chart_name = "karpenter"
 
@@ -259,6 +264,11 @@ inputs = {
 
   # Conditional flag to optionally create resources in this module.
   create_resources = true
+
+  # Additional Helm chart values to pass to the Karpenter Helm chart. See the
+  # official Karpenter Helm chart values file and documentation for available
+  # configuration options.
+  karpenter_chart_additional_values = {}
 
   # The Helm chart name for the Karpenter chart.
   karpenter_chart_name = "karpenter"
@@ -408,6 +418,22 @@ Conditional flag to optionally create resources in this module.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="karpenter_chart_additional_values" requirement="optional" type="any">
+<HclListItemDescription>
+
+Additional Helm chart values to pass to the Karpenter Helm chart. See the official Karpenter Helm chart values file and documentation for available configuration options.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="karpenter_chart_name" requirement="optional" type="string">
@@ -619,6 +645,6 @@ The name of the Karpenter Node IAM Role.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.13/modules/services/eks-karpenter/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2cad60ef1099e257fe385a14a77925f1"
+  "hash": "bd537901db317153a2385ccc389886f0"
 }
 ##DOCS-SOURCER-END -->
