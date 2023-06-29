@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.4" lastModifiedVersion="0.65.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.5" lastModifiedVersion="0.65.0"/>
 
 # SSM Healthchecks IAM Permissions
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/ssm-healthchecks-iam-permissions" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/ssm-healthchecks-iam-permissions" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -46,7 +46,7 @@ We recommend using this module with just about every single EC2 Instance and Aut
 
 module "ssm_healthchecks_iam_permissions" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ssm-healthchecks-iam-permissions?ref=v0.68.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ssm-healthchecks-iam-permissions?ref=v0.68.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -70,7 +70,7 @@ module "ssm_healthchecks_iam_permissions" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ssm-healthchecks-iam-permissions?ref=v0.68.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ssm-healthchecks-iam-permissions?ref=v0.68.5"
 }
 
 inputs = {
@@ -94,11 +94,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/ssm-healthchecks-iam-permissions/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/ssm-healthchecks-iam-permissions/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/ssm-healthchecks-iam-permissions/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/ssm-healthchecks-iam-permissions/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/ssm-healthchecks-iam-permissions/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/ssm-healthchecks-iam-permissions/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a358cca218bf481e989e8802b16f1f04"
+  "hash": "2cc4e7fa2bbb0921da6cfdf9c5476fa6"
 }
 ##DOCS-SOURCER-END -->
