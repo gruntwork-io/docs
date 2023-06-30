@@ -1,6 +1,9 @@
 {
   "module": "eks-cluster-workers-cross-access",
   "releases": {
+    "v0.59.2": {
+      "contains_changes": false
+    },
     "v0.59.1": {
       "contains_changes": false
     },

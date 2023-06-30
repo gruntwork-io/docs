@@ -1,6 +1,9 @@
 {
   "module": "eks-k8s-cluster-autoscaler-iam-policy",
   "releases": {
+    "v0.59.2": {
+      "contains_changes": false
+    },
     "v0.59.1": {
       "contains_changes": false
     },

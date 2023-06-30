@@ -1,8 +1,8 @@
 {
-  "module": "tls-scripts/install.sh",
+  "module": "data-stores/rds-replica",
   "releases": {
     "v0.104.13": {
-      "contains_changes": false
+      "contains_changes": true
     },
     "v0.104.12": {
       "contains_changes": false
@@ -992,7 +992,7 @@
       "contains_changes": false
     },
     "v0.3.4": {
-      "contains_changes": true
+      "contains_changes": false
     },
     "v0.3.3": {
       "contains_changes": false

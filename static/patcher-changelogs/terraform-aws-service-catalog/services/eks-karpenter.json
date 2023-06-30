@@ -1,6 +1,9 @@
 {
   "module": "services/eks-karpenter",
   "releases": {
+    "v0.104.13": {
+      "contains_changes": false
+    },
     "v0.104.12": {
       "contains_changes": true
     },
