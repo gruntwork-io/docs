@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Terraform Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/terraform-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/terraform-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -38,7 +38,7 @@ You can install these scripts using the [Gruntwork Installer](https://github.com
 gruntwork-install --module-name "terraform-helpers" --repo "https://github.com/gruntwork-io/terraform-aws-ci" --tag "0.0.1"
 ```
 
-Note that `terraform-update-variable` depends on the [git-helpers module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/git-helpers) being installed!
+Note that `terraform-update-variable` depends on the [git-helpers module](https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/git-helpers) being installed!
 
 See the examples in the next section for how to use them.
 
@@ -341,11 +341,11 @@ and `apply` actions so that Terraform/Terragrunt can run. If you wish to impleme
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/terraform-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/terraform-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/terraform-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/terraform-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/terraform-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/terraform-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c3783b5d4a44a9287ddccef6a307cd51"
+  "hash": "9726b5ac55565e3d0485def9e4927f34"
 }
 ##DOCS-SOURCER-END -->

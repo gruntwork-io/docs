@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.28.1" lastModifiedVersion="0.27.2"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.29.0" lastModifiedVersion="0.27.2"/>
 
 # Delete Snapshots Lambda Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/lambda-cleanup-snapshots" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/lambda-cleanup-snapshots" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -29,7 +29,7 @@ Note that to use this module, you must have access to the Gruntwork [Continuous 
 
 This module allows you to configure a number of parameters, such as which database to backup, how often to run the
 backups, what account to share the backups with, and more. For a list of all available variables and their
-descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/lambda-cleanup-snapshots/variables.tf).
+descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/lambda-cleanup-snapshots/variables.tf).
 
 ## Sample Usage
 
@@ -44,7 +44,7 @@ descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-d
 
 module "lambda_cleanup_snapshots" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-cleanup-snapshots?ref=v0.28.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-cleanup-snapshots?ref=v0.29.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -114,7 +114,7 @@ module "lambda_cleanup_snapshots" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-cleanup-snapshots?ref=v0.28.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-cleanup-snapshots?ref=v0.29.0"
 }
 
 inputs = {
@@ -293,11 +293,11 @@ Namespace of snapshots that will be cleaned up by this module. If specified then
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/lambda-cleanup-snapshots/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/lambda-cleanup-snapshots/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/lambda-cleanup-snapshots/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/lambda-cleanup-snapshots/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/lambda-cleanup-snapshots/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/lambda-cleanup-snapshots/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3faa1e451e28cb3cc61a7057a129de0b"
+  "hash": "266d27fac0fc343412082e9cfa7bbb5a"
 }
 ##DOCS-SOURCER-END -->

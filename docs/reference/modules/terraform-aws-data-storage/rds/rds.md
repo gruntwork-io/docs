@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.28.1" lastModifiedVersion="0.28.1"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.29.0" lastModifiedVersion="0.29.0"/>
 
 # RDS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.28.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.29.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Relational Database Service (RDS) cluster that can run MySQL, Postgres, MariaDB, Oracle,
 or SQL Server. The cluster is managed by AWS and automatically handles standby failover, read replicas, backups,
@@ -95,14 +95,13 @@ Tunneling) before you can connect to the database.
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.28.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.29.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The DB engine to use (e.g. mysql). Required unless var.replicate_source_db
-  # is set.
+  # The DB engine to use (e.g. mysql).
   engine = <string>
 
   # The version of var.engine to use (e.g. 5.7.11 for mysql). If
@@ -147,8 +146,7 @@ module "rds" {
   # The amount of storage space the DB should use, in GB. If
   # max_allocated_storage is configured, this argument represents the initial
   # storage allocation and differences from the configuration will be ignored
-  # automatically when Storage Autoscaling occurs. Required unless
-  # var.replicate_source_db is set.
+  # automatically when Storage Autoscaling occurs.
   allocated_storage = null
 
   # A list of CIDR-formatted IP address ranges that can connect to this DB.
@@ -297,7 +295,7 @@ module "rds" {
   manage_master_user_password = null
 
   # The password for the master user. If var.snapshot_identifier is non-empty,
-  # this value is ignored. Required unless var.replicate_source_db is set.
+  # this value is ignored.
   master_password = null
 
   # The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
@@ -306,8 +304,7 @@ module "rds" {
   # the default KMS key for your Amazon Web Services account is used.
   master_user_secret_kms_key_id = null
 
-  # The username for the master user. Required unless var.replicate_source_db is
-  # set.
+  # The username for the master user.
   master_username = null
 
   # When configured, the upper limit to which Amazon RDS can automatically scale
@@ -443,7 +440,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.28.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.29.0"
 }
 
 inputs = {
@@ -452,8 +449,7 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The DB engine to use (e.g. mysql). Required unless var.replicate_source_db
-  # is set.
+  # The DB engine to use (e.g. mysql).
   engine = <string>
 
   # The version of var.engine to use (e.g. 5.7.11 for mysql). If
@@ -498,8 +494,7 @@ inputs = {
   # The amount of storage space the DB should use, in GB. If
   # max_allocated_storage is configured, this argument represents the initial
   # storage allocation and differences from the configuration will be ignored
-  # automatically when Storage Autoscaling occurs. Required unless
-  # var.replicate_source_db is set.
+  # automatically when Storage Autoscaling occurs.
   allocated_storage = null
 
   # A list of CIDR-formatted IP address ranges that can connect to this DB.
@@ -648,7 +643,7 @@ inputs = {
   manage_master_user_password = null
 
   # The password for the master user. If var.snapshot_identifier is non-empty,
-  # this value is ignored. Required unless var.replicate_source_db is set.
+  # this value is ignored.
   master_password = null
 
   # The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
@@ -657,8 +652,7 @@ inputs = {
   # the default KMS key for your Amazon Web Services account is used.
   master_user_secret_kms_key_id = null
 
-  # The username for the master user. Required unless var.replicate_source_db is
-  # set.
+  # The username for the master user.
   master_username = null
 
   # When configured, the upper limit to which Amazon RDS can automatically scale
@@ -800,7 +794,7 @@ inputs = {
 <HclListItem name="engine" requirement="required" type="string">
 <HclListItemDescription>
 
-The DB engine to use (e.g. mysql). Required unless <a href="#replicate_source_db"><code>replicate_source_db</code></a> is set.
+The DB engine to use (e.g. mysql).
 
 </HclListItemDescription>
 </HclListItem>
@@ -876,7 +870,7 @@ List of IDs of AWS Security Groups to attach to the read replica RDS instance.
 <HclListItem name="allocated_storage" requirement="optional" type="number">
 <HclListItemDescription>
 
-The amount of storage space the DB should use, in GB. If max_allocated_storage is configured, this argument represents the initial storage allocation and differences from the configuration will be ignored automatically when Storage Autoscaling occurs. Required unless <a href="#replicate_source_db"><code>replicate_source_db</code></a> is set.
+The amount of storage space the DB should use, in GB. If max_allocated_storage is configured, this argument represents the initial storage allocation and differences from the configuration will be ignored automatically when Storage Autoscaling occurs.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1200,7 +1194,7 @@ Set to true to allow RDS to manage the master user password in Secrets Manager. 
 <HclListItem name="master_password" requirement="optional" type="string">
 <HclListItemDescription>
 
-The password for the master user. If <a href="#snapshot_identifier"><code>snapshot_identifier</code></a> is non-empty, this value is ignored. Required unless <a href="#replicate_source_db"><code>replicate_source_db</code></a> is set.
+The password for the master user. If <a href="#snapshot_identifier"><code>snapshot_identifier</code></a> is non-empty, this value is ignored.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1218,7 +1212,7 @@ The Amazon Web Services KMS key identifier is the key ARN, key ID, alias ARN, or
 <HclListItem name="master_username" requirement="optional" type="string">
 <HclListItemDescription>
 
-The username for the master user. Required unless <a href="#replicate_source_db"><code>replicate_source_db</code></a> is set.
+The username for the master user.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1495,11 +1489,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/rds/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/rds/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9040e308e0635e966fb1c103e4d98bb1"
+  "hash": "02746ecfebb2a82db2a1062d07241857"
 }
 ##DOCS-SOURCER-END -->
