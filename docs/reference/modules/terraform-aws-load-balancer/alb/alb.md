@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="0.29.7" lastModifiedVersion="0.29.7"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="0.29.8" lastModifiedVersion="0.29.8"/>
 
 # Application Load Balancer (ALB) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/fix%2Fupdate-codeowners/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an [Application Load Balancer](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)
 that you can use as a load balancer for any [ALB Target Group](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html).
@@ -191,7 +191,7 @@ There are two ways for you to override this behavior:
 
 module "alb" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -282,17 +282,11 @@ module "alb" {
   # the tag name and the value is the tag value.
   custom_tags = {}
 
-  # If a request to the load balancer does not match any of your listener rules,
-  # the default action will return a fixed response with this body.
-  default_action_body = null
-
-  # If a request to the load balancer does not match any of your listener rules,
-  # the default action will return a fixed response with this content type.
-  default_action_content_type = "text/plain"
-
-  # If a request to the load balancer does not match any of your listener rules,
-  # the default action will return a fixed response with this status code.
-  default_action_status_code = 404
+  # Define the default action if a request to the load balancer does not match
+  # any of your listener rules. Currently only 'fixed-response' and 'redirect'
+  # are supported.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener#default_action
+  default_action = {"fixed-response":{"content_type":"text/plain","message_body":null,"status_code":404}}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -405,7 +399,7 @@ module "alb" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.8"
 }
 
 inputs = {
@@ -499,17 +493,11 @@ inputs = {
   # the tag name and the value is the tag value.
   custom_tags = {}
 
-  # If a request to the load balancer does not match any of your listener rules,
-  # the default action will return a fixed response with this body.
-  default_action_body = null
-
-  # If a request to the load balancer does not match any of your listener rules,
-  # the default action will return a fixed response with this content type.
-  default_action_content_type = "text/plain"
-
-  # If a request to the load balancer does not match any of your listener rules,
-  # the default action will return a fixed response with this status code.
-  default_action_status_code = 404
+  # Define the default action if a request to the load balancer does not match
+  # any of your listener rules. Currently only 'fixed-response' and 'redirect'
+  # are supported.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener#default_action
+  default_action = {"fixed-response":{"content_type":"text/plain","message_body":null,"status_code":404}}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -784,31 +772,32 @@ A map of custom tags to apply to the ALB and its Security Group. The key is the 
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="default_action_body" requirement="optional" type="string">
+<HclListItem name="default_action" requirement="optional" type="map(any)">
 <HclListItemDescription>
 
-If a request to the load balancer does not match any of your listener rules, the default action will return a fixed response with this body.
+Define the default action if a request to the load balancer does not match any of your listener rules. Currently only 'fixed-response' and 'redirect' are supported. https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener#default_action
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
+<HclListItemTypeDetails>
 
-<HclListItem name="default_action_content_type" requirement="optional" type="string">
-<HclListItemDescription>
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
 
-If a request to the load balancer does not match any of your listener rules, the default action will return a fixed response with this content type.
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
 
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;text/plain&quot;"/>
-</HclListItem>
+```hcl
+{
+  fixed-response = {
+    content_type = "text/plain",
+    message_body = null,
+    status_code = 404
+  }
+}
+```
 
-<HclListItem name="default_action_status_code" requirement="optional" type="number">
-<HclListItemDescription>
-
-If a request to the load balancer does not match any of your listener rules, the default action will return a fixed response with this status code.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="404"/>
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="dependencies" requirement="optional" type="list(string)">
@@ -1099,11 +1088,11 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/alb/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/alb/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/alb/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/fix%2Fupdate-codeowners/modules/alb/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/fix%2Fupdate-codeowners/modules/alb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/fix%2Fupdate-codeowners/modules/alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cc98337bdd384d717d638613fc745bc7"
+  "hash": "76cfccc6baefabb8931b7742f9389a83"
 }
 ##DOCS-SOURCER-END -->
