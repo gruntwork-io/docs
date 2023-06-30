@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Kubernetes CircleCI Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/kubernetes-circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/kubernetes-circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.51.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -99,11 +99,11 @@ job:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/kubernetes-circleci-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/kubernetes-circleci-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/kubernetes-circleci-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/kubernetes-circleci-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/kubernetes-circleci-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/kubernetes-circleci-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "40c908e66f65d2c16a0ddfceba95ecbe"
+  "hash": "fce304800f1513197c9e4b81b86cf565"
 }
 ##DOCS-SOURCER-END -->

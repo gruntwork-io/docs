@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # EC2 Backup Lambda Function Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/ec2-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/ec2-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -51,8 +51,8 @@ DLM:
 
 ## Example code
 
-*   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/examples/jenkins) for working sample code.
-*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/ec2-backup/vars.tf) for all parameters you can configure on this module.
+*   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/examples/jenkins) for working sample code.
+*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/ec2-backup/vars.tf) for all parameters you can configure on this module.
 
 ## Specifying an instance
 
@@ -346,11 +346,11 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/ec2-backup/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/ec2-backup/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/ec2-backup/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/ec2-backup/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/ec2-backup/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/ec2-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cb91175545e448f9a3d3c17c40676b16"
+  "hash": "cf6dd448b061789efa5b4b97a35c3c9a"
 }
 ##DOCS-SOURCER-END -->

@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Infrastructure Pipeline: Monorepo Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/monorepo-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/monorepo-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -41,15 +41,15 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [Overview of scripts](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/monorepo-helpers/core-concepts.md#overview): An overview of the scripts included in this module, including how they work.
+*   [Overview of scripts](https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/monorepo-helpers/core-concepts.md#overview): An overview of the scripts included in this module, including how they work.
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -57,7 +57,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this module out for experimenting and learning, check out the following resources:
 
-*   [CircleCI Quickstart](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/monorepo-helpers/core-concepts.md#circleci-quickstart): Quickstart guide for integrating the scripts into CircleCI to setup dynamic test selection.
+*   [CircleCI Quickstart](https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/monorepo-helpers/core-concepts.md#circleci-quickstart): Quickstart guide for integrating the scripts into CircleCI to setup dynamic test selection.
 
 ### Production deployment
 
@@ -65,23 +65,23 @@ If you just want to try this module out for experimenting and learning, check ou
 
 ## Manage
 
-*   [How to configure direct test mappings](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/monorepo-helpers/core-concepts.md#how-to-configure-direct-test-mappings)
+*   [How to configure direct test mappings](https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/monorepo-helpers/core-concepts.md#how-to-configure-direct-test-mappings)
 
-*   [How to override the files checked by validate-monorepo-test-mappings](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/monorepo-helpers/core-concepts.md#how-to-override-the-files-checked-by-validate-monorepo-test-mappings)
+*   [How to override the files checked by validate-monorepo-test-mappings](https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/monorepo-helpers/core-concepts.md#how-to-override-the-files-checked-by-validate-monorepo-test-mappings)
 
-*   [Adding a new module to a repo with validate-monorepo-test-mappings](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/monorepo-helpers/core-concepts.md#adding-a-new-module-to-a-repo-with-validate-monorepo-test-mappings)
+*   [Adding a new module to a repo with validate-monorepo-test-mappings](https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/monorepo-helpers/core-concepts.md#adding-a-new-module-to-a-repo-with-validate-monorepo-test-mappings)
 
-*   [Adding a new file that has no tests to a repo with validate-monorepo-test-mappings](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/monorepo-helpers/core-concepts.md#adding-a-new-file-that-has-no-tests-to-a-repo-with-validate-monorepo-test-mappings)
+*   [Adding a new file that has no tests to a repo with validate-monorepo-test-mappings](https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/monorepo-helpers/core-concepts.md#adding-a-new-file-that-has-no-tests-to-a-repo-with-validate-monorepo-test-mappings)
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/monorepo-helpers/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/monorepo-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/monorepo-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/monorepo-helpers/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/monorepo-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/monorepo-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "91a928b8bb7c7b049254cc8ef163e5a2"
+  "hash": "bd4683f0ad1b513c9629a78b979901d4"
 }
 ##DOCS-SOURCER-END -->

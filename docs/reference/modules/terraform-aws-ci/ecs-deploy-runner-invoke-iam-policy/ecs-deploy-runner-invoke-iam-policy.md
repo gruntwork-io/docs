@@ -13,14 +13,14 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ECS Deploy Runner Invoke IAM Policies module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/ecs-deploy-runner-invoke-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/ecs-deploy-runner-invoke-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module defines an [IAM
 policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) that
 defines the minimal set of permissions necessary to trigger a deployment event for the deployment pipeline implemented
-in the [ecs-deploy-runner module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/ecs-deploy-runner).
+in the [ecs-deploy-runner module](https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/ecs-deploy-runner).
 
 ## Attaching IAM policy to IAM roles
 
@@ -31,6 +31,8 @@ attaches the policy to a custom IAM role defined in the same terraform module:
 
 ```hcl
 module "ecs_deploy_runner_invoke_iam_policies" {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-invoke-iam-policy?ref=v0.52.4"
+  
   # (arguments omitted)
 }
 
@@ -39,7 +41,6 @@ resource "aws_iam_role" "example" {
 }
 
 resource "aws_iam_role_policy_attachment" "example" {
-  name = "attach-ecs-deploy-runner-invoke-policy"
   role = aws_iam_role.example.name
   policy_arn = module.ecs_deploy_runner_invoke_iam_policies.invoke_policy_arn
 }
@@ -211,11 +212,11 @@ The name of the IAM policy created with the permissions for invoking the ECS Dep
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/ecs-deploy-runner-invoke-iam-policy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/ecs-deploy-runner-invoke-iam-policy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/ecs-deploy-runner-invoke-iam-policy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/ecs-deploy-runner-invoke-iam-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/ecs-deploy-runner-invoke-iam-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/ib%2Fecs-deployer-updates/modules/ecs-deploy-runner-invoke-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6353ef30606f0f621306715f50fd679e"
+  "hash": "1ab2b4abc7e289bace34c7fce242bd6e"
 }
 ##DOCS-SOURCER-END -->
