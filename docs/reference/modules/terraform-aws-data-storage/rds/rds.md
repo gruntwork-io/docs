@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # RDS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F367/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.28.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -101,8 +101,7 @@ module "rds" {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The DB engine to use (e.g. mysql). Required unless var.replicate_source_db
-  # is set.
+  # The DB engine to use (e.g. mysql).
   engine = <string>
 
   # The version of var.engine to use (e.g. 5.7.11 for mysql). If
@@ -147,8 +146,7 @@ module "rds" {
   # The amount of storage space the DB should use, in GB. If
   # max_allocated_storage is configured, this argument represents the initial
   # storage allocation and differences from the configuration will be ignored
-  # automatically when Storage Autoscaling occurs. Required unless
-  # var.replicate_source_db is set.
+  # automatically when Storage Autoscaling occurs.
   allocated_storage = null
 
   # A list of CIDR-formatted IP address ranges that can connect to this DB.
@@ -297,7 +295,7 @@ module "rds" {
   manage_master_user_password = null
 
   # The password for the master user. If var.snapshot_identifier is non-empty,
-  # this value is ignored. Required unless var.replicate_source_db is set.
+  # this value is ignored.
   master_password = null
 
   # The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
@@ -306,8 +304,7 @@ module "rds" {
   # the default KMS key for your Amazon Web Services account is used.
   master_user_secret_kms_key_id = null
 
-  # The username for the master user. Required unless var.replicate_source_db is
-  # set.
+  # The username for the master user.
   master_username = null
 
   # When configured, the upper limit to which Amazon RDS can automatically scale
@@ -400,6 +397,12 @@ module "rds" {
   # read replicas. Must be 1 or greater to support read replicas. 0 means
   # disable automated backups.
   replica_backup_retention_period = 0
+
+  # A configuration block for restoring a DB instance to an arbitrary point in
+  # time. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#restore-to-point-in-time
+  # for more details
+  restore_to_point_in_time = null
 
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
@@ -452,8 +455,7 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The DB engine to use (e.g. mysql). Required unless var.replicate_source_db
-  # is set.
+  # The DB engine to use (e.g. mysql).
   engine = <string>
 
   # The version of var.engine to use (e.g. 5.7.11 for mysql). If
@@ -498,8 +500,7 @@ inputs = {
   # The amount of storage space the DB should use, in GB. If
   # max_allocated_storage is configured, this argument represents the initial
   # storage allocation and differences from the configuration will be ignored
-  # automatically when Storage Autoscaling occurs. Required unless
-  # var.replicate_source_db is set.
+  # automatically when Storage Autoscaling occurs.
   allocated_storage = null
 
   # A list of CIDR-formatted IP address ranges that can connect to this DB.
@@ -648,7 +649,7 @@ inputs = {
   manage_master_user_password = null
 
   # The password for the master user. If var.snapshot_identifier is non-empty,
-  # this value is ignored. Required unless var.replicate_source_db is set.
+  # this value is ignored.
   master_password = null
 
   # The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
@@ -657,8 +658,7 @@ inputs = {
   # the default KMS key for your Amazon Web Services account is used.
   master_user_secret_kms_key_id = null
 
-  # The username for the master user. Required unless var.replicate_source_db is
-  # set.
+  # The username for the master user.
   master_username = null
 
   # When configured, the upper limit to which Amazon RDS can automatically scale
@@ -752,6 +752,12 @@ inputs = {
   # disable automated backups.
   replica_backup_retention_period = 0
 
+  # A configuration block for restoring a DB instance to an arbitrary point in
+  # time. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#restore-to-point-in-time
+  # for more details
+  restore_to_point_in_time = null
+
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
   # this DB instance, you will not have any backups of the data!
@@ -800,7 +806,7 @@ inputs = {
 <HclListItem name="engine" requirement="required" type="string">
 <HclListItemDescription>
 
-The DB engine to use (e.g. mysql). Required unless <a href="#replicate_source_db"><code>replicate_source_db</code></a> is set.
+The DB engine to use (e.g. mysql).
 
 </HclListItemDescription>
 </HclListItem>
@@ -876,7 +882,7 @@ List of IDs of AWS Security Groups to attach to the read replica RDS instance.
 <HclListItem name="allocated_storage" requirement="optional" type="number">
 <HclListItemDescription>
 
-The amount of storage space the DB should use, in GB. If max_allocated_storage is configured, this argument represents the initial storage allocation and differences from the configuration will be ignored automatically when Storage Autoscaling occurs. Required unless <a href="#replicate_source_db"><code>replicate_source_db</code></a> is set.
+The amount of storage space the DB should use, in GB. If max_allocated_storage is configured, this argument represents the initial storage allocation and differences from the configuration will be ignored automatically when Storage Autoscaling occurs.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1200,7 +1206,7 @@ Set to true to allow RDS to manage the master user password in Secrets Manager. 
 <HclListItem name="master_password" requirement="optional" type="string">
 <HclListItemDescription>
 
-The password for the master user. If <a href="#snapshot_identifier"><code>snapshot_identifier</code></a> is non-empty, this value is ignored. Required unless <a href="#replicate_source_db"><code>replicate_source_db</code></a> is set.
+The password for the master user. If <a href="#snapshot_identifier"><code>snapshot_identifier</code></a> is non-empty, this value is ignored.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1218,7 +1224,7 @@ The Amazon Web Services KMS key identifier is the key ARN, key ID, alias ARN, or
 <HclListItem name="master_username" requirement="optional" type="string">
 <HclListItemDescription>
 
-The username for the master user. Required unless <a href="#replicate_source_db"><code>replicate_source_db</code></a> is set.
+The username for the master user.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1395,6 +1401,29 @@ How many days to keep backup snapshots around before cleaning them up on the rea
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
+<HclListItem name="restore_to_point_in_time" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+A configuration block for restoring a DB instance to an arbitrary point in time. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#restore-to-point-in-time for more details
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    restore_time                             = string
+    source_db_instance_identifier            = string
+    source_db_instance_automated_backups_arn = string
+    source_dbi_resource_id                   = string
+    use_latest_restorable_time               = string
+
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1495,11 +1524,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/rds/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F367/modules/rds/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F367/modules/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F367/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9040e308e0635e966fb1c103e4d98bb1"
+  "hash": "8f34550953580b619516a2e0ccaf5385"
 }
 ##DOCS-SOURCER-END -->

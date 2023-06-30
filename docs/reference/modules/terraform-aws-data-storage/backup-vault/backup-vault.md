@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Backup Vault Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/backup-vault" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F367/modules/backup-vault" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -287,11 +287,11 @@ A map of tags assigned to the vault resources, including those inherited from th
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/backup-vault/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/backup-vault/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/backup-vault/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F367/modules/backup-vault/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F367/modules/backup-vault/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F367/modules/backup-vault/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "87deea3913a05b7ee04da9c78311b7f1"
+  "hash": "6cc09e7750997ab59fe4682dc399ba0b"
 }
 ##DOCS-SOURCER-END -->

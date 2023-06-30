@@ -13,19 +13,19 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Share Snapshot Lambda Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/lambda-share-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F367/modules/lambda-share-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an [AWS Lambda](https://aws.amazon.com/lambda/) function that can share snapshots of an [Amazon
 Relational Database (RDS)](https://aws.amazon.com/rds/) database with another AWS account. Typically, the snapshots
-are created by the [lambda-create-snapshot module](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/lambda-create-snapshot), which can be configured to
+are created by the [lambda-create-snapshot module](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F367/modules/lambda-create-snapshot), which can be configured to
 automatically trigger this lambda function after each run.
 
 ## Background info
 
 For more info on how to backup RDS snapshots to a separate AWS account, check out the [lambda-create-snapshot module
-documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/lambda-create-snapshot).
+documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F367/modules/lambda-create-snapshot).
 
 ## Sample Usage
 
@@ -198,11 +198,11 @@ The amount of time, in seconds, between retries.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/lambda-share-snapshot/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/lambda-share-snapshot/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/lambda-share-snapshot/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F367/modules/lambda-share-snapshot/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F367/modules/lambda-share-snapshot/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F367/modules/lambda-share-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6b43fa022bbfe607988fef905880aac9"
+  "hash": "40cbcae6f2e42d8a9464539cd9449d12"
 }
 ##DOCS-SOURCER-END -->
