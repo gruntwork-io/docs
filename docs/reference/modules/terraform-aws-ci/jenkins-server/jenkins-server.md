@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Jenkins server
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/jenkins-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Flambda-version-546/modules/jenkins-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -29,17 +29,17 @@ to run an ASG for Jenkins that can correctly reattach an EBS volume.
 
 ## Example code
 
-*   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/examples/jenkins) for working sample code.
-*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/jenkins-server/vars.tf) for all parameters you can configure on this module.
+*   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Flambda-version-546/examples/jenkins) for working sample code.
+*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Flambda-version-546/modules/jenkins-server/vars.tf) for all parameters you can configure on this module.
 
 ## Jenkins AMI
 
-See the [install-jenkins module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/install-jenkins) for a way to create an AMI with Jenkins installed and a
+See the [install-jenkins module](https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Flambda-version-546/modules/install-jenkins) for a way to create an AMI with Jenkins installed and a
 script you can run in User Data to start Jenkins while the server is booting.
 
 ## Backing up Jenkins
 
-See the [ec2-backup module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/ec2-backup) for an automatic way to take scheduled backups of Jenkins and its EBS
+See the [ec2-backup module](https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Flambda-version-546/modules/ec2-backup) for an automatic way to take scheduled backups of Jenkins and its EBS
 volume.
 
 ## IAM permissions
@@ -1173,11 +1173,11 @@ A maximum duration to wait for each server to be healthy before timing out (e.g.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/jenkins-server/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/jenkins-server/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/jenkins-server/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Flambda-version-546/modules/jenkins-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Flambda-version-546/modules/jenkins-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Flambda-version-546/modules/jenkins-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "401fe1959e170200c8ffc8e53b5d87f9"
+  "hash": "0ad287eb16e9ac45cb06fe943c5c6e95"
 }
 ##DOCS-SOURCER-END -->

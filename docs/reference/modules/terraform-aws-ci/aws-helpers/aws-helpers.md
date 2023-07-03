@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # AWS Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/aws-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Flambda-version-546/modules/aws-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.11" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -45,11 +45,11 @@ dependencies:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/aws-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/aws-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/aws-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Flambda-version-546/modules/aws-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Flambda-version-546/modules/aws-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/bug%2Flambda-version-546/modules/aws-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6c2fb3c52bca55ccf3001863f53d0be5"
+  "hash": "3d6aa8c40230d3dae5c78531115fbd03"
 }
 ##DOCS-SOURCER-END -->
