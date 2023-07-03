@@ -13,6 +13,7 @@ Here are the repos that were updated:
 - [boilerplate](#boilerplate)
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
+- [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-vpc](#terraform-aws-vpc)
 
 
@@ -92,6 +93,52 @@ Here are the repos that were updated:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   - Add a syslog module that allows you to configure rate limiting and log rotation settings syslog.
+
+
+</div>
+
+
+
+## terraform-aws-security
+
+
+### [v0.0.3](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.0.3)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/23/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.0.3">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - Add a new module called `ssh-iam` that allows your developers to upload their public SSH keys to IAM and use those to SSH to servers.
+
+
+</div>
+
+
+### [v0.0.2](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.0.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/15/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.0.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - Add `auto-update` module to configure Amazon Linux or Ubuntu to automatically download and install the latest security updates.
+
+
+</div>
+
+
+### [v0.0.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.0.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/11/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.0.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  This release is used for internal testing only! Do not use it in production!
 
 
 </div>
