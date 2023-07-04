@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.52.5" lastModifiedVersion="0.52.3"/>
+<VersionBadge repoTitle="CI Modules" version="0.52.6" lastModifiedVersion="0.52.3"/>
 
 # EC2 Backup Lambda Function Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/ec2-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/ec2-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -51,8 +51,8 @@ DLM:
 
 ## Example code
 
-*   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/examples/jenkins) for working sample code.
-*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/ec2-backup/vars.tf) for all parameters you can configure on this module.
+*   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/examples/jenkins) for working sample code.
+*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/ec2-backup/vars.tf) for all parameters you can configure on this module.
 
 ## Specifying an instance
 
@@ -103,7 +103,7 @@ automatically delete older snapshots. You can specify two parameters to control 
 
 module "ec_2_backup" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ec2-backup?ref=v0.52.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ec2-backup?ref=v0.52.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -173,7 +173,7 @@ module "ec_2_backup" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ec2-backup?ref=v0.52.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ec2-backup?ref=v0.52.6"
 }
 
 inputs = {
@@ -346,11 +346,11 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/ec2-backup/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/ec2-backup/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.5/modules/ec2-backup/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/ec2-backup/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/ec2-backup/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/ec2-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cb91175545e448f9a3d3c17c40676b16"
+  "hash": "6717dff238d480603428656d41571050"
 }
 ##DOCS-SOURCER-END -->
