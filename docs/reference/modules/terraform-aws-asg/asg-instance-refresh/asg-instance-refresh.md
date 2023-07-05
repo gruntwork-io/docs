@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Auto Scaling Group Module with Instance Refresh
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.7/modules/asg-instance-refresh" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/feature%2Fserver-group-support-gp3/modules/asg-instance-refresh" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -652,11 +652,11 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.7/modules/asg-instance-refresh/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.7/modules/asg-instance-refresh/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.7/modules/asg-instance-refresh/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/feature%2Fserver-group-support-gp3/modules/asg-instance-refresh/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/feature%2Fserver-group-support-gp3/modules/asg-instance-refresh/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/feature%2Fserver-group-support-gp3/modules/asg-instance-refresh/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cb8c6fc214612cad2f1ba678c95a4e51"
+  "hash": "e481aec6c29fabe0a8bc2f9e89b5ac94"
 }
 ##DOCS-SOURCER-END -->

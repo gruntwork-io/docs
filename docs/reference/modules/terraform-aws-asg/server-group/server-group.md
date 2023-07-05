@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Server Group Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.7/modules/server-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/feature%2Fserver-group-support-gp3/modules/server-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -37,7 +37,7 @@ Scaling Group (ASG).
 
 ## Quick start
 
-Check out the [server-group examples](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.7/examples/server-group) for sample code that demonstrates how to use this module.
+Check out the [server-group examples](https://github.com/gruntwork-io/terraform-aws-asg/tree/feature%2Fserver-group-support-gp3/examples/server-group) for sample code that demonstrates how to use this module.
 
 ## Background
 
@@ -50,7 +50,7 @@ Check out the [server-group examples](https://github.com/gruntwork-io/terraform-
 The first question you may ask is, how is this different than an [Auto Scaling Group
 (ASG)](http://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroup.html)? While an ASG does allow you to
 run a cluster of servers, automaticaly replace failed servers, and do zero-downtime deployment (see the
-[asg-rolling-deploy module](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.7/modules/asg-rolling-deploy)), attaching ENIs and EBS Volumes to servers in an ASG is very
+[asg-rolling-deploy module](https://github.com/gruntwork-io/terraform-aws-asg/tree/feature%2Fserver-group-support-gp3/modules/asg-rolling-deploy)), attaching ENIs and EBS Volumes to servers in an ASG is very
 tricky:
 
 1.  Using ENIs and EBS Volumes with ASGs is not natively supported by Terraform. The
@@ -87,7 +87,7 @@ The solution used in this module is to:
 
 The server-group module will perform a zero-downtime, rolling deployment every time you make a change to the code and
 run `terraform apply`. This deployment process is implemented in a Python script called
-[rolling_deployment.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.7/modules/server-group/rolling-deploy/rolling_deployment.py) which runs in a [local-exec
+[rolling_deployment.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/feature%2Fserver-group-support-gp3/modules/server-group/rolling-deploy/rolling_deployment.py) which runs in a [local-exec
 provisioner](https://www.terraform.io/docs/provisioners/local-exec.html).
 
 Here is how it works:
@@ -336,17 +336,31 @@ module "server_group" {
   role_prefix = "server-group-"
 
   # Whether the root volume of each server should be deleted when the server is
-  # terminated.
+  # terminated. Please note that when using EBS optimized AMIs, the root volume
+  # name name is determined by the AMI, and if var.block_device_name does not
+  # match the AMI's device name, AWS will create another volume instead of
+  # applying this configuration to the root volume.
   root_block_device_delete_on_termination = true
 
-  # Whether the root volume of each server should be encrypted.
+  # Whether the root volume of each server should be encrypted. Please note that
+  # when using EBS optimized AMIs, the root volume name name is determined by
+  # the AMI, and if var.block_device_name does not match the AMI's device name,
+  # AWS will create another volume instead of applying this configuration to the
+  # root volume.
   root_block_device_encrypted = true
 
-  # The size, in GB, of the root volume of each server.
+  # The size, in GB, of the root volume of each server. Please note that when
+  # using EBS optimized AMIs, the root volume name name is determined by the
+  # AMI, and if var.block_device_name does not match the AMI's device name, AWS
+  # will create another volume instead of applying this configuration to the
+  # root volume.
   root_block_device_volume_size = 20
 
   # The type of the root volume of each server. Must be one of: standard, gp2,
-  # or io1.
+  # gp3, io1, io2, sc1, or st1. Please note that when using EBS optimized AMIs,
+  # the root volume name name is determined by the AMI, and if
+  # var.block_device_name does not match the AMI's device name, AWS will create
+  # another volume instead of applying this configuration to the root volume.
   root_block_device_volume_type = "standard"
 
   # The ID of the Route53 Hosted Zone in which we will create the DNS records
@@ -621,17 +635,31 @@ inputs = {
   role_prefix = "server-group-"
 
   # Whether the root volume of each server should be deleted when the server is
-  # terminated.
+  # terminated. Please note that when using EBS optimized AMIs, the root volume
+  # name name is determined by the AMI, and if var.block_device_name does not
+  # match the AMI's device name, AWS will create another volume instead of
+  # applying this configuration to the root volume.
   root_block_device_delete_on_termination = true
 
-  # Whether the root volume of each server should be encrypted.
+  # Whether the root volume of each server should be encrypted. Please note that
+  # when using EBS optimized AMIs, the root volume name name is determined by
+  # the AMI, and if var.block_device_name does not match the AMI's device name,
+  # AWS will create another volume instead of applying this configuration to the
+  # root volume.
   root_block_device_encrypted = true
 
-  # The size, in GB, of the root volume of each server.
+  # The size, in GB, of the root volume of each server. Please note that when
+  # using EBS optimized AMIs, the root volume name name is determined by the
+  # AMI, and if var.block_device_name does not match the AMI's device name, AWS
+  # will create another volume instead of applying this configuration to the
+  # root volume.
   root_block_device_volume_size = 20
 
   # The type of the root volume of each server. Must be one of: standard, gp2,
-  # or io1.
+  # gp3, io1, io2, sc1, or st1. Please note that when using EBS optimized AMIs,
+  # the root volume name name is determined by the AMI, and if
+  # var.block_device_name does not match the AMI's device name, AWS will create
+  # another volume instead of applying this configuration to the root volume.
   root_block_device_volume_type = "standard"
 
   # The ID of the Route53 Hosted Zone in which we will create the DNS records
@@ -1123,7 +1151,7 @@ The name prefix that is used for the server group role.
 <HclListItem name="root_block_device_delete_on_termination" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Whether the root volume of each server should be deleted when the server is terminated.
+Whether the root volume of each server should be deleted when the server is terminated. Please note that when using EBS optimized AMIs, the root volume name name is determined by the AMI, and if <a href="#block_device_name"><code>block_device_name</code></a> does not match the AMI's device name, AWS will create another volume instead of applying this configuration to the root volume.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -1132,7 +1160,7 @@ Whether the root volume of each server should be deleted when the server is term
 <HclListItem name="root_block_device_encrypted" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Whether the root volume of each server should be encrypted.
+Whether the root volume of each server should be encrypted. Please note that when using EBS optimized AMIs, the root volume name name is determined by the AMI, and if <a href="#block_device_name"><code>block_device_name</code></a> does not match the AMI's device name, AWS will create another volume instead of applying this configuration to the root volume.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -1141,7 +1169,7 @@ Whether the root volume of each server should be encrypted.
 <HclListItem name="root_block_device_volume_size" requirement="optional" type="number">
 <HclListItemDescription>
 
-The size, in GB, of the root volume of each server.
+The size, in GB, of the root volume of each server. Please note that when using EBS optimized AMIs, the root volume name name is determined by the AMI, and if <a href="#block_device_name"><code>block_device_name</code></a> does not match the AMI's device name, AWS will create another volume instead of applying this configuration to the root volume.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="20"/>
@@ -1150,7 +1178,7 @@ The size, in GB, of the root volume of each server.
 <HclListItem name="root_block_device_volume_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-The type of the root volume of each server. Must be one of: standard, gp2, or io1.
+The type of the root volume of each server. Must be one of: standard, gp2, gp3, io1, io2, sc1, or st1. Please note that when using EBS optimized AMIs, the root volume name name is determined by the AMI, and if <a href="#block_device_name"><code>block_device_name</code></a> does not match the AMI's device name, AWS will create another volume instead of applying this configuration to the root volume.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;standard&quot;"/>
@@ -1318,11 +1346,11 @@ Other modules can depend on this variable to ensure those modules only deploy af
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.7/modules/server-group/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.7/modules/server-group/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.7/modules/server-group/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/feature%2Fserver-group-support-gp3/modules/server-group/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/feature%2Fserver-group-support-gp3/modules/server-group/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/feature%2Fserver-group-support-gp3/modules/server-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ba73f5673d92b76e03e6044ed12a99aa"
+  "hash": "d64a9e9cc11cebf0f02aac5dec50aa2a"
 }
 ##DOCS-SOURCER-END -->
