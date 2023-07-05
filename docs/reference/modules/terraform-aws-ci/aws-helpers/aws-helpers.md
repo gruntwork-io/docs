@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # AWS Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/aws-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/dependabot%2Fgo_modules%2Ftest%2Fupgrade-tester%2Fgoogle.golang.org%2Fgrpc-1.53.0/modules/aws-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.11" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -45,11 +45,11 @@ dependencies:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/aws-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/aws-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/aws-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/dependabot%2Fgo_modules%2Ftest%2Fupgrade-tester%2Fgoogle.golang.org%2Fgrpc-1.53.0/modules/aws-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/dependabot%2Fgo_modules%2Ftest%2Fupgrade-tester%2Fgoogle.golang.org%2Fgrpc-1.53.0/modules/aws-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/dependabot%2Fgo_modules%2Ftest%2Fupgrade-tester%2Fgoogle.golang.org%2Fgrpc-1.53.0/modules/aws-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6839c64c22f69b0142544fd63bfcd3ea"
+  "hash": "3a4e94f16fb5b52792b80a4b592f4ca7"
 }
 ##DOCS-SOURCER-END -->

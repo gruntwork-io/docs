@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # CircleCI Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/dependabot%2Fgo_modules%2Ftest%2Fupgrade-tester%2Fgoogle.golang.org%2Fgrpc-1.53.0/modules/circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.51.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -67,11 +67,11 @@ dependencies:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/circleci-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/circleci-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/circleci-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/dependabot%2Fgo_modules%2Ftest%2Fupgrade-tester%2Fgoogle.golang.org%2Fgrpc-1.53.0/modules/circleci-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/dependabot%2Fgo_modules%2Ftest%2Fupgrade-tester%2Fgoogle.golang.org%2Fgrpc-1.53.0/modules/circleci-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/dependabot%2Fgo_modules%2Ftest%2Fupgrade-tester%2Fgoogle.golang.org%2Fgrpc-1.53.0/modules/circleci-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f5d24d5064bb0ebaf9bb1664fb32310c"
+  "hash": "bfd9a519578932a3010ab8f0441aa175"
 }
 ##DOCS-SOURCER-END -->

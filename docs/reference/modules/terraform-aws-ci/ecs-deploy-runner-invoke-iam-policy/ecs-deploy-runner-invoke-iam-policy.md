@@ -13,14 +13,14 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ECS Deploy Runner Invoke IAM Policies module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/ecs-deploy-runner-invoke-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/dependabot%2Fgo_modules%2Ftest%2Fupgrade-tester%2Fgoogle.golang.org%2Fgrpc-1.53.0/modules/ecs-deploy-runner-invoke-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module defines an [IAM
 policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) that
 defines the minimal set of permissions necessary to trigger a deployment event for the deployment pipeline implemented
-in the [ecs-deploy-runner module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/ecs-deploy-runner).
+in the [ecs-deploy-runner module](https://github.com/gruntwork-io/terraform-aws-ci/tree/dependabot%2Fgo_modules%2Ftest%2Fupgrade-tester%2Fgoogle.golang.org%2Fgrpc-1.53.0/modules/ecs-deploy-runner).
 
 ## Attaching IAM policy to IAM roles
 
@@ -211,11 +211,11 @@ The name of the IAM policy created with the permissions for invoking the ECS Dep
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/ecs-deploy-runner-invoke-iam-policy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/ecs-deploy-runner-invoke-iam-policy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/ecs-deploy-runner-invoke-iam-policy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/dependabot%2Fgo_modules%2Ftest%2Fupgrade-tester%2Fgoogle.golang.org%2Fgrpc-1.53.0/modules/ecs-deploy-runner-invoke-iam-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/dependabot%2Fgo_modules%2Ftest%2Fupgrade-tester%2Fgoogle.golang.org%2Fgrpc-1.53.0/modules/ecs-deploy-runner-invoke-iam-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/dependabot%2Fgo_modules%2Ftest%2Fupgrade-tester%2Fgoogle.golang.org%2Fgrpc-1.53.0/modules/ecs-deploy-runner-invoke-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b3f6fbda81077f9bf8aada39cfabdb27"
+  "hash": "4b1a4d5c38992d43ce8407946603fb2a"
 }
 ##DOCS-SOURCER-END -->
