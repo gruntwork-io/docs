@@ -17,6 +17,7 @@ Here are the repos that were updated:
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
+- [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-vpc](#terraform-aws-vpc)
 
@@ -414,6 +415,24 @@ Here are the repos that were updated:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   - Generate public documentation into module-aws-monitoring-public on each release
+
+
+</div>
+
+
+
+## terraform-aws-security
+
+
+### [v0.0.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.0.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/26/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.0.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - First release!
 
 
 </div>
