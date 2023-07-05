@@ -219,6 +219,12 @@ module "vpc_mgmt" {
   # null, a default name based on the VPC name will be chosen.
   flow_log_cloudwatch_log_group_name = null
 
+  # Specifies the number of days you want to retain log events. Possible values
+  # are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096,
+  # 1827, 2192, 2557, 2922, 3288, 3653, and 0. If you select 0, the events in
+  # the log group are always retained and never expire.
+  flow_log_cloudwatch_log_group_retention_in_days = 0
+
   # The maximum interval of time during which a flow of packets is captured and
   # aggregated into a flow log record. Valid values: 60 seconds (1 minute) or
   # 600 seconds (10 minutes).
@@ -429,6 +435,12 @@ inputs = {
   # The name to use for the CloudWatch Log group used for storing flow log. When
   # null, a default name based on the VPC name will be chosen.
   flow_log_cloudwatch_log_group_name = null
+
+  # Specifies the number of days you want to retain log events. Possible values
+  # are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096,
+  # 1827, 2192, 2557, 2922, 3288, 3653, and 0. If you select 0, the events in
+  # the log group are always retained and never expire.
+  flow_log_cloudwatch_log_group_retention_in_days = 0
 
   # The maximum interval of time during which a flow of packets is captured and
   # aggregated into a flow log record. Valid values: 60 seconds (1 minute) or
@@ -785,6 +797,15 @@ The name to use for the CloudWatch Log group used for storing flow log. When nul
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="flow_log_cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+Specifies the number of days you want to retain log events. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096, 1827, 2192, 2557, 2922, 3288, 3653, and 0. If you select 0, the events in the log group are always retained and never expire.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
 <HclListItem name="flow_log_max_aggregation_interval" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1047,6 +1068,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/modules/networking/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f07b4cc0c362089ee65b15537ef107f0"
+  "hash": "4226bf589ee9572a2aaae7709ec22afd"
 }
 ##DOCS-SOURCER-END -->
