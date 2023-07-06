@@ -215,10 +215,6 @@ module "vpc_mgmt" {
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = false
 
-  # The name to use for the CloudWatch Log group used for storing flow log. When
-  # null, a default name based on the VPC name will be chosen.
-  flow_log_cloudwatch_log_group_name = null
-
   # Specifies the number of days you want to retain log events. Possible values
   # are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096,
   # 1827, 2192, 2557, 2922, 3288, 3653, and 0. If you select 0, the events in
@@ -431,10 +427,6 @@ inputs = {
 
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = false
-
-  # The name to use for the CloudWatch Log group used for storing flow log. When
-  # null, a default name based on the VPC name will be chosen.
-  flow_log_cloudwatch_log_group_name = null
 
   # Specifies the number of days you want to retain log events. Possible values
   # are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096,
@@ -788,15 +780,6 @@ If set to false, the default security groups will NOT be created.
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="flow_log_cloudwatch_log_group_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name to use for the CloudWatch Log group used for storing flow log. When null, a default name based on the VPC name will be chosen.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="flow_log_cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1068,6 +1051,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/modules/networking/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "4226bf589ee9572a2aaae7709ec22afd"
+  "hash": "a7a23e281959710aff42b05dc673b0ef"
 }
 ##DOCS-SOURCER-END -->
