@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.14" lastModifiedVersion="0.104.5"/>
+<VersionBadge version="0.104.15" lastModifiedVersion="0.104.15"/>
 
 # VPC
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.15/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fvpc" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -65,9 +65,9 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.15/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.15/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.15/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.15/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.15/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -105,7 +105,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "vpc" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/vpc?ref=v0.104.14"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/vpc?ref=v0.104.15"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -281,6 +281,12 @@ module "vpc" {
   # null, a default name based on the VPC name will be chosen.
   flow_log_cloudwatch_log_group_name = null
 
+  # Specifies the number of days you want to retain log events. Possible values
+  # are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096,
+  # 1827, 2192, 2557, 2922, 3288, 3653, and 0. If you select 0, the events in
+  # the log group are always retained and never expire.
+  flow_log_cloudwatch_log_group_retention_in_days = 0
+
   # The destination for the flow log. Valid values are cloud-watch-logs or s3.
   # Defaults to cloud-watch-logs.
   flow_log_destination_type = "cloud-watch-logs"
@@ -288,6 +294,11 @@ module "vpc" {
   # Boolean to determine whether flow logs should be deleted if the S3 bucket is
   # removed by terraform. Defaults to false.
   flow_log_force_destroy_bucket = false
+
+  # The maximum interval of time during which a flow of packets is captured and
+  # aggregated into a flow log record. Valid values: 60 seconds (1 minute) or
+  # 600 seconds (10 minutes).
+  flow_log_max_aggregation_interval = 600
 
   # The name to use for the VPC flow logs S3 bucket.
   flow_log_s3_bucket_name = null
@@ -525,7 +536,7 @@ module "vpc" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/vpc?ref=v0.104.14"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/vpc?ref=v0.104.15"
 }
 
 inputs = {
@@ -704,6 +715,12 @@ inputs = {
   # null, a default name based on the VPC name will be chosen.
   flow_log_cloudwatch_log_group_name = null
 
+  # Specifies the number of days you want to retain log events. Possible values
+  # are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096,
+  # 1827, 2192, 2557, 2922, 3288, 3653, and 0. If you select 0, the events in
+  # the log group are always retained and never expire.
+  flow_log_cloudwatch_log_group_retention_in_days = 0
+
   # The destination for the flow log. Valid values are cloud-watch-logs or s3.
   # Defaults to cloud-watch-logs.
   flow_log_destination_type = "cloud-watch-logs"
@@ -711,6 +728,11 @@ inputs = {
   # Boolean to determine whether flow logs should be deleted if the S3 bucket is
   # removed by terraform. Defaults to false.
   flow_log_force_destroy_bucket = false
+
+  # The maximum interval of time during which a flow of packets is captured and
+  # aggregated into a flow log record. Valid values: 60 seconds (1 minute) or
+  # 600 seconds (10 minutes).
+  flow_log_max_aggregation_interval = 600
 
   # The name to use for the VPC flow logs S3 bucket.
   flow_log_s3_bucket_name = null
@@ -1408,6 +1430,15 @@ The name to use for the CloudWatch Log group used for storing flow log. When nul
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="flow_log_cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+Specifies the number of days you want to retain log events. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096, 1827, 2192, 2557, 2922, 3288, 3653, and 0. If you select 0, the events in the log group are always retained and never expire.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
 <HclListItem name="flow_log_destination_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1424,6 +1455,15 @@ Boolean to determine whether flow logs should be deleted if the S3 bucket is rem
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="flow_log_max_aggregation_interval" requirement="optional" type="number">
+<HclListItemDescription>
+
+The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record. Valid values: 60 seconds (1 minute) or 600 seconds (10 minutes).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="600"/>
 </HclListItem>
 
 <HclListItem name="flow_log_s3_bucket_name" requirement="optional" type="string">
@@ -2118,11 +2158,11 @@ Indicates whether or not the VPC has finished creating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/modules/networking/vpc/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/modules/networking/vpc/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.14/modules/networking/vpc/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.15/modules/networking/vpc/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.15/modules/networking/vpc/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.15/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f167d7bed879e083105430008a1e99e3"
+  "hash": "dc592ec9b74c22e572605550d69efb7d"
 }
 ##DOCS-SOURCER-END -->
