@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # RDS Read Replicas Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/rds-replicas" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F371/modules/rds-replicas" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases?q=rds-replicas" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -25,6 +25,43 @@ A read replica is a read-only copy of a DB instance. You can reduce the load on 
 queries from your applications to the read replica. Refer to
 [Working with DB instance read replicas](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html)
 for more information.
+
+## Promoting Read Replica as Primary
+
+For disaster recovery, you might want to promote a read replica as a primary instance. While Terraform is a powerful
+infrastructure-as-code tool, some operations may require interacting with the underlying cloud provider's APIs directly,
+as is the case with promoting an RDS replica to the primary instance. Here is the instruction to do so:
+
+1.  **Promote the replica**: Run AWS CLI command to promote read replica as primary with the following command:
+
+```shell
+aws rds promote-read-replica \
+   --db-instance-identifier <replica-identifier> \
+   --region <region>
+```
+
+**Note**: This command triggers the promotion process and takes additional 30 mins to an hour to complete the
+modification.
+
+2.  **Update the Terraform configuration**: Modify your Terraform configuration file (e.g., main.tf) to reflect the new
+    state. Unfortunately, there's no way to automatically reflect the new state in terraform.
+3.  **Import the new primary instance into Terraform state**: Run the `terraform import` command. This command associates
+    the
+    resource in your Terraform configuration with the existing resource in AWS.
+
+```shell
+terraform import aws_db_instance.<identifier> <primary_instance_arn>
+```
+
+4.  **Refresh the Terraform state**: Run `terraform refresh` to fetch the current state of the primary instance from AWS
+    and update the Terraform state file accordingly. This ensures that Terraform is aware of the new primary instance's
+    attributes.
+5.  **Verify the Terraform plan**: Run `terraform plan` to review the changes that Terraform will apply based on the
+    updated configuration and current state. Make sure the plan reflects the desired changes, including the new primary
+    instance attributes.
+6.  **Apply the Terraform changes**: If the plan looks correct, apply the changes by running terraform apply. Terraform
+    will update the resources in the state file to match the desired configuration, reflecting the newly promoted primary
+    instance.
 
 ## Sample Usage
 
@@ -53,6 +90,11 @@ module "rds_replicas" {
   # May contain only lowercase alphanumeric characters, hyphens, underscores,
   # periods, and spaces.
   name = <string>
+
+  # The number of read replicas to create. RDS will asynchronously replicate all
+  # data from the master to these replicas, which you can use to horizontally
+  # scale reads traffic.
+  num_read_replicas = <number>
 
   # The port the DB will listen on (e.g. 3306)
   port = <number>
@@ -197,11 +239,6 @@ module "rds_replicas" {
   # zone. If the primary fails, this instance will automatically take over.
   multi_az = false
 
-  # The number of read replicas to create. RDS will asynchronously replicate all
-  # data from the master to these replicas, which you can use to horizontally
-  # scale reads traffic.
-  num_read_replicas = 0
-
   # Name of a DB parameter group to associate.
   parameter_group_name = null
 
@@ -225,6 +262,10 @@ module "rds_replicas" {
   # WARNING: - In nearly all cases a database should NOT be publicly accessible.
   # Only set this to true if you want the database open to the internet.
   publicly_accessible = false
+
+  # Identifiers of the replica you want to create. Use this variable if you want
+  # to set custom identifier for your read replicas.
+  replica_identifiers = null
 
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
@@ -280,6 +321,11 @@ inputs = {
   # periods, and spaces.
   name = <string>
 
+  # The number of read replicas to create. RDS will asynchronously replicate all
+  # data from the master to these replicas, which you can use to horizontally
+  # scale reads traffic.
+  num_read_replicas = <number>
+
   # The port the DB will listen on (e.g. 3306)
   port = <number>
 
@@ -423,11 +469,6 @@ inputs = {
   # zone. If the primary fails, this instance will automatically take over.
   multi_az = false
 
-  # The number of read replicas to create. RDS will asynchronously replicate all
-  # data from the master to these replicas, which you can use to horizontally
-  # scale reads traffic.
-  num_read_replicas = 0
-
   # Name of a DB parameter group to associate.
   parameter_group_name = null
 
@@ -451,6 +492,10 @@ inputs = {
   # WARNING: - In nearly all cases a database should NOT be publicly accessible.
   # Only set this to true if you want the database open to the internet.
   publicly_accessible = false
+
+  # Identifiers of the replica you want to create. Use this variable if you want
+  # to set custom identifier for your read replicas.
+  replica_identifiers = null
 
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
@@ -503,6 +548,14 @@ The instance type to use for the db (e.g. db.t2.micro)
 <HclListItemDescription>
 
 The name used to namespace all resources created by these templates, including the DB instance (e.g. drupaldb). Must be unique for this region. May contain only lowercase alphanumeric characters, hyphens, underscores, periods, and spaces.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="num_read_replicas" requirement="required" type="number">
+<HclListItemDescription>
+
+The number of read replicas to create. RDS will asynchronously replicate all data from the master to these replicas, which you can use to horizontally scale reads traffic.
 
 </HclListItemDescription>
 </HclListItem>
@@ -785,15 +838,6 @@ Specifies if a standby instance should be deployed in another availability zone.
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="num_read_replicas" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of read replicas to create. RDS will asynchronously replicate all data from the master to these replicas, which you can use to horizontally scale reads traffic.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
-</HclListItem>
-
 <HclListItem name="parameter_group_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -837,6 +881,15 @@ WARNING: - In nearly all cases a database should NOT be publicly accessible. Onl
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="replica_identifiers" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Identifiers of the replica you want to create. Use this variable if you want to set custom identifier for your read replicas.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
@@ -912,11 +965,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/rds-replicas/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/rds-replicas/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/rds-replicas/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F371/modules/rds-replicas/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F371/modules/rds-replicas/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/issues%2F371/modules/rds-replicas/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8763bc60f0e0b12bbadbefc0aff7c5b6"
+  "hash": "b6fde3a26ea4de44b5e5346ed49d686a"
 }
 ##DOCS-SOURCER-END -->
