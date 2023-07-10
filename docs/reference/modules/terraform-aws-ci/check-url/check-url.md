@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Check Url
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/check-url" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/dependabot%2Fgo_modules%2Ftest%2Fupgrade-tester%2Fgoogle.golang.org%2Fgrpc-1.53.0/modules/check-url" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.11" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -81,11 +81,11 @@ Success! Got expected status code '200' and text '2.0.0' from URL http://www.my-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/check-url/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/check-url/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/check-url/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/dependabot%2Fgo_modules%2Ftest%2Fupgrade-tester%2Fgoogle.golang.org%2Fgrpc-1.53.0/modules/check-url/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/dependabot%2Fgo_modules%2Ftest%2Fupgrade-tester%2Fgoogle.golang.org%2Fgrpc-1.53.0/modules/check-url/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/dependabot%2Fgo_modules%2Ftest%2Fupgrade-tester%2Fgoogle.golang.org%2Fgrpc-1.53.0/modules/check-url/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "206474b46cf195b0a9bc8b63c3bd4dc3"
+  "hash": "11606de9764a20a06086f38789c19835"
 }
 ##DOCS-SOURCER-END -->
