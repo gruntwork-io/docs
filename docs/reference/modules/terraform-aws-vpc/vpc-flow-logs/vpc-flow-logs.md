@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.23.2" lastModifiedVersion="0.23.2"/>
+<VersionBadge repoTitle="VPC Modules" version="0.23.3" lastModifiedVersion="0.23.3"/>
 
 # VPC Flow Logs Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.2/modules/vpc-flow-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-flow-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.23.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.23.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates a [VPC flow log](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html). The flow log will capture IP traffic information for a given VPC, subnet, or [Elastic Network Interface (ENI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html). Flow logs can be configured to capture all traffic, only traffic that is accepted, or only traffic that is rejected. The logs can be published to [Amazon CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html) or an S3 bucket.
 
@@ -35,7 +35,7 @@ This shows a single rejected packet of 44 bytes from `209.17.96.58` port `55428`
 
 This particular flow log record was recorded from a newly created EC2 instance running Linux, and yet the packet is destined for port 139 using the Server Message Block (SMB) protocol, an antiquated file sharing protocol for Windows. Why would this occur? Because publicly routable IP addresses are continuously barraged by probes from malicious hosts seeking vulnerable systems to compromise. This is one reason why it is crucial to have a [battle-tested, production-grade network architecture](https://www.gruntwork.io/reference-architecture/) that limits [attack surface](https://en.wikipedia.org/wiki/Attack_surface) and enforces [segmentation](https://en.wikipedia.org/wiki/Network_segmentation).
 
-VPC Flow Logs do not capture packet payloads. You can use [VPC Traffic Mirroring](https://aws.amazon.com/blogs/aws/new-vpc-traffic-mirroring/) if you wish to capture payloads. Furthermore, flow logs do not capture all IP traffic. For a list of flow log limitations, consult the [AWS documentation](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-logs-limitations).
+VPC Flow Logs do not capture packet payloads. You can use [VPC Traffic Mirroring](https://aws.amazon.com/blogs/aws/new-vpc-traffic-mirroring/) if you wish to capture packets/payloads. Furthermore, flow logs do not capture all IP traffic. For a list of flow log limitations, consult the [AWS documentation](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-logs-limitations).
 
 ## How are VPC Flow Logs useful?
 
@@ -86,7 +86,7 @@ TODO: Publish flow logs to an S3 bucket or CloudWatch Logs group in another acco
 
 module "vpc_flow_logs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-flow-logs?ref=v0.23.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-flow-logs?ref=v0.23.3"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -105,8 +105,9 @@ module "vpc_flow_logs" {
   # The name to use for the CloudWatch Log group.
   cloudwatch_log_group_name = null
 
-  # The number of days to retain logs in the log group. Valid values: 1, 3, 5,
-  # 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653.
+  # The number of days to retain logs in the log group. Valid values: 0, 1, 3,
+  # 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096, 1827, 2192,
+  # 2557, 2922, 3288, and 3653.
   cloudwatch_log_retention = 731
 
   # If you set this variable to false, this module will not create any
@@ -119,6 +120,15 @@ module "vpc_flow_logs" {
   # The key is the tag name and the value is the tag value.
   custom_tags = {}
 
+  # A map of options to apply to the destination. Valid keys are file_format,
+  # hive_compatible_partitions, and per_hour_partition.
+  destination_options = null
+
+  # Boolean to determine whether to use a custom S3 bucket for the flow log
+  # destination. If set to true, you must specify the s3_bucket variable.
+  # Defaults to false.
+  enable_custom_s3_destination = false
+
   # The id of an ENI. The flow log will be associated with a single elastic
   # network interface. Exactly one of vpc_id, subnet_id, or eni_id is required.
   eni_id = null
@@ -130,6 +140,10 @@ module "vpc_flow_logs" {
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role.
   iam_role_permissions_boundary = null
+
+  # The ARN of the Kinesis Firehose delivery stream to which to send the flow
+  # log records.
+  kinesis_firehose_arn = null
 
   # The ARN of a KMS key to use for encrypting VPC the flow log. A new KMS key
   # will be created if this is not supplied.
@@ -144,13 +158,13 @@ module "vpc_flow_logs" {
   # logs. Required if kms_key_arn is not defined.
   kms_key_users = null
 
-  # The destination for the flow log. Valid values are cloud-watch-logs or s3.
-  # Defaults to cloud-watch-logs.
+  # The destination for the flow log. Valid values are cloud-watch-logs, s3, or
+  # kinesis-data-firehose. Defaults to cloud-watch-logs.
   log_destination_type = "cloud-watch-logs"
 
   # The fields to include in the flow log record, in the order in which they
   # should appear. See
-  # https://aws.amazon.com/blogs/aws/learn-from-your-vpc-flow-logs-with-additional-meta-data/
+  # https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records
   # for more information including the list of allowed fields.
   log_format = null
 
@@ -159,7 +173,12 @@ module "vpc_flow_logs" {
   # 600 seconds (10 minutes)
   max_aggregation_interval = 600
 
-  # The name to use for the S3 bucket.
+  # (Optional) The S3 bucket arn to use for the flow log destination. If this is
+  # not set, a new S3 bucket will be created. Defaults to null.
+  s3_bucket = null
+
+  # The name to use for the S3 bucket created along with the VPC flow log
+  # resources.
   s3_bucket_name = null
 
   # For s3 log destinations, the number of days after which to expire
@@ -174,7 +193,7 @@ module "vpc_flow_logs" {
   # flow log objects to infrequent access. Defaults to 30.
   s3_infrequent_access_transition = 30
 
-  # if log_destination_type is s3, optionally specify a subfolder for log
+  # If log_destination_type is s3, optionally specify a subfolder for log
   # delivery.
   s3_subfolder = ""
 
@@ -213,7 +232,7 @@ module "vpc_flow_logs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-flow-logs?ref=v0.23.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-flow-logs?ref=v0.23.3"
 }
 
 inputs = {
@@ -235,8 +254,9 @@ inputs = {
   # The name to use for the CloudWatch Log group.
   cloudwatch_log_group_name = null
 
-  # The number of days to retain logs in the log group. Valid values: 1, 3, 5,
-  # 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653.
+  # The number of days to retain logs in the log group. Valid values: 0, 1, 3,
+  # 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096, 1827, 2192,
+  # 2557, 2922, 3288, and 3653.
   cloudwatch_log_retention = 731
 
   # If you set this variable to false, this module will not create any
@@ -249,6 +269,15 @@ inputs = {
   # The key is the tag name and the value is the tag value.
   custom_tags = {}
 
+  # A map of options to apply to the destination. Valid keys are file_format,
+  # hive_compatible_partitions, and per_hour_partition.
+  destination_options = null
+
+  # Boolean to determine whether to use a custom S3 bucket for the flow log
+  # destination. If set to true, you must specify the s3_bucket variable.
+  # Defaults to false.
+  enable_custom_s3_destination = false
+
   # The id of an ENI. The flow log will be associated with a single elastic
   # network interface. Exactly one of vpc_id, subnet_id, or eni_id is required.
   eni_id = null
@@ -260,6 +289,10 @@ inputs = {
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role.
   iam_role_permissions_boundary = null
+
+  # The ARN of the Kinesis Firehose delivery stream to which to send the flow
+  # log records.
+  kinesis_firehose_arn = null
 
   # The ARN of a KMS key to use for encrypting VPC the flow log. A new KMS key
   # will be created if this is not supplied.
@@ -274,13 +307,13 @@ inputs = {
   # logs. Required if kms_key_arn is not defined.
   kms_key_users = null
 
-  # The destination for the flow log. Valid values are cloud-watch-logs or s3.
-  # Defaults to cloud-watch-logs.
+  # The destination for the flow log. Valid values are cloud-watch-logs, s3, or
+  # kinesis-data-firehose. Defaults to cloud-watch-logs.
   log_destination_type = "cloud-watch-logs"
 
   # The fields to include in the flow log record, in the order in which they
   # should appear. See
-  # https://aws.amazon.com/blogs/aws/learn-from-your-vpc-flow-logs-with-additional-meta-data/
+  # https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records
   # for more information including the list of allowed fields.
   log_format = null
 
@@ -289,7 +322,12 @@ inputs = {
   # 600 seconds (10 minutes)
   max_aggregation_interval = 600
 
-  # The name to use for the S3 bucket.
+  # (Optional) The S3 bucket arn to use for the flow log destination. If this is
+  # not set, a new S3 bucket will be created. Defaults to null.
+  s3_bucket = null
+
+  # The name to use for the S3 bucket created along with the VPC flow log
+  # resources.
   s3_bucket_name = null
 
   # For s3 log destinations, the number of days after which to expire
@@ -304,7 +342,7 @@ inputs = {
   # flow log objects to infrequent access. Defaults to 30.
   s3_infrequent_access_transition = 30
 
-  # if log_destination_type is s3, optionally specify a subfolder for log
+  # If log_destination_type is s3, optionally specify a subfolder for log
   # delivery.
   s3_subfolder = ""
 
@@ -466,7 +504,7 @@ The name to use for the CloudWatch Log group.
 <HclListItem name="cloudwatch_log_retention" requirement="optional" type="number">
 <HclListItemDescription>
 
-The number of days to retain logs in the log group. Valid values: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653.
+The number of days to retain logs in the log group. Valid values: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096, 1827, 2192, 2557, 2922, 3288, and 3653.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="731"/>
@@ -488,6 +526,24 @@ A map of custom tags to apply to any resources created which accept them. The ke
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="destination_options" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of options to apply to the destination. Valid keys are file_format, hive_compatible_partitions, and per_hour_partition.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="enable_custom_s3_destination" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Boolean to determine whether to use a custom S3 bucket for the flow log destination. If set to true, you must specify the s3_bucket variable. Defaults to false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="eni_id" requirement="optional" type="string">
@@ -512,6 +568,15 @@ Boolean to determine whether flow logs should be deleted if the S3 bucket is rem
 <HclListItemDescription>
 
 The ARN of the policy that is used to set the permissions boundary for the IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="kinesis_firehose_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the Kinesis Firehose delivery stream to which to send the flow log records.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -547,7 +612,7 @@ A list of IAM user ARNs with access to the KMS key used with the VPC flow logs. 
 <HclListItem name="log_destination_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-The destination for the flow log. Valid values are cloud-watch-logs or s3. Defaults to cloud-watch-logs.
+The destination for the flow log. Valid values are cloud-watch-logs, s3, or kinesis-data-firehose. Defaults to cloud-watch-logs.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;cloud-watch-logs&quot;"/>
@@ -556,7 +621,7 @@ The destination for the flow log. Valid values are cloud-watch-logs or s3. Defau
 <HclListItem name="log_format" requirement="optional" type="string">
 <HclListItemDescription>
 
-The fields to include in the flow log record, in the order in which they should appear. See https://aws.amazon.com/blogs/aws/learn-from-your-vpc-flow-logs-with-additional-meta-data/ for more information including the list of allowed fields.
+The fields to include in the flow log record, in the order in which they should appear. See https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records for more information including the list of allowed fields.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -571,10 +636,19 @@ The maximum interval of time during which a flow of packets is captured and aggr
 <HclListItemDefaultValue defaultValue="600"/>
 </HclListItem>
 
+<HclListItem name="s3_bucket" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Optional) The S3 bucket arn to use for the flow log destination. If this is not set, a new S3 bucket will be created. Defaults to null.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="s3_bucket_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name to use for the S3 bucket.
+The name to use for the S3 bucket created along with the VPC flow log resources.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -610,7 +684,7 @@ For s3 log destinations, the number of days after which to transition the flow l
 <HclListItem name="s3_subfolder" requirement="optional" type="string">
 <HclListItemDescription>
 
-if log_destination_type is s3, optionally specify a subfolder for log delivery.
+If log_destination_type is s3, optionally specify a subfolder for log delivery.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
@@ -710,11 +784,11 @@ The name of the S3 bucket where flow logs are published.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.2/modules/vpc-flow-logs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.2/modules/vpc-flow-logs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.2/modules/vpc-flow-logs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-flow-logs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-flow-logs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-flow-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "393a81449d028658a097a96637deab6c"
+  "hash": "9700719c7f8dbf40c3f2a920264e9482"
 }
 ##DOCS-SOURCER-END -->
