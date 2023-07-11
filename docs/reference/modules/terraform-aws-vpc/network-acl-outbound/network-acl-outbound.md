@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Network ACL Outbound Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/network-acl-outbound" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/bug%2Fci_tests_failing_321/modules/network-acl-outbound" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -24,7 +24,7 @@ because they are stateless, which means that opening an outbound port is often n
 which the remote services can use to respond. This can be very easy to forget, so this module adds not only the
 outbound to an ACL, but also the ephemeral inbound ports for return traffic.
 
-See the [network-acl-inbound](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/network-acl-inbound) module for the analogous version of this module, but for opening
+See the [network-acl-inbound](https://github.com/gruntwork-io/terraform-aws-vpc/tree/bug%2Fci_tests_failing_321/modules/network-acl-inbound) module for the analogous version of this module, but for opening
 inbound ports.
 
 ## What's a Network ACL?
@@ -221,11 +221,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/network-acl-outbound/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/network-acl-outbound/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/network-acl-outbound/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/bug%2Fci_tests_failing_321/modules/network-acl-outbound/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/bug%2Fci_tests_failing_321/modules/network-acl-outbound/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/bug%2Fci_tests_failing_321/modules/network-acl-outbound/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ee3662b3885f074df02a26821f8d7fb2"
+  "hash": "faeaea3fe6911d2f19394fd64219b3bd"
 }
 ##DOCS-SOURCER-END -->

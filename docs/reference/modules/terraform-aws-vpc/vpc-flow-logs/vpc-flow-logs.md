@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # VPC Flow Logs Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-flow-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/bug%2Fci_tests_failing_321/modules/vpc-flow-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.23.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -784,11 +784,11 @@ The name of the S3 bucket where flow logs are published.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-flow-logs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-flow-logs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-flow-logs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/bug%2Fci_tests_failing_321/modules/vpc-flow-logs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/bug%2Fci_tests_failing_321/modules/vpc-flow-logs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/bug%2Fci_tests_failing_321/modules/vpc-flow-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9700719c7f8dbf40c3f2a920264e9482"
+  "hash": "1567be1a47279abf637363045731bfec"
 }
 ##DOCS-SOURCER-END -->

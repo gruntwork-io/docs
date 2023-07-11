@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # VPC Peering For External VPCs Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-peering-external" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/bug%2Fci_tests_failing_321/modules/vpc-peering-external" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -317,11 +317,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-peering-external/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-peering-external/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-peering-external/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/bug%2Fci_tests_failing_321/modules/vpc-peering-external/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/bug%2Fci_tests_failing_321/modules/vpc-peering-external/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/bug%2Fci_tests_failing_321/modules/vpc-peering-external/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3daf108a821bcd0af1bdbeadae4d7cf2"
+  "hash": "3820646e907fbd4d412bb4d472fd2de2"
 }
 ##DOCS-SOURCER-END -->

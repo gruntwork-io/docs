@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # vpc-peering-cross-accounts-requester
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-peering-cross-accounts-requester" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/bug%2Fci_tests_failing_321/modules/vpc-peering-cross-accounts-requester" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.23.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -299,11 +299,11 @@ Peering connection ID.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-peering-cross-accounts-requester/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-peering-cross-accounts-requester/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-peering-cross-accounts-requester/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/bug%2Fci_tests_failing_321/modules/vpc-peering-cross-accounts-requester/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/bug%2Fci_tests_failing_321/modules/vpc-peering-cross-accounts-requester/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/bug%2Fci_tests_failing_321/modules/vpc-peering-cross-accounts-requester/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "807b8cf0eaa3bdf0f304bcb9fd0b4a12"
+  "hash": "6569334758f27134e2ce914c6e0ac425"
 }
 ##DOCS-SOURCER-END -->
