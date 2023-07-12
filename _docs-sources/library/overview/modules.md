@@ -1,6 +1,6 @@
 # What is a module?
 
-**Modules are reusable "infrastructure building blocks" that describe how to deploy and manage a specific piece of infrastructure, such as a VPC, ECS cluster, or Auto Scaling Group.**
+Modules are reusable "infrastructure building blocks" that describe how to deploy and manage a specific piece of infrastructure, such as a VPC, ECS cluster, or Auto Scaling Group.
 
 Most modules are written in Terraform and define several AWS resources.
 
