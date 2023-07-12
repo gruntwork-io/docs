@@ -1,16 +1,16 @@
 # What is a service module?
 
-Service modules are combinations of [modules](./modules) covering a wide variety of use cases, including CI/CD, networking, container orchestration (EKS, ECS), and more. Service modules are usually written in Terraform, represent a full use case, and are designed to be used "off the shelf."
+**Service modules are opinionated combinations of ["building block" modules](./modules). They are usually written in Terraform, represent a full use case, and are designed to be used "off the shelf."**
 
 ## Example
 
-Let’s look at an example service module. The [rds service module](/reference/services/data-storage/amazon-rds) creates not only an RDS database, but also a DNS record (so you can access the database with a human-friendly name), CloudWatch alarms (to alert you if something goes wrong), a CloudWatch dashboard (so you can see RDS KPIs at a glance), and a strategy for disaster recovery. The module does this by using many "building block" modules.
+Let’s look at an example service module. The [`rds` service module](/reference/services/data-storage/amazon-rds) creates not only an RDS database, but also a DNS record in Amazon Route53, CloudWatch alarms, a CloudWatch dashboard, and scheduled snapshots of the database, all using a combination of "building block" modules.
+
+After applying, you will have an RDS instance that you can access via a human-friendly name, alarms to alert you if something goes wrong, a dashboard for viewing RDS KPIs, and a strategy for disaster recovery.
 
 ## Service modules are optimized for convenience
 
-Whereas "building block" modules are optimized for control, service modules are optimized for convenience.
-
-A service module reflects a complete Gruntwork opinion on how you should run a piece of infrastructure. Using a service module gives you the convenience of a single Terraform module that does everything you need, with Gruntwork maintaining the code.
+Whereas "building block" modules are optimized for control, service modules are optimized for convenience. That is, a service module reflects a complete Gruntwork opinion on how you should run a piece of infrastructure. If you agree with our opinion, using a service module gives you high convenience because you have a single Terraform module that does everything you need and which Gruntwork will maintain!
 
 If you do not agree with our opinions, you can either [customize the module](/library/usage/customizing-modules), or sacrifice convenience in favor of control and build your own module, possibly out of our [building block modules](/library/overview/modules).
 
