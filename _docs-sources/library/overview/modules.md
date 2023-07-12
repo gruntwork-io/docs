@@ -36,7 +36,7 @@ The module catalog features over 250 "building block" modules spanning three maj
 2. Running applications
 3. Storing data
 
-Each of these use cases covers one or more "SME topics" such as AWS account management, VPC/Networking, EKS, ECS, and RDS. SME topics are a first-class concept within Gruntwork, but do not yet have much visibility in the product itself.
+Each of these use cases covers one or more Subject Matter Expert (SME) topics such as AWS account management, VPC/Networking, EKS, ECS, and RDS. SME topics are a first-class concept within Gruntwork, but do not have much visibility in the product itself at this time.
 
 To browse the module catalog, see the [Library Reference](/library/reference/) and look for "Module Catalog" on the sidebar. You can also visit the list of [private Gruntwork GitHub repos](https://github.com/orgs/gruntwork-io/repositories?q=&type=private&language=&sort=).
 
