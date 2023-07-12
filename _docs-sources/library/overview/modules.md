@@ -56,4 +56,4 @@ We follow Hashicorp's [Standard Model Structure](https://developer.hashicorp.com
 
 Gruntwork brings together AWS and Terraform experts around the world who track updates from AWS, Terraform, and the DevOps community at large, along with requests from the Gruntwork customer community. We translate the most important of these updates into new features, new optimizations, and ultimately new releases.
 
-Check out [Gruntwork releases](/guides/stay-up-to-date/#gruntwork-releases) for a comprehensive listing of all the updates.
+Refer to [Gruntwork releases](/guides/stay-up-to-date/#gruntwork-releases) for a comprehensive listing of all the updates.
