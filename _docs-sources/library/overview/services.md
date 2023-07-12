@@ -62,4 +62,4 @@ The code in the `terraform-aws-service-catalog` repo is organized into three pri
 
 ## How service modules are updated
 
-When [building block modules are updated](/library/overview/modules#how-modules-are-updated), we propagate those updates to the service catalog. Keep in mind that there is sometimes a delay between when a "building block" module is updated, and when that update is reflected in the service catalog.
+When [building block modules are updated](/library/overview/modules#how-modules-are-updated), we propagate those updates to the service catalog. Keep in mind that there is sometimes a delay between when a "building block" module is updated and when that update is reflected in the service catalog.
