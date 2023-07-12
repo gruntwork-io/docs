@@ -8,7 +8,9 @@ Let’s look at an example service module. The [rds service module](/reference/s
 
 ## Service modules are optimized for convenience
 
-Whereas "building block" modules are optimized for control, service modules are optimized for convenience. That is, a service module reflects a complete Gruntwork opinion on how you should run a piece of infrastructure. If you agree with our opinion, using a service module gives you high convenience because you have a single Terraform module that does everything you need and which Gruntwork will maintain!
+Whereas "building block" modules are optimized for control, service modules are optimized for convenience.
+
+A service module reflects a complete Gruntwork opinion on how you should run a piece of infrastructure. Using a service module gives you the convenience of a single Terraform module that does everything you need, with Gruntwork maintaining the code.
 
 If you do not agree with our opinions, you can either [customize the module](/library/usage/customizing-modules), or sacrifice convenience in favor of control and build your own module, possibly out of our [building block modules](/library/overview/modules).
 
