@@ -4,7 +4,9 @@
 
 ## Example
 
-Let’s look at an example service module. The [rds service module](/reference/services/data-storage/amazon-rds) creates not only an RDS database, but also a DNS record (so you can access the database with a human-friendly name), CloudWatch alarms (to alert you if something goes wrong), a CloudWatch dashboard (so you can see RDS KPIs at a glance), and a strategy for disaster recovery. The module does this by using many "building block" modules.
+Let’s look at an example service module. The [`rds` service module](/reference/services/data-storage/amazon-rds) creates not only an RDS database, but also a DNS record in Amazon Route53, CloudWatch alarms, a CloudWatch dashboard, and scheduled snapshots of the database, all using a combination of "building block" modules.
+
+After applying, you will have an RDS instance that you can access via a human-friendly name, alarms to alert you if something goes wrong, a dashboard for viewing RDS KPIs, and a strategy for disaster recovery.
 
 ## Service modules are optimized for convenience
 
