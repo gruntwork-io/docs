@@ -24,7 +24,7 @@ To learn more about the overall thought process behind building block modules ve
 
 Building block modules are fairly generic by design, so you won't typically deploy a single building block module directly. Instead, you write code that combines the building block modules you need for a specific use case.
 
-For example, one building block module might deploy the control plane for Kubernetes and a separate building block module could deploy worker nodes; you may need to combine both modules together to deploy a Kubernetes cluster.
+For example, one module might deploy the control plane for Kubernetes and a separate module could deploy worker nodes; you may need to combine both modules together to deploy a Kubernetes cluster.
 
 We recommend our [Service Catalog](/library/overview/services/) for common use cases, but our full module catalog is available if you have a more complex use case.
 
