@@ -34,7 +34,7 @@ The module catalog features over 250 "building block" modules spanning three maj
 
 1. AWS foundations
 2. Running applications
-3. Store my data
+3. Storing data
 
 Each of these use cases covers one or more "SME topics" such as AWS account management, VPC/Networking, EKS, ECS, and RDS. SME topics are a first-class concept within Gruntwork, but do not yet have much visibility in the product itself.
 
