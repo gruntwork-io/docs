@@ -33,7 +33,7 @@ We recommend our [Service Catalog](/library/overview/services/) for common use c
 The module catalog features over 250 "building block" modules spanning three major use cases:
 
 1. AWS foundations
-2. Run my app
+2. Running applications
 3. Store my data
 
 Each of these use cases covers one or more "SME topics" such as AWS account management, VPC/Networking, EKS, ECS, and RDS. SME topics are a first-class concept within Gruntwork, but do not yet have much visibility in the product itself.
