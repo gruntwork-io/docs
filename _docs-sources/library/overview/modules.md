@@ -14,7 +14,7 @@ To see how Gruntwork gives you an off-the-shelf overall deployment with all the 
 
 ## Modules are optimized for control
 
-A "building block" module is designed to be small, narrow in scope, and highly reusable. In other words, building block modules give you _control_, but they may not give you _convenience_. That is, you can use the building block modules for all kinds of use cases (high control), but if you want to deploy a complete piece of infrastructure, you still have to do the work of assembling the right building blocks (low convenience).
+A module is designed to be small, narrow in scope, and highly reusable, like a building block. Modules give you _control_, but they may not give you _convenience_. You can use the building block modules for all kinds of use cases (high control), but if you want to deploy a complete piece of infrastructure, you still have to do the work of assembling the right modules (low convenience).
 
 To learn how you can optimize for convenience, see [What is a service module?](./services.md).
 
