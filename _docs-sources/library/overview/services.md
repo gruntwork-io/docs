@@ -29,7 +29,7 @@ CIS customers also have access to the [terraform-aws-cis-service-catalog git rep
 The service catalog features over 25 service modules spanning three major use cases:
 
 1. AWS foundations
-2. Run my app
+2. Running applications
 3. Store my data
 
 To browse the service catalog, see the [Library Reference](/library/reference/) and look for "Service Catalog" in the sidebar. You can also visit the [terraform-aws-service-catalog git repo](https://github.com/gruntwork-io/terraform-aws-service-catalog).
