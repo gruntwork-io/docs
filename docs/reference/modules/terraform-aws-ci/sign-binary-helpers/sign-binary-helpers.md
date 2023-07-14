@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Binary signing Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/sign-binary-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/update-codeowners/modules/sign-binary-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.51.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -155,6 +155,6 @@ References:
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/sign-binary-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "388f329860c61543945b5a1dcd637bb5"
+  "hash": "3fa5fbc51c4f79064723e0ea3c4a7f2a"
 }
 ##DOCS-SOURCER-END -->

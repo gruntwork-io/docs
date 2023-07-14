@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # AWS Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/aws-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/update-codeowners/modules/aws-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.11" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -50,6 +50,6 @@ dependencies:
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/aws-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6839c64c22f69b0142544fd63bfcd3ea"
+  "hash": "fab6106d2dd0d50763c115f44543b515"
 }
 ##DOCS-SOURCER-END -->

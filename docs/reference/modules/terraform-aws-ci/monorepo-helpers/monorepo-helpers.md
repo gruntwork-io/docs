@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Infrastructure Pipeline: Monorepo Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/monorepo-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/update-codeowners/modules/monorepo-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -82,6 +82,6 @@ If you just want to try this module out for experimenting and learning, check ou
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/monorepo-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6eb5f73cd205e1838e7190cb43e2fc1a"
+  "hash": "7610ba379920b76df46f20f0f137408f"
 }
 ##DOCS-SOURCER-END -->

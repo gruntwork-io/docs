@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # EC2 Backup Lambda Function Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/ec2-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/update-codeowners/modules/ec2-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -351,6 +351,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/ec2-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6717dff238d480603428656d41571050"
+  "hash": "816cea4588fde5aedc410c2d6b5c3662"
 }
 ##DOCS-SOURCER-END -->

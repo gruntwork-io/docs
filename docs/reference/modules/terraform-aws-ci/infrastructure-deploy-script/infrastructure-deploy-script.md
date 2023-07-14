@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Infrastructure Pipeline: Infrastructure Deploy Scripts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/infrastructure-deploy-script" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/update-codeowners/modules/infrastructure-deploy-script" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -66,6 +66,6 @@ If you just want to try this repo out for experimenting and learning, check out 
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/infrastructure-deploy-script/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5cef2b0f5ca5950808d5ef25a3693e48"
+  "hash": "b749d549de3da5522be57aaea1a850c4"
 }
 ##DOCS-SOURCER-END -->

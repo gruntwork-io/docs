@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Jenkins server
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/jenkins-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/update-codeowners/modules/jenkins-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -1178,6 +1178,6 @@ A maximum duration to wait for each server to be healthy before timing out (e.g.
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/jenkins-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fe438f08d0ae49b5828599469e613f3c"
+  "hash": "d06296e726a1f7e4f72ace3f5854aeeb"
 }
 ##DOCS-SOURCER-END -->

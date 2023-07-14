@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Install Jenkins Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/install-jenkins" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/update-codeowners/modules/install-jenkins" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -79,6 +79,6 @@ Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/install-jenkins/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c3ab4e16013c38e19f09b017595dbb8e"
+  "hash": "6af955921bb3c0d9c8d73d8249804886"
 }
 ##DOCS-SOURCER-END -->
