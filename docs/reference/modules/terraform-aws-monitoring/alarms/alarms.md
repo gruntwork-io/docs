@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Alarm modules
 
-<a href="https://github.com/gruntwork-io/terraform-aws-monitoring/tree/v0.36.1/modules/alarms" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-monitoring/tree/update-codeowners/modules/alarms" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.36.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -64,6 +64,6 @@ Tags associated with a metric alarm are not propagated with the alarm payload wh
     "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/v0.36.1/modules/alarms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f93e8a3b5426917ae860cdfeeea9012c"
+  "hash": "65902755cfef71d2da07c98e17813448"
 }
 ##DOCS-SOURCER-END -->

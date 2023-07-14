@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Metrics modules
 
-<a href="https://github.com/gruntwork-io/terraform-aws-monitoring/tree/v0.36.1/modules/metrics" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-monitoring/tree/update-codeowners/modules/metrics" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.36.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -36,6 +36,6 @@ Click on each module above to see its documentation. Head over to the [examples 
     "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/v0.36.1/modules/metrics/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d3c43b96e54d5044ec46e168c112d641"
+  "hash": "ce0a59678310b269fefc1c7d947709f2"
 }
 ##DOCS-SOURCER-END -->
