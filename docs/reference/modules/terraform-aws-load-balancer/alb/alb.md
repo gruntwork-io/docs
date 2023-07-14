@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Application Load Balancer (ALB) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.8/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/update-codeowners/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -1093,6 +1093,6 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.8/modules/alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d5875cd12a6d7e8eceedfe78ec6bf3b8"
+  "hash": "ba0b67a4220ce7cac03172d11d580012"
 }
 ##DOCS-SOURCER-END -->

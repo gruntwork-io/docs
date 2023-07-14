@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Load Balancer Listener Rules
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.8/modules/lb-listener-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/update-codeowners/modules/lb-listener-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -730,6 +730,6 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.8/modules/lb-listener-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3090026a14ef49971990cdc4b82614a4"
+  "hash": "9632d5f06891fea3105c8bc90c438921"
 }
 ##DOCS-SOURCER-END -->

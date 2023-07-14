@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ACM TLS Certificate
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.8/modules/acm-tls-certificate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/update-codeowners/modules/acm-tls-certificate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -490,6 +490,6 @@ Global tags to apply to all ACM certificates issued via this module. These globa
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.8/modules/acm-tls-certificate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "303ace110e9cffa3d2b42a7d710db2e2"
+  "hash": "3a9718959af87d5fb3caf5eac8737a0a"
 }
 ##DOCS-SOURCER-END -->
