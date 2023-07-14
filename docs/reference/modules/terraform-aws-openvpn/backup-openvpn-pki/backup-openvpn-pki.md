@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Backup PKI Assets Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/backup-openvpn-pki" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/update-codeowners/modules/backup-openvpn-pki" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.26.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -33,6 +33,6 @@ up, we would have to reissue client certificates if the OpenVPN server ever need
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/backup-openvpn-pki/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5cfb3c15aec2e37ea82dcaa83a6957c0"
+  "hash": "cedc040de910564431a00fea571e499e"
 }
 ##DOCS-SOURCER-END -->

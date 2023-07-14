@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Init OpenVPN Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/init-openvpn" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/update-codeowners/modules/init-openvpn" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.18.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -29,6 +29,6 @@ This module is used to initialize the OpenVPN server, its Public Key Infrastruct
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/init-openvpn/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fbf75fa1873b27c9097465fb02326e07"
+  "hash": "0fc1a4f4844004af091fc9249df3cfe7"
 }
 ##DOCS-SOURCER-END -->
