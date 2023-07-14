@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Redis Copy Snapshot Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/modules/redis_copy_snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/update-codeowners/modules/redis_copy_snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.20.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -222,6 +222,6 @@ A name for the exported snapshot copy. ElastiCache does not permit overwriting a
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/modules/redis_copy_snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "428c7c2db3e9886354c9b99d31b0f8dc"
+  "hash": "731e77b624dc69f5cc97a6498f30997a"
 }
 ##DOCS-SOURCER-END -->

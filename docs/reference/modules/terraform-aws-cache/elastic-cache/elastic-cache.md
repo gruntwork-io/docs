@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ElasticCache Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/modules/elastic-cache" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/update-codeowners/modules/elastic-cache" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.20.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -409,6 +409,6 @@ A set of tags to set for the ElastiCache Cluster.
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/modules/elastic-cache/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "005f006f617bc3717b9578e0ee2bbafb"
+  "hash": "0263900d1358fd1b83c0025e039889c0"
 }
 ##DOCS-SOURCER-END -->

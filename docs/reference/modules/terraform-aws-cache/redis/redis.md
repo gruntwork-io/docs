@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Redis Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/update-codeowners/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.20.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -1164,6 +1164,6 @@ This is a list of user IDs  that should be added to the group defined in the 'us
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "26c10706c13cf700c9a4620cf4d8fec0"
+  "hash": "b14bf508d0fcb7431539a43e9665c2fc"
 }
 ##DOCS-SOURCER-END -->
