@@ -1,6 +1,8 @@
-# AWS Account Foundations
+# Gruntwork AWS Account Foundations
 
-## Prerequisites
+<!-- TODO: provide some information here about what this is and what to expect as output and the components -->
+
+## Setup Prerequisites
 
 <!-- I am making an assumption that for v1, we want customers to do this in a brand new account so we don't have to support having them turn off any settings that prevent control tower integration -->
 
@@ -122,6 +124,6 @@ TODO
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0d99fc134434516ba2027518f52dc3b6"
+  "hash": "ea5b5b72056247251568e76d1dfbbd45"
 }
 ##DOCS-SOURCER-END -->

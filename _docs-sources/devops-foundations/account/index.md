@@ -1,6 +1,8 @@
-# AWS Account Foundations
+# Gruntwork AWS Account Foundations
 
-## Prerequisites
+<!-- TODO: provide some information here about what this is and what to expect as output and the components -->
+
+## Setup Prerequisites
 
 <!-- I am making an assumption that for v1, we want customers to do this in a brand new account so we don't have to support having them turn off any settings that prevent control tower integration -->
 
