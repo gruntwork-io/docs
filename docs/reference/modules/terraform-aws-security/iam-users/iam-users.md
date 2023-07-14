@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # IAM Users
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/iam-users" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/update-codeowners/modules/iam-users" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -513,6 +513,6 @@ A map of usernames to that user's AWS SSH Security Credential ID
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/iam-users/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7ea68a418b03c0af6d05191a6076b245"
+  "hash": "bd6cdef7a71a76f893021d94ccbe7076"
 }
 ##DOCS-SOURCER-END -->

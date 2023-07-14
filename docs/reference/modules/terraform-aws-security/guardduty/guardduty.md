@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # AWS GuardDuty
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/guardduty" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/update-codeowners/modules/guardduty" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -374,6 +374,6 @@ The ID of the GuardDuty detector.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/guardduty/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cbcef7012183a2e16594157fd2166255"
+  "hash": "7fd1d2daf9d4d68a666c5dd63cd34bcb"
 }
 ##DOCS-SOURCER-END -->

@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # OS Hardening
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/os-hardening" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/update-codeowners/modules/os-hardening" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -275,6 +275,6 @@ needed additional space to build a new AMI was not unreasonable.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/os-hardening/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7d62db013e3785f95a877f0617553552"
+  "hash": "8c434a44bbc7b90b137be3fdfe4ed0e5"
 }
 ##DOCS-SOURCER-END -->

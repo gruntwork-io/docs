@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # SSH Grunt SELinux Policy
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/ssh-grunt-selinux-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/update-codeowners/modules/ssh-grunt-selinux-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.44.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -89,6 +89,6 @@ $ sudo semodule -i ssh-grunt.pp
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/ssh-grunt-selinux-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ab4cca7ac7a9ca33d70502ccc8b8dcb7"
+  "hash": "f2eec92fdcbd61c5de749a3a3c9e26f9"
 }
 ##DOCS-SOURCER-END -->

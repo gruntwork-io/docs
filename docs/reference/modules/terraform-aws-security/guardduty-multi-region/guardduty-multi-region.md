@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # AWS GuardDuty Multi Region Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/guardduty-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/update-codeowners/modules/guardduty-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.66.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -361,6 +361,6 @@ The IDs of the GuardDuty detectors.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/guardduty-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "96de86001b1fd3a2f56333427230364f"
+  "hash": "49951bc06054b177b8fece29086fbd72"
 }
 ##DOCS-SOURCER-END -->

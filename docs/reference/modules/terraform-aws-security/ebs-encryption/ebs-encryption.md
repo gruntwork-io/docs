@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Elastic Block Storage Encryption
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/ebs-encryption" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/update-codeowners/modules/ebs-encryption" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.66.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -193,6 +193,6 @@ The default KMS key used for EBS encryption.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/ebs-encryption/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b4c6a1d6bdeea256ef4241b93dc04b66"
+  "hash": "18943b95634f10f87430f89107e2a65c"
 }
 ##DOCS-SOURCER-END -->

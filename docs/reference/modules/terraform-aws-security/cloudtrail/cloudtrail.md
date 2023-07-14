@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # AWS CloudTrail
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/cloudtrail" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/update-codeowners/modules/cloudtrail" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -1410,6 +1410,6 @@ The name of the cloudtrail trail.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/cloudtrail/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4914f236402f858d9367448a18af3f01"
+  "hash": "14fbaa396670c490f8865d8e1aeb0d26"
 }
 ##DOCS-SOURCER-END -->

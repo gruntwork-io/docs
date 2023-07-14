@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # A best-practices set of IAM roles for cross-account access
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/cross-account-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/update-codeowners/modules/cross-account-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -1092,6 +1092,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/cross-account-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7ce9e6022417460eaea83c46f9af63d9"
+  "hash": "b1da2d6a123862e4ef11ab272248a297"
 }
 ##DOCS-SOURCER-END -->

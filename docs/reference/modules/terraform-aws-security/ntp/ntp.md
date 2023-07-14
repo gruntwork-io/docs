@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # NTP Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/ntp" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/update-codeowners/modules/ntp" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -40,6 +40,6 @@ Originally, Amazon recommended installing `ntpd` to prevent clock drift. Today, 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/ntp/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7e11e3bf61f53347be7e2b41d638256e"
+  "hash": "e39867b249b9473e42db6111233c0d31"
 }
 ##DOCS-SOURCER-END -->

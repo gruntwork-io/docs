@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ssh-iam has been renamed!
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/ssh-iam" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/update-codeowners/modules/ssh-iam" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.13.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -29,6 +29,6 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/ssh-iam/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a7d7204586d4cbf0a5d49d5a0ee9f224"
+  "hash": "7dec2b334ac4a5f259db4def651f0fab"
 }
 ##DOCS-SOURCER-END -->

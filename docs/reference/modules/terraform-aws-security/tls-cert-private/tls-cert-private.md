@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Generate a TLS/SSL Certificate for a Private Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/tls-cert-private" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/update-codeowners/modules/tls-cert-private" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.47.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -182,6 +182,6 @@ TLS certificates for any public services.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/tls-cert-private/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b07911e9e87f8335a997e15d21c221d1"
+  "hash": "e82419b0df8fe63bba6d6fb01da86c7f"
 }
 ##DOCS-SOURCER-END -->

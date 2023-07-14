@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ip-lockdown Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/ip-lockdown" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/update-codeowners/modules/ip-lockdown" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.44.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -67,6 +67,6 @@ gruntwork-install --module-name ip-lockdown --tag <MODULE_SECURITY_VERSION> --re
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/ip-lockdown/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bfade80e4060c797440d71be152cb124"
+  "hash": "934dee5b63dc5a44a92881c736556e3c"
 }
 ##DOCS-SOURCER-END -->

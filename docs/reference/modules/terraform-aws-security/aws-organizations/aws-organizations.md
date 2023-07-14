@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # AWS Organizations
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/aws-organizations" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/update-codeowners/modules/aws-organizations" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -429,6 +429,6 @@ Identifier of the root of this organization.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/aws-organizations/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "68cb4c168f94da53ca879fea2275ebf0"
+  "hash": "8fd6ad154d4aef3abdfa19b94d8da2b7"
 }
 ##DOCS-SOURCER-END -->

@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # AWS KMS Grants
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/kms-grant-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/update-codeowners/modules/kms-grant-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.66.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -185,6 +185,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/kms-grant-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2b47a57101bee9f77cd672fccf854009"
+  "hash": "cf5b792abb603028749a51e0709a9c03"
 }
 ##DOCS-SOURCER-END -->

@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # A Best-Practices Set of IAM Groups
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/iam-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/update-codeowners/modules/iam-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -959,6 +959,6 @@ Should we create the IAM Group for user self-management? Allows users to manage 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/iam-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3329c8f245c656aef9eecfe0657abc1b"
+  "hash": "e90878384356d31e7d2d0aad28748e7a"
 }
 ##DOCS-SOURCER-END -->

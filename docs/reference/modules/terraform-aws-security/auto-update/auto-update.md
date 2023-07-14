@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Security Modules
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/auto-update" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/update-codeowners/modules/auto-update" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -78,6 +78,6 @@ If you want to deploy this repo in production, check out the following resources
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/auto-update/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c7831cb2b55ba91a1df1ccc3b25af1bd"
+  "hash": "cf7cff792e24a60d7875b077fc878e9a"
 }
 ##DOCS-SOURCER-END -->

@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # AWS IAM Access Analyzer
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/iam-access-analyzer-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/update-codeowners/modules/iam-access-analyzer-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.66.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -163,6 +163,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/iam-access-analyzer-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8261d4b8d5aff3c710a0ed3905ee9d34"
+  "hash": "fa1647e3ccec784ee26f45cf3c7a4469"
 }
 ##DOCS-SOURCER-END -->
