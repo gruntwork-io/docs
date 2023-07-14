@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Git Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/git-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/bump-kubergrunt-version/modules/git-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -77,6 +77,6 @@ The main options to pass to `git-add-commit-push` are:
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/git-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "79bc50e3f66891c24f858db31209b53e"
+  "hash": "028c159f53b70b2117527b27b6c0e40b"
 }
 ##DOCS-SOURCER-END -->
