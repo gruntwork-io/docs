@@ -57,7 +57,7 @@ Some modules including third party modules may not have a CHANGELOGS.md file. In
 
 In non-interactive mode, Patcher updates all module dependencies in the current folder (and child folders) according to the specified update strategy.
 
-Non-interactive mode supports both the `next-safe` and `next-breaking` update strategies. 
+Non-interactive mode supports both the `next-safe` and `next-breaking` update strategies.
 
 ### Next Safe (Default)
 
@@ -89,7 +89,7 @@ Beginning with version `0.3.3`, Patcher provides limited support for updating th
 
 Third party modules are supported in both interactive mode and non-interactive mode.
 
-For example, the [terraform-aws-modules/terraform-aws-vpc](https://github.com/terraform-aws-modules/terraform-aws-vpc) module has two recent change: `4.0.2` and `5.0.0`.
+For example, the [terraform-aws-modules/terraform-aws-vpc](https://github.com/terraform-aws-modules/terraform-aws-vpc) module has two recent changes: `4.0.2` and `5.0.0`.
 
 And in `infrastructure-live/prod` there is a dependency on `terraform-aws-vpc/vpc`:
 - `prod/us-east-1/prod/vpc/terragrunt.hcl` currently uses `4.0.0`
