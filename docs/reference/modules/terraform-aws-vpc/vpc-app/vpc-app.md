@@ -123,6 +123,15 @@ module "vpc_app" {
   # default NACL rules managed by AWS will be used.
   apply_default_nacl_rules = false
 
+  # (Optional) Requests an Amazon-provided IPv6 CIDR block with a /56 prefix
+  # length for the VPC. You cannot specify the range of IP addresses, or the
+  # size of the CIDR block. Conflicts with ipv6_ipam_pool_id
+  assign_generated_ipv6_cidr_block = null
+
+  # (Optional) Specify true to indicate that network interfaces created in the
+  # specified subnet should be assigned an IPv6 address. Default is false
+  assign_ipv6_address_on_creation = false
+
   # If true, will associate the default NACL to the public, private, and
   # persistence subnets created by this module. Only used if
   # var.apply_default_nacl_rules is true. Note that this does not guarantee that
@@ -195,7 +204,7 @@ module "vpc_app" {
   # unique name for each rule and the values are objects with the same fields as
   # the egress block in the aws_default_network_acl resource:
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl.
-  default_nacl_egress_rules = {"AllowAll":{"action":"allow","cidr_block":"0.0.0.0/0","from_port":0,"protocol":"-1","rule_no":100,"to_port":0}}
+  default_nacl_egress_rules = {"AllowAllIPv4":{"action":"allow","cidr_block":"0.0.0.0/0","from_port":0,"protocol":"-1","rule_no":100,"to_port":0},"AllowAllIPv6":{"action":"allow","from_port":0,"ipv6_cidr_block":"::/0","protocol":"-1","rule_no":101,"to_port":0}}
 
   # The ingress rules to apply to the default NACL in the VPC. This is the NACL
   # that is used by any subnet that doesn't have its own NACL attached. The
@@ -203,7 +212,7 @@ module "vpc_app" {
   # each rule and the values are objects with the same fields as the ingress
   # block in the aws_default_network_acl resource:
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl.
-  default_nacl_ingress_rules = {"AllowAll":{"action":"allow","cidr_block":"0.0.0.0/0","from_port":0,"protocol":"-1","rule_no":100,"to_port":0}}
+  default_nacl_ingress_rules = {"AllowAllIPv4":{"action":"allow","cidr_block":"0.0.0.0/0","from_port":0,"protocol":"-1","rule_no":100,"to_port":0},"AllowAllIPv6":{"action":"allow","from_port":0,"ipv6_cidr_block":"::/0","protocol":"-1","rule_no":101,"to_port":0}}
 
   # The egress rules to apply to the default security group in the VPC. This is
   # the security group that is used by any resource that doesn't have its own
@@ -235,8 +244,51 @@ module "vpc_app" {
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#removing-aws_default_security_group-from-your-configuration
   enable_default_security_group = true
 
+  # (Optional) A boolean flag to enable/disable DNS hostnames in the VPC.
+  # Defaults true.
+  enable_dns_hostnames = true
+
+  # (Optional) A boolean flag to enable/disable DNS support in the VPC. Defaults
+  # true.
+  enable_dns_support = true
+
+  # (Optional) Enabled IPv6 resources for the VPC. Defaults to false.
+  enable_ipv6 = false
+
+  # (Optional) A boolean flag to enable/disable network address usage metrics in
+  # the VPC. Defaults false.
+  enable_network_address_usage_metrics = false
+
   # The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR.
   ipv4_ipam_pool_id = null
+
+  # (Optional) The length of the IPv4 CIDR netmask. Requires utilizing an
+  # ipv4_ipam_pool_id. Defaults to null.
+  ipv4_netmask_length = null
+
+  # (Optional) IPv6 CIDR block to request from an IPAM Pool. Can be set
+  # explicitly or derived from IPAM using ipv6_netmask_length. If not provided,
+  # no IPv6 CIDR block will be allocated.
+  ipv6_cidr_block = null
+
+  # (Optional) By default when an IPv6 CIDR is assigned to a VPC a default
+  # ipv6_cidr_block_network_border_group will be set to the region of the VPC.
+  # This can be changed to restrict advertisement of public addresses to
+  # specific Network Border Groups such as LocalZones.
+  ipv6_cidr_block_network_border_group = null
+
+  # (Optional) IPAM Pool ID for a IPv6 pool. Conflicts with
+  # assign_generated_ipv6_cidr_block.
+  ipv6_ipam_pool_id = null
+
+  # (Optional) Netmask length to request from IPAM Pool. Conflicts with
+  # ipv6_cidr_block. This can be omitted if IPAM pool as a
+  # allocation_default_netmask_length set. Valid values: 56.
+  ipv6_netmask_length = null
+
+  # (Optional) The number of bits to use in the VPC IPv6 CIDR block. Must be
+  # between a /56 netmask and /64 netmask. Defaults to a /64.
+  ipv6_subnet_bits = 64
 
   # Specify true to indicate that instances launched into the public subnet
   # should be assigned a public IP address (versus a private IP address)
@@ -296,6 +348,18 @@ module "vpc_app" {
   # The key is the tag name and the value is the tag value. Note that tags
   # defined here will override tags defined as custom_tags in case of conflict.
   private_app_subnet_custom_tags = {}
+
+  # A map listing the specific IPv6 CIDR blocks desired for each private-app
+  # subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the
+  # number of Availability Zones. If left blank, we will compute a reasonable
+  # CIDR block for each subnet.
+  private_app_subnet_ipv6_cidr_blocks = {}
+
+  # A map listing the specific IPv6 CIDR blocks desired for each
+  # private-persistence subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n
+  # where n is the number of Availability Zones. If left blank, we will compute
+  # a reasonable CIDR block for each subnet.
+  private_persistence_ipv6_subnet_cidr_blocks = {}
 
   # A map of tags to apply to the private-persistence route tables(s), on top of
   # the custom_tags. The key is the tag name and the value is the tag value.
@@ -358,6 +422,18 @@ module "vpc_app" {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   public_subnet_custom_tags = {}
+
+  # A map listing the specific IPv6 CIDR blocks desired for each public subnet.
+  # The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of
+  # Availability Zones. If left blank, we will compute a reasonable CIDR block
+  # for each subnet.
+  public_subnet_ipv6_cidr_blocks = {}
+
+  # (Optional) A map listing the specific IPv6 CIDR blocks desired for each
+  # public subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is
+  # the number of Availability Zones. If left blank, we will compute a
+  # reasonable CIDR block for each subnet.
+  public_subnet_ipv6_cidr_blocks = {}
 
   # The timeout for the creation of the Route Tables. It defines how long to
   # wait for a route table to be created before considering the operation
@@ -457,6 +533,15 @@ inputs = {
   # default NACL rules managed by AWS will be used.
   apply_default_nacl_rules = false
 
+  # (Optional) Requests an Amazon-provided IPv6 CIDR block with a /56 prefix
+  # length for the VPC. You cannot specify the range of IP addresses, or the
+  # size of the CIDR block. Conflicts with ipv6_ipam_pool_id
+  assign_generated_ipv6_cidr_block = null
+
+  # (Optional) Specify true to indicate that network interfaces created in the
+  # specified subnet should be assigned an IPv6 address. Default is false
+  assign_ipv6_address_on_creation = false
+
   # If true, will associate the default NACL to the public, private, and
   # persistence subnets created by this module. Only used if
   # var.apply_default_nacl_rules is true. Note that this does not guarantee that
@@ -529,7 +614,7 @@ inputs = {
   # unique name for each rule and the values are objects with the same fields as
   # the egress block in the aws_default_network_acl resource:
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl.
-  default_nacl_egress_rules = {"AllowAll":{"action":"allow","cidr_block":"0.0.0.0/0","from_port":0,"protocol":"-1","rule_no":100,"to_port":0}}
+  default_nacl_egress_rules = {"AllowAllIPv4":{"action":"allow","cidr_block":"0.0.0.0/0","from_port":0,"protocol":"-1","rule_no":100,"to_port":0},"AllowAllIPv6":{"action":"allow","from_port":0,"ipv6_cidr_block":"::/0","protocol":"-1","rule_no":101,"to_port":0}}
 
   # The ingress rules to apply to the default NACL in the VPC. This is the NACL
   # that is used by any subnet that doesn't have its own NACL attached. The
@@ -537,7 +622,7 @@ inputs = {
   # each rule and the values are objects with the same fields as the ingress
   # block in the aws_default_network_acl resource:
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl.
-  default_nacl_ingress_rules = {"AllowAll":{"action":"allow","cidr_block":"0.0.0.0/0","from_port":0,"protocol":"-1","rule_no":100,"to_port":0}}
+  default_nacl_ingress_rules = {"AllowAllIPv4":{"action":"allow","cidr_block":"0.0.0.0/0","from_port":0,"protocol":"-1","rule_no":100,"to_port":0},"AllowAllIPv6":{"action":"allow","from_port":0,"ipv6_cidr_block":"::/0","protocol":"-1","rule_no":101,"to_port":0}}
 
   # The egress rules to apply to the default security group in the VPC. This is
   # the security group that is used by any resource that doesn't have its own
@@ -569,8 +654,51 @@ inputs = {
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#removing-aws_default_security_group-from-your-configuration
   enable_default_security_group = true
 
+  # (Optional) A boolean flag to enable/disable DNS hostnames in the VPC.
+  # Defaults true.
+  enable_dns_hostnames = true
+
+  # (Optional) A boolean flag to enable/disable DNS support in the VPC. Defaults
+  # true.
+  enable_dns_support = true
+
+  # (Optional) Enabled IPv6 resources for the VPC. Defaults to false.
+  enable_ipv6 = false
+
+  # (Optional) A boolean flag to enable/disable network address usage metrics in
+  # the VPC. Defaults false.
+  enable_network_address_usage_metrics = false
+
   # The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR.
   ipv4_ipam_pool_id = null
+
+  # (Optional) The length of the IPv4 CIDR netmask. Requires utilizing an
+  # ipv4_ipam_pool_id. Defaults to null.
+  ipv4_netmask_length = null
+
+  # (Optional) IPv6 CIDR block to request from an IPAM Pool. Can be set
+  # explicitly or derived from IPAM using ipv6_netmask_length. If not provided,
+  # no IPv6 CIDR block will be allocated.
+  ipv6_cidr_block = null
+
+  # (Optional) By default when an IPv6 CIDR is assigned to a VPC a default
+  # ipv6_cidr_block_network_border_group will be set to the region of the VPC.
+  # This can be changed to restrict advertisement of public addresses to
+  # specific Network Border Groups such as LocalZones.
+  ipv6_cidr_block_network_border_group = null
+
+  # (Optional) IPAM Pool ID for a IPv6 pool. Conflicts with
+  # assign_generated_ipv6_cidr_block.
+  ipv6_ipam_pool_id = null
+
+  # (Optional) Netmask length to request from IPAM Pool. Conflicts with
+  # ipv6_cidr_block. This can be omitted if IPAM pool as a
+  # allocation_default_netmask_length set. Valid values: 56.
+  ipv6_netmask_length = null
+
+  # (Optional) The number of bits to use in the VPC IPv6 CIDR block. Must be
+  # between a /56 netmask and /64 netmask. Defaults to a /64.
+  ipv6_subnet_bits = 64
 
   # Specify true to indicate that instances launched into the public subnet
   # should be assigned a public IP address (versus a private IP address)
@@ -630,6 +758,18 @@ inputs = {
   # The key is the tag name and the value is the tag value. Note that tags
   # defined here will override tags defined as custom_tags in case of conflict.
   private_app_subnet_custom_tags = {}
+
+  # A map listing the specific IPv6 CIDR blocks desired for each private-app
+  # subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the
+  # number of Availability Zones. If left blank, we will compute a reasonable
+  # CIDR block for each subnet.
+  private_app_subnet_ipv6_cidr_blocks = {}
+
+  # A map listing the specific IPv6 CIDR blocks desired for each
+  # private-persistence subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n
+  # where n is the number of Availability Zones. If left blank, we will compute
+  # a reasonable CIDR block for each subnet.
+  private_persistence_ipv6_subnet_cidr_blocks = {}
 
   # A map of tags to apply to the private-persistence route tables(s), on top of
   # the custom_tags. The key is the tag name and the value is the tag value.
@@ -692,6 +832,18 @@ inputs = {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   public_subnet_custom_tags = {}
+
+  # A map listing the specific IPv6 CIDR blocks desired for each public subnet.
+  # The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of
+  # Availability Zones. If left blank, we will compute a reasonable CIDR block
+  # for each subnet.
+  public_subnet_ipv6_cidr_blocks = {}
+
+  # (Optional) A map listing the specific IPv6 CIDR blocks desired for each
+  # public subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is
+  # the number of Availability Zones. If left blank, we will compute a
+  # reasonable CIDR block for each subnet.
+  public_subnet_ipv6_cidr_blocks = {}
 
   # The timeout for the creation of the Route Tables. It defines how long to
   # wait for a route table to be created before considering the operation
@@ -796,6 +948,24 @@ Should the private persistence subnet be allowed outbound access to the internet
 <HclListItemDescription>
 
 If true, will apply the default NACL rules in <a href="#default_nacl_ingress_rules"><code>default_nacl_ingress_rules</code></a> and <a href="#default_nacl_egress_rules"><code>default_nacl_egress_rules</code></a> on the default NACL of the VPC. Note that every VPC must have a default NACL - when this is false, the original default NACL rules managed by AWS will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="assign_generated_ipv6_cidr_block" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) Requests an Amazon-provided IPv6 CIDR block with a /56 prefix length for the VPC. You cannot specify the range of IP addresses, or the size of the CIDR block. Conflicts with ipv6_ipam_pool_id
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="assign_ipv6_address_on_creation" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) Specify true to indicate that network interfaces created in the specified subnet should be assigned an IPv6 address. Default is false
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -935,12 +1105,20 @@ Any types represent complex values of variable type. For details, please consult
 
 ```hcl
 {
-  AllowAll = {
+  AllowAllIPv4 = {
     action = "allow",
     cidr_block = "0.0.0.0/0",
     from_port = 0,
     protocol = "-1",
     rule_no = 100,
+    to_port = 0
+  },
+  AllowAllIPv6 = {
+    action = "allow",
+    from_port = 0,
+    ipv6_cidr_block = "::/0",
+    protocol = "-1",
+    rule_no = 101,
     to_port = 0
   }
 }
@@ -966,12 +1144,20 @@ Any types represent complex values of variable type. For details, please consult
 
 ```hcl
 {
-  AllowAll = {
+  AllowAllIPv4 = {
     action = "allow",
     cidr_block = "0.0.0.0/0",
     from_port = 0,
     protocol = "-1",
     rule_no = 100,
+    to_port = 0
+  },
+  AllowAllIPv6 = {
+    action = "allow",
+    from_port = 0,
+    ipv6_cidr_block = "::/0",
+    protocol = "-1",
+    rule_no = 101,
     to_port = 0
   }
 }
@@ -1061,6 +1247,42 @@ If set to false, the default security groups will NOT be created. This variable 
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="enable_dns_hostnames" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) A boolean flag to enable/disable DNS hostnames in the VPC. Defaults true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_dns_support" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) A boolean flag to enable/disable DNS support in the VPC. Defaults true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_ipv6" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) Enabled IPv6 resources for the VPC. Defaults to false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_network_address_usage_metrics" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) A boolean flag to enable/disable network address usage metrics in the VPC. Defaults false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="ipv4_ipam_pool_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1068,6 +1290,60 @@ The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ipv4_netmask_length" requirement="optional" type="number">
+<HclListItemDescription>
+
+(Optional) The length of the IPv4 CIDR netmask. Requires utilizing an ipv4_ipam_pool_id. Defaults to null.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ipv6_cidr_block" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Optional) IPv6 CIDR block to request from an IPAM Pool. Can be set explicitly or derived from IPAM using ipv6_netmask_length. If not provided, no IPv6 CIDR block will be allocated.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ipv6_cidr_block_network_border_group" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Optional) By default when an IPv6 CIDR is assigned to a VPC a default ipv6_cidr_block_network_border_group will be set to the region of the VPC. This can be changed to restrict advertisement of public addresses to specific Network Border Groups such as LocalZones.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ipv6_ipam_pool_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Optional) IPAM Pool ID for a IPv6 pool. Conflicts with assign_generated_ipv6_cidr_block.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ipv6_netmask_length" requirement="optional" type="number">
+<HclListItemDescription>
+
+(Optional) Netmask length to request from IPAM Pool. Conflicts with ipv6_cidr_block. This can be omitted if IPAM pool as a allocation_default_netmask_length set. Valid values: 56.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ipv6_subnet_bits" requirement="optional" type="number">
+<HclListItemDescription>
+
+(Optional) The number of bits to use in the VPC IPv6 CIDR block. Must be between a /56 netmask and /64 netmask. Defaults to a /64.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="64"/>
 </HclListItem>
 
 <HclListItem name="map_public_ip_on_launch" requirement="optional" type="bool">
@@ -1155,6 +1431,24 @@ A map listing the specific CIDR blocks desired for each private-app subnet. The 
 <HclListItemDescription>
 
 A map of tags to apply to the private-app Subnet, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="private_app_subnet_ipv6_cidr_blocks" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map listing the specific IPv6 CIDR blocks desired for each private-app subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="private_persistence_ipv6_subnet_cidr_blocks" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map listing the specific IPv6 CIDR blocks desired for each private-persistence subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
@@ -1254,6 +1548,24 @@ A map listing the specific CIDR blocks desired for each public subnet. The key m
 <HclListItemDescription>
 
 A map of tags to apply to the public Subnet, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="public_subnet_ipv6_cidr_blocks" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map listing the specific IPv6 CIDR blocks desired for each public subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="public_subnet_ipv6_cidr_blocks" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+(Optional) A map listing the specific IPv6 CIDR blocks desired for each public subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
@@ -1457,6 +1769,6 @@ A map of all public subnets, with the subnet name as the key, and all `aws-subne
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bba36203260707323140f85340469b78"
+  "hash": "4ef6359cfff5a94dd94d4afbcaad37c2"
 }
 ##DOCS-SOURCER-END -->
