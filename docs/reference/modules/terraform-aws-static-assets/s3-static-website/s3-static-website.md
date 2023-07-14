@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # S3 Static Website
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.1/modules/s3-static-website" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/update-codeowners/modules/s3-static-website" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.17.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -865,6 +865,6 @@ A value that can be used to chain resources to depend on the website bucket bein
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.1/modules/s3-static-website/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a52aa3205cc61bebecdc32aa591408b8"
+  "hash": "40358034f80bbc1748b8dfadc0126afe"
 }
 ##DOCS-SOURCER-END -->

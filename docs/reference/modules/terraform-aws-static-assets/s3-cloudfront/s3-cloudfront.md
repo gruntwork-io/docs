@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # S3 CloudFront Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.1/modules/s3-cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/update-codeowners/modules/s3-cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.17.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -1418,6 +1418,6 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.1/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7acd49aeb1b1157e6ceada26b7d8f036"
+  "hash": "0c209e3a622696e04cd3543168174362"
 }
 ##DOCS-SOURCER-END -->
