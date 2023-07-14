@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Simple Queuing Service (SQS) To Lambda Connection Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs-lambda-connection" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/update-codeowners/modules/sqs-lambda-connection" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.9.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -153,6 +153,6 @@ The largest number of records that Lambda will retrieve from your event source a
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs-lambda-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9bfab4e1657246ab52c43cfa19b96bf7"
+  "hash": "277b029356e9db1bdea5b78f814462b8"
 }
 ##DOCS-SOURCER-END -->

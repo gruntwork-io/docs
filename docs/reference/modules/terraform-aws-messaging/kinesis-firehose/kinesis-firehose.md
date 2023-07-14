@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Kinesis Firehose Delivery Stream Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/kinesis-firehose" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/update-codeowners/modules/kinesis-firehose" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases?q=kinesis-firehose" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -160,6 +160,6 @@ Name of the Kinesis Firehose delivery stream.
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/kinesis-firehose/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fbb2dcf64f96eec63942d03096dbda93"
+  "hash": "b0c3f1f7bc30e33d19aea3c2a70fc41e"
 }
 ##DOCS-SOURCER-END -->

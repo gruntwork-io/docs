@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Simple Queuing Service (SQS) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/update-codeowners/modules/sqs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.11.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -641,6 +641,6 @@ The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bbfaf31676b6679d5c17011906e2127d"
+  "hash": "8daabc6bde8ea91235cd348fbcce0aeb"
 }
 ##DOCS-SOURCER-END -->

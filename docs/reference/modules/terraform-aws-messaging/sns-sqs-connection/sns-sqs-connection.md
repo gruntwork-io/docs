@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Simple Notification Service (SNS) Topic to Simple Queuing Service (SQS) Connection Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sns-sqs-connection" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/update-codeowners/modules/sns-sqs-connection" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.11.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -171,6 +171,6 @@ The queue URL for the Simple Queue Service (SQS).
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sns-sqs-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "373a0ba7c17b24c42fdb43bc5afb58f5"
+  "hash": "03a14b48854c0690f5a69b88b1267fcb"
 }
 ##DOCS-SOURCER-END -->

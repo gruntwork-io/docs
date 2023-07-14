@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Amazon Managed Streaming for Apache Kafka (Amazon MSK) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/msk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/update-codeowners/modules/msk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.12.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -1112,6 +1112,6 @@ A comma separated list of one or more hostname:port pairs to use to connect to t
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/msk/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "09e0dc41d1e91bad4c9892f0a8a756de"
+  "hash": "1a18a584112bf58e436f3f5e32e276ac"
 }
 ##DOCS-SOURCER-END -->
