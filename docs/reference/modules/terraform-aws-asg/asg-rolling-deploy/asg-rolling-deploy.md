@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Auto Scaling Group with Rolling Deployment Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.8/modules/asg-rolling-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/update-codeowners/modules/asg-rolling-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -554,6 +554,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.8/modules/asg-rolling-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f1541568e906accbcf8ba133e88488c0"
+  "hash": "745dc8b448b0cdfbcb0e27b2ab4edd6e"
 }
 ##DOCS-SOURCER-END -->

@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Server Group Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.8/modules/server-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/update-codeowners/modules/server-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -1351,6 +1351,6 @@ Other modules can depend on this variable to ensure those modules only deploy af
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.8/modules/server-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ed3e873f097ab76a2a389a95941ed854"
+  "hash": "618fa7f4aaeeea253dca90562ec32408"
 }
 ##DOCS-SOURCER-END -->
