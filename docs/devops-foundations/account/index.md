@@ -39,7 +39,7 @@ Once you have created an account and an administrator user, follow these steps t
 
     1. Configuring Organizational Units (OUs). An OU is a container for accounts within a `root`. Control Tower setups an additional OU(Sandbox) in addition to the Foundation OU(Security). Opt out of the Sandbox OU creation. Neccessary OUs will be created later.
 
-    <!-- The Control tower enabling process does not allow us to specify multiple additional OUs. So it is probably simpler for the follow to opt out of creating just one and have the user do it all after the control-tower-enabling process -->
+    <!-- The Control tower enabling process does not allow us to specify multiple additional OUs which we need. So it is probably simpler to have the customer to opt out of creating just one right now and instead create them all after the control-tower-enabling process -->
 
     1. Configuring shared accounts in the Foundation OU(Security). Rename the "Logs Archive" account as `Logs` and "Audit" as `Security`.
 
@@ -69,6 +69,10 @@ Once you have created an account and an administrator user, follow these steps t
 1. Emails will be sent out as the accounts are being created and the Root user will be invited to sign in using the AWS IAM Identity Center and designated the *Control Tower Admin*. Once the invite is accepted; the Root user will be able to access 3 accounts; Root account(management), as well as Logs & Security using Identity Center's Access Portal URL contained in the email invite.
 
   ![Root User's Access Portal](/img/devops-foundations/account/root-user-access-portal.png)
+
+## Additional Control Tower Operations
+
+Once the Control Tower Setup is complete:
 
 1. Navigate to the [AWS Control Tower's dashboard](https://console.aws.amazon.com/controltower/home/organization) to create additional Organization Units(OUs) using the administrator user. This is required in order to provision new accounts.
 
@@ -118,6 +122,6 @@ TODO
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "f19f1cdd295d244643191422231531ed"
+  "hash": "0d99fc134434516ba2027518f52dc3b6"
 }
 ##DOCS-SOURCER-END -->
