@@ -9,17 +9,17 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.59.2" lastModifiedVersion="0.58.4"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.59.4" lastModifiedVersion="0.59.4"/>
 
 # EKS K8S Role Mapping Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.2/modules/eks-k8s-role-mapping" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.4/modules/eks-k8s-role-mapping" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.58.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.59.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 **NOTE: This module manages a single ConfigMap to use with Kubernetes AWS IAM authentication. If you wish to break up
 the ConfigMap across multiple smaller ConfigMaps to manage entries in isolated modules (e.g., when you add a new IAM
-role in a separate module from the EKS cluster), refer to the [eks-aws-auth-merger](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.2/modules/eks-aws-auth-merger).**
+role in a separate module from the EKS cluster), refer to the [eks-aws-auth-merger](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.4/modules/eks-aws-auth-merger).**
 
 This Module can be used to manage the mapping of AWS IAM roles and users to Kubernetes RBAC groups for finer grained
 access control of your EKS Cluster.
@@ -59,7 +59,7 @@ as much or as little permissions as necessary when accessing resources in the AW
 
 This Module provides code for you to manage the mapping between AWS IAM roles and Kubernetes RBAC roles so that you can
 maintain a consistent set of mappings between the two systems. This works hand in hand with the [EKS authentication
-system](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.2/core-concepts.md#how-do-i-authenticate-kubectl-to-the-eks-cluster), providing the information to Kubernetes to resolve the user to the right RBAC group based on the provided IAM role credentials.
+system](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.4/core-concepts.md#how-do-i-authenticate-kubectl-to-the-eks-cluster), providing the information to Kubernetes to resolve the user to the right RBAC group based on the provided IAM role credentials.
 
 ## Examples
 
@@ -335,7 +335,7 @@ ConfigMap and as such does not have the cyclic dependency problem of Helm.
 
 module "eks_k_8_s_role_mapping" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-role-mapping?ref=v0.59.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-role-mapping?ref=v0.59.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -360,6 +360,11 @@ module "eks_k_8_s_role_mapping" {
   # Mapping of AWS IAM roles to RBAC groups, where the keys are AWS ARN of IAM
   # roles and values are the mapped k8s RBAC group names as a list.
   iam_role_to_rbac_group_mappings = {}
+
+  # Mapping of AWS IAM roles assumed via SSO (IAM Identity Center) to RBAC
+  # groups, where the keys are AWS ARN of IAM role and values are the mapped k8s
+  # RBAC group names as a list.
+  iam_sso_role_to_rbac_group_mappings = {}
 
   # Mapping of AWS IAM users to RBAC groups, where the keys are AWS ARN of IAM
   # users and values are the mapped k8s RBAC group names as a list.
@@ -388,7 +393,7 @@ module "eks_k_8_s_role_mapping" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-role-mapping?ref=v0.59.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-role-mapping?ref=v0.59.4"
 }
 
 inputs = {
@@ -416,6 +421,11 @@ inputs = {
   # Mapping of AWS IAM roles to RBAC groups, where the keys are AWS ARN of IAM
   # roles and values are the mapped k8s RBAC group names as a list.
   iam_role_to_rbac_group_mappings = {}
+
+  # Mapping of AWS IAM roles assumed via SSO (IAM Identity Center) to RBAC
+  # groups, where the keys are AWS ARN of IAM role and values are the mapped k8s
+  # RBAC group names as a list.
+  iam_sso_role_to_rbac_group_mappings = {}
 
   # Mapping of AWS IAM users to RBAC groups, where the keys are AWS ARN of IAM
   # users and values are the mapped k8s RBAC group names as a list.
@@ -491,6 +501,22 @@ map(list(string))
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="iam_sso_role_to_rbac_group_mappings" requirement="optional" type="map(list(…))">
+<HclListItemDescription>
+
+Mapping of AWS IAM roles assumed via SSO (IAM Identity Center) to RBAC groups, where the keys are AWS ARN of IAM role and values are the mapped k8s RBAC group names as a list.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(list(string))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="iam_user_to_rbac_group_mappings" requirement="optional" type="map(list(…))">
 <HclListItemDescription>
 
@@ -543,11 +569,11 @@ The name of the ConfigMap created to store the mapping. This exists so that down
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.2/modules/eks-k8s-role-mapping/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.2/modules/eks-k8s-role-mapping/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.2/modules/eks-k8s-role-mapping/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.4/modules/eks-k8s-role-mapping/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.4/modules/eks-k8s-role-mapping/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.4/modules/eks-k8s-role-mapping/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d62b06ec56928a96e27f278f979f14c0"
+  "hash": "5c92c27ccbe94a6d3e1dd847b2d47d69"
 }
 ##DOCS-SOURCER-END -->
