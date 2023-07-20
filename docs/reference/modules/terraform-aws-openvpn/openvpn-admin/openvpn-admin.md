@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Open VPN Package Infrastructure Package" version="0.26.3" lastModifiedVersion="0.26.2"/>
+<VersionBadge repoTitle="Open VPN Package Infrastructure Package" version="0.26.4" lastModifiedVersion="0.26.2"/>
 
 # openvpn-admin
 
-<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/openvpn-admin" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.4/modules/openvpn-admin" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.26.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -32,11 +32,11 @@ certificates and the OpenVPN server to process those requests.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/openvpn-admin/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/openvpn-admin/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/openvpn-admin/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.4/modules/openvpn-admin/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.4/modules/openvpn-admin/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.4/modules/openvpn-admin/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8a0272073a4dba7a4a3a0cc3a5421049"
+  "hash": "fe0fd9a5b7535a278048fdf9539d4ce6"
 }
 ##DOCS-SOURCER-END -->
