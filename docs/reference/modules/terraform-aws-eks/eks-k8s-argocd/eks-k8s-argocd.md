@@ -40,6 +40,27 @@ todo(matei): add some docs from the official website
 
 ***
 
+## Implementation plan
+
+### A good release should address
+
+1.  First we should get the ArgoCD deployet via helm_release
+2.  Then we should expose some configuration variables that are interesting for this module. For example
+    *   Do we want to deploy from terraform some Git access (ssh/https, etc) for automatic bootstrap <- this would also help with our example
+    *   Do you want to use redis in cluster or managed service by AWS (this will require also IAM access)
+3.  We need to setup an example and test
+    *   Setup a public repo that deplores an nginx (this can be used in tests and examples)
+4.  Add better image support. We need a way to avoid docker hub (AWS cache or info on how to build the images).
+5.  ArgoCD has an UI component and DEX we should:
+    *   think of how we expose the UI component (at least an example with an ingress)
+    *   offer some defaults/example for DEX (google, github and gitlab are good candidates)
+
+### Extra points
+
+1.  Handling joining an existing cluster. A tf module that joines an EKS exiting EKS cluster to a remote
+2.  Given that ArgoCD is a big topic more examples could help
+    *   GitHub app integration is also pretty neat - https://argo-cd.readthedocs.io/en/stable/operator-manual/notifications/services/github/
+
 ## Sample Usage
 
 <Tabs>
@@ -146,6 +167,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.4/modules/eks-k8s-argocd/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "04381cff8bf0ca29c7f12f507861f761"
+  "hash": "5a5abe90ed599e7cca2398f0dde56d8b"
 }
 ##DOCS-SOURCER-END -->
