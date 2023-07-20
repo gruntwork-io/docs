@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.52.7" lastModifiedVersion="0.50.11"/>
+<VersionBadge repoTitle="CI Modules" version="0.52.9" lastModifiedVersion="0.50.11"/>
 
 # AWS Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.7/modules/aws-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.9/modules/aws-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.11" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -45,11 +45,11 @@ dependencies:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.7/modules/aws-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.7/modules/aws-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.7/modules/aws-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.9/modules/aws-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.9/modules/aws-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.9/modules/aws-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bfa23f5fecae7680919b46f2c1247341"
+  "hash": "421dbac5378c26be142ac59603b499e4"
 }
 ##DOCS-SOURCER-END -->
