@@ -215,8 +215,8 @@ module "openvpn_server" {
   # var.enable_backup_bucket_server_access_logging is true.
   backup_bucket_server_access_logging_prefix = null
 
-  # The name of the device to mount.
-  block_device_name = "/dev/xvdcz"
+  # The name of the root device to mount.
+  block_device_name = "/dev/sda1"
 
   # When true, create default IAM Groups that you can use to manage permissions
   # for accessing the SQS queue for requesting and revoking OpenVPN
@@ -453,8 +453,8 @@ inputs = {
   # var.enable_backup_bucket_server_access_logging is true.
   backup_bucket_server_access_logging_prefix = null
 
-  # The name of the device to mount.
-  block_device_name = "/dev/xvdcz"
+  # The name of the root device to mount.
+  block_device_name = "/dev/sda1"
 
   # When true, create default IAM Groups that you can use to manage permissions
   # for accessing the SQS queue for requesting and revoking OpenVPN
@@ -777,10 +777,10 @@ When set, stream S3 server access logs to the prefix in an S3 bucket denoted by 
 <HclListItem name="block_device_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name of the device to mount.
+The name of the root device to mount.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;/dev/xvdcz&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;/dev/sda1&quot;"/>
 </HclListItem>
 
 <HclListItem name="create_iam_groups" requirement="optional" type="bool">
@@ -1068,6 +1068,6 @@ The base64-encoded User Data script to run on the server when it is booting. Thi
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/openvpn-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4ac7de1cd46a5b0e7d33bd21dc21b208"
+  "hash": "acb7f290651b7a1c0d634abe5988d65f"
 }
 ##DOCS-SOURCER-END -->
