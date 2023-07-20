@@ -413,10 +413,9 @@ module "ecs_service" {
   # using the default capacity provider strategyfrom the ECS cluster. Valid
   # value must be one of EC2 or FARGATE. When using FARGATE, you must set the
   # network mode to awsvpc and configure it. When using EC2, you can configure
-  # the placement strategy using the variables placement_strategy_type,
-  # placement_strategy_field, placement_constraint_type,
-  # placement_constraint_expression. This variable is ignored if
-  # var.capacity_provider_strategy is provided.
+  # the placement strategy using the variables ordered_placement_strategy,
+  # placement_constraint_type, placement_constraint_expression. This variable is
+  # ignored if var.capacity_provider_strategy is provided.
   launch_type = null
 
   # A map of tags to apply to the elb target group. Each item in this list
@@ -437,13 +436,16 @@ module "ecs_service" {
   # var.use_auto_scaling is true.
   min_number_of_tasks = null
 
+  # Service level strategy rules that are taken into consideration during task
+  # placement. List from top to bottom in order of precedence. Updates to this
+  # configuration will take effect next task deployment unless
+  # force_new_deployment is enabled. The maximum number of
+  # ordered_placement_strategy blocks is 5.
+  ordered_placement_strategy = [{"field":"cpu","type":"binpack"}]
+
   placement_constraint_expression = "attribute:ecs.ami-id != 'ami-fake'"
 
   placement_constraint_type = "memberOf"
-
-  placement_strategy_field = "cpu"
-
-  placement_strategy_type = "binpack"
 
   # The platform version on which to run your service. Only applicable for
   # launch_type set to FARGATE. Defaults to LATEST.
@@ -808,10 +810,9 @@ inputs = {
   # using the default capacity provider strategyfrom the ECS cluster. Valid
   # value must be one of EC2 or FARGATE. When using FARGATE, you must set the
   # network mode to awsvpc and configure it. When using EC2, you can configure
-  # the placement strategy using the variables placement_strategy_type,
-  # placement_strategy_field, placement_constraint_type,
-  # placement_constraint_expression. This variable is ignored if
-  # var.capacity_provider_strategy is provided.
+  # the placement strategy using the variables ordered_placement_strategy,
+  # placement_constraint_type, placement_constraint_expression. This variable is
+  # ignored if var.capacity_provider_strategy is provided.
   launch_type = null
 
   # A map of tags to apply to the elb target group. Each item in this list
@@ -832,13 +833,16 @@ inputs = {
   # var.use_auto_scaling is true.
   min_number_of_tasks = null
 
+  # Service level strategy rules that are taken into consideration during task
+  # placement. List from top to bottom in order of precedence. Updates to this
+  # configuration will take effect next task deployment unless
+  # force_new_deployment is enabled. The maximum number of
+  # ordered_placement_strategy blocks is 5.
+  ordered_placement_strategy = [{"field":"cpu","type":"binpack"}]
+
   placement_constraint_expression = "attribute:ecs.ami-id != 'ami-fake'"
 
   placement_constraint_type = "memberOf"
-
-  placement_strategy_field = "cpu"
-
-  placement_strategy_type = "binpack"
 
   # The platform version on which to run your service. Only applicable for
   # launch_type set to FARGATE. Defaults to LATEST.
@@ -1527,7 +1531,7 @@ The number of consecutive failed health checks required before considering a tar
 <HclListItem name="launch_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-The launch type of the ECS service. Defaults to null, which will result in using the default capacity provider strategyfrom the ECS cluster. Valid value must be one of EC2 or FARGATE. When using FARGATE, you must set the network mode to awsvpc and configure it. When using EC2, you can configure the placement strategy using the variables placement_strategy_type, placement_strategy_field, placement_constraint_type, placement_constraint_expression. This variable is ignored if <a href="#capacity_provider_strategy"><code>capacity_provider_strategy</code></a> is provided.
+The launch type of the ECS service. Defaults to null, which will result in using the default capacity provider strategyfrom the ECS cluster. Valid value must be one of EC2 or FARGATE. When using FARGATE, you must set the network mode to awsvpc and configure it. When using EC2, you can configure the placement strategy using the variables ordered_placement_strategy, placement_constraint_type, placement_constraint_expression. This variable is ignored if <a href="#capacity_provider_strategy"><code>capacity_provider_strategy</code></a> is provided.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1569,20 +1573,42 @@ The minimum number of ECS Task instances of the ECS Service to run. Auto scaling
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="ordered_placement_strategy" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+Service level strategy rules that are taken into consideration during task placement. List from top to bottom in order of precedence. Updates to this configuration will take effect next task deployment unless force_new_deployment is enabled. The maximum number of ordered_placement_strategy blocks is 5.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    type  = string
+    field = string
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+[
+  {
+    field = "cpu",
+    type = "binpack"
+  }
+]
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
 <HclListItem name="placement_constraint_expression" requirement="optional" type="string">
 <HclListItemDefaultValue defaultValue="&quot;attribute:ecs.ami-id != &apos;ami-fake&apos;&quot;"/>
 </HclListItem>
 
 <HclListItem name="placement_constraint_type" requirement="optional" type="string">
 <HclListItemDefaultValue defaultValue="&quot;memberOf&quot;"/>
-</HclListItem>
-
-<HclListItem name="placement_strategy_field" requirement="optional" type="string">
-<HclListItemDefaultValue defaultValue="&quot;cpu&quot;"/>
-</HclListItem>
-
-<HclListItem name="placement_strategy_type" requirement="optional" type="string">
-<HclListItemDefaultValue defaultValue="&quot;binpack&quot;"/>
 </HclListItem>
 
 <HclListItem name="platform_version" requirement="optional" type="string">
@@ -1867,6 +1893,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.8/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "570d0b4a86a042025e7a416683be22e0"
+  "hash": "1d486902b81330c53fc48526dff58aff"
 }
 ##DOCS-SOURCER-END -->
