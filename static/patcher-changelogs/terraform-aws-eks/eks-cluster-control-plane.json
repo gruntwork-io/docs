@@ -1,6 +1,12 @@
 {
   "module": "eks-cluster-control-plane",
   "releases": {
+    "v0.59.4": {
+      "contains_changes": false
+    },
+    "v0.59.3": {
+      "contains_changes": true
+    },
     "v0.59.2": {
       "contains_changes": false
     },

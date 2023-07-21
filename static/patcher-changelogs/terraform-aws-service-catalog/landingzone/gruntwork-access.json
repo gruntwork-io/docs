@@ -1,6 +1,15 @@
 {
   "module": "landingzone/gruntwork-access",
   "releases": {
+    "v0.104.16": {
+      "contains_changes": false
+    },
+    "v0.104.15": {
+      "contains_changes": false
+    },
+    "v0.104.14": {
+      "contains_changes": false
+    },
     "v0.104.13": {
       "contains_changes": false
     },

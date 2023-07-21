@@ -1,6 +1,18 @@
 {
   "module": "infrastructure-deploy-script",
   "releases": {
+    "v0.52.8": {
+      "contains_changes": false
+    },
+    "v0.52.7": {
+      "contains_changes": false
+    },
+    "v0.52.6": {
+      "contains_changes": false
+    },
+    "v0.52.5": {
+      "contains_changes": false
+    },
     "v0.52.4": {
       "contains_changes": false
     },
