@@ -1,6 +1,8 @@
 # What is a service module?
 
-Service modules are combinations of [modules](./modules) covering a wide variety of use cases, including CI/CD, networking, container orchestration (EKS, ECS), and more. Service modules are usually written in Terraform, represent a full use case, and are designed to be used "off the shelf."
+Service modules are combinations of [modules](./modules) covering a wide variety of use cases, including CI/CD, networking, container orchestration (EKS, ECS), and more.
+
+Service modules are usually written in Terraform, represent a full use case, and are designed to be used "off the shelf."
 
 ## Example
 
@@ -70,6 +72,6 @@ When [building block modules are updated](/library/overview/modules#how-modules-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "5924d3b4a474109fae4928b195d7c8cc"
+  "hash": "4993907a1a19f41d9a257f67da4af976"
 }
 ##DOCS-SOURCER-END -->
