@@ -1,6 +1,8 @@
 # What is a service module?
 
-**Service modules are opinionated combinations of ["building block" modules](./modules). They are usually written in Terraform, represent a full use case, and are designed to be used "off the shelf."**
+Service modules are combinations of [modules](./modules) covering a wide variety of use cases, including CI/CD, networking, container orchestration (EKS, ECS), and more.
+
+Service modules are usually written in Terraform, represent a full use case, and are designed to be used "off the shelf."
 
 ## Example
 
@@ -10,7 +12,9 @@ After applying, you will have an RDS instance that you can access via a human-fr
 
 ## Service modules are optimized for convenience
 
-Whereas "building block" modules are optimized for control, service modules are optimized for convenience. That is, a service module reflects a complete Gruntwork opinion on how you should run a piece of infrastructure. If you agree with our opinion, using a service module gives you high convenience because you have a single Terraform module that does everything you need and which Gruntwork will maintain!
+Whereas "building block" modules are optimized for control, service modules are optimized for convenience.
+
+A service module reflects a complete Gruntwork opinion on how you should run a piece of infrastructure. Using a service module gives you the convenience of a single Terraform module that does everything you need, with Gruntwork maintaining the code.
 
 If you do not agree with our opinions, you can either [customize the module](/library/usage/customizing-modules), or sacrifice convenience in favor of control and build your own module, possibly out of our [building block modules](/library/overview/modules).
 
@@ -29,8 +33,8 @@ CIS customers also have access to the [terraform-aws-cis-service-catalog git rep
 The service catalog features over 25 service modules spanning three major use cases:
 
 1. AWS foundations
-2. Run my app
-3. Store my data
+2. Running applications
+3. Storing data
 
 To browse the service catalog, see the [Library Reference](/library/reference/) and look for "Service Catalog" in the sidebar. You can also visit the [terraform-aws-service-catalog git repo](https://github.com/gruntwork-io/terraform-aws-service-catalog).
 
@@ -62,11 +66,12 @@ The code in the `terraform-aws-service-catalog` repo is organized into three pri
 
 ## How service modules are updated
 
-When [building block modules are updated](/library/overview/modules#how-modules-are-updated), we propagate those updates to the service catalog. Keep in mind that there is sometimes a delay between when a "building block" module is updated, and when that update is reflected in the service catalog.
+When [building block modules are updated](/library/overview/modules#how-modules-are-updated), we propagate those updates to the service catalog. Keep in mind that there is sometimes a delay between when a "building block" module is updated and when that update is reflected in the service catalog.
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "285f0c3420682a4bfab14768f6ced090"
+  "hash": "4993907a1a19f41d9a257f67da4af976"
 }
 ##DOCS-SOURCER-END -->

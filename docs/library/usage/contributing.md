@@ -18,7 +18,7 @@ If you're thinking of adding a new feature, before starting any work, we recomme
 questions and get feedback from the maintainers and the community before you sink a lot of time into writing (possibly
 the wrong) code. If there is anything you’re unsure about, just ask!
 
-If you're submitting a simple change such as a new variable or new output value, it may be worth opening a pull request directly, as described below. The key point is that we want to minimize the risk that you invest time in something we ultimately can't use.
+If you're submitting a simple change such as a new variable or new output value, it may be worth opening a pull request directly, as described below.
 
 ## Proceed to a pull request
 
@@ -42,7 +42,7 @@ the tests locally.
 
 ### Update the code
 
-At this point, you can now make your code changes and use your new test case to verify that everything is working.
+At this point, you can make your code changes and use your new test case to verify that everything is working.
 
 ### Create a pull request
 
@@ -61,6 +61,6 @@ code and release a new version.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "aee3cef623a92fd080fc196734bedcbf"
+  "hash": "b7feb0ccc7842e3083d6e27946f4a32c"
 }
 ##DOCS-SOURCER-END -->

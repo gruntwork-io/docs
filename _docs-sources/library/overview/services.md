@@ -1,6 +1,8 @@
 # What is a service module?
 
-Service modules are combinations of [modules](./modules) covering a wide variety of use cases, including CI/CD, networking, container orchestration (EKS, ECS), and more. Service modules are usually written in Terraform, represent a full use case, and are designed to be used "off the shelf."
+Service modules are combinations of [modules](./modules) covering a wide variety of use cases, including CI/CD, networking, container orchestration (EKS, ECS), and more.
+
+Service modules are usually written in Terraform, represent a full use case, and are designed to be used "off the shelf."
 
 ## Example
 
