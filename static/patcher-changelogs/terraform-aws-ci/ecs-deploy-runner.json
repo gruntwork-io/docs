@@ -1,6 +1,12 @@
 {
   "module": "ecs-deploy-runner",
   "releases": {
+    "v0.52.10": {
+      "contains_changes": false
+    },
+    "v0.52.9": {
+      "contains_changes": true
+    },
     "v0.52.8": {
       "contains_changes": false
     },

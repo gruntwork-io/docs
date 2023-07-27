@@ -1,6 +1,9 @@
 {
   "module": "eks-aws-auth-merger",
   "releases": {
+    "v0.60.0": {
+      "contains_changes": true
+    },
     "v0.59.4": {
       "contains_changes": false
     },
