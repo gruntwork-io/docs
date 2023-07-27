@@ -1,6 +1,12 @@
 {
   "module": "kubernetes-circleci-helpers",
   "releases": {
+    "v0.52.10": {
+      "contains_changes": false
+    },
+    "v0.52.9": {
+      "contains_changes": false
+    },
     "v0.52.8": {
       "contains_changes": false
     },
