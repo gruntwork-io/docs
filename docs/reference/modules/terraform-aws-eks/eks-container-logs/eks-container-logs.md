@@ -157,6 +157,10 @@ module "eks_container_logs" {
   # not wish to forward the logs to CloudWatch Logs.
   cloudwatch_configuration = null
 
+  # Configurations for adjusting the default filter settings. Set to null if you
+  # do not wish to use the default filter.
+  default_filter_configuration = {"bufferSize":"32k","enabled":true,"k8sLoggingExclude":"On","k8sLoggingParser":"On","keepLog":"On","kubeURL":"https://kubernetes.default.svc.cluster.local:443","match":"kube.*","mergeLog":"On","mergeLogKey":"data"}
+
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
   # resources in this module will now depend on the resources backing the values
@@ -287,6 +291,10 @@ inputs = {
   # not wish to forward the logs to CloudWatch Logs.
   cloudwatch_configuration = null
 
+  # Configurations for adjusting the default filter settings. Set to null if you
+  # do not wish to use the default filter.
+  default_filter_configuration = {"bufferSize":"32k","enabled":true,"k8sLoggingExclude":"On","k8sLoggingParser":"On","keepLog":"On","kubeURL":"https://kubernetes.default.svc.cluster.local:443","match":"kube.*","mergeLog":"On","mergeLogKey":"data"}
+
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
   # resources in this module will now depend on the resources backing the values
@@ -364,6 +372,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.60.0/modules/eks-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ff306df821102f147482ecd61fe2a13e"
+  "hash": "1425de40b5a80d59560b0a38f880e166"
 }
 ##DOCS-SOURCER-END -->

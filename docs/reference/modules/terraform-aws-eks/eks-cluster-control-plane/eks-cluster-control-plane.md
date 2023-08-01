@@ -1206,17 +1206,26 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
+<HclGeneralListItem title="More Details">
 <details>
-  <summary>Example</summary>
 
 
 ```hcl
+
+   EKS add-on advanced configuration via configuration_values must follow the configuration schema for the deployed version of the add-on. 
+   See the following AWS Blog for more details on advanced configuration of EKS add-ons: https://aws.amazon.com/blogs/containers/amazon-eks-add-ons-advanced-configuration/
+   Example:
      eks_addons = {
        coredns    = {}
        kube-proxy = {}
        vpc-cni    = {
-         addon_version            = "1.10.1-eksbuild.1"
+         addon_version        = "1.10.1-eksbuild.1"
+         configuration_values = {
+            ipvs      = {}
+            mode      = "iptables"
+            resources = {}
+         }
+         preserve                 = false
          resolve_conflicts        = "NONE"
          service_account_role_arn = "arn:aws:iam::123456789012:role/role-name"
        }
@@ -1622,6 +1631,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.60.0/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "00295324db9546aded0dac815c4c2918"
+  "hash": "e67498e9e0cb737bf2982901bc2b9e64"
 }
 ##DOCS-SOURCER-END -->
