@@ -26,6 +26,44 @@ queries from your applications to the read replica. Refer to
 [Working with DB instance read replicas](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html)
 for more information.
 
+## Promoting Read Replica as Primary
+
+For disaster recovery, you may need to promote a read replica as a primary instance. Promoting an RDS replica to be a
+primary instance is not a supported operation in Terraform and requires direct interaction with AWS APIs. Subsequent
+steps are then required to ensure your Terraform state is up-to-date. Please see the following walk-through for steps to
+promote a replica to primary.
+
+1.  **Promote the replica**: Run AWS CLI command to promote read replica as primary with the following command:
+
+```shell
+aws rds promote-read-replica \
+   --db-instance-identifier <replica-identifier> \
+   --region <region>
+```
+
+**Note**: This command triggers the promotion process and takes an additional 30-60 mins to complete the
+modification.
+
+2.  **Update the Terraform configuration**: Modify your Terraform configuration file (e.g., main.tf) to reflect the new
+    state. There's no way to automatically reflect the new state in terraform.
+3.  **Import the new primary instance into Terraform state**: Run the `terraform import` command. This command associates
+    the
+    resource in your Terraform configuration with the existing resource in AWS.
+
+```shell
+terraform import aws_db_instance.<identifier> <primary_instance_arn>
+```
+
+4.  **Refresh the Terraform state**: Run `terraform refresh` to fetch the current state of the primary instance from AWS
+    and update the Terraform state file accordingly. This ensures that Terraform is aware of the new primary instance's
+    attributes.
+5.  **Verify the Terraform plan**: Run `terraform plan` to review the changes that Terraform will apply based on the
+    updated configuration and current state. Make sure the plan reflects the desired changes, including the new primary
+    instance attributes.
+6.  **Apply the Terraform changes**: If the plan looks correct, apply the changes by running `terraform apply`. Terraform
+    will update the resources to match the desired configuration, reflecting the newly promoted primary
+    instance.
+
 ## Sample Usage
 
 <Tabs>
@@ -225,6 +263,10 @@ module "rds_replicas" {
   # WARNING: - In nearly all cases a database should NOT be publicly accessible.
   # Only set this to true if you want the database open to the internet.
   publicly_accessible = false
+
+  # Identifiers of the replica you want to create. Use this variable if you want
+  # to set custom identifier for your read replicas.
+  replica_identifiers = null
 
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
@@ -451,6 +493,10 @@ inputs = {
   # WARNING: - In nearly all cases a database should NOT be publicly accessible.
   # Only set this to true if you want the database open to the internet.
   publicly_accessible = false
+
+  # Identifiers of the replica you want to create. Use this variable if you want
+  # to set custom identifier for your read replicas.
+  replica_identifiers = null
 
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
@@ -839,6 +885,15 @@ WARNING: - In nearly all cases a database should NOT be publicly accessible. Onl
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="replica_identifiers" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Identifiers of the replica you want to create. Use this variable if you want to set custom identifier for your read replicas.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -917,6 +972,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/rds-replicas/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8763bc60f0e0b12bbadbefc0aff7c5b6"
+  "hash": "13aa45352fdd4b2ebd9df5ac1f6cd616"
 }
 ##DOCS-SOURCER-END -->

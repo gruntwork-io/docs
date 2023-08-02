@@ -398,6 +398,12 @@ module "rds" {
   # disable automated backups.
   replica_backup_retention_period = 0
 
+  # A configuration block for restoring a DB instance to an arbitrary point in
+  # time. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#restore-to-point-in-time
+  # for more details
+  restore_to_point_in_time = null
+
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
   # this DB instance, you will not have any backups of the data!
@@ -745,6 +751,12 @@ inputs = {
   # read replicas. Must be 1 or greater to support read replicas. 0 means
   # disable automated backups.
   replica_backup_retention_period = 0
+
+  # A configuration block for restoring a DB instance to an arbitrary point in
+  # time. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#restore-to-point-in-time
+  # for more details
+  restore_to_point_in_time = null
 
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
@@ -1389,6 +1401,29 @@ How many days to keep backup snapshots around before cleaning them up on the rea
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
+<HclListItem name="restore_to_point_in_time" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+A configuration block for restoring a DB instance to an arbitrary point in time. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#restore-to-point-in-time for more details
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    restore_time                             = string
+    source_db_instance_identifier            = string
+    source_db_instance_automated_backups_arn = string
+    source_dbi_resource_id                   = string
+    use_latest_restorable_time               = string
+
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1494,6 +1529,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "02746ecfebb2a82db2a1062d07241857"
+  "hash": "3816fa35b97f1cbbfd6f17d8d2593f51"
 }
 ##DOCS-SOURCER-END -->

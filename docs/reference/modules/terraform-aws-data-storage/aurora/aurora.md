@@ -459,6 +459,12 @@ module "aurora" {
   # snapshots. Uses the default aws/rds key in KMS.
   storage_encrypted = true
 
+  # Specifies the storage type to be associated with the DB cluster. For Aurora
+  # DB clusters, storage_type modifications can be done in-place. For Multi-AZ
+  # DB Clusters, the iops argument must also be set. Valid values are:
+  # aurora-iopt1 (Aurora DB Clusters); io1 (Multi-AZ DB Clusters).
+  storage_type = "gp2"
+
   # Timeout for DB updating
   updating_timeout = "120m"
 
@@ -801,6 +807,12 @@ inputs = {
   # underlying storage for the DB, its automated backups, Read Replicas, and
   # snapshots. Uses the default aws/rds key in KMS.
   storage_encrypted = true
+
+  # Specifies the storage type to be associated with the DB cluster. For Aurora
+  # DB clusters, storage_type modifications can be done in-place. For Multi-AZ
+  # DB Clusters, the iops argument must also be set. Valid values are:
+  # aurora-iopt1 (Aurora DB Clusters); io1 (Multi-AZ DB Clusters).
+  storage_type = "gp2"
 
   # Timeout for DB updating
   updating_timeout = "120m"
@@ -1423,6 +1435,15 @@ Specifies whether the DB cluster uses encryption for data at rest in the underly
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="storage_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Specifies the storage type to be associated with the DB cluster. For Aurora DB clusters, storage_type modifications can be done in-place. For Multi-AZ DB Clusters, the iops argument must also be set. Valid values are: aurora-iopt1 (Aurora DB Clusters); io1 (Multi-AZ DB Clusters).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
+</HclListItem>
+
 <HclListItem name="updating_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1486,6 +1507,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5d7eaa245a1a341346faa741126ed41d"
+  "hash": "450b14f25846dda8c930238fe80478ec"
 }
 ##DOCS-SOURCER-END -->
