@@ -344,6 +344,9 @@ module "rds" {
   # creation.
   nchar_character_set_name = null
 
+  # (Optional) The network type of the DB instance. Valid values: IPV4, DUAL.
+  network_type = null
+
   # The number of read replicas to create. RDS will asynchronously replicate all
   # data from the master to these replicas, which you can use to horizontally
   # scale reads traffic.
@@ -397,6 +400,12 @@ module "rds" {
   # read replicas. Must be 1 or greater to support read replicas. 0 means
   # disable automated backups.
   replica_backup_retention_period = 0
+
+  # A configuration block for restoring a DB instance to an arbitrary point in
+  # time. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#restore-to-point-in-time
+  # for more details
+  restore_to_point_in_time = null
 
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
@@ -692,6 +701,9 @@ inputs = {
   # creation.
   nchar_character_set_name = null
 
+  # (Optional) The network type of the DB instance. Valid values: IPV4, DUAL.
+  network_type = null
+
   # The number of read replicas to create. RDS will asynchronously replicate all
   # data from the master to these replicas, which you can use to horizontally
   # scale reads traffic.
@@ -745,6 +757,12 @@ inputs = {
   # read replicas. Must be 1 or greater to support read replicas. 0 means
   # disable automated backups.
   replica_backup_retention_period = 0
+
+  # A configuration block for restoring a DB instance to an arbitrary point in
+  # time. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#restore-to-point-in-time
+  # for more details
+  restore_to_point_in_time = null
 
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
@@ -1281,6 +1299,15 @@ The national character set is used in the NCHAR, NVARCHAR2, and NCLOB data types
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="network_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Optional) The network type of the DB instance. Valid values: IPV4, DUAL.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="num_read_replicas" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1389,6 +1416,29 @@ How many days to keep backup snapshots around before cleaning them up on the rea
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
+<HclListItem name="restore_to_point_in_time" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+A configuration block for restoring a DB instance to an arbitrary point in time. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#restore-to-point-in-time for more details
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    restore_time                             = string
+    source_db_instance_identifier            = string
+    source_db_instance_automated_backups_arn = string
+    source_dbi_resource_id                   = string
+    use_latest_restorable_time               = string
+
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1494,6 +1544,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "02746ecfebb2a82db2a1062d07241857"
+  "hash": "c9aa3bb76c49cb5f45ff9cfbc14de6a3"
 }
 ##DOCS-SOURCER-END -->
