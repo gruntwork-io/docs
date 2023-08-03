@@ -6,7 +6,7 @@ The Patcher update command allows you to update some or all of the module depend
 
 Starting in `0.4.1`, Patcher applies patches using a Docker sandbox by default and will pull the latest version of the [`gruntwork/patcher_bash_env`](https://hub.docker.com/r/gruntwork/patcher_bash_env) image.
 
-To run Patcher in a CI pipeline you should add the `--skip-container-runtime` flag.
+To run Patcher locally without Docker or in a CI pipeline you should add the `--skip-container-runtime` flag.
 
 :::
 
@@ -67,7 +67,9 @@ In non-interactive mode, Patcher updates all module dependencies in the current 
 
 :::caution
 
-Starting in `0.4.1`, Patcher applies patches using a Docker sandbox by default. To run Patcher in a CI pipeline you should add the `--skip-container-runtime` flag.
+Starting in `0.4.1`, Patcher applies patches using a Docker sandbox by default.
+
+To run Patcher in a CI pipeline you should add the `--skip-container-runtime` flag.
 
 :::
 
