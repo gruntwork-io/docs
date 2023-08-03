@@ -22,12 +22,16 @@ $ mv patcher /usr/local/bin
 
 ## Before Running Patcher
 
+### GitHub Personal Access Token
+
 To fetch information from GitHub, Patcher requires a [GitHub Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token), with the `repo` scope. Set the
 `GITHUB_OAUTH_TOKEN` environment variable to your GitHub Personal Access token:
 
 ```bash
 export GITHUB_OAUTH_TOKEN="<YOUR_GITHUB_PAT>"
 ```
+
+### Docker
 
 Starting in `0.4.1`, the Patcher update command applies patches using a Docker sandbox by default and will pull the latest version of the [`gruntwork/patcher_bash_env`](https://hub.docker.com/r/gruntwork/patcher_bash_env) image.
 
