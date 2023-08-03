@@ -1,8 +1,16 @@
 # Patcher Update
 
+:::info
+
+Starting in `0.4.1`, Patcher applies patches using a Docker sandbox by default and will pull the latest version of the [`gruntwork/patcher_bash_env`](https://hub.docker.com/r/gruntwork/patcher_bash_env) image.
+
+To run Patcher locally without Docker or in a CI pipeline you should add the `--skip-container-runtime` flag.
+
+:::
+
 The Patcher update command allows you to update some or all of the module dependencies in the current folder and any child folders.
 
-The update command supports two modes: **interactive mode** and **non-interactive mode**.
+Patcher supports two modes: **interactive mode** and **non-interactive mode**.
 
 ## Interactive Mode
 
@@ -55,6 +63,14 @@ Some modules including third party modules may not have a CHANGELOGS.md file. In
 
 ## Non-Interactive Mode
 
+:::caution
+
+Starting in `0.4.1`, Patcher applies patches using a Docker sandbox by default.
+
+To run Patcher in a CI pipeline you should add the `--skip-container-runtime` flag.
+
+:::
+
 In non-interactive mode, Patcher updates all module dependencies in the current folder (and child folders) according to the specified update strategy.
 
 Non-interactive mode supports both the `next-safe` and `next-breaking` update strategies.
@@ -65,11 +81,11 @@ Using the [next safe update strategy](/patcher/update-strategies#next-safe-updat
 
 Example usage:
 ```
-patcher update --non-interactive --update-strategy next-safe
+patcher update --non-interactive --skip-container-runtime --update-strategy next-safe prod
 ```
 Or just
 ```
-patcher update --non-interactive
+patcher update --non-interactive --skip-container-runtime prod
 ```
 
 ### Next Breaking
@@ -80,7 +96,7 @@ If Patcher updates a dependency to a breaking version, a `README-TO-COMPLETE-UPD
 
 Example usage:
 ```
-patcher update --non-interactive --update-strategy next-breaking
+patcher update --non-interactive --skip-container-runtime --update-strategy next-breaking prod
 ```
 
 ## Support for Third Party Modules
@@ -106,6 +122,6 @@ Patcher cannot update from `4.0.x` to `5.0.0` and will instead show a `?` in the
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "a1a5840931017bfaf95f069bafd070de"
+  "hash": "bdb6c8796a65e330af0b443208ebb1de"
 }
 ##DOCS-SOURCER-END -->
