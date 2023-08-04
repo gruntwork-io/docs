@@ -21,6 +21,7 @@ Here are the repos that were updated:
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
 - [terraform-aws-lambda](#terraform-aws-lambda)
+- [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
 - [terraform-aws-openvpn](#terraform-aws-openvpn)
 - [terraform-aws-security](#terraform-aws-security)
@@ -28,6 +29,7 @@ Here are the repos that were updated:
 - [terraform-aws-service-catalog](#terraform-aws-service-catalog)
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
 - [terraform-aws-utilities](#terraform-aws-utilities)
+- [terraform-aws-vpc](#terraform-aws-vpc)
 
 
 ## boilerplate
@@ -65,7 +67,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  Release duplicated from https://github.com/gruntwork-io/patcher/releases/tag/v0.3.4
+  This release contains minor bug fixes.
 
 </div>
 
@@ -223,6 +225,23 @@ None
 
 
 ## terraform-aws-cis-service-catalog
+
+
+### [v0.47.6](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.47.6)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 6/30/2023 | Modules affected: security/aws-securityhub | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.47.6">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Limited  AWS provider&apos;s version in AWS Security Hub&apos;s module due to [a bug released in v4.64.0](https://github.com/hashicorp/terraform-provider-aws/issues/30980).
+
+
+
+</div>
 
 
 ### [v0.47.5](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.47.5)
@@ -561,6 +580,26 @@ Note: EKS 1.26 requires kubergrunt v0.11.3 and above
 
 
 
+## terraform-aws-load-balancer
+
+
+### [v0.29.8](https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.8)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 6/30/2023 | Modules affected: alb | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.8">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Add optional alb redirect as default rule
+
+
+</div>
+
+
+
 ## terraform-aws-monitoring
 
 
@@ -839,10 +878,32 @@ Note: EKS 1.26 requires kubergrunt v0.11.3 and above
 
 
 
+## terraform-aws-vpc
+
+
+### [v0.23.2](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.23.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 6/30/2023 | Modules affected: vpc-flow-logs | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.23.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Remove Zack from CODEOWNERS
+- Add max_aggregation_interval to vpc_flow_logs
+
+
+
+</div>
+
+
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "0fde6f28d5c61ac4645d9515d4820dc0"
+  "hash": "f89d1040196925c21b2fc592f53a8057"
 }
 ##DOCS-SOURCER-END -->
