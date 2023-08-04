@@ -463,7 +463,7 @@ module "aurora" {
   # DB clusters, storage_type modifications can be done in-place. For Multi-AZ
   # DB Clusters, the iops argument must also be set. Valid values are:
   # aurora-iopt1 (Aurora DB Clusters); io1 (Multi-AZ DB Clusters).
-  storage_type = "gp2"
+  storage_type = null
 
   # Timeout for DB updating
   updating_timeout = "120m"
@@ -812,7 +812,7 @@ inputs = {
   # DB clusters, storage_type modifications can be done in-place. For Multi-AZ
   # DB Clusters, the iops argument must also be set. Valid values are:
   # aurora-iopt1 (Aurora DB Clusters); io1 (Multi-AZ DB Clusters).
-  storage_type = "gp2"
+  storage_type = null
 
   # Timeout for DB updating
   updating_timeout = "120m"
@@ -1441,7 +1441,7 @@ Specifies whether the DB cluster uses encryption for data at rest in the underly
 Specifies the storage type to be associated with the DB cluster. For Aurora DB clusters, storage_type modifications can be done in-place. For Multi-AZ DB Clusters, the iops argument must also be set. Valid values are: aurora-iopt1 (Aurora DB Clusters); io1 (Multi-AZ DB Clusters).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="updating_timeout" requirement="optional" type="string">
@@ -1507,6 +1507,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "450b14f25846dda8c930238fe80478ec"
+  "hash": "ad8219057bf45f27b56630a32233c818"
 }
 ##DOCS-SOURCER-END -->
