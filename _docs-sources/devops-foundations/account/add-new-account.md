@@ -1,6 +1,6 @@
 # Add a new Account
 
-To integrate a new account into a control-tower managed organization using Gruntwork, follow these simple four steps:
+To provision a new account in a control-tower managed organization using Gruntwork, follow these simple four steps:
 
 ## Prerequisites
 
@@ -43,7 +43,7 @@ Next, create a pull request containing the new account request file. This action
 
   #### Alternatively with GitHub Actions
 
-  If you have configured GitHub Actions in your infrastructure-live repository, with an Account Factory workflow, you can invoke that workflow, which will automatically create the account request file and open a pull request.
+  If you have configured GitHub Actions in your infrastructure-live repository, with an Account Factory workflow, you can invoke that workflow via the GitHub UI or programmatically, which will automatically create the account request file and open a pull request.
 
 ### 3. Review the Plan Output & Merge the Account Request PR
 
