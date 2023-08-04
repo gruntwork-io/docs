@@ -1,6 +1,12 @@
 {
   "module": "alb",
   "releases": {
+    "v0.29.10": {
+      "contains_changes": false
+    },
+    "v0.29.9": {
+      "contains_changes": false
+    },
     "v0.29.8": {
       "contains_changes": true
     },
