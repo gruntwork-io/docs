@@ -6,10 +6,10 @@ To integrate a new account into a control-tower managed organization using Grunt
 
 Before proceeding, ensure the following prerequisites are met:
 
-- A bootstrapped `infrastructure-live` repository with the [control-tower-multi-account-factory module](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/main/modules/landingzone/control-tower-multi-account-factory) configured in the root account.
+- A bootstrapped `infrastructure-live` repository with the [control-tower-multi-account-factory module](https://GitHub.com/gruntwork-io/terraform-aws-control-tower/tree/main/modules/landingzone/control-tower-multi-account-factory) configured in the root account.
 <!-- Repo must include the multi-account factory module configured in the root account -->
 - A functional `Gruntwork Pipelines` setup with your `infrastructure-live` repository
-- *(OPTIONAL)*: [Configured Github Actions](<LINK-TO-VALID-DOC>), in your `infrastructure-live repo`, to create account request PRs (Pull Requests).
+- *(OPTIONAL)*: [Configured GitHub Actions](<LINK-TO-VALID-DOC>), in your `infrastructure-live repo`, to create account request PRs (Pull Requests).
 
 ## Steps
 
@@ -41,9 +41,9 @@ To initiate the process, create an `account-<DESIRED-ACCOUNT-NAME>.yml` file in 
 
 Next, create a pull request containing the new account request file. This action will trigger the Gruntwork pipeline to `terragrunt plan` the new account and update the pull request with the plan output.
 
-  #### Alternatively with Github Actions
+  #### Alternatively with GitHub Actions
 
-  If you have configured Github Actions in your infrastructure-live repository, with an Account Factory workflow, you can invoke that workflow, which will automatically create the account request file and open a pull request.
+  If you have configured GitHub Actions in your infrastructure-live repository, with an Account Factory workflow, you can invoke that workflow, which will automatically create the account request file and open a pull request.
 
 ### 3. Review the Plan Output & Merge the Account Request PR
 
@@ -52,6 +52,12 @@ Review the plan output in the pull request, once satisfied, merge the pull reque
 <!-- The Current Gruntwork pipelines does not do this currently but will do so shortly -->
 - The new account details in `accounts.yml` file in the root of your `infrastructure-live` repository
 - A `<DESIRED-ACCOUNT-NAME>` folder in the root of your `infrastructure-live` repository containing configurations necessary to deploy the Gruntwork account baselines into the new account.
+
+:::tip
+
+View the progress of the account creation by viewing the logs of the kicked-off GitHub Actions workflow for your main branch.
+
+:::
 
 :::info
 
@@ -71,6 +77,6 @@ Once the pull request to update your `infrastructure-live` repository with the n
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "5c98027d7a1611d27289e476a4fee612"
+  "hash": "16f3cfbe3b9cce0edfe086da82d6c815"
 }
 ##DOCS-SOURCER-END -->
