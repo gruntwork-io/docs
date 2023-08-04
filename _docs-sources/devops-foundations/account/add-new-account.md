@@ -8,8 +8,8 @@ Before proceeding, ensure the following prerequisites are met:
 
 - A bootstrapped `infrastructure-live` repository with the [control-tower-multi-account-factory module](https://GitHub.com/gruntwork-io/terraform-aws-control-tower/tree/main/modules/landingzone/control-tower-multi-account-factory) configured in the root account.
 <!-- Repo must include the multi-account factory module configured in the root account -->
-- A functional `Gruntwork Pipelines` setup with your `infrastructure-live` repository
-- *(OPTIONAL)*: [Configured GitHub Actions](<LINK-TO-VALID-DOC>), in your `infrastructure-live repo`, to create account request PRs (Pull Requests).
+- A [functional `Gruntwork Pipelines`](https://LINK-TO-VALID-DOC) setup with your `infrastructure-live` repository
+- *(OPTIONAL)*: [Configured GitHub Actions](https://LINK-TO-VALID-DOC), in your `infrastructure-live` repo, to create account request PRs (Pull Requests).
 
 ## Steps
 
