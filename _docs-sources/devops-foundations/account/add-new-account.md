@@ -61,9 +61,9 @@ View the progress of the account creation by viewing the logs of the kicked-off 
 
 :::info
 
-- The SSO user created in the new account will receive an email with instructions on how to log in to the new account using AWS IAM Identity Center(Successor to SSO).
+- The SSO user created in the new account will be able to sign in using your organization's [Access Portal Url](https://docs.aws.amazon.com/signin/latest/userguide/sign-in-urls-defined.html#access-portal-url). If the user is being invited into AWS IAM Identity Center(Successor to SSO) for this first time, they will receive an email with instructions on how to log in. Otherwise, the Portal Url can be provided by your organization's administrator.
 
-- The root user of the new account can login by following the "Forgot Password" flow in the [AWS Console's Sign in page](https://console.aws.amazon.com/) to set a password and subsequently log in.
+- The root user of the new account will receive an email and can login by following the "Forgot Password" flow in the [AWS Console's Sign in page](https://console.aws.amazon.com/) to set a password and subsequently log in.
 <!-- https://docs.aws.amazon.com/controltower/latest/userguide/root-login.html -->
 
 :::
