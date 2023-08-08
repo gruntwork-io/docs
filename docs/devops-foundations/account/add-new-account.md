@@ -49,7 +49,12 @@ Next, create a pull request containing the new account request file. This action
 
 Review the plan output in the pull request, once satisfied, merge the pull request to create the new account. Merging the PR will trigger the Gruntwork pipeline to `terragrunt apply` the new account. Once the pipeline completes, the new account will be created and a new pull request will also be generated to update your `infrastructure-live` repository with:
 
-<!-- The Current Gruntwork pipelines does not do this currently but will do so shortly -->
+:::caution
+
+The Current Gruntwork pipelines does not do this currently but will do so shortly.  This notice will be removed when the feature is available.
+
+:::
+
 - The new account details in `accounts.yml` file in the root of your `infrastructure-live` repository
 - A `<DESIRED-ACCOUNT-NAME>` folder in the root of your `infrastructure-live` repository containing configurations necessary to deploy the Gruntwork account baselines into the new account.
 
@@ -77,6 +82,6 @@ Once the pull request to update your `infrastructure-live` repository with the n
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e7f15d3254316cdbdbbdef9c9684b65f"
+  "hash": "237e71cd30eae3b9f4405314477741b2"
 }
 ##DOCS-SOURCER-END -->
