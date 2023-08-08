@@ -41,6 +41,12 @@ To initiate the process, create an `account-<DESIRED-ACCOUNT-NAME>.yml` file in 
 
 Next, create a pull request containing the new account request file. This action will trigger the Gruntwork pipeline to `terragrunt plan` the new account and update the pull request with the plan output.
 
+:::caution
+
+Currently the output is still only available in the `infrastructure-pipelines` repository's GitHub Actions logs.  This will be updated shortly to be available in the pull request and this notice will be removed.
+
+:::
+
   #### Alternatively with GitHub Actions
 
   If you have configured GitHub Actions in your infrastructure-live repository, with an Account Factory workflow, you can invoke that workflow via the GitHub UI or programmatically, which will automatically create the account request file and open a pull request.
@@ -82,6 +88,6 @@ Once the pull request to update your `infrastructure-live` repository with the n
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "237e71cd30eae3b9f4405314477741b2"
+  "hash": "3d6ad8274036e6107ad1e12f155d066a"
 }
 ##DOCS-SOURCER-END -->
