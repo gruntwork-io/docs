@@ -24,6 +24,7 @@ sso_user_first_name: <SSO-USER-FIRST-NAME>
 sso_user_last_name: <SSO-USER-LAST-NAME>
 sso_user_email: <SSO-USER-EMAIL>
 infrastructure_modules_version: <INFRASTRUCTURE-MODULES-VERSION>
+requested_by: <GITHUB_USER_ID_OR_EMAIL>
 ```
 
 - `account_name`: The name of the account in AWS.
