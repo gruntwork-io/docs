@@ -23,7 +23,7 @@ org_name_prefix: <ORG-NAME-PREFIX-FOR-RESOURCES>
 sso_user_first_name: <SSO-USER-FIRST-NAME>
 sso_user_last_name: <SSO-USER-LAST-NAME>
 sso_user_email: <SSO-USER-EMAIL>
-infrastructure_modules_version: <INFRASTRUCTURE-MODULES-VERSION>
+account_baseline_modules_version: <ACCOUNT-BASELINE-MODULES-VERSION>
 requested_by: <GITHUB_USER_ID_OR_EMAIL>
 ```
 
@@ -35,7 +35,7 @@ requested_by: <GITHUB_USER_ID_OR_EMAIL>
 - `sso_user_first_name`: The first name of the user to create in AWS IAM Identity Center (Successor to AWS Single Sign-On(SSO)).
 - `sso_user_last_name`: The last name of the user to create in AWS IAM Identity Center.
 - `sso_user_email`: The email address of the user to create in AWS IAM Identity Center. This user will be able to login to the new account using AWS IAM Identity Center.
-- `infrastructure_modules_version`: The version of the your Infrastructure modules to use for the new account. e.g., `v0.0.1`
+- `account_baseline_modules_version`: The version of the your account baseline modules to use for the new account. e.g., `v0.0.1`
 - `requested_by`: The GitHub user ID or email address of the entity requesting the new account, for audit purposes.
 
 :::note
