@@ -40,7 +40,7 @@ requested_by: <GITHUB_USER_ID_OR_EMAIL>
 
 :::note
 
-If you have configured GitHub Actions in your infrastructure-live repository with an [Account Factory workflow](https://LINK-TO-VALID-DOC), you can invoke that workflow via the GitHub UI or programmatically. This workflow will automatically create the account request file and open a pull request on your behalf. After doing so, jump to [step 3](#3-review-and-merge-the-account-request-pr).
+If you have configured GitHub Actions in your `infrastructure-live` repository with an [Account Factory workflow](https://LINK-TO-VALID-DOC), you can invoke that workflow via the GitHub UI or programmatically. This workflow will automatically create the account request file and open a pull request on your behalf. After doing so, jump to [step 3](#3-review-and-merge-the-account-request-pr).
 
 :::
 
