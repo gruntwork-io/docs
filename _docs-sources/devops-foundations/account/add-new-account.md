@@ -8,7 +8,7 @@ Before proceeding, ensure you have an `infrastructure-live` repository which con
 
 - The [`control-tower-multi-account-factory` module](https://GitHub.com/gruntwork-io/terraform-aws-control-tower/tree/main/modules/landingzone/control-tower-multi-account-factory) configured in the root account
   <!-- Repo must include the multi-account factory module configured in the root account -->
-- An installtion of [Gruntwork Pipelines](https://LINK-TO-VALID-DOC)
+- An installation of [Gruntwork Pipelines](https://LINK-TO-VALID-DOC)
 
 ## 1. Create an account request file
 
