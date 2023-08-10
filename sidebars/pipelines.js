@@ -12,7 +12,7 @@ const sidebar = [
       {
         label: "Overview",
         type: "category",
-        collapsible: false,
+        collapsed: false,
         items: [
           {
             label: "What is Gruntwork Pipelines?",
@@ -29,7 +29,7 @@ const sidebar = [
       {
         label: "Getting Started",
         type: "category",
-        collapsible: false,
+        collapsed: false,
         items: [
           {
             label: "Single Account Tutorial",
@@ -46,7 +46,7 @@ const sidebar = [
       {
         label: "Maintain Pipelines",
         type: "category",
-        collapsible: false,
+        collapsed: false,
         items: ["pipelines/maintain/updating", "pipelines/maintain/extending"],
       },
       {

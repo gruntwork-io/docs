@@ -1,3 +1,0 @@
-# Devops Foundations
-
-Lorem Ipsum.
