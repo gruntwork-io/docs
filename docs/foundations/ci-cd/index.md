@@ -1,11 +1,9 @@
-# Devops Foundations
-
-Lorem Ipsum.
+# CI/CD Foundations Placeholder
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "946bb4daef771b40302072e379d9f0ed"
+  "hash": "206873bf2d7886284661507e886719bf"
 }
 ##DOCS-SOURCER-END -->

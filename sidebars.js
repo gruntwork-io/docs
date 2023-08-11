@@ -21,7 +21,7 @@ const patcherSidebars = require("./sidebars/patcher.js")
 const pipelinesSidebars = require("./sidebars/pipelines.js")
 const landingZoneSidebars = require("./sidebars/landing-zone.js")
 const refarchSidebar = require("./sidebars/refarch.js")
-const devopsFoundationsSidebar = require("./sidebars/devops-foundations.js")
+const foundationsSidebar = require("./sidebars/foundations.js")
 
 // @ts-check
 
@@ -38,8 +38,9 @@ const sidebars = {
   pipelinesSidebars,
   landingZoneSidebars,
   refarchSidebar,
+  foundationsSidebar,
   libraryRefSidebars,
-  devopsFoundationsSidebar,
+  foundationsSidebar,
 }
 
 module.exports = sidebars
