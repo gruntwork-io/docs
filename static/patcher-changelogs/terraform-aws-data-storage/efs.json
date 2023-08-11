@@ -1,6 +1,9 @@
 {
   "module": "efs",
   "releases": {
+    "v0.29.1": {
+      "contains_changes": false
+    },
     "v0.29.0": {
       "contains_changes": false
     },
