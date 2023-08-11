@@ -39,7 +39,7 @@ For example, the following entry in `accounts.yml` would be mapped to a director
 
 This section contains some advanced topics pertaining to Pipelines, how it differentiates between types of changes, and how it handles planning and applying changes.
 
-From the perspective of the end user, you will still only need one step in your CI job, Pipelines knows how to do the rest.
+From the perspective of the end user, you will still only need one step in your CI job. Pipelines knows how to do the rest.
 
 :::
 
