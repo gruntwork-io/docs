@@ -59,6 +59,6 @@ The AWS IAM Role for the management account must have permissions to provision n
 
 ### Child Accounts
 
-Each child account (e.g., `dev`, `stage`, `prod,` etc) contains an AWS IAM role that Pipelines can assume from GitHub Actions using OIDC. This role is automatically provisioned as a part of the [account baseline process](../accounts/add-account#4-review-and-merge-the-account-baseline-pr). Once this role is in place in the child account, users may submit pull requests with new Infrastructure Units in the child account.
+Each child account (e.g., `dev`, `stage`, `prod,` etc.) contains an AWS IAM role that Pipelines can assume from GitHub Actions using OIDC. This role is automatically provisioned as a part of the [account baseline process](../accounts/add-account#4-review-and-merge-the-account-baseline-pr). Once this role is in place in the child account, users may submit pull requests with new Infrastructure Units in the child account.
 
 When a Pull Request is created or synchronized, or a push to main occurs, Pipelines will detect the changes, map them to the new account, assume the role in the child account, then run a `terragrunt plan` or `terragrunt apply` job (plan for PRs, apply for pushes to main).
