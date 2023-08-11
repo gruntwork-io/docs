@@ -47,7 +47,7 @@ Pipelines can handle two main types of events — additions, changes, or deletio
 
 ### Management Account
 
-Provisioning AWS accounts must be handled by your Management AWS Account (e.g., your AWS Control Tower management account). When account requests are approved and the account is created, Pipelines will create a PR that contains an account baseline. Since Pipelines doesn't have access to the account yet, the baseline will be applied using the Management Account Pipeline.
+Provisioning AWS accounts must be handled by your Management AWS Account (e.g., your AWS Control Tower management account). When account requests are approved and the account is created, Pipelines will create a PR that contains an account baseline. Since Pipelines doesn’t have access to the account yet, the baseline will be applied using the Management Account Pipeline.
 
 When applying the baseline and provisioning the Pipelines role in the new child account, Pipelines will first assume the management account Pipelines role, then will assume an automatically provisioned role in the child account (this process is known as [role chaining](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html)). Once Pipelines has temporary credentials in the new account, it will run a plan or apply to provision the requested resources. After the initial baseline and Pipelines role has been applied in the child account, all subsequent events for that account will be handled by the Pipelines role directly in the child account.
 
