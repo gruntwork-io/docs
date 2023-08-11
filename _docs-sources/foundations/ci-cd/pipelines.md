@@ -53,7 +53,7 @@ When applying the baseline and provisioning the Pipelines role in the new child 
 
 :::note
 
-The AWS IAM Role for the management account account must have permissions to provision new AWS Accounts (via AWS Control Tower) and assume a role in all child accounts.
+The AWS IAM Role for the management account must have permissions to provision new AWS Accounts (via AWS Control Tower) and assume a role in all child accounts.
 
 :::
 
