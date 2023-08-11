@@ -43,7 +43,7 @@ From the perspective of the end user, you will still only need one step in your 
 
 :::
 
-Pipelines can handle two main types of events - additions, changes, or deletions of Terragrunt files and creating new AWS accounts. Excluding when a new account is added, adding, changing, or deleting Terragrunt files (aka Infrastructure Units) is handling by the account specific pipeline. Provisioning new accounts and applying baselines is handled exclusively by the management account.
+Pipelines can handle two main types of events — additions, changes, or deletions of Terragrunt files, and creating new AWS accounts. With the exception of account creation, adding, changing, or deleting Terragrunt files (aka Infrastructure Units) is handled by the pipeline for each specific account. Provisioning new accounts and applying baselines in them is handled exclusively by the management account.
 
 ### Management Account
 
