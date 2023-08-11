@@ -42,7 +42,6 @@ const sidebar = [
         collapsed: false,
         items: [
           "foundations/ci-cd/index",
-          "foundations/ci-cd/pipelines",
         ],
       },
       {
