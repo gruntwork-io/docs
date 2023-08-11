@@ -10,7 +10,7 @@ Pipelines runs as a step in your CI tool, determining the types of changes that 
 
 Pipelines is a single binary that runs as a step in your CI tool. To perform the actions that Pipelines detects, each account will need an AWS IAM Role that allows GitHub Actions to assume it using OIDC. This role is automatically provisioned in new accounts that are provisioned when [adding an account](../accounts/add-account.md) using the Account Factory.
 
-Pipelines assumes that each top level directory in your `infrastructure-live` repository maps to a single AWS account, excluding the `_envcommon` directory. Each account mapped directory must have an entry in `accounts.yml` where the key matches the directory name, an values for the account ID and the e-mail for the root user.
+Pipelines assumes that each top level directory in your `infrastructure-live` repository maps to a single AWS account, excluding the `_envcommon` directory. Each account mapped directory must have an entry in `accounts.yml` with a key matching the directory name and containing key/value pairs for the account ID and the e-mail for the root user of the account.
 
 For example, the following entry in `accounts.yml` would be mapped to a directory called `my-cool-account` in your `infrastructure-live` repository.
 
