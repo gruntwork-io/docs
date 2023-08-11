@@ -1,7 +1,7 @@
 # ECS Deploy Runner
 
-:::info New Version
-This is documentation for an old version of Gruntwork Pipelines. Looking for the documentation for the most recent version? Click [here](../../pipelines/overview/).
+:::info Newer Version Available
+This documentation pertains to an old version of Gruntwork Pipelines which used the ECS Deploy Runner. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
 :::
 
 
@@ -24,6 +24,6 @@ high value AWS secrets.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "21f802340cea320a2b3e5a1a3c896e0b"
+  "hash": "84a7960e422521ec93f0dfa0eeec1c50"
 }
 ##DOCS-SOURCER-END -->

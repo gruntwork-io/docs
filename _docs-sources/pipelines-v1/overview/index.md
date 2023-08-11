@@ -1,7 +1,7 @@
 # ECS Deploy Runner
 
-:::info New Version
-This is documentation for an old version of Gruntwork Pipelines. Looking for the documentation for the most recent version? Click [here](../../pipelines/overview/).
+:::info Newer Version Available
+This documentation pertains to an old version of Gruntwork Pipelines which used the ECS Deploy Runner. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
 :::
 
 

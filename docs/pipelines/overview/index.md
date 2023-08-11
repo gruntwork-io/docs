@@ -1,7 +1,7 @@
 # What is Gruntwork Pipelines?
 
-:::info Previous Version
-Looking for the documentation for the previous version of Gruntwork Pipelines? Click [here](../../pipelines-v1/overview/).
+:::info Previous Version Available
+The new Gruntwork Pipelines is currently available for GitHub Actions. If you already have an older version or need support for alternative CI systems, [click here](../../pipelines-v1/overview/) to view docs for the previous version.
 :::
 
 <!-- Placeholder for future content for Pipelines v2 -->
@@ -10,6 +10,6 @@ Looking for the documentation for the previous version of Gruntwork Pipelines? C
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e3c825e725b49d2fef2a1ebf2a11a0e0"
+  "hash": "3d89d358283ca761296b6611211fec70"
 }
 ##DOCS-SOURCER-END -->
