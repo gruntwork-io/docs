@@ -5,7 +5,7 @@ const kbLink =
 
 const sidebar = [
   {
-    label: "Gruntwork Pipelines",
+    label: "ECS Deploy Runner",
     type: "category",
     collapsible: false,
     items: [
@@ -17,12 +17,12 @@ const sidebar = [
           {
             label: "What is Gruntwork Pipelines?",
             type: "doc",
-            id: "pipelines/overview/index",
+            id: "pipelines-v1/overview/index",
           },
           {
             label: "How it works",
             type: "doc",
-            id: "pipelines/how-it-works/index",
+            id: "pipelines-v1/how-it-works/index",
           },
         ],
       },
@@ -34,12 +34,12 @@ const sidebar = [
           {
             label: "Single Account Tutorial",
             type: "doc",
-            id: "pipelines/tutorial/index",
+            id: "pipelines-v1/tutorial/index",
           },
           // {
           //   label: "Deploying Multi-Account Pipelines",
           //   type: "doc",
-          //   id: "pipelines/multi-account/index",
+          //   id: "pipelines-v1/multi-account/index",
           // },
         ],
       },
@@ -47,19 +47,7 @@ const sidebar = [
         label: "Maintain Pipelines",
         type: "category",
         collapsible: false,
-        items: ["pipelines/maintain/updating", "pipelines/maintain/extending"],
-      },
-      {
-        label: "Previous Versions",
-        type: "category",
-        collapsible: false,
-        items: [
-          {
-            label: "ECS Deploy Runner",
-            type: "link",
-            href: "/pipelines-v1/overview"
-          },
-        ],
+        items: ["pipelines-v1/maintain/updating", "pipelines-v1/maintain/extending"],
       },
       {
         type: "link",
