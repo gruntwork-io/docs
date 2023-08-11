@@ -2,7 +2,7 @@
 
 Gruntwork Pipelines is a framework for deploying Infrastructure as Code changes and managing requests for and creation of AWS accounts, with first class support for [Terragrunt](https://terragrunt.gruntwork.io/). Pipelines enables you to use your preferred CI tool* to detect changes to Infrastructure as Code Infrastructure Units (IUs — individual modules containing `terragrunt.hcl` files) and securely run `terragrunt plan` and `terragrunt apply` jobs on each IU.
 
-Pipelines runs as a step in your CI tool, determining the types of changes that were made (e.g., adding, changing, or deleting a module) and the action to take based on if your change was made in a Pull Request (PR) or in a commit to your main branch (e.g., the PR has been merged). As an example, creating a pull request with changes that add a new IU containing an AWS RDS instance in your `dev` account would detect the new module and run a `terragrunt plan` in the directory containing the IU.
+Pipelines runs as a step in your CI tool, determining the types of changes that were made (e.g., adding, changing, or deleting a module) and the action to take based on whether your change was made in a Pull Request (PR) or in a commit to your main branch (e.g., the PR has been merged). As an example, creating a pull request with changes that add a new IU containing an AWS RDS instance in your `dev` account would detect the new module and run a `terragrunt plan` in the directory containing the IU.
 
 *_GitHub Actions is the only currently supported CI tool_
 
