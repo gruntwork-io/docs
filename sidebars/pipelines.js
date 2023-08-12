@@ -57,7 +57,7 @@ const sidebar = [
           {
             label: "ECS Deploy Runner",
             type: "link",
-            href: "/pipelines-v1/overview"
+            href: "/ecs-deploy-runner/overview"
           },
         ],
       },

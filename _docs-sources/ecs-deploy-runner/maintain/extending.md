@@ -1,7 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Extending your Pipeline
+# Extending your ECS Deploy Runner
 
 Pipelines can be extended in several ways:
 - Adding repositories to supporting building Docker images for many applications
@@ -135,11 +135,3 @@ The `deploy-runner` Docker image for Pipelines only allows scripts within a sing
 By default, the `deploy-runner` ships with three scripts — one to build HashiCorp Packer images, one to run `terraform plan` and `terraform apply`, and one to automatically update the value of a variable in a Terraform tfvars or Terragrunt HCL file.
 
 If you need to run a custom script in the `deploy-runner`, you must fork the image code, add an additional line to copy your script into directory designated by the `trigger_directory` argument. Then, you will need to rebuild the Docker image, push to ECR, then update your Pipelines deployment following the steps in [Updating your Pipeline](./updating.md).
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "c8ec2f6a221df197431a0b5a898827e3"
-}
-##DOCS-SOURCER-END -->

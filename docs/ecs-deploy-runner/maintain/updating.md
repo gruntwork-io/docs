@@ -1,7 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Updating Your Pipeline
+# Updating Your ECS Deploy Runner
 
 Pipelines is built using the [`terraform-aws-ci`](../../reference/modules/terraform-aws-ci/ecs-deploy-runner/) module. We recommend updating your pipeline whenever there’s a new release of the module.
 
@@ -99,6 +99,6 @@ Once you have updated any references to the container image tags, you will need 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "5669161d46321039ff3022421a9c98e0"
+  "hash": "b1b0f08746d13799cf9560f450238c6f"
 }
 ##DOCS-SOURCER-END -->

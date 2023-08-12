@@ -15,14 +15,14 @@ const sidebar = [
         collapsible: false,
         items: [
           {
-            label: "What is Gruntwork Pipelines?",
+            label: "What is ECS Deploy Runner?",
             type: "doc",
-            id: "pipelines-v1/overview/index",
+            id: "ecs-deploy-runner/overview/index",
           },
           {
             label: "How it works",
             type: "doc",
-            id: "pipelines-v1/how-it-works/index",
+            id: "ecs-deploy-runner/how-it-works/index",
           },
         ],
       },
@@ -34,20 +34,15 @@ const sidebar = [
           {
             label: "Single Account Tutorial",
             type: "doc",
-            id: "pipelines-v1/tutorial/index",
+            id: "ecs-deploy-runner/tutorial/index",
           },
-          // {
-          //   label: "Deploying Multi-Account Pipelines",
-          //   type: "doc",
-          //   id: "pipelines-v1/multi-account/index",
-          // },
         ],
       },
       {
-        label: "Maintain Pipelines",
+        label: "Maintain ECS Deploy Runner",
         type: "category",
         collapsible: false,
-        items: ["pipelines-v1/maintain/updating", "pipelines-v1/maintain/extending"],
+        items: ["ecs-deploy-runner/maintain/updating", "ecs-deploy-runner/maintain/extending"],
       },
       {
         type: "link",

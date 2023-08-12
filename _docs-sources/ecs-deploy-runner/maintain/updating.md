@@ -1,7 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Updating Your Pipeline
+# Updating Your ECS Deploy Runner
 
 Pipelines is built using the [`terraform-aws-ci`](../../reference/modules/terraform-aws-ci/ecs-deploy-runner/) module. We recommend updating your pipeline whenever there’s a new release of the module.
 
