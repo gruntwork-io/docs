@@ -58,7 +58,7 @@ Currently the output is still only available in the `infrastructure-pipelines` r
 
 :::caution
 
-The Current Gruntwork pipelines does not do this currently but will do so shortly. This notice will be removed when the feature is available.
+Currently the output is still only available in the `infrastructure-pipelines` repository’ GitHub Actions logs. This will be updated shortly to be available in the pull request and this notice will be removed.
 
 :::
 
@@ -87,4 +87,4 @@ After the pipeline for the new account request completes, the new account will e
 - A `<DESIRED-ACCOUNT-NAME>` folder in the root of your `infrastructure-live` repository containing configurations necessary to deploy the Gruntwork account baselines into the new account
 - A new OIDC role required to install the baseline and enable Gruntwork Pipelines to run within the new account
 
-When you merge this pull request, Gruntwork Pipelines will automatically deploy the Gruntwork account baselines into the new account. Once this process completes, you may access your account and leverage Gruntwork Pipelines to make any further changes to the infrastructure in your new account.
+When you merge this pull request, Gruntwork Pipelines will automatically deploy the Gruntwork account baselines into the new account and provision a role that Pipelines can assume to deploy resources into this account. Once this process completes, you may access your account and leverage Gruntwork Pipelines to make any further changes to the infrastructure in your new account.

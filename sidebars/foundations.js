@@ -40,7 +40,9 @@ const sidebar = [
         label: "CI/CD Foundations",
         type: "category",
         collapsed: false,
-        items: ["foundations/ci-cd/index"],
+        items: [
+          "foundations/ci-cd/index",
+        ],
       },
       {
         label: "Maintenance Foundations",
