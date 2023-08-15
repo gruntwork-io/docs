@@ -105,14 +105,14 @@ Patcher provides first class support for third party modules in both interactive
 
 Starting in `0.4.3`, Patcher provides first class support for updating third party modules. The updates to third party modules are based on the semver version.
 
-For example, the [terraform-aws-modules/terraform-aws-vpc](https://github.com/terraform-aws-modules/terraform-aws-vpc) module has two recent change: `5.0.0`, `5.1.0` and `5.1.1`.
+For example, the [terraform-aws-modules/terraform-aws-vpc](https://github.com/terraform-aws-modules/terraform-aws-vpc) module has three recent change: `5.0.0`, `5.1.0` and `5.1.1`.
 
 And in `infrastructure-live/dev` there is a dependency on `terraform-aws-vpc/vpc`:
 - `dev/us-east-1/prod/dev/terragrunt.hcl` currently uses `4.0.0`
 
 ![Screenshot of third party module dependency with updates available](/img/guides/stay-up-to-date/patcher/patcher-update-overview-3p-update-available.png)
 
-Patcher can update this dependency to `5.1.1` but because there is a breaking version in between, Patcher updates to `5.0.0` and writes a `README-TO-COMPLETE-UPDATE.md` file into the folder containing the dependendency.
+Patcher can update this dependency to the latest version but because there is a breaking version in between, Patcher updates to `5.0.0` and writes a `README-TO-COMPLETE-UPDATE.md` file into the folder containing the dependendency.
 
 ![Screenshot of third party module dependency usages with updates available](/img/guides/stay-up-to-date/patcher/patcher-update-usages-3p-update-available.png)
 
