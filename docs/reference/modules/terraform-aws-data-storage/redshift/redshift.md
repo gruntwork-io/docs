@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.29.1" lastModifiedVersion="0.29.1"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.29.1" lastModifiedVersion="0.27.2"/>
 
 # Redshift Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.1/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.29.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Redshift cluster that you can use as a data warehouse. The cluster is managed by AWS and
 automatically handles leader nodes, worker nodes, backups, patching, and encryption.
@@ -928,6 +928,6 @@ The ID of the Security Group that controls access to the cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.1/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f5f15b8132642e30363de2f1d80918a8"
+  "hash": "d0c32bc5dc5abdc1bc0a4864867ca17c"
 }
 ##DOCS-SOURCER-END -->

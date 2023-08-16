@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.29.1" lastModifiedVersion="0.29.1"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.29.1" lastModifiedVersion="0.27.2"/>
 
 # How to use RDS Proxy Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.1/modules/rds-proxy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.29.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 In order to setup a RDS proxy, you need to setup database credentials in AWS Secrets Manager and pass it to this module.
 Refer to the [examples/rds-proxy](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.1/examples/rds-proxy) or https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy-setup.html#rds-proxy-secrets-arns for more information.
@@ -333,6 +333,6 @@ The number of seconds that a connection to the proxy can be inactive before the 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.1/modules/rds-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b6eb1df0360fef9fc969cae265c05b2b"
+  "hash": "40979c38e071d7cf150480436cc48c14"
 }
 ##DOCS-SOURCER-END -->

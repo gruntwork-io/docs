@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.29.1" lastModifiedVersion="0.29.1"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.29.1" lastModifiedVersion="0.27.2"/>
 
 # Share Snapshot Lambda Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.1/modules/lambda-share-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.29.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an [AWS Lambda](https://aws.amazon.com/lambda/) function that can share snapshots of an [Amazon
 Relational Database (RDS)](https://aws.amazon.com/rds/) database with another AWS account. Typically, the snapshots
@@ -203,6 +203,6 @@ The amount of time, in seconds, between retries.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.1/modules/lambda-share-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "75c6967bd9fcd7e03614df649a70f2d2"
+  "hash": "d49ed7a0f9b89690c7f02dff686a617f"
 }
 ##DOCS-SOURCER-END -->
