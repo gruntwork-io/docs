@@ -3331,6 +3331,14 @@ The ARN of the EKS cluster that was deployed.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="eks_cluster_endpoint">
+<HclListItemDescription>
+
+URL endpoint of the Kubernetes control plane provided by EKS.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="eks_cluster_name">
 <HclListItemDescription>
 
@@ -3455,6 +3463,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.16/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "692f1e8de64b957250ccfdf6e211479c"
+  "hash": "f0c4f2f89a347e1a1f3907264910d5a4"
 }
 ##DOCS-SOURCER-END -->
