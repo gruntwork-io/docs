@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.5" lastModifiedVersion="0.67.3"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.6" lastModifiedVersion="0.67.3"/>
 
 # IAM Role for GitHub Actions
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/github-actions-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.6/modules/github-actions-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -182,7 +182,7 @@ jobs:
 
 module "github_actions_iam_role" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.68.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.68.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -193,15 +193,12 @@ module "github_actions_iam_role" {
   # (e.g., gruntwork-io/terrraform-aws-ci).
   allowed_sources = <map(list(string))>
 
-  # ARN of the OpenID Connect Provider provisioned for GitHub Actions.
-  github_actions_openid_connect_provider_arn = <string>
-
-  # URL of the OpenID Connect Provider provisioned for GitHub Actions.
-  github_actions_openid_connect_provider_url = <string>
-
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # List of additional thumbprints for the OIDC provider.
+  additional_thumbprints = null
 
   # The string operator to use when evaluating the AWS IAM condition for
   # determining which GitHub repos are allowed to assume the IAM role. Examples:
@@ -212,9 +209,18 @@ module "github_actions_iam_role" {
   # assume.
   create_iam_role = true
 
+  # Flag to enable/disable the creation of the GitHub OIDC provider.
+  create_oidc_provider = false
+
   # The name to use for the custom inline IAM policy that is attached to the
   # Role/Group when var.iam_policy is configured.
   custom_iam_policy_name = "GrantCustomIAMPolicy"
+
+  # ARN of the OpenID Connect Provider provisioned for GitHub Actions.
+  github_actions_openid_connect_provider_arn = ""
+
+  # URL of the OpenID Connect Provider provisioned for GitHub Actions.
+  github_actions_openid_connect_provider_url = ""
 
   # A list of IAM AWS Managed Policy names to attach to the group.
   iam_aws_managed_policy_names = null
@@ -261,7 +267,7 @@ module "github_actions_iam_role" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.68.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.68.6"
 }
 
 inputs = {
@@ -275,15 +281,12 @@ inputs = {
   # (e.g., gruntwork-io/terrraform-aws-ci).
   allowed_sources = <map(list(string))>
 
-  # ARN of the OpenID Connect Provider provisioned for GitHub Actions.
-  github_actions_openid_connect_provider_arn = <string>
-
-  # URL of the OpenID Connect Provider provisioned for GitHub Actions.
-  github_actions_openid_connect_provider_url = <string>
-
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # List of additional thumbprints for the OIDC provider.
+  additional_thumbprints = null
 
   # The string operator to use when evaluating the AWS IAM condition for
   # determining which GitHub repos are allowed to assume the IAM role. Examples:
@@ -294,9 +297,18 @@ inputs = {
   # assume.
   create_iam_role = true
 
+  # Flag to enable/disable the creation of the GitHub OIDC provider.
+  create_oidc_provider = false
+
   # The name to use for the custom inline IAM policy that is attached to the
   # Role/Group when var.iam_policy is configured.
   custom_iam_policy_name = "GrantCustomIAMPolicy"
+
+  # ARN of the OpenID Connect Provider provisioned for GitHub Actions.
+  github_actions_openid_connect_provider_arn = ""
+
+  # URL of the OpenID Connect Provider provisioned for GitHub Actions.
+  github_actions_openid_connect_provider_url = ""
 
   # A list of IAM AWS Managed Policy names to attach to the group.
   iam_aws_managed_policy_names = null
@@ -361,23 +373,16 @@ map(list(string))
 </HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="github_actions_openid_connect_provider_arn" requirement="required" type="string">
-<HclListItemDescription>
-
-ARN of the OpenID Connect Provider provisioned for GitHub Actions.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="github_actions_openid_connect_provider_url" requirement="required" type="string">
-<HclListItemDescription>
-
-URL of the OpenID Connect Provider provisioned for GitHub Actions.
-
-</HclListItemDescription>
-</HclListItem>
-
 ### Optional
+
+<HclListItem name="additional_thumbprints" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of additional thumbprints for the OIDC provider.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
 <HclListItem name="allowed_sources_condition_operator" requirement="optional" type="string">
 <HclListItemDescription>
@@ -397,6 +402,15 @@ Whether to create the IAM role and attach permissions for GitHub Actions to assu
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="create_oidc_provider" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Flag to enable/disable the creation of the GitHub OIDC provider.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="custom_iam_policy_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -404,6 +418,24 @@ The name to use for the custom inline IAM policy that is attached to the Role/Gr
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;GrantCustomIAMPolicy&quot;"/>
+</HclListItem>
+
+<HclListItem name="github_actions_openid_connect_provider_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of the OpenID Connect Provider provisioned for GitHub Actions.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="github_actions_openid_connect_provider_url" requirement="optional" type="string">
+<HclListItemDescription>
+
+URL of the OpenID Connect Provider provisioned for GitHub Actions.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="iam_aws_managed_policy_names" requirement="optional" type="list(string)">
@@ -537,11 +569,11 @@ The name of the IAM role.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/github-actions-iam-role/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/github-actions-iam-role/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.5/modules/github-actions-iam-role/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.6/modules/github-actions-iam-role/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.6/modules/github-actions-iam-role/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.6/modules/github-actions-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "821a8ccbd42313858e7abded668d9650"
+  "hash": "698f3389644ea6b4f95aafd8d560b000"
 }
 ##DOCS-SOURCER-END -->
