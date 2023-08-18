@@ -291,19 +291,6 @@ module "bastion_host" {
   # templates
   name = "bastion-host"
 
-  # If set to true, the root volume will be deleted when the Instance is
-  # terminated.
-  root_volume_delete_on_termination = true
-
-  # The size of the root volume, in gigabytes.
-  root_volume_size = 8
-
-  # Tags to set on the root volume.
-  root_volume_tags = {}
-
-  # The root volume type. Must be one of: standard, gp2, io1.
-  root_volume_type = "standard"
-
   # When true, precreate the CloudWatch Log Group to use for log aggregation
   # from the EC2 instances. This is useful if you wish to customize the
   # CloudWatch Log Group with various settings such as retention periods and KMS
@@ -524,19 +511,6 @@ inputs = {
   # The name of the bastion host and the other resources created by these
   # templates
   name = "bastion-host"
-
-  # If set to true, the root volume will be deleted when the Instance is
-  # terminated.
-  root_volume_delete_on_termination = true
-
-  # The size of the root volume, in gigabytes.
-  root_volume_size = 8
-
-  # Tags to set on the root volume.
-  root_volume_tags = {}
-
-  # The root volume type. Must be one of: standard, gp2, io1.
-  root_volume_type = "standard"
 
   # When true, precreate the CloudWatch Log Group to use for log aggregation
   # from the EC2 instances. This is useful if you wish to customize the
@@ -938,42 +912,6 @@ The name of the bastion host and the other resources created by these templates
 <HclListItemDefaultValue defaultValue="&quot;bastion-host&quot;"/>
 </HclListItem>
 
-<HclListItem name="root_volume_delete_on_termination" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, the root volume will be deleted when the Instance is terminated.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="root_volume_size" requirement="optional" type="number">
-<HclListItemDescription>
-
-The size of the root volume, in gigabytes.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="8"/>
-</HclListItem>
-
-<HclListItem name="root_volume_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags to set on the root volume.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="root_volume_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-The root volume type. Must be one of: standard, gp2, io1.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;standard&quot;"/>
-</HclListItem>
-
 <HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1082,6 +1020,6 @@ The fully qualified name of the bastion host.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.16/modules/mgmt/bastion-host/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "47607d034e8c617985e7ab58e65b3e94"
+  "hash": "97e24f12279a6a542d96effd85824fad"
 }
 ##DOCS-SOURCER-END -->

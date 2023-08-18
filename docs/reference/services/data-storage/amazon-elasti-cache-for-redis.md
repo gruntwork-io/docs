@@ -135,10 +135,6 @@ module "redis" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Trigger an alarm if the amount of free memory, in Bytes, on the node drops
-  # below this threshold
-  alarm_low_memory_available_threshold = 100000000
-
   # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
   # Based on
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
@@ -290,10 +286,6 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
-
-  # Trigger an alarm if the amount of free memory, in Bytes, on the node drops
-  # below this threshold
-  alarm_low_memory_available_threshold = 100000000
 
   # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
   # Based on
@@ -463,27 +455,6 @@ The ID of the VPC in which to deploy RDS.
 </HclListItem>
 
 ### Optional
-
-<HclListItem name="alarm_low_memory_available_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the amount of free memory, in Bytes, on the node drops below this threshold
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="100000000"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Default is 100MB (100 million bytes)
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
 
 <HclListItem name="alarm_treat_missing_data" requirement="optional" type="string">
 <HclListItemDescription>
@@ -746,6 +717,6 @@ Security Group ID used for redis cluster.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.16/modules/data-stores/redis/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "72058f54f2782f80fd6d03615f4d5180"
+  "hash": "3ed3b16074c4eb4c225468bd9231b129"
 }
 ##DOCS-SOURCER-END -->

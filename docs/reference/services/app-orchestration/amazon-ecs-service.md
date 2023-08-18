@@ -530,9 +530,6 @@ module "ecs_service" {
   # its own AWS provider to ensure resources are created in us-east-1.
   route53_health_check_provider_shared_credentials_file = null
 
-  # Define runtime platform options
-  runtime_platform = null
-
   # A list of ARNs of Secrets Manager secrets that the task should have
   # permissions to read. The IAM role for the task will be granted
   # `secretsmanager:GetSecretValue` for each secret in the list. The ARN can be
@@ -546,11 +543,7 @@ module "ecs_service" {
   # A list of ARNs for Secrets Manager secrets that the ECS execution IAM policy
   # should be granted access to read. Note that this is different from the ECS
   # task IAM policy. The execution policy is concerned with permissions required
-  # to run the ECS task. The ARN can be either the complete ARN, including the
-  # randomly generated suffix, or the ARN without the suffix. If the latter, the
-  # module will look up the full ARN automatically. This is helpful in cases
-  # where you don't yet know the randomly generated suffix because the rest of
-  # the ARN is a predictable value.
+  # to run the ECS task.
   secrets_manager_arns = []
 
   # The ARN of the kms key associated with secrets manager
@@ -1043,9 +1036,6 @@ inputs = {
   # its own AWS provider to ensure resources are created in us-east-1.
   route53_health_check_provider_shared_credentials_file = null
 
-  # Define runtime platform options
-  runtime_platform = null
-
   # A list of ARNs of Secrets Manager secrets that the task should have
   # permissions to read. The IAM role for the task will be granted
   # `secretsmanager:GetSecretValue` for each secret in the list. The ARN can be
@@ -1059,11 +1049,7 @@ inputs = {
   # A list of ARNs for Secrets Manager secrets that the ECS execution IAM policy
   # should be granted access to read. Note that this is different from the ECS
   # task IAM policy. The execution policy is concerned with permissions required
-  # to run the ECS task. The ARN can be either the complete ARN, including the
-  # randomly generated suffix, or the ARN without the suffix. If the latter, the
-  # module will look up the full ARN automatically. This is helpful in cases
-  # where you don't yet know the randomly generated suffix because the rest of
-  # the ARN is a predictable value.
+  # to run the ECS task.
   secrets_manager_arns = []
 
   # The ARN of the kms key associated with secrets manager
@@ -2568,25 +2554,6 @@ The optional path to a credentials file used in the us-east-1 provider block def
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="runtime_platform" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Define runtime platform options
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    operating_system_family = string
-    cpu_architecture        = string
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="secrets_access" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -2599,7 +2566,7 @@ A list of ARNs of Secrets Manager secrets that the task should have permissions 
 <HclListItem name="secrets_manager_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-A list of ARNs for Secrets Manager secrets that the ECS execution IAM policy should be granted access to read. Note that this is different from the ECS task IAM policy. The execution policy is concerned with permissions required to run the ECS task. The ARN can be either the complete ARN, including the randomly generated suffix, or the ARN without the suffix. If the latter, the module will look up the full ARN automatically. This is helpful in cases where you don't yet know the randomly generated suffix because the rest of the ARN is a predictable value.
+A list of ARNs for Secrets Manager secrets that the ECS execution IAM policy should be granted access to read. Note that this is different from the ECS task IAM policy. The execution policy is concerned with permissions required to run the ECS task.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -2902,6 +2869,6 @@ The names of the ECS service's load balancer's target groups
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.16/modules/services/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b9d1aa30285c0db181de8c5d86d496be"
+  "hash": "8bf1fe225e4cdba5a621a06d670e8567"
 }
 ##DOCS-SOURCER-END -->

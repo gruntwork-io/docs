@@ -150,11 +150,6 @@ module "rds" {
   # database to be reachable.
   allow_connections_from_security_groups = []
 
-  # Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be
-  # permitted. Note that these updates must always be manually performed and
-  # will never be automatically applied.
-  allow_major_version_upgrade = true
-
   # If true, both the CMK's Key Policy and IAM Policies (permissions) can be
   # used to grant permissions on the CMK. If false, only the CMK's Key Policy
   # can be used to grant permissions on the CMK. False is more secure (and
@@ -606,11 +601,6 @@ inputs = {
   # var.allow_connections_from_security_groups must be specified for the
   # database to be reachable.
   allow_connections_from_security_groups = []
-
-  # Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be
-  # permitted. Note that these updates must always be manually performed and
-  # will never be automatically applied.
-  allow_major_version_upgrade = true
 
   # If true, both the CMK's Key Policy and IAM Policies (permissions) can be
   # used to grant permissions on the CMK. If false, only the CMK's Key Policy
@@ -1079,15 +1069,6 @@ The list of IDs or Security Groups to allow network access to RDS from. All secu
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_major_version_upgrade" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be permitted. Note that these updates must always be manually performed and will never be automatically applied.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="allow_manage_key_permissions_with_iam" requirement="optional" type="bool">
@@ -2347,6 +2328,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.16/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "11522287fa7804dbb4a1dda2d77b5eb0"
+  "hash": "5c1732409526219ee24d7b20db97f59b"
 }
 ##DOCS-SOURCER-END -->

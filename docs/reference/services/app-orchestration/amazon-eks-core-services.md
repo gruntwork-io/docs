@@ -255,7 +255,7 @@ module "eks_core_services" {
   # major/minor version (e.g., v1.20) of your Kubernetes Installation. See
   # https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases
   # for a list of versions.
-  cluster_autoscaler_version = "v1.26.0"
+  cluster_autoscaler_version = "v1.24.0"
 
   # Whether or not to enable the AWS LB Ingress controller.
   enable_alb_ingress_controller = true
@@ -395,11 +395,6 @@ module "eks_core_services" {
   # should be formatted according to the Fluent-bit docs
   # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configuration-file#config_output).
   fluent_bit_extra_outputs = ""
-
-  # Can be used to add additional log parsers. This string should be formatted
-  # according to Fluent Bit docs, as it will be injected directly into the
-  # fluent-bit.conf file.
-  fluent_bit_extra_parsers = ""
 
   # The Container repository to use for looking up the aws-for-fluent-bit
   # Container image when deploying the pods. When null, uses the default
@@ -674,7 +669,7 @@ inputs = {
   # major/minor version (e.g., v1.20) of your Kubernetes Installation. See
   # https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases
   # for a list of versions.
-  cluster_autoscaler_version = "v1.26.0"
+  cluster_autoscaler_version = "v1.24.0"
 
   # Whether or not to enable the AWS LB Ingress controller.
   enable_alb_ingress_controller = true
@@ -814,11 +809,6 @@ inputs = {
   # should be formatted according to the Fluent-bit docs
   # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configuration-file#config_output).
   fluent_bit_extra_outputs = ""
-
-  # Can be used to add additional log parsers. This string should be formatted
-  # according to Fluent Bit docs, as it will be injected directly into the
-  # fluent-bit.conf file.
-  fluent_bit_extra_parsers = ""
 
   # The Container repository to use for looking up the aws-for-fluent-bit
   # Container image when deploying the pods. When null, uses the default
@@ -1530,7 +1520,7 @@ Specifies an 'expander' for the cluster autoscaler. This helps determine which A
 Which version of the cluster autoscaler to install. This should match the major/minor version (e.g., v1.20) of your Kubernetes Installation. See https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases for a list of versions.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v1.26.0&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v1.24.0&quot;"/>
 </HclListItem>
 
 <HclListItem name="enable_alb_ingress_controller" requirement="optional" type="bool">
@@ -1932,15 +1922,6 @@ Additional output streams that fluent-bit should export logs to. This string sho
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
-<HclListItem name="fluent_bit_extra_parsers" requirement="optional" type="string">
-<HclListItemDescription>
-
-Can be used to add additional log parsers. This string should be formatted according to Fluent Bit docs, as it will be injected directly into the fluent-bit.conf file.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
 <HclListItem name="fluent_bit_image_repository" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2288,6 +2269,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.16/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "61a5420b7d23a12192c168e55ffb4584"
+  "hash": "1f23ac02d7c6dc23cec71b8f9eb17585"
 }
 ##DOCS-SOURCER-END -->
