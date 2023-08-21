@@ -77,7 +77,7 @@ Non-interactive mode supports both the `next-safe` and `next-breaking` update st
 
 ### Next Safe (Default)
 
-Using the [next safe update strategy](/patcher/update-strategies#next-safe-update-strategy-default), if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the highest version **before** that breaking change. Otherwise, it will update the dependencies the latest version of that module.
+Using the [next safe update strategy](/patcher/getting-started/update-strategies#next-safe-update-strategy-default), if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the highest version **before** that breaking change. Otherwise, it will update the dependencies the latest version of that module.
 
 Example usage:
 ```
@@ -90,7 +90,7 @@ patcher update --non-interactive --skip-container-runtime prod
 
 ### Next Breaking
 
-Using the [next-breaking update strategy](/patcher/update-strategies#next-breaking-update-strategy), if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the version with the breaking change and stop. Otherwise, it will update the dependencies the latest version of that module.
+Using the [next-breaking update strategy](/patcher/getting-started/update-strategies#next-breaking-update-strategy), if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the version with the breaking change and stop. Otherwise, it will update the dependencies the latest version of that module.
 
 If Patcher updates a dependency to a breaking version, a `README-TO-COMPLETE-UPDATE.md` is written into the folder containing the dependendency. The `README-TO-COMPLETE-UPDATE.md` file contains a release note extract for each dependency in that folder that was updated to a breaking change.
 
@@ -145,6 +145,6 @@ Running Patcher again will complete the update to `5.1.1`, the `README-TO-COMPLE
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "5c301767d0882df416aeeee2442f7776"
+  "hash": "6b4dc0a033411ced532785ecb75a64bc"
 }
 ##DOCS-SOURCER-END -->

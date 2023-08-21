@@ -1,4 +1,4 @@
-# Patcher
+# Gruntwork Patcher
 
 ## Installation
 
@@ -62,6 +62,6 @@ patcher report --loglevel debug
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7404617b36bd3d04bddebca633a30535"
+  "hash": "88cbc311c91c973726b7edac4484f4d2"
 }
 ##DOCS-SOURCER-END -->
