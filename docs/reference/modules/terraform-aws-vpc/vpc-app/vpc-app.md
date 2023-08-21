@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.1" lastModifiedVersion="0.26.0"/>
+<VersionBadge repoTitle="VPC Modules" version="0.26.4" lastModifiedVersion="0.26.4"/>
 
 # IPv6
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.1/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.4/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 ## What's a VPC?
 
@@ -55,8 +55,8 @@ To summarize:
 *   In a given subnet tier, there are usually three or four actual subnets, one for each Availability Zone.
 *   Therefore, if we created a single VPC in the `us-west-2` region, which has Availability Zones `us-west-2a`,`us-west-2b`,
     and `us-west-2c`, each subnet tier would have three subnets (one per Availability Zone) for a total of 9 subnets in all.
-*   The only way to reach this VPC is from the public Internet via a publicly exposed sevice, or via the [mgmt VPC](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.1/modules/vpc-mgmt),
-    which uses [VPC Peering](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.1/modules/vpc-peering) to make this VPC accessible from the mgmt VPC.
+*   The only way to reach this VPC is from the public Internet via a publicly exposed sevice, or via the [mgmt VPC](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.4/modules/vpc-mgmt),
+    which uses [VPC Peering](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.4/modules/vpc-peering) to make this VPC accessible from the mgmt VPC.
 *   Philosophically, everything in a VPC should be isolated from all resources in any other VPC. In particular, we want
     to ensure that our stage environment is completely independent from prod. This architecture helps to reinforce that.
 
@@ -71,7 +71,7 @@ nearly all use-cases, and is consistent with many examples and existing document
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.1/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.4/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
 
 ## IPv6 Design
 
@@ -109,7 +109,7 @@ module "vpc_app_ipv6_example" {
 
 module "vpc_app" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -500,7 +500,7 @@ module "vpc_app" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.4"
 }
 
 inputs = {
@@ -1736,11 +1736,11 @@ A map of all public subnets, with the subnet name as the key, and all `aws-subne
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.1/modules/vpc-app/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.1/modules/vpc-app/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.1/modules/vpc-app/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.4/modules/vpc-app/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.4/modules/vpc-app/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.4/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d8de0885e49ce41c057d7fea7dc98367"
+  "hash": "6f62a9b6f9d6e0e393af56cd8cf443ee"
 }
 ##DOCS-SOURCER-END -->
