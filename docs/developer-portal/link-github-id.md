@@ -14,10 +14,17 @@ Once you’ve linked your account, the notice on the home page will disappear an
 
 :::
 
+:::note
+
+[GitHub has begun requiring](https://github.blog/2023-03-09-raising-the-bar-for-software-security-github-2fa-begins-march-13) users to enable two-factor authentication (2FA). If you haven't already done so, we recommend [enabling 2FA](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication) for your account and any machine users. For more information on the benefits of two-factor authentication and how this change may impact you, please take a look at our [Knowledge Base article](https://github.com/orgs/gruntwork-io/discussions/764).
+
+:::
+
 ## Related Knowledge Base Discussions
 
 - [I have linked my GitHub Account but do not have code access](https://github.com/orgs/gruntwork-io/discussions/715)
 - [How can I change my GitHub account (unlink/link)?](https://github.com/orgs/gruntwork-io/discussions/713)
+- [I received an email from GitHub regarding two-factor authentication, what should I do?](https://github.com/orgs/gruntwork-io/discussions/764)
 
 
 <!-- ##DOCS-SOURCER-START
