@@ -1,23 +1,37 @@
 const sidebar = [
-    {
-      "label": "Patcher",
-      "type": "category",
-      "link": {
-        "type": "doc",
-        "id": "patcher/index"
+  {
+    "label": "Gruntwork Patcher",
+    "type": "category",
+    "link": {
+      "type": "doc",
+      "id": "patcher/index"
+    },
+    "items": [
+      {
+        "Getting Started": [
+          {
+            "label": "Getting Started",
+            "type": "category",
+            "link": {
+              "type": "doc",
+              "id": "patcher/getting-started/index"
+            },
+            "items": [
+              "patcher/getting-started/telemetry",
+              "patcher/getting-started/update-strategies"
+            ]
+          }
+        ]
       },
-      "items": [
-        {
-          "Running Patcher": [
-            "patcher/running-patcher/report",
-            "patcher/running-patcher/update",
-            "patcher/running-patcher/upgrade"
-          ]
-        },
-        "patcher/telemetry",
-        "patcher/update-strategies"
-      ]
-    }
-  ]
-  
-  module.exports = sidebar  
+      {
+        "Running Patcher": [
+          "patcher/running-patcher/report",
+          "patcher/running-patcher/update",
+          "patcher/running-patcher/upgrade"
+        ]
+      }
+    ]
+  }
+]
+
+module.exports = sidebar
