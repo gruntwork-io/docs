@@ -1,4 +1,4 @@
-# Gruntwork Patcher
+# Installing Patcher
 
 ## Installation
 

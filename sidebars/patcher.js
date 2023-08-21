@@ -1,30 +1,48 @@
 const sidebar = [
   {
-    "label": "Gruntwork Patcher",
-    "type": "category",
-    "link": {
-      "type": "doc",
-      "id": "patcher/index"
-    },
-    "items": [
+    label: "Gruntwork Patcher",
+    type: "category",
+    collapsible: false,
+    items: [
       {
-        "Getting Started": [
+        label: "Overview",
+        type: "category",
+        collapsible: false,
+        items: [
           {
-            "label": "Getting Started",
-            "type": "category",
-            "link": {
-              "type": "doc",
-              "id": "patcher/getting-started/index"
-            },
-            "items": [
-              "patcher/getting-started/telemetry",
-              "patcher/getting-started/update-strategies"
-            ]
+            label: "What is Gruntwork Patcher?",
+            type: "doc",
+            id: "patcher/index"
+          },
+          {
+            label: "Update Strategies",
+            type: "doc",
+            id: "patcher/update-strategies"
+          },
+        ]
+      },
+      {
+        label: "Getting Started",
+        type: "category",
+        collapsible: false,
+        items: [
+          {
+            label: "Installing Patcher",
+            type: "doc",
+            id: "patcher/getting-started/index"
+          },
+          {
+            label: "Telemetry",
+            type: "doc",
+            id: "patcher/getting-started/telemetry"
           }
         ]
       },
       {
-        "Running Patcher": [
+        label: "Running Patcher",
+        type: "category",
+        collapsible: false,
+        items: [
           "patcher/running-patcher/report",
           "patcher/running-patcher/update",
           "patcher/running-patcher/upgrade"
