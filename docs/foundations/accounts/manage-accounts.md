@@ -17,16 +17,16 @@ This document provides instructions for managing AWS accounts in AWS Control Tow
 - Create a new account
 - Request new account
 - Un-managing an account
-- Update Account Access IAM Identity Center user information
 
 ## Operations that _may_ be done in the console or as code
 
-- Moving an account to a new Organizational Unit
+- Update Account Access IAM Identity Center user information (IaC preferred)
+- Moving an account to a new Organizational Unit (IaC preferred)
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d3bf7af1609b51b47006d1b0642c188a"
+  "hash": "d9a85b609b00bef736b1d4809937f474"
 }
 ##DOCS-SOURCER-END -->
