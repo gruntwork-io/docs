@@ -1,6 +1,6 @@
 # Manage Accounts
 
-This document provides instructions for managing AWS accounts in AWS Control Tower using Gruntwork. Not all account management operations are currently available using the Gruntwork Account Factory, this document provides guidance on which operations _should_, _may_, or _must_ be managed either in the AWS Console or programmatically using Gruntwork tools using Infrastructure as Code (IaC).
+This document provides guidance on how account management operations should be made. The operations are sorted into categories based on whether they must be performed in IAC, in the AWS Console, or either. For operations that may be performed in either location, IAC is always preferred.
 
 ## Prerequisites
 
@@ -10,7 +10,7 @@ This document provides instructions for managing AWS accounts in AWS Control Tow
 ## Console only operations
 
 - Creating a new AWS Organizational Unit
-- Delete an account
+- Delete an account (requires un-managing the account first)
 
 ## Infrastructure as Code only operations
 
@@ -27,6 +27,6 @@ This document provides instructions for managing AWS accounts in AWS Control Tow
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d9a85b609b00bef736b1d4809937f474"
+  "hash": "75e66466343606917f104245bb6c1043"
 }
 ##DOCS-SOURCER-END -->

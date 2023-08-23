@@ -10,7 +10,7 @@ This document provides guidance on how account management operations should be m
 ## Console only operations
 
 - Creating a new AWS Organizational Unit
-- Delete an account
+- Delete an account (requires un-managing the account first)
 
 ## Infrastructure as Code only operations
 
