@@ -213,6 +213,10 @@ module "k_8_s_service" {
   # configured as part of the chart.
   custom_resources = {}
 
+  # A list of custom Deployment annotations, to add to the Helm chart. See:
+  # https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  deployment_annotations = {}
+
   # The number of canary Pods to run on the Kubernetes cluster for this service.
   # If greater than 0, you must provide var.canary_image.
   desired_number_of_canary_pods = 0
@@ -396,6 +400,10 @@ module "k_8_s_service" {
   # values prior to using this variable.
   override_chart_inputs = {}
 
+  # A list of custom Pod annotations, to add to the Helm chart. See:
+  # https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  pod_annotations = {}
+
   # Seconds to wait after Pod creation before liveness probe has any effect. Any
   # failures during this period are ignored.
   readiness_probe_grace_period_seconds = 15
@@ -445,6 +453,10 @@ module "k_8_s_service" {
   # namespace. Leave as an empty string if you do not wish to assign a Service
   # Account to the Pods.
   service_account_name = ""
+
+  # A list of custom Service annotations, to add to the Helm chart. See:
+  # https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  service_annotations = {}
 
   # The port to expose on the Service. This is most useful when addressing the
   # Service internally to the cluster, as it is ignored when connecting from the
@@ -602,6 +614,10 @@ inputs = {
   # configured as part of the chart.
   custom_resources = {}
 
+  # A list of custom Deployment annotations, to add to the Helm chart. See:
+  # https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  deployment_annotations = {}
+
   # The number of canary Pods to run on the Kubernetes cluster for this service.
   # If greater than 0, you must provide var.canary_image.
   desired_number_of_canary_pods = 0
@@ -785,6 +801,10 @@ inputs = {
   # values prior to using this variable.
   override_chart_inputs = {}
 
+  # A list of custom Pod annotations, to add to the Helm chart. See:
+  # https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  pod_annotations = {}
+
   # Seconds to wait after Pod creation before liveness probe has any effect. Any
   # failures during this period are ignored.
   readiness_probe_grace_period_seconds = 15
@@ -834,6 +854,10 @@ inputs = {
   # namespace. Leave as an empty string if you do not wish to assign a Service
   # Account to the Pods.
   service_account_name = ""
+
+  # A list of custom Service annotations, to add to the Helm chart. See:
+  # https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  service_annotations = {}
 
   # The port to expose on the Service. This is most useful when addressing the
   # Service internally to the cluster, as it is ignored when connecting from the
@@ -1194,6 +1218,29 @@ The map that lets you define Kubernetes resources you want installed and configu
      key: value
    EOF
      custom_secret = file("${path.module}/secret.yaml")
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="deployment_annotations" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A list of custom Deployment annotations, to add to the Helm chart. See: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   {
+     "prometheus.io/scrape" : "true"
    }
 
 ```
@@ -1669,6 +1716,29 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="pod_annotations" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A list of custom Pod annotations, to add to the Helm chart. See: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   {
+     "prometheus.io/scrape" : "true"
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 <HclListItem name="readiness_probe_grace_period_seconds" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1832,6 +1902,29 @@ The name of a service account to create for use with the Pods. This service acco
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
+<HclListItem name="service_annotations" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A list of custom Service annotations, to add to the Helm chart. See: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   {
+     "prometheus.io/scrape" : "true"
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 <HclListItem name="service_port" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1958,6 +2051,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.17/modules/services/k8s-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "4f36ec3dfa2487e200eb6db5c896e013"
+  "hash": "899e5b77d455b32d94efb5bd105d0ece"
 }
 ##DOCS-SOURCER-END -->
