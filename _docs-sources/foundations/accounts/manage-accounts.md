@@ -1,6 +1,6 @@
 # Manage Accounts
 
-This document provides instructions for managing AWS accounts in AWS Control Tower using Gruntwork. Not all account management operations are currently available using the Gruntwork Account Factory, this document provides guidance on which operations _should_, _may_, or _must_ be managed either in the AWS Console or programmatically using Gruntwork tools using Infrastructure as Code (IaC).
+This document provides guidance on how account management operations should be made. The operations are sorted into categories based on whether they must be performed in IAC, in the AWS Console, or either. For operations that may be performed in either location, IAC is always preferred.
 
 ## Prerequisites
 
