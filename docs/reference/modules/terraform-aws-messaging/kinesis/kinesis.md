@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="0.12.1" lastModifiedVersion="0.12.0"/>
+<VersionBadge repoTitle="AWS Messaging" version="0.12.2" lastModifiedVersion="0.12.0"/>
 
 # Kinesis Data Stream Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/kinesis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.2/modules/kinesis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.12.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -152,7 +152,7 @@ regions: https://github.com/aws-samples/aws-kinesis-data-streams-replicator
 
 module "kinesis" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis?ref=v0.12.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis?ref=v0.12.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -223,7 +223,7 @@ module "kinesis" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis?ref=v0.12.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis?ref=v0.12.2"
 }
 
 inputs = {
@@ -459,11 +459,11 @@ A map of key value pairs to apply as tags to the Kinesis stream.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/kinesis/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/kinesis/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/kinesis/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.2/modules/kinesis/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.2/modules/kinesis/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.2/modules/kinesis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0e3daa13e284f3f21609770e56b6f66e"
+  "hash": "bfcbe5be06768d037f818d5d63c9600d"
 }
 ##DOCS-SOURCER-END -->
