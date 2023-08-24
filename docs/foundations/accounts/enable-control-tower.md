@@ -23,7 +23,7 @@ This account will become the root of your multi-account setup after enabling Con
 
 :::
 
-1. Three(3) unique email addresses for your management, logs, and security(audit) accounts.
+1. Two(2) new unique email addresses for your logs, and security(audit) accounts.
 
 
 ## Enable AWS Control Tower
@@ -98,6 +98,6 @@ prepare the landing zone for Gruntwork Account Foundations.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "6296b26a997220ebaa9331a3ca7e2382"
+  "hash": "6bbac5fb6217e0ff8f1dabed7977c0d2"
 }
 ##DOCS-SOURCER-END -->

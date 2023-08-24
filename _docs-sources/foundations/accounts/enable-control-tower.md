@@ -23,7 +23,7 @@ This account will become the root of your multi-account setup after enabling Con
 
 :::
 
-1. Three(3) unique email addresses for your management, logs, and security(audit) accounts.
+1. Two(2) new unique email addresses for your logs, and security(audit) accounts.
 
 
 ## Enable AWS Control Tower
