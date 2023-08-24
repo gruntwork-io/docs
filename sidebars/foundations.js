@@ -27,6 +27,7 @@ const sidebar = [
         collapsed: false,
         items: [
           "foundations/accounts/index",
+          "foundations/accounts/enable-control-tower",
           "foundations/accounts/add-account",
         ],
       },
