@@ -93,11 +93,17 @@ prepare the landing zone for Gruntwork Account Foundations.
 
 1. [Turn off the default VPC created for new accounts](https://docs.aws.amazon.com/controltower/latest/userguide/configure-without-vpc.html#create-without-vpc). Gruntwork VPCs will be created for each account using terraform.
 
+## Next Steps
+
+Control Tower is now configured! Next you should consider:
+
+- [Configuring IAM Identity Center](/) for Access Control. TODO write doc
+- [Configuring any controls or SCPs](/) your organization requires. TODO write doc
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "6bbac5fb6217e0ff8f1dabed7977c0d2"
+  "hash": "6535114db0ac88706c9b1c936b16a37a"
 }
 ##DOCS-SOURCER-END -->
