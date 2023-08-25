@@ -104,6 +104,10 @@ module "redshift" {
   # operation
   allow_outbound_connections_from_cidr_blocks = []
 
+  # Specifies whether any cluster modifications are applied immediately, or
+  # during the next maintenance window.
+  apply_immediately = false
+
   # Indicates that minor engine upgrades will be applied automatically to the DB
   # instance during the maintenance window. If set to true, you should set
   # var.engine_version to MAJOR.MINOR and omit the .PATCH at the end (e.g., use
@@ -302,6 +306,10 @@ inputs = {
   # this if the database needs to connect to certain IP addresses for special
   # operation
   allow_outbound_connections_from_cidr_blocks = []
+
+  # Specifies whether any cluster modifications are applied immediately, or
+  # during the next maintenance window.
+  apply_immediately = false
 
   # Indicates that minor engine upgrades will be applied automatically to the DB
   # instance during the maintenance window. If set to true, you should set
@@ -521,6 +529,15 @@ A list of CIDR-formatted IP address ranges that this DB can connect. Use this if
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="apply_immediately" requirement="optional" type="string">
+<HclListItemDescription>
+
+Specifies whether any cluster modifications are applied immediately, or during the next maintenance window.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="auto_minor_version_upgrade" requirement="optional" type="bool">
@@ -928,6 +945,6 @@ The ID of the Security Group that controls access to the cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.2/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "597b126b035c422b4f5e9a44442d2a8c"
+  "hash": "2e814ca87c67db09c8e4effdb3086d53"
 }
 ##DOCS-SOURCER-END -->
