@@ -13,20 +13,16 @@ Gruntwork Account Foundations.
 
 ## Prerequisites
 
-In order to enable control tower you will need the following:
-
-1. A new AWS Account and a user with administrator permissions. (We recommend using an IAM user with admin permissions rather than the root user)
-
-:::info
-
-This account will become the root of your multi-account setup after enabling Control Tower.
-
-:::
-
-1. Two(2) new unique email addresses for your logs, and security(audit) accounts.
-
+In order to enable control tower you will need the resources described in [Prerequisites.](/foundations/accounts/prerequisites)
 
 ## Enable AWS Control Tower
+
+:::info
+This Guide should take about 1hr 15min to complete, most of that time will be spent
+waiting on Control Tower Operations at the conclusion of the setup flow.
+:::
+
+### Start Control Tower Setup
 
 1. Sign in to the [AWS management console](https://console.aws.amazon.com) with your administrator user credentials.
 
@@ -42,103 +38,53 @@ This account will become the root of your multi-account setup after enabling Con
 
 1. Choose **Set up landing zone**.
 
-1. On the **Review pricing and select Regions** page
-   1. Under **Region deny setting** select Enabled
-      1. This ensures Control Tower policies and controls are unable to be bypassed by using a non-governed region
+### Review pricing and select Regions
 
-   1. Under **Select additional Regions for governance** Select all regions where you plan to operate.
+1. Under **Region deny setting** select Enabled
+   1. This ensures Control Tower policies and controls are unable to be bypassed by using a non-governed region
 
-      ![Region Selections](/img/devops-foundations/account/regions.png)
+1. Under **Select additional Regions for governance** Select all regions where you plan to operate.
 
-   1. Click **Next** to continue
+   ![Region Selections](/img/devops-foundations/account/regions.png)
 
-1. On the **Configure Organizational Units (OUs)** page:
+1. Click **Next** to continue
 
-   1. Rename the "Additional OU" to "Pre-prod"
+### Configure Organizational Units (OUs)
+
+1. Rename the "Additional OU" to "Pre-prod"
 
    ![Configure Organizational Units](/img/devops-foundations/account/configure-ous.png)
 
-   1. Click **Next** to continue.
+1. Click **Next** to continue.
 
-1. On the **Configure shared accounts** page
+### Configure shared accounts
 
-   1. Under **Logs archive account** Enter an email address and rename the `Logs Archive` account to `Logs`
-   1. Under **Audit account** Enter an email address and rename the `Audit` account to `Security`
+1. Under **Logs archive account** Enter an email address and rename the `Logs Archive` account to `Logs`
+1. Under **Audit account** Enter an email address and rename the `Audit` account to `Security`
 
-      :::caution
+   :::caution
 
-      Account names **cannot** be changed after setting up the landing zone. Ensure the accounts are named appropriately.
+   Account names **cannot** be changed after setting up the landing zone. Ensure the accounts are named appropriately.
 
-      :::
+   :::
 
    ![Configure Shared Accounts](/img/devops-foundations/account/log-archive-rename.png)
 
-   1. Click **Next** to continue
+1. Click **Next** to continue
 
-1. On the **Additional configurations** page
+### Additional configurations
 
-   1. Ensure your setting match the screenshot below (These are the defaults)
-      ![Additional Configuration](/img/devops-foundations/account/additional-config.png)
-   1. Under **KMS Encryption** Check the box for `Enable and customize encryption settings`
-   1. Click **Create a KMS key** (This will open a new tab)
-      1. Configure a key with the default parameters (shown in screenshot below)
-         ![KMS Key Defaults](/img/devops-foundations/account/kms-default.png)
-      1. Give the key a descriptive alias like `control_tower_key`
-         ![KMS Key Alias](/img/devops-foundations/account/kms-name.png)
-      1. Select your admin user as a key administrator
-      1. Select your admin user as a key user
-      1. Click finish to create the key
-      1. On the next screen, find the key you just created and click on it to edit
-      1. In the key policy tab, click edit
-         ![Edit Key Policy](/img/devops-foundations/account/edit-key-policy.png)
-      1. Add the following config policy statement to the list of Statements, replacing `YOUR-HOME-REGION`, `YOUR-MANAGEMENT-ACCOUNT-ID` and `YOUR_KMS_KEY_ID` with values from your own account.
-         ```json
-         {
-         "Sid": "Allow Config to use KMS for encryption",
-         "Effect": "Allow",
-         "Principal": {
-         "Service": "config.amazonaws.com"
-         },
-         "Action": [
-         "kms:Decrypt",
-         "kms:GenerateDataKey"
-         ],
-         "Resource": "arn:aws:kms:YOUR-HOME-REGION:YOUR-MANAGEMENT-ACCOUNT-ID:key/YOUR-KMS-KEY-ID"
-         }
-         ```
-      1. Add the following CloudTrail policy statement to the list of Statements, replacing `YOUR-HOME-REGION`, `YOUR-MANAGEMENT-ACCOUNT-ID` and `YOUR_KMS_KEY_ID` with values from your own account.
-         ```json
-         {
-             "Sid": "Allow CloudTrail to use KMS for encryption",
-             "Effect": "Allow",
-             "Principal": {
-                 "Service": "cloudtrail.amazonaws.com"
-             },
-             "Action": [
-                 "kms:GenerateDataKey*",
-                 "kms:Decrypt"
-             ],
-             "Resource": "arn:aws:kms:YOUR-HOME-REGION:YOUR-MANAGEMENT-ACCOUNT-ID:key/YOUR-KMS-KEY-ID",
-             "Condition": {
-                 "StringEquals": {
-                     "aws:SourceArn": "arn:aws:cloudtrail:YOUR-HOME-REGION:YOUR-MANAGEMENT-ACCOUNT-ID:trail/aws-controltower-BaselineCloudTrail"
-                 },
-                 "StringLike": {
-                     "kms:EncryptionContext:aws:cloudtrail:arn": "arn:aws:cloudtrail:*:YOUR-MANAGEMENT-ACCOUNT-ID:trail/*"
-                 }
-             }
-         }
-         ```
-
-      1. Click Save Changes
-
-      1. Close the KMS tab and choose the key you just created from the dropdown
-
-      :::info
-       For more help setting up KMS see the AWS docs: [Guidance for KMS keys](https://docs.aws.amazon.com/en_us/controltower/latest/userguide//kms-guidance.html)
-      :::
-
+1. Ensure your setting match the screenshot below (These are the defaults)
+   ![Additional Configuration](/img/devops-foundations/account/additional-config.png)
+1. Under **KMS Encryption** Check the box for `Enable and customize encryption settings`
+1. Select the KMS Key you'd like to use to encrypt Control Tower from the dropdown
 1. Click next to continue
+
+### Finish Control Tower Setup
+
+:::info
+Control Tower Creation will take around an hour to complete
+:::
 
 1. Review your choices and check the box accepting permissions at the bottom of the screen
 
@@ -163,10 +109,16 @@ This account will become the root of your multi-account setup after enabling Con
 Now that Control Tower is enabled in your root account, there are a few configuration changes that need to be made to
 prepare the landing zone for Gruntwork Account Foundations.
 
-1. Navigate to the [AWS Control Tower's dashboard](https://console.aws.amazon.com/controltower/home/organization) to create additional Organization Units(OUs) using the administrator user. This is required in order to provision new accounts.
+1. Navigate to the [AWS Control Tower Organization Dashboard](https://console.aws.amazon.com/controltower/home/organization) to create additional resources using the administrator user. This is required in order to provision the Gruntwork Landing Zone.
 
-  1. Choose **Create Resources** and select Organization Units.
-  1. Create a **Prod** OU. Select the Root OU as the Parent OU when prompted. Each OU registration takes a couple of minutes.
+1. Choose **Create Resources** and select `Create organizational unit`.
+1. Create a **Prod** OU. Select the Root OU as the Parent OU when prompted. Each OU registration takes a couple of minutes.
+1. Choose **Create Resources** again and select `Create account`
+1. Name the account `Shared` and set the Organizational Unit to `Prod`
+  :::tip
+    The shared account is meant to house resources shared with all other accounts. Examples might include KMS Keys, AMIs,
+    or ECR repositories.
+  :::
 
 1. [Turn off the default VPC created for new accounts](https://docs.aws.amazon.com/controltower/latest/userguide/configure-without-vpc.html#create-without-vpc). Gruntwork VPCs will be created for each account using terraform.
 
@@ -174,5 +126,6 @@ prepare the landing zone for Gruntwork Account Foundations.
 
 Control Tower is now configured! Next you should consider:
 
-- [Configuring IAM Identity Center](/) for Access Control. TODO write doc
-- [Configuring any controls or SCPs](/) your organization requires. TODO write doc
+- [Configuring IAM Identity Center](https://docs.aws.amazon.com/singlesignon/latest/userguide/get-started-choose-identity-source.html) for Access Control.
+- [Configuring any controls or SCPs](https://docs.aws.amazon.com/controltower/latest/userguide/controls.html) your organization requires.
+- Set up your Gruntwork Terraform Foundations (coming soon)
