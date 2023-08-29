@@ -8,8 +8,12 @@ In order to enable control tower you will need the following:
   This account will become the root of your multi-account setup after enabling Control Tower.
   :::
 
-1. Three(3) new unique email addresses for your logs, shared, and security(audit) accounts.
+1. Three(3) new unique email addresses for your logs, shared, and security (audit) accounts.
 1. A KMS Key for encrypting Control Tower Resources with a suitable permissions policy (See Guide Below)
+1. A home region selection where your Control Tower configuration will reside.
+   :::caution
+   Your home Region is the AWS Region in which you'll run most of your workloads or store most of your data. It **cannot** be changed after you've set up your AWS Control Tower landing zone. For more information about how to choose a home Region, see [Administrative tips for landing zone setup](https://docs.aws.amazon.com/controltower/latest/userguide/tips-for-admin-setup.html).
+   :::
 
 ## KMS Key Creation
 :::info

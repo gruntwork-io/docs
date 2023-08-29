@@ -36,14 +36,14 @@ waiting on Control Tower Operations at the conclusion of the setup flow.
 
   :::
 
-1. Choose **Set up landing zone**.
+1. Click **Set up landing zone**.
 
 ### Review pricing and select Regions
 
 1. Under **Region deny setting** select Enabled
    1. This ensures Control Tower policies and controls are unable to be bypassed by using a non-governed region
 
-1. Under **Select additional Regions for governance** Select all regions where you plan to operate.
+1. Under **Select additional Regions for governance** select all regions where you plan to operate.
 
    ![Region Selections](/img/devops-foundations/account/regions.png)
 
@@ -74,11 +74,11 @@ waiting on Control Tower Operations at the conclusion of the setup flow.
 
 ### Additional configurations
 
-1. Ensure your setting match the screenshot below (These are the defaults)
+1. Ensure your settings match the screenshot below (These are the defaults)
    ![Additional Configuration](/img/devops-foundations/account/additional-config.png)
 1. Under **KMS Encryption** Check the box for `Enable and customize encryption settings`
-1. Select the KMS Key you'd like to use to encrypt Control Tower from the dropdown
-1. Click next to continue
+1. Select the KMS Key you created following the guide in [prerequisites](/foundations/accounts/prerequisites)
+1. Click **Next** to continue
 
 ### Finish Control Tower Setup
 
@@ -109,18 +109,17 @@ Control Tower Creation will take around an hour to complete
 Now that Control Tower is enabled in your root account, there are a few configuration changes that need to be made to
 prepare the landing zone for Gruntwork Account Foundations.
 
-1. Navigate to the [AWS Control Tower Organization Dashboard](https://console.aws.amazon.com/controltower/home/organization) to create additional resources using the administrator user. This is required in order to provision the Gruntwork Landing Zone.
-
+1. Navigate to the [AWS Control Tower Organization Dashboard](https://console.aws.amazon.com/controltower/home/organization)
+1. [Turn off the default VPC created for new accounts](https://docs.aws.amazon.com/controltower/latest/userguide/configure-without-vpc.html#create-without-vpc). Gruntwork VPCs will be created for each account using terraform.
 1. Choose **Create Resources** and select `Create organizational unit`.
 1. Create a **Prod** OU. Select the Root OU as the Parent OU when prompted. Each OU registration takes a couple of minutes.
 1. Choose **Create Resources** again and select `Create account`
 1. Name the account `Shared` and set the Organizational Unit to `Prod`
-  :::tip
-    The shared account is meant to house resources shared with all other accounts. Examples might include KMS Keys, AMIs,
-    or ECR repositories.
-  :::
+   :::tip
+   The shared account is meant to house resources shared with all other accounts. Examples might include KMS Keys, AMIs,
+   or ECR repositories.
+   :::
 
-1. [Turn off the default VPC created for new accounts](https://docs.aws.amazon.com/controltower/latest/userguide/configure-without-vpc.html#create-without-vpc). Gruntwork VPCs will be created for each account using terraform.
 
 ## Next Steps
 
