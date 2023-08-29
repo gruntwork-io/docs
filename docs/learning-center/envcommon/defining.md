@@ -44,7 +44,7 @@ inputs = {
     num_nat_gateways                          = 1
 }
 ```
-Our example is relatively straight forward, our module only has three required variables, but there are actually 79 more optional variables. As you expand your usage to supply values to more optional values, the amount of code you don't have to write would increase significantly.
+Our example is relatively straight forward — our module only has three required variables, but there are actually 79 more optional variables. As you expand your usage to supply values to more optional values, the amount of code you don't have to write would increase significantly.
 
 ## Wrapping up
 
@@ -54,6 +54,6 @@ Now that you know how to develop an envcommon module, let's dive in to how you c
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b54247d219c0255c217d4cc2df08e054"
+  "hash": "f1ffdf5d9d0f5fe1b49c531f2ddc8392"
 }
 ##DOCS-SOURCER-END -->
