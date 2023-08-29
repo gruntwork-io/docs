@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="0.20.2" lastModifiedVersion="0.20.1"/>
+<VersionBadge repoTitle="Cache Modules" version="0.21.0" lastModifiedVersion="0.21.0"/>
 
 # Redis Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.21.0/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.20.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.21.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an ElastiCache cluster that runs [Redis](http://redis.io/).
 
@@ -84,7 +84,7 @@ here: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/ParameterGroup
 #### Choosing Cluster Mode vs. Single Instance
 
 You can use `var.enable_single_instance_mode=true` to deploy a single node Redis instance. Refer
-to [examples/redis_single_instance](https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/examples/redis_single_instance) as an example.
+to [examples/redis_single_instance](https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.21.0/examples/redis_single_instance) as an example.
 
 Here are some of the points you may consider while choosing which mode to run:
 
@@ -243,7 +243,7 @@ ElastiCache for Redis supports the following types of automatic scaling dimensio
 
 module "redis" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.20.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.21.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -325,14 +325,6 @@ module "redis" {
   # The name of the aws_elasticache_subnet_group that is created. Defaults to
   # var.name-subnet-group if not specified.
   aws_elasticache_subnet_group_name = null
-
-  # DEPRECATED - Please use root-level num_node_groups and
-  # replicas_per_node_group instead. Specifies the number of shards and replicas
-  # per shard in the cluster. The list should contain a single map with keys
-  # 'num_node_groups' and 'replicas_per_node_group' set to desired integer
-  # values. You need to set `enable_automatic_failover` to true to use this
-  # configuration. Only 1 cluster_mode block is allowed.
-  cluster_mode = []
 
   # The name of the new 'default' user_id, in the event is different from
   # 'default'.
@@ -462,7 +454,7 @@ module "redis" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.20.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.21.0"
 }
 
 inputs = {
@@ -547,14 +539,6 @@ inputs = {
   # The name of the aws_elasticache_subnet_group that is created. Defaults to
   # var.name-subnet-group if not specified.
   aws_elasticache_subnet_group_name = null
-
-  # DEPRECATED - Please use root-level num_node_groups and
-  # replicas_per_node_group instead. Specifies the number of shards and replicas
-  # per shard in the cluster. The list should contain a single map with keys
-  # 'num_node_groups' and 'replicas_per_node_group' set to desired integer
-  # values. You need to set `enable_automatic_failover` to true to use this
-  # configuration. Only 1 cluster_mode block is allowed.
-  cluster_mode = []
 
   # The name of the new 'default' user_id, in the event is different from
   # 'default'.
@@ -847,25 +831,6 @@ The name of the aws_elasticache_subnet_group that is created. Defaults to <a hre
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cluster_mode" requirement="optional" type="list(object(…))">
-<HclListItemDescription>
-
-DEPRECATED - Please use root-level num_node_groups and replicas_per_node_group instead. Specifies the number of shards and replicas per shard in the cluster. The list should contain a single map with keys 'num_node_groups' and 'replicas_per_node_group' set to desired integer values. You need to set `enable_automatic_failover` to true to use this configuration. Only 1 cluster_mode block is allowed.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(object({
-    num_node_groups         = number
-    replicas_per_node_group = number
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
 <HclListItem name="default_user_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1134,9 +1099,6 @@ This is a list of user IDs  that should be added to the group defined in the 'us
 <HclListItem name="cache_port">
 </HclListItem>
 
-<HclListItem name="cluster_mode">
-</HclListItem>
-
 <HclListItem name="configuration_endpoint">
 </HclListItem>
 
@@ -1159,11 +1121,11 @@ This is a list of user IDs  that should be added to the group defined in the 'us
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/modules/redis/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/modules/redis/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.20.2/modules/redis/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.21.0/modules/redis/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.21.0/modules/redis/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.21.0/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "26c10706c13cf700c9a4620cf4d8fec0"
+  "hash": "630b776ba3aba80be551eb24f0195e5a"
 }
 ##DOCS-SOURCER-END -->
