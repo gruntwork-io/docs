@@ -20,7 +20,12 @@ const sidebar = [
                         id: "learning-center/envcommon/index"
                     },
                     {
-                        label: "Using envcommon",
+                        label: "Defining an envcommon module",
+                        type: "doc",
+                        id: "learning-center/envcommon/defining"
+                    },
+                    {
+                        label: "Using an envcommon module",
                         type: "doc",
                         id: "learning-center/envcommon/usage"
                     }
