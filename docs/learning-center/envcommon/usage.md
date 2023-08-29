@@ -32,7 +32,7 @@ include "envcommon" {
 }
 ```
 
-Note that we're using the [`find_in_parent_folders()`](https://terragrunt.gruntwork.io/docs/reference/built-in-functions/#find_in_parent_folders) terragrunt built-in function to find the root directory of the repository, then specifying the path to the envcommon module from there.
+Note that we're using the built-in terragrunt function [`find_in_parent_folders()`](https://terragrunt.gruntwork.io/docs/reference/built-in-functions/#find_in_parent_folders) to find the root directory of the repository, then specifying the path to the envcommon module from there.
 
 ## Specifying Dependencies
 
@@ -82,6 +82,6 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d4770f947f5c1f8906026ce89ddd1050"
+  "hash": "9855461a1d9c2c8ab87983e539cd6af3"
 }
 ##DOCS-SOURCER-END -->
