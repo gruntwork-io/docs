@@ -14,7 +14,7 @@ To ensure that we're using the same module as the envcommon module, we can refer
 
 ```hcl title=/dev/us-east-1/dev/networking/vpc/terragrunt.hcl
 terraform {
-  source = "${include.envcommon.locals.source_base_url}?ref=v0.47.1"
+  source = "${include.envcommon.locals.source_base_url}?ref=v0.104.19"
 }
 ```
 
@@ -31,6 +31,8 @@ include "envcommon" {
   expose = true
 }
 ```
+
+Note that we're using the [`find_in_parent_folders()`](https://terragrunt.gruntwork.io/docs/reference/built-in-functions/#find_in_parent_folders) terragrunt built-in function to find the root directory of the repository, then specifying the path to the envcommon module from there.
 
 ## Specifying Dependencies
 
@@ -80,6 +82,6 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "203f127a8672ff91d13aefb8facf396e"
+  "hash": "d4770f947f5c1f8906026ce89ddd1050"
 }
 ##DOCS-SOURCER-END -->
