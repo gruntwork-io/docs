@@ -12,9 +12,9 @@ Gruntwork recommends that infrastructure-unit definitions contain a `terraform` 
 
 To ensure that we're using the same module as the envcommon module, we can reference the `source_base_url` value from the envcommon `include` block (which we'll learn more about in the next section), then specify the release version after `ref`. In the example below, we reference the `base_source_url` from our envcommon module, then override the version to `v0.47.0`.
 
-```hcl
+```hcl title=/dev/us-east-1/dev/networking/vpc/terragrunt.hcl
 terraform {
-  source = "${include.envcommon.locals.source_base_url}?ref=v0.47.0"
+  source = "${include.envcommon.locals.source_base_url}?ref=v0.47.1"
 }
 ```
 
@@ -80,6 +80,6 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "3d45bf88381893e476e03de0aede3c95"
+  "hash": "203f127a8672ff91d13aefb8facf396e"
 }
 ##DOCS-SOURCER-END -->
