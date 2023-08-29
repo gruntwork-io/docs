@@ -44,9 +44,8 @@ inputs = {
     num_nat_gateways                          = 1
 }
 ```
+Our example is relatively straight forward, our module only has three required variables, but there are actually 79 more optional variables. As you expand your usage to supply values to more optional values, the amount of code you don't have to write would increase significantly.
 
 ## Wrapping up
-
-Our example is relatively straight forward, our module only has three required variables, but there are actually 79 more optional variables. As you expand your usage to supply values to more optional values, the amount of code you don't have to write would increase significantly.
 
 Now that you know how to develop an envcommon module, let's dive in to how you can use one to deploy resources to a specific environment.
