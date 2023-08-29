@@ -138,6 +138,11 @@ const config = {
             label: "Library Reference",
             docId: "library/reference/index",
           },
+          {
+            type: "doc",
+            label: "Learning Center",
+            docId: "learning-center/index",
+          },
           { to: "/tools", label: "Tools", position: "left" },
           { to: "/courses", label: "Courses", position: "left" },
           {
