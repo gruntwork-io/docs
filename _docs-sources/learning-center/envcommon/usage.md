@@ -1,12 +1,12 @@
 # Using envcommon in an infrastructure-unit
 
-### infrastructure-unit
+## infrastructure-unit
 
 An infrastructure unit is the Gruntwork term for the deployment of an infrastructure as code module in a single environment. For example, deploying the [`vpc-app`](../../reference/modules/terraform-aws-vpc/vpc-app/) module in your development AWS account is a single infrastructure-unit.
 
-In this section, we'll walk through the approach we employ at Gruntwork for leveraging modules in envcommon as infrastructure-units. When you purchase a DevOps Foundation, the generated repository containing your infrastructure-as-code is automatically laid out to use this approach.
+In this section, we'll walk through the approach we employ at Gruntwork for leveraging modules in envcommon as infrastructure-units. When you purchase a DevOps Foundation, the generated repository containing your infrastructure as code is automatically laid out to use this approach.
 
-### The Terraform block
+## The Terraform block
 
 Gruntwork recommends that infrastructure-unit definitions contain a `terraform` block, in addition the the `terraform` block in the underlying envcommon module. This allows users to change module versions granularly across environments, rather than changing a global value and updating all of your environments at once.
 
@@ -18,7 +18,7 @@ terraform {
 }
 ```
 
-### Including the envcommon module
+## Including the envcommon module
 
 Including an envcommon module requires using an [`include`](https://terragrunt.gruntwork.io/docs/features/keep-your-terragrunt-architecture-dry/#using-exposed-includes-to-override-common-configurations) block. This allows you to use or override any default values and reference locals in the envcommon module.
 
@@ -32,7 +32,7 @@ include "envcommon" {
 }
 ```
 
-### Specifying Dependencies
+## Specifying Dependencies
 
 [Dependencies](https://terragrunt.gruntwork.io/docs/reference/config-blocks-and-attributes/#dependency) are a Terragrunt concept that allow you to specify that certain infrastructure-units must be applied before this infrastructure-unit. Dependencies can leveraged regardless of the source of the underlying module. This means that an infrastructure-unit that uses an envcommon module can reference dependencies the same way as an infrastructure-unit that does not use an envcommon module.
 
@@ -44,7 +44,7 @@ dependency "kms" {
 }
 ```
 
-### Using Locals
+## Using Locals
 
 Like Dependencies, [Locals](https://terragrunt.gruntwork.io/docs/features/locals/) are a Terragrunt concept that allow you to bind a name to an expression. Locals are a useful tool when leveraging the envcommon pattern to set environment specific values, like CIDR blocks, resource name prefixes, and more. An infrastructure-unit that uses an envcommon module can reference dependencies the same way as an infrastructure-unit that does not use an envcommon module.
 
@@ -56,7 +56,7 @@ locals {
 }
 ```
 
-### Overriding Inputs
+## Overriding Inputs
 
 Inputs allow you to pass in values to the underlying module specified in the `include` block. This is where the envcommon pattern shows it convenience and helps to keep your code clean and DRY.
 
