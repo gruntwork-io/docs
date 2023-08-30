@@ -28,6 +28,7 @@ const sidebar = [
         items: [
           "foundations/accounts/index",
           "foundations/accounts/add-account",
+          "foundations/accounts/manage-accounts",
         ],
       },
       {
