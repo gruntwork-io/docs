@@ -14,12 +14,13 @@ Below you'll find a table with common account operations and the Gruntwork recom
 | Management Operation                                                                                                                        | Terraform (IaC)  | AWS Console (ClickOps) |
 | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ---------------------- |
 | [Create a new Organization Unit](https://docs.aws.amazon.com/controltower/latest/userguide/create-new-ou.html) (OU)                         | ❌               | ✅                     |
-| [Delete an account](https://docs.aws.amazon.com/controltower/latest/userguide/delete-account.html) (requires un-managing the account first) | ❌               | ✅                     |
-| [Modify account controls](https://docs.aws.amazon.com/controltower/latest/userguide/enable-controls-on-ou.html)                             | ❌               | ✅                     |
 | [Request a new account](./add-account.md)                                                                                                   | ✅               | ❌                     |
 | [Create a new account](./add-account.md)                                                                                                    | ✅               | ❌                     |
 | Un-manage an account                                                                                                                        | ✅               | ❌                     |
+| [Delete an account](https://docs.aws.amazon.com/controltower/latest/userguide/delete-account.html) (requires un-managing the account first) | ❌               | ✅                     |
 | [Renaming an account](https://docs.aws.amazon.com/controltower/latest/userguide/change-account-name.html)                                   | ❌               | ✅                     |
+| [Update root account e-mail address](https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-root-user.html)               | ❌               | ✅                     |
+| [Modify account controls](https://docs.aws.amazon.com/controltower/latest/userguide/enable-controls-on-ou.html)                             | ❌               | ✅                     |
 | Moving an account to a new Organizational Unit                                                                                              | ✅ (recommended) | ✅ (discouraged)       |
 | Update account admin user in Account Access IAM Identity Center                                                                             | ✅ (recommended) | ✅ (discouraged)       |
 | Granting additional users access to accounts in AWS IAM Identity Center                                                                     | ✅ (recommended) | ✅ (discouraged)       |
@@ -28,6 +29,6 @@ Below you'll find a table with common account operations and the Gruntwork recom
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "4489ca533b0819d71503b1a2e6853d92"
+  "hash": "d3d7cbe0ee9010755e376c6ff101af09"
 }
 ##DOCS-SOURCER-END -->
