@@ -2,7 +2,7 @@
 
 ## infrastructure-unit
 
-An infrastructure unit is the Gruntwork term for the deployment of an infrastructure as code module in a single environment. For example, deploying the [`vpc-app`](../../reference/modules/terraform-aws-vpc/vpc-app/) module in your development AWS account is a single infrastructure-unit.
+An infrastructure unit is the Gruntwork term for the deployment of an infrastructure as code module in a single environment. For example, deploying the [`vpc-app`](../../../reference/modules/terraform-aws-vpc/vpc-app/) module in your development AWS account is a single infrastructure-unit.
 
 In this section, we'll walk through the approach we employ at Gruntwork for leveraging modules in envcommon as infrastructure-units. When you purchase a DevOps Foundation, the generated repository containing your infrastructure as code is automatically laid out to use this approach.
 
@@ -82,6 +82,6 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "9855461a1d9c2c8ab87983e539cd6af3"
+  "hash": "a94ab9a20284919fb7188c6f096afe8b"
 }
 ##DOCS-SOURCER-END -->

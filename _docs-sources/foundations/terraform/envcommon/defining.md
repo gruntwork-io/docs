@@ -35,7 +35,7 @@ locals {
 
 Finally, you can define inputs. This is where the envcommon pattern really starts to demonstrate value by keeping your code DRY.
 
-In the example block below, we've set default values for the `vpc_name` and `num_nat_gateways` variables. A quick inspection of the [`vpc-app`](../../reference/modules/terraform-aws-vpc/vpc-app/) module shows us that we're only missing one additional required variable — `cidr_block`. This means that consumers of our envcommon module only need to specify a value for one input variable, a 66% reduction! You could even expand this example to always use the same CIDR block, allowing the users to override it should they require a different block.
+In the example block below, we've set default values for the `vpc_name` and `num_nat_gateways` variables. A quick inspection of the [`vpc-app`](../../../reference/modules/terraform-aws-vpc/vpc-app/) module shows us that we're only missing one additional required variable — `cidr_block`. This means that consumers of our envcommon module only need to specify a value for one input variable, a 66% reduction! You could even expand this example to always use the same CIDR block, allowing the users to override it should they require a different block.
 
 ```hcl title=_envcommon/networking/vpc-app.hcl
 inputs = {
