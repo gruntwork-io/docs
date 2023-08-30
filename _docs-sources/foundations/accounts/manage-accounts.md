@@ -22,3 +22,4 @@ Below you'll find a table with common account operations and the Gruntwork recom
 | [Renaming an account](https://docs.aws.amazon.com/controltower/latest/userguide/change-account-name.html)                                   | ❌               | ✅                     |
 | Moving an account to a new Organizational Unit                                                                                              | ✅ (recommended) | ✅ (discouraged)       |
 | Update account admin user in Account Access IAM Identity Center                                                                             | ✅ (recommended) | ✅ (discouraged)       |
+| Granting additional users access to accounts in AWS IAM Identity Center                                                                     | ✅ (recommended) | ✅ (discouraged)       |
