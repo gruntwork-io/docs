@@ -37,24 +37,24 @@ const sidebar = [
         items: [
           "foundations/terraform/index",
           {
-            label: "envcommon",
+            label: "Module Defaults",
             type: "category",
             collapsible: true,
             items: [
               {
-                label: "What is envcommon?",
+                label: "What are Module Defaults?",
                 type: "doc",
-                id: "foundations/terraform/envcommon/index",
+                id: "foundations/terraform/module_defaults/index",
               },
               {
-                label: "Defining an envcommon module",
+                label: "Defining Module Defaults",
                 type: "doc",
-                id: "foundations/terraform/envcommon/defining",
+                id: "foundations/terraform/module_defaults/defining",
               },
               {
-                label: "Using an envcommon module",
+                label: "Using Module Defaults",
                 type: "doc",
-                id: "foundations/terraform/envcommon/usage",
+                id: "foundations/terraform/module_defaults/usage",
               },
             ],
           },
