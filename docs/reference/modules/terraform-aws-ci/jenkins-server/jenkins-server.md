@@ -333,13 +333,6 @@ module "jenkins_server" {
   # The tenancy to use for Jenkins. Must be one of: default, dedicated, or host.
   tenancy = "default"
 
-  # Set this variable to true to enable the use of Instance Metadata Service
-  # Version 1 in this module's aws_launch_template. Note that while IMDsv2 is
-  # preferred due to its special security hardening, we allow this in order to
-  # support the use case of AMIs built outside of these modules that depend on
-  # IMDSv1.
-  use_imdsv1 = true
-
   # The User Data script to run on the Jenkins server when it is booting. If you
   # need to pass gzipped, base64-encoded data (e.g., for a cloud-init script),
   # use var.user_data_base64 instead.
@@ -593,13 +586,6 @@ inputs = {
 
   # The tenancy to use for Jenkins. Must be one of: default, dedicated, or host.
   tenancy = "default"
-
-  # Set this variable to true to enable the use of Instance Metadata Service
-  # Version 1 in this module's aws_launch_template. Note that while IMDsv2 is
-  # preferred due to its special security hardening, we allow this in order to
-  # support the use case of AMIs built outside of these modules that depend on
-  # IMDSv1.
-  use_imdsv1 = true
 
   # The User Data script to run on the Jenkins server when it is booting. If you
   # need to pass gzipped, base64-encoded data (e.g., for a cloud-init script),
@@ -1105,15 +1091,6 @@ The tenancy to use for Jenkins. Must be one of: default, dedicated, or host.
 <HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
 </HclListItem>
 
-<HclListItem name="use_imdsv1" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="user_data" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1201,6 +1178,6 @@ A maximum duration to wait for each server to be healthy before timing out (e.g.
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.12/modules/jenkins-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "351770eab65bfb3e9f52c82d6229a0da"
+  "hash": "9a1ab5b82e12bd861aec75acbc2bd949"
 }
 ##DOCS-SOURCER-END -->

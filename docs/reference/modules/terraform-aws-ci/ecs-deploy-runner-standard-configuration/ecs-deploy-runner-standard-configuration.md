@@ -165,6 +165,7 @@ module "ecs_deploy_runner_standard_configuration" {
     )
     infrastructure_live_repositories = list(string)
     infrastructure_live_repositories_regex = list(string)
+    additional_allowed_options = list(string)
     allowed_update_variable_names = list(string)
     allowed_apply_git_refs = list(string)
     machine_user_git_info = object(
@@ -188,6 +189,7 @@ module "ecs_deploy_runner_standard_configuration" {
     )
     infrastructure_live_repositories = list(string)
     infrastructure_live_repositories_regex = list(string)
+    additional_allowed_options = list(string)
     secrets_manager_env_vars = map(string)
     environment_vars = map(string)
   )>
@@ -272,6 +274,7 @@ inputs = {
     )
     infrastructure_live_repositories = list(string)
     infrastructure_live_repositories_regex = list(string)
+    additional_allowed_options = list(string)
     allowed_update_variable_names = list(string)
     allowed_apply_git_refs = list(string)
     machine_user_git_info = object(
@@ -295,6 +298,7 @@ inputs = {
     )
     infrastructure_live_repositories = list(string)
     infrastructure_live_repositories_regex = list(string)
+    additional_allowed_options = list(string)
     secrets_manager_env_vars = map(string)
     environment_vars = map(string)
   )>
@@ -597,6 +601,11 @@ object({
     # Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
     infrastructure_live_repositories_regex = list(string)
 
+    # List of additional allowed options to pass to terraform plan. This is useful for passing in additional options
+    # that are not supported by the pipeline by default. For example, if you want to pass in the -var option,
+    # you would set this to ["-var"].
+    additional_allowed_options = list(string)
+
     # List of variable names that are allowed to be automatically updated by the CI/CD pipeline. Recommended to set to:
     # ["image_version", "version", "ami_version_tag", "ami"]
     allowed_update_variable_names = list(string)
@@ -670,6 +679,18 @@ object({
      configuration to deploy infrastructure) that the deploy runner is allowed to deploy. These should be the SSH git
      URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
      Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of additional allowed options to pass to terraform plan. This is useful for passing in additional options
+     that are not supported by the pipeline by default. For example, if you want to pass in the -var option,
+     you would set this to ["-var"].
 
 ```
 </details>
@@ -799,6 +820,11 @@ object({
     # Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
     infrastructure_live_repositories_regex = list(string)
 
+    # List of additional allowed options to pass to terraform plan. This is useful for passing in additional options
+    # that are not supported by the pipeline by default. For example, if you want to pass in the -var option,
+    # you would set this to ["-var"].
+    additional_allowed_options = list(string)
+
     # Map of key value pairs where keys are environment variable names and values are ARNs of secrets manager entries to
     # inject as that variable. Note that these environment variables will be available to the
     # infrastructure-deploy-script. For the terraform planner, the following environment variables are recommended:
@@ -837,6 +863,18 @@ object({
      configuration to deploy infrastructure) that the deploy runner is allowed to deploy. These should be the SSH git
      URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
      Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of additional allowed options to pass to terraform plan. This is useful for passing in additional options
+     that are not supported by the pipeline by default. For example, if you want to pass in the -var option,
+     you would set this to ["-var"].
 
 ```
 </details>
@@ -921,6 +959,6 @@ Configuration map for the ecs-deploy-runner module that can be passed straight i
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.12/modules/ecs-deploy-runner-standard-configuration/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5f60f5b592f4e075d5eaf6a5aca73c3f"
+  "hash": "eab4296d706dad5832dfff8ca16f6a8d"
 }
 ##DOCS-SOURCER-END -->
