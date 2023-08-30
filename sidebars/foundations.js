@@ -34,15 +34,37 @@ const sidebar = [
         label: "Terraform Foundations",
         type: "category",
         collapsed: false,
-        items: ["foundations/terraform/index"],
+        items: [
+          "foundations/terraform/index",
+          {
+            label: "envcommon",
+            type: "category",
+            collapsible: true,
+            items: [
+              {
+                label: "What is envcommon?",
+                type: "doc",
+                id: "foundations/terraform/envcommon/index",
+              },
+              {
+                label: "Defining an envcommon module",
+                type: "doc",
+                id: "foundations/terraform/envcommon/defining",
+              },
+              {
+                label: "Using an envcommon module",
+                type: "doc",
+                id: "foundations/terraform/envcommon/usage",
+              },
+            ],
+          },
+        ],
       },
       {
         label: "CI/CD Foundations",
         type: "category",
         collapsed: false,
-        items: [
-          "foundations/ci-cd/index",
-        ],
+        items: ["foundations/ci-cd/index"],
       },
       {
         label: "Maintenance Foundations",
