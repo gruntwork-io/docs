@@ -100,6 +100,9 @@ module "eks_k_8_s_karpenter" {
   # Controller.
   create_karpenter_controller_irsa = true
 
+  # Conditional flag to optionally create the Karpenter Deprovisioning Queue.
+  create_karpenter_deprovisioning_queue = true
+
   # Conditional flag to create the Karpenter Node IAM Role. If this is set to
   # false, then an existing IAM Role must be provided with the
   # `karpenter_node_iam_role_arn` variable
@@ -224,6 +227,9 @@ inputs = {
   # Optionally create an IAM Role for Service Account (IRSA) for the Karpenter
   # Controller.
   create_karpenter_controller_irsa = true
+
+  # Conditional flag to optionally create the Karpenter Deprovisioning Queue.
+  create_karpenter_deprovisioning_queue = true
 
   # Conditional flag to create the Karpenter Node IAM Role. If this is set to
   # false, then an existing IAM Role must be provided with the
@@ -365,6 +371,15 @@ The URL of the EKS OIDC provider. This is required if creating IRSA for the Karp
 <HclListItemDescription>
 
 Optionally create an IAM Role for Service Account (IRSA) for the Karpenter Controller.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="create_karpenter_deprovisioning_queue" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Conditional flag to optionally create the Karpenter Deprovisioning Queue.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -613,6 +628,6 @@ The name of the Karpenter Node IAM Role.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.62.0/modules/eks-k8s-karpenter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4541b60eeb51679a5ab4528b3cec0688"
+  "hash": "e27bc29fcbe1898e56d2e6c195b45b8d"
 }
 ##DOCS-SOURCER-END -->
