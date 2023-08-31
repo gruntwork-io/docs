@@ -183,6 +183,7 @@ module "ecs_deploy_runner" {
     )
     repo_access_ssh_key_secrets_manager_arn = string
     repo_access_https_tokens = map(string)
+    additional_allowed_options = list(string)
     secrets_manager_env_vars = map(string)
     environment_vars = map(string)
   )>
@@ -205,6 +206,7 @@ module "ecs_deploy_runner" {
     infrastructure_live_repositories_regex = list(string)
     repo_access_ssh_key_secrets_manager_arn = string
     repo_access_https_tokens = map(string)
+    additional_allowed_options = list(string)
     secrets_manager_env_vars = map(string)
     environment_vars = map(string)
   )>
@@ -520,6 +522,7 @@ inputs = {
     )
     repo_access_ssh_key_secrets_manager_arn = string
     repo_access_https_tokens = map(string)
+    additional_allowed_options = list(string)
     secrets_manager_env_vars = map(string)
     environment_vars = map(string)
   )>
@@ -542,6 +545,7 @@ inputs = {
     infrastructure_live_repositories_regex = list(string)
     repo_access_ssh_key_secrets_manager_arn = string
     repo_access_https_tokens = map(string)
+    additional_allowed_options = list(string)
     secrets_manager_env_vars = map(string)
     environment_vars = map(string)
   )>
@@ -1261,6 +1265,11 @@ object({
     #                                         passed in with bitbucket_token_secrets_manager_arn.
     repo_access_https_tokens = map(string)
 
+    # List of additional allowed options to pass to terraform plan. This is useful for passing in additional options
+    # that are not supported by the pipeline by default. For example, if you want to pass in the -var option,
+    # you would set this to ["-var"].
+    additional_allowed_options = list(string)
+
     # ARNs of AWS Secrets Manager entries that you would like to expose to the terraform/terragrunt process as
     # environment variables. For example,
     # secrets_manager_env_vars = {
@@ -1402,6 +1411,18 @@ object({
 
 ```hcl
 
+     List of additional allowed options to pass to terraform plan. This is useful for passing in additional options
+     that are not supported by the pipeline by default. For example, if you want to pass in the -var option,
+     you would set this to ["-var"].
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
      ARNs of AWS Secrets Manager entries that you would like to expose to the terraform/terragrunt process as
      environment variables. For example,
      secrets_manager_env_vars = {
@@ -1496,6 +1517,11 @@ object({
     # - bitbucket_username                  : The username of the BitBucket user associated with the bitbucket token
     #                                         passed in with bitbucket_token_secrets_manager_arn.
     repo_access_https_tokens = map(string)
+
+    # List of additional allowed options to pass to terraform plan. This is useful for passing in additional options
+    # that are not supported by the pipeline by default. For example, if you want to pass in the -var option,
+    # you would set this to ["-var"].
+    additional_allowed_options = list(string)
 
     # ARNs of AWS Secrets Manager entries that you would like to expose to the terraform/terragrunt process as
     # environment variables. For example,
@@ -1594,6 +1620,18 @@ object({
                                              bitbucket_username is required if this is set.
      - bitbucket_username                  : The username of the BitBucket user associated with the bitbucket token
                                              passed in with bitbucket_token_secrets_manager_arn.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of additional allowed options to pass to terraform plan. This is useful for passing in additional options
+     that are not supported by the pipeline by default. For example, if you want to pass in the -var option,
+     you would set this to ["-var"].
 
 ```
 </details>
@@ -2508,6 +2546,6 @@ Security Group ID of the ECS task
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.19/modules/mgmt/ecs-deploy-runner/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ca0b35f7c2abf52ab7ed4b9e2cdcd420"
+  "hash": "c94a92c5e9d459b0efaabe2c68d1b54e"
 }
 ##DOCS-SOURCER-END -->
