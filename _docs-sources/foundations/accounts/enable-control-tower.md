@@ -119,7 +119,12 @@ prepare the landing zone for Gruntwork Account Foundations.
    The shared account is meant to house resources shared with all other accounts. Examples might include KMS Keys, AMIs,
    or ECR repositories.
    :::
-
+1. Grant your IAM Identity Center user access to the `Shared` account
+   1. Navigate to IAM Identity Center, then click AWS accounts under **Multi-account permissions** in the side menu
+   1. Select the `Shared` account from the `Prod` OU dropdown and click **Assign users or groups**
+   1. Switch to the `Users` tab, select your management user from the list and click **Next**
+   1. Select `AdministratorAccess` from the list of Permission Sets, then click **Next**
+   1. Click `Submit` to finish assigning access to your user
 
 ## Next Steps
 
