@@ -1,4 +1,4 @@
-# Defining mdule defaults
+# Defining module defaults
 
 Now that you have an understanding of [what module defaults are](index.md), you can develop your own defaults module.
 

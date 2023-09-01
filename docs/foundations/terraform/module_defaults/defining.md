@@ -1,4 +1,4 @@
-# Defining mdule defaults
+# Defining module defaults
 
 Now that you have an understanding of [what module defaults are](index.md), you can develop your own defaults module.
 
@@ -55,6 +55,6 @@ Now that you know how to develop an defaults module, let’s dive in to how you 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b0e7fabb9ab710d4554cc173f1c4a1e3"
+  "hash": "47787b1bf1d264280a47675fb4b4cce1"
 }
 ##DOCS-SOURCER-END -->
