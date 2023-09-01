@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.19" lastModifiedVersion="0.104.12"/>
+<VersionBadge version="0.105.0" lastModifiedVersion="0.104.12"/>
 
 # Amazon ECS Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.19/modules/services/ecs-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.0/modules/services/ecs-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fecs-service" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -63,10 +63,10 @@ more, see the documentation in the
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.19/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal
     submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.19/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.19/test): Automated tests for the modules and examples.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -74,14 +74,14 @@ more, see the documentation in the
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.19/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and testing (but not direct production usage).
 
 ### Production deployment
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.19/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -105,7 +105,7 @@ For information on how to manage your ECS service, see the documentation in the
 
 module "ecs_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-service?ref=v0.104.19"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-service?ref=v0.105.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -453,6 +453,13 @@ module "ecs_service" {
   # awsvpc, you must configure var.network_configuration.
   network_mode = "bridge"
 
+  # Service level strategy rules that are taken into consideration during task
+  # placement. List from top to bottom in order of precedence. Updates to this
+  # configuration will take effect next task deployment unless
+  # force_new_deployment is enabled. The maximum number of
+  # ordered_placement_strategy blocks is 5.
+  ordered_placement_strategy = [{"field":"cpu","type":"binpack"}]
+
   # The DNS name that was assigned by AWS to the load balancer upon creation
   original_lb_dns_name = null
 
@@ -463,18 +470,6 @@ module "ecs_service" {
   # The type of constraint to apply for container instance placement. The only
   # valid values at this time are memberOf and distinctInstance.
   placement_constraint_type = "memberOf"
-
-  # The field to apply the placement strategy against. For the spread placement
-  # strategy, valid values are instanceId (or host, which has the same effect),
-  # or any platform or custom attribute that is applied to a container instance,
-  # such as attribute:ecs.availability-zone. For the binpack placement strategy,
-  # valid values are cpu and memory. For the random placement strategy, this
-  # field is not used.
-  placement_strategy_field = "cpu"
-
-  # The strategy to use when placing ECS tasks on EC2 instances. Can be binpack
-  # (default), random, or spread.
-  placement_strategy_type = "binpack"
 
   # Whether tags should be propogated to the tasks from the service or from the
   # task definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to
@@ -615,7 +610,7 @@ module "ecs_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-service?ref=v0.104.19"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-service?ref=v0.105.0"
 }
 
 inputs = {
@@ -966,6 +961,13 @@ inputs = {
   # awsvpc, you must configure var.network_configuration.
   network_mode = "bridge"
 
+  # Service level strategy rules that are taken into consideration during task
+  # placement. List from top to bottom in order of precedence. Updates to this
+  # configuration will take effect next task deployment unless
+  # force_new_deployment is enabled. The maximum number of
+  # ordered_placement_strategy blocks is 5.
+  ordered_placement_strategy = [{"field":"cpu","type":"binpack"}]
+
   # The DNS name that was assigned by AWS to the load balancer upon creation
   original_lb_dns_name = null
 
@@ -976,18 +978,6 @@ inputs = {
   # The type of constraint to apply for container instance placement. The only
   # valid values at this time are memberOf and distinctInstance.
   placement_constraint_type = "memberOf"
-
-  # The field to apply the placement strategy against. For the spread placement
-  # strategy, valid values are instanceId (or host, which has the same effect),
-  # or any platform or custom attribute that is applied to a container instance,
-  # such as attribute:ecs.availability-zone. For the binpack placement strategy,
-  # valid values are cpu and memory. For the random placement strategy, this
-  # field is not used.
-  placement_strategy_field = "cpu"
-
-  # The strategy to use when placing ECS tasks on EC2 instances. Can be binpack
-  # (default), random, or spread.
-  placement_strategy_type = "binpack"
 
   # Whether tags should be propogated to the tasks from the service or from the
   # task definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to
@@ -2307,6 +2297,36 @@ The Docker networking mode to use for the containers in the task. The valid valu
 <HclListItemDefaultValue defaultValue="&quot;bridge&quot;"/>
 </HclListItem>
 
+<HclListItem name="ordered_placement_strategy" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+Service level strategy rules that are taken into consideration during task placement. List from top to bottom in order of precedence. Updates to this configuration will take effect next task deployment unless force_new_deployment is enabled. The maximum number of ordered_placement_strategy blocks is 5.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    type  = string
+    field = string
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+[
+  {
+    field = "cpu",
+    type = "binpack"
+  }
+]
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
 <HclListItem name="original_lb_dns_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2332,24 +2352,6 @@ The type of constraint to apply for container instance placement. The only valid
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;memberOf&quot;"/>
-</HclListItem>
-
-<HclListItem name="placement_strategy_field" requirement="optional" type="string">
-<HclListItemDescription>
-
-The field to apply the placement strategy against. For the spread placement strategy, valid values are instanceId (or host, which has the same effect), or any platform or custom attribute that is applied to a container instance, such as attribute:ecs.availability-zone. For the binpack placement strategy, valid values are cpu and memory. For the random placement strategy, this field is not used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;cpu&quot;"/>
-</HclListItem>
-
-<HclListItem name="placement_strategy_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-The strategy to use when placing ECS tasks on EC2 instances. Can be binpack (default), random, or spread.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;binpack&quot;"/>
 </HclListItem>
 
 <HclListItem name="propagate_tags" requirement="optional" type="string">
@@ -2897,11 +2899,11 @@ The names of the ECS service's load balancer's target groups
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.19/modules/services/ecs-service/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.19/modules/services/ecs-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.19/modules/services/ecs-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.0/modules/services/ecs-service/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.0/modules/services/ecs-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.0/modules/services/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a789500ad86b3754fe24dde2c7fc6dfc"
+  "hash": "70abd0805672fe96e3efa08adb3863d9"
 }
 ##DOCS-SOURCER-END -->
