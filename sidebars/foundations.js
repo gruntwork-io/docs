@@ -37,6 +37,7 @@ const sidebar = [
         collapsed: false,
         items: [
           "foundations/terraform/index",
+          "foundations/terraform/folder_structure",
           {
             label: "Module Defaults",
             type: "category",
