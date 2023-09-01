@@ -35,15 +35,37 @@ const sidebar = [
         label: "Terraform Foundations",
         type: "category",
         collapsed: false,
-        items: ["foundations/terraform/index"],
+        items: [
+          "foundations/terraform/index",
+          {
+            label: "Module Defaults",
+            type: "category",
+            collapsible: true,
+            items: [
+              {
+                label: "What are Module Defaults?",
+                type: "doc",
+                id: "foundations/terraform/module_defaults/index",
+              },
+              {
+                label: "Defining Module Defaults",
+                type: "doc",
+                id: "foundations/terraform/module_defaults/defining",
+              },
+              {
+                label: "Using Module Defaults",
+                type: "doc",
+                id: "foundations/terraform/module_defaults/usage",
+              },
+            ],
+          },
+        ],
       },
       {
         label: "CI/CD Foundations",
         type: "category",
         collapsed: false,
-        items: [
-          "foundations/ci-cd/index",
-        ],
+        items: ["foundations/ci-cd/index"],
       },
       {
         label: "Maintenance Foundations",
