@@ -69,4 +69,6 @@ For more details and the other options, see [Keep your Terragrunt Architecture D
 
 ### Module defaults
 
-TODO: Update this page with link to new "module_defaults" docs once that branch is merged.
+Now that you have your accounts, environments, resources, and state figured out, you may be wondering how you can increase code re-use across your `live` repository.
+
+Gruntwork recommends using the `module defaults` pattern to keep your Terragrunt architecture DRY. Refer to the [`module defaults`](./module_defaults/index.md) docs to learn more.
