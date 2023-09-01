@@ -4,7 +4,7 @@ A frequent question we get from customers is how to structure their Terragrunt c
 
 ## Separating modules from live infrastructure
 
-We recommend separating the _implementation_ of your Terraform modules and the _usage_ of modules into separate repos. The primary reason is so you can version your modules and run different versions of those modules in different environments: e.g., you might run `v1.0.0` of your eks module in `prod` while testing out `v2.0.0` of the eks module in `stage`. This means your Terraform code will be spread out across (at least) two repositories:
+We recommend separating the _implementation_ of your Terraform modules and the _usage_ of modules into separate repos. The primary reason is so you can version your modules and run different versions of those modules in different environments: e.g., you might run `v1.0.0` of your EKS module in `prod` while testing out `v2.0.0` of the EKS module in `stage`. This means your Terraform code will be spread out across (at least) two repositories:
 
 - `modules`: This repo defines reusable modules. Think of each module as a “blueprint” that defines a specific part of your infrastructure.
 - `live`: This repo defines the live infrastructure you’re running in each environment (stage, prod, mgmt, etc.). Think of this as the “houses” you built from the “blueprints” in the modules repo.
@@ -15,7 +15,10 @@ In the next section, we'll focus on how to organize your `live` infrastructure r
 
 To meet the goal of organizing code to optimize for comprehension, scale, and development speed. Gruntwork has developed an approach that structures code that organizes Terragrunt modules by account, region, environment, and category.
 
+### Suggested folder hierarchy
+
 Below is an example folder structure:
+
 ```
 account
  └ _global
@@ -26,7 +29,7 @@ account
           └ resource
 ```
 
-A full example of this structure can be seen in our (example infrastructure-live repo)[https://github.com/gruntwork-io/terragrunt-infrastructure-live-example].
+A full example of this structure can be seen in our [example `infrastructure-live` repo](https://github.com/gruntwork-io/terragrunt-infrastructure-live-example).
 
 Next, we'll walk through each level of the folder structure and how it is used.
 
@@ -56,9 +59,9 @@ For example, you might have one module that handles all your networking; another
 
 ### State management
 
-Grunt work recommends storing state _per resource_. As an example, if you had an account named `dev` in region `us-east-1`, with the environment `dev`, and a Terragrunt module defined in the category `networking` and resource `vpc` (for a full path of `dev/us-east-1/networking/vpc/terragrunt.hcl`), your remote state would be configured for `dev/us-east-1/networking/vpc/terraform.tfstate`.
+Gruntwork recommends storing state _per resource_. As an example, if you had an account named `dev` in region `us-east-1`, with the environment `dev`, and a Terragrunt module defined in the category `networking` and resource `vpc` (for a full path of `dev/us-east-1/dev/networking/vpc/terragrunt.hcl`), your remote state would be configured for `dev/us-east-1/dev/networking/vpc/terraform.tfstate`.
 
-Please see the Terragrunt documentation on (keeping your remote state configuration dry)[https://terragrunt.gruntwork.io/docs/features/keep-your-remote-state-configuration-dry/] for more information.
+Please see the Terragrunt documentation on [keeping your remote state configuration dry](https://terragrunt.gruntwork.io/docs/features/keep-your-remote-state-configuration-dry/) for more information.
 
 ### Global variables
 
@@ -66,22 +69,19 @@ Typically, you have a hierarchy of variables: some that are truly global across 
 
 There are multiple ways to handle this, depending on the use case, but the most common pattern is:
 
-1. See [here](https://github.com/gruntwork-io/terragrunt-infrastructure-live-example#how-is-the-code-in-this-repo-organized) for how to lay out your folder structure in infra-live to capture this hierarchy.
-1. Put reusable variables at the right "level" within that hierarchy in a .hcl file: e.g., account.hcl, region.hcl, networking.hcl, etc.
-1. Use [`read_terragrunt_config`](https://github.com/orgs/gruntwork-io/discussions/765#:~:text=read_terragrunt_config) and [`find_in_parent_folders`](https://terragrunt.gruntwork.io/docs/reference/built-in-functions/#find_in_parent_folders) to automatically load the data from the file 1.from the appropriate place in the hierarchy.
+1. Put reusable variables at the right "level" within [your hierarchy](#suggested-folder-hierarchy) in an `.hcl` file: e.g., `account.hcl`, `region.hcl`, `networking.hcl`, etc.
+1. Use [`read_terragrunt_config`](https://terragrunt.gruntwork.io/docs/reference/built-in-functions/#read_terragrunt_config) and [`find_in_parent_folders`](https://terragrunt.gruntwork.io/docs/reference/built-in-functions/#find_in_parent_folders) to automatically load the data from the file from the appropriate place in the hierarchy.
 
-For more details and the other options, see [Keep your Terragrunt Architecture DRY](https://github.com/orgs/gruntwork-io/discussions/765#:~:text=Keep%20your%20Terragrunt%20Architecture%20DRY).
+For more details and the other options, see [Keep your Terragrunt Architecture DRY](https://terragrunt.gruntwork.io/docs/features/keep-your-terragrunt-architecture-dry/).
 
 ### Module defaults
 
-Now that you have your accounts, environments, resources, and state figured out, you may be wondering how you can increase code re-use across your `live` repository.
-
-Gruntwork recommends using the `module defaults` pattern to keep your Terragrunt architecture DRY. Refer to the [`module defaults`](./module_defaults/index.md) docs to learn more.
+Now that you have your accounts, environments, categories, resources, and state figured out, you may be wondering how you can increase code re-use across your `live` repository. Gruntwork recommends using the ["module defaults"](<(./module_defaults/index.md)>) pattern to keep your Terragrunt architecture DRY.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "805b0fc2abcd5dda62175696ba452b1b"
+  "hash": "97d6ec6b2f9cde37baebda97b69cd4ae"
 }
 ##DOCS-SOURCER-END -->
