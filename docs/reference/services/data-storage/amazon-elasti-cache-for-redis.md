@@ -172,11 +172,6 @@ module "redis" {
   # alphanumeric characters or symbols (excluding @, <double-quotes>, and /)
   auth_token = null
 
-  # Specifies the number of shards and replicas per shard in the cluster. The
-  # list should contain a single map with keys 'num_node_groups' and
-  # 'replicas_per_node_group' set to desired integer values.
-  cluster_mode = []
-
   # Whether to enable encryption at rest.
   enable_at_rest_encryption = true
 
@@ -193,6 +188,11 @@ module "redis" {
   # (24H Clock UTC). The minimum maintenance window is a 60 minute period.
   maintenance_window = "sat:07:00-sat:08:00"
 
+  # Number of node groups (shards) for this Redis replication group. Changing
+  # this number will trigger a resizing operation before other settings
+  # modifications.
+  num_node_groups = null
+
   # Name of the parameter group to associate with this cache cluster. This can
   # be used to configure custom settings for the cluster.
   parameter_group_name = null
@@ -203,6 +203,11 @@ module "redis" {
 
   # Version number of redis to use (e.g. 5.0.6).
   redis_version = "5.0.6"
+
+  #  Number of replica nodes in each node group. Changing this number will
+  # trigger a resizing operation before other settings modifications. Valid
+  # values are 0 to 5.
+  replicas_per_node_group = null
 
   # The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon
   # S3. You can use this parameter to restore from an externally created
@@ -328,11 +333,6 @@ inputs = {
   # alphanumeric characters or symbols (excluding @, <double-quotes>, and /)
   auth_token = null
 
-  # Specifies the number of shards and replicas per shard in the cluster. The
-  # list should contain a single map with keys 'num_node_groups' and
-  # 'replicas_per_node_group' set to desired integer values.
-  cluster_mode = []
-
   # Whether to enable encryption at rest.
   enable_at_rest_encryption = true
 
@@ -349,6 +349,11 @@ inputs = {
   # (24H Clock UTC). The minimum maintenance window is a 60 minute period.
   maintenance_window = "sat:07:00-sat:08:00"
 
+  # Number of node groups (shards) for this Redis replication group. Changing
+  # this number will trigger a resizing operation before other settings
+  # modifications.
+  num_node_groups = null
+
   # Name of the parameter group to associate with this cache cluster. This can
   # be used to configure custom settings for the cluster.
   parameter_group_name = null
@@ -359,6 +364,11 @@ inputs = {
 
   # Version number of redis to use (e.g. 5.0.6).
   redis_version = "5.0.6"
+
+  #  Number of replica nodes in each node group. Changing this number will
+  # trigger a resizing operation before other settings modifications. Valid
+  # values are 0 to 5.
+  replicas_per_node_group = null
 
   # The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon
   # S3. You can use this parameter to restore from an externally created
@@ -539,25 +549,6 @@ The password used to access a password protected server. Can be specified only i
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cluster_mode" requirement="optional" type="list(object(…))">
-<HclListItemDescription>
-
-Specifies the number of shards and replicas per shard in the cluster. The list should contain a single map with keys 'num_node_groups' and 'replicas_per_node_group' set to desired integer values.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(object({
-    num_node_groups         = number
-    replicas_per_node_group = number
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
 <HclListItem name="enable_at_rest_encryption" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -594,6 +585,15 @@ Specifies the weekly time range for when maintenance on the cache cluster is per
 <HclListItemDefaultValue defaultValue="&quot;sat:07:00-sat:08:00&quot;"/>
 </HclListItem>
 
+<HclListItem name="num_node_groups" requirement="optional" type="number">
+<HclListItemDescription>
+
+Number of node groups (shards) for this Redis replication group. Changing this number will trigger a resizing operation before other settings modifications.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="parameter_group_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -619,6 +619,15 @@ Version number of redis to use (e.g. 5.0.6).
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;5.0.6&quot;"/>
+</HclListItem>
+
+<HclListItem name="replicas_per_node_group" requirement="optional" type="number">
+<HclListItemDescription>
+
+ Number of replica nodes in each node group. Changing this number will trigger a resizing operation before other settings modifications. Valid values are 0 to 5.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="snapshot_arn" requirement="optional" type="string">
@@ -746,6 +755,6 @@ Security Group ID used for redis cluster.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.19/modules/data-stores/redis/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b3d358bde8625b7a123ccce2eaadfab0"
+  "hash": "e99608f82ac3689f12d3b968e927b08b"
 }
 ##DOCS-SOURCER-END -->

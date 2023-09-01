@@ -453,6 +453,13 @@ module "ecs_service" {
   # awsvpc, you must configure var.network_configuration.
   network_mode = "bridge"
 
+  # Service level strategy rules that are taken into consideration during task
+  # placement. List from top to bottom in order of precedence. Updates to this
+  # configuration will take effect next task deployment unless
+  # force_new_deployment is enabled. The maximum number of
+  # ordered_placement_strategy blocks is 5.
+  ordered_placement_strategy = [{"field":"cpu","type":"binpack"}]
+
   # The DNS name that was assigned by AWS to the load balancer upon creation
   original_lb_dns_name = null
 
@@ -463,18 +470,6 @@ module "ecs_service" {
   # The type of constraint to apply for container instance placement. The only
   # valid values at this time are memberOf and distinctInstance.
   placement_constraint_type = "memberOf"
-
-  # The field to apply the placement strategy against. For the spread placement
-  # strategy, valid values are instanceId (or host, which has the same effect),
-  # or any platform or custom attribute that is applied to a container instance,
-  # such as attribute:ecs.availability-zone. For the binpack placement strategy,
-  # valid values are cpu and memory. For the random placement strategy, this
-  # field is not used.
-  placement_strategy_field = "cpu"
-
-  # The strategy to use when placing ECS tasks on EC2 instances. Can be binpack
-  # (default), random, or spread.
-  placement_strategy_type = "binpack"
 
   # Whether tags should be propogated to the tasks from the service or from the
   # task definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to
@@ -966,6 +961,13 @@ inputs = {
   # awsvpc, you must configure var.network_configuration.
   network_mode = "bridge"
 
+  # Service level strategy rules that are taken into consideration during task
+  # placement. List from top to bottom in order of precedence. Updates to this
+  # configuration will take effect next task deployment unless
+  # force_new_deployment is enabled. The maximum number of
+  # ordered_placement_strategy blocks is 5.
+  ordered_placement_strategy = [{"field":"cpu","type":"binpack"}]
+
   # The DNS name that was assigned by AWS to the load balancer upon creation
   original_lb_dns_name = null
 
@@ -976,18 +978,6 @@ inputs = {
   # The type of constraint to apply for container instance placement. The only
   # valid values at this time are memberOf and distinctInstance.
   placement_constraint_type = "memberOf"
-
-  # The field to apply the placement strategy against. For the spread placement
-  # strategy, valid values are instanceId (or host, which has the same effect),
-  # or any platform or custom attribute that is applied to a container instance,
-  # such as attribute:ecs.availability-zone. For the binpack placement strategy,
-  # valid values are cpu and memory. For the random placement strategy, this
-  # field is not used.
-  placement_strategy_field = "cpu"
-
-  # The strategy to use when placing ECS tasks on EC2 instances. Can be binpack
-  # (default), random, or spread.
-  placement_strategy_type = "binpack"
 
   # Whether tags should be propogated to the tasks from the service or from the
   # task definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to
@@ -2307,6 +2297,36 @@ The Docker networking mode to use for the containers in the task. The valid valu
 <HclListItemDefaultValue defaultValue="&quot;bridge&quot;"/>
 </HclListItem>
 
+<HclListItem name="ordered_placement_strategy" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+Service level strategy rules that are taken into consideration during task placement. List from top to bottom in order of precedence. Updates to this configuration will take effect next task deployment unless force_new_deployment is enabled. The maximum number of ordered_placement_strategy blocks is 5.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    type  = string
+    field = string
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+[
+  {
+    field = "cpu",
+    type = "binpack"
+  }
+]
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
 <HclListItem name="original_lb_dns_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2332,24 +2352,6 @@ The type of constraint to apply for container instance placement. The only valid
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;memberOf&quot;"/>
-</HclListItem>
-
-<HclListItem name="placement_strategy_field" requirement="optional" type="string">
-<HclListItemDescription>
-
-The field to apply the placement strategy against. For the spread placement strategy, valid values are instanceId (or host, which has the same effect), or any platform or custom attribute that is applied to a container instance, such as attribute:ecs.availability-zone. For the binpack placement strategy, valid values are cpu and memory. For the random placement strategy, this field is not used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;cpu&quot;"/>
-</HclListItem>
-
-<HclListItem name="placement_strategy_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-The strategy to use when placing ECS tasks on EC2 instances. Can be binpack (default), random, or spread.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;binpack&quot;"/>
 </HclListItem>
 
 <HclListItem name="propagate_tags" requirement="optional" type="string">
@@ -2902,6 +2904,6 @@ The names of the ECS service's load balancer's target groups
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.19/modules/services/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a789500ad86b3754fe24dde2c7fc6dfc"
+  "hash": "0810d37e5ffad283140b24f982281b78"
 }
 ##DOCS-SOURCER-END -->

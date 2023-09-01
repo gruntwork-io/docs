@@ -169,13 +169,15 @@ module "alb" {
   # the tag name and the value is the tag value.
   custom_tags = {}
 
+  # Define the default action if a request to the load balancer does not match
+  # any of your listener rules. Currently only 'fixed-response' and 'redirect'
+  # are supported.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener#default_action
+  default_action = {"fixed-response":{"content_type":"text/plain","message_body":null,"status_code":404}}
+
   # If a request to the load balancer does not match any of your listener rules,
   # the default action will return a fixed response with this body.
   default_action_body = null
-
-  # If a request to the load balancer does not match any of your listener rules,
-  # the default action will return a fixed response with this content type.
-  default_action_content_type = "text/plain"
 
   # If a request to the load balancer does not match any of your listener rules,
   # the default action will return a fixed response with this status code.
@@ -358,13 +360,15 @@ inputs = {
   # the tag name and the value is the tag value.
   custom_tags = {}
 
+  # Define the default action if a request to the load balancer does not match
+  # any of your listener rules. Currently only 'fixed-response' and 'redirect'
+  # are supported.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener#default_action
+  default_action = {"fixed-response":{"content_type":"text/plain","message_body":null,"status_code":404}}
+
   # If a request to the load balancer does not match any of your listener rules,
   # the default action will return a fixed response with this body.
   default_action_body = null
-
-  # If a request to the load balancer does not match any of your listener rules,
-  # the default action will return a fixed response with this content type.
-  default_action_content_type = "text/plain"
 
   # If a request to the load balancer does not match any of your listener rules,
   # the default action will return a fixed response with this status code.
@@ -631,6 +635,34 @@ A map of custom tags to apply to the ALB and its Security Group. The key is the 
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="default_action" requirement="optional" type="map(any)">
+<HclListItemDescription>
+
+Define the default action if a request to the load balancer does not match any of your listener rules. Currently only 'fixed-response' and 'redirect' are supported. https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener#default_action
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  fixed-response = {
+    content_type = "text/plain",
+    message_body = null,
+    status_code = 404
+  }
+}
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
 <HclListItem name="default_action_body" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -638,15 +670,6 @@ If a request to the load balancer does not match any of your listener rules, the
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="default_action_content_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-If a request to the load balancer does not match any of your listener rules, the default action will return a fixed response with this content type.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;text/plain&quot;"/>
 </HclListItem>
 
 <HclListItem name="default_action_status_code" requirement="optional" type="number">
@@ -923,6 +946,6 @@ The AWS-managed DNS name assigned to the ALB.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.19/modules/networking/alb/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "34e0fc7b8184b48d76f8481c326e7e34"
+  "hash": "b1a9f473baa847fb4f3d7b5ea37e273a"
 }
 ##DOCS-SOURCER-END -->

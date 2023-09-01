@@ -341,7 +341,7 @@ module "aurora" {
 
   # The instance type to use for the db (e.g. db.r3.large). Only used when
   # var.engine_mode is set to provisioned.
-  instance_type = "db.t3.small"
+  instance_type = "db.t3.medium"
 
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used
   # if var.storage_encrypted is true. If you leave this null, the default RDS
@@ -764,7 +764,7 @@ inputs = {
 
   # The instance type to use for the db (e.g. db.r3.large). Only used when
   # var.engine_mode is set to provisioned.
-  instance_type = "db.t3.small"
+  instance_type = "db.t3.medium"
 
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used
   # if var.storage_encrypted is true. If you leave this null, the default RDS
@@ -1745,7 +1745,7 @@ The number of DB instances, including the primary, to run in the RDS cluster. On
 The instance type to use for the db (e.g. db.r3.large). Only used when <a href="#engine_mode"><code>engine_mode</code></a> is set to provisioned.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;db.t3.small&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;db.t3.medium&quot;"/>
 <HclGeneralListItem title="More Details">
 <details>
 
@@ -2252,6 +2252,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.19/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "7411f9fe0b86d1ed7c819fec754cf6c6"
+  "hash": "83284146e5ed6340286b03e421d0b46f"
 }
 ##DOCS-SOURCER-END -->
