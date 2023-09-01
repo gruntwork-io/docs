@@ -16,6 +16,7 @@ import CardGroup from "/src/components/CardGroup"
 
 <CardGroup cols={1} gap="1rem" stacked equalHeightRows={false} commonCardProps={{padding: "1.25rem"}}>
 
+<Card title="Update to 2023-08" href="/guides/stay-up-to-date/releases/2023-08" />
 <Card title="Update to 2023-07" href="/guides/stay-up-to-date/releases/2023-07" />
 <Card title="Update to 2023-06" href="/guides/stay-up-to-date/releases/2023-06" />
 <Card title="Update to 2023-05" href="/guides/stay-up-to-date/releases/2023-05" />
@@ -30,7 +31,6 @@ import CardGroup from "/src/components/CardGroup"
 <Card title="Update to 2022-08" href="/guides/stay-up-to-date/releases/2022-08" />
 <Card title="Update to 2022-07" href="/guides/stay-up-to-date/releases/2022-07" />
 <Card title="Update to 2022-06" href="/guides/stay-up-to-date/releases/2022-06" />
-<Card title="Update to 2022-05" href="/guides/stay-up-to-date/releases/2022-05" />
 <Card title="See older releases" href="/guides/stay-up-to-date/releases" />
 
 </CardGroup>
@@ -114,6 +114,6 @@ href="/guides/stay-up-to-date/cis/cis-1.5.0"
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "5ddcbf90d0d5307816a440169426835e"
+  "hash": "90c73847e44fd587e7acabbdefd30488"
 }
 ##DOCS-SOURCER-END -->
