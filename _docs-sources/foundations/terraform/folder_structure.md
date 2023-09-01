@@ -13,7 +13,7 @@ In the next section, we'll focus on how to organize your `live` infrastructure r
 
 ## Live infrastructure repository
 
-To meet the goal of organizing code to optimize for comprehension, scale, and development speed. Gruntwork has developed an approach that structures code that organizes Terragrunt modules by account, region, and environment.
+To meet the goal of organizing code to optimize for comprehension, scale, and development speed. Gruntwork has developed an approach that structures code that organizes Terragrunt modules by account, region, environment, and category.
 
 Below is an example folder structure:
 ```
@@ -22,7 +22,8 @@ account
  └ region
     └ _global
     └ environment
-       └ resource
+       └ category
+          └ resource
 ```
 
 A full example of this structure can be seen in our (example infrastructure-live repo)[https://github.com/gruntwork-io/terragrunt-infrastructure-live-example].
@@ -41,9 +42,13 @@ Within each account, there will be one or more AWS regions, such as `us-east-1`,
 
 Within each region, there will be one or more "environments", such as `qa`, `stage`, etc. Typically, an environment will correspond to a single AWS Virtual Private Cloud (VPC), which isolates that environment from everything else in that AWS account. There may also be a `_global` folder that defines resources that are available across all the environments in this AWS region, such as Route 53 A records, SNS topics, and ECR repos.
 
+### Categories
+
+Within each Environment, you deploy all the resources for that environment, such as EKS clusters and Aurora databases, using Terraform modules. Groups or similar modules inside an environment are further organized by the overarching category they relate to, such as networking (VPCs) and services (EKS workers).
+
 ### Resources
 
-Within each environment, you deploy all the resources for that environment, such as EC2 Instances, Auto Scaling Groups, ECS Clusters, Databases, Load Balancers, and so on. Care should be taken to ensure these modules are "right sized" to optimize for ease of understanding, security, and risk (e.g., smaller modules have lower blast radius).
+Within each environment, you deploy all the resources for that environment, such as EC2 Instances, Auto Scaling Groups, ECS Clusters, Databases, Load Balancers, and so on. These are represented as a directory and a `terragrunt.hcl` file. For example `vpc/terragrunt.hcl`. Care should be taken to ensure these modules are "right sized" to optimize for ease of understanding, security, and risk (e.g., smaller modules have lower blast radius).
 
 When working to "right size" a module, consider that [large modules are considered harmful](https://blog.gruntwork.io/5-lessons-learned-from-writing-over-300-000-lines-of-infrastructure-code-36ba7fadeac1#302b), but that you also don't want a single module to deploy a single resource, do to the number of applies it would require to provision an entire environment. You need to find a good balance, grouping things that are typically deployed together, have similar deployment cadences, have similar risk/security profiles, have common team ownership, etc.
 
@@ -51,7 +56,7 @@ For example, you might have one module that handles all your networking; another
 
 ### State management
 
-Grunt work recommends storing state _per resource_. As an example, if you had an account named `dev` in region `us-east-1`, with the environment `dev`, and a Terragrunt module defined in `networking/vpc/terragrunt.hcl` (full path `dev/us-east-1/networking/vpc/terragrunt.hcl`), your remote state would be configured for `dev/us-east-1/networking/vpc/terraform.tfstate`.
+Grunt work recommends storing state _per resource_. As an example, if you had an account named `dev` in region `us-east-1`, with the environment `dev`, and a Terragrunt module defined in the category `networking` and resource `vpc` (for a full path of `dev/us-east-1/networking/vpc/terragrunt.hcl`), your remote state would be configured for `dev/us-east-1/networking/vpc/terraform.tfstate`.
 
 Please see the Terragrunt documentation on (keeping your remote state configuration dry)[https://terragrunt.gruntwork.io/docs/features/keep-your-remote-state-configuration-dry/] for more information.
 
