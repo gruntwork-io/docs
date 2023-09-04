@@ -325,18 +325,31 @@ Any types represent complex values of variable type. For details, please consult
                                   `application/javascript` and `application/json`.
   
    OPTIONAL (defaults to value of corresponding module input):
-   - priority          number       : A value between 1 and 50000. Leaving it unset will automatically set the rule with
-                                      the next available priority after currently existing highest rule. This value
-                                      must be unique for each listener.
-   - listener_ports    list(string) : A list of ports to use to lookup the LB listener from var.default_listener_arns.
-                                      Conflicts with listener_arns attribute. Defaults to var.default_listener_ports
-                                      if omitted.
-   - listener_arns     list(string) : A list of listener ARNs to use for applying the rule. Conflicts with
-                                      listener_ports attribute.
-   - message_body      string       : The message body.
-   - status_code       string       : The HTTP response code. Valid values are `2XX`, `4XX`, or `5XX`.
-   - authenticate_oidc map(object)  : OIDC authentication configuration. Only applies, if not null.
+   - priority             number       : A value between 1 and 50000. Leaving it unset will automatically set the rule with
+                                          the next available priority after currently existing highest rule. This value
+                                          must be unique for each listener.
+   - listener_ports       list(string) : A list of ports to use to lookup the LB listener from var.default_listener_arns.
+                                          Conflicts with listener_arns attribute. Defaults to var.default_listener_ports
+                                          if omitted.
+   - listener_arns        list(string) : A list of listener ARNs to use for applying the rule. Conflicts with
+                                          listener_ports attribute.
+   - message_body         string       : The message body.
   
+   - status_code          string       : The HTTP response code. Valid values are `2XX`, `4XX`, or `5XX`.
+  
+   - authenticate_oidc    map(object)  : OIDC authentication configuration. Only applies, if not null.
+  
+   - authenticate_cognito map(object)  : Cognito authentication configuration. Only applies, if not null.
+  
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
    Wildcard characters:
    * - matches 0 or more characters
    ? - matches exactly 1 character
@@ -381,6 +394,25 @@ Any types represent complex values of variable type. For details, please consult
    - scope                               string     : (Optional) The set of user claims to be requested from the IdP.
    - session_cookie_name                 string     : (Optional) The name of the cookie used to maintain session information.
    - session_timeout                     int        : (Optional) The maximum duration of the authentication session, in seconds.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+   Authenticate Cognito Blocks:
+   authenticate_cognito:
+   - user_pool_arn                       string      : (Required) The ARN of the Cognito user pool
+   - user_pool_client_id                 string      : (Required) The ID of the Cognito user pool client.
+   - user_pool_domain                    string      : (Required) The domain prefix or fully-qualified domain name of the Cognito user pool.
+   - authentication_request_extra_params map(string) : (Optional) The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
+   - on_unauthenticated_request          string      : (Optional) The behavior if the user is not authenticated. Valid values: deny, allow and authenticate
+   - scope                               string      : (Optional) The set of user claims to be requested from the IdP.
+   - session_cookie_name                 string      : (Optional) The name of the cookie used to maintain session information.
+   - session_timeout                     int         : (Optional) The maximum duration of the authentication session, in seconds.
 
 ```
 </details>
@@ -468,17 +500,19 @@ Any types represent complex values of variable type. For details, please consult
    Each entry in the map supports the following attributes:
   
    OPTIONAL (defaults to value of corresponding module input):
-   - priority          number                    : A value between 1 and 50000. Leaving it unset will automatically set
-                                                    the rule with the next available priority after currently existing highest
-                                                     rule. This value must be unique for each listener.
-   - listener_ports    list(string)              : A list of ports to use to lookup the LB listener from
-                                                   var.default_listener_arns. Conflicts with listener_arns attribute.
-                                                   Defaults to var.default_listener_ports if omitted.
-   - listener_arns     list(string)              : A list of listener ARNs to use for applying the rule. Conflicts with
-                                                   listener_ports attribute.
-   - stickiness        map(object[Stickiness)    : Target group stickiness for the rule. Only applies if more than one
+   - priority             number                    : A value between 1 and 50000. Leaving it unset will automatically set
+                                                       the rule with the next available priority after currently existing highest
+                                                        rule. This value must be unique for each listener.
+   - listener_ports       list(string)              : A list of ports to use to lookup the LB listener from
+                                                      var.default_listener_arns. Conflicts with listener_arns attribute.
+                                                      Defaults to var.default_listener_ports if omitted.
+   - listener_arns        list(string)              : A list of listener ARNs to use for applying the rule. Conflicts with
+                                                      listener_ports attribute.
+   - stickiness           map(object[Stickiness)    : Target group stickiness for the rule. Only applies if more than one
                                                     target_group_arn is defined.
-   - authenticate_oidc map(object)               : OIDC authentication configuration. Only applies, if not null.
+   - authenticate_oidc    map(object)               : OIDC authentication configuration. Only applies, if not null.
+  
+   - authenticate_cognito map(object)               : Cognito authentication configuration. Only applies, if not null.
   
 
 ```
@@ -541,6 +575,25 @@ Any types represent complex values of variable type. For details, please consult
    - scope                               string     : (Optional) The set of user claims to be requested from the IdP.
    - session_cookie_name                 string     : (Optional) The name of the cookie used to maintain session information.
    - session_timeout                     int        : (Optional) The maximum duration of the authentication session, in seconds.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+   Authenticate Cognito Blocks:
+   authenticate_cognito:
+   - user_pool_arn                       string      : (Required) The ARN of the Cognito user pool
+   - user_pool_client_id                 string      : (Required) The ID of the Cognito user pool client.
+   - user_pool_domain                    string      : (Required) The domain prefix or fully-qualified domain name of the Cognito user pool.
+   - authentication_request_extra_params map(string) : (Optional) The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
+   - on_unauthenticated_request          string      : (Optional) The behavior if the user is not authenticated. Valid values: deny, allow and authenticate
+   - scope                               string      : (Optional) The set of user claims to be requested from the IdP.
+   - session_cookie_name                 string      : (Optional) The name of the cookie used to maintain session information.
+   - session_timeout                     int         : (Optional) The maximum duration of the authentication session, in seconds.
 
 ```
 </details>
@@ -618,18 +671,29 @@ Any types represent complex values of variable type. For details, please consult
    Each entry in the map supports the following attributes:
   
    OPTIONAL (defaults to value of corresponding module input):
-   - priority         number         : A value between 1 and 50000. Leaving it unset will automatically set the rule
-                                       with the next available priority after currently existing highest rule. This
-                                       value must be unique for each listener.
-   - listener_ports   list(string)   : A list of ports to use to lookup the LB listener from var.default_listener_arns.
-                                       Conflicts with listener_arns attribute. Defaults to var.default_listener_ports
-                                       if omitted.
-   - listener_arns    list(string)   : A list of listener ARNs to use for applying the rule. Conflicts with
-                                       listener_ports attribute.
-   - status_code      string         : The HTTP redirect code. The redirect is either permanent `HTTP_301` or temporary `HTTP_302`.
-   - authenticate_oidc map(object)   : OIDC authentication configuration. Only applies, if not null.
+   - priority             number         : A value between 1 and 50000. Leaving it unset will automatically set the rule
+                                           with the next available priority after currently existing highest rule. This
+                                           value must be unique for each listener.
+   - listener_ports       list(string)   : A list of ports to use to lookup the LB listener from var.default_listener_arns.
+                                           Conflicts with listener_arns attribute. Defaults to var.default_listener_ports
+                                           if omitted.
+   - listener_arns        list(string)   : A list of listener ARNs to use for applying the rule. Conflicts with
+                                           listener_ports attribute.
+   - status_code          string         : The HTTP redirect code. The redirect is either permanent `HTTP_301` or temporary `HTTP_302`.
   
+   - authenticate_oidc    map(object)    : OIDC authentication configuration. Only applies, if not null.
   
+   - authenticate_cognito map(object)    : Cognito authentication configuration. Only applies, if not null.
+  
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
    The URI consists of the following components: `protocol://hostname:port/path?query`. You must modify at least one of
    the following components to avoid a redirect loop: protocol, hostname, port, or path. Any components that you do not
    modify retain their original values.
@@ -688,6 +752,25 @@ Any types represent complex values of variable type. For details, please consult
 ```
 </details>
 
+<details>
+
+
+```hcl
+
+   Authenticate Cognito Blocks:
+   authenticate_cognito:
+   - user_pool_arn                       string      : (Required) The ARN of the Cognito user pool
+   - user_pool_client_id                 string      : (Required) The ID of the Cognito user pool client.
+   - user_pool_domain                    string      : (Required) The domain prefix or fully-qualified domain name of the Cognito user pool.
+   - authentication_request_extra_params map(string) : (Optional) The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
+   - on_unauthenticated_request          string      : (Optional) The behavior if the user is not authenticated. Valid values: deny, allow and authenticate
+   - scope                               string      : (Optional) The set of user claims to be requested from the IdP.
+   - session_cookie_name                 string      : (Optional) The name of the cookie used to maintain session information.
+   - session_timeout                     int         : (Optional) The maximum duration of the authentication session, in seconds.
+
+```
+</details>
+
 </HclGeneralListItem>
 </HclListItem>
 
@@ -730,6 +813,6 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.11/modules/lb-listener-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e0a6ccbdca2c7f3b6ef824929fd45824"
+  "hash": "0e9b6030ccd4bc986d6f68e8e1003d22"
 }
 ##DOCS-SOURCER-END -->
