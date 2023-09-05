@@ -26,7 +26,8 @@ const sidebar = [
         type: "category",
         collapsed: false,
         items: [
-          "foundations/accounts/index",
+          "foundations/accounts/prerequisites",
+          "foundations/accounts/enable-control-tower",
           "foundations/accounts/add-account",
           "foundations/accounts/manage-accounts",
         ],
