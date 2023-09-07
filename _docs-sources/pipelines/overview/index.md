@@ -4,4 +4,4 @@
 The new Gruntwork Pipelines is currently available for GitHub Actions. If you already have an older version or need support for alternative CI systems, [click here](../../ecs-deploy-runner/overview/) to view docs for the previous version.
 :::
 
-<!-- Placeholder for future content for Pipelines v2 -->
+Gruntwork Pipelines is a framework for securely deploying infrastructure as code to your AWS environments. Gruntwork Pipelines runs as a binary and series of steps in your CI system, determining what _actions_ need to be taken, in which _environments_, based on the _infrastructure changes_ that occurred.
