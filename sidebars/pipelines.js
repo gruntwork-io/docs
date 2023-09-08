@@ -29,6 +29,11 @@ const sidebar = [
             type: "doc",
             id: "pipelines/how-it-works/index",
           },
+          {
+            label: "Supported CI systems",
+            type: "doc",
+            id: "pipelines/supported-ci-systems/index",
+          },
         ],
       },
       {
