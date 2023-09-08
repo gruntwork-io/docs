@@ -39,6 +39,11 @@ const sidebar = [
             type: "doc",
             id: "pipelines/supported-clouds/index",
           },
+          {
+            label: "Architecture",
+            type: "doc",
+            id: "pipelines/architecture/index",
+          },
         ],
       },
       {
