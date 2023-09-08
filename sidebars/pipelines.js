@@ -73,6 +73,11 @@ const sidebar = [
             type: "doc",
             id: "pipelines/access-control/index",
           },
+          {
+            label: "Pipelines Actions",
+            type: "doc",
+            id: "pipelines/pipelines-actions/index",
+          },
         ],
       },
       {
