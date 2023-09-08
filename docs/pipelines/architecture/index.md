@@ -29,38 +29,25 @@ You can see these components in action below:
 
 ## Separating execution from configuration
 
-Infrastructure pipelines typically require admin-level permissions to deploy virtually any infrastructure. This makes them attractive security targets. An attacker who gains access to the infrastructure pipeline woudl likely have the power to destroy the entire cloud architecture.
+Infrastructure pipelines typically require admin-level permissions to deploy virtually any infrastructure. This makes them high-risk security targets. An attacker who gains access to the infrastructure pipeline would likely have the power to destroy the entire cloud architecture.
 
-To mitigate this threat, a key design decision in Gruntwork Pipelines is to separate code that triggers _execution_ of Pipelines, from code that changes the _configuration_ of Pipelines.
+To mitigate this threat, a key design decision in Gruntwork Pipelines is to separate code that is _executed_ by Pipelines from code that changes the _configuration_ of Pipelines.
 
-The code that triggers execution of Pipelines is typically defined in a dedicated git repo (commonly named `infrastructure-live`) whose purpose is to describe all deployed infrastructure. By contrast, the code that _configures_ how deployments are done lives in a different git repo (commonly named `infrastructure-pipelines`).
+The code that is executed by Pipelines is typically defined in a dedicated git repo (commonly named `infrastructure-live`) whose purpose is to describe all deployed infrastructure. The code that configures how Pipelines deployments are done lives in a different git repo (commonly named `infrastructure-pipelines`).
 
-This allows your team to have many collaborators for your IaC in your `infrastructure-live` repository, while permitting a subset of administrators access to the workflows in `infrastructure-pipelines` that can access your AWS environments.
+GitHub events in the `infrastructure-live` repo trigger the executor to run as a GitHub Actions workflow in the `infrastructure-pipelines` repo. That workflows runs the relevant [pipeline action](../core-concepts/#pipelines-actions) such as the appropriate `terragrunt` commands on the changed code to perform changes to your infrastructure.
 
-Workflows running in the `infrastructure-live` repository trigger workflows to run in `infrastructure-pipelines`, which runs the appropriate terragrunt command on the changed code to perform changes to your infrastructure.
+
+This split into an `infrastructure-live` and `infrastructure-pipelines` repo allows your team to have many collaborators for your infrastructure-as-code (IaC) in your `infrastructure-live` repo, while permitting a limited set of administrator users to configure the workflows in `infrastructure-pipelines` that can access your AWS environments. As one example, only administrator users can add the ability to run a new [pipeline action](../core-concepts/#pipelines-actions). But once added, any users with access to your `infrastructure-live` repo can leverage that pipelines action.
+
+You can see the two-repo architecture visualized below, where a change made to the `infrastructure-live` repo triggers a GitHub Actions Workflow that triggers a second GitHub Actions Workflow in the `infrastructure-pipelines` repo, which has access to the privileged AWS access and the original `infrastrucutre-live` repo.
 
 ![Gruntwork Pipelines Architecture](/img/pipelines/how-it-works/pipelines_architecture.png)
-
-## Permissions
-
-Permissions are granted by three [GitHub Teams](https://docs.github.com/en/organizations/organizing-members-into-teams/about-teams) - `infrastructure-collaborators`, `infrastructure-administrators`, and `ci-code-read-only`.
-
-These teams should map to three personas in your organization. The `infrastructure-collaborators` team is for engineers who work on the IaC codebase daily but _do not_ have administrative permissions in AWS. Similarly, the `infrastructure-administrators` team is for engineers who likely work on the IaC codebase daily, but _do_ have administrative AWS permissions. Finally, the `ci-code-read-only` team is meant for a single machine user who can read your `infrastructure-live` and `infrastructure-modules` (a repository where you can define custom Terraform modules for your organization) repositories.
-
-![Gruntwork Pipelines Permissions](/img/pipelines/how-it-works/pipelines_security.png)
-
-Each team and their permissions are designed to grant the _least possible permissions_ to each individual (or machine user) in your organization for them to be able to perform changes to your infrastructure. Those in the `infrastructure-administrators` team will likely already have similar access granted to them though an AWS IAM role or IAM policy.
-
-
-
-## Usage Data
-
-Gruntwork Pipelines captures usage data to better understand how our customers use our products. This information includes the duration of pipelines runs, the number of jobs you run, customer name, and application errors that occur during execution. If you would like to disable telemetry, please set the environment variable `PIPELINES_TELEMETRY_OPT_OUT=1` in your CI job.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "9179663e194a0e0f707c99d8eeee9d8e"
+  "hash": "e3914a6a7fa54513c9d4479466de5117"
 }
 ##DOCS-SOURCER-END -->

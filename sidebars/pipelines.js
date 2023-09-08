@@ -64,10 +64,28 @@ const sidebar = [
         ],
       },
       {
-        label: "Maintain Pipelines",
+        label: "Configuring Pipelines",
         type: "category",
         collapsible: false,
-        items: ["pipelines/maintain/updating", "pipelines/maintain/extending"],
+        items: [
+          {
+            label: "Access Control",
+            type: "doc",
+            id: "pipelines/access-control/index",
+          },
+        ],
+      },
+      {
+        label: "Data & privacy",
+        type: "category",
+        collapsible: false,
+        items: [
+          {
+            label: "Usage Data",
+            type: "doc",
+            id: "pipelines/usage-data/index",
+          },
+        ],
       },
       {
         label: "Previous Versions",
