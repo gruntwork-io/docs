@@ -20,9 +20,19 @@ const sidebar = [
             id: "pipelines/overview/index",
           },
           {
-            label: "How it works",
+            label: "Architecture",
             type: "doc",
-            id: "pipelines/how-it-works/index",
+            id: "pipelines/architecture/index",
+          },
+          {
+            label: "Access Control",
+            type: "doc",
+            id: "pipelines/access-control/index",
+          },
+          {
+            label: "Usage Data",
+            type: "doc",
+            id: "pipelines/data-collection/index",
           },
         ],
       },
@@ -36,11 +46,6 @@ const sidebar = [
             type: "doc",
             id: "pipelines/tutorial/index",
           },
-          // {
-          //   label: "Deploying Multi-Account Pipelines",
-          //   type: "doc",
-          //   id: "pipelines/multi-account/index",
-          // },
         ],
       },
       {
