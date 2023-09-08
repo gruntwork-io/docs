@@ -20,6 +20,11 @@ const sidebar = [
             id: "pipelines/overview/index",
           },
           {
+            label: "Core concepts",
+            type: "doc",
+            id: "pipelines/core-concepts/index",
+          },
+          {
             label: "How it works",
             type: "doc",
             id: "pipelines/how-it-works/index",
