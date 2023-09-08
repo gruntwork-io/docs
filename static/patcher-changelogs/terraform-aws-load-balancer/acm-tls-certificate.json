@@ -1,6 +1,9 @@
 {
   "module": "acm-tls-certificate",
   "releases": {
+    "v0.29.11": {
+      "contains_changes": true
+    },
     "v0.29.10": {
       "contains_changes": true
     },

@@ -1,6 +1,12 @@
 {
   "module": "operating-system",
   "releases": {
+    "v0.9.4": {
+      "contains_changes": false
+    },
+    "v0.9.3": {
+      "contains_changes": false
+    },
     "v0.9.2": {
       "contains_changes": false
     },

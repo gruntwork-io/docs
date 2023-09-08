@@ -1,6 +1,9 @@
 {
   "module": "alarms/ecs-service-alarms",
   "releases": {
+    "v0.36.3": {
+      "contains_changes": true
+    },
     "v0.36.2": {
       "contains_changes": false
     },
