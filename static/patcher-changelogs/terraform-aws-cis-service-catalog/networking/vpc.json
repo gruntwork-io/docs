@@ -1,6 +1,12 @@
 {
   "module": "networking/vpc",
   "releases": {
+    "v0.48.0": {
+      "contains_changes": true
+    },
+    "v0.47.9": {
+      "contains_changes": true
+    },
     "v0.47.8": {
       "contains_changes": false
     },

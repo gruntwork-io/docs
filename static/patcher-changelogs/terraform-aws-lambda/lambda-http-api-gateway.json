@@ -1,6 +1,9 @@
 {
   "module": "lambda-http-api-gateway",
   "releases": {
+    "v0.21.13": {
+      "contains_changes": true
+    },
     "v0.21.12": {
       "contains_changes": false
     },
