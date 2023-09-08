@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.29.2" lastModifiedVersion="0.29.1"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.30.0" lastModifiedVersion="0.29.1"/>
 
 # Aurora Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.2/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.30.0/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.29.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -59,7 +59,7 @@ Cluster](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Managing.h
 ## How do you configure this module?
 
 This module allows you to configure a number of parameters, such as backup windows, maintenance window, port number,
-and encryption. For a list of all available variables and their descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.2/modules/aurora/variables.tf).
+and encryption. For a list of all available variables and their descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.30.0/modules/aurora/variables.tf).
 
 ## How do you create a cross-region read replica cluster?
 
@@ -77,7 +77,7 @@ module "replica" {
 }
 ```
 
-See the example [here](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.2/examples/aurora-with-cross-region-replica) for more details.
+See the example [here](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.30.0/examples/aurora-with-cross-region-replica) for more details.
 
 ## How do you destroy a cross-region read replica?
 
@@ -137,7 +137,7 @@ see [Limitations of Aurora Serverless](https://docs.aws.amazon.com/AmazonRDS/lat
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.29.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.30.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -483,7 +483,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.29.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.30.0"
 }
 
 inputs = {
@@ -1502,11 +1502,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.2/modules/aurora/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.2/modules/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.2/modules/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.30.0/modules/aurora/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.30.0/modules/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.30.0/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "96883b45e716ea41f7c9cd1b7c7236ef"
+  "hash": "3d540e62935c08ce82299ac759998b21"
 }
 ##DOCS-SOURCER-END -->
