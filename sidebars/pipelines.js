@@ -52,9 +52,9 @@ const sidebar = [
         collapsible: false,
         items: [
           {
-            label: "Single Account Tutorial",
+            label: "Initial setup",
             type: "doc",
-            id: "pipelines/tutorial/index",
+            id: "pipelines/initial-setup/index",
           },
           // {
           //   label: "Deploying Multi-Account Pipelines",
