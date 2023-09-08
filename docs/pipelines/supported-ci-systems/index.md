@@ -1,13 +1,13 @@
-# Supported clouds
+# Supported CI systems
 
-Today, Gruntwork Pipelines works exclusively with Amazon Web Services (AWS).
+Today, Gruntwork Pipelines works exclusively with [GitHub Actions](https://docs.github.com/en/actions).
 
-However, the [Gruntwork Pipelines architecture](../how-it-works) is designed to support any cloud, so we will add support for other CI systems in the future.
+However, the [Gruntwork Pipelines architecture](../how-it-works) is designed to be agnostic to the underlying CI system, so we will add support for other CI systems in the future.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "ceba7072ba4edadf3ab40e920388e69d"
+  "hash": "0d6e599dfa2ceb4bddcc39fc59eaba66"
 }
 ##DOCS-SOURCER-END -->
