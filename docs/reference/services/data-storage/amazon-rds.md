@@ -103,7 +103,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/rds?ref=v0.105.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.105.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
