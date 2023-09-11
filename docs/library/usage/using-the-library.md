@@ -218,7 +218,7 @@ Next, we’ll run a plan to see the resources that will be created, then an appl
 
 :::note
 
-For this guide, we'll run `terraform plan` and `terraform apply` locally. We recommend running `terraform plan` and `terraform apply` in your CI system in response to PR created, PR sync, and merge events when collaborating on infrastructure as code with a team or organization. We purpose built [Pipelines](../../pipelines/how-it-works/index.md) with this workflow in mind, refer to the Pipelines documentation to learn more.
+For this guide, we'll run `terraform plan` and `terraform apply` locally. We recommend running `terraform plan` and `terraform apply` in your CI system in response to PR created, PR sync, and merge events when collaborating on infrastructure as code with a team or organization. We purpose built [Pipelines](../../pipelines/overview/index.md) with this workflow in mind, refer to the Pipelines documentation to learn more.
 
 :::
 
@@ -423,6 +423,6 @@ Finally, consider how else you might test your module. Are there additional succ
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "a716579681d6f9b3880dc9df0e6e9e25"
+  "hash": "2df0ad435f8a127697fb0b313e2051ed"
 }
 ##DOCS-SOURCER-END -->

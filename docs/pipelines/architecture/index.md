@@ -8,7 +8,7 @@ The orchestrator identifies each infrastructure change in the Pull Request or gi
 
 ## Dispatcher
 
-The dispatcher takes an infrastructure change and a pipelines action and parameters as input. Then, it calls the executor to run the action on the infrastructure change. Once complete, the dispatcher creates a Pull Request comment (for PR workflows) or a GitHub issue (for pushes to main) with a link to the GitHub logs
+The dispatcher takes an infrastructure change, a pipelines action, and parameters as input. Then, it calls the executor to run the action on the infrastructure change. Once complete, the dispatcher creates a Pull Request comment (for PR workflows) or a GitHub issue (for pushes to main) with a link to the GitHub logs
 
 ## Executor
 
@@ -24,6 +24,6 @@ Pipelines starts with an event in GitHub - a Pull Request being created, synchro
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "453aa413c75988d79bbc59b57ada54ae"
+  "hash": "97373ff12588ec9018a63cb0e7e27a2a"
 }
 ##DOCS-SOURCER-END -->
