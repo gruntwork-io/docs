@@ -12,7 +12,7 @@ The dispatcher takes an infrastructure change, a pipelines action, and parameter
 
 ## Executor
 
-The executor takes a pipeline action and infra change as input then performs the action on the infra change. In some cases, like responding to AccountAdded events on merge, the executor will create a Pull Request in the infrastructure-live repository with additional IaC code to provision additional resources.
+The executor takes a pipeline action and infra change as input then performs the action on the infra change. In some cases, like responding to AccountAdded events on merge, the executor will create a pull request in the `infrastructure-live` repository with additional IaC code to provision additional resources.
 
 ## Execution Flow
 
