@@ -4,7 +4,7 @@ Gruntwork Pipelines grants permissions by defining three [GitHub Teams](https://
 
 ### GitHub Team: infrastructure-administrators
 
-The `infrastructure-administrators` team is for engineers who likely work on the IaC codebase daily, and  have administrative AWS permissions. These users will also have permission to both read and write Pipelines configuration files, and the GitHub Actions Workflow files that are used to trigger Pipelines.
+The `infrastructure-administrators` team is for engineers who likely work on the IaC codebase daily, and have administrative AWS permissions. These users will also have permission to both read and write Pipelines configuration files, and the GitHub Actions Workflow files that are used to trigger Pipelines.
 
 ### GitHub Team: infrastructure-collaborators
 
