@@ -2,9 +2,9 @@
 
 Gruntwork Pipelines is a framework for securely deploying infrastructure as code to your AWS environments. Gruntwork Pipelines runs as a binary and series of steps in your CI system, determining what _actions_ need to be taken, in which _environments_, based on the _infrastructure changes_ that occurred.
 
-## Execution vs configuration
+## Isolating IaC definitions and deployment
 
-Due to the necessity of having administrative permissions in your CI system to deploy infrastructure, Gruntwork Pipelines separates _where_ changes occur from _how_ those changes are deployed. Infrastructure is _defined_ in one GitHub repository (commonly named `infrastructure-live`) and the code that _deploys_ your infrastructure is stored in a different GitHub repository (commonly named `infrastructure-pipelines`).
+Due to the necessity of having administrative permissions in your CI system to deploy infrastructure, Gruntwork Pipelines separates _where_ changes occur from _how_ those changes are deployed. Infrastructure is _defined_ in one GitHub repository (commonly named `infrastructure-live`) and the code that _deploys_ your infrastructure is stored in a different GitHub repository (commonly named `infrastructure-pipelines`). This is done to allow you to use the principle of least privilege to each repository. For more information on pipelines' security model see [access control](../access-control/index.md).
 
 This allows your team to have many collaborators for your IaC in your `infrastructure-live` repository, while permitting a subset of administrators access to the workflows in `infrastructure-pipelines` that can access your AWS environments.
 
