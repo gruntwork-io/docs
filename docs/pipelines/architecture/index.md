@@ -4,7 +4,7 @@ There are three components in pipelines - the orchestrator, the dispatcher, and 
 
 ## Orchestrator
 
-The orchestrator identifies each infrastructure change in the Pull Request or git commit, classifies the type of infrastructure change it is (e.g. AccountAdded, ModuleChanged, EnvCommonChanged) and determines the right pipelines actions (e.g., terragrunt plan, apply, or destroy) to run based on that infrastructure change. For each infrastructure change, it calls the dispatcher.
+The orchestrator identifies each infrastructure change in the pull request or git commit, classifies the type of infrastructure change it is (e.g. AccountAdded, ModuleChanged, EnvCommonChanged), and determines the right pipelines actions (e.g., `terragrunt plan`, `apply`, or `destroy`) to run based on that infrastructure change. For each infrastructure change, it calls the dispatcher.
 
 ## Dispatcher
 
