@@ -8,7 +8,7 @@ Due to the necessity of having administrative permissions in your CI system to d
 
 This allows your team to have many collaborators for your IaC in your `infrastructure-live` repository, while permitting a subset of administrators access to the workflows in `infrastructure-pipelines` that can access your AWS environments.
 
-Workflows running in the `infrastructure-live` repository trigger workflows to run in `infrastructure-pipelines`, which runs the appropriate terragrunt command on the changed code to perform changes to your infrastructure.
+Workflows running in the `infrastructure-live` repository trigger workflows to run in `infrastructure-pipelines`, which runs the appropriate terragrunt command on the changed code to perform changes to your infrastructure. Pipelines uses OIDC to assume a role in your AWS account with a policy that limits access exclusively to the `main` branch of your `infrastructure-pipelines` repository. No other repository or branch can leverage this role to gain access to your AWS accounts.
 
 ![Gruntwork Pipelines Architecture](/img/pipelines/how-it-works/pipelines_architecture.png)
 
