@@ -1,6 +1,6 @@
 # Architecture
 
-There are three components in pipelines - the orchestrator, the dispatcher, and the executor. The orchestrator determines the jobs that needs to be executed, the dispatcher takes each job as input and calls the executor then reports the status of the job. Each component is explained in detail in sections below.
+There are three components in pipelines - the orchestrator, the dispatcher, and the executor. The orchestrator determines the jobs that needs to be executed; the dispatcher calls the executor with each job and reports on their status; and the executor actually executes the jobs and makes any necessary updates in AWS.
 
 ## Orchestrator
 
