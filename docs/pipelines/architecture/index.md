@@ -24,6 +24,6 @@ Pipelines starts with an event in GitHub - a Pull Request being created, synchro
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "97373ff12588ec9018a63cb0e7e27a2a"
+  "hash": "e39cfba7cac09a2a0bf37e37e0a59760"
 }
 ##DOCS-SOURCER-END -->
