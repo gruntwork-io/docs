@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "openvpn_server" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/openvpn-server?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/openvpn-server?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -436,7 +436,7 @@ module "openvpn_server" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/openvpn-server?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/openvpn-server?ref=v0.105.1"
 }
 
 inputs = {
@@ -1526,6 +1526,6 @@ The security group ID of the OpenVPN server.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/mgmt/openvpn-server/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ba6ecc9b272c17f5398149f849f866c1"
+  "hash": "afcbfd6890f8f0084f5ab63744b0cae3"
 }
 ##DOCS-SOURCER-END -->

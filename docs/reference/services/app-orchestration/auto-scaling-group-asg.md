@@ -90,7 +90,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "asg_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/asg-service?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/asg-service?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -450,7 +450,7 @@ module "asg_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/asg-service?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/asg-service?ref=v0.105.1"
 }
 
 inputs = {
@@ -2042,6 +2042,6 @@ The ID of the Security Group that belongs to the ASG.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/services/asg-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "6209d70110770a8f93a73d8d243391bb"
+  "hash": "570b88a18b22d5498b7ff9ff2799d898"
 }
 ##DOCS-SOURCER-END -->

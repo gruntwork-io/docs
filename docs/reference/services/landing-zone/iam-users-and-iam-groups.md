@@ -113,7 +113,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "iam_users_and_groups" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/iam-users-and-groups?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/iam-users-and-groups?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -334,7 +334,7 @@ module "iam_users_and_groups" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/iam-users-and-groups?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/iam-users-and-groups?ref=v0.105.1"
 }
 
 inputs = {
@@ -1142,6 +1142,6 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/landingzone/iam-users-and-groups/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "85e174b4244ff3e459c0c76410168b6b"
+  "hash": "afb56c0e828134875d98bbec0abcaaff"
 }
 ##DOCS-SOURCER-END -->

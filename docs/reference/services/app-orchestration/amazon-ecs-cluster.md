@@ -153,7 +153,7 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 module "ecs_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-cluster?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-cluster?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -439,7 +439,7 @@ module "ecs_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-cluster?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-cluster?ref=v0.105.1"
 }
 
 inputs = {
@@ -1439,6 +1439,6 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/services/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a3a5cab04dd67bcb4cefb85cb542482f"
+  "hash": "66eebde4bd4fe49a194da2343a31d71f"
 }
 ##DOCS-SOURCER-END -->

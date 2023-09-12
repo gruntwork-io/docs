@@ -94,7 +94,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "redis" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/redis?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/redis?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -252,7 +252,7 @@ module "redis" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/redis?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/redis?ref=v0.105.1"
 }
 
 inputs = {
@@ -755,6 +755,6 @@ Security Group ID used for redis cluster.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/data-stores/redis/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d2af78277d52a1a1ee2ee0aac8fedf37"
+  "hash": "4ea57af45c25ea3020be44d85de2b754"
 }
 ##DOCS-SOURCER-END -->

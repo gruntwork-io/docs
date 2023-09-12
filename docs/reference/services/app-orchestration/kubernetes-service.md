@@ -111,7 +111,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "k_8_s_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/k8s-service?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/k8s-service?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -509,7 +509,7 @@ module "k_8_s_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/k8s-service?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/k8s-service?ref=v0.105.1"
 }
 
 inputs = {
@@ -2051,6 +2051,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/services/k8s-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1ab6edf33e45ba26ad544c978a422dfb"
+  "hash": "f6f2735b2f49d90e1cf1a830ef648013"
 }
 ##DOCS-SOURCER-END -->

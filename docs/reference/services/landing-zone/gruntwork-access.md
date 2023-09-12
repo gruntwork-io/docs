@@ -91,7 +91,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "gruntwork_access" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/gruntwork-access?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/gruntwork-access?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -146,7 +146,7 @@ module "gruntwork_access" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/gruntwork-access?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/gruntwork-access?ref=v0.105.1"
 }
 
 inputs = {
@@ -301,6 +301,6 @@ The name of the IAM role
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/landingzone/gruntwork-access/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f7353e040926768cf2a33839aa801be7"
+  "hash": "57b1d15a9fb04c25847d787e267988d2"
 }
 ##DOCS-SOURCER-END -->

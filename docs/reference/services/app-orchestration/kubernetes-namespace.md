@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "k_8_s_namespace" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/k8s-namespace?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/k8s-namespace?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -166,7 +166,7 @@ module "k_8_s_namespace" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/k8s-namespace?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/k8s-namespace?ref=v0.105.1"
 }
 
 inputs = {
@@ -433,6 +433,6 @@ The name of the rbac role that grants read only permissions on the namespace.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/services/k8s-namespace/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "7d9a8ad2a218687ebe49b26fc3dd2dff"
+  "hash": "2fa144f4f420e907704cda9f47f79627"
 }
 ##DOCS-SOURCER-END -->

@@ -106,7 +106,7 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 module "ecs_fargate_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-fargate-cluster?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-fargate-cluster?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -141,7 +141,7 @@ module "ecs_fargate_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-fargate-cluster?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-fargate-cluster?ref=v0.105.1"
 }
 
 inputs = {
@@ -241,6 +241,6 @@ The name of the ECS cluster.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/services/ecs-fargate-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "918005c5b717c8f860711c087774a0ce"
+  "hash": "8ebd0666be226190cf845e7ff33b5070"
 }
 ##DOCS-SOURCER-END -->

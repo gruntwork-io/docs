@@ -91,7 +91,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "memcached" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/memcached?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/memcached?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -187,7 +187,7 @@ module "memcached" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/memcached?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/memcached?ref=v0.105.1"
 }
 
 inputs = {
@@ -475,6 +475,6 @@ The configuration endpoint to allow host discovery.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/data-stores/memcached/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "615d44431bc3008fe9a89950caad5539"
+  "hash": "e29fdf53a6f5bffb6caafe9810c877da"
 }
 ##DOCS-SOURCER-END -->

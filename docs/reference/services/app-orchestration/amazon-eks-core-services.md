@@ -108,7 +108,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "eks_core_services" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/eks-core-services?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -524,7 +524,7 @@ module "eks_core_services" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/eks-core-services?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v0.105.1"
 }
 
 inputs = {
@@ -2288,6 +2288,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "dc57c02f2508f437ff6a775193104d76"
+  "hash": "0cbe317e10351b79b641c1ca998fae8a"
 }
 ##DOCS-SOURCER-END -->

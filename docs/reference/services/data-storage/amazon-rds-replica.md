@@ -48,7 +48,7 @@ This module creates a read replica (read-only copy) of a DB instance.
 
 module "rds_replica" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/rds-replica?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds-replica?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -350,7 +350,7 @@ module "rds_replica" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/rds-replica?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds-replica?ref=v0.105.1"
 }
 
 inputs = {
@@ -1674,6 +1674,6 @@ A list of IDs of the RDS DB instance's read replicas.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/data-stores/rds-replica/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b17ef2e6a4ef2c08d2d67de72d2369ee"
+  "hash": "13cb531347c8d621cfbc10130494e333"
 }
 ##DOCS-SOURCER-END -->

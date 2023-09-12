@@ -101,7 +101,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "elasticsearch" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/elasticsearch?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/elasticsearch?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -469,7 +469,7 @@ module "elasticsearch" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/elasticsearch?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/elasticsearch?ref=v0.105.1"
 }
 
 inputs = {
@@ -1554,6 +1554,6 @@ Domain-specific endpoint for Kibana without https scheme.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/data-stores/elasticsearch/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "af2b2caaa4de87be37dda181051496a5"
+  "hash": "6cbb355a67b201768c8fa292daa8bb8f"
 }
 ##DOCS-SOURCER-END -->

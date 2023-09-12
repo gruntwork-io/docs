@@ -101,7 +101,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "eks_karpenter" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/eks-karpenter?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-karpenter?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -223,7 +223,7 @@ module "eks_karpenter" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/eks-karpenter?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-karpenter?ref=v0.105.1"
 }
 
 inputs = {
@@ -645,6 +645,6 @@ The name of the Karpenter Node IAM Role.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/services/eks-karpenter/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "acc0117e1e4fbad90fb64989e6e0cb2e"
+  "hash": "f6aa713da19ae4643a4bad5cf73bba48"
 }
 ##DOCS-SOURCER-END -->

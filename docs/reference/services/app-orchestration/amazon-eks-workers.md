@@ -121,7 +121,7 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 
 module "eks_workers" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/eks-workers?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -630,7 +630,7 @@ module "eks_workers" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/eks-workers?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v0.105.1"
 }
 
 inputs = {
@@ -2664,6 +2664,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ae0ef5a89208a749fcd78f0bd4d9cd1c"
+  "hash": "6e288759e29c59cc4c11248c08acb834"
 }
 ##DOCS-SOURCER-END -->

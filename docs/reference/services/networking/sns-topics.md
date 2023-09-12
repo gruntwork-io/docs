@@ -84,7 +84,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "sns_topics" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/sns-topics?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/sns-topics?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -145,7 +145,7 @@ module "sns_topics" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/sns-topics?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/sns-topics?ref=v0.105.1"
 }
 
 inputs = {
@@ -332,6 +332,6 @@ The ARN of the SNS topic.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/networking/sns-topics/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "cb1a0a37e85361360a9193054cbeadb8"
+  "hash": "f8c7f29230c2866a3be73454ee688d3b"
 }
 ##DOCS-SOURCER-END -->

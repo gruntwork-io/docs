@@ -98,7 +98,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "jenkins" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/jenkins?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/jenkins?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -437,7 +437,7 @@ module "jenkins" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/jenkins?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/jenkins?ref=v0.105.1"
 }
 
 inputs = {
@@ -1593,6 +1593,6 @@ The ID of the Security Group attached to the Jenkins EC2 Instance
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/mgmt/jenkins/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1d4f08b121c63b2434f9ce876dd45a99"
+  "hash": "dcc2f8e2df0efe43064f4e4cc7313f04"
 }
 ##DOCS-SOURCER-END -->

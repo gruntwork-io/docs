@@ -105,7 +105,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "vpc_mgmt" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/vpc-mgmt?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc-mgmt?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -315,7 +315,7 @@ module "vpc_mgmt" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/vpc-mgmt?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc-mgmt?ref=v0.105.1"
 }
 
 inputs = {
@@ -1051,6 +1051,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/networking/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3245dbecae1ba3b87fb882adadb89163"
+  "hash": "30664c6f4aa1706673c1b316d535826d"
 }
 ##DOCS-SOURCER-END -->

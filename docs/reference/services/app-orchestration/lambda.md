@@ -101,7 +101,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "lambda" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/lambda?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/lambda?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -390,7 +390,7 @@ module "lambda" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/lambda?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/lambda?ref=v0.105.1"
 }
 
 inputs = {
@@ -1376,6 +1376,6 @@ Latest published version of your Lambda Function
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/services/lambda/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "7fcf5c65eaf8089c0b353b142f67e1a1"
+  "hash": "66aa595036d6a641e759bd4c3fc10d86"
 }
 ##DOCS-SOURCER-END -->

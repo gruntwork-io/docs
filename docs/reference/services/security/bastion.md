@@ -115,7 +115,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "bastion_host" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/bastion-host?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/bastion-host?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -346,7 +346,7 @@ module "bastion_host" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/bastion-host?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/bastion-host?ref=v0.105.1"
 }
 
 inputs = {
@@ -1082,6 +1082,6 @@ The fully qualified name of the bastion host.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/mgmt/bastion-host/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "66e4c1b71d4f553e7de4d19bd6afc5ce"
+  "hash": "3296fbf918a17773f6545022a8a2e635"
 }
 ##DOCS-SOURCER-END -->
