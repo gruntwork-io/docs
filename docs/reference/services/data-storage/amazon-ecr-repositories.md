@@ -86,7 +86,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "ecr_repos" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecr-repos?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/ecr-repos?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -158,7 +158,7 @@ module "ecr_repos" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecr-repos?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/ecr-repos?ref=v0.105.1"
 }
 
 inputs = {
@@ -467,6 +467,6 @@ A list of IAM policy actions necessary for ECR write access.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/data-stores/ecr-repos/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "67c9efb1ab0a85481ff127d511cdec2e"
+  "hash": "c87c0a0d466df2d75e0f46f54bfc7d83"
 }
 ##DOCS-SOURCER-END -->

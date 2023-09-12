@@ -100,7 +100,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "helm_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/helm-service?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/helm-service?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -195,7 +195,7 @@ module "helm_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/helm-service?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/helm-service?ref=v0.105.1"
 }
 
 inputs = {
@@ -488,6 +488,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/services/helm-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "bc4eb57bdf6f60b7d70e563112fcbfd4"
+  "hash": "a69037d4e520b6f2dd8404c7b3c3e64f"
 }
 ##DOCS-SOURCER-END -->

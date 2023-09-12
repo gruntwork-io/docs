@@ -88,7 +88,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "s_3_bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/s3-bucket?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/s3-bucket?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -314,7 +314,7 @@ module "s_3_bucket" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/s3-bucket?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/s3-bucket?ref=v0.105.1"
 }
 
 inputs = {
@@ -1221,6 +1221,6 @@ The name of the replica S3 bucket.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/data-stores/s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "456f96fa81514753013996ab2d5c796e"
+  "hash": "827e4267d12e65ba443fae3ec88faf97"
 }
 ##DOCS-SOURCER-END -->

@@ -150,7 +150,7 @@ resource "aws_iam_role_policy_attachment" "attachment" {
 
 module "tailscale_subnet_router" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/tailscale-subnet-router?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/tailscale-subnet-router?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -386,7 +386,7 @@ module "tailscale_subnet_router" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/tailscale-subnet-router?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/tailscale-subnet-router?ref=v0.105.1"
 }
 
 inputs = {
@@ -1100,6 +1100,6 @@ ID of the primary security group attached to the Tailscale relay server.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/mgmt/tailscale-subnet-router/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2ce107fd2a23fee1bae2c00233ddde77"
+  "hash": "6172bed502b5e3f0792784e16445e49a"
 }
 ##DOCS-SOURCER-END -->

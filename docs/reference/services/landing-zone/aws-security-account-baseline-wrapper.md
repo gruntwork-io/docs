@@ -101,7 +101,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "account_baseline_security" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/account-baseline-security?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-security?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -899,7 +899,7 @@ module "account_baseline_security" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/account-baseline-security?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-security?ref=v0.105.1"
 }
 
 inputs = {
@@ -3870,6 +3870,6 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/landingzone/account-baseline-security/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5929cd34d1eee75c938b4757401ab187"
+  "hash": "edd6da0fd96a54edb239ec92525ec1d5"
 }
 ##DOCS-SOURCER-END -->

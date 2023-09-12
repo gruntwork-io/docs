@@ -113,7 +113,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "ec_2_instance" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ec2-instance?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ec2-instance?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -431,7 +431,7 @@ module "ec_2_instance" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ec2-instance?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ec2-instance?ref=v0.105.1"
 }
 
 inputs = {
@@ -1461,6 +1461,6 @@ The input parameters for the EBS volumes.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/services/ec2-instance/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "97b58f2ca18515aad42eecddcd602897"
+  "hash": "cbe0fabd98d614c8ac91d79b38f29b4c"
 }
 ##DOCS-SOURCER-END -->

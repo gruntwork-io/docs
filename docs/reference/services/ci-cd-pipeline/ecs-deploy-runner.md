@@ -104,7 +104,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "ecs_deploy_runner" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-deploy-runner?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/ecs-deploy-runner?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -440,7 +440,7 @@ module "ecs_deploy_runner" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-deploy-runner?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/ecs-deploy-runner?ref=v0.105.1"
 }
 
 inputs = {
@@ -2546,6 +2546,6 @@ Security Group ID of the ECS task
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/mgmt/ecs-deploy-runner/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "7b9c5576c2fbdfa3b15acc09a96fcc18"
+  "hash": "46640d70b6b0f83cf0d31931783bec8a"
 }
 ##DOCS-SOURCER-END -->

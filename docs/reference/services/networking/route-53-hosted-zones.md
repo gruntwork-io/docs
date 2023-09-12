@@ -88,7 +88,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "route_53" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/route53?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/route53?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -126,7 +126,7 @@ module "route_53" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/route53?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/route53?ref=v0.105.1"
 }
 
 inputs = {
@@ -554,6 +554,6 @@ A map of domains to resource arns and hosted zones of the created Service Discov
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/networking/route53/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5a4c8aecfdc6af5fde2509282bc8da50"
+  "hash": "f360e90cc8e23eef3ff3cd2a3b8f85e3"
 }
 ##DOCS-SOURCER-END -->

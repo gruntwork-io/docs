@@ -116,7 +116,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "public_static_website" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/public-static-website?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/public-static-website?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -325,7 +325,7 @@ module "public_static_website" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/public-static-website?ref=v0.105.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/public-static-website?ref=v0.105.1"
 }
 
 inputs = {
@@ -1064,6 +1064,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/services/public-static-website/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "eca87735333d24b7b11791bf86e27edf"
+  "hash": "035575714cf4b47c69323ff212a70007"
 }
 ##DOCS-SOURCER-END -->
