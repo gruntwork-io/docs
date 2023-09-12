@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.62.0" lastModifiedVersion="0.58.4"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.62.0" lastModifiedVersion="0.62.0"/>
 
 # EKS CloudWatch Agent Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.62.0/modules/eks-cloudwatch-agent" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.58.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.62.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module installs and configures
 [Amazon CloudWatch Agent](https://github.com/aws/amazon-cloudwatch-agent/) on an EKS cluster, so that
@@ -238,6 +238,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.62.0/modules/eks-cloudwatch-agent/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ae8244a1aee36a18132bc8f8ef2f51a0"
+  "hash": "9f433530690d482360621866d1649375"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.62.0" lastModifiedVersion="0.59.1"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.62.0" lastModifiedVersion="0.62.0"/>
 
 # ALB Ingress Controller IAM Policy Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.62.0/modules/eks-alb-ingress-controller-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.59.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.62.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module defines an [IAM
 policy](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/QuickStartEC2Instance.html#d0e22325) that
@@ -200,6 +200,6 @@ The name of the IAM policy created with the permissions for the ALB ingress cont
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.62.0/modules/eks-alb-ingress-controller-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "38c8df70364ad3e44707f7ff37664514"
+  "hash": "6255f64cf9c4d51b7634ec460a3c961a"
 }
 ##DOCS-SOURCER-END -->

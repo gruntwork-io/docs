@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.62.0" lastModifiedVersion="0.61.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.62.0" lastModifiedVersion="0.62.0"/>
 
 # K8S Cluster Autoscaler Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.62.0/modules/eks-k8s-cluster-autoscaler" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.61.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.62.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module installs a [Cluster Autoscaler](https://github.com/kubernetes/autoscaler/tree/b6d53e8/cluster-autoscaler)
 to automatically scale up and down the nodes in a cluster in response to resource utilization.
@@ -364,6 +364,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.62.0/modules/eks-k8s-cluster-autoscaler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1bef8cd70b8bfa945598bd3d5b7d7382"
+  "hash": "a8a50b39918aee933dbd2b92d684c8e8"
 }
 ##DOCS-SOURCER-END -->
