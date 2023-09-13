@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Module Server" version="0.15.6" lastModifiedVersion="0.15.3"/>
+<VersionBadge repoTitle="Module Server" version="0.15.7" lastModifiedVersion="0.15.3"/>
 
 # Persistent EBS Volume Scripts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.6/modules/persistent-ebs-volume" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.7/modules/persistent-ebs-volume" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.15.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -40,7 +40,7 @@ volume can only be associated with a single EC2 Instance, so if you need the dat
 multiple servers, check out the [Amazon Elastic File System](https://aws.amazon.com/efs/), which provides a service
 built on top of NFS.
 
-Check out the [persistent-ebs-volume example](https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.6/examples/persistent-ebs-volume) for how to use these scripts with
+Check out the [persistent-ebs-volume example](https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.7/examples/persistent-ebs-volume) for how to use these scripts with
 Terraform.
 
 ## Installing the scripts
@@ -58,7 +58,7 @@ The scripts have the following prerequisites:
 1.  They must be run as root
 2.  They must be run on an EC2 instance
 3.  The EC2 instance must have an IAM role with permissions to list, attach, and detach volumes (see the
-    [persistent-ebs-volume example](https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.6/examples/persistent-ebs-volume))
+    [persistent-ebs-volume example](https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.7/examples/persistent-ebs-volume))
 4.  The EC2 instance must have the AWS CLI and jq installed
 
 Run the `mount-ebs-volume` script in the User Data of your EC2 instances so it mounts the volume at boot. Run the
@@ -220,11 +220,11 @@ detaching the device.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.6/modules/persistent-ebs-volume/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.6/modules/persistent-ebs-volume/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.6/modules/persistent-ebs-volume/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.7/modules/persistent-ebs-volume/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.7/modules/persistent-ebs-volume/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.7/modules/persistent-ebs-volume/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dce73c3bec2f2d0e37a769af116e3376"
+  "hash": "e05b5c36e29fd841122a5d572f3e09c3"
 }
 ##DOCS-SOURCER-END -->
