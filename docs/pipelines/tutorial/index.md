@@ -143,7 +143,7 @@ inputs = {
 
 ### Planning and Applying
 
-Create a new branch for your changes, commit your changes to your branch, then push your branch. Next, create a PR to merge your branch into `main` (the default branch in your repository). Follow this GitHub tutorial on [creating a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) using your preferred tool of choice.
+Create a new branch for your changes, commit your changes to your branch, then push your branch. Next, create a PR to merge your branch into `main` (the default branch in your repository). Follow this GitHub tutorial to [create a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) using your preferred tool of choice.
 
 After you create the PR, GitHub Actions will automatically run the workflow defined in `pipelines.yml`. Once complete, pipelines will add a comment to the PR with a link to the workflow logs, click the link see the output of the `terragrunt plan` action that ran as a result of your changes.
 
@@ -165,6 +165,6 @@ If you are not going to continue using Pipelines after this tutorial, clean up t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "9ebba87b49662c2ab06cfc1da4ba77a4"
+  "hash": "9ee3c548d82c55e9b163f7b4fa3f61a0"
 }
 ##DOCS-SOURCER-END -->
