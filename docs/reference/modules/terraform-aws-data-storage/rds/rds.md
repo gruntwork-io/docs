@@ -244,7 +244,7 @@ module "rds" {
   db_name = null
 
   # A map of the default license to use for each supported RDS engine.
-  default_license_models = {"mariadb":"general-public-license","mysql":"general-public-license","oracle-ee":"bring-your-own-license","oracle-se":"bring-your-own-license","oracle-se1":"bring-your-own-license","oracle-se2":"bring-your-own-license","postgres":"postgresql-license","sqlserver-ee":"license-included","sqlserver-ex":"license-included","sqlserver-se":"license-included","sqlserver-web":"license-included"}
+  default_license_models = {"mariadb":"general-public-license","mysql":"general-public-license","oracle-ee":"bring-your-own-license","oracle-ee-cdb":"bring-your-own-license","oracle-se":"bring-your-own-license","oracle-se1":"bring-your-own-license","oracle-se2":"bring-your-own-license","oracle-se2-cdb":"bring-your-own-license","postgres":"postgresql-license","sqlserver-ee":"license-included","sqlserver-ex":"license-included","sqlserver-se":"license-included","sqlserver-web":"license-included"}
 
   # Specifies whether to remove automated backups immediately after the DB
   # instance is deleted
@@ -602,7 +602,7 @@ inputs = {
   db_name = null
 
   # A map of the default license to use for each supported RDS engine.
-  default_license_models = {"mariadb":"general-public-license","mysql":"general-public-license","oracle-ee":"bring-your-own-license","oracle-se":"bring-your-own-license","oracle-se1":"bring-your-own-license","oracle-se2":"bring-your-own-license","postgres":"postgresql-license","sqlserver-ee":"license-included","sqlserver-ex":"license-included","sqlserver-se":"license-included","sqlserver-web":"license-included"}
+  default_license_models = {"mariadb":"general-public-license","mysql":"general-public-license","oracle-ee":"bring-your-own-license","oracle-ee-cdb":"bring-your-own-license","oracle-se":"bring-your-own-license","oracle-se1":"bring-your-own-license","oracle-se2":"bring-your-own-license","oracle-se2-cdb":"bring-your-own-license","postgres":"postgresql-license","sqlserver-ee":"license-included","sqlserver-ex":"license-included","sqlserver-se":"license-included","sqlserver-web":"license-included"}
 
   # Specifies whether to remove automated backups immediately after the DB
   # instance is deleted
@@ -1098,9 +1098,11 @@ A map of the default license to use for each supported RDS engine.
   mariadb = "general-public-license",
   mysql = "general-public-license",
   oracle-ee = "bring-your-own-license",
+  oracle-ee-cdb = "bring-your-own-license",
   oracle-se = "bring-your-own-license",
   oracle-se1 = "bring-your-own-license",
   oracle-se2 = "bring-your-own-license",
+  oracle-se2-cdb = "bring-your-own-license",
   postgres = "postgresql-license",
   sqlserver-ee = "license-included",
   sqlserver-ex = "license-included",
@@ -1546,6 +1548,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.30.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "944cfccebffca5a4fe0a55c064e75ebb"
+  "hash": "bcf1165a34620a44aa9c6746d9e41da2"
 }
 ##DOCS-SOURCER-END -->
