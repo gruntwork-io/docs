@@ -1,6 +1,6 @@
 # What is Gruntwork Pipelines?
 
-Gruntwork Pipelines is a framework for securely deploying infrastructure as code to your AWS environments. Gruntwork Pipelines runs as a binary and series of steps in your CI system, determining what _actions_ need to be taken, in which _environments_, based on the _infrastructure changes_ that occurred.
+Gruntwork Pipelines is a framework for securely deploying infrastructure as code to your AWS environments using GitOps workflows. Gruntwork Pipelines runs as a binary and series of steps in your CI system, determining what _actions_ need to be taken, in which _environments_, based on the _infrastructure changes_ that occurred.
 
 ## Isolating IaC definitions and deployment
 
@@ -20,6 +20,6 @@ You are reading documentation for Gruntwork Pipelines. The previous version of G
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "721f717f31a2c9c936cb36ba1d26dc57"
+  "hash": "5be53cc2002a0673d8ca7f29cb8b8a7c"
 }
 ##DOCS-SOURCER-END -->
