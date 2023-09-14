@@ -16,10 +16,7 @@ Before you begin, make sure you have:
 - Permissions to create and administer repositories in GitHub
 - A sandbox or development AWS account
 - Valid [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) for an IAM user with AdministratorAccess to the AWS account mentioned above
-- [Gruntwork Boilerplate](https://github.com/gruntwork-io/boilerplate/releases) installed on your system (requires Gruntwork subscription)
-  - Download the release that is appropriate for your operating system
-  - Move to /usr/local/bin
-  - Confirm installation with w/ `boilerplate --version`
+- [Boilerplate](https://github.com/gruntwork-io/boilerplate/releases) installed on your system (requires Gruntwork subscription)
 - [Terragrunt](https://terragrunt.gruntwork.io/) installed on your system
 - A [classic GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with `repo` scopes and access to Gruntwork modules
 
@@ -78,7 +75,7 @@ Next, generate the `infrastructure-live` repository code using Boilerplate. Use 
 
 ```bash
 boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/single-account-pipeline?ref=devops-foundations" \
-  --output-folder . \
+  --output-folder ./infrastructure-live \
   --var AwsAccountName="<friendly name for your AWS account (e.g., dev)>" \
   --var AwsAccountId="'<account id for your AWS account>'" \
   --var AwsAccountEmail="<e-mail address associate with root user for account>" \
@@ -91,10 +88,10 @@ boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architectu
 
 Before pushing your changes, you will need to run an `apply` locally to provision the AWS IAM role that pipelines will use to deploy resources in your account. This should be the only time you need to manually run `apply` to provision resources for this account, moving forward pipelines will handle all the lifecycle of all resources for you, based on the code you commit to your repository.
 
-First, run a `plan` in the newly created `github-oidc-role` directory to see the resources that will be provisioned.
+First, run a `plan` in the newly created `github-oidc-role` directory to see the resources that will be provisioned. Replace `<account name>` with the value you used for `AwsAccountName` in the boilerplate command above.
 
 ```bash
-cd <account name>/_global/github-oidc-role`
+cd <account name>/_global/github-oidc-role
 terragrunt plan
 ```
 
