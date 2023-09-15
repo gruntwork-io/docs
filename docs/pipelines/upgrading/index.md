@@ -4,9 +4,9 @@ This migration guide is intended for those running the ECS Deploy Runner (EDR) b
 
 ## Prerequisites
 
-- Boilerplate
+- [Boilerplate](https://github.com/gruntwork-io/boilerplate#install) installed on your system (requires Gruntwork subscription)
 - Ability to create repositories in your GitHub Organization
-- Ability to add users to your GitHub Organization
+- Ability to add users to your GitHub Organization and the Gruntwork Developer Portal
 - Permissions to create secrets in GitHub repositories
 
 ## Token Setup
@@ -102,13 +102,25 @@ As a part of separate product improvement the `accounts.json` file has been chan
 
 ### Upgrade from accounts.json to accounts.yml
 
-- schema for accounts.yml
-- maybe a script here too
-- After this point old pipelines will stop working!
+The data required in `accounts.yml` is the same that is required in `accounts.json`. You can quickly convert your `accounts.json` to `accounts.yml` by using the [yq](https://github.com/mikefarah/yq) CLI tool and the following command.
+
+```bash
+cat accounts.json | yq -P > accounts.yml
+```
+
+Confirm the data matches between your `accounts.json` and `accounts.yml`. If you are upgrading all of your deployments at once, you may delete your `accounts.json` file. If you will use both EDR pipelines and pipelines v2 at the same time, do not delete `accounts.json`.
 
 ## Adding new workflows in your infrastructure-live repository
 
 Like the EDR version of pipelines, pipelines v2 uses GitHub Actions as the compute layer for executing actions on your infrastructure. Pipelines v2 uses a different workflow with a smaller number of steps and the pipelines binary to orchestrate changes. To streamline the upgrade process, we've created a template that can be used to generate the workflow with a small number of parameters. Both workflows use a file named `pipelines.yml`. So all that is required is to use boilerplate to generate the new workflow.
+
+:::warning
+If you plan to use EDR pipelines and pipelines v2 at the same time, to migrate from one to the other, you will need to rename your existing `pipelines.yml` to another name before generating the new `pipelines.yml` for pipelines v2.
+
+You will also need to ignore changes to files in account based directories that you have and have not migrated yet using `paths-ignore` in the appropriate workflow file. For example, if you have migrated your development account to pipelines v2, you would add `development/` to `paths-ignore` in the EDR pipelines workflow yaml, then add `development` to `paths` in the pipelines v2 workflow yaml.
+
+See the GitHub docs on [including and excluding paths](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-including-paths) to learn more.
+:::
 
 To generate the new `pipelines.yml` file, run the following command -
 
@@ -126,12 +138,16 @@ After you have confirmed pipelines v2 is running in your account(s), you can des
 
 For each environment in which you have deployed the ECS deploy runner, remove the `ecs-deploy-runner` directory. This can be found in the file path `<account name>/<region name>/mgmt`.
 
+:::tip
+We recommend migrating to pipelines v2 in non-production accounts first, then migrating production accounts after a few weeks of trying out pipelines v2. This allows time for you to familiarize yourself with pipelines v2 and reduces the likelihood of disruption to your workflows and day-to-day operations.
+:::
+
 Create a branch, commit your changes, and push your branch to the remote repository. Then create a pull request targeting your default branch (e.g., `main`). Pipelines v2 will detect the change and run a `plan -destroy` to remove the ECS deploy runner infrastructure. Gather any required approvals then merge the PR. On PR merge, pipelines v2 will run a `destroy` to remove all of the infrastructure.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "ed425ffaa143a04a246ee0efa85fe57d"
+  "hash": "610d4ef5b06dadda3aa427398d8ea33b"
 }
 ##DOCS-SOURCER-END -->
