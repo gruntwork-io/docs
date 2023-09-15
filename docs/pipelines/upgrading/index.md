@@ -71,8 +71,7 @@ To simplify the migration process, we have developed a template that creates all
 Use the following command, replacing the values wrapped in `<>` with real values for your organization. The `AwsAccountName` variable should be the name of the top level directory that represents the AWS account that will use pipelines v2 (e.g, `dev`). You will need to run this command for each account that you would like to upgrade to pipelines v2.
 
 ```bash
-boilerplate \
-    --template-url "../../gruntwork_modules/terraform-aws-architecture-catalog//blueprints/components/pipelines-edr-migration" \
+boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/pipelines-edr-migration" \
     --output-folder ./infrastructure-live \
     --var InfraPipelinesRepoName="<your infrastructure-pipelines repo name>" \
     --var GithubOrg="<your GitHub organization name>" \
@@ -133,7 +132,11 @@ See the GitHub docs on [including and excluding paths](https://docs.github.com/e
 To generate the new `pipelines.yml` file, run the following command -
 
 ```bash
-boilerplate ...
+boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//templates/infra-live-github-base" \
+    --output-folder ./infrastructure-live/.github \
+    --var InfraPipelinesRepoName="test-arch" \
+    --var GithubOrg="acme" --var AwsAccountName="dev"  \
+    --non-interactive
 ```
 
 Next, create a branch, commit your changes, and push your branch to the remote repository. Then create a pull request targeting your default branch (e.g., `main`). Gather any required approvals then
@@ -160,6 +163,6 @@ Congratulations! If you have followed this guide, you will be deploying infrastr
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "dc2d306a5eac59cd9ef3023007e2aca2"
+  "hash": "29d6f09a77179b15a4d78e83a28059f8"
 }
 ##DOCS-SOURCER-END -->
