@@ -41,7 +41,7 @@ Navigate to the repositories tab of your organization or personal GitHub account
 1. Do not initialize the repo with a README, gitignore, or license
 
 :::info
-For a simple proof of concept, the default repo configuration will suffice. Before using these repositories in a production environment, we recommend setting up a [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) for your `main` branch. At a minimum, we recommend enabling requiring a pull request before merging with at least one reviewer required.
+For a simple proof of concept, the default repo configuration will suffice. Before using this repository in a production environment, we recommend setting up a [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) for your `main` branch. At a minimum, we recommend enabling requiring a pull request before merging with at least one reviewer required.
 :::
 
 ### Use boilerplate to generate code
@@ -66,8 +66,17 @@ For more information see [security hardening with OpenID Connect](https://docs.g
 
 ### Generate the code using boilerplate for each account
 
-- Run boilerplate for each account
-- Push branch
+To simplify the migration process, we have developed a template that creates all code and files required to generate the IAM role, OpenID Connect identity provider, and IAM policies. You will need to run this command for each account that you would like to upgrade to pipelines v2.
+
+```bash
+boilerplate ....
+```
+
+Create a branch, commit your changes, and push your branch to the remote repository. Then create a pull request targeting your default branch (e.g., `main`).
+
+:::tip
+We recommend trying out pipelines in non-production environments first, before rolling out to production environments.
+:::
 
 ### Planning and applying
 
@@ -99,15 +108,15 @@ As a part of separate product improvement the `accounts.json` file has been chan
 
 ## Adding new workflows in your infrastructure-live repository
 
-Like the EDR version of pipelines, pipelines v2 uses GitHub Actions as the compute layer for executing actions on your infrastructure. Pipelines v2 uses a different workflow with a smaller number of steps and the pipelines binary to orchestrate changes. To streamline the upgrade process, we've created a template that can be used to generate the workflow with a small number of parameters.
+Like the EDR version of pipelines, pipelines v2 uses GitHub Actions as the compute layer for executing actions on your infrastructure. Pipelines v2 uses a different workflow with a smaller number of steps and the pipelines binary to orchestrate changes. To streamline the upgrade process, we've created a template that can be used to generate the workflow with a small number of parameters. Both workflows use a file named `pipelines.yml`. So all that is required is to use boilerplate to generate the new workflow.
 
-- Run boilerplate
-- Push changes
+To generate the new `pipelines.yml` file, run the following command -
 
-### Delete the previous GitHub workflows action for pipelines v1
+```bash
+boilerplate ...
+```
 
-- Delete the file
-- Push changes
+Next, create a branch, commit your changes, and push your branch to the remote repository. Then create a pull request targeting your default branch (e.g., `main`). Gather any required approvals then
 
 ## Remove old ECS Deploy Runner infrastructure
 
@@ -115,12 +124,6 @@ After you have confirmed pipelines v2 is running in your account(s), you can des
 
 ### Delete code for old pipelines
 
-- Delete path/to/folder/with/edr in all repos
+For each environment in which you have deployed the ECS deploy runner, remove the `ecs-deploy-runner` directory. This can be found in the file path `<account name>/<region name>/mgmt`.
 
-### Planning and Applying
-
-- Push branch
-- Let new pipelines run plan
-- Review output
-- Merge PR
-- Let new pipelines run apply
+Create a branch, commit your changes, and push your branch to the remote repository. Then create a pull request targeting your default branch (e.g., `main`). Pipelines v2 will detect the change and run a `plan -destroy` to remove the ECS deploy runner infrastructure. Gather any required approvals then merge the PR. On PR merge, pipelines v2 will run a `destroy` to remove all of the infrastructure.
