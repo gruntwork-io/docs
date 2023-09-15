@@ -95,7 +95,7 @@ cd <account name>/_global/github-oidc-role
 terragrunt plan
 ```
 
-Once you reviewed the new resources that will be created, run `terragrunt apply` to create the resources.
+Once you have reviewed the new resources that will be created, run `terragrunt apply` to create the resources.
 
 Finally, push your changes to the `infrastructure-live` repository you created in [Create repos in your org](#create-repos-in-your-org).
 
