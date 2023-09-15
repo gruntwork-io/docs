@@ -22,7 +22,7 @@ Before you begin, make sure you have:
 
 ## Setting up the repositories
 
-First, you’ll set up two repositories which will contain the definitions of your infrastructure as code (IaC) and another that defines deployment mechanisms for your IaC. Then, you’ll create a Github Personal Access Token (PAT) in each repository to allow GitHub Actions to allow the `infrastructure-live` repo to run workflows defined in `infrastructure-pipelines` and to allow the workflows define in `infrastructure-pipelines` to clone the `infrastructure-live` repo. Finally, you’ll set up your PAT as a GitHub Actions secret in each repository.
+First, you’ll set up two repositories which will contain the definitions of your infrastructure as code (IaC) and another that defines deployment mechanisms for your IaC. Then, you’ll create a Github Personal Access Token (PAT) that allows workflows in the `infrastructure-live` repo to run workflows defined in `infrastructure-pipelines` and to allow the workflows defined in the `infrastructure-pipelines` repo to clone the `infrastructure-live` repo. Finally, you’ll set up your PAT as a GitHub Actions secret in each repository.
 
 ### Create the repositories
 
@@ -108,8 +108,8 @@ Next you’ll create a resource in your AWS account using pipelines and GitOps w
 First, create the file structure that will contain the infrastructure unit that defines an S3 bucket in your environment. Replace `<account name>` with the value you used for `AwsAccountName` when generating your `infrastructure-live` code in the [infrastructure live](#infrastructure-live) section.
 
 ```bash
-mkdir -p <account name>/us-east-1/<account name>/data-storage/s3
-touch <account name>/us-east-1/<account name>/data-storage/s3/terragrunt.hcl
+mkdir -p <account name>/<region>/<account name>/data-storage/s3
+touch <account name>/<region>/<account name>/data-storage/s3/terragrunt.hcl
 ```
 
 Next, add the terragrunt code to create an S3 bucket. Copy the terragrunt code below, replacing `<your S3 bucket name>` with your desired bucket name. S3 bucket names need to be globally unique, so we've provided a helper script below to help generate the name of your bucket. You may name the bucket whatever you like, just make sure it’s unique.
@@ -120,7 +120,7 @@ export DATE_NOW=$(date "+%F")
 echo "gwp-bucket-${UNIQUE_ID}-${DATE_NOW}"
 ```
 
-```hcl title="<account name>/us-east-1/<account name>/data-storage/s3/terragrunt.hcl"
+```hcl title="<account name>/<region>/<account name>/data-storage/s3/terragrunt.hcl"
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK’s S3-BUCKET MODULE
 # ------------------------------------------------------------------------------------------------------

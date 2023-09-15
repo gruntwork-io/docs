@@ -22,7 +22,7 @@ Before you begin, make sure you have:
 
 ## Setting up the repositories
 
-First, you’ll set up two repositories which will contain the definitions of your infrastructure as code (IaC) and another that defines deployment mechanisms for your IaC. Then, you’ll create a Github Personal Access Token (PAT) in each repository to allow GitHub Actions to allow the `infrastructure-live` repo to run workflows defined in `infrastructure-pipelines` and to allow the workflows define in `infrastructure-pipelines` to clone the `infrastructure-live` repo. Finally, you’ll set up your PAT as a GitHub Actions secret in each repository.
+First, you’ll set up two repositories which will contain the definitions of your infrastructure as code (IaC) and another that defines deployment mechanisms for your IaC. Then, you’ll create a Github Personal Access Token (PAT) that allows workflows in the `infrastructure-live` repo to run workflows defined in `infrastructure-pipelines` and to allow the workflows defined in the `infrastructure-pipelines` repo to clone the `infrastructure-live` repo. Finally, you’ll set up your PAT as a GitHub Actions secret in each repository.
 
 ### Create the repositories
 
@@ -48,7 +48,7 @@ First, navigate to the `infrastructure-live` repository. Select the `Settings` t
 Next, Navigate to the `infrastructure-pipelines` repository. Select the `Settings` tab, select the `Secrets and variables` drop down on the left side panel, then select `Actions`. Create two secrets named `INFRA_LIVE_ACCESS_TOKEN` and `GRUNTWORK_CODE_ACCESS_TOKEN`. Use your GitHub PAT as the value for both secrets.
 
 :::warning
-Using a single token with broad access is sufficient for a POC or demo environments. In a production deployment, we recommend using a mix of fine grained and classic PATS to apply to [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) to all tokens used in pipelines workflows.
+Using a single token with broad access is sufficient for a POC or demo environments. In a production deployment, we recommend using a mix of fine grained and classic PATS to apply the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) to all tokens used in pipelines workflows.
 :::
 
 ## Generating code
@@ -95,7 +95,7 @@ cd <account name>/_global/github-oidc-role
 terragrunt plan
 ```
 
-Once you reviewed the new resources that will be created, run `terragrunt apply` to create the resources.
+Once you have reviewed the new resources that will be created, run `terragrunt apply` to create the resources.
 
 Finally, push your changes to the `infrastructure-live` repository you created in [Create repos in your org](#create-repos-in-your-org).
 
@@ -108,8 +108,8 @@ Next you’ll create a resource in your AWS account using pipelines and GitOps w
 First, create the file structure that will contain the infrastructure unit that defines an S3 bucket in your environment. Replace `<account name>` with the value you used for `AwsAccountName` when generating your `infrastructure-live` code in the [infrastructure live](#infrastructure-live) section.
 
 ```bash
-mkdir -p <account name>/us-east-1/<account name>/data-storage/s3
-touch <account name>/us-east-1/<account name>/data-storage/s3/terragrunt.hcl
+mkdir -p <account name>/<region>/<account name>/data-storage/s3
+touch <account name>/<region>/<account name>/data-storage/s3/terragrunt.hcl
 ```
 
 Next, add the terragrunt code to create an S3 bucket. Copy the terragrunt code below, replacing `<your S3 bucket name>` with your desired bucket name. S3 bucket names need to be globally unique, so we've provided a helper script below to help generate the name of your bucket. You may name the bucket whatever you like, just make sure it’s unique.
@@ -120,7 +120,7 @@ export DATE_NOW=$(date "+%F")
 echo "gwp-bucket-${UNIQUE_ID}-${DATE_NOW}"
 ```
 
-```hcl title="<account name>/us-east-1/<account name>/data-storage/s3/terragrunt.hcl"
+```hcl title="<account name>/<region>/<account name>/data-storage/s3/terragrunt.hcl"
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK’s S3-BUCKET MODULE
 # ------------------------------------------------------------------------------------------------------
@@ -144,7 +144,7 @@ Create a new branch for your changes, commit your changes to your branch, then p
 
 After you create the PR, GitHub Actions will automatically run the workflow defined in `pipelines.yml`. Once complete, pipelines will add a comment to the PR with a link to the workflow logs, click the link see the output of the `terragrunt plan` action that ran as a result of your changes.
 
-If you the `plan` output looks as expected, you are ready to merge your PR and create the S3 bucket. Click the `Merge pull request` button to merge the pull request. On merge, pipelines will run an `apply` action to provision the S3 bucket. You can find the Workflow run associated with the merged PR by navigating to the `main` branch on your PR and clicking on the Check Run icon at the top of the file explorer, then clicking `details` next to the pipelines workflow. This will take you to the `dispatch` job for pipelines, which contains a link to the workflow run in `infrastructure-pipelines` where you can see the output of your pipelines run.
+If the `plan` output looks as expected, you are ready to merge your PR and create the S3 bucket. Click the `Merge pull request` button to merge the pull request. On merge, pipelines will run an `apply` action to provision the S3 bucket. You can find the Workflow run associated with the merged PR by navigating to the `main` branch on your PR and clicking on the Check Run icon at the top of the file explorer, then clicking `details` next to the pipelines workflow. This will take you to the `dispatch` job for pipelines, which contains a link to the workflow run in `infrastructure-pipelines` where you can see the output of your pipelines run.
 
 Congratulations! You've just used Gruntwork Pipelines and a GitOps workflow to provision resources in AWS.
 
@@ -162,6 +162,6 @@ If you are not going to continue using Pipelines after this tutorial, clean up t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "bab1677c22e9ae9c6625f48b8dee4190"
+  "hash": "a6646618010f19a77f88a220efa209c1"
 }
 ##DOCS-SOURCER-END -->
