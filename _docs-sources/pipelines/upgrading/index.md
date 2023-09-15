@@ -66,10 +66,18 @@ For more information see [security hardening with OpenID Connect](https://docs.g
 
 ### Generate the code using boilerplate for each account
 
-To simplify the migration process, we have developed a template that creates all code and files required to generate the IAM role, OpenID Connect identity provider, and IAM policies. You will need to run this command for each account that you would like to upgrade to pipelines v2.
+To simplify the migration process, we have developed a template that creates all code and files required to generate the IAM role, OpenID Connect identity provider, and IAM policies.
+
+Use the following command, replacing the values wrapped in `<>` with real values for your organization. The `AwsAccountName` variable should be the name of the top level directory that represents the AWS account that will use pipelines v2 (e.g, `dev`). You will need to run this command for each account that you would like to upgrade to pipelines v2.
 
 ```bash
-boilerplate ....
+boilerplate \
+    --template-url "../../gruntwork_modules/terraform-aws-architecture-catalog//blueprints/components/pipelines-edr-migration" \
+    --output-folder ./infrastructure-live \
+    --var InfraPipelinesRepoName="<your infrastructure-pipelines repo name>" \
+    --var GithubOrg="<your GitHub organization name>" \
+    --var AwsAccountName="<friendly name for your AWS account (e.g., dev)>"  \
+    --non-interactive
 ```
 
 Create a branch, commit your changes, and push your branch to the remote repository. Then create a pull request targeting your default branch (e.g., `main`).
