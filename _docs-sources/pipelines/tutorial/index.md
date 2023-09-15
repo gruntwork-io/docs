@@ -1,6 +1,6 @@
 # Single Account Tutorial
 
-In this tutorial, you’ll walk you through the process of setting up Gruntwork Pipelines in a single AWS account. By the end, you’ll have:
+In this tutorial, we’ll walk you through the process of setting up Gruntwork Pipelines in a single AWS account. By the end, you’ll have:
 
 - An automated pipeline for deploying infrastructure changes into an AWS account
 - Two GitHub repositories
