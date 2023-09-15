@@ -146,4 +146,4 @@ Create a branch, commit your changes, and push your branch to the remote reposit
 
 ## Wrapping up
 
-Congratulations! If you have followed this guide, you will be deploying infrastructure to at least one AWS account using Pipelines v2. If you have feedback, please reach out to `product@gruntwork.io`.
+Congratulations! If you have followed this guide, you will be deploying infrastructure to at least one AWS account using Pipelines v2. If you have feedback, please reach out to `feedback@gruntwork.io`.
