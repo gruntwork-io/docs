@@ -10,7 +10,7 @@ This migration guide is intended for those running the ECS Deploy Runner (EDR) b
 
 ## Creating your infrastructure-pipelines repository
 
-Pipelines v2 uses a two repository approach to isolate infrastructure as code (IaC) code definitions and IaC deployment mechanisms. This means that the code that deploys your IaC and access to your AWS accounts is stored in a single, locked down, repository, that a limited subset of administrators have write access to. Workflows in this repository use OIDC and AWS IAM roles to create short lived session credentials, rather than long lived credentials stored as secrets.
+Pipelines v2 uses a two repository approach to isolate infrastructure as code (IaC) code definitions and IaC deployment mechanisms. This means that the code that deploys your IaC and access to your AWS accounts is stored in a single, locked down, repository, that a limited subset of administrators have write access to. Workflows in this repository use OpenId Connect (OIDC) and AWS IAM roles to create short lived session credentials, rather than long lived credentials stored as secrets.
 
 We strongly recommend naming this repository `infrastructure-pipelines`. All code generated assumes the repository will be located at `<your GitHub Organization>/infrastructure-pipelines`, so using a different name will require manual work on your behalf.
 
@@ -99,6 +99,6 @@ After you have confirmed pipelines v2 is running in your account(s), you can des
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "100915ff4d2e33a6874b94ab01515c1a"
+  "hash": "21a31e5f34ab75d19036aad9f1a92ca5"
 }
 ##DOCS-SOURCER-END -->
