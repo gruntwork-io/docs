@@ -1,6 +1,6 @@
 # Single Account Tutorial
 
-In this tutorial, you’ll walk you through the process of setting up Gruntwork Pipelines in a single AWS account. By the end, you’ll have:
+In this tutorial, we’ll walk you through the process of setting up Gruntwork Pipelines in a single AWS account. By the end, you’ll have:
 
 - An automated pipeline for deploying infrastructure changes into an AWS account
 - Two GitHub repositories
@@ -16,7 +16,7 @@ Before you begin, make sure you have:
 - Permissions to create and administer repositories in GitHub
 - A sandbox or development AWS account
 - Valid [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) for an IAM user with AdministratorAccess to the AWS account mentioned above
-- [Boilerplate](https://github.com/gruntwork-io/boilerplate/releases) installed on your system (requires Gruntwork subscription)
+- [Boilerplate](https://github.com/gruntwork-io/boilerplate#install) installed on your system (requires Gruntwork subscription)
 - [Terragrunt](https://terragrunt.gruntwork.io/) installed on your system
 - A [classic GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with `repo` scopes and access to Gruntwork modules
 
@@ -162,6 +162,6 @@ If you are not going to continue using Pipelines after this tutorial, clean up t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "a3d2fe0c435b84d3e99faaca0ab38cc0"
+  "hash": "bab1677c22e9ae9c6625f48b8dee4190"
 }
 ##DOCS-SOURCER-END -->
