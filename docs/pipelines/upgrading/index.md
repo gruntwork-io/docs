@@ -144,10 +144,14 @@ We recommend migrating to pipelines v2 in non-production accounts first, then mi
 
 Create a branch, commit your changes, and push your branch to the remote repository. Then create a pull request targeting your default branch (e.g., `main`). Pipelines v2 will detect the change and run a `plan -destroy` to remove the ECS deploy runner infrastructure. Gather any required approvals then merge the PR. On PR merge, pipelines v2 will run a `destroy` to remove all of the infrastructure.
 
+## Wrapping up
+
+Congratulations! If you have followed this guide, you will be deploying infrastructure to at least one AWS account using Pipelines v2. If you have feedback, please reach out to `product@gruntwork.io`.
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "610d4ef5b06dadda3aa427398d8ea33b"
+  "hash": "93f8f18f3df8b00c07388168cc8f7ce8"
 }
 ##DOCS-SOURCER-END -->
