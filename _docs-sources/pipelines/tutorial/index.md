@@ -6,7 +6,7 @@ In this tutorial, we’ll walk you through the process of setting up Gruntwork P
 - Two GitHub repositories
   - `infrastructure-live` — Defines the infrastructure that is deployed to your AWS account
   - `infrastructure-pipelines` — Contains deployment definitions for your infrastructure
-- IAM role in your AWS account that allows GitHub Actions to assume a role in your AWS account using OIDC
+- An IAM role in your AWS account that allows GitHub Actions to assume a role in your AWS account using OIDC
 - An S3 Bucket deployed automatically by Gruntwork Pipelines
 
 ## Prerequisites
