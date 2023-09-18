@@ -101,7 +101,7 @@ Finally, push your changes to the `infrastructure-live` repository you created i
 
 ## Running your first pipeline
 
-Next you’ll create a resource in your AWS account using pipelines and GitOps workflows. you’ll define an infrastructure unit that creates AWS S3 bucket in your account, push your changes and create pull request (PR) to run a `plan` action, then run an `apply` action to create the bucket by merging your PR.
+Next you’ll create a resource in your AWS account using pipelines and GitOps workflows. You’ll define an infrastructure unit that creates an AWS S3 bucket in your account, push your changes and create pull request (PR) to run a `plan` action, then run an `apply` action to create the bucket by merging your PR.
 
 ### Adding a new S3 bucket infrastructure-unit
 
