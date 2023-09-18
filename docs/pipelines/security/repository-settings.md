@@ -4,7 +4,7 @@ Some paragraph about built-in GitHub repo controls...
 
 ## Branch protection
 
-We recommend having branch protection rules on your `main` branch
+We recommend having branch protection rules on your `main` branch...
 
 ![Branch Protection Rule](/img/pipelines/security/branch_protection_rule.png)
 
@@ -35,14 +35,14 @@ Add a CODEOWNERS file to infrastructure-pipelines repo...
 
 ## Ignoring changes to GitHub Actions Workflows
 
-Workflows should only be defined on main, changes to workflows should be ignored.
+Workflows should only be defined on main, changes to workflows should be ignored...
 
-Done by default, but this only applies to commits where _all_ changes match the path-ignore filter. See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-excluding-paths.
+Done by default, but this only applies to commits where _all_ changes match the path-ignore filter... See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-excluding-paths...
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "c8067431f3794eee49c7895ee16a1b87"
+  "hash": "a383d5b663579432d02a7073df2ae05b"
 }
 ##DOCS-SOURCER-END -->

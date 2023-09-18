@@ -23,10 +23,10 @@ Some intro paragraph...
 
 Some intro paragraph...
 
-### GitHub OIDC
+### OpenID Connect
 
 - Identity Providers in AWS
-- Trust policies
+- Trust policies to allow role assumption from workflow in pipelines on main
 
 ### No long lived credentials
 
