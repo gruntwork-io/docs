@@ -86,7 +86,7 @@ boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architectu
   --non-interactive
 ```
 
-Before pushing your changes, you will need to run an `apply` locally to provision the AWS IAM role that pipelines will use to deploy resources in your account. This should be the only time you need to manually run `apply` to provision resources for this account, moving forward pipelines will handle all the lifecycle of all resources for you, based on the code you commit to your repository. You will be prompted to create the terragrunt state and logs buckets, enter `y` when prompted, then hit enter.
+Before pushing your changes, you will need to run an `apply` locally to provision the AWS IAM role that pipelines will use to deploy resources in your account. This should be the only time you need to manually run `apply` to provision resources for this account, moving forward pipelines will handle the lifecycle of all resources for you, based on the code you commit to your repository. You will be prompted to create the terragrunt state and logs buckets, enter `y` when prompted, then hit enter.
 
 First, run a `plan` in the newly created `github-oidc-role` directory to see the resources that will be provisioned. Replace `<account name>` with the value you used for `AwsAccountName` in the boilerplate command above.
 
