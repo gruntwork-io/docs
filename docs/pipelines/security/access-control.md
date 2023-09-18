@@ -6,4 +6,12 @@ The `infrastructure-collaborators` team is for engineers who work on the IaC cod
 
 The diagram below visually illustrates the above teams:
 
-![Gruntwork Pipelines Permissions](/img/pipelines/how-it-works/pipelines_security.png)
+![Gruntwork Pipelines Permissions](/img/pipelines/security/github_teams.png)
+
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "local-copier",
+  "hash": "4f3bb8883016157e30a4e8de08614538"
+}
+##DOCS-SOURCER-END -->

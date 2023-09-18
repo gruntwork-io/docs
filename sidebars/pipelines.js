@@ -25,11 +25,6 @@ const sidebar = [
             id: "pipelines/architecture/index",
           },
           {
-            label: "Access Control",
-            type: "doc",
-            id: "pipelines/access-control/index",
-          },
-          {
             label: "Usage Data",
             type: "doc",
             id: "pipelines/data-collection/index",
@@ -52,6 +47,33 @@ const sidebar = [
             id: "pipelines/using-pipelines/index",
           }
         ],
+      },
+      {
+        label: "Security",
+        type: "category",
+        collapsible: false,
+        items: [
+          {
+            label: "Controls",
+            type: "doc",
+            id: "pipelines/security/controls",
+          },
+          {
+            label: "Dual-Repository Setup",
+            type: "doc",
+            id: "pipelines/security/dual-repository-setup",
+          },
+          {
+            label: "Access Control",
+            type: "doc",
+            id: "pipelines/security/access-control",
+          },
+          {
+            label: "Repository Settings",
+            type: "doc",
+            id: "pipelines/security/repository-settings",
+          }
+        ]
       },
       {
         label: "Maintain Pipelines",
