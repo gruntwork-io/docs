@@ -6,7 +6,7 @@ In this tutorial, we’ll walk you through the process of setting up Gruntwork P
 - Two GitHub repositories
   - `infrastructure-live` — Defines the infrastructure that is deployed to your AWS account
   - `infrastructure-pipelines` — Contains deployment definitions for your infrastructure
-- IAM role in your AWS account that allows GitHub Actions to assume a role in your AWS account using OIDC
+- An IAM role in your AWS account that allows GitHub Actions to assume a role in your AWS account using OIDC
 - An S3 Bucket deployed automatically by Gruntwork Pipelines
 
 ## Prerequisites
@@ -22,7 +22,7 @@ Before you begin, make sure you have:
 
 ## Setting up the repositories
 
-First, you’ll set up two repositories which will contain the definitions of your infrastructure as code (IaC) and another that defines deployment mechanisms for your IaC. Then, you’ll create a Github Personal Access Token (PAT) that allows workflows in the `infrastructure-live` repo to run workflows defined in `infrastructure-pipelines` and to allow the workflows defined in the `infrastructure-pipelines` repo to clone the `infrastructure-live` repo. Finally, you’ll set up your PAT as a GitHub Actions secret in each repository.
+First, you’ll set up two repositories. One will contain the definitions of your infrastructure as code (IaC) and another will define deployment mechanisms for your IaC. Then, you’ll create a Github Personal Access Token (PAT) that allows workflows in the `infrastructure-live` repo to run workflows defined in `infrastructure-pipelines` and to allow the workflows defined in the `infrastructure-pipelines` repo to clone the `infrastructure-live` repo. Finally, you’ll set up your PAT as a GitHub Actions secret in each repository.
 
 ### Create the repositories
 
@@ -48,7 +48,7 @@ First, navigate to the `infrastructure-live` repository. Select the `Settings` t
 Next, Navigate to the `infrastructure-pipelines` repository. Select the `Settings` tab, select the `Secrets and variables` drop down on the left side panel, then select `Actions`. Create two secrets named `INFRA_LIVE_ACCESS_TOKEN` and `GRUNTWORK_CODE_ACCESS_TOKEN`. Use your GitHub PAT as the value for both secrets.
 
 :::warning
-Using a single token with broad access is sufficient for a POC or demo environments. In a production deployment, we recommend using a mix of fine grained and classic PATS to apply the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) to all tokens used in pipelines workflows.
+Using a single token with broad access is sufficient for a POC or demo environments. In a production deployment, we recommend using a mix of fine grained and classic PATs to apply the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) to all tokens used in pipelines workflows.
 :::
 
 ## Generating code
@@ -86,7 +86,7 @@ boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architectu
   --non-interactive
 ```
 
-Before pushing your changes, you will need to run an `apply` locally to provision the AWS IAM role that pipelines will use to deploy resources in your account. This should be the only time you need to manually run `apply` to provision resources for this account, moving forward pipelines will handle all the lifecycle of all resources for you, based on the code you commit to your repository. You will be prompted to create the terragrunt state and logs buckets, enter `y` when prompted, then hit enter.
+Before pushing your changes, you will need to run an `apply` locally to provision the AWS IAM role that pipelines will use to deploy resources in your account. This should be the only time you need to manually run `apply` to provision resources for this account, moving forward pipelines will handle the lifecycle of all resources for you, based on the code you commit to your repository. You will be prompted to create the terragrunt state and logs buckets, enter `y` when prompted, then hit enter.
 
 First, run a `plan` in the newly created `github-oidc-role` directory to see the resources that will be provisioned. Replace `<account name>` with the value you used for `AwsAccountName` in the boilerplate command above.
 
@@ -101,7 +101,7 @@ Finally, push your changes to the `infrastructure-live` repository you created i
 
 ## Running your first pipeline
 
-Next you’ll create a resource in your AWS account using pipelines and GitOps workflows. you’ll define an infrastructure unit that creates AWS S3 bucket in your account, push your changes and create pull request (PR) to run a `plan` action, then run an `apply` action to create the bucket by merging your PR.
+Next you’ll create a resource in your AWS account using pipelines and GitOps workflows. You’ll define an infrastructure unit that creates an AWS S3 bucket in your account, push your changes and create pull request (PR) to run a `plan` action, then run an `apply` action to create the bucket by merging your PR.
 
 ### Adding a new S3 bucket infrastructure-unit
 
@@ -171,6 +171,6 @@ If you are not going to continue using Pipelines after this tutorial, clean up t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "98c3b3037b10648836be23ccea1faa8a"
+  "hash": "bcef836297194ef5b59e7f2e7df5ffdd"
 }
 ##DOCS-SOURCER-END -->
