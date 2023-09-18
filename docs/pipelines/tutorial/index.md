@@ -57,11 +57,11 @@ Next, you’ll generate the IaC and GitHub Actions Workflow code required to run
 
 ### Infrastructure pipelines
 
-First, generate the `infrastructure-pipelines` repository code using Boilerplate. Use the following command replacing `<your GitHub organization name>` with the name of your GitHub organization.
+First, generate the `infrastructure-pipelines` repository code using Boilerplate. Clone the newly created `infrastructure-pipelines` repository, cd into the repo directory, then use the following command replacing `<your GitHub organization name>` with the name of your GitHub organization.
 
 ```bash
 boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/infrastructure-pipelines?ref=devops-foundations" \
-  --output-folder ./infrastructure-pipelines \
+  --output-folder . \
   --var InfraLiveRepoName="infrastructure-live" \
   --var GithubOrg="<your GitHub organization name>" \
   --non-interactive
@@ -71,11 +71,11 @@ Push your changes to the `infrastructure-pipelines` repository you created in [C
 
 ### Infrastructure live
 
-Next, generate the `infrastructure-live` repository code using Boilerplate. Use the following command, replacing the values wrapped in `<>` with real values for your organization.
+Next, generate the `infrastructure-live` repository code using Boilerplate. Clone the newly created `infrastructure-live` repository, cd into the repo directory, then use the following command, replacing the values wrapped in `<>` with real values for your organization.
 
 ```bash
 boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/single-account-pipeline?ref=devops-foundations" \
-  --output-folder ./infrastructure-live \
+  --output-folder . \
   --var AwsAccountName="<friendly name for your AWS account (e.g., dev)>" \
   --var AwsAccountId="'<account id for your AWS account>'" \
   --var AwsAccountEmail="<e-mail address associate with root user for account>" \
@@ -86,7 +86,7 @@ boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architectu
   --non-interactive
 ```
 
-Before pushing your changes, you will need to run an `apply` locally to provision the AWS IAM role that pipelines will use to deploy resources in your account. This should be the only time you need to manually run `apply` to provision resources for this account, moving forward pipelines will handle all the lifecycle of all resources for you, based on the code you commit to your repository.
+Before pushing your changes, you will need to run an `apply` locally to provision the AWS IAM role that pipelines will use to deploy resources in your account. This should be the only time you need to manually run `apply` to provision resources for this account, moving forward pipelines will handle all the lifecycle of all resources for you, based on the code you commit to your repository. You will be prompted to create the terragrunt state and logs buckets, enter `y` when prompted, then hit enter.
 
 First, run a `plan` in the newly created `github-oidc-role` directory to see the resources that will be provisioned. Replace `<account name>` with the value you used for `AwsAccountName` in the boilerplate command above.
 
@@ -109,7 +109,16 @@ First, create the file structure that will contain the infrastructure unit that 
 
 ```bash
 mkdir -p <account name>/<region>/<account name>/data-storage/s3
+touch <account name>/<region>/region.hcl
 touch <account name>/<region>/<account name>/data-storage/s3/terragrunt.hcl
+```
+
+Add the following content to the `region.hcl` file created above, replacing `<your region>` with the region you would like to deploy infrastructure in.
+
+```hcl title="<account name>/<region>/region.hcl"
+locals {
+  aws_region = "<your region>"
+}
 ```
 
 Next, add the terragrunt code to create an S3 bucket. Copy the terragrunt code below, replacing `<your S3 bucket name>` with your desired bucket name. S3 bucket names need to be globally unique, so we've provided a helper script below to help generate the name of your bucket. You may name the bucket whatever you like, just make sure it’s unique.
@@ -162,6 +171,6 @@ If you are not going to continue using Pipelines after this tutorial, clean up t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "a6646618010f19a77f88a220efa209c1"
+  "hash": "98c3b3037b10648836be23ccea1faa8a"
 }
 ##DOCS-SOURCER-END -->
