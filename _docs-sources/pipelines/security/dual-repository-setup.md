@@ -6,6 +6,8 @@
         - Workflows run in this repository only on code that is in the main branch
     - infrastructure-live
         - define AWS code, write access to infra admins and infra collaborator
-
 - Access to the repositories is limited to three teams
+    - infrastructure-administrators
+    - infrastructure-collaborators
+    - ci-code-read-only
     - See access control

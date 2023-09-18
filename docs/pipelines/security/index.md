@@ -1,17 +1,46 @@
 # Controls
 
-- Defense in depth
-- Apply guards
-- Destroy guards
-- Token strategy
-- AWS Credentials + GitHub OIDC
-    - No long lived credentials
-    - See dual repository setup
+Some paragraph about controls...
+
+## Defense in depth
+
+intro paragraph
+
+### Token strategy
+
+- Three tokens
+- Exploiting tokens
+
+### Apply guards
+
+- Apply can only be run on code that exists on main
+
+### Destroy guards
+
+- Destroy can only be run on code that exists in a previous commit on main but _no longer_ exists on main
+
+## AWS Credentials
+
+intro paragraph
+
+### GitHub OIDC
+
+- Identity Providers in AWS
+- Trust policies
+
+### No long lived credentials
+
+- STS tokens are scoped to 1 hour by default
+
+### Accessing AWS resources
+
+- Code that can access AWS resources can only be run on `main` from workflows from the `infrastructure-pipelines` repository.
+- See dual-repo setup page for more info
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "4eb89b1488db6942a849aad6be9a9e0b"
+  "hash": "81841fc528ce3dfd2da449d9428eac30"
 }
 ##DOCS-SOURCER-END -->
