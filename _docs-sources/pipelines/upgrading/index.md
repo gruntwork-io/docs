@@ -48,11 +48,11 @@ For a simple proof of concept, the default repo configuration will suffice. Befo
 
 ### Use boilerplate to generate code
 
-Generate the `infrastructure-pipelines` repository code using Boilerplate. Use the following command replacing `<your GitHub organization name>` with the name of your GitHub organization and `<your infrastructure-live repo name>` with the name of your infrastructure-live repository.
+Next, generate the `infrastructure-pipelines` repository code using Boilerplate. Clone the newly created `infrastructure-pipelines` repository, cd into the repo directory, then use the following command replacing `<your GitHub organization name>` with the name of your GitHub organization and `<your infrastructure-live repo name>` with the name of your infrastructure-live repository.
 
 ```bash
 boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/infrastructure-pipelines?ref=devops-foundations" \
-  --output-folder ./infrastructure-pipelines \
+  --output-folder . \
   --var InfraLiveRepoName="<your infrastructure-live repo name>" \
   --var GithubOrg="<your GitHub organization name>" \
   --non-interactive
@@ -72,9 +72,11 @@ To simplify the migration process, we have developed a template that creates all
 
 Use the following command, replacing the values wrapped in `<>` with real values for your organization. The `AwsAccountName` variable should be the name of the top level directory that represents the AWS account that will use Modern Gruntwork Pipelines (e.g, `dev`). You will need to run this command for each account that you would like to upgrade to Modern Gruntwork Pipelines.
 
+cd into your `infrastructure-live` repository and run the following command:
+
 ```bash
 boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/pipelines-edr-migration" \
-    --output-folder ./infrastructure-live \
+    --output-folder . \
     --var InfraPipelinesRepoName="<your infrastructure-pipelines repo name>" \
     --var GithubOrg="<your GitHub organization name>" \
     --var AwsAccountName="<friendly name for your AWS account (e.g., dev)>"  \
