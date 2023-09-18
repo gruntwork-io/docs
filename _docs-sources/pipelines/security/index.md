@@ -4,7 +4,7 @@ Some paragraph about controls...
 
 ## Defense in depth
 
-intro paragraph
+Some intro paragraph...
 
 ### Token strategy
 
@@ -21,7 +21,7 @@ intro paragraph
 
 ## AWS Credentials
 
-intro paragraph
+Some intro paragraph...
 
 ### GitHub OIDC
 

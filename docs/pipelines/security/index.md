@@ -4,7 +4,7 @@ Some paragraph about controls...
 
 ## Defense in depth
 
-intro paragraph
+Some intro paragraph...
 
 ### Token strategy
 
@@ -21,7 +21,7 @@ intro paragraph
 
 ## AWS Credentials
 
-intro paragraph
+Some intro paragraph...
 
 ### GitHub OIDC
 
@@ -41,6 +41,6 @@ intro paragraph
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "81841fc528ce3dfd2da449d9428eac30"
+  "hash": "3efd74a6a969b9bfc664e57425b722d7"
 }
 ##DOCS-SOURCER-END -->
