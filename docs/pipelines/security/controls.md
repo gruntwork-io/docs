@@ -12,6 +12,8 @@ Pipelines uses GitHub Actions in both repositories to define workflows. Workflow
 
 Workflows in `infrastructure-live` call workflows that are defined on the `main` branch of `infrastructure-pipelines`. This means that any change to the workflow must go through normal pull request approval processes. Further, the IAM role that Pipelines uses has a [trust policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html) that specifies it can only be assumed from workflows running on the `main` branch. If workflows are run from another branch, retrieving short lived tokens will fail.
 
+<!-- TODO: Add link to Andrew's branch protection PR here once merged -->
+
 ## Token strategy
 
 Gruntwork Pipelines uses a series of GitHub Personal Access Tokens (PAT) to allow cross repository code and workflow access. This approach ensures that each token has the minimal required permissions to perform it's tasks. In the event that a token
@@ -71,6 +73,6 @@ As highlighted in [dual-repository approach](#dual-repository-approach), because
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "487b9989f3e40af1abb3623391ba625e"
+  "hash": "2978b6457aaa183c811b2500d3077566"
 }
 ##DOCS-SOURCER-END -->
