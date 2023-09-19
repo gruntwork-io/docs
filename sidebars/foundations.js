@@ -14,11 +14,7 @@ const sidebar = [
         type: "category",
         collapsed: false,
         items: [
-          {
-            label: "Elements of DevOps Foundations",
-            type: "doc",
-            id: "foundations/overview/index",
-          },
+          "foundations/overview/index",
         ],
       },
       {
@@ -26,7 +22,7 @@ const sidebar = [
         type: "category",
         collapsed: false,
         items: [
-          "foundations/accounts/overview",
+          "foundations/accounts/index",
           "foundations/accounts/prerequisites",
           "foundations/accounts/enable-control-tower",
           "foundations/accounts/add-account",
@@ -38,7 +34,7 @@ const sidebar = [
         type: "category",
         collapsed: false,
         items: [
-          "foundations/network-topology/overview",
+          "foundations/network-topology/index",
         ],
       },
       {
@@ -46,7 +42,7 @@ const sidebar = [
         type: "category",
         collapsed: false,
         items: [
-          "foundations/terraform/overview",
+          "foundations/terraform/index",
           "foundations/terraform/folder_structure",
           {
             label: "Module Defaults",
@@ -76,21 +72,21 @@ const sidebar = [
         label: "Pipelines",
         type: "category",
         collapsed: false,
-        items: ["foundations/ci-cd/overview"],
+        items: ["foundations/ci-cd/index"],
       },
       {
         label: "Running apps",
         type: "category",
         collapsed: false,
         items: [
-          "foundations/running-apps/overview",
+          "foundations/running-apps/index",
         ],
       },
       {
         label: "Automatic Updates",
         type: "category",
         collapsed: false,
-        items: ["foundations/maintenance/overview"],
+        items: ["foundations/maintenance/index"],
       },
       // {
       //   type: "link",
