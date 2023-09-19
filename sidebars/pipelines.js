@@ -42,10 +42,15 @@ const sidebar = [
             id: "pipelines/hello-world/index",
           },
           {
+            label: "Machine Users",
+            type: "doc",
+            id: "pipelines/using-pipelines/machine-users",
+          },
+          {
             label: "Using Pipelines",
             type: "doc",
             id: "pipelines/using-pipelines/index",
-          }
+          },
         ],
       },
       {
