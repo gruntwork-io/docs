@@ -50,7 +50,7 @@ Navigate to the repositories tab of your organization or personal GitHub account
 ![GitHub form for creating a new repository](/img/pipelines/tutorial/create_new_repo_form.png)
 
 :::warning
-For a simple proof of concept, the default repo configuration will suffice. Before using these repositories in a [production environment](../production-use), we recommend setting up a [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) for your `main` branch. At a minimum, we recommend enabling requiring a pull request before merging with at least one reviewer required.
+For a simple proof of concept, the default repo configuration will suffice. Before using these repositories in a production environment, we recommend setting up a [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) for your `main` branch. At a minimum, we recommend enabling requiring a pull request before merging with at least one reviewer required.
 :::
 
 ### Setting up secrets
@@ -62,7 +62,7 @@ First, navigate to the `infrastructure-live` repository. Select the `Settings` t
 Next, Navigate to the `infrastructure-pipelines` repository. Select the `Settings` tab, select the `Secrets and variables` drop down on the left side panel, then select `Actions`. Create two secrets named `INFRA_LIVE_ACCESS_TOKEN` and `GRUNTWORK_CODE_ACCESS_TOKEN`. Use your GitHub PAT as the value for both secrets.
 
 :::warning
-Using a single token with broad access is sufficient for a POC or demo environments. In a [production environment](./production-use), we recommend using a mix of fine-grained and classic PATs to apply the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) to all tokens used in Pipelines workflows.
+Using a single token with broad access is sufficient for a POC or demo environments. In a production environment, we recommend using a mix of fine-grained and classic PATs to apply the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) to all tokens used in Pipelines workflows.
 :::
 
 ## Generating code
