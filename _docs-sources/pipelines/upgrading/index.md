@@ -1,8 +1,16 @@
 # Upgrading from the ECS Deploy Runner
 
-This migration guide is intended for those running the ECS Deploy Runner (EDR) based Gruntwork Pipelines upgrading to Modern Gruntwork Pipelines. Modern Gruntwork Pipelines will be referred to simply as Pipelines in the rest of this document, while the prior version will be referred to as EDR Pipelines
+This migration guide is intended for those running the previous version of Gruntwork Pipelines, known as "ECS Deploy Runner" (EDR), who want to upgrade to the latest version of Gruntwork Pipelines. We will refer to the latest version of Gruntwork Pipelines simply as "Pipelines" in the rest of this document.
 
-To accomplish this task, We'll be using EDR Pipelines to deploy Pipelines, then using Pipelines to destroy EDR Pipelines.
+To accomplish this task, we'll be using ECS Deploy Runner to deploy Pipelines, then using Pipelines to destroy ECS Deploy Runner.
+
+## What's new
+
+ECS Deploy Runner was designed as a highly secure approach to CI/CD for infrastructure. With Pipelines, we adapted the security principles built into ECS Deploy Runner to embrace modern CI system functionality, leaning heavily on GitHub Actions native functionality to create a more streamlined setup experience, and better overall UX. The major changes in Pipelines include:
+
+- **Easier setup.** There are no resources to deploy in AWS (other than granting an OIDC token), and setting up Pipelines amounts to configuring a few GitHub Actions workflows.
+- **Pull-request centric UX.** Pipelines organizes the user experience around the pull request, adding rich indicationg of everything that occurred directly in the pull request comments.
+- **Streamlined updates.** Pipelines has been designed to make getting the latest version published by Gruntwork an easy experience.
 
 ## Prerequisites
 
@@ -11,25 +19,27 @@ To accomplish this task, We'll be using EDR Pipelines to deploy Pipelines, then 
 - Ability to add users to your GitHub Organization and the Gruntwork Developer Portal
 - Permissions to create secrets in GitHub repositories
 
-## Token Setup
+## GitHub Personal Access Token Setup
 
-Pipelines uses several tokens across workflows, with each token possessing only the minimal set of permissions necessary for its specific task. To uphold the principle of least privilege for each token, we advise maintaining two distinct users: the pre-existing CI user and a new CI Read Only user. The CI Read Only user should have access to read your infrastructure-live repository, infrastructure-modules repository (if applicable), and the Gruntwork Library.
+Pipelines uses several GitHub Personal Access Tokens (PATs) across workflows, with each PAT possessing only the minimal set of permissions necessary for its specific task. To uphold the principle of least privilege for each PAT, we advise maintaining two distinct users: the pre-existing CI user and a new CI Read Only user. The CI Read Only user should have access to read your `infrastructure-live` repository, `infrastructure-modules` repository (if applicable), and the Gruntwork Library.
 
-### Creating a CI Read Only User
+### Create a CI Read Only User
 
-Follow the steps on [signing up a new GitHub account](https://docs.github.com/en/get-started/signing-up-for-github/signing-up-for-a-new-github-account) to create a new user. If you have an e-mail address for your existing CI user, we recommend using plus addressing, such as `ci+read-only@your-domain.com`, as the e-mail address for the new account.
+Follow the steps on [signing up a new GitHub account](https://docs.github.com/en/get-started/signing-up-for-github/signing-up-for-a-new-github-account) to create a new user. If you have an email address for your existing CI user, we recommend using plus addressing, such as `ci+read-only@your-domain.com`, as the email address for the new account.
 
 Add the new user to your GitHub org, adding it to a Team with read only access to your `infrastructure-live` and `infrastructure-modules` repository (if applicable). Follow the steps on [adding a user to the Gruntwork Developer portal](../../developer-portal/invite-team.md) to grant the CI Read Only user access to the Gruntwork Library.
 
-### Creating tokens for Workflows
+### Create GitHub Personal Access Tokens for GitHub Actions Workflows
+
+Next, create the following PATs for the new CI Read Only user. We'll use these tokens shortly.
 
 - `GRUNTWORK_CODE_ACCESS_TOKEN`: Classic token with READ access to repos. This should should be associated with the `CI Read Only` user created in [creating a CI Read only user](#creating-a-ci-read-only-user).
-- `PIPELINES_DISPATCH_TOKEN`: Fine Grained token that only has workflow permissions to execute workflows in the `infrastructure-pipelines` repository. This token should be associated with your existing CI user.
+- `PIPELINES_DISPATCH_TOKEN`: Fine-grained token that only has workflow permissions to execute workflows in the `infrastructure-pipelines` repository. This token should be associated with your existing CI user.
 - `INFRA_LIVE_ACCESS_TOKEN`: Fine grained token with READ and WRITE access to your `infrastructure-live` repository. This token should be associated with your existing CI user.
 
 ## Creating your infrastructure-pipelines repository
 
-Pipelines uses a dual-repository approach to isolate infrastructure as code (IaC) code definitions and IaC deployment mechanisms. This approach signifies that a single, highly secured repository, with write access limited to a specific group of administrators, contains both the code responsible for deploying your IaC and the access to your AWS accounts. Workflows within this repository leverage OpenId Connect (OIDC) and AWS IAM roles for creating short-lived session credentials, as opposed to storing long-lived credentials as secrets.
+Pipelines separates code (IaC) and deployment using two different git repositories. One repository holds both the deployment code and the AWS account access, and assigns write privileges only to a select group of admins. This repository uses OpenID Connect and AWS IAM roles to generate temporary session credentials, avoiding the need to store long-lasting secrets.
 
 We strongly recommend naming this repository `infrastructure-pipelines`. All code generated assumes the repository will be located at `<your GitHub Organization>/infrastructure-pipelines`, so using a different name will require manual work on your behalf.
 
@@ -48,7 +58,7 @@ For a simple proof of concept, the default repo configuration will suffice. Befo
 
 ### Use boilerplate to generate code
 
-Next, generate the `infrastructure-pipelines` repository code using Boilerplate. Clone the newly created `infrastructure-pipelines` repository, cd into the repo directory, then use the following command replacing `<your GitHub organization name>` with the name of your GitHub organization and `<your infrastructure-live repo name>` with the name of your infrastructure-live repository.
+Next, generate the `infrastructure-pipelines` repository code using [Boilerplate](https://github.com/gruntwork-io/boilerplate), a tool authored by Gruntwork for generating files and folders specially for DevOps use cases. Clone the newly created `infrastructure-pipelines` repository, `cd` into the repo directory, then use the following command replacing `<your GitHub organization name>` with the name of your GitHub organization and `<your infrastructure-live repo name>` with the name of your infrastructure-live repository.
 
 ```bash
 boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/infrastructure-pipelines?ref=devops-foundations" \
@@ -62,7 +72,7 @@ Push your changes up to the remote repository.
 
 ## Creating AWS IAM roles for Pipelines
 
-In Pipelines, each of your accounts must have an AWS IAM role. This role shares the same permissions as the one used in EDR-based Pipelines, except for the new role's trust policy, which enables GitHub Actions Workflows running in your `infrastructure-pipelines` to assume the role using OIDC. This capability allows workflows to create and utilize short-lived session tokens whenever they run, in contrast to relying on long-lived credentials stored as secrets.
+In Pipelines, each of your accounts must have an AWS IAM role. This role shares the same permissions as the one used in ECS Deploy Runner, except for the new role's trust policy, which enables GitHub Actions Workflows running in your `infrastructure-pipelines` to assume the role using OIDC. This capability allows workflows to create and utilize short-lived session tokens whenever they run, in contrast to relying on long-lived credentials stored as secrets.
 
 For more information see [security hardening with OpenID Connect](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect) and [OpenID Connect in AWS](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services).
 
@@ -72,7 +82,7 @@ To simplify the migration process, we have developed a template that creates all
 
 Use the following command, replacing the values wrapped in `<>` with real values for your organization. The `AwsAccountName` variable should be the name of the top level directory that represents the AWS account that will use Pipelines (e.g, `dev`). You will need to run this command for each account that you would like to upgrade to Pipelines.
 
-cd into your `infrastructure-live` repository and run the following command:
+Now `cd` into your `infrastructure-live` repository and run the following command:
 
 ```bash
 boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/pipelines-edr-migration" \
@@ -91,7 +101,7 @@ We recommend trying out Pipelines in non-production environments first, before r
 
 ### Planning and applying
 
-Create a new branch for your changes, commit your changes to your branch, then push your branch. Next, create a PR to merge your branch into `main` (the default branch in your repository). The EDR version of Pipelines will detect the change and run a `plan` to create the IAM Roles, OpenID Connect providers, and all requires IAM policies. Review the `plan` output and confirm it looks as expected.
+Create a new branch for your changes, commit your changes to your branch, then push your branch. Next, create a PR to merge your branch into `main` (the default branch in your repository). The ECS Deploy Runner will detect the change and run a `plan` to create the IAM Roles, OpenID Connect providers, and all requires IAM policies. Review the `plan` output and confirm it looks as expected.
 
 Once you have reviewed the `plan` output and gotten any necessary approvals, merge the PR. The EDR version of Pipelines will run `apply` to create the resources.
 
@@ -101,11 +111,11 @@ Pipelines requires the use of GitHub personal access tokens (PAT) to allow workf
 
 ### Infrastructure live
 
-Navigate to your `infrastructure-live` repository (it may be named `<your-company>-infrastructure-live`). Select the **Settings** tab, select the **Secrets and variables** drop down on the left side panel, then select **Actions**. Create three secrets named `GRUNTWORK_CODE_ACCESS_TOKEN`, `PIPELINES_DISPATCH_TOKEN`, and `INFRA_LIVE_ACCESS_TOKEN`. Use the corresponding value from the tokens you created in [creating tokens for workflows](#creating-tokens-for-workflows) for the secret value.
+Navigate to your `infrastructure-live` repository (it may be named `<your-company>-infrastructure-live`). Select the **Settings** tab, select the **Secrets and variables** drop down on the left side panel, then select **Actions**. Create three secrets named `GRUNTWORK_CODE_ACCESS_TOKEN`, `PIPELINES_DISPATCH_TOKEN`, and `INFRA_LIVE_ACCESS_TOKEN`. Use the corresponding value from the tokens you created in [GitHub Personal Access Token Setup](#github-personal-access-token-setup) for the secret value.
 
 ### Infrastructure pipelines
 
-Navigate to the `infrastructure-pipelines` repository. Select the **Settings** tab, select the **Secrets and variables** drop down on the left side panel, then select **Actions**. Create two secrets named `INFRA_LIVE_ACCESS_TOKEN` and `GRUNTWORK_CODE_ACCESS_TOKEN`. Use the corresponding value from the tokens you created in [creating tokens for workflows](#creating-tokens-for-workflows) for the secret value.
+Navigate to the `infrastructure-pipelines` repository. Select the **Settings** tab, select the **Secrets and variables** drop down on the left side panel, then select **Actions**. Create two secrets named `INFRA_LIVE_ACCESS_TOKEN` and `GRUNTWORK_CODE_ACCESS_TOKEN`. Use the corresponding value from the tokens you created in [GitHub Personal Access Token Setup](#github-personal-access-token-setup) for the secret value.
 
 ## Updating your accounts file
 
@@ -119,16 +129,16 @@ The data required in `accounts.yml` is the same that is required in `accounts.js
 cat accounts.json | yq -P > accounts.yml
 ```
 
-Confirm the data matches between your `accounts.json` and `accounts.yml`. If you are upgrading all of your deployments at once, you may delete your `accounts.json` file. If you will use both EDR Pipelines and Pipelines at the same time, do not delete `accounts.json`.
+Confirm the data matches between your `accounts.json` and `accounts.yml`. If you are upgrading all of your deployments at once, you may delete your `accounts.json` file. If you will use both ECS Deploy Runner and Pipelines at the same time, do not delete `accounts.json`.
 
 ## Adding new workflows in your infrastructure-live repository
 
-Similar to the EDR version of Pipelines, Pipelines employ GitHub Actions as the computing layer to execute actions on your infrastructure. However,  Pipelines uses a different workflow with a smaller number of steps and the Pipelines binary responsible for orchestrating changes. To simplify the upgrade process, we've created a template that can be used to generate the workflow with a small number of parameters. In both workflows, the workflow file is named Pipelines.yml is utilized, so generating the new workflow will overwrite the old.
+Similar to ECS Deploy Runner, Pipelines employs GitHub Actions as the computing layer to execute actions on your infrastructure. However,  Pipelines uses a different workflow with a smaller number of steps and the Pipelines binary responsible for orchestrating changes. To simplify the upgrade process, we've created a template that can be used to generate the workflow with a small number of parameters. In both workflows, the workflow file named `pipelines.yml` is utilized, so generating the new workflow will overwrite the old.
 
 :::warning
-If you plan to use EDR Pipelines and Pipelines at the same time, to migrate from one to the other, you will need to rename your existing `pipelines.yml` to another name before generating the new `pipelines.yml` for Pipelines.
+If you plan to use ECS Deploy Runner and Pipelines at the same time, to migrate from one to the other, you will need to rename your existing `pipelines.yml` to another name before generating the new `pipelines.yml` for Pipelines.
 
-You will also need to ignore changes to files in account based directories that you have and have not migrated yet using `paths-ignore` in the appropriate workflow file. For example, if you have migrated your development account to Pipelines, you would add `development/` to `paths-ignore` in the EDR Pipelines workflow yaml, then add `development` to `paths` in the Pipelines workflow yaml.
+You will also need to ignore changes to files in account based directories that you have and have not migrated yet using `paths-ignore` in the appropriate workflow file. For example, if you have migrated your development account to Pipelines, you would add `development/` to `paths-ignore` in the ECS Deploy Runner workflow yaml, then add `development` to `paths` in the Pipelines workflow yaml.
 
 See the GitHub docs on [including and excluding paths](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-including-paths) to learn more.
 :::
@@ -147,7 +157,7 @@ Next, create a branch, commit your changes, and push your branch to the remote r
 
 ## Remove old ECS Deploy Runner infrastructure
 
-After you have confirmed Pipelines is running in your account(s), you can destroy the infrastructure that the EDR Pipelines used. With Pipelines now fully functional, you can initiate the infrastructure destruction process by submitting a pull request (PR) for each of the directories containing the EDR configuration. Subsequently, you can submit a final PR to remove any remaining EDR configuration within your _envcommon directory.
+After you have confirmed Pipelines is running in your account(s), you can destroy the infrastructure that the ECS Deploy Runner used. With Pipelines now fully functional, you can initiate the infrastructure destruction process by submitting a pull request (PR) for each of the directories containing the EDR configuration. Subsequently, you can submit a final PR to remove any remaining EDR configuration within your _envcommon directory.
 
 ### Delete code for old pipelines
 
