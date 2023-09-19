@@ -25,11 +25,6 @@ const sidebar = [
             id: "pipelines/architecture/index",
           },
           {
-            label: "Access Control",
-            type: "doc",
-            id: "pipelines/access-control/index",
-          },
-          {
             label: "Usage Data",
             type: "doc",
             id: "pipelines/data-collection/index",
@@ -52,6 +47,23 @@ const sidebar = [
             id: "pipelines/using-pipelines/index",
           }
         ],
+      },
+      {
+        label: "Security",
+        type: "category",
+        collapsible: false,
+        items: [
+          {
+            label: "Controls",
+            type: "doc",
+            id: "pipelines/security/controls",
+          },
+          {
+            label: "Repository Access",
+            type: "doc",
+            id: "pipelines/security/repository-access",
+          },
+        ]
       },
       // TODO write these docs once we identify common cases
       // {
