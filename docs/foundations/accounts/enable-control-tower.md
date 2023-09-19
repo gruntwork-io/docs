@@ -132,12 +132,12 @@ Control Tower is now configured! Next you should consider:
 
 - [Configuring IAM Identity Center](https://docs.aws.amazon.com/singlesignon/latest/userguide/get-started-choose-identity-source.html) for Access Control.
 - [Configuring any controls or SCPs](https://docs.aws.amazon.com/controltower/latest/userguide/controls.html) your organization requires.
-- Set up your Gruntwork Terraform Foundations (coming soon)
+- [Set up your Gruntwork Terraform Foundations](/foundations/terraform)
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "aa0b9c117536e022d733bec1b638136d"
+  "hash": "1ab5f9b0675253c4f0f2e3141835115b"
 }
 ##DOCS-SOURCER-END -->

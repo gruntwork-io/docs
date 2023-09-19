@@ -1,1 +1,1 @@
-# Terraform Foundations Placeholder
+# Getting Started
