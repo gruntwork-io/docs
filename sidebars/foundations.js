@@ -22,7 +22,7 @@ const sidebar = [
         ],
       },
       {
-        label: "AWS Account Foundations",
+        label: "Landing Zone",
         type: "category",
         collapsed: false,
         items: [
@@ -68,7 +68,7 @@ const sidebar = [
         ],
       },
       {
-        label: "CI/CD Foundations",
+        label: "Pipelines",
         type: "category",
         collapsed: false,
         items: [
@@ -92,7 +92,7 @@ const sidebar = [
         ]
       },
       {
-        label: "Running apps",
+        label: "Running Apps",
         type: "category",
         collapsed: false,
         items: [
