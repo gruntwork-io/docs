@@ -1,17 +1,27 @@
 # What is Gruntwork Pipelines?
 
-Gruntwork Pipelines is a framework for securely deploying infrastructure as code to your AWS environments using GitOps workflows. Gruntwork Pipelines runs as a binary and series of steps in your CI system, determining what _actions_ need to be taken, in which _environments_, based on the _infrastructure changes_ that occurred.
+Gruntwork Pipelines is a framework for securely deploying infrastructure as code to your AWS environments using GitOps workflows. Gruntwork Pipelines runs as a binary and series of steps in your CI system, determining what _actions_ need to be taken, in which _environments_, based on the [_infrastructure changes_](#infrastructure-change) that occurred.
 
-## Isolating IaC definitions and deployment
+## Common Terms
 
-Due to the necessity of having administrative permissions in your CI system to deploy infrastructure, Gruntwork Pipelines separates where changes occur from where they are applied. Infrastructure is _defined_ in one GitHub repository (commonly named `infrastructure-live`) and the code that _deploys_ your infrastructure is stored in a different GitHub repository (commonly named `infrastructure-pipelines`). This is done to allow you to use the principle of least privilege to each repository. For more information on pipelines’ security model see [controls](../security/controls.md) and [repository access](../security/repository-access.md).
+Gruntwork Pipelines uses specific terminology to describe code changes and operations that occur as a result of to changes. This section will familiarize you with the terminology used throughout the Gruntwork Pipelines documentation.
 
-This allows your team to have many collaborators for your IaC in your `infrastructure-live` repository, while permitting a subset of administrators access to the workflows in `infrastructure-pipelines` that can access your AWS environments.
+### Infrastructure change
 
-Workflows running in the `infrastructure-live` repository trigger workflows to run in `infrastructure-pipelines`, which runs the appropriate terragrunt command on the changed code to perform changes to your infrastructure. Pipelines uses OIDC to assume a role in your AWS account with a policy that limits access exclusively to the `main` branch of your `infrastructure-pipelines` repository. No other repository or branch can leverage this role to gain access to your AWS accounts.
+When you edit any infrastructure-as-code that needs to be "applied" to your cloud account (e.g. AWS or GCP), you are making an _infrastructure change_. We sometime call these an "infra-change" for short.
 
-![Gruntwork Pipelines Architecture](/img/pipelines/how-it-works/pipelines_architecture.png)
+Infra-changes can involve updates to OpenTF (Terraform) code, Packer templates, Docker files, Kubernetes Helm charts, or any other type of file that represents a desired state of your infrastructure and that needs to be somehow applied. A classic example is changing some variables on an instance of a Terraform module. By changing these variables you are essentially requesting that some API calls eventually be made to AWS to update your infrastructure in some way (in this case, by running `terraform apply` at some point).
 
-:::info Previous Version Available
-You are reading documentation for Gruntwork Pipelines. The previous version of Gruntwork Pipelines is known as [ECS Deploy Runner](../../ecs-deploy-runner/overview/).
-:::
+Gruntwork Pipelines assumes that infra-changes are committed via git, usually by first opening a Pull Request. When you open a Pull Request, you are essentially "proposing" an infra-change.
+
+### Infrastructure change set
+
+Sometimes users create a Pull Request that changes more than one file at a time. And sometimes a change to a single file affects how multiple other files will be "applied" to your live cloud account. For example, many users of Terragrunt use a pattern known as "envcommon" as a way to specify a default set of values for modules.
+
+When more than one infra-change is made at a time, we call this an _infrastructure-change set._ We sometimes call this an "infra-change set" for short.
+
+### Pipelines actions
+
+When a user proposes to make an infra-change by opening a Pull Request, we want to take some kind of "action" in response to that proposed-change. For example, we may want to run a `terragrunt plan` and estimate the cost of applying this Terragrunt plan. We call these _pipelines actions._
+
+Gruntwork is responsible for adding support for a growing library of Pipelines Actions and we will continue to add more over time.
