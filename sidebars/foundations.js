@@ -33,12 +33,12 @@ const sidebar = [
         ],
       },
       {
-        label: "Terraform Foundations",
+        label: "IaC Foundations",
         type: "category",
         collapsed: false,
         items: [
-          "foundations/terraform/index",
-          "foundations/terraform/folder_structure",
+          "foundations/iac/index",
+          "foundations/iac/folder_structure",
           {
             label: "Module Defaults",
             type: "category",
@@ -47,17 +47,17 @@ const sidebar = [
               {
                 label: "What are Module Defaults?",
                 type: "doc",
-                id: "foundations/terraform/module_defaults/index",
+                id: "foundations/iac/module_defaults/index",
               },
               {
                 label: "Defining Module Defaults",
                 type: "doc",
-                id: "foundations/terraform/module_defaults/defining",
+                id: "foundations/iac/module_defaults/defining",
               },
               {
                 label: "Using Module Defaults",
                 type: "doc",
-                id: "foundations/terraform/module_defaults/usage",
+                id: "foundations/iac/module_defaults/usage",
               },
             ],
           },
@@ -69,12 +69,13 @@ const sidebar = [
         collapsed: false,
         items: ["foundations/ci-cd/index"],
       },
-      {
-        label: "Maintenance Foundations",
-        type: "category",
-        collapsed: false,
-        items: ["foundations/maintenance/index"],
-      },
+      // TODO: Disabling for now until it's an offering
+      // {
+      //   label: "Maintenance Foundations",
+      //   type: "category",
+      //   collapsed: false,
+      //   items: ["foundations/maintenance/index"],
+      // },
       // {
       //   type: "link",
       //   label: "Knowledge Base",
