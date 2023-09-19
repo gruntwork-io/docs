@@ -10,7 +10,7 @@ Gruntwork Pipelines uses specific terminology to describe code changes and opera
 
 When you edit any infrastructure-as-code that needs to be "applied" to your cloud account (e.g. AWS or GCP), you are making an _infrastructure change_. We sometime call these an "infra-change" for short.
 
-Infra-changes can involve updates to OpenTF (Terraform) code, Packer templates, Docker files, Kubernetes Helm charts, or any other type of file that represents a desired state of your infrastructure and that needs to be somehow applied. A classic example is changing some variables on an instance of a Terraform module. By changing these variables you are essentially requesting that some API calls eventually be made to AWS to update your infrastructure in some way (in this case, by running `terraform apply` at some point).
+Infra-changes can involve updates to OpenTF, Terraform, or Terragrunt code, or any other type of file that represents a desired state of your infrastructure and that needs to be somehow applied. A classic example is changing some variables on an instance of a Terraform module. By changing these variables you are essentially requesting that some API calls eventually be made to AWS to update your infrastructure in some way (in this case, by running `terraform apply` at some point).
 
 Gruntwork Pipelines assumes that infra-changes are committed via git, usually by first opening a Pull Request. When you open a Pull Request, you are essentially "proposing" an infra-change.
 
@@ -30,6 +30,6 @@ Gruntwork is responsible for adding support for a growing library of Pipelines A
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "8d01d39f231a60d238185d6784fb2663"
+  "hash": "cfb6101446575be147089a6e56ab1f35"
 }
 ##DOCS-SOURCER-END -->
