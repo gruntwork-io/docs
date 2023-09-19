@@ -2,9 +2,9 @@
 
 The Running Apps component is focused on enabling your organization's developers to run their apps and workloads.
 
-## Included
+## Available approaches
 
-Running Apps includes first-class support for running containerized workloads on EKS and ECS, and for running individual Lambda functions. You may use just one approach or all three, though we recommend limiting your management surface area as much as possible.
+Running Apps includes first-class support for running workloads on EKS, ECS, and individual Lambda functions. You may use just one approach or all three, though we recommend limiting your management surface area as much as possible.
 
 ### EKS
 
@@ -37,7 +37,7 @@ We support invoking Lambda functions across a range of scenarios:
 
 For running complex Serverless applications, we recommend the [Serverless Framework](https://www.serverless.com/), which is available separately via Serverless, Inc.
 
-## Out of the box setup
+## Out-of-the-box setup
 
 A Gruntwork subject matter expert in EKS, ECS, or Lambda will help you design a strategy for deploying apps using your preferred methodology, and provide support while you configure the Gruntwork modules to implement your strategy.
 
@@ -47,6 +47,6 @@ If you are looking to add functionality not yet supported by Gruntwork, you can 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "17e7c1b75e4150463ae4d6a4640b9a2b"
+  "hash": "5fadf65f5d6750b170d643866ccf2c8c"
 }
 ##DOCS-SOURCER-END -->
