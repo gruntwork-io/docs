@@ -143,13 +143,14 @@ You will also need to ignore changes to files in account based directories that 
 See the GitHub docs on [including and excluding paths](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-including-paths) to learn more.
 :::
 
-To generate the new `pipelines.yml` file, run the following command -
+To generate the new `pipelines.yml` file, run the following command, replacing the values in `<>` with appropriate values for your organization -
 
 ```bash
 boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//templates/infra-live-github-base" \
     --output-folder ./infrastructure-live/.github \
-    --var InfraPipelinesRepoName="test-arch" \
-    --var GithubOrg="acme" --var AwsAccountName="dev"  \
+    --var InfraPipelinesRepoName="<your infra pipelines repo name>" \
+    --var GithubOrg="<your GitHub org name>" \
+    --var AwsAccountName="<your AWS Account Name>"  \
     --non-interactive
 ```
 
