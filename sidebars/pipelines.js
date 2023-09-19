@@ -47,7 +47,23 @@ const sidebar = [
         label: "Maintain Pipelines",
         type: "category",
         collapsed: false,
-        items: ["pipelines/maintain/updating", "pipelines/maintain/extending"],
+        items: [
+          {
+            label: "Updating your pipeline",
+            type: "doc",
+            id: "pipelines/maintain/updating"
+          },
+          {
+            label: "Extending your pipeline",
+            type: "doc",
+            id: "pipelines/maintain/extending"
+          },
+          {
+            label: "Adding AWS accounts",
+            type: "doc",
+            id: "pipelines/maintain/adding-aws-accounts"
+          }
+        ]
       },
       {
         type: "link",
