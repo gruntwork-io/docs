@@ -4,7 +4,7 @@ Pipelines takes a defense in depth approach to securing workflows. This document
 
 ## Dual-repository approach
 
-Pipelines dual-repository approach separates infrastructure definitions from infrastructure deployment mechanisms. Pipelines requires two repositories —`infrastructure-pipelines`, where deployment workflows are defined and `infrastructure-live`, where infrastructure is defined as code. Each repository should have branch protection rules to prevent un-reviewed code from being deployed. See [using pipelines](../using-pipelines/index) to learn more.
+Pipelines dual-repository approach separates infrastructure definitions from infrastructure deployment mechanisms. Pipelines requires two repositories —`infrastructure-pipelines`, where deployment workflows are defined and `infrastructure-live`, where infrastructure is defined as code. Each repository should have branch protection rules to prevent un-reviewed code from being deployed. Refer to [Recommended Settings](../using-pipelines#recommended-settings) in [using pipelines](../using-pipelines) to learn more.
 
 To control access to these repositories we recommend creating GitHub teams. Write access to the `infrastructure-pipelines` repository should be limited to individuals that already have administrative access to your AWS accounts (see [accessing AWS resources](#accessing-aws-resources)). Read and write access to the `infrastructure-live` repository should be granted to any individual who needs to define infrastructure as code. See [repository access](repository-access.md) for more details.
 
@@ -75,6 +75,6 @@ As highlighted in [dual-repository approach](#dual-repository-approach), because
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d4640221653fb020b8813a8c7182d8a9"
+  "hash": "14f927f741d704b0745054dc26944323"
 }
 ##DOCS-SOURCER-END -->
