@@ -91,6 +91,18 @@ const sidebar = [
           },
         ]
       },
+      {
+        label: "Running apps",
+        type: "category",
+        collapsed: false,
+        items: [
+          {
+            label: "Overview",
+            type: "doc",
+            id: "foundations/running-apps/index",
+          },
+        ]
+      },
       // TODO: Disabling for now until it's an offering
       // {
       //   label: "Maintenance Foundations",
