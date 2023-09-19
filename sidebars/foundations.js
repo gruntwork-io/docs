@@ -22,10 +22,11 @@ const sidebar = [
         ],
       },
       {
-        label: "AWS Account Foundations",
+        label: "Landing Zone",
         type: "category",
         collapsed: false,
         items: [
+          "foundations/accounts/overview",
           "foundations/accounts/prerequisites",
           "foundations/accounts/enable-control-tower",
           "foundations/accounts/add-account",
@@ -33,11 +34,19 @@ const sidebar = [
         ],
       },
       {
-        label: "Terraform Foundations",
+        label: "Network Topology",
         type: "category",
         collapsed: false,
         items: [
-          "foundations/terraform/index",
+          "foundations/network-topology/overview",
+        ],
+      },
+      {
+        label: "IaC Foundations",
+        type: "category",
+        collapsed: false,
+        items: [
+          "foundations/terraform/overview",
           "foundations/terraform/folder_structure",
           {
             label: "Module Defaults",
@@ -64,16 +73,24 @@ const sidebar = [
         ],
       },
       {
-        label: "CI/CD Foundations",
+        label: "Pipelines",
         type: "category",
         collapsed: false,
-        items: ["foundations/ci-cd/index"],
+        items: ["foundations/ci-cd/overview"],
       },
       {
-        label: "Maintenance Foundations",
+        label: "Running apps",
         type: "category",
         collapsed: false,
-        items: ["foundations/maintenance/index"],
+        items: [
+          "foundations/running-apps/overview",
+        ],
+      },
+      {
+        label: "Automatic Updates",
+        type: "category",
+        collapsed: false,
+        items: ["foundations/maintenance/overview"],
       },
       // {
       //   type: "link",
