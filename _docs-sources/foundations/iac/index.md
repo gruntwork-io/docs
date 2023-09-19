@@ -20,25 +20,18 @@ When creating your initial Terraform and Terragrunt and infrastructure, there ar
 
 We provide 3 template repos to subscribers that implement best practices regarding the considerations above.
 
-### Infrastructure Live Template
-
-Navigate to the [infrastructure-live template](https://github.com/gruntwork-io/infrastructure-live-template) and select **Use this template** -> **Create a new Repository**.
+For each of the repositories below, navigate to the template repository and select **Use this template** -> **Create a new Repository**.
 This will initiate repository creation. You should select your org as the owner, add a description if you like, and click **Create repository**.
 
-The repository template will be created and you can follow the instructions in the README to bootstrap your IaC Foundations.
+The repository template will be created, and you can follow the instructions in the README to bootstrap your IaC Foundations.
 
-### Infrastructure Modules Template
+### [Infrastructure Live Template](https://github.com/gruntwork-io/infrastructure-live-template)
+This [template](https://github.com/gruntwork-io/infrastructure-live-template) creates an infrastructure live repository with scaffolding for common module defaults, account baselines, and Gruntwork Pipelines
 
-Navigate to the [infrastructure-modules template](https://github.com/gruntwork-io/infrastructure-modules-template) and select **Use this template** -> **Create a new Repository**.
-This will initiate repository creation. You should select your org as the owner, add a description if you like, and click **Create repository**.
+### [Infrastructure Modules Template](https://github.com/gruntwork-io/infrastructure-modules-template)
+This [template](https://github.com/gruntwork-io/infrastructure-modules-template) creates an empty infrastructure modules repository for populating shared modules within your organization.
 
-The repository template will be created and you can follow the instructions in the README to bootstrap your Infrastructure Modules.
+### [Infrastructure Pipelines Template](https://github.com/gruntwork-io/infrastructure-pipelines-template)
 
-### Infrastructure Pipelines Template
+This [template](https://github.com/gruntwork-io/infrastructure-pipelines-template) is only necessary if you plan on implementing [Gruntwork Pipelines](../ci-cd).
 
-This repository is only necessary if you plan on implementing [Gruntwork Pipelines](../ci-cd)
-
-Navigate to the [infrastructure-pipelines template](https://github.com/gruntwork-io/infrastructure-pipelines-template) and select **Use this template** -> **Create a new Repository**.
-This will initiate repository creation. You should select your org as the owner, add a description if you like, and click **Create repository**.
-
-The repository template will be created and you can follow the instructions in the README to bootstrap your CI/CD Foundations.
