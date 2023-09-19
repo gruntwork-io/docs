@@ -1,6 +1,36 @@
 {
   "module": "vpc-dns-forwarder-rules",
   "releases": {
+    "v0.26.5": {
+      "contains_changes": false
+    },
+    "v0.26.4": {
+      "contains_changes": false
+    },
+    "v0.26.3": {
+      "contains_changes": false
+    },
+    "v0.26.2": {
+      "contains_changes": false
+    },
+    "v0.26.1": {
+      "contains_changes": false
+    },
+    "v0.26.0": {
+      "contains_changes": false
+    },
+    "v0.25.0": {
+      "contains_changes": false
+    },
+    "v0.24.0": {
+      "contains_changes": false
+    },
+    "v0.23.3": {
+      "contains_changes": false
+    },
+    "v0.23.2": {
+      "contains_changes": false
+    },
     "v0.23.1": {
       "contains_changes": false
     },

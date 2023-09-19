@@ -22,6 +22,8 @@ $ mv patcher /usr/local/bin
 
 ## Before Running Patcher
 
+### GitHub Personal Access Token
+
 To fetch information from GitHub, Patcher requires a [GitHub Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token), with the `repo` scope. Set the
 `GITHUB_OAUTH_TOKEN` environment variable to your GitHub Personal Access token:
 
@@ -29,10 +31,15 @@ To fetch information from GitHub, Patcher requires a [GitHub Personal Access Tok
 export GITHUB_OAUTH_TOKEN="<YOUR_GITHUB_PAT>"
 ```
 
+### Docker
+
+Starting in `0.4.1`, the Patcher update command applies patches using a Docker sandbox by default and will pull the latest version of the [`gruntwork/patcher_bash_env`](https://hub.docker.com/r/gruntwork/patcher_bash_env) image.
+
+To run the Patcher update command locally without Docker or in a CI pipeline you should add the `--skip-container-runtime` flag.
+
 ## Running Patcher
 
-Patcher should be run in a local Terraform or Terragrunt Git repo. It will analyze _all_ modules that belong to the current folder
-including its children. Patcher supports `source` values only from GitHub.
+Patcher should be run in a local Terraform or Terragrunt Git repo. It will analyze _all_ modules that belong to the current folder including its children. Patcher supports `source` values only from GitHub.
 
 If you purchased and deployed our [Reference Architecture](https://gruntwork.io/reference-architecture/) and have your deployment organized in an `infrastructure-live` repository, we recommend running Patcher inside each environment folder, e.g. `infrastructure-live/dev`.
 
@@ -55,6 +62,6 @@ patcher report --loglevel debug
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "669a2a4da124e60e3f16e23b19c281f9"
+  "hash": "7404617b36bd3d04bddebca633a30535"
 }
 ##DOCS-SOURCER-END -->

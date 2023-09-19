@@ -1,8 +1,16 @@
 # Patcher Update
 
+:::info
+
+Starting in `0.4.1`, Patcher applies patches using a Docker sandbox by default and will pull the latest version of the [`gruntwork/patcher_bash_env`](https://hub.docker.com/r/gruntwork/patcher_bash_env) image.
+
+To run Patcher locally without Docker or in a CI pipeline you should add the `--skip-container-runtime` flag.
+
+:::
+
 The Patcher update command allows you to update some or all of the module dependencies in the current folder and any child folders.
 
-The update command supports two modes: **interactive mode** and **non-interactive mode**.
+Patcher supports two modes: **interactive mode** and **non-interactive mode**.
 
 ## Interactive Mode
 
@@ -55,9 +63,17 @@ Some modules including third party modules may not have a CHANGELOGS.md file. In
 
 ## Non-Interactive Mode
 
+:::caution
+
+Starting in `0.4.1`, Patcher applies patches using a Docker sandbox by default.
+
+To run Patcher in a CI pipeline you should add the `--skip-container-runtime` flag.
+
+:::
+
 In non-interactive mode, Patcher updates all module dependencies in the current folder (and child folders) according to the specified update strategy.
 
-Non-interactive mode supports both the `next-safe` and `next-breaking` update strategies. 
+Non-interactive mode supports both the `next-safe` and `next-breaking` update strategies.
 
 ### Next Safe (Default)
 
@@ -65,11 +81,11 @@ Using the [next safe update strategy](/patcher/update-strategies#next-safe-updat
 
 Example usage:
 ```
-patcher update --non-interactive --update-strategy next-safe
+patcher update --non-interactive --skip-container-runtime --update-strategy next-safe prod
 ```
 Or just
 ```
-patcher update --non-interactive
+patcher update --non-interactive --skip-container-runtime prod
 ```
 
 ### Next Breaking
@@ -80,32 +96,55 @@ If Patcher updates a dependency to a breaking version, a `README-TO-COMPLETE-UPD
 
 Example usage:
 ```
-patcher update --non-interactive --update-strategy next-breaking
+patcher update --non-interactive --skip-container-runtime --update-strategy next-breaking prod
 ```
 
 ## Support for Third Party Modules
 
-Beginning with version `0.3.3`, Patcher provides limited support for updating third party modules, including your own modules. The updates to third party module are limited to bumping the semver patch version.
+Patcher provides first class support for third party modules in both interactive mode and non-interactive mode, this includes your own modules.
 
-Third party modules are supported in both interactive mode and non-interactive mode.
+Starting in `0.4.3`, Patcher provides first class support for updating third party modules. The updates to third party modules are based on the semver version.
 
-For example, the [terraform-aws-modules/terraform-aws-vpc](https://github.com/terraform-aws-modules/terraform-aws-vpc) module has two recent change: `4.0.2` and `5.0.0`.
+For example, the [terraform-aws-modules/terraform-aws-vpc](https://github.com/terraform-aws-modules/terraform-aws-vpc) module has three recent change: `5.0.0`, `5.1.0` and `5.1.1`.
 
-And in `infrastructure-live/prod` there is a dependency on `terraform-aws-vpc/vpc`:
-- `prod/us-east-1/prod/vpc/terragrunt.hcl` currently uses `4.0.0`
+And in `infrastructure-live/dev` there is a dependency on `terraform-aws-vpc/vpc`:
+- `dev/us-east-1/prod/dev/terragrunt.hcl` currently uses `4.0.0`
 
-Patcher can update this dependency to `4.0.2` but because this only requires bumping the semver patch version.
+![Screenshot of third party module dependency with updates available](/img/guides/stay-up-to-date/patcher/patcher-update-overview-3p-update-available.png)
+
+Patcher can update this dependency to the latest version but because there is a breaking version in between, Patcher updates to `5.0.0` and writes a `README-TO-COMPLETE-UPDATE.md` file into the folder containing the dependendency.
 
 ![Screenshot of third party module dependency usages with updates available](/img/guides/stay-up-to-date/patcher/patcher-update-usages-3p-update-available.png)
 
-Patcher cannot update from `4.0.x` to `5.0.0` and will instead show a `?` in the "Up to date" column and the message "Patcher can not determine an update plan for this dependency".
+The `README-TO-COMPLETE-UPDATE.md` file contains the [release note](https://github.com/terraform-aws-modules/terraform-aws-vpc/releases/tag/v5.0.0).
 
-![Screenshot of third party module dependency that cannot be updated](/img/guides/stay-up-to-date/patcher/patcher-update-overview-3p-no-plan.png)
+```md
+# vpc-endpoints v4.0.0 -> v5.0.0 (2023.08.15 13:39:56)
+
+Updated dependency vpc-endpoints in dev/us-east-1/dev/vpc/terragrunt.hcl to version v5.0.0, which contains breaking changes. You MUST follow the instructions in the release notes to complete this update safely: https://github.com/terraform-aws-modules/terraform-aws-vpc/releases/tag/v5.0.0
+
+Here are the release notes for version v5.0.0:
+
+## [5.0.0](https://github.com/terraform-aws-modules/terraform-aws-vpc/compare/v4.0.2...v5.0.0) (2023-05-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* Bump Terraform AWS Provider version to 5.0 (#941)
+
+### Features
+
+* Bump Terraform AWS Provider version to 5.0 ([#941](https://github.com/terraform-aws-modules/terraform-aws-vpc/issues/941)) ([2517eb9](https://github.com/terraform-aws-modules/terraform-aws-vpc/commit/2517eb98a39500897feecd27178994055ee2eb5e))
+```
+
+Running Patcher again will complete the update to `5.1.1`, the `README-TO-COMPLETE-UPDATE.md` file should be read, actioned and deleted first.
+
+![Screenshot of third party module dependency full up to date](/img/guides/stay-up-to-date/patcher/patcher-report-overview-3p-futd.png)
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "ef694de362e2022b29aeb7702efa81a1"
+  "hash": "5c301767d0882df416aeeee2442f7776"
 }
 ##DOCS-SOURCER-END -->

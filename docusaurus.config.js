@@ -138,6 +138,11 @@ const config = {
                 label: "Developer Portal",
                 docId: "developer-portal/create-account",
               },
+              {
+                type: "doc",
+                label: "Patcher",
+                docId: "patcher/index",
+              },
             ],
           },
           {

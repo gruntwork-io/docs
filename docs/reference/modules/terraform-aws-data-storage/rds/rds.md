@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.29.0" lastModifiedVersion="0.29.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.30.0" lastModifiedVersion="0.29.2"/>
 
 # RDS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.30.0/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.29.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.29.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Relational Database Service (RDS) cluster that can run MySQL, Postgres, MariaDB, Oracle,
 or SQL Server. The cluster is managed by AWS and automatically handles standby failover, read replicas, backups,
@@ -95,7 +95,7 @@ Tunneling) before you can connect to the database.
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.29.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.30.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -344,6 +344,10 @@ module "rds" {
   # creation.
   nchar_character_set_name = null
 
+  # (Optional) The network type of the DB instance. Valid values: IPV4, DUAL. By
+  # default, it's set to IPV4
+  network_type = null
+
   # The number of read replicas to create. RDS will asynchronously replicate all
   # data from the master to these replicas, which you can use to horizontally
   # scale reads traffic.
@@ -398,6 +402,12 @@ module "rds" {
   # disable automated backups.
   replica_backup_retention_period = 0
 
+  # A configuration block for restoring a DB instance to an arbitrary point in
+  # time. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#restore-to-point-in-time
+  # for more details
+  restore_to_point_in_time = null
+
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
   # this DB instance, you will not have any backups of the data!
@@ -440,7 +450,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.29.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.30.0"
 }
 
 inputs = {
@@ -692,6 +702,10 @@ inputs = {
   # creation.
   nchar_character_set_name = null
 
+  # (Optional) The network type of the DB instance. Valid values: IPV4, DUAL. By
+  # default, it's set to IPV4
+  network_type = null
+
   # The number of read replicas to create. RDS will asynchronously replicate all
   # data from the master to these replicas, which you can use to horizontally
   # scale reads traffic.
@@ -745,6 +759,12 @@ inputs = {
   # read replicas. Must be 1 or greater to support read replicas. 0 means
   # disable automated backups.
   replica_backup_retention_period = 0
+
+  # A configuration block for restoring a DB instance to an arbitrary point in
+  # time. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#restore-to-point-in-time
+  # for more details
+  restore_to_point_in_time = null
 
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
@@ -1281,6 +1301,15 @@ The national character set is used in the NCHAR, NVARCHAR2, and NCLOB data types
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="network_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Optional) The network type of the DB instance. Valid values: IPV4, DUAL. By default, it's set to IPV4
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="num_read_replicas" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1389,6 +1418,29 @@ How many days to keep backup snapshots around before cleaning them up on the rea
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
+<HclListItem name="restore_to_point_in_time" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+A configuration block for restoring a DB instance to an arbitrary point in time. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#restore-to-point-in-time for more details
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    restore_time                             = string
+    source_db_instance_identifier            = string
+    source_db_instance_automated_backups_arn = string
+    source_dbi_resource_id                   = string
+    use_latest_restorable_time               = string
+
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1489,11 +1541,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/rds/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.29.0/modules/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.30.0/modules/rds/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.30.0/modules/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.30.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "02746ecfebb2a82db2a1062d07241857"
+  "hash": "944cfccebffca5a4fe0a55c064e75ebb"
 }
 ##DOCS-SOURCER-END -->

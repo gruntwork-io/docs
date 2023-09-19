@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="0.29.8" lastModifiedVersion="0.29.7"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="0.29.11" lastModifiedVersion="0.29.11"/>
 
 # ACM TLS Certificate
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.8/modules/acm-tls-certificate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.11/modules/acm-tls-certificate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.11" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to issue and validate free, auto-renewing TLS certificates using [AWS Certificate
 Manager (ACM)](https://aws.amazon.com/certificate-manager/). It supports issuing and validating multiple ACM certificates.
@@ -196,7 +196,7 @@ In this example, the `acm-tls-certificates` module will "wait" until your `aws_r
 
 module "acm_tls_certificate" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v0.29.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v0.29.11"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -254,7 +254,7 @@ module "acm_tls_certificate" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v0.29.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v0.29.11"
 }
 
 inputs = {
@@ -326,47 +326,6 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-    acm_tls_certificates = {
-      "mail.example.com" = {
-        subject_alternative_names = ["mailme.example.com"]
-        tags = {
-          Environment       = "stage"
-          run_destroy_check = true
-        }
-        create_verification_record = true
-        verify_certificate         = true
-        hosted_zone_id = 12345536646
-      }
-      "smtp.example.com" = {
-        subject_alternative_names = ["smtps.example.com"]
-        tags = {
-          Environment       = "stage"
-          run_destroy_check = true
-        }
-        create_verification_record = false
-        verify_certificate         = true
-       }
-      "spare.example.com" = {
-        subject_alternative_names = ["placeholder.example.com"]
-        tags = {
-          Environment       = "stage"
-          run_destroy_check = true
-        }
-        create_verification_record = true
-        verify_certificate         = true
-       }
-    } 
-
-```
-</details>
-
-</HclGeneralListItem>
 <HclGeneralListItem title="More Details">
 <details>
 
@@ -409,6 +368,53 @@ Any types represent complex values of variable type. For details, please consult
   
    - hosted_zone_id                         [string]       : The ID of the Route53 public hosted zone that the certificate's validation DNS records should be written to. If not 
                                                              supplied, the module will attempt to look up the ID of the zone by name at runtime  
+  
+  
+   - key_algorithm                          [string]       : (Optional) Specifies the algorithm of the public and private key pair that your Amazon issued certificate uses to encrypt data
+                                                              See ACM Certificate characteristics for more details (https://docs.aws.amazon.com/acm/latest/userguide/acm-certificate.htmlalgorithms)
+                                                              If not specified, defaults to RSA 2048
+  
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+
+   Example: 
+    acm_tls_certificates = {
+      "mail.example.com" = {
+        subject_alternative_names = ["mailme.example.com"]
+        tags = {
+          Environment       = "stage"
+          run_destroy_check = true
+        }
+        create_verification_record = true
+        verify_certificate         = true
+        hosted_zone_id = 12345536646
+      }
+      "smtp.example.com" = {
+        subject_alternative_names = ["smtps.example.com"]
+        tags = {
+          Environment       = "stage"
+          run_destroy_check = true
+        }
+        create_verification_record = false
+        verify_certificate         = true
+       }
+      "spare.example.com" = {
+        subject_alternative_names = ["placeholder.example.com"]
+        tags = {
+          Environment       = "stage"
+          run_destroy_check = true
+        }
+        create_verification_record = true
+        verify_certificate         = true
+       }
+    } 
 
 ```
 </details>
@@ -485,11 +491,11 @@ Global tags to apply to all ACM certificates issued via this module. These globa
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.8/modules/acm-tls-certificate/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.8/modules/acm-tls-certificate/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.8/modules/acm-tls-certificate/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.11/modules/acm-tls-certificate/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.11/modules/acm-tls-certificate/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.11/modules/acm-tls-certificate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "303ace110e9cffa3d2b42a7d710db2e2"
+  "hash": "80854e41eac63a27bb9feca73f825da0"
 }
 ##DOCS-SOURCER-END -->

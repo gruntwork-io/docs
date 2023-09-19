@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.8" lastModifiedVersion="0.21.8"/>
+<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.9" lastModifiedVersion="0.21.9"/>
 
 # Server Group Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.8/modules/server-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.9/modules/server-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module allows you to run a fixed-size cluster of servers that can:
 
@@ -37,7 +37,7 @@ Scaling Group (ASG).
 
 ## Quick start
 
-Check out the [server-group examples](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.8/examples/server-group) for sample code that demonstrates how to use this module.
+Check out the [server-group examples](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.9/examples/server-group) for sample code that demonstrates how to use this module.
 
 ## Background
 
@@ -50,7 +50,7 @@ Check out the [server-group examples](https://github.com/gruntwork-io/terraform-
 The first question you may ask is, how is this different than an [Auto Scaling Group
 (ASG)](http://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroup.html)? While an ASG does allow you to
 run a cluster of servers, automaticaly replace failed servers, and do zero-downtime deployment (see the
-[asg-rolling-deploy module](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.8/modules/asg-rolling-deploy)), attaching ENIs and EBS Volumes to servers in an ASG is very
+[asg-rolling-deploy module](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.9/modules/asg-rolling-deploy)), attaching ENIs and EBS Volumes to servers in an ASG is very
 tricky:
 
 1.  Using ENIs and EBS Volumes with ASGs is not natively supported by Terraform. The
@@ -87,7 +87,7 @@ The solution used in this module is to:
 
 The server-group module will perform a zero-downtime, rolling deployment every time you make a change to the code and
 run `terraform apply`. This deployment process is implemented in a Python script called
-[rolling_deployment.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.8/modules/server-group/rolling-deploy/rolling_deployment.py) which runs in a [local-exec
+[rolling_deployment.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.9/modules/server-group/rolling-deploy/rolling_deployment.py) which runs in a [local-exec
 provisioner](https://www.terraform.io/docs/provisioners/local-exec.html).
 
 Here is how it works:
@@ -147,7 +147,7 @@ module in your Terraform code:
 
 module "server_group" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/server-group?ref=v0.21.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/server-group?ref=v0.21.9"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -443,7 +443,7 @@ module "server_group" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/server-group?ref=v0.21.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/server-group?ref=v0.21.9"
 }
 
 inputs = {
@@ -1346,11 +1346,11 @@ Other modules can depend on this variable to ensure those modules only deploy af
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.8/modules/server-group/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.8/modules/server-group/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.8/modules/server-group/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.9/modules/server-group/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.9/modules/server-group/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.9/modules/server-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ed3e873f097ab76a2a389a95941ed854"
+  "hash": "ff20d9492aaf0a8be2564530308be733"
 }
 ##DOCS-SOURCER-END -->

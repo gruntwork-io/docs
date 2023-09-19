@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.23.3" lastModifiedVersion="0.23.3"/>
+<VersionBadge repoTitle="VPC Modules" version="0.26.6" lastModifiedVersion="0.26.6"/>
 
 # VPC Flow Logs Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-flow-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.6/modules/vpc-flow-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.23.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates a [VPC flow log](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html). The flow log will capture IP traffic information for a given VPC, subnet, or [Elastic Network Interface (ENI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html). Flow logs can be configured to capture all traffic, only traffic that is accepted, or only traffic that is rejected. The logs can be published to [Amazon CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html) or an S3 bucket.
 
@@ -86,7 +86,7 @@ TODO: Publish flow logs to an S3 bucket or CloudWatch Logs group in another acco
 
 module "vpc_flow_logs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-flow-logs?ref=v0.23.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-flow-logs?ref=v0.26.6"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -153,6 +153,10 @@ module "vpc_flow_logs" {
   # it has been marked for deletion. Setting to null defaults to the provider
   # default, which is the maximum possible value (30 days).
   kms_key_deletion_window_in_days = null
+
+  # The alias prefix to use for the KMS key. If not defined, no alias will be
+  # created.
+  kms_key_prefix = "alias/flow_logs_key_"
 
   # A list of IAM user ARNs with access to the KMS key used with the VPC flow
   # logs. Required if kms_key_arn is not defined.
@@ -232,7 +236,7 @@ module "vpc_flow_logs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-flow-logs?ref=v0.23.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-flow-logs?ref=v0.26.6"
 }
 
 inputs = {
@@ -302,6 +306,10 @@ inputs = {
   # it has been marked for deletion. Setting to null defaults to the provider
   # default, which is the maximum possible value (30 days).
   kms_key_deletion_window_in_days = null
+
+  # The alias prefix to use for the KMS key. If not defined, no alias will be
+  # created.
+  kms_key_prefix = "alias/flow_logs_key_"
 
   # A list of IAM user ARNs with access to the KMS key used with the VPC flow
   # logs. Required if kms_key_arn is not defined.
@@ -600,6 +608,15 @@ The number of days to keep this KMS Key (a Customer Master Key) around after it 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="kms_key_prefix" requirement="optional" type="string">
+<HclListItemDescription>
+
+The alias prefix to use for the KMS key. If not defined, no alias will be created.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;alias/flow_logs_key_&quot;"/>
+</HclListItem>
+
 <HclListItem name="kms_key_users" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -784,11 +801,11 @@ The name of the S3 bucket where flow logs are published.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-flow-logs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-flow-logs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.3/modules/vpc-flow-logs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.6/modules/vpc-flow-logs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.6/modules/vpc-flow-logs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.6/modules/vpc-flow-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9700719c7f8dbf40c3f2a920264e9482"
+  "hash": "de6dcb5cf614b757289f92f993e000ab"
 }
 ##DOCS-SOURCER-END -->

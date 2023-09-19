@@ -1,7 +1,16 @@
 {
   "module": "lambda-share-snapshot",
   "releases": {
-    "v0.28.1": {
+    "v0.30.0": {
+      "contains_changes": true
+    },
+    "v0.29.2": {
+      "contains_changes": false
+    },
+    "v0.29.1": {
+      "contains_changes": false
+    },
+    "v0.29.0": {
       "contains_changes": false
     },
     "v0.28.0": {

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.52.6" lastModifiedVersion="0.52.3"/>
+<VersionBadge repoTitle="CI Modules" version="0.52.14" lastModifiedVersion="0.52.13"/>
 
 # Jenkins server
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/jenkins-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.14/modules/jenkins-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.13" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to deploy [Jenkins CI server](https://jenkins.io) in AWS. It creates the following resources:
 
@@ -29,17 +29,17 @@ to run an ASG for Jenkins that can correctly reattach an EBS volume.
 
 ## Example code
 
-*   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/examples/jenkins) for working sample code.
-*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/jenkins-server/vars.tf) for all parameters you can configure on this module.
+*   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.14/examples/jenkins) for working sample code.
+*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.14/modules/jenkins-server/vars.tf) for all parameters you can configure on this module.
 
 ## Jenkins AMI
 
-See the [install-jenkins module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/install-jenkins) for a way to create an AMI with Jenkins installed and a
+See the [install-jenkins module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.14/modules/install-jenkins) for a way to create an AMI with Jenkins installed and a
 script you can run in User Data to start Jenkins while the server is booting.
 
 ## Backing up Jenkins
 
-See the [ec2-backup module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/ec2-backup) for an automatic way to take scheduled backups of Jenkins and its EBS
+See the [ec2-backup module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.14/modules/ec2-backup) for an automatic way to take scheduled backups of Jenkins and its EBS
 volume.
 
 ## IAM permissions
@@ -112,7 +112,7 @@ data "aws_iam_policy_document" "example" {
 
 module "jenkins_server" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.52.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.52.14"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -333,6 +333,13 @@ module "jenkins_server" {
   # The tenancy to use for Jenkins. Must be one of: default, dedicated, or host.
   tenancy = "default"
 
+  # Set this variable to true to enable the use of Instance Metadata Service
+  # Version 1 in this module's aws_launch_template. Note that while IMDsv2 is
+  # preferred due to its special security hardening, we allow this in order to
+  # support the use case of AMIs built outside of these modules that depend on
+  # IMDSv1.
+  use_imdsv1 = true
+
   # The User Data script to run on the Jenkins server when it is booting. If you
   # need to pass gzipped, base64-encoded data (e.g., for a cloud-init script),
   # use var.user_data_base64 instead.
@@ -363,7 +370,7 @@ module "jenkins_server" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.52.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.52.14"
 }
 
 inputs = {
@@ -586,6 +593,13 @@ inputs = {
 
   # The tenancy to use for Jenkins. Must be one of: default, dedicated, or host.
   tenancy = "default"
+
+  # Set this variable to true to enable the use of Instance Metadata Service
+  # Version 1 in this module's aws_launch_template. Note that while IMDsv2 is
+  # preferred due to its special security hardening, we allow this in order to
+  # support the use case of AMIs built outside of these modules that depend on
+  # IMDSv1.
+  use_imdsv1 = true
 
   # The User Data script to run on the Jenkins server when it is booting. If you
   # need to pass gzipped, base64-encoded data (e.g., for a cloud-init script),
@@ -1091,6 +1105,15 @@ The tenancy to use for Jenkins. Must be one of: default, dedicated, or host.
 <HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
 </HclListItem>
 
+<HclListItem name="use_imdsv1" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="user_data" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1173,11 +1196,11 @@ A maximum duration to wait for each server to be healthy before timing out (e.g.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/jenkins-server/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/jenkins-server/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.6/modules/jenkins-server/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.14/modules/jenkins-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.14/modules/jenkins-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.14/modules/jenkins-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fe438f08d0ae49b5828599469e613f3c"
+  "hash": "27163696fd6ec3f0ad4fa7956ea76022"
 }
 ##DOCS-SOURCER-END -->
