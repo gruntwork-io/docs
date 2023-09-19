@@ -59,7 +59,7 @@ const sidebar = [
             id: "pipelines/security/controls",
           },
           {
-            label: "Access Control",
+            label: "Repository Access",
             type: "doc",
             id: "pipelines/security/repository-access",
           },

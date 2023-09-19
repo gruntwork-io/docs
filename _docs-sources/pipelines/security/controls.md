@@ -16,11 +16,15 @@ Workflows in `infrastructure-live` call workflows that are defined on the `main`
 
 ## Token strategy
 
-Gruntwork Pipelines uses a series of GitHub Personal Access Tokens (PAT) to allow cross repository code and workflow access. This approach ensures that each token has the minimal required permissions to perform it's tasks. In the event that a token
+Gruntwork Pipelines uses a series of GitHub Personal Access Tokens (PAT) to allow cross repository code and workflow access. This approach ensures that each token has the minimal required permissions to perform it's tasks. The full list of tokens and required permissions are listed below.
 
-- `GRUNTWORK_CODE_ACCESS_TOKEN` - A classic PAT with repository access to your `infrastructure-live` and `infrastructure-modules` repositories, as well as Gruntwork Library modules.
-- `INFRA_LIVE_ACCESS_TOKEN` - A fine-grained PAT that has read and write access to your `infrastructure-live` repository. This token is used in Pipelines to create pull requests after code generation and add pull request comments.
+- `GRUNTWORK_CODE_ACCESS_TOKEN` - A [classic PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with repository access to your `infrastructure-live` and `infrastructure-modules` repositories, as well as Gruntwork Library modules.
+- `INFRA_LIVE_ACCESS_TOKEN` - A [fine-grained PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) that has read and write access to your `infrastructure-live` repository. This token is used in Pipelines to create pull requests after code generation and add pull request comments.
 - `PIPELINES_DISPATCH_TOKEN` - A fine-grained PAT that can run Workflows in your `infrastructure-pipelines` repository.
+
+Steps to create a PAT can be found in the official documentation. Refer to [creating a personal access token classic](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) and [creating a fine-grained personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token).
+
+To learn more about GitHub PATs, refer to their documentation on [managing personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
 
 ## Guards
 
