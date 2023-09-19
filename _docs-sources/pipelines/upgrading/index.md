@@ -35,9 +35,9 @@ Next, create the following PATs for the new CI Read Only user. We'll use these t
 
 - `GRUNTWORK_CODE_ACCESS_TOKEN`: Classic token with READ access to repos. This should should be associated with the `CI Read Only` user created in [creating a CI Read only user](#creating-a-ci-read-only-user).
 - `PIPELINES_DISPATCH_TOKEN`: Fine-grained token that only has workflow permissions to execute workflows in the `infrastructure-pipelines` repository. This token should be associated with your existing CI user.
-- `INFRA_LIVE_ACCESS_TOKEN`: Fine grained token with READ and WRITE access to your `infrastructure-live` repository. This token should be associated with your existing CI user.
+- `INFRA_LIVE_ACCESS_TOKEN`: Fine-grained token with READ and WRITE access to your `infrastructure-live` repository. This token should be associated with your existing CI user.
 
-## Creating your infrastructure-pipelines repository
+## Create your infrastructure-pipelines repository
 
 Pipelines separates code (IaC) and deployment using two different git repositories. One repository holds both the deployment code and the AWS account access, and assigns write privileges only to a select group of admins. This repository uses OpenID Connect and AWS IAM roles to generate temporary session credentials, avoiding the need to store long-lasting secrets.
 
@@ -70,7 +70,7 @@ boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architectu
 
 Push your changes up to the remote repository.
 
-## Creating AWS IAM roles for Pipelines
+## Create AWS IAM roles for Pipelines
 
 In Pipelines, each of your accounts must have an AWS IAM role. This role shares the same permissions as the one used in ECS Deploy Runner, except for the new role's trust policy, which enables GitHub Actions Workflows running in your `infrastructure-pipelines` to assume the role using OIDC. This capability allows workflows to create and utilize short-lived session tokens whenever they run, in contrast to relying on long-lived credentials stored as secrets.
 
@@ -105,7 +105,7 @@ Create a new branch for your changes, commit your changes to your branch, then p
 
 Once you have reviewed the `plan` output and gotten any necessary approvals, merge the PR. The EDR version of Pipelines will run `apply` to create the resources.
 
-## Setting up secrets
+## Set up secrets
 
 Pipelines requires the use of GitHub personal access tokens (PAT) to allow workflows in the `infrastructure-live` to run workflows in the `infrastructure-pipelines` repository and workflows in the `infrastructure-pipelines` repository access to the code in `infrastructure-live` as well as repos for the Gruntwork Library. This section will guide you in establishing secrets in both repositories and comprehending the security implications of the multi-PAT configuration.
 
@@ -131,7 +131,7 @@ cat accounts.json | yq -P > accounts.yml
 
 Confirm the data matches between your `accounts.json` and `accounts.yml`. If you are upgrading all of your deployments at once, you may delete your `accounts.json` file. If you will use both ECS Deploy Runner and Pipelines at the same time, do not delete `accounts.json`.
 
-## Adding new workflows in your infrastructure-live repository
+## Add new workflows in your infrastructure-live repository
 
 Similar to ECS Deploy Runner, Pipelines employs GitHub Actions as the computing layer to execute actions on your infrastructure. However,  Pipelines uses a different workflow with a smaller number of steps and the Pipelines binary responsible for orchestrating changes. To simplify the upgrade process, we've created a template that can be used to generate the workflow with a small number of parameters. In both workflows, the workflow file named `pipelines.yml` is utilized, so generating the new workflow will overwrite the old.
 
