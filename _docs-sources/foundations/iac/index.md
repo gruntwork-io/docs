@@ -21,7 +21,7 @@ When creating your initial Terraform and Terragrunt and infrastructure, there ar
 We provide 3 template repos to subscribers that implement best practices regarding the considerations above.
 
 For each of the repositories below, navigate to the template repository and select **Use this template** -> **Create a new Repository**.
-This will initiate repository creation. You should select your org as the owner, add a description if you like, and click **Create repository**.
+This will initiate repository creation. You should select your org as the owner, add a description if you like, make sure you are creating a **private** repo, and click **Create repository**.
 
 The repository template will be created, and you can follow the instructions in the README to bootstrap your IaC Foundations.
 
