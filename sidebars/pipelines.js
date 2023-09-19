@@ -25,6 +25,11 @@ const sidebar = [
             id: "pipelines/architecture/index",
           },
           {
+            label: "Actions",
+            type: "doc",
+            id: "pipelines/overview/actions",
+          },
+          {
             label: "Usage Data",
             type: "doc",
             id: "pipelines/data-collection/index",
