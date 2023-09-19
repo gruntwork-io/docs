@@ -59,20 +59,10 @@ const sidebar = [
             id: "pipelines/security/controls",
           },
           {
-            label: "Dual-Repository Setup",
-            type: "doc",
-            id: "pipelines/security/dual-repository-setup",
-          },
-          {
             label: "Access Control",
             type: "doc",
             id: "pipelines/security/access-control",
           },
-          {
-            label: "Repository Settings",
-            type: "doc",
-            id: "pipelines/security/repository-settings",
-          }
         ]
       },
       {
