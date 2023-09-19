@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.16" lastModifiedVersion="0.102.14"/>
+<VersionBadge version="0.105.1" lastModifiedVersion="0.104.0"/>
 
 # Amazon Aurora
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.16/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.16/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.16/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/aurora?ref=v0.104.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -341,7 +341,7 @@ module "aurora" {
 
   # The instance type to use for the db (e.g. db.r3.large). Only used when
   # var.engine_mode is set to provisioned.
-  instance_type = "db.t3.small"
+  instance_type = "db.t3.medium"
 
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used
   # if var.storage_encrypted is true. If you leave this null, the default RDS
@@ -522,7 +522,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/aurora?ref=v0.104.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.105.1"
 }
 
 inputs = {
@@ -764,7 +764,7 @@ inputs = {
 
   # The instance type to use for the db (e.g. db.r3.large). Only used when
   # var.engine_mode is set to provisioned.
-  instance_type = "db.t3.small"
+  instance_type = "db.t3.medium"
 
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used
   # if var.storage_encrypted is true. If you leave this null, the default RDS
@@ -1745,7 +1745,7 @@ The number of DB instances, including the primary, to run in the RDS cluster. On
 The instance type to use for the db (e.g. db.r3.large). Only used when <a href="#engine_mode"><code>engine_mode</code></a> is set to provisioned.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;db.t3.small&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;db.t3.medium&quot;"/>
 <HclGeneralListItem title="More Details">
 <details>
 
@@ -2247,11 +2247,11 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.16/modules/data-stores/aurora/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.16/modules/data-stores/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.16/modules/data-stores/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/data-stores/aurora/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/data-stores/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e1683f2152d91455aba5060631ee3e62"
+  "hash": "3be5bb6ef77e34db936fbcab3f347045"
 }
 ##DOCS-SOURCER-END -->

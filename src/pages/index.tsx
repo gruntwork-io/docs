@@ -57,30 +57,25 @@ export default function Home(): JSX.Element {
                 href="/developer-portal/create-account"
                 icon="/img/icons/deploy.svg"
               >
-                Create your account in the Gruntwork Developer Portal and add your teammates.
+                Create your account in the Gruntwork Developer Portal and add
+                your teammates.
               </Card>
             </CardGroup>
           </div>
           <div className="container" style={{ margin: "6rem auto" }}>
             <h2>Products</h2>
             <CardGroup commonCardProps={{ appearance: "invisible" }}>
-              <Card
-                title="Infrastructure as Code Library"
-                href="/library/overview/"
-              >
-                A collection of reusable code that enables you to deploy and manage infrastructure quickly and reliably.
+              <Card title="Gruntwork Library" href="/library/overview/">
+                A collection of reusable code that enables you to deploy and
+                manage infrastructure quickly and reliably.
               </Card>
-              <Card
-                title="Reference Architecture"
-                href="/refarch/whats-this/what-is-a-reference-architecture"
-              >
-                An end-to-end tech stack built using best practices on top of our Infrastructure as Code Library, deployed into your AWS accounts.
+              <Card title="Gruntwork Pipelines" href="/pipelines/overview">
+                A framework for running secure deployments for infrastructure
+                code and application code.
               </Card>
-              <Card
-                title="Gruntwork Pipelines"
-                href="/pipelines/overview"
-              >
-                A framework for running secure deployments for infrastructure code and application code.
+              <Card title="Gruntwork Patcher" href="/patcher">
+                Keep your infrastructure up to date, with support for automatic
+                updates and patches for any breaking changes.
               </Card>
             </CardGroup>
           </div>

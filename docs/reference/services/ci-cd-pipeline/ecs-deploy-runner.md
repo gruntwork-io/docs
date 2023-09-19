@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.16" lastModifiedVersion="0.104.16"/>
+<VersionBadge version="0.105.1" lastModifiedVersion="0.104.16"/>
 
 # ECS Deploy Runner
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.16/modules/mgmt/ecs-deploy-runner" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/mgmt/ecs-deploy-runner" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fecs-deploy-runner" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -77,7 +77,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.16/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -85,7 +85,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [shared account ecs-deploy-runner configuration in the for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.16/examples/for-production/infrastructure-live/shared/us-west-2/mgmt/ecs-deploy-runner/):
+*   [shared account ecs-deploy-runner configuration in the for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/examples/for-production/infrastructure-live/shared/us-west-2/mgmt/ecs-deploy-runner/):
     The `examples/for-production` folder contains sample code optimized for direct usage in production. This is code from
     the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -104,7 +104,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "ecs_deploy_runner" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-deploy-runner?ref=v0.104.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/ecs-deploy-runner?ref=v0.105.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -183,6 +183,7 @@ module "ecs_deploy_runner" {
     )
     repo_access_ssh_key_secrets_manager_arn = string
     repo_access_https_tokens = map(string)
+    additional_allowed_options = list(string)
     secrets_manager_env_vars = map(string)
     environment_vars = map(string)
   )>
@@ -205,6 +206,7 @@ module "ecs_deploy_runner" {
     infrastructure_live_repositories_regex = list(string)
     repo_access_ssh_key_secrets_manager_arn = string
     repo_access_https_tokens = map(string)
+    additional_allowed_options = list(string)
     secrets_manager_env_vars = map(string)
     environment_vars = map(string)
   )>
@@ -438,7 +440,7 @@ module "ecs_deploy_runner" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-deploy-runner?ref=v0.104.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/ecs-deploy-runner?ref=v0.105.1"
 }
 
 inputs = {
@@ -520,6 +522,7 @@ inputs = {
     )
     repo_access_ssh_key_secrets_manager_arn = string
     repo_access_https_tokens = map(string)
+    additional_allowed_options = list(string)
     secrets_manager_env_vars = map(string)
     environment_vars = map(string)
   )>
@@ -542,6 +545,7 @@ inputs = {
     infrastructure_live_repositories_regex = list(string)
     repo_access_ssh_key_secrets_manager_arn = string
     repo_access_https_tokens = map(string)
+    additional_allowed_options = list(string)
     secrets_manager_env_vars = map(string)
     environment_vars = map(string)
   )>
@@ -1261,6 +1265,11 @@ object({
     #                                         passed in with bitbucket_token_secrets_manager_arn.
     repo_access_https_tokens = map(string)
 
+    # List of additional allowed options to pass to terraform plan. This is useful for passing in additional options
+    # that are not supported by the pipeline by default. For example, if you want to pass in the -var option,
+    # you would set this to ["-var"].
+    additional_allowed_options = list(string)
+
     # ARNs of AWS Secrets Manager entries that you would like to expose to the terraform/terragrunt process as
     # environment variables. For example,
     # secrets_manager_env_vars = {
@@ -1402,6 +1411,18 @@ object({
 
 ```hcl
 
+     List of additional allowed options to pass to terraform plan. This is useful for passing in additional options
+     that are not supported by the pipeline by default. For example, if you want to pass in the -var option,
+     you would set this to ["-var"].
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
      ARNs of AWS Secrets Manager entries that you would like to expose to the terraform/terragrunt process as
      environment variables. For example,
      secrets_manager_env_vars = {
@@ -1496,6 +1517,11 @@ object({
     # - bitbucket_username                  : The username of the BitBucket user associated with the bitbucket token
     #                                         passed in with bitbucket_token_secrets_manager_arn.
     repo_access_https_tokens = map(string)
+
+    # List of additional allowed options to pass to terraform plan. This is useful for passing in additional options
+    # that are not supported by the pipeline by default. For example, if you want to pass in the -var option,
+    # you would set this to ["-var"].
+    additional_allowed_options = list(string)
 
     # ARNs of AWS Secrets Manager entries that you would like to expose to the terraform/terragrunt process as
     # environment variables. For example,
@@ -1594,6 +1620,18 @@ object({
                                              bitbucket_username is required if this is set.
      - bitbucket_username                  : The username of the BitBucket user associated with the bitbucket token
                                              passed in with bitbucket_token_secrets_manager_arn.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of additional allowed options to pass to terraform plan. This is useful for passing in additional options
+     that are not supported by the pipeline by default. For example, if you want to pass in the -var option,
+     you would set this to ["-var"].
 
 ```
 </details>
@@ -2503,11 +2541,11 @@ Security Group ID of the ECS task
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.16/modules/mgmt/ecs-deploy-runner/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.16/modules/mgmt/ecs-deploy-runner/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.16/modules/mgmt/ecs-deploy-runner/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/mgmt/ecs-deploy-runner/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/mgmt/ecs-deploy-runner/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/mgmt/ecs-deploy-runner/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "224a81b398604ff5f40963f892ad81d4"
+  "hash": "46640d70b6b0f83cf0d31931783bec8a"
 }
 ##DOCS-SOURCER-END -->

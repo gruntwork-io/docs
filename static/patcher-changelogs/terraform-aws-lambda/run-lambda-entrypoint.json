@@ -1,6 +1,9 @@
 {
   "module": "run-lambda-entrypoint",
   "releases": {
+    "v0.21.13": {
+      "contains_changes": false
+    },
     "v0.21.12": {
       "contains_changes": false
     },

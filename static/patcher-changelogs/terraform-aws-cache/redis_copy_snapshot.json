@@ -1,6 +1,9 @@
 {
   "module": "redis_copy_snapshot",
   "releases": {
+    "v0.21.0": {
+      "contains_changes": true
+    },
     "v0.20.2": {
       "contains_changes": false
     },

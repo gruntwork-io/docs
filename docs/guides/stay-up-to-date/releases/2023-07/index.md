@@ -35,7 +35,14 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  Release duplicated from https://github.com/gruntwork-io/patcher/releases/tag/v0.4.2
+  
+This release includes the following improvements:
+- A non-interactive mode was added to the `report` command
+  - The command outputs the list of dependencies in JSON format
+```
+patcher report --non-interactive --skip-container-runtime
+```
+
 
 </div>
 
@@ -552,16 +559,18 @@ Remove deprecated eks version 1.22
 ### [v0.25.0](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.25.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/19/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.25.0">Release notes</a></small>
+  <small>Published: 7/19/2023 | Modules affected: vpc-app, vpc-mgmt | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.25.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  * Bug_aws_eip_vpc_argument_320 by @zachreborn in https://github.com/gruntwork-io/terraform-aws-vpc/pull/325
-* [skip ci] Enhancement add zachreborn codeowners by @zachreborn in https://github.com/gruntwork-io/terraform-aws-vpc/pull/329
+  
+
+- Added IPv6 dual stack capabilities to the vpc-app module for the VPC and public subnets
+- Enhancement add zachreborn codeowners
+- Fixes #320 
 
 
-**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-vpc/compare/v0.24.0...v0.25.0
 
 </div>
 
@@ -569,17 +578,18 @@ Remove deprecated eks version 1.22
 ### [v0.24.0](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.24.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/18/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.24.0">Release notes</a></small>
+  <small>Published: 7/18/2023 | Modules affected: vpc-peering-cross-accounts-accepter, vpc-peering | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.24.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  * CircleCI automated test parallelism by @zachreborn in https://github.com/gruntwork-io/terraform-aws-vpc/pull/323
-* [skip ci] Removing former Grunts by @eak12913 in https://github.com/gruntwork-io/terraform-aws-vpc/pull/324
-* Feature/vpc-peering - Update provider version constraints to allow &gt;5.x by @zachreborn in https://github.com/gruntwork-io/terraform-aws-vpc/pull/326
+  
+
+- Added CircleCI automated test parallelism
+- Removing former Grunts
+- Fixes #322 
 
 
-**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-vpc/compare/v0.23.3...v0.24.0
 
 </div>
 
@@ -608,6 +618,6 @@ Remove deprecated eks version 1.22
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e9987489b314ac6cf886aab3a3513eb5"
+  "hash": "d55615b903a715e953c3514961dd7d9e"
 }
 ##DOCS-SOURCER-END -->

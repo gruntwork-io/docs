@@ -1,6 +1,9 @@
 {
   "module": "server-group",
   "releases": {
+    "v0.21.9": {
+      "contains_changes": true
+    },
     "v0.21.8": {
       "contains_changes": true
     },
