@@ -1,4 +1,4 @@
-# DevOps components
+# DevOps Components
 
 Gruntwork DevOps Foundations is made up of a collection of _DevOps components._ A DevOps component is an essential element of modern infrastructure for which Gruntwork has pre-built IaC modules and pre-written documentation to reflect our recommended best practices and support fast setup.
 
@@ -9,6 +9,8 @@ The Gruntwork DevOps components include:
 1. **AWS Account Foundations.** Set up a best-practice multi-account setup, easily create new AWS accounts, and set secure account baselines.
 1. **IaC Foundations.** Set up the foundational Terraform and Terragrunt coding patterns that your team can scale with
 1. **CI/CD Foundations.** Roll out an infrastructure change in a way that meets the needs of your organization.
+1. **Network Topology.** Protect your internal cloud resources from external access.
+1. **Running apps.** Run your apps on EKS or ECS in a best-practices way.
 
 ## Working with components
 
@@ -21,6 +23,7 @@ The first layer is the most foundational because all other infrastructure is bui
 - AWS Account Foundations
 - IaC foundations
 - CI/CD Foundations
+- Network Topology
 
 ### Layer 2
 

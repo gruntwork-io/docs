@@ -10,12 +10,12 @@ const sidebar = [
     collapsible: false,
     items: [
       {
-        label: "Overview",
+        label: "DevOps Components",
         type: "category",
         collapsed: false,
         items: [
           {
-            label: "Elements of DevOps Foundations",
+            label: "Overview",
             type: "doc",
             id: "foundations/overview/index",
           },
@@ -37,7 +37,11 @@ const sidebar = [
         type: "category",
         collapsed: false,
         items: [
-          "foundations/iac/index",
+          {
+            label: "Overview",
+            type: "doc",
+            id: "foundations/iac/index",
+          },
           "foundations/iac/folder_structure",
           {
             label: "Module Defaults",
@@ -68,6 +72,18 @@ const sidebar = [
         type: "category",
         collapsed: false,
         items: ["foundations/ci-cd/index"],
+      },
+      {
+        label: "Network Topology",
+        type: "category",
+        collapsed: false,
+        items: [
+          {
+            label: "Overview",
+            type: "doc",
+            id: "foundations/network-topology/index",
+          },
+        ]
       },
       // TODO: Disabling for now until it's an offering
       // {
