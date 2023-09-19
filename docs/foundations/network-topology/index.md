@@ -13,7 +13,7 @@ Our standard network architecture includes:
 - DNS forwarding for a management VPC
 - Optionally, tags for an EKS cluster
 
-## Out of the box setup
+## Out-of-the-box setup
 
 Gruntwork will generate the IaC code you need to set up our standard, recommended VPC configuration, as detailed in our [VPC service catalog module](/reference/services/networking/virtual-private-cloud-vpc).
 
@@ -32,6 +32,6 @@ This is done by directly working with the Terraform modules from Gruntwork Libra
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0a04285644a8f01f58325dd000d66fba"
+  "hash": "250fd5235210081650ae0f4cee677505"
 }
 ##DOCS-SOURCER-END -->

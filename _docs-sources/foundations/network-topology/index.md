@@ -13,7 +13,7 @@ Our standard network architecture includes:
 - DNS forwarding for a management VPC
 - Optionally, tags for an EKS cluster
 
-## Out of the box setup
+## Out-of-the-box setup
 
 Gruntwork will generate the IaC code you need to set up our standard, recommended VPC configuration, as detailed in our [VPC service catalog module](/reference/services/networking/virtual-private-cloud-vpc).
 
