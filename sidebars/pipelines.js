@@ -36,11 +36,11 @@ const sidebar = [
             type: "doc",
             id: "pipelines/tutorial/index",
           },
-          // {
-          //   label: "Deploying Multi-Account Pipelines",
-          //   type: "doc",
-          //   id: "pipelines/multi-account/index",
-          // },
+          {
+            label: "Production Use",
+            type: "doc",
+            id: "pipelines/production-use/index",
+          }
         ],
       },
       {
