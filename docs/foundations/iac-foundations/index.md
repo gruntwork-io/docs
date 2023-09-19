@@ -33,13 +33,13 @@ This [template](https://github.com/gruntwork-io/infrastructure-modules-template)
 
 ### [Infrastructure Pipelines Template](https://github.com/gruntwork-io/infrastructure-pipelines-template)
 
-This [template](https://github.com/gruntwork-io/infrastructure-pipelines-template) is only necessary if you plan on implementing [Gruntwork Pipelines](../ci-cd).
+This [template](https://github.com/gruntwork-io/infrastructure-pipelines-template) is only necessary if you plan on implementing [Gruntwork Pipelines](../pipelines).
 
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e8ceabf0123b32216aa80cf04443e125"
+  "hash": "0bfc044ec587def048e22638d5865d97"
 }
 ##DOCS-SOURCER-END -->

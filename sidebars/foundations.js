@@ -26,10 +26,10 @@ const sidebar = [
         type: "category",
         collapsed: false,
         items: [
-          "foundations/accounts/prerequisites",
-          "foundations/accounts/enable-control-tower",
-          "foundations/accounts/add-account",
-          "foundations/accounts/manage-accounts",
+          "foundations/landing-zone/prerequisites",
+          "foundations/landing-zone/enable-control-tower",
+          "foundations/landing-zone/add-account",
+          "foundations/landing-zone/manage-accounts",
         ],
       },
       {
@@ -40,9 +40,9 @@ const sidebar = [
           {
             label: "Overview",
             type: "doc",
-            id: "foundations/iac/index",
+            id: "foundations/iac-foundations/index",
           },
-          "foundations/iac/folder_structure",
+          "foundations/iac-foundations/folder_structure",
           {
             label: "Module Defaults",
             type: "category",
@@ -51,17 +51,17 @@ const sidebar = [
               {
                 label: "What are Module Defaults?",
                 type: "doc",
-                id: "foundations/iac/module_defaults/index",
+                id: "foundations/iac-foundations/module_defaults/index",
               },
               {
                 label: "Defining Module Defaults",
                 type: "doc",
-                id: "foundations/iac/module_defaults/defining",
+                id: "foundations/iac-foundations/module_defaults/defining",
               },
               {
                 label: "Using Module Defaults",
                 type: "doc",
-                id: "foundations/iac/module_defaults/usage",
+                id: "foundations/iac-foundations/module_defaults/usage",
               },
             ],
           },
@@ -75,7 +75,7 @@ const sidebar = [
           {
             label: "Overview",
             type: "doc",
-            id: "foundations/ci-cd/index",
+            id: "foundations/pipelines/index",
           },
         ]
       },

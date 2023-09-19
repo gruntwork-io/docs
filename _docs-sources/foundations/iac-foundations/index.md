@@ -33,5 +33,5 @@ This [template](https://github.com/gruntwork-io/infrastructure-modules-template)
 
 ### [Infrastructure Pipelines Template](https://github.com/gruntwork-io/infrastructure-pipelines-template)
 
-This [template](https://github.com/gruntwork-io/infrastructure-pipelines-template) is only necessary if you plan on implementing [Gruntwork Pipelines](../ci-cd).
+This [template](https://github.com/gruntwork-io/infrastructure-pipelines-template) is only necessary if you plan on implementing [Gruntwork Pipelines](../pipelines).
 

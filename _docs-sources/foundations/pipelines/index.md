@@ -12,7 +12,7 @@ GitHub Actions is currently the only CI system supported by Gruntwork Pipelines.
 
 ## Components of Pipelines
 
-Pipelines is a single binary that runs as a step in your CI tool. To perform the actions that Pipelines detects, each account will need an AWS IAM Role that allows GitHub Actions to assume it using OIDC. This role is automatically provisioned in new accounts that are provisioned when [adding an account](../accounts/add-account.md) using the Account Factory.
+Pipelines is a single binary that runs as a step in your CI tool. To perform the actions that Pipelines detects, each account will need an AWS IAM Role that allows GitHub Actions to assume it using OIDC. This role is automatically provisioned in new accounts that are provisioned when [adding an account](../landing-zone/add-account.md) using the Account Factory.
 
 Pipelines assumes that each top level directory in your `infrastructure-live` repository maps to a single AWS account, excluding the `_envcommon` directory. Each account mapped directory must have an entry in `accounts.yml` with a key matching the directory name and containing key/value pairs for the account ID and the e-mail for the root user of the account.
 
@@ -63,6 +63,6 @@ The AWS IAM Role for the management account must have permissions to provision n
 
 ### Child Accounts
 
-Each child account (e.g., `dev`, `stage`, `prod,` etc.) contains an AWS IAM role that Pipelines can assume from GitHub Actions using OIDC. This role is automatically provisioned as a part of the [account baseline process](../accounts/add-account#4-review-and-merge-the-account-baseline-pr). Once this role is in place in the child account, users may submit pull requests with new Infrastructure Units in the child account.
+Each child account (e.g., `dev`, `stage`, `prod,` etc.) contains an AWS IAM role that Pipelines can assume from GitHub Actions using OIDC. This role is automatically provisioned as a part of the [account baseline process](../landing-zone/add-account#4-review-and-merge-the-account-baseline-pr). Once this role is in place in the child account, users may submit pull requests with new Infrastructure Units in the child account.
 
 When a Pull Request is created or synchronized, or a push to main occurs, Pipelines will detect the changes, map them to the new account, assume the role in the child account, then run a `terragrunt plan` or `terragrunt apply` job (plan for PRs, apply for pushes to main).
