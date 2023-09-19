@@ -38,7 +38,11 @@ const sidebar = [
         type: "category",
         collapsed: false,
         items: [
-          "foundations/network-topology/index",
+          {
+            label: "About Network Topology",
+            type: "doc",
+            id: "foundations/network-topology/index",
+          },
         ],
       },
       {
