@@ -39,7 +39,7 @@ const sidebar = [
         collapsed: false,
         items: [
           {
-            label: "About Network Topology",
+            label: "Overview",
             type: "doc",
             id: "foundations/network-topology/index",
           },
@@ -50,7 +50,11 @@ const sidebar = [
         type: "category",
         collapsed: false,
         items: [
-          "foundations/terraform/index",
+          {
+            label: "Overview",
+            type: "doc",
+            id: "foundations/terraform/index",
+          },
           "foundations/terraform/folder_structure",
           {
             label: "Module Defaults",
@@ -82,7 +86,7 @@ const sidebar = [
         collapsed: false,
         items: [
           {
-            label: "About Pipelines",
+            label: "Overview",
             type: "doc",
             id: "foundations/ci-cd/index",
           },
