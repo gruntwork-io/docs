@@ -50,7 +50,12 @@ Navigate to the repositories tab of your organization or personal GitHub account
 ![GitHub form for creating a new repository](/img/pipelines/tutorial/create_new_repo_form.png)
 
 :::warning
-For a simple proof of concept, the default repo configuration will suffice. Before using these repositories in a production environment, we recommend setting up a [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) for your `main` branch. At a minimum, we recommend enabling requiring a pull request before merging with at least one reviewer required.
+For a simple proof of concept, the default repo configuration will suffice.
+Before using these repositories in a production environment, we recommend setting up a
+[branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule)
+for your `main` branch.
+At a minimum, we recommend enabling requiring a pull request before merging with at least one reviewer required.
+See [Using Pipelines](/pipelines/using-pipelines#recommended-settings) for recommended settings.
 :::
 
 ### Setting up secrets
@@ -195,6 +200,6 @@ If you are not going to continue using Pipelines after this tutorial, clean up t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0b675850c024e39e6287218220512fe6"
+  "hash": "a1fe409b99fb12cfde7807474b4d799d"
 }
 ##DOCS-SOURCER-END -->
