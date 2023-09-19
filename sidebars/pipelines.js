@@ -42,9 +42,9 @@ const sidebar = [
         collapsible: false,
         items: [
           {
-            label: "Single Account Tutorial",
+            label: "Hello World",
             type: "doc",
-            id: "pipelines/tutorial/index",
+            id: "pipelines/hello-world/index",
           },
         ],
       },
