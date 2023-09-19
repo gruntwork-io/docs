@@ -46,6 +46,11 @@ const sidebar = [
             type: "doc",
             id: "pipelines/hello-world/index",
           },
+          {
+            label: "Using Pipelines",
+            type: "doc",
+            id: "pipelines/using-pipelines/index",
+          }
         ],
       },
       {
@@ -60,22 +65,25 @@ const sidebar = [
         collapsible: false,
         items: [
           {
-            label: "Upgrading from ECS Deploy Runner",
-            type: "doc",
-            id: "pipelines/upgrading/index"
-          },
-          {
             label: "ECS Deploy Runner",
             type: "link",
-            href: "/ecs-deploy-runner/overview"
+            // Use a fully qualified URL to trigger the "external link" SVG here
+            href: "https://docs.gruntwork.io/ecs-deploy-runner/overview",
           },
         ],
       },
       {
-        type: "link",
-        label: "Knowledge Base",
-        href: kbLink,
-      },
+        label: "Community",
+        type: "category",
+        collapsible: false,
+        items: [
+          {
+            type: "link",
+            label: "Knowledge Base",
+            href: kbLink
+          },
+        ]
+      }
     ],
   },
 ]
