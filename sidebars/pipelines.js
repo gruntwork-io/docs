@@ -50,10 +50,30 @@ const sidebar = [
         items: ["pipelines/maintain/updating", "pipelines/maintain/extending"],
       },
       {
-        type: "link",
-        label: "Knowledge Base",
-        href: kbLink,
+        label: "Previous Versions",
+        type: "category",
+        collapsible: false,
+        items: [
+          {
+            label: "ECS Deploy Runner",
+            type: "link",
+            // Use a fully qualified URL to trigger the "external link" SVG here
+            href: "https://docs.gruntwork.io/ecs-deploy-runner/overview",
+          },
+        ],
       },
+      {
+        label: "Community",
+        type: "category",
+        collapsible: false,
+        items: [
+          {
+            type: "link",
+            label: "Knowledge Base",
+            href: kbLink
+          },
+        ]
+      }
     ],
   },
 ]
