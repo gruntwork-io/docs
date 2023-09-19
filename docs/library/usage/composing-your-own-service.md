@@ -1,6 +1,6 @@
-# Composing your own Service
+# Composing your own service module
 
-We offer a collection of [services](../overview/services.md#what-is-a-service) that piece together individual [modules](../overview/modules.md#what-is-a-module) for specific use cases such as EKS clusters and VPCs with public and private subnets. While we strive to make our service catalog as a complete as possible, you may need to create your own service to suit a specific use case or need for your company.
+We offer a collection of [service modules](../overview/services.md#what-is-a-service) that piece together individual [modules](../overview/modules.md#what-is-a-module) for specific use cases such as EKS clusters and VPCs with public and private subnets. While we strive to make our service catalog as a complete as possible, you may need to create your own service to suit a specific use case or need for your company.
 
 In this guide, you will learn how to create a service that provisions a simple API using the [AWS Lambda Function](../../reference/modules/terraform-aws-lambda/lambda/) and [API Gateway](../../reference/modules/terraform-aws-lambda/lambda-http-api-gateway/) modules from the Gruntwork Infrastructure as Code (IaC) Library.
 
@@ -194,6 +194,6 @@ Now that you've defined your own service, consider how you would make this modul
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "feea3e9cf49c60fad43593433cb35ba6"
+  "hash": "0fb79fb0654353835a7e1a3c571feb85"
 }
 ##DOCS-SOURCER-END -->

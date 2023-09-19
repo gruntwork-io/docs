@@ -1,6 +1,6 @@
 # Update Strategies
 
-Patcher supports two update strategies: **next safe** and **next breaking**. Theses update strategy determines how Patcher will behave if it encounters a breaking change that it cannot patch.
+Patcher supports two update strategies: **next safe** and **next breaking**. These update strategies determine how Patcher will behave if it encounters a breaking change that it cannot patch.
 
 For example, the Gruntwork `terraform-aws-security/custom-iam-entity` module has two recent breaking changes: `0.62.0` and `0.65.0`.
 
@@ -12,7 +12,7 @@ And in `infrastructure-live/dev` there are 2 dependencies on `terraform-aws-secu
 
 The **next safe** strategy will update a dependency to either the highest version **before the next closest breaking change** or the latest version of the dependency, whichever is encountered first.
 
-So if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the highest version before that breaking change and stop. Otherwise, if no breaking chnages are encountered it will update the dependencies the latest version of that module.
+So if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the highest version before that breaking change and stop. Otherwise, if no breaking changes are encountered it will update the dependencies the latest version of that module.
 
 For example, for the dependencies on `terraform-aws-security/custom-iam-entity` in `infrastructure-live/dev`:
 - `_global/ops-admin-role/terragrunt.hcl` will be updated from `0.65.6` to `0.68.2`, the latest version
@@ -45,7 +45,7 @@ This is an example of the YAML that Patcher writes to `stdout` describing these 
 
 The **next breaking** strategy will update a dependency to either the next closest breaking change or the latest version of the dependency, whichever is encountered first.
 
-So if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the version with the breaking change and stop. Otherwise, if no breaking changes are encountered it will update the dependencies the latest version of that module.
+So if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the version with the breaking change and stop. Otherwise, if no breaking changes are encountered, it will update the dependencies to the latest version of that module.
 
 This may result in an update that requires manual intervention. If so, Patcher will provide additional information to help you understand what needs to be done.
 

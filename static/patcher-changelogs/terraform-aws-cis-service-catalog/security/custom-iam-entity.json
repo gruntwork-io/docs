@@ -1,6 +1,15 @@
 {
   "module": "security/custom-iam-entity",
   "releases": {
+    "v0.47.8": {
+      "contains_changes": false
+    },
+    "v0.47.7": {
+      "contains_changes": false
+    },
+    "v0.47.6": {
+      "contains_changes": false
+    },
     "v0.47.5": {
       "contains_changes": false
     },

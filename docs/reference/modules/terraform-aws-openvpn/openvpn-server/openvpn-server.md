@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Open VPN Package Infrastructure Package" version="0.26.3" lastModifiedVersion="0.26.3"/>
+<VersionBadge repoTitle="Open VPN Package Infrastructure Package" version="0.26.4" lastModifiedVersion="0.26.4"/>
 
 # OpenVPN Server Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/openvpn-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.4/modules/openvpn-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.26.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.26.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy an OpenVPN server in an auto-scaling group (size 1) for fault tolerance --along with the all the resources it typically needs:
 
@@ -83,7 +83,7 @@ resource "aws_iam_policy_attachment" "attachment" {
 
 ## What if I want to enable MFA?
 
-The scripts [init-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/init-openvpn) and [install-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/install-openvpn) support setting up the
+The scripts [init-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.4/modules/init-openvpn) and [install-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.4/modules/install-openvpn) support setting up the
 [duo_openvpn](https://github.com/duosecurity/duo_openvpn) plugin for 2FA authentication. To enable the duo plugin, you
 need to:
 
@@ -96,7 +96,7 @@ need to:
     `--duo-skey`, and `--duo-host` to configure the integration key, secret key, and API hostname respectively. You can
     obtain these by following [the Duo setup instructions for OpenVPN](https://duo.com/docs/openvpn).
 
-See the [packer-duo](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/examples/packer-duo) and [openvpn-host-duo](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/examples/openvpn-host-duo) examples for an
+See the [packer-duo](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.4/modules/examples/packer-duo) and [openvpn-host-duo](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.4/modules/examples/openvpn-host-duo) examples for an
 example configuration to deploy the OpenVPN server with Duo enabled.
 
 Once the plugin is setup, all authentication for the client will result in a password prompt. To authenticate, you pass
@@ -117,7 +117,7 @@ exactly match the duo username.
 
 module "openvpn_server" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-openvpn.git//modules/openvpn-server?ref=v0.26.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-openvpn.git//modules/openvpn-server?ref=v0.26.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -215,8 +215,8 @@ module "openvpn_server" {
   # var.enable_backup_bucket_server_access_logging is true.
   backup_bucket_server_access_logging_prefix = null
 
-  # The name of the device to mount.
-  block_device_name = "/dev/xvdcz"
+  # The name of the root device to mount.
+  block_device_name = "/dev/sda1"
 
   # When true, create default IAM Groups that you can use to manage permissions
   # for accessing the SQS queue for requesting and revoking OpenVPN
@@ -352,7 +352,7 @@ module "openvpn_server" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-openvpn.git//modules/openvpn-server?ref=v0.26.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-openvpn.git//modules/openvpn-server?ref=v0.26.4"
 }
 
 inputs = {
@@ -453,8 +453,8 @@ inputs = {
   # var.enable_backup_bucket_server_access_logging is true.
   backup_bucket_server_access_logging_prefix = null
 
-  # The name of the device to mount.
-  block_device_name = "/dev/xvdcz"
+  # The name of the root device to mount.
+  block_device_name = "/dev/sda1"
 
   # When true, create default IAM Groups that you can use to manage permissions
   # for accessing the SQS queue for requesting and revoking OpenVPN
@@ -777,10 +777,10 @@ When set, stream S3 server access logs to the prefix in an S3 bucket denoted by 
 <HclListItem name="block_device_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name of the device to mount.
+The name of the root device to mount.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;/dev/xvdcz&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;/dev/sda1&quot;"/>
 </HclListItem>
 
 <HclListItem name="create_iam_groups" requirement="optional" type="bool">
@@ -1063,11 +1063,11 @@ The base64-encoded User Data script to run on the server when it is booting. Thi
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/openvpn-server/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/openvpn-server/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/openvpn-server/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.4/modules/openvpn-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.4/modules/openvpn-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.4/modules/openvpn-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4ac7de1cd46a5b0e7d33bd21dc21b208"
+  "hash": "0341963987ff48b14fa3bfd9d18b59e1"
 }
 ##DOCS-SOURCER-END -->
