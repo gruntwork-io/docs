@@ -4,15 +4,13 @@ Pipelines takes a defense in depth approach to securing workflows. This document
 
 ## Dual-repository approach
 
-Pipelines dual-repository approach separates infrastructure definitions from infrastructure deployment mechanisms. Pipelines requires two repositories —`infrastructure-pipelines`, where deployment workflows are defined and `infrastructure-live`, where infrastructure is defined as code. Each repository should have branch protection rules
+Pipelines dual-repository approach separates infrastructure definitions from infrastructure deployment mechanisms. Pipelines requires two repositories —`infrastructure-pipelines`, where deployment workflows are defined and `infrastructure-live`, where infrastructure is defined as code. Each repository should have branch protection rules to prevent un-reviewed code from being deployed. See [using pipelines](../using-pipelines/index) to learn more.
 
 To control access to these repositories we recommend creating GitHub teams. Write access to the `infrastructure-pipelines` repository should be limited to individuals that already have administrative access to your AWS accounts (see [accessing AWS resources](#accessing-aws-resources)). Read and write access to the `infrastructure-live` repository should be granted to any individual who needs to define infrastructure as code. See [repository access](repository-access.md) for more details.
 
 Pipelines uses GitHub Actions in both repositories to define workflows. Workflows running in `infrastructure-pipelines` deploy infrastructure changes, workflows running in `infrastructure-live` determine what infrastructure needs to be deployed and dispatch deployment jobs to the `infrastructure-pipelines` repository.
 
 Workflows in `infrastructure-live` call workflows that are defined on the `main` branch of `infrastructure-pipelines`. This means that any change to the workflow must go through normal pull request approval processes. Further, the IAM role that Pipelines uses has a [trust policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html) that specifies it can only be assumed from workflows running on the `main` branch. If workflows are run from another branch, retrieving short lived tokens will fail.
-
-<!-- TODO: Add link to Andrew's branch protection PR here once merged -->
 
 ## Token strategy
 
@@ -34,7 +32,7 @@ Pipelines has guards in place for `apply` and `destroy` actions. In order for th
 
 ## AWS Credentials
 
-Pipelines requires the use an IAM Role configured with a trust policy to allow GitHub Actions to use OpenId Connect (OIDC) with to run actions in your AWS accounts. This prevents the requirement of creating long lived AWS credentials and storing them as secrets in GitHub Actions. At execution time, Pipelines exchanges the GitHub OIDC token for short-lived AWS credentials generated using AWS STS to run actions in your AWS accounts.
+Pipelines requires the use of an IAM Role configured with a trust policy to allow GitHub Actions to use OpenId Connect (OIDC) with to run actions in your AWS accounts. This prevents the requirement of creating long lived AWS credentials and storing them as secrets in GitHub Actions. At execution time, Pipelines exchanges the GitHub OIDC token for short-lived AWS credentials generated using AWS STS to run actions in your AWS accounts.
 
 These credentials, although temporary, should still be treated as secrets. The Pipelines role has administrative permissions to many AWS resources to allow you to deploy many resources without needing to update the policy.
 
@@ -77,6 +75,6 @@ As highlighted in [dual-repository approach](#dual-repository-approach), because
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "71e3a13f6f19f62cbeab7df3155315b8"
+  "hash": "d4640221653fb020b8813a8c7182d8a9"
 }
 ##DOCS-SOURCER-END -->
