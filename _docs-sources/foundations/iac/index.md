@@ -22,6 +22,23 @@ We provide 3 template repos to subscribers that implement best practices regardi
 
 ### Infrastructure Live Template
 
+Navigate to the [infrastructure-live template](https://github.com/gruntwork-io/infrastructure-live-template) and select **Use this template** -> **Create a new Repository**.
+This will initiate repository creation. You should select your org as the owner, add a description if you like, and click **Create repository**.
+
+The repository template will be created and you can follow the instructions in the README to bootstrap your IaC Foundations.
+
 ### Infrastructure Modules Template
 
+Navigate to the [infrastructure-modules template](https://github.com/gruntwork-io/infrastructure-modules-template) and select **Use this template** -> **Create a new Repository**.
+This will initiate repository creation. You should select your org as the owner, add a description if you like, and click **Create repository**.
+
+The repository template will be created and you can follow the instructions in the README to bootstrap your Infrastructure Modules.
+
 ### Infrastructure Pipelines Template
+
+This repository is only necessary if you plan on implementing [Gruntwork Pipelines](../ci-cd)
+
+Navigate to the [infrastructure-pipelines template](https://github.com/gruntwork-io/infrastructure-pipelines-template) and select **Use this template** -> **Create a new Repository**.
+This will initiate repository creation. You should select your org as the owner, add a description if you like, and click **Create repository**.
+
+The repository template will be created and you can follow the instructions in the README to bootstrap your CI/CD Foundations.
