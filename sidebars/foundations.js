@@ -80,7 +80,14 @@ const sidebar = [
         label: "Pipelines",
         type: "category",
         collapsed: false,
-        items: ["foundations/ci-cd/index"],
+        items: [
+          {
+            label: "About Pipelines",
+            type: "doc",
+            id: "foundations/ci-cd/index",
+          },
+          "foundations/ci-cd/pipelines-for-account-factory"
+        ],
       },
       {
         label: "Running apps",
