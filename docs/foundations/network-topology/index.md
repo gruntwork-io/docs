@@ -13,19 +13,25 @@ Our standard network architecture includes:
 - DNS forwarding for a management VPC
 - Optionally, tags for an EKS cluster
 
+## Out of the box setup
+
+Gruntwork will generate the IaC code you need to set up our standard, recommended VPC configuration, as detailed in our [VPC service catalog module](/reference/services/networking/virtual-private-cloud-vpc).
+
 ## Extending the standard VPC
 
-Gruntwork will create code for you to set up our standard, recommended VPC configuration. You can extend this configuration by using the "building block" modules from the VPC topic in the Gruntwork Library to further extend your VPC, adding functionality such as:
+You can extend this configuration by using the "building block" modules from the VPC topic in the Gruntwork Library to further extend your VPC, adding functionality such as:
 
-- [Enabling IPv6](https://docs.gruntwork.io/reference/modules/terraform-aws-vpc/vpc-app/)
-- [Adding a Transit Gateway](https://docs.gruntwork.io/reference/modules/terraform-aws-vpc/transit-gateway/)
-- [Enabling DNS forwarding](https://docs.gruntwork.io/reference/modules/terraform-aws-vpc/vpc-dns-forwarder/)
-- [Setting up Tailscale](https://docs.gruntwork.io/reference/services/security/tailscale-subnet-router)
+- [Enabling IPv6](/reference/modules/terraform-aws-vpc/vpc-app/#ipv6-design)
+- [Adding a Transit Gateway](/reference/modules/terraform-aws-vpc/transit-gateway/)
+- [Enabling DNS forwarding](/reference/modules/terraform-aws-vpc/vpc-dns-forwarder/)
+- [Setting up Tailscale](/reference/services/security/tailscale-subnet-router)
+
+This is done by directly working with the Terraform modules from Gruntwork Library to accomplish the particular configuration you need.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7a1b9c9c4e72e91ad8c9daae9959ad2d"
+  "hash": "0a04285644a8f01f58325dd000d66fba"
 }
 ##DOCS-SOURCER-END -->
