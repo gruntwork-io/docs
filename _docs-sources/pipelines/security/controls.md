@@ -34,7 +34,7 @@ Pipelines has guards in place for `apply` and `destroy` actions. In order for th
 
 ## AWS Credentials
 
-Pipelines requires the use an IAM Role configured with a trust policy to allow GitHub Actions to use OpenId Connect (OIDC) with to run actions in your AWS accounts. This prevents the requirement of creating long lived AWS credentials and storing them as secrets in GitHub Actions. At execution time, Pipelines exchanges the GitHub OIDC token for short-lived AWS credentials generated using AWS STS to run actions in your AWS accounts.
+Pipelines requires the use of an IAM Role configured with a trust policy to allow GitHub Actions to use OpenId Connect (OIDC) with to run actions in your AWS accounts. This prevents the requirement of creating long lived AWS credentials and storing them as secrets in GitHub Actions. At execution time, Pipelines exchanges the GitHub OIDC token for short-lived AWS credentials generated using AWS STS to run actions in your AWS accounts.
 
 These credentials, although temporary, should still be treated as secrets. The Pipelines role has administrative permissions to many AWS resources to allow you to deploy many resources without needing to update the policy.
 
