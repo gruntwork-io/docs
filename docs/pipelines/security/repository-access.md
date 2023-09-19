@@ -1,4 +1,4 @@
-# Access control
+# Repository Access
 
 Gruntwork Pipelines grants permissions by defining three [GitHub Teams](https://docs.github.com/en/organizations/organizing-members-into-teams/about-teams), which should map to three separate personas in your organization. Each team and its permissions are designed to apply the [_principle of least privilege_](https://en.wikipedia.org/wiki/Principle_of_least_privilege) to each individual (or machine user) in your organization for them to be able to perform changes to your infrastructure.
 
@@ -7,3 +7,11 @@ The `infrastructure-collaborators` team is for engineers who work on the IaC cod
 The diagram below visually illustrates the above teams:
 
 ![Gruntwork Pipelines Permissions](/img/pipelines/security/github_teams.png)
+
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "local-copier",
+  "hash": "d3b243b9a27e876191b79aef85a38458"
+}
+##DOCS-SOURCER-END -->

@@ -6,7 +6,7 @@ Pipelines takes a defense in depth approach to securing workflows. This document
 
 Pipelines dual-repository approach separates infrastructure definitions from infrastructure deployment mechanisms. Pipelines requires two repositories —`infrastructure-pipelines`, where deployment workflows are defined and `infrastructure-live`, where infrastructure is defined as code. Each repository should have branch protection rules
 
-To control access to these repositories we recommend creating GitHub teams. Write access to the `infrastructure-pipelines` repository should be limited to individuals that already have administrative access to your AWS accounts (see [accessing AWS resources](#accessing-aws-resources)). Read and write access to the `infrastructure-live` repository should be granted to any individual who needs to define infrastructure as code. See [access control](access-control.md) for more details.
+To control access to these repositories we recommend creating GitHub teams. Write access to the `infrastructure-pipelines` repository should be limited to individuals that already have administrative access to your AWS accounts (see [accessing AWS resources](#accessing-aws-resources)). Read and write access to the `infrastructure-live` repository should be granted to any individual who needs to define infrastructure as code. See [repository access](repository-access.md) for more details.
 
 Pipelines uses GitHub Actions in both repositories to define workflows. Workflows running in `infrastructure-pipelines` deploy infrastructure changes, workflows running in `infrastructure-live` determine what infrastructure needs to be deployed and dispatch deployment jobs to the `infrastructure-pipelines` repository.
 
