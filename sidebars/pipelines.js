@@ -46,6 +46,11 @@ const sidebar = [
             type: "doc",
             id: "pipelines/hello-world/index",
           },
+          {
+            label: "Using Pipelines",
+            type: "doc",
+            id: "pipelines/using-pipelines/index",
+          }
         ],
       },
       {
