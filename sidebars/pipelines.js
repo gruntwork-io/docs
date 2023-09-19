@@ -12,7 +12,7 @@ const sidebar = [
       {
         label: "Overview",
         type: "category",
-        collapsible: false,
+        collapsed: false,
         items: [
           {
             label: "What is Gruntwork Pipelines?",
@@ -20,40 +20,93 @@ const sidebar = [
             id: "pipelines/overview/index",
           },
           {
-            label: "How it works",
+            label: "Architecture",
             type: "doc",
-            id: "pipelines/how-it-works/index",
+            id: "pipelines/architecture/index",
+          },
+          {
+            label: "Actions",
+            type: "doc",
+            id: "pipelines/overview/actions",
+          },
+          {
+            label: "Usage Data",
+            type: "doc",
+            id: "pipelines/data-collection/index",
           },
         ],
       },
       {
         label: "Getting Started",
         type: "category",
-        collapsible: false,
+        collapsed: false,
         items: [
           {
-            label: "Single Account Tutorial",
+            label: "Hello World",
             type: "doc",
-            id: "pipelines/tutorial/index",
+            id: "pipelines/hello-world/index",
           },
-          // {
-          //   label: "Deploying Multi-Account Pipelines",
-          //   type: "doc",
-          //   id: "pipelines/multi-account/index",
-          // },
+          {
+            label: "Machine Users",
+            type: "doc",
+            id: "pipelines/using-pipelines/machine-users",
+          },
+          {
+            label: "Using Pipelines",
+            type: "doc",
+            id: "pipelines/using-pipelines/index",
+          },
         ],
       },
       {
-        label: "Maintain Pipelines",
+        label: "Security",
         type: "category",
         collapsible: false,
-        items: ["pipelines/maintain/updating", "pipelines/maintain/extending"],
+        items: [
+          {
+            label: "Controls",
+            type: "doc",
+            id: "pipelines/security/controls",
+          },
+          {
+            label: "Repository Access",
+            type: "doc",
+            id: "pipelines/security/repository-access",
+          },
+        ]
+      },
+      // TODO write these docs once we identify common cases
+      // {
+      //   label: "Maintain Pipelines",
+      //   type: "category",
+      //   collapsed: false,
+      //   items: ["pipelines/maintain/updating", "pipelines/maintain/extending"],
+      // },
+      {
+        label: "Previous Versions",
+        type: "category",
+        collapsible: false,
+        items: [
+          {
+            label: "ECS Deploy Runner",
+            type: "link",
+            // Use a fully qualified URL to trigger the "external link" SVG here
+            href: "https://docs.gruntwork.io/ecs-deploy-runner/overview",
+          },
+        ],
       },
       {
-        type: "link",
-        label: "Knowledge Base",
-        href: kbLink,
-      },
+        label: "Community",
+        type: "category",
+        collapsible: false,
+        items: [
+          {
+            type: "link",
+            label: "Knowledge Base",
+            href: kbLink
+          },
+        ]
+      }
     ],
   },
 ]
