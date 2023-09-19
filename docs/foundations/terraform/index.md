@@ -22,10 +22,12 @@ Working with Gruntwork, we will guide you through a workflow to create an `infra
 
 When we create these repositories, we typically also create an `infrastructure-pipelines` repository to set up [Gruntwork Pipelines](../ci-cd/).
 
+TODO: Add a link here or a new page ("Initial setup") in this section that guides the user to https://github.com/gruntwork-io/infrastructure-live-template and https://github.com/gruntwork-io/infrastructure-modules-template.
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "07bdf5a4bc5ecf9dfbcd730466b6ebc7"
+  "hash": "c6bb156b8c5a24de24dd4ac1a9489eb4"
 }
 ##DOCS-SOURCER-END -->

@@ -1,5 +1,14 @@
 # Recommended Folder Structure
 
+TODO: Harmonize this content with:
+- https://github.com/orgs/gruntwork-io/discussions/769
+- https://github.com/orgs/gruntwork-io/discussions/765
+- https://github.com/orgs/gruntwork-io/discussions/756
+
+Please focus on harmonizing the guidance above with the guidance below, subject to our current time constraints. If there are any recommendations that we don't yet implement in our infra-live/infra-modules templates, please create separate stories for them and call them out in Slack so that we can figure out where to prioritize them in future sprints.
+
+~~~
+
 A frequent question we get from customers is how to structure their Terragrunt code. In this document, we cover Gruntwork's recommendations for _where_ your code should live (and which code should live where) and _how_ to structure your code to optimize for comprehension, scale, and development speed.
 
 ## Separating modules from live infrastructure

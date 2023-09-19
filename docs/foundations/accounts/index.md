@@ -18,11 +18,12 @@ Despite these limitations, AWS Control Tower is a useful foundational tool, so G
 1. Automatically create a pull request to install a customizable account baseline after a new AWS account is created.
 1. Enable AWS account baselines to be kept up to date automatically using the [Automatic Updates component](../maintenance)
 
+TODO: Add a page on initial setup so that customers can fully set up Gruntwork Landing Zone (the GitHub Actions, applying CIS templates, etc.) on their own.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "524ae19fb454df4742f78bc87b0c6bca"
+  "hash": "514201f88653aee51417aed954098c5d"
 }
 ##DOCS-SOURCER-END -->

@@ -21,3 +21,5 @@ When creating your initial Terraform and Terragrunt and infrastructure, there ar
 Working with Gruntwork, we will guide you through a workflow to create an `infrastructure-live` repository to describe your Terraform code, along with an `infrastructure-modules` repository to house your Terraform modules. The patterns we create will directly address the considerations above.
 
 When we create these repositories, we typically also create an `infrastructure-pipelines` repository to set up [Gruntwork Pipelines](../ci-cd/).
+
+TODO: Add a link here or a new page ("Initial setup") in this section that guides the user to https://github.com/gruntwork-io/infrastructure-live-template and https://github.com/gruntwork-io/infrastructure-modules-template.
