@@ -1,6 +1,6 @@
 # Add a new account
 
-This document provides instructions for provisioning a new account in a Control Tower managed organization using Gruntwork. The described workflow gives you the flexibility to require approval for all new account requests in accordance with the permissions configured in your repository.
+This document provides instructions for provisioning a new account in a Control Tower managed organization using Gruntwork Landing Zone. The described workflow gives you the flexibility to require approval for all new account requests in accordance with the permissions configured in your repository.
 
 ## Prerequisites
 

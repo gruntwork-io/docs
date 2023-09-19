@@ -21,10 +21,10 @@ Some components can be installed independently, and some components work best bu
 
 The first layer is the most foundational because all other infrastructure is built on top of it. It includes:
 
-- Pipelines
 - Landing Zone
-- IaC foundations
 - Network topology
+- IaC foundations
+- Pipelines
 
 ### Layer 2
 
@@ -37,6 +37,6 @@ Once the layer-1 components are in place, the following components can be added:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "09a921853fce63e27fe63a68ecd0f2e1"
+  "hash": "6b4e203a13ba679c723c238121cbcb3d"
 }
 ##DOCS-SOURCER-END -->

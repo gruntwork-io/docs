@@ -21,10 +21,10 @@ Some components can be installed independently, and some components work best bu
 
 The first layer is the most foundational because all other infrastructure is built on top of it. It includes:
 
-- Pipelines
 - Landing Zone
-- IaC foundations
 - Network topology
+- IaC foundations
+- Pipelines
 
 ### Layer 2
 

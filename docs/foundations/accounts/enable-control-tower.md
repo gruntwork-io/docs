@@ -1,6 +1,6 @@
 # Enable Control Tower
 
-Enabling Control Tower is the first step in getting started with Gruntwork Account Foundations. It must be completed
+Enabling Control Tower is the first step in getting started with the Gruntwork Landing Zone component. It must be completed
 before infrastructure as code is generated for your infrastructure-live repository.
 
 :::info
@@ -138,6 +138,6 @@ Control Tower is now configured! Next you should consider:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "aa0b9c117536e022d733bec1b638136d"
+  "hash": "c3d55b7f008f0b74825183d82e6773cb"
 }
 ##DOCS-SOURCER-END -->
