@@ -60,6 +60,11 @@ const sidebar = [
         collapsible: false,
         items: [
           {
+            label: "Upgrading from ECS Deploy Runner",
+            type: "doc",
+            id: "pipelines/upgrading/index"
+          },
+          {
             label: "ECS Deploy Runner",
             type: "link",
             href: "/ecs-deploy-runner/overview"
