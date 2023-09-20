@@ -69,7 +69,7 @@ waiting on Control Tower Operations at the conclusion of the setup flow.
 1. Ensure your settings match the screenshot below (These are the defaults)
    ![Additional Configuration](/img/devops-foundations/account/additional-config.png)
 1. Under **KMS Encryption** Check the box for `Enable and customize encryption settings`
-1. Select the KMS Key you created following the guide in [prerequisites](/foundations/accounts/prerequisites)
+1. Select the KMS Key you created following the guide in [prerequisites](./prerequisites)
 1. Click **Next** to continue
 
 ### Finish Control Tower Setup
@@ -130,6 +130,6 @@ Control Tower is now configured! Next you should consider:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "f490fe1493993dfacae15bccfcd682d5"
+  "hash": "96bf74e1db77630a9e118de2718364b2"
 }
 ##DOCS-SOURCER-END -->
