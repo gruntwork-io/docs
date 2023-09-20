@@ -84,6 +84,7 @@ const sidebar = [
             type: "doc",
             id: "foundations/pipelines/index",
           },
+          "foundations/pipelines/aws-authentication"
         ]
       },
       {
