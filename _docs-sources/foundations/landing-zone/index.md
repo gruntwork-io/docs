@@ -8,6 +8,14 @@ The Landing Zone component is focused on:
 
 Gruntwork Landing Zone is intended to be deployed as your new paradigm for creating and managing AWS accounts. Once set up, you can import existing AWS accounts.
 
+## What's included
+
+- **Strategy.** Gruntwork has designed an approach that extends AWS Control Tower to support the full set of needs around AWS account management with  Terraform/OpenTofu and GitHub.
+- **IaC Modules.** Gruntwork Landing Zone includes modules to configure Control Tower, configure AWS IAM Identity Center, and install AWS account baselines that meet the CIS AWS Foundations Benchmark.
+- **Tooling.** Gruntwork Landing Zone makes use of Gruntwork Pipelines and GitHub Action to support the account request and review process.
+- **Setup.** Installing Gruntwork Landing Zone is fully documented.
+- **Updates.** Gruntwork publishes regular updates to all Landing Zone modules, including support for the latest versions of the CIS AWS Foundations Benchmark, and ongoing updates to our Landing Zone workflows.
+
 ## Extending AWS Control Tower
 
 Gruntwork Landing Zone builds on AWS Control Tower to add important new functionality.
@@ -27,8 +35,8 @@ Gruntwork Landing Zone directly addresses these limitations by extending Control
 1. Define a customized account baseline unique to your organization
 1. Enable AWS account baselines to stay up to date automatically using [Patcher](./patcher)
 
-## Greenfield vs. Brownfield
+## Greenfield vs. brownfield
 
-Gruntwork Landing Zone is optimized for situations where you are creating a "new world" infrastructure. Once your new world is stable, you can then import existing AWS accounts into Gruntwork Landing Zone.
+Gruntwork Landing Zone is optimized for situations where you are creating a "new world" infrastructure. Once your new world is stable, you can then import existing AWS accounts into Gruntwork Landing Zone, and migrate existing resources as needed.
 
-While it possible to migrate an existing Control Tower deployment into Gruntwork Landing Zone, we do not yet have a defined process for this and do not currently recommend this. Of course, you are free to use other Gruntwork DevOps components along with your existig Landing Zone solution.
+While it possible to migrate an existing Control Tower deployment into Gruntwork Landing Zone, we have not yet defined a formal process for this and we do not currently recommend this. That being said, other Gruntwork DevOps components can still be installed alongside your existing non-Gruntwork Landing Zone solution.
