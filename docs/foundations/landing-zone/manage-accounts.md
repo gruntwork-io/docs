@@ -1,5 +1,3 @@
-import Admonition from "@theme/Admonition"
-
 # Managing your AWS accounts
 
 Over time you will need to run various operations on your AWS accounts such as requesting new accounts, creating new accounts, renaming accounts, etc. In Gruntwork Landing Zone, some AWS account management operations should only be done using IaC, some can only be done using ClickOps, and some can be done using either.
@@ -8,7 +6,9 @@ In this page, we review which mode (IaC or ClickOps) to use for each AWS account
 
 ## Prerequisites
 
-This page applies to users who are actively running Gruntwork Landing Zone, and who have access to an AWS user or IAM Role with administrative permissions to AWS Control Tower.
+This page applies to users who are:
+- Actively running Gruntwork Landing Zone
+- Have access to an AWS user or IAM Role with administrative permissions to AWS Control Tower
 
 ## When to use IaC vs. ClickOps
 
@@ -70,6 +70,6 @@ After you have made your modifications, push your branch and create a pull reque
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "74bbdc28de8ac9e34a7cc1823a9005b5"
+  "hash": "b22881d72f17ceee3af87d2d1470294b"
 }
 ##DOCS-SOURCER-END -->
