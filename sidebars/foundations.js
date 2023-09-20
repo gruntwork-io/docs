@@ -19,6 +19,7 @@ const sidebar = [
             type: "doc",
             id: "foundations/overview/index",
           },
+          "foundations/overview/setup-order"
         ],
       },
       {

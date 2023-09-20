@@ -22,26 +22,7 @@ There are 5 DevOps components available today.
 1. **[Network Topology.](../network-topology)** Protect your internal cloud resources from external access.
 1. **[Running Apps.](../running-apps)** Run your apps on EKS, ECS, or Lambda in a best-practices way.
 
-All DevOps components are focused on AWS, GitHub, and Terraform/OpenTofu. We may add support for additional technologies in the future.
-
-## Working with components
-
-Components can be installed independently, however some components work best bundled together, and some components depend on another component being installed first. To reflect this dependency ordering, we have identified two "layers" of components:
-
-### Layer 1
-
-The first layer is the most foundational because all other infrastructure is built on top of it. It includes:
-
-- Landing Zone
-- IaC Foundations
-- Pipelines
-- Network Topology
-
-### Layer 2
-
-Once the layer-1 components are in place, the following components can be added:
-
-- Running Apps
+All DevOps components are focused on AWS and Terraform/OpenTofu. We may add support for additional technologies in the future.
 
 ## Building your own components
 
@@ -51,6 +32,6 @@ The Gruntwork DevOps components implement a meaningful portion of a modern cloud
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "15dd1e40c9536f854ad767ee6a011ab1"
+  "hash": "8443059126ca0f93cea9eea74cdb19ad"
 }
 ##DOCS-SOURCER-END -->
