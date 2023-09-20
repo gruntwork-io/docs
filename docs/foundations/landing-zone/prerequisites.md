@@ -1,6 +1,14 @@
 # Prerequisites
 
-In order to enable control tower you will need the following:
+The first step to using Gruntwork Landing Zone is to use AWS Control Tower to create a new multi-account setup, which requires that you meet the prerequisites below.
+
+## Gruntwork Pipelines
+
+In order to get the full functionality of Gruntwork Landing Zone, you must use [Gruntwork Pipelines](/pipelines/overview/).
+
+## Enabling AWS Control Tower
+
+To use AWS Control Tower you must first enable it, which requires that you have the following:
 
 1. A new AWS Account and a user with administrator permissions. (We recommend using an IAM user with admin permissions rather than the root user)
 
@@ -15,7 +23,7 @@ In order to enable control tower you will need the following:
    Your home Region is the AWS Region in which you'll run most of your workloads or store most of your data. It **cannot** be changed after you've set up your AWS Control Tower landing zone. For more information about how to choose a home Region, see [Administrative tips for landing zone setup](https://docs.aws.amazon.com/controltower/latest/userguide/tips-for-admin-setup.html).
    :::
 
-## KMS Key Creation
+### KMS Key Creation
 :::info
 For more help setting up KMS see the AWS docs: [Guidance for KMS keys](https://docs.aws.amazon.com/en_us/controltower/latest/userguide//kms-guidance.html)
 :::
@@ -72,3 +80,14 @@ For more help setting up KMS see the AWS docs: [Guidance for KMS keys](https://d
 
 1. Click `Save Changes`
 
+## Next steps
+
+Now that you've met the prerequisites, it's time to enable Control Tower.
+
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "local-copier",
+  "hash": "3f39f7bca6f95874bc7d80cc40410f83"
+}
+##DOCS-SOURCER-END -->

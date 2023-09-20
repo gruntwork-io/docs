@@ -1,6 +1,17 @@
 # About Running Apps
 
-The Running Apps component is focused on enabling your organization's developers to run their apps and workloads.
+The Running Apps component is focused on:
+
+- Enabling your organization's developers to run their containerized apps
+- Enabling your organization's developers to run individual Lambda functions
+- Adopting patterns for managing multiple clusters across many teams
+
+## What's included
+- **Strategy.** For EKS, Gruntwork has an opinionated GitOps workflow we call "GruntOps."
+- **IaC Modules.** Running Apps includes access to several IaC modules relating to EKS, ECS, and individual Lambda functions.
+- **Tooling.** We make use of Kubernetes ecosystem tooling like Karpenter and Argo, in addition to our own tooling to improve the UX for ECS and Lambda.
+- **Setup.** Our modules include documentation on how to configure an EKS or ECS cluster.
+- **Updates.** Gruntwork publishes regular updates to EKS, ECS, and Lambda modules, and you can use [Patcher](/pipelines/overview/) to automatically update to the latest version of these modules.
 
 ## Available approaches
 
@@ -37,8 +48,6 @@ We support invoking Lambda functions across a range of scenarios:
 
 For running complex Serverless applications, we recommend the [Serverless Framework](https://www.serverless.com/), which is available separately via Serverless, Inc.
 
-## Out-of-the-box setup
+### Missing functionality
 
-A Gruntwork subject matter expert in EKS, ECS, or Lambda will help you design a strategy for deploying apps using your preferred methodology, and provide support while you configure the Gruntwork modules to implement your strategy.
-
-If you are looking to add functionality not yet supported by Gruntwork, you can either add this on your own, or we will consider those requests for our roadmap or as part of a separate, paid engagement.
+If you are looking to add functionality not yet supported by Gruntwork, you can either [contribute a pull request](http://localhost:3000/library/usage/contributing), add the functionality on your own, work with Gruntwork as part of paid engagement, or request we add it to our roadmap.

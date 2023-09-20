@@ -19,17 +19,23 @@ const sidebar = [
             type: "doc",
             id: "foundations/overview/index",
           },
+          "foundations/overview/setup-order"
         ],
       },
       {
-        label: "AWS Account Foundations",
+        label: "Landing Zone",
         type: "category",
         collapsed: false,
         items: [
-          "foundations/accounts/prerequisites",
-          "foundations/accounts/enable-control-tower",
-          "foundations/accounts/add-account",
-          "foundations/accounts/manage-accounts",
+          {
+            label: "Overview",
+            type: "doc",
+            id: "foundations/landing-zone/index",
+          },
+          "foundations/landing-zone/prerequisites",
+          "foundations/landing-zone/enable-control-tower",
+          "foundations/landing-zone/add-aws-account",
+          "foundations/landing-zone/manage-accounts",
         ],
       },
       {
@@ -40,9 +46,10 @@ const sidebar = [
           {
             label: "Overview",
             type: "doc",
-            id: "foundations/iac/index",
+            id: "foundations/iac-foundations/index",
           },
-          "foundations/iac/folder_structure",
+          "foundations/iac-foundations/initial-setup",
+          "foundations/iac-foundations/folder-structure",
           {
             label: "Module Defaults",
             type: "category",
@@ -51,32 +58,33 @@ const sidebar = [
               {
                 label: "What are Module Defaults?",
                 type: "doc",
-                id: "foundations/iac/module_defaults/index",
+                id: "foundations/iac-foundations/module_defaults/index",
               },
               {
                 label: "Defining Module Defaults",
                 type: "doc",
-                id: "foundations/iac/module_defaults/defining",
+                id: "foundations/iac-foundations/module_defaults/defining",
               },
               {
                 label: "Using Module Defaults",
                 type: "doc",
-                id: "foundations/iac/module_defaults/usage",
+                id: "foundations/iac-foundations/module_defaults/usage",
               },
             ],
           },
         ],
       },
       {
-        label: "CI/CD Foundations",
+        label: "Pipelines",
         type: "category",
         collapsed: false,
         items: [
           {
             label: "Overview",
             type: "doc",
-            id: "foundations/ci-cd/index",
+            id: "foundations/pipelines/index",
           },
+          "foundations/pipelines/aws-authentication"
         ]
       },
       {
@@ -92,7 +100,7 @@ const sidebar = [
         ]
       },
       {
-        label: "Running apps",
+        label: "Running Apps",
         type: "category",
         collapsed: false,
         items: [

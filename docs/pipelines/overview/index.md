@@ -1,18 +1,20 @@
 # What is Gruntwork Pipelines?
 
-Gruntwork Pipelines is a framework for securely deploying infrastructure as code to your AWS environments using GitOps workflows. Gruntwork Pipelines runs as a binary and series of steps in your CI system, determining what _actions_ need to be taken, in which _environments_, based on the [_infrastructure changes_](#infrastructure-change) that occurred.
+**Gruntwork Pipelines is a framework for securely and responsibly rolling out infrastructure changes to your AWS environments using GitOps workflows.** We often refer to Gruntwork Pipelines as simply "Pipelines."
+
+Gruntwork Pipelines features first-class support for Terragrunt, runs on top of GitHub Actions, and uses a Pull Request-centric workflow. This means that all information about a proposed infrastructure change is added as comments to the applicable Pull Request, and that you apply the infrastructure change by taking action in the Pull Request.
+
+Gruntwork Pipelines runs as a binary and series of steps in GitHub Actions, determining what _actions_ need to be taken, in which _environments_, based on the [_infrastructure changes_](#infrastructure-change) that occurred.
 
 ## Common Terms
 
-Gruntwork Pipelines uses specific terminology to describe code changes and operations that occur as a result of to changes. This section will familiarize you with the terminology used throughout the Gruntwork Pipelines documentation.
+Gruntwork Pipelines uses specific terminology to describe code changes and operations that occur as a result of changes. This section will familiarize you with the terminology used throughout the Gruntwork Pipelines documentation.
 
 ### Infrastructure change
 
 When you edit any infrastructure-as-code that needs to be "applied" to your cloud account (e.g. AWS or GCP), you are making an _infrastructure change_. We sometime call these an "infra-change" for short.
 
-Infra-changes can involve updates to OpenTF, Terraform, or Terragrunt code, or any other type of file that represents a desired state of your infrastructure and that needs to be somehow applied. A classic example is changing some variables on an instance of a Terraform module. By changing these variables you are essentially requesting that some API calls eventually be made to AWS to update your infrastructure in some way (in this case, by running `terraform apply` at some point).
-
-Gruntwork Pipelines assumes that infra-changes are committed via git, usually by first opening a Pull Request. When you open a Pull Request, you are essentially "proposing" an infra-change.
+Infra-changes can involve updates to Terraform/OpenTofu or Terragrunt code, or any other type of file that represents a desired state of your infrastructure and that needs to be somehow applied. A classic example is changing some variables on an instance of a Terraform module. Gruntwork Pipelines assumes that infra-changes are committed via git, usually by first opening a Pull Request. When you open a Pull Request, you are essentially "proposing" an infra-change.
 
 ### Infrastructure change set
 
@@ -30,6 +32,6 @@ Gruntwork is responsible for adding support for a growing library of Pipelines A
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "cfb6101446575be147089a6e56ab1f35"
+  "hash": "22d0b57f2f76b81c8a6e0538093805e2"
 }
 ##DOCS-SOURCER-END -->
