@@ -1,19 +1,11 @@
 # Enable Control Tower
 
-Enabling Control Tower is the first step in getting started with Gruntwork Account Foundations. It must be completed
+Enabling Control Tower is the first step in getting started with Gruntwork Landing Zone. It must be completed
 before infrastructure as code is generated for your infrastructure-live repository.
-
-:::info
-
-[AWS Control Tower](https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html) is an AWS service
-that orchestrates accounts, handling creation, deletion, security policies, and more. It serves as the base layer of
-Gruntwork Account Foundations.
-
-:::
 
 ## Prerequisites
 
-In order to enable control tower you will need the resources described in [Prerequisites.](/foundations/accounts/prerequisites)
+In order to enable AWS Control Tower you will need the resources described in [Prerequisites](./prerequisites).
 
 ## Enable AWS Control Tower
 
@@ -107,7 +99,7 @@ Control Tower Creation will take around an hour to complete
 ## Initial Configuration
 
 Now that Control Tower is enabled in your root account, there are a few configuration changes that need to be made to
-prepare the landing zone for Gruntwork Account Foundations.
+prepare for Gruntwork Landing Zone.
 
 1. Navigate to the [AWS Control Tower Organization Dashboard](https://console.aws.amazon.com/controltower/home/organization)
 1. [Turn off the default VPC created for new accounts](https://docs.aws.amazon.com/controltower/latest/userguide/configure-without-vpc.html#create-without-vpc). Gruntwork VPCs will be created for each account using terraform.
@@ -132,12 +124,12 @@ Control Tower is now configured! Next you should consider:
 
 - [Configuring IAM Identity Center](https://docs.aws.amazon.com/singlesignon/latest/userguide/get-started-choose-identity-source.html) for Access Control.
 - [Configuring any controls or SCPs](https://docs.aws.amazon.com/controltower/latest/userguide/controls.html) your organization requires.
-- [Set up your Gruntwork IaC Foundations](/foundations/iac)
+- [Setting up your Gruntwork IaC Foundations](../iac-foundations)
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "f77d5bf63ff50f6d8168f748ec19190d"
+  "hash": "f490fe1493993dfacae15bccfcd682d5"
 }
 ##DOCS-SOURCER-END -->

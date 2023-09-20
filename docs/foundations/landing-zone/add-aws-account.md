@@ -1,6 +1,6 @@
-# Add a new account
+# Add a new AWS account
 
-This document provides instructions for provisioning a new account in a Control Tower managed organization using Gruntwork. The described workflow gives you the flexibility to require approval for all new account requests in accordance with the permissions configured in your repository.
+This document provides instructions for provisioning a new AWS account using Gruntwork Landing Zone. The described workflow gives you the flexibility to require approval for all new AWS account requests in accordance with the permissions configured in your git repository.
 
 ## Prerequisites
 
@@ -8,9 +8,9 @@ Before proceeding, ensure you have an `infrastructure-live` repository which con
 
 - The [`control-tower-multi-account-factory` module](https://GitHub.com/gruntwork-io/terraform-aws-control-tower/tree/main/modules/landingzone/control-tower-multi-account-factory) configured in the root account
   <!-- Repo must include the multi-account factory module configured in the root account -->
-- An installation of [Gruntwork Pipelines](https://LINK-TO-VALID-DOC)
+- An installation of [Gruntwork Pipelines](/pipelines/overview)
 
-## 1. Create an account request file
+## 1. Create an AWS account request file
 
 To initiate the process, create an `account-<AWS-ACCOUNT-NAME>.yml` file in the `_new-account-requests` folder located in the root of your `infrastructure-live` repository. This file will be used to create a pull request and add the new account to your organization. The file should have the following format:
 
@@ -40,7 +40,7 @@ requested_by: <GITHUB_USER_ID_OR_EMAIL>
 
 :::note
 
-If you have configured GitHub Actions in your `infrastructure-live` repository with an [Account Factory workflow](https://LINK-TO-VALID-DOC), you can invoke that workflow via the GitHub UI or programmatically. This workflow will automatically create the account request file and open a pull request on your behalf. After doing so, jump to [step 3](#3-review-and-merge-the-account-request-pr).
+If you have configured GitHub Actions in your `infrastructure-live` repository with a Gruntwork Landing Zone Account Factory workflow, you can invoke that workflow via the GitHub UI or programmatically. This workflow will automatically create the account request file and open a pull request on your behalf. After doing so, jump to [step 3](#3-review-and-merge-the-account-request-pr).
 
 :::
 
@@ -48,19 +48,7 @@ If you have configured GitHub Actions in your `infrastructure-live` repository w
 
 Next, create a pull request containing the new account request file. This action will trigger the Gruntwork pipeline to `terragrunt plan` the new account and update the pull request with the plan output.
 
-:::caution
-
-Currently the output is still only available in the `infrastructure-pipelines` repository’ GitHub Actions logs. This will be updated shortly to be available in the pull request and this notice will be removed.
-
-:::
-
 ## 3. Review and merge the account request PR
-
-:::caution
-
-Currently the output is still only available in the `infrastructure-pipelines` repository’ GitHub Actions logs. This will be updated shortly to be available in the pull request and this notice will be removed.
-
-:::
 
 Review the `plan` output in the pull request. Once satisfied, merge the pull request to trigger creation of the new account. Gruntwork Pipelines will run `terragrunt apply` to create the new account in Control Tower.
 
@@ -93,6 +81,6 @@ When you merge this pull request, Gruntwork Pipelines will automatically deploy 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "670b3052d7a0b330e817de27ad6d29f8"
+  "hash": "80cda43ba54bc5e954b92a7192edc64a"
 }
 ##DOCS-SOURCER-END -->

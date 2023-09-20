@@ -1,55 +1,63 @@
 import Admonition from "@theme/Admonition"
 
-# Manage your accounts
+# Managing your AWS accounts
 
-Gruntwork's Control Tower integration provides an IaC-based (infrastructure as code) approach to many of your account management needs. Operations within those accounts can be grouped according to whether they may be performed in IaC, the AWS Console, or either. _When operations may be performed in either location, we strongly recommend using IaC._
+Over time you will need to run various operations on your AWS accounts such as requesting new accounts, creating new accounts, renaming accounts, etc. In Gruntwork Landing Zone, some AWS account management operations should only be done using IaC, some can only be done using ClickOps, and some can be done using either.
+
+In this page, we review which mode (IaC or ClickOps) to use for each AWS account operation. _When operations may be performed using either mode, we strongly recommend using IaC._
 
 ## Prerequisites
 
-- An AWS account with AWS Control Tower set up
-- Access to an IAM User or Role with administrative permissions to AWS Control Tower
+This page applies to users who are actively running Gruntwork Landing Zone, and who have access to an AWS user or IAM Role with administrative permissions to AWS Control Tower.
 
-## How to manage your accounts
+## When to use IaC vs. ClickOps
 
-Below you'll find a table with common account operations and the Gruntwork recommendation for if the operation should be done using IaC or in the AWS Console. When both options are available, using IaC is strongly recommended. You can explore more documentation for each operation by clicking on the operation name in the table.
+Below you'll find a table with common AWS account operations and the Gruntwork recommendation for if the operation should be done using IaC or in the AWS Console. When both options are available, using IaC is strongly recommended. You can explore more documentation for each operation by clicking on the operation name in the table.
 
-| Management Operation                                                                                                                        | Terraform (IaC)  | AWS Console (ClickOps) |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ---------------------- |
-| [Create a new Organization Unit](https://docs.aws.amazon.com/controltower/latest/userguide/create-new-ou.html) (OU)                         | ❌               | ✅                     |
-| [Request a new account](./add-account.md)                                                                                                   | ✅               | ❌                     |
-| [Create a new account](./add-account.md)                                                                                                    | ✅               | ❌                     |
-| [Removing an account](./manage-accounts.md#removing-an-account)                                                                             | ✅               | ❌                     |
-| [Renaming an account](https://docs.aws.amazon.com/controltower/latest/userguide/change-account-name.html)                                   | ❌               | ✅                     |
-| [Update root account e-mail address](https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-root-user.html)               | ❌               | ✅                     |
-| [Modify account controls](https://docs.aws.amazon.com/controltower/latest/userguide/enable-controls-on-ou.html)                             | ❌               | ✅                     |
-| [Moving an account to a new Organizational Unit](./manage-accounts.md#un-managing-an-account)                                               | ✅ (recommended) | ✅ (discouraged)       |
-| [Update account admin user in Account Access IAM Identity Center](./manage-accounts.md#un-managing-an-account)                              | ✅ (recommended) | ✅ (discouraged)       |
-| Granting additional users access to accounts in AWS IAM Identity Center                                                                     | ✅ (recommended) | ✅ (discouraged)       |
+- ✅ means that the operation should or can only be done using the given mode.
+- ❌ means that the operation should not or cannot be done using the given mode.
+
+| Management Operation                                                                                                          | Terraform (IaC)  | AWS Console (ClickOps) |
+|-------------------------------------------------------------------------------------------------------------------------------| ---------------- | ---------------------- |
+| [Create a new Organization Unit](https://docs.aws.amazon.com/controltower/latest/userguide/create-new-ou.html) (OU)           | ❌               | ✅                     |
+| Request a new account                                                                                                         | ✅               | ❌                     |
+| Create a new account                                                                                                          | ✅               | ❌                     |
+| [Remove an account](#remove-an-aws-account)                                                                                       | ✅               | ❌                     |
+| [Rename an account](https://docs.aws.amazon.com/controltower/latest/userguide/change-account-name.html)                       | ❌               | ✅                     |
+| [Update root account e-mail address](https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-root-user.html) | ❌               | ✅                     |
+| [Modify account controls](https://docs.aws.amazon.com/controltower/latest/userguide/enable-controls-on-ou.html)               | ❌               | ✅                     |
+| Moving an account to a new Organizational Unit                                                                                | ✅ (recommended) | ✅ (discouraged)       |
+| Update account admin user in Account Access IAM Identity Center                                                               | ✅ (recommended) | ✅ (discouraged)       |
+| Granting additional users access to accounts in AWS IAM Identity Center                                                       | ✅ (recommended) | ✅ (discouraged)       |
 
 
-## Removing an account
+## AWS account management operations
+
+### Remove an AWS account
+
+This operation removes an AWS account from AWS Control Tower but does _not_ delete the AWS account.
 
 1. Create a branch and delete the directory in your `infrastructure-live` repository that corresponds to the account you would like to remove.
 
-<Admonition type="warning" title="Warning">
-    <p>This will delete all resources in the account. Make sure you are deleting the correct directory.</p>
-</Admonition>
+    :::warning
+    This will delete all resources in the account. Make sure you are deleting the correct directory.
+    :::
 
-Push your changes and create a PR. Pipelines will detect that an account is deleted. Verify that all expected resources will be removed in the `plan` output.
+    Push your changes and create a PR. Pipelines will detect that an account is deleted. Verify that all expected resources will be removed in the `plan` output.
 
-Once you have confirmed everything looks as expected, merge the PR.
+    Once you have confirmed everything looks as expected, merge the PR.
 
-1. Create a branch and delete the account request file in `_new_account_requests`
+1. Create a branch and delete the account request file in `_new_account_requests`.
 
-This will de-provision the product in AWS Service Catalog, but will not delete the account.
+    This will de-provision the product in AWS Service Catalog, but will not delete the account.
 
-Push your changes and create a PR. Pipelines will detect that the account should be removed, which can be verified in the `plan` output.
+    Push your changes and create a PR. Pipelines will detect that the account should be removed, which can be verified in the `plan` output.
 
-Once you have confirmed everything looks as expected, merge the PR. After `apply` runs, the account status should be `Suspended`.
+    Once you have confirmed everything looks as expected, merge the PR. After `apply` runs, the account status should be `Suspended`.
 
-## Updating the account request
+### Update the new AWS account request
 
-You may update some attributes attributes of an AWS Account by modifying the the account request file in `_new_account_requests`. See below for steps to update each attribute.
+You may update some attributes of an AWS Account by modifying the account request file in `_new_account_requests`. See below for steps to update each attribute.
 
 Start by creating a new branch that will contain your changes.
 
@@ -62,6 +70,6 @@ After you have made your modifications, push your branch and create a pull reque
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "fb134b709270c3a9d94b8ee520b3ed89"
+  "hash": "74bbdc28de8ac9e34a7cc1823a9005b5"
 }
 ##DOCS-SOURCER-END -->

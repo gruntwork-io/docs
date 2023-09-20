@@ -33,7 +33,7 @@ const sidebar = [
           },
           "foundations/landing-zone/prerequisites",
           "foundations/landing-zone/enable-control-tower",
-          "foundations/landing-zone/add-account",
+          "foundations/landing-zone/add-aws-account",
           "foundations/landing-zone/manage-accounts",
         ],
       },

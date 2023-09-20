@@ -27,10 +27,16 @@ Gruntwork Landing Zone directly addresses these limitations by extending Control
 1. Define a customized account baseline unique to your organization
 1. Enable AWS account baselines to stay up to date automatically using [Patcher](./patcher)
 
+## Greenfield vs. Brownfield
+
+Gruntwork Landing Zone is optimized for situations where you are creating a "new world" infrastructure. Once your new world is stable, you can then import existing AWS accounts into Gruntwork Landing Zone.
+
+While it possible to migrate an existing Control Tower deployment into Gruntwork Landing Zone, we do not yet have a defined process for this and do not currently recommend this. Of course, you are free to use other Gruntwork DevOps components along with your existig Landing Zone solution.
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "a5f71200078f05952ed726e67416835c"
+  "hash": "f237d7b830fbf0aec169881ce6e02448"
 }
 ##DOCS-SOURCER-END -->
