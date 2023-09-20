@@ -48,7 +48,8 @@ const sidebar = [
             type: "doc",
             id: "foundations/iac-foundations/index",
           },
-          "foundations/iac-foundations/folder_structure",
+          "foundations/iac-foundations/initial-setup",
+          "foundations/iac-foundations/folder-structure",
           {
             label: "Module Defaults",
             type: "category",
