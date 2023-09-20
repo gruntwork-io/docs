@@ -26,6 +26,11 @@ const sidebar = [
         type: "category",
         collapsed: false,
         items: [
+          {
+            label: "Overview",
+            type: "doc",
+            id: "foundations/landing-zone/index",
+          },
           "foundations/landing-zone/prerequisites",
           "foundations/landing-zone/enable-control-tower",
           "foundations/landing-zone/add-account",
