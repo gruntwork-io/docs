@@ -176,7 +176,7 @@ module "ec_2_instance" {
   # The domain name to use to look up the Route 53 hosted zone. Will be a subset
   # of fully_qualified_domain_name: e.g., my-company.com. Only one of
   # route53_lookup_domain_name or route53_zone_id should be used.
-  route53_lookup_domain_name = <INPUT REQUIRED>
+  route53_lookup_domain_name = <string>
 
   # The ID of the hosted zone to use. Allows specifying the hosted zone directly
   # instead of looking it up via domain name. Only one of
@@ -497,7 +497,7 @@ inputs = {
   # The domain name to use to look up the Route 53 hosted zone. Will be a subset
   # of fully_qualified_domain_name: e.g., my-company.com. Only one of
   # route53_lookup_domain_name or route53_zone_id should be used.
-  route53_lookup_domain_name = <INPUT REQUIRED>
+  route53_lookup_domain_name = <string>
 
   # The ID of the hosted zone to use. Allows specifying the hosted zone directly
   # instead of looking it up via domain name. Only one of
@@ -898,7 +898,7 @@ The name of the EC2 instance and the other resources created by these templates
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="route53_lookup_domain_name" requirement="required">
+<HclListItem name="route53_lookup_domain_name" requirement="required" type="string">
 <HclListItemDescription>
 
 The domain name to use to look up the Route 53 hosted zone. Will be a subset of fully_qualified_domain_name: e.g., my-company.com. Only one of route53_lookup_domain_name or route53_zone_id should be used.
@@ -1461,6 +1461,6 @@ The input parameters for the EBS volumes.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.105.1/modules/services/ec2-instance/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "cbe0fabd98d614c8ac91d79b38f29b4c"
+  "hash": "1f93c6d80acfb9ae1bf32b030ed5b5b0"
 }
 ##DOCS-SOURCER-END -->
