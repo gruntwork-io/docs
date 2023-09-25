@@ -23,6 +23,6 @@ Now that we’ve established what the module defaults pattern is and how it can 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "a5191a80bc3c2a55450080eb3366b165"
+  "hash": "c3f2a3c55e3cfa50aae2e31b1c14ffac"
 }
 ##DOCS-SOURCER-END -->
