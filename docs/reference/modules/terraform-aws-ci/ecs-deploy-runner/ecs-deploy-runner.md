@@ -230,11 +230,12 @@ module "ecs_deploy_runner" {
   # module.
   ecs_task_exec_role_permissions_boundary = null
 
-  # Set the maximum session duration for the ECS Task execution IAM role.
-  ecs_task_execution_role_max_session_duration = 3600
+  # Set the maximum session duration for the ECS Task execution IAM role. 2h by
+  # default.
+  ecs_task_execution_role_max_session_duration = 7200
 
-  # Set the maximum session duration for the ECS Task IAM role.
-  ecs_task_max_session_duration = 3600
+  # Set the maximum session duration for the ECS Task IAM role. 2h by default.
+  ecs_task_max_session_duration = 7200
 
   # The ARN of the policy that is used to set the permissions boundary for the
   # ECS Task IAM role. This policy should be created outside of this module.
@@ -456,11 +457,12 @@ inputs = {
   # module.
   ecs_task_exec_role_permissions_boundary = null
 
-  # Set the maximum session duration for the ECS Task execution IAM role.
-  ecs_task_execution_role_max_session_duration = 3600
+  # Set the maximum session duration for the ECS Task execution IAM role. 2h by
+  # default.
+  ecs_task_execution_role_max_session_duration = 7200
 
-  # Set the maximum session duration for the ECS Task IAM role.
-  ecs_task_max_session_duration = 3600
+  # Set the maximum session duration for the ECS Task IAM role. 2h by default.
+  ecs_task_max_session_duration = 7200
 
   # The ARN of the policy that is used to set the permissions boundary for the
   # ECS Task IAM role. This policy should be created outside of this module.
@@ -1054,19 +1056,19 @@ The ARN of the policy that is used to set the permissions boundary for the ECS T
 <HclListItem name="ecs_task_execution_role_max_session_duration" requirement="optional" type="number">
 <HclListItemDescription>
 
-Set the maximum session duration for the ECS Task execution IAM role.
+Set the maximum session duration for the ECS Task execution IAM role. 2h by default.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="3600"/>
+<HclListItemDefaultValue defaultValue="7200"/>
 </HclListItem>
 
 <HclListItem name="ecs_task_max_session_duration" requirement="optional" type="number">
 <HclListItemDescription>
 
-Set the maximum session duration for the ECS Task IAM role.
+Set the maximum session duration for the ECS Task IAM role. 2h by default.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="3600"/>
+<HclListItemDefaultValue defaultValue="7200"/>
 </HclListItem>
 
 <HclListItem name="ecs_task_permissions_boundary" requirement="optional" type="string">
@@ -1323,6 +1325,6 @@ Security Group ID of the ECS task
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.14/modules/ecs-deploy-runner/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c3da0edf6ce79129b82601751e3bc1ae"
+  "hash": "ea6c08b62dc5a234e8908b0a5f3ca064"
 }
 ##DOCS-SOURCER-END -->
