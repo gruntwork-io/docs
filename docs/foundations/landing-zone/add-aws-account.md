@@ -80,6 +80,6 @@ When you merge this pull request, Gruntwork Pipelines will automatically deploy 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "80cda43ba54bc5e954b92a7192edc64a"
+  "hash": "4f8126ef12592d2e66ee3b4736e97613"
 }
 ##DOCS-SOURCER-END -->
