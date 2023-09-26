@@ -6,7 +6,7 @@ In order to accommodate multiple infrastructure repositories, Gruntwork Pipeline
 
 ## Create Additional Repos
 
-New `infrrastructure-live` repositories can be created using the same process described in the
+New `infrastructure-live` repositories can be created using the same process described in the
 [Hello World](../hello-world#setting-up-the-repositories) documentation.
 
 :::info
@@ -21,7 +21,7 @@ to the shared `infrastructure-pipelines` repository.
 ## Enable Additional Repos
 
 To ensure no unauthorized access is granted to your `infrastructure-pipelines` repository,
-an allowlist of `infrastructure-live` repositories exists at the root directory.
+an allowlist of `infrastructure-live` repositories exists at the root directory of the `infrastructure-pipelines` repository.
 To allow resources to be deployed by your new repository,
 add the repository to `repo-allowlist.txt` on a new line.
 
