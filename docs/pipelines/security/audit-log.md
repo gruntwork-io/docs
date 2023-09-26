@@ -3,7 +3,7 @@
 
 ## Log Data for Pipelines
 
-Gruntwork Pipelines provides an audit log of which user performed what action in which account. To accomplish this, Pipelines sets the AWS STS session name using a combination of the initiating GitHub user, the name of pipelines itself, and the pull request or branch from which the action was triggered. All log data for Gruntwork Pipelines is done using [AWS CloudTrail](https://aws.amazon.com/cloudtrail/). Session names are used in the `User Name` field in CloudTrail, allowing those searching the data to clearly identify which user performed an action. For more information on querying the logs seeing [where you can find logs](#where-you-can-find-logs) and [querying data](#querying-data) for more information on
+Gruntwork Pipelines provides an audit log of which user performed what action in which account. To accomplish this, Pipelines sets the AWS STS session name using a combination of the initiating GitHub user, the name of pipelines itself, and the pull request or branch from which the action was triggered. All log data for Gruntwork Pipelines is done using [AWS CloudTrail](https://aws.amazon.com/cloudtrail/). Session names are used in the `User name` field in CloudTrail, allowing those searching the data to clearly identify which user performed an action. For more information on querying the logs seeing [where you can find logs](#where-you-can-find-logs) and [querying data](#querying-data) for more information on
 
 ### Who gets logged
 
@@ -50,7 +50,7 @@ The `userIdentity` field in each CloudTrail event associated with API calls perf
 }
 ```
 
-Combined with a [query service](#querying-data), you can perform analytics on usage of Gruntwork Pipelines in your AWS accounts.
+Combined with a [query service](#querying-data), you can use data from CloudTrail to perform analytics on usage of Gruntwork Pipelines in your AWS accounts.
 
 ## Where you can find logs
 
@@ -59,16 +59,24 @@ Gruntwork Pipelines leverages AWS CloudTrail to log all actions taken by Pipelin
 Gruntwork recommends setting up CloudTrail to output all events to an S3 bucket in a centralized AWS account that has been designated for the purpose of logging. If you are a Gruntwork Landing Zone customer, CloudTrail is automatically set up to log to a centralized `log` account and sync all logs to an S3 bucket. Once logs are in S3, you may set up an additional tool for querying the logs, such as [Amazon Athena](https://aws.amazon.com/athena/).
 
 ### CloudTrail
-- 90 days in UI
+
+Gruntwork Pipelines audit logs can be viewed in the CloudTrail UI in each of your AWS accounts. To access the CloudTrial UI, navigate to the AWS Console, search `CloudTrail` in the search bar, select CloudTrail from the search results, then select **Event History** from the left side panel. All events originating from Gruntwork Pipelines will have a `User name` field containing `GWPipelines`, as outlined in [who gets logged](#what-gets-logged).
 
 ### S3
-- Synced roughly every 5 minutes
+
+When CloudTrail is configured to deliver logs to an AWS S3 bucket, logs are delivered approximately every 5 minutes. If you are using an S3 bucket that was created by AWS Control Tower, the bucket will be named `aws-controltower-logs-<logs account id>-<primary Control Tower region>`. At the top level of the bucket is a single prefix with a random id, which contains additional prefixes to distinguish between logs for CloudTrail and AWS Config. CloudTrail logs for each account can be found in the prefix `<random id>/AWSLogs/<random id>/`.
+
+For each account, CloudTrail delivers logs to region, year, month, and day specific prefixes in the bucket. For example, logs for an account with the id `123456789012` on September 26th, 2023 in the `us-west-2` region, would be in a prefix named `123456789012/us-west-2/2023/09/26`.
+
+If you configured your logs bucket while setting up AWS Control Tower, you will need access to the KMS key you created to encrypt the objects at rest to access any objects. See [object access](#object-access) for more information.
 
 ##  Data access
 
 Granting access to the audit logs requires security configurations in both the originating account (e.g., the account in which the events are occurring) and the `logs` account. The originating account contains the CloudTrail trail itself, which should only be viewable by account administrators. The `logs` account contains the AWS S3 bucket that contains synchronized CloudTrail logs from all logs.
 
 ### CloudTrail access
+
+... some information about cloudtrail here...
 
 ### Logs bucket access
 - Located in logs account
@@ -94,6 +102,6 @@ You can query CloudTrail data for Gruntwork Pipelines in two ways - in the origi
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "5442445b96618b62e8b3aedc8f89a04f"
+  "hash": "3f111fd2072fc3f014a7a31a3eed1c15"
 }
 ##DOCS-SOURCER-END -->
