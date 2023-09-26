@@ -1,13 +1,10 @@
 # Audit logs
 
-
-## Log Data for Pipelines
-
-Gruntwork Pipelines provides an audit log of which user performed what action in which account. To accomplish this, Pipelines sets the AWS STS session name using a combination of the initiating GitHub user, the name of pipelines itself, and the pull request or branch from which the action was triggered. All log data for Gruntwork Pipelines is done using [AWS CloudTrail](https://aws.amazon.com/cloudtrail/). Session names are used in the `User name` field in CloudTrail, allowing those searching the data to clearly identify which user performed an action. For more information on querying the logs seeing [where you can find logs](#where-you-can-find-logs) and [querying data](#querying-data) for more information on
+Gruntwork Pipelines provides an audit log of which user performed what action in which account. To accomplish this, Pipelines sets the AWS STS session name using a combination of the initiating GitHub user, the name of pipelines itself, and the pull request or branch from which the action was triggered. All log data for Gruntwork Pipelines is done using [AWS CloudTrail](https://aws.amazon.com/cloudtrail/). Session names are used in the `User name` field in CloudTrail, allowing those searching the data to clearly identify which user performed an action. For more information on querying the logs see [where you can find logs](#where-you-can-find-logs) and [querying data](#querying-data).
 
 ### Who gets logged
 
-Pipelines uses a naming scheme that combines the GitHub user who triggered the action and the pull request or branch from which the action was initiated. There are two scenarios in which Pipelines runs - when a pull request is opened, synchronized, or re-opened, and when a pull request is merged to the deploy branch (e.g., `main`).
+Pipelines uses a naming scheme that combines the GitHub user who triggered the [action](../overview/actions.md) and the pull request or branch from which the action was initiated. There are two scenarios in which Pipelines runs actions - when a pull request is opened, synchronized, or re-opened, and when a pull request is merged to the deploy branch (e.g., `main`).
 
 When Pipelines is run in response to a pull request event, the user that created the most recent commit on the branch will be used in the log, in addition to the pull request number assigned by GitHub. For example, if the user `SomeUserInYourOrg123` created a pull request that was given the number `123` by GitHub, the resulting session name would be `SomeUserInYourOrg123-via-GWPipelines@PR-123`.
 
@@ -56,11 +53,11 @@ Combined with a [query service](#querying-data), you can use data from CloudTrai
 
 Gruntwork Pipelines leverages AWS CloudTrail to log all actions taken by Pipelines in your AWS account. By default, CloudTrail maintains your data for 90 days and is queryable using CloudTrail UI.
 
-Gruntwork recommends setting up CloudTrail to output all events to an S3 bucket in a centralized AWS account that has been designated for the purpose of logging. If you are a Gruntwork Landing Zone customer, CloudTrail is automatically set up to log to a centralized `log` account and sync all logs to an S3 bucket. Once logs are in S3, you may set up an additional tool for querying the logs, such as [Amazon Athena](https://aws.amazon.com/athena/).
+Gruntwork recommends setting up CloudTrail to output all events to an S3 bucket in a centralized AWS account that has been designated for the purpose of logging. If you are a Gruntwork Landing Zone customer, CloudTrail is automatically set up to log to a centralized `log` account and sync all logs to an S3 bucket with a default rule to expire after 1 year. Once logs are in S3, you may set up an additional tool for [querying the logs](#querying-data).
 
 ### CloudTrail
 
-Gruntwork Pipelines audit logs can be viewed in the CloudTrail UI in each of your AWS accounts. To access the CloudTrial UI, navigate to the AWS Console, search `CloudTrail` in the search bar, select CloudTrail from the search results, then select **Event History** from the left side panel. All events originating from Gruntwork Pipelines will have a `User name` field containing `GWPipelines`, as outlined in [who gets logged](#what-gets-logged).
+Gruntwork Pipelines audit logs can be viewed in the CloudTrail UI in each of your AWS accounts. To access the CloudTrial UI, navigate to the AWS Console, search `CloudTrail` in the search bar, select CloudTrail from the search results, then select **Event History** from the left side panel. All events originating from Gruntwork Pipelines will have a `User name` field containing `GWPipelines`, as outlined in [who gets logged](#what-gets-logged). To learn more about querying data using the CloudTrail UI, see [querying in CloudTrail](#querying-in-cloudtrail).
 
 ### S3
 
@@ -68,7 +65,9 @@ When CloudTrail is configured to deliver logs to an AWS S3 bucket, logs are deli
 
 For each account, CloudTrail delivers logs to region, year, month, and day specific prefixes in the bucket. For example, logs for an account with the id `123456789012` on September 26th, 2023 in the `us-west-2` region, would be in a prefix named `123456789012/us-west-2/2023/09/26`.
 
-If you configured your logs bucket while setting up AWS Control Tower, you will need access to the KMS key you created to encrypt the objects at rest to access any objects. See [object access](#object-access) for more information.
+If you configured your logs bucket while setting up AWS Control Tower, you will need access to the KMS key you created to encrypt the objects to download any objects. See [Logs bucket access](#logs-bucket-access) for more information.
+
+For more information about querying data in S3, see [querying in S3](#querying-in-s3).
 
 ##  Data access
 
@@ -76,24 +75,42 @@ Granting access to the audit logs requires security configurations in both the o
 
 ### CloudTrail access
 
-... some information about cloudtrail here...
+Access to CloudTrail is controlled by AWS IAM policies that are assigned to individual IAM users (not recommended) or IAM roles than can be assumed by users (recommended) in AWS accounts.
+
+:::tip
+Gruntwork recommends that only those with administrative access to an AWS account have access to view CloudTrail logs, as they contain a record of every single API operation that was performed in the account, which may expose the name or configuration of resources an individual user may otherwise not have access to.
+:::
+
+Further, the configuration of CloudTrail trails should be performed as code, with all changes reviewed in a pull request before being applied automatically by Pipelines.
+
+See [Identity-based policy examples for AWS CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/security_iam_id-based-policy-examples.html) to learn more about granting access to CloudTrail.
 
 ### Logs bucket access
-- Located in logs account
-- General cloudtrail permissions
-    - https://docs.aws.amazon.com/awscloudtrail/latest/userguide/control-user-permissions-for-cloudtrail.html
 
-### Object access
-- KMS key
-    - located in mgmt account
+Access to the logs bucket requires the user to have access to the centralized `log` account by assuming an AWS IAM role (preferred) or by having an IAM user in the account. In addition, the role or use must have S3 permissions for the S3 bucket containing the CloudTrail events.
+
+Access to the objects containing CloudTrail events in S3 is controlled by IAM policies assigned to IAM users or roles. Further, to download the object, any IAM role or user needs permission to perform `kms:Decrypt` on the KMS key that was configured for object encryption when setting up the CloudTrail trail.
+
+:::tip
+Gruntwork recommends that only a select group of trusted individuals on your security team have direct access to objects in the S3 bucket. Whenever possible, the data should be accessed by [querying](#querying-data) it using the CloudTrail UI or a query service such as Amazon Athena.
+:::
 
 ##  Querying data
 
-You can query CloudTrail data for Gruntwork Pipelines in two ways - in the originating account or from the `logs` account. Querying in the originating account is done using the CloudTrail UI and is useful for quick checks that do not require in-depth analysis of usage and trends. If you require support for perform analytics to observe usage and trends, Gruntwork recommends querying the data in the S3 bucket in the `logs` account using a query service like Amazon Athena.
+You can query CloudTrail data for Gruntwork Pipelines in two ways - in the originating account or from the `logs` account. Querying in the originating account is done using the CloudTrail UI and is useful for quick checks that do not require in-depth analysis of usage and trends. If you require support for performing analytics to observe usage and trends, Gruntwork recommends querying the data in the S3 bucket in the `logs` account using a query service like Amazon Athena.
 
-### CloudTrail
-- Basic querying
+### Querying in CloudTrail
 
-### S3
-- Downloading files and viewing (permissions)
-- Set up Athena (link to docs)
+CloudTrail supports simple queries based on a pre-set lookup attributes, including the event source, event name, user name, and resource type. A full list of filters can be found in [filtering CloudTrail events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/view-cloudtrail-events-console.html#filtering-cloudtrail-events). The filters in the CloudTrail allow you to perform coarse grained queries over a single attribute filter and time range and view details on individual events. Using the CloudTrail UI can be a quick way to retrieve a lot of information, such as all the users that have performed a certain API call (e.g., ListBuckets), however it is ineffective when trying analyze data to understand usage patterns across multiple attributes, such as the usage of Gruntwork Pipelines by all users in your GitHub organization.
+
+You can also [download events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/view-cloudtrail-events-console.html#downloading-events) from CloudTrail in CSV or JSON format and perform more in-depth analysis of events in another system such as a query service or using a script on your local machine.
+
+### Querying in S3
+
+If CloudTrail is configured to output all logs to an S3 bucket, there are two approaches that can be taken to perform queries on the data - downloading the data directly (not recommended) and setting up a query service like [Amazon Athena](https://aws.amazon.com/athena/) to allow for more in-depth analysis of your data (recommended).
+
+Amazon Athena is a popular choice for a query service because it is directly integrated in the AWS Console. Further, because CloudTrail logs have a known structure and prefix scheme in S3, you can set up [AWS Athena with partition projection](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#create-cloudtrail-table-partition-projection), which will automatically create new partitions in Athena, reducing the work required to ensure the data is partitioned for optimal query support. While Athena is recommended because of it's convenience, you may use any query service of your choosing to analyze the data, so long as the tool can pull data out of S3. See [example queries](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#query-examples-cloudtrail-logs) and [tips for querying CloudTrail logs](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#tips-for-querying-cloudtrail-logs) for more information on analyzing CloudTrail data using Athena.
+
+:::warning
+Downloading CloudTrail event data from S3, while possible, is generally not recommended. Finding data requires downloading potentially many objects and writing scripts to parse an analyze them. Once the data is outside of S3, it is not possible to know what analysis is being performed. Query services like AWS Athena or similar allow you to see the history of queries performed and who performed the query.
+:::
