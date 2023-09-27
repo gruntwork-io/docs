@@ -69,6 +69,11 @@ const sidebar = [
             id: "pipelines/security/controls",
           },
           {
+            label: "Audit Logs",
+            type: "doc",
+            id: "pipelines/security/audit-log",
+          },
+          {
             label: "Repository Access",
             type: "doc",
             id: "pipelines/security/repository-access",
