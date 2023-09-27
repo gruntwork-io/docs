@@ -1,6 +1,6 @@
 # Audit logs
 
-Gruntwork Pipelines provides an audit log of which user performed what action in which account. To accomplish this, Pipelines sets the [AWS STS](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html) session name using a combination of the initiating GitHub user, the name of pipelines itself, and the pull request or branch from which the action was triggered. All log data for Gruntwork Pipelines is done using [AWS CloudTrail](https://aws.amazon.com/cloudtrail/). Session names are used in the `User name` field in CloudTrail, allowing those searching the data to clearly identify which user performed an action. For more information on querying the logs see [where you can find logs](#where-you-can-find-logs) and [querying data](#querying-data).
+Gruntwork Pipelines provides an audit log of which user performed what action in which account. To accomplish this, Pipelines sets the [AWS STS](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html) session name using a combination of the initiating GitHub user, the name of Pipelines itself, and the pull request or branch from which the action was triggered. All log data for Gruntwork Pipelines is done using [AWS CloudTrail](https://aws.amazon.com/cloudtrail/). Session names are used in the `User name` field in CloudTrail, allowing those searching the data to clearly identify which user performed an action. For more information on querying the logs see [where you can find logs](#where-you-can-find-logs) and [querying data](#querying-data).
 
 ### What gets logged
 
@@ -123,6 +123,6 @@ Downloading CloudTrail event data from S3, while possible, is generally not reco
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e9fa52bdd56839b6913520cc15d9b457"
+  "hash": "f2940765712e7ab7f8be506b81445137"
 }
 ##DOCS-SOURCER-END -->
