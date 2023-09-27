@@ -88,6 +88,11 @@ const sidebar = [
         collapsible: false,
         items: [
           {
+            label: "Upgrading from ECS Deploy Runner",
+            type: "doc",
+            id: "pipelines/upgrading/index"
+          },
+          {
             label: "ECS Deploy Runner",
             type: "link",
             // Use a fully qualified URL to trigger the "external link" SVG here
