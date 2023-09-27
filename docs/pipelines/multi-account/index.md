@@ -1,4 +1,4 @@
-# Multiple Infrastructure Repos
+# Multiple Infrastructure-Live Repos
 
 We recommend using a single `infrastructure-live` repository for managing your organization's infrastructure.
 Sometimes, this isn't possible due to team structure, security requirements, or other limitations.
@@ -41,6 +41,6 @@ The `INFRA_LIVE_ACCESS_TOKEN` available to the `infrastructure-pipelines` reposi
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "5203c6f8c329ff133a4a92be956520fa"
+  "hash": "f3a8efa05871fe70cc4cf9372694fa1a"
 }
 ##DOCS-SOURCER-END -->

@@ -57,7 +57,7 @@ const sidebar = [
             id: "pipelines/using-pipelines/index",
           },
           {
-            label: "Multiple Infrastructure Repos",
+            label: "Multiple Infrastructure-Live Repos",
             type: "doc",
             id: "pipelines/multi-account/index",
           },

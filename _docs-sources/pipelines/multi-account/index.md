@@ -1,4 +1,4 @@
-# Multiple Infrastructure Repos
+# Multiple Infrastructure-Live Repos
 
 We recommend using a single `infrastructure-live` repository for managing your organization's infrastructure.
 Sometimes, this isn't possible due to team structure, security requirements, or other limitations.
