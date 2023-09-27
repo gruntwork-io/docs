@@ -57,7 +57,7 @@ Gruntwork recommends setting up CloudTrail to output all events to an S3 bucket 
 
 ### CloudTrail
 
-Gruntwork Pipelines audit logs can be viewed in the CloudTrail UI in each of your AWS accounts. To access the CloudTrial UI, navigate to the AWS Console, search `CloudTrail` in the search bar, select CloudTrail from the search results, then select **Event History** from the left side panel. All events originating from Gruntwork Pipelines will have a `User name` field containing `GWPipelines`, as outlined in [who gets logged](#what-gets-logged). To learn more about querying data using the CloudTrail UI, see [querying in CloudTrail](#querying-in-cloudtrail).
+Gruntwork Pipelines audit logs can be viewed in the CloudTrail UI in each of your AWS accounts. To access the CloudTrail UI, navigate to the AWS Console, search `CloudTrail` in the search bar, select CloudTrail from the search results, then select **Event History** from the left side panel. All events originating from Gruntwork Pipelines will have a `User name` field containing `GWPipelines`, as outlined in [who gets logged](#what-gets-logged). To learn more about querying data using the CloudTrail UI, see [querying in CloudTrail](#querying-in-cloudtrail).
 
 ### S3
 
