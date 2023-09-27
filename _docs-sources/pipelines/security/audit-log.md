@@ -12,7 +12,7 @@ When Pipelines is run in response to a pull request being merged, the user that 
 
 ### What gets logged
 
-Logs are available for all operations performed in every AWS account by Gruntwork Pipelines. Gruntwork Pipelines takes advantage of AWS STS session names to clearly label all sessions with the GitHub user who requested the change and the pull request or branch that triggered the change.
+Logs are available for all operations performed in every AWS account by Gruntwork Pipelines. Gruntwork Pipelines takes advantage of AWS STS session names to clearly label all sessions with the GitHub user who initiated the Pipelines Action, along with the pull request or branch that triggered the operation.
 
 The `userIdentity` field in each CloudTrail event associated with API calls performed by Pipelines [actions](../overview/actions.md) will contain the session name. For example, if the GitHub user `SomeUserInYourOrg123` made a pull request that was the 123rd pull request in your repository, an associated CloudTrail event would have the following data for `userIdentity`.
 
