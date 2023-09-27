@@ -87,7 +87,7 @@ See [Identity-based policy examples for AWS CloudTrail](https://docs.aws.amazon.
 
 ### Logs bucket access
 
-Access to the logs bucket requires the user to have access to the centralized `log` account by assuming an AWS IAM role (preferred) or by having an IAM user in the account. In addition, the role or use must have S3 permissions for the S3 bucket containing the CloudTrail events.
+Access to the logs bucket requires the user to have access to the centralized `log` account by assuming an AWS IAM role (preferred) or by having an IAM user in the account. In addition, the role or user must have S3 permissions for the S3 bucket containing the CloudTrail events.
 
 Access to the objects containing CloudTrail events in S3 is controlled by IAM policies assigned to IAM users or roles. Further, to download the object, any IAM role or user needs permission to perform `kms:Decrypt` on the KMS key that was configured for object encryption when setting up the CloudTrail trail.
 
