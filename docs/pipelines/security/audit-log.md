@@ -1,20 +1,12 @@
 # Audit logs
 
-Gruntwork Pipelines provides an audit log of which user performed what action in which account. To accomplish this, Pipelines sets the AWS STS session name using a combination of the initiating GitHub user, the name of pipelines itself, and the pull request or branch from which the action was triggered. All log data for Gruntwork Pipelines is done using [AWS CloudTrail](https://aws.amazon.com/cloudtrail/). Session names are used in the `User name` field in CloudTrail, allowing those searching the data to clearly identify which user performed an action. For more information on querying the logs see [where you can find logs](#where-you-can-find-logs) and [querying data](#querying-data).
-
-### Who gets logged
-
-Pipelines uses a naming scheme that combines the GitHub user who triggered the [action](../overview/actions.md) and the pull request or branch from which the action was initiated. There are two scenarios in which Pipelines runs actions - when a pull request is opened, synchronized, or re-opened, and when a pull request is merged to the deploy branch (e.g., `main`).
-
-When Pipelines is run in response to a pull request event, the user that created the most recent commit on the branch will be used in the log, in addition to the pull request number assigned by GitHub. For example, if the user `SomeUserInYourOrg123` created a pull request that was given the number `123` by GitHub, the resulting session name would be `SomeUserInYourOrg123-via-GWPipelines@PR-123`.
-
-When Pipelines is run in response to a pull request being merged, the user that performed the merge (e.g., the user who clicked the `merge` button on the pull request) will be used in the log in addition the to deploy branch (e.g., `main`). For example, if the user `SomeUserInYourOrg123` merged a pull request to your deploy branch named `main` the session name would be `SomeUserInYourOrg123-via-GWPipelines@main`
+Gruntwork Pipelines provides an audit log of which user performed what action in which account. To accomplish this, Pipelines sets the [AWS STS](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html) session name using a combination of the initiating GitHub user, the name of pipelines itself, and the pull request or branch from which the action was triggered. All log data for Gruntwork Pipelines is done using [AWS CloudTrail](https://aws.amazon.com/cloudtrail/). Session names are used in the `User name` field in CloudTrail, allowing those searching the data to clearly identify which user performed an action. For more information on querying the logs see [where you can find logs](#where-you-can-find-logs) and [querying data](#querying-data).
 
 ### What gets logged
 
-Logs are available for all operations performed in every AWS account by Gruntwork Pipelines. Gruntwork Pipelines takes advantage of AWS STS session names to clearly label all sessions with the GitHub user who requested the change and the pull request or branch that triggered the change.
+Logs are available for all operations performed in every AWS account by Gruntwork Pipelines. Gruntwork Pipelines takes advantage of [AWS STS](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html) session names to clearly label all sessions with the GitHub user who requested the change and the pull request or branch that triggered the change.
 
-The `userIdentity` field in each CloudTrail event associated with API calls performed by Pipelines [actions](../overview/actions.md) will contain the session name. For example, if the GitHub user `SomeUserInYourOrg123` made a pull request that was the 123rd pull request in your repository, an associated CloudTrail event would have the following data for `userIdentity`.
+The `userIdentity` field in each CloudTrail event associated with API calls performed by Pipelines [Actions](../overview/actions.md) will contain the session name. For example, if the GitHub user `SomeUserInYourOrg123` made a pull request that was the 123rd pull request in your repository, an associated CloudTrail event would have the following data for `userIdentity`.
 
 ```
 {
@@ -47,7 +39,19 @@ The `userIdentity` field in each CloudTrail event associated with API calls perf
 }
 ```
 
+Due to the 64 character limit for STS session names, we do not include the originating repository. To determine the originating repo, you can search repositories for commits containing the user and branch/PR-number combination, or reach out to the GitHub user directly.
+
 Combined with a [query service](#querying-data), you can use data from CloudTrail to perform analytics on usage of Gruntwork Pipelines in your AWS accounts.
+
+### Who gets logged
+
+Pipelines uses a naming scheme that combines the GitHub user who triggered the Pipelines [Action](../overview/actions.md) and the pull request or branch from which the action was initiated. Pipelines will set the AWS STS session name according to the following format: `<GitHubUserName>-via-GWPipelines@(PR-<PullRequestNumber>|<branch name>)`.
+
+Pipelines runs Pipelines Actions when a pull request is opened, updated, re-opened, or merged to the deploy branch (e.g., main). The naming scheme will use different values for pull request events and pushes to the deploy branch (e.g., merged PRs).
+
+When Pipelines is run in response to a pull request event, the user that created the most recent commit on the branch will be used in the log, in addition to the pull request number assigned by GitHub. For example, if the user `SomeUserInYourOrg123` created a pull request that was given the number `123` by GitHub, the resulting session name would be `SomeUserInYourOrg123-via-GWPipelines@PR-123`.
+
+When Pipelines is run in response to a pull request being merged, the user that performed the merge (e.g., the user who clicked the `merge` button on the pull request) will be used in the log in addition the to deploy branch (e.g., `main`). For example, if the user `SomeUserInYourOrg123` merged a pull request to your deploy branch named `main` the session name would be `SomeUserInYourOrg123-via-GWPipelines@main`
 
 ## Where you can find logs
 
@@ -119,6 +123,6 @@ Downloading CloudTrail event data from S3, while possible, is generally not reco
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "863f944b365c461e4cf8289e713c57c6"
+  "hash": "70d489f03b6b24c68dac6bff481872f3"
 }
 ##DOCS-SOURCER-END -->
