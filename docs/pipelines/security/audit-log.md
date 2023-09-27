@@ -61,7 +61,7 @@ Gruntwork recommends setting up CloudTrail to output all events to an S3 bucket 
 
 ### CloudTrail
 
-Gruntwork Pipelines audit logs can be viewed in the CloudTrail UI in each of your AWS accounts. To access the CloudTrial UI, navigate to the AWS Console, search `CloudTrail` in the search bar, select CloudTrail from the search results, then select **Event History** from the left side panel. All events originating from Gruntwork Pipelines will have a `User name` field containing `GWPipelines`, as outlined in [who gets logged](#what-gets-logged). To learn more about querying data using the CloudTrail UI, see [querying in CloudTrail](#querying-in-cloudtrail).
+Gruntwork Pipelines audit logs can be viewed in the CloudTrail UI in each of your AWS accounts. To access the CloudTrail UI, navigate to the AWS Console, search `CloudTrail` in the search bar, select CloudTrail from the search results, then select **Event History** from the left side panel. All events originating from Gruntwork Pipelines will have a `User name` field containing `GWPipelines`, as outlined in [who gets logged](#what-gets-logged). To learn more about querying data using the CloudTrail UI, see [querying in CloudTrail](#querying-in-cloudtrail).
 
 ### S3
 
@@ -85,13 +85,13 @@ Access to CloudTrail is controlled by AWS IAM policies that are assigned to indi
 Gruntwork recommends that only those with administrative access to an AWS account have access to view CloudTrail logs, as they contain a record of every single API operation that was performed in the account, which may expose the name or configuration of resources an individual user may otherwise not have access to.
 :::
 
-Further, the configuration of CloudTrail trails should be performed as code, with all changes reviewed in a pull request before being applied automatically by Pipelines.
+Further, the configuration of CloudTrail trails should be defined as code, with all changes reviewed in a pull request before being applied automatically by Pipelines.
 
 See [Identity-based policy examples for AWS CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/security_iam_id-based-policy-examples.html) to learn more about granting access to CloudTrail.
 
 ### Logs bucket access
 
-Access to the logs bucket requires the user to have access to the centralized `log` account by assuming an AWS IAM role (preferred) or by having an IAM user in the account. In addition, the role or use must have S3 permissions for the S3 bucket containing the CloudTrail events.
+Access to the logs bucket requires the user to have access to the centralized `log` account by assuming an AWS IAM role (preferred) or by having an IAM user in the account. In addition, the role or user must have S3 permissions for the S3 bucket containing the CloudTrail events.
 
 Access to the objects containing CloudTrail events in S3 is controlled by IAM policies assigned to IAM users or roles. Further, to download the object, any IAM role or user needs permission to perform `kms:Decrypt` on the KMS key that was configured for object encryption when setting up the CloudTrail trail.
 
@@ -101,7 +101,7 @@ Gruntwork recommends that only a select group of trusted individuals on your sec
 
 ##  Querying data
 
-You can query CloudTrail data for Gruntwork Pipelines in two ways - in the originating account or from the `logs` account. Querying in the originating account is done using the CloudTrail UI and is useful for quick checks that do not require in-depth analysis of usage and trends. If you require support for performing analytics to observe usage and trends, Gruntwork recommends querying the data in the S3 bucket in the `logs` account using a query service like Amazon Athena.
+You can query CloudTrail data for Gruntwork Pipelines in two ways - in the originating account or from the `logs` account. Querying in the originating account is done using the CloudTrail UI and is useful for quick checks that do not require in-depth analysis of usage and trends. If you require support for performing analytics to observe usage and trends, Gruntwork recommends querying the data in the S3 bucket in the `logs` account using a query service like [Amazon Athena](https://docs.aws.amazon.com/athena/latest/ug/what-is.html).
 
 ### Querying in CloudTrail
 
@@ -113,7 +113,7 @@ You can also [download events](https://docs.aws.amazon.com/awscloudtrail/latest/
 
 If CloudTrail is configured to output all logs to an S3 bucket, there are two approaches that can be taken to perform queries on the data - downloading the data directly (not recommended) and setting up a query service like [Amazon Athena](https://aws.amazon.com/athena/) to allow for more in-depth analysis of your data (recommended).
 
-Amazon Athena is a popular choice for a query service because it is directly integrated in the AWS Console. Further, because CloudTrail logs have a known structure and prefix scheme in S3, you can set up [AWS Athena with partition projection](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#create-cloudtrail-table-partition-projection), which will automatically create new partitions in Athena, reducing the work required to ensure the data is partitioned for optimal query support. While Athena is recommended because of it's convenience, you may use any query service of your choosing to analyze the data, so long as the tool can pull data out of S3. See [example queries](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#query-examples-cloudtrail-logs) and [tips for querying CloudTrail logs](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#tips-for-querying-cloudtrail-logs) for more information on analyzing CloudTrail data using Athena.
+Amazon Athena is a popular choice for a query service because it is directly integrated in the AWS Console. Further, because CloudTrail logs have a known structure and prefix scheme in S3, you can set up [Athena with partition projection](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#create-cloudtrail-table-partition-projection), which will automatically create new partitions in Athena, reducing the work required to ensure the data is partitioned for optimal query support. While Athena is recommended because of its convenience, you may use any query service of your choosing to analyze the data, so long as the tool can pull data out of S3. See [example queries](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#query-examples-cloudtrail-logs) and [tips for querying CloudTrail logs](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#tips-for-querying-cloudtrail-logs) for more information on analyzing CloudTrail data using Athena.
 
 :::warning
 Downloading CloudTrail event data from S3, while possible, is generally not recommended. Finding data requires downloading potentially many objects and writing scripts to parse an analyze them. Once the data is outside of S3, it is not possible to know what analysis is being performed. Query services like AWS Athena or similar allow you to see the history of queries performed and who performed the query.
@@ -123,6 +123,6 @@ Downloading CloudTrail event data from S3, while possible, is generally not reco
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "70d489f03b6b24c68dac6bff481872f3"
+  "hash": "e9fa52bdd56839b6913520cc15d9b457"
 }
 ##DOCS-SOURCER-END -->
