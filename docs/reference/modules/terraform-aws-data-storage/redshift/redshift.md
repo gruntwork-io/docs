@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.30.0" lastModifiedVersion="0.27.2"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.31.0" lastModifiedVersion="0.31.0"/>
 
 # Redshift Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.30.0/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.31.0/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.31.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Redshift cluster that you can use as a data warehouse. The cluster is managed by AWS and
 automatically handles leader nodes, worker nodes, backups, patching, and encryption.
@@ -63,7 +63,7 @@ workaround, you can re-run the destroy command once the workspace gets deleted c
 
 module "redshift" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.30.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.31.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -115,6 +115,11 @@ module "redshift" {
   # https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version
   # for more details.
   auto_minor_version_upgrade = true
+
+  #  If true, the cluster can be relocated to another availabity zone, either
+  # automatically by AWS or when requested. Default is false. Available for use
+  # on clusters from the RA3 instance family.
+  availability_zone_relocation_enabled = null
 
   # The description of the aws_db_security_group that is created. Defaults to
   # 'Security group for the var.name DB' if not specified.
@@ -263,7 +268,7 @@ module "redshift" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.30.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.31.0"
 }
 
 inputs = {
@@ -318,6 +323,11 @@ inputs = {
   # https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version
   # for more details.
   auto_minor_version_upgrade = true
+
+  #  If true, the cluster can be relocated to another availabity zone, either
+  # automatically by AWS or when requested. Default is false. Available for use
+  # on clusters from the RA3 instance family.
+  availability_zone_relocation_enabled = null
 
   # The description of the aws_db_security_group that is created. Defaults to
   # 'Security group for the var.name DB' if not specified.
@@ -547,6 +557,15 @@ Indicates that minor engine upgrades will be applied automatically to the DB ins
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="availability_zone_relocation_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+ If true, the cluster can be relocated to another availabity zone, either automatically by AWS or when requested. Default is false. Available for use on clusters from the RA3 instance family.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="aws_db_security_group_description" requirement="optional" type="string">
@@ -940,11 +959,11 @@ The ID of the Security Group that controls access to the cluster
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.30.0/modules/redshift/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.30.0/modules/redshift/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.30.0/modules/redshift/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.31.0/modules/redshift/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.31.0/modules/redshift/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.31.0/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e4b6cadb1d3135656d34c20ca674e9fe"
+  "hash": "4aed2a16d1167807adaefd7a936ea7aa"
 }
 ##DOCS-SOURCER-END -->
