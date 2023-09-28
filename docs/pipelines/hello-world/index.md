@@ -55,7 +55,7 @@ For a simple proof of concept, the default repo configuration will suffice.
 Before using these repositories in a production environment, we recommend setting up a
 [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule)
 for your `main` branch. At a minimum, we recommend enabling requiring a pull request before merging with at least one reviewer required.
-See [Using Pipelines](/pipelines/using-pipelines#recommended-settings) for recommended settings.
+See [Using Pipelines](../security/branch-protection#recommended-settings) for recommended settings.
 :::
 
 ### Setting up secrets
@@ -200,6 +200,6 @@ If you are not going to continue using Pipelines after this tutorial, clean up t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d69e89b2a89793f2c0af2034e03bc227"
+  "hash": "2e016e548a17af8040cc2d800a5fe6dd"
 }
 ##DOCS-SOURCER-END -->

@@ -1,4 +1,4 @@
-# Using Pipelines in Production
+# Branch Protection
 
 Gruntwork Pipelines is designed to be used with a PR based workflow.
 This means an approval on a PR is an approval to deploy infrastructure, making the configuration of repo settings and branch protection especially important.
@@ -43,11 +43,3 @@ The following is an example of the recommended settings for branch protection:
 1. Gruntwork Pipelines runs `apply` on any changes from the PR
    - On Success, a comment is placed on the PR indicating success
    - On Failure, a new GitHub issue is created describing the failure. A new PR must be created to resolve any failures.
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "c8667033ac9c63bd6bfa5114cbe772dd"
-}
-##DOCS-SOURCER-END -->

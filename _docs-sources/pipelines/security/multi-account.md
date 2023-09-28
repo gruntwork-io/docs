@@ -1,16 +1,16 @@
 # Multiple Infrastructure-Live Repos
 
-We recommend using a single `infrastructure-live` repository for managing your organization's infrastructure.
+We recommend using a single `infrastructure-live` git repository for managing your organization's infrastructure.
 Sometimes, this isn't possible due to team structure, security requirements, or other limitations.
-You may choose to use multiple repos to:
+You may choose to use multiple `infrastructure-live` repos to:
 
 1. Facilitate more granular access controls
 1. Separate concerns that do not require shared configuration
 1. Ease the burden of high traffic repos (reducing the likelihood of feature branches becoming out-of-date relative to `main`)
 
-However, when using multiple repos it is more difficult to share configuration across environments so think carefully about
-your specific use case before making the decision.
-In order to accommodate multiple infrastructure repositories, Gruntwork Pipelines is configurable.
+Note that when using multiple repositories, it is more difficult to share a infrastructure configuration across environments,
+so think carefully about your specific use case before making the decision.
+
 
 ## Create Additional Repos
 
@@ -18,8 +18,8 @@ New `infrastructure-live` repositories can be created using the same process des
 [Hello World](../hello-world#setting-up-the-repositories) documentation.
 
 :::info
-Once the repo is created, you'll need to set up machine user access using either the existing machine user and `PIPELINES_DISPATCH` PAT token,
-or one created specifically for this purpose. See [Machine Users](../using-pipelines/machine-users) for more information.
+Once the repository is created, you'll need to set up machine user access using either the existing machine user and `PIPELINES_DISPATCH` PAT token,
+or one created specifically for this purpose. See [Machine Users](machine-users) for more information.
 :::
 
 No special configuration is required for the new `infrastructure-live` repository,
@@ -29,8 +29,8 @@ to the shared `infrastructure-pipelines` repository.
 ## Enable Additional Repos
 
 :::warning
-Once a repo is enabled for pipelines, any code pushed to the `main` branch of that repo will be eligible to access your
-AWS account using OIDC. Ensure you have the [recommended settings](../using-pipelines) for branch protection configured before adding the new
+Once a repository is enabled for pipelines, any code pushed to the `main` branch of that repository will be eligible to access your
+AWS account using OIDC. Ensure you have the [recommended settings](branch-protection) for branch protection configured before adding the new
 repository to the allowlist.
 :::
 

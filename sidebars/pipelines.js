@@ -69,9 +69,9 @@ const sidebar = [
             id: "pipelines/security/repository-access",
           },
           {
-            label: "Using Pipelines in Production",
+            label: "Branch Protection",
             type: "doc",
-            id: "pipelines/security/using-pipelines",
+            id: "pipelines/security/branch-protection",
           },
           {
             label: "Multiple Infrastructure-Live Repos",

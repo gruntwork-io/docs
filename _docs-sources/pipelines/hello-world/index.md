@@ -55,7 +55,7 @@ For a simple proof of concept, the default repo configuration will suffice.
 Before using these repositories in a production environment, we recommend setting up a
 [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule)
 for your `main` branch. At a minimum, we recommend enabling requiring a pull request before merging with at least one reviewer required.
-See [Using Pipelines](/pipelines/using-pipelines#recommended-settings) for recommended settings.
+See [Using Pipelines](../security/branch-protection#recommended-settings) for recommended settings.
 :::
 
 ### Setting up secrets
