@@ -47,7 +47,7 @@ const sidebar = [
             id: "pipelines/hello-world/index",
           },
           {
-            label: "GitHub Enterprise",
+            label: "Allowing Pipelines Actions",
             type: "doc",
             id: "pipelines/hello-world/github-enterprise",
           },
@@ -62,6 +62,11 @@ const sidebar = [
             label: "Controls",
             type: "doc",
             id: "pipelines/security/controls",
+          },
+          {
+            label: "Audit Logs",
+            type: "doc",
+            id: "pipelines/security/audit-log",
           },
           {
             label: "Repository Access",
@@ -92,6 +97,11 @@ const sidebar = [
         type: "category",
         collapsible: false,
         items: [
+          {
+            label: "Upgrading from ECS Deploy Runner",
+            type: "doc",
+            id: "pipelines/upgrading/index"
+          },
           {
             label: "ECS Deploy Runner",
             type: "link",

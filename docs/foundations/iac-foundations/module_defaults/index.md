@@ -9,7 +9,7 @@ This patterns has benefits for both module developers and consumers:
 
 :::note
 
-The module defaults pattern was previously known as the "envcommon" pattern (and stored in an `_envcommon` directory of the `infrastructure-live` repo. These are equivalent concepts, so any knowledge base posts or other material referencing "evncommon" can be directly mapped to the concept of module defaults.)
+The module defaults pattern was previously known as the "envcommon" pattern (and stored in an `_envcommon` directory of the `infrastructure-live` repo. These are equivalent concepts, so any knowledge base posts or other material referencing "envcommon" can be directly mapped to the concept of module defaults.)
 
 :::
 
@@ -23,6 +23,6 @@ Now that we’ve established what the module defaults pattern is and how it can 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "a5191a80bc3c2a55450080eb3366b165"
+  "hash": "c3f2a3c55e3cfa50aae2e31b1c14ffac"
 }
 ##DOCS-SOURCER-END -->

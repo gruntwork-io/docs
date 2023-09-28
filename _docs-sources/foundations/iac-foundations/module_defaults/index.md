@@ -9,7 +9,7 @@ This patterns has benefits for both module developers and consumers:
 
 :::note
 
-The module defaults pattern was previously known as the "envcommon" pattern (and stored in an `_envcommon` directory of the `infrastructure-live` repo. These are equivalent concepts, so any knowledge base posts or other material referencing "evncommon" can be directly mapped to the concept of module defaults.)
+The module defaults pattern was previously known as the "envcommon" pattern (and stored in an `_envcommon` directory of the `infrastructure-live` repo. These are equivalent concepts, so any knowledge base posts or other material referencing "envcommon" can be directly mapped to the concept of module defaults.)
 
 :::
 
