@@ -6,7 +6,7 @@ This document provides instructions for provisioning a new AWS account using Gru
 
 Before proceeding, ensure you have:
 
-- `infrastructure-live` repository which contains the [`control-tower-multi-account-factory` module](https://GitHub.com/gruntwork-io/terraform-aws-control-tower/tree/main/modules/landingzone/control-tower-multi-account-factory) configured in the root account. Use the [Gruntwork infrastructure-live template](/foundations/iac-foundations/initial-setup#infrastructure-live-template) to create your repository if you do not already have one.
+- A repository named `infrastructure-live` which contains the [`control-tower-multi-account-factory` module](https://GitHub.com/gruntwork-io/terraform-aws-control-tower/tree/main/modules/landingzone/control-tower-multi-account-factory) configured in the root account. Use the [Gruntwork infrastructure-live template](/foundations/iac-foundations/initial-setup#infrastructure-live-template) to create your repository if you do not already have one.
 - An installation of [Gruntwork Pipelines](/pipelines/overview)
 
 ## 1. Create an AWS account request file
