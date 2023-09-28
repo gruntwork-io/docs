@@ -63,7 +63,21 @@ You will need to allow the following GitHub Actions for Gruntwork Pipelines to r
 - [dsaltares/fetch-gh-release-asset](https://github.com/dsaltares/fetch-gh-release-asset)
 - [peter-evans/create-pull-request](https://github.com/peter-evans/create-pull-request)
 
-Gruntwork recommends using a tagged version of the `gruntwork-io` actions and a wildcard for the non-Gruntwork actions, as the non-Gruntwork actions are wrapped in the Gruntwork actions. This will require less administrative work to keep policies up to date with versions being used by Gruntwork actions.
+Gruntwork recommends using a tagged version of the `gruntwork-io` actions and a wildcard for the non-Gruntwork actions, as the non-Gruntwork actions are wrapped in the Gruntwork actions. This will require less administrative work to keep policies up to date with versions being used by Gruntwork actions. An example policy can be found below.
+
+```txt
+gruntwork-io/pipelines-dispatch@<newest release>,
+gruntwork-io/pipelines-orchestrate@<newest release>,
+gruntwork-io/pipelines-execute@<newest release>,
+gruntwork-io/terragrunt-action@<newest release>,
+aws-actions/configure-aws-credentials@*,
+Codex-/return-dispatch@*,
+Codex-/await-remote-run@*,
+dsaltares/fetch-gh-release-asset@*,
+peter-evans/create-pull-request@*
+```
+
+Navigate to each Gruntwork repository to retrieve the latest tagged release for each action.
 
 ### GitHub Team and Pro
 
