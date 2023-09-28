@@ -44,21 +44,49 @@ The following is an example of the recommended settings for branch protection:
    - On Success, a comment is placed on the PR indicating success
    - On Failure, a new GitHub issue is created describing the failure. A new PR must be created to resolve any failures.
 
-## GitHub Enterprise Users
+## Allowing Pipelines Actions in GitHub Actions
 
-Gruntwork Pipelines uses a set of Gruntwork built re-usable Github Actions. Companies using GitHub Enterprise may need to explicitly allow Actions from Gruntwork to run in their GitHub organization. See the "Allow specified actions and reusable workflows" section in [Allowing select actions and reusable workflows to run](https://docs.github.com/en/enterprise-cloud@latest/admin/policies/enforcing-policies-for-your-enterprise/enforcing-policies-for-github-actions-in-your-enterprise#allowing-select-actions-and-reusable-workflows-to-run) to learn more.
+Gruntwork Pipelines uses a set of Gruntwork built re-usable Github Actions, which are available in the GitHub Actions marketplace. Gruntwork is a Verified Creator of GitHub Actions.
 
-You will need to allow the following Actions to run:
-- [pipelines-dispatch](https://github.com/gruntwork-io/pipelines-dispatch)
-- [pipelines-orchestrate](https://github.com/gruntwork-io/pipelines-orchestrate)
-- [pipelines-execute](https://github.com/gruntwork-io/pipelines-execute)
+### GitHub Enterprise
 
-Navigate to each repository to retrieve the latest tagged release for each action.
+Gruntwork recommends explicitly allowing Actions required by Gruntwork Pipelines to run in your GitHub organization. See [Allowing select actions and reusable workflows to run](https://docs.github.com/en/enterprise-cloud@latest/admin/policies/enforcing-policies-for-your-enterprise/enforcing-policies-for-github-actions-in-your-enterprise#allowing-select-actions-and-reusable-workflows-to-run) to learn more.
+
+You will need to allow the following GitHub Actions for Gruntwork Pipelines to run successfully:
+- [gruntwork-io/pipelines-dispatch](https://github.com/gruntwork-io/pipelines-dispatch)
+- [gruntwork-io/pipelines-orchestrate](https://github.com/gruntwork-io/pipelines-orchestrate)
+- [gruntwork-io/pipelines-execute](https://github.com/gruntwork-io/pipelines-execute)
+- [gruntwork-io/terragrunt-action](https://github.com/gruntwork-io/terragrunt-action)
+- [aws-actions/configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials)
+- [Codex-/return-dispatch](https://github.com/Codex-/return-dispatch)
+- [Codex-/await-remote-run](https://github.com/Codex-/await-remote-run)
+- [dsaltares/fetch-gh-release-asset](https://github.com/dsaltares/fetch-gh-release-asset)
+- [peter-evans/create-pull-request](https://github.com/peter-evans/create-pull-request)
+
+Gruntwork recommends using a tagged version of the `gruntwork-io` actions and a wildcard for the non-Gruntwork actions, as the non-Gruntwork actions are wrapped in the Gruntwork actions. This will require less administrative work to keep policies up to date with versions being used by Gruntwork actions. An example policy can be found below.
+
+```txt
+gruntwork-io/pipelines-dispatch@<newest release>,
+gruntwork-io/pipelines-orchestrate@<newest release>,
+gruntwork-io/pipelines-execute@<newest release>,
+gruntwork-io/terragrunt-action@<newest release>,
+aws-actions/configure-aws-credentials@*,
+Codex-/return-dispatch@*,
+Codex-/await-remote-run@*,
+dsaltares/fetch-gh-release-asset@*,
+peter-evans/create-pull-request@*
+```
+
+Navigate to each Gruntwork repository to retrieve the latest tagged release for each action.
+
+### GitHub Team and Pro
+
+Currently GitHub Actions does not support selecting specific repos outside of your own GitHub organization for the team and pro tier. To use Gruntwork Pipelines you must select the **Allow all actions and reusable workflows** option in the Actions general settings at the Organization level.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "f5eb31e9c47c59c43dd6cf27a38b2953"
+  "hash": "ecae76b26accd38407129d5f8fd73632"
 }
 ##DOCS-SOURCER-END -->
