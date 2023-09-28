@@ -2,6 +2,14 @@
 
 We recommend using a single `infrastructure-live` repository for managing your organization's infrastructure.
 Sometimes, this isn't possible due to team structure, security requirements, or other limitations.
+You may choose to use multiple repos to:
+
+1. Facilitate more granular access controls
+1. Separate concerns that do not require shared configuration
+1. Ease the burden of high traffic repos (reducing the likelihood of feature branches becoming out-of-date relative to `main`)
+
+However, when using multiple repos it is more difficult to share configuration across environments so think carefully about
+your specific use case before making the decision.
 In order to accommodate multiple infrastructure repositories, Gruntwork Pipelines is configurable.
 
 ## Create Additional Repos
