@@ -63,7 +63,7 @@ You will need to allow the following GitHub Actions for Gruntwork Pipelines to r
 - [dsaltares/fetch-gh-release-asset](https://github.com/dsaltares/fetch-gh-release-asset)
 - [peter-evans/create-pull-request](https://github.com/peter-evans/create-pull-request)
 
-You may navigate to each repository to retrieve the latest tagged release for each action (recommended) or use a wildcard for the version to allow versions to be incremented without needing to update the policy.
+We recommend using a tagged version of the `gruntwork-io` actions and a wildcard for the non-Gruntwork actions, as the non-Gruntwork actions are wrapped in the Gruntwork actions. This will require less administrative work to keep policies up to date with versions being used by Gruntwork actions.
 
 ### GitHub Team and Pro
 
@@ -73,6 +73,6 @@ Currently GitHub Actions does not support selecting specific repos outside of yo
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "8a030b5c16bfd617f4f961b2df061250"
+  "hash": "2f354c580fdf59b148c37bfd946d448d"
 }
 ##DOCS-SOURCER-END -->
