@@ -20,7 +20,7 @@ Gruntwork Pipelines uses a series of GitHub Personal Access Tokens (PAT) to allo
 - `INFRA_LIVE_ACCESS_TOKEN` - A [fine-grained PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) that has read and write access to your `infrastructure-live` repository. This token is used in Pipelines to create pull requests after code generation and add pull request comments.
 - `PIPELINES_DISPATCH_TOKEN` - A fine-grained PAT that can run Workflows in your `infrastructure-pipelines` repository.
 
-Steps to create a PAT can be found in the official documentation. Refer to [creating a personal access token classic](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) and [creating a fine-grained personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token), respectively. We recommend using [machine users](../using-pipelines/machine-users.md) for this use case.
+Steps to create a PAT can be found in the official documentation. Refer to [creating a personal access token classic](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) and [creating a fine-grained personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token), respectively. We recommend using [machine users](../security/machine-users.md) for this use case.
 
 To learn more about GitHub PATs, refer to their documentation on [managing personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
 
@@ -75,6 +75,6 @@ As highlighted in [dual-repository approach](#dual-repository-approach), because
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e48728037b3749b497c6a5971b0aae97"
+  "hash": "7c0a69bf522cc41e6b61e4451ef1e0f1"
 }
 ##DOCS-SOURCER-END -->

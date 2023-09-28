@@ -67,7 +67,7 @@ First, navigate to the `infrastructure-live` repository. Select the `Settings` t
 Next, Navigate to the `infrastructure-pipelines` repository. Select the `Settings` tab, select the `Secrets and variables` drop down on the left side panel, then select `Actions`. Create two secrets named `INFRA_LIVE_ACCESS_TOKEN` and `GRUNTWORK_CODE_ACCESS_TOKEN`. Use your GitHub PAT as the value for both secrets.
 
 :::warning
-Using a single token with broad access is sufficient for a POC or demo environments. In a production environment, we recommend using a mix of fine-grained and classic PATs to apply the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) to all tokens used in Pipelines workflows. See [machine users](../using-pipelines/machine-users.md) for more information.
+Using a single token with broad access is sufficient for a POC or demo environments. In a production environment, we recommend using a mix of fine-grained and classic PATs to apply the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) to all tokens used in Pipelines workflows. See [machine users](../security/machine-users.md) for more information.
 :::
 
 ## Generating code
@@ -200,6 +200,6 @@ If you are not going to continue using Pipelines after this tutorial, clean up t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "ad5384f641a95bb77b231135c7fc36ab"
+  "hash": "d69e89b2a89793f2c0af2034e03bc227"
 }
 ##DOCS-SOURCER-END -->

@@ -20,19 +20,35 @@ to the shared `infrastructure-pipelines` repository.
 
 ## Enable Additional Repos
 
+:::warning
+Once a repo is enabled for pipelines, any code pushed to the `main` branch of that repo will be eligible to access your
+AWS account using OIDC. Ensure you have the [recommended settings](../using-pipelines) for branch protection configured before adding the new
+repository to the allowlist.
+:::
+
 To ensure no unauthorized access is granted to your `infrastructure-pipelines` repository,
-an allowlist of `infrastructure-live` repositories exists at the root directory of the `infrastructure-pipelines` repository.
+an allowlist of `infrastructure-live` repositories exists in the `.gruntwork/config.yml` file in the `infrastructure-pipelines` repository.
 To allow resources to be deployed by your new repository,
-add the repository to `repo-allowlist.txt` on a new line.
+add the repository to the `repo-allow-list` section of `.gruntwork/config.yml`.
 
 The new resource should match the name of your repository **exactly** in the format
 `github-org/infrastructure-live-repo-name` with a single repository per line. See the example file below:
 
-```txt title=infrastructure-pipelines/repo-allowlist.txt
-acme/team-1-infrastructure-live
-acme/team-2-infrastructure-live
+```txt title=infrastructure-pipelines/.gruntwork/config.yml
+# The git repos that have permissions to invoke Pipelines jobs
+- repo-allowlist:
+  - acme/team-1-infrastructure-live
+  - acme/team-2-infrastructure-live
 ```
 
 :::info
 The `INFRA_LIVE_ACCESS_TOKEN` available to the `infrastructure-pipelines` repository must have content read & write access to all repositories in the allowlist.
 :::
+
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "local-copier",
+  "hash": "acf01978368545da7fc936e403648934"
+}
+##DOCS-SOURCER-END -->
