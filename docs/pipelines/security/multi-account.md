@@ -42,9 +42,9 @@ add the repository to the `repo-allow-list` section of `.gruntwork/config.yml`.
 The new resource should match the name of your repository **exactly** in the format
 `github-org/infrastructure-live-repo-name` with a single repository per line. See the example file below:
 
-```txt title=infrastructure-pipelines/.gruntwork/config.yml
+```yml title=infrastructure-pipelines/.gruntwork/config.yml
 # The git repos that have permissions to invoke Pipelines jobs
-- repo-allowlist:
+repo-allow-list:
   - acme/team-1-infrastructure-live
   - acme/team-2-infrastructure-live
 ```
@@ -57,6 +57,6 @@ The `INFRA_LIVE_ACCESS_TOKEN` available to the `infrastructure-pipelines` reposi
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "3462b96b4501e2fcb0e26236bf6f41bf"
+  "hash": "f379ac3d345694272df57b975194b7ea"
 }
 ##DOCS-SOURCER-END -->

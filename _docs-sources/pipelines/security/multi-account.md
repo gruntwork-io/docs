@@ -42,9 +42,9 @@ add the repository to the `repo-allow-list` section of `.gruntwork/config.yml`.
 The new resource should match the name of your repository **exactly** in the format
 `github-org/infrastructure-live-repo-name` with a single repository per line. See the example file below:
 
-```txt title=infrastructure-pipelines/.gruntwork/config.yml
+```yml title=infrastructure-pipelines/.gruntwork/config.yml
 # The git repos that have permissions to invoke Pipelines jobs
-- repo-allowlist:
+repo-allow-list:
   - acme/team-1-infrastructure-live
   - acme/team-2-infrastructure-live
 ```
