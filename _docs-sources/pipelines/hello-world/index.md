@@ -24,6 +24,10 @@ Before you begin, make sure you have:
 - [Terragrunt](https://terragrunt.gruntwork.io/) installed on your system
 - A [classic GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with `repo` scopes and access to Gruntwork modules
 
+:::info
+To create a classic GitHub PAT, go to https://github.com/settings/profile, click on `Developer Settings`, then `Personal access tokens`, then `Tokens (classic)`, then `Generate new token (classic)`. In the "Note" field, enter "Gruntwork Pipelines POC" (or something similar), select the `repo` scope checkbox, and click `Generate token`. Keep your token handy; we'll be using it shortly.
+:::
+
 ## Setting up the repositories
 
 First, you’ll set up two git repositories:
@@ -31,7 +35,7 @@ First, you’ll set up two git repositories:
 - The `infrastructure-live` repository will contain the definitions of your infrastructure as code (IaC)
 - The `infrastructure-pipelines` repository will define how your IaC will be deployed.
 
-Then, you’ll create a Github Personal Access Token (PAT) that allows:
+Then, you’ll create a GitHub Personal Access Token (PAT) that allows:
 
 - GitHub Actions (GHA) workflows defined in `infrastructure-live` to run GHA workflows defined in `infrastructure-pipelines`
 - GHA workflows defined in `infrastructure-pipelines` to clone the `infrastructure-live` repository
@@ -39,6 +43,14 @@ Then, you’ll create a Github Personal Access Token (PAT) that allows:
 Finally, you’ll set up your PAT as a GitHub Actions secret in each repository.
 
 ### Create the repositories
+
+:::warning
+In this tutorial, we will use the default GitHub repo configuration.
+
+In a production environment, we recommend setting up
+[branch protection rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule)
+for your `main` branch as described in [Using Pipelines](/pipelines/using-pipelines#recommended-settings).
+:::
 
 Navigate to the repositories tab of your organization or personal GitHub account in your web browser. Repeat the following steps twice to create one repository named `infrastructure-live` and one repository named `infrastructure-pipelines`.
 
@@ -49,26 +61,30 @@ Navigate to the repositories tab of your organization or personal GitHub account
 
 ![GitHub form for creating a new repository](/img/pipelines/tutorial/create_new_repo_form.png)
 
-:::warning
-For a simple proof of concept, the default repo configuration will suffice.
-
-Before using these repositories in a production environment, we recommend setting up a
-[branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule)
-for your `main` branch. At a minimum, we recommend enabling requiring a pull request before merging with at least one reviewer required.
-See [Using Pipelines](../security/branch-protection#recommended-settings) for recommended settings.
-:::
-
 ### Setting up secrets
 
-Next, configure the required secrets for each repository to allow cross-repository access between the `infrastructure-live` and `infrastructure-pipelines` repositories. This is required so `infrastructure-live` can kick off workflows in the `infrastructure-pipeline` repository and the `infrastructure-pipelines` repository can clone your `infrastructure-live` repository as well as access Gruntwork modules.
-
-First, navigate to the `infrastructure-live` repository. Select the `Settings` tab, select the `Secrets and variables` drop down on the left side panel, then select `Actions`. Create three secrets named `GRUNTWORK_CODE_ACCESS_TOKEN`, `PIPELINES_DISPATCH_TOKEN`, and `INFRA_LIVE_ACCESS_TOKEN`. Use your GitHub PAT as the value for all three secrets.
-
-Next, Navigate to the `infrastructure-pipelines` repository. Select the `Settings` tab, select the `Secrets and variables` drop down on the left side panel, then select `Actions`. Create two secrets named `INFRA_LIVE_ACCESS_TOKEN` and `GRUNTWORK_CODE_ACCESS_TOKEN`. Use your GitHub PAT as the value for both secrets.
-
 :::warning
-Using a single token with broad access is sufficient for a POC or demo environments. In a production environment, we recommend using a mix of fine-grained and classic PATs to apply the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) to all tokens used in Pipelines workflows. See [machine users](../security/machine-users.md) for more information.
+In this tutorial, we will use a single GitHub Personal Access Token (PAT) with broad access.
+
+In a production environment, we recommend using a mix of fine-grained and classic PATs as described in [Machine Users](../using-pipelines/machine-users.md).
 :::
+
+Next, we're going to configure GitHub Actions secrets for each repository. Our goal here is to enable:
+
+- `infrastructure-live` to kick off GitHub Actions workflows in the `infrastructure-pipeline` repository
+- `infrastructure-pipelines` to clone the `infrastructure-live` repository
+- `infrastructure-pipelines` to access Gruntwork modules
+
+First, navigate to the `infrastructure-live` repository. Select the `Settings` tab, select the `Secrets and variables` drop down on the left side panel, then select `Actions`. Create the following secrets and use your GitHub PAT as the value for all of them:
+
+- `PIPELINES_DISPATCH_TOKEN`
+- `INFRA_LIVE_ACCESS_TOKEN`
+- `GRUNTWORK_CODE_ACCESS_TOKEN`
+
+Next, navigate to the `infrastructure-pipelines` repository. Select the `Settings` tab, select the `Secrets and variables` drop down on the left side panel, then select `Actions`. Create the following secrets and use your GitHub PAT as the value for all of them:
+
+- `INFRA_LIVE_ACCESS_TOKEN`
+- `GRUNTWORK_CODE_ACCESS_TOKEN`
 
 ## Generating code
 
