@@ -47,14 +47,9 @@ const sidebar = [
             id: "pipelines/hello-world/index",
           },
           {
-            label: "Machine Users",
+            label: "Allowing Pipelines Actions",
             type: "doc",
-            id: "pipelines/using-pipelines/machine-users",
-          },
-          {
-            label: "Using Pipelines",
-            type: "doc",
-            id: "pipelines/using-pipelines/index",
+            id: "pipelines/hello-world/github-enterprise",
           },
         ],
       },
@@ -77,6 +72,16 @@ const sidebar = [
             label: "Repository Access",
             type: "doc",
             id: "pipelines/security/repository-access",
+          },
+          {
+            label: "Branch Protection",
+            type: "doc",
+            id: "pipelines/security/branch-protection",
+          },
+          {
+            label: "Multiple Infrastructure-Live Repos",
+            type: "doc",
+            id: "pipelines/security/multi-account",
           },
         ]
       },
