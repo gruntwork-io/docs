@@ -69,7 +69,7 @@ In this tutorial, we will use a single GitHub Personal Access Token (PAT) with b
 In a production environment, we recommend using a mix of fine-grained and classic PATs as described in [Machine Users](../using-pipelines/machine-users.md).
 :::
 
-Next, we're going to configure GitHub Actions secrets for each repository. Our goal here is to enable:
+Next, you're going to configure GitHub Actions secrets for each repository. Our goal here is to enable:
 
 - `infrastructure-live` to kick off GitHub Actions workflows in the `infrastructure-pipeline` repository
 - `infrastructure-pipelines` to clone the `infrastructure-live` repository
@@ -88,16 +88,22 @@ Next, navigate to the `infrastructure-pipelines` repository. Select the `Setting
 
 ## Generating code
 
-Next, you’ll generate the IaC and GitHub Actions workflow code required to run Gruntwork Pipelines. Using code templates defined by  Gruntwork, we'll provision an AWS IAM role (which Pipelines assumes to create AWS resources), one GitHub Actions (GHA) workflow for the `infrastructure-live` repository, and one GHA workflow for the `infrastructure-pipelines` repository.
+Next, you’ll write the IaC and GitHub Actions workflow code required to run Gruntwork Pipelines.
 
-The template for `infrastructure-live` sets up a folder structure that complies with Gruntwork’s recommended folder structure for Terragrunt, so you could continue to use the generated code in perpetuity and simply add more accounts and resource definitions if you so choose!
+Rather than copy & pasting this code from documentation, we're going to generate the code using [Boilerplate](https://github.com/gruntwork-io/boilerplate), a code generation tool authored by Gruntwork. The generated code will:
+
+- Provision an AWS IAM role (which Pipelines will assume to manage AWS resources)
+- Configure one GitHub Actions (GHA) workflow for the `infrastructure-live` repository
+- Configure one GHA workflow for the `infrastructure-pipelines` repository
+
+The code generation template for `infrastructure-live` sets up a folder structure that follows Gruntwork’s recommended folder structure for Terragrunt, so you could continue to use the generated code in perpetuity and simply add more AWS accounts and resource definitions if you so choose!
 
 ### Infrastructure-pipelines
 
-First, generate the `infrastructure-pipelines` repository code using [Boilerplate](https://github.com/gruntwork-io/boilerplate. Clone the newly created `infrastructure-pipelines` repository, `cd` into the repo directory, then use the following command replacing `<your GitHub organization name>` with the name of your GitHub organization.
+First, generate the `infrastructure-pipelines` repository code using [Boilerplate](https://github.com/gruntwork-io/boilerplate). On your local computer, git clone the newly created `infrastructure-pipelines` repository, `cd` into the repo directory, then use the following command replacing `<your GitHub organization name>` with the name of your GitHub organization.
 
 ```bash
-boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/infrastructure-pipelines?ref=devops-foundations" \
+boilerplate --template-url "github.com/gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/infrastructure-pipelines?ref=devops-foundations" \
   --output-folder . \
   --var InfraLiveRepoName="infrastructure-live" \
   --var GithubOrg="<your GitHub organization name>" \
@@ -108,10 +114,12 @@ Push your changes to the `infrastructure-pipelines` repository you created in [C
 
 ### Infrastructure-live
 
-Next, generate the `infrastructure-live` repository code using Boilerplate. Clone the newly created `infrastructure-live` repository, `cd` into the repo directory, then use the following command, replacing the values wrapped in `<>` with real values for your organization.
+Next, generate the `infrastructure-live` repository code using Boilerplate. On your local computer, git clone the newly created `infrastructure-live` repository, `cd` into the repo directory, then use the following command, replacing the values wrapped in `<>` with real values for your organization.
+
+The AWSAccount* variables correspond to the AWS account in which your `infrastructure-live` repository will manage AWS resources. The `OrgNamePrefix` is used to prefix your resource names with your org name so that they are identifiable. For example, we will create an S3 bucket to store Terraform/OpenTofu state, whose name begins with the value of `OrgNamePrefix`.
 
 ```bash
-boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/single-account-pipeline?ref=devops-foundations" \
+boilerplate --template-url "github.com/gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/single-account-pipeline?ref=devops-foundations" \
   --output-folder . \
   --var AwsAccountName="<friendly name for your AWS account (e.g., dev)>" \
   --var AwsAccountId="'<account id for your AWS account>'" \
@@ -123,7 +131,9 @@ boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architectu
   --non-interactive
 ```
 
-Before pushing your changes, you will need to run an `apply` locally to provision the AWS IAM role that Pipelines will use to deploy resources in your account. This should be the only time you need to manually run `apply` to provision resources for this account, moving forward Pipelines will handle the lifecycle of all resources for you, based on the code you commit to your repository. Terragrunt will prompt you to create the terragrunt state and logs buckets, enter `y` when prompted, then hit enter.
+The generated code creates a full Terragrunt `infrastructure-live` folder structure that creates a single AWS resource, which is an AWS IAM role that Pipelines will use to deploy resources in your AWS account. More specifically, it will create an instance of the Gruntwork [github-actions-iam-role module](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/github-actions-iam-role), which creates an IAM role that is assumable by GitHub using OIDC, and which can only be assumed when running a GitHub Actions workflow from the `main` branch.
+
+With Pipelines, all `terragrunt` operations will happen in GitHub Actions in response to a Pull Request or `git push`. But before that will work, you will first need to run an `apply` locally to provision the IAM role. This should be the only time you need to manually run `apply` to provision resources for this account, moving forward Pipelines will handle the lifecycle of all resources for you, based on the code you commit to your repository.
 
 First, run a `plan` in the newly created `github-oidc-role` directory to see the resources that will be provisioned. Replace `<account name>` with the value you used for `AwsAccountName` in the boilerplate command above.
 
@@ -131,10 +141,11 @@ First, run a `plan` in the newly created `github-oidc-role` directory to see the
 cd <account name>/_global/github-oidc-role
 terragrunt plan
 ```
+Terragrunt will prompt you to create the Terragrunt state and logs buckets, enter `y` when prompted, then hit enter.
 
-Once you have reviewed the new resources that will be created, run `terragrunt apply` to create the resources.
+Terragrunt will then run the plan. Once you have reviewed the new resources to be created, run `terragrunt apply` to create the resources.
 
-Finally, push your changes to the `infrastructure-live` repository you created in [Create the repositories](#create-the-repositories).
+Finally, git push your changes to the `infrastructure-live` repository you created in [Create the repositories](#create-the-repositories).
 
 ## Running your first pipeline
 
@@ -194,6 +205,12 @@ If the `plan` output looks as expected, you are ready to merge your PR and creat
 
 Congratulations! You've just used Gruntwork Pipelines and a GitOps workflow to provision resources in AWS.
 
+## Common errors
+
+### Error: Parameter token or opts.auth is required
+
+This means that one of the secrets you needed to specify above was not configured correctly.
+
 ## Next steps
 
 ### Add/update/destroy more resources
@@ -216,6 +233,6 @@ If you are not going to continue using Pipelines after this tutorial, clean up t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "5fe6c41accb5f619814b7bf2bd03a441"
+  "hash": "7c8d91b93cb6727d17fe4541c4c0cdf7"
 }
 ##DOCS-SOURCER-END -->
