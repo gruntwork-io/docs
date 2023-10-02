@@ -317,6 +317,41 @@ This release includes the following improvements:
 ## terraform-aws-eks
 
 
+### [v0.62.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.62.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/31/2023 | Modules affected: eks-alb-ingress-controller-iam-policy, eks-alb-ingress-controller, eks-aws-auth-merger, eks-cloudwatch-agent | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.62.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Add AWS Provider V5 Support!
+- Update Gruntwork modules dependencies to latest versions to support AWS Provider V5.
+
+
+
+</div>
+
+
+### [v0.61.1](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.61.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/31/2023 | Modules affected: eks-container-logs | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.61.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Expose additional helm chart configs for eks-container-logs
+
+
+
+</div>
+
+
 ### [v0.61.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.61.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -716,6 +751,6 @@ This release includes the following improvements:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "3ecd7fce00738263bd4dcb53112d93a8"
+  "hash": "999bd608135cdd2ac1cd9be242ce508f"
 }
 ##DOCS-SOURCER-END -->
