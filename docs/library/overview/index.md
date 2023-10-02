@@ -1,3 +1,5 @@
+import OpenTofuNotice from "/src/components/OpenTofuNotice"
+
 # What is Gruntwork Library?
 
 Gruntwork Library (formerly known as the "Gruntwork IaC Library") is a collection of reusable infrastructure-as-code modules that enables you to deploy and manage infrastructure quickly and reliably.
@@ -22,6 +24,8 @@ To learn more, refer to [What is a service module?](./services.md)
 
 ## Tools used in Library
 
+<OpenTofuNotice />
+
 Gruntwork Library has been created using the following tools:
 
 1. [Terraform](https://www.terraform.io/). The Library contains nearly 300 Terraform modules that cover a range of common use cases in AWS. All library modules can be used with vanilla [Terraform](https://www.terraform.io/), [Terragrunt](https://terragrunt.gruntwork.io/), or third-party Terraform pipeline tools such as [Terraform Cloud](https://www.hashicorp.com/blog/announcing-terraform-cloud/) and [Terraform Enterprise](https://www.terraform.io/docs/enterprise/index.html).
@@ -34,6 +38,6 @@ Gruntwork Library has been created using the following tools:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d5a59aa968a01dbaab2c7a69ee177826"
+  "hash": "e7f3723100a2d29a9c1b0cefe25d7fe7"
 }
 ##DOCS-SOURCER-END -->

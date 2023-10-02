@@ -1,3 +1,5 @@
+import OpenTofuNotice from "/src/components/OpenTofuNotice"
+
 # What is Gruntwork Library?
 
 Gruntwork Library (formerly known as the "Gruntwork IaC Library") is a collection of reusable infrastructure-as-code modules that enables you to deploy and manage infrastructure quickly and reliably.
@@ -21,6 +23,8 @@ To learn more, refer to [What is a module?](./modules.md)
 To learn more, refer to [What is a service module?](./services.md)
 
 ## Tools used in Library
+
+<OpenTofuNotice />
 
 Gruntwork Library has been created using the following tools:
 
