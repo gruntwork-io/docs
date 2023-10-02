@@ -79,6 +79,11 @@ const sidebar = [
             id: "pipelines/security/branch-protection",
           },
           {
+            label: "Machine Users",
+            type: "doc",
+            id: "pipelines/security/machine-users",
+          },
+          {
             label: "Multiple Infrastructure-Live Repos",
             type: "doc",
             id: "pipelines/security/multi-account",
