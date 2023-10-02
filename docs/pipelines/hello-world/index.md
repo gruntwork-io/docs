@@ -25,7 +25,7 @@ Before you begin, make sure you have:
 - A [classic GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with `repo` scopes and access to Gruntwork modules
 
 :::info
-To create a classic GitHub PAT, go to https://github.com/settings/profile, click on `Developer Settings`, then `Personal access tokens`, then `Tokens (classic)`, then `Generate new token (classic)`. In the "Note" field, enter "Gruntwork Pipelines POC" (or something similar), select the `repo` scope checkbox, and click `Generate token`. Keep your token handy; we'll be using it shortly.
+To create a classic GitHub PAT, go to https://github.com/settings/profile, click on `Developer Settings`, then `Personal access tokens`, then `Tokens (classic)`, then `Generate new token (classic)`. In the "Note" field, enter "Gruntwork Pipelines POC" (or something similar), select the `repo` and `workflow` scope checkboxes, then click `Generate token`. Keep your token handy; we'll be using it shortly.
 :::
 
 ## Setting up the repositories
@@ -49,7 +49,7 @@ In this tutorial, we will use the default GitHub repo configuration.
 
 In a production environment, we recommend setting up
 [branch protection rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule)
-for your `main` branch as described in [Using Pipelines](/pipelines/using-pipelines#recommended-settings).
+for your `main` branch as described in [Branch Protection](../security/branch-protection.md#recommended-settings).
 :::
 
 Navigate to the repositories tab of your organization or personal GitHub account in your web browser. Repeat the following steps twice to create one repository named `infrastructure-live` and one repository named `infrastructure-pipelines`.
@@ -66,7 +66,7 @@ Navigate to the repositories tab of your organization or personal GitHub account
 :::warning
 In this tutorial, we will use a single GitHub Personal Access Token (PAT) with broad access.
 
-In a production environment, we recommend using a mix of fine-grained and classic PATs as described in [Machine Users](../using-pipelines/machine-users.md).
+In a production environment, we recommend using a mix of fine-grained and classic PATs as described in [Machine Users](../security/machine-users.md).
 :::
 
 Next, you're going to configure GitHub Actions secrets for each repository. Our goal here is to enable:
@@ -233,6 +233,6 @@ If you are not going to continue using Pipelines after this tutorial, clean up t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7c8d91b93cb6727d17fe4541c4c0cdf7"
+  "hash": "29fdf86be0ab9f340a8d012db2852e9e"
 }
 ##DOCS-SOURCER-END -->

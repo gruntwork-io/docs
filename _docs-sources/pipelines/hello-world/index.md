@@ -49,7 +49,7 @@ In this tutorial, we will use the default GitHub repo configuration.
 
 In a production environment, we recommend setting up
 [branch protection rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule)
-for your `main` branch as described in [Using Pipelines](/pipelines/using-pipelines#recommended-settings).
+for your `main` branch as described in [Branch Protection](../security/branch-protection.md#recommended-settings).
 :::
 
 Navigate to the repositories tab of your organization or personal GitHub account in your web browser. Repeat the following steps twice to create one repository named `infrastructure-live` and one repository named `infrastructure-pipelines`.
@@ -66,7 +66,7 @@ Navigate to the repositories tab of your organization or personal GitHub account
 :::warning
 In this tutorial, we will use a single GitHub Personal Access Token (PAT) with broad access.
 
-In a production environment, we recommend using a mix of fine-grained and classic PATs as described in [Machine Users](../using-pipelines/machine-users.md).
+In a production environment, we recommend using a mix of fine-grained and classic PATs as described in [Machine Users](../security/machine-users.md).
 :::
 
 Next, you're going to configure GitHub Actions secrets for each repository. Our goal here is to enable:
