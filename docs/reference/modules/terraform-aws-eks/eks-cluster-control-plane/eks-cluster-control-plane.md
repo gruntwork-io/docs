@@ -488,9 +488,34 @@ module "eks_cluster_control_plane" {
   # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
+  # Configuraiton object for the EBS CSI Driver EKS AddOn
+  ebs_csi_driver_addon_config = {}
+
+  # A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the
+  # tag name and the value is the tag value.
+  ebs_csi_driver_addon_tags = {}
+
+  # If using KMS encryption of EBS volumes, provide the KMS Key ARN to be used
+  # for a policy attachment.
+  ebs_csi_driver_kms_key_arn = null
+
+  # The namespace for the EBS CSI Driver. This will almost always be the
+  # kube-system namespace.
+  ebs_csi_driver_namespace = "kube-system"
+
+  # The Service Account name to be used with the EBS CSI Driver
+  ebs_csi_driver_sa_name = "ebs-csi-controller-sa"
+
   # Map of EKS add-ons, where key is name of the add-on and value is a map of
   # add-on properties.
   eks_addons = {}
+
+  # When set to true, the module configures and install the EBS CSI Driver as an
+  # EKS managed AddOn
+  # (https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html). To
+  # use this feature, `configure_openid_connect_provider` must be set to true
+  # (the default value).
+  enable_ebs_csi_driver = false
 
   # When set to true, the module configures EKS add-ons
   # (https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html)
@@ -781,9 +806,34 @@ inputs = {
   # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
+  # Configuraiton object for the EBS CSI Driver EKS AddOn
+  ebs_csi_driver_addon_config = {}
+
+  # A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the
+  # tag name and the value is the tag value.
+  ebs_csi_driver_addon_tags = {}
+
+  # If using KMS encryption of EBS volumes, provide the KMS Key ARN to be used
+  # for a policy attachment.
+  ebs_csi_driver_kms_key_arn = null
+
+  # The namespace for the EBS CSI Driver. This will almost always be the
+  # kube-system namespace.
+  ebs_csi_driver_namespace = "kube-system"
+
+  # The Service Account name to be used with the EBS CSI Driver
+  ebs_csi_driver_sa_name = "ebs-csi-controller-sa"
+
   # Map of EKS add-ons, where key is name of the add-on and value is a map of
   # add-on properties.
   eks_addons = {}
+
+  # When set to true, the module configures and install the EBS CSI Driver as an
+  # EKS managed AddOn
+  # (https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html). To
+  # use this feature, `configure_openid_connect_provider` must be set to true
+  # (the default value).
+  enable_ebs_csi_driver = false
 
   # When set to true, the module configures EKS add-ons
   # (https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html)
@@ -1192,6 +1242,94 @@ A map of custom tags to apply to the Security Group for this EKS Cluster. The ke
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="ebs_csi_driver_addon_config" requirement="optional" type="any">
+<HclListItemDescription>
+
+Configuraiton object for the EBS CSI Driver EKS AddOn
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   EKS add-on advanced configuration via configuration_values must follow the configuration schema for the deployed version of the add-on. 
+   See the following AWS Blog for more details on advanced configuration of EKS add-ons: https://aws.amazon.com/blogs/containers/amazon-eks-add-ons-advanced-configuration/
+   Example:
+   {
+     addon_version        = "v1.14.0-eksbuild.1"
+     configuration_values = {}
+     preserve                 = false
+     resolve_conflicts        = "NONE"
+     service_account_role_arn = "arn:aws:iam::123456789012:role/role-name"
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_addon_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+     {
+       key1 = "value1"
+       key2 = "value2"
+     }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+If using KMS encryption of EBS volumes, provide the KMS Key ARN to be used for a policy attachment.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_namespace" requirement="optional" type="string">
+<HclListItemDescription>
+
+The namespace for the EBS CSI Driver. This will almost always be the kube-system namespace.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;kube-system&quot;"/>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_sa_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Service Account name to be used with the EBS CSI Driver
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;ebs-csi-controller-sa&quot;"/>
+</HclListItem>
+
 <HclListItem name="eks_addons" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -1235,6 +1373,15 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="enable_ebs_csi_driver" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the module configures and install the EBS CSI Driver as an EKS managed AddOn (https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html). To use this feature, `configure_openid_connect_provider` must be set to true (the default value).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="enable_eks_addons" requirement="optional" type="bool">
@@ -1631,6 +1778,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e3106441ca9eba8e88bd0c86269453a4"
+  "hash": "33d5a13b10f71e012c0680a014e4ba4c"
 }
 ##DOCS-SOURCER-END -->
