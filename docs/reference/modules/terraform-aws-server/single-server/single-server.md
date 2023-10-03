@@ -287,6 +287,9 @@ module "single_server" {
   # terminated.
   root_volume_delete_on_termination = true
 
+  # If set to true, the root volume will be encrypted. Default is set to false
+  root_volume_encrypted = false
+
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
 
@@ -541,6 +544,9 @@ inputs = {
   # If set to true, the root volume will be deleted when the Instance is
   # terminated.
   root_volume_delete_on_termination = true
+
+  # If set to true, the root volume will be encrypted. Default is set to false
+  root_volume_encrypted = false
 
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
@@ -977,6 +983,15 @@ If set to true, the root volume will be deleted when the Instance is terminated.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="root_volume_encrypted" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, the root volume will be encrypted. Default is set to false
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="root_volume_size" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1142,6 +1157,6 @@ When used in combination with user_data or user_data_base64, a user_data change 
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.8/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d830d19c11110374c11a58e44c89a997"
+  "hash": "052b2e887d1148f7085b0ecfe81881eb"
 }
 ##DOCS-SOURCER-END -->
