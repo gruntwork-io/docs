@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Account Baseline App with Control Tower Integration
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/control-tower-app-account-baseline" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/landingzone/control-tower-app-account-baseline" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=control-tower-app-account-baseline" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -34,7 +34,7 @@ Control Tower, including setting up Amazon Guard Duty, Macie, IAM roles, IAM pas
 
 module "control_tower_app_account_baseline" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-app-account-baseline/control-tower-app-account-baseline?ref=v0.0.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-app-account-baseline?ref=v0.0.16"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -500,7 +500,7 @@ module "control_tower_app_account_baseline" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-app-account-baseline/control-tower-app-account-baseline?ref=v0.0.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-app-account-baseline?ref=v0.0.16"
 }
 
 inputs = {
@@ -2010,6 +2010,6 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/control-tower-app-account-baseline/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "611c50c56498a567e951ac33ae08772b"
+  "hash": "f19885faca602413affadfe122d80167"
 }
 ##DOCS-SOURCER-END -->

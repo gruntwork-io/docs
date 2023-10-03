@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Account Baseline Security with Control Tower Integration
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/control-tower-security-account-baseline" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/landingzone/control-tower-security-account-baseline" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=control-tower-security-account-baseline" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -34,7 +34,7 @@ by Control Tower, including setting up Amazon Guard Duty, Macie, IAM users, IAM 
 
 module "control_tower_security_account_baseline" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-groups/control-tower-security-account-baseline?ref=v0.0.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v0.0.16"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -601,7 +601,7 @@ module "control_tower_security_account_baseline" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-groups/control-tower-security-account-baseline?ref=v0.0.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v0.0.16"
 }
 
 inputs = {
@@ -2590,6 +2590,6 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/control-tower-security-account-baseline/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d46ddaa569cbb4e0fbd11073133ae403"
+  "hash": "b5a61385ba1ceeb96908e885214a5831"
 }
 ##DOCS-SOURCER-END -->

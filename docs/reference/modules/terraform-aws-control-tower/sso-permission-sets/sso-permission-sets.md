@@ -22,7 +22,7 @@ license: gruntwork
 built-with: terraform
 -->
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/sso-permission-sets" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/aws-sso/sso-permission-sets" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=sso-permission-sets" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -133,7 +133,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 module "sso_permission_sets" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-multi-account-factory/sso-permission-sets?ref=v0.0.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets?ref=v0.0.16"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -178,7 +178,7 @@ module "sso_permission_sets" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-multi-account-factory/sso-permission-sets?ref=v0.0.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets?ref=v0.0.16"
 }
 
 inputs = {
@@ -313,6 +313,6 @@ The name of the permission set that was created.
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/sso-permission-sets/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4dd0b97c1766369e0314c75fee7bc5f0"
+  "hash": "fa3a35df2e8360776d628af456212eb9"
 }
 ##DOCS-SOURCER-END -->

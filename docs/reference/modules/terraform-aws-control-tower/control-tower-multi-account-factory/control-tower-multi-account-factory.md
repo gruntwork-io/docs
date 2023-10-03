@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Control Tower Multi-Account Factory
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/control-tower-multi-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/landingzone/control-tower-multi-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=control-tower-multi-account-factory" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -33,7 +33,7 @@ the hood, this module uses the [control-tower-account-factory](https://github.co
 
 module "control_tower_multi_account_factory" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets/control-tower-multi-account-factory?ref=v0.0.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-multi-account-factory?ref=v0.0.16"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -94,7 +94,7 @@ module "control_tower_multi_account_factory" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets/control-tower-multi-account-factory?ref=v0.0.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-multi-account-factory?ref=v0.0.16"
 }
 
 inputs = {
@@ -212,6 +212,6 @@ The data from all the AWS accounts created.
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/control-tower-multi-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "442374320ff168776521e8b5a0186f5f"
+  "hash": "e1ca20b9fa8bef96e74b9cff87226241"
 }
 ##DOCS-SOURCER-END -->

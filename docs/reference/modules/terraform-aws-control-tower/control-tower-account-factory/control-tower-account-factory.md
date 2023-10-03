@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Control Tower Account Factory
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/control-tower-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/landingzone/control-tower-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=control-tower-account-factory" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -84,7 +84,7 @@ Resources:
 
 module "control_tower_account_factory" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-execution-role/control-tower-account-factory?ref=v0.0.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.0.16"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -153,7 +153,7 @@ module "control_tower_account_factory" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-execution-role/control-tower-account-factory?ref=v0.0.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.0.16"
 }
 
 inputs = {
@@ -375,6 +375,6 @@ The URL of the AWS SSO login page for this account
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2f0293ae3fdf87deb5ecaef6a56caca3"
+  "hash": "bc6751e25e9f4cc008863c984b0c3805"
 }
 ##DOCS-SOURCER-END -->
