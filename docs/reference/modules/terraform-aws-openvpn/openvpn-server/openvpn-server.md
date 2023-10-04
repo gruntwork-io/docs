@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Open VPN Package Infrastructure Package" version="0.27.0" lastModifiedVersion="0.26.6"/>
+<VersionBadge repoTitle="Open VPN Package Infrastructure Package" version="0.27.0" lastModifiedVersion="0.27.0"/>
 
 # OpenVPN Server Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.0/modules/openvpn-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.26.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.27.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy an OpenVPN server in an auto-scaling group (size 1) for fault tolerance --along with the all the resources it typically needs:
 
@@ -1068,6 +1068,6 @@ The base64-encoded User Data script to run on the server when it is booting. Thi
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.0/modules/openvpn-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c62c61cc77200f31e1d0273c67b9fb00"
+  "hash": "e9905c9c96de62e2d4f00b9c6b8160a2"
 }
 ##DOCS-SOURCER-END -->
