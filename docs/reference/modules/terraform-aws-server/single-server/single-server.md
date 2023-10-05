@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Module Server" version="0.15.8" lastModifiedVersion="0.15.7"/>
+<VersionBadge repoTitle="Module Server" version="0.15.9" lastModifiedVersion="0.15.9"/>
 
 # Single Server Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.8/modules/single-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.9/modules/single-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.15.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.15.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy a single server--that is, a single EC2 instance (e.g. a bastion host, Jenkins
 server) rather than an Auto Scaling Group or ECS Cluster--along with the all the resources it typically needs:
@@ -101,7 +101,7 @@ resource "aws_iam_policy_attachment" "attachment" {
 
 module "single_server" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.15.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.15.9"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -287,6 +287,9 @@ module "single_server" {
   # terminated.
   root_volume_delete_on_termination = true
 
+  # If set to true, the root volume will be encrypted. Default is set to false
+  root_volume_encrypted = false
+
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
 
@@ -353,7 +356,7 @@ module "single_server" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.15.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.15.9"
 }
 
 inputs = {
@@ -541,6 +544,9 @@ inputs = {
   # If set to true, the root volume will be deleted when the Instance is
   # terminated.
   root_volume_delete_on_termination = true
+
+  # If set to true, the root volume will be encrypted. Default is set to false
+  root_volume_encrypted = false
 
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
@@ -977,6 +983,15 @@ If set to true, the root volume will be deleted when the Instance is terminated.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="root_volume_encrypted" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, the root volume will be encrypted. Default is set to false
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="root_volume_size" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1137,11 +1152,11 @@ When used in combination with user_data or user_data_base64, a user_data change 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.8/modules/single-server/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.8/modules/single-server/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.8/modules/single-server/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.9/modules/single-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.9/modules/single-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.9/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d830d19c11110374c11a58e44c89a997"
+  "hash": "c170973795b87033b53428eec9aaf937"
 }
 ##DOCS-SOURCER-END -->
