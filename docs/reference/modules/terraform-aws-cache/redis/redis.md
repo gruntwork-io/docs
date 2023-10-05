@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="0.21.0" lastModifiedVersion="0.21.0"/>
+<VersionBadge repoTitle="Cache Modules" version="0.22.0" lastModifiedVersion="0.22.0"/>
 
 # Redis Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.21.0/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.0/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.21.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.22.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an ElastiCache cluster that runs [Redis](http://redis.io/).
 
@@ -84,7 +84,7 @@ here: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/ParameterGroup
 #### Choosing Cluster Mode vs. Single Instance
 
 You can use `var.enable_single_instance_mode=true` to deploy a single node Redis instance. Refer
-to [examples/redis_single_instance](https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.21.0/examples/redis_single_instance) as an example.
+to [examples/redis_single_instance](https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.0/examples/redis_single_instance) as an example.
 
 Here are some of the points you may consider while choosing which mode to run:
 
@@ -243,7 +243,7 @@ ElastiCache for Redis supports the following types of automatic scaling dimensio
 
 module "redis" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.21.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.22.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -454,7 +454,7 @@ module "redis" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.21.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.22.0"
 }
 
 inputs = {
@@ -1121,11 +1121,11 @@ This is a list of user IDs  that should be added to the group defined in the 'us
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.21.0/modules/redis/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.21.0/modules/redis/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.21.0/modules/redis/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.0/modules/redis/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.0/modules/redis/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.0/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "630b776ba3aba80be551eb24f0195e5a"
+  "hash": "9ca96167005b0a8fcc9ad189f83258c5"
 }
 ##DOCS-SOURCER-END -->
