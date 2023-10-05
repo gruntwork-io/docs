@@ -23,23 +23,6 @@ const sidebar = [
         ],
       },
       {
-        label: "Landing Zone",
-        type: "category",
-        collapsed: false,
-        items: [
-          {
-            label: "Overview",
-            type: "doc",
-            id: "foundations/landing-zone/index",
-          },
-          "foundations/landing-zone/prerequisites",
-          "foundations/landing-zone/enable-control-tower",
-          "foundations/landing-zone/add-aws-account",
-          "foundations/landing-zone/manage-accounts",
-          "foundations/landing-zone/logging",
-        ],
-      },
-      {
         label: "IaC Foundations",
         type: "category",
         collapsed: false,
