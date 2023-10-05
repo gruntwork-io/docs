@@ -1,5 +1,5 @@
 ---
-title: "AWS SSO Permission Sets"
+title: "SSO Permission Sets"
 hide_title: true
 ---
 
@@ -9,29 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="terraform-aws-control-tower" version="0.0.16" />
+<VersionBadge repoTitle="terraform-aws-control-tower" version="0.0.18" />
 
-<!-- Frontmatter
-type: module
-name: SSO Permission Set
-description: Provision Permission Sets for your AWS SSO instance.
-category: landing-zone
-cloud: aws
-tags: ["aws-landing-zone", "security"]
-license: gruntwork
-built-with: terraform
--->
+# SSO Permission Sets
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/aws-sso/sso-permission-sets" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.18/modules/aws-sso/sso-permission-sets" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=sso-permission-sets" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-# AWS SSO Permission Sets
-
-## Overview
-
-This service contains [Terraform](https://www.terraform.io) code to provision and manage best practices set of
-Permission Sets for AWS SSO (aka Identity Center).
+This module contains [Terraform](https://www.terraform.io) code to provision and manage best practices set of Permission Sets for AWS SSO (aka Identity Center).
 
 ## Features
 
@@ -41,15 +27,6 @@ Permission Sets for AWS SSO (aka Identity Center).
 *   Assign managed and inline IAM Policies to the Permission Sets.
 
 ## Learn
-
-:::note
-
-This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
-a collection of reusable, battle-tested, production ready infrastructure code.
-If you’ve never used the Service Catalog before, make sure to read
-[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
-
-:::
 
 ### What is AWS SSO / Identity Center?
 
@@ -110,16 +87,6 @@ also provisioned to the AWS Account with ID `1234567891234` for the SSO Identity
 Once provisioned, users in the AWS Identity Store that are assigned to the specified group will automatically be granted
 access to the AWS Account with the IAM permissions defined on the Permission Set.
 
-## Deploy
-
-### Non-production deployment (quick start for learning)
-
-If you just want to try this repo out for experimenting and learning, check out the following resources:
-
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/examples/for-learning-and-testing): The
-    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
-    testing (but not direct production usage).
-
 ## Sample Usage
 
 <Tabs>
@@ -133,7 +100,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 module "sso_permission_sets" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets?ref=v0.0.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets?ref=v0.0.18"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -178,7 +145,7 @@ module "sso_permission_sets" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets?ref=v0.0.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets?ref=v0.0.18"
 }
 
 inputs = {
@@ -308,11 +275,11 @@ The name of the permission set that was created.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/sso-permission-sets/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/sso-permission-sets/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.16/modules/sso-permission-sets/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.18/modules/sso-permission-sets/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.18/modules/sso-permission-sets/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.18/modules/sso-permission-sets/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fa3a35df2e8360776d628af456212eb9"
+  "hash": "3766f639e596511ec541414ad97026d7"
 }
 ##DOCS-SOURCER-END -->
