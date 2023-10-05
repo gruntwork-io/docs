@@ -372,13 +372,19 @@ html[data-theme="dark"] .link-button:hover {
   color: var(--ifm-color-primary-lightest);
 }
 
-/* remove external link icons on header/footer/flyout links */
-.footer__link-item svg,
+/* remove external link icons on footer links */
+.footer__link-item svg {
+  display: none;
+}
+
+/* remove external link icons on header/flyout links */
+/*
 .navbar__items--right .navbar__link svg,
 .navbar__items--right .dropdown__link svg,
 .navbar-sidebar__items .menu__link svg {
   display: none;
 }
+ */
 
 .snap-top {
   scroll-margin-top: 20px;

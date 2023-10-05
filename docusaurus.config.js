@@ -103,63 +103,44 @@ const config = {
             docId: "intro/overview/intro-to-gruntwork",
           },
           {
-            type: "dropdown",
-            position: "left",
-            label: "Docs",
-            id: "docs",
-            items: [
-              {
-                type: "doc",
-                label: "DevOps Foundations",
-                docId: "foundations/overview/index",
-              },
-              {
-                type: "doc",
-                label: "Library",
-                docId: "library/overview/index",
-              },
-              {
-                type: "doc",
-                label: "Pipelines",
-                docId: "pipelines/overview/index",
-              },
-              {
-                type: "doc",
-                label: "Patcher",
-                docId: "patcher/index",
-              },
-              {
-                type: "doc",
-                label: "Reference Architecture",
-                docId: "refarch/whats-this/what-is-a-reference-architecture",
-              },
-              {
-                type: "doc",
-                label: "Developer Portal",
-                docId: "developer-portal/create-account",
-              },
-              {
-                type: "doc",
-                label: "Patcher",
-                docId: "patcher/index",
-              },
-            ],
+            type: "doc",
+            label: "Pipelines",
+            docId: "pipelines/overview/index",
+          },
+          {
+            type: "doc",
+            label: "Patcher",
+            docId: "patcher/index",
+          },
+          {
+            type: "doc",
+            label: "Landing Zone",
+            docId: "landing-zone/index",
+          },
+          {
+            type: "doc",
+            label: "DevOps Foundations",
+            docId: "foundations/overview/index",
+          },
+          {
+            type: "doc",
+            label: "Library",
+            docId: "library/overview/index",
           },
           {
             type: "doc",
             label: "Library Reference",
             docId: "library/reference/index",
-          },
-          { to: "/tools", label: "Tools", position: "left" },
-          { to: "/courses", label: "Courses", position: "left" },
-          {
-            href: "https://github.com/gruntwork-io/knowledge-base/discussions",
-            label: "Knowledge Base",
-            position: "right",
+            position: "right"
           },
           {
             href: "/support",
             label: "Support",
+            position: "right",
+          },
+          {
+            href: "https://github.com/gruntwork-io/knowledge-base/discussions",
+            label: "Knowledge Base",
             position: "right",
           },
           {
