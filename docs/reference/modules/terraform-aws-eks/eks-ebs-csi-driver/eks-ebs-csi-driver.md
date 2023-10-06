@@ -301,6 +301,14 @@ The version of Kubernetes for the EKS Cluster.
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
+<HclListItem name="ebs_csi_addon_arn">
+<HclListItemDescription>
+
+The ARN of the EBS CSI AddOn.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="ebs_csi_addon_current_version">
 <HclListItemDescription>
 
@@ -317,6 +325,14 @@ The latest available version of the EBS CSI AddOn.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="ebs_csi_addon_status">
+<HclListItemDescription>
+
+The current Status of the EBS CSI AddOn.
+
+</HclListItemDescription>
+</HclListItem>
+
 </TabItem>
 </Tabs>
 
@@ -329,6 +345,6 @@ The latest available version of the EBS CSI AddOn.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-ebs-csi-driver/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f35185dd9272e5d068b49562b967beaf"
+  "hash": "3af84298078d9d2d967c83a24d01a758"
 }
 ##DOCS-SOURCER-END -->

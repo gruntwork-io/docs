@@ -1630,6 +1630,38 @@ A list of the subnets into which the EKS Cluster's administrative pods will be l
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
+<HclListItem name="ebs_csi_addon_arn">
+<HclListItemDescription>
+
+The ARN of the EBS CSI AddOn.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ebs_csi_addon_current_version">
+<HclListItemDescription>
+
+The current version of the EBS CSI AddOn.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ebs_csi_addon_latest_version">
+<HclListItemDescription>
+
+The latest available version of the EBS CSI AddOn.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ebs_csi_addon_status">
+<HclListItemDescription>
+
+The current Status of the EBS CSI AddOn.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="eks_cluster_addons">
 <HclListItemDescription>
 
@@ -1778,6 +1810,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "33d5a13b10f71e012c0680a014e4ba4c"
+  "hash": "5c842d6b10fb1ff3de2d96c87f26fa60"
 }
 ##DOCS-SOURCER-END -->
