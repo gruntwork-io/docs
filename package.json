@@ -7,7 +7,7 @@
   },
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "docusaurus start --port 3001 & onchange -i '_docs-sources/**/*(*.md|*.mdx|*.json)' -- yarn regenerate:local",
+    "start": "docusaurus start --port 3000 & onchange -i '_docs-sources/**/*(*.md|*.mdx|*.json)' -- yarn regenerate:local",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -56,7 +56,7 @@
     "yargs": "^17.4.0"
   },
   "optionalDependencies": {
-    "docs-sourcer": "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.20",
+    "docs-sourcer": "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.26",
     "ts-commons": "gruntwork-io/ts-commons#v3.2.1"
   },
   "browserslist": {
