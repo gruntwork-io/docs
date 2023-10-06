@@ -34,8 +34,9 @@ This module will create the following core resources, some of which are optional
 | Karpenter Node Instance Profile | IAM Instance Profile attached to EC2 instances launched by the Karpenter Controller |
 | Karpenter Controller IRSA | IAM Role for Service Account (IRSA) to be used by the Karpenter Controller |
 | Karpenter Helm Release | Karpenter deployment to EKS via Helm |
+| Karpenter SQS Queue | SQS Queue used to listen to EC2 events |
 
-Additional supporting resources do exist in addition to the table above, such as IAM Policy Documents and Attachments.
+Additional supporting resources do exist in addition to the table above, such as IAM Policy Documents, Attachments  and CloudWatch rules.
 
 ***
 
@@ -55,6 +56,17 @@ From the Karpenter official docs:
 For additional details and in-depth information on Karpenter, please see the [Karpenter Docs Site](https://karpenter.sh/).
 
 ***
+
+## How to enable de Deprovisioning based on EC2 events?
+
+This is used to inform Karpenter of EC2 events that affect the cluster capacity ( Spot Interruption Warnings, Scheduled Change Health Events (Maintenance Events)
+, Instance Terminating Events, Instance Stopping Events).
+
+This is particularly useful to users that rely on Spot Instances that can be terminated at will.
+
+For more information read the [Karpenter Intrerruption section](https://karpenter.sh/preview/concepts/deprovisioning/#interruption)
+
+*   From [variables.tf](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-k8s-karpenter/variables.tf) enable `create_karpenter_deprovisioning_queue`t
 
 ## Sample Usage
 
@@ -100,6 +112,9 @@ module "eks_k_8_s_karpenter" {
   # Controller.
   create_karpenter_controller_irsa = true
 
+  # Conditional flag to optionally create the Karpenter Deprovisioning Queue.
+  create_karpenter_deprovisioning_queue = true
+
   # Conditional flag to create the Karpenter Node IAM Role. If this is set to
   # false, then an existing IAM Role must be provided with the
   # `karpenter_node_iam_role_arn` variable
@@ -132,6 +147,9 @@ module "eks_k_8_s_karpenter" {
   # Service Account. This is required if `create_karpenter_controller_irsa` is
   # set to false.
   karpenter_controller_existing_role_arn = true
+
+  # Additional tags to add to the Karpenter Deprovisioning Queue.
+  karpenter_deprovisioning_queue_tags = {}
 
   # A tag that is used by Karpenter to discover resources.
   karpenter_discovery_tag = "karpenter.sh/discovery"
@@ -225,6 +243,9 @@ inputs = {
   # Controller.
   create_karpenter_controller_irsa = true
 
+  # Conditional flag to optionally create the Karpenter Deprovisioning Queue.
+  create_karpenter_deprovisioning_queue = true
+
   # Conditional flag to create the Karpenter Node IAM Role. If this is set to
   # false, then an existing IAM Role must be provided with the
   # `karpenter_node_iam_role_arn` variable
@@ -257,6 +278,9 @@ inputs = {
   # Service Account. This is required if `create_karpenter_controller_irsa` is
   # set to false.
   karpenter_controller_existing_role_arn = true
+
+  # Additional tags to add to the Karpenter Deprovisioning Queue.
+  karpenter_deprovisioning_queue_tags = {}
 
   # A tag that is used by Karpenter to discover resources.
   karpenter_discovery_tag = "karpenter.sh/discovery"
@@ -370,6 +394,15 @@ Optionally create an IAM Role for Service Account (IRSA) for the Karpenter Contr
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="create_karpenter_deprovisioning_queue" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Conditional flag to optionally create the Karpenter Deprovisioning Queue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="create_karpenter_node_iam_role" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -456,6 +489,15 @@ Provide an existing IAM Role ARN to be used with the Karpenter Controller Servic
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="karpenter_deprovisioning_queue_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Additional tags to add to the Karpenter Deprovisioning Queue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="karpenter_discovery_tag" requirement="optional" type="string">
@@ -613,6 +655,6 @@ The name of the Karpenter Node IAM Role.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-k8s-karpenter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9a9c17ca51b0d91e5f39c7255a4e85d5"
+  "hash": "0f0d234607a8be55bde29850d6cf91b2"
 }
 ##DOCS-SOURCER-END -->
