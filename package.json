@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-    "node": ">=16.14"
+    "node": ">=18.17.1"
   },
   "scripts": {
     "docusaurus": "docusaurus",
@@ -57,7 +57,7 @@
   },
   "optionalDependencies": {
     "docs-sourcer": "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.26",
-    "ts-commons": "gruntwork-io/ts-commons#v3.2.1"
+    "ts-commons": "gruntwork-io/ts-commons#v4.0.0"
   },
   "browserslist": {
     "production": [
