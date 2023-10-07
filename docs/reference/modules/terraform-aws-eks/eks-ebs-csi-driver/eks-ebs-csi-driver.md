@@ -325,14 +325,6 @@ The latest available version of the EBS CSI AddOn.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ebs_csi_addon_status">
-<HclListItemDescription>
-
-The current Status of the EBS CSI AddOn.
-
-</HclListItemDescription>
-</HclListItem>
-
 </TabItem>
 </Tabs>
 
@@ -345,6 +337,6 @@ The current Status of the EBS CSI AddOn.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-ebs-csi-driver/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3af84298078d9d2d967c83a24d01a758"
+  "hash": "a269d9914ba4c6ba8a231e33e63a40a3"
 }
 ##DOCS-SOURCER-END -->

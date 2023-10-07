@@ -1654,14 +1654,6 @@ The latest available version of the EBS CSI AddOn.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ebs_csi_addon_status">
-<HclListItemDescription>
-
-The current Status of the EBS CSI AddOn.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="eks_cluster_addons">
 <HclListItemDescription>
 
@@ -1810,6 +1802,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5c842d6b10fb1ff3de2d96c87f26fa60"
+  "hash": "ada517c66d1e229a8617c8a1d4801fca"
 }
 ##DOCS-SOURCER-END -->
