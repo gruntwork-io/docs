@@ -105,6 +105,15 @@ acm_tls_certificates = {
  }
 ```
 
+## Certificate Renewal and Expiration
+
+If you use this module to create a new certificate, it should automatically renew so long as the following criteria are met at least 60 days prior to expiration:
+
+*   The certificate is currently in use by an AWS service.
+*   All required ACM-provided DNS records are present and accessible via public DNS (this module configures this automatically).
+
+If a certificate expires because the above criteria is not met and you now need to use that certificate, the best course of action would be to delete the expired certificate and allow this module to recreate it.
+
 ## Special handling for use with API Gateway
 
 If you are using this module to create a TLS certificate that will be used with API Gateway, along with a custom
@@ -496,6 +505,6 @@ Global tags to apply to all ACM certificates issued via this module. These globa
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.14/modules/acm-tls-certificate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4ef664238aa843474f15fe84a6197f9f"
+  "hash": "b90d7d92a42a2b7208a033b801f3b4e6"
 }
 ##DOCS-SOURCER-END -->
