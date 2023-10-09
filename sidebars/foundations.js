@@ -51,6 +51,7 @@ const sidebar = [
           },
           "foundations/iac-foundations/initial-setup",
           "foundations/iac-foundations/folder-structure",
+          "foundations/iac-foundations/labels-tags",
           {
             label: "Module Defaults",
             type: "category",
