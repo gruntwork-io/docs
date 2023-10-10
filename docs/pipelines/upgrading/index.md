@@ -90,6 +90,9 @@ boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architectu
     --var InfraPipelinesRepoName="<your infrastructure-pipelines repo name>" \
     --var GithubOrg="<your GitHub organization name>" \
     --var AwsAccountName="<friendly name for your AWS account (e.g., dev)>"  \
+    --var RequestingTeamName="<The name of the team that will use the pipeline>"  \
+    --var AwsAccountName="<friendly name for your AWS account (e.g., dev)>"  \
+    --var OrgNamePrefix="The name prefix to use for creating resources" \
     --non-interactive
 ```
 
@@ -178,6 +181,6 @@ Congratulations! If you have followed this guide, you will be deploying infrastr
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b81900cfa6d88b755cadcfb1c179331d"
+  "hash": "69a1df8abb45b9f8a79680448d1583e9"
 }
 ##DOCS-SOURCER-END -->

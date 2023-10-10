@@ -128,6 +128,7 @@ boilerplate --template-url "github.com/gruntwork-io/terraform-aws-architecture-c
   --var InfraPipelinesRepoName="infrastructure-pipelines" \
   --var GithubOrg="<your GitHub organization name>" \
   --var OrgNamePrefix="<your organization name>" \
+  --var RequestingTeamName="<The name of the team that will use the pipeline>" \
   --non-interactive
 ```
 
@@ -233,6 +234,6 @@ If you are not going to continue using Pipelines after this tutorial, clean up t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "29fdf86be0ab9f340a8d012db2852e9e"
+  "hash": "73da30f7c1db7024081439730fa07e5c"
 }
 ##DOCS-SOURCER-END -->
