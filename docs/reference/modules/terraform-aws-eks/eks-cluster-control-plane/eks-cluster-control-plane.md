@@ -9,20 +9,20 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.63.0" lastModifiedVersion="0.62.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.64.0" lastModifiedVersion="0.64.0"/>
 
 # EKS Cluster Control Plane Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-cluster-control-plane" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.64.0/modules/eks-cluster-control-plane" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.62.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.64.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches an [Elastic Container Service for Kubernetes
 Cluster](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html).
 
 This module is responsible for the EKS Control Plane in [the EKS cluster topology](#what-is-an-eks-cluster). You must
 launch worker nodes in order to be able to schedule pods on your cluster. See the [eks-cluster-workers
-module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-cluster-workers) for managing EKS worker nodes.
+module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.64.0/modules/eks-cluster-workers) for managing EKS worker nodes.
 
 ## What is the EKS Control Plane?
 
@@ -46,7 +46,7 @@ Specifically, the control plane consists of:
     This includes resources like the
     [`LoadBalancers`](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/).
 
-You can read more about the different components of EKS in [the project README](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/core-concepts.md#what-is-an-eks-cluster).
+You can read more about the different components of EKS in [the project README](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.64.0/core-concepts.md#what-is-an-eks-cluster).
 
 ## What security group rules are created?
 
@@ -134,7 +134,7 @@ role that is being assumed. Specifically, you need to:
         that role).
 
 You can use the
-[eks-iam-role-assume-role-policy-for-service-account module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-iam-role-assume-role-policy-for-service-account) to
+[eks-iam-role-assume-role-policy-for-service-account module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.64.0/modules/eks-iam-role-assume-role-policy-for-service-account) to
 construct the policy using a more convenient interface. Refer to the module documentation for more info.
 
 Once you have an IAM Role that can be assumed by the Kubernetes Service Account, you can configure your Pods to exchange
@@ -242,7 +242,7 @@ Some additional notes on using Fargate:
     [the `aws_eks_fargate_profile` resource](https://www.terraform.io/docs/providers/aws/r/eks_fargate_profile.html) to
     provision Fargate Profiles with Terraform). The Pod Execution Role created by the module may be reused for other
     Fargate Profiles.
-*   Fargate does not support DaemonSets. This means that you can't rely on the [eks-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-container-logs)
+*   Fargate does not support DaemonSets. This means that you can't rely on the [eks-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.64.0/modules/eks-container-logs)
     module to forward logs to CloudWatch. Instead, you need to manually configure a sidecar `fluentd` container that
     forwards the log entries to CloudWatch Logs. Refer to [this AWS blog
     post](https://aws.amazon.com/blogs/containers/how-to-capture-application-logs-when-using-amazon-eks-on-aws-fargate/)
@@ -284,7 +284,7 @@ If you omit the `addon_version`, correct versions are automatically applied.
 Note that you must update the nodes to use the corresponding `kubelet` version as well. This means that when you update
 minor versions, you will also need to update the AMIs used by the worker nodes to match the version and rotate the
 workers. For more information on rotating worker nodes, refer to [How do I roll out an update to the
-instances?](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-cluster-workers/README.md#how-do-i-roll-out-an-update-to-the-instances) in the `eks-cluster-workers`
+instances?](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.64.0/modules/eks-cluster-workers/README.md#how-do-i-roll-out-an-update-to-the-instances) in the `eks-cluster-workers`
 module README.
 
 ### Detailed upgrade steps
@@ -383,7 +383,7 @@ approaches:
 
 module "eks_cluster_control_plane" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.63.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.64.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -488,9 +488,34 @@ module "eks_cluster_control_plane" {
   # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
+  # Configuraiton object for the EBS CSI Driver EKS AddOn
+  ebs_csi_driver_addon_config = {}
+
+  # A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the
+  # tag name and the value is the tag value.
+  ebs_csi_driver_addon_tags = {}
+
+  # If using KMS encryption of EBS volumes, provide the KMS Key ARN to be used
+  # for a policy attachment.
+  ebs_csi_driver_kms_key_arn = null
+
+  # The namespace for the EBS CSI Driver. This will almost always be the
+  # kube-system namespace.
+  ebs_csi_driver_namespace = "kube-system"
+
+  # The Service Account name to be used with the EBS CSI Driver
+  ebs_csi_driver_sa_name = "ebs-csi-controller-sa"
+
   # Map of EKS add-ons, where key is name of the add-on and value is a map of
   # add-on properties.
   eks_addons = {}
+
+  # When set to true, the module configures and install the EBS CSI Driver as an
+  # EKS managed AddOn
+  # (https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html). To
+  # use this feature, `configure_openid_connect_provider` must be set to true
+  # (the default value).
+  enable_ebs_csi_driver = false
 
   # When set to true, the module configures EKS add-ons
   # (https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html)
@@ -673,7 +698,7 @@ module "eks_cluster_control_plane" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.63.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.64.0"
 }
 
 inputs = {
@@ -781,9 +806,34 @@ inputs = {
   # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
+  # Configuraiton object for the EBS CSI Driver EKS AddOn
+  ebs_csi_driver_addon_config = {}
+
+  # A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the
+  # tag name and the value is the tag value.
+  ebs_csi_driver_addon_tags = {}
+
+  # If using KMS encryption of EBS volumes, provide the KMS Key ARN to be used
+  # for a policy attachment.
+  ebs_csi_driver_kms_key_arn = null
+
+  # The namespace for the EBS CSI Driver. This will almost always be the
+  # kube-system namespace.
+  ebs_csi_driver_namespace = "kube-system"
+
+  # The Service Account name to be used with the EBS CSI Driver
+  ebs_csi_driver_sa_name = "ebs-csi-controller-sa"
+
   # Map of EKS add-ons, where key is name of the add-on and value is a map of
   # add-on properties.
   eks_addons = {}
+
+  # When set to true, the module configures and install the EBS CSI Driver as an
+  # EKS managed AddOn
+  # (https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html). To
+  # use this feature, `configure_openid_connect_provider` must be set to true
+  # (the default value).
+  enable_ebs_csi_driver = false
 
   # When set to true, the module configures EKS add-ons
   # (https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html)
@@ -1192,6 +1242,94 @@ A map of custom tags to apply to the Security Group for this EKS Cluster. The ke
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="ebs_csi_driver_addon_config" requirement="optional" type="any">
+<HclListItemDescription>
+
+Configuraiton object for the EBS CSI Driver EKS AddOn
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   EKS add-on advanced configuration via configuration_values must follow the configuration schema for the deployed version of the add-on. 
+   See the following AWS Blog for more details on advanced configuration of EKS add-ons: https://aws.amazon.com/blogs/containers/amazon-eks-add-ons-advanced-configuration/
+   Example:
+   {
+     addon_version        = "v1.14.0-eksbuild.1"
+     configuration_values = {}
+     preserve                 = false
+     resolve_conflicts        = "NONE"
+     service_account_role_arn = "arn:aws:iam::123456789012:role/role-name"
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_addon_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+     {
+       key1 = "value1"
+       key2 = "value2"
+     }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+If using KMS encryption of EBS volumes, provide the KMS Key ARN to be used for a policy attachment.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_namespace" requirement="optional" type="string">
+<HclListItemDescription>
+
+The namespace for the EBS CSI Driver. This will almost always be the kube-system namespace.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;kube-system&quot;"/>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_sa_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Service Account name to be used with the EBS CSI Driver
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;ebs-csi-controller-sa&quot;"/>
+</HclListItem>
+
 <HclListItem name="eks_addons" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -1235,6 +1373,15 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="enable_ebs_csi_driver" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the module configures and install the EBS CSI Driver as an EKS managed AddOn (https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html). To use this feature, `configure_openid_connect_provider` must be set to true (the default value).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="enable_eks_addons" requirement="optional" type="bool">
@@ -1483,6 +1630,30 @@ A list of the subnets into which the EKS Cluster's administrative pods will be l
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
+<HclListItem name="ebs_csi_addon_arn">
+<HclListItemDescription>
+
+The ARN of the EBS CSI AddOn.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ebs_csi_addon_current_version">
+<HclListItemDescription>
+
+The current version of the EBS CSI AddOn.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ebs_csi_addon_latest_version">
+<HclListItemDescription>
+
+The latest available version of the EBS CSI AddOn.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="eks_cluster_addons">
 <HclListItemDescription>
 
@@ -1626,11 +1797,11 @@ The path to the kubergrunt binary, if in use.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-cluster-control-plane/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-cluster-control-plane/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-cluster-control-plane/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.64.0/modules/eks-cluster-control-plane/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.64.0/modules/eks-cluster-control-plane/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.64.0/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e3106441ca9eba8e88bd0c86269453a4"
+  "hash": "7a3804601d44a9d4ce9a2ba11c14e5f3"
 }
 ##DOCS-SOURCER-END -->

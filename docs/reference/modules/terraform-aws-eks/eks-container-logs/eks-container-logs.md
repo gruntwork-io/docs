@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.63.0" lastModifiedVersion="0.62.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.64.0" lastModifiedVersion="0.62.0"/>
 
 # EKS Container Logs Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.64.0/modules/eks-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.62.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -25,7 +25,7 @@ Kinesis Firehose.
 This module uses the community helm chart, with a set of best practices inputs.
 
 **This module is for setting up log aggregation for EKS Pods on EC2 workers (self-managed or managed node groups). For
-Fargate pods, take a look at the [eks-fargate-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-fargate-container-logs) module.**
+Fargate pods, take a look at the [eks-fargate-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.64.0/modules/eks-fargate-container-logs) module.**
 
 ## How does this work?
 
@@ -105,7 +105,7 @@ fields @timestamp, @message
 
 module "eks_container_logs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.63.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.64.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -126,6 +126,11 @@ module "eks_container_logs" {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # Can be used to add additional filter configuration blocks. This string
+  # should be formatted according to Fluent Bit docs, as it will be injected
+  # directly into the fluent-bit.conf file.
+  additional_filters = ""
 
   # Can be used to add more inputs. This string should be formatted according to
   # Fluent Bit docs, as it will be injected directly into the fluent-bit.conf
@@ -169,9 +174,11 @@ module "eks_container_logs" {
   # destroyed before the resources in the list.
   dependencies = []
 
-  # Can be used to provide custom filtering of the log output. This string
-  # should be formatted according to Fluent Bit docs, as it will be injected
-  # directly into the fluent-bit.conf file.
+  # Can be used to provide additional kubernetes plugin configuration parameters
+  # for the default kubernetes filter that is pre-configured in the
+  # aws-for-fluent-bit Helm chart. This string should be formatted according to
+  # Fluent Bit docs, as it will append to the default kubernets filter
+  # configuration.
   extra_filters = ""
 
   # Can be used to fan out the log output to multiple additional clients beyond
@@ -236,7 +243,7 @@ module "eks_container_logs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.63.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.64.0"
 }
 
 inputs = {
@@ -260,6 +267,11 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # Can be used to add additional filter configuration blocks. This string
+  # should be formatted according to Fluent Bit docs, as it will be injected
+  # directly into the fluent-bit.conf file.
+  additional_filters = ""
 
   # Can be used to add more inputs. This string should be formatted according to
   # Fluent Bit docs, as it will be injected directly into the fluent-bit.conf
@@ -303,9 +315,11 @@ inputs = {
   # destroyed before the resources in the list.
   dependencies = []
 
-  # Can be used to provide custom filtering of the log output. This string
-  # should be formatted according to Fluent Bit docs, as it will be injected
-  # directly into the fluent-bit.conf file.
+  # Can be used to provide additional kubernetes plugin configuration parameters
+  # for the default kubernetes filter that is pre-configured in the
+  # aws-for-fluent-bit Helm chart. This string should be formatted according to
+  # Fluent Bit docs, as it will append to the default kubernets filter
+  # configuration.
   extra_filters = ""
 
   # Can be used to fan out the log output to multiple additional clients beyond
@@ -367,11 +381,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-container-logs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-container-logs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.63.0/modules/eks-container-logs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.64.0/modules/eks-container-logs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.64.0/modules/eks-container-logs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.64.0/modules/eks-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0db1b376e065de568aaf9da8266db2e6"
+  "hash": "cb124be7dc74cc6d3247a0a3192156ad"
 }
 ##DOCS-SOURCER-END -->
