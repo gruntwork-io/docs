@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.69.0" lastModifiedVersion="0.65.10"/>
+<VersionBadge repoTitle="Security Modules" version="0.69.1" lastModifiedVersion="0.69.1"/>
 
 # IAM Users
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.0/modules/iam-users" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.1/modules/iam-users" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.69.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This is a Terraform module you can use to create and manage
 [IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) as code.
@@ -139,7 +139,7 @@ Under the hood, this module uses the [`aws_iam_user` resource](https://registry.
 
 module "iam_users" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-users?ref=v0.69.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-users?ref=v0.69.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -200,7 +200,7 @@ module "iam_users" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-users?ref=v0.69.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-users?ref=v0.69.1"
 }
 
 inputs = {
@@ -508,11 +508,11 @@ A map of usernames to that user's AWS SSH Security Credential ID
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.0/modules/iam-users/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.0/modules/iam-users/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.0/modules/iam-users/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.1/modules/iam-users/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.1/modules/iam-users/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.1/modules/iam-users/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2ede40009cb59252facfbd67be1ee2b6"
+  "hash": "a0ada67a995c50c04b23318e5c82c9c5"
 }
 ##DOCS-SOURCER-END -->
