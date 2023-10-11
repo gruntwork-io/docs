@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.69.0" lastModifiedVersion="0.68.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.69.0" lastModifiedVersion="0.67.9"/>
 
 # CloudTrail Bucket
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.0/modules/cloudtrail-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an S3 bucket for storing CloudTrail data and a KMS Customer Master Key (CMK) for encrypting that
 data, including all the appropriate lifecycle, encryption, and permission settings for CloudTrail.
@@ -912,6 +912,6 @@ The name of the S3 bucket where cloudtrail logs are delivered.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.0/modules/cloudtrail-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4a43e931f224b69e18d0d02052c7a2ba"
+  "hash": "e50de3395a761ac7bf69396556b91de5"
 }
 ##DOCS-SOURCER-END -->

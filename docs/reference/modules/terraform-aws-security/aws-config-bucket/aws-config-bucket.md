@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.69.0" lastModifiedVersion="0.68.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.69.0" lastModifiedVersion="0.67.9"/>
 
 # AWS Config Bucket
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.0/modules/aws-config-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an S3 bucket for storing AWS Config data, including all the appropriate lifecycle, encryption, and
 permission settings for AWS Config.
@@ -502,6 +502,6 @@ The name of the S3 bucket used by AWS Config to store configuration items.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.0/modules/aws-config-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fe72b42a2aff07931ca084b9410ec492"
+  "hash": "3e572a360bb5934891a1b13e4c0bec3e"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.69.0" lastModifiedVersion="0.68.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.69.0" lastModifiedVersion="0.67.9"/>
 
 # AWS CloudTrail
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.0/modules/cloudtrail" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module configures [AWS CloudTrail](https://aws.amazon.com/cloudtrail/), a service for logging every API call made against your AWS account.
 
@@ -1410,6 +1410,6 @@ The name of the cloudtrail trail.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.0/modules/cloudtrail/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "20f64a083e8b3ea0eacabd393e92339d"
+  "hash": "b095a6c327c41df0a880fe05fc334e46"
 }
 ##DOCS-SOURCER-END -->

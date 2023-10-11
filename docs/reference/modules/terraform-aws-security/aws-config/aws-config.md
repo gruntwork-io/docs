@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.69.0" lastModifiedVersion="0.68.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.69.0" lastModifiedVersion="0.67.9"/>
 
 # AWS Config
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.0/modules/aws-config" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module configures [AWS Config](https://aws.amazon.com/config/), a service that allows you to assess, audit, and evaluate the configurations of your AWS resources. You can use AWS Config to ensure that AWS resources are configured in a manner that is in compliance with your company policies or regulatory requirements.
 
@@ -971,6 +971,6 @@ The ARN of the SNS topic to which Config delivers notifications.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.0/modules/aws-config/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "13ec69e0da19c5d40d215d5e47776c4a"
+  "hash": "099b2dded5348e4efe628a34a845132d"
 }
 ##DOCS-SOURCER-END -->
