@@ -177,7 +177,7 @@ module "eks_container_logs" {
   # Can be used to provide additional kubernetes plugin configuration parameters
   # for the default kubernetes filter that is pre-configured in the
   # aws-for-fluent-bit Helm chart. This string should be formatted according to
-  # Fluent Bit docs, as it will append to the default kubernets filter
+  # Fluent Bit docs, as it will append to the default kubernetes filter
   # configuration.
   extra_filters = ""
 
@@ -318,7 +318,7 @@ inputs = {
   # Can be used to provide additional kubernetes plugin configuration parameters
   # for the default kubernetes filter that is pre-configured in the
   # aws-for-fluent-bit Helm chart. This string should be formatted according to
-  # Fluent Bit docs, as it will append to the default kubernets filter
+  # Fluent Bit docs, as it will append to the default kubernetes filter
   # configuration.
   extra_filters = ""
 
@@ -386,6 +386,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.64.0/modules/eks-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cb124be7dc74cc6d3247a0a3192156ad"
+  "hash": "174c18c653e421f6acfcf1e06dcd0252"
 }
 ##DOCS-SOURCER-END -->
