@@ -173,7 +173,7 @@ provider "aws" {
 }
 ```
 
-In your vpc module, instead of a hard-coded tags attribute to override these tags, you can take in tags as an input variable:
+In your VPC module, instead of hard-coded a `tags` attribute to override these tags, you can take in tags as an input variable:
 ```hcl
 variable "tags" {
   description = "Custom tags to set on the VPC"
