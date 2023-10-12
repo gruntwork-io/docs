@@ -29,7 +29,7 @@ Tags are key value pairs that act as metadata for organizing your AWS resources.
 
 ### Tag key recommendations
 
-Gruntwork recommends prefixing all custom tag keys with the name of your organization. For example - the company acme co would start all of their tag keys with `acmeco`. This will allow you to distinguish tags specific to your organization from tags that may be automatically applied to your by AWS.
+Gruntwork recommends prefixing all custom tag keys with the name of your organization. For example — the company acme co might start all of their tag keys with `acmeco`. This allows you to distinguish tags specific to your organization from tags that may be automatically applied by AWS.
 
 ### Recommended tags
 
