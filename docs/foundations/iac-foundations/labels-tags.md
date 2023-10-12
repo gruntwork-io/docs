@@ -1,6 +1,6 @@
 # Labels and Tags
 
-Labels and tags are mechanisms to add metadata to the resources you provision in AWS. This data can be used in by operators, developers, and finance teams in their daily activities to identify and locate workload-specific AWS resources. While a "label" is a functional name describing the name of a resource, [Tags](https://docs.aws.amazon.com/tag-editor/latest/userguide/tagging.html) are a first-class construct within AWS.
+Labels and tags are mechanisms to add metadata to the resources you provision in AWS. This data can be used by operators, developers, and finance teams in their daily activities to identify and locate workload-specific AWS resources. While a "label" is a functional name describing the name of a resource, [Tags](https://docs.aws.amazon.com/tag-editor/latest/userguide/tagging.html) are a first-class construct within AWS.
 
 ## Labels Overview
 
@@ -25,26 +25,26 @@ As an example, if Acme Co was running an application named `coolapp` on AWS EC2 
 
 ## Tags Overview
 
-Tags are key value pairs that act as metadata for organizing your AWS resources. Tags are often used by operators and developers to identify workload owners (e.g., a specific team), the application that a resource belongs to, the environment in which an application is running, and more. Finance teams often make use of teams to map cost and usage to specific Cost Centers or Business Units. For more information on tags, see the [official documentation](https://docs.aws.amazon.com/tag-editor/latest/userguide/tagging.html).
+Tags are key value pairs that act as metadata for organizing your AWS resources. Tags are often used by operators and developers to identify workload owners (e.g., a specific team), the application that a resource belongs to, the environment in which an application is running, and more. Finance teams often make use of tags to map cost and usage to specific Cost Centers or Business Units. For more information on tags, see the [official documentation](https://docs.aws.amazon.com/tag-editor/latest/userguide/tagging.html).
 
 ### Tag key recommendations
 
-Gruntwork recommends prefixing all custom tag keys with the name of your organization. For example - the company acme co would start all of their tag keys with `acmeco`. This will allow you to distinguish tags specific to your organization from tags that may be automatically applied to your by AWS.
+Gruntwork recommends prefixing all custom tag keys with the name of your organization. For example — the company acme co might start all of their tag keys with `acmeco`. This allows you to distinguish tags specific to your organization from tags that may be automatically applied by AWS.
 
 ### Recommended tags
 
-The table below contains recommend tag keys and the description for the value you should give to the key. These keys are beneficial for both locating and filtering for resources as an operator or developer as well as being used as [cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) to assist finance teams with associating costs to specific business units or applications.
+The table below contains recommend tag keys and the description for the value you should give to the key. These keys are beneficial for both locating and filtering resources as an operator or developer, as well for [cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) which assist finance teams in associating costs with specific business units or applications.
 
 
 | Key Name   | Example Key | Value Description |
 | ---------- | ----------- | ----------- |
-| Department | `acmeco:Department` | The organizational department to which the owning team belongs. Useful for rolling up costs per department in the organization |
-| Team | `acmeco:Team` | The team that owns the resource. Useful for tracking resources and cost per team. Useful when combined with department tags to see how much each team in a department is spending |
-| Environment | `acmeco:Environment` | The environment in which the resource is running. Useful for tracking spend per environment at the team, business unit, and organization levels |
-| Application | `acmeco:Application` | Track spend per application. Can be used in conjunction with environment tags to see cost of running an application per environment |
+| Department | `acmeco:Department` | The organizational department to which the owning team belongs. Useful for rolling up costs per department in the organization. |
+| Team | `acmeco:Team` | The team that owns the resource. Useful for tracking resources and cost per team. Useful when combined with department tags to see how much each team in a department is spending. |
+| Environment | `acmeco:Environment` | The environment in which the resource is running. Useful for tracking spend per environment at the team, business unit, and organization levels. |
+| Application | `acmeco:Application` | Track spend per application. Can be used in conjunction with environment tags to see the cost of running an application per environment. |
 | CostCenter | `acmeco:CostCenter` | Monitor costs by cost center |
 | BusinessUnit | `acmeco:BusinessUnit` | Monitor costs by business unit |
-| Workload Type | `acmeco:WorkloadType` | Course grained type of service, e.g., compute, data storage, databases, etc |
+| Workload Type | `acmeco:WorkloadType` | Course grained type of service, e.g., compute, data storage, databases, etc. |
 
 ### Cost Allocation Tags
 
@@ -91,7 +91,7 @@ Tags can be enforced globally by specifying them in the provider block. When spe
 
 #### AWS provider
 
-The AWS Provider supports the [default_tags](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#default_tags) parameter. This works with all AWS resources except `aws_autoscaling_group`. Here's an example:
+The AWS Provider supports the [`default_tags`](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#default_tags) parameter. This works with all AWS resources except `aws_autoscaling_group`. Here's an example:
 
 ```hcl
 provider "aws" {
@@ -106,7 +106,7 @@ provider "aws" {
 
 #### Terragrunt provider
 
-Terragrunt supports a [generate](https://terragrunt.gruntwork.io/docs/reference/config-blocks-and-attributes/#generate) block. Instead of hard-coding the provider block in every single module, you can ensure that every repo that uses Terragrunt has a single, central generate block used by everything in that repo. That generate block can include the default_tags you want. For example:
+Terragrunt supports a [`generate`](https://terragrunt.gruntwork.io/docs/reference/config-blocks-and-attributes/#generate) block. Instead of hard-coding the `provider` block in every single module, you can ensure that every repo that uses Terragrunt has a single, central `generate` block used by everything in that repo. That `generate` block can include the `default_tags` you want. For example:
 
 ```hcl
 generate "provider" {
@@ -131,7 +131,7 @@ Tags set at the provider level are a great way to ensure that all resources are 
 
 #### Per module
 
-In some modules, you want to override these tags in a specific resource. You can do so by specifying the tags in the `provider` block as well as using the tags attribute on that resource. For example, here is how you can override the default tags in the aws_vpc resource:
+In some modules, you want to override these tags in a specific resource. You can do so by specifying the tags in the `provider` block as well as using the `tags` attribute on that resource. For example, here is how you can override the default tags in the `aws_vpc` resource:
 
 
 ```hcl
@@ -152,7 +152,7 @@ resource "aws_vpc" "example" {
 }
 ```
 
-Any tags within a resource override tags in default_tags, so if you run apply on this code, then the VPC will end up with two tags, one from default_tags, and one overridden by the aws_vpc resource:
+Any tags within a resource override tags in `default_tags`. If you run `apply` on this code, then the VPC will end up with two tags, one from `default_tags`, and one overridden by the `aws_vpc` resource:
 
 1. **Environment**: test
 1. **Name**: example-vpc
@@ -160,7 +160,7 @@ Any tags within a resource override tags in default_tags, so if you run apply on
 
 #### Per environment
 
-In some scenarios, you may need to override tags to different values in different live environments. For example, let's again assume you have default_tags defined as follows:
+In some scenarios, you may need to override tags in different live environments. For example, let’s again assume you have `default_tags` defined as follows:
 
 ```hcl
 provider "aws" {
@@ -173,7 +173,7 @@ provider "aws" {
 }
 ```
 
-In your vpc module, instead of a hard-coded tags attribute to override these tags, you can take in tags as an input variable:
+In your VPC module, instead of hard-coded a `tags` attribute to override these tags, you can take in tags as an input variable:
 ```hcl
 variable "tags" {
   description = "Custom tags to set on the VPC"
@@ -188,7 +188,7 @@ resource "aws_vpc" "example" {
 ```
 
 Now you can optionally override the tags with different values in different environments. E.g., In stage, you might set:
-```
+```hcl
 tags = {
   Name = "example-vpc-stage"
 }
@@ -204,7 +204,7 @@ tags = {
 
 #### Global overrides
 
-Finally, you can add support using Terragrunt for overriding the tags on all resources globally. This way, you don't have to add a `tags` input variable to every single module and every single resource within that module.
+Finally, you can use Terragrunt to override the tags on all resources globally. This way, you don't have to add a `tags` input variable to every single module and every single resource within that module.
 
 ```hcl
 locals {
@@ -250,23 +250,23 @@ include "root" {
 
 And also in `stage/networking/vpc`, you might have an overrides file called `overrides.yml` that looks like this:
 
-```
+```yaml
 tags:
   Name: vpc-stage
 ```
 
 In `prod/networking/vpc/terragrunt.hcl`, you'd have the exact same contents as the stage one, but in `prod/networking/vpc/overrides.yml`, you'd have:
-```
+```yaml
 tags:
   Name: vpc-prod
 ```
 
-In other words, any of your Terragrunt modules can now include an overrides.yml file to override the "default" config from the root terragrunt.hcl.
+In other words, any of your Terragrunt modules can now include an `overrides.yml` file to override the "default" config from the root `terragrunt.hcl`.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "6720c0210b66b270a4532c269b7db458"
+  "hash": "e253d90396e06411c74588c7de2abe46"
 }
 ##DOCS-SOURCER-END -->
