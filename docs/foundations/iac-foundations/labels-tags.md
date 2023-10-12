@@ -86,11 +86,11 @@ The table below contains recommend tag keys and the description for the value yo
 
 If you are using custom tags for your resources for the purposes of tracking cost and usage, you will need to activate the tags in the Billing and Cost Management console in AWS. For more information see [User-defined cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/custom-tags.html) and [Activating user-defined cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/activating-tags.html).
 
-## Adding Tags
+### Adding Tags
 
 Tags are specified as code and deployed with your resources. In this section, you will learn how apply global and environment/resource-specific tags to your AWS resources.
 
-### Global tags
+#### Global tags
 
 Tags can be enforced globally by specifying them in the provider block. When specifying tags in the provider, the tags are automatically added to all resources created using that provider. Note that tags set at the provider level can be overridden, which is covered in [overriding tags](#overriding-tags), allowing you to specify all required tags in the provider with default values, then consumers of the provider to override the values as needed.
 
@@ -219,7 +219,7 @@ locals {
     Name        = "example"
   }
 
-  # Load an tags.yml file in any Terragrunt folder, or fallback to {} if none is found
+  # Load a tags.yml file in any Terragrunt folder, or fallback to {} if none is found
   override_tags     = try(yamldecode(file("${get_terragrunt_dir()}/tags.yml")), {})
 
   # The final tags to apply to all resources are a merge between the default tags and override tags
@@ -239,7 +239,7 @@ EOF
 }
 ```
 
-This structure defines some default tags to apply to all modules, but it also allows each module to optionally define an `tags.yml` file with tags to override.
+This structure defines some default tags to apply to all modules, but it also allows each module to optionally define a `tags.yml` file with tags to override.
 
 For example, in `stage/networking/vpc`, you might have a `terragrunt.hcl` that looks like this:
 
@@ -261,12 +261,12 @@ In `prod/networking/vpc/terragrunt.hcl`, you'd have the exact same contents as t
 Name: vpc-prod
 ```
 
-In other words, any of your Terragrunt modules can now include an `tags.yml` file to override the "default" config from the root `terragrunt.hcl`.
+In other words, any of your Terragrunt modules can now include a `tags.yml` file to override the "default" config from the root `terragrunt.hcl`.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "bb33b00998ef84e771816193597618a2"
+  "hash": "bf987f7ab80f1edc8727b3054d8b9f6c"
 }
 ##DOCS-SOURCER-END -->
