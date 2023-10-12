@@ -25,7 +25,7 @@ As an example, if Acme Co was running an application named `coolapp` on AWS EC2 
 
 ## Tags Overview
 
-Tags are key value pairs that act as metadata for organizing your AWS resources. Tags are often used by operators and developers to identify workload owners (e.g., a specific team), the application that a resource belongs to, the environment in which an application is running, and more. Finance teams often make use of teams to map cost and usage to specific Cost Centers or Business Units. For more information on tags, see the [official documentation](https://docs.aws.amazon.com/tag-editor/latest/userguide/tagging.html).
+Tags are key value pairs that act as metadata for organizing your AWS resources. Tags are often used by operators and developers to identify workload owners (e.g., a specific team), the application that a resource belongs to, the environment in which an application is running, and more. Finance teams often make use of tags to map cost and usage to specific Cost Centers or Business Units. For more information on tags, see the [official documentation](https://docs.aws.amazon.com/tag-editor/latest/userguide/tagging.html).
 
 ### Tag key recommendations
 
