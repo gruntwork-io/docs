@@ -1,58 +1,33 @@
+---
+# Display h2 to h5 headings
+toc_min_heading_level: 2
+toc_max_heading_level: 4
+---
+
 # Labels and Tags
 
 Labels and tags are mechanisms to add metadata to the resources you provision in AWS. This data can be used by operators, developers, and finance teams in their daily activities to identify and locate workload-specific AWS resources. While a "label" is a functional name describing the name of a resource, [Tags](https://docs.aws.amazon.com/tag-editor/latest/userguide/tagging.html) are a first-class construct within AWS.
 
-## Labels Overview
+## Labels
 
 A label is a consistent way to name resources in your AWS accounts. Consistent naming helps you to quickly identify resources for a specific application, the environment (e.g., `dev`, `stage`, `prod`) in which it is running, and specific portions of a workload (for example, if you have several services that operate together as a part of a large application).
 
 ### Label recommendations
 
-Gruntwork recommends using a labeling scheme that includes the name of your organization, the environment in which a resource is running, the name of the associated application, a workload specific identifier (), and the region in which the resource is running, delineated by hyphens. For example, `${organization}-${environment}-${application}-${identifier}-${region}`.
+Gruntwork recommends using a labeling scheme that includes the name of your organization, the environment in which a resource is running, the name of the associated application, a workload specific identifier (e.g., db, compute, etc.), and the region in which the resource is running, delineated by hyphens. For example, `${organization}-${environment}-${application}-${identifier}-${region}`.
 
 Gruntwork recommends using shorthand where possible to avoid exceeding limits for resource names as they may very across AWS services. For example, the `gruntwork` organization name can be shortened to `gw`, the `production` environment can be shortened to `prd`, and the `us-west-2` AWS region can be shortened to `uw2`.
 
 
-| Descriptor | Example | Rationale | Required |
-| ---------- | ------- | -------- | -------- |
-| organization | `acme` | Assists with making globally unique resource names (e.g., S3 buckets) | Yes |
-| environment | `prd` | The environment (dev, stage, prod, etc) in which the service is running | Yes |
-| application | `coolapp` | Identify which application the resource belongs to | Yes |
-| identifier | `compute` | Identify specific workloads within an application | Yes |
-| region | `uw2` | The AWS region in which the service is running | Yes |
+| Descriptor | Example | Rationale |
+| ---------- | ------- | -------- |
+| organization | `acme` | Assists with making globally unique resource names (e.g., S3 buckets) |
+| environment | `prd` | The environment (dev, stage, prod, etc) in which the service is running |
+| application | `coolapp` | Identify which application the resource belongs to |
+| identifier | `compute` | Identify specific workloads within an application |
+| region | `uw2` | The AWS region in which the service is running |
 
 As an example, if Acme Co was running an application named `coolapp` on AWS EC2 in a production environment in us-west-2, we would label all EC2 instances `acme-prd-coolapp-compute-uw2`. Similarly if we were using AWS RDS as the database layer for the same application, we would label the associated RDS instance `acme-prd-coolapp-db-uw2`.
-
-## Tags Overview
-
-Tags are key value pairs that act as metadata for organizing your AWS resources. Tags are often used by operators and developers to identify workload owners (e.g., a specific team), the application that a resource belongs to, the environment in which an application is running, and more. Finance teams often make use of tags to map cost and usage to specific Cost Centers or Business Units. For more information on tags, see the [official documentation](https://docs.aws.amazon.com/tag-editor/latest/userguide/tagging.html).
-
-### Tag key recommendations
-
-Gruntwork recommends prefixing all custom tag keys with the name of your organization. For example — the company acme co might start all of their tag keys with `acmeco`. This allows you to distinguish tags specific to your organization from tags that may be automatically applied by AWS.
-
-### Recommended tags
-
-The table below contains recommend tag keys and the description for the value you should give to the key. These keys are beneficial for both locating and filtering resources as an operator or developer, as well for [cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) which assist finance teams in associating costs with specific business units or applications.
-
-
-| Key Name   | Example Key | Value Description |
-| ---------- | ----------- | ----------- |
-| Department | `acmeco:Department` | The organizational department to which the owning team belongs. Useful for rolling up costs per department in the organization. |
-| Team | `acmeco:Team` | The team that owns the resource. Useful for tracking resources and cost per team. Useful when combined with department tags to see how much each team in a department is spending. |
-| Environment | `acmeco:Environment` | The environment in which the resource is running. Useful for tracking spend per environment at the team, business unit, and organization levels. |
-| Application | `acmeco:Application` | Track spend per application. Can be used in conjunction with environment tags to see the cost of running an application per environment. |
-| CostCenter | `acmeco:CostCenter` | Monitor costs by cost center |
-| BusinessUnit | `acmeco:BusinessUnit` | Monitor costs by business unit |
-| Workload Type | `acmeco:WorkloadType` | Course grained type of service, e.g., compute, data storage, databases, etc. |
-
-### Cost Allocation Tags
-
-If you are using custom tags for your resources for the purposes of tracking cost and usage, you will need to activate the tags in the Billing and Cost Management console in AWS. For more information see [User-defined cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/custom-tags.html) and [Activating user-defined cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/activating-tags.html).
-
-## Adding Labels and Tags
-
-Labels and tags are both specified as code and deployed with your resources. In this section, you will learn how to create a label as well as apply global and environment/resource-specific tags to your AWS resources.
 
 ### Adding labels
 
@@ -84,6 +59,36 @@ inputs = {
 
 All Gruntwork modules expose the ability to name a resource, for which you can reference the attribute created in the `locals` block. If you are developing your own modules, you will need to ensure that you are exposing the ability to pass a name into the module.
 
+## Tags
+
+Tags are key value pairs that act as metadata for organizing your AWS resources. Tags are often used by operators and developers to identify workload owners (e.g., a specific team), the application that a resource belongs to, the environment in which an application is running, and more. Finance teams often make use of tags to map cost and usage to specific Cost Centers or Business Units. For more information on tags, see the [official documentation](https://docs.aws.amazon.com/tag-editor/latest/userguide/tagging.html).
+
+### Tag key recommendations
+
+Gruntwork recommends prefixing all custom tag keys with the name of your organization. For example — the company acme co might start all of their tag keys with `acmeco`. This allows you to distinguish tags specific to your organization from tags that may be automatically applied by AWS.
+
+### Recommended tags
+
+The table below contains recommend tag keys and the description for the value you should give to the key. These keys are beneficial for both locating and filtering resources as an operator or developer, as well for [cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) which assist finance teams in associating costs with specific business units or applications.
+
+
+| Key Name   | Example Key | Value Description |
+| ---------- | ----------- | ----------- |
+| Department | `acmeco:Department` | The organizational department to which the owning team belongs. Useful for rolling up costs per department in the organization. |
+| Team | `acmeco:Team` | The team that owns the resource. Useful for tracking resources and cost per team. Useful when combined with department tags to see how much each team in a department is spending. |
+| Environment | `acmeco:Environment` | The environment in which the resource is running. Useful for tracking spend per environment at the team, business unit, and organization levels. |
+| Application | `acmeco:Application` | Track spend per application. Can be used in conjunction with environment tags to see the cost of running an application per environment. |
+| CostCenter | `acmeco:CostCenter` | Monitor costs by cost center |
+| BusinessUnit | `acmeco:BusinessUnit` | Monitor costs by business unit |
+| Workload Type | `acmeco:WorkloadType` | Course grained type of service, e.g., compute, data storage, databases, etc. |
+
+### Cost Allocation Tags
+
+If you are using custom tags for your resources for the purposes of tracking cost and usage, you will need to activate the tags in the Billing and Cost Management console in AWS. For more information see [User-defined cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/custom-tags.html) and [Activating user-defined cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/activating-tags.html).
+
+## Adding Tags
+
+Tags are specified as code and deployed with your resources. In this section, you will learn how apply global and environment/resource-specific tags to your AWS resources.
 
 ### Global tags
 
@@ -267,6 +272,6 @@ In other words, any of your Terragrunt modules can now include an `overrides.yml
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e253d90396e06411c74588c7de2abe46"
+  "hash": "d8fa742adc3bb5edd57c49c6fb7c9cb6"
 }
 ##DOCS-SOURCER-END -->
