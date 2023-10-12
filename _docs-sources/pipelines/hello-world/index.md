@@ -128,6 +128,7 @@ boilerplate --template-url "github.com/gruntwork-io/terraform-aws-architecture-c
   --var InfraPipelinesRepoName="infrastructure-pipelines" \
   --var GithubOrg="<your GitHub organization name>" \
   --var OrgNamePrefix="<your organization name>" \
+  --var RequestingTeamName="<The name of the team that will use the pipeline>" \
   --non-interactive
 ```
 

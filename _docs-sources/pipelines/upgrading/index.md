@@ -90,6 +90,9 @@ boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architectu
     --var InfraPipelinesRepoName="<your infrastructure-pipelines repo name>" \
     --var GithubOrg="<your GitHub organization name>" \
     --var AwsAccountName="<friendly name for your AWS account (e.g., dev)>"  \
+    --var RequestingTeamName="<The name of the team that will use the pipeline>"  \
+    --var AwsAccountName="<friendly name for your AWS account (e.g., dev)>"  \
+    --var OrgNamePrefix="The name prefix to use for creating resources" \
     --non-interactive
 ```
 
