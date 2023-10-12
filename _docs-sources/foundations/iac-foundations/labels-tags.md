@@ -188,7 +188,7 @@ resource "aws_vpc" "example" {
 ```
 
 Now you can optionally override the tags with different values in different environments. E.g., In stage, you might set:
-```
+```hcl
 tags = {
   Name = "example-vpc-stage"
 }
