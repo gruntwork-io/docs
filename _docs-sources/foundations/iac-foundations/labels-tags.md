@@ -152,7 +152,7 @@ resource "aws_vpc" "example" {
 }
 ```
 
-Any tags within a resource override tags in default_tags, so if you run apply on this code, then the VPC will end up with two tags, one from default_tags, and one overridden by the aws_vpc resource:
+Any tags within a resource override tags in `default_tags`. If you run `apply` on this code, then the VPC will end up with two tags, one from `default_tags`, and one overridden by the `aws_vpc` resource:
 
 1. **Environment**: test
 1. **Name**: example-vpc
