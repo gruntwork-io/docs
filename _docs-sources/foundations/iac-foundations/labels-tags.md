@@ -204,7 +204,7 @@ tags = {
 
 #### Global overrides
 
-Finally, you can add support using Terragrunt for overriding the tags on all resources globally. This way, you don't have to add a `tags` input variable to every single module and every single resource within that module.
+Finally, you can use Terragrunt to override the tags on all resources globally. This way, you don't have to add a `tags` input variable to every single module and every single resource within that module.
 
 ```hcl
 locals {
