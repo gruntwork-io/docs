@@ -41,7 +41,7 @@ The table below contains recommend tag keys and the description for the value yo
 | Department | `acmeco:Department` | The organizational department to which the owning team belongs. Useful for rolling up costs per department in the organization. |
 | Team | `acmeco:Team` | The team that owns the resource. Useful for tracking resources and cost per team. Useful when combined with department tags to see how much each team in a department is spending. |
 | Environment | `acmeco:Environment` | The environment in which the resource is running. Useful for tracking spend per environment at the team, business unit, and organization levels. |
-| Application | `acmeco:Application` | Track spend per application. Can be used in conjunction with environment tags to see cost of running an application per environment |
+| Application | `acmeco:Application` | Track spend per application. Can be used in conjunction with environment tags to see the cost of running an application per environment. |
 | CostCenter | `acmeco:CostCenter` | Monitor costs by cost center |
 | BusinessUnit | `acmeco:BusinessUnit` | Monitor costs by business unit |
 | Workload Type | `acmeco:WorkloadType` | Course grained type of service, e.g., compute, data storage, databases, etc |
