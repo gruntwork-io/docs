@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.69.0" lastModifiedVersion="0.65.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.69.1" lastModifiedVersion="0.69.1"/>
 
 # Set a Password Policy for IAM Users
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.0/modules/iam-user-password-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.1/modules/iam-user-password-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.69.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Gruntwork Terraform Module sets the [AWS Account Password Policy](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords_account-policy.html) that will govern password
 requirements for IAM Users.
@@ -46,7 +46,7 @@ password policy you already have in place!
 
 module "iam_user_password_policy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-user-password-policy?ref=v0.69.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-user-password-policy?ref=v0.69.1"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -102,7 +102,7 @@ module "iam_user_password_policy" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-user-password-policy?ref=v0.69.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-user-password-policy?ref=v0.69.1"
 }
 
 inputs = {
@@ -336,11 +336,11 @@ Whether to require uppercase characters for user passwords.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.0/modules/iam-user-password-policy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.0/modules/iam-user-password-policy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.0/modules/iam-user-password-policy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.1/modules/iam-user-password-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.1/modules/iam-user-password-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.1/modules/iam-user-password-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d030a20e23601f219214ec04b207d140"
+  "hash": "a24bc4e1cbbd83f6ff42ff05d5c14cbd"
 }
 ##DOCS-SOURCER-END -->
