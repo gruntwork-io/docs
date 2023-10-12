@@ -1,6 +1,6 @@
 # Labels and Tags
 
-Labels and tags are mechanisms to add metadata to the resources you provision in AWS. This data can be used in by operators, developers, and finance teams in their daily activities to identify and locate workload-specific AWS resources. While a "label" is a functional name describing the name of a resource, [Tags](https://docs.aws.amazon.com/tag-editor/latest/userguide/tagging.html) are a first-class construct within AWS.
+Labels and tags are mechanisms to add metadata to the resources you provision in AWS. This data can be used by operators, developers, and finance teams in their daily activities to identify and locate workload-specific AWS resources. While a "label" is a functional name describing the name of a resource, [Tags](https://docs.aws.amazon.com/tag-editor/latest/userguide/tagging.html) are a first-class construct within AWS.
 
 ## Labels Overview
 
