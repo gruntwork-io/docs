@@ -106,7 +106,7 @@ provider "aws" {
 
 #### Terragrunt provider
 
-Terragrunt supports a [generate](https://terragrunt.gruntwork.io/docs/reference/config-blocks-and-attributes/#generate) block. Instead of hard-coding the provider block in every single module, you can ensure that every repo that uses Terragrunt has a single, central generate block used by everything in that repo. That generate block can include the default_tags you want. For example:
+Terragrunt supports a [`generate`](https://terragrunt.gruntwork.io/docs/reference/config-blocks-and-attributes/#generate) block. Instead of hard-coding the `provider` block in every single module, you can ensure that every repo that uses Terragrunt has a single, central `generate` block used by everything in that repo. That `generate` block can include the `default_tags` you want. For example:
 
 ```hcl
 generate "provider" {
