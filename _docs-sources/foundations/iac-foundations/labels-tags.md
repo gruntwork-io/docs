@@ -256,7 +256,7 @@ tags:
 ```
 
 In `prod/networking/vpc/terragrunt.hcl`, you'd have the exact same contents as the stage one, but in `prod/networking/vpc/overrides.yml`, you'd have:
-```
+```yaml
 tags:
   Name: vpc-prod
 ```
