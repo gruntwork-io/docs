@@ -250,7 +250,7 @@ include "root" {
 
 And also in `stage/networking/vpc`, you might have an overrides file called `overrides.yml` that looks like this:
 
-```
+```yaml
 tags:
   Name: vpc-stage
 ```
