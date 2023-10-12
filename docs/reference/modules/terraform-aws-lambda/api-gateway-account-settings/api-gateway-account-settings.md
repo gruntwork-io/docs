@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.14" lastModifiedVersion="0.21.14"/>
+<VersionBadge repoTitle="AWS Lambda" version="0.21.15" lastModifiedVersion="0.21.15"/>
 
 # API Gateway Account Settings Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.14/modules/api-gateway-account-settings" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.15/modules/api-gateway-account-settings" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.14" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.15" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module allows you set the regional settings required to allow API Gateway to write to CloudWatch logs.
 
@@ -34,7 +34,7 @@ The corresponding screen from the AWS Console is shown below:
 
 ## Quick start
 
-Check out the [examples](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.14/examples) for sample code that demonstrates how to use this module.
+Check out the [examples](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.15/examples) for sample code that demonstrates how to use this module.
 
 ## Sample Usage
 
@@ -49,7 +49,7 @@ Check out the [examples](https://github.com/gruntwork-io/terraform-aws-lambda/tr
 
 module "api_gateway_account_settings" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-account-settings?ref=v0.21.14"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-account-settings?ref=v0.21.15"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -91,7 +91,7 @@ module "api_gateway_account_settings" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-account-settings?ref=v0.21.14"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-account-settings?ref=v0.21.15"
 }
 
 inputs = {
@@ -191,11 +191,11 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.14/modules/api-gateway-account-settings/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.14/modules/api-gateway-account-settings/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.14/modules/api-gateway-account-settings/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.15/modules/api-gateway-account-settings/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.15/modules/api-gateway-account-settings/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.15/modules/api-gateway-account-settings/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "484b6a15344b6cea079c385b4ddb92fe"
+  "hash": "bea057a75f7559015244b5e24f0a821f"
 }
 ##DOCS-SOURCER-END -->
