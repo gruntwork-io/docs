@@ -131,7 +131,7 @@ Tags set at the provider level are a great way to ensure that all resources are 
 
 #### Per module
 
-In some modules, you want to override these tags in a specific resource. You can do so by specifying the tags in the `provider` block as well as using the tags attribute on that resource. For example, here is how you can override the default tags in the aws_vpc resource:
+In some modules, you want to override these tags in a specific resource. You can do so by specifying the tags in the `provider` block as well as using the `tags` attribute on that resource. For example, here is how you can override the default tags in the `aws_vpc` resource:
 
 
 ```hcl
