@@ -160,7 +160,7 @@ Any tags within a resource override tags in `default_tags`. If you run `apply` o
 
 #### Per environment
 
-In some scenarios, you may need to override tags to different values in different live environments. For example, let's again assume you have default_tags defined as follows:
+In some scenarios, you may need to override tags in different live environments. For example, let’s again assume you have `default_tags` defined as follows:
 
 ```hcl
 provider "aws" {
