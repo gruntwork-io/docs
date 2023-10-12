@@ -31,7 +31,7 @@ As an example, if Acme Co was running an application named `coolapp` on AWS EC2 
 
 ### Adding labels
 
-The simplest way to create a label is using a `locals` block and combining the recommended attributes into a single attribute. For example, if you were creating an AWS S3 bucket using a Gruntwork module you could set up the following locals block.
+The simplest way to create a label is using a `locals` block and combining the recommended attributes into a single attribute. For example, if you were creating an AWS S3 bucket using a Gruntwork module you could set up the following locals block. If you are using the [module defaults pattern](./module_defaults/index.md), placing the name logic in the default module will ensure that all consumers of the module will use the same naming scheme automatically by default.
 
 ```hcl
 terraform {
@@ -272,6 +272,6 @@ In other words, any of your Terragrunt modules can now include an `overrides.yml
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d8fa742adc3bb5edd57c49c6fb7c9cb6"
+  "hash": "26652dd56afcf320546c0c29760a3201"
 }
 ##DOCS-SOURCER-END -->
