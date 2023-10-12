@@ -91,7 +91,7 @@ Tags can be enforced globally by specifying them in the provider block. When spe
 
 #### AWS provider
 
-The AWS Provider supports the [default_tags](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#default_tags) parameter. This works with all AWS resources except `aws_autoscaling_group`. Here's an example:
+The AWS Provider supports the [`default_tags`](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#default_tags) parameter. This works with all AWS resources except `aws_autoscaling_group`. Here's an example:
 
 ```hcl
 provider "aws" {
