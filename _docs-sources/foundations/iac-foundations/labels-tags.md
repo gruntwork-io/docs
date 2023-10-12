@@ -44,7 +44,7 @@ The table below contains recommend tag keys and the description for the value yo
 | Application | `acmeco:Application` | Track spend per application. Can be used in conjunction with environment tags to see the cost of running an application per environment. |
 | CostCenter | `acmeco:CostCenter` | Monitor costs by cost center |
 | BusinessUnit | `acmeco:BusinessUnit` | Monitor costs by business unit |
-| Workload Type | `acmeco:WorkloadType` | Course grained type of service, e.g., compute, data storage, databases, etc |
+| Workload Type | `acmeco:WorkloadType` | Course grained type of service, e.g., compute, data storage, databases, etc. |
 
 ### Cost Allocation Tags
 
