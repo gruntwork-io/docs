@@ -33,7 +33,7 @@ Gruntwork recommends prefixing all custom tag keys with the name of your organiz
 
 ### Recommended tags
 
-The table below contains recommend tag keys and the description for the value you should give to the key. These keys are beneficial for both locating and filtering for resources as an operator or developer as well as being used as [cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) to assist finance teams with associating costs to specific business units or applications.
+The table below contains recommend tag keys and the description for the value you should give to the key. These keys are beneficial for both locating and filtering resources as an operator or developer, as well for [cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) which assist finance teams in associating costs with specific business units or applications.
 
 
 | Key Name   | Example Key | Value Description |
