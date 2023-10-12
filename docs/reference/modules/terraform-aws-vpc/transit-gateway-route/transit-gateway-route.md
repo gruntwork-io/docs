@@ -9,17 +9,17 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.7" lastModifiedVersion="0.26.7"/>
+<VersionBadge repoTitle="VPC Modules" version="0.26.8" lastModifiedVersion="0.26.8"/>
 
 # Transit Gateway Route Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.7/modules/transit-gateway-route" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.8/modules/transit-gateway-route" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates a route for each CIDR block in a list `cidr_blocks` to a transit gateway route table. The route can be directed to any attachment within the transit gateway or can be configured as a blackhole route. A blackhole route is useful to drop traffic to a given CIDR block, or can be utilized to flush downstream route tables of ephemeral routes.
 
-See [VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.7/modules//_docs/vpc-core-concepts.md) for more information on the core networking components and topologies.
+See [VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.8/modules//_docs/vpc-core-concepts.md) for more information on the core networking components and topologies.
 
 ## What is a Transit Gateway Route?
 
@@ -27,7 +27,7 @@ A transit gateway route is a way to route traffic between VPCs, peers, VPNs, and
 
 ## Usage
 
-For usage examples, check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.7/examples/transit-gateway-route/).
+For usage examples, check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.8/examples/transit-gateway-route/).
 
 <!-- BEGIN_TF_DOCS -->
 
@@ -84,7 +84,7 @@ No modules.
 
 module "transit_gateway_route" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-route?ref=v0.26.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-route?ref=v0.26.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -124,7 +124,7 @@ module "transit_gateway_route" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-route?ref=v0.26.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-route?ref=v0.26.8"
 }
 
 inputs = {
@@ -224,11 +224,11 @@ Map of ids of the transit gateway routes.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.7/modules/transit-gateway-route/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.7/modules/transit-gateway-route/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.7/modules/transit-gateway-route/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.8/modules/transit-gateway-route/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.8/modules/transit-gateway-route/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.8/modules/transit-gateway-route/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "17d24610be66df8db63ef9d706362ab6"
+  "hash": "f9f7a55be692d1fd3e0a46aeb380079b"
 }
 ##DOCS-SOURCER-END -->
