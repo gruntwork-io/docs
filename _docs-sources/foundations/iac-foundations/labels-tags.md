@@ -261,4 +261,4 @@ tags:
   Name: vpc-prod
 ```
 
-In other words, any of your Terragrunt modules can now include an overrides.yml file to override the "default" config from the root terragrunt.hcl.
+In other words, any of your Terragrunt modules can now include an `overrides.yml` file to override the "default" config from the root `terragrunt.hcl`.
