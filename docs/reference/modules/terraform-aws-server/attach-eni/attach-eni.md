@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Module Server" version="0.15.9" lastModifiedVersion="0.15.4"/>
+<VersionBadge repoTitle="Module Server" version="0.15.10" lastModifiedVersion="0.15.4"/>
 
 # Attach ENI Scripts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.9/modules/attach-eni" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.10/modules/attach-eni" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.15.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -30,7 +30,7 @@ This folder contains scripts you can use to attach [Elastic Network Interfaces
 
 An ENI allows you to have IP addresses that remain static, even if the underlying EC2 Instances are changing.
 
-Check out the [attach-eni example](https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.9/examples/attach-eni) for how to use these scripts with Terraform.
+Check out the [attach-eni example](https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.10/examples/attach-eni) for how to use these scripts with Terraform.
 
 ## Installing the attach-eni script
 
@@ -47,7 +47,7 @@ The `attach-eni` script has the following prerequisites:
 1.  It must be run as root
 2.  It must be run on an EC2 instance
 3.  The EC2 instance must have an IAM role with permissions to search ENIs and EC2 tags, as well as attach ENIs (see the
-    [attach-eni example](https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.9/examples/attach-eni))
+    [attach-eni example](https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.10/examples/attach-eni))
 4.  The EC2 instance must have the AWS CLI and jq installed
 
 Typically, you'll want to run the `attach-eni` script in the User Data of your EC2 instances so it attaches the ENI at
@@ -71,11 +71,11 @@ This tells the script to try find and attach an ENI with the same `Name` tag as 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.9/modules/attach-eni/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.9/modules/attach-eni/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.9/modules/attach-eni/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.10/modules/attach-eni/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.10/modules/attach-eni/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.10/modules/attach-eni/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "431e8ae85ad7a9d783b78f27ae85969f"
+  "hash": "9cdd9ff79e736eccb59cab0d2c588a26"
 }
 ##DOCS-SOURCER-END -->
