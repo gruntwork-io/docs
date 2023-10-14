@@ -6,7 +6,7 @@ Pipelines can intelligently figure out which AWS account to authenticate to base
 
 To perform the actions that Pipelines detects, each AWS account needs to assume an AWS IAM Role using [OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services). To explain OIDC at a high level, AWS considers GitHub an "identity provider," trusts GitHub's request for a temporary IAM Role, and then issues AWS credentials that are valid for the duration of a GitHub Action workflow.
 
-Every time you create a new AWS account, you need to update the AWS OIDC configuration to create an IAM role for this account and allow it to be assumed by GitHub. When you use [Gruntwork Landing Zone](../landing-zone), this role is automatically created when [adding a new AWS account](../landing-zone/add-aws-account.md).
+Every time you create a new AWS account, you need to update the AWS OIDC configuration to create an IAM role for this account and allow it to be assumed by GitHub. When you use [Gruntwork Landing Zone](/landing-zone), this role is automatically created when [adding a new AWS account](/landing-zone/add-aws-account.md).
 
 ## How Pipelines knows what AWS account to authenticate to
 
@@ -66,7 +66,7 @@ The AWS IAM Role for the management account must have permissions to provision n
 
 ### Child Accounts
 
-Each child account (e.g., `dev`, `stage`, `prod,` etc.) contains an AWS IAM role that Pipelines can assume from GitHub Actions using OIDC. This role is automatically provisioned as a part of the [account baseline process](../landing-zone/add-aws-account). Once this role is in place in the child account, users may submit Pull Requests to add/modify/delete resources in the child account.
+Each child account (e.g., `dev`, `stage`, `prod,` etc.) contains an AWS IAM role that Pipelines can assume from GitHub Actions using OIDC. This role is automatically provisioned as a part of the [account baseline process](/landing-zone/add-aws-account). Once this role is in place in the child account, users may submit Pull Requests to add/modify/delete resources in the child account.
 
 When a Pull Request is created or synchronized, or a push to the `main` branch occurs, Pipelines will detect the changes, map them to the new account, assume the role in the child account, then run a `terragrunt plan` or `terragrunt apply` job (plan for PRs, apply for pushes to main).
 
@@ -75,6 +75,6 @@ When a Pull Request is created or synchronized, or a push to the `main` branch o
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "c83e3431227c54aa6a69453c13507b0d"
+  "hash": "5b04923ed276e53e89faec52093dce09"
 }
 ##DOCS-SOURCER-END -->

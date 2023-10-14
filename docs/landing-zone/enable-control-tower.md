@@ -124,12 +124,12 @@ Control Tower is now configured! Next you should consider:
 
 - [Configuring IAM Identity Center](https://docs.aws.amazon.com/singlesignon/latest/userguide/get-started-choose-identity-source.html) for Access Control.
 - [Configuring any controls or SCPs](https://docs.aws.amazon.com/controltower/latest/userguide/controls.html) your organization requires.
-- [Setting up your Gruntwork IaC Foundations](../iac-foundations)
+- [Setting up your Gruntwork IaC Foundations](/foundations/iac-foundations)
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "96bf74e1db77630a9e118de2718364b2"
+  "hash": "08618adc8e5de8bb7d26b47016db7e04"
 }
 ##DOCS-SOURCER-END -->

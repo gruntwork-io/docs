@@ -16,7 +16,7 @@ When you set up a new DevOps component, you also have access to guidance from Gr
 
 There are 5 DevOps components available today.
 
-1. **[Landing Zone.](../landing-zone)** Set up a best-practice AWS multi-account setup, easily create new AWS accounts, and set secure account baselines.
+1. **[Landing Zone.](/landing-zone)** Set up a best-practice AWS multi-account setup, easily create new AWS accounts, and set secure account baselines.
 1. **[IaC Foundations.](../iac-foundations)** Set up the foundational Terraform and Terragrunt coding patterns that enable your team to scale.
 1. **[Pipelines.](../pipelines)** Roll out an infrastructure change in a way that meets the needs of your organization.
 1. **[Network Topology.](../network-topology)** Protect your internal cloud resources from external access.

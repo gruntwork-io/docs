@@ -1,10 +1,10 @@
 # About Landing Zone
 
-The Landing Zone component is focused on:
+Gruntwork Landing Zone enables your organization to:
 
-- Creating an initial best-practice, AWS multi-account setup
-- Putting in place a system for vending new AWS accounts (commonly known as an "account factory")
-- Installing secure AWS account baselines compliant with the [CIS AWS Foundations Benchmark](https://www.cisecurity.org/benchmark/amazon_web_services).
+- Create an initial best-practice, AWS multi-account setup
+- Put in place a system for vending new AWS accounts (commonly known as an "account factory")
+- Install secure AWS account baselines compliant with the [CIS AWS Foundations Benchmark](https://www.cisecurity.org/benchmark/amazon_web_services).
 
 Gruntwork Landing Zone is intended to be deployed as your new paradigm for creating and managing AWS accounts. Once set up, you can import existing AWS accounts.
 
@@ -45,6 +45,6 @@ While it possible to migrate an existing Control Tower deployment into Gruntwork
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "c28290d0e94495c518e32adb721167e8"
+  "hash": "d998710c647a5f4caef617e39acfbe8e"
 }
 ##DOCS-SOURCER-END -->

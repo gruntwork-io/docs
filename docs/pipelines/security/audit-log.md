@@ -65,12 +65,12 @@ When Pipelines is run in response to a pull request being merged, the user that 
 
 Gruntwork Pipelines leverages AWS CloudTrail to log all actions taken by Pipelines in your AWS account. Due to our naming scheme, identifying operations performed in your AWS account by Gruntwork Pipelines are clearly identified.
 
-Accessing CloudTrail and querying data is dependent on your organization's policies and settings. If you are a Gruntwork Landing Zone customer, see the documentation on [logging](../../foundations/landing-zone/logging.md) for information on how to access and query your CloudTrail data.
+Accessing CloudTrail and querying data is dependent on your organization's policies and settings. If you are a Gruntwork Landing Zone customer, see the documentation on [logging](/landing-zone/logging) for information on how to access and query your CloudTrail data.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "3be6238c39ea70629f45f84bce5ebd4a"
+  "hash": "aaf5fc611d6b323a0dfaa20627c28c78"
 }
 ##DOCS-SOURCER-END -->

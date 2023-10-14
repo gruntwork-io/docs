@@ -6,4 +6,4 @@ These docs cover how Gruntwork Pipelines works specifically in the context of ot
 
 ## Gruntwork Pipelines and Gruntwork Landing Zone
 
-In addition to rolling out infrastructure changes, Gruntwork Pipelines can also manage requests to create new AWS accounts as part of [Gruntwork Landing Zone](../../foundations/landing-zone)
+In addition to rolling out infrastructure changes, Gruntwork Pipelines can also manage requests to create new AWS accounts as part of [Gruntwork Landing Zone](/landing-zone)
