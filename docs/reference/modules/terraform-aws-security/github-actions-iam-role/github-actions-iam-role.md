@@ -546,6 +546,22 @@ JSON value for IAM Role Assume Role Policy that allows GitHub Actions to inherit
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="github_actions_openid_connect_provider_arn">
+<HclListItemDescription>
+
+ARN for the OIDC provider created for GitHub Actions
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="github_actions_openid_connect_provider_url">
+<HclListItemDescription>
+
+Url used for the OIDC provider
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="iam_role_arn">
 <HclListItemDescription>
 
@@ -574,6 +590,6 @@ The name of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.2/modules/github-actions-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5a2f593ea53319c4ba0a78b5cf950468"
+  "hash": "5d8be25718e402cb2742eaa1b675c979"
 }
 ##DOCS-SOURCER-END -->
