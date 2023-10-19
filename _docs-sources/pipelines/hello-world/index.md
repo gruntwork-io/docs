@@ -22,7 +22,7 @@ Before you begin, make sure you have:
 - Valid [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) for a user with AdministratorAccess to the AWS account mentioned above
 - [Boilerplate](https://github.com/gruntwork-io/boilerplate#install) installed on your system (requires Gruntwork subscription)
 - [Terragrunt](https://terragrunt.gruntwork.io/) installed on your system
-- A [classic GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with `repo` scopes and access to Gruntwork modules
+- A [classic GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with `repo` and `workflow` scopes and access to Gruntwork modules
 
 :::info
 To create a classic GitHub PAT, go to https://github.com/settings/profile, click on `Developer Settings`, then `Personal access tokens`, then `Tokens (classic)`, then `Generate new token (classic)`. In the "Note" field, enter "Gruntwork Pipelines POC" (or something similar), select the `repo` and `workflow` scope checkboxes, then click `Generate token`. Keep your token handy; we'll be using it shortly.
@@ -136,15 +136,15 @@ The generated code creates a full Terragrunt `infrastructure-live` folder struct
 
 With Pipelines, all `terragrunt` operations will happen in GitHub Actions in response to a Pull Request or `git push`. But before that will work, you will first need to run an `apply` locally to provision the IAM role. This should be the only time you need to manually run `apply` to provision resources for this account, moving forward Pipelines will handle the lifecycle of all resources for you, based on the code you commit to your repository.
 
-First, run a `plan` in the newly created `github-oidc-role` directory to see the resources that will be provisioned. Replace `<account name>` with the value you used for `AwsAccountName` in the boilerplate command above.
+First, run a `run-all plan` in the newly created directory named after the account to see the resources that will be provisioned. Replace `<account name>` with the value you used for `AwsAccountName` in the boilerplate command above.
 
 ```bash
-cd <account name>/_global/github-oidc-role
-terragrunt plan
+cd <account name>/
+terragrunt run-all plan
 ```
 Terragrunt will prompt you to create the Terragrunt state and logs buckets, enter `y` when prompted, then hit enter.
 
-Terragrunt will then run the plan. Once you have reviewed the new resources to be created, run `terragrunt apply` to create the resources.
+Terragrunt will then run the plan. Once you have reviewed the new resources to be created, run `terragrunt run-all apply` to create the resources.
 
 Finally, git push your changes to the `infrastructure-live` repository you created in [Create the repositories](#create-the-repositories).
 
