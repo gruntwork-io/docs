@@ -61,7 +61,7 @@ For a simple proof of concept, the default repo configuration will suffice. Befo
 Next, generate the `infrastructure-pipelines` repository code using [Boilerplate](https://github.com/gruntwork-io/boilerplate), a tool authored by Gruntwork for generating files and folders specially for DevOps use cases. Clone the newly created `infrastructure-pipelines` repository, `cd` into the repo directory, then use the following command replacing `<your GitHub organization name>` with the name of your GitHub organization and `<your infrastructure-live repo name>` with the name of your infrastructure-live repository.
 
 ```bash
-boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/infrastructure-pipelines?ref=devops-foundations" \
+boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/infrastructure-pipelines?ref=v1.0.0" \
   --output-folder . \
   --var InfraLiveRepoName="<your infrastructure-live repo name>" \
   --var GithubOrg="<your GitHub organization name>" \
