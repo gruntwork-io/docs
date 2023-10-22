@@ -279,6 +279,10 @@ module "vpc_app" {
   # the VPC. Defaults false.
   enable_network_address_usage_metrics = false
 
+  # (Optional) A boolean flag to enable/disable a private NAT gateway. Defaults
+  # false.
+  enable_private_nat = false
+
   # The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR.
   ipv4_ipam_pool_id = null
 
@@ -320,6 +324,11 @@ module "vpc_app" {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   nat_gateway_custom_tags = {}
+
+  # (Optional) The number of secondary private IP addresses to assign to each
+  # NAT gateway. These IP addresses are used for source NAT (SNAT) for the
+  # instances in the private subnets. Defaults to 0.
+  nat_secondary_private_ip_address_count = 0
 
   # How many AWS Availability Zones (AZs) to use. One subnet of each type
   # (public, private app, private persistence) will be created in each AZ. All
@@ -673,6 +682,10 @@ inputs = {
   # the VPC. Defaults false.
   enable_network_address_usage_metrics = false
 
+  # (Optional) A boolean flag to enable/disable a private NAT gateway. Defaults
+  # false.
+  enable_private_nat = false
+
   # The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR.
   ipv4_ipam_pool_id = null
 
@@ -714,6 +727,11 @@ inputs = {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   nat_gateway_custom_tags = {}
+
+  # (Optional) The number of secondary private IP addresses to assign to each
+  # NAT gateway. These IP addresses are used for source NAT (SNAT) for the
+  # instances in the private subnets. Defaults to 0.
+  nat_secondary_private_ip_address_count = 0
 
   # How many AWS Availability Zones (AZs) to use. One subnet of each type
   # (public, private app, private persistence) will be created in each AZ. All
@@ -1271,6 +1289,15 @@ If set to false, the default security groups will NOT be created. This variable 
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="enable_private_nat" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) A boolean flag to enable/disable a private NAT gateway. Defaults false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="ipv4_ipam_pool_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1350,6 +1377,15 @@ A map of tags to apply to the NAT gateways, on top of the custom_tags. The key i
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="nat_secondary_private_ip_address_count" requirement="optional" type="number">
+<HclListItemDescription>
+
+(Optional) The number of secondary private IP addresses to assign to each NAT gateway. These IP addresses are used for source NAT (SNAT) for the instances in the private subnets. Defaults to 0.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
 <HclListItem name="num_availability_zones" requirement="optional" type="number">
@@ -1665,6 +1701,9 @@ A map of all private-app subnets, with the subnet name as the key, and all `aws-
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="private_nat_gateway_ids">
+</HclListItem>
+
 <HclListItem name="private_persistence_route_table_ids">
 </HclListItem>
 
@@ -1741,6 +1780,6 @@ A map of all public subnets, with the subnet name as the key, and all `aws-subne
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.8/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e11d98f15f97736f8c4b0a3e1a290b26"
+  "hash": "6b875f609b1872eaa5d64820e66276c3"
 }
 ##DOCS-SOURCER-END -->
