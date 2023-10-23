@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="0.29.16" lastModifiedVersion="0.29.16"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="0.29.17" lastModifiedVersion="0.29.17"/>
 
 # Application Load Balancer (ALB) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.16/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.17/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.16" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.17" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an [Application Load Balancer](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)
 that you can use as a load balancer for any [ALB Target Group](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html).
@@ -191,7 +191,7 @@ There are two ways for you to override this behavior:
 
 module "alb" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.17"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -375,6 +375,10 @@ module "alb" {
   # be idle before the ALB closes the TCP connection.  
   idle_timeout = 60
 
+  # The type of IP addresses used by the subnets for your load balancer. The
+  # possible values are ipv4 and dualstack.
+  ip_address_type = null
+
   # DEPRECATED. The VPC ID in which this ALB will be placed.
   vpc_id = ""
 
@@ -399,7 +403,7 @@ module "alb" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.17"
 }
 
 inputs = {
@@ -585,6 +589,10 @@ inputs = {
   # The time in seconds that the client TCP connection to the ALB is allowed to
   # be idle before the ALB closes the TCP connection.  
   idle_timeout = 60
+
+  # The type of IP addresses used by the subnets for your load balancer. The
+  # possible values are ipv4 and dualstack.
+  ip_address_type = null
 
   # DEPRECATED. The VPC ID in which this ALB will be placed.
   vpc_id = ""
@@ -980,6 +988,15 @@ The time in seconds that the client TCP connection to the ALB is allowed to be i
 <HclListItemDefaultValue defaultValue="60"/>
 </HclListItem>
 
+<HclListItem name="ip_address_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of IP addresses used by the subnets for your load balancer. The possible values are ipv4 and dualstack.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="vpc_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1088,11 +1105,11 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.16/modules/alb/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.16/modules/alb/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.16/modules/alb/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.17/modules/alb/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.17/modules/alb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.17/modules/alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8a853ff4dff7a14680dab5c16b2999d7"
+  "hash": "5a6bfb33d679cc36cb07f064dd267725"
 }
 ##DOCS-SOURCER-END -->
