@@ -103,7 +103,7 @@ The code generation template for `infrastructure-live` sets up a folder structur
 First, generate the `infrastructure-pipelines` repository code using [Boilerplate](https://github.com/gruntwork-io/boilerplate). On your local computer, git clone the newly created `infrastructure-pipelines` repository, `cd` into the repo directory, then use the following command replacing `<your GitHub organization name>` with the name of your GitHub organization.
 
 ```bash
-boilerplate --template-url "github.com/gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/infrastructure-pipelines?ref=v1.0.0" \
+boilerplate --template-url "github.com/gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/infrastructure-pipelines?ref=v1.0.1" \
   --output-folder . \
   --var InfraLiveRepoName="infrastructure-live" \
   --var GithubOrg="<your GitHub organization name>" \
@@ -119,7 +119,7 @@ Next, generate the `infrastructure-live` repository code using Boilerplate. On y
 The AWSAccount* variables correspond to the AWS account in which your `infrastructure-live` repository will manage AWS resources. The `OrgNamePrefix` is used to prefix your resource names with your org name so that they are identifiable. For example, we will create an S3 bucket to store Terraform/OpenTofu state, whose name begins with the value of `OrgNamePrefix`.
 
 ```bash
-boilerplate --template-url "github.com/gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/single-account-pipeline?ref=v1.0.0" \
+boilerplate --template-url "github.com/gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/single-account-pipeline?ref=v1.0.1" \
   --output-folder . \
   --var AwsAccountName="<friendly name for your AWS account (e.g., dev)>" \
   --var AwsAccountId="'<account id for your AWS account>'" \
@@ -234,6 +234,6 @@ If you are not going to continue using Pipelines after this tutorial, clean up t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "3b9784bc4e669addbf2552e1cca89db0"
+  "hash": "5564b9674a09963b11954847f96060b9"
 }
 ##DOCS-SOURCER-END -->
