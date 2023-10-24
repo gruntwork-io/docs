@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="terraform-aws-control-tower" version="0.0.20" />
+<VersionBadge repoTitle="Control Tower" version="0.0.22" />
 
 # Control Tower Execution Role
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.20/modules/landingzone/control-tower-execution-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.22/modules/landingzone/control-tower-execution-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=control-tower-execution-role" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -36,7 +36,7 @@ https://docs.aws.amazon.com/controltower/latest/userguide/enroll-account.html
 
 module "control_tower_execution_role" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-execution-role?ref=v0.0.20"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-execution-role?ref=v0.0.22"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -62,7 +62,7 @@ module "control_tower_execution_role" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-execution-role?ref=v0.0.20"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-execution-role?ref=v0.0.22"
 }
 
 inputs = {
@@ -120,11 +120,11 @@ The ARN of the Control Tower Execution Role
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.20/modules/control-tower-execution-role/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.20/modules/control-tower-execution-role/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.20/modules/control-tower-execution-role/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.22/modules/control-tower-execution-role/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.22/modules/control-tower-execution-role/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.22/modules/control-tower-execution-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3672bf3d7b82c11926a5d5b74fb2bf1b"
+  "hash": "88cc578e6d8f8621b57030296e530b9c"
 }
 ##DOCS-SOURCER-END -->
