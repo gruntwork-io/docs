@@ -14,61 +14,39 @@ ECS Deploy Runner was designed as a highly secure approach to CI/CD for infrastr
 
 ## Prerequisites
 
-- [Boilerplate](https://github.com/gruntwork-io/boilerplate#install) installed on your system (requires Gruntwork subscription)
 - Ability to create repositories in your GitHub Organization
 - Ability to add users to your GitHub Organization and the Gruntwork Developer Portal
 - Permissions to create secrets in GitHub repositories
-
-## GitHub Personal Access Token Setup
-
-Pipelines uses several GitHub Personal Access Tokens (PATs) across workflows, with each PAT possessing only the minimal set of permissions necessary for its specific task. To uphold the principle of least privilege for each PAT, we advise maintaining two distinct users: the pre-existing CI user and a new CI Read Only user. The CI Read Only user should have access to read your `infrastructure-live` repository, `infrastructure-modules` repository (if applicable), and the Gruntwork Library.
-
-### Create a CI Read Only User
-
-Follow the steps on [signing up a new GitHub account](https://docs.github.com/en/get-started/signing-up-for-github/signing-up-for-a-new-github-account) to create a new user. If you have an email address for your existing CI user, we recommend using plus addressing, such as `ci+read-only@your-domain.com`, as the email address for the new account.
-
-Add the new user to your GitHub org, adding it to a Team with read only access to your `infrastructure-live` and `infrastructure-modules` repository (if applicable). Follow the steps on [adding a user to the Gruntwork Developer portal](../../developer-portal/invite-team.md) to grant the CI Read Only user access to the Gruntwork Library.
-
-### Create GitHub Personal Access Tokens for GitHub Actions Workflows
-
-Next, create the following PATs for the new CI Read Only user. We'll use these tokens shortly.
-
-- `GRUNTWORK_CODE_ACCESS_TOKEN`: Classic token with READ access to repos. This should should be associated with the `CI Read Only` user created in [creating a CI Read only user](#creating-a-ci-read-only-user).
-- `PIPELINES_DISPATCH_TOKEN`: Fine-grained token that only has workflow permissions to execute workflows in the `infrastructure-pipelines` repository. This token should be associated with your existing CI user.
-- `INFRA_LIVE_ACCESS_TOKEN`: Fine-grained token with READ and WRITE access to your `infrastructure-live` repository. This token should be associated with your existing CI user.
+- [Terragrunt](https://terragrunt.gruntwork.io/) installed on your system
 
 ## Create your infrastructure-pipelines repository
 
-Pipelines separates code (IaC) and deployment using two different git repositories. One repository holds both the deployment code and the AWS account access, and assigns write privileges only to a select group of admins. This repository uses OpenID Connect and AWS IAM roles to generate temporary session credentials, avoiding the need to store long-lasting secrets.
+Pipelines separates code (IaC) and deployment using two different GitHub repositories. One repository holds both the deployment code and the AWS account access, and assigns write privileges only to a select group of admins. This repository uses OpenID Connect and AWS IAM roles to generate temporary session credentials, avoiding the need to store long-lasting secrets.
 
 We strongly recommend naming this repository `infrastructure-pipelines`. All code generated assumes the repository will be located at `<your GitHub Organization>/infrastructure-pipelines`, so using a different name will require manual work on your behalf.
 
 ### Create the repo
 
-Navigate to the repositories tab of your organization or personal GitHub account in your web browser.
+Create a new Pipelines repository from the template below:
 
-1. Click the **New Repository** button.
-1. In the **Repository name** field enter `infrastructure-pipelines`
-1. Select the **Private** option
-1. Do not initialize the repo with a README, gitignore, or license
+- [gruntwork-pipelines-standalone-template](https://github.com/gruntwork-io/gruntwork-pipelines-standalone-template)
+
+1. Click `Use this template`
+1. Click `Create a new repository`
+1. Select your preferred organization from the owner dropdown
+1. Name the repo anything you like and make note of the name.
+1. Select the `Private` radio button
+1. Click `Create Repository`
+
+![GitHub form for creating a new repository](/img/pipelines/tutorial/create_new_repo_form.png)
 
 :::info
 For a simple proof of concept, the default repo configuration will suffice. Before using this repository in a production environment, we recommend setting up a [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) for your `main` branch. At a minimum, we recommend enabling requiring a pull request before merging with at least one reviewer required.
 :::
 
-### Use boilerplate to generate code
+## GitHub CI Machine Users and Secrets Setup
 
-Next, generate the `infrastructure-pipelines` repository code using [Boilerplate](https://github.com/gruntwork-io/boilerplate), a tool authored by Gruntwork for generating files and folders specially for DevOps use cases. Clone the newly created `infrastructure-pipelines` repository, `cd` into the repo directory, then use the following command replacing `<your GitHub organization name>` with the name of your GitHub organization and `<your infrastructure-live repo name>` with the name of your infrastructure-live repository.
-
-```bash
-boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/infrastructure-pipelines?ref=v1.0.0" \
-  --output-folder . \
-  --var InfraLiveRepoName="<your infrastructure-live repo name>" \
-  --var GithubOrg="<your GitHub organization name>" \
-  --non-interactive
-```
-
-Push your changes up to the remote repository.
+Pipelines utilizes two machine users, one for read-only and another elevated operations. Follow this [guide](../security/machine-users) to create them and and set up the correct access tokens in each of the repositories.
 
 ## Create AWS IAM roles for Pipelines
 
