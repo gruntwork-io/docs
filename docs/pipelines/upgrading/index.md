@@ -4,7 +4,7 @@ This migration guide is intended for those running the previous version of Grunt
 
 To accomplish this task, we'll be using ECS Deploy Runner to deploy Pipelines, then using Pipelines to destroy ECS Deploy Runner.
 
-## What's new
+## What's New
 
 ECS Deploy Runner was designed as a highly secure approach to CI/CD for infrastructure. With Pipelines, we adapted the security principles built into ECS Deploy Runner to embrace modern CI system functionality, leaning heavily on GitHub Actions native functionality to create a more streamlined setup experience, and better overall UX. The major changes in Pipelines include:
 
@@ -25,7 +25,7 @@ Pipelines separates code (IaC) and deployment using two different GitHub reposit
 
 We strongly recommend naming this repository `infrastructure-pipelines`. All code generated assumes the repository will be located at `<your GitHub Organization>/infrastructure-pipelines`, so using a different name will require manual work on your behalf.
 
-### Create the repo
+### Initialize infrastructure-pipelines repository
 
 Create a new Pipelines repository from the template below:
 
@@ -44,6 +44,16 @@ Create a new Pipelines repository from the template below:
 For a simple proof of concept, the default repo configuration will suffice. Before using this repository in a production environment, we recommend setting up a [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) for your `main` branch. At a minimum, we recommend enabling requiring a pull request before merging with at least one reviewer required.
 :::
 
+### Create Temporary Bootstrap Token
+Create a temporary PAT with your own GitHub account so it has the ability to open PRs In your `infrastructure-pipelines` repository by using a classic PAT with `repo` and `workflow` access. Once you've generated this token, create a secret called `CUSTOMER_BOOTSTRAP_ACCESS_TOKEN` in `infrastructure-pipelines` and place this value in it.
+
+### Bootstrap the Pipelines Repo
+
+In the newly created repository, go to Actions and run the **Infrastructure Pipelines Bootstrap** and enter in the name of your `infrastructure-live` repository. This will open up a pull request that you can merge.
+
+### Delete Temporary Bootstrap Token
+Once the Pipelines repository is bootstrapped successfully, you can delete the `CUSTOMER_BOOTSTRAP_ACCESS_TOKEN`.
+
 ## GitHub CI Machine Users and Secrets Setup
 
 Pipelines utilizes two machine users, one for read-only and another elevated operations. Follow this [guide](../security/machine-users) to create them and and set up the correct access tokens in each of the repositories.
@@ -54,49 +64,19 @@ In Pipelines, each of your accounts must have an AWS IAM role. This role shares 
 
 For more information see [security hardening with OpenID Connect](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect) and [OpenID Connect in AWS](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services).
 
-### Generate the code using boilerplate for each account
+### Generate the Pipelines IAM code using GitHub Actions for each account
 
-To simplify the migration process, we have developed a template that creates all code and files required to generate the IAM role, OpenID Connect identity provider, and IAM policies.
+In `infrastructure-live`, open a pull request and copy this [GitHub Actions workflow file](https://github.com/gruntwork-io/gruntwork-infra-live-standalone-template/blob/main/.github/workflows/bootstrap.yml) into your `.github/workflows` directory.
 
-Use the following command, replacing the values wrapped in `<>` with real values for your organization. The `AwsAccountName` variable should be the name of the top level directory that represents the AWS account that will use Pipelines (e.g, `dev`). You will need to run this command for each account that you would like to upgrade to Pipelines.
-
-Now `cd` into your `infrastructure-live` repository and run the following command:
-
-```bash
-boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/pipelines-edr-migration" \
-    --output-folder . \
-    --var InfraPipelinesRepoName="<your infrastructure-pipelines repo name>" \
-    --var GithubOrg="<your GitHub organization name>" \
-    --var AwsAccountName="<friendly name for your AWS account (e.g., dev)>"  \
-    --var RequestingTeamName="<The name of the team that will use the pipeline>"  \
-    --var AwsAccountName="<friendly name for your AWS account (e.g., dev)>"  \
-    --var OrgNamePrefix="The name prefix to use for creating resources" \
-    --non-interactive
-```
-
-Create a branch, commit your changes, and push your branch to the remote repository. Then create a pull request targeting your default branch (e.g., `main`).
+Once that has been merged into `main`, run the **Infrastructure Live Bootstrap** for each account to generate the Terraform needed to create the IAM Roles and the GitHub OIDC connection to securely do deploys. Each workflow run will open a PR that needs to be merged.
 
 :::tip
 We recommend trying out Pipelines in non-production environments first, before rolling out to production environments.
 :::
 
-### Planning and applying
-
-Create a new branch for your changes, commit your changes to your branch, then push your branch. Next, create a PR to merge your branch into `main` (the default branch in your repository). The ECS Deploy Runner will detect the change and run a `plan` to create the IAM Roles, OpenID Connect providers, and all requires IAM policies. Review the `plan` output and confirm it looks as expected.
+The ECS Deploy Runner will detect the change and run a `plan` to create the IAM Roles, OpenID Connect providers, and all requires IAM policies. Review the `plan` output and confirm it looks as expected.
 
 Once you have reviewed the `plan` output and gotten any necessary approvals, merge the PR. The EDR version of Pipelines will run `apply` to create the resources.
-
-## Set up secrets
-
-Pipelines requires the use of GitHub personal access tokens (PAT) to allow workflows in the `infrastructure-live` to run workflows in the `infrastructure-pipelines` repository and workflows in the `infrastructure-pipelines` repository access to the code in `infrastructure-live` as well as repos for the Gruntwork Library. This section will guide you in establishing secrets in both repositories and comprehending the security implications of the multi-PAT configuration.
-
-### Infrastructure live
-
-Navigate to your `infrastructure-live` repository (it may be named `<your-company>-infrastructure-live`). Select the **Settings** tab, select the **Secrets and variables** drop down on the left side panel, then select **Actions**. Create three secrets named `GRUNTWORK_CODE_ACCESS_TOKEN`, `PIPELINES_DISPATCH_TOKEN`, and `INFRA_LIVE_ACCESS_TOKEN`. Use the corresponding value from the tokens you created in [GitHub Personal Access Token Setup](#github-personal-access-token-setup) for the secret value.
-
-### Infrastructure pipelines
-
-Navigate to the `infrastructure-pipelines` repository. Select the **Settings** tab, select the **Secrets and variables** drop down on the left side panel, then select **Actions**. Create two secrets named `INFRA_LIVE_ACCESS_TOKEN` and `GRUNTWORK_CODE_ACCESS_TOKEN`. Use the corresponding value from the tokens you created in [GitHub Personal Access Token Setup](#github-personal-access-token-setup) for the secret value.
 
 ## Updating your accounts file
 
@@ -159,6 +139,6 @@ Congratulations! If you have followed this guide, you will be deploying infrastr
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0ecc40de33fdae21be4398e0a1cd6fc0"
+  "hash": "e7707912665f3400ec9b3d7a25e37b95"
 }
 ##DOCS-SOURCER-END -->
