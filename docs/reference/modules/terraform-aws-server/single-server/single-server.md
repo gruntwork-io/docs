@@ -325,12 +325,6 @@ module "single_server" {
   # The tenancy of this server. Must be one of: default, dedicated, or host.
   tenancy = "default"
 
-  # Optional variable that can toggle the newer aws_eip var 'domain' to be used
-  # instead of the deprecated 'vpc.' The 'vpc' variable was deprecated in AWS
-  # provide 5.0 and will be removed in future versions, so this var will be used
-  # to facilitate a soft migration while providing backwards compatibility.
-  use_aws_eip_domain_var = false
-
   # The User Data script to run on this instance when it is booting. If you need
   # to pass gzipped, base64-encoded data (e.g., for a cloud-init script), use
   # var.user_data_base64 instead.
@@ -588,12 +582,6 @@ inputs = {
 
   # The tenancy of this server. Must be one of: default, dedicated, or host.
   tenancy = "default"
-
-  # Optional variable that can toggle the newer aws_eip var 'domain' to be used
-  # instead of the deprecated 'vpc.' The 'vpc' variable was deprecated in AWS
-  # provide 5.0 and will be removed in future versions, so this var will be used
-  # to facilitate a soft migration while providing backwards compatibility.
-  use_aws_eip_domain_var = false
 
   # The User Data script to run on this instance when it is booting. If you need
   # to pass gzipped, base64-encoded data (e.g., for a cloud-init script), use
@@ -1085,15 +1073,6 @@ The tenancy of this server. Must be one of: default, dedicated, or host.
 <HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
 </HclListItem>
 
-<HclListItem name="use_aws_eip_domain_var" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Optional variable that can toggle the newer aws_eip var 'domain' to be used instead of the deprecated 'vpc.' The 'vpc' variable was deprecated in AWS provide 5.0 and will be removed in future versions, so this var will be used to facilitate a soft migration while providing backwards compatibility.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="user_data" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1178,6 +1157,6 @@ When used in combination with user_data or user_data_base64, a user_data change 
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.11/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f1e0e601a550bdb5f1e782c84a815a28"
+  "hash": "ad2a746caa6f89aba59ddbd5a4523ce6"
 }
 ##DOCS-SOURCER-END -->
