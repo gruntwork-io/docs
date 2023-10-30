@@ -21,14 +21,19 @@ Before you begin, make sure you have:
 - A sandbox or development AWS account
 - Valid [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) for a user with AdministratorAccess to the AWS account mentioned above
 - [Terragrunt](https://terragrunt.gruntwork.io/) installed on your system
-- A [classic GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with `repo` and `workflow` scopes and access to Gruntwork modules
+- A GitHub user with active **Gruntwork Subscription** for creating a [classic GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with `repo` & `workflow` scopes as well as access to Gruntwork packages
   :::info
-  To create a classic GitHub PAT, go to https://github.com/settings/profile, click on `Developer Settings`, then `Personal access tokens`, then `Tokens (classic)`, then `Generate new token (classic)`. In the "Note" field, enter "Gruntwork Pipelines POC" (or something similar), select the `repo` and `workflow` scope checkboxes, then click `Generate token`. Keep your token handy; we'll be using it shortly.
+  To create a classic GitHub PAT:
+    1. Navigate to https://github.com/settings/tokens
+    1. Choose `Generate new token (classic)`.
+    1. In the "Note" field, enter "Gruntwork Pipelines POC" (or something similar), select the `repo` and `workflow` scope checkboxes, then click `Generate token`.
+
+  **Keep your token handy; we'll be using it shortly.**
   :::
 
 ## Setting up the repositories
 
-First, you’ll set up two git repositories:
+In this section, you’ll set up two git repositories:
 
 - The `infrastructure-live` repository will contain the definitions of your infrastructure as code (IaC)
 - The `infrastructure-pipelines` repository will define how your IaC will be deployed.
@@ -42,6 +47,11 @@ Finally, you’ll set up your PAT as a GitHub Actions secret in each repository.
 
 ### Create the repositories
 
+Create a new repository from the templates provided below:
+
+1. [gruntwork-infra-live-standalone-template](https://github.com/gruntwork-io/gruntwork-infra-live-standalone-template)
+1. [gruntwork-pipelines-standalone-template](https://github.com/gruntwork-io/gruntwork-pipelines-standalone-template)
+
 :::warning
 In this tutorial, we will use the default GitHub repo configuration.
 
@@ -50,10 +60,7 @@ In a production environment, we recommend setting up
 for your `main` branch as described in [Branch Protection](../security/branch-protection.md#recommended-settings).
 :::
 
-Create a new repository from the templates provided below:
-
-- [gruntwork-infra-live-standalone-template](https://github.com/gruntwork-io/gruntwork-infra-live-standalone-template)
-- [gruntwork-pipelines-standalone-template](https://github.com/gruntwork-io/gruntwork-pipelines-standalone-template)
+For each of the template repositories above:
 
 1. Click `Use this template`
 1. Click `Create a new repository`
@@ -61,30 +68,30 @@ Create a new repository from the templates provided below:
 1. Name the repo anything you like and make note of the name.
 1. Select the `Private` radio button
 1. Click `Create Repository`
-1. Repeat for the second template
+1. Repeat for the second template repository
 
 ![GitHub form for creating a new repository](/img/pipelines/tutorial/create_new_repo_form.png)
 
 ### Setting up secrets
 
-:::warning
-In this tutorial, we will use a single GitHub Personal Access Token (PAT) with broad access.
-
-In a production environment, we recommend using a mix of fine-grained and classic PATs as described in [Machine Users](../security/machine-users.md).
-:::
-
-Next, you're going to configure GitHub Actions secrets for each repository. Our goal here is to enable:
+In this section, you're going to configure GitHub Actions secrets for each repository. Our goal here is to enable:
 
 - `infrastructure-live` to kick off GitHub Actions workflows in the `infrastructure-pipeline` repository
 - `infrastructure-pipelines` to clone the `infrastructure-live` repository
 - `infrastructure-pipelines` to access Gruntwork modules
 
-Copy the script below and edit the exports at the top to match your git repo names and GitHub PAT, then run it while authenticated using the GitHub CLI
+:::warning
+In this tutorial, we will use a single GitHub Personal Access Token (PAT) with broad access in secrets.
+
+In a production environment, we recommend using a mix of fine-grained and classic PATs as described in [Machine Users](../security/machine-users.md).
+:::
+
+Copy the script below and edit the exports at the top to match your git repo names and GitHub PAT, then run it while authenticated using the **GitHub CLI**
 
 ```bash
 export INFRA_LIVE_REPO_NAME=<YOUR_REPO_HERE>
 export INFRA_PIPELINES_REPO_NAME=<YOUR_REPO_HERE>
-export GHA_TOKEN=<YOUR_GITHUB_PAT>
+export GHA_TOKEN=<YOUR_GITHUB_PAT> # This is the GitHub PAT you created in the prerequisites section
 
 gh secret set INFRA_LIVE_ACCESS_TOKEN -a actions --repo $INFRA_LIVE_REPO_NAME -b $GHA_TOKEN;
 gh secret set GRUNTWORK_CODE_ACCESS_TOKEN -a actions --repo $INFRA_LIVE_REPO_NAME -b $GHA_TOKEN;
@@ -98,10 +105,8 @@ gh secret set CUSTOMER_BOOTSTRAP_ACCESS_TOKEN -a actions --repo $INFRA_PIPELINES
 
 ## Generating code
 
-Next, you’ll write the IaC and GitHub Actions workflow code required to run Gruntwork Pipelines.
-
-Rather than copy & pasting this code from documentation, we're going to generate the code using the GitHub Actions Bootstrap Workflows
-included with the template repos.
+In this section, you’ll generate the IaC and GitHub Actions workflow code required to run Gruntwork Pipelines using our Bootstrap GitHub Action Workflow
+included in your repository that was generated with the Gruntwork template repos.
 
 
 ### Infrastructure-pipelines
@@ -111,8 +116,8 @@ included with the template repos.
 1. Select the `Run Workflow` dropdown and enter the name of your `infrastructure-live` repository.
    ![Infrastructure-pipelines Workflow Form](/img/pipelines/tutorial/pipelines_run_workflow.png)
 1. Click `Run Workflow` to start the workflow.
-1. A PR will be created after the workflow completes.
-1. Review the changes, follow the instructions in the PR, then merge
+1. A Pull Request(PR) will be created after the workflow completes.
+1. Review the changes, follow the instructions in the PR and then merge.
 
 ### Infrastructure-live
 
@@ -121,12 +126,12 @@ included with the template repos.
 1. Select the `Run Workflow` dropdown and enter the requested details.
    ![Infrastructure-live Workflow Form](/img/pipelines/tutorial/infra_live_workflow.png)
 1. Click `Run Workflow` to start the workflow.
-1. A PR will be created after the workflow completes.
-1. Review the changes, follow the instructions in the PR, then merge
+1. A Pull Request(PR) will be created after the workflow completes.
+1. Review the changes, follow the instructions in the PR and then merge.
 
 ## Running your first pipeline
 
-Next you’ll create a resource in your AWS account using Pipelines and GitOps workflows. You’ll define a `terragrunt.hcl` file that creates an AWS S3 bucket in your AWS account, push your changes and create a pull request (PR) to run a `plan` action, then run an `apply` action to create the bucket by merging your PR.
+In this section, you’ll create a resource in your AWS account using Pipelines and GitOps workflows by defining a `terragrunt.hcl` file that creates an AWS S3 bucket in your AWS account, pushing your changes and creating a Pull Request (PR) to run a `plan` action, then run an `apply` action to create the bucket by merging your PR.
 
 ### Adding a new S3 bucket
 
