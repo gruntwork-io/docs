@@ -21,7 +21,7 @@ Before you begin, make sure you have:
 - A sandbox or development AWS account
 - Valid [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) for a user with AdministratorAccess to the AWS account mentioned above
 - [Terragrunt](https://terragrunt.gruntwork.io/) installed on your system
-- A GitHub user with active **Gruntwork Subscription** for creating a [classic GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with `repo` & `workflow` scopes as well as access to Gruntwork packages
+- A GitHub user with an active **Gruntwork Subscription** for creating a [classic GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with `repo` & `workflow` scopes as well as access to Gruntwork packages
   :::info
   To create a classic GitHub PAT:
     1. Navigate to https://github.com/settings/tokens
