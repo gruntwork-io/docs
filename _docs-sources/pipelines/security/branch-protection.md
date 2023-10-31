@@ -1,4 +1,4 @@
-# Sandwhich Protection
+# Branch Protection
 
 Gruntwork Pipelines is designed to be used with a PR based workflow.
 This means an approval on a PR is an approval to deploy infrastructure, making the configuration of repo settings and branch protection especially important.

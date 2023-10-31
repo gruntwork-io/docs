@@ -1,4 +1,4 @@
-# Sandwhich Protection
+# Branch Protection
 
 Gruntwork Pipelines is designed to be used with a PR based workflow.
 This means an approval on a PR is an approval to deploy infrastructure, making the configuration of repo settings and branch protection especially important.
@@ -48,6 +48,6 @@ The following is an example of the recommended settings for branch protection:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7754bda07ad025d535f6d4abb6d55576"
+  "hash": "a632f84106615c4c51f5a9eb3e892646"
 }
 ##DOCS-SOURCER-END -->
