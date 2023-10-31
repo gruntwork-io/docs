@@ -96,11 +96,10 @@ export GHA_TOKEN=<YOUR_GITHUB_PAT> # This is the GitHub PAT you created in the p
 gh secret set INFRA_LIVE_ACCESS_TOKEN -a actions --repo $INFRA_LIVE_REPO_NAME -b $GHA_TOKEN;
 gh secret set GRUNTWORK_CODE_ACCESS_TOKEN -a actions --repo $INFRA_LIVE_REPO_NAME -b $GHA_TOKEN;
 gh secret set PIPELINES_DISPATCH_TOKEN -a actions --repo $INFRA_LIVE_REPO_NAME -b $GHA_TOKEN;
-gh secret set CUSTOMER_BOOTSTRAP_ACCESS_TOKEN -a actions --repo $INFRA_LIVE_REPO_NAME -b $GHA_TOKEN;
 
 gh secret set INFRA_LIVE_ACCESS_TOKEN -a actions --repo $INFRA_PIPELINES_REPO_NAME -b $GHA_TOKEN;
 gh secret set GRUNTWORK_CODE_ACCESS_TOKEN -a actions --repo $INFRA_PIPELINES_REPO_NAME -b $GHA_TOKEN;
-gh secret set CUSTOMER_BOOTSTRAP_ACCESS_TOKEN -a actions --repo $INFRA_PIPELINES_REPO_NAME -b $GHA_TOKEN;
+gh secret set PIPELINES_BOOTSTRAP_TOKEN -a actions --repo $INFRA_PIPELINES_REPO_NAME -b $GHA_TOKEN;
 ```
 
 ## Generating code
@@ -210,6 +209,6 @@ If you are not going to continue using Pipelines after this tutorial, clean up t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "6ad7810c249e167c42b2d393570dc0d1"
+  "hash": "b5c612b5738f1da133789ce89823cf30"
 }
 ##DOCS-SOURCER-END -->
