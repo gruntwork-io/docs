@@ -10,7 +10,7 @@ By the end, you’ll have:
 - Two GitHub repositories
   - `infrastructure-live` — Defines the infrastructure that is deployed to your AWS account
   - `infrastructure-pipelines` — Contains deployment definitions for your infrastructure
-- An IAM role in your AWS account that allows GitHub Actions to assume a role in your AWS account using OIDC
+- A group of IAM roles in your AWS account that allow GitHub Actions modify your account through OIDC
 - An S3 Bucket deployed automatically by Gruntwork Pipelines
 
 ## Prerequisites
@@ -20,17 +20,20 @@ Before you begin, make sure you have:
 - Permissions to create and administer repositories in GitHub
 - A sandbox or development AWS account
 - Valid [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) for a user with AdministratorAccess to the AWS account mentioned above
-- [Boilerplate](https://github.com/gruntwork-io/boilerplate#install) installed on your system (requires Gruntwork subscription)
 - [Terragrunt](https://terragrunt.gruntwork.io/) installed on your system
-- A [classic GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with `repo` and `workflow` scopes and access to Gruntwork modules
+- A GitHub user with an active **Gruntwork Subscription** for creating a [classic GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with `repo` & `workflow` scopes as well as access to Gruntwork packages
+  :::info
+  To create a classic GitHub PAT:
+    1. Navigate to https://github.com/settings/tokens
+    1. Choose `Generate new token (classic)`.
+    1. In the "Note" field, enter "Gruntwork Pipelines POC" (or something similar), select the `repo` and `workflow` scope checkboxes, then click `Generate token`.
 
-:::info
-To create a classic GitHub PAT, go to https://github.com/settings/profile, click on `Developer Settings`, then `Personal access tokens`, then `Tokens (classic)`, then `Generate new token (classic)`. In the "Note" field, enter "Gruntwork Pipelines POC" (or something similar), select the `repo` and `workflow` scope checkboxes, then click `Generate token`. Keep your token handy; we'll be using it shortly.
-:::
+  **Keep your token handy; we'll be using it shortly.**
+  :::
 
 ## Setting up the repositories
 
-First, you’ll set up two git repositories:
+In this section, you’ll set up two git repositories:
 
 - The `infrastructure-live` repository will contain the definitions of your infrastructure as code (IaC)
 - The `infrastructure-pipelines` repository will define how your IaC will be deployed.
@@ -44,6 +47,11 @@ Finally, you’ll set up your PAT as a GitHub Actions secret in each repository.
 
 ### Create the repositories
 
+Create a new repository from the templates provided below:
+
+1. [gruntwork-infra-live-standalone-template](https://github.com/gruntwork-io/gruntwork-infra-live-standalone-template)
+1. [gruntwork-pipelines-standalone-template](https://github.com/gruntwork-io/gruntwork-pipelines-standalone-template)
+
 :::warning
 In this tutorial, we will use the default GitHub repo configuration.
 
@@ -52,105 +60,77 @@ In a production environment, we recommend setting up
 for your `main` branch as described in [Branch Protection](../security/branch-protection.md#recommended-settings).
 :::
 
-Navigate to the repositories tab of your organization or personal GitHub account in your web browser. Repeat the following steps twice to create one repository named `infrastructure-live` and one repository named `infrastructure-pipelines`.
+For each of the template repositories above:
 
-1. Click the `New Repository` button.
-1. In the `Repository name` field enter either `infrastructure-live` or `infrastructure-pipelines`
-1. Select the `Private` option
-1. Do not initialize the repo with a README, gitignore, or license
+1. Click `Use this template`
+1. Click `Create a new repository`
+1. Select your preferred organization from the owner dropdown
+1. Name the repo anything you like and make note of the name.
+1. Select the `Private` radio button
+1. Click `Create Repository`
+1. Repeat for the second template repository
 
 ![GitHub form for creating a new repository](/img/pipelines/tutorial/create_new_repo_form.png)
 
 ### Setting up secrets
 
-:::warning
-In this tutorial, we will use a single GitHub Personal Access Token (PAT) with broad access.
-
-In a production environment, we recommend using a mix of fine-grained and classic PATs as described in [Machine Users](../security/machine-users.md).
-:::
-
-Next, you're going to configure GitHub Actions secrets for each repository. Our goal here is to enable:
+In this section, you're going to configure GitHub Actions secrets for each repository. Our goal here is to enable:
 
 - `infrastructure-live` to kick off GitHub Actions workflows in the `infrastructure-pipeline` repository
 - `infrastructure-pipelines` to clone the `infrastructure-live` repository
 - `infrastructure-pipelines` to access Gruntwork modules
 
-First, navigate to the `infrastructure-live` repository. Select the `Settings` tab, select the `Secrets and variables` drop down on the left side panel, then select `Actions`. Create the following secrets and use your GitHub PAT as the value for all of them:
+:::warning
+In this tutorial, we will use a single GitHub Personal Access Token (PAT) with broad access in secrets.
 
-- `PIPELINES_DISPATCH_TOKEN`
-- `INFRA_LIVE_ACCESS_TOKEN`
-- `GRUNTWORK_CODE_ACCESS_TOKEN`
+In a production environment, we recommend using a mix of fine-grained and classic PATs as described in [Machine Users](../security/machine-users.md).
+:::
 
-Next, navigate to the `infrastructure-pipelines` repository. Select the `Settings` tab, select the `Secrets and variables` drop down on the left side panel, then select `Actions`. Create the following secrets and use your GitHub PAT as the value for all of them:
+Copy the script below and edit the exports at the top to match your git repo names and GitHub PAT, then run it while authenticated using the **GitHub CLI**
 
-- `INFRA_LIVE_ACCESS_TOKEN`
-- `GRUNTWORK_CODE_ACCESS_TOKEN`
+```bash
+export INFRA_LIVE_REPO_NAME=<YOUR_REPO_HERE>
+export INFRA_PIPELINES_REPO_NAME=<YOUR_REPO_HERE>
+export GHA_TOKEN=<YOUR_GITHUB_PAT> # This is the GitHub PAT you created in the prerequisites section
+
+gh secret set INFRA_LIVE_ACCESS_TOKEN -a actions --repo $INFRA_LIVE_REPO_NAME -b $GHA_TOKEN;
+gh secret set GRUNTWORK_CODE_ACCESS_TOKEN -a actions --repo $INFRA_LIVE_REPO_NAME -b $GHA_TOKEN;
+gh secret set PIPELINES_DISPATCH_TOKEN -a actions --repo $INFRA_LIVE_REPO_NAME -b $GHA_TOKEN;
+
+gh secret set INFRA_LIVE_ACCESS_TOKEN -a actions --repo $INFRA_PIPELINES_REPO_NAME -b $GHA_TOKEN;
+gh secret set GRUNTWORK_CODE_ACCESS_TOKEN -a actions --repo $INFRA_PIPELINES_REPO_NAME -b $GHA_TOKEN;
+gh secret set PIPELINES_BOOTSTRAP_TOKEN -a actions --repo $INFRA_PIPELINES_REPO_NAME -b $GHA_TOKEN;
+```
 
 ## Generating code
 
-Next, you’ll write the IaC and GitHub Actions workflow code required to run Gruntwork Pipelines.
+In this section, you’ll generate the IaC and GitHub Actions workflow code required to run Gruntwork Pipelines using our Bootstrap GitHub Action Workflow
+included in your repository that was generated with the Gruntwork template repos.
 
-Rather than copy & pasting this code from documentation, we're going to generate the code using [Boilerplate](https://github.com/gruntwork-io/boilerplate), a code generation tool authored by Gruntwork. The generated code will:
-
-- Provision an AWS IAM role (which Pipelines will assume to manage AWS resources)
-- Configure one GitHub Actions (GHA) workflow for the `infrastructure-live` repository
-- Configure one GHA workflow for the `infrastructure-pipelines` repository
-
-The code generation template for `infrastructure-live` sets up a folder structure that follows Gruntwork’s recommended folder structure for Terragrunt, so you could continue to use the generated code in perpetuity and simply add more AWS accounts and resource definitions if you so choose!
 
 ### Infrastructure-pipelines
 
-First, generate the `infrastructure-pipelines` repository code using [Boilerplate](https://github.com/gruntwork-io/boilerplate). On your local computer, git clone the newly created `infrastructure-pipelines` repository, `cd` into the repo directory, then use the following command replacing `<your GitHub organization name>` with the name of your GitHub organization.
-
-```bash
-boilerplate --template-url "github.com/gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/infrastructure-pipelines?ref=v1.0.1" \
-  --output-folder . \
-  --var InfraLiveRepoName="infrastructure-live" \
-  --var GithubOrg="<your GitHub organization name>" \
-  --non-interactive
-```
-
-Push your changes to the `infrastructure-pipelines` repository you created in [Create the repositories](#create-the-repositories).
+1. Navigate to `Actions`
+1. Click `Infrastructure Pipelines Bootstrap` in the sidebar on the left
+1. Select the `Run Workflow` dropdown and enter the name of your `infrastructure-live` repository.
+   ![Infrastructure-pipelines Workflow Form](/img/pipelines/tutorial/pipelines_run_workflow.png)
+1. Click `Run Workflow` to start the workflow.
+1. A Pull Request(PR) will be created after the workflow completes.
+1. Review the changes, follow the instructions in the PR and then merge.
 
 ### Infrastructure-live
 
-Next, generate the `infrastructure-live` repository code using Boilerplate. On your local computer, git clone the newly created `infrastructure-live` repository, `cd` into the repo directory, then use the following command, replacing the values wrapped in `<>` with real values for your organization.
-
-The AWSAccount* variables correspond to the AWS account in which your `infrastructure-live` repository will manage AWS resources. The `OrgNamePrefix` is used to prefix your resource names with your org name so that they are identifiable. For example, we will create an S3 bucket to store Terraform/OpenTofu state, whose name begins with the value of `OrgNamePrefix`.
-
-```bash
-boilerplate --template-url "github.com/gruntwork-io/terraform-aws-architecture-catalog.git//blueprints/components/single-account-pipeline?ref=v1.0.1" \
-  --output-folder . \
-  --var AwsAccountName="<friendly name for your AWS account (e.g., dev)>" \
-  --var AwsAccountId="'<account id for your AWS account>'" \
-  --var AwsAccountEmail="<e-mail address associate with root user for account>" \
-  --var InfraLiveRepoName="infrastructure-live" \
-  --var InfraPipelinesRepoName="infrastructure-pipelines" \
-  --var GithubOrg="<your GitHub organization name>" \
-  --var OrgNamePrefix="<your organization name>" \
-  --var RequestingTeamName="<The name of the team that will use the pipeline>" \
-  --non-interactive
-```
-
-The generated code creates a full Terragrunt `infrastructure-live` folder structure that creates a single AWS resource, which is an AWS IAM role that Pipelines will use to deploy resources in your AWS account. More specifically, it will create an instance of the Gruntwork [github-actions-iam-role module](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/github-actions-iam-role), which creates an IAM role that is assumable by GitHub using OIDC, and which can only be assumed when running a GitHub Actions workflow from the `main` branch.
-
-With Pipelines, all `terragrunt` operations will happen in GitHub Actions in response to a Pull Request or `git push`. But before that will work, you will first need to run an `apply` locally to provision the IAM role. This should be the only time you need to manually run `apply` to provision resources for this account, moving forward Pipelines will handle the lifecycle of all resources for you, based on the code you commit to your repository.
-
-First, run a `run-all plan` in the newly created directory named after the account to see the resources that will be provisioned. Replace `<account name>` with the value you used for `AwsAccountName` in the boilerplate command above.
-
-```bash
-cd <account name>/
-terragrunt run-all plan
-```
-Terragrunt will prompt you to create the Terragrunt state and logs buckets, enter `y` when prompted, then hit enter.
-
-Terragrunt will then run the plan. Once you have reviewed the new resources to be created, run `terragrunt run-all apply` to create the resources.
-
-Finally, git push your changes to the `infrastructure-live` repository you created in [Create the repositories](#create-the-repositories).
+1. Navigate to `Actions`
+1. Click `Infrastructure Live Bootstrap` in the sidebar on the left
+1. Select the `Run Workflow` dropdown and enter the requested details.
+   ![Infrastructure-live Workflow Form](/img/pipelines/tutorial/infra_live_workflow.png)
+1. Click `Run Workflow` to start the workflow.
+1. A Pull Request(PR) will be created after the workflow completes.
+1. Review the changes, follow the instructions in the PR and then merge.
 
 ## Running your first pipeline
 
-Next you’ll create a resource in your AWS account using Pipelines and GitOps workflows. You’ll define a `terragrunt.hcl` file that creates an AWS S3 bucket in your AWS account, push your changes and create a pull request (PR) to run a `plan` action, then run an `apply` action to create the bucket by merging your PR.
+In this section, you’ll create a resource in your AWS account using Pipelines and GitOps workflows by defining a `terragrunt.hcl` file that creates an AWS S3 bucket in your AWS account, pushing your changes and creating a Pull Request (PR) to run a `plan` action, then run an `apply` action to create the bucket by merging your PR.
 
 ### Adding a new S3 bucket
 
@@ -170,13 +150,8 @@ locals {
 }
 ```
 
-Next, add the terragrunt code to create an S3 bucket. Copy the terragrunt code below, replacing `<your S3 bucket name>` with your desired bucket name. S3 bucket names need to be globally unique, so we've provided a helper script below to help generate the name of your bucket. You may name the bucket whatever you like, just make sure it’s unique.
+Next, add the terragrunt code to create an S3 bucket. Copy the terragrunt code below, replacing `<your S3 bucket name>` with your desired bucket name. You may name the bucket whatever you like, just make sure it’s unique.
 
-```bash
-export export UNIQUE_ID=$(uuidgen | tr 'A-Z' 'a-z')
-export DATE_NOW=$(date "+%F")
-echo "gwp-bucket-${UNIQUE_ID}-${DATE_NOW}"
-```
 
 ```hcl title="<account name>/<region>/<account name>/data-storage/s3/terragrunt.hcl"
 # ------------------------------------------------------------------------------------------------------
