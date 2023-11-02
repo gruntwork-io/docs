@@ -1865,6 +1865,26 @@ A map of all public subnets, with the subnet name as the key, and all `aws-subne
 <HclListItem name="s3_vpc_endpoint_id">
 </HclListItem>
 
+<HclListItem name="transit_subnet_arns">
+</HclListItem>
+
+<HclListItem name="transit_subnet_cidr_blocks">
+</HclListItem>
+
+<HclListItem name="transit_subnet_ids">
+</HclListItem>
+
+<HclListItem name="transit_subnet_route_table_ids">
+</HclListItem>
+
+<HclListItem name="transit_subnets">
+<HclListItemDescription>
+
+A map of all transit subnets, with the subnet name as the key, and all `aws-subnet` properties as the value.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="vpc_cidr_block">
 </HclListItem>
 
@@ -1889,6 +1909,6 @@ A map of all public subnets, with the subnet name as the key, and all `aws-subne
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.8/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e3561b3beb37b48a99ae452ba40c018f"
+  "hash": "bc9ffb1e0a2a276b1e7dc013729fd1f5"
 }
 ##DOCS-SOURCER-END -->
