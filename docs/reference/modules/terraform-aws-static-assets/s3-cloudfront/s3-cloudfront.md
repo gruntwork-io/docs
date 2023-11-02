@@ -300,6 +300,9 @@ module "s_3_cloudfront" {
   # The error responses you want CloudFront to return to the viewer.
   error_responses = null
 
+  # The name of an existing logging bucket to use instead of creating.
+  existing_s3_log_bucket_name = null
+
   # The website endpoints for each failover S3 bucket. This value of each should
   # be of the format <BUCKET_NAME>.s3-website-<AWS_REGION>.amazonaws.com. Only
   # used if var.s3_bucket_is_public_website is true, and if you are providing a
@@ -595,6 +598,9 @@ inputs = {
 
   # The error responses you want CloudFront to return to the viewer.
   error_responses = null
+
+  # The name of an existing logging bucket to use instead of creating.
+  existing_s3_log_bucket_name = null
 
   # The website endpoints for each failover S3 bucket. This value of each should
   # be of the format <BUCKET_NAME>.s3-website-<AWS_REGION>.amazonaws.com. Only
@@ -1101,6 +1107,15 @@ The error responses you want CloudFront to return to the viewer.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="existing_s3_log_bucket_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of an existing logging bucket to use instead of creating.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="failover_bucket_website_endpoints" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1418,6 +1433,6 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.4/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "61171e65f045dde2ff03dec125f535be"
+  "hash": "a145ead76dea15a00ffce109f2796994"
 }
 ##DOCS-SOURCER-END -->
