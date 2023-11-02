@@ -137,6 +137,9 @@ module "vpc_app" {
   # internet?
   allow_private_persistence_internet_access = false
 
+  # Should the transit subnet be allowed outbound access to the internet?
+  allow_transit_internet_access = false
+
   # If true, will apply the default NACL rules in var.default_nacl_ingress_rules
   # and var.default_nacl_egress_rules on the default NACL of the VPC. Note that
   # every VPC must have a default NACL - when this is false, the original
@@ -201,8 +204,11 @@ module "vpc_app" {
   # gateways, so if you want any public Internet access in the VPC (even
   # outbound access—e.g., to run apt get), you'll need to provide it yourself
   # via some other mechanism (e.g., via VPC peering, a Transit Gateway, Direct
-  # Connect, etc).
+  # Connect, etc). Defaults to true.
   create_public_subnets = true
+
+  # If set to false, this module will NOT create the transit subnet tier.
+  create_transit_subnets = false
 
   # Create VPC endpoints for S3 and DynamoDB.
   create_vpc_endpoints = true
@@ -474,6 +480,38 @@ module "vpc_app" {
   # The allowed tenancy of instances launched into the selected VPC. Must be one
   # of: default, dedicated, or host.
   tenancy = "default"
+
+  # A list of Virtual Private Gateways that will propagate routes to transit
+  # subnets. All routes from VPN connections that use Virtual Private Gateways
+  # listed here will appear in route tables of transit subnets. If left empty,
+  # no routes will be propagated.
+  transit_propagating_vgws = []
+
+  # A map of tags to apply to the transit route table(s), on top of the
+  # custom_tags. The key is the tag name and the value is the tag value. Note
+  # that tags defined here will override tags defined as custom_tags in case of
+  # conflict.
+  transit_route_table_custom_tags = {}
+
+  # Takes the CIDR prefix and adds these many bits to it for calculating subnet
+  # ranges.  MAKE SURE if you change this you also change the CIDR spacing or
+  # you may hit errors.  See cidrsubnet interpolation in terraform config for
+  # more information.
+  transit_subnet_bits = 5
+
+  # A map listing the specific CIDR blocks desired for each transit subnet. The
+  # key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of
+  # Availability Zones. If left blank, we will compute a reasonable CIDR block
+  # for each subnet.
+  transit_subnet_cidr_blocks = {}
+
+  # A map of tags to apply to the transit Subnet, on top of the custom_tags. The
+  # key is the tag name and the value is the tag value. Note that tags defined
+  # here will override tags defined as custom_tags in case of conflict.
+  transit_subnet_custom_tags = {}
+
+  # The amount of spacing between the transit subnets.
+  transit_subnet_spacing = null
 
   # Set to true to use existing EIPs, passed in via var.custom_nat_eips, for the
   # NAT gateway(s), instead of creating new ones.
@@ -531,6 +569,9 @@ inputs = {
   # internet?
   allow_private_persistence_internet_access = false
 
+  # Should the transit subnet be allowed outbound access to the internet?
+  allow_transit_internet_access = false
+
   # If true, will apply the default NACL rules in var.default_nacl_ingress_rules
   # and var.default_nacl_egress_rules on the default NACL of the VPC. Note that
   # every VPC must have a default NACL - when this is false, the original
@@ -595,8 +636,11 @@ inputs = {
   # gateways, so if you want any public Internet access in the VPC (even
   # outbound access—e.g., to run apt get), you'll need to provide it yourself
   # via some other mechanism (e.g., via VPC peering, a Transit Gateway, Direct
-  # Connect, etc).
+  # Connect, etc). Defaults to true.
   create_public_subnets = true
+
+  # If set to false, this module will NOT create the transit subnet tier.
+  create_transit_subnets = false
 
   # Create VPC endpoints for S3 and DynamoDB.
   create_vpc_endpoints = true
@@ -868,6 +912,38 @@ inputs = {
   # The allowed tenancy of instances launched into the selected VPC. Must be one
   # of: default, dedicated, or host.
   tenancy = "default"
+
+  # A list of Virtual Private Gateways that will propagate routes to transit
+  # subnets. All routes from VPN connections that use Virtual Private Gateways
+  # listed here will appear in route tables of transit subnets. If left empty,
+  # no routes will be propagated.
+  transit_propagating_vgws = []
+
+  # A map of tags to apply to the transit route table(s), on top of the
+  # custom_tags. The key is the tag name and the value is the tag value. Note
+  # that tags defined here will override tags defined as custom_tags in case of
+  # conflict.
+  transit_route_table_custom_tags = {}
+
+  # Takes the CIDR prefix and adds these many bits to it for calculating subnet
+  # ranges.  MAKE SURE if you change this you also change the CIDR spacing or
+  # you may hit errors.  See cidrsubnet interpolation in terraform config for
+  # more information.
+  transit_subnet_bits = 5
+
+  # A map listing the specific CIDR blocks desired for each transit subnet. The
+  # key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of
+  # Availability Zones. If left blank, we will compute a reasonable CIDR block
+  # for each subnet.
+  transit_subnet_cidr_blocks = {}
+
+  # A map of tags to apply to the transit Subnet, on top of the custom_tags. The
+  # key is the tag name and the value is the tag value. Note that tags defined
+  # here will override tags defined as custom_tags in case of conflict.
+  transit_subnet_custom_tags = {}
+
+  # The amount of spacing between the transit subnets.
+  transit_subnet_spacing = null
 
   # Set to true to use existing EIPs, passed in via var.custom_nat_eips, for the
   # NAT gateway(s), instead of creating new ones.
@@ -927,6 +1003,15 @@ Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
 <HclListItemDescription>
 
 Should the private persistence subnet be allowed outbound access to the internet?
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="allow_transit_internet_access" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Should the transit subnet be allowed outbound access to the internet?
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -1043,10 +1128,19 @@ If set to false, this module will NOT create the private persistence subnet tier
 <HclListItem name="create_public_subnets" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If set to false, this module will NOT create the public subnet tier. This is useful for VPCs that only need private subnets. Note that setting this to false also means the module will NOT create an Internet Gateway or the NAT gateways, so if you want any public Internet access in the VPC (even outbound access—e.g., to run apt get), you'll need to provide it yourself via some other mechanism (e.g., via VPC peering, a Transit Gateway, Direct Connect, etc).
+If set to false, this module will NOT create the public subnet tier. This is useful for VPCs that only need private subnets. Note that setting this to false also means the module will NOT create an Internet Gateway or the NAT gateways, so if you want any public Internet access in the VPC (even outbound access—e.g., to run apt get), you'll need to provide it yourself via some other mechanism (e.g., via VPC peering, a Transit Gateway, Direct Connect, etc). Defaults to true.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="create_transit_subnets" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to false, this module will NOT create the transit subnet tier.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="create_vpc_endpoints" requirement="optional" type="bool">
@@ -1595,6 +1689,60 @@ The allowed tenancy of instances launched into the selected VPC. Must be one of:
 <HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
 </HclListItem>
 
+<HclListItem name="transit_propagating_vgws" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of Virtual Private Gateways that will propagate routes to transit subnets. All routes from VPN connections that use Virtual Private Gateways listed here will appear in route tables of transit subnets. If left empty, no routes will be propagated.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="transit_route_table_custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the transit route table(s), on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="transit_subnet_bits" requirement="optional" type="number">
+<HclListItemDescription>
+
+Takes the CIDR prefix and adds these many bits to it for calculating subnet ranges.  MAKE SURE if you change this you also change the CIDR spacing or you may hit errors.  See cidrsubnet interpolation in terraform config for more information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="5"/>
+</HclListItem>
+
+<HclListItem name="transit_subnet_cidr_blocks" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map listing the specific CIDR blocks desired for each transit subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="transit_subnet_custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the transit Subnet, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="transit_subnet_spacing" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of spacing between the transit subnets.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="use_custom_nat_eips" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1741,6 +1889,6 @@ A map of all public subnets, with the subnet name as the key, and all `aws-subne
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.8/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e11d98f15f97736f8c4b0a3e1a290b26"
+  "hash": "e3561b3beb37b48a99ae452ba40c018f"
 }
 ##DOCS-SOURCER-END -->
