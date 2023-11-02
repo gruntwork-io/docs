@@ -81,7 +81,7 @@ module "eks_ebs_csi_driver" {
   enable_ebs_csi_driver = true
 
   # The version of Kubernetes for the EKS Cluster.
-  kubernetes_version = "1.27"
+  kubernetes_version = "1.28"
 
 }
 
@@ -146,7 +146,7 @@ inputs = {
   enable_ebs_csi_driver = true
 
   # The version of Kubernetes for the EKS Cluster.
-  kubernetes_version = "1.27"
+  kubernetes_version = "1.28"
 
 }
 
@@ -295,7 +295,7 @@ When set to true, the module configures and install the EBS CSI Driver as an EKS
 The version of Kubernetes for the EKS Cluster.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.27&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;1.28&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -337,6 +337,6 @@ The latest available version of the EBS CSI AddOn.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.64.4/modules/eks-ebs-csi-driver/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "aa81a617f0103c64aaf2d1e573094106"
+  "hash": "ded5c204ddadafa52eb0cf5685d61348"
 }
 ##DOCS-SOURCER-END -->

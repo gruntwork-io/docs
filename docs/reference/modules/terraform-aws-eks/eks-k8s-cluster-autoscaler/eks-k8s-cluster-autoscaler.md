@@ -111,7 +111,7 @@ module "eks_k_8_s_cluster_autoscaler" {
   cluster_autoscaler_repository = "registry.k8s.io/autoscaling/cluster-autoscaler"
 
   # Which version of the cluster autoscaler to install.
-  cluster_autoscaler_version = "v1.27.0"
+  cluster_autoscaler_version = "v1.28.0"
 
   # Map of extra arguments to pass to the container.
   container_extra_args = {}
@@ -265,7 +265,7 @@ inputs = {
   cluster_autoscaler_repository = "registry.k8s.io/autoscaling/cluster-autoscaler"
 
   # Which version of the cluster autoscaler to install.
-  cluster_autoscaler_version = "v1.27.0"
+  cluster_autoscaler_version = "v1.28.0"
 
   # Map of extra arguments to pass to the container.
   container_extra_args = {}
@@ -364,6 +364,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.64.4/modules/eks-k8s-cluster-autoscaler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2184f35407ecec18b8b92a6ab6e7f97c"
+  "hash": "522ff21b079bdc205b8a6adbed0f6252"
 }
 ##DOCS-SOURCER-END -->
