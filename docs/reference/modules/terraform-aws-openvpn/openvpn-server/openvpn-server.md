@@ -147,6 +147,11 @@ module "openvpn_server" {
   # encrypt/decrypt backup files.
   kms_key_arn = <string>
 
+  # The name of the sqs queue that will be used to receive certification list
+  # requests. Note that the queue name will be automatically prefixed with
+  # 'openvpn-lists-'.
+  list_queue_name = <string>
+
   # The name of the server. This will be used to namespace all resources created
   # by this module.
   name = <string>
@@ -254,7 +259,7 @@ module "openvpn_server" {
 
   # The ARNs of external AWS accounts where your IAM users are defined. If not
   # empty, this module will create IAM roles that users in those accounts will
-  # be able to assume to get access to the request/revocation SQS queues.
+  # be able to assume to get access to the request/revocation/list SQS queues.
   external_account_arns = []
 
   # The length of time, in seconds, for which Amazon SQS can reuse a data key to
@@ -385,6 +390,11 @@ inputs = {
   # encrypt/decrypt backup files.
   kms_key_arn = <string>
 
+  # The name of the sqs queue that will be used to receive certification list
+  # requests. Note that the queue name will be automatically prefixed with
+  # 'openvpn-lists-'.
+  list_queue_name = <string>
+
   # The name of the server. This will be used to namespace all resources created
   # by this module.
   name = <string>
@@ -492,7 +502,7 @@ inputs = {
 
   # The ARNs of external AWS accounts where your IAM users are defined. If not
   # empty, this module will create IAM roles that users in those accounts will
-  # be able to assume to get access to the request/revocation SQS queues.
+  # be able to assume to get access to the request/revocation/list SQS queues.
   external_account_arns = []
 
   # The length of time, in seconds, for which Amazon SQS can reuse a data key to
@@ -645,6 +655,14 @@ The name of a Key Pair that can be used to SSH to this instance. Leave blank if 
 <HclListItemDescription>
 
 The Amazon Resource Name (ARN) of the KMS Key that will be used to encrypt/decrypt backup files.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="list_queue_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the sqs queue that will be used to receive certification list requests. Note that the queue name will be automatically prefixed with 'openvpn-lists-'.
 
 </HclListItemDescription>
 </HclListItem>
@@ -840,7 +858,7 @@ Set this variable to true to enable the Instance Metadata Service (IMDS) endpoin
 <HclListItem name="external_account_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-The ARNs of external AWS accounts where your IAM users are defined. If not empty, this module will create IAM roles that users in those accounts will be able to assume to get access to the request/revocation SQS queues.
+The ARNs of external AWS accounts where your IAM users are defined. If not empty, this module will create IAM roles that users in those accounts will be able to assume to get access to the request/revocation/list SQS queues.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -1011,6 +1029,12 @@ The base64-encoded User Data script to run on the server when it is booting. Thi
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
+<HclListItem name="allow_certificate_lists_for_external_accounts_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="allow_certificate_lists_for_external_accounts_iam_role_id">
+</HclListItem>
+
 <HclListItem name="allow_certificate_requests_for_external_accounts_iam_role_arn">
 </HclListItem>
 
@@ -1027,6 +1051,9 @@ The base64-encoded User Data script to run on the server when it is booting. Thi
 </HclListItem>
 
 <HclListItem name="backup_bucket_name">
+</HclListItem>
+
+<HclListItem name="client_list_queue">
 </HclListItem>
 
 <HclListItem name="client_request_queue">
@@ -1068,6 +1095,6 @@ The base64-encoded User Data script to run on the server when it is booting. Thi
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.2/modules/openvpn-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d5a2462a2e167e4d47e78a9ad3d94171"
+  "hash": "f9626a825bb508863c204dbad81bbcec"
 }
 ##DOCS-SOURCER-END -->
