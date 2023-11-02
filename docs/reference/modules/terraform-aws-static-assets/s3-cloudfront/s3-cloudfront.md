@@ -300,6 +300,9 @@ module "s_3_cloudfront" {
   # The error responses you want CloudFront to return to the viewer.
   error_responses = null
 
+  # The name of an existing logging bucket to use instead of creating.
+  existing_s3_log_bucket_name = null
+
   # The website endpoints for each failover S3 bucket. This value of each should
   # be of the format <BUCKET_NAME>.s3-website-<AWS_REGION>.amazonaws.com. Only
   # used if var.s3_bucket_is_public_website is true, and if you are providing a
@@ -420,6 +423,10 @@ module "s_3_cloudfront" {
   # exactly one of var.use_cloudfront_default_certificate,
   # var.acm_certificate_arn, or var.iam_certificate_id.
   use_cloudfront_default_certificate = true
+
+  # Enable the use of CloudFront OAC. Enabling the use of OAC will disable
+  # Origin Access Identity (OAI)
+  use_cloudfront_origin_access_control = false
 
   # Use this element to specify the protocol that users can use to access the
   # files in the origin specified by TargetOriginId when a request matches the
@@ -596,6 +603,9 @@ inputs = {
   # The error responses you want CloudFront to return to the viewer.
   error_responses = null
 
+  # The name of an existing logging bucket to use instead of creating.
+  existing_s3_log_bucket_name = null
+
   # The website endpoints for each failover S3 bucket. This value of each should
   # be of the format <BUCKET_NAME>.s3-website-<AWS_REGION>.amazonaws.com. Only
   # used if var.s3_bucket_is_public_website is true, and if you are providing a
@@ -716,6 +726,10 @@ inputs = {
   # exactly one of var.use_cloudfront_default_certificate,
   # var.acm_certificate_arn, or var.iam_certificate_id.
   use_cloudfront_default_certificate = true
+
+  # Enable the use of CloudFront OAC. Enabling the use of OAC will disable
+  # Origin Access Identity (OAI)
+  use_cloudfront_origin_access_control = false
 
   # Use this element to specify the protocol that users can use to access the
   # files in the origin specified by TargetOriginId when a request matches the
@@ -1101,6 +1115,15 @@ The error responses you want CloudFront to return to the viewer.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="existing_s3_log_bucket_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of an existing logging bucket to use instead of creating.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="failover_bucket_website_endpoints" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1346,6 +1369,15 @@ Set to true if you want viewers to use HTTPS to request your objects and you're 
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="use_cloudfront_origin_access_control" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable the use of CloudFront OAC. Enabling the use of OAC will disable Origin Access Identity (OAI)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="viewer_protocol_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1400,6 +1432,9 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
 <HclListItem name="cloudfront_id">
 </HclListItem>
 
+<HclListItem name="cloudfront_origin_access_control_id">
+</HclListItem>
+
 <HclListItem name="cloudfront_origin_access_identity_iam_arn">
 </HclListItem>
 
@@ -1418,6 +1453,6 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.17.4/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "61171e65f045dde2ff03dec125f535be"
+  "hash": "2235a9afeb9ec5acf4a62403f1c12687"
 }
 ##DOCS-SOURCER-END -->
