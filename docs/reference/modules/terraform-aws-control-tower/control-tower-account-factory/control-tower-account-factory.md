@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="terraform-aws-control-tower" version="0.0.22" />
+<VersionBadge repoTitle="Control Tower" version="0.0.22" />
 
 # Control Tower Account Factory
 
@@ -375,6 +375,6 @@ The URL of the AWS SSO login page for this account
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.22/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ec7596b2276124d12fbd313778d6e6dd"
+  "hash": "5a51c30cbf6ac2944d7511dae41c0f82"
 }
 ##DOCS-SOURCER-END -->

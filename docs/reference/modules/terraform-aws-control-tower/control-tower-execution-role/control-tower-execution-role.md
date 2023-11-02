@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="terraform-aws-control-tower" version="0.0.22" />
+<VersionBadge repoTitle="Control Tower" version="0.0.22" />
 
 # Control Tower Execution Role
 
@@ -125,6 +125,6 @@ The ARN of the Control Tower Execution Role
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.22/modules/control-tower-execution-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c0a41300b2028105e57823532129e42c"
+  "hash": "88cc578e6d8f8621b57030296e530b9c"
 }
 ##DOCS-SOURCER-END -->

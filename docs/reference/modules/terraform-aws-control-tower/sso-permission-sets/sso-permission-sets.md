@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="terraform-aws-control-tower" version="0.0.22" />
+<VersionBadge repoTitle="Control Tower" version="0.0.22" />
 
 # SSO Permission Sets
 
@@ -280,6 +280,6 @@ The name of the permission set that was created.
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.22/modules/sso-permission-sets/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9670316959f8b97f3128c6e0cb9b7898"
+  "hash": "46357f6560899338f0d94c84f17b6f9d"
 }
 ##DOCS-SOURCER-END -->

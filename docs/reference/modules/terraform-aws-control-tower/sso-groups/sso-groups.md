@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="terraform-aws-control-tower" version="0.0.22" />
+<VersionBadge repoTitle="Control Tower" version="0.0.22" />
 
 # SSO Groups
 
@@ -216,6 +216,6 @@ ARN of the SSO Admin instance where the Permission Set should be provisioned. Th
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.22/modules/sso-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6c61ca3f540f90641791afa5031cda0e"
+  "hash": "91dd0e661f94d243a51979d917126314"
 }
 ##DOCS-SOURCER-END -->
