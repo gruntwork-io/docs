@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.106.1" lastModifiedVersion="0.100.0"/>
+<VersionBadge version="0.107.3" lastModifiedVersion="0.100.0"/>
 
 # Amazon EKS Core Services
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.106.1/modules/services/eks-core-services" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.3/modules/services/eks-core-services" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-core-services" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ For information on each of the core services deployed by this service, see the d
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.106.1/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.106.1/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.106.1/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.3/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.3/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ For information on each of the core services deployed by this service, see the d
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.106.1/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.3/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.106.1/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.3/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -108,7 +108,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "eks_core_services" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v0.106.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v0.107.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -381,14 +381,21 @@ module "eks_core_services" {
   # will allow all availability zones.
   fargate_worker_disallowed_availability_zones = ["us-east-1d","us-east-1e","ca-central-1d"]
 
+  # Can be used to add additional filter configuration blocks. This string
+  # should be formatted according to Fluent Bit docs, as it will be injected
+  # directly into the fluent-bit.conf file.
+  fluent_bit_additional_filters = ""
+
   # Can be used to add more inputs. This string should be formatted according to
   # Fluent Bit docs
   # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/classic-mode/configuration-file#config_input).
   fluent_bit_additional_inputs = ""
 
-  # Additional filters that fluent-bit should apply to log output. This string
-  # should be formatted according to the Fluent-bit docs
-  # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configuration-file#config_filter).
+  # Can be used to provide additional kubernetes plugin configuration parameters
+  # for the default kubernetes filter that is pre-configured in the
+  # aws-for-fluent-bit Helm chart. This string should be formatted according to
+  # Fluent Bit docs, as it will append to the default kubernetes filter
+  # configuration.
   fluent_bit_extra_filters = ""
 
   # Additional output streams that fluent-bit should export logs to. This string
@@ -524,7 +531,7 @@ module "eks_core_services" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v0.106.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v0.107.3"
 }
 
 inputs = {
@@ -800,14 +807,21 @@ inputs = {
   # will allow all availability zones.
   fargate_worker_disallowed_availability_zones = ["us-east-1d","us-east-1e","ca-central-1d"]
 
+  # Can be used to add additional filter configuration blocks. This string
+  # should be formatted according to Fluent Bit docs, as it will be injected
+  # directly into the fluent-bit.conf file.
+  fluent_bit_additional_filters = ""
+
   # Can be used to add more inputs. This string should be formatted according to
   # Fluent Bit docs
   # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/classic-mode/configuration-file#config_input).
   fluent_bit_additional_inputs = ""
 
-  # Additional filters that fluent-bit should apply to log output. This string
-  # should be formatted according to the Fluent-bit docs
-  # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configuration-file#config_filter).
+  # Can be used to provide additional kubernetes plugin configuration parameters
+  # for the default kubernetes filter that is pre-configured in the
+  # aws-for-fluent-bit Helm chart. This string should be formatted according to
+  # Fluent Bit docs, as it will append to the default kubernetes filter
+  # configuration.
   fluent_bit_extra_filters = ""
 
   # Additional output streams that fluent-bit should export logs to. This string
@@ -1905,6 +1919,15 @@ A list of availability zones in the region that we CANNOT use to deploy the EKS 
 </HclListItemDefaultValue>
 </HclListItem>
 
+<HclListItem name="fluent_bit_additional_filters" requirement="optional" type="string">
+<HclListItemDescription>
+
+Can be used to add additional filter configuration blocks. This string should be formatted according to Fluent Bit docs, as it will be injected directly into the fluent-bit.conf file.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
 <HclListItem name="fluent_bit_additional_inputs" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1917,7 +1940,7 @@ Can be used to add more inputs. This string should be formatted according to Flu
 <HclListItem name="fluent_bit_extra_filters" requirement="optional" type="string">
 <HclListItemDescription>
 
-Additional filters that fluent-bit should apply to log output. This string should be formatted according to the Fluent-bit docs (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configuration-file#config_filter).
+Can be used to provide additional kubernetes plugin configuration parameters for the default kubernetes filter that is pre-configured in the aws-for-fluent-bit Helm chart. This string should be formatted according to Fluent Bit docs, as it will append to the default kubernetes filter configuration.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
@@ -2283,11 +2306,11 @@ A list of names of Kubernetes PriorityClass objects created by this module.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.106.1/modules/services/eks-core-services/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.106.1/modules/services/eks-core-services/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.106.1/modules/services/eks-core-services/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.3/modules/services/eks-core-services/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.3/modules/services/eks-core-services/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.3/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b8bd38a25323ee172c548ba677534531"
+  "hash": "fe2f6cdb608226df4efbea272074752e"
 }
 ##DOCS-SOURCER-END -->
