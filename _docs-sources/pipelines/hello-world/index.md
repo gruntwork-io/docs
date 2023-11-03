@@ -86,26 +86,53 @@ In this tutorial, we will use a single GitHub Personal Access Token (PAT) with b
 In a production environment, we recommend using a mix of fine-grained and classic PATs as described in [Machine Users](../security/machine-users.md).
 :::
 
-Copy the script below and edit the exports at the top to match your git repo names and GitHub PAT, then run it while authenticated using the **GitHub CLI**
+The required secrets can be created using either the GitHub CLI or manually in the GitHub UI.
+
+<details>
+<summary>GitHub CLI</summary>
+
+Copy the script below and **edit the exports at the top** to match your git repo names and GitHub PAT, then run it while authenticated using the [**GitHub CLI**](https://cli.github.com/)
 
 ```bash
+export GHA_TOKEN=<YOUR_GITHUB_PAT> # This is the GitHub PAT you created in the prerequisites section
 export INFRA_LIVE_REPO_NAME=<YOUR_REPO_HERE>
 export INFRA_PIPELINES_REPO_NAME=<YOUR_REPO_HERE>
-export GHA_TOKEN=<YOUR_GITHUB_PAT> # This is the GitHub PAT you created in the prerequisites section
 
+# infrastructure-live secrets
 gh secret set INFRA_LIVE_ACCESS_TOKEN -a actions --repo $INFRA_LIVE_REPO_NAME -b $GHA_TOKEN;
 gh secret set GRUNTWORK_CODE_ACCESS_TOKEN -a actions --repo $INFRA_LIVE_REPO_NAME -b $GHA_TOKEN;
 gh secret set PIPELINES_DISPATCH_TOKEN -a actions --repo $INFRA_LIVE_REPO_NAME -b $GHA_TOKEN;
 
+# infrastructure-pipelines secrets
 gh secret set INFRA_LIVE_ACCESS_TOKEN -a actions --repo $INFRA_PIPELINES_REPO_NAME -b $GHA_TOKEN;
 gh secret set GRUNTWORK_CODE_ACCESS_TOKEN -a actions --repo $INFRA_PIPELINES_REPO_NAME -b $GHA_TOKEN;
 gh secret set PIPELINES_BOOTSTRAP_TOKEN -a actions --repo $INFRA_PIPELINES_REPO_NAME -b $GHA_TOKEN;
 ```
 
+</details>
+
+<details>
+<summary>GitHub UI</summary>
+
+First, navigate to the `infrastructure-live` repository. Select the `Settings` tab, select the `Secrets and variables` drop down on the left side panel, then select `Actions`. Create the following secrets and use your GitHub PAT(created earlier in the the prerequisites section) as the value for all of them:
+
+- `INFRA_LIVE_ACCESS_TOKEN`
+- `GRUNTWORK_CODE_ACCESS_TOKEN`
+- `PIPELINES_DISPATCH_TOKEN`
+
+Next, navigate to the `infrastructure-pipelines` repository. Select the `Settings` tab, select the `Secrets and variables` drop down on the left side panel, then select `Actions`. Create the following secrets and use your GitHub PAT(created earlier in the the prerequisites section) as the value for all of them:
+
+- `INFRA_LIVE_ACCESS_TOKEN`
+- `GRUNTWORK_CODE_ACCESS_TOKEN`
+- `PIPELINES_BOOTSTRAP_TOKEN`
+
+</details>
+
+
 ## Generating code
 
-In this section, you’ll generate the IaC and GitHub Actions workflow code required to run Gruntwork Pipelines using our Bootstrap GitHub Action Workflow
-included in your repository that was generated with the Gruntwork template repos.
+In this section, you’ll generate the IaC and GitHub Actions workflow code required to run Gruntwork Pipelines using the `bootstrap.yml` workflow
+included in your repository when it was generated with the Gruntwork template repository.
 
 
 ### Infrastructure-pipelines
