@@ -19,7 +19,7 @@ Before you begin, make sure you have:
 
 - Permissions to create and administer repositories in GitHub
 - A sandbox or development AWS account
-- Valid [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) for a user with AdministratorAccess to the AWS account mentioned above
+- Valid [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) for a user with AdministratorAccess to the AWS account mentioned above. Use [version 2](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) of the *AWS CLI* if that's your preferred method of authentication.
 - [Terragrunt](https://terragrunt.gruntwork.io/) installed on your system
 - A GitHub user with an active **Gruntwork Subscription** for creating a [classic GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with `repo` & `workflow` scopes as well as access to Gruntwork packages
   :::info
