@@ -19,7 +19,7 @@ Before you begin, make sure you have:
 
 - Permissions to create and administer repositories in GitHub
 - A sandbox or development AWS account
-- Valid [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) for a user with AdministratorAccess to the AWS account mentioned above
+- Valid [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) for a user with AdministratorAccess to the AWS account mentioned above. Use [version 2](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) of the *AWS CLI* if that's your preferred method of authentication.
 - [Terragrunt](https://terragrunt.gruntwork.io/) installed on your system
 - A GitHub user with an active **Gruntwork Subscription** for creating a [classic GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with `repo` & `workflow` scopes as well as access to Gruntwork packages
   :::info
@@ -86,26 +86,53 @@ In this tutorial, we will use a single GitHub Personal Access Token (PAT) with b
 In a production environment, we recommend using a mix of fine-grained and classic PATs as described in [Machine Users](../security/machine-users.md).
 :::
 
-Copy the script below and edit the exports at the top to match your git repo names and GitHub PAT, then run it while authenticated using the **GitHub CLI**
+The required secrets can be created using either the GitHub CLI or manually in the GitHub UI.
+
+<details>
+<summary>GitHub CLI</summary>
+
+Copy the script below and **edit the exports at the top** to match your git repo names and GitHub PAT, then run it while authenticated using the [**GitHub CLI**](https://cli.github.com/)
 
 ```bash
+export GHA_TOKEN=<YOUR_GITHUB_PAT> # This is the GitHub PAT you created in the prerequisites section
 export INFRA_LIVE_REPO_NAME=<YOUR_REPO_HERE>
 export INFRA_PIPELINES_REPO_NAME=<YOUR_REPO_HERE>
-export GHA_TOKEN=<YOUR_GITHUB_PAT> # This is the GitHub PAT you created in the prerequisites section
 
+# infrastructure-live secrets
 gh secret set INFRA_LIVE_ACCESS_TOKEN -a actions --repo $INFRA_LIVE_REPO_NAME -b $GHA_TOKEN;
 gh secret set GRUNTWORK_CODE_ACCESS_TOKEN -a actions --repo $INFRA_LIVE_REPO_NAME -b $GHA_TOKEN;
 gh secret set PIPELINES_DISPATCH_TOKEN -a actions --repo $INFRA_LIVE_REPO_NAME -b $GHA_TOKEN;
 
+# infrastructure-pipelines secrets
 gh secret set INFRA_LIVE_ACCESS_TOKEN -a actions --repo $INFRA_PIPELINES_REPO_NAME -b $GHA_TOKEN;
 gh secret set GRUNTWORK_CODE_ACCESS_TOKEN -a actions --repo $INFRA_PIPELINES_REPO_NAME -b $GHA_TOKEN;
 gh secret set PIPELINES_BOOTSTRAP_TOKEN -a actions --repo $INFRA_PIPELINES_REPO_NAME -b $GHA_TOKEN;
 ```
 
+</details>
+
+<details>
+<summary>GitHub UI</summary>
+
+First, navigate to the `infrastructure-live` repository. Select the `Settings` tab, select the `Secrets and variables` drop down on the left side panel, then select `Actions`. Create the following secrets and use your GitHub PAT(created earlier in the the prerequisites section) as the value for all of them:
+
+- `INFRA_LIVE_ACCESS_TOKEN`
+- `GRUNTWORK_CODE_ACCESS_TOKEN`
+- `PIPELINES_DISPATCH_TOKEN`
+
+Next, navigate to the `infrastructure-pipelines` repository. Select the `Settings` tab, select the `Secrets and variables` drop down on the left side panel, then select `Actions`. Create the following secrets and use your GitHub PAT(created earlier in the the prerequisites section) as the value for all of them:
+
+- `INFRA_LIVE_ACCESS_TOKEN`
+- `GRUNTWORK_CODE_ACCESS_TOKEN`
+- `PIPELINES_BOOTSTRAP_TOKEN`
+
+</details>
+
+
 ## Generating code
 
-In this section, you’ll generate the IaC and GitHub Actions workflow code required to run Gruntwork Pipelines using our Bootstrap GitHub Action Workflow
-included in your repository that was generated with the Gruntwork template repos.
+In this section, you’ll generate the IaC and GitHub Actions workflow code required to run Gruntwork Pipelines using the `bootstrap.yml` workflow
+included in your repository when it was generated with the Gruntwork template repository.
 
 
 ### Infrastructure-pipelines
@@ -209,6 +236,6 @@ If you are not going to continue using Pipelines after this tutorial, clean up t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b5c612b5738f1da133789ce89823cf30"
+  "hash": "ca7c75dcfa48c100b21d27967cb07eaf"
 }
 ##DOCS-SOURCER-END -->
