@@ -15,6 +15,7 @@ Here are the repos that were updated:
 - [terraform-aws-asg](#terraform-aws-asg)
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-cis-service-catalog](#terraform-aws-cis-service-catalog)
+- [terraform-aws-control-tower](#terraform-aws-control-tower)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
@@ -335,6 +336,43 @@ patcher update --skip-container-runtime
 
 
 
+## terraform-aws-control-tower
+
+
+### [v0.0.2](https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/25/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * [CORE-1111] Use top-level account requests folder by @oredavids in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/2
+
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-control-tower/compare/v0.0.1...v0.0.2
+
+</div>
+
+
+### [v0.0.1](https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/25/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Add control tower modules and templates for account creation by @oredavids in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/1
+
+* @oredavids made their first contribution in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/1
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-control-tower/commits/v0.0.1
+
+</div>
+
+
+
 ## terraform-aws-ecs
 
 
@@ -618,6 +656,6 @@ Remove deprecated eks version 1.22
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "d55615b903a715e953c3514961dd7d9e"
+  "hash": "4827202207a738576aefac9c3efb2eba"
 }
 ##DOCS-SOURCER-END -->

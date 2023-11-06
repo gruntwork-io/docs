@@ -15,6 +15,7 @@ Here are the repos that were updated:
 - [repo-copier](#repo-copier)
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-cis-service-catalog](#terraform-aws-cis-service-catalog)
+- [terraform-aws-control-tower](#terraform-aws-control-tower)
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-eks](#terraform-aws-eks)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
@@ -141,6 +142,21 @@ This release includes the following improvements:
 ## terraform-aws-cis-service-catalog
 
 
+### [v0.48.1](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.48.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 9/8/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.48.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Updated `add-tflint-hook-cis-rules` patch
+
+
+
+</div>
+
+
 ### [v0.48.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.48.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -156,6 +172,26 @@ This release includes the following improvements:
 
 Updated for aws provider v5 compatibility. See Migration Guide for breaking changes.
 
+
+</div>
+
+
+
+## terraform-aws-control-tower
+
+
+### [v0.0.16](https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.16)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 9/6/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.16">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * some fixes by @ellisonc in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/18
+
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-control-tower/compare/v0.0.15...v0.0.16
 
 </div>
 
@@ -458,6 +494,6 @@ Updated for aws provider v5 compatibility. See Migration Guide for breaking chan
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "2eeeaad471029d4f25a9737e2f59ada8"
+  "hash": "ca61c5febef8cf90cb2e89d94dc1862a"
 }
 ##DOCS-SOURCER-END -->

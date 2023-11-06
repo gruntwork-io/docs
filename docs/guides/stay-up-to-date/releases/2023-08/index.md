@@ -11,11 +11,13 @@ documentation](/library/stay-up-to-date/updating).
 Here are the repos that were updated:
 
 - [patcher-cli](#patcher-cli)
+- [pipelines-cli](#pipelines-cli)
 - [repo-copier](#repo-copier)
 - [terraform-aws-asg](#terraform-aws-asg)
 - [terraform-aws-cache](#terraform-aws-cache)
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-cis-service-catalog](#terraform-aws-cis-service-catalog)
+- [terraform-aws-control-tower](#terraform-aws-control-tower)
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
@@ -30,6 +32,7 @@ Here are the repos that were updated:
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
 - [terraform-aws-utilities](#terraform-aws-utilities)
 - [terraform-aws-vpc](#terraform-aws-vpc)
+- [terrapatch-cli](#terrapatch-cli)
 
 
 ## patcher-cli
@@ -50,6 +53,88 @@ This release includes the following improvements:
   - Any changes to the semver major version number are treated as breaking changes
   - Changes in the semver minor and patch numbers are treated as safe changes
 
+
+</div>
+
+
+
+## pipelines-cli
+
+
+### [v0.1.5](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.1.5)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/30/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.1.5">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.1.5
+
+</div>
+
+
+### [v0.1.4](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.1.4)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/29/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.1.4">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.1.4
+
+</div>
+
+
+### [v0.1.3](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.1.3)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/29/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.1.3">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.1.3
+
+</div>
+
+
+### [v0.1.2](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.1.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/23/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.1.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.1.2
+
+</div>
+
+
+### [v0.1.1](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.1.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/22/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.1.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.1.1
+
+</div>
+
+
+### [v0.1.0](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.1.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/17/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.1.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.1.0
 
 </div>
 
@@ -226,6 +311,220 @@ This release includes the following improvements:
 - Updated change logs entries to v0.47.9
 
 
+
+</div>
+
+
+
+## terraform-aws-control-tower
+
+
+### [v0.0.15](https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.15)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/23/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.15">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * CORE-1037 Security Account Baselines by @ellisonc in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/16
+
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-control-tower/compare/v0.0.14...v0.0.15
+
+</div>
+
+
+### [v0.0.14](https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.14)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/11/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.14">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Add parallelism block to terraform block in account baseline by @MoonMoon1919 in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/15
+
+* @MoonMoon1919 made their first contribution in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/15
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-control-tower/compare/v0.0.13...v0.0.14
+
+</div>
+
+
+### [v0.0.13](https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.13)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/11/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.13">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * add service quota for network acl by @ellisonc in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/14
+
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-control-tower/compare/v0.0.12...v0.0.13
+
+</div>
+
+
+### [v0.0.12](https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.12)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/11/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.12">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * provide a cidr block in default vpc module by @ellisonc in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/13
+
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-control-tower/compare/v0.0.11...v0.0.12
+
+</div>
+
+
+### [v0.0.11](https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.11)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/11/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.11">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * add region.hcl file by @ellisonc in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/12
+
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-control-tower/compare/v0.0.10...v0.0.11
+
+</div>
+
+
+### [v0.0.10](https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.10)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/11/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.10">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * fix other modules by @ellisonc in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/11
+
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-control-tower/compare/v0.0.9...v0.0.10
+
+</div>
+
+
+### [v0.0.9](https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.9)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/10/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.9">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Add VPC template to account baselines and account-request templates by @ellisonc in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/10
+
+* @ellisonc made their first contribution in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/10
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-control-tower/compare/v0.0.8...v0.0.9
+
+</div>
+
+
+### [v0.0.8](https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.8)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/9/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.8">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Add auto-generation notice and rename some template variables by @oredavids in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/9
+
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-control-tower/compare/v0.0.7...v0.0.8
+
+</div>
+
+
+### [v0.0.7](https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.7)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/9/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.7">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Update the factory template with additional info by @oredavids in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/8
+
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-control-tower/compare/v0.0.6...v0.0.7
+
+</div>
+
+
+### [v0.0.6](https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.6)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/8/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.6">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Add github-oidc module to account baseline template by @oredavids in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/7
+
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-control-tower/compare/v0.0.5...v0.0.6
+
+</div>
+
+
+### [v0.0.5](https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.5)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/3/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.5">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Fix ternary logic for unspecified accounts.yml variable by @oredavids in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/6
+
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-control-tower/compare/v0.0.4...v0.0.5
+
+</div>
+
+
+### [v0.0.4](https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.4)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/3/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.4">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * [CORE-1111] Fix accounts.yaml bugs by @oredavids in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/5
+
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-control-tower/compare/v0.0.3...v0.0.4
+
+</div>
+
+
+### [v0.0.3](https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.3)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/2/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.0.3">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * [CORE-1111] Split factory and baseline templates by @oredavids in https://github.com/gruntwork-io/terraform-aws-control-tower/pull/4
+
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-control-tower/compare/v0.0.2...v0.0.3
 
 </div>
 
@@ -530,7 +829,7 @@ This release includes the following improvements:
 
   
 
-- Updated to support AWS Provider v5
+- Updated to support AWS Provider v5 
 
 
 
@@ -747,10 +1046,40 @@ This release includes the following improvements:
 
 
 
+## terrapatch-cli
+
+
+### [v0.1.3](https://github.com/gruntwork-io/terrapatch-cli/releases/tag/v0.1.3)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/16/2023 | <a href="https://github.com/gruntwork-io/terrapatch-cli/releases/tag/v0.1.3">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  Release duplicated from https://github.com/gruntwork-io/terrapatch/releases/tag/v0.1.3
+
+</div>
+
+
+### [v0.1.2](https://github.com/gruntwork-io/terrapatch-cli/releases/tag/v0.1.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/11/2023 | <a href="https://github.com/gruntwork-io/terrapatch-cli/releases/tag/v0.1.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  Release duplicated from https://github.com/gruntwork-io/terrapatch/releases/tag/v0.1.2
+
+</div>
+
+
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "999bd608135cdd2ac1cd9be242ce508f"
+  "hash": "134094027f909b32fcb62a049cd0414c"
 }
 ##DOCS-SOURCER-END -->
