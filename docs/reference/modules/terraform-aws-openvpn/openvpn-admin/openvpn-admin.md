@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Open VPN Package Infrastructure Package" version="0.27.2" lastModifiedVersion="0.26.2"/>
+<VersionBadge repoTitle="Open VPN Package Infrastructure Package" version="0.27.3" lastModifiedVersion="0.27.3"/>
 
 # openvpn-admin
 
-<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.2/modules/openvpn-admin" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.3/modules/openvpn-admin" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.26.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.27.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module contains a command-line utility that allows users to request new certificates, administrators to revoke
 certificates and the OpenVPN server to process those requests.
@@ -32,11 +32,11 @@ certificates and the OpenVPN server to process those requests.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.2/modules/openvpn-admin/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.2/modules/openvpn-admin/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.2/modules/openvpn-admin/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.3/modules/openvpn-admin/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.3/modules/openvpn-admin/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.3/modules/openvpn-admin/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "22201f32ae54e8d938ea13d64e9cb8bb"
+  "hash": "f455883629bd3d914ccad53fcc9fdfab"
 }
 ##DOCS-SOURCER-END -->
