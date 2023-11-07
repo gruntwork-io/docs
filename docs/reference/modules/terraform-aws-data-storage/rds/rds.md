@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.31.4" lastModifiedVersion="0.31.4"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.32" lastModifiedVersion="0.32"/>
 
 # RDS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.31.4/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.31.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.32" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Relational Database Service (RDS) cluster that can run MySQL, Postgres, MariaDB, Oracle,
 or SQL Server. The cluster is managed by AWS and automatically handles standby failover, read replicas, backups,
@@ -95,7 +95,7 @@ Tunneling) before you can connect to the database.
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.31.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.32"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -233,6 +233,11 @@ module "rds" {
 
   # Timeout for DB creating
   creating_timeout = "40m"
+
+  # Configure a custom parameter group for the RDS DB. This will create a new
+  # parameter group with the given parameters. When null, the database will be
+  # launched with the default parameter group.
+  custom_parameter_group = null
 
   # A map of custom tags to apply to the RDS Instance and the Security Group
   # created for it. The key is the tag name and the value is the tag value.
@@ -450,7 +455,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.31.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.32"
 }
 
 inputs = {
@@ -591,6 +596,11 @@ inputs = {
 
   # Timeout for DB creating
   creating_timeout = "40m"
+
+  # Configure a custom parameter group for the RDS DB. This will create a new
+  # parameter group with the given parameters. When null, the database will be
+  # launched with the default parameter group.
+  custom_parameter_group = null
 
   # A map of custom tags to apply to the RDS Instance and the Security Group
   # created for it. The key is the tag name and the value is the tag value.
@@ -1065,6 +1075,82 @@ Timeout for DB creating
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;40m&quot;"/>
+</HclListItem>
+
+<HclListItem name="custom_parameter_group" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Configure a custom parameter group for the RDS DB. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    # Name of the parameter group to create
+    name = string
+
+    # The family of the DB parameter group.
+    family = string
+
+    # The parameters to configure on the created parameter group.
+    parameters = list(object({
+      # Parameter name to configure.
+      name = string
+
+      # Vaue to set the parameter.
+      value = string
+
+      # When to apply the parameter. "immediate" or "pending-reboot".
+      apply_method = string
+    }))
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     The family of the DB parameter group.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The parameters to configure on the created parameter group.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Vaue to set the parameter.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       When to apply the parameter. "immediate" or "pending-reboot".
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="custom_tags" requirement="optional" type="map(string)">
@@ -1543,11 +1629,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.31.4/modules/rds/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.31.4/modules/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.31.4/modules/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/rds/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "008bf875aa526b423346654bb3c7314f"
+  "hash": "d9d6d70443bb37a6070a15c18880c90d"
 }
 ##DOCS-SOURCER-END -->
