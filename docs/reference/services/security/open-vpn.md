@@ -114,14 +114,14 @@ module "openvpn_server" {
   allow_vpn_from_cidr_list = <list(string)>
 
   # The AMI to run on the OpenVPN Server. This should be built from the Packer
-  # template under openvpn-server.json. One of var.ami or var.ami_filters is
-  # required. Set to null if looking up the ami with filters.
+  # template under openvpn-server-ubuntu.pkr.hcl. One of var.ami or
+  # var.ami_filters is required. Set to null if looking up the ami with filters.
   ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with
   # the OpenVPN server. You can build the AMI using the Packer template
-  # openvpn-server.json. Only used if var.ami is null. One of var.ami or
-  # var.ami_filters is required. Set to null if passing the ami ID directly.
+  # openvpn-server-ubuntu.pkr.hcl. Only used if var.ami is null. One of var.ami
+  # or var.ami_filters is required. Set to null if passing the ami ID directly.
   ami_filters = <object(
     owners = list(string)
     filters = list(object(
@@ -222,8 +222,8 @@ module "openvpn_server" {
   create_route53_entry = false
 
   # The default OS user for the OpenVPN AMI. For AWS Ubuntu AMIs, which is what
-  # the Packer template in openvpn-server.json uses, the default OS user is
-  # 'ubuntu'.
+  # the Packer template in openvpn-server-ubuntu.pkr.hcl uses, the default OS
+  # user is 'ubuntu'.
   default_user = "ubuntu"
 
   # The domain name to use for the OpenVPN server. Only used if
@@ -451,14 +451,14 @@ inputs = {
   allow_vpn_from_cidr_list = <list(string)>
 
   # The AMI to run on the OpenVPN Server. This should be built from the Packer
-  # template under openvpn-server.json. One of var.ami or var.ami_filters is
-  # required. Set to null if looking up the ami with filters.
+  # template under openvpn-server-ubuntu.pkr.hcl. One of var.ami or
+  # var.ami_filters is required. Set to null if looking up the ami with filters.
   ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with
   # the OpenVPN server. You can build the AMI using the Packer template
-  # openvpn-server.json. Only used if var.ami is null. One of var.ami or
-  # var.ami_filters is required. Set to null if passing the ami ID directly.
+  # openvpn-server-ubuntu.pkr.hcl. Only used if var.ami is null. One of var.ami
+  # or var.ami_filters is required. Set to null if passing the ami ID directly.
   ami_filters = <object(
     owners = list(string)
     filters = list(object(
@@ -559,8 +559,8 @@ inputs = {
   create_route53_entry = false
 
   # The default OS user for the OpenVPN AMI. For AWS Ubuntu AMIs, which is what
-  # the Packer template in openvpn-server.json uses, the default OS user is
-  # 'ubuntu'.
+  # the Packer template in openvpn-server-ubuntu.pkr.hcl uses, the default OS
+  # user is 'ubuntu'.
   default_user = "ubuntu"
 
   # The domain name to use for the OpenVPN server. Only used if
@@ -787,7 +787,7 @@ A list of IP address ranges in CIDR format from which VPN access will be permitt
 <HclListItem name="ami" requirement="required" type="string">
 <HclListItemDescription>
 
-The AMI to run on the OpenVPN Server. This should be built from the Packer template under openvpn-server.json. One of <a href="#ami"><code>ami</code></a> or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if looking up the ami with filters.
+The AMI to run on the OpenVPN Server. This should be built from the Packer template under openvpn-server-ubuntu.pkr.hcl. One of <a href="#ami"><code>ami</code></a> or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if looking up the ami with filters.
 
 </HclListItemDescription>
 </HclListItem>
@@ -795,7 +795,7 @@ The AMI to run on the OpenVPN Server. This should be built from the Packer templ
 <HclListItem name="ami_filters" requirement="required" type="object(…)">
 <HclListItemDescription>
 
-Properties on the AMI that can be used to lookup a prebuilt AMI for use with the OpenVPN server. You can build the AMI using the Packer template openvpn-server.json. Only used if <a href="#ami"><code>ami</code></a> is null. One of <a href="#ami"><code>ami</code></a> or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly.
+Properties on the AMI that can be used to lookup a prebuilt AMI for use with the OpenVPN server. You can build the AMI using the Packer template openvpn-server-ubuntu.pkr.hcl. Only used if <a href="#ami"><code>ami</code></a> is null. One of <a href="#ami"><code>ami</code></a> or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1034,7 +1034,7 @@ Set to true to add <a href="#domain_name"><code>domain_name</code></a> as a Rout
 <HclListItem name="default_user" requirement="optional" type="string">
 <HclListItemDescription>
 
-The default OS user for the OpenVPN AMI. For AWS Ubuntu AMIs, which is what the Packer template in openvpn-server.json uses, the default OS user is 'ubuntu'.
+The default OS user for the OpenVPN AMI. For AWS Ubuntu AMIs, which is what the Packer template in openvpn-server-ubuntu.pkr.hcl uses, the default OS user is 'ubuntu'.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;ubuntu&quot;"/>
@@ -1526,6 +1526,6 @@ The security group ID of the OpenVPN server.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.3/modules/mgmt/openvpn-server/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f2e52f9919793bd6c78434789dbd4b52"
+  "hash": "906750a928d2de92e7100ed72def31c9"
 }
 ##DOCS-SOURCER-END -->
