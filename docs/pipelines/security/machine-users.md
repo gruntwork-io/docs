@@ -38,6 +38,7 @@ First, invite the `ci-user` to both your `infrastructure-live` and `infrastructu
     - Issues read & write access
     - Metadata read access
     - Pull Requests read & write access
+    - Workflows read & write access
 
     ![INFRA_LIVE_ACCESS PAT Configuration](/img/pipelines/security/INFRA_LIVE_ACCESS.png)
 
@@ -110,6 +111,6 @@ In the `infrastructure-pipelines` repository create the following secrets:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "f2667e734db0905a9e0d72097394c8ae"
+  "hash": "ea102d44941e9ea93e16aec5da671ece"
 }
 ##DOCS-SOURCER-END -->
