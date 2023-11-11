@@ -59,6 +59,7 @@ First, invite the `ci-user` to both your `infrastructure-live` and `infrastructu
     - Contents read & write access
     - Metadata read access
     - Pull Requests read & write access
+    - Workflows read & write access
 
     ![PIPELINES_BOOTSTRAP PAT Configuration](/img/pipelines/security/PIPELINES_BOOTSTRAP.png)
 
