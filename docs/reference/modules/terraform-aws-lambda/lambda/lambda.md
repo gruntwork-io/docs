@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.15" lastModifiedVersion="0.21.15"/>
+<VersionBadge repoTitle="AWS Lambda" version="0.21.16" lastModifiedVersion="0.21.16"/>
 
 # Lambda Function Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.15/modules/lambda" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.16/modules/lambda" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.15" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.16" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy and manage an [AWS Lambda](https://aws.amazon.com/lambda/) function. Lambda gives
 you a way to run code on-demand in AWS without having to manage servers.
@@ -105,7 +105,7 @@ Lambda function are still in use. If necessary, the variable `enable_eni_cleanup
 of the function from the VPC during `terraform destroy` and unblock the Security Group for destruction. Note: this
 requires the [`aws` cli tool](https://aws.amazon.com/cli/) to be installed.
 
-Check out the [lambda-vpc example](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.15/examples/lambda-vpc) for working sample code. Make sure to note the Known Issues
+Check out the [lambda-vpc example](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.16/examples/lambda-vpc) for working sample code. Make sure to note the Known Issues
 section in that example's README.
 
 ## How do you share Lambda functions across multiple AWS accounts?
@@ -153,7 +153,7 @@ If you want to have a central S3 bucket that you use as a repository for your La
 
 module "lambda" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v0.21.15"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v0.21.16"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -453,7 +453,7 @@ module "lambda" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v0.21.15"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v0.21.16"
 }
 
 inputs = {
@@ -1325,11 +1325,11 @@ Name of the (optionally) created CloudWatch log group for the lambda function.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.15/modules/lambda/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.15/modules/lambda/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.15/modules/lambda/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.16/modules/lambda/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.16/modules/lambda/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.16/modules/lambda/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a5bcfc550bafd34f2f7125e905dd0e88"
+  "hash": "de8bc3d9c69d483d180d7c077093a67a"
 }
 ##DOCS-SOURCER-END -->
