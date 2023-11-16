@@ -6,46 +6,50 @@ This document provides instructions for provisioning a new AWS account using Gru
 
 Before proceeding, ensure you have:
 
-- A repository named `infrastructure-live` which contains the [`control-tower-multi-account-factory` module](https://GitHub.com/gruntwork-io/terraform-aws-control-tower/tree/main/modules/landingzone/control-tower-multi-account-factory) configured in the root account. Use the [Gruntwork infrastructure-live template](/foundations/iac-foundations/initial-setup#infrastructure-live-template) to create your repository if you do not already have one.
-- An installation of [Gruntwork Pipelines](/pipelines/overview)
+1. An `infrastructure-live` repository created from the [Gruntwork infrastructure-live template](/foundations/iac-foundations/initial-setup#infrastructure-live-template).
+
+  :::info
+
+  If you are just now creating your `infrastructure-live` repo, be sure to follow the Bootstrap steps in the `infrastructure-live` Readme to complete the setup before proceeding. 
+
+  :::
+
+1. An `infrastructure-pipelines` repository created from the [Gruntwork infrastructure-pipelines template](/foundations/iac-foundations/initial-setup#infrastructure-pipelines-template).
+  :::info
+
+  If you are just now creating your `infrastructure-pipelines` repo, be sure to follow the Bootstrap steps in the `infrastructure-pipelines` Readme to complete the setup before proceeding. 
+
+  :::
+
+1. An installation of [Gruntwork Pipelines](/pipelines/overview)
+
+1. Access tokens and secrets configured for both `infrastructure-live` and `infrastructure-pipelines` repos
+
+  :::info
+
+  Your GitHub org MUST have fine-grained personal access tokens enabled before you can create the access tokens and secrets!
+
+  :::
+
+  :::info
+
+  Instructions for configuring access tokens and secrets can be found in the respective repo Readme files, as well as in [the Machine Users](/pipelines/security/machine-users) guide.
+
+  :::
 
 ## 1. Create an AWS account request file
 
-To initiate the process, create an `account-<AWS-ACCOUNT-NAME>.yml` file in the `_new-account-requests` folder located in the root of your `infrastructure-live` repository. This file will be used to create a pull request and add the new account to your organization. The file should have the following format:
+To initiate the process, you will use the GitHub Actions workflow in your `infrastructure-live` repo.
 
-```yaml account-<AWS-ACCOUNT-NAME>.yml
-account_name: <AWS-ACCOUNT_NAME>
-account_email: <ROOT-EMAIL-FOR-ACCOUNT>
-organizational_unit_name: <OU-TO-ADD-ACCOUNT-TO>
-aws_region: <REGION-T0-DEPLOY-BASELINES>
-org_name_prefix: <ORG-NAME-PREFIX-FOR-RESOURCES>
-sso_user_first_name: <SSO-USER-FIRST-NAME>
-sso_user_last_name: <SSO-USER-LAST-NAME>
-sso_user_email: <SSO-USER-EMAIL>
-account_baseline_modules_version: <ACCOUNT-BASELINE-MODULES-VERSION>
-requested_by: <GITHUB_USER_ID_OR_EMAIL>
-```
+1. Navigate to your `infrastructure-live` repo and select the **Actions** tab.
 
-- `account_name`: The name of the account in AWS.
-- `account_email`: The email address to associate with the account.
-- `organizational_unit_name`: The name of the Organizational Unit(OU) where the new account will be added. Ensure this exactly matches an existing OU name in your organization, for example, “Security”.
-- `aws_region`: The AWS region where the Gruntwork account baselines will be deployed. e.g., `us-east-1`.
-- `org_name_prefix`: The prefix to use for some resources created by Gruntwork modules. For instance, S3 bucket files will be prefixed with this value
-- `sso_user_first_name`: The first name of the user to create in AWS IAM Identity Center (Successor to AWS Single Sign-On(SSO)).
-- `sso_user_last_name`: The last name of the user to create in AWS IAM Identity Center.
-- `sso_user_email`: The email address of the user to create in AWS IAM Identity Center. This user will be able to login to the new account using AWS IAM Identity Center.
-- `account_baseline_modules_version`: The version of the your account baseline modules to use for the new account. e.g., `v0.0.1`
-- `requested_by`: The GitHub user ID or email address of the entity requesting the new account, for audit purposes.
+1. Select the **Account Factory** workflow
 
-:::note
+1. Select the **Run Workflow** dropdown menu and fill in the parameters
 
-If you have configured GitHub Actions in your `infrastructure-live` repository with a Gruntwork Landing Zone Account Factory workflow, you can invoke that workflow via the GitHub UI or programmatically. This workflow will automatically create the account request file and open a pull request on your behalf. After doing so, jump to [step 3](#3-review-and-merge-the-account-request-pr).
+1. Select **Run Workflow** to kick off the process.
 
-:::
-
-## 2. Create a pull request
-
-Next, create a pull request containing the new account request file. This action will trigger the Gruntwork pipeline to `terragrunt plan` the new account and update the pull request with the plan output.
+The workflow will automatically create a PR to be reviewed.
 
 ## 3. Review and merge the account request PR
 

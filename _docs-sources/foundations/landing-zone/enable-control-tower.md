@@ -102,20 +102,32 @@ Now that Control Tower is enabled in your root account, there are a few configur
 prepare for Gruntwork Landing Zone.
 
 1. Navigate to the [AWS Control Tower Organization Dashboard](https://console.aws.amazon.com/controltower/home/organization)
+
 1. [Turn off the default VPC created for new accounts](https://docs.aws.amazon.com/controltower/latest/userguide/configure-without-vpc.html#create-without-vpc). Gruntwork VPCs will be created for each account using terraform.
+
 1. Choose **Create Resources** and select `Create organizational unit`.
+
 1. Create a **Prod** OU. Select the Root OU as the Parent OU when prompted. Each OU registration takes a couple of minutes.
+
 1. Choose **Create Resources** again and select `Create account`
+
 1. Name the account `Shared` and set the Organizational Unit to `Prod`
+
    :::tip
    The shared account is meant to house resources shared with all other accounts. Examples might include KMS Keys, AMIs,
    or ECR repositories.
    :::
+
 1. Grant your IAM Identity Center user access to the `Shared` account
+
    1. Navigate to IAM Identity Center, then click AWS accounts under **Multi-account permissions** in the side menu
+
    1. Select the `Shared` account from the `Prod` OU dropdown and click **Assign users or groups**
+
    1. Switch to the `Users` tab, select your management user from the list and click **Next**
+
    1. Select `AdministratorAccess` from the list of Permission Sets, then click **Next**
+   
    1. Click `Submit` to finish assigning access to your user
 
 ## Next Steps
