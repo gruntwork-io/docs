@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.9" lastModifiedVersion="0.26.9"/>
+<VersionBadge repoTitle="VPC Modules" version="0.26.10" lastModifiedVersion="0.26.10"/>
 
 # IPv6
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.9/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.10/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 ## What's a VPC?
 
@@ -73,7 +73,7 @@ nearly all use-cases, and is consistent with many examples and existing document
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.9/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.10/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
 
 ## IPv6 Design
 
@@ -111,7 +111,7 @@ module "vpc_app_ipv6_example" {
 
 module "vpc_app" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.9"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.10"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -287,6 +287,12 @@ module "vpc_app" {
   # the VPC. Defaults false.
   enable_network_address_usage_metrics = false
 
+  # (Optional) A boolean flag to enable/disable a private NAT gateway. If this
+  # is set to true, it will disable public NAT gateways. Private NAT gateways
+  # are deployed into transit subnets and require setting
+  # 'var.create_transit_subnets = true'. Defaults false.
+  enable_private_nat = false
+
   # The amount of spacing between the different subnet types when all subnets
   # are present, such as the transit subnets.
   global_subnet_spacing = 6
@@ -332,6 +338,11 @@ module "vpc_app" {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   nat_gateway_custom_tags = {}
+
+  # (Optional) The number of secondary private IP addresses to assign to each
+  # NAT gateway. These IP addresses are used for source NAT (SNAT) for the
+  # instances in the private subnets. Defaults to 0.
+  nat_secondary_private_ip_address_count = 0
 
   # How many AWS Availability Zones (AZs) to use. One subnet of each type
   # (public, private app, private persistence) will be created in each AZ. All
@@ -543,7 +554,7 @@ module "vpc_app" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.9"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.10"
 }
 
 inputs = {
@@ -722,6 +733,12 @@ inputs = {
   # the VPC. Defaults false.
   enable_network_address_usage_metrics = false
 
+  # (Optional) A boolean flag to enable/disable a private NAT gateway. If this
+  # is set to true, it will disable public NAT gateways. Private NAT gateways
+  # are deployed into transit subnets and require setting
+  # 'var.create_transit_subnets = true'. Defaults false.
+  enable_private_nat = false
+
   # The amount of spacing between the different subnet types when all subnets
   # are present, such as the transit subnets.
   global_subnet_spacing = 6
@@ -767,6 +784,11 @@ inputs = {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   nat_gateway_custom_tags = {}
+
+  # (Optional) The number of secondary private IP addresses to assign to each
+  # NAT gateway. These IP addresses are used for source NAT (SNAT) for the
+  # instances in the private subnets. Defaults to 0.
+  nat_secondary_private_ip_address_count = 0
 
   # How many AWS Availability Zones (AZs) to use. One subnet of each type
   # (public, private app, private persistence) will be created in each AZ. All
@@ -1373,6 +1395,15 @@ If set to false, the default security groups will NOT be created. This variable 
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="enable_private_nat" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) A boolean flag to enable/disable a private NAT gateway. If this is set to true, it will disable public NAT gateways. Private NAT gateways are deployed into transit subnets and require setting '<a href="#create_transit_subnets"><code>create_transit_subnets</code></a> = true'. Defaults false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="global_subnet_spacing" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1461,6 +1492,15 @@ A map of tags to apply to the NAT gateways, on top of the custom_tags. The key i
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="nat_secondary_private_ip_address_count" requirement="optional" type="number">
+<HclListItemDescription>
+
+(Optional) The number of secondary private IP addresses to assign to each NAT gateway. These IP addresses are used for source NAT (SNAT) for the instances in the private subnets. Defaults to 0.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
 <HclListItem name="num_availability_zones" requirement="optional" type="number">
@@ -1793,6 +1833,9 @@ A map of tags to apply just to the VPC itself, but not any of the other resource
 <HclListItem name="dynamodb_vpc_endpoint_id">
 </HclListItem>
 
+<HclListItem name="internet_gateway_id">
+</HclListItem>
+
 <HclListItem name="ipv6_cidr_block">
 <HclListItemDescription>
 
@@ -1830,6 +1873,9 @@ A map of all private-app subnets, with the subnet name as the key, and all `aws-
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="private_nat_gateway_ids">
+</HclListItem>
+
 <HclListItem name="private_persistence_route_table_ids">
 </HclListItem>
 
@@ -1851,6 +1897,9 @@ A map of all private-app subnets, with the subnet name as the key, and all `aws-
 A map of all private-persistence subnets, with the subnet name as the key, and all `aws-subnet` properties as the value.
 
 </HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="private_subnet_route_table_ids">
 </HclListItem>
 
 <HclListItem name="public_subnet_arns">
@@ -1921,11 +1970,11 @@ A map of all transit subnets, with the subnet name as the key, and all `aws-subn
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.9/modules/vpc-app/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.9/modules/vpc-app/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.9/modules/vpc-app/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.10/modules/vpc-app/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.10/modules/vpc-app/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.10/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f6a3e35cbcca31bfb633e9d1e031a411"
+  "hash": "86a03d8deda306dc1e22b7d0470294f4"
 }
 ##DOCS-SOURCER-END -->
