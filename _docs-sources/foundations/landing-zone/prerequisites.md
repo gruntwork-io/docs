@@ -35,7 +35,7 @@ For more help setting up KMS see the AWS docs: [Guidance for KMS keys](https://d
 
 1. Logged in as an admin user, navigate to KMS in your root AWS account to create KMS Keys
 
-1. Ensure you are in your home region and click `Create Key`
+1. Ensure you are in your home region and click **Create Key**
 
   1. Configure a key with the default parameters (shown in screenshot below)
     <details>
@@ -53,7 +53,7 @@ For more help setting up KMS see the AWS docs: [Guidance for KMS keys](https://d
 
   1. Select your admin user as a key user
 
-  1. Click **finish** to create the key
+  1. Click **Finish** to create the key
 
 1. On the next screen, find the key you just created and click on it to edit the following:
 
@@ -105,7 +105,7 @@ For more help setting up KMS see the AWS docs: [Guidance for KMS keys](https://d
    }
    ```
 
-  1. Click `Save Changes`
+  1. Click **Save Changes**
 
 ## Next steps
 
