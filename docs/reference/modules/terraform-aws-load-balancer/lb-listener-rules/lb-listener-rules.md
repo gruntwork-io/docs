@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="0.29.18" lastModifiedVersion="0.29.16"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="0.29.19" lastModifiedVersion="0.29.16"/>
 
 # Load Balancer Listener Rules
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.18/modules/lb-listener-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.19/modules/lb-listener-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.16" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -95,7 +95,7 @@ Note that in most cases, your path definitions should be mutually exclusive and 
 
 module "lb_listener_rules" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v0.29.18"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v0.29.19"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -146,7 +146,7 @@ module "lb_listener_rules" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v0.29.18"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v0.29.19"
 }
 
 inputs = {
@@ -808,11 +808,11 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.18/modules/lb-listener-rules/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.18/modules/lb-listener-rules/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.18/modules/lb-listener-rules/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.19/modules/lb-listener-rules/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.19/modules/lb-listener-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.19/modules/lb-listener-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4da7baa42071b999c9d67797544ef78c"
+  "hash": "ea024dcf8743ac98b9e5335294115cff"
 }
 ##DOCS-SOURCER-END -->
