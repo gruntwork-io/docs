@@ -127,6 +127,15 @@ module "ec_2_instance" {
     cidr_blocks = list(string)
   ))>
 
+  # Accept inbound traffic on these port ranges from the specified IPv6 CIDR
+  # blocks
+  allow_port_from_ipv6_cidr_blocks = <map(object(
+    from_port        = number
+    to_port          = number
+    protocol         = string
+    ipv6_cidr_blocks = list(string)
+  ))>
+
   # Accept inbound traffic on these port ranges from the specified security
   # groups
   allow_port_from_security_group_ids = <map(object(
@@ -184,7 +193,8 @@ module "ec_2_instance" {
   route53_zone_id = <string>
 
   # The ID of the subnet in which to deploy the EC2 instance. Must be a subnet
-  # in var.vpc_id.
+  # in var.vpc_id. Required unless default_network_interface_id is set, in which
+  # case subnet_id should be set to null.
   subnet_id = <string>
 
   # The ID of the VPC in which to deploy the EC2 instance.
@@ -195,12 +205,16 @@ module "ec_2_instance" {
   # ----------------------------------------------------------------------------------------------------
 
   # A list of optional additional security group ids to assign to the EC2
-  # instance.
+  # instance. Note: this variable is NOT used if default_network_interface_id is
+  # set.
   additional_security_group_ids = []
 
   # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
   # disk space usage) should send notifications.
   alarms_sns_topic_arn = []
+
+  # Accept inbound SSH from these IPv6 CIDR blocks
+  allow_ssh_from_ipv6_cidr_blocks = []
 
   # Determines if an Elastic IP (EIP) will be created for this instance.
   attach_eip = true
@@ -248,6 +262,11 @@ module "ec_2_instance" {
   # For more information see
   # https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html.
   create_instance_profile = true
+
+  # The ID of a network interface to use to override the default network
+  # interface for this EC2 instance, attached at eth0 (device index 0). If set,
+  # subnet_id must be set to null.
+  default_network_interface_id = null
 
   # The default OS user for the EC2 instance AMI. For AWS Ubuntu AMIs, which is
   # what the Packer template in ec2-instance.json uses, the default OS user is
@@ -383,7 +402,7 @@ module "ec_2_instance" {
 
   # A list of secondary private IPv4 addresses to assign to the instance's
   # primary network interface (eth0) in a VPC
-  secondary_private_ips = []
+  secondary_private_ips = null
 
   # When true, precreate the CloudWatch Log Group to use for log aggregation
   # from the EC2 instances. This is useful if you wish to customize the
@@ -448,6 +467,15 @@ inputs = {
     cidr_blocks = list(string)
   ))>
 
+  # Accept inbound traffic on these port ranges from the specified IPv6 CIDR
+  # blocks
+  allow_port_from_ipv6_cidr_blocks = <map(object(
+    from_port        = number
+    to_port          = number
+    protocol         = string
+    ipv6_cidr_blocks = list(string)
+  ))>
+
   # Accept inbound traffic on these port ranges from the specified security
   # groups
   allow_port_from_security_group_ids = <map(object(
@@ -505,7 +533,8 @@ inputs = {
   route53_zone_id = <string>
 
   # The ID of the subnet in which to deploy the EC2 instance. Must be a subnet
-  # in var.vpc_id.
+  # in var.vpc_id. Required unless default_network_interface_id is set, in which
+  # case subnet_id should be set to null.
   subnet_id = <string>
 
   # The ID of the VPC in which to deploy the EC2 instance.
@@ -516,12 +545,16 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # A list of optional additional security group ids to assign to the EC2
-  # instance.
+  # instance. Note: this variable is NOT used if default_network_interface_id is
+  # set.
   additional_security_group_ids = []
 
   # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
   # disk space usage) should send notifications.
   alarms_sns_topic_arn = []
+
+  # Accept inbound SSH from these IPv6 CIDR blocks
+  allow_ssh_from_ipv6_cidr_blocks = []
 
   # Determines if an Elastic IP (EIP) will be created for this instance.
   attach_eip = true
@@ -569,6 +602,11 @@ inputs = {
   # For more information see
   # https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html.
   create_instance_profile = true
+
+  # The ID of a network interface to use to override the default network
+  # interface for this EC2 instance, attached at eth0 (device index 0). If set,
+  # subnet_id must be set to null.
+  default_network_interface_id = null
 
   # The default OS user for the EC2 instance AMI. For AWS Ubuntu AMIs, which is
   # what the Packer template in ec2-instance.json uses, the default OS user is
@@ -704,7 +742,7 @@ inputs = {
 
   # A list of secondary private IPv4 addresses to assign to the instance's
   # primary network interface (eth0) in a VPC
-  secondary_private_ips = []
+  secondary_private_ips = null
 
   # When true, precreate the CloudWatch Log Group to use for log aggregation
   # from the EC2 instances. This is useful if you wish to customize the
@@ -769,6 +807,26 @@ map(object({
     to_port     = number
     protocol    = string
     cidr_blocks = list(string)
+  }))
+```
+
+</HclListItemTypeDetails>
+</HclListItem>
+
+<HclListItem name="allow_port_from_ipv6_cidr_blocks" requirement="required" type="map(object(…))">
+<HclListItemDescription>
+
+Accept inbound traffic on these port ranges from the specified IPv6 CIDR blocks
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    from_port        = number
+    to_port          = number
+    protocol         = string
+    ipv6_cidr_blocks = list(string)
   }))
 ```
 
@@ -917,7 +975,7 @@ The ID of the hosted zone to use. Allows specifying the hosted zone directly ins
 <HclListItem name="subnet_id" requirement="required" type="string">
 <HclListItemDescription>
 
-The ID of the subnet in which to deploy the EC2 instance. Must be a subnet in <a href="#vpc_id"><code>vpc_id</code></a>.
+The ID of the subnet in which to deploy the EC2 instance. Must be a subnet in <a href="#vpc_id"><code>vpc_id</code></a>. Required unless default_network_interface_id is set, in which case subnet_id should be set to null.
 
 </HclListItemDescription>
 </HclListItem>
@@ -935,7 +993,7 @@ The ID of the VPC in which to deploy the EC2 instance.
 <HclListItem name="additional_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-A list of optional additional security group ids to assign to the EC2 instance.
+A list of optional additional security group ids to assign to the EC2 instance. Note: this variable is NOT used if default_network_interface_id is set.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -945,6 +1003,15 @@ A list of optional additional security group ids to assign to the EC2 instance.
 <HclListItemDescription>
 
 The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_ssh_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Accept inbound SSH from these IPv6 CIDR blocks
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -1040,6 +1107,15 @@ When true, this module will create an instance profile to pass the IAM role, eit
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="default_network_interface_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of a network interface to use to override the default network interface for this EC2 instance, attached at eth0 (device index 0). If set, subnet_id must be set to null.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="default_user" requirement="optional" type="string">
@@ -1309,7 +1385,7 @@ The root volume type. Must be one of: standard, gp2, io1.
 A list of secondary private IPv4 addresses to assign to the instance's primary network interface (eth0) in a VPC
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
@@ -1461,6 +1537,6 @@ The input parameters for the EBS volumes.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.6/modules/services/ec2-instance/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "8f0ed1f25e89fbefef7544f68a9d898b"
+  "hash": "d2b606d48fb256c47468d8b9728a97ad"
 }
 ##DOCS-SOURCER-END -->
