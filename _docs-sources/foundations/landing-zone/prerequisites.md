@@ -6,6 +6,8 @@ The first step to using Gruntwork Landing Zone is to use AWS Control Tower to cr
 
 In order to get the full functionality of Gruntwork Landing Zone, you must use [Gruntwork Pipelines](/pipelines/overview/).
 
+---
+
 ## Prerequisites for enabling AWS Control Tower
 
 To use AWS Control Tower you must first enable it, which requires that you have the following:
@@ -16,7 +18,7 @@ To use AWS Control Tower you must first enable it, which requires that you have 
   This account will become the root of your multi-account setup after enabling Control Tower.
   :::
 
-1. Three(3) new unique email addresses for your logs, shared, and security (audit) accounts. These email addresses cannot be already associated with an AWS root login.
+1. Three(3) new unique email addresses for your logs, shared, and security (audit) accounts. It's important to note that these email addresses cannot be already associated with an AWS root login.
 
 1. A KMS Key for encrypting Control Tower Resources with a suitable permissions policy (See Guide Below)
 
@@ -40,13 +42,17 @@ For more help setting up KMS see the AWS docs: [Guidance for KMS keys](https://d
   1. Configure a key with the default parameters (shown in screenshot below)
     <details>
     <summary>Screenshot</summary>
+
     ![KMS Key Defaults](/img/devops-foundations/account/kms-default.png)
+
     </details>
 
   1. Give the key a descriptive alias like `control_tower_key`
     <details>
-    <summary>Screenshot></summary>
+    <summary>Screenshot</summary>
+
     ![KMS Key Alias](/img/devops-foundations/account/kms-name.png)
+
     </details>
 
   1. Select your admin user as a key administrator
@@ -60,7 +66,9 @@ For more help setting up KMS see the AWS docs: [Guidance for KMS keys](https://d
   1. In the key policy tab, click edit
     <details>
     <summary>Screenshot</summary>
+
     ![Edit Key Policy](/img/devops-foundations/account/edit-key-policy.png)
+
     </details>
 
   1. Add the following config policy statement to the list of Statements, replacing `YOUR-HOME-REGION`, `YOUR-MANAGEMENT-ACCOUNT-ID` and `YOUR_KMS_KEY_ID` with values from your own account.

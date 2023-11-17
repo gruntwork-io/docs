@@ -3,6 +3,8 @@
 Enabling Control Tower is the first step in getting started with Gruntwork Landing Zone. It must be completed
 before infrastructure as code is generated for your infrastructure-live repository.
 
+---
+
 ## Prerequisites
 
 In order to enable AWS Control Tower you will need the resources described in [Prerequisites](./prerequisites).
@@ -13,6 +15,8 @@ In order to enable AWS Control Tower you will need the resources described in [P
 This Guide should take about 1hr 15min to complete, most of that time will be spent
 waiting on Control Tower Operations at the conclusion of the setup flow.
 :::
+
+---
 
 ### Start Control Tower Setup
 
@@ -33,11 +37,17 @@ waiting on Control Tower Operations at the conclusion of the setup flow.
 ### Review pricing and select Regions
 
 1. Under **Region deny setting** select Enabled
+
    1. This ensures Control Tower policies and controls are unable to be bypassed by using a non-governed region
 
 1. Under **Select additional Regions for governance** select all regions where you plan to operate.
 
+   <details>
+   <summary>Screenshot</summary>
+
    ![Region Selections](/img/devops-foundations/account/regions.png)
+
+   </details>
 
 1. Click **Next** to continue
 
@@ -45,13 +55,19 @@ waiting on Control Tower Operations at the conclusion of the setup flow.
 
 1. Rename the "Additional OU" to "Pre-prod"
 
+   <details>
+   <summary>Screenshot</summary>
+
    ![Configure Organizational Units](/img/devops-foundations/account/configure-ous.png)
+
+   </details>
 
 1. Click **Next** to continue.
 
 ### Configure shared accounts
 
 1. Under **Logs archive account** Enter an email address and rename the `Logs Archive` account to `Logs`
+
 1. Under **Audit account** Enter an email address and rename the `Audit` account to `Security`
 
    :::caution
@@ -60,16 +76,30 @@ waiting on Control Tower Operations at the conclusion of the setup flow.
 
    :::
 
+   <details>
+   <summary>Screenshot</summary>
+
    ![Configure Shared Accounts](/img/devops-foundations/account/log-archive-rename.png)
+
+   </details>
 
 1. Click **Next** to continue
 
 ### Additional configurations
 
 1. Ensure your settings match the screenshot below (These are the defaults)
+
+   <details>
+   <summary>Screenshot</summary>
+
    ![Additional Configuration](/img/devops-foundations/account/additional-config.png)
+
+   </details>
+
 1. Under **KMS Encryption** Check the box for `Enable and customize encryption settings`
+
 1. Select the KMS Key you created following the guide in [prerequisites](./prerequisites)
+
 1. Click **Next** to continue
 
 ### Finish Control Tower Setup
@@ -84,17 +114,17 @@ Control Tower Creation will take around an hour to complete
 
 1. Setting up the landing zone can take up to one hour. You will see a notification like the one below with the estimated time it will take for all the resources to be created.
 
-  ![Landing Zone Setup Status](/img/devops-foundations/account/control-tower-setup-status.png)
+   ![Landing Zone Setup Status](/img/devops-foundations/account/control-tower-setup-status.png)
 
-  :::tip
+   :::tip
 
-  You can safely close the browser once you see this.
+   You can safely close the browser once you see this.
 
-  :::
+   :::
 
 1. Emails will be sent out as the accounts are being created and the Root user will be invited to sign in using the AWS IAM Identity Center and designated the *Control Tower Admin*. Once the invite is accepted; the Root user will be able to access 3 accounts; Root, Logs, and Security using Identity Center's Access Portal URL contained in the email invite.
 
-  ![Root User's Access Portal](/img/devops-foundations/account/root-user-access-portal.png)
+   ![Root User's Access Portal](/img/devops-foundations/account/root-user-access-portal.png)
 
 ## Initial Configuration
 
@@ -142,6 +172,6 @@ Control Tower is now configured! Next you should consider:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "f0fea193fc790e0cf8b011eed5a35b4b"
+  "hash": "663f429f7581742d93e582504e68f657"
 }
 ##DOCS-SOURCER-END -->
