@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.32" lastModifiedVersion="0.31.4"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.32" lastModifiedVersion="0.32"/>
 
 # RDS Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.31.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.32" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Relational Database Service (RDS) cluster that can run MySQL, Postgres, MariaDB, Oracle,
 or SQL Server. The cluster is managed by AWS and automatically handles standby failover, read replicas, backups,
@@ -234,6 +234,10 @@ module "rds" {
   # Timeout for DB creating
   creating_timeout = "40m"
 
+  # The instance profile associated with the underlying Amazon EC2 instance of
+  # an RDS Custom DB instance.
+  custom_iam_instance_profile = null
+
   # Configure a custom parameter group for the RDS DB. This will create a new
   # parameter group with the given parameters. When null, the database will be
   # launched with the default parameter group.
@@ -282,7 +286,8 @@ module "rds" {
 
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used
   # if var.storage_encrypted is true. If you leave this blank, the default RDS
-  # KMS key for the account will be used.
+  # KMS key for the account will be used. This variable needs to be set to an
+  # AWS KMS CMK if provisioning a custom RDS instance.
   kms_key_arn = null
 
   # The license model to use for this DB. Check the docs for your RDS DB for
@@ -597,6 +602,10 @@ inputs = {
   # Timeout for DB creating
   creating_timeout = "40m"
 
+  # The instance profile associated with the underlying Amazon EC2 instance of
+  # an RDS Custom DB instance.
+  custom_iam_instance_profile = null
+
   # Configure a custom parameter group for the RDS DB. This will create a new
   # parameter group with the given parameters. When null, the database will be
   # launched with the default parameter group.
@@ -645,7 +654,8 @@ inputs = {
 
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used
   # if var.storage_encrypted is true. If you leave this blank, the default RDS
-  # KMS key for the account will be used.
+  # KMS key for the account will be used. This variable needs to be set to an
+  # AWS KMS CMK if provisioning a custom RDS instance.
   kms_key_arn = null
 
   # The license model to use for this DB. Check the docs for your RDS DB for
@@ -1077,6 +1087,15 @@ Timeout for DB creating
 <HclListItemDefaultValue defaultValue="&quot;40m&quot;"/>
 </HclListItem>
 
+<HclListItem name="custom_iam_instance_profile" requirement="optional" type="string">
+<HclListItemDescription>
+
+The instance profile associated with the underlying Amazon EC2 instance of an RDS Custom DB instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="custom_parameter_group" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
@@ -1266,7 +1285,7 @@ The amount of provisioned IOPS for the primary instance. Setting this implies a 
 <HclListItem name="kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-The ARN of a KMS key that should be used to encrypt data on disk. Only used if <a href="#storage_encrypted"><code>storage_encrypted</code></a> is true. If you leave this blank, the default RDS KMS key for the account will be used.
+The ARN of a KMS key that should be used to encrypt data on disk. Only used if <a href="#storage_encrypted"><code>storage_encrypted</code></a> is true. If you leave this blank, the default RDS KMS key for the account will be used. This variable needs to be set to an AWS KMS CMK if provisioning a custom RDS instance.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1634,6 +1653,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e764f9b91f70c4a0fd3fd6f0e80c7718"
+  "hash": "f97a2d6a8f43c48813e7cd796c67e173"
 }
 ##DOCS-SOURCER-END -->
