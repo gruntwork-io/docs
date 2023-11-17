@@ -336,7 +336,7 @@ module "single_server" {
   # Controls if traffic is routed to the instance when the destination address
   # does not match the instance. Must be set to a boolean (not a string!) true
   # or false value.
-  source_dest_check = null
+  source_dest_check = true
 
   # A set of tags for the EC2 Instance. These are common tags and will be used
   # for Instance, IAM Role, EIP and Security Group. Note that other AWS
@@ -612,7 +612,7 @@ inputs = {
   # Controls if traffic is routed to the instance when the destination address
   # does not match the instance. Must be set to a boolean (not a string!) true
   # or false value.
-  source_dest_check = null
+  source_dest_check = true
 
   # A set of tags for the EC2 Instance. These are common tags and will be used
   # for Instance, IAM Role, EIP and Security Group. Note that other AWS
@@ -1119,7 +1119,7 @@ A set of tags to set for the Security Group. This is optional and if not provide
 Controls if traffic is routed to the instance when the destination address does not match the instance. Must be set to a boolean (not a string!) true or false value.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="tags" requirement="optional" type="map(string)">
@@ -1224,6 +1224,6 @@ When used in combination with user_data or user_data_base64, a user_data change 
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.12/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0c56f21dc0ba4c6843099657a580f2fb"
+  "hash": "ea270af67bbc44ac688d4160a5eaeede"
 }
 ##DOCS-SOURCER-END -->
