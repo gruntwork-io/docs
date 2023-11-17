@@ -143,6 +143,11 @@ module "single_server" {
   # will be blocked.
   allow_rdp_from_cidr_list = []
 
+  # A list of IPv6 address ranges in CIDR format from which rdp access will be
+  # permitted. Attempts to access the bastion host from all other IP addresses
+  # will be blocked.
+  allow_rdp_from_ipv6_cidr_list = []
+
   # The IDs of security groups from which rdp connections will be allowed.
   allow_rdp_from_security_group_ids = []
 
@@ -150,6 +155,11 @@ module "single_server" {
   # permitted. Attempts to access the server from all other IP addresses will be
   # blocked.
   allow_ssh_from_cidr_list = ["0.0.0.0/0"]
+
+  # A list of IPv6 address ranges in CIDR format from which SSH access will be
+  # permitted. Attempts to access the server from all other IP addresses will be
+  # blocked.
+  allow_ssh_from_ipv6_cidr_list = []
 
   # The IDs of security groups from which SSH connections will be allowed.
   allow_ssh_from_security_group_ids = []
@@ -187,6 +197,10 @@ module "single_server" {
   # ID of a dedicated host that the instance will be assigned to. Use when an
   # instance is to be launched on a specific dedicated host.
   dedicated_host_id = null
+
+  # The ID of a network interface to use to override the default network
+  # interface for this EC2 instance, attached at eth0 (device index 0).
+  default_network_interface_id = null
 
   # If true, enables EC2 Instance Termination Protection.
   disable_api_termination = false
@@ -401,6 +415,11 @@ inputs = {
   # will be blocked.
   allow_rdp_from_cidr_list = []
 
+  # A list of IPv6 address ranges in CIDR format from which rdp access will be
+  # permitted. Attempts to access the bastion host from all other IP addresses
+  # will be blocked.
+  allow_rdp_from_ipv6_cidr_list = []
+
   # The IDs of security groups from which rdp connections will be allowed.
   allow_rdp_from_security_group_ids = []
 
@@ -408,6 +427,11 @@ inputs = {
   # permitted. Attempts to access the server from all other IP addresses will be
   # blocked.
   allow_ssh_from_cidr_list = ["0.0.0.0/0"]
+
+  # A list of IPv6 address ranges in CIDR format from which SSH access will be
+  # permitted. Attempts to access the server from all other IP addresses will be
+  # blocked.
+  allow_ssh_from_ipv6_cidr_list = []
 
   # The IDs of security groups from which SSH connections will be allowed.
   allow_ssh_from_security_group_ids = []
@@ -445,6 +469,10 @@ inputs = {
   # ID of a dedicated host that the instance will be assigned to. Use when an
   # instance is to be launched on a specific dedicated host.
   dedicated_host_id = null
+
+  # The ID of a network interface to use to override the default network
+  # interface for this EC2 instance, attached at eth0 (device index 0).
+  default_network_interface_id = null
 
   # If true, enables EC2 Instance Termination Protection.
   disable_api_termination = false
@@ -694,6 +722,15 @@ A list of IP address ranges in CIDR format from which rdp access will be permitt
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="allow_rdp_from_ipv6_cidr_list" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IPv6 address ranges in CIDR format from which rdp access will be permitted. Attempts to access the bastion host from all other IP addresses will be blocked.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="allow_rdp_from_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -712,6 +749,15 @@ A list of IP address ranges in CIDR format from which SSH access will be permitt
 <HclListItemDefaultValue defaultValue="[
   &quot;0.0.0.0/0&quot;
 ]"/>
+</HclListItem>
+
+<HclListItem name="allow_ssh_from_ipv6_cidr_list" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IPv6 address ranges in CIDR format from which SSH access will be permitted. Attempts to access the server from all other IP addresses will be blocked.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="allow_ssh_from_security_group_ids" requirement="optional" type="list(string)">
@@ -780,6 +826,15 @@ When true, this module will create an instance profile to pass the IAM role, eit
 <HclListItemDescription>
 
 ID of a dedicated host that the instance will be assigned to. Use when an instance is to be launched on a specific dedicated host.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="default_network_interface_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of a network interface to use to override the default network interface for this EC2 instance, attached at eth0 (device index 0).
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1157,6 +1212,6 @@ When used in combination with user_data or user_data_base64, a user_data change 
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.12/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a6bde1803950149586ed6a24d840f789"
+  "hash": "c60033bad4bf9839cdbd3b1cb0d738b0"
 }
 ##DOCS-SOURCER-END -->
