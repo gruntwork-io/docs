@@ -41,6 +41,10 @@ In some cases, it's desirable to have the ability to assign your own externally 
 set the `additional_security_group_ids` variable with the desired security group id(s). This list of security groups
 will be combined with the default security group.
 
+Note: if you set `default_network_interface_id` to override the default network interface, AWS does not allow attaching
+any security groups to the EC2 instance, so you will need to attach any and all security groups you need to the network
+interface you pass in.
+
 ## What if I just want to add custom security group rules to the default security group?
 
 One of the other important outputs of this module is the `security_group_id`, which is the id of the server's default
@@ -121,7 +125,9 @@ module "single_server" {
   # by this module.
   name = <string>
 
-  # The id of the subnet where this server should be deployed.
+  # The id of the subnet where this server should be deployed. Required unless
+  # default_network_interface_id is set, in which case subnet_id should be set
+  # to null.
   subnet_id = <string>
 
   # The id of the VPC where this server should be deployed.
@@ -132,6 +138,7 @@ module "single_server" {
   # ----------------------------------------------------------------------------------------------------
 
   # A list of optional additional security group ids to assign to the server.
+  # Note: this variable is NOT used if default_network_interface_id is set.
   additional_security_group_ids = []
 
   # A boolean that specifies whether or not to add a security group rule that
@@ -199,7 +206,8 @@ module "single_server" {
   dedicated_host_id = null
 
   # The ID of a network interface to use to override the default network
-  # interface for this EC2 instance, attached at eth0 (device index 0).
+  # interface for this EC2 instance, attached at eth0 (device index 0). If set,
+  # subnet_id must be set to null.
   default_network_interface_id = null
 
   # If true, enables EC2 Instance Termination Protection.
@@ -315,7 +323,7 @@ module "single_server" {
 
   # A list of secondary private IPv4 addresses to assign to the instance's
   # primary network interface (eth0) in a VPC
-  secondary_private_ips = []
+  secondary_private_ips = null
 
   # The name for the bastion host's security group. If set to an empty string,
   # will use var.name.
@@ -328,7 +336,7 @@ module "single_server" {
   # Controls if traffic is routed to the instance when the destination address
   # does not match the instance. Must be set to a boolean (not a string!) true
   # or false value.
-  source_dest_check = true
+  source_dest_check = null
 
   # A set of tags for the EC2 Instance. These are common tags and will be used
   # for Instance, IAM Role, EIP and Security Group. Note that other AWS
@@ -393,7 +401,9 @@ inputs = {
   # by this module.
   name = <string>
 
-  # The id of the subnet where this server should be deployed.
+  # The id of the subnet where this server should be deployed. Required unless
+  # default_network_interface_id is set, in which case subnet_id should be set
+  # to null.
   subnet_id = <string>
 
   # The id of the VPC where this server should be deployed.
@@ -404,6 +414,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # A list of optional additional security group ids to assign to the server.
+  # Note: this variable is NOT used if default_network_interface_id is set.
   additional_security_group_ids = []
 
   # A boolean that specifies whether or not to add a security group rule that
@@ -471,7 +482,8 @@ inputs = {
   dedicated_host_id = null
 
   # The ID of a network interface to use to override the default network
-  # interface for this EC2 instance, attached at eth0 (device index 0).
+  # interface for this EC2 instance, attached at eth0 (device index 0). If set,
+  # subnet_id must be set to null.
   default_network_interface_id = null
 
   # If true, enables EC2 Instance Termination Protection.
@@ -587,7 +599,7 @@ inputs = {
 
   # A list of secondary private IPv4 addresses to assign to the instance's
   # primary network interface (eth0) in a VPC
-  secondary_private_ips = []
+  secondary_private_ips = null
 
   # The name for the bastion host's security group. If set to an empty string,
   # will use var.name.
@@ -600,7 +612,7 @@ inputs = {
   # Controls if traffic is routed to the instance when the destination address
   # does not match the instance. Must be set to a boolean (not a string!) true
   # or false value.
-  source_dest_check = true
+  source_dest_check = null
 
   # A set of tags for the EC2 Instance. These are common tags and will be used
   # for Instance, IAM Role, EIP and Security Group. Note that other AWS
@@ -680,7 +692,7 @@ The name of the server. This will be used to namespace all resources created by 
 <HclListItem name="subnet_id" requirement="required" type="string">
 <HclListItemDescription>
 
-The id of the subnet where this server should be deployed.
+The id of the subnet where this server should be deployed. Required unless default_network_interface_id is set, in which case subnet_id should be set to null.
 
 </HclListItemDescription>
 </HclListItem>
@@ -698,7 +710,7 @@ The id of the VPC where this server should be deployed.
 <HclListItem name="additional_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-A list of optional additional security group ids to assign to the server.
+A list of optional additional security group ids to assign to the server. Note: this variable is NOT used if default_network_interface_id is set.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -834,7 +846,7 @@ ID of a dedicated host that the instance will be assigned to. Use when an instan
 <HclListItem name="default_network_interface_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-The ID of a network interface to use to override the default network interface for this EC2 instance, attached at eth0 (device index 0).
+The ID of a network interface to use to override the default network interface for this EC2 instance, attached at eth0 (device index 0). If set, subnet_id must be set to null.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1080,7 +1092,7 @@ The root volume type. Must be one of: standard, gp2, io1.
 A list of secondary private IPv4 addresses to assign to the instance's primary network interface (eth0) in a VPC
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="security_group_name" requirement="optional" type="string">
@@ -1107,7 +1119,7 @@ A set of tags to set for the Security Group. This is optional and if not provide
 Controls if traffic is routed to the instance when the destination address does not match the instance. Must be set to a boolean (not a string!) true or false value.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="tags" requirement="optional" type="map(string)">
@@ -1212,6 +1224,6 @@ When used in combination with user_data or user_data_base64, a user_data change 
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.12/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c60033bad4bf9839cdbd3b1cb0d738b0"
+  "hash": "0c56f21dc0ba4c6843099657a580f2fb"
 }
 ##DOCS-SOURCER-END -->
