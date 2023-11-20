@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="terraform-aws-control-tower" version="0.0.22" />
+<VersionBadge repoTitle="Control Tower" version="0.0.24" />
 
 # Control Tower Account Factory
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.22/modules/landingzone/control-tower-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.24/modules/landingzone/control-tower-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=control-tower-account-factory" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -84,7 +84,7 @@ Resources:
 
 module "control_tower_account_factory" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.0.22"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.0.24"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -124,14 +124,25 @@ module "control_tower_account_factory" {
   # (the root user email address for the account).
   accounts_yaml_path = null
 
-  # The ID of the AWS Control Tower Account Factory provisioning artifact in AWS
-  # Service Catalog to use. On initial creation, we are able to look this up
-  # automatically by name, but due to a Terraform or AWS bug
+  # If set to true, this module will use a Bash script to try to find the
+  # Control Tower provisioning artifact ID automatically. Due to a Terraform bug
   # (https://github.com/hashicorp/terraform-provider-aws/issues/24362), the
-  # lookup fails if you try to modify the account creation details (e.g., you
-  # try to modify the SSO user details after the account has been created). In
-  # those cases, you have to look up the ID manually by going to the Product
-  # List in the AWS Service Catalog console
+  # aws_servicecatalog_provisioned_product resource doesn't always find the AWS
+  # Service Catalog provisioning artifact ID correctly, so using this Bash
+  # script is our temporary workaround. This way, you don't have to set
+  # provisioning_artifact_id manually—and update it every time it changes! Note
+  # that this script requires the AWS CLI to be installed and on the PATH.
+  find_provisioning_artifact_id_using_script = true
+
+  # The ID of the AWS Control Tower Account Factory provisioning artifact in AWS
+  # Service Catalog to use. If find_provisioning_artifact_id_using_script is set
+  # to true, we will look up the ID automatically, and you don't need to set
+  # this parameter. However, if find_provisioning_artifact_id_using_script is
+  # false, you should set this parameter, as, due to a Terraform bug
+  # (https://github.com/hashicorp/terraform-provider-aws/issues/24362), the
+  # aws_servicecatalog_provisioned_product resource fails to look this up
+  # automatically. You can find the ID manually by going to the Product List in
+  # the AWS Service Catalog console
   # (https://console.aws.amazon.com/servicecatalog/home#admin-products),
   # clicking the 'AWS Control Tower Account Factory' product, and grabbing the
   # ID of the latest product version from the Product Versions table at the
@@ -153,7 +164,7 @@ module "control_tower_account_factory" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.0.22"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.0.24"
 }
 
 inputs = {
@@ -196,14 +207,25 @@ inputs = {
   # (the root user email address for the account).
   accounts_yaml_path = null
 
-  # The ID of the AWS Control Tower Account Factory provisioning artifact in AWS
-  # Service Catalog to use. On initial creation, we are able to look this up
-  # automatically by name, but due to a Terraform or AWS bug
+  # If set to true, this module will use a Bash script to try to find the
+  # Control Tower provisioning artifact ID automatically. Due to a Terraform bug
   # (https://github.com/hashicorp/terraform-provider-aws/issues/24362), the
-  # lookup fails if you try to modify the account creation details (e.g., you
-  # try to modify the SSO user details after the account has been created). In
-  # those cases, you have to look up the ID manually by going to the Product
-  # List in the AWS Service Catalog console
+  # aws_servicecatalog_provisioned_product resource doesn't always find the AWS
+  # Service Catalog provisioning artifact ID correctly, so using this Bash
+  # script is our temporary workaround. This way, you don't have to set
+  # provisioning_artifact_id manually—and update it every time it changes! Note
+  # that this script requires the AWS CLI to be installed and on the PATH.
+  find_provisioning_artifact_id_using_script = true
+
+  # The ID of the AWS Control Tower Account Factory provisioning artifact in AWS
+  # Service Catalog to use. If find_provisioning_artifact_id_using_script is set
+  # to true, we will look up the ID automatically, and you don't need to set
+  # this parameter. However, if find_provisioning_artifact_id_using_script is
+  # false, you should set this parameter, as, due to a Terraform bug
+  # (https://github.com/hashicorp/terraform-provider-aws/issues/24362), the
+  # aws_servicecatalog_provisioned_product resource fails to look this up
+  # automatically. You can find the ID manually by going to the Product List in
+  # the AWS Service Catalog console
   # (https://console.aws.amazon.com/servicecatalog/home#admin-products),
   # clicking the 'AWS Control Tower Account Factory' product, and grabbing the
   # ID of the latest product version from the Product Versions table at the
@@ -287,10 +309,19 @@ If specified, this is assumed to be the file path of a YAML file where the detai
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="find_provisioning_artifact_id_using_script" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, this module will use a Bash script to try to find the Control Tower provisioning artifact ID automatically. Due to a Terraform bug (https://github.com/hashicorp/terraform-provider-aws/issues/24362), the aws_servicecatalog_provisioned_product resource doesn't always find the AWS Service Catalog provisioning artifact ID correctly, so using this Bash script is our temporary workaround. This way, you don't have to set provisioning_artifact_id manually—and update it every time it changes! Note that this script requires the AWS CLI to be installed and on the PATH.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="provisioning_artifact_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-The ID of the AWS Control Tower Account Factory provisioning artifact in AWS Service Catalog to use. On initial creation, we are able to look this up automatically by name, but due to a Terraform or AWS bug (https://github.com/hashicorp/terraform-provider-aws/issues/24362), the lookup fails if you try to modify the account creation details (e.g., you try to modify the SSO user details after the account has been created). In those cases, you have to look up the ID manually by going to the Product List in the AWS Service Catalog console (https://console.aws.amazon.com/servicecatalog/home#admin-products), clicking the 'AWS Control Tower Account Factory' product, and grabbing the ID of the latest product version from the Product Versions table at the bottom.
+The ID of the AWS Control Tower Account Factory provisioning artifact in AWS Service Catalog to use. If find_provisioning_artifact_id_using_script is set to true, we will look up the ID automatically, and you don't need to set this parameter. However, if find_provisioning_artifact_id_using_script is false, you should set this parameter, as, due to a Terraform bug (https://github.com/hashicorp/terraform-provider-aws/issues/24362), the aws_servicecatalog_provisioned_product resource fails to look this up automatically. You can find the ID manually by going to the Product List in the AWS Service Catalog console (https://console.aws.amazon.com/servicecatalog/home#admin-products), clicking the 'AWS Control Tower Account Factory' product, and grabbing the ID of the latest product version from the Product Versions table at the bottom.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -370,11 +401,11 @@ The URL of the AWS SSO login page for this account
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.22/modules/control-tower-account-factory/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.22/modules/control-tower-account-factory/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.22/modules/control-tower-account-factory/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.24/modules/control-tower-account-factory/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.24/modules/control-tower-account-factory/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.0.24/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ec7596b2276124d12fbd313778d6e6dd"
+  "hash": "d0f036ece29b3618ed17f2ea79deb361"
 }
 ##DOCS-SOURCER-END -->
