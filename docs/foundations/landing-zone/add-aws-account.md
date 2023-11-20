@@ -42,7 +42,7 @@ To initiate the process, you can use the GitHub Actions workflow in your `infras
 
 </details>
 
-<details><summary>Account Request File Workflow (Manual)</summary>
+<details><summary>Account Request File (Manual)</summary>
 
 1. To initiate the process, create an `account-<AWS-ACCOUNT-NAME>.yml` file in the `_new-account-requests` folder located in the root of your `infrastructure-live` repository. This file will be used to create a pull request and add the new account to your organization. The file should have the following format:
 
@@ -109,6 +109,6 @@ When you merge this pull request, Gruntwork Pipelines will automatically deploy 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "f607e2dee39e6d60ced0c4805003ed9e"
+  "hash": "e10fd6f92976f326cd3e02ba5256f951"
 }
 ##DOCS-SOURCER-END -->
