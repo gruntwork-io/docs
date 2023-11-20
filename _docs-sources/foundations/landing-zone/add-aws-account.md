@@ -26,7 +26,7 @@ Before proceeding, ensure you have:
 
 ## 1. Create an AWS account request file
 
-To initiate the process, you can use the GitHub Actions workflow in your `infrastructure-live` repo.
+To initiate the process, you can use the GitHub Actions workflow in your `infrastructure-live` repo by following the below steps. Alternatively, you can choose to manually create the account request file and associated PR by following the steps in the **Account Request File (Manual)** dropdown below.
 
 <details open><summary>GitHub Action Workflow</summary>
 
