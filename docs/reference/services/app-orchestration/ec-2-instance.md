@@ -127,15 +127,6 @@ module "ec_2_instance" {
     cidr_blocks = list(string)
   ))>
 
-  # Accept inbound traffic on these port ranges from the specified IPv6 CIDR
-  # blocks
-  allow_port_from_ipv6_cidr_blocks = <map(object(
-    from_port        = number
-    to_port          = number
-    protocol         = string
-    ipv6_cidr_blocks = list(string)
-  ))>
-
   # Accept inbound traffic on these port ranges from the specified security
   # groups
   allow_port_from_security_group_ids = <map(object(
@@ -212,6 +203,10 @@ module "ec_2_instance" {
   # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
   # disk space usage) should send notifications.
   alarms_sns_topic_arn = []
+
+  # Accept inbound traffic on these port ranges from the specified IPv6 CIDR
+  # blocks
+  allow_port_from_ipv6_cidr_blocks = {}
 
   # Accept inbound SSH from these IPv6 CIDR blocks
   allow_ssh_from_ipv6_cidr_blocks = []
@@ -467,15 +462,6 @@ inputs = {
     cidr_blocks = list(string)
   ))>
 
-  # Accept inbound traffic on these port ranges from the specified IPv6 CIDR
-  # blocks
-  allow_port_from_ipv6_cidr_blocks = <map(object(
-    from_port        = number
-    to_port          = number
-    protocol         = string
-    ipv6_cidr_blocks = list(string)
-  ))>
-
   # Accept inbound traffic on these port ranges from the specified security
   # groups
   allow_port_from_security_group_ids = <map(object(
@@ -552,6 +538,10 @@ inputs = {
   # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
   # disk space usage) should send notifications.
   alarms_sns_topic_arn = []
+
+  # Accept inbound traffic on these port ranges from the specified IPv6 CIDR
+  # blocks
+  allow_port_from_ipv6_cidr_blocks = {}
 
   # Accept inbound SSH from these IPv6 CIDR blocks
   allow_ssh_from_ipv6_cidr_blocks = []
@@ -813,26 +803,6 @@ map(object({
 </HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="allow_port_from_ipv6_cidr_blocks" requirement="required" type="map(object(…))">
-<HclListItemDescription>
-
-Accept inbound traffic on these port ranges from the specified IPv6 CIDR blocks
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(object({
-    from_port        = number
-    to_port          = number
-    protocol         = string
-    ipv6_cidr_blocks = list(string)
-  }))
-```
-
-</HclListItemTypeDetails>
-</HclListItem>
-
 <HclListItem name="allow_port_from_security_group_ids" requirement="required" type="map(object(…))">
 <HclListItemDescription>
 
@@ -1006,6 +976,27 @@ The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_port_from_ipv6_cidr_blocks" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+Accept inbound traffic on these port ranges from the specified IPv6 CIDR blocks
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    from_port        = number
+    to_port          = number
+    protocol         = string
+    ipv6_cidr_blocks = list(string)
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="allow_ssh_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
@@ -1537,6 +1528,6 @@ The input parameters for the EBS volumes.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.6/modules/services/ec2-instance/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d2b606d48fb256c47468d8b9728a97ad"
+  "hash": "1f5ca3743230a45fc87ceccefb21089a"
 }
 ##DOCS-SOURCER-END -->
