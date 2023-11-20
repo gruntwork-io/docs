@@ -8,32 +8,19 @@ Before proceeding, ensure you have:
 
 1. An `infrastructure-live` repository created from the [Gruntwork infrastructure-live template](/foundations/iac-foundations/initial-setup#infrastructure-live-template).
 
-  :::info
-
   If you are just now creating your `infrastructure-live` repo, be sure to follow the Bootstrap steps in the `infrastructure-live` Readme to complete the setup before proceeding. 
 
-  :::
-
 1. An `infrastructure-pipelines` repository created from the [Gruntwork infrastructure-pipelines template](/foundations/iac-foundations/initial-setup#infrastructure-pipelines-template).
-  :::info
 
   If you are just now creating your `infrastructure-pipelines` repo, be sure to follow the Bootstrap steps in the `infrastructure-pipelines` Readme to complete the setup before proceeding. 
 
-  :::
-
 1. An installation of [Gruntwork Pipelines](/pipelines/overview)
 
-1. Access tokens and secrets configured for both `infrastructure-live` and `infrastructure-pipelines` repos
+1. Access tokens and secrets configured for both `infrastructure-live` and `infrastructure-pipelines` repos. Instructions for configuring access tokens and secrets can be found in the respective repo Readme files, as well as in [the Machine Users](/pipelines/security/machine-users) guide.
 
   :::info
 
   Your GitHub org MUST have fine-grained personal access tokens enabled before you can create the access tokens and secrets!
-
-  :::
-
-  :::info
-
-  Instructions for configuring access tokens and secrets can be found in the respective repo Readme files, as well as in [the Machine Users](/pipelines/security/machine-users) guide.
 
   :::
 
@@ -43,9 +30,9 @@ To initiate the process, you will use the GitHub Actions workflow in your `infra
 
 1. Navigate to your `infrastructure-live` repo and select the **Actions** tab.
 
-1. Select the **Account Factory** workflow
+1. Select the **Account Factory** workflow.
 
-1. Select the **Run Workflow** dropdown menu and fill in the parameters
+1. Select the **Run Workflow** dropdown menu and fill in the parameters.
 
 1. Select **Run Workflow** to kick off the process.
 
