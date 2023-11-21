@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="0.29.19" lastModifiedVersion="0.29.19"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="0.29.20" lastModifiedVersion="0.29.20"/>
 
 # ACM TLS Certificate
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.19/modules/acm-tls-certificate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.20/modules/acm-tls-certificate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.19" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.20" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to issue and validate free, auto-renewing TLS certificates using [AWS Certificate
 Manager (ACM)](https://aws.amazon.com/certificate-manager/). It supports issuing and validating multiple ACM certificates.
@@ -232,7 +232,7 @@ In this example, the `acm-tls-certificates` module will "wait" until your `aws_r
 
 module "acm_tls_certificate" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v0.29.19"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v0.29.20"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -290,7 +290,7 @@ module "acm_tls_certificate" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v0.29.19"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v0.29.20"
 }
 
 inputs = {
@@ -544,11 +544,11 @@ Global tags to apply to all ACM certificates issued via this module. These globa
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.19/modules/acm-tls-certificate/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.19/modules/acm-tls-certificate/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.19/modules/acm-tls-certificate/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.20/modules/acm-tls-certificate/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.20/modules/acm-tls-certificate/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.20/modules/acm-tls-certificate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1b600e553a9c65c2e2762fdea851c045"
+  "hash": "a6d36425b87766c6385154812ecfa99a"
 }
 ##DOCS-SOURCER-END -->
