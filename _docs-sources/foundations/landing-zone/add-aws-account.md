@@ -1,3 +1,6 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Add a new AWS account
 
 This document provides instructions for provisioning a new AWS account using Gruntwork Landing Zone. The described workflow gives you the flexibility to require approval for all new AWS account requests in accordance with the permissions configured in your git repository.
@@ -26,23 +29,23 @@ Before proceeding, ensure you have:
 
 ## 1. Create an AWS account request file
 
-To initiate the process, you can use the GitHub Actions workflow in your `infrastructure-live` repo by following the below steps. Alternatively, you can choose to manually create the account request file and associated PR by following the steps in the **Account Request File (Manual)** dropdown below.
+  To initiate the process, you can use the GitHub Actions workflow in your `infrastructure-live` repo by following the below steps. Alternatively, you can choose to manually create the account request file and associated PR by following the steps in the **Account Request File (Manual)** dropdown below.
 
-<details open><summary>GitHub Action Workflow</summary>
+<Tabs groupId="request-aws-account">
+<TabItem value="GitHub Action Workflow" label="GitHub Action Workflow" default>
 
-  1. Navigate to your `infrastructure-live` repo and select the **Actions** tab.
+1. Navigate to your `infrastructure-live` repo and select the **Actions** tab.
 
-  1. Select the **Account Factory** workflow.
+1. Select the **Account Factory** workflow.
 
-  1. Select the **Run Workflow** dropdown menu and fill in the parameters.
+1. Select the **Run Workflow** dropdown menu and fill in the parameters.
 
-  1. Select **Run Workflow** to kick off the process.
+1. Select **Run Workflow** to kick off the process.
 
-  The workflow will automatically create a PR to be reviewed.
+The workflow will automatically create a PR to be reviewed.
 
-</details>
-
-<details><summary>Account Request File (Manual)</summary>
+</TabItem>
+<TabItem value="Account Request File (Manual)" label="Account Request File (Manual)">
 
 1. To initiate the process, create an `account-<AWS-ACCOUNT-NAME>.yml` file in the `_new-account-requests` folder located in the root of your `infrastructure-live` repository. This file will be used to create a pull request and add the new account to your organization. The file should have the following format:
 
@@ -74,7 +77,8 @@ To initiate the process, you can use the GitHub Actions workflow in your `infras
 
   Next, create a pull request containing the new account request file. This action will trigger the Gruntwork pipeline to `terragrunt plan` the new account and update the pull request with the plan output.
 
-</details>
+</TabItem>
+</Tabs>
 
 ## 3. Review and merge the account request PR
 
