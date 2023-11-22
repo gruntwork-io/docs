@@ -3,8 +3,6 @@
 Enabling Control Tower is the first step in getting started with Gruntwork Landing Zone. It must be completed
 before infrastructure as code is generated for your infrastructure-live repository.
 
----
-
 ## Prerequisites
 
 In order to enable AWS Control Tower you will need the resources described in [Prerequisites](./prerequisites).
@@ -15,8 +13,6 @@ In order to enable AWS Control Tower you will need the resources described in [P
 This Guide should take about 1hr 15min to complete, most of that time will be spent
 waiting on Control Tower Operations at the conclusion of the setup flow.
 :::
-
----
 
 ### Start Control Tower Setup
 
@@ -118,7 +114,7 @@ Control Tower Creation will take around an hour to complete
 
    :::tip
 
-   You can safely close the browser once you see this.
+   You can safely close your browser tab once you see this notice. The setup process will proceed unaffected in the background.
 
    :::
 
@@ -172,6 +168,6 @@ Control Tower is now configured! Next you should consider:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "663f429f7581742d93e582504e68f657"
+  "hash": "7a4c5e1b88017bfb25746f1122cc7920"
 }
 ##DOCS-SOURCER-END -->
