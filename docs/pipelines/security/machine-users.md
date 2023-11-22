@@ -93,12 +93,18 @@ The recommended path for storing secrets in GitHub Actions is with Organization 
 
 :::
 
+:::info
+
+Since this guide implements secrets that are scoped to specific repositories, anytime a new `infrastructure-live` or `infrastructure-pipelines` repository is created, the permissions for these tokens will need to be updated.
+
+:::
+
 <Tabs groupId="github-actions-secrets">
 <TabItem value="Organization Secrets" label="Organization Secrets" default>
 
 1. Navigate to your top level GitHub Organization and select the **Settings** tab.
 
-1. From the navigation bar on the left side, select **Secrets and variables** then select **Actions**
+1. From the navigation bar on the left side, select **Secrets and variables** then select **Actions**.
 
 1. Using the **New organization secret** option, add the following secrets:
 
@@ -130,14 +136,14 @@ The recommended path for storing secrets in GitHub Actions is with Organization 
 
   After the bootstrap process is complete, you should delete the following tokens for security purposes:
 
-    - The `PIPELINES_BOOTSTRAP` Personal Access Token from the `ci-user` GitHub account and
+    - The `PIPELINES_BOOTSTRAP` Personal Access Token from the `ci-user` GitHub account
     - The `PIPELINES_BOOTSTRAP_TOKEN` GitHub Actions secret from the `infrastructure-pipelines` repository
 
   :::
 
   :::info
 
-  For additional information on creating and using Github Actions Organization secrets, please refer to the [GitHub Documentation](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-an-organization)
+  For additional information on creating and using Github Actions Organization secrets, please refer to the [GitHub Documentation](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-an-organization).
 
   :::
 
@@ -164,7 +170,7 @@ In the `infrastructure-pipelines` repository create the following secrets:
 
   After the bootstrap process is complete, you should delete the following tokens for security purposes:
 
-    - The `PIPELINES_BOOTSTRAP` Personal Access Token from the `ci-user` GitHub account and
+    - The `PIPELINES_BOOTSTRAP` Personal Access Token from the `ci-user` GitHub account
     - The `PIPELINES_BOOTSTRAP_TOKEN` GitHub Actions secret from the `infrastructure-pipelines` repository
 
   :::
@@ -181,6 +187,6 @@ In the `infrastructure-pipelines` repository create the following secrets:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "9862b43e26a0e882fa6557382fc85bc2"
+  "hash": "19beb031e494fe90b947745ddc73e6f6"
 }
 ##DOCS-SOURCER-END -->
