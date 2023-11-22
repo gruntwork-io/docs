@@ -135,6 +135,12 @@ The recommended path for storing secrets in GitHub Actions is with Organization 
 
   :::
 
+  :::info
+
+  For additional information on creating and using Github Actions Organization secrets, please refer to the [GitHub Documentation](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-an-organization)
+
+  :::
+
 </TabItem>
 <TabItem value="Repository Secrets" label="Repository Secrets">
 
@@ -160,6 +166,12 @@ In the `infrastructure-pipelines` repository create the following secrets:
 
     - The `PIPELINES_BOOTSTRAP` Personal Access Token from the `ci-user` GitHub account and
     - The `PIPELINES_BOOTSTRAP_TOKEN` GitHub Actions secret from the `infrastructure-pipelines` repository
+
+  :::
+
+  :::info
+
+  For additional information on creating and using Github Actions Repository secrets, please refer to the [GitHub Documentation](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository)
 
   :::
 

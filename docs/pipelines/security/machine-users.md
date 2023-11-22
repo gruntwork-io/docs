@@ -135,6 +135,12 @@ The recommended path for storing secrets in GitHub Actions is with Organization 
 
   :::
 
+  :::info
+
+  For additional information on creating and using Github Actions Organization secrets, please refer to the [GitHub Documentation](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-an-organization)
+
+  :::
+
 </TabItem>
 <TabItem value="Repository Secrets" label="Repository Secrets">
 
@@ -163,12 +169,18 @@ In the `infrastructure-pipelines` repository create the following secrets:
 
   :::
 
+  :::info
+
+  For additional information on creating and using Github Actions Repository secrets, please refer to the [GitHub Documentation](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository)
+
+  :::
+
 </TabItem>
 </Tabs>
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "a516dd9797e5184db748ddd792828b47"
+  "hash": "9862b43e26a0e882fa6557382fc85bc2"
 }
 ##DOCS-SOURCER-END -->
