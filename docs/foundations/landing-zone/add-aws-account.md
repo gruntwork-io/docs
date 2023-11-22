@@ -31,6 +31,19 @@ Before proceeding, ensure you have:
 
   To initiate the process, you can use the GitHub Actions workflow in your `infrastructure-live` repo by following the below steps. Alternatively, you can choose to manually create the account request file and associated PR by following the steps in the **Account Request File (Manual)** dropdown below.
 
+  You will be required to fill in the following parameters:
+
+  - `account_name`: The name of the account in AWS.
+  - `account_email`: The email address to associate with the account.
+  - `organizational_unit_name`: The name of the Organizational Unit(OU) where the new account will be added. Ensure this exactly matches an existing OU name in your organization, for example, “Security”.
+  - `aws_region`: The AWS region where the Gruntwork account baselines will be deployed. e.g., `us-east-1`.
+  - `org_name_prefix`: The prefix to use for some resources created by Gruntwork modules. For instance, S3 bucket files will be prefixed with this value
+  - `sso_user_first_name`: The first name of the user to create in AWS IAM Identity Center (Successor to AWS Single Sign-On(SSO)).
+  - `sso_user_last_name`: The last name of the user to create in AWS IAM Identity Center.
+  - `sso_user_email`: The email address of the user to create in AWS IAM Identity Center. This user will be able to login to the new account using AWS IAM Identity Center.
+  - `account_baseline_modules_version`: The version of the your account baseline modules to use for the new account. e.g., `v0.0.1`
+  - `requested_by`: The GitHub user ID or email address of the entity requesting the new account, for audit purposes.
+
 <Tabs groupId="request-aws-account">
 <TabItem value="GitHub Action Workflow" label="GitHub Action Workflow" default>
 
@@ -61,17 +74,6 @@ The workflow will automatically create a PR to be reviewed.
   account_baseline_modules_version: <ACCOUNT-BASELINE-MODULES-VERSION>
   requested_by: <GITHUB_USER_ID_OR_EMAIL>
   ```
-
-    - `account_name`: The name of the account in AWS.
-    - `account_email`: The email address to associate with the account.
-    - `organizational_unit_name`: The name of the Organizational Unit(OU) where the new account will be added. Ensure this exactly matches an existing OU name in your organization, for example, “Security”.
-    - `aws_region`: The AWS region where the Gruntwork account baselines will be deployed. e.g., `us-east-1`.
-    - `org_name_prefix`: The prefix to use for some resources created by Gruntwork modules. For instance, S3 bucket files will be prefixed with this value
-    - `sso_user_first_name`: The first name of the user to create in AWS IAM Identity Center (Successor to AWS Single Sign-On(SSO)).
-    - `sso_user_last_name`: The last name of the user to create in AWS IAM Identity Center.
-    - `sso_user_email`: The email address of the user to create in AWS IAM Identity Center. This user will be able to login to the new account using AWS IAM Identity Center.
-    - `account_baseline_modules_version`: The version of the your account baseline modules to use for the new account. e.g., `v0.0.1`
-    - `requested_by`: The GitHub user ID or email address of the entity requesting the new account, for audit purposes.
 
 1. Create a pull request
 
@@ -113,6 +115,6 @@ When you merge this pull request, Gruntwork Pipelines will automatically deploy 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "ad96f40744bdc03a4866756e02397077"
+  "hash": "bdc995a272d5005bdd35062116ee361d"
 }
 ##DOCS-SOURCER-END -->

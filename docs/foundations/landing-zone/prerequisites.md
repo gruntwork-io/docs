@@ -2,8 +2,6 @@
 
 The first step to using Gruntwork Landing Zone is to use AWS Control Tower to create a new multi-account setup, which requires that you meet the prerequisites below.
 
-To use AWS Control Tower you must first enable it, which requires that you have the following:
-
 1. A new AWS Account and a user with administrator permissions. (We recommend using an IAM user with admin permissions rather than the root user)
 
   :::info
@@ -107,6 +105,6 @@ To use AWS Control Tower you must first enable it, which requires that you have 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "57013694475316019adf145e6b5f8ba0"
+  "hash": "708c15a8a703d84dd61d999aa50c163f"
 }
 ##DOCS-SOURCER-END -->
