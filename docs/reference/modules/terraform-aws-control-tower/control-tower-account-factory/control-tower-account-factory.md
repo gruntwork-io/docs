@@ -264,6 +264,21 @@ Account email, must be globally unique across all AWS Accounts.
 The name to use for the new AWS account
 
 </HclListItemDescription>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   AWS requires the account name to be at most 50 characters: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.htmlorganizations-Type-Account-Name
+   However, we use the account name as part of an S3 bucket name, along with a -<REGION>-tf-state suffix, which adds up to ~25 characters. 
+   S3 bucket names are limited to 63 characters: https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
+   So, 63 - 25 = 38, so to be on the safe side, that's the limit we enforce here.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="organizational_unit_name" requirement="required" type="string">
@@ -406,6 +421,6 @@ The URL of the AWS SSO login page for this account
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.1.0/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "42eba8705f2604d89dd95d4f33b4581c"
+  "hash": "7b2f811a0acd5f0f03857f373b8fa4f8"
 }
 ##DOCS-SOURCER-END -->
