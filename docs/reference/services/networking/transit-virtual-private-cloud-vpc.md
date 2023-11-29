@@ -293,7 +293,7 @@ module "vpc_transit" {
   # The type of traffic to capture in the VPC flow log. Valid values include
   # ACCEPT, REJECT, or ALL. Defaults to REJECT. Only used if create_flow_logs is
   # true.
-  flow_logs_traffic_type = "REJECT"
+  flow_logs_traffic_type = "ALL"
 
   # The amount of spacing between the different subnet types when all subnets
   # are present, such as the transit subnets.
@@ -427,12 +427,6 @@ module "vpc_transit" {
   # Whether VPN Equal Cost Multipath Protocol support is enabled on the transit
   # gateway. Default is true.
   tgw_enable_vpn_ecmp_support = true
-
-  # The ID of a network interface to which the TGW should route all outbound
-  # traffic. This is useful for routing all outbound traffic through a firewall
-  # (e.g., Palo Alto) or proxy (e.g., Squid Proxy) for inspection. This is
-  # typically the ID of an ENI.
-  tgw_route_all_outbound_traffic_to_endpoint = null
 
   # A list of Virtual Private Gateways that will propagate routes to transit
   # subnets. All routes from VPN connections that use Virtual Private Gateways
@@ -682,7 +676,7 @@ inputs = {
   # The type of traffic to capture in the VPC flow log. Valid values include
   # ACCEPT, REJECT, or ALL. Defaults to REJECT. Only used if create_flow_logs is
   # true.
-  flow_logs_traffic_type = "REJECT"
+  flow_logs_traffic_type = "ALL"
 
   # The amount of spacing between the different subnet types when all subnets
   # are present, such as the transit subnets.
@@ -816,12 +810,6 @@ inputs = {
   # Whether VPN Equal Cost Multipath Protocol support is enabled on the transit
   # gateway. Default is true.
   tgw_enable_vpn_ecmp_support = true
-
-  # The ID of a network interface to which the TGW should route all outbound
-  # traffic. This is useful for routing all outbound traffic through a firewall
-  # (e.g., Palo Alto) or proxy (e.g., Squid Proxy) for inspection. This is
-  # typically the ID of an ENI.
-  tgw_route_all_outbound_traffic_to_endpoint = null
 
   # A list of Virtual Private Gateways that will propagate routes to transit
   # subnets. All routes from VPN connections that use Virtual Private Gateways
@@ -1365,7 +1353,7 @@ If log_destination_type is s3, optionally specify a subfolder for flow log deliv
 The type of traffic to capture in the VPC flow log. Valid values include ACCEPT, REJECT, or ALL. Defaults to REJECT. Only used if create_flow_logs is true.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;REJECT&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;ALL&quot;"/>
 </HclListItem>
 
 <HclListItem name="global_subnet_spacing" requirement="optional" type="number">
@@ -1618,15 +1606,6 @@ Whether VPN Equal Cost Multipath Protocol support is enabled on the transit gate
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="tgw_route_all_outbound_traffic_to_endpoint" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID of a network interface to which the TGW should route all outbound traffic. This is useful for routing all outbound traffic through a firewall (e.g., Palo Alto) or proxy (e.g., Squid Proxy) for inspection. This is typically the ID of an ENI.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="transit_propagating_vgws" requirement="optional" type="list(string)">
@@ -1930,6 +1909,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.7/modules/networking/vpc-transit/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1f49d820ec9f62a6a822bfcd6690a3e9"
+  "hash": "b7bcd554e51c275f2f1e6f8020d79563"
 }
 ##DOCS-SOURCER-END -->
