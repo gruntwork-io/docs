@@ -133,6 +133,9 @@ module "vpc" {
   # internet?
   allow_private_persistence_internet_access = false
 
+  # Should the transit subnet be allowed outbound access to the internet?
+  allow_transit_internet_access = false
+
   # If true, will apply the default NACL rules in var.default_nacl_ingress_rules
   # and var.default_nacl_egress_rules on the default NACL of the VPC. Note that
   # every VPC must have a default NACL - when this is false, the original
@@ -263,6 +266,12 @@ module "vpc" {
 
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = true
+
+  # (Optional) A boolean flag to enable/disable a private NAT gateway. If this
+  # is set to true, it will disable public NAT gateways. Private NAT gateways
+  # are deployed into transit subnets and require setting
+  # 'var.create_transit_subnets = true'. Defaults false.
+  enable_private_nat = false
 
   # Additional IAM policies to apply to the S3 bucket to store flow logs. You
   # can use this to grant read/write access beyond what is provided to the VPC.
@@ -581,6 +590,9 @@ inputs = {
   # internet?
   allow_private_persistence_internet_access = false
 
+  # Should the transit subnet be allowed outbound access to the internet?
+  allow_transit_internet_access = false
+
   # If true, will apply the default NACL rules in var.default_nacl_ingress_rules
   # and var.default_nacl_egress_rules on the default NACL of the VPC. Note that
   # every VPC must have a default NACL - when this is false, the original
@@ -711,6 +723,12 @@ inputs = {
 
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = true
+
+  # (Optional) A boolean flag to enable/disable a private NAT gateway. If this
+  # is set to true, it will disable public NAT gateways. Private NAT gateways
+  # are deployed into transit subnets and require setting
+  # 'var.create_transit_subnets = true'. Defaults false.
+  enable_private_nat = false
 
   # Additional IAM policies to apply to the S3 bucket to store flow logs. You
   # can use this to grant read/write access beyond what is provided to the VPC.
@@ -1036,6 +1054,15 @@ Should the private persistence subnet be allowed outbound access to the internet
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="allow_transit_internet_access" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Should the transit subnet be allowed outbound access to the internet?
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="apply_default_nacl_rules" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1339,6 +1366,15 @@ If set to false, the default security groups will NOT be created.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_private_nat" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) A boolean flag to enable/disable a private NAT gateway. If this is set to true, it will disable public NAT gateways. Private NAT gateways are deployed into transit subnets and require setting '<a href="#create_transit_subnets"><code>create_transit_subnets</code></a> = true'. Defaults false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="flow_log_additional_s3_bucket_policy_statements" requirement="optional" type="any">
@@ -2218,6 +2254,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.7/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "20939d788a84ce5f258a2b261ef42b24"
+  "hash": "7c383611fcefcaa382898922b67d8201"
 }
 ##DOCS-SOURCER-END -->
