@@ -251,7 +251,7 @@ module "vpc_transit" {
   # are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096,
   # 1827, 2192, 2557, 2922, 3288, 3653, and 0. If you select 0, the events in
   # the log group are always retained and never expire.
-  flow_log_cloudwatch_log_group_retention_in_days = 0
+  flow_log_cloudwatch_log_group_retention_in_days = 365
 
   # A map of options to apply to the destination. Valid keys are file_format,
   # hive_compatible_partitions, and per_hour_partition.
@@ -640,7 +640,7 @@ inputs = {
   # are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096,
   # 1827, 2192, 2557, 2922, 3288, 3653, and 0. If you select 0, the events in
   # the log group are always retained and never expire.
-  flow_log_cloudwatch_log_group_retention_in_days = 0
+  flow_log_cloudwatch_log_group_retention_in_days = 365
 
   # A map of options to apply to the destination. Valid keys are file_format,
   # hive_compatible_partitions, and per_hour_partition.
@@ -1273,7 +1273,7 @@ The name to use for the CloudWatch Log group used for storing flow log. When nul
 Specifies the number of days you want to retain log events. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096, 1827, 2192, 2557, 2922, 3288, 3653, and 0. If you select 0, the events in the log group are always retained and never expire.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
+<HclListItemDefaultValue defaultValue="365"/>
 </HclListItem>
 
 <HclListItem name="flow_log_destination_options" requirement="optional" type="map(string)">
@@ -1928,6 +1928,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.7/modules/networking/vpc-transit/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9f665fd7fab6471b64a3b992b3f2423d"
+  "hash": "19b02c65868032e4b471e0fd562ac4ac"
 }
 ##DOCS-SOURCER-END -->
