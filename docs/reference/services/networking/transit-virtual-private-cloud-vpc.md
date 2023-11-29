@@ -115,15 +115,6 @@ module "vpc_transit" {
   # '10.100.0.0/18', '10.200.0.0/18', etc.
   cidr_block = <string>
 
-  # The number of NAT Gateways to launch for this VPC. For production VPCs, a
-  # NAT Gateway should be placed in each Availability Zone (so likely 3 total),
-  # whereas for non-prod VPCs, just one Availability Zone (and hence 1 NAT
-  # Gateway) will suffice.
-  num_nat_gateways = <number>
-
-  # Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
-  vpc_name = <string>
-
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
@@ -341,6 +332,12 @@ module "vpc_transit" {
   # created in just 3 AZs instead of all 5. Defaults to all AZs in a region.
   num_availability_zones = null
 
+  # The number of NAT Gateways to launch for this VPC. For production VPCs, a
+  # NAT Gateway should be placed in each Availability Zone (so likely 3 total),
+  # whereas for non-prod VPCs, just one Availability Zone (and hence 1 NAT
+  # Gateway) will suffice.
+  num_nat_gateways = 0
+
   # A list of Virtual Private Gateways that will propagate routes to public
   # subnets. All routes from VPN connections that use Virtual Private Gateways
   # listed here will appear in route tables of public subnets. If left empty, no
@@ -474,6 +471,9 @@ module "vpc_transit" {
   # tags defined here will override tags defined as custom_tags in case of
   # conflict.
   vpc_custom_tags = {}
+
+  # Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
+  vpc_name = "transit_vpc"
 
 }
 
@@ -504,15 +504,6 @@ inputs = {
   # '10.100.0.0/18', '10.200.0.0/18', etc.
   cidr_block = <string>
 
-  # The number of NAT Gateways to launch for this VPC. For production VPCs, a
-  # NAT Gateway should be placed in each Availability Zone (so likely 3 total),
-  # whereas for non-prod VPCs, just one Availability Zone (and hence 1 NAT
-  # Gateway) will suffice.
-  num_nat_gateways = <number>
-
-  # Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
-  vpc_name = <string>
-
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
@@ -730,6 +721,12 @@ inputs = {
   # created in just 3 AZs instead of all 5. Defaults to all AZs in a region.
   num_availability_zones = null
 
+  # The number of NAT Gateways to launch for this VPC. For production VPCs, a
+  # NAT Gateway should be placed in each Availability Zone (so likely 3 total),
+  # whereas for non-prod VPCs, just one Availability Zone (and hence 1 NAT
+  # Gateway) will suffice.
+  num_nat_gateways = 0
+
   # A list of Virtual Private Gateways that will propagate routes to public
   # subnets. All routes from VPN connections that use Virtual Private Gateways
   # listed here will appear in route tables of public subnets. If left empty, no
@@ -864,6 +861,9 @@ inputs = {
   # conflict.
   vpc_custom_tags = {}
 
+  # Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
+  vpc_name = "transit_vpc"
+
 }
 
 
@@ -886,22 +886,6 @@ inputs = {
 <HclListItemDescription>
 
 The IP address range of the VPC in CIDR notation. A prefix of /18 is recommended. Do not use a prefix higher than /27. Examples include '10.100.0.0/18', '10.200.0.0/18', etc.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="num_nat_gateways" requirement="required" type="number">
-<HclListItemDescription>
-
-The number of NAT Gateways to launch for this VPC. For production VPCs, a NAT Gateway should be placed in each Availability Zone (so likely 3 total), whereas for non-prod VPCs, just one Availability Zone (and hence 1 NAT Gateway) will suffice.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="vpc_name" requirement="required" type="string">
-<HclListItemDescription>
-
-Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
 
 </HclListItemDescription>
 </HclListItem>
@@ -1456,6 +1440,15 @@ How many AWS Availability Zones (AZs) to use. One subnet of each type will be cr
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="num_nat_gateways" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of NAT Gateways to launch for this VPC. For production VPCs, a NAT Gateway should be placed in each Availability Zone (so likely 3 total), whereas for non-prod VPCs, just one Availability Zone (and hence 1 NAT Gateway) will suffice.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
 <HclListItem name="public_propagating_vgws" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1699,6 +1692,15 @@ A map of tags to apply just to the VPC itself, but not any of the other resource
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="vpc_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;transit_vpc&quot;"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -1928,6 +1930,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.7/modules/networking/vpc-transit/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "19b02c65868032e4b471e0fd562ac4ac"
+  "hash": "1f49d820ec9f62a6a822bfcd6690a3e9"
 }
 ##DOCS-SOURCER-END -->
