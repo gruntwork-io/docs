@@ -1868,7 +1868,7 @@ The IPv6 CIDR block associated with the VPC.
 <HclListItem name="private_app_subnets">
 <HclListItemDescription>
 
-A map of all private-app subnets, with the subnet name as the key, and all `aws-subnet` properties as the value.
+A map of all private-app subnets, with the subnet ID as the key, and all `aws-subnet` properties as the value.
 
 </HclListItemDescription>
 </HclListItem>
@@ -1894,7 +1894,7 @@ A map of all private-app subnets, with the subnet name as the key, and all `aws-
 <HclListItem name="private_persistence_subnets">
 <HclListItemDescription>
 
-A map of all private-persistence subnets, with the subnet name as the key, and all `aws-subnet` properties as the value.
+A map of all private-persistence subnets, with the subnet ID as the key, and all `aws-subnet` properties as the value.
 
 </HclListItemDescription>
 </HclListItem>
@@ -1923,7 +1923,7 @@ A map of all private-persistence subnets, with the subnet name as the key, and a
 <HclListItem name="public_subnets">
 <HclListItemDescription>
 
-A map of all public subnets, with the subnet name as the key, and all `aws-subnet` properties as the value.
+A map of all public subnets, with the subnet ID as the key, and all `aws-subnet` properties as the value.
 
 </HclListItemDescription>
 </HclListItem>
@@ -1946,7 +1946,7 @@ A map of all public subnets, with the subnet name as the key, and all `aws-subne
 <HclListItem name="transit_subnets">
 <HclListItemDescription>
 
-A map of all transit subnets, with the subnet name as the key, and all `aws-subnet` properties as the value.
+A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet` properties as the value.
 
 </HclListItemDescription>
 </HclListItem>
@@ -1975,6 +1975,6 @@ A map of all transit subnets, with the subnet name as the key, and all `aws-subn
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.12/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "261cb1829467f8ab2e4ab0001d046cc3"
+  "hash": "83002e8462a5d96974aef8fb616d5dd1"
 }
 ##DOCS-SOURCER-END -->
