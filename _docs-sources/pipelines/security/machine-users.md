@@ -89,7 +89,7 @@ Ensure both of these machine users are members of your team in **Gruntwork**’s
 
 :::info
 
-The recommended path for storing secrets in GitHub Actions is with Organization level secrets, however not all GitHub plans support repository specific Organization secrets. If this is the case for your GitHub organization, you should use Repository level secrets.
+The recommended path for storing secrets in GitHub Actions is with [Organization-level secrets](https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-secrets-for-your-repository-and-organization-for-github-codespaces#adding-secrets-for-an-organization), however not all GitHub plans support Organization secrets that can be used with specific repositories. If this is the case for your GitHub organization, you should use [Repository-level secrets](https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-secrets-for-your-repository-and-organization-for-github-codespaces#adding-secrets-for-a-repository).
 
 :::
 
