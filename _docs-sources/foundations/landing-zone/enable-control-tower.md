@@ -16,7 +16,7 @@ waiting on Control Tower Operations at the conclusion of the setup flow.
 
 ### Start Control Tower Setup
 
-1. Sign in to the [AWS management console](https://console.aws.amazon.com) with your administrator user credentials.
+1. Sign in to the [AWS management console](https://console.aws.amazon.com) as the root user, not as the administrator IAM user.
 
 1. Navigate to the [AWS Control Tower console](https://console.aws.amazon.com/controltower).
 
