@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="0.1.0" lastModifiedVersion="0.1.0"/>
+<VersionBadge repoTitle="Control Tower" version="0.1.1" lastModifiedVersion="0.1.1"/>
 
 # Control Tower Account Factory
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.1.0/modules/landingzone/control-tower-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.1.1/modules/landingzone/control-tower-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.1.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.1.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This is a Terraform module that will trigger the creation of a new AWS account by using Control Tower.
 
@@ -84,7 +84,7 @@ Resources:
 
 module "control_tower_account_factory" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.1.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -124,6 +124,16 @@ module "control_tower_account_factory" {
   # (the root user email address for the account).
   accounts_yaml_path = null
 
+  # The amount of time allowed for the create operation to take before being
+  # considered to have failed.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+  create_operation_timeout = "60m"
+
+  # The amount of time allowed for the delete operation to take before being
+  # considered to have failed.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+  delete_operation_timeout = "60m"
+
   # If set to true, this module will use a Bash script to try to find the
   # Control Tower provisioning artifact ID automatically. Due to a Terraform bug
   # (https://github.com/hashicorp/terraform-provider-aws/issues/24362), the
@@ -149,6 +159,16 @@ module "control_tower_account_factory" {
   # the bottom.
   provisioning_artifact_id = null
 
+  # The amount of time allowed for the read operation to take before being
+  # considered to have failed.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+  read_operation_timeout = "20m"
+
+  # The amount of time allowed for the update operation to take before being
+  # considered to have failed.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+  update_operation_timeout = "60m"
+
 }
 
 
@@ -164,7 +184,7 @@ module "control_tower_account_factory" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.1.1"
 }
 
 inputs = {
@@ -207,6 +227,16 @@ inputs = {
   # (the root user email address for the account).
   accounts_yaml_path = null
 
+  # The amount of time allowed for the create operation to take before being
+  # considered to have failed.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+  create_operation_timeout = "60m"
+
+  # The amount of time allowed for the delete operation to take before being
+  # considered to have failed.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+  delete_operation_timeout = "60m"
+
   # If set to true, this module will use a Bash script to try to find the
   # Control Tower provisioning artifact ID automatically. Due to a Terraform bug
   # (https://github.com/hashicorp/terraform-provider-aws/issues/24362), the
@@ -231,6 +261,16 @@ inputs = {
   # ID of the latest 'active' product version from the Product Versions table at
   # the bottom.
   provisioning_artifact_id = null
+
+  # The amount of time allowed for the read operation to take before being
+  # considered to have failed.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+  read_operation_timeout = "20m"
+
+  # The amount of time allowed for the update operation to take before being
+  # considered to have failed.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+  update_operation_timeout = "60m"
 
 }
 
@@ -264,6 +304,21 @@ Account email, must be globally unique across all AWS Accounts.
 The name to use for the new AWS account
 
 </HclListItemDescription>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   AWS requires the account name to be at most 50 characters: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.htmlorganizations-Type-Account-Name
+   However, we use the account name as part of an S3 bucket name, along with a -<REGION>-tf-state suffix, which adds up to ~25 characters.
+   S3 bucket names are limited to 63 characters: https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
+   So, 63 - 25 = 38, so to be on the safe side, that's the limit we enforce here.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="organizational_unit_name" requirement="required" type="string">
@@ -309,6 +364,24 @@ If specified, this is assumed to be the file path of a YAML file where the detai
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="create_operation_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+The amount of time allowed for the create operation to take before being considered to have failed. https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;60m&quot;"/>
+</HclListItem>
+
+<HclListItem name="delete_operation_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+The amount of time allowed for the delete operation to take before being considered to have failed. https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;60m&quot;"/>
+</HclListItem>
+
 <HclListItem name="find_provisioning_artifact_id_using_script" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -325,6 +398,24 @@ The ID of the AWS Control Tower Account Factory provisioning artifact in AWS Ser
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="read_operation_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+The amount of time allowed for the read operation to take before being considered to have failed. https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;20m&quot;"/>
+</HclListItem>
+
+<HclListItem name="update_operation_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+The amount of time allowed for the update operation to take before being considered to have failed. https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;60m&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -401,11 +492,11 @@ The URL of the AWS SSO login page for this account
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.1.0/modules/control-tower-account-factory/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.1.0/modules/control-tower-account-factory/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.1.0/modules/control-tower-account-factory/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.1.1/modules/control-tower-account-factory/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.1.1/modules/control-tower-account-factory/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.1.1/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "42eba8705f2604d89dd95d4f33b4581c"
+  "hash": "31ac1232e600d0e28105554e0d374de3"
 }
 ##DOCS-SOURCER-END -->
