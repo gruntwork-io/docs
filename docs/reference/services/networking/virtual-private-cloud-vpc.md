@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.107.7" lastModifiedVersion="0.105.0"/>
+<VersionBadge version="0.107.10" lastModifiedVersion="0.107.8"/>
 
 # VPC
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.7/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fvpc" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -65,9 +65,9 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.7/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.7/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.7/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.7/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.7/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -105,7 +105,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "vpc" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.107.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.107.10"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -133,11 +133,23 @@ module "vpc" {
   # internet?
   allow_private_persistence_internet_access = false
 
+  # Should the transit subnet be allowed outbound access to the internet?
+  allow_transit_internet_access = false
+
   # If true, will apply the default NACL rules in var.default_nacl_ingress_rules
   # and var.default_nacl_egress_rules on the default NACL of the VPC. Note that
   # every VPC must have a default NACL - when this is false, the original
   # default NACL rules managed by AWS will be used.
   apply_default_nacl_rules = false
+
+  # (Optional) Requests an Amazon-provided IPv6 CIDR block with a /56 prefix
+  # length for the VPC. You cannot specify the range of IP addresses, or the
+  # size of the CIDR block. Conflicts with ipv6_ipam_pool_id
+  assign_generated_ipv6_cidr_block = null
+
+  # (Optional) Specify true to indicate that network interfaces created in the
+  # specified subnet should be assigned an IPv6 address. Default is false
+  assign_ipv6_address_on_creation = false
 
   # If true, will associate the default NACL to the public, private, and
   # persistence subnets created by this module. Only used if
@@ -211,6 +223,9 @@ module "vpc" {
   # Connect, etc).
   create_public_subnets = true
 
+  # If set to false, this module will NOT create the transit subnet tier.
+  create_transit_subnets = false
+
   # Create VPC endpoints for S3 and DynamoDB.
   create_vpc_endpoints = true
 
@@ -263,6 +278,15 @@ module "vpc" {
 
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = true
+
+  # (Optional) Enables IPv6 resources for the VPC. Defaults to false.
+  enable_ipv6 = false
+
+  # (Optional) A boolean flag to enable/disable a private NAT gateway. If this
+  # is set to true, it will disable public NAT gateways. Private NAT gateways
+  # are deployed into transit subnets and require setting
+  # 'var.create_transit_subnets = true'. Defaults false.
+  enable_private_nat = false
 
   # Additional IAM policies to apply to the S3 bucket to store flow logs. You
   # can use this to grant read/write access beyond what is provided to the VPC.
@@ -341,6 +365,35 @@ module "vpc" {
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role.
   iam_role_permissions_boundary = null
+
+  # The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR.
+  ipv4_ipam_pool_id = null
+
+  # (Optional) IPv6 CIDR block to request from an IPAM Pool. Can be set
+  # explicitly or derived from IPAM using ipv6_netmask_length. If not provided,
+  # no IPv6 CIDR block will be allocated.
+  ipv6_cidr_block = null
+
+  # (Optional) By default when an IPv6 CIDR is assigned to a VPC a default
+  # ipv6_cidr_block_network_border_group will be set to the region of the VPC.
+  # This can be changed to restrict advertisement of public addresses to
+  # specific Network Border Groups such as LocalZones.
+  ipv6_cidr_block_network_border_group = null
+
+  # (Optional) IPAM Pool ID for a IPv6 pool. Conflicts with
+  # assign_generated_ipv6_cidr_block.
+  ipv6_ipam_pool_id = null
+
+  # (Optional) Netmask length to request from IPAM Pool. Conflicts with
+  # ipv6_cidr_block. This can be omitted if IPAM pool as a
+  # allocation_default_netmask_length set. Valid values: 56.
+  ipv6_netmask_length = null
+
+  # (Optional) The number of additional bits to use in the VPC IPv6 CIDR block.
+  # The end result must be between a /56 netmask and /64 netmask. These bits are
+  # added to the VPC CIDR block bits. Example: /56 + 8 bits = /64 Defaults to 8
+  # bits for a /64.
+  ipv6_subnet_bits = 8
 
   # The ARN of a KMS key to use for encrypting VPC the flow log. A new KMS key
   # will be created if this is not supplied.
@@ -522,6 +575,29 @@ module "vpc" {
   # of: default, dedicated, or host.
   tenancy = "default"
 
+  # A list of Virtual Private Gateways that will propagate routes to transit
+  # subnets. All routes from VPN connections that use Virtual Private Gateways
+  # listed here will appear in route tables of transit subnets. If left empty,
+  # no routes will be propagated.
+  transit_propagating_vgws = []
+
+  # Takes the CIDR prefix and adds these many bits to it for calculating subnet
+  # ranges.  MAKE SURE if you change this you also change the CIDR spacing or
+  # you may hit errors.  See cidrsubnet interpolation in terraform config for
+  # more information.
+  transit_subnet_bits = 5
+
+  # A map listing the specific CIDR blocks desired for each transit subnet. The
+  # key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of
+  # Availability Zones. If left blank, we will compute a reasonable CIDR block
+  # for each subnet.
+  transit_subnet_cidr_blocks = {}
+
+  # A map of tags to apply to the transit Subnet, on top of the custom_tags. The
+  # key is the tag name and the value is the tag value. Note that tags defined
+  # here will override tags defined as custom_tags in case of conflict.
+  transit_subnet_custom_tags = {}
+
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
   # are friendlier to automated policy checkers, which may scan a single
@@ -550,7 +626,7 @@ module "vpc" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.107.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.107.10"
 }
 
 inputs = {
@@ -581,11 +657,23 @@ inputs = {
   # internet?
   allow_private_persistence_internet_access = false
 
+  # Should the transit subnet be allowed outbound access to the internet?
+  allow_transit_internet_access = false
+
   # If true, will apply the default NACL rules in var.default_nacl_ingress_rules
   # and var.default_nacl_egress_rules on the default NACL of the VPC. Note that
   # every VPC must have a default NACL - when this is false, the original
   # default NACL rules managed by AWS will be used.
   apply_default_nacl_rules = false
+
+  # (Optional) Requests an Amazon-provided IPv6 CIDR block with a /56 prefix
+  # length for the VPC. You cannot specify the range of IP addresses, or the
+  # size of the CIDR block. Conflicts with ipv6_ipam_pool_id
+  assign_generated_ipv6_cidr_block = null
+
+  # (Optional) Specify true to indicate that network interfaces created in the
+  # specified subnet should be assigned an IPv6 address. Default is false
+  assign_ipv6_address_on_creation = false
 
   # If true, will associate the default NACL to the public, private, and
   # persistence subnets created by this module. Only used if
@@ -659,6 +747,9 @@ inputs = {
   # Connect, etc).
   create_public_subnets = true
 
+  # If set to false, this module will NOT create the transit subnet tier.
+  create_transit_subnets = false
+
   # Create VPC endpoints for S3 and DynamoDB.
   create_vpc_endpoints = true
 
@@ -711,6 +802,15 @@ inputs = {
 
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = true
+
+  # (Optional) Enables IPv6 resources for the VPC. Defaults to false.
+  enable_ipv6 = false
+
+  # (Optional) A boolean flag to enable/disable a private NAT gateway. If this
+  # is set to true, it will disable public NAT gateways. Private NAT gateways
+  # are deployed into transit subnets and require setting
+  # 'var.create_transit_subnets = true'. Defaults false.
+  enable_private_nat = false
 
   # Additional IAM policies to apply to the S3 bucket to store flow logs. You
   # can use this to grant read/write access beyond what is provided to the VPC.
@@ -789,6 +889,35 @@ inputs = {
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role.
   iam_role_permissions_boundary = null
+
+  # The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR.
+  ipv4_ipam_pool_id = null
+
+  # (Optional) IPv6 CIDR block to request from an IPAM Pool. Can be set
+  # explicitly or derived from IPAM using ipv6_netmask_length. If not provided,
+  # no IPv6 CIDR block will be allocated.
+  ipv6_cidr_block = null
+
+  # (Optional) By default when an IPv6 CIDR is assigned to a VPC a default
+  # ipv6_cidr_block_network_border_group will be set to the region of the VPC.
+  # This can be changed to restrict advertisement of public addresses to
+  # specific Network Border Groups such as LocalZones.
+  ipv6_cidr_block_network_border_group = null
+
+  # (Optional) IPAM Pool ID for a IPv6 pool. Conflicts with
+  # assign_generated_ipv6_cidr_block.
+  ipv6_ipam_pool_id = null
+
+  # (Optional) Netmask length to request from IPAM Pool. Conflicts with
+  # ipv6_cidr_block. This can be omitted if IPAM pool as a
+  # allocation_default_netmask_length set. Valid values: 56.
+  ipv6_netmask_length = null
+
+  # (Optional) The number of additional bits to use in the VPC IPv6 CIDR block.
+  # The end result must be between a /56 netmask and /64 netmask. These bits are
+  # added to the VPC CIDR block bits. Example: /56 + 8 bits = /64 Defaults to 8
+  # bits for a /64.
+  ipv6_subnet_bits = 8
 
   # The ARN of a KMS key to use for encrypting VPC the flow log. A new KMS key
   # will be created if this is not supplied.
@@ -969,6 +1098,29 @@ inputs = {
   # The allowed tenancy of instances launched into the selected VPC. Must be one
   # of: default, dedicated, or host.
   tenancy = "default"
+
+  # A list of Virtual Private Gateways that will propagate routes to transit
+  # subnets. All routes from VPN connections that use Virtual Private Gateways
+  # listed here will appear in route tables of transit subnets. If left empty,
+  # no routes will be propagated.
+  transit_propagating_vgws = []
+
+  # Takes the CIDR prefix and adds these many bits to it for calculating subnet
+  # ranges.  MAKE SURE if you change this you also change the CIDR spacing or
+  # you may hit errors.  See cidrsubnet interpolation in terraform config for
+  # more information.
+  transit_subnet_bits = 5
+
+  # A map listing the specific CIDR blocks desired for each transit subnet. The
+  # key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of
+  # Availability Zones. If left blank, we will compute a reasonable CIDR block
+  # for each subnet.
+  transit_subnet_cidr_blocks = {}
+
+  # A map of tags to apply to the transit Subnet, on top of the custom_tags. The
+  # key is the tag name and the value is the tag value. Note that tags defined
+  # here will override tags defined as custom_tags in case of conflict.
+  transit_subnet_custom_tags = {}
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -1036,10 +1188,37 @@ Should the private persistence subnet be allowed outbound access to the internet
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="allow_transit_internet_access" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Should the transit subnet be allowed outbound access to the internet?
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="apply_default_nacl_rules" requirement="optional" type="bool">
 <HclListItemDescription>
 
 If true, will apply the default NACL rules in <a href="#default_nacl_ingress_rules"><code>default_nacl_ingress_rules</code></a> and <a href="#default_nacl_egress_rules"><code>default_nacl_egress_rules</code></a> on the default NACL of the VPC. Note that every VPC must have a default NACL - when this is false, the original default NACL rules managed by AWS will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="assign_generated_ipv6_cidr_block" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) Requests an Amazon-provided IPv6 CIDR block with a /56 prefix length for the VPC. You cannot specify the range of IP addresses, or the size of the CIDR block. Conflicts with ipv6_ipam_pool_id
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="assign_ipv6_address_on_creation" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) Specify true to indicate that network interfaces created in the specified subnet should be assigned an IPv6 address. Default is false
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -1169,6 +1348,15 @@ If set to false, this module will NOT create the public subnet tier. This is use
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="create_transit_subnets" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to false, this module will NOT create the transit subnet tier.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="create_vpc_endpoints" requirement="optional" type="bool">
@@ -1339,6 +1527,24 @@ If set to false, the default security groups will NOT be created.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_ipv6" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) Enables IPv6 resources for the VPC. Defaults to false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_private_nat" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) A boolean flag to enable/disable a private NAT gateway. If this is set to true, it will disable public NAT gateways. Private NAT gateways are deployed into transit subnets and require setting '<a href="#create_transit_subnets"><code>create_transit_subnets</code></a> = true'. Defaults false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="flow_log_additional_s3_bucket_policy_statements" requirement="optional" type="any">
@@ -1582,6 +1788,60 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ipv4_ipam_pool_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ipv6_cidr_block" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Optional) IPv6 CIDR block to request from an IPAM Pool. Can be set explicitly or derived from IPAM using ipv6_netmask_length. If not provided, no IPv6 CIDR block will be allocated.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ipv6_cidr_block_network_border_group" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Optional) By default when an IPv6 CIDR is assigned to a VPC a default ipv6_cidr_block_network_border_group will be set to the region of the VPC. This can be changed to restrict advertisement of public addresses to specific Network Border Groups such as LocalZones.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ipv6_ipam_pool_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Optional) IPAM Pool ID for a IPv6 pool. Conflicts with assign_generated_ipv6_cidr_block.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ipv6_netmask_length" requirement="optional" type="number">
+<HclListItemDescription>
+
+(Optional) Netmask length to request from IPAM Pool. Conflicts with ipv6_cidr_block. This can be omitted if IPAM pool as a allocation_default_netmask_length set. Valid values: 56.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ipv6_subnet_bits" requirement="optional" type="number">
+<HclListItemDescription>
+
+(Optional) The number of additional bits to use in the VPC IPv6 CIDR block. The end result must be between a /56 netmask and /64 netmask. These bits are added to the VPC CIDR block bits. Example: /56 + 8 bits = /64 Defaults to 8 bits for a /64.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="8"/>
 </HclListItem>
 
 <HclListItem name="kms_key_arn" requirement="optional" type="string">
@@ -1987,6 +2247,42 @@ The allowed tenancy of instances launched into the selected VPC. Must be one of:
 <HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
 </HclListItem>
 
+<HclListItem name="transit_propagating_vgws" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of Virtual Private Gateways that will propagate routes to transit subnets. All routes from VPN connections that use Virtual Private Gateways listed here will appear in route tables of transit subnets. If left empty, no routes will be propagated.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="transit_subnet_bits" requirement="optional" type="number">
+<HclListItemDescription>
+
+Takes the CIDR prefix and adds these many bits to it for calculating subnet ranges.  MAKE SURE if you change this you also change the CIDR spacing or you may hit errors.  See cidrsubnet interpolation in terraform config for more information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="5"/>
+</HclListItem>
+
+<HclListItem name="transit_subnet_cidr_blocks" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map listing the specific CIDR blocks desired for each transit subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="transit_subnet_custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the transit Subnet, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2025,6 +2321,14 @@ The ID of the default security group of this VPC.
 </HclListItem>
 
 <HclListItem name="dynamodb_vpc_endpoint_id">
+</HclListItem>
+
+<HclListItem name="ipv6_cidr_block">
+<HclListItemDescription>
+
+The IPv6 CIDR block associated with the VPC.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="nat_gateway_public_ip_count">
@@ -2115,6 +2419,14 @@ The IDs of the private persistence tier subnets of the VPC.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="private_persistence_subnet_route_table_ids">
+<HclListItemDescription>
+
+A list of IDs of the private persistence subnet routing table.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="private_persistence_subnets">
 <HclListItemDescription>
 
@@ -2147,6 +2459,14 @@ A list of IDs of the public subnets of the VPC.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="public_subnet_ipv6_cidr_blocks">
+<HclListItemDescription>
+
+The public IPv6 CIDR block associated with the VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="public_subnet_route_table_id">
 <HclListItemDescription>
 
@@ -2172,6 +2492,38 @@ The ID of the public subnet's ACL
 </HclListItem>
 
 <HclListItem name="s3_vpc_endpoint_id">
+</HclListItem>
+
+<HclListItem name="transit_subnet_cidr_blocks">
+<HclListItemDescription>
+
+The transit IP address range of the VPC transit subnet tier in CIDR notation.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="transit_subnet_ids">
+<HclListItemDescription>
+
+The IDs of the transit subnets of the VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="transit_subnet_route_table_ids">
+<HclListItemDescription>
+
+A list of IDs of the transit subnet routing table.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="transit_subnets">
+<HclListItemDescription>
+
+A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet` properties as the value.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="vpc_cidr_block">
@@ -2213,11 +2565,11 @@ Indicates whether or not the VPC has finished creating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.7/modules/networking/vpc/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.7/modules/networking/vpc/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.7/modules/networking/vpc/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/modules/networking/vpc/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/modules/networking/vpc/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "20939d788a84ce5f258a2b261ef42b24"
+  "hash": "337015058292d347d49b3c90c57daf09"
 }
 ##DOCS-SOURCER-END -->
