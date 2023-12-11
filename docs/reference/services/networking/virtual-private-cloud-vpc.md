@@ -168,6 +168,19 @@ module "vpc" {
   # automatically fetch the region using a data source.
   aws_region = ""
 
+  # The CIDR block to use for the blackhole route. Defaults to: `10.0.0.0/8`.
+  blackhole_cidr_block = "10.0.0.0/8"
+
+  # A list of route tables that should have a blackhole route to the destination
+  # VPC CIDR block. This is useful when you want to prevent traffic from being
+  # routed to the destination VPC.
+  blackhole_route_table_ids = ["${module.vpc.private_app_subnet_route_table_ids}","${module.vpc.private_persistence_subnet_route_table_ids}"]
+
+  # Whether or not to create a blackhole route to the destination VPC CIDR
+  # block. This is useful when you want to prevent traffic from being routed to
+  # the destination VPC.
+  create_blackhole_route = false
+
   # Whether or not to create DNS forwarders from the Mgmt VPC to the App VPC to
   # resolve private Route 53 endpoints. This is most useful when you want to
   # keep your EKS Kubernetes API endpoint private to the VPC, but want to access
@@ -694,6 +707,19 @@ inputs = {
   # longer used and only kept around for backwards compatibility. We now
   # automatically fetch the region using a data source.
   aws_region = ""
+
+  # The CIDR block to use for the blackhole route. Defaults to: `10.0.0.0/8`.
+  blackhole_cidr_block = "10.0.0.0/8"
+
+  # A list of route tables that should have a blackhole route to the destination
+  # VPC CIDR block. This is useful when you want to prevent traffic from being
+  # routed to the destination VPC.
+  blackhole_route_table_ids = ["${module.vpc.private_app_subnet_route_table_ids}","${module.vpc.private_persistence_subnet_route_table_ids}"]
+
+  # Whether or not to create a blackhole route to the destination VPC CIDR
+  # block. This is useful when you want to prevent traffic from being routed to
+  # the destination VPC.
+  create_blackhole_route = false
 
   # Whether or not to create DNS forwarders from the Mgmt VPC to the App VPC to
   # resolve private Route 53 endpoints. This is most useful when you want to
@@ -1255,6 +1281,42 @@ DEPRECATED. The AWS Region where this VPC will exist. This variable is no longer
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="blackhole_cidr_block" requirement="optional" type="string">
+<HclListItemDescription>
+
+The CIDR block to use for the blackhole route. Defaults to: `10.0.0.0/8`.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;10.0.0.0/8&quot;"/>
+</HclListItem>
+
+<HclListItem name="blackhole_route_table_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of route tables that should have a blackhole route to the destination VPC CIDR block. This is useful when you want to prevent traffic from being routed to the destination VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue>
+
+```hcl
+[
+  "${module.vpc.private_app_subnet_route_table_ids}",
+  "${module.vpc.private_persistence_subnet_route_table_ids}"
+]
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="create_blackhole_route" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to create a blackhole route to the destination VPC CIDR block. This is useful when you want to prevent traffic from being routed to the destination VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="create_dns_forwarder" requirement="optional" type="bool">
@@ -2595,6 +2657,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f69b0a19b971220aa06577a199f76de4"
+  "hash": "b5543f4a6a9c1581a9866629db5898de"
 }
 ##DOCS-SOURCER-END -->
