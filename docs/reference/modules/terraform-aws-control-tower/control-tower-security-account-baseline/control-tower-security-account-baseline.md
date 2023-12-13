@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="0.1.0" />
+<VersionBadge repoTitle="Control Tower" version="0.2.1" lastModifiedVersion="0.2.0"/>
 
 # Account Baseline Security with Control Tower Integration
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.1.0/modules/landingzone/control-tower-security-account-baseline" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.2.1/modules/landingzone/control-tower-security-account-baseline" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=control-tower-security-account-baseline" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 A CIS compliant security baseline for AWS Landing Zone for configuring the security account (the one where all your IAM
 users and IAM groups are defined), as part of a Control Tower integration. This module fills in features NOT supported
@@ -34,7 +34,7 @@ by Control Tower, including setting up Amazon Guard Duty, Macie, IAM users, IAM 
 
 module "control_tower_security_account_baseline" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v0.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v0.2.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -601,7 +601,7 @@ module "control_tower_security_account_baseline" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v0.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v0.2.1"
 }
 
 inputs = {
@@ -2585,11 +2585,11 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.1.0/modules/control-tower-security-account-baseline/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.1.0/modules/control-tower-security-account-baseline/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.1.0/modules/control-tower-security-account-baseline/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.2.1/modules/control-tower-security-account-baseline/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.2.1/modules/control-tower-security-account-baseline/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.2.1/modules/control-tower-security-account-baseline/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9fff3c67d9323ce35c047266a58d7e58"
+  "hash": "27e4f5ffd3aa62c1e82af962dfd99af1"
 }
 ##DOCS-SOURCER-END -->
