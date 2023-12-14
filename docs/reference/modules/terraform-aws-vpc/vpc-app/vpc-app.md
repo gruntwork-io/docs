@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.10" lastModifiedVersion="0.26.10"/>
+<VersionBadge repoTitle="VPC Modules" version="0.26.14" lastModifiedVersion="0.26.14"/>
 
 # IPv6
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.10/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.14/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.14" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 ## What's a VPC?
 
@@ -73,7 +73,7 @@ nearly all use-cases, and is consistent with many examples and existing document
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.10/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.14/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
 
 ## IPv6 Design
 
@@ -111,7 +111,7 @@ module "vpc_app_ipv6_example" {
 
 module "vpc_app" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.14"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -554,7 +554,7 @@ module "vpc_app" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.14"
 }
 
 inputs = {
@@ -1868,7 +1868,7 @@ The IPv6 CIDR block associated with the VPC.
 <HclListItem name="private_app_subnets">
 <HclListItemDescription>
 
-A map of all private-app subnets, with the subnet name as the key, and all `aws-subnet` properties as the value.
+A map of all private-app subnets, with the subnet ID as the key, and all `aws-subnet` properties as the value.
 
 </HclListItemDescription>
 </HclListItem>
@@ -1894,7 +1894,7 @@ A map of all private-app subnets, with the subnet name as the key, and all `aws-
 <HclListItem name="private_persistence_subnets">
 <HclListItemDescription>
 
-A map of all private-persistence subnets, with the subnet name as the key, and all `aws-subnet` properties as the value.
+A map of all private-persistence subnets, with the subnet ID as the key, and all `aws-subnet` properties as the value.
 
 </HclListItemDescription>
 </HclListItem>
@@ -1923,7 +1923,7 @@ A map of all private-persistence subnets, with the subnet name as the key, and a
 <HclListItem name="public_subnets">
 <HclListItemDescription>
 
-A map of all public subnets, with the subnet name as the key, and all `aws-subnet` properties as the value.
+A map of all public subnets, with the subnet ID as the key, and all `aws-subnet` properties as the value.
 
 </HclListItemDescription>
 </HclListItem>
@@ -1946,7 +1946,7 @@ A map of all public subnets, with the subnet name as the key, and all `aws-subne
 <HclListItem name="transit_subnets">
 <HclListItemDescription>
 
-A map of all transit subnets, with the subnet name as the key, and all `aws-subnet` properties as the value.
+A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet` properties as the value.
 
 </HclListItemDescription>
 </HclListItem>
@@ -1970,11 +1970,11 @@ A map of all transit subnets, with the subnet name as the key, and all `aws-subn
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.10/modules/vpc-app/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.10/modules/vpc-app/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.10/modules/vpc-app/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.14/modules/vpc-app/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.14/modules/vpc-app/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.14/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "86a03d8deda306dc1e22b7d0470294f4"
+  "hash": "8b187e6e7a10781f2cf18dbfee5f9d3a"
 }
 ##DOCS-SOURCER-END -->
