@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.14" lastModifiedVersion="0.26.14"/>
+<VersionBadge repoTitle="VPC Modules" version="0.26.15" lastModifiedVersion="0.26.15"/>
 
 # IPv6
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.14/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.14" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.15" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 ## What's a VPC?
 
@@ -73,7 +73,7 @@ nearly all use-cases, and is consistent with many examples and existing document
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.14/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
 
 ## IPv6 Design
 
@@ -111,7 +111,7 @@ module "vpc_app_ipv6_example" {
 
 module "vpc_app" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.14"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.15"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -297,6 +297,9 @@ module "vpc_app" {
   # are present, such as the transit subnets.
   global_subnet_spacing = 6
 
+  # Filters to select the IPv4 IPAM pool to use for allocated this VPCs
+  ipv4_ipam_pool_filters = null
+
   # The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR.
   ipv4_ipam_pool_id = null
 
@@ -314,6 +317,9 @@ module "vpc_app" {
   # This can be changed to restrict advertisement of public addresses to
   # specific Network Border Groups such as LocalZones.
   ipv6_cidr_block_network_border_group = null
+
+  # Filters to select the IPv6 IPAM pool to use for allocated this VPCs
+  ipv6_ipam_pool_filters = null
 
   # (Optional) IPAM Pool ID for a IPv6 pool. Conflicts with
   # assign_generated_ipv6_cidr_block.
@@ -554,7 +560,7 @@ module "vpc_app" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.14"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.15"
 }
 
 inputs = {
@@ -743,6 +749,9 @@ inputs = {
   # are present, such as the transit subnets.
   global_subnet_spacing = 6
 
+  # Filters to select the IPv4 IPAM pool to use for allocated this VPCs
+  ipv4_ipam_pool_filters = null
+
   # The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR.
   ipv4_ipam_pool_id = null
 
@@ -760,6 +769,9 @@ inputs = {
   # This can be changed to restrict advertisement of public addresses to
   # specific Network Border Groups such as LocalZones.
   ipv6_cidr_block_network_border_group = null
+
+  # Filters to select the IPv6 IPAM pool to use for allocated this VPCs
+  ipv6_ipam_pool_filters = null
 
   # (Optional) IPAM Pool ID for a IPv6 pool. Conflicts with
   # assign_generated_ipv6_cidr_block.
@@ -1413,6 +1425,25 @@ The amount of spacing between the different subnet types when all subnets are pr
 <HclListItemDefaultValue defaultValue="6"/>
 </HclListItem>
 
+<HclListItem name="ipv4_ipam_pool_filters" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+Filters to select the IPv4 IPAM pool to use for allocated this VPCs
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    name   = string
+    values = list(string)
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="ipv4_ipam_pool_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1446,6 +1477,25 @@ The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR.
 (Optional) By default when an IPv6 CIDR is assigned to a VPC a default ipv6_cidr_block_network_border_group will be set to the region of the VPC. This can be changed to restrict advertisement of public addresses to specific Network Border Groups such as LocalZones.
 
 </HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ipv6_ipam_pool_filters" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+Filters to select the IPv6 IPAM pool to use for allocated this VPCs
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    name   = string
+    values = list(string)
+  }))
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -1970,11 +2020,11 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.14/modules/vpc-app/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.14/modules/vpc-app/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.14/modules/vpc-app/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-app/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-app/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8b187e6e7a10781f2cf18dbfee5f9d3a"
+  "hash": "328fa9a00ff56966391ce0f8539f684e"
 }
 ##DOCS-SOURCER-END -->
