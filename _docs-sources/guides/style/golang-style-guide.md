@@ -181,6 +181,20 @@ Since many languages use `ALL_CAPS` for constants, it is worth calling out expli
 Therefore, `region` or `testRegion` for private constants and `Region` or `TestRegion` for public ones is preferred over
 `REGION` or `TEST_REGION`.
 
+
+### Using packages
+
+A common pattern in Go is create new packages under the `pkg` or `internal` directories. If you are unsure about which
+one to use, follow this simple litmus test:
+
+- The `internal` directory contains code that we don’t want to be consumed by other clients.
+- A great example of this is telemetry as its normally app-specific and may contain a private DSN.
+- It would be unfortunate for another CLI app to import this package and inadvertently emit events.
+- The `pkg` directory contains all packages that we want to make exportable to other clients.
+- In general most of our code should live under `pkg` with the exception of very specific, private methods.
+
+A good primer on this layout is available in the following [blog post](https://stackoverflow.com/questions/73007657/go-internal-and-pkg-packages-sharing-same-name).
+
 ### Functional programming practices
 
 #### Immutability
@@ -250,6 +264,23 @@ func mul(a, b int) int {
     return a * b
 }
 ```
+
+#### Functional Options Pattern
+
+This pattern can be easily be summarized using code:
+
+```go
+// Instead of instantiating a struct with many arguments:
+patcher, err := patcher.New(opts, true, true)
+```
+
+```go
+// Use functional options instead:
+patcher, err := patcher.New(opts, options.WithResolveDependencies(), options.WithApplyPatches())
+```
+
+Be sure to read this [blog post](https://golang.cafe/blog/golang-functional-options-pattern.html) for more information
+on this pattern.
 
 ### Repo-specific conventions
 
