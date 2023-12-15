@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.107.10" lastModifiedVersion="0.107.8"/>
+<VersionBadge version="0.107.12" lastModifiedVersion="0.107.12"/>
 
 # VPC
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fvpc" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -65,9 +65,9 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -105,7 +105,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "vpc" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.107.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.107.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -167,6 +167,24 @@ module "vpc" {
   # longer used and only kept around for backwards compatibility. We now
   # automatically fetch the region using a data source.
   aws_region = ""
+
+  # The CIDR block to use for the blackhole route. Defaults to: `10.0.0.0/8`.
+  # Only used if var.create_blackhole_route is true.
+  blackhole_cidr_block = "10.0.0.0/8"
+
+  # A list of names of subnets that should have a blackhole route to the
+  # destination VPC CIDR block. This is useful when you want to prevent traffic
+  # from being routed to the destination VPC. Valid values: public, private-app,
+  # private-persistence, transit. Only used if var.create_blackhole_route is
+  # true.
+  blackhole_route_table_names = ["private-app","private-persistence"]
+
+  # Whether or not to create a blackhole route to the destination VPC CIDR
+  # block. To specify which route tables have this blackhole route, use
+  # var.blackhole_route_table_names. This is useful when you want to prevent
+  # traffic from being routed to the destination VPC. If you set this to true,
+  # you must also set var.create_transit_subnets to true.
+  create_blackhole_route = false
 
   # Whether or not to create DNS forwarders from the Mgmt VPC to the App VPC to
   # resolve private Route 53 endpoints. This is most useful when you want to
@@ -362,12 +380,23 @@ module "vpc" {
   # true.
   flow_logs_traffic_type = "REJECT"
 
+  # The amount of spacing between the different subnet types when all subnets
+  # are present, such as the transit subnets.
+  global_subnet_spacing = 6
+
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role.
   iam_role_permissions_boundary = null
 
+  # Filters to select the IPv4 IPAM pool to use for allocated this VPCs
+  ipv4_ipam_pool_filters = null
+
   # The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR.
   ipv4_ipam_pool_id = null
+
+  # (Optional) The length of the IPv4 CIDR netmask. Requires utilizing an
+  # ipv4_ipam_pool_id. Defaults to null.
+  ipv4_netmask_length = null
 
   # (Optional) IPv6 CIDR block to request from an IPAM Pool. Can be set
   # explicitly or derived from IPAM using ipv6_netmask_length. If not provided,
@@ -379,6 +408,9 @@ module "vpc" {
   # This can be changed to restrict advertisement of public addresses to
   # specific Network Border Groups such as LocalZones.
   ipv6_cidr_block_network_border_group = null
+
+  # Filters to select the IPv6 IPAM pool to use for allocated this VPCs
+  ipv6_ipam_pool_filters = null
 
   # (Optional) IPAM Pool ID for a IPv6 pool. Conflicts with
   # assign_generated_ipv6_cidr_block.
@@ -626,7 +658,7 @@ module "vpc" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.107.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.107.12"
 }
 
 inputs = {
@@ -691,6 +723,24 @@ inputs = {
   # longer used and only kept around for backwards compatibility. We now
   # automatically fetch the region using a data source.
   aws_region = ""
+
+  # The CIDR block to use for the blackhole route. Defaults to: `10.0.0.0/8`.
+  # Only used if var.create_blackhole_route is true.
+  blackhole_cidr_block = "10.0.0.0/8"
+
+  # A list of names of subnets that should have a blackhole route to the
+  # destination VPC CIDR block. This is useful when you want to prevent traffic
+  # from being routed to the destination VPC. Valid values: public, private-app,
+  # private-persistence, transit. Only used if var.create_blackhole_route is
+  # true.
+  blackhole_route_table_names = ["private-app","private-persistence"]
+
+  # Whether or not to create a blackhole route to the destination VPC CIDR
+  # block. To specify which route tables have this blackhole route, use
+  # var.blackhole_route_table_names. This is useful when you want to prevent
+  # traffic from being routed to the destination VPC. If you set this to true,
+  # you must also set var.create_transit_subnets to true.
+  create_blackhole_route = false
 
   # Whether or not to create DNS forwarders from the Mgmt VPC to the App VPC to
   # resolve private Route 53 endpoints. This is most useful when you want to
@@ -886,12 +936,23 @@ inputs = {
   # true.
   flow_logs_traffic_type = "REJECT"
 
+  # The amount of spacing between the different subnet types when all subnets
+  # are present, such as the transit subnets.
+  global_subnet_spacing = 6
+
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role.
   iam_role_permissions_boundary = null
 
+  # Filters to select the IPv4 IPAM pool to use for allocated this VPCs
+  ipv4_ipam_pool_filters = null
+
   # The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR.
   ipv4_ipam_pool_id = null
+
+  # (Optional) The length of the IPv4 CIDR netmask. Requires utilizing an
+  # ipv4_ipam_pool_id. Defaults to null.
+  ipv4_netmask_length = null
 
   # (Optional) IPv6 CIDR block to request from an IPAM Pool. Can be set
   # explicitly or derived from IPAM using ipv6_netmask_length. If not provided,
@@ -903,6 +964,9 @@ inputs = {
   # This can be changed to restrict advertisement of public addresses to
   # specific Network Border Groups such as LocalZones.
   ipv6_cidr_block_network_border_group = null
+
+  # Filters to select the IPv6 IPAM pool to use for allocated this VPCs
+  ipv6_ipam_pool_filters = null
 
   # (Optional) IPAM Pool ID for a IPv6 pool. Conflicts with
   # assign_generated_ipv6_cidr_block.
@@ -1249,6 +1313,42 @@ DEPRECATED. The AWS Region where this VPC will exist. This variable is no longer
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="blackhole_cidr_block" requirement="optional" type="string">
+<HclListItemDescription>
+
+The CIDR block to use for the blackhole route. Defaults to: `10.0.0.0/8`. Only used if <a href="#create_blackhole_route"><code>create_blackhole_route</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;10.0.0.0/8&quot;"/>
+</HclListItem>
+
+<HclListItem name="blackhole_route_table_names" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of names of subnets that should have a blackhole route to the destination VPC CIDR block. This is useful when you want to prevent traffic from being routed to the destination VPC. Valid values: public, private-app, private-persistence, transit. Only used if <a href="#create_blackhole_route"><code>create_blackhole_route</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue>
+
+```hcl
+[
+  "private-app",
+  "private-persistence"
+]
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="create_blackhole_route" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to create a blackhole route to the destination VPC CIDR block. To specify which route tables have this blackhole route, use <a href="#blackhole_route_table_names"><code>blackhole_route_table_names</code></a>. This is useful when you want to prevent traffic from being routed to the destination VPC. If you set this to true, you must also set <a href="#create_transit_subnets"><code>create_transit_subnets</code></a> to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="create_dns_forwarder" requirement="optional" type="bool">
@@ -1781,6 +1881,15 @@ The type of traffic to capture in the VPC flow log. Valid values include ACCEPT,
 <HclListItemDefaultValue defaultValue="&quot;REJECT&quot;"/>
 </HclListItem>
 
+<HclListItem name="global_subnet_spacing" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of spacing between the different subnet types when all subnets are present, such as the transit subnets.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="6"/>
+</HclListItem>
+
 <HclListItem name="iam_role_permissions_boundary" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1790,10 +1899,38 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="ipv4_ipam_pool_filters" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+Filters to select the IPv4 IPAM pool to use for allocated this VPCs
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    name   = string
+    values = list(string)
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="ipv4_ipam_pool_id" requirement="optional" type="string">
 <HclListItemDescription>
 
 The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ipv4_netmask_length" requirement="optional" type="number">
+<HclListItemDescription>
+
+(Optional) The length of the IPv4 CIDR netmask. Requires utilizing an ipv4_ipam_pool_id. Defaults to null.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1814,6 +1951,25 @@ The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR.
 (Optional) By default when an IPv6 CIDR is assigned to a VPC a default ipv6_cidr_block_network_border_group will be set to the region of the VPC. This can be changed to restrict advertisement of public addresses to specific Network Border Groups such as LocalZones.
 
 </HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ipv6_ipam_pool_filters" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+Filters to select the IPv6 IPAM pool to use for allocated this VPCs
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    name   = string
+    values = list(string)
+  }))
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -2312,6 +2468,14 @@ The availability zones of the VPC
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="blackhole_route_eni_id">
+<HclListItemDescription>
+
+The ID of the ENI used as a 'blackhole' destination for routing. Only available if <a href="#create_blackhole_route"><code>create_blackhole_route</code></a> is set to true.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="default_security_group_id">
 <HclListItemDescription>
 
@@ -2565,11 +2729,11 @@ Indicates whether or not the VPC has finished creating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/modules/networking/vpc/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/modules/networking/vpc/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.10/modules/networking/vpc/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/networking/vpc/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/networking/vpc/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "337015058292d347d49b3c90c57daf09"
+  "hash": "4e39ca79a9877fa518324b9a060e279b"
 }
 ##DOCS-SOURCER-END -->
