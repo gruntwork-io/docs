@@ -16,7 +16,7 @@ waiting on Control Tower Operations at the conclusion of the setup flow.
 
 ### Start Control Tower Setup
 
-1. Sign in to the [AWS management console](https://console.aws.amazon.com) with your administrator user credentials.
+1. Sign in to the [AWS management console](https://console.aws.amazon.com) as the root user, not as the administrator IAM user.
 
 1. Navigate to the [AWS Control Tower console](https://console.aws.amazon.com/controltower).
 
@@ -168,6 +168,6 @@ Control Tower is now configured! Next you should consider:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7a4c5e1b88017bfb25746f1122cc7920"
+  "hash": "6bfdf2665fefce045498f9e40e2a5753"
 }
 ##DOCS-SOURCER-END -->
