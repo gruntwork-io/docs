@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.32" lastModifiedVersion="0.31.4"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.32" lastModifiedVersion="0.32"/>
 
 # RDS Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.31.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.32" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Relational Database Service (RDS) cluster that can run MySQL, Postgres, MariaDB, Oracle,
 or SQL Server. The cluster is managed by AWS and automatically handles standby failover, read replicas, backups,
@@ -81,6 +81,12 @@ or if you run `terraform output`.
 
 Note that the database is likely behind a Bastion Host, so you may need to first connect to the Bastion Host (or use SSH
 Tunneling) before you can connect to the database.
+
+## Blue/Green Deployment for Low-Downtime Updates
+
+By default, RDS applies updates to DB Instances in-place, which can lead to service interruptions. Low-downtime updates minimize service interruptions by performing the updates with an RDS Blue/Green deployment and switching over the instances when complete. This can be enabled by setting the `enable_blue_green_update` variable to `true`.
+
+Note that only MySQL, MariaDB, and Postgresql are supported and backups must be enabled to use low-downtime updates. Also, when terraform start the Blue/Green Deployment during update, it won't finish until after the Green instances become the new instance and the Blue instance is deleted. Hence, it's not possible to use Blue/Green Deployment for scenario outside of terraform's resource update, such as manually testing the Green deployment before replacing the Blue instance, or reverting back to Blue deployment.
 
 ## Sample Usage
 
@@ -234,6 +240,10 @@ module "rds" {
   # Timeout for DB creating
   creating_timeout = "40m"
 
+  # The instance profile associated with the underlying Amazon EC2 instance of
+  # an RDS Custom DB instance.
+  custom_iam_instance_profile = null
+
   # Configure a custom parameter group for the RDS DB. This will create a new
   # parameter group with the given parameters. When null, the database will be
   # launched with the default parameter group.
@@ -262,6 +272,12 @@ module "rds" {
   # false.
   deletion_protection = false
 
+  # Enable blue/green deployment to minimize down time due to changes made to
+  # the RDS Instance. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments-overview.html
+  # for more detailed information.
+  enable_blue_green_update = false
+
   # List of log types to enable for exporting to CloudWatch logs. If omitted, no
   # logs will be exported. Valid values (depending on engine): alert, audit,
   # error, general, listener, slowquery, trace, postgresql (PostgreSQL) and
@@ -282,7 +298,8 @@ module "rds" {
 
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used
   # if var.storage_encrypted is true. If you leave this blank, the default RDS
-  # KMS key for the account will be used.
+  # KMS key for the account will be used. This variable needs to be set to an
+  # AWS KMS CMK if provisioning a custom RDS instance.
   kms_key_arn = null
 
   # The license model to use for this DB. Check the docs for your RDS DB for
@@ -597,6 +614,10 @@ inputs = {
   # Timeout for DB creating
   creating_timeout = "40m"
 
+  # The instance profile associated with the underlying Amazon EC2 instance of
+  # an RDS Custom DB instance.
+  custom_iam_instance_profile = null
+
   # Configure a custom parameter group for the RDS DB. This will create a new
   # parameter group with the given parameters. When null, the database will be
   # launched with the default parameter group.
@@ -625,6 +646,12 @@ inputs = {
   # false.
   deletion_protection = false
 
+  # Enable blue/green deployment to minimize down time due to changes made to
+  # the RDS Instance. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments-overview.html
+  # for more detailed information.
+  enable_blue_green_update = false
+
   # List of log types to enable for exporting to CloudWatch logs. If omitted, no
   # logs will be exported. Valid values (depending on engine): alert, audit,
   # error, general, listener, slowquery, trace, postgresql (PostgreSQL) and
@@ -645,7 +672,8 @@ inputs = {
 
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used
   # if var.storage_encrypted is true. If you leave this blank, the default RDS
-  # KMS key for the account will be used.
+  # KMS key for the account will be used. This variable needs to be set to an
+  # AWS KMS CMK if provisioning a custom RDS instance.
   kms_key_arn = null
 
   # The license model to use for this DB. Check the docs for your RDS DB for
@@ -1077,6 +1105,15 @@ Timeout for DB creating
 <HclListItemDefaultValue defaultValue="&quot;40m&quot;"/>
 </HclListItem>
 
+<HclListItem name="custom_iam_instance_profile" requirement="optional" type="string">
+<HclListItemDescription>
+
+The instance profile associated with the underlying Amazon EC2 instance of an RDS Custom DB instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="custom_parameter_group" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
@@ -1227,6 +1264,15 @@ The database can't be deleted when this value is set to true. The default is fal
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="enable_blue_green_update" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable blue/green deployment to minimize down time due to changes made to the RDS Instance. See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments-overview.html for more detailed information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="enabled_cloudwatch_logs_exports" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1266,7 +1312,7 @@ The amount of provisioned IOPS for the primary instance. Setting this implies a 
 <HclListItem name="kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-The ARN of a KMS key that should be used to encrypt data on disk. Only used if <a href="#storage_encrypted"><code>storage_encrypted</code></a> is true. If you leave this blank, the default RDS KMS key for the account will be used.
+The ARN of a KMS key that should be used to encrypt data on disk. Only used if <a href="#storage_encrypted"><code>storage_encrypted</code></a> is true. If you leave this blank, the default RDS KMS key for the account will be used. This variable needs to be set to an AWS KMS CMK if provisioning a custom RDS instance.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1634,6 +1680,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e764f9b91f70c4a0fd3fd6f0e80c7718"
+  "hash": "d1d17ee5571010f7d5d38d1f64e5c3ac"
 }
 ##DOCS-SOURCER-END -->
