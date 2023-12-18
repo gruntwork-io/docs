@@ -45,208 +45,24 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  Release duplicated from https://github.com/gruntwork-io/patcher/releases/tag/v0.5.0
+  This is the next major release of Patcher with a reworked interactive terminal user interface (TUI), improved documentation and many minor improvements.
+
+
+Patcher includes a revised interactive mode. The interactive mode can be used to update dependencies individually.
+
+&lt;img width=&quot;1827&quot; alt=&quot;Screenshot 2023-10-27 at 4 05 23 pm&quot; src=&quot;https://github.com/gruntwork-io/patcher/assets/178939/84abdbec-16af-4d5c-990d-bf139a7e5ece&quot;&gt;
+
+* Patcher now applies patches in the interactive mode
+* Documentation improvements
+* Fixed several version update bugs
+* Fixed broken engine tests
+
 
 </div>
 
 
 
 ## pipelines-cli
-
-
-### [v0.2.14-alpha](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.14-alpha)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/24/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.14-alpha">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.2.14-alpha
-
-</div>
-
-
-### [v0.2.13-alpha](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.13-alpha)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/23/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.13-alpha">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.2.13-alpha
-
-</div>
-
-
-### [v0.2.12-alpha](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.12-alpha)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/20/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.12-alpha">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.2.12-alpha
-
-</div>
-
-
-### [v0.2.11-alpha](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.11-alpha)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/17/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.11-alpha">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.2.11-alpha
-
-</div>
-
-
-### [v0.2.10-alpha](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.10-alpha)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/17/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.10-alpha">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.2.10-alpha
-
-</div>
-
-
-### [v0.2.9-alpha](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.9-alpha)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/12/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.9-alpha">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.2.9-alpha
-
-</div>
-
-
-### [v0.2.8-alpha](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.8-alpha)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/11/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.8-alpha">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.2.8-alpha
-
-</div>
-
-
-### [v0.2.7-alpha](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.7-alpha)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/11/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.7-alpha">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.2.7-alpha
-
-</div>
-
-
-### [v0.2.6-alpha](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.6-alpha)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/11/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.6-alpha">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.2.6-alpha
-
-</div>
-
-
-### [v0.2.5-alpha](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.5-alpha)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/11/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.5-alpha">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.2.5-alpha
-
-</div>
-
-
-### [v0.2.4-alpha](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.4-alpha)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/10/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.4-alpha">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.2.4-alpha
-
-</div>
-
-
-### [v0.2.3-alpha](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.3-alpha)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/10/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.3-alpha">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.2.3-alpha
-
-</div>
-
-
-### [v0.2.2-alpha](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.2-alpha)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/5/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.2-alpha">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.2.2-alpha
-
-</div>
-
-
-### [v0.2.1-alpha](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.1-alpha)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/5/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.1-alpha">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.2.1-alpha
-
-</div>
-
-
-### [v0.2.0-alpha](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.0-alpha)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/4/2023 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.0-alpha">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.2.0-alpha
-
-</div>
 
 
 ### [v0.2.0](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.2.0)
@@ -381,6 +197,22 @@ Here are the repos that were updated:
 
 
 ## terraform-aws-architecture-catalog
+
+
+### [v1.0.6](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v1.0.6)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/31/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v1.0.6">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * [CORE-1377] Add example module usage to infrastructure-modules template by @ellisonc in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/895
+
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-architecture-catalog/compare/v1.0.5...v1.0.6
+
+</div>
 
 
 ### [v1.0.5](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v1.0.5)
@@ -1113,6 +945,50 @@ Initial release of devops-foundations templates
 ## terraform-aws-monitoring
 
 
+### [v0.36.7](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.36.7)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/25/2023 | Modules affected: alarms/route53-health-check-alarms/main.tf | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.36.7">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- `alarms/route53-health-check-alarms/main.tf`
+
+
+- Fix bug in `route53-health-check-alarms` when combining `provider_shared_credentials_file` and `provider_shared_credentials_files`.
+
+
+
+
+
+- https://github.com/gruntwork-io/terraform-aws-monitoring/pull/314
+
+
+
+
+</div>
+
+
+### [v0.36.8](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.36.8)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/31/2023 | Modules affected: alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.36.8">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Add health check ID output - CORE-1405
+
+
+
+</div>
+
+
 ### [v0.36.6](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.36.6)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -1325,6 +1201,24 @@ Initial release of devops-foundations templates
 ## terraform-aws-service-catalog
 
 
+### [v0.107.2](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.107.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/31/2023 | Modules affected: networking, services | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.107.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Upgrade example to use ubuntu 22.04
+- Update `terraform-aws-eks` to `v0.64.1`
+
+
+
+</div>
+
+
 ### [v0.107.1](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.107.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -1503,6 +1397,6 @@ Initial release of devops-foundations templates
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "00e0f0ec2132f2b070165ffb53d39af3"
+  "hash": "35356f6f34c71a1de198f2c654b9b449"
 }
 ##DOCS-SOURCER-END -->
