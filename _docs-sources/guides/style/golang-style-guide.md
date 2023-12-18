@@ -184,14 +184,14 @@ Therefore, `region` or `testRegion` for private constants and `Region` or `TestR
 
 ### Using packages
 
-A common pattern in Go is create new packages under the `pkg` or `internal` directories. If you are unsure about which
+A common Go pattern is creating new packages under the `pkg` or `internal` directories. If you are unsure about which
 one to use, follow this simple litmus test:
 
-- The `internal` directory contains code that we don’t want to be consumed by other clients.
-- A great example of this is telemetry as its normally app-specific and may contain a private DSN.
+- The `internal` directory contains code that we don't want to be consumed by other clients.
+- Telemetry is a great example, as it is typically app-specific and may have a private DSN.
 - It would be unfortunate for another CLI app to import this package and inadvertently emit events.
 - The `pkg` directory contains all packages that we want to make exportable to other clients.
-- In general most of our code should live under `pkg` with the exception of very specific, private methods.
+- Most of our code should generally live under `pkg`, except for very particular private methods.
 
 A good primer on this layout is available in the following [blog post](https://stackoverflow.com/questions/73007657/go-internal-and-pkg-packages-sharing-same-name).
 
@@ -265,9 +265,9 @@ func mul(a, b int) int {
 }
 ```
 
-#### Functional Options Pattern
+#### Functional options pattern
 
-This pattern can be easily be summarized using code:
+This pattern can be easily summarized using code:
 
 ```go
 // Instead of instantiating a struct with many arguments:
