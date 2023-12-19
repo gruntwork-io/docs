@@ -188,10 +188,10 @@ A common Go pattern is creating new packages under the `pkg` or `internal` direc
 one to use, follow this simple litmus test:
 
 - The `internal` directory contains code that we don't want to be consumed by other clients.
-- Telemetry is a great example, as it is typically app-specific and may have a private DSN.
-- It would be unfortunate for another CLI app to import this package and inadvertently emit events.
+  - Telemetry is a great example, as it is typically app-specific and may have a private DSN.
+  - It would be unfortunate for another CLI app to import this package and inadvertently emit events.
 - The `pkg` directory contains all packages that we want to make exportable to other clients.
-- Most of our code should generally live under `pkg`, except for very particular private methods.
+  - Most of our code should generally live under `pkg`, except for very particular private methods.
 
 A good primer on this layout is available in the following [blog post](https://stackoverflow.com/questions/73007657/go-internal-and-pkg-packages-sharing-same-name).
 
