@@ -181,6 +181,20 @@ Since many languages use `ALL_CAPS` for constants, it is worth calling out expli
 Therefore, `region` or `testRegion` for private constants and `Region` or `TestRegion` for public ones is preferred over
 `REGION` or `TEST_REGION`.
 
+
+### Using packages
+
+A common Go pattern is creating new packages under the `pkg` or `internal` directories. If you are unsure about which
+one to use, follow this simple litmus test:
+
+- The `internal` directory contains code that we don't want to be consumed by other clients.
+  - Telemetry is a great example, as it is typically app-specific and may have a private DSN.
+  - It would be unfortunate for another CLI app to import this package and inadvertently emit events.
+- The `pkg` directory contains all packages that we want to make exportable to other clients.
+  - Most of our code should generally live under `pkg`, except for very particular private methods.
+
+A good primer on this layout is available in the following [blog post](https://stackoverflow.com/questions/73007657/go-internal-and-pkg-packages-sharing-same-name).
+
 ### Functional programming practices
 
 #### Immutability
@@ -251,6 +265,23 @@ func mul(a, b int) int {
 }
 ```
 
+#### Functional options pattern
+
+This pattern can be easily summarized using code:
+
+```go
+// Instead of instantiating a struct with many arguments:
+patcher, err := patcher.New(opts, true, true)
+```
+
+```go
+// Use functional options instead:
+patcher, err := patcher.New(opts, options.WithResolveDependencies(), options.WithApplyPatches())
+```
+
+Be sure to read this [blog post](https://golang.cafe/blog/golang-functional-options-pattern.html) for more information
+on this pattern.
+
 ### Repo-specific conventions
 
 #### terratest
@@ -264,6 +295,6 @@ suffix `E` return an error as the last return value; methods without `E` mark th
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e3576d96a0cb8b02e8913e36d63bbf90"
+  "hash": "e93b40d9d95beb59343da5673e66b29c"
 }
 ##DOCS-SOURCER-END -->
