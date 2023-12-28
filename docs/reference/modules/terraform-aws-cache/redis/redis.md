@@ -67,11 +67,11 @@ here: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Replication.Re
 
 There are different types of modes you can deploy ElasticCache Redis:
 
-| Mode                 | Description                                     | Configuration                                                                     |
-|----------------------|-------------------------------------------------|-----------------------------------------------------------------------------------|
-| **Cluster Enabled**  | - supports sharding <br/> - supports replication | - `enable_single_instance_mode = false` <br/> - `cluster_mode:num_node_groups > 1` |
-| **Cluster Disabled** | - no replication <br/> - supports sharding       | - `enable_single_instance_mode = false` <br/> - `cluster_mode:num_node_groups = 1` |
-| **Single Instance**  | - no replication <br/> - no sharding             | - `enable_single_instance_mode = true`                                            |
+| Mode                 | Description                                      | Configuration                                                                                                                                                                           |
+|----------------------|--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Cluster Enabled**  | - supports sharding <br/> - supports replication | - `enable_single_instance_mode = false` <br/> - `cluster_mode:num_node_groups > 1`                                                                                                      |
+| **Cluster Disabled** | - no replication <br/> - supports sharding       | - `enable_single_instance_mode = false` <br/> - `cluster_mode:num_node_groups = 1` <br/> <br/> **Note**: do not include `.cluster.on` suffix if you are setting `parameter_group_name`. |
+| **Single Instance**  | - no replication <br/> - no sharding             | - `enable_single_instance_mode = true`                                                                                                                                                  |
 
 #### How to Enable Cluster Mode with Single Sharding
 
@@ -1126,6 +1126,6 @@ This is a list of user IDs  that should be added to the group defined in the 'us
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.1/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "25c681ba55344ceef38f22b13ef6c75c"
+  "hash": "8121b098144fba246ddbe7c3fc90ef0e"
 }
 ##DOCS-SOURCER-END -->
