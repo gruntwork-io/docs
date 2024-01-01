@@ -296,6 +296,11 @@ module "alb" {
   # destroyed before the resources in the list.
   dependencies = []
 
+  # Determines how the load balancer handles requests that might pose a security
+  # risk to an application due to HTTP desync. Valid values are monitor,
+  # defensive (default), strictest.
+  desync_mitigation_mode = "defensive"
+
   # If true, the ALB will drop invalid headers. Elastic Load Balancing requires
   # that message header names contain only alphanumeric characters and hyphens.
   drop_invalid_header_fields = false
@@ -510,6 +515,11 @@ inputs = {
   # resources in this module, and the resources in this module need to be
   # destroyed before the resources in the list.
   dependencies = []
+
+  # Determines how the load balancer handles requests that might pose a security
+  # risk to an application due to HTTP desync. Valid values are monitor,
+  # defensive (default), strictest.
+  desync_mitigation_mode = "defensive"
 
   # If true, the ALB will drop invalid headers. Elastic Load Balancing requires
   # that message header names contain only alphanumeric characters and hyphens.
@@ -817,6 +827,15 @@ Create a dependency between the resources in this module to the interpolated val
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="desync_mitigation_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+Determines how the load balancer handles requests that might pose a security risk to an application due to HTTP desync. Valid values are monitor, defensive (default), strictest.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;defensive&quot;"/>
+</HclListItem>
+
 <HclListItem name="drop_invalid_header_fields" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1110,6 +1129,6 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.20/modules/alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e848673d611970e1cfb531e875a4c9ec"
+  "hash": "07b46efd7c3331f1b60820ec5119c088"
 }
 ##DOCS-SOURCER-END -->
