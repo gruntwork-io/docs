@@ -149,7 +149,7 @@ List of additional thumbprints for the OIDC provider.
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="provider_arn">
+<HclListItem name="arn">
 <HclListItemDescription>
 
 ARN for the OIDC provider created for GitHub Actions
@@ -157,7 +157,7 @@ ARN for the OIDC provider created for GitHub Actions
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="provider_url">
+<HclListItem name="url">
 <HclListItemDescription>
 
 Url used for the OIDC provider
@@ -177,6 +177,6 @@ Url used for the OIDC provider
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/github-actions-openid-connect-provider/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ab950621a9ec6e6148845fbe9dbb8e7b"
+  "hash": "948eb25342c00ed598db029af84ae09a"
 }
 ##DOCS-SOURCER-END -->
