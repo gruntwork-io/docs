@@ -627,6 +627,14 @@ The Name of the Karpenter Controller IRSA Role.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="karpenter_node_instance_profile_arn">
+<HclListItemDescription>
+
+The ARN of the Karpenter Node Instance Profile.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="karpenter_node_role_arn">
 <HclListItemDescription>
 
@@ -655,6 +663,6 @@ The name of the Karpenter Node IAM Role.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-k8s-karpenter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e56a0f2ae0d6e42a8c9db78d4223cd5c"
+  "hash": "345594da676e81734c8252c1ce72ea4f"
 }
 ##DOCS-SOURCER-END -->
