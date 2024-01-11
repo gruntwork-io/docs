@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="0.12.4" lastModifiedVersion="0.12.4"/>
+<VersionBadge repoTitle="AWS Messaging" version="0.12.5" lastModifiedVersion="0.12.5"/>
 
 # Simple Notification Service (SNS) Topic Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.4/modules/sns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/sns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.12.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.12.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy a SNS topic along with the publisher and subscriber policies for the topic.
 
@@ -42,7 +42,7 @@ including:
 
 module "sns" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v0.12.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v0.12.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -70,14 +70,25 @@ module "sns" {
   # A list of protocols that are allowed for subscription.
   allow_subscribe_protocols = ["http","https","email","email-json","sms","sqs","application","lambda"]
 
+  # **Requires `enable_fifo = true`.** Flag to enable content-based
+  # deduplication for the SNS topic. If set to true, messages with identical
+  # content will be treated as duplicates and only delivered once. For more see
+  # the [Amazon
+  # Docs](https://docs.aws.amazon.com/sns/latest/dg/fifo-message-dedup.html)
+  content_based_deduplication = null
+
   # Enable or disable creation of the resources of this module.
   create_resources = true
 
-  # (optional) Delivery policy for sns topic.
+  # Delivery policy for sns topic.
   delivery_policy = null
 
   # The display name of the SNS topic. NOTE: Maximum length is 100 characters.
   display_name = ""
+
+  # Flag to indicate if the SNS topic is FIFO. This will append `.fifo` to the
+  # name of the topic.
+  enable_fifo = false
 
   # ARN of the http failure feedback role - when using delivery policy for sns
   # topic.
@@ -90,6 +101,12 @@ module "sns" {
   # The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a
   # custom CMK
   kms_master_key_id = null
+
+  # **Requires `enable_fifo = true`.** The number of days (up to 365) for Amazon
+  # SNS to retain messages. This will be used to create the archive policy for
+  # the SNS topic. For more see the [Amazon
+  # Docs](https://docs.aws.amazon.com/sns/latest/dg/message-archiving-and-replay-topic-owner.html)
+  message_retention_period = null
 
   # A map of key value pairs to apply as tags to the SNS topic.
   tags = {}
@@ -109,7 +126,7 @@ module "sns" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v0.12.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v0.12.5"
 }
 
 inputs = {
@@ -140,14 +157,25 @@ inputs = {
   # A list of protocols that are allowed for subscription.
   allow_subscribe_protocols = ["http","https","email","email-json","sms","sqs","application","lambda"]
 
+  # **Requires `enable_fifo = true`.** Flag to enable content-based
+  # deduplication for the SNS topic. If set to true, messages with identical
+  # content will be treated as duplicates and only delivered once. For more see
+  # the [Amazon
+  # Docs](https://docs.aws.amazon.com/sns/latest/dg/fifo-message-dedup.html)
+  content_based_deduplication = null
+
   # Enable or disable creation of the resources of this module.
   create_resources = true
 
-  # (optional) Delivery policy for sns topic.
+  # Delivery policy for sns topic.
   delivery_policy = null
 
   # The display name of the SNS topic. NOTE: Maximum length is 100 characters.
   display_name = ""
+
+  # Flag to indicate if the SNS topic is FIFO. This will append `.fifo` to the
+  # name of the topic.
+  enable_fifo = false
 
   # ARN of the http failure feedback role - when using delivery policy for sns
   # topic.
@@ -160,6 +188,12 @@ inputs = {
   # The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a
   # custom CMK
   kms_master_key_id = null
+
+  # **Requires `enable_fifo = true`.** The number of days (up to 365) for Amazon
+  # SNS to retain messages. This will be used to create the archive policy for
+  # the SNS topic. For more see the [Amazon
+  # Docs](https://docs.aws.amazon.com/sns/latest/dg/message-archiving-and-replay-topic-owner.html)
+  message_retention_period = null
 
   # A map of key value pairs to apply as tags to the SNS topic.
   tags = {}
@@ -243,6 +277,15 @@ A list of protocols that are allowed for subscription.
 </HclListItemDefaultValue>
 </HclListItem>
 
+<HclListItem name="content_based_deduplication" requirement="optional" type="bool">
+<HclListItemDescription>
+
+**Requires `enable_fifo = true`.** Flag to enable content-based deduplication for the SNS topic. If set to true, messages with identical content will be treated as duplicates and only delivered once. For more see the [Amazon Docs](https://docs.aws.amazon.com/sns/latest/dg/fifo-message-dedup.html)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="create_resources" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -255,7 +298,7 @@ Enable or disable creation of the resources of this module.
 <HclListItem name="delivery_policy" requirement="optional" type="any">
 <HclListItemDescription>
 
-(optional) Delivery policy for sns topic.
+Delivery policy for sns topic.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -275,6 +318,15 @@ The display name of the SNS topic. NOTE: Maximum length is 100 characters.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="enable_fifo" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Flag to indicate if the SNS topic is FIFO. This will append `.fifo` to the name of the topic.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="http_failure_feedback_role_arn" requirement="optional" type="string">
@@ -299,6 +351,15 @@ ARN of the http success feedback role - when using delivery policy for sns topic
 <HclListItemDescription>
 
 The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="message_retention_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+**Requires `enable_fifo = true`.** The number of days (up to 365) for Amazon SNS to retain messages. This will be used to create the archive policy for the SNS topic. For more see the [Amazon Docs](https://docs.aws.amazon.com/sns/latest/dg/message-archiving-and-replay-topic-owner.html)
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -335,11 +396,11 @@ A map of key value pairs to apply as tags to the SNS topic.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.4/modules/sns/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.4/modules/sns/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.4/modules/sns/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/sns/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/sns/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/sns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f1c3464aa01a6c4a0f20deb25c363c2b"
+  "hash": "53bb88506ccb308cfafbcb7e324917ea"
 }
 ##DOCS-SOURCER-END -->
