@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.65.2" lastModifiedVersion="0.64.3"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.65.4" lastModifiedVersion="0.64.3"/>
 
 # ALB Ingress Controller IAM Policy Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-alb-ingress-controller-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.4/modules/eks-alb-ingress-controller-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.64.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -23,14 +23,14 @@ defines the minimal set of permissions necessary for the [AWS ALB Ingress
 Controller](https://github.com/kubernetes-sigs/aws-alb-ingress-controller). This policy can then be attached to EC2
 instances or IAM roles so that the controller deployed has enough permissions to manage an ALB.
 
-See [the eks-alb-ingress-controller module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-alb-ingress-controller) for a module that deploys the Ingress
+See [the eks-alb-ingress-controller module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.4/modules/eks-alb-ingress-controller) for a module that deploys the Ingress
 Controller on to your EKS cluster.
 
 ## Attaching IAM policy to workers
 
 To allow the ALB Ingress Controller to manage ALBs, it needs IAM permissions to use the AWS API to manage ALBs.
 Currently, the way to grant Pods IAM privileges is to use the worker IAM profiles provisioned by [the
-eks-cluster-workers module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-cluster-workers/README.md#how-do-you-add-additional-iam-policies).
+eks-cluster-workers module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.4/modules/eks-cluster-workers/README.md#how-do-you-add-additional-iam-policies).
 
 The Terraform templates in this module create an IAM policy that has the required permissions. You then need to use an
 [aws_iam_policy_attachment](https://www.terraform.io/docs/providers/aws/r/iam_policy_attachment.html) to attach that
@@ -64,7 +64,7 @@ resource "aws_iam_role_policy_attachment" "attach_alb_ingress_controller_iam_pol
 
 module "eks_alb_ingress_controller_iam_policy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller-iam-policy?ref=v0.65.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller-iam-policy?ref=v0.65.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -78,6 +78,9 @@ module "eks_alb_ingress_controller_iam_policy" {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # The AWS partition used for default AWS Resources.
+  aws_partition = "aws"
 
   # If you set this variable to false, this module will not create any
   # resources. This is used as a workaround because Terraform does not allow you
@@ -100,7 +103,7 @@ module "eks_alb_ingress_controller_iam_policy" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller-iam-policy?ref=v0.65.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller-iam-policy?ref=v0.65.4"
 }
 
 inputs = {
@@ -117,6 +120,9 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # The AWS partition used for default AWS Resources.
+  aws_partition = "aws"
 
   # If you set this variable to false, this module will not create any
   # resources. This is used as a workaround because Terraform does not allow you
@@ -151,6 +157,15 @@ A name that uniquely identified in which context this module is being invoked. T
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="aws_partition" requirement="optional" type="string">
+<HclListItemDescription>
+
+The AWS partition used for default AWS Resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;aws&quot;"/>
+</HclListItem>
 
 <HclListItem name="create_resources" requirement="optional" type="bool">
 <HclListItemDescription>
@@ -195,11 +210,11 @@ The name of the IAM policy created with the permissions for the ALB ingress cont
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-alb-ingress-controller-iam-policy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-alb-ingress-controller-iam-policy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-alb-ingress-controller-iam-policy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.4/modules/eks-alb-ingress-controller-iam-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.4/modules/eks-alb-ingress-controller-iam-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.4/modules/eks-alb-ingress-controller-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "061c4d632b56853b26fbc89830632eaf"
+  "hash": "9e747dbcecb217aabf5c9ef505f79f3b"
 }
 ##DOCS-SOURCER-END -->
