@@ -265,6 +265,11 @@ module "server_group" {
   # load balancer for health checks during deployments.
   elb_names = []
 
+  # Set to true to enable block device mappings for the aws_launch_template
+  # server_group. Set to false will skip creating the block device mappings.
+  # Defaults to true.
+  enable_block_device_mappings = true
+
   # Enable detailed CloudWatch monitoring for the servers. This gives you more
   # granularity with your CloudWatch metrics, but also costs more money.
   enable_detailed_monitoring = false
@@ -563,6 +568,11 @@ inputs = {
   # var.alb_target_group_arns) and setting var.health_check_type to ELB to use a
   # load balancer for health checks during deployments.
   elb_names = []
+
+  # Set to true to enable block device mappings for the aws_launch_template
+  # server_group. Set to false will skip creating the block device mappings.
+  # Defaults to true.
+  enable_block_device_mappings = true
 
   # Enable detailed CloudWatch monitoring for the servers. This gives you more
   # granularity with your CloudWatch metrics, but also costs more money.
@@ -985,6 +995,15 @@ The names of Elastic Load Balancers (ELBs) to associate with the servers. We rec
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="enable_block_device_mappings" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to enable block device mappings for the aws_launch_template server_group. Set to false will skip creating the block device mappings. Defaults to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="enable_detailed_monitoring" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1351,6 +1370,6 @@ Other modules can depend on this variable to ensure those modules only deploy af
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.11/modules/server-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a73089a213fce24e3f43122fda0304a5"
+  "hash": "6e9ff9292f9ca5b63250c9b01962da48"
 }
 ##DOCS-SOURCER-END -->
