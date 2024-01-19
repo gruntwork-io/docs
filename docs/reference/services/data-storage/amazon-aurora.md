@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.107.12" lastModifiedVersion="0.104.0"/>
+<VersionBadge version="0.108.2" lastModifiedVersion="0.108.2"/>
 
 # Amazon Aurora
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.107.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.108.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -172,6 +172,11 @@ module "aurora" {
   # How many days to keep backup snapshots around before cleaning them up. Max:
   # 35
   backup_retention_period = 30
+
+  # The Certificate Authority (CA) certificate bundle to use on the Aurora DB
+  # instances. Possible values: rds-ca-2019 (default if nothing is specified),
+  # rds-ca-rsa2048-g1, rds-ca-rsa4096-g1, rds-ca-ecc384-g1.
+  ca_cert_identifier = null
 
   # Copy all the Aurora cluster tags to snapshots. Default is false.
   copy_tags_to_snapshot = false
@@ -522,7 +527,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.107.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.108.2"
 }
 
 inputs = {
@@ -595,6 +600,11 @@ inputs = {
   # How many days to keep backup snapshots around before cleaning them up. Max:
   # 35
   backup_retention_period = 30
+
+  # The Certificate Authority (CA) certificate bundle to use on the Aurora DB
+  # instances. Possible values: rds-ca-2019 (default if nothing is specified),
+  # rds-ca-rsa2048-g1, rds-ca-rsa4096-g1, rds-ca-ecc384-g1.
+  ca_cert_identifier = null
 
   # Copy all the Aurora cluster tags to snapshots. Default is false.
   copy_tags_to_snapshot = false
@@ -1060,6 +1070,15 @@ How many days to keep backup snapshots around before cleaning them up. Max: 35
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="30"/>
+</HclListItem>
+
+<HclListItem name="ca_cert_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Certificate Authority (CA) certificate bundle to use on the Aurora DB instances. Possible values: rds-ca-2019 (default if nothing is specified), rds-ca-rsa2048-g1, rds-ca-rsa4096-g1, rds-ca-ecc384-g1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="copy_tags_to_snapshot" requirement="optional" type="bool">
@@ -2247,11 +2266,11 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/aurora/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules/data-stores/aurora/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules/data-stores/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9a2d3f95ca066758c477db7a8c5cfd8f"
+  "hash": "ebaf9f925902f04ef931916e3023cf41"
 }
 ##DOCS-SOURCER-END -->
