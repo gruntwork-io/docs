@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.107.12" lastModifiedVersion="0.105.0"/>
+<VersionBadge version="0.108.2" lastModifiedVersion="0.105.0"/>
 
 # Amazon ElastiCache for Redis
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/redis" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules/data-stores/redis" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fredis" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -67,7 +67,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -75,7 +75,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -94,7 +94,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "redis" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/redis?ref=v0.107.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/redis?ref=v0.108.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -252,7 +252,7 @@ module "redis" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/redis?ref=v0.107.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/redis?ref=v0.108.2"
 }
 
 inputs = {
@@ -750,11 +750,11 @@ Security Group ID used for redis cluster.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/redis/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/redis/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/redis/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules/data-stores/redis/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules/data-stores/redis/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules/data-stores/redis/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "25870eaf43ba6169ec0f08c2b585e784"
+  "hash": "a2420906c187a35cfbdc298bfe134198"
 }
 ##DOCS-SOURCER-END -->
