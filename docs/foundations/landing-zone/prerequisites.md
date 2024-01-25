@@ -107,6 +107,6 @@ The first step to using Gruntwork Landing Zone is to use AWS Control Tower to cr
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b9ec7690b8e7c3ec66d28680b00b1038"
+  "hash": "27f58ef70b70b1d2d4192bfe613f71b0"
 }
 ##DOCS-SOURCER-END -->
