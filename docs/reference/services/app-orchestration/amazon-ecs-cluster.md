@@ -271,6 +271,10 @@ module "ecs_cluster" {
   # Whether to associate a public IP address with an instance in a VPC
   cluster_instance_associate_public_ip_address = false
 
+  # Whether the volume should be destroyed on instance termination. Defaults to
+  # false
+  cluster_instance_ebs_delete_on_termination = false
+
   # The name of the Key Pair that can be used to SSH to each instance in the ECS
   # cluster
   cluster_instance_keypair_name = null
@@ -559,6 +563,10 @@ inputs = {
 
   # Whether to associate a public IP address with an instance in a VPC
   cluster_instance_associate_public_ip_address = false
+
+  # Whether the volume should be destroyed on instance termination. Defaults to
+  # false
+  cluster_instance_ebs_delete_on_termination = false
 
   # The name of the Key Pair that can be used to SSH to each instance in the ECS
   # cluster
@@ -977,6 +985,15 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItemDescription>
 
 Whether to associate a public IP address with an instance in a VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_ebs_delete_on_termination" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether the volume should be destroyed on instance termination. Defaults to false
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -1439,6 +1456,6 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules/services/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2f78f1af97328c5760762969b1a85aee"
+  "hash": "19ebd8703bd112b51ba20bb1ffaa69ac"
 }
 ##DOCS-SOURCER-END -->
