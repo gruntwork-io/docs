@@ -57,7 +57,7 @@ module "eks_pod_identity" {
   # When set to true, the module configures and install the POd Identity Addon
   # as an EKS managed AddOn
   # (https://docs.aws.amazon.com/eks/latest/userguide/pod-id-how-it-works.html).
-  enable_pod_identity = true
+  enable_eks_pod_identity = true
 
   # The version of Kubernetes for the EKS Cluster.
   kubernetes_version = "1.28"
@@ -103,7 +103,7 @@ inputs = {
   # When set to true, the module configures and install the POd Identity Addon
   # as an EKS managed AddOn
   # (https://docs.aws.amazon.com/eks/latest/userguide/pod-id-how-it-works.html).
-  enable_pod_identity = true
+  enable_eks_pod_identity = true
 
   # The version of Kubernetes for the EKS Cluster.
   kubernetes_version = "1.28"
@@ -197,7 +197,7 @@ A map of custom tags to apply to the EKS Pod Identity AddOn. The key is the tag 
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="enable_pod_identity" requirement="optional" type="bool">
+<HclListItem name="enable_eks_pod_identity" requirement="optional" type="bool">
 <HclListItemDescription>
 
 When set to true, the module configures and install the POd Identity Addon as an EKS managed AddOn (https://docs.aws.amazon.com/eks/latest/userguide/pod-id-how-it-works.html).
@@ -217,6 +217,14 @@ The version of Kubernetes for the EKS Cluster.
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<HclListItem name="eks_pod_identity_addon_arn">
+<HclListItemDescription>
+
+The ARN of the EKS Pod Identity AddOn.
+
+</HclListItemDescription>
+</HclListItem>
 
 <HclListItem name="eks_pod_identity_addon_current_version">
 <HclListItemDescription>
@@ -246,6 +254,6 @@ The latest available version of the EKS Pod Identity AddOn.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.5/modules/eks-pod-identity/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "44b6ad43d3acf96244e1554d83489df8"
+  "hash": "d803f4f4df06e7d466772fb5fd690fc8"
 }
 ##DOCS-SOURCER-END -->

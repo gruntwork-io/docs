@@ -203,6 +203,10 @@ module "eks_cluster_managed_workers" {
   # optionally create or not create the resources within this module.
   create_resources = true
 
+  # Whether or not to the IAM role created by the module will enable EKS Pod
+  # Identity permissions
+  iam_enable_eks_pod_identity_permissions = false
+
   # Whether or not the IAM role used for the workers already exists. When false,
   # this module will create a new IAM role.
   iam_role_already_exists = false
@@ -362,6 +366,10 @@ inputs = {
   # to use the 'count' parameter on modules. By using this parameter, you can
   # optionally create or not create the resources within this module.
   create_resources = true
+
+  # Whether or not to the IAM role created by the module will enable EKS Pod
+  # Identity permissions
+  iam_enable_eks_pod_identity_permissions = false
 
   # Whether or not the IAM role used for the workers already exists. When false,
   # this module will create a new IAM role.
@@ -659,6 +667,15 @@ If you set this variable to false, this module will not create any resources. Th
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="iam_enable_eks_pod_identity_permissions" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to the IAM role created by the module will enable EKS Pod Identity permissions
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="iam_role_already_exists" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -941,6 +958,6 @@ Map of Node Group names to ARNs of the created EKS Node Groups
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.5/modules/eks-cluster-managed-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "60f2cbc1c81409451c8a4c29f6a341c3"
+  "hash": "273c969b53dfb7261a4c77e28dc95461"
 }
 ##DOCS-SOURCER-END -->

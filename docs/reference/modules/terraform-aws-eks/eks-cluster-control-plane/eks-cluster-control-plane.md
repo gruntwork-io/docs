@@ -510,6 +510,13 @@ module "eks_cluster_control_plane" {
   # add-on properties.
   eks_addons = {}
 
+  # Configuraiton object for the EKS Pod Identity EKS AddOn
+  eks_pod_identity_addon_config = {}
+
+  # A map of custom tags to apply to the EKS Pod Identity AddOn. The key is the
+  # tag name and the value is the tag value.
+  eks_pod_identity_addon_tags = {}
+
   # When set to true, the module configures and install the EBS CSI Driver as an
   # EKS managed AddOn
   # (https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html). To
@@ -524,6 +531,11 @@ module "eks_cluster_control_plane" {
   # automated add-on lifecycles could potentially undo the configuration
   # changes.
   enable_eks_addons = false
+
+  # When set to true, the module configures and install the EKS Pod Identity as
+  # an EKS managed AddOn
+  # (https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html).
+  enable_eks_pod_identity = false
 
   # A list of the desired control plane logging to enable. See
   # https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html for
@@ -828,6 +840,13 @@ inputs = {
   # add-on properties.
   eks_addons = {}
 
+  # Configuraiton object for the EKS Pod Identity EKS AddOn
+  eks_pod_identity_addon_config = {}
+
+  # A map of custom tags to apply to the EKS Pod Identity AddOn. The key is the
+  # tag name and the value is the tag value.
+  eks_pod_identity_addon_tags = {}
+
   # When set to true, the module configures and install the EBS CSI Driver as an
   # EKS managed AddOn
   # (https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html). To
@@ -842,6 +861,11 @@ inputs = {
   # automated add-on lifecycles could potentially undo the configuration
   # changes.
   enable_eks_addons = false
+
+  # When set to true, the module configures and install the EKS Pod Identity as
+  # an EKS managed AddOn
+  # (https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html).
+  enable_eks_pod_identity = false
 
   # A list of the desired control plane logging to enable. See
   # https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html for
@@ -1375,6 +1399,64 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="eks_pod_identity_addon_config" requirement="optional" type="any">
+<HclListItemDescription>
+
+Configuraiton object for the EKS Pod Identity EKS AddOn
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   EKS add-on advanced configuration via configuration_values must follow the configuration schema for the deployed version of the add-on. 
+   See the following AWS Blog for more details on advanced configuration of EKS add-ons: https://aws.amazon.com/blogs/containers/amazon-eks-add-ons-advanced-configuration/
+   Example:
+   {
+     addon_version        = "v1.14.0-eksbuild.1"
+     configuration_values = {}
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="eks_pod_identity_addon_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Pod Identity AddOn. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+     {
+       key1 = "value1"
+       key2 = "value2"
+     }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 <HclListItem name="enable_ebs_csi_driver" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1388,6 +1470,15 @@ When set to true, the module configures and install the EBS CSI Driver as an EKS
 <HclListItemDescription>
 
 When set to true, the module configures EKS add-ons (https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html) specified with `eks_addons`. VPC CNI configurations with `use_vpc_cni_customize_script` isn't fully supported with addons, as the automated add-on lifecycles could potentially undo the configuration changes.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_eks_pod_identity" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the module configures and install the EKS Pod Identity as an EKS managed AddOn (https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html).
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -1782,6 +1873,30 @@ The name of the kubectl config context that was used to setup authentication to 
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="eks_pod_identity_addon_arn">
+<HclListItemDescription>
+
+The ARN of the EKS Pod Identity AddOn.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="eks_pod_identity_addon_current_version">
+<HclListItemDescription>
+
+The current version of the EKS Pod Identity AddOn.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="eks_pod_identity_addon_latest_version">
+<HclListItemDescription>
+
+The latest available version of the EKS Pod Identity AddOn.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="kubergrunt_path">
 <HclListItemDescription>
 
@@ -1802,6 +1917,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.5/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2590907276d46a272f29c15640f70730"
+  "hash": "20837f7d81d9845b1dd7ce4b331c3178"
 }
 ##DOCS-SOURCER-END -->
