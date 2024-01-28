@@ -426,6 +426,10 @@ module "eks_cluster_workers" {
   # have this requirement.
   force_detach_policies = false
 
+  # Enable on the provisioned IAM role the permissions required for EKS Pod
+  # Identity. This is required if you want to use EKS Pod Identity.
+  iam_enable_eks_pod_identity_permissions = false
+
   # Custom name for the IAM instance profile. When null, the IAM role name will
   # be used. If var.use_resource_name_prefix is true, this will be used as a
   # name prefix.
@@ -705,6 +709,10 @@ inputs = {
   # error. The aws_iam_role_policy_attachment resource (recommended) does not
   # have this requirement.
   force_detach_policies = false
+
+  # Enable on the provisioned IAM role the permissions required for EKS Pod
+  # Identity. This is required if you want to use EKS Pod Identity.
+  iam_enable_eks_pod_identity_permissions = false
 
   # Custom name for the IAM instance profile. When null, the IAM role name will
   # be used. If var.use_resource_name_prefix is true, this will be used as a
@@ -1292,6 +1300,15 @@ Whether to force detaching any policies the role has before destroying it. If po
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="iam_enable_eks_pod_identity_permissions" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable on the provisioned IAM role the permissions required for EKS Pod Identity. This is required if you want to use EKS Pod Identity.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="iam_instance_profile_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1508,6 +1525,6 @@ AWS ID of the security group created for the EKS worker nodes.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.5/modules/eks-cluster-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9a5f6a80041c91868a8cb76ecb992f06"
+  "hash": "1a5105964eb54167bb55187eed12e5d2"
 }
 ##DOCS-SOURCER-END -->
