@@ -198,6 +198,10 @@ module "eks_k_8_s_external_dns" {
   # Annotations to apply to the Pod that is deployed, as key value pairs.
   pod_annotations = {}
 
+  # What type of authentication to use for the Pod to access AWS resources
+  # (options: IRSA or EKS Pod Identity).
+  pod_aws_authentication_type = "IRSA"
+
   # ARN of IAM Role to use as the Pod execution role for Fargate. Set to null
   # (default) to create a new one. Only used when var.create_fargate_profile is
   # true.
@@ -219,6 +223,10 @@ module "eks_k_8_s_external_dns" {
   # Duration string (e.g. 1m) indicating the polling interval for syncing the
   # domains. When null, use the default defined in the chart (1m).
   poll_interval = null
+
+  # The IAM role to use for the external-dns service account. This is useful
+  # when pod_aws_authentication_type is IRSA or EKS_POD_IDENTITY.
+  provided_iam_role = null
 
   # Name of helm release for external-dns. Useful when running 2 deployments for
   # custom configrations such as cross account access.
@@ -375,6 +383,10 @@ inputs = {
   # Annotations to apply to the Pod that is deployed, as key value pairs.
   pod_annotations = {}
 
+  # What type of authentication to use for the Pod to access AWS resources
+  # (options: IRSA or EKS Pod Identity).
+  pod_aws_authentication_type = "IRSA"
+
   # ARN of IAM Role to use as the Pod execution role for Fargate. Set to null
   # (default) to create a new one. Only used when var.create_fargate_profile is
   # true.
@@ -396,6 +408,10 @@ inputs = {
   # Duration string (e.g. 1m) indicating the polling interval for syncing the
   # domains. When null, use the default defined in the chart (1m).
   poll_interval = null
+
+  # The IAM role to use for the external-dns service account. This is useful
+  # when pod_aws_authentication_type is IRSA or EKS_POD_IDENTITY.
+  provided_iam_role = null
 
   # Name of helm release for external-dns. Useful when running 2 deployments for
   # custom configrations such as cross account access.
@@ -469,6 +485,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.5/modules/eks-k8s-external-dns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "21f66538ea14ff473fb30818f5028d22"
+  "hash": "0cb4aa4225b4b309827ed7a2bd5727e2"
 }
 ##DOCS-SOURCER-END -->
