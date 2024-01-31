@@ -1775,7 +1775,7 @@ IAM policy to restrict what resources can call this endpoint. For example, you c
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="secondary_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItem name="secondary_cidr_blocks" requirement="optional" type="set(string)">
 <HclListItemDescription>
 
 A list of secondary CIDR blocks to associate with the VPC.
@@ -2056,6 +2056,6 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.16/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cada6f8b67fb9a842ff04a6b025aa57f"
+  "hash": "bc0309456d34f2a14d73e6467171a257"
 }
 ##DOCS-SOURCER-END -->
