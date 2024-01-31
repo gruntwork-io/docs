@@ -2004,10 +2004,10 @@ A map of all public subnets, with the subnet ID as the key, and all `aws-subnet`
 <HclListItem name="s3_vpc_endpoint_id">
 </HclListItem>
 
-<HclListItem name="secondary_cidr_blocks">
+<HclListItem name="secondary_cidr_block_ids">
 <HclListItemDescription>
 
-List of the secondary CIDR blocks associated with the VPC.
+Map of the secondary CIDR block associations with the VPC.
 
 </HclListItemDescription>
 </HclListItem>
@@ -2056,6 +2056,6 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.16/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bc0309456d34f2a14d73e6467171a257"
+  "hash": "bb5a08c08d29182fbf5b8f2955c7d3ab"
 }
 ##DOCS-SOURCER-END -->
