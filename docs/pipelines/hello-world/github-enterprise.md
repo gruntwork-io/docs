@@ -1,6 +1,6 @@
 # Allowing Pipelines Actions in GitHub Actions
 
-Gruntwork Pipelines uses a set of Gruntwork built re-usable Github Actions, which are available in the GitHub Actions marketplace. Gruntwork is a Verified Creator of GitHub Actions.
+Gruntwork Pipelines uses a set of Gruntwork-built reusable Github Actions, which are available in the GitHub Marketplace. Gruntwork is a Verified Creator of GitHub Actions.
 
 ### GitHub Enterprise
 
@@ -42,6 +42,6 @@ Currently GitHub Actions does not support selecting specific repos outside of yo
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "cc71dbd996bb0349ed2c57e4d726d656"
+  "hash": "e9c63a765fc90941ee2e214842d318ce"
 }
 ##DOCS-SOURCER-END -->

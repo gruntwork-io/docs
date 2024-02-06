@@ -1,6 +1,6 @@
 # Architecture
 
-There are three components in pipelines - the orchestrator, the dispatcher, and the executor. The orchestrator determines the jobs that needs to be executed; the dispatcher calls the executor with each job and reports on their status; and the executor actually executes the jobs and makes any necessary updates in AWS.
+There are three components in pipelines - the orchestrator, the dispatcher, and the executor. The orchestrator determines the jobs that needs to be executed; the dispatcher calls the executor with each job and reports on its status; and the executor actually executes the jobs and makes any necessary updates in AWS.
 
 ## Orchestrator
 
@@ -16,7 +16,7 @@ The executor takes a pipeline action and infra change as input then performs the
 
 ## Execution Flow
 
-Pipelines starts with an event in GitHub - a Pull Request being created, synchronized, or re-opened, and a PR being merged to main (e.g., a push to main). From there, the orchestrator determines the infra-change set and appropriate action to run for each infra-change. The dispatcher then sends the information to the dispatcher, which calls the executor and waits for it to complete. Once complete, the status of the execution is reported to the calling Pull Request in a comment or as a GitHub issue if an apply or destroy fails.
+Pipelines starts with an event in GitHub - a pull request being created, synchronized, or re-opened, and a PR being merged to main (e.g., a push to main). From there, the orchestrator determines the infra-change set and appropriate action to run for each infra-change. The dispatcher then sends the information to the dispatcher, which calls the executor and waits for it to complete. Once complete, the status of the execution is reported to the calling pull request in a comment or as a GitHub issue if an apply or destroy fails.
 
 ![Gruntwork Pipelines Execution Flow](/img/pipelines/how-it-works/pipelines_execution_flow.png)
 
@@ -38,6 +38,6 @@ You are reading documentation for Gruntwork Pipelines. The previous version of G
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0736f468403665d21f6d227d18211032"
+  "hash": "16b4e76b920b48b811a73afd3faa6b84"
 }
 ##DOCS-SOURCER-END -->

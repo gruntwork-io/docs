@@ -10,7 +10,7 @@ Our modules are all built using [Terraform](https://www.terraform.io/). You shou
 
 If you purchase the Reference Architecture, it is delivered in [Terragrunt](https://terragrunt.gruntwork.io/), our open source wrapper around Terraform which allows you to
 
-1. Separate your monolithic terraform state files into smaller ones to speed up your plans and applies
+1. Separate your monolithic Terraform state files into smaller ones to speed up your plans and applies
 2. Keep your infrastructure code DRY
 
 See [How to Manage Multiple Environments with Terraform](https://blog.gruntwork.io/how-to-manage-multiple-environments-with-terraform-32c7bc5d692) and our [Terragrunt Quick start](https://terragrunt.gruntwork.io/docs/getting-started/quick-start/) documentation for more details.
@@ -35,6 +35,6 @@ We create Docker containers throughout our code library, and use them heavily in
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "51b2f9a15104411986c9a22a16b49de6"
+  "hash": "f89133f3a261e591aa1bdb29157455a2"
 }
 ##DOCS-SOURCER-END -->
