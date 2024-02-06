@@ -1,6 +1,6 @@
 # Pipelines Actions
 
-When a user opens a Pull Request, Pipelines runs a set of operations in response to the proposed [infrastructure changes](../overview/#infrastructure-change). We call these operations _pipelines actions_. Gruntwork Pipelines supports the following pipelines actions:
+When a user opens a pull request, Pipelines runs a set of operations in response to the proposed [infrastructure changes](../overview/#infrastructure-change). We call these operations _pipelines actions_. Gruntwork Pipelines supports the following pipelines actions:
 
 ## Terragrunt plan
 

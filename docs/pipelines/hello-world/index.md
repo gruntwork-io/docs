@@ -142,7 +142,7 @@ included in your repository when it was generated with the Gruntwork template re
 1. Select the `Run Workflow` dropdown and enter the name of your `infrastructure-live` repository.
    ![Infrastructure-pipelines Workflow Form](/img/pipelines/tutorial/pipelines_run_workflow.png)
 1. Click `Run Workflow` to start the workflow.
-1. A Pull Request(PR) will be created after the workflow completes.
+1. A pull request(PR) will be created after the workflow completes.
 1. Review the changes, follow the instructions in the PR and then merge.
 
 ### Infrastructure-live
@@ -152,12 +152,12 @@ included in your repository when it was generated with the Gruntwork template re
 1. Select the `Run Workflow` dropdown and enter the requested details.
    ![Infrastructure-live Workflow Form](/img/pipelines/tutorial/infra_live_workflow.png)
 1. Click `Run Workflow` to start the workflow.
-1. A Pull Request(PR) will be created after the workflow completes.
+1. A pull request(PR) will be created after the workflow completes.
 1. Review the changes, follow the instructions in the PR and then merge.
 
 ## Running your first pipeline
 
-In this section, you’ll create a resource in your AWS account using Pipelines and GitOps workflows by defining a `terragrunt.hcl` file that creates an AWS S3 bucket in your AWS account, pushing your changes and creating a Pull Request (PR) to run a `plan` action, then run an `apply` action to create the bucket by merging your PR.
+In this section, you’ll create a resource in your AWS account using Pipelines and GitOps workflows by defining a `terragrunt.hcl` file that creates an AWS S3 bucket in your AWS account, pushing your changes and creating a pull request (PR) to run a `plan` action, then run an `apply` action to create the bucket by merging your PR.
 
 ### Adding a new S3 bucket
 

@@ -1,6 +1,6 @@
 # Allowing Pipelines Actions in GitHub Actions
 
-Gruntwork Pipelines uses a set of Gruntwork built re-usable Github Actions, which are available in the GitHub Actions marketplace. Gruntwork is a Verified Creator of GitHub Actions.
+Gruntwork Pipelines uses a set of Gruntwork-built reusable Github Actions, which are available in the GitHub Marketplace. Gruntwork is a Verified Creator of GitHub Actions.
 
 ### GitHub Enterprise
 
