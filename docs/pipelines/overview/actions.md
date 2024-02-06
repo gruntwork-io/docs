@@ -18,6 +18,6 @@ If you'd like to request a new Pipelines action, please email us at feedback@gru
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7fa59a2184effe0171e04ffcbff3ae87"
+  "hash": "cf330075df659831abda971c58f43655"
 }
 ##DOCS-SOURCER-END -->

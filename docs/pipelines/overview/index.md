@@ -32,6 +32,6 @@ Gruntwork is responsible for adding support for a growing library of Pipelines A
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "22d0b57f2f76b81c8a6e0538093805e2"
+  "hash": "5792ab402d3b4b7882e94b927524ebfe"
 }
 ##DOCS-SOURCER-END -->

@@ -187,6 +187,6 @@ In the `infrastructure-pipelines` repository create the following secrets:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "19beb031e494fe90b947745ddc73e6f6"
+  "hash": "d53dc58003950b4acd5bbbc837d63836"
 }
 ##DOCS-SOURCER-END -->
