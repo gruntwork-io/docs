@@ -178,8 +178,8 @@ module "vpc" {
   # around for backwards compatibility.
   blackhole_route_table_names = ["private-app","private-persistence"]
 
-  # A list of blackhole routes to create. Each item in the list should be a map
-  # with the destination_cidr_blocks as a key.
+  # A map of objects defining which blackhole routes to create. Each item in the
+  # map should be an object with destination_cidr_blocks as a key.
   blackhole_routes = {}
 
   # Whether or not to create DNS forwarders from the Mgmt VPC to the App VPC to
@@ -733,8 +733,8 @@ inputs = {
   # around for backwards compatibility.
   blackhole_route_table_names = ["private-app","private-persistence"]
 
-  # A list of blackhole routes to create. Each item in the list should be a map
-  # with the destination_cidr_blocks as a key.
+  # A map of objects defining which blackhole routes to create. Each item in the
+  # map should be an object with destination_cidr_blocks as a key.
   blackhole_routes = {}
 
   # Whether or not to create DNS forwarders from the Mgmt VPC to the App VPC to
@@ -1343,7 +1343,7 @@ DEPRECATED. A list of names of subnets that should have a blackhole route to the
 <HclListItem name="blackhole_routes" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
-A list of blackhole routes to create. Each item in the list should be a map with the destination_cidr_blocks as a key.
+A map of objects defining which blackhole routes to create. Each item in the map should be an object with destination_cidr_blocks as a key.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -2750,6 +2750,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.5/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5cbbc9403dee544e7c01aef0c70955b5"
+  "hash": "a6196d41d9612177211a488654975c2a"
 }
 ##DOCS-SOURCER-END -->
