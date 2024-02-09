@@ -168,16 +168,6 @@ module "vpc" {
   # automatically fetch the region using a data source.
   aws_region = ""
 
-  # DEPRECATED. The CIDR block to use for the blackhole route. Defaults to:
-  # `10.0.0.0/8`. OThis variable is no longer used and kept around for backwards
-  # compatibility.
-  blackhole_cidr_block = "10.0.0.0/8"
-
-  # DEPRECATED. A list of names of subnets that should have a blackhole route to
-  # the destination VPC CIDR block. This variable is no longer used and kept
-  # around for backwards compatibility.
-  blackhole_route_table_names = ["private-app","private-persistence"]
-
   # A map of objects defining which blackhole routes to create. Each item in the
   # map should be an object with destination_cidr_blocks as a key.
   blackhole_routes = {}
@@ -722,16 +712,6 @@ inputs = {
   # longer used and only kept around for backwards compatibility. We now
   # automatically fetch the region using a data source.
   aws_region = ""
-
-  # DEPRECATED. The CIDR block to use for the blackhole route. Defaults to:
-  # `10.0.0.0/8`. OThis variable is no longer used and kept around for backwards
-  # compatibility.
-  blackhole_cidr_block = "10.0.0.0/8"
-
-  # DEPRECATED. A list of names of subnets that should have a blackhole route to
-  # the destination VPC CIDR block. This variable is no longer used and kept
-  # around for backwards compatibility.
-  blackhole_route_table_names = ["private-app","private-persistence"]
 
   # A map of objects defining which blackhole routes to create. Each item in the
   # map should be an object with destination_cidr_blocks as a key.
@@ -1311,33 +1291,6 @@ DEPRECATED. The AWS Region where this VPC will exist. This variable is no longer
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="blackhole_cidr_block" requirement="optional" type="string">
-<HclListItemDescription>
-
-DEPRECATED. The CIDR block to use for the blackhole route. Defaults to: `10.0.0.0/8`. OThis variable is no longer used and kept around for backwards compatibility.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;10.0.0.0/8&quot;"/>
-</HclListItem>
-
-<HclListItem name="blackhole_route_table_names" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-DEPRECATED. A list of names of subnets that should have a blackhole route to the destination VPC CIDR block. This variable is no longer used and kept around for backwards compatibility.
-
-</HclListItemDescription>
-<HclListItemDefaultValue>
-
-```hcl
-[
-  "private-app",
-  "private-persistence"
-]
-```
-
-</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="blackhole_routes" requirement="optional" type="map(object(…))">
@@ -2750,6 +2703,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.5/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a6196d41d9612177211a488654975c2a"
+  "hash": "7fb20e745f3388d39cf0c3ce47a4e7f3"
 }
 ##DOCS-SOURCER-END -->
