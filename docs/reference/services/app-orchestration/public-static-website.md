@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.108.5" lastModifiedVersion="0.101.0"/>
+<VersionBadge version="0.108.5" lastModifiedVersion="0.100.2"/>
 
 # Public Static Website
 
@@ -1064,6 +1064,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.5/modules/services/public-static-website/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "6200183eefd43cbc3ed6a979827079df"
+  "hash": "b1859888385f9efeb5533cc8a61525c0"
 }
 ##DOCS-SOURCER-END -->

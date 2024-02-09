@@ -182,12 +182,6 @@ module "vpc" {
   # with the destination_cidr_blocks as a key.
   blackhole_routes = {}
 
-  # Whether or not to create a blackhole route to the destination VPC CIDR
-  # block. This is useful when you want to prevent traffic from being routed to
-  # the destination VPC. If you set this to true, you must also set
-  # var.create_transit_subnets to true and set var.blackhole_routes.
-  create_blackhole_route = false
-
   # Whether or not to create DNS forwarders from the Mgmt VPC to the App VPC to
   # resolve private Route 53 endpoints. This is most useful when you want to
   # keep your EKS Kubernetes API endpoint private to the VPC, but want to access
@@ -742,12 +736,6 @@ inputs = {
   # A list of blackhole routes to create. Each item in the list should be a map
   # with the destination_cidr_blocks as a key.
   blackhole_routes = {}
-
-  # Whether or not to create a blackhole route to the destination VPC CIDR
-  # block. This is useful when you want to prevent traffic from being routed to
-  # the destination VPC. If you set this to true, you must also set
-  # var.create_transit_subnets to true and set var.blackhole_routes.
-  create_blackhole_route = false
 
   # Whether or not to create DNS forwarders from the Mgmt VPC to the App VPC to
   # resolve private Route 53 endpoints. This is most useful when you want to
@@ -1368,15 +1356,6 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="create_blackhole_route" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to create a blackhole route to the destination VPC CIDR block. This is useful when you want to prevent traffic from being routed to the destination VPC. If you set this to true, you must also set <a href="#create_transit_subnets"><code>create_transit_subnets</code></a> to true and set <a href="#blackhole_routes"><code>blackhole_routes</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="create_dns_forwarder" requirement="optional" type="bool">
@@ -2771,6 +2750,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.5/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "6b12e1f6dcd72f255501d0e353500234"
+  "hash": "5cbbc9403dee544e7c01aef0c70955b5"
 }
 ##DOCS-SOURCER-END -->
