@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.108.2" lastModifiedVersion="0.104.13"/>
+<VersionBadge version="0.108.6" lastModifiedVersion="0.104.13"/>
 
 # Account Baseline for app accounts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules/landingzone/account-baseline-app" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.6/modules/landingzone/account-baseline-app" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-app" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -57,13 +57,13 @@ If you’ve never used the Service Catalog before, make sure to read
 
 *   Learn more about each individual module, click the link in the [Features](#features) section.
 *   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
-*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
+*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.6/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.6/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.6/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.6/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/examples/for-learning-and-testing/landingzone): The
+*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.6/examples/for-learning-and-testing/landingzone): The
     `examples/for-learning-and-testing/landingzone` folder contains standalone sample code optimized for learning,
     experimenting, and testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.6/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end integrated tech stack on top of the Gruntwork Service Catalog.
@@ -100,7 +100,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "account_baseline_app" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.108.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.108.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -635,9 +635,17 @@ module "account_baseline_app" {
   # standalone and master accounts: FIFTEEN_MINUTES, ONE_HOUR, SIX_HOURS.
   guardduty_finding_publishing_frequency = null
 
+  # The ARN of the KMS key used to encrypt GuardDuty findings. GuardDuty
+  # enforces findings to be encrypted. Only used if
+  # guardduty_publish_findings_to_s3 is true.
+  guardduty_findings_s3_kms_key_arn = null
+
   # Specifies a name for the created SNS topics where findings are published.
   # publish_findings_to_sns must be set to true.
   guardduty_findings_sns_topic_name = "guardduty-findings"
+
+  # Publish GuardDuty findings to an S3 bucket.
+  guardduty_publish_findings_to_s3 = false
 
   # Send GuardDuty findings to SNS topics specified by findings_sns_topic_name.
   guardduty_publish_findings_to_sns = false
@@ -771,7 +779,7 @@ module "account_baseline_app" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.108.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.108.6"
 }
 
 inputs = {
@@ -1309,9 +1317,17 @@ inputs = {
   # standalone and master accounts: FIFTEEN_MINUTES, ONE_HOUR, SIX_HOURS.
   guardduty_finding_publishing_frequency = null
 
+  # The ARN of the KMS key used to encrypt GuardDuty findings. GuardDuty
+  # enforces findings to be encrypted. Only used if
+  # guardduty_publish_findings_to_s3 is true.
+  guardduty_findings_s3_kms_key_arn = null
+
   # Specifies a name for the created SNS topics where findings are published.
   # publish_findings_to_sns must be set to true.
   guardduty_findings_sns_topic_name = "guardduty-findings"
+
+  # Publish GuardDuty findings to an S3 bucket.
+  guardduty_publish_findings_to_s3 = false
 
   # Send GuardDuty findings to SNS topics specified by findings_sns_topic_name.
   guardduty_publish_findings_to_sns = false
@@ -2491,6 +2507,15 @@ Specifies the frequency of notifications sent for subsequent finding occurrences
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="guardduty_findings_s3_kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the KMS key used to encrypt GuardDuty findings. GuardDuty enforces findings to be encrypted. Only used if guardduty_publish_findings_to_s3 is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="guardduty_findings_sns_topic_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2498,6 +2523,15 @@ Specifies a name for the created SNS topics where findings are published. publis
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;guardduty-findings&quot;"/>
+</HclListItem>
+
+<HclListItem name="guardduty_publish_findings_to_s3" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Publish GuardDuty findings to an S3 bucket.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="guardduty_publish_findings_to_sns" requirement="optional" type="bool">
@@ -3206,11 +3240,11 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules/landingzone/account-baseline-app/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules/landingzone/account-baseline-app/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules/landingzone/account-baseline-app/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.6/modules/landingzone/account-baseline-app/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.6/modules/landingzone/account-baseline-app/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.6/modules/landingzone/account-baseline-app/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3bf665edb24219b60aee3a91e5da51fa"
+  "hash": "65c504e8680251a97787166ba45abe6e"
 }
 ##DOCS-SOURCER-END -->
