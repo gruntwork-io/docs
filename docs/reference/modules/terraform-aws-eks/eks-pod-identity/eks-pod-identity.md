@@ -21,6 +21,49 @@ This Terraform module installs the [Amazon EKS Pod Identity](https://docs.aws.am
 
 This module is exposed directly on the [eks-cluster-control](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.5/modules/eks-cluster-control-plane/) module as with the other available EKS AddOns, but this module can also be used independently by toggling the `enable_eks_pod_identity` to `false` (`false` by default on the `eks-control-plane` module) on the `eks-control-plane` module and instead declaring this module elsewhere within the codebase.
 
+## Requirements to use EKS pod Identity
+
+To use this authentication method a the following criteria must be met:
+
+EKS cluster version [requirements](https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html#pod-id-considerations)
+| Kubernetes version | Platform version |
+|--------------------|------------------|
+| 1.28               | eks.4            |
+| 1.27               | eks.8            |
+| 1.26               | eks.9            |
+| 1.25               | eks.10           |
+| 1.24               | eks.13           |
+
+AWS SDK version [required](https://docs.aws.amazon.com/eks/latest/userguide/pod-id-minimum-sdk.html)
+| SDK               | Minimum versions   |
+|-------------------|--------------------|
+| Java (Version 2)  | 2.21.30            |
+| Go v1             | v1.47.11           |
+| Go v2             | release-2023-11-14 |
+| Python (Boto3)    | 1.29.0             |
+| Python (botocore) | 1.32.0             |
+| AWS CLI           | 1.30.0             |
+| AWS CLI           | 2.15.0             |
+| Ruby              | 3.188.0            |
+| PHP               | 3.287.1            |
+
+The worker nodes need to be able to perform `eks-auth:AssumeRoleForPodIdentity`, an example policy needed for all worker nodes:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "eks-auth:AssumeRoleForPodIdentity",
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
 ## Sample Usage
 
 <Tabs>
@@ -254,6 +297,6 @@ The latest available version of the EKS Pod Identity AddOn.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.5/modules/eks-pod-identity/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d803f4f4df06e7d466772fb5fd690fc8"
+  "hash": "3d02472897568e6676d9966a146311c9"
 }
 ##DOCS-SOURCER-END -->
