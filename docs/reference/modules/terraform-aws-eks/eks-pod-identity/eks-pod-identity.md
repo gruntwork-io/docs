@@ -23,7 +23,7 @@ This module is exposed directly on the [eks-cluster-control](https://github.com/
 
 ## Requirements to use EKS pod Identity
 
-To use this authentication method a the following criteria must be met:
+To use this authentication method multiple components need to support this.
 
 EKS cluster version [requirements](https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html#pod-id-considerations)
 | Kubernetes version | Platform version |
@@ -63,6 +63,8 @@ The worker nodes need to be able to perform `eks-auth:AssumeRoleForPodIdentity`,
     ]
 }
 ```
+
+The full list of [restrictions](https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html#pod-id-restrictions) needs to be evaluated before using this authentication method.
 
 ## Sample Usage
 
@@ -297,6 +299,6 @@ The latest available version of the EKS Pod Identity AddOn.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.5/modules/eks-pod-identity/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3d02472897568e6676d9966a146311c9"
+  "hash": "fb2b0af5ae34623d001e95be4befbef2"
 }
 ##DOCS-SOURCER-END -->
