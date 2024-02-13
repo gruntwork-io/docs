@@ -8,7 +8,10 @@ The first step to using Gruntwork Landing Zone is to use AWS Control Tower to cr
    This account will become the root of your multi-account setup after enabling Control Tower.
    :::
 
+1. Log in as that administrator user.
+
 2. Three(3) new unique email addresses for your logs, shared, and security (audit) accounts. It's important to note that these email addresses cannot be already associated with an AWS root login.
+
 
 3. A home region selection where your Control Tower configuration will reside.
    :::caution
@@ -93,6 +96,6 @@ The first step to using Gruntwork Landing Zone is to use AWS Control Tower to cr
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "ee3681a9422db8f5731f7beebba5d88b"
+  "hash": "cfc47b742e2229feca5b1686420472d7"
 }
 ##DOCS-SOURCER-END -->
