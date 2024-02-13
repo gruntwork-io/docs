@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.17" lastModifiedVersion="0.21.17"/>
+<VersionBadge repoTitle="AWS Lambda" version="0.21.18" lastModifiedVersion="0.21.17"/>
 
 <!-- Frontmatter
 type: service
@@ -22,7 +22,7 @@ license: gruntwork
 built-with: terraform
 -->
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.17/modules/lambda-http-api-gateway" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.18/modules/lambda-http-api-gateway" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.17" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -39,7 +39,7 @@ they can be invoked on HTTP calls.
 :::note
 
 If you are looking for a simple proxy to route all requests to a Lambda function, refer to the
-[api-gateway-proxy](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.17/modules/api-gateway-proxy) module.
+[api-gateway-proxy](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.18/modules/api-gateway-proxy) module.
 
 :::
 
@@ -70,7 +70,7 @@ If you’ve never used the Gruntwork Modules before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/lambda-http-api-gateway](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.17/examples/lambda-http-api-gateway): This example contains sample code that uses
+*   [examples/lambda-http-api-gateway](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.18/examples/lambda-http-api-gateway): This example contains sample code that uses
     this module to route two different requests to two different Lambda functions.
 
 ## Manage
@@ -94,7 +94,7 @@ information on route syntax that API Gateway expects.
 
 module "lambda_http_api_gateway" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-http-api-gateway?ref=v0.21.17"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-http-api-gateway?ref=v0.21.18"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -215,7 +215,7 @@ module "lambda_http_api_gateway" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-http-api-gateway?ref=v0.21.17"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-http-api-gateway?ref=v0.21.18"
 }
 
 inputs = {
@@ -729,11 +729,11 @@ A map from the route keys to the IDs of the corresponding API Gateway V2 Route r
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.17/modules/lambda-http-api-gateway/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.17/modules/lambda-http-api-gateway/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.17/modules/lambda-http-api-gateway/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.18/modules/lambda-http-api-gateway/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.18/modules/lambda-http-api-gateway/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.18/modules/lambda-http-api-gateway/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9c471b92a36e98192b52c31de3589077"
+  "hash": "d112fdd288d3fc415b92a9d0cf4ded96"
 }
 ##DOCS-SOURCER-END -->
