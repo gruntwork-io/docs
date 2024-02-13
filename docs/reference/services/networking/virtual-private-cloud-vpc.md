@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.108.2" lastModifiedVersion="0.107.12"/>
+<VersionBadge version="0.108.7" lastModifiedVersion="0.108.4"/>
 
 # VPC
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fvpc" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -65,9 +65,9 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -105,7 +105,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "vpc" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.108.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.108.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -168,23 +168,12 @@ module "vpc" {
   # automatically fetch the region using a data source.
   aws_region = ""
 
-  # The CIDR block to use for the blackhole route. Defaults to: `10.0.0.0/8`.
-  # Only used if var.create_blackhole_route is true.
-  blackhole_cidr_block = "10.0.0.0/8"
-
-  # A list of names of subnets that should have a blackhole route to the
-  # destination VPC CIDR block. This is useful when you want to prevent traffic
-  # from being routed to the destination VPC. Valid values: public, private-app,
-  # private-persistence, transit. Only used if var.create_blackhole_route is
-  # true.
-  blackhole_route_table_names = ["private-app","private-persistence"]
-
-  # Whether or not to create a blackhole route to the destination VPC CIDR
-  # block. To specify which route tables have this blackhole route, use
-  # var.blackhole_route_table_names. This is useful when you want to prevent
-  # traffic from being routed to the destination VPC. If you set this to true,
-  # you must also set var.create_transit_subnets to true.
-  create_blackhole_route = false
+  # A map of objects defining which blackhole routes to create. The key should
+  # be the name of a subnet tier: one of public, private-app,
+  # private-persistence, or transit. The value should be an object that
+  # specifies the CIDR blocks or the names of other subnet tiers (from the same
+  # list of public, private-app, private-persistence, transit) to blackhole.
+  blackhole_routes = {}
 
   # Whether or not to create DNS forwarders from the Mgmt VPC to the App VPC to
   # resolve private Route 53 endpoints. This is most useful when you want to
@@ -589,6 +578,9 @@ module "vpc" {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   public_subnet_custom_tags = {}
+
+  # A list of secondary CIDR blocks to associate with the VPC.
+  secondary_cidr_blocks = []
 
   # A map of tags to apply to the default Security Group, on top of the
   # custom_tags. The key is the tag name and the value is the tag value. Note
@@ -658,7 +650,7 @@ module "vpc" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.108.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.108.7"
 }
 
 inputs = {
@@ -724,23 +716,12 @@ inputs = {
   # automatically fetch the region using a data source.
   aws_region = ""
 
-  # The CIDR block to use for the blackhole route. Defaults to: `10.0.0.0/8`.
-  # Only used if var.create_blackhole_route is true.
-  blackhole_cidr_block = "10.0.0.0/8"
-
-  # A list of names of subnets that should have a blackhole route to the
-  # destination VPC CIDR block. This is useful when you want to prevent traffic
-  # from being routed to the destination VPC. Valid values: public, private-app,
-  # private-persistence, transit. Only used if var.create_blackhole_route is
-  # true.
-  blackhole_route_table_names = ["private-app","private-persistence"]
-
-  # Whether or not to create a blackhole route to the destination VPC CIDR
-  # block. To specify which route tables have this blackhole route, use
-  # var.blackhole_route_table_names. This is useful when you want to prevent
-  # traffic from being routed to the destination VPC. If you set this to true,
-  # you must also set var.create_transit_subnets to true.
-  create_blackhole_route = false
+  # A map of objects defining which blackhole routes to create. The key should
+  # be the name of a subnet tier: one of public, private-app,
+  # private-persistence, or transit. The value should be an object that
+  # specifies the CIDR blocks or the names of other subnet tiers (from the same
+  # list of public, private-app, private-persistence, transit) to blackhole.
+  blackhole_routes = {}
 
   # Whether or not to create DNS forwarders from the Mgmt VPC to the App VPC to
   # resolve private Route 53 endpoints. This is most useful when you want to
@@ -1145,6 +1126,9 @@ inputs = {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   public_subnet_custom_tags = {}
+
+  # A list of secondary CIDR blocks to associate with the VPC.
+  secondary_cidr_blocks = []
 
   # A map of tags to apply to the default Security Group, on top of the
   # custom_tags. The key is the tag name and the value is the tag value. Note
@@ -1315,40 +1299,23 @@ DEPRECATED. The AWS Region where this VPC will exist. This variable is no longer
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
-<HclListItem name="blackhole_cidr_block" requirement="optional" type="string">
+<HclListItem name="blackhole_routes" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
-The CIDR block to use for the blackhole route. Defaults to: `10.0.0.0/8`. Only used if <a href="#create_blackhole_route"><code>create_blackhole_route</code></a> is true.
+A map of objects defining which blackhole routes to create. The key should be the name of a subnet tier: one of public, private-app, private-persistence, or transit. The value should be an object that specifies the CIDR blocks or the names of other subnet tiers (from the same list of public, private-app, private-persistence, transit) to blackhole.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;10.0.0.0/8&quot;"/>
-</HclListItem>
-
-<HclListItem name="blackhole_route_table_names" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of names of subnets that should have a blackhole route to the destination VPC CIDR block. This is useful when you want to prevent traffic from being routed to the destination VPC. Valid values: public, private-app, private-persistence, transit. Only used if <a href="#create_blackhole_route"><code>create_blackhole_route</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue>
+<HclListItemTypeDetails>
 
 ```hcl
-[
-  "private-app",
-  "private-persistence"
-]
+map(object({
+    destination_cidr_blocks  = list(string)
+    destination_subnet_names = list(string)
+  }))
 ```
 
-</HclListItemDefaultValue>
-</HclListItem>
-
-<HclListItem name="create_blackhole_route" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to create a blackhole route to the destination VPC CIDR block. To specify which route tables have this blackhole route, use <a href="#blackhole_route_table_names"><code>blackhole_route_table_names</code></a>. This is useful when you want to prevent traffic from being routed to the destination VPC. If you set this to true, you must also set <a href="#create_transit_subnets"><code>create_transit_subnets</code></a> to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="create_dns_forwarder" requirement="optional" type="bool">
@@ -2367,6 +2334,15 @@ A map of tags to apply to the public Subnet, on top of the custom_tags. The key 
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="secondary_cidr_blocks" requirement="optional" type="set(string)">
+<HclListItemDescription>
+
+A list of secondary CIDR blocks to associate with the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="security_group_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -2729,11 +2705,11 @@ Indicates whether or not the VPC has finished creating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules/networking/vpc/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules/networking/vpc/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.2/modules/networking/vpc/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/modules/networking/vpc/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/modules/networking/vpc/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c10aef8d9d7e2f64b7b57d52f0bf54c2"
+  "hash": "74f7c1dd7f08675f394959d2d03654bb"
 }
 ##DOCS-SOURCER-END -->
