@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.16" lastModifiedVersion="0.26.16"/>
+<VersionBadge repoTitle="VPC Modules" version="0.26.17" lastModifiedVersion="0.26.17"/>
 
 # IPv6
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.16/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.17/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.16" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.17" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 ## What's a VPC?
 
@@ -73,7 +73,7 @@ nearly all use-cases, and is consistent with many examples and existing document
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.16/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.17/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
 
 ## IPv6 Design
 
@@ -111,7 +111,7 @@ module "vpc_app_ipv6_example" {
 
 module "vpc_app" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.17"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -490,6 +490,9 @@ module "vpc_app" {
   # allowed to call this endpoint.
   s3_endpoint_policy = null
 
+  # A list of secondary CIDR blocks to associate with the VPC.
+  secondary_cidr_blocks = []
+
   # A map of tags to apply to the default Security Group, on top of the
   # custom_tags. The key is the tag name and the value is the tag value. Note
   # that tags defined here will override tags defined as custom_tags in case of
@@ -560,7 +563,7 @@ module "vpc_app" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.17"
 }
 
 inputs = {
@@ -941,6 +944,9 @@ inputs = {
   # but no other types of resources. If not specified, all resources will be
   # allowed to call this endpoint.
   s3_endpoint_policy = null
+
+  # A list of secondary CIDR blocks to associate with the VPC.
+  secondary_cidr_blocks = []
 
   # A map of tags to apply to the default Security Group, on top of the
   # custom_tags. The key is the tag name and the value is the tag value. Note
@@ -1769,6 +1775,15 @@ IAM policy to restrict what resources can call this endpoint. For example, you c
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="secondary_cidr_blocks" requirement="optional" type="set(string)">
+<HclListItemDescription>
+
+A list of secondary CIDR blocks to associate with the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="security_group_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -1989,6 +2004,14 @@ A map of all public subnets, with the subnet ID as the key, and all `aws-subnet`
 <HclListItem name="s3_vpc_endpoint_id">
 </HclListItem>
 
+<HclListItem name="secondary_cidr_block_ids">
+<HclListItemDescription>
+
+Map of the secondary CIDR block associations with the VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="transit_subnet_arns">
 </HclListItem>
 
@@ -2028,11 +2051,11 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.16/modules/vpc-app/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.16/modules/vpc-app/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.16/modules/vpc-app/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.17/modules/vpc-app/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.17/modules/vpc-app/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.17/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e94ad2211aec1f054d13aae9e6bc6f2a"
+  "hash": "c227b15bcb1260ca9ed264e8588c4a7c"
 }
 ##DOCS-SOURCER-END -->
