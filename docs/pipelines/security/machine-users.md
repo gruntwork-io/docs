@@ -7,7 +7,7 @@ Gruntwork recommends using CI users in Gruntwork Pipelines, separate from human 
 
 :::info
 
- This guide will take approximately 25 minutes to complete.
+This guide will take approximately 30 minutes to complete.
 
 :::
 
@@ -21,6 +21,7 @@ We’ll refer to this user as `ci-user` and `ci-read-only-user`, but you may nam
 1. Both be members of your team in **Gruntwork**’s GitHub Organization (See [instructions on inviting a user to your team](https://docs.gruntwork.io/developer-portal/invite-team#inviting-team-members) and [linking the user’s GitHub ID to Gruntwork](https://docs.gruntwork.io/developer-portal/link-github-id))
 
 ## Storing secrets
+
 During this setup, you will need to generate and securely store three GitHub tokens for two GitHub users. You will need a temporary location for these sensitive values between generating them and storing them in GitHub Actions. Do so according to your company's recommended security best practices (e.g., do not store them in Slack, a sticky note, etc., during this exercise.)
 
 :::note
@@ -35,36 +36,52 @@ First, invite the `ci-user` to both your `infrastructure-live` and `infrastructu
 
 1. `INFRA_LIVE_ACCESS`. This is a fine-grained GitHub access token and will be used to grant GitHub Actions access to clone your `infrastructure-live` repository, open PRs, and create comments & issues.
 
-    This token **must** have the following permissions to your **`infrastructure-live`** repo in your GitHub Organization:
+   This token **must** have the following permissions to your **`infrastructure-live`** repo in your GitHub Organization:
 
-    - Content read & write access
-    - Issues read & write access
-    - Metadata read access
-    - Pull requests read & write access
-    - Workflows read & write access
+   - Content read & write access
+   - Issues read & write access
+   - Metadata read access
+   - Pull requests read & write access
+   - Workflows read & write access
 
-    ![INFRA_LIVE_ACCESS PAT Configuration](/img/pipelines/security/INFRA_LIVE_ACCESS.png)
+   ![INFRA_LIVE_ACCESS PAT Configuration](/img/pipelines/security/INFRA_LIVE_ACCESS.png)
 
-1. `PIPELINES_DISPATCH`. This token will be used to grant GitHub Actions permission to trigger workflows in your `infrastructure-pipelines` repository to your **`infrastructure-pipelines`** repo in your GitHub Organization:
+1. `PIPELINES_DISPATCH`. This token will be used to grant GitHub Actions, in your `infrastructure-live` repository, permission to trigger workflows in your `infrastructure-pipelines` repository.
 
-    This token **must** have:
+   This token **must** have:
 
-    - Actions read & write access
-    - Contents read only access
-    - Metadata read access
+   - Actions read & write access
+   - Contents read only access
+   - Metadata read access
 
-    ![PIPELINES_DISPATCH PAT Configuration](/img/pipelines/security/PIPELINES_DISPATCH.png)
+   ![PIPELINES_DISPATCH PAT Configuration](/img/pipelines/security/PIPELINES_DISPATCH.png)
+
+1. `MANAGE_REPOS`. This token will be used to create new `infra-live-<TEAM-NAME>` repositories in your GitHub Organization when vending delegated team accounts.
+
+   This token **must** have the following permissions to **all** repositories the `ci-user` has access to:
+
+   - Administration read & write access
+   - Contents read & write access
+   - Metadata read access
+   - Pull requests read & write access
+   - Workflows read & write access
+
+   and Organization permissions to:
+
+   - Secrets read & write access
+
+   ![MANAGE_REPOS PAT Configuration](/img/pipelines/security/MANAGE_REPOS.png)
 
 1. `PIPELINES_BOOTSTRAP`. This token will be used to grant GitHub Actions permission to create open PRs and create comments in your `infrastructure-pipelines` repository in your GitHub Organization. **This is only required during the bootstrap process of the pipelines repository and should be removed immediately after.**
 
-    This token **must** have:
+   This token **must** have:
 
-    - Contents read & write access
-    - Metadata read access
-    - Pull requests read & write access
-    - Workflows read & write access
+   - Contents read & write access
+   - Metadata read access
+   - Pull requests read & write access
+   - Workflows read & write access
 
-    ![PIPELINES_BOOTSTRAP PAT Configuration](/img/pipelines/security/PIPELINES_BOOTSTRAP.png)
+   ![PIPELINES_BOOTSTRAP PAT Configuration](/img/pipelines/security/PIPELINES_BOOTSTRAP.png)
 
 ### ci-read-only-user
 
@@ -83,6 +100,7 @@ This token **must** have `repo` scopes.
 The expiration of this token is up to you and the security posture of your organization, Gruntwork recommend 90 days to avoid having to regularly rotate a token and secrets.
 
 ## Invite both machine users to Gruntwork
+
 Ensure both of these machine users are members of your team in **Gruntwork**’s GitHub Organization (See [instructions on inviting a user to your team](https://docs.gruntwork.io/developer-portal/invite-team#inviting-team-members) and [linking the user’s GitHub ID to Gruntwork](https://docs.gruntwork.io/developer-portal/link-github-id))
 
 ### Configure secrets for GitHub Actions
@@ -108,44 +126,58 @@ Since this guide implements secrets that are scoped to specific repositories, an
 
 1. Using the **New organization secret** option, add the following secrets:
 
-  - `GRUNTWORK_CODE_ACCESS_TOKEN`
+- `GRUNTWORK_CODE_ACCESS_TOKEN`
 
-    1. This should be assigned the _`GRUNTWORK_CODE_ACCESS`_ token generated by the `ci-read-only-user` in the [secrets section](#ci-read-only-user) as its value.
+  1. This should be assigned the _`GRUNTWORK_CODE_ACCESS`_ token generated by the `ci-read-only-user` in the [secrets section](#ci-read-only-user) as its value.
 
-    1. **Repository access**. Using the `Selected repositories` option select both the `infrastructure-live` and `infrastructure-pipelines` repositories.
+  1. **Repository access**. Select the `Private Repositories` option.
 
-  - `INFRA_LIVE_ACCESS_TOKEN`
+- `PIPELINES_DISPATCH_TOKEN`
 
-    1. This should be assigned the _`INFRA_LIVE_ACCESS`_ token generated by the `ci-user` in the [secrets section](#ci-user) as its value.
+  1. This should be assigned the _`PIPELINES_DISPATCH`_ token generated by the `ci-user` in the [secrets section](#ci-user) as its value.
 
-    1. **Repository access**. Using the `Selected repositories` option select both the `infrastructure-live` and `infrastructure-pipelines` repositories. 
+  1. **Repository access**. Select the `Private Repositories` option.
 
-  - `PIPELINES_DISPATCH_TOKEN`
-  
-    1. This should be assigned the _`PIPELINES_DISPATCH`_ token generated by the `ci-user` in the [secrets section](#ci-user) as its value.
+  :::info
 
-    1. **Repository access**. Using the `Selected repositories` option select **only** the `infrastructure-live` repository.
+  `GRUNTWORK_CODE_ACCESS` & `PIPELINES_DISPATCH` tokens are made available to **all** private repositories so that every vended `infra-live-team-*` repository automatically has access to these secrets. The `infrastructure-pipelines` repository mitigates the misuse of these secrets by maintaining a list of allowed repositories than can trigger workflows in it using the `PIPELINES_DISPATCH` token.
 
-  - `PIPELINES_BOOTSTRAP_TOKEN`
+  The alternative of granting access to these secrets during the vending process has various drawbacks (e.g., only works for GitHub owners, requires a new machine user, a new PAT, etc).
 
-    1. This should be assigned the _`PIPELINES_BOOTSTRAP`_ token generated by the `ci-user` in the [secrets section](#ci-user) as its value.
+  :::
 
-    1. **Repository access**. Using the `Selected repositories` option select **only** the `infrastructure-pipelines` repository.
+- `INFRA_LIVE_ACCESS_TOKEN`
 
-  :::warning
+  1. This should be assigned the _`INFRA_LIVE_ACCESS`_ token generated by the `ci-user` in the [secrets section](#ci-user) as its value.
 
-  After the bootstrap process is complete, you should delete the following tokens for security purposes:
+  1. **Repository access**. Using the `Selected repositories` option select both the `infrastructure-live` and `infrastructure-pipelines` repositories.
+
+- `MANAGE_REPOS_TOKEN`
+
+  1. This should be assigned the _`MANAGE_REPOS`_ token generated by the `ci-user` in the [secrets section](#ci-user) as its value.
+
+  1. **Repository access**. Using the `Selected repositories` option select **only** the `infrastructure-pipelines` repository.
+
+- `PIPELINES_BOOTSTRAP_TOKEN`
+
+  1. This should be assigned the _`PIPELINES_BOOTSTRAP`_ token generated by the `ci-user` in the [secrets section](#ci-user) as its value.
+
+  1. **Repository access**. Using the `Selected repositories` option select **only** the `infrastructure-pipelines` repository.
+
+:::warning
+
+After the bootstrap process is complete, you should delete the following tokens for security purposes:
 
     - The `PIPELINES_BOOTSTRAP` Personal Access Token from the `ci-user` GitHub account
     - The `PIPELINES_BOOTSTRAP_TOKEN` GitHub Actions secret from the `infrastructure-pipelines` repository
 
-  :::
+:::
 
-  :::info
+:::info
 
-  For additional information on creating and using Github Actions Organization secrets, please refer to the [GitHub Documentation](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-an-organization).
+For additional information on creating and using Github Actions Organization secrets, please refer to the [GitHub Documentation](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-an-organization).
 
-  :::
+:::
 
 </TabItem>
 <TabItem value="Repository Secrets" label="Repository Secrets">
@@ -155,38 +187,48 @@ Gruntwork Pipelines reads these secrets from GitHub Actions secrets created in t
 ### infrastructure-live
 
 In the `infrastructure-live` repository create the following secrets:
+
 1. `GRUNTWORK_CODE_ACCESS_TOKEN`. This should be assigned the _`GRUNTWORK_CODE_ACCESS`_ token generated by the `ci-read-only-user` in the [secrets section](#ci-read-only-user) as its value.
 1. `INFRA_LIVE_ACCESS_TOKEN`. This should be assigned the _`INFRA_LIVE_ACCESS`_ token generated by the `ci-user` in the [secrets section](#ci-user) as its value.
 1. `PIPELINES_DISPATCH_TOKEN`. This should be assigned the _`PIPELINES_DISPATCH`_ token generated by the `ci-user` in the [secrets section](#ci-user) as its value.
 
+:::caution
+
+Configuring the `PIPELINES_DISPATCH` and `GRUNTWORK_CODE_ACCESS` tokens as repository secrets will result in needing a manual update for every new `infrastructure-live-team-*` repository created.
+
+:::
+
 ### infrastructure-pipelines
 
 In the `infrastructure-pipelines` repository create the following secrets:
+
 1. `GRUNTWORK_CODE_ACCESS_TOKEN`. This should be assigned the _`GRUNTWORK_CODE_ACCESS`_ token generated by the `ci-read-only-user` in the [secrets section](#ci-read-only-user) as its value.
 1. `INFRA_LIVE_ACCESS_TOKEN`. This should be assigned the _`INFRA_LIVE_ACCESS`_ token generated by the `ci-user` in the [secrets section](#ci-user) as its value.
+1. `MANAGE_REPOS_TOKEN`. This should be assigned the _`MANAGE_REPOS`_ token generated by the `ci-user` in the [secrets section](#ci-user) as its value.
 1. `PIPELINES_BOOTSTRAP_TOKEN`. This should be assigned the _`PIPELINES_BOOTSTRAP`_ token generated by the `ci-user` in the [secrets section](#ci-user) as its value.
 
-  :::warning
+:::warning
 
-  After the bootstrap process is complete, you should delete the following tokens for security purposes:
+After the bootstrap process is complete, you should delete the following tokens for security purposes:
 
     - The `PIPELINES_BOOTSTRAP` Personal Access Token from the `ci-user` GitHub account
     - The `PIPELINES_BOOTSTRAP_TOKEN` GitHub Actions secret from the `infrastructure-pipelines` repository
 
-  :::
+:::
 
-  :::info
+:::info
 
-  For additional information on creating and using Github Actions Repository secrets, please refer to the [GitHub Documentation](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository)
+For additional information on creating and using Github Actions Repository secrets, please refer to the [GitHub Documentation](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository)
 
-  :::
+:::
 
 </TabItem>
 </Tabs>
 
+
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d53dc58003950b4acd5bbbc837d63836"
+  "hash": "8f06a1f6e89926accf936ca0a95570f3"
 }
 ##DOCS-SOURCER-END -->
