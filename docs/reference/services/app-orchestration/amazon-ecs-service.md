@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.108.7" lastModifiedVersion="0.107.6"/>
+<VersionBadge version="0.109.1" lastModifiedVersion="0.109.1"/>
 
 # Amazon ECS Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/modules/services/ecs-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.1/modules/services/ecs-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fecs-service" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -63,10 +63,10 @@ more, see the documentation in the
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.1/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal
     submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/test): Automated tests for the modules and examples.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.1/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.1/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -74,14 +74,14 @@ more, see the documentation in the
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and testing (but not direct production usage).
 
 ### Production deployment
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -105,7 +105,7 @@ For information on how to manage your ECS service, see the documentation in the
 
 module "ecs_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-service?ref=v0.108.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-service?ref=v0.109.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -263,6 +263,9 @@ module "ecs_service" {
   # deployment. deploy_circuit_breaker_enabled must also be true to enable this
   # behavior.
   deployment_circuit_breaker_rollback = false
+
+  # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
+  deployment_controller = null
 
   # The upper limit, as a percentage of var.desired_number_of_tasks, of the
   # number of running tasks that can be running in a service during a
@@ -471,6 +474,10 @@ module "ecs_service" {
   # valid values at this time are memberOf and distinctInstance.
   placement_constraint_type = "memberOf"
 
+  # The platform version on which to run your service. Only applicable for
+  # launch_type set to FARGATE. Defaults to LATEST.
+  platform_version = null
+
   # Whether tags should be propogated to the tasks from the service or from the
   # task definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to
   # SERVICE. If set to null, no tags are created for tasks.
@@ -614,7 +621,7 @@ module "ecs_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-service?ref=v0.108.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-service?ref=v0.109.1"
 }
 
 inputs = {
@@ -776,6 +783,9 @@ inputs = {
   # behavior.
   deployment_circuit_breaker_rollback = false
 
+  # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
+  deployment_controller = null
+
   # The upper limit, as a percentage of var.desired_number_of_tasks, of the
   # number of running tasks that can be running in a service during a
   # deployment. Setting this to more than 100 means that during deployment, ECS
@@ -982,6 +992,10 @@ inputs = {
   # The type of constraint to apply for container instance placement. The only
   # valid values at this time are memberOf and distinctInstance.
   placement_constraint_type = "memberOf"
+
+  # The platform version on which to run your service. Only applicable for
+  # launch_type set to FARGATE. Defaults to LATEST.
+  platform_version = null
 
   # Whether tags should be propogated to the tasks from the service or from the
   # task definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to
@@ -1524,6 +1538,15 @@ Set to 'true' to also automatically roll back to the last successful deployment.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="deployment_controller" requirement="optional" type="string">
+<HclListItemDescription>
+
+Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="deployment_maximum_percent" requirement="optional" type="number">
@@ -2362,6 +2385,15 @@ The type of constraint to apply for container instance placement. The only valid
 <HclListItemDefaultValue defaultValue="&quot;memberOf&quot;"/>
 </HclListItem>
 
+<HclListItem name="platform_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+The platform version on which to run your service. Only applicable for launch_type set to FARGATE. Defaults to LATEST.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="propagate_tags" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2916,11 +2948,11 @@ The names of the ECS service's load balancer's target groups
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/modules/services/ecs-service/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/modules/services/ecs-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/modules/services/ecs-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.1/modules/services/ecs-service/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.1/modules/services/ecs-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.1/modules/services/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "234e5916cf1eb0621f9a380c74a865af"
+  "hash": "47104fa15182eb70607d9b5bea05c69b"
 }
 ##DOCS-SOURCER-END -->
