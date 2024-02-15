@@ -294,6 +294,9 @@ Any types represent complex values of variable type. For details, please consult
                                               contexts). The condition object accepts the same fields as the condition
                                               block on the IAM policy document (See
                                               https://www.terraform.io/docs/providers/aws/d/iam_policy_document.htmlcondition).
+   - additional_principals   list(string)   : List of additional service principals. Useful when, for example, granting
+                                              access to opt-in region service endpoints (e.g. guardduty.us-east-1.amazonaws.com).
+  
    Structure of CMKUser object:
    - name          list(string)             : The list of names of the AWS principal (e.g.: arn:aws:iam::0000000000:user/dev).
    - conditions    list(object[Condition])  : (Optional) List of conditions to apply to the permissions for the CMK User
@@ -453,6 +456,6 @@ A map of CMK name to CMK ID.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.71.0/modules/kms-master-key/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e17f5d94b1ff2ba0dc0222b23800a0b3"
+  "hash": "f73da94d8c7c2871a92e17f0e7d91803"
 }
 ##DOCS-SOURCER-END -->
