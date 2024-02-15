@@ -141,7 +141,7 @@ module "eks_k_8_s_karpenter" {
   karpenter_chart_repository = "oci://public.ecr.aws/karpenter"
 
   # The version of the Karpenter Helm chart.
-  karpenter_chart_version = "v0.24.0"
+  karpenter_chart_version = "v0.32.0"
 
   # Provide an existing IAM Role ARN to be used with the Karpenter Controller
   # Service Account. This is required if `create_karpenter_controller_irsa` is
@@ -272,7 +272,7 @@ inputs = {
   karpenter_chart_repository = "oci://public.ecr.aws/karpenter"
 
   # The version of the Karpenter Helm chart.
-  karpenter_chart_version = "v0.24.0"
+  karpenter_chart_version = "v0.32.0"
 
   # Provide an existing IAM Role ARN to be used with the Karpenter Controller
   # Service Account. This is required if `create_karpenter_controller_irsa` is
@@ -479,7 +479,7 @@ The Helm repository to obtain the Karpenter chart from.
 The version of the Karpenter Helm chart.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v0.24.0&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v0.32.0&quot;"/>
 </HclListItem>
 
 <HclListItem name="karpenter_controller_existing_role_arn" requirement="optional" type="bool">
@@ -663,6 +663,6 @@ The name of the Karpenter Node IAM Role.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.5/modules/eks-k8s-karpenter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bfd1d8f0e220b9a23e67b1a2e9474b31"
+  "hash": "e6a48fa8dda11a56f52fcfd97fc0497f"
 }
 ##DOCS-SOURCER-END -->
