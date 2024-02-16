@@ -146,7 +146,7 @@ module "eks_k_8_s_karpenter" {
   # Provide an existing IAM Role ARN to be used with the Karpenter Controller
   # Service Account. This is required if `create_karpenter_controller_irsa` is
   # set to false.
-  karpenter_controller_existing_role_arn = ""
+  karpenter_controller_existing_role_arn = null
 
   # Additional tags to add to the Karpenter Deprovisioning Queue.
   karpenter_deprovisioning_queue_tags = {}
@@ -277,7 +277,7 @@ inputs = {
   # Provide an existing IAM Role ARN to be used with the Karpenter Controller
   # Service Account. This is required if `create_karpenter_controller_irsa` is
   # set to false.
-  karpenter_controller_existing_role_arn = ""
+  karpenter_controller_existing_role_arn = null
 
   # Additional tags to add to the Karpenter Deprovisioning Queue.
   karpenter_deprovisioning_queue_tags = {}
@@ -488,7 +488,7 @@ The version of the Karpenter Helm chart.
 Provide an existing IAM Role ARN to be used with the Karpenter Controller Service Account. This is required if `create_karpenter_controller_irsa` is set to false.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="karpenter_deprovisioning_queue_tags" requirement="optional" type="map(string)">
@@ -663,6 +663,6 @@ The name of the Karpenter Node IAM Role.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.5/modules/eks-k8s-karpenter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b0e725180b118ba4862415202d6dc9c3"
+  "hash": "8dd67f910bd2458946a2a25a733c3c92"
 }
 ##DOCS-SOURCER-END -->
