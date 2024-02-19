@@ -292,8 +292,8 @@ Backup policies definition. For more detailed information, see https://docs.aws.
 
 ```hcl
 map(object({
-    # The rules policy key maps to the Rules key in an AWS Backup plan. 
-    # You can have one or more rules under the rules key. 
+    # The rules policy key maps to the Rules key in an AWS Backup plan.
+    # You can have one or more rules under the rules key.
     # Each rule becomes a scheduled task to perform a backup of the selected resources.
     rules = map(object({
 
@@ -305,7 +305,7 @@ map(object({
         assign = string
       })
 
-      # Specifies the name of the backup vault in which to store the backup. 
+      # Specifies the name of the backup vault in which to store the backup.
       # You create the value by using AWS Backup.
       # This policy key maps to the `TargetBackupVaultName` key in an AWS Backup plan.
       target_backup_vault_name = object({
@@ -376,7 +376,7 @@ map(object({
       })))
 
 
-      # Specifies tags that AWS Backup attaches to each backup that it creates from this plan. 
+      # Specifies tags that AWS Backup attaches to each backup that it creates from this plan.
       # This policy key maps to the `RecoveryPointTags` key in an AWS Backup plan.
       recovery_point_tags = optional(map(object({
 
@@ -408,7 +408,7 @@ map(object({
         tag_key = object({
           assign = string
         })
-        # Specifies the value that must be associated with a key name that matches tag_key. 
+        # Specifies the value that must be associated with a key name that matches tag_key.
         # AWS Backup includes the resource in the backup only if both the tag_key and tag_value match
         tag_value = object({
           assign = optional(list(string))
@@ -418,7 +418,7 @@ map(object({
       }))
     })
 
-    # The regions policy key specifies which AWS Regions that AWS Backup looks in 
+    # The regions policy key specifies which AWS Regions that AWS Backup looks in
     # to find the resources that match the conditions in the selections key.
     regions = object({
       assign = optional(list(string))
@@ -427,11 +427,11 @@ map(object({
     })
 
     # Specifies settings for specific backup scenarios. This key contains one or more settings
-    # At this time, the only advanced backup setting that is supported enables Microsoft Volume Shadow Copy Service (VSS) backups for Windows or SQL Server running on an Amazon EC2 instance. 
+    # At this time, the only advanced backup setting that is supported enables Microsoft Volume Shadow Copy Service (VSS) backups for Windows or SQL Server running on an Amazon EC2 instance.
     # The key name must be the "ec2" resource type, and the value specifies that "windows_vss" support is either enabled or disabled for backups performed on those Amazon EC2 instances
     advanced_backup_settings = optional(map(any))
 
-    # Specifies tags that are attached to the backup plan itself. 
+    # Specifies tags that are attached to the backup plan itself.
     # This does not impact the tags specified in any rules or selections.
     backup_plan_tags = optional(map(object({
       # Specifies the tag key name to attach to the backup plan.
@@ -439,7 +439,7 @@ map(object({
         assign = string
       })
 
-      # Specifies the value that is attached to the backup plan and associated with the tag_key. 
+      # Specifies the value that is attached to the backup plan and associated with the tag_key.
       tag_value = object({
         assign = string
       })
@@ -467,7 +467,7 @@ map(object({
 
 ```hcl
 
-       Specifies the name of the backup vault in which to store the backup. 
+       Specifies the name of the backup vault in which to store the backup.
        You create the value by using AWS Backup.
        This policy key maps to the `TargetBackupVaultName` key in an AWS Backup plan.
 
@@ -603,7 +603,7 @@ map(object({
 ```hcl
 
 
-       Specifies tags that AWS Backup attaches to each backup that it creates from this plan. 
+       Specifies tags that AWS Backup attaches to each backup that it creates from this plan.
        This policy key maps to the `RecoveryPointTags` key in an AWS Backup plan.
 
 ```
@@ -656,7 +656,7 @@ map(object({
 
 ```hcl
 
-     The regions policy key specifies which AWS Regions that AWS Backup looks in 
+     The regions policy key specifies which AWS Regions that AWS Backup looks in
      to find the resources that match the conditions in the selections key.
 
 ```
@@ -668,7 +668,7 @@ map(object({
 ```hcl
 
      Specifies settings for specific backup scenarios. This key contains one or more settings
-     At this time, the only advanced backup setting that is supported enables Microsoft Volume Shadow Copy Service (VSS) backups for Windows or SQL Server running on an Amazon EC2 instance. 
+     At this time, the only advanced backup setting that is supported enables Microsoft Volume Shadow Copy Service (VSS) backups for Windows or SQL Server running on an Amazon EC2 instance.
      The key name must be the "ec2" resource type, and the value specifies that "windows_vss" support is either enabled or disabled for backups performed on those Amazon EC2 instances
 
 ```
@@ -679,7 +679,7 @@ map(object({
 
 ```hcl
 
-     Specifies tags that are attached to the backup plan itself. 
+     Specifies tags that are attached to the backup plan itself.
      This does not impact the tags specified in any rules or selections.
 
 ```
@@ -690,7 +690,7 @@ map(object({
 
 ```hcl
 
-       Specifies the value that is attached to the backup plan and associated with the tag_key. 
+       Specifies the value that is attached to the backup plan and associated with the tag_key.
 
 ```
 </details>
@@ -740,6 +740,6 @@ ID of the backup policies
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/org-backup-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "effc89cf321df2c898009be6e8299573"
+  "hash": "59f5a980d4ffa6f0c427604425e57322"
 }
 ##DOCS-SOURCER-END -->
