@@ -485,6 +485,13 @@ module "ecs_service" {
   # a map with the parameters key and value.
   service_tags = {}
 
+  # Whether or not to include check for ALB/NLB health checks. When set to true,
+  # no health check will be performed against the load balancer. This can be
+  # used to speed up deployments, but keep in mind that disabling health checks
+  # mean you won't have confirmed status of the service being operational.
+  # Defaults to false (health checks enabled).
+  skip_load_balancer_check_arg = false
+
   # The CPU units for the instances that Fargate will spin up. Options here:
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
   # Required when using FARGATE launch type.
@@ -894,6 +901,13 @@ inputs = {
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
   service_tags = {}
+
+  # Whether or not to include check for ALB/NLB health checks. When set to true,
+  # no health check will be performed against the load balancer. This can be
+  # used to speed up deployments, but keep in mind that disabling health checks
+  # mean you won't have confirmed status of the service being operational.
+  # Defaults to false (health checks enabled).
+  skip_load_balancer_check_arg = false
 
   # The CPU units for the instances that Fargate will spin up. Options here:
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
@@ -1754,6 +1768,15 @@ A map of tags to apply to the ECS service. Each item in this list should be a ma
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="skip_load_balancer_check_arg" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to include check for ALB/NLB health checks. When set to true, no health check will be performed against the load balancer. This can be used to speed up deployments, but keep in mind that disabling health checks mean you won't have confirmed status of the service being operational. Defaults to false (health checks enabled).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="task_cpu" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1948,6 +1971,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.14/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6d041e5b5baba009b68b60b908f38652"
+  "hash": "c3d2c696fbddb69460055c3145dbc1dd"
 }
 ##DOCS-SOURCER-END -->
