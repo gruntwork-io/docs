@@ -17,7 +17,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.35.14" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module creates an [Elastic Container Service (ECS) Service](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) that you can use to run one or more related, long-running Docker containers, such as a web service. An ECS service can automatically deploy multiple instances of your Docker containers across an ECS cluster (see the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.14/modules/ecs-cluster)), restart any failed Docker containers, route traffic across your containers using an optional Elastic Load Balancer (ELB), and optionally register the services to AWS Service Discovery Service.
+This module creates an [Elastic Container Service (ECS) Service](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) that you can use to run one or more related, long-running Docker containers, such as a web service. An ECS service can automatically deploy multiple instances of your Docker containers across an ECS cluster (see the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.14/modules/ecs-cluster)), restart any failed Docker containers, route traffic across your containers using an optional Elastic Load Balancer (ELB), and optionally register the services to AWS Service Discovery Service. Additionally, CodeDeploy blue/green deployments are supported as the module can be enabled to ignore CodeDeploy managed resources.
 
 ![ECS Service architecture](/img/reference/modules/terraform-aws-ecs/ecs-service/ecs-service-architecture.png)
 
@@ -30,6 +30,8 @@ This module creates an [Elastic Container Service (ECS) Service](http://docs.aws
 *   Auto scaling and auto healing containers
 
 *   Canary deployments
+
+*   CodeDeploy blue/green deployment support (using external CICD)
 
 *   Service discovery through AWS Service Discovery Service
 
@@ -267,10 +269,23 @@ module "ecs_service" {
   # var.discovery_use_public_dns is true.
   discovery_alias_record_evaluate_target_health = true
 
+  # Container name value, already specified in the task definition, to be used
+  # for your service discovery service. Required when using `SRV` record type.
+  discovery_container_name = null
+
+  # Port value, already specified in the task definition, to be used for your
+  # service discovery service. Required when using `SRV` record type.
+  discovery_container_port = null
+
   # The number of 30-second intervals that you want service discovery to wait
   # before it changes the health status of a service instance. Maximum value of
   # 10. Only used if var.use_service_discovery is true.
   discovery_custom_health_check_failure_threshold = 1
+
+  # The type of the resource, which indicates the value that Amazon Route 53
+  # returns in response to DNS queries corresponded to service discovery
+  # requests.
+  discovery_dns_record_type = "A"
 
   # The routing policy that you want to apply to all records that Route 53
   # creates when you register an instance and specify the service. Valid Values:
@@ -469,13 +484,6 @@ module "ecs_service" {
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
   service_tags = {}
-
-  # Whether or not to include check for ALB/NLB health checks. When set to true,
-  # no health check will be performed against the load balancer. This can be
-  # used to speed up deployments, but keep in mind that disabling health checks
-  # mean you won't have confirmed status of the service being operational.
-  # Defaults to false (health checks enabled).
-  skip_load_balancer_check_arg = false
 
   # The CPU units for the instances that Fargate will spin up. Options here:
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
@@ -671,10 +679,23 @@ inputs = {
   # var.discovery_use_public_dns is true.
   discovery_alias_record_evaluate_target_health = true
 
+  # Container name value, already specified in the task definition, to be used
+  # for your service discovery service. Required when using `SRV` record type.
+  discovery_container_name = null
+
+  # Port value, already specified in the task definition, to be used for your
+  # service discovery service. Required when using `SRV` record type.
+  discovery_container_port = null
+
   # The number of 30-second intervals that you want service discovery to wait
   # before it changes the health status of a service instance. Maximum value of
   # 10. Only used if var.use_service_discovery is true.
   discovery_custom_health_check_failure_threshold = 1
+
+  # The type of the resource, which indicates the value that Amazon Route 53
+  # returns in response to DNS queries corresponded to service discovery
+  # requests.
+  discovery_dns_record_type = "A"
 
   # The routing policy that you want to apply to all records that Route 53
   # creates when you register an instance and specify the service. Valid Values:
@@ -873,13 +894,6 @@ inputs = {
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
   service_tags = {}
-
-  # Whether or not to include check for ALB/NLB health checks. When set to true,
-  # no health check will be performed against the load balancer. This can be
-  # used to speed up deployments, but keep in mind that disabling health checks
-  # mean you won't have confirmed status of the service being operational.
-  # Defaults to false (health checks enabled).
-  skip_load_balancer_check_arg = false
 
   # The CPU units for the instances that Fargate will spin up. Options here:
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
@@ -1203,6 +1217,24 @@ Check alias target health before routing to the service. Only used if <a href="#
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="discovery_container_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Container name value, already specified in the task definition, to be used for your service discovery service. Required when using `SRV` record type.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="discovery_container_port" requirement="optional" type="string">
+<HclListItemDescription>
+
+Port value, already specified in the task definition, to be used for your service discovery service. Required when using `SRV` record type.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="discovery_custom_health_check_failure_threshold" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1210,6 +1242,15 @@ The number of 30-second intervals that you want service discovery to wait before
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
+
+<HclListItem name="discovery_dns_record_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of the resource, which indicates the value that Amazon Route 53 returns in response to DNS queries corresponded to service discovery requests.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;A&quot;"/>
 </HclListItem>
 
 <HclListItem name="discovery_dns_routing_policy" requirement="optional" type="string">
@@ -1713,15 +1754,6 @@ A map of tags to apply to the ECS service. Each item in this list should be a ma
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="skip_load_balancer_check_arg" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to include check for ALB/NLB health checks. When set to true, no health check will be performed against the load balancer. This can be used to speed up deployments, but keep in mind that disabling health checks mean you won't have confirmed status of the service being operational. Defaults to false (health checks enabled).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="task_cpu" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1916,6 +1948,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.14/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d95afadff3bb2ea0f8071b6a57255bd7"
+  "hash": "6d041e5b5baba009b68b60b908f38652"
 }
 ##DOCS-SOURCER-END -->
