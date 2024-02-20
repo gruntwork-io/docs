@@ -580,7 +580,7 @@ module "eks_cluster_control_plane" {
   # The URL from which to download Kubergrunt if it's not installed already.
   # Only used if var.use_kubergrunt_verification and var.auto_install_kubergrunt
   # are true.
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.13.1/kubergrunt"
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.14.2/kubergrunt"
 
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
@@ -910,7 +910,7 @@ inputs = {
   # The URL from which to download Kubergrunt if it's not installed already.
   # Only used if var.use_kubergrunt_verification and var.auto_install_kubergrunt
   # are true.
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.13.1/kubergrunt"
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.14.2/kubergrunt"
 
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
@@ -1553,7 +1553,7 @@ Path to the kubectl config file. Defaults to $HOME/.kube/config
 The URL from which to download Kubergrunt if it's not installed already. Only used if <a href="#use_kubergrunt_verification"><code>use_kubergrunt_verification</code></a> and <a href="#auto_install_kubergrunt"><code>auto_install_kubergrunt</code></a> are true.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.13.1/kubergrunt&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.14.2/kubergrunt&quot;"/>
 </HclListItem>
 
 <HclListItem name="kubernetes_version" requirement="optional" type="string">
@@ -1917,6 +1917,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.5/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "20837f7d81d9845b1dd7ce4b331c3178"
+  "hash": "9199d6851471878740e8fc501ddd0a93"
 }
 ##DOCS-SOURCER-END -->
