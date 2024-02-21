@@ -296,6 +296,18 @@ inputs = {
 Account email, must be globally unique across all AWS Accounts.
 
 </HclListItemDescription>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   AWS requires that the account email is less than or equal to 64 characters
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="account_name" requirement="required" type="string">
@@ -497,6 +509,6 @@ The URL of the AWS SSO login page for this account
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.4.3/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a6569ac6fae7cd9b9b033f1e8e48dd2c"
+  "hash": "2129d46dd78f3b5447b2853f74c73bf3"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="0.4.3" lastModifiedVersion="0.2.0"/>
+<VersionBadge repoTitle="Control Tower" version="0.4.3" lastModifiedVersion="0.4.3"/>
 
 # Account Baseline App with Control Tower Integration
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.4.3/modules/landingzone/control-tower-app-account-baseline" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.4.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 A CIS compliant security baseline for AWS Landing Zone for configuring the app and logs accounts (dev, stage, prod, and
 other similar child accounts), as part of a Control Tower integration. This module fills in features NOT supported by
@@ -2025,6 +2025,6 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.4.3/modules/control-tower-app-account-baseline/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "626a223b3fe60172ac64354521d3df4a"
+  "hash": "0ef256bc750710d17ae11f824cb73d3e"
 }
 ##DOCS-SOURCER-END -->
