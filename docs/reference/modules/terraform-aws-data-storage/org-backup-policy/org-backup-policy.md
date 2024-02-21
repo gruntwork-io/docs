@@ -21,7 +21,7 @@ This Terraform Module creates
 the [AWS Organizations Backup Policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_backup.html).
 You associate your each plan on the backup policies with a [Backup vault](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/backup-vault).
 
-## What is a Backup Policies ?
+## What are Backup Policies ?
 
 Backup policies give you granular control over backing up your resources at whatever level your organization requires.
 It allows attaching a backup policy to any of the elements in your organization's structure, such as the root,
@@ -740,6 +740,6 @@ ID of the backup policies
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/org-backup-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "59f5a980d4ffa6f0c427604425e57322"
+  "hash": "f520e33afbb4b54ca1b17781c1fc7220"
 }
 ##DOCS-SOURCER-END -->
