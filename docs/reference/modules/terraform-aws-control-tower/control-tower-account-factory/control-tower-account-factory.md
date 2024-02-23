@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="0.4.4" lastModifiedVersion="0.4.4"/>
+<VersionBadge repoTitle="Control Tower" version="0.4.5" lastModifiedVersion="0.4.4"/>
 
 # Control Tower Account Factory
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.4.4/modules/landingzone/control-tower-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.4.5/modules/landingzone/control-tower-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.4.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -84,7 +84,7 @@ Resources:
 
 module "control_tower_account_factory" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.4.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.4.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -184,7 +184,7 @@ module "control_tower_account_factory" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.4.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.4.5"
 }
 
 inputs = {
@@ -504,11 +504,11 @@ The URL of the AWS SSO login page for this account
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.4.4/modules/control-tower-account-factory/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.4.4/modules/control-tower-account-factory/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.4.4/modules/control-tower-account-factory/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.4.5/modules/control-tower-account-factory/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.4.5/modules/control-tower-account-factory/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.4.5/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "919fee627a8bbb90495daa62d0b7b536"
+  "hash": "92ea8f4c01150ea8e3cbfdfc1c4f3269"
 }
 ##DOCS-SOURCER-END -->
