@@ -253,6 +253,14 @@ module "s_3_cloudfront" {
   # TLSv1.1, and TLSv1.2.
   bucket_origin_config_ssl_protocols = ["TLSv1.2"]
 
+  # Set a custom origin_id to be used. If not set, the default bucket_name will
+  # be used. Defaults to null (not set).
+  bucket_origin_id = null
+
+  # Set a custom target_origin_id to be used. If not set, the default
+  # bucket_name will be used. Defaults to null (not set).
+  bucket_target_origin_id = null
+
   # The website endpoint for this S3 bucket. This value should be of the format
   # <BUCKET_NAME>.s3-website-<AWS_REGION>.amazonaws.com. Only used if
   # var.s3_bucket_is_public_website is true.
@@ -555,6 +563,14 @@ inputs = {
   # with the S3 bucket over HTTPS. A list of one or more of SSLv3, TLSv1,
   # TLSv1.1, and TLSv1.2.
   bucket_origin_config_ssl_protocols = ["TLSv1.2"]
+
+  # Set a custom origin_id to be used. If not set, the default bucket_name will
+  # be used. Defaults to null (not set).
+  bucket_origin_id = null
+
+  # Set a custom target_origin_id to be used. If not set, the default
+  # bucket_name will be used. Defaults to null (not set).
+  bucket_target_origin_id = null
 
   # The website endpoint for this S3 bucket. This value should be of the format
   # <BUCKET_NAME>.s3-website-<AWS_REGION>.amazonaws.com. Only used if
@@ -984,6 +1000,24 @@ The SSL/TLS protocols that you want CloudFront to use when communicating with th
 <HclListItemDefaultValue defaultValue="[
   &quot;TLSv1.2&quot;
 ]"/>
+</HclListItem>
+
+<HclListItem name="bucket_origin_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+Set a custom origin_id to be used. If not set, the default bucket_name will be used. Defaults to null (not set).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="bucket_target_origin_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+Set a custom target_origin_id to be used. If not set, the default bucket_name will be used. Defaults to null (not set).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="bucket_website_endpoint" requirement="optional" type="string">
@@ -1453,6 +1487,6 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.0/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2eb4b4f9b10497ef759a0454c864e693"
+  "hash": "c295f2b9a0b1c401004c6cc35f3b399b"
 }
 ##DOCS-SOURCER-END -->
