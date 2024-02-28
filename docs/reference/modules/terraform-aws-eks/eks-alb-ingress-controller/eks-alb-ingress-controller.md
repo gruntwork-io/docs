@@ -289,6 +289,9 @@ module "eks_alb_ingress_controller" {
   # Namespace, you do not need another one.
   create_fargate_profile = false
 
+  # Tags to apply to all AWS resources managed by this controller
+  default_tags = {}
+
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
   # resources in this module will now depend on the resources backing the values
@@ -424,6 +427,9 @@ inputs = {
   # Namespace, you do not need another one.
   create_fargate_profile = false
 
+  # Tags to apply to all AWS resources managed by this controller
+  default_tags = {}
+
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
   # resources in this module will now depend on the resources backing the values
@@ -503,6 +509,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.5/modules/eks-alb-ingress-controller/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "95f6750cf4b48bf914b965e0a720ebdf"
+  "hash": "005df717b1ce90cd7591e81fa488d937"
 }
 ##DOCS-SOURCER-END -->
