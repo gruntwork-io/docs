@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.108.7" lastModifiedVersion="0.108.4"/>
+<VersionBadge version="0.109.4" lastModifiedVersion="0.108.4"/>
 
 # VPC
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.4/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fvpc" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -65,9 +65,9 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.4/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.4/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.4/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.4/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.4/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -105,7 +105,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "vpc" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.108.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.109.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -167,6 +167,21 @@ module "vpc" {
   # longer used and only kept around for backwards compatibility. We now
   # automatically fetch the region using a data source.
   aws_region = ""
+
+  # A map of tags to apply to the Blackhole ENI. The key is the tag name and the
+  # value is the tag value. Note that the tag 'Name' is automatically added by
+  # this module but may be optionally overwritten by this variable.
+  blackhole_network_interface_custom_tags = {}
+
+  # The description of the Blackhole ENI.
+  blackhole_network_interface_description = "Blackhole ENI - DO NOT ATTACH TO INSTANCES"
+
+  # The name of the Blackhole ENI.
+  blackhole_network_interface_name = "Blackhole ENI - DO NOT ATTACH TO INSTANCES"
+
+  # A list of private IP addresses to assign to the Blackhole ENI. Note that the
+  # first private IP address in the list will be the primary IP address.
+  blackhole_network_interface_private_ips = []
 
   # A map of objects defining which blackhole routes to create. The key should
   # be the name of a subnet tier: one of public, private-app,
@@ -650,7 +665,7 @@ module "vpc" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.108.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.109.4"
 }
 
 inputs = {
@@ -715,6 +730,21 @@ inputs = {
   # longer used and only kept around for backwards compatibility. We now
   # automatically fetch the region using a data source.
   aws_region = ""
+
+  # A map of tags to apply to the Blackhole ENI. The key is the tag name and the
+  # value is the tag value. Note that the tag 'Name' is automatically added by
+  # this module but may be optionally overwritten by this variable.
+  blackhole_network_interface_custom_tags = {}
+
+  # The description of the Blackhole ENI.
+  blackhole_network_interface_description = "Blackhole ENI - DO NOT ATTACH TO INSTANCES"
+
+  # The name of the Blackhole ENI.
+  blackhole_network_interface_name = "Blackhole ENI - DO NOT ATTACH TO INSTANCES"
+
+  # A list of private IP addresses to assign to the Blackhole ENI. Note that the
+  # first private IP address in the list will be the primary IP address.
+  blackhole_network_interface_private_ips = []
 
   # A map of objects defining which blackhole routes to create. The key should
   # be the name of a subnet tier: one of public, private-app,
@@ -1297,6 +1327,42 @@ DEPRECATED. The AWS Region where this VPC will exist. This variable is no longer
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="blackhole_network_interface_custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the Blackhole ENI. The key is the tag name and the value is the tag value. Note that the tag 'Name' is automatically added by this module but may be optionally overwritten by this variable.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="blackhole_network_interface_description" requirement="optional" type="string">
+<HclListItemDescription>
+
+The description of the Blackhole ENI.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;Blackhole ENI - DO NOT ATTACH TO INSTANCES&quot;"/>
+</HclListItem>
+
+<HclListItem name="blackhole_network_interface_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the Blackhole ENI.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;Blackhole ENI - DO NOT ATTACH TO INSTANCES&quot;"/>
+</HclListItem>
+
+<HclListItem name="blackhole_network_interface_private_ips" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of private IP addresses to assign to the Blackhole ENI. Note that the first private IP address in the list will be the primary IP address.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="blackhole_routes" requirement="optional" type="map(object(…))">
@@ -2705,11 +2771,11 @@ Indicates whether or not the VPC has finished creating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/modules/networking/vpc/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/modules/networking/vpc/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.108.7/modules/networking/vpc/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.4/modules/networking/vpc/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.4/modules/networking/vpc/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.4/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "74f7c1dd7f08675f394959d2d03654bb"
+  "hash": "2f0a57477ab4ff62e654709e8b6c771a"
 }
 ##DOCS-SOURCER-END -->
