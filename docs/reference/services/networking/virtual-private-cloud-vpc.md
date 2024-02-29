@@ -176,12 +176,13 @@ module "vpc" {
   # The description of the Blackhole ENI.
   blackhole_network_interface_description = "Blackhole ENI - DO NOT ATTACH TO INSTANCES"
 
+  # The host number in the IP address of the Blackhole ENI. For IPv4, this is
+  # the fourth octet in the IP address. For IPv6, this is the sixth hextet in
+  # the IP address.
+  blackhole_network_interface_host = null
+
   # The name of the Blackhole ENI.
   blackhole_network_interface_name = "Blackhole ENI - DO NOT ATTACH TO INSTANCES"
-
-  # A list of private IP addresses to assign to the Blackhole ENI. Note that the
-  # first private IP address in the list will be the primary IP address.
-  blackhole_network_interface_private_ips = []
 
   # A map of objects defining which blackhole routes to create. The key should
   # be the name of a subnet tier: one of public, private-app,
@@ -739,12 +740,13 @@ inputs = {
   # The description of the Blackhole ENI.
   blackhole_network_interface_description = "Blackhole ENI - DO NOT ATTACH TO INSTANCES"
 
+  # The host number in the IP address of the Blackhole ENI. For IPv4, this is
+  # the fourth octet in the IP address. For IPv6, this is the sixth hextet in
+  # the IP address.
+  blackhole_network_interface_host = null
+
   # The name of the Blackhole ENI.
   blackhole_network_interface_name = "Blackhole ENI - DO NOT ATTACH TO INSTANCES"
-
-  # A list of private IP addresses to assign to the Blackhole ENI. Note that the
-  # first private IP address in the list will be the primary IP address.
-  blackhole_network_interface_private_ips = []
 
   # A map of objects defining which blackhole routes to create. The key should
   # be the name of a subnet tier: one of public, private-app,
@@ -1347,6 +1349,15 @@ The description of the Blackhole ENI.
 <HclListItemDefaultValue defaultValue="&quot;Blackhole ENI - DO NOT ATTACH TO INSTANCES&quot;"/>
 </HclListItem>
 
+<HclListItem name="blackhole_network_interface_host" requirement="optional" type="string">
+<HclListItemDescription>
+
+The host number in the IP address of the Blackhole ENI. For IPv4, this is the fourth octet in the IP address. For IPv6, this is the sixth hextet in the IP address.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="blackhole_network_interface_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1354,15 +1365,6 @@ The name of the Blackhole ENI.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;Blackhole ENI - DO NOT ATTACH TO INSTANCES&quot;"/>
-</HclListItem>
-
-<HclListItem name="blackhole_network_interface_private_ips" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of private IP addresses to assign to the Blackhole ENI. Note that the first private IP address in the list will be the primary IP address.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="blackhole_routes" requirement="optional" type="map(object(…))">
@@ -2776,6 +2778,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.4/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2f0a57477ab4ff62e654709e8b6c771a"
+  "hash": "0d65adad9e7d92ebb25bc70226f00b37"
 }
 ##DOCS-SOURCER-END -->
