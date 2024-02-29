@@ -93,7 +93,7 @@ module "eks_k_8_s_karpenter" {
   # URL endpoint of the Kubernetes control plane provided by EKS.
   eks_cluster_endpoint = <string>
 
-  # The name of the EKS Cluster that Karpenter will be associated with.
+  # The name of the EKS Cluster that Karpenter will be deployed to.
   eks_cluster_name = <string>
 
   # The ARN of the EKS OIDC provider. This is required if creating IRSA for the
@@ -140,13 +140,38 @@ module "eks_k_8_s_karpenter" {
   # The Helm repository to obtain the Karpenter chart from.
   karpenter_chart_repository = "oci://public.ecr.aws/karpenter"
 
+  # Whether or not to install CRDs with the Karpenter Helm Chart. This should be
+  # set to true if using the karpenter-crd Helm Chart
+  # (karpenter_chart_additional_values = true).
+  karpenter_chart_skip_crds = false
+
   # The version of the Karpenter Helm chart.
-  karpenter_chart_version = "v0.32.0"
+  karpenter_chart_version = "v0.32.7"
 
   # Provide an existing IAM Role ARN to be used with the Karpenter Controller
   # Service Account. This is required if `create_karpenter_controller_irsa` is
   # set to false.
   karpenter_controller_existing_role_arn = true
+
+  # The Helm chart name for the Karpenter CRD chart.
+  karpenter_crd_chart_name = "karpenter-crd"
+
+  # The k8s namespace that the Karpenter CRD Helm chart will be deployed to.
+  karpenter_crd_chart_namespace = "karpenter"
+
+  # The Helm release name for the Karpenter CRD chart.
+  karpenter_crd_chart_release_name = "karpenter-crd"
+
+  # The Helm repository to obtain the Karpenter CRD chart from.
+  karpenter_crd_chart_repository = "oci://public.ecr.aws/karpenter"
+
+  # The version of the Karpenter CRD Helm chart. This should typically be the
+  # same version as karpenter_chart_version.
+  karpenter_crd_chart_version = "v0.32.7"
+
+  # Whether or not to create the Karpneter CRDs via the karpenter-crd Helm
+  # chart. It is suggested to manage the Karpenter CRDs via this Helm chart.
+  karpenter_crd_helm_create = true
 
   # Additional tags to add to the Karpenter Deprovisioning Queue.
   karpenter_deprovisioning_queue_tags = {}
@@ -224,7 +249,7 @@ inputs = {
   # URL endpoint of the Kubernetes control plane provided by EKS.
   eks_cluster_endpoint = <string>
 
-  # The name of the EKS Cluster that Karpenter will be associated with.
+  # The name of the EKS Cluster that Karpenter will be deployed to.
   eks_cluster_name = <string>
 
   # The ARN of the EKS OIDC provider. This is required if creating IRSA for the
@@ -271,13 +296,38 @@ inputs = {
   # The Helm repository to obtain the Karpenter chart from.
   karpenter_chart_repository = "oci://public.ecr.aws/karpenter"
 
+  # Whether or not to install CRDs with the Karpenter Helm Chart. This should be
+  # set to true if using the karpenter-crd Helm Chart
+  # (karpenter_chart_additional_values = true).
+  karpenter_chart_skip_crds = false
+
   # The version of the Karpenter Helm chart.
-  karpenter_chart_version = "v0.32.0"
+  karpenter_chart_version = "v0.32.7"
 
   # Provide an existing IAM Role ARN to be used with the Karpenter Controller
   # Service Account. This is required if `create_karpenter_controller_irsa` is
   # set to false.
   karpenter_controller_existing_role_arn = true
+
+  # The Helm chart name for the Karpenter CRD chart.
+  karpenter_crd_chart_name = "karpenter-crd"
+
+  # The k8s namespace that the Karpenter CRD Helm chart will be deployed to.
+  karpenter_crd_chart_namespace = "karpenter"
+
+  # The Helm release name for the Karpenter CRD chart.
+  karpenter_crd_chart_release_name = "karpenter-crd"
+
+  # The Helm repository to obtain the Karpenter CRD chart from.
+  karpenter_crd_chart_repository = "oci://public.ecr.aws/karpenter"
+
+  # The version of the Karpenter CRD Helm chart. This should typically be the
+  # same version as karpenter_chart_version.
+  karpenter_crd_chart_version = "v0.32.7"
+
+  # Whether or not to create the Karpneter CRDs via the karpenter-crd Helm
+  # chart. It is suggested to manage the Karpenter CRDs via this Helm chart.
+  karpenter_crd_helm_create = true
 
   # Additional tags to add to the Karpenter Deprovisioning Queue.
   karpenter_deprovisioning_queue_tags = {}
@@ -362,7 +412,7 @@ URL endpoint of the Kubernetes control plane provided by EKS.
 <HclListItem name="eks_cluster_name" requirement="required" type="string">
 <HclListItemDescription>
 
-The name of the EKS Cluster that Karpenter will be associated with.
+The name of the EKS Cluster that Karpenter will be deployed to.
 
 </HclListItemDescription>
 </HclListItem>
@@ -473,19 +523,82 @@ The Helm repository to obtain the Karpenter chart from.
 <HclListItemDefaultValue defaultValue="&quot;oci://public.ecr.aws/karpenter&quot;"/>
 </HclListItem>
 
+<HclListItem name="karpenter_chart_skip_crds" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to install CRDs with the Karpenter Helm Chart. This should be set to true if using the karpenter-crd Helm Chart (karpenter_chart_additional_values = true).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="karpenter_chart_version" requirement="optional" type="string">
 <HclListItemDescription>
 
 The version of the Karpenter Helm chart.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v0.32.0&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v0.32.7&quot;"/>
 </HclListItem>
 
 <HclListItem name="karpenter_controller_existing_role_arn" requirement="optional" type="bool">
 <HclListItemDescription>
 
 Provide an existing IAM Role ARN to be used with the Karpenter Controller Service Account. This is required if `create_karpenter_controller_irsa` is set to false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="karpenter_crd_chart_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Helm chart name for the Karpenter CRD chart.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;karpenter-crd&quot;"/>
+</HclListItem>
+
+<HclListItem name="karpenter_crd_chart_namespace" requirement="optional" type="string">
+<HclListItemDescription>
+
+The k8s namespace that the Karpenter CRD Helm chart will be deployed to.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;karpenter&quot;"/>
+</HclListItem>
+
+<HclListItem name="karpenter_crd_chart_release_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Helm release name for the Karpenter CRD chart.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;karpenter-crd&quot;"/>
+</HclListItem>
+
+<HclListItem name="karpenter_crd_chart_repository" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Helm repository to obtain the Karpenter CRD chart from.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;oci://public.ecr.aws/karpenter&quot;"/>
+</HclListItem>
+
+<HclListItem name="karpenter_crd_chart_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+The version of the Karpenter CRD Helm chart. This should typically be the same version as karpenter_chart_version.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;v0.32.7&quot;"/>
+</HclListItem>
+
+<HclListItem name="karpenter_crd_helm_create" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to create the Karpneter CRDs via the karpenter-crd Helm chart. It is suggested to manage the Karpenter CRDs via this Helm chart.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -663,6 +776,6 @@ The name of the Karpenter Node IAM Role.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.5/modules/eks-k8s-karpenter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e6a48fa8dda11a56f52fcfd97fc0497f"
+  "hash": "0a06c5de32af637249dd1f97ac934ce0"
 }
 ##DOCS-SOURCER-END -->
