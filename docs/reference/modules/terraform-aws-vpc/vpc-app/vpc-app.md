@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.17" lastModifiedVersion="0.26.17"/>
+<VersionBadge repoTitle="VPC Modules" version="0.26.19" lastModifiedVersion="0.26.19"/>
 
 # IPv6
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.17/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.19/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.17" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.19" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 ## What's a VPC?
 
@@ -73,7 +73,7 @@ nearly all use-cases, and is consistent with many examples and existing document
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.17/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.19/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
 
 ## IPv6 Design
 
@@ -111,7 +111,7 @@ module "vpc_app_ipv6_example" {
 
 module "vpc_app" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.17"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.19"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -185,6 +185,12 @@ module "vpc_app" {
   # longer used and only kept around for backwards compatibility. We now
   # automatically fetch the region using a data source.
   aws_region = ""
+
+  # If set to true, this module will create a default route table route to the
+  # Internet Gateway. If set to false, this module will NOT create a default
+  # route table route to the Internet Gateway. This is useful if you have
+  # subnets which utilize the default route table. Defaults to true.
+  create_default_route_table_route = true
 
   # If the VPC will create an Internet Gateway. There are use cases when the VPC
   # is desired to not be routable from the internet, and hence, they should not
@@ -344,6 +350,12 @@ module "vpc_app" {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   nat_gateway_custom_tags = {}
+
+  # The host number in the IP address of the NAT Gateway. You would only use
+  # this if you want the NAT Gateway to always have the same host number within
+  # your subnet's CIDR range: e.g., it's always x.x.x.4. For IPv4, this is the
+  # fourth octet in the IP address.
+  nat_private_ip_host_num = null
 
   # (Optional) The number of secondary private IP addresses to assign to each
   # NAT gateway. These IP addresses are used for source NAT (SNAT) for the
@@ -563,7 +575,7 @@ module "vpc_app" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.17"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.19"
 }
 
 inputs = {
@@ -640,6 +652,12 @@ inputs = {
   # longer used and only kept around for backwards compatibility. We now
   # automatically fetch the region using a data source.
   aws_region = ""
+
+  # If set to true, this module will create a default route table route to the
+  # Internet Gateway. If set to false, this module will NOT create a default
+  # route table route to the Internet Gateway. This is useful if you have
+  # subnets which utilize the default route table. Defaults to true.
+  create_default_route_table_route = true
 
   # If the VPC will create an Internet Gateway. There are use cases when the VPC
   # is desired to not be routable from the internet, and hence, they should not
@@ -799,6 +817,12 @@ inputs = {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   nat_gateway_custom_tags = {}
+
+  # The host number in the IP address of the NAT Gateway. You would only use
+  # this if you want the NAT Gateway to always have the same host number within
+  # your subnet's CIDR range: e.g., it's always x.x.x.4. For IPv4, this is the
+  # fourth octet in the IP address.
+  nat_private_ip_host_num = null
 
   # (Optional) The number of secondary private IP addresses to assign to each
   # NAT gateway. These IP addresses are used for source NAT (SNAT) for the
@@ -1144,6 +1168,15 @@ DEPRECATED. The AWS Region where this VPC will exist. This variable is no longer
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="create_default_route_table_route" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, this module will create a default route table route to the Internet Gateway. If set to false, this module will NOT create a default route table route to the Internet Gateway. This is useful if you have subnets which utilize the default route table. Defaults to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="create_igw" requirement="optional" type="bool">
@@ -1548,6 +1581,15 @@ A map of tags to apply to the NAT gateways, on top of the custom_tags. The key i
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="nat_private_ip_host_num" requirement="optional" type="number">
+<HclListItemDescription>
+
+The host number in the IP address of the NAT Gateway. You would only use this if you want the NAT Gateway to always have the same host number within your subnet's CIDR range: e.g., it's always x.x.x.4. For IPv4, this is the fourth octet in the IP address.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="nat_secondary_private_ip_address_count" requirement="optional" type="number">
@@ -2051,11 +2093,11 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.17/modules/vpc-app/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.17/modules/vpc-app/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.17/modules/vpc-app/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.19/modules/vpc-app/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.19/modules/vpc-app/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.19/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c227b15bcb1260ca9ed264e8588c4a7c"
+  "hash": "ac53258a5989de39e4c4f3b879d4b363"
 }
 ##DOCS-SOURCER-END -->
