@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.17" lastModifiedVersion="0.26.14"/>
+<VersionBadge repoTitle="VPC Modules" version="0.26.19" lastModifiedVersion="0.26.14"/>
 
 # Route Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.17/modules/route" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.19/modules/route" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.14" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -30,7 +30,7 @@ This Terraform module creates a route resource. A route is a rule that specifies
 
 ## Usage
 
-For usage examples, check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.17/examples/route/).
+For usage examples, check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.19/examples/route/).
 
 ## What is a route?
 
@@ -104,7 +104,7 @@ No modules.
 
 module "route" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/route?ref=v0.26.17"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/route?ref=v0.26.19"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -193,7 +193,7 @@ module "route" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/route?ref=v0.26.17"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/route?ref=v0.26.19"
 }
 
 inputs = {
@@ -448,11 +448,11 @@ A map of states of the route resources.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.17/modules/route/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.17/modules/route/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.17/modules/route/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.19/modules/route/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.19/modules/route/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.19/modules/route/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "22c7ee97d75bc03a5746cfe75f61aeba"
+  "hash": "5cfa535640e6dcd1e73db2846ce142d8"
 }
 ##DOCS-SOURCER-END -->
