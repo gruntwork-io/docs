@@ -17,7 +17,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.35.15" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module creates an [Elastic Container Service (ECS) Service](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) that you can use to run one or more related, long-running Docker containers, such as a web service. An ECS service can automatically deploy multiple instances of your Docker containers across an ECS cluster (see the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-cluster)), restart any failed Docker containers, route traffic across your containers using an optional Elastic Load Balancer (ELB), and optionally register the services to AWS Service Discovery Service. Additionally, CodeDeploy blue/green deployments are supported as the module can be enabled to ignore CodeDeploy managed resources.
+This module creates an [Elastic Container Service (ECS) Service](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) that you can use to run one or more related, long-running Docker containers, such as a web service. An ECS service can automatically deploy multiple instances of your Docker containers across an ECS cluster (see the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-cluster)), restart any failed Docker containers, route traffic across your containers using an optional Elastic Load Balancer (ELB), and optionally register the services to AWS Service Discovery Service.
 
 ![ECS Service architecture](/img/reference/modules/terraform-aws-ecs/ecs-service/ecs-service-architecture.png)
 
@@ -30,8 +30,6 @@ This module creates an [Elastic Container Service (ECS) Service](http://docs.aws
 *   Auto scaling and auto healing containers
 
 *   Canary deployments
-
-*   CodeDeploy blue/green deployment support (using external CICD)
 
 *   Service discovery through AWS Service Discovery Service
 
@@ -411,14 +409,13 @@ module "ecs_service" {
   # be the same as the health_check_healthy_threshold.
   health_check_unhealthy_threshold = 2
 
-  # The launch type of the ECS service. Defaults to null, which will result in
-  # using the default capacity provider strategyfrom the ECS cluster. Valid
-  # value must be one of EC2 or FARGATE. When using FARGATE, you must set the
-  # network mode to awsvpc and configure it. When using EC2, you can configure
-  # the placement strategy using the variables ordered_placement_strategy,
+  # The launch type of the ECS service. Must be one of EC2 or FARGATE. When
+  # using FARGATE, you must set the network mode to awsvpc and configure it.
+  # When using EC2, you can configure the placement strategy using the variables
+  # placement_strategy_type, placement_strategy_field,
   # placement_constraint_type, placement_constraint_expression. This variable is
   # ignored if var.capacity_provider_strategy is provided.
-  launch_type = null
+  launch_type = "EC2"
 
   # A map of tags to apply to the elb target group. Each item in this list
   # should be a map with the parameters key and value.
@@ -438,16 +435,13 @@ module "ecs_service" {
   # var.use_auto_scaling is true.
   min_number_of_tasks = null
 
-  # Service level strategy rules that are taken into consideration during task
-  # placement. List from top to bottom in order of precedence. Updates to this
-  # configuration will take effect next task deployment unless
-  # force_new_deployment is enabled. The maximum number of
-  # ordered_placement_strategy blocks is 5.
-  ordered_placement_strategy = [{"field":"cpu","type":"binpack"}]
-
   placement_constraint_expression = "attribute:ecs.ami-id != 'ami-fake'"
 
   placement_constraint_type = "memberOf"
+
+  placement_strategy_field = "cpu"
+
+  placement_strategy_type = "binpack"
 
   # The platform version on which to run your service. Only applicable for
   # launch_type set to FARGATE. Defaults to LATEST.
@@ -471,13 +465,6 @@ module "ecs_service" {
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
   service_tags = {}
-
-  # Whether or not to include check for ALB/NLB health checks. When set to true,
-  # no health check will be performed against the load balancer. This can be
-  # used to speed up deployments, but keep in mind that disabling health checks
-  # mean you won't have confirmed status of the service being operational.
-  # Defaults to false (health checks enabled).
-  skip_load_balancer_check_arg = false
 
   # The CPU units for the instances that Fargate will spin up. Options here:
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
@@ -815,14 +802,13 @@ inputs = {
   # be the same as the health_check_healthy_threshold.
   health_check_unhealthy_threshold = 2
 
-  # The launch type of the ECS service. Defaults to null, which will result in
-  # using the default capacity provider strategyfrom the ECS cluster. Valid
-  # value must be one of EC2 or FARGATE. When using FARGATE, you must set the
-  # network mode to awsvpc and configure it. When using EC2, you can configure
-  # the placement strategy using the variables ordered_placement_strategy,
+  # The launch type of the ECS service. Must be one of EC2 or FARGATE. When
+  # using FARGATE, you must set the network mode to awsvpc and configure it.
+  # When using EC2, you can configure the placement strategy using the variables
+  # placement_strategy_type, placement_strategy_field,
   # placement_constraint_type, placement_constraint_expression. This variable is
   # ignored if var.capacity_provider_strategy is provided.
-  launch_type = null
+  launch_type = "EC2"
 
   # A map of tags to apply to the elb target group. Each item in this list
   # should be a map with the parameters key and value.
@@ -842,16 +828,13 @@ inputs = {
   # var.use_auto_scaling is true.
   min_number_of_tasks = null
 
-  # Service level strategy rules that are taken into consideration during task
-  # placement. List from top to bottom in order of precedence. Updates to this
-  # configuration will take effect next task deployment unless
-  # force_new_deployment is enabled. The maximum number of
-  # ordered_placement_strategy blocks is 5.
-  ordered_placement_strategy = [{"field":"cpu","type":"binpack"}]
-
   placement_constraint_expression = "attribute:ecs.ami-id != 'ami-fake'"
 
   placement_constraint_type = "memberOf"
+
+  placement_strategy_field = "cpu"
+
+  placement_strategy_type = "binpack"
 
   # The platform version on which to run your service. Only applicable for
   # launch_type set to FARGATE. Defaults to LATEST.
@@ -875,13 +858,6 @@ inputs = {
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
   service_tags = {}
-
-  # Whether or not to include check for ALB/NLB health checks. When set to true,
-  # no health check will be performed against the load balancer. This can be
-  # used to speed up deployments, but keep in mind that disabling health checks
-  # mean you won't have confirmed status of the service being operational.
-  # Defaults to false (health checks enabled).
-  skip_load_balancer_check_arg = false
 
   # The CPU units for the instances that Fargate will spin up. Options here:
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
@@ -1547,10 +1523,10 @@ The number of consecutive failed health checks required before considering a tar
 <HclListItem name="launch_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-The launch type of the ECS service. Defaults to null, which will result in using the default capacity provider strategyfrom the ECS cluster. Valid value must be one of EC2 or FARGATE. When using FARGATE, you must set the network mode to awsvpc and configure it. When using EC2, you can configure the placement strategy using the variables ordered_placement_strategy, placement_constraint_type, placement_constraint_expression. This variable is ignored if <a href="#capacity_provider_strategy"><code>capacity_provider_strategy</code></a> is provided.
+The launch type of the ECS service. Must be one of EC2 or FARGATE. When using FARGATE, you must set the network mode to awsvpc and configure it. When using EC2, you can configure the placement strategy using the variables placement_strategy_type, placement_strategy_field, placement_constraint_type, placement_constraint_expression. This variable is ignored if <a href="#capacity_provider_strategy"><code>capacity_provider_strategy</code></a> is provided.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="&quot;EC2&quot;"/>
 </HclListItem>
 
 <HclListItem name="lb_target_group_tags" requirement="optional" type="map(string)">
@@ -1589,42 +1565,20 @@ The minimum number of ECS Task instances of the ECS Service to run. Auto scaling
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="ordered_placement_strategy" requirement="optional" type="list(object(…))">
-<HclListItemDescription>
-
-Service level strategy rules that are taken into consideration during task placement. List from top to bottom in order of precedence. Updates to this configuration will take effect next task deployment unless force_new_deployment is enabled. The maximum number of ordered_placement_strategy blocks is 5.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(object({
-    type  = string
-    field = string
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue>
-
-```hcl
-[
-  {
-    field = "cpu",
-    type = "binpack"
-  }
-]
-```
-
-</HclListItemDefaultValue>
-</HclListItem>
-
 <HclListItem name="placement_constraint_expression" requirement="optional" type="string">
 <HclListItemDefaultValue defaultValue="&quot;attribute:ecs.ami-id != &apos;ami-fake&apos;&quot;"/>
 </HclListItem>
 
 <HclListItem name="placement_constraint_type" requirement="optional" type="string">
 <HclListItemDefaultValue defaultValue="&quot;memberOf&quot;"/>
+</HclListItem>
+
+<HclListItem name="placement_strategy_field" requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="&quot;cpu&quot;"/>
+</HclListItem>
+
+<HclListItem name="placement_strategy_type" requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="&quot;binpack&quot;"/>
 </HclListItem>
 
 <HclListItem name="platform_version" requirement="optional" type="string">
@@ -1713,15 +1667,6 @@ A map of tags to apply to the ECS service. Each item in this list should be a ma
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="skip_load_balancer_check_arg" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to include check for ALB/NLB health checks. When set to true, no health check will be performed against the load balancer. This can be used to speed up deployments, but keep in mind that disabling health checks mean you won't have confirmed status of the service being operational. Defaults to false (health checks enabled).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="task_cpu" requirement="optional" type="number">
@@ -1918,6 +1863,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "820f08e5fdcca61269a6477649e23f39"
+  "hash": "f1d066afe5b83f9fa6c950f9ebe0444e"
 }
 ##DOCS-SOURCER-END -->

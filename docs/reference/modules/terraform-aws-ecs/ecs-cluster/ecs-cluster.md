@@ -383,8 +383,8 @@ module "ecs_cluster" {
   cluster_instance_root_volume_size = 40
 
   # The volume type for the root volume for each of the ECS Cluster's EC2
-  # Instances. Can be one of standard, gp2, gp3, io1, io2, sc1 or st1.
-  cluster_instance_root_volume_type = "gp3"
+  # Instances. Can be standard, gp2, or io1
+  cluster_instance_root_volume_type = "gp2"
 
   # Value is the maximum bid price for the instance on the EC2 Spot Market.
   cluster_instance_spot_price = null
@@ -420,10 +420,6 @@ module "ecs_cluster" {
   # A map of custom tags to apply to the Security Group for this ECS Cluster.
   # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
-
-  # Enables additional block device mapping. Change to false if you wish to
-  # disable additional EBS volume attachment to EC2 instances. Defaults to true.
-  enable_block_device_mappings = true
 
   # Whether or not to enable Container Insights on the ECS cluster. Refer to
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-container-insights.html
@@ -650,8 +646,8 @@ inputs = {
   cluster_instance_root_volume_size = 40
 
   # The volume type for the root volume for each of the ECS Cluster's EC2
-  # Instances. Can be one of standard, gp2, gp3, io1, io2, sc1 or st1.
-  cluster_instance_root_volume_type = "gp3"
+  # Instances. Can be standard, gp2, or io1
+  cluster_instance_root_volume_type = "gp2"
 
   # Value is the maximum bid price for the instance on the EC2 Spot Market.
   cluster_instance_spot_price = null
@@ -687,10 +683,6 @@ inputs = {
   # A map of custom tags to apply to the Security Group for this ECS Cluster.
   # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
-
-  # Enables additional block device mapping. Change to false if you wish to
-  # disable additional EBS volume attachment to EC2 instances. Defaults to true.
-  enable_block_device_mappings = true
 
   # Whether or not to enable Container Insights on the ECS cluster. Refer to
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-container-insights.html
@@ -1107,10 +1099,10 @@ The size in GB of the root volume for each of the ECS Cluster's EC2 Instances
 <HclListItem name="cluster_instance_root_volume_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-The volume type for the root volume for each of the ECS Cluster's EC2 Instances. Can be one of standard, gp2, gp3, io1, io2, sc1 or st1.
+The volume type for the root volume for each of the ECS Cluster's EC2 Instances. Can be standard, gp2, or io1
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;gp3&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
 </HclListItem>
 
 <HclListItem name="cluster_instance_spot_price" requirement="optional" type="string">
@@ -1183,15 +1175,6 @@ A map of custom tags to apply to the Security Group for this ECS Cluster. The ke
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_block_device_mappings" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Enables additional block device mapping. Change to false if you wish to disable additional EBS volume attachment to EC2 instances. Defaults to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="enable_cluster_container_insights" requirement="optional" type="bool">
@@ -1346,6 +1329,6 @@ Set this variable to true to enable the use of Instance Metadata Service Version
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e69b75bcad4ed544926ac7a8dcd537bc"
+  "hash": "fb161016098ca5b7e34b8f92c3a68b18"
 }
 ##DOCS-SOURCER-END -->
