@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.109.6" lastModifiedVersion="0.108.6"/>
+<VersionBadge version="0.109.7" lastModifiedVersion="0.108.6"/>
 
 # Amazon ECS Cluster
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.6/modules/services/ecs-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.7/modules/services/ecs-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fecs-cluster" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -108,9 +108,9 @@ For info on finding your Docker container logs and custom metrics in CloudWatch,
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.6/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.6/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.6/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.7/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.7/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.7/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -118,7 +118,7 @@ For info on finding your Docker container logs and custom metrics in CloudWatch,
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.6/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.7/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -126,7 +126,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.6/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.7/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -153,7 +153,7 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 module "ecs_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-cluster?ref=v0.109.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-cluster?ref=v0.109.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -447,7 +447,7 @@ module "ecs_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-cluster?ref=v0.109.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-cluster?ref=v0.109.7"
 }
 
 inputs = {
@@ -1468,11 +1468,11 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.6/modules/services/ecs-cluster/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.6/modules/services/ecs-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.6/modules/services/ecs-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.7/modules/services/ecs-cluster/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.7/modules/services/ecs-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.7/modules/services/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b8057b43b950017f19a4c6a2bc7b4db4"
+  "hash": "97e85054b2c989a331210c64573420c4"
 }
 ##DOCS-SOURCER-END -->

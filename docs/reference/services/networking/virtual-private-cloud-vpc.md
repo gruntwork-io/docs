@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.109.6" lastModifiedVersion="0.108.4"/>
+<VersionBadge version="0.109.7" lastModifiedVersion="0.109.7"/>
 
 # VPC
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.6/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.7/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fvpc" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -65,9 +65,9 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.6/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.6/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.6/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.7/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.7/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.7/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.6/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.7/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.6/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.7/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -105,7 +105,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "vpc" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.109.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.109.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -192,6 +192,12 @@ module "vpc" {
   # specifies the CIDR blocks or the names of other subnet tiers (from the same
   # list of public, private-app, private-persistence, transit) to blackhole.
   blackhole_routes = {}
+
+  # If set to true, this module will create a default route table route to the
+  # Internet Gateway. If set to false, this module will NOT create a default
+  # route table route to the Internet Gateway. This is useful if you have
+  # subnets which utilize the default route table. Defaults to true.
+  create_default_route_table_route = true
 
   # Whether or not to create DNS forwarders from the Mgmt VPC to the App VPC to
   # resolve private Route 53 endpoints. This is most useful when you want to
@@ -456,6 +462,12 @@ module "vpc" {
   # here will override tags defined as custom_tags in case of conflict.
   nat_gateway_custom_tags = {}
 
+  # The host number in the IP address of the NAT Gateway. You would only use
+  # this if you want the NAT Gateway to always have the same host number within
+  # your subnet's CIDR range: e.g., it's always x.x.x.4. For IPv4, this is the
+  # fourth octet in the IP address.
+  nat_private_ip_host_num = null
+
   # How many AWS Availability Zones (AZs) to use. One subnet of each type
   # (public, private app) will be created in each AZ. Note that this must be
   # less than or equal to the total number of AZs in a region. A value of null
@@ -552,6 +564,10 @@ module "vpc" {
   # conflict.
   private_persistence_subnet_custom_tags = {}
 
+  # The name of the private persistence subnet tier. This is used to tag the
+  # subnet and its resources.
+  private_persistence_subnet_name = "private-persistence"
+
   # A list of Virtual Private Gateways that will propagate routes to private
   # subnets. All routes from VPN connections that use Virtual Private Gateways
   # listed here will appear in route tables of private subnets. If left empty,
@@ -563,6 +579,10 @@ module "vpc" {
   # you may hit errors.  See cidrsubnet interpolation in terraform config for
   # more information.
   private_subnet_bits = 5
+
+  # The name of the private subnet tier. This is used to tag the subnet and its
+  # resources.
+  private_subnet_name = "private-app"
 
   # The amount of spacing between private app subnets. Defaults to
   # subnet_spacing in vpc-app module if not set.
@@ -596,6 +616,16 @@ module "vpc" {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   public_subnet_custom_tags = {}
+
+  # (Optional) A map listing the specific IPv6 CIDR blocks desired for each
+  # public subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is
+  # the number of Availability Zones. If left blank, we will compute a
+  # reasonable CIDR block for each subnet.
+  public_subnet_ipv6_cidr_blocks = {}
+
+  # The name of the public subnet tier. This is used to tag the subnet and its
+  # resources.
+  public_subnet_name = "public"
 
   # A list of secondary CIDR blocks to associate with the VPC.
   secondary_cidr_blocks = []
@@ -640,6 +670,10 @@ module "vpc" {
   # here will override tags defined as custom_tags in case of conflict.
   transit_subnet_custom_tags = {}
 
+  # The name of the transit subnet tier. This is used to tag the subnet and its
+  # resources.
+  transit_subnet_name = "transit"
+
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
   # are friendlier to automated policy checkers, which may scan a single
@@ -668,7 +702,7 @@ module "vpc" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.109.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.109.7"
 }
 
 inputs = {
@@ -759,6 +793,12 @@ inputs = {
   # list of public, private-app, private-persistence, transit) to blackhole.
   blackhole_routes = {}
 
+  # If set to true, this module will create a default route table route to the
+  # Internet Gateway. If set to false, this module will NOT create a default
+  # route table route to the Internet Gateway. This is useful if you have
+  # subnets which utilize the default route table. Defaults to true.
+  create_default_route_table_route = true
+
   # Whether or not to create DNS forwarders from the Mgmt VPC to the App VPC to
   # resolve private Route 53 endpoints. This is most useful when you want to
   # keep your EKS Kubernetes API endpoint private to the VPC, but want to access
@@ -1022,6 +1062,12 @@ inputs = {
   # here will override tags defined as custom_tags in case of conflict.
   nat_gateway_custom_tags = {}
 
+  # The host number in the IP address of the NAT Gateway. You would only use
+  # this if you want the NAT Gateway to always have the same host number within
+  # your subnet's CIDR range: e.g., it's always x.x.x.4. For IPv4, this is the
+  # fourth octet in the IP address.
+  nat_private_ip_host_num = null
+
   # How many AWS Availability Zones (AZs) to use. One subnet of each type
   # (public, private app) will be created in each AZ. Note that this must be
   # less than or equal to the total number of AZs in a region. A value of null
@@ -1118,6 +1164,10 @@ inputs = {
   # conflict.
   private_persistence_subnet_custom_tags = {}
 
+  # The name of the private persistence subnet tier. This is used to tag the
+  # subnet and its resources.
+  private_persistence_subnet_name = "private-persistence"
+
   # A list of Virtual Private Gateways that will propagate routes to private
   # subnets. All routes from VPN connections that use Virtual Private Gateways
   # listed here will appear in route tables of private subnets. If left empty,
@@ -1129,6 +1179,10 @@ inputs = {
   # you may hit errors.  See cidrsubnet interpolation in terraform config for
   # more information.
   private_subnet_bits = 5
+
+  # The name of the private subnet tier. This is used to tag the subnet and its
+  # resources.
+  private_subnet_name = "private-app"
 
   # The amount of spacing between private app subnets. Defaults to
   # subnet_spacing in vpc-app module if not set.
@@ -1162,6 +1216,16 @@ inputs = {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   public_subnet_custom_tags = {}
+
+  # (Optional) A map listing the specific IPv6 CIDR blocks desired for each
+  # public subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is
+  # the number of Availability Zones. If left blank, we will compute a
+  # reasonable CIDR block for each subnet.
+  public_subnet_ipv6_cidr_blocks = {}
+
+  # The name of the public subnet tier. This is used to tag the subnet and its
+  # resources.
+  public_subnet_name = "public"
 
   # A list of secondary CIDR blocks to associate with the VPC.
   secondary_cidr_blocks = []
@@ -1205,6 +1269,10 @@ inputs = {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   transit_subnet_custom_tags = {}
+
+  # The name of the transit subnet tier. This is used to tag the subnet and its
+  # resources.
+  transit_subnet_name = "transit"
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -1353,7 +1421,7 @@ The description of the Blackhole ENI.
 <HclListItemDefaultValue defaultValue="&quot;Blackhole ENI - DO NOT ATTACH TO INSTANCES&quot;"/>
 </HclListItem>
 
-<HclListItem name="blackhole_network_interface_host_num" requirement="optional" type="string">
+<HclListItem name="blackhole_network_interface_host_num" requirement="optional" type="number">
 <HclListItemDescription>
 
 The host number in the IP address of the Blackhole ENI. You would only use this if you want the blackhole ENI to always have the same host number within your subnet's CIDR range: e.g., it's always x.x.x.4. For IPv4, this is the fourth octet in the IP address. For IPv6, this is the sixth hextet in the IP address.
@@ -1388,6 +1456,15 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="create_default_route_table_route" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, this module will create a default route table route to the Internet Gateway. If set to false, this module will NOT create a default route table route to the Internet Gateway. This is useful if you have subnets which utilize the default route table. Defaults to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="create_dns_forwarder" requirement="optional" type="bool">
@@ -2084,6 +2161,15 @@ A map of tags to apply to the NAT gateways, on top of the custom_tags. The key i
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="nat_private_ip_host_num" requirement="optional" type="number">
+<HclListItemDescription>
+
+The host number in the IP address of the NAT Gateway. You would only use this if you want the NAT Gateway to always have the same host number within your subnet's CIDR range: e.g., it's always x.x.x.4. For IPv4, this is the fourth octet in the IP address.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="num_availability_zones" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2334,6 +2420,15 @@ A map of tags to apply to the private-persistence Subnet, on top of the custom_t
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="private_persistence_subnet_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the private persistence subnet tier. This is used to tag the subnet and its resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;private-persistence&quot;"/>
+</HclListItem>
+
 <HclListItem name="private_propagating_vgws" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -2350,6 +2445,15 @@ Takes the CIDR prefix and adds these many bits to it for calculating subnet rang
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="5"/>
+</HclListItem>
+
+<HclListItem name="private_subnet_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the private subnet tier. This is used to tag the subnet and its resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;private-app&quot;"/>
 </HclListItem>
 
 <HclListItem name="private_subnet_spacing" requirement="optional" type="number">
@@ -2404,6 +2508,24 @@ A map of tags to apply to the public Subnet, on top of the custom_tags. The key 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="public_subnet_ipv6_cidr_blocks" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+(Optional) A map listing the specific IPv6 CIDR blocks desired for each public subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="public_subnet_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the public subnet tier. This is used to tag the subnet and its resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;public&quot;"/>
 </HclListItem>
 
 <HclListItem name="secondary_cidr_blocks" requirement="optional" type="set(string)">
@@ -2485,6 +2607,15 @@ A map of tags to apply to the transit Subnet, on top of the custom_tags. The key
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="transit_subnet_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the transit subnet tier. This is used to tag the subnet and its resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;transit&quot;"/>
 </HclListItem>
 
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
@@ -2777,11 +2908,11 @@ Indicates whether or not the VPC has finished creating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.6/modules/networking/vpc/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.6/modules/networking/vpc/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.6/modules/networking/vpc/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.7/modules/networking/vpc/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.7/modules/networking/vpc/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.109.7/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "0d61eb271422a016b87d9fb660a94a32"
+  "hash": "55adc4834813819fbf5dc245d58a1346"
 }
 ##DOCS-SOURCER-END -->
