@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="0.5.5" />
+<VersionBadge repoTitle="Control Tower" version="0.6.0" />
 
 # SSO Groups
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.5.5/modules/aws-sso/sso-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.6.0/modules/aws-sso/sso-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=sso-groups" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -74,7 +74,7 @@ inputs = {
 
 module "sso_groups" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-groups?ref=v0.5.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-groups?ref=v0.6.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -114,7 +114,7 @@ module "sso_groups" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-groups?ref=v0.5.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-groups?ref=v0.6.0"
 }
 
 inputs = {
@@ -211,11 +211,11 @@ ARN of the SSO Admin instance where the Permission Set should be provisioned. Th
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.5.5/modules/sso-groups/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.5.5/modules/sso-groups/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.5.5/modules/sso-groups/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.6.0/modules/sso-groups/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.6.0/modules/sso-groups/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.6.0/modules/sso-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0b94338bf19d116b81bea8694eb537df"
+  "hash": "4d15d90171fb1e055593ab3357cf0c1e"
 }
 ##DOCS-SOURCER-END -->
