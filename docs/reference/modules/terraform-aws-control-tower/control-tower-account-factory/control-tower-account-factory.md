@@ -96,10 +96,6 @@ module "control_tower_account_factory" {
   # The name to use for the new AWS account
   account_name = <string>
 
-  # The name of the organizational unit (OU) in which this account should be
-  # created. Must be one of the OUs in your Control Tower dashboard.
-  organizational_unit_name = <string>
-
   # The email address of the user who will be granted admin access to this new
   # account through AWS SSO.
   sso_user_email = <string>
@@ -143,6 +139,22 @@ module "control_tower_account_factory" {
   # provisioning_artifact_id manually—and update it every time it changes! Note
   # that this script requires the AWS CLI to be installed and on the PATH.
   find_provisioning_artifact_id_using_script = true
+
+  # The ID of the organizational unit (OU) in which this account should be
+  # created. Must be one of the OUs in your Control Tower dashboard. Required if
+  # organizational_unit_name is not set.
+  organizational_unit_id = null
+
+  # The name of the organizational unit (OU) in which this account should be
+  # created. Must be one of the OUs in your Control Tower dashboard. Required if
+  # organizational_unit_id is not set. If set, the list of all OUs must be
+  # provided in the ous variable to confirm that the specified OU exists.
+  organizational_unit_name = null
+
+  # The list of organizational units (OUs) in which to look for the specified
+  # organizational_unit_name. The module will look for the OU with the specified
+  # name in this list. Required if organizational_unit_name is set.
+  ous = []
 
   # The ID of the AWS Control Tower Account Factory provisioning artifact in AWS
   # Service Catalog to use. If find_provisioning_artifact_id_using_script is set
@@ -199,10 +211,6 @@ inputs = {
   # The name to use for the new AWS account
   account_name = <string>
 
-  # The name of the organizational unit (OU) in which this account should be
-  # created. Must be one of the OUs in your Control Tower dashboard.
-  organizational_unit_name = <string>
-
   # The email address of the user who will be granted admin access to this new
   # account through AWS SSO.
   sso_user_email = <string>
@@ -246,6 +254,22 @@ inputs = {
   # provisioning_artifact_id manually—and update it every time it changes! Note
   # that this script requires the AWS CLI to be installed and on the PATH.
   find_provisioning_artifact_id_using_script = true
+
+  # The ID of the organizational unit (OU) in which this account should be
+  # created. Must be one of the OUs in your Control Tower dashboard. Required if
+  # organizational_unit_name is not set.
+  organizational_unit_id = null
+
+  # The name of the organizational unit (OU) in which this account should be
+  # created. Must be one of the OUs in your Control Tower dashboard. Required if
+  # organizational_unit_id is not set. If set, the list of all OUs must be
+  # provided in the ous variable to confirm that the specified OU exists.
+  organizational_unit_name = null
+
+  # The list of organizational units (OUs) in which to look for the specified
+  # organizational_unit_name. The module will look for the OU with the specified
+  # name in this list. Required if organizational_unit_name is set.
+  ous = []
 
   # The ID of the AWS Control Tower Account Factory provisioning artifact in AWS
   # Service Catalog to use. If find_provisioning_artifact_id_using_script is set
@@ -333,14 +357,6 @@ The name to use for the new AWS account
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="organizational_unit_name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name of the organizational unit (OU) in which this account should be created. Must be one of the OUs in your Control Tower dashboard.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="sso_user_email" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -401,6 +417,43 @@ If set to true, this module will use a Bash script to try to find the Control To
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="organizational_unit_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of the organizational unit (OU) in which this account should be created. Must be one of the OUs in your Control Tower dashboard. Required if organizational_unit_name is not set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="organizational_unit_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the organizational unit (OU) in which this account should be created. Must be one of the OUs in your Control Tower dashboard. Required if organizational_unit_id is not set. If set, the list of all OUs must be provided in the ous variable to confirm that the specified OU exists.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ous" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+The list of organizational units (OUs) in which to look for the specified organizational_unit_name. The module will look for the OU with the specified name in this list. Required if organizational_unit_name is set.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    id   = string
+    name = string
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="provisioning_artifact_id" requirement="optional" type="string">
@@ -509,6 +562,6 @@ The URL of the AWS SSO login page for this account
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.5.5/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7e2d9c9dbdb8cb150e62a888cb3c9999"
+  "hash": "3fb2f4fa3cfb9c239bb4230cae97345c"
 }
 ##DOCS-SOURCER-END -->
