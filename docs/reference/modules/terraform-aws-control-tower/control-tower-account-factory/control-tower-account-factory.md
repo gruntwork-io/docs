@@ -100,6 +100,14 @@ module "control_tower_account_factory" {
   # created. Must be one of the OUs in your Control Tower dashboard.
   organizational_unit_name = <string>
 
+  # The list of organizational units (OUs) in which to look for the specified
+  # organizational_unit_name. The module will look for the OU with the specified
+  # name in this list.
+  ous = <list(object(
+    id   = string
+    name = string
+  ))>
+
   # The email address of the user who will be granted admin access to this new
   # account through AWS SSO.
   sso_user_email = <string>
@@ -202,6 +210,14 @@ inputs = {
   # The name of the organizational unit (OU) in which this account should be
   # created. Must be one of the OUs in your Control Tower dashboard.
   organizational_unit_name = <string>
+
+  # The list of organizational units (OUs) in which to look for the specified
+  # organizational_unit_name. The module will look for the OU with the specified
+  # name in this list.
+  ous = <list(object(
+    id   = string
+    name = string
+  ))>
 
   # The email address of the user who will be granted admin access to this new
   # account through AWS SSO.
@@ -339,6 +355,24 @@ The name to use for the new AWS account
 The name of the organizational unit (OU) in which this account should be created. Must be one of the OUs in your Control Tower dashboard.
 
 </HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ous" requirement="required" type="list(object(…))">
+<HclListItemDescription>
+
+The list of organizational units (OUs) in which to look for the specified organizational_unit_name. The module will look for the OU with the specified name in this list.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    id   = string
+    name = string
+  }))
+```
+
+</HclListItemTypeDetails>
 </HclListItem>
 
 <HclListItem name="sso_user_email" requirement="required" type="string">
@@ -509,6 +543,6 @@ The URL of the AWS SSO login page for this account
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.5.5/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7e2d9c9dbdb8cb150e62a888cb3c9999"
+  "hash": "cddd7a6e78ccc4f5483d2b9b5e663f78"
 }
 ##DOCS-SOURCER-END -->
