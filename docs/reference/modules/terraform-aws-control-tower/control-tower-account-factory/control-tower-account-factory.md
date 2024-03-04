@@ -153,7 +153,8 @@ module "control_tower_account_factory" {
 
   # The list of organizational units (OUs) in which to look for the specified
   # organizational_unit_name. The module will look for the OU with the specified
-  # name in this list. Required if organizational_unit_name is set.
+  # name in this list. Required if organizational_unit_name is set without
+  # organizational_unit_id or vice versa.
   ous = []
 
   # The ID of the AWS Control Tower Account Factory provisioning artifact in AWS
@@ -268,7 +269,8 @@ inputs = {
 
   # The list of organizational units (OUs) in which to look for the specified
   # organizational_unit_name. The module will look for the OU with the specified
-  # name in this list. Required if organizational_unit_name is set.
+  # name in this list. Required if organizational_unit_name is set without
+  # organizational_unit_id or vice versa.
   ous = []
 
   # The ID of the AWS Control Tower Account Factory provisioning artifact in AWS
@@ -440,7 +442,7 @@ The name of the organizational unit (OU) in which this account should be created
 <HclListItem name="ous" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
-The list of organizational units (OUs) in which to look for the specified organizational_unit_name. The module will look for the OU with the specified name in this list. Required if organizational_unit_name is set.
+The list of organizational units (OUs) in which to look for the specified organizational_unit_name. The module will look for the OU with the specified name in this list. Required if organizational_unit_name is set without organizational_unit_id or vice versa.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -562,6 +564,6 @@ The URL of the AWS SSO login page for this account
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.5.5/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3fb2f4fa3cfb9c239bb4230cae97345c"
+  "hash": "ca6702ba2667d1d3c01cba6c71dc68d8"
 }
 ##DOCS-SOURCER-END -->
