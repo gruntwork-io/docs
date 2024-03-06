@@ -79,18 +79,6 @@ module "vpc_app_lookup" {
   # If you enabled the VPC endpoints and wish to look them up, set this to true.
   lookup_vpc_endpoints = false
 
-  # The name of the private persistence subnet tier. This is used to identify
-  # the subnet and its resources.
-  private_persistence_subnet_name = "private-persistence"
-
-  # The name of the private subnet tier. This is used to identify the subnet and
-  # its resources.
-  private_subnet_name = "private-app"
-
-  # The name of the public subnet tier. This is used to identify the subnet and
-  # its resources.
-  public_subnet_name = "public"
-
   # The state of the VPC you're looking for. Can either be 'pending' or
   # 'available'.
   state = null
@@ -98,10 +86,6 @@ module "vpc_app_lookup" {
   # The tags of the VPC you're looking for. Only VPCs that have the exact
   # key/value pairs you specify will be matched.
   tags = null
-
-  # The name of the transit subnet tier. This is used to identify the subnet and
-  # its resources.
-  transit_subnet_name = "transit"
 
 }
 
@@ -160,18 +144,6 @@ inputs = {
   # If you enabled the VPC endpoints and wish to look them up, set this to true.
   lookup_vpc_endpoints = false
 
-  # The name of the private persistence subnet tier. This is used to identify
-  # the subnet and its resources.
-  private_persistence_subnet_name = "private-persistence"
-
-  # The name of the private subnet tier. This is used to identify the subnet and
-  # its resources.
-  private_subnet_name = "private-app"
-
-  # The name of the public subnet tier. This is used to identify the subnet and
-  # its resources.
-  public_subnet_name = "public"
-
   # The state of the VPC you're looking for. Can either be 'pending' or
   # 'available'.
   state = null
@@ -179,10 +151,6 @@ inputs = {
   # The tags of the VPC you're looking for. Only VPCs that have the exact
   # key/value pairs you specify will be matched.
   tags = null
-
-  # The name of the transit subnet tier. This is used to identify the subnet and
-  # its resources.
-  transit_subnet_name = "transit"
 
 }
 
@@ -293,33 +261,6 @@ If you enabled the VPC endpoints and wish to look them up, set this to true.
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="private_persistence_subnet_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the private persistence subnet tier. This is used to identify the subnet and its resources.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;private-persistence&quot;"/>
-</HclListItem>
-
-<HclListItem name="private_subnet_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the private subnet tier. This is used to identify the subnet and its resources.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;private-app&quot;"/>
-</HclListItem>
-
-<HclListItem name="public_subnet_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the public subnet tier. This is used to identify the subnet and its resources.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;public&quot;"/>
-</HclListItem>
-
 <HclListItem name="state" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -336,15 +277,6 @@ The tags of the VPC you're looking for. Only VPCs that have the exact key/value 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="transit_subnet_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the transit subnet tier. This is used to identify the subnet and its resources.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;transit&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -624,6 +556,6 @@ The name configured for VPC.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.21/modules/vpc-app-lookup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "80363da28d20b58b8b2a8b198776ac9d"
+  "hash": "357a7381c3b5c4e56137ed6eeb387a4a"
 }
 ##DOCS-SOURCER-END -->

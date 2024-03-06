@@ -379,14 +379,6 @@ List of IPv4 or IPv6 CIDR blocks to use for the transit gateway. Must be a size 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="arn">
-<HclListItemDescription>
-
-Transit Gateway identifier.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="default_route_table_id">
 <HclListItemDescription>
 
@@ -403,22 +395,6 @@ Transit Gateway identifier.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="owner_id">
-<HclListItemDescription>
-
-AWS account that owns the Transit Gateway
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="propagation_default_route_table_id">
-<HclListItemDescription>
-
-Identifier of the Transit Gateway's default propagation route table.
-
-</HclListItemDescription>
-</HclListItem>
-
 </TabItem>
 </Tabs>
 
@@ -431,6 +407,6 @@ Identifier of the Transit Gateway's default propagation route table.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.21/modules/transit-gateway/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "35644bea8f4222c9724754610f2a9dfe"
+  "hash": "e42d4f360dcd77742c92277f929d49c5"
 }
 ##DOCS-SOURCER-END -->
