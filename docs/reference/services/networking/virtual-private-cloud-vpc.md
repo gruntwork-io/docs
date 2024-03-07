@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.110.1" lastModifiedVersion="0.109.7"/>
+<VersionBadge version="0.110.2" lastModifiedVersion="0.110.2"/>
 
 # VPC
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.1/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.2/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fvpc" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -65,9 +65,9 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.1/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.1/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.1/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.2/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.2/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.2/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.1/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.2/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.1/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.2/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -105,7 +105,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "vpc" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.110.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.110.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -167,6 +167,13 @@ module "vpc" {
   # longer used and only kept around for backwards compatibility. We now
   # automatically fetch the region using a data source.
   aws_region = ""
+
+  # The base number to append to initial nacl rule number for the first transit
+  # rule in private and persistence rules created. All transit rules will be
+  # inserted after this number. This base number provides a safeguard to ensure
+  # that the transit rules do not overwrite any existing NACL rules in private
+  # and persistence subnets.
+  base_transit_nacl_rule_number = 1000
 
   # A map of tags to apply to the Blackhole ENI. The key is the tag name and the
   # value is the tag value. Note that the tag 'Name' is automatically added by
@@ -253,6 +260,10 @@ module "vpc" {
   # via some other mechanism (e.g., via VPC peering, a Transit Gateway, Direct
   # Connect, etc).
   create_public_subnets = true
+
+  # If set to false, this module will NOT create the NACLs for the transit
+  # subnet tier.
+  create_transit_subnet_nacls = false
 
   # If set to false, this module will NOT create the transit subnet tier.
   create_transit_subnets = false
@@ -517,6 +528,10 @@ module "vpc" {
   # times the value of private_subnet_spacing.
   persistence_subnet_spacing = null
 
+  # Set to false to prevent the private app subnet from allowing traffic from
+  # the transit subnet. Only used if create_transit_subnet_nacls is set to true.
+  private_app_allow_inbound_from_transit_network = true
+
   # A map of unique names to client IP CIDR block and inbound ports that should
   # be exposed in the private app subnet tier nACLs. This is useful when
   # exposing your service on a privileged port with an NLB, where the address
@@ -545,6 +560,11 @@ module "vpc" {
   # The key is the tag name and the value is the tag value. Note that tags
   # defined here will override tags defined as custom_tags in case of conflict.
   private_app_subnet_custom_tags = {}
+
+  # Set to false to prevent the private persistence subnet from allowing traffic
+  # from the transit subnet. Only used if create_transit_subnet_nacls is set to
+  # true.
+  private_persistence_allow_inbound_from_transit_network = true
 
   # A map of tags to apply to the private-persistence route tables(s), on top of
   # the custom_tags. The key is the tag name and the value is the tag value.
@@ -702,7 +722,7 @@ module "vpc" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.110.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.110.2"
 }
 
 inputs = {
@@ -767,6 +787,13 @@ inputs = {
   # longer used and only kept around for backwards compatibility. We now
   # automatically fetch the region using a data source.
   aws_region = ""
+
+  # The base number to append to initial nacl rule number for the first transit
+  # rule in private and persistence rules created. All transit rules will be
+  # inserted after this number. This base number provides a safeguard to ensure
+  # that the transit rules do not overwrite any existing NACL rules in private
+  # and persistence subnets.
+  base_transit_nacl_rule_number = 1000
 
   # A map of tags to apply to the Blackhole ENI. The key is the tag name and the
   # value is the tag value. Note that the tag 'Name' is automatically added by
@@ -853,6 +880,10 @@ inputs = {
   # via some other mechanism (e.g., via VPC peering, a Transit Gateway, Direct
   # Connect, etc).
   create_public_subnets = true
+
+  # If set to false, this module will NOT create the NACLs for the transit
+  # subnet tier.
+  create_transit_subnet_nacls = false
 
   # If set to false, this module will NOT create the transit subnet tier.
   create_transit_subnets = false
@@ -1117,6 +1148,10 @@ inputs = {
   # times the value of private_subnet_spacing.
   persistence_subnet_spacing = null
 
+  # Set to false to prevent the private app subnet from allowing traffic from
+  # the transit subnet. Only used if create_transit_subnet_nacls is set to true.
+  private_app_allow_inbound_from_transit_network = true
+
   # A map of unique names to client IP CIDR block and inbound ports that should
   # be exposed in the private app subnet tier nACLs. This is useful when
   # exposing your service on a privileged port with an NLB, where the address
@@ -1145,6 +1180,11 @@ inputs = {
   # The key is the tag name and the value is the tag value. Note that tags
   # defined here will override tags defined as custom_tags in case of conflict.
   private_app_subnet_custom_tags = {}
+
+  # Set to false to prevent the private persistence subnet from allowing traffic
+  # from the transit subnet. Only used if create_transit_subnet_nacls is set to
+  # true.
+  private_persistence_allow_inbound_from_transit_network = true
 
   # A map of tags to apply to the private-persistence route tables(s), on top of
   # the custom_tags. The key is the tag name and the value is the tag value.
@@ -1403,6 +1443,15 @@ DEPRECATED. The AWS Region where this VPC will exist. This variable is no longer
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
+<HclListItem name="base_transit_nacl_rule_number" requirement="optional" type="number">
+<HclListItemDescription>
+
+The base number to append to initial nacl rule number for the first transit rule in private and persistence rules created. All transit rules will be inserted after this number. This base number provides a safeguard to ensure that the transit rules do not overwrite any existing NACL rules in private and persistence subnets.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="1000"/>
+</HclListItem>
+
 <HclListItem name="blackhole_network_interface_custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -1564,6 +1613,15 @@ If set to false, this module will NOT create the public subnet tier. This is use
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="create_transit_subnet_nacls" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to false, this module will NOT create the NACLs for the transit subnet tier.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="create_transit_subnets" requirement="optional" type="bool">
@@ -2260,6 +2318,15 @@ The amount of spacing between the private persistence subnets. Default: 2 times 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="private_app_allow_inbound_from_transit_network" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false to prevent the private app subnet from allowing traffic from the transit subnet. Only used if create_transit_subnet_nacls is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="private_app_allow_inbound_ports_from_cidr" requirement="optional" type="map">
 <HclListItemDescription>
 
@@ -2391,6 +2458,15 @@ A map of tags to apply to the private-app Subnet, on top of the custom_tags. The
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="private_persistence_allow_inbound_from_transit_network" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false to prevent the private persistence subnet from allowing traffic from the transit subnet. Only used if create_transit_subnet_nacls is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="private_persistence_route_table_custom_tags" requirement="optional" type="map(string)">
@@ -2869,6 +2945,14 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="transit_subnets_network_acl_id">
+<HclListItemDescription>
+
+The ID of the transit subnet's ACL
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="vpc_cidr_block">
 <HclListItemDescription>
 
@@ -2908,11 +2992,11 @@ Indicates whether or not the VPC has finished creating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.1/modules/networking/vpc/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.1/modules/networking/vpc/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.1/modules/networking/vpc/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.2/modules/networking/vpc/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.2/modules/networking/vpc/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.2/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a4ef0aaeb01d101df94fa33071826e4a"
+  "hash": "cce0247c004cb0beb27600bbe16f12e2"
 }
 ##DOCS-SOURCER-END -->
