@@ -389,6 +389,9 @@ module "ec_2_instance" {
   # terminated.
   root_volume_delete_on_termination = true
 
+  # If set to true, the root volume will be encrypted. Default is set to false
+  root_volume_encrypted = false
+
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
 
@@ -723,6 +726,9 @@ inputs = {
   # If set to true, the root volume will be deleted when the Instance is
   # terminated.
   root_volume_delete_on_termination = true
+
+  # If set to true, the root volume will be encrypted. Default is set to false
+  root_volume_encrypted = false
 
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
@@ -1352,6 +1358,15 @@ If set to true, the root volume will be deleted when the Instance is terminated.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="root_volume_encrypted" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, the root volume will be encrypted. Default is set to false
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="root_volume_size" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1528,6 +1543,6 @@ The input parameters for the EBS volumes.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.1/modules/services/ec2-instance/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "089d2bb8fc5cb3a07602246a6cad462b"
+  "hash": "7af41aa9e5935c0c4c17d80e757f7160"
 }
 ##DOCS-SOURCER-END -->

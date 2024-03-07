@@ -168,6 +168,13 @@ module "vpc" {
   # automatically fetch the region using a data source.
   aws_region = ""
 
+  # The base number to append to initial nacl rule number for the first transit
+  # rule in private and persistence rules created. All transit rules will be
+  # inserted after this number. This base number provides a safeguard to ensure
+  # that the transit rules do not overwrite any existing NACL rules in private
+  # and persistence subnets.
+  base_transit_nacl_rule_number = 1000
+
   # A map of tags to apply to the Blackhole ENI. The key is the tag name and the
   # value is the tag value. Note that the tag 'Name' is automatically added by
   # this module but may be optionally overwritten by this variable.
@@ -253,6 +260,10 @@ module "vpc" {
   # via some other mechanism (e.g., via VPC peering, a Transit Gateway, Direct
   # Connect, etc).
   create_public_subnets = true
+
+  # If set to false, this module will NOT create the NACLs for the transit
+  # subnet tier.
+  create_transit_subnet_nacls = false
 
   # If set to false, this module will NOT create the transit subnet tier.
   create_transit_subnets = false
@@ -517,6 +528,10 @@ module "vpc" {
   # times the value of private_subnet_spacing.
   persistence_subnet_spacing = null
 
+  # Set to false to prevent the private app subnet from allowing traffic from
+  # the transit subnet. Only used if create_transit_subnet_nacls is set to true.
+  private_app_allow_inbound_from_transit_network = true
+
   # A map of unique names to client IP CIDR block and inbound ports that should
   # be exposed in the private app subnet tier nACLs. This is useful when
   # exposing your service on a privileged port with an NLB, where the address
@@ -545,6 +560,11 @@ module "vpc" {
   # The key is the tag name and the value is the tag value. Note that tags
   # defined here will override tags defined as custom_tags in case of conflict.
   private_app_subnet_custom_tags = {}
+
+  # Set to false to prevent the private persistence subnet from allowing traffic
+  # from the transit subnet. Only used if create_transit_subnet_nacls is set to
+  # true.
+  private_persistence_allow_inbound_from_transit_network = true
 
   # A map of tags to apply to the private-persistence route tables(s), on top of
   # the custom_tags. The key is the tag name and the value is the tag value.
@@ -768,6 +788,13 @@ inputs = {
   # automatically fetch the region using a data source.
   aws_region = ""
 
+  # The base number to append to initial nacl rule number for the first transit
+  # rule in private and persistence rules created. All transit rules will be
+  # inserted after this number. This base number provides a safeguard to ensure
+  # that the transit rules do not overwrite any existing NACL rules in private
+  # and persistence subnets.
+  base_transit_nacl_rule_number = 1000
+
   # A map of tags to apply to the Blackhole ENI. The key is the tag name and the
   # value is the tag value. Note that the tag 'Name' is automatically added by
   # this module but may be optionally overwritten by this variable.
@@ -853,6 +880,10 @@ inputs = {
   # via some other mechanism (e.g., via VPC peering, a Transit Gateway, Direct
   # Connect, etc).
   create_public_subnets = true
+
+  # If set to false, this module will NOT create the NACLs for the transit
+  # subnet tier.
+  create_transit_subnet_nacls = false
 
   # If set to false, this module will NOT create the transit subnet tier.
   create_transit_subnets = false
@@ -1117,6 +1148,10 @@ inputs = {
   # times the value of private_subnet_spacing.
   persistence_subnet_spacing = null
 
+  # Set to false to prevent the private app subnet from allowing traffic from
+  # the transit subnet. Only used if create_transit_subnet_nacls is set to true.
+  private_app_allow_inbound_from_transit_network = true
+
   # A map of unique names to client IP CIDR block and inbound ports that should
   # be exposed in the private app subnet tier nACLs. This is useful when
   # exposing your service on a privileged port with an NLB, where the address
@@ -1145,6 +1180,11 @@ inputs = {
   # The key is the tag name and the value is the tag value. Note that tags
   # defined here will override tags defined as custom_tags in case of conflict.
   private_app_subnet_custom_tags = {}
+
+  # Set to false to prevent the private persistence subnet from allowing traffic
+  # from the transit subnet. Only used if create_transit_subnet_nacls is set to
+  # true.
+  private_persistence_allow_inbound_from_transit_network = true
 
   # A map of tags to apply to the private-persistence route tables(s), on top of
   # the custom_tags. The key is the tag name and the value is the tag value.
@@ -1403,6 +1443,15 @@ DEPRECATED. The AWS Region where this VPC will exist. This variable is no longer
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
+<HclListItem name="base_transit_nacl_rule_number" requirement="optional" type="number">
+<HclListItemDescription>
+
+The base number to append to initial nacl rule number for the first transit rule in private and persistence rules created. All transit rules will be inserted after this number. This base number provides a safeguard to ensure that the transit rules do not overwrite any existing NACL rules in private and persistence subnets.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="1000"/>
+</HclListItem>
+
 <HclListItem name="blackhole_network_interface_custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -1564,6 +1613,15 @@ If set to false, this module will NOT create the public subnet tier. This is use
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="create_transit_subnet_nacls" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to false, this module will NOT create the NACLs for the transit subnet tier.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="create_transit_subnets" requirement="optional" type="bool">
@@ -2260,6 +2318,15 @@ The amount of spacing between the private persistence subnets. Default: 2 times 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="private_app_allow_inbound_from_transit_network" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false to prevent the private app subnet from allowing traffic from the transit subnet. Only used if create_transit_subnet_nacls is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="private_app_allow_inbound_ports_from_cidr" requirement="optional" type="map">
 <HclListItemDescription>
 
@@ -2391,6 +2458,15 @@ A map of tags to apply to the private-app Subnet, on top of the custom_tags. The
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="private_persistence_allow_inbound_from_transit_network" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false to prevent the private persistence subnet from allowing traffic from the transit subnet. Only used if create_transit_subnet_nacls is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="private_persistence_route_table_custom_tags" requirement="optional" type="map(string)">
@@ -2869,6 +2945,14 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="transit_subnets_network_acl_id">
+<HclListItemDescription>
+
+The ID of the transit subnet's ACL
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="vpc_cidr_block">
 <HclListItemDescription>
 
@@ -2913,6 +2997,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.1/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a4ef0aaeb01d101df94fa33071826e4a"
+  "hash": "baca284ce7a09a9bd128069cdda497d9"
 }
 ##DOCS-SOURCER-END -->
