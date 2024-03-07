@@ -98,6 +98,9 @@ module "ecs_daemon_service" {
   # https://goo.gl/ob5U3g.
   ecs_task_container_definitions = <string>
 
+  # The environment name in which the ECS Service is located. (e.g. stage, prod)
+  environment_name = <string>
+
   # The name of the service. This is used to namespace all resources created by
   # this module.
   service_name = <string>
@@ -110,14 +113,6 @@ module "ecs_daemon_service" {
   # roles
   additional_task_assume_role_policy_principals = []
 
-  # Prefix for name of the IAM role used by the ECS task. If not provide, will
-  # be set to var.service_name.
-  custom_iam_role_name_prefix = null
-
-  # A map of tags to apply to all resources created by this module. Each item in
-  # this list should be a map with the parameters key and value.
-  custom_tags = {}
-
   # Prefix for name of iam role and policy that allows cloudwatch and ecr access
   custom_task_execution_name_prefix = null
 
@@ -128,9 +123,6 @@ module "ecs_daemon_service" {
   # Seconds to wait before timing out each check for verifying ECS service
   # deployment. See ecs_deploy_check_binaries for more details.
   deployment_check_timeout_seconds = 600
-
-  # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
-  deployment_controller = null
 
   # (Optional) The lower limit (as a percentage of the service's desiredCount)
   # of the number of running tasks that must remain running and healthy in a
@@ -151,26 +143,9 @@ module "ecs_daemon_service" {
   # Refer to the README for more details.
   enable_ecs_deployment_check = true
 
-  # The launch type on which to run your service. The valid values are EC2 and
-  # FARGATE. Defaults to EC2
-  launch_type = "EC2"
-
   placement_constraint_expression = "attribute:ecs.ami-id != 'ami-fake'"
 
   placement_constraint_type = "memberOf"
-
-  # Whether tags should be propogated to the tasks from the service or from the
-  # task definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to
-  # SERVICE. If set to null, no tags are created for tasks.
-  propagate_tags = "SERVICE"
-
-  # A map of tags to apply to the ECS service. Each item in this list should be
-  # a map with the parameters key and value.
-  service_tags = {}
-
-  # A map of tags to apply to the task definition. Each item in this list should
-  # be a map with the parameters key and value.
-  task_definition_tags = {}
 
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role for the ECS task execution.
@@ -180,17 +155,10 @@ module "ecs_daemon_service" {
   # IAM role for the ECS task.
   task_role_permissions_boundary_arn = null
 
-  # (Optional) A map of volume blocks that containers in your task may use. The
-  # key should be the name of the volume and the value should be a map
-  # compatible with
-  # https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-block-arguments,
-  # but not including the name parameter.
-  volumes = {}
-
-  # If true, Terraform will wait for the service to reach a steady state—as in,
-  # the ECS tasks you wanted are actually deployed—before 'apply' is considered
-  # complete.
-  wait_for_steady_state = false
+  # (Optional) A list of volume blocks that containers in your task may use.
+  # Each item in the list should be a map compatible with
+  # https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-block-arguments.
+  volumes = []
 
 }
 
@@ -226,6 +194,9 @@ inputs = {
   # https://goo.gl/ob5U3g.
   ecs_task_container_definitions = <string>
 
+  # The environment name in which the ECS Service is located. (e.g. stage, prod)
+  environment_name = <string>
+
   # The name of the service. This is used to namespace all resources created by
   # this module.
   service_name = <string>
@@ -238,14 +209,6 @@ inputs = {
   # roles
   additional_task_assume_role_policy_principals = []
 
-  # Prefix for name of the IAM role used by the ECS task. If not provide, will
-  # be set to var.service_name.
-  custom_iam_role_name_prefix = null
-
-  # A map of tags to apply to all resources created by this module. Each item in
-  # this list should be a map with the parameters key and value.
-  custom_tags = {}
-
   # Prefix for name of iam role and policy that allows cloudwatch and ecr access
   custom_task_execution_name_prefix = null
 
@@ -256,9 +219,6 @@ inputs = {
   # Seconds to wait before timing out each check for verifying ECS service
   # deployment. See ecs_deploy_check_binaries for more details.
   deployment_check_timeout_seconds = 600
-
-  # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
-  deployment_controller = null
 
   # (Optional) The lower limit (as a percentage of the service's desiredCount)
   # of the number of running tasks that must remain running and healthy in a
@@ -279,26 +239,9 @@ inputs = {
   # Refer to the README for more details.
   enable_ecs_deployment_check = true
 
-  # The launch type on which to run your service. The valid values are EC2 and
-  # FARGATE. Defaults to EC2
-  launch_type = "EC2"
-
   placement_constraint_expression = "attribute:ecs.ami-id != 'ami-fake'"
 
   placement_constraint_type = "memberOf"
-
-  # Whether tags should be propogated to the tasks from the service or from the
-  # task definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to
-  # SERVICE. If set to null, no tags are created for tasks.
-  propagate_tags = "SERVICE"
-
-  # A map of tags to apply to the ECS service. Each item in this list should be
-  # a map with the parameters key and value.
-  service_tags = {}
-
-  # A map of tags to apply to the task definition. Each item in this list should
-  # be a map with the parameters key and value.
-  task_definition_tags = {}
 
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role for the ECS task execution.
@@ -308,17 +251,10 @@ inputs = {
   # IAM role for the ECS task.
   task_role_permissions_boundary_arn = null
 
-  # (Optional) A map of volume blocks that containers in your task may use. The
-  # key should be the name of the volume and the value should be a map
-  # compatible with
-  # https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-block-arguments,
-  # but not including the name parameter.
-  volumes = {}
-
-  # If true, Terraform will wait for the service to reach a steady state—as in,
-  # the ECS tasks you wanted are actually deployed—before 'apply' is considered
-  # complete.
-  wait_for_steady_state = false
+  # (Optional) A list of volume blocks that containers in your task may use.
+  # Each item in the list should be a map compatible with
+  # https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-block-arguments.
+  volumes = []
 
 }
 
@@ -354,6 +290,14 @@ The JSON text of the ECS Task Container Definitions. This portion of the ECS Tas
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="environment_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The environment name in which the ECS Service is located. (e.g. stage, prod)
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="service_name" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -371,24 +315,6 @@ A list of additional principals who can assume the task and task execution roles
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="custom_iam_role_name_prefix" requirement="optional" type="string">
-<HclListItemDescription>
-
-Prefix for name of the IAM role used by the ECS task. If not provide, will be set to <a href="#service_name"><code>service_name</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="custom_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to apply to all resources created by this module. Each item in this list should be a map with the parameters key and value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="custom_task_execution_name_prefix" requirement="optional" type="string">
@@ -416,15 +342,6 @@ Seconds to wait before timing out each check for verifying ECS service deploymen
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="600"/>
-</HclListItem>
-
-<HclListItem name="deployment_controller" requirement="optional" type="string">
-<HclListItemDescription>
-
-Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="deployment_minimum_healthy_percent" requirement="optional" type="number">
@@ -463,48 +380,12 @@ Whether or not to enable the ECS deployment check binary to make terraform wait 
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="launch_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-The launch type on which to run your service. The valid values are EC2 and FARGATE. Defaults to EC2
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;EC2&quot;"/>
-</HclListItem>
-
 <HclListItem name="placement_constraint_expression" requirement="optional" type="string">
 <HclListItemDefaultValue defaultValue="&quot;attribute:ecs.ami-id != &apos;ami-fake&apos;&quot;"/>
 </HclListItem>
 
 <HclListItem name="placement_constraint_type" requirement="optional" type="string">
 <HclListItemDefaultValue defaultValue="&quot;memberOf&quot;"/>
-</HclListItem>
-
-<HclListItem name="propagate_tags" requirement="optional" type="string">
-<HclListItemDescription>
-
-Whether tags should be propogated to the tasks from the service or from the task definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to SERVICE. If set to null, no tags are created for tasks.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;SERVICE&quot;"/>
-</HclListItem>
-
-<HclListItem name="service_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to apply to the ECS service. Each item in this list should be a map with the parameters key and value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="task_definition_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to apply to the task definition. Each item in this list should be a map with the parameters key and value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="task_execution_role_permissions_boundary_arn" requirement="optional" type="string">
@@ -525,10 +406,10 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="volumes" requirement="optional" type="any">
+<HclListItem name="volumes" requirement="optional" type="list(any)">
 <HclListItemDescription>
 
-(Optional) A map of volume blocks that containers in your task may use. The key should be the name of the volume and the value should be a map compatible with https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-block-arguments, but not including the name parameter.
+(Optional) A list of volume blocks that containers in your task may use. Each item in the list should be a map compatible with https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-block-arguments.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -538,41 +419,23 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
+<HclListItemDefaultValue defaultValue="[]"/>
 <HclGeneralListItem title="Examples">
 <details>
   <summary>Example</summary>
 
 
 ```hcl
-   volumes = {
-     datadog = {
-       host_path = "/var/run/datadog"
+   volumes = [
+     {
+       name      = "datadog"
      }
-  
-     logs = {
-       host_path = "/var/log"
-       docker_volume_configuration = {
-         scope         = "shared"
-         autoprovision = true
-         driver        = "local"
-       }
-     }
-   }
+   ]
 
 ```
 </details>
 
 </HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="wait_for_steady_state" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, Terraform will wait for the service to reach a steady state—as in, the ECS tasks you wanted are actually deployed—before 'apply' is considered complete.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 </TabItem>
@@ -608,6 +471,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-daemon-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "43132a388608045426d8c9b16c957f18"
+  "hash": "91282709e8304cb0ec2ef12b9d843664"
 }
 ##DOCS-SOURCER-END -->

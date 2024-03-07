@@ -18,7 +18,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.24.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 **NOTE**: The `ecs-fargate` module has been merged with `ecs-service` as of `v0.16.0`. Refer to the migration
-guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.16.0) for more info.
+guide in [the release notes](https://github.com/gruntwork-io/module-ecs/releases/tag/v0.16.0) for more info.
 
 
 <!-- ##DOCS-SOURCER-START
@@ -29,6 +29,6 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-fargate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "aeaf351583bfacec8978951ae5cf9e66"
+  "hash": "b7c3147b43b3e5414444dae0296bb614"
 }
 ##DOCS-SOURCER-END -->

@@ -18,7 +18,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.24.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 **NOTE**: The `ecs-service-with-discovery` module has been merged with `ecs-service` as of `v0.16.0`. Refer to the migration
-guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.16.0) for more info.
+guide in [the release notes](https://github.com/gruntwork-io/module-ecs/releases/tag/v0.16.0) for more info.
 
 
 <!-- ##DOCS-SOURCER-START
@@ -29,6 +29,6 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-service-with-discovery/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "aa0092840a0302d9fdca2125be91a815"
+  "hash": "3ca0b5b5c55edf57d09d3ea695ed5ea5"
 }
 ##DOCS-SOURCER-END -->

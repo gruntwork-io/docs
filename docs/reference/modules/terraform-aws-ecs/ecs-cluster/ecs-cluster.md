@@ -21,8 +21,6 @@ This Terraform Module launches an [EC2 Container Service
 Cluster](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_clusters.html) that you can use to run
 Docker containers and services (see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-service/README.adoc)).
 
-**WARNING: Launch Configurations:** [Launch configurations](https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-configurations.html) are being phased out in favor of [Launch Templates](https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-templates.html). Before upgrading to the latest release please be sure to test and plan any changes to infrastructure that may be impacted. Launch templates are being introduced in [PR #371](https://github.com/gruntwork-io/terraform-aws-ecs/pull/371)
-
 ## What is an ECS Cluster?
 
 To use ECS with the EC2 launch type, you first deploy one or more EC2 Instances into a "cluster". The ECS scheduler can
@@ -101,14 +99,14 @@ To deploy an update to an ECS Service, see the [ecs-service module](https://gith
 EC2 Instances in your ECS cluster, such as a new AMI, read on.
 
 Terraform and AWS do not provide a way to automatically roll out a change to the Instances in an ECS Cluster. Due to
-Terraform limitations (see [here for a discussion](https://github.com/gruntwork-io/terraform-aws-ecs/pull/29)), there is
+Terraform limitations (see [here for a discussion](https://github.com/gruntwork-io/module-ecs/pull/29)), there is
 currently no way to implement this purely in Terraform code. Therefore, we've created a script called
 `roll-out-ecs-cluster-update.py` that can do a zero-downtime roll out for you.
 
 ### How to use the roll-out-ecs-cluster-update.py script
 
 First, make sure you have the latest version of the [AWS Python SDK (boto3)](https://github.com/boto/boto3) installed
-(e.g. `pip3 install boto3`).
+(e.g. `pip install boto3`).
 
 To deploy a change such as rolling out a new AMI to all ECS Instances:
 
@@ -119,7 +117,7 @@ To deploy a change such as rolling out a new AMI to all ECS Instances:
 4.  Run the script:
 
     ```
-    python3 roll-out-ecs-cluster-update.py --asg-name ASG_NAME --cluster-name CLUSTER_NAME --aws-region AWS_REGION
+    python roll-out-ecs-cluster-update.py --asg-name ASG_NAME --cluster-name CLUSTER_NAME --aws-region AWS_REGION
     ```
 
     If you have your output variables configured as shown in [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/examples/docker-service-with-elb/outputs.tf)
@@ -127,15 +125,13 @@ To deploy a change such as rolling out a new AMI to all ECS Instances:
     command to fill in most of the arguments automatically:
 
     ```
-    python3 roll-out-ecs-cluster-update.py \
+    python roll-out-ecs-cluster-update.py \
       --asg-name $(terragrunt output -no-color asg_name) \
       --cluster-name $(terragrunt output -no-color ecs_cluster_name) \
       --aws-region $(terragrunt output -no-color aws_region)
     ```
 
-**Note**: during upgrade, if `desired_capacity * 2 > max_size` then ASG max size will be updated to `desired_capacity * 2` for the period of upgrade, to disable this behaviour - pass `--keep-max-size` argument.
-
-To avoid the need to install python dependencies on your local machine, you may choose to use Docker.
+To avoid the need to install python dependencies on your local machine, you may chose to use docker.
 
 1.  Navigate to the directory that you have downloaded `roll-out-ecs-cluster-update.py`:
 2.  If you use [aws-vault](https://github.com/99designs/aws-vault), you can run the following to make your aws
@@ -145,9 +141,9 @@ To avoid the need to install python dependencies on your local machine, you may 
     ```
     docker run \
         -it --rm -v "$PWD":/usr/src -w /usr/src \
-        --env-file <(aws-vault exec --assume-role-ttl=1h PROFILE -- env | grep AWS) \
-        python:3.10-alpine \
-        sh -c "pip3 install boto3 && python3 roll-out-ecs-cluster-update.py \
+        --env-file <(aws-vault exec --assume-role-ttl=1h PROFIE -- env | grep AWS) \
+        python:2.7-alpine \
+        sh -c "pip install boto3 && python roll-out-ecs-cluster-update.py \
         --asg-name ASG_NAME \
         --cluster-name CLUSTER_NAME \
         --aws-region AWS_REGION"
@@ -158,59 +154,10 @@ To avoid the need to install python dependencies on your local machine, you may 
 The `roll-out-ecs-cluster-update.py` script does the following:
 
 1.  Double the desired capacity of the Auto Scaling Group that powers the ECS Cluster. This causes EC2 Instances to
-    deploy with the new launch template.
-2.  Put all the old ECS Instances in DRAINING state so all ECS Tasks are migrated to the new Instances.
-3.  Wait for all ECS Tasks to migrate to the new Instances.
-4.  Detach the now drained instances from the Auto Scaling Group, decrementing the desired capacity back to the original value.
-
-## How do you configure cluster autoscaling?
-
-ECS Clusters support two tiers of autoscaling:
-
-*   Autoscaling of ECS Service and Tasks, where ECS will horizontally or vertically scale your ECS Tasks by provisioning
-    more replicas of the Task or replacing them with Tasks that have more resources allocated to it.
-*   Autoscaling of the ECS Cluster, where the AWS Autoscaling Group will horizontally scale the worker nodes by
-    provisioning more.
-
-The `ecs-cluster` module supports configuring ECS Cluster Autoscaling by leveraging [ECS Capacity
-Providers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-capacity-providers.html). You can read
-more about how cluster autoscaling works with capacity providers in the [official
-documentation](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-auto-scaling.html).
-
-To enable capacity providers for cluster autoscaling on your ECS cluster, you will want to configure the following
-variables:
-
-```hcl
-# Turn on capacity providers for autoscaling
-capacity_provider_enabled = true
-
-# Enable Multi AZ capacity providers to balance autoscaling load across AZs. This should be true in production. Can be
-# false in dev and stage.
-multi_az_capacity_provider = true
-
-# Configure target utilization for the ECS cluster. This number influences when scale out happens, and when instances
-# should be scaled in. For example, a setting of 90 means that new instances will be provisioned when all instances are
-# at 90% utilization, while instances that are only 10% utilized (CPU and Memory usage from tasks = 10%) will be scaled
-# in. A recommended default to start with is 90.
-capacity_provider_target = 90
-
-# The following are optional configurations, and configures how many instances should be scaled out or scaled in at one
-# time. Defaults to 1.
-# capacity_provider_max_scale_step = 1
-# capacity_provider_min_scale_step = 1
-```
-
-### Note on toggling capacity providers on existing ECS Clusters
-
-Each EC2 instance must be registered with Capacity Providers to be considered in the pool. This means that when you
-enable Capacity Providers on an existing ECS cluster that did not have Capacity Providers, you must rotate the EC2
-instances to ensure all the instances get associated with the new Capacity Provider.
-
-To rotate the instances, you can run the
-[roll-out-ecs-cluster-update.py](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-cluster/roll-out-ecs-cluster-update.py)
-script in the `terraform-aws-ecs` module. Refer to the
-[documentation](#how-do-you-make-changes-to-the-ec2-instances-in-the-cluster)
-for more information on the script.
+    deploy with the new launch configuration.
+2.  Put all the old ECS Instances in DRAINING state so all ECS Tasks are migrated off of them to the new Instances.
+3.  Wait for all ECS Tasks to migrate off the old Instances.
+4.  Set the desired capacity of the Auto Scaling Group back to its original value.
 
 ## Sample Usage
 
@@ -297,83 +244,6 @@ module "ecs_cluster" {
   # 100.
   capacity_provider_target = 75
 
-  # A list of metrics to collect. The allowed values are GroupDesiredCapacity,
-  # GroupInServiceCapacity, GroupPendingCapacity, GroupMinSize, GroupMaxSize,
-  # GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances,
-  # GroupStandbyCapacity, GroupTerminatingCapacity, GroupTerminatingInstances,
-  # GroupTotalCapacity, GroupTotalInstances.
-  cluster_asg_metrics_enabled = []
-
-  # Enables/disables detailed CloudWatch monitoring for EC2 instances
-  cluster_detailed_monitoring = true
-
-  # Passthrough to aws_launch_template resource.  Associate a public ip address
-  # with EC2 instances in cluster
-  cluster_instance_associate_public_ip_address = false
-
-  # The name of the device to mount.
-  cluster_instance_block_device_name = "/dev/xvdcz"
-
-  # Whether the volume should be destroyed on instance termination. Defaults to
-  # false
-  cluster_instance_ebs_delete_on_termination = false
-
-  # The amount of provisioned IOPS. This must be set with a volume_type of
-  # io1/io2.
-  cluster_instance_ebs_iops = null
-
-  # The ARN of the AWS Key Management Service (AWS KMS) customer master key
-  # (CMK) to use when creating the encrypted volume. The variable
-  # cluster_instance_root_volume_encrypted must be set to true when this is set.
-  cluster_instance_ebs_kms_key_id = null
-
-  # If true, the launched EC2 instance will be EBS-optimized
-  cluster_instance_ebs_optimized = false
-
-  # The Snapshot ID to mount.
-  cluster_instance_ebs_snapshot_id = null
-
-  # The throughput to provision for a gp3 volume in MiB/s (specified as an
-  # integer, e.g., 500), with a maximum of 1,000 MiB/s.
-  cluster_instance_ebs_throughput = null
-
-  # The required duration in minutes. This value must be a multiple of 60.
-  cluster_instance_market_block_duration_minutes = null
-
-  # The behavior when a Spot Instance is interrupted. Can be hibernate, stop, or
-  # terminate. (Default: terminate).
-  cluster_instance_market_instance_interruption_behavior = "terminate"
-
-  # The Spot Instance request type. Can be one-time, or persistent.
-  cluster_instance_market_spot_instance_type = null
-
-  # The end date of the request.
-  cluster_instance_market_valid_until = null
-
-  # The affinity setting for an instance on a Dedicated Host.
-  cluster_instance_placement_affinity = null
-
-  # The name of the placement group for the instance.
-  cluster_instance_placement_group_name = null
-
-  # The ID of the Dedicated Host for the instance.
-  cluster_instance_placement_host_id = null
-
-  # The ARN of the Host Resource Group in which to launch instances.
-  cluster_instance_placement_host_resource_group_arn = null
-
-  # The number of the partition the instance should launch in. Valid only if the
-  # placement group strategy is set to partition.
-  cluster_instance_placement_partition_number = null
-
-  # Set to true to request spot instances. Set cluster_instance_spot_price
-  # variable to set a maximum spot price limit.
-  cluster_instance_request_spot_instances = false
-
-  # The ARN of the policy that is used to set the permissions boundary for the
-  # IAM role for the cluster instances.
-  cluster_instance_role_permissions_boundary_arn = null
-
   # Set to true to encrypt the root block devices for the ECS cluster's EC2
   # instances
   cluster_instance_root_volume_encrypted = false
@@ -383,10 +253,12 @@ module "ecs_cluster" {
   cluster_instance_root_volume_size = 40
 
   # The volume type for the root volume for each of the ECS Cluster's EC2
-  # Instances. Can be one of standard, gp2, gp3, io1, io2, sc1 or st1.
-  cluster_instance_root_volume_type = "gp3"
+  # Instances. Can be standard, gp2, or io1
+  cluster_instance_root_volume_type = "gp2"
 
-  # Value is the maximum bid price for the instance on the EC2 Spot Market.
+  # If set to a non-empty string EC2 Spot Instances will be requested for the
+  # ECS Cluster. The value is the maximum bid price for the instance on the EC2
+  # Spot Market.
   cluster_instance_spot_price = null
 
   # The User Data script to run on each of the ECS Cluster's EC2 Instances on
@@ -405,48 +277,14 @@ module "ecs_cluster" {
   # optionally create or not create the resources within this module.
   create_resources = true
 
-  # When set, name the IAM role for the ECS cluster using this variable. When
-  # null, the IAM role name will be derived from var.cluster_name.
-  custom_iam_role_name = null
-
   # A list of custom tags to apply to the EC2 Instances in this ASG. Each item
   # in this list should be a map with the parameters key, value, and
   # propagate_at_launch.
   custom_tags_ec2_instances = []
 
-  # Custom tags to apply to the ECS cluster
-  custom_tags_ecs_cluster = {}
-
   # A map of custom tags to apply to the Security Group for this ECS Cluster.
   # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
-
-  # Enables additional block device mapping. Change to false if you wish to
-  # disable additional EBS volume attachment to EC2 instances. Defaults to true.
-  enable_block_device_mappings = true
-
-  # Whether or not to enable Container Insights on the ECS cluster. Refer to
-  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-container-insights.html
-  # for more information on ECS Container Insights.
-  enable_cluster_container_insights = false
-
-  # Set this variable to true to enable the Instance Metadata Service (IMDS)
-  # endpoint, which is used to fetch information such as user-data scripts,
-  # instance IP address and region, etc. Set this variable to false if you do
-  # not want the IMDS endpoint enabled for instances launched into the Auto
-  # Scaling Group for the workers.
-  enable_imds = true
-
-  # The desired HTTP PUT response hop limit for instance metadata requests.
-  http_put_response_hop_limit = null
-
-  # Maximum amount of time, in seconds, that an instance can be in service,
-  # values must be either equal to 0 or between 86400 and 31536000 seconds.
-  max_instance_lifetime = null
-
-  # Enable a multi-az capacity provider to autoscale the EC2 ASGs created for
-  # this ECS cluster, only if capacity_provider_enabled = true
-  multi_az_capacity_provider = false
 
   # The port to use for SSH access.
   ssh_port = 22
@@ -466,13 +304,6 @@ module "ecs_cluster" {
   # the same launch time, then the ASG would try the next policy, which is to
   # terminate the one closest to the next instance hour in billing.
   termination_policies = ["OldestInstance"]
-
-  # Set this variable to true to enable the use of Instance Metadata Service
-  # Version 1 in this module's aws_launch_template. Note that while IMDsv2 is
-  # preferred due to its special security hardening, we allow this in order to
-  # support the use case of AMIs built outside of these modules that depend on
-  # IMDSv1.
-  use_imdsv1 = true
 
 }
 
@@ -564,83 +395,6 @@ inputs = {
   # 100.
   capacity_provider_target = 75
 
-  # A list of metrics to collect. The allowed values are GroupDesiredCapacity,
-  # GroupInServiceCapacity, GroupPendingCapacity, GroupMinSize, GroupMaxSize,
-  # GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances,
-  # GroupStandbyCapacity, GroupTerminatingCapacity, GroupTerminatingInstances,
-  # GroupTotalCapacity, GroupTotalInstances.
-  cluster_asg_metrics_enabled = []
-
-  # Enables/disables detailed CloudWatch monitoring for EC2 instances
-  cluster_detailed_monitoring = true
-
-  # Passthrough to aws_launch_template resource.  Associate a public ip address
-  # with EC2 instances in cluster
-  cluster_instance_associate_public_ip_address = false
-
-  # The name of the device to mount.
-  cluster_instance_block_device_name = "/dev/xvdcz"
-
-  # Whether the volume should be destroyed on instance termination. Defaults to
-  # false
-  cluster_instance_ebs_delete_on_termination = false
-
-  # The amount of provisioned IOPS. This must be set with a volume_type of
-  # io1/io2.
-  cluster_instance_ebs_iops = null
-
-  # The ARN of the AWS Key Management Service (AWS KMS) customer master key
-  # (CMK) to use when creating the encrypted volume. The variable
-  # cluster_instance_root_volume_encrypted must be set to true when this is set.
-  cluster_instance_ebs_kms_key_id = null
-
-  # If true, the launched EC2 instance will be EBS-optimized
-  cluster_instance_ebs_optimized = false
-
-  # The Snapshot ID to mount.
-  cluster_instance_ebs_snapshot_id = null
-
-  # The throughput to provision for a gp3 volume in MiB/s (specified as an
-  # integer, e.g., 500), with a maximum of 1,000 MiB/s.
-  cluster_instance_ebs_throughput = null
-
-  # The required duration in minutes. This value must be a multiple of 60.
-  cluster_instance_market_block_duration_minutes = null
-
-  # The behavior when a Spot Instance is interrupted. Can be hibernate, stop, or
-  # terminate. (Default: terminate).
-  cluster_instance_market_instance_interruption_behavior = "terminate"
-
-  # The Spot Instance request type. Can be one-time, or persistent.
-  cluster_instance_market_spot_instance_type = null
-
-  # The end date of the request.
-  cluster_instance_market_valid_until = null
-
-  # The affinity setting for an instance on a Dedicated Host.
-  cluster_instance_placement_affinity = null
-
-  # The name of the placement group for the instance.
-  cluster_instance_placement_group_name = null
-
-  # The ID of the Dedicated Host for the instance.
-  cluster_instance_placement_host_id = null
-
-  # The ARN of the Host Resource Group in which to launch instances.
-  cluster_instance_placement_host_resource_group_arn = null
-
-  # The number of the partition the instance should launch in. Valid only if the
-  # placement group strategy is set to partition.
-  cluster_instance_placement_partition_number = null
-
-  # Set to true to request spot instances. Set cluster_instance_spot_price
-  # variable to set a maximum spot price limit.
-  cluster_instance_request_spot_instances = false
-
-  # The ARN of the policy that is used to set the permissions boundary for the
-  # IAM role for the cluster instances.
-  cluster_instance_role_permissions_boundary_arn = null
-
   # Set to true to encrypt the root block devices for the ECS cluster's EC2
   # instances
   cluster_instance_root_volume_encrypted = false
@@ -650,10 +404,12 @@ inputs = {
   cluster_instance_root_volume_size = 40
 
   # The volume type for the root volume for each of the ECS Cluster's EC2
-  # Instances. Can be one of standard, gp2, gp3, io1, io2, sc1 or st1.
-  cluster_instance_root_volume_type = "gp3"
+  # Instances. Can be standard, gp2, or io1
+  cluster_instance_root_volume_type = "gp2"
 
-  # Value is the maximum bid price for the instance on the EC2 Spot Market.
+  # If set to a non-empty string EC2 Spot Instances will be requested for the
+  # ECS Cluster. The value is the maximum bid price for the instance on the EC2
+  # Spot Market.
   cluster_instance_spot_price = null
 
   # The User Data script to run on each of the ECS Cluster's EC2 Instances on
@@ -672,48 +428,14 @@ inputs = {
   # optionally create or not create the resources within this module.
   create_resources = true
 
-  # When set, name the IAM role for the ECS cluster using this variable. When
-  # null, the IAM role name will be derived from var.cluster_name.
-  custom_iam_role_name = null
-
   # A list of custom tags to apply to the EC2 Instances in this ASG. Each item
   # in this list should be a map with the parameters key, value, and
   # propagate_at_launch.
   custom_tags_ec2_instances = []
 
-  # Custom tags to apply to the ECS cluster
-  custom_tags_ecs_cluster = {}
-
   # A map of custom tags to apply to the Security Group for this ECS Cluster.
   # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
-
-  # Enables additional block device mapping. Change to false if you wish to
-  # disable additional EBS volume attachment to EC2 instances. Defaults to true.
-  enable_block_device_mappings = true
-
-  # Whether or not to enable Container Insights on the ECS cluster. Refer to
-  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-container-insights.html
-  # for more information on ECS Container Insights.
-  enable_cluster_container_insights = false
-
-  # Set this variable to true to enable the Instance Metadata Service (IMDS)
-  # endpoint, which is used to fetch information such as user-data scripts,
-  # instance IP address and region, etc. Set this variable to false if you do
-  # not want the IMDS endpoint enabled for instances launched into the Auto
-  # Scaling Group for the workers.
-  enable_imds = true
-
-  # The desired HTTP PUT response hop limit for instance metadata requests.
-  http_put_response_hop_limit = null
-
-  # Maximum amount of time, in seconds, that an instance can be in service,
-  # values must be either equal to 0 or between 86400 and 31536000 seconds.
-  max_instance_lifetime = null
-
-  # Enable a multi-az capacity provider to autoscale the EC2 ASGs created for
-  # this ECS cluster, only if capacity_provider_enabled = true
-  multi_az_capacity_provider = false
 
   # The port to use for SSH access.
   ssh_port = 22
@@ -733,13 +455,6 @@ inputs = {
   # the same launch time, then the ASG would try the next policy, which is to
   # terminate the one closest to the next instance hour in billing.
   termination_policies = ["OldestInstance"]
-
-  # Set this variable to true to enable the use of Instance Metadata Service
-  # Version 1 in this module's aws_launch_template. Note that while IMDsv2 is
-  # preferred due to its special security hardening, we allow this in order to
-  # support the use case of AMIs built outside of these modules that depend on
-  # IMDSv1.
-  use_imdsv1 = true
 
 }
 
@@ -897,195 +612,6 @@ Target cluster utilization for the capacity provider; a number from 1 to 100.
 <HclListItemDefaultValue defaultValue="75"/>
 </HclListItem>
 
-<HclListItem name="cluster_asg_metrics_enabled" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of metrics to collect. The allowed values are GroupDesiredCapacity, GroupInServiceCapacity, GroupPendingCapacity, GroupMinSize, GroupMaxSize, GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances, GroupStandbyCapacity, GroupTerminatingCapacity, GroupTerminatingInstances, GroupTotalCapacity, GroupTotalInstances.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="cluster_detailed_monitoring" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Enables/disables detailed CloudWatch monitoring for EC2 instances
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_associate_public_ip_address" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Passthrough to aws_launch_template resource.  Associate a public ip address with EC2 instances in cluster
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_block_device_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the device to mount.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;/dev/xvdcz&quot;"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_ebs_delete_on_termination" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether the volume should be destroyed on instance termination. Defaults to false
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_ebs_iops" requirement="optional" type="string">
-<HclListItemDescription>
-
-The amount of provisioned IOPS. This must be set with a volume_type of io1/io2.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_ebs_kms_key_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted volume. The variable cluster_instance_root_volume_encrypted must be set to true when this is set.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_ebs_optimized" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, the launched EC2 instance will be EBS-optimized
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_ebs_snapshot_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The Snapshot ID to mount.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_ebs_throughput" requirement="optional" type="number">
-<HclListItemDescription>
-
-The throughput to provision for a gp3 volume in MiB/s (specified as an integer, e.g., 500), with a maximum of 1,000 MiB/s.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_market_block_duration_minutes" requirement="optional" type="number">
-<HclListItemDescription>
-
-The required duration in minutes. This value must be a multiple of 60.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_market_instance_interruption_behavior" requirement="optional" type="string">
-<HclListItemDescription>
-
-The behavior when a Spot Instance is interrupted. Can be hibernate, stop, or terminate. (Default: terminate).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;terminate&quot;"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_market_spot_instance_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-The Spot Instance request type. Can be one-time, or persistent.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_market_valid_until" requirement="optional" type="string">
-<HclListItemDescription>
-
-The end date of the request.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_placement_affinity" requirement="optional" type="string">
-<HclListItemDescription>
-
-The affinity setting for an instance on a Dedicated Host.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_placement_group_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the placement group for the instance.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_placement_host_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID of the Dedicated Host for the instance.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_placement_host_resource_group_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of the Host Resource Group in which to launch instances.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_placement_partition_number" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of the partition the instance should launch in. Valid only if the placement group strategy is set to partition.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_request_spot_instances" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to request spot instances. Set cluster_instance_spot_price variable to set a maximum spot price limit.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_role_permissions_boundary_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of the policy that is used to set the permissions boundary for the IAM role for the cluster instances.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="cluster_instance_root_volume_encrypted" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1107,16 +633,16 @@ The size in GB of the root volume for each of the ECS Cluster's EC2 Instances
 <HclListItem name="cluster_instance_root_volume_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-The volume type for the root volume for each of the ECS Cluster's EC2 Instances. Can be one of standard, gp2, gp3, io1, io2, sc1 or st1.
+The volume type for the root volume for each of the ECS Cluster's EC2 Instances. Can be standard, gp2, or io1
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;gp3&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
 </HclListItem>
 
 <HclListItem name="cluster_instance_spot_price" requirement="optional" type="string">
 <HclListItemDescription>
 
-Value is the maximum bid price for the instance on the EC2 Spot Market.
+If set to a non-empty string EC2 Spot Instances will be requested for the ECS Cluster. The value is the maximum bid price for the instance on the EC2 Spot Market.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1149,15 +675,6 @@ If you set this variable to false, this module will not create any resources. Th
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="custom_iam_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-When set, name the IAM role for the ECS cluster using this variable. When null, the IAM role name will be derived from <a href="#cluster_name"><code>cluster_name</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="custom_tags_ec2_instances" requirement="optional" type="list">
 <HclListItemDescription>
 
@@ -1167,15 +684,6 @@ A list of custom tags to apply to the EC2 Instances in this ASG. Each item in th
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="custom_tags_ecs_cluster" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Custom tags to apply to the ECS cluster
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
 <HclListItem name="custom_tags_security_group" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -1183,78 +691,6 @@ A map of custom tags to apply to the Security Group for this ECS Cluster. The ke
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_block_device_mappings" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Enables additional block device mapping. Change to false if you wish to disable additional EBS volume attachment to EC2 instances. Defaults to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_cluster_container_insights" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to enable Container Insights on the ECS cluster. Refer to https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-container-insights.html for more information on ECS Container Insights.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   We intentionally default this to false. While Container Insights provides useful metrics, the costs can add up
-   depending on how large your clusters are. Specifically, Container Insights will add:
-   - 8 custom metrics per ECS cluster
-   - 6 custom metrics per ECS task
-   - 11 custom metrics per ECS service
-   Each metric costs $0.30 per month up to 10,000 metrics, at which point the costs start to drop. Refer to
-   https://aws.amazon.com/cloudwatch/pricing/ for more details.
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="enable_imds" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set this variable to true to enable the Instance Metadata Service (IMDS) endpoint, which is used to fetch information such as user-data scripts, instance IP address and region, etc. Set this variable to false if you do not want the IMDS endpoint enabled for instances launched into the Auto Scaling Group for the workers.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="http_put_response_hop_limit" requirement="optional" type="number">
-<HclListItemDescription>
-
-The desired HTTP PUT response hop limit for instance metadata requests.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="max_instance_lifetime" requirement="optional" type="number">
-<HclListItemDescription>
-
-Maximum amount of time, in seconds, that an instance can be in service, values must be either equal to 0 or between 86400 and 31536000 seconds.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="multi_az_capacity_provider" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Enable a multi-az capacity provider to autoscale the EC2 ASGs created for this ECS cluster, only if capacity_provider_enabled = true
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="ssh_port" requirement="optional" type="number">
@@ -1290,15 +726,20 @@ A list of policies to decide how the instances in the auto scale group should be
 ```
 
 </HclListItemDefaultValue>
-</HclListItem>
+<HclGeneralListItem title="More Details">
+<details>
 
-<HclListItem name="use_imdsv1" requirement="optional" type="bool">
-<HclListItemDescription>
 
-Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
+```hcl
 
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+   Our default policy is optimized for rolling out updates to the ECS cluster via roll-out-ecs-cluster-update.py.
+   That script scales the cluster up to launch new instances and then back down with the intention of terminating
+   the older instances, so we need to use the OldestInstance policy for that to work.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 </TabItem>
@@ -1310,13 +751,7 @@ Set this variable to true to enable the use of Instance Metadata Service Version
 <HclListItem name="ecs_cluster_asg_name">
 </HclListItem>
 
-<HclListItem name="ecs_cluster_asg_names">
-</HclListItem>
-
-<HclListItem name="ecs_cluster_capacity_provider_names">
-</HclListItem>
-
-<HclListItem name="ecs_cluster_launch_template_id">
+<HclListItem name="ecs_cluster_launch_configuration_id">
 </HclListItem>
 
 <HclListItem name="ecs_cluster_name">
@@ -1346,6 +781,6 @@ Set this variable to true to enable the use of Instance Metadata Service Version
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e69b75bcad4ed544926ac7a8dcd537bc"
+  "hash": "2e8d2e333f8afee4ed2a4cc1823f36b0"
 }
 ##DOCS-SOURCER-END -->

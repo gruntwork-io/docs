@@ -28,7 +28,7 @@ This folder contains helper scripts for running an ECS Cluster, including:
 You can install the helpers using the [Gruntwork Installer](https://github.com/gruntwork-io/gruntwork-installer):
 
 ```bash
-gruntwork-install --module-name "ecs-scripts" --repo "https://github.com/gruntwork-io/terraform-aws-ecs" --tag "0.0.1"
+gruntwork-install --module-name "ecs-scripts" --repo "https://github.com/gruntwork-io/module-ecs" --tag "0.0.1"
 ```
 
 For an example, see the [Packer](https://www.packer.io/) template under [/examples/example-ecs-instance-ami/build.json](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/examples/example-ecs-instance-ami/build.json).
@@ -41,23 +41,27 @@ The `configure-ecs-instance` script has the following prerequisites:
 2.  The EC2 instance must be running an [Amazon ECS-optimized AMI](https://aws.amazon.com/marketplace/pp/B00U6QTYI2/).
 3.  The EC2 instance must have the AWS CLI installed.
 
-To run the script, you need to pass it the name of the ECS cluster you are using.
-
-If you're using ECR auth, the ECS Agent will authenticate automatically using the IAM role of your EC2 instances. If
-you are NOT using ECR auth, you must specify the auth type and corresponding auth details to the
-`configure-ecs-instance` script so it can configure the ECS Agent accordingly:
+To run the script, you need to pass it the name of the ECS cluster you are using. You also need to specify the Docker
+auth type and corresponding auth details:
 
 *   `docker-hub`: You must set the environment variables `DOCKER_REPO_AUTH` (the auth token) and `DOCKER_REPO_EMAIL`
     (the email address used to login).
 *   `docker-gitlab`: You must set the environment variables `DOCKER_REPO_AUTH` (the auth token).
 *   `docker-other`: You must set the environment variables `DOCKER_REPO_URL` (the URL of your Docker registry),
     `DOCKER_REPO_AUTH` (the auth token), and, optionally, `DOCKER_REPO_EMAIL` (the email address used to login).
+*   `ecr`: No other params are necessary, as the script will use an IAM Role to login.
 
 See [Docker Authentication
 Formats](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/private-auth.html#docker-auth-formats) to learn
 about how ECS handles Docker registry authentication.
 
-For example, to use a private [Docker Hub](https://hub.docker.com/) repo, you would run:
+For example, to use [Amazon's EC2 Container Registry (ECR)](https://aws.amazon.com/ecr/), you would run:
+
+```bash
+configure-ecs-instance --ecs-cluster-name my-ecs-cluster --docker-auth-type ecr
+```
+
+To use a private [Docker Hub](https://hub.docker.com/) repo, you would run:
 
 ```bash
 export DOCKER_REPO_AUTH="(your Docker Hub auth value)"
@@ -85,6 +89,6 @@ Run `configure-ecs-instance --help` to see all available options.
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-scripts/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1afb277adfbfccce8073a3763fd02147"
+  "hash": "4883188dbf35422e6a5dde54bd288b7d"
 }
 ##DOCS-SOURCER-END -->

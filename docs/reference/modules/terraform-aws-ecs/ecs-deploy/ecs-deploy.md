@@ -33,7 +33,7 @@ This folder contains scripts that help with ECS deployment:
 You can install the helpers using the [Gruntwork Installer](https://github.com/gruntwork-io/gruntwork-installer):
 
 ```bash
-gruntwork-install --module-name "ecs-deploy" --repo "https://github.com/gruntwork-io/terraform-aws-ecs" --tag "v0.7.0"
+gruntwork-install --module-name "ecs-deploy" --repo "https://github.com/gruntwork-io/module-ecs" --tag "v0.7.0"
 ```
 
 ## Using the run-ecs-task script
@@ -41,7 +41,7 @@ gruntwork-install --module-name "ecs-deploy" --repo "https://github.com/gruntwor
 The `run-ecs-task` script assumes you already have the following:
 
 1.  An ECS Cluster deployed. The easiest way to deploy one is with the [ecs-cluster
-    module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-cluster). You'll need to know the name
+    module](https://github.com/gruntwork-io/module-ecs/tree/master/modules/ecs-cluster). You'll need to know the name
     of the cluster and the AWS region in which it is deployed.
 
 2.  An ECS Task Definition defined. The easiest way to create one is with the [aws_ecs_task_definition
@@ -68,30 +68,6 @@ your ECS Task hits an error and exits with a non-zero exit code, `run-ecs-task` 
 code. This is particularly useful as part of an automated deployment, as it ensures subsequent deployment steps don't
 run if running the ECS Task failed.
 
-## Override the container command
-
-The default operation of `run-ecs-task` is to run an ECS task using the
-configurations of the ECS Task Definition, including the container commands to
-run. However, there are certain use cases where it is desirable to avoid
-maintaining a separate Task Definition for each one off command you want to
-run. For example, in a Python Django project, it may be easier to run database
-migrations using the web application ECS Task Definition and invoking the
-`./manage.py migrate` command.
-
-`run-ecs-task` allows you to override the container command. To override the
-container command, provide the container name for which the command is applied
-to and pass in the command using positional args. For example, to override
-the command to `python manage.py migrate` in the `django` container of the
-`my-app` ECS task definition:
-
-```bash
-run-ecs-task --task my-app:3 --cluster ecs-stage --region us-west-2 --timeout 600 --container django -- python manage.py migrate
-```
-
-This will spin up a new ECS task using the `my-app` revision 3 ECS Task
-Definition, and run the `python manage.py migrate` command in the `django`
-container instead of the command configured in the Task Definition.
-
 
 <!-- ##DOCS-SOURCER-START
 {
@@ -101,6 +77,6 @@ container instead of the command configured in the Task Definition.
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2e07aa421a4ae7dde028487262bcdb22"
+  "hash": "5b33df07d820eecca7d82255ec8fca77"
 }
 ##DOCS-SOURCER-END -->

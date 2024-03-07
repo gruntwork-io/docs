@@ -17,7 +17,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.35.15" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module creates an [Elastic Container Service (ECS) Service](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) that you can use to run one or more related, long-running Docker containers, such as a web service. An ECS service can automatically deploy multiple instances of your Docker containers across an ECS cluster (see the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-cluster)), restart any failed Docker containers, route traffic across your containers using an optional Elastic Load Balancer (ELB), and optionally register the services to AWS Service Discovery Service. Additionally, CodeDeploy blue/green deployments are supported as the module can be enabled to ignore CodeDeploy managed resources.
+This module creates an [Elastic Container Service (ECS) Service](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) that you can use to run one or more related, long-running Docker containers, such as a web service. An ECS service can automatically deploy multiple instances of your Docker containers across an ECS cluster (see the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-cluster)), restart any failed Docker containers, route traffic across your containers using an optional Elastic Load Balancer (ELB), and optionally register the services to AWS Service Discovery Service.
 
 ![ECS Service architecture](/img/reference/modules/terraform-aws-ecs/ecs-service/ecs-service-architecture.png)
 
@@ -30,8 +30,6 @@ This module creates an [Elastic Container Service (ECS) Service](http://docs.aws
 *   Auto scaling and auto healing containers
 
 *   Canary deployments
-
-*   CodeDeploy blue/green deployment support (using external CICD)
 
 *   Service discovery through AWS Service Discovery Service
 
@@ -71,7 +69,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
     *   [modules/ecs-scripts](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-scripts): use the scripts in this module to configure private docker registries and register ECS container instances to ECS clusters.
 
-    *   [modules/ecs-service](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-service): use this module to deploy one or more docker containers as a ECS service, with options to use ELBs (CLB, ALB, or NLB), Service Discovery, or Fargate.
+    *   [modules/ecs-service](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-service): use this module to deploy one or more docker containers as a ECS service, with options to use ELBs (CLB, ALB, or CLB), Service Discovery, or Fargate.
 
     *   [modules/ecs-daemon-service](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-daemon-service): use this module to deploy one or more docker containers that run on a regular schedule.
 
@@ -99,19 +97,9 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-Production-ready sample code from the Reference Architecture:
+*   [ecs-cluster in the Acme example Reference Architecture](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/tree/master/services/ecs-cluster): Production-ready sample code from the Acme Reference Architecture examples for managing an ECS cluster with ECS container instances.
 
-*   ECS Cluster: examples for managing an ECS cluster with ECS container instances
-
-*   [app account configuration](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/main/examples/for-production/infrastructure-live/prod/us-west-2/prod/services/ecs-cluster/terragrunt.hcl)
-
-*   [base configuration](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/main/examples/for-production/infrastructure-live/\_envcommon/services/ecs-cluster.hcl)
-
-*   ECS Service with ALB: examples for managing ECS services load balanced by an ALB
-
-*   [app account configuration](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/main/examples/for-production/infrastructure-live/prod/us-west-2/prod/services/ecs-sample-app-frontend/terragrunt.hcl)
-
-*   [base configuration](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/main/examples/for-production/infrastructure-live/\_envcommon/services/ecs-sample-app-frontend.hcl)
+*   [ecs-service-with-alb in the Acme example Reference Architecture](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/tree/master/services/ecs-service-with-alb): Production-ready sample code from the Acme Reference Architecture examples for managing ECS services load balanced by an ALB.
 
 ## Manage
 
@@ -129,7 +117,7 @@ Production-ready sample code from the Reference Architecture:
 
 ### Major changes
 
-*   [How do you make changes to the EC2 instances in the cluster?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/module/ecs-cluster/README.md#how-do-you-make-changes-to-the-ec-2-instances-in-the-cluster)
+*   [How do you make changes to the EC2 instances in the cluster?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-cluster/README.md#how-do-you-make-changes-to-the-ec-2-instances-in-the-cluster)
 
 *   [How do ECS Services deploy new versions of containers?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-service/core-concepts.md#how-do-ecs-services-deploy-new-versions-of-containers)
 
@@ -166,6 +154,9 @@ module "ecs_service" {
   # their properties. It should adhere to the format described at
   # https://goo.gl/ob5U3g.
   ecs_task_container_definitions = <string>
+
+  # The environment name in which the ECS Service is located. (e.g. stage, prod)
+  environment_name = <string>
 
   # The name of the service. This is used to namespace all resources created by
   # this module.
@@ -210,18 +201,8 @@ module "ecs_service" {
   # booting up. Set to null if using ELBv2.
   clb_name = null
 
-  # Custom name to use for the ECS service IAM role that is created. Note that
-  # this service IAM role is only needed when the ECS service is being used with
-  # an ELB. If blank (default), the name will be set to var.service_name.
-  custom_ecs_service_role_name = null
-
-  # Prefix for name of the IAM role used by the ECS task. If not provide, will
-  # be set to var.service_name.
-  custom_iam_role_name_prefix = null
-
-  # Prefix for name of task execution IAM role and policy that grants access to
-  # CloudWatch and ECR. If not provide, will be set to var.service_name.
-  custom_task_execution_name_prefix = null
+  # Prefix for name of iam role and policy that allows cloudwatch and ecr access
+  custom_task_execution_name_prefix = ""
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -238,15 +219,6 @@ module "ecs_service" {
   # Seconds to wait before timing out each check for verifying ECS service
   # deployment. See ecs_deploy_check_binaries for more details.
   deployment_check_timeout_seconds = 600
-
-  # Set enable to 'true' to prevent the task from attempting to continuously
-  # redeploy after a failed health check. Set rollback to 'true' to also
-  # automatically roll back to the last successful deployment. If this setting
-  # is used, both 'enable' and 'rollback' are required fields.
-  deployment_circuit_breaker = null
-
-  # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
-  deployment_controller = null
 
   # The upper limit, as a percentage of var.desired_number_of_tasks, of the
   # number of running tasks that can be running in a service during a
@@ -285,7 +257,7 @@ module "ecs_service" {
   discovery_dns_ttl = 60
 
   # The name by which the service can be discovered. It will be used to form the
-  # service discovery address along with the namespace name in
+  # service discovery address along with the namespa name in
   # <discovery_name>.<namespace_name>. So if your discovery name is 'my-service'
   # and your namespace name is 'my-company-staging.local', the hostname for the
   # service will be 'my-service.my-company-staging.local'. Only used if
@@ -359,18 +331,6 @@ module "ecs_service" {
   # Refer to the README for more details.
   enable_ecs_deployment_check = true
 
-  # Specifies whether to enable Amazon ECS Exec for the tasks within the
-  # service.
-  enable_execute_command = false
-
-  # The name of the existing task execution role to be used in place of creating
-  # a new role.
-  existing_ecs_task_execution_role_name = null
-
-  # The name of the existing task role to be used in place of creating a new
-  # role.
-  existing_ecs_task_role_name = null
-
   # If true, enable health checks on the target group. Only applies to ELBv2.
   # For CLBs, health checks are not configurable.
   health_check_enabled = true
@@ -411,22 +371,13 @@ module "ecs_service" {
   # be the same as the health_check_healthy_threshold.
   health_check_unhealthy_threshold = 2
 
-  # The launch type of the ECS service. Defaults to null, which will result in
-  # using the default capacity provider strategyfrom the ECS cluster. Valid
-  # value must be one of EC2 or FARGATE. When using FARGATE, you must set the
-  # network mode to awsvpc and configure it. When using EC2, you can configure
-  # the placement strategy using the variables ordered_placement_strategy,
+  # The launch type of the ECS service. Must be one of EC2 or FARGATE. When
+  # using FARGATE, you must set the network mode to awsvpc and configure it.
+  # When using EC2, you can configure the placement strategy using the variables
+  # placement_strategy_type, placement_strategy_field,
   # placement_constraint_type, placement_constraint_expression. This variable is
   # ignored if var.capacity_provider_strategy is provided.
-  launch_type = null
-
-  # A map of tags to apply to the elb target group. Each item in this list
-  # should be a map with the parameters key and value.
-  lb_target_group_tags = {}
-
-  # Listener rules list required first to be provisioned before creation of ECS
-  # cluster.
-  listener_rule_ids = []
+  launch_type = "EC2"
 
   # The maximum number of ECS Task instances of the ECS Service to run. Auto
   # scaling will never scale out above this number. Must be set when
@@ -438,16 +389,13 @@ module "ecs_service" {
   # var.use_auto_scaling is true.
   min_number_of_tasks = null
 
-  # Service level strategy rules that are taken into consideration during task
-  # placement. List from top to bottom in order of precedence. Updates to this
-  # configuration will take effect next task deployment unless
-  # force_new_deployment is enabled. The maximum number of
-  # ordered_placement_strategy blocks is 5.
-  ordered_placement_strategy = [{"field":"cpu","type":"binpack"}]
-
   placement_constraint_expression = "attribute:ecs.ami-id != 'ami-fake'"
 
   placement_constraint_type = "memberOf"
+
+  placement_strategy_field = "cpu"
+
+  placement_strategy_type = "binpack"
 
   # The platform version on which to run your service. Only applicable for
   # launch_type set to FARGATE. Defaults to LATEST.
@@ -458,26 +406,9 @@ module "ecs_service" {
   # SERVICE. If set to null, no tags are created for tasks.
   propagate_tags = "SERVICE"
 
-  # Configuration block for the App Mesh proxy. The only supported value for
-  # `type` is "APPMESH". Use the name of the Envoy proxy container from
-  # `container_definitions` as the `container_name`. `properties` is a map of
-  # network configuration parameters to provide the Container Network Interface
-  # (CNI) plugin.
-  proxy_configuration = null
-
-  # Define runtime platform options
-  runtime_platform = null
-
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
   service_tags = {}
-
-  # Whether or not to include check for ALB/NLB health checks. When set to true,
-  # no health check will be performed against the load balancer. This can be
-  # used to speed up deployments, but keep in mind that disabling health checks
-  # mean you won't have confirmed status of the service being operational.
-  # Defaults to false (health checks enabled).
-  skip_load_balancer_check_arg = false
 
   # The CPU units for the instances that Fargate will spin up. Options here:
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
@@ -487,10 +418,6 @@ module "ecs_service" {
   # A map of tags to apply to the task definition. Each item in this list should
   # be a map with the parameters key and value.
   task_definition_tags = {}
-
-  # Ephemeral storage size for Fargate tasks. See:
-  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_definition_ephemeralStorage
-  task_ephemeral_storage = null
 
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role for the ECS task execution.
@@ -522,17 +449,10 @@ module "ecs_service" {
   # networking mode.
   use_service_discovery = false
 
-  # (Optional) A map of volume blocks that containers in your task may use. The
-  # key should be the name of the volume and the value should be a map
-  # compatible with
-  # https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-block-arguments,
-  # but not including the name parameter.
-  volumes = {}
-
-  # If true, Terraform will wait for the service to reach a steady state—as in,
-  # the ECS tasks you wanted are actually deployed—before 'apply' is considered
-  # complete.
-  wait_for_steady_state = false
+  # (Optional) A list of volume blocks that containers in your task may use.
+  # Each item in the list should be a map compatible with
+  # https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#docker-volume-configuration-arguments.
+  volumes = []
 
 }
 
@@ -571,6 +491,9 @@ inputs = {
   # https://goo.gl/ob5U3g.
   ecs_task_container_definitions = <string>
 
+  # The environment name in which the ECS Service is located. (e.g. stage, prod)
+  environment_name = <string>
+
   # The name of the service. This is used to namespace all resources created by
   # this module.
   service_name = <string>
@@ -614,18 +537,8 @@ inputs = {
   # booting up. Set to null if using ELBv2.
   clb_name = null
 
-  # Custom name to use for the ECS service IAM role that is created. Note that
-  # this service IAM role is only needed when the ECS service is being used with
-  # an ELB. If blank (default), the name will be set to var.service_name.
-  custom_ecs_service_role_name = null
-
-  # Prefix for name of the IAM role used by the ECS task. If not provide, will
-  # be set to var.service_name.
-  custom_iam_role_name_prefix = null
-
-  # Prefix for name of task execution IAM role and policy that grants access to
-  # CloudWatch and ECR. If not provide, will be set to var.service_name.
-  custom_task_execution_name_prefix = null
+  # Prefix for name of iam role and policy that allows cloudwatch and ecr access
+  custom_task_execution_name_prefix = ""
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -642,15 +555,6 @@ inputs = {
   # Seconds to wait before timing out each check for verifying ECS service
   # deployment. See ecs_deploy_check_binaries for more details.
   deployment_check_timeout_seconds = 600
-
-  # Set enable to 'true' to prevent the task from attempting to continuously
-  # redeploy after a failed health check. Set rollback to 'true' to also
-  # automatically roll back to the last successful deployment. If this setting
-  # is used, both 'enable' and 'rollback' are required fields.
-  deployment_circuit_breaker = null
-
-  # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
-  deployment_controller = null
 
   # The upper limit, as a percentage of var.desired_number_of_tasks, of the
   # number of running tasks that can be running in a service during a
@@ -689,7 +593,7 @@ inputs = {
   discovery_dns_ttl = 60
 
   # The name by which the service can be discovered. It will be used to form the
-  # service discovery address along with the namespace name in
+  # service discovery address along with the namespa name in
   # <discovery_name>.<namespace_name>. So if your discovery name is 'my-service'
   # and your namespace name is 'my-company-staging.local', the hostname for the
   # service will be 'my-service.my-company-staging.local'. Only used if
@@ -763,18 +667,6 @@ inputs = {
   # Refer to the README for more details.
   enable_ecs_deployment_check = true
 
-  # Specifies whether to enable Amazon ECS Exec for the tasks within the
-  # service.
-  enable_execute_command = false
-
-  # The name of the existing task execution role to be used in place of creating
-  # a new role.
-  existing_ecs_task_execution_role_name = null
-
-  # The name of the existing task role to be used in place of creating a new
-  # role.
-  existing_ecs_task_role_name = null
-
   # If true, enable health checks on the target group. Only applies to ELBv2.
   # For CLBs, health checks are not configurable.
   health_check_enabled = true
@@ -815,22 +707,13 @@ inputs = {
   # be the same as the health_check_healthy_threshold.
   health_check_unhealthy_threshold = 2
 
-  # The launch type of the ECS service. Defaults to null, which will result in
-  # using the default capacity provider strategyfrom the ECS cluster. Valid
-  # value must be one of EC2 or FARGATE. When using FARGATE, you must set the
-  # network mode to awsvpc and configure it. When using EC2, you can configure
-  # the placement strategy using the variables ordered_placement_strategy,
+  # The launch type of the ECS service. Must be one of EC2 or FARGATE. When
+  # using FARGATE, you must set the network mode to awsvpc and configure it.
+  # When using EC2, you can configure the placement strategy using the variables
+  # placement_strategy_type, placement_strategy_field,
   # placement_constraint_type, placement_constraint_expression. This variable is
   # ignored if var.capacity_provider_strategy is provided.
-  launch_type = null
-
-  # A map of tags to apply to the elb target group. Each item in this list
-  # should be a map with the parameters key and value.
-  lb_target_group_tags = {}
-
-  # Listener rules list required first to be provisioned before creation of ECS
-  # cluster.
-  listener_rule_ids = []
+  launch_type = "EC2"
 
   # The maximum number of ECS Task instances of the ECS Service to run. Auto
   # scaling will never scale out above this number. Must be set when
@@ -842,16 +725,13 @@ inputs = {
   # var.use_auto_scaling is true.
   min_number_of_tasks = null
 
-  # Service level strategy rules that are taken into consideration during task
-  # placement. List from top to bottom in order of precedence. Updates to this
-  # configuration will take effect next task deployment unless
-  # force_new_deployment is enabled. The maximum number of
-  # ordered_placement_strategy blocks is 5.
-  ordered_placement_strategy = [{"field":"cpu","type":"binpack"}]
-
   placement_constraint_expression = "attribute:ecs.ami-id != 'ami-fake'"
 
   placement_constraint_type = "memberOf"
+
+  placement_strategy_field = "cpu"
+
+  placement_strategy_type = "binpack"
 
   # The platform version on which to run your service. Only applicable for
   # launch_type set to FARGATE. Defaults to LATEST.
@@ -862,26 +742,9 @@ inputs = {
   # SERVICE. If set to null, no tags are created for tasks.
   propagate_tags = "SERVICE"
 
-  # Configuration block for the App Mesh proxy. The only supported value for
-  # `type` is "APPMESH". Use the name of the Envoy proxy container from
-  # `container_definitions` as the `container_name`. `properties` is a map of
-  # network configuration parameters to provide the Container Network Interface
-  # (CNI) plugin.
-  proxy_configuration = null
-
-  # Define runtime platform options
-  runtime_platform = null
-
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
   service_tags = {}
-
-  # Whether or not to include check for ALB/NLB health checks. When set to true,
-  # no health check will be performed against the load balancer. This can be
-  # used to speed up deployments, but keep in mind that disabling health checks
-  # mean you won't have confirmed status of the service being operational.
-  # Defaults to false (health checks enabled).
-  skip_load_balancer_check_arg = false
 
   # The CPU units for the instances that Fargate will spin up. Options here:
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
@@ -891,10 +754,6 @@ inputs = {
   # A map of tags to apply to the task definition. Each item in this list should
   # be a map with the parameters key and value.
   task_definition_tags = {}
-
-  # Ephemeral storage size for Fargate tasks. See:
-  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_definition_ephemeralStorage
-  task_ephemeral_storage = null
 
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role for the ECS task execution.
@@ -926,17 +785,10 @@ inputs = {
   # networking mode.
   use_service_discovery = false
 
-  # (Optional) A map of volume blocks that containers in your task may use. The
-  # key should be the name of the volume and the value should be a map
-  # compatible with
-  # https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-block-arguments,
-  # but not including the name parameter.
-  volumes = {}
-
-  # If true, Terraform will wait for the service to reach a steady state—as in,
-  # the ECS tasks you wanted are actually deployed—before 'apply' is considered
-  # complete.
-  wait_for_steady_state = false
+  # (Optional) A list of volume blocks that containers in your task may use.
+  # Each item in the list should be a map compatible with
+  # https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#docker-volume-configuration-arguments.
+  volumes = []
 
 }
 
@@ -976,6 +828,14 @@ The Amazon Resource Name (ARN) of the ECS Cluster where this service should run.
 <HclListItemDescription>
 
 The JSON text of the ECS Task Container Definitions. This portion of the ECS Task Definition defines the Docker container(s) to be run along with all their properties. It should adhere to the format described at https://goo.gl/ob5U3g.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="environment_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The environment name in which the ECS Service is located. (e.g. stage, prod)
 
 </HclListItemDescription>
 </HclListItem>
@@ -1087,31 +947,13 @@ The name of a Classic Load Balancer (CLB) to associate with this service. Contai
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="custom_ecs_service_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Custom name to use for the ECS service IAM role that is created. Note that this service IAM role is only needed when the ECS service is being used with an ELB. If blank (default), the name will be set to <a href="#service_name"><code>service_name</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="custom_iam_role_name_prefix" requirement="optional" type="string">
-<HclListItemDescription>
-
-Prefix for name of the IAM role used by the ECS task. If not provide, will be set to <a href="#service_name"><code>service_name</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="custom_task_execution_name_prefix" requirement="optional" type="string">
 <HclListItemDescription>
 
-Prefix for name of task execution IAM role and policy that grants access to CloudWatch and ECR. If not provide, will be set to <a href="#service_name"><code>service_name</code></a>.
+Prefix for name of iam role and policy that allows cloudwatch and ecr access
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="dependencies" requirement="optional" type="list(string)">
@@ -1139,34 +981,6 @@ Seconds to wait before timing out each check for verifying ECS service deploymen
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="600"/>
-</HclListItem>
-
-<HclListItem name="deployment_circuit_breaker" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Set enable to 'true' to prevent the task from attempting to continuously redeploy after a failed health check. Set rollback to 'true' to also automatically roll back to the last successful deployment. If this setting is used, both 'enable' and 'rollback' are required fields.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    enable   = bool
-    rollback = bool
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="deployment_controller" requirement="optional" type="string">
-<HclListItemDescription>
-
-Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="deployment_maximum_percent" requirement="optional" type="number">
@@ -1235,7 +1049,7 @@ The amount of time, in seconds, that you want DNS resolvers to cache the setting
 <HclListItem name="discovery_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name by which the service can be discovered. It will be used to form the service discovery address along with the namespace name in &lt;discovery_name>.&lt;namespace_name>. So if your discovery name is 'my-service' and your namespace name is 'my-company-staging.local', the hostname for the service will be 'my-service.my-company-staging.local'. Only used if <a href="#use_service_discovery"><code>use_service_discovery</code></a> is true.
+The name by which the service can be discovered. It will be used to form the service discovery address along with the namespa name in &lt;discovery_name>.&lt;namespace_name>. So if your discovery name is 'my-service' and your namespace name is 'my-company-staging.local', the hostname for the service will be 'my-service.my-company-staging.local'. Only used if <a href="#use_service_discovery"><code>use_service_discovery</code></a> is true.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1397,7 +1211,7 @@ The ID of the VPC in which to create the target group. Only used if <a href="#el
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="elb_target_groups" requirement="optional" type="any">
+<HclListItem name="elb_target_groups" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
 Configurations for ELB target groups for ALBs and NLBs that should be associated with the ECS Tasks. Each entry corresponds to a separate target group. Set to the empty object ({}) if you are not using an ALB or NLB.
@@ -1406,7 +1220,25 @@ Configurations for ELB target groups for ALBs and NLBs that should be associated
 <HclListItemTypeDetails>
 
 ```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+map(object(
+    {
+      # The name of the ELB Target Group that will contain the ECS Tasks.
+      name = string
+
+      # The name of the container, as it appears in the var.task_arn Task definition, to associate with the target
+      # group.
+      container_name = string
+
+      # The port on the container to associate with the target group.
+      container_port = number
+
+      # The network protocol to use for routing traffic from the ELB to the Targets. Must be one of TCP, TLS, UDP, TCP_UDP, HTTP or HTTPS. Note that when using ALBs, must be HTTP or HTTPS.
+      protocol = string
+
+      # The protocol the ELB uses when performing health checks on Targets. Must be one of TCP, TLS, UDP, TCP_UDP, HTTP or HTTPS. Note that when using ALBs, must be HTTP or HTTPS.
+      health_check_protocol = string
+    }
+  ))
 ```
 
 </HclListItemTypeDetails>
@@ -1417,9 +1249,38 @@ Any types represent complex values of variable type. For details, please consult
 
 ```hcl
 
-   `elb_target_groups` should be set to a map of keys to objects with one mapping per desired target group. The keys
-   in the map can be any arbitrary name and are used to link the outputs with the inputs. The values of the map are an
-   object containing these attributes:
+       The name of the container, as it appears in the var.task_arn Task definition, to associate with the target
+       group.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       The port on the container to associate with the target group.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       The network protocol to use for routing traffic from the ELB to the Targets. Must be one of TCP, TLS, UDP, TCP_UDP, HTTP or HTTPS. Note that when using ALBs, must be HTTP or HTTPS.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       The protocol the ELB uses when performing health checks on Targets. Must be one of TCP, TLS, UDP, TCP_UDP, HTTP or HTTPS. Note that when using ALBs, must be HTTP or HTTPS.
 
 ```
 </details>
@@ -1434,33 +1295,6 @@ Whether or not to enable the ECS deployment check binary to make terraform wait 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_execute_command" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Specifies whether to enable Amazon ECS Exec for the tasks within the service.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="existing_ecs_task_execution_role_name" requirement="optional">
-<HclListItemDescription>
-
-The name of the existing task execution role to be used in place of creating a new role.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="existing_ecs_task_role_name" requirement="optional">
-<HclListItemDescription>
-
-The name of the existing task role to be used in place of creating a new role.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="health_check_enabled" requirement="optional" type="bool">
@@ -1547,28 +1381,10 @@ The number of consecutive failed health checks required before considering a tar
 <HclListItem name="launch_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-The launch type of the ECS service. Defaults to null, which will result in using the default capacity provider strategyfrom the ECS cluster. Valid value must be one of EC2 or FARGATE. When using FARGATE, you must set the network mode to awsvpc and configure it. When using EC2, you can configure the placement strategy using the variables ordered_placement_strategy, placement_constraint_type, placement_constraint_expression. This variable is ignored if <a href="#capacity_provider_strategy"><code>capacity_provider_strategy</code></a> is provided.
+The launch type of the ECS service. Must be one of EC2 or FARGATE. When using FARGATE, you must set the network mode to awsvpc and configure it. When using EC2, you can configure the placement strategy using the variables placement_strategy_type, placement_strategy_field, placement_constraint_type, placement_constraint_expression. This variable is ignored if <a href="#capacity_provider_strategy"><code>capacity_provider_strategy</code></a> is provided.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="lb_target_group_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to apply to the elb target group. Each item in this list should be a map with the parameters key and value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="listener_rule_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Listener rules list required first to be provisioned before creation of ECS cluster.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="&quot;EC2&quot;"/>
 </HclListItem>
 
 <HclListItem name="max_number_of_tasks" requirement="optional" type="number">
@@ -1589,42 +1405,20 @@ The minimum number of ECS Task instances of the ECS Service to run. Auto scaling
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="ordered_placement_strategy" requirement="optional" type="list(object(…))">
-<HclListItemDescription>
-
-Service level strategy rules that are taken into consideration during task placement. List from top to bottom in order of precedence. Updates to this configuration will take effect next task deployment unless force_new_deployment is enabled. The maximum number of ordered_placement_strategy blocks is 5.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(object({
-    type  = string
-    field = string
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue>
-
-```hcl
-[
-  {
-    field = "cpu",
-    type = "binpack"
-  }
-]
-```
-
-</HclListItemDefaultValue>
-</HclListItem>
-
 <HclListItem name="placement_constraint_expression" requirement="optional" type="string">
 <HclListItemDefaultValue defaultValue="&quot;attribute:ecs.ami-id != &apos;ami-fake&apos;&quot;"/>
 </HclListItem>
 
 <HclListItem name="placement_constraint_type" requirement="optional" type="string">
 <HclListItemDefaultValue defaultValue="&quot;memberOf&quot;"/>
+</HclListItem>
+
+<HclListItem name="placement_strategy_field" requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="&quot;cpu&quot;"/>
+</HclListItem>
+
+<HclListItem name="placement_strategy_type" requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="&quot;binpack&quot;"/>
 </HclListItem>
 
 <HclListItem name="platform_version" requirement="optional" type="string">
@@ -1645,67 +1439,6 @@ Whether tags should be propogated to the tasks from the service or from the task
 <HclListItemDefaultValue defaultValue="&quot;SERVICE&quot;"/>
 </HclListItem>
 
-<HclListItem name="proxy_configuration" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Configuration block for the App Mesh proxy. The only supported value for `type` is 'APPMESH'. Use the name of the Envoy proxy container from `container_definitions` as the `container_name`. `properties` is a map of network configuration parameters to provide the Container Network Interface (CNI) plugin.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    type           = string
-    container_name = string
-    properties     = map(string)
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   proxy_configuration = {
-     type           = "APPMESH"
-     container_name = "applicationContainerName"
-     properties = {
-       AppPorts         = "8080"
-       EgressIgnoredIPs = "169.254.170.2,169.254.169.254"
-       IgnoredUID       = "1337"
-       ProxyEgressPort  = 15001
-       ProxyIngressPort = 15000
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="runtime_platform" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Define runtime platform options
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    operating_system_family = string
-    cpu_architecture        = string
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="service_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -1713,15 +1446,6 @@ A map of tags to apply to the ECS service. Each item in this list should be a ma
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="skip_load_balancer_check_arg" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to include check for ALB/NLB health checks. When set to true, no health check will be performed against the load balancer. This can be used to speed up deployments, but keep in mind that disabling health checks mean you won't have confirmed status of the service being operational. Defaults to false (health checks enabled).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="task_cpu" requirement="optional" type="number">
@@ -1740,15 +1464,6 @@ A map of tags to apply to the task definition. Each item in this list should be 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="task_ephemeral_storage" requirement="optional" type="number">
-<HclListItemDescription>
-
-Ephemeral storage size for Fargate tasks. See: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_definition_ephemeralStorage
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="task_execution_role_permissions_boundary_arn" requirement="optional" type="string">
@@ -1805,10 +1520,10 @@ Set this variable to 'true' to setup service discovery for the ECS service by au
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="volumes" requirement="optional" type="any">
+<HclListItem name="volumes" requirement="optional" type="list(any)">
 <HclListItemDescription>
 
-(Optional) A map of volume blocks that containers in your task may use. The key should be the name of the volume and the value should be a map compatible with https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-block-arguments, but not including the name parameter.
+(Optional) A list of volume blocks that containers in your task may use. Each item in the list should be a map compatible with https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#docker-volume-configuration-arguments.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1818,41 +1533,24 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
+<HclListItemDefaultValue defaultValue="[]"/>
 <HclGeneralListItem title="Examples">
 <details>
   <summary>Example</summary>
 
 
 ```hcl
-   volumes = {
-     datadog = {
+   volumes = [
+     {
+       name      = "datadog"
        host_path = "/var/run/datadog"
      }
-  
-     logs = {
-       host_path = "/var/log"
-       docker_volume_configuration = {
-         scope         = "shared"
-         autoprovision = true
-         driver        = "local"
-       }
-     }
-   }
+   ]
 
 ```
 </details>
 
 </HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="wait_for_steady_state" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, Terraform will wait for the service to reach a steady state—as in, the ECS tasks you wanted are actually deployed—before 'apply' is considered complete.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 </TabItem>
@@ -1891,7 +1589,7 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
 <HclListItem name="service_arn">
 </HclListItem>
 
-<HclListItem name="service_discovery_arn">
+<HclListItem name="service_autoscaling_iam_role_arn">
 </HclListItem>
 
 <HclListItem name="service_iam_role_arn">
@@ -1918,6 +1616,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "820f08e5fdcca61269a6477649e23f39"
+  "hash": "bc999480bb82a21bdd5d6819ce88d637"
 }
 ##DOCS-SOURCER-END -->

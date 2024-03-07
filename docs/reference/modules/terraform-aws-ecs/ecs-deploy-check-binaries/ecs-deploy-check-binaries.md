@@ -39,7 +39,7 @@ status. These binaries are designed to ensure the task has actually been schedul
 ### Requirements for running
 
 The host machine must have a valid python interpreter available in the `PATH` under the name `python`. The binary
-supports python versions  3.8, 3.9, 3.10 and 3.11.
+supports python versions 2.7, 3.5, 3.6, and 3.7.
 
 ## Using the check-ecs-service-deployment helper
 
@@ -91,8 +91,9 @@ versions of python and multiple OS platforms.
 
 To build the binary, you will need the following:
 
-*   A working python environment with python 3.8, 3.9, 3.10, and 3.11.
-*   tox and pex installed (use `pip3 install -r dev_requirements.txt`)
+*   A working python environment with both python2 and python3 setup (so that you can build binaries for both
+    environments)
+*   tox and pex installed (use `pip install -r dev_requirements.txt`)
 
 You can then build the binary using the helper script `build.sh` which will build the binary and copy it to the `bin`
 directory for distribution.
@@ -101,7 +102,7 @@ It is recommended to use [`pyenv`](https://github.com/pyenv/pyenv) to help setup
 interpreters. The latest binaries are built with the following python environment:
 
 ```bash
-pyenv shell 3.8.0 3.9.0 3.10.0 3.11.0
+pyenv shell 2.7.15 3.5.2 3.6.6 3.7.0
 ```
 
 
@@ -113,6 +114,6 @@ pyenv shell 3.8.0 3.9.0 3.10.0 3.11.0
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-deploy-check-binaries/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f714409a037ae9c69f9caa01141d1044"
+  "hash": "cee48b8e7341771db47e0e2013143ff9"
 }
 ##DOCS-SOURCER-END -->
