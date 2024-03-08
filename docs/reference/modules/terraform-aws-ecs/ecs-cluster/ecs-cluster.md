@@ -383,8 +383,8 @@ module "ecs_cluster" {
   cluster_instance_root_volume_size = 40
 
   # The volume type for the root volume for each of the ECS Cluster's EC2
-  # Instances. Can be standard, gp2, or io1
-  cluster_instance_root_volume_type = "gp2"
+  # Instances. Can be one of standard, gp2, gp3, io1, io2, sc1 or st1.
+  cluster_instance_root_volume_type = "gp3"
 
   # Value is the maximum bid price for the instance on the EC2 Spot Market.
   cluster_instance_spot_price = null
@@ -439,15 +439,6 @@ module "ecs_cluster" {
 
   # The desired HTTP PUT response hop limit for instance metadata requests.
   http_put_response_hop_limit = null
-
-  # Override default parameters for Instance Refresh. See
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group#preferences
-  # for available options
-  instance_refresh_preferences = {}
-
-  # Strategy to use for instance refresh. If not specified then instance_refresh
-  # is disabled
-  instance_refresh_strategy = null
 
   # Maximum amount of time, in seconds, that an instance can be in service,
   # values must be either equal to 0 or between 86400 and 31536000 seconds.
@@ -659,8 +650,8 @@ inputs = {
   cluster_instance_root_volume_size = 40
 
   # The volume type for the root volume for each of the ECS Cluster's EC2
-  # Instances. Can be standard, gp2, or io1
-  cluster_instance_root_volume_type = "gp2"
+  # Instances. Can be one of standard, gp2, gp3, io1, io2, sc1 or st1.
+  cluster_instance_root_volume_type = "gp3"
 
   # Value is the maximum bid price for the instance on the EC2 Spot Market.
   cluster_instance_spot_price = null
@@ -715,15 +706,6 @@ inputs = {
 
   # The desired HTTP PUT response hop limit for instance metadata requests.
   http_put_response_hop_limit = null
-
-  # Override default parameters for Instance Refresh. See
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group#preferences
-  # for available options
-  instance_refresh_preferences = {}
-
-  # Strategy to use for instance refresh. If not specified then instance_refresh
-  # is disabled
-  instance_refresh_strategy = null
 
   # Maximum amount of time, in seconds, that an instance can be in service,
   # values must be either equal to 0 or between 86400 and 31536000 seconds.
@@ -1125,10 +1107,10 @@ The size in GB of the root volume for each of the ECS Cluster's EC2 Instances
 <HclListItem name="cluster_instance_root_volume_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-The volume type for the root volume for each of the ECS Cluster's EC2 Instances. Can be standard, gp2, or io1
+The volume type for the root volume for each of the ECS Cluster's EC2 Instances. Can be one of standard, gp2, gp3, io1, io2, sc1 or st1.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;gp3&quot;"/>
 </HclListItem>
 
 <HclListItem name="cluster_instance_spot_price" requirement="optional" type="string">
@@ -1257,31 +1239,6 @@ The desired HTTP PUT response hop limit for instance metadata requests.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="instance_refresh_preferences" requirement="optional" type="map(any)">
-<HclListItemDescription>
-
-Override default parameters for Instance Refresh. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group#preferences for available options
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="instance_refresh_strategy" requirement="optional" type="string">
-<HclListItemDescription>
-
-Strategy to use for instance refresh. If not specified then instance_refresh is disabled
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="max_instance_lifetime" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1389,6 +1346,6 @@ Set this variable to true to enable the use of Instance Metadata Service Version
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a0e0e88e55065a4f7a7a6b0fa0fdf031"
+  "hash": "e69b75bcad4ed544926ac7a8dcd537bc"
 }
 ##DOCS-SOURCER-END -->
