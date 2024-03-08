@@ -269,10 +269,23 @@ module "ecs_service" {
   # var.discovery_use_public_dns is true.
   discovery_alias_record_evaluate_target_health = true
 
+  # Container name value, already specified in the task definition, to be used
+  # for your service discovery service. Required when using `SRV` record type.
+  discovery_container_name = null
+
+  # Port value, already specified in the task definition, to be used for your
+  # service discovery service. Required when using `SRV` record type.
+  discovery_container_port = null
+
   # The number of 30-second intervals that you want service discovery to wait
   # before it changes the health status of a service instance. Maximum value of
   # 10. Only used if var.use_service_discovery is true.
   discovery_custom_health_check_failure_threshold = 1
+
+  # The type of the resource, which indicates the value that Amazon Route 53
+  # returns in response to DNS queries corresponded to service discovery
+  # requests.
+  discovery_dns_record_type = "A"
 
   # The routing policy that you want to apply to all records that Route 53
   # creates when you register an instance and specify the service. Valid Values:
@@ -673,10 +686,23 @@ inputs = {
   # var.discovery_use_public_dns is true.
   discovery_alias_record_evaluate_target_health = true
 
+  # Container name value, already specified in the task definition, to be used
+  # for your service discovery service. Required when using `SRV` record type.
+  discovery_container_name = null
+
+  # Port value, already specified in the task definition, to be used for your
+  # service discovery service. Required when using `SRV` record type.
+  discovery_container_port = null
+
   # The number of 30-second intervals that you want service discovery to wait
   # before it changes the health status of a service instance. Maximum value of
   # 10. Only used if var.use_service_discovery is true.
   discovery_custom_health_check_failure_threshold = 1
+
+  # The type of the resource, which indicates the value that Amazon Route 53
+  # returns in response to DNS queries corresponded to service discovery
+  # requests.
+  discovery_dns_record_type = "A"
 
   # The routing policy that you want to apply to all records that Route 53
   # creates when you register an instance and specify the service. Valid Values:
@@ -1205,6 +1231,24 @@ Check alias target health before routing to the service. Only used if <a href="#
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="discovery_container_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Container name value, already specified in the task definition, to be used for your service discovery service. Required when using `SRV` record type.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="discovery_container_port" requirement="optional" type="string">
+<HclListItemDescription>
+
+Port value, already specified in the task definition, to be used for your service discovery service. Required when using `SRV` record type.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="discovery_custom_health_check_failure_threshold" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1212,6 +1256,15 @@ The number of 30-second intervals that you want service discovery to wait before
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
+
+<HclListItem name="discovery_dns_record_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of the resource, which indicates the value that Amazon Route 53 returns in response to DNS queries corresponded to service discovery requests.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;A&quot;"/>
 </HclListItem>
 
 <HclListItem name="discovery_dns_routing_policy" requirement="optional" type="string">
@@ -1918,6 +1971,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.15/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "820f08e5fdcca61269a6477649e23f39"
+  "hash": "083742ac43bf474b6a65c9ec63d72300"
 }
 ##DOCS-SOURCER-END -->
