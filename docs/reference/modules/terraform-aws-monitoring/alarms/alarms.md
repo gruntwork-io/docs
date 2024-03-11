@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Monitoring Modules" version="0.36.14" lastModifiedVersion="0.36.7"/>
+<VersionBadge repoTitle="AWS Monitoring Modules" version="0.36.14" lastModifiedVersion="0.36.13"/>
 
 # Alarm modules
 
 <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/tree/v0.36.14/modules/alarms" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.36.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.36.13" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains modules that configure [CloudWatch
 Alarms](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/AlarmThatSendsEmail.html) to go off and
@@ -64,6 +64,6 @@ Tags associated with a metric alarm are not propagated with the alarm payload wh
     "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/v0.36.14/modules/alarms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0eece6fd84cb51fb6e689fe6d6b47f18"
+  "hash": "c01cfa3074844f5ee8b298de15426b24"
 }
 ##DOCS-SOURCER-END -->
