@@ -51,7 +51,9 @@ The first step to using Gruntwork Landing Zone is to use AWS Control Tower to cr
       1. In the key policy tab, click edit
       <details>
       <summary>Screenshot</summary>
+
       ![Edit Key Policy](/img/devops-foundations/account/edit-key-policy.png)
+
       </details>
 
       2. Add the following config policy statement to the list of Statements, replacing `YOUR-HOME-REGION`, `YOUR-MANAGEMENT-ACCOUNT-ID` and `YOUR_KMS_KEY_ID` with values from your own account.
