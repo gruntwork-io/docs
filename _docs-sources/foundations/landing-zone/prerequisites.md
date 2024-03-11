@@ -8,9 +8,9 @@ The first step to using Gruntwork Landing Zone is to use AWS Control Tower to cr
    This account will become the root of your multi-account setup after enabling Control Tower.
    :::
 
-1. Log in as that administrator user.
+    1. Log in as that administrator user.
 
-2. Three(3) new unique email addresses for your logs, shared, and security (audit) accounts. It's important to note that these email addresses cannot be already associated with an AWS root login.
+2. You will need three new unique email addresses for your logs, shared, and security (audit) accounts. It's important to note that these email addresses cannot be already associated with an AWS root login.
 
 
 3. A home region selection where your Control Tower configuration will reside.
@@ -29,16 +29,22 @@ The first step to using Gruntwork Landing Zone is to use AWS Control Tower to cr
    2. Ensure you are in your home region and click **Create Key**
 
       1. Configure a key with the default parameters (shown in screenshot below)
-      <details>
-      <summary>Screenshot</summary>
-      ![KMS Key Defaults](/img/devops-foundations/account/kms-default.png)
-      </details>
+
+        <details>
+        <summary>Screenshot</summary>
+
+        ![KMS Key Defaults](/img/devops-foundations/account/kms-default.png)
+
+        </details>
 
       2. Give the key a descriptive alias like `control_tower_key`
-      <details>
-      <summary>Screenshot</summary>
-      ![KMS Key Alias](/img/devops-foundations/account/kms-name.png)
-      </details>
+
+        <details>
+          <summary>Screenshot</summary>
+
+          ![KMS Key Alias](/img/devops-foundations/account/kms-name.png)
+
+        </details>
 
       3. Select your admin user as a key administrator
 
@@ -49,10 +55,13 @@ The first step to using Gruntwork Landing Zone is to use AWS Control Tower to cr
    3. On the next screen, find the key you just created and click on it to edit the following:
 
       1. In the key policy tab, click edit
-      <details>
-      <summary>Screenshot</summary>
-      ![Edit Key Policy](/img/devops-foundations/account/edit-key-policy.png)
-      </details>
+
+        <details>
+        <summary>Screenshot</summary>
+
+        ![Edit Key Policy](/img/devops-foundations/account/edit-key-policy.png)
+
+        </details>
 
       2. Add the following config policy statement to the list of Statements, replacing `YOUR-HOME-REGION`, `YOUR-MANAGEMENT-ACCOUNT-ID` and `YOUR_KMS_KEY_ID` with values from your own account.
 
