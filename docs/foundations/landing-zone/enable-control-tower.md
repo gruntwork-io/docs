@@ -168,6 +168,6 @@ Control Tower is now configured! Next you should consider:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7a4c5e1b88017bfb25746f1122cc7920"
+  "hash": "7f0cf25bc7a6d0be668c9df811b82396"
 }
 ##DOCS-SOURCER-END -->
