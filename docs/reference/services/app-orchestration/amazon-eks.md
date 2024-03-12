@@ -557,8 +557,8 @@ module "eks_cluster" {
   # The URL from which to download Kubergrunt if it's not installed already. Use
   # to specify a version of kubergrunt that is compatible with your specified
   # kubernetes version. Ex.
-  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.13.1/kubergrunt_<platform>'
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.13.1/kubergrunt_<platform>"
+  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.14.2/kubergrunt_<platform>'
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.14.2/kubergrunt_<platform>"
 
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
@@ -1272,8 +1272,8 @@ inputs = {
   # The URL from which to download Kubergrunt if it's not installed already. Use
   # to specify a version of kubergrunt that is compatible with your specified
   # kubernetes version. Ex.
-  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.13.1/kubergrunt_<platform>'
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.13.1/kubergrunt_<platform>"
+  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.14.2/kubergrunt_<platform>'
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.14.2/kubergrunt_<platform>"
 
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
@@ -2961,10 +2961,10 @@ map(list(string))
 <HclListItem name="kubergrunt_download_url" requirement="optional" type="string">
 <HclListItemDescription>
 
-The URL from which to download Kubergrunt if it's not installed already. Use to specify a version of kubergrunt that is compatible with your specified kubernetes version. Ex. 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.13.1/kubergrunt_&lt;platform>'
+The URL from which to download Kubergrunt if it's not installed already. Use to specify a version of kubergrunt that is compatible with your specified kubernetes version. Ex. 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.14.2/kubergrunt_&lt;platform>'
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.13.1/kubergrunt_<platform>&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.14.2/kubergrunt_<platform>&quot;"/>
 </HclListItem>
 
 <HclListItem name="kubernetes_version" requirement="optional" type="string">
@@ -3650,6 +3650,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.2/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "398896e1059bc5b535fc7fc27a735c04"
+  "hash": "cee93ee11d3c2af6f0220cd54d7f0884"
 }
 ##DOCS-SOURCER-END -->
