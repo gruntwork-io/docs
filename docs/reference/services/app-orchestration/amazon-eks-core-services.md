@@ -149,8 +149,16 @@ module "eks_core_services" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # ARN of IAM Role to assume to create and control ALB's. This is useful if
+  # your VPC is shared from another account and needs to be created somewhere
+  # else.
+  alb_ingress_controller_alb_iam_role_arn = null
+
   # The version of the aws-load-balancer-controller helmchart to use.
   alb_ingress_controller_chart_version = "1.4.1"
+
+  # Tags to apply to all AWS resources managed by this controller
+  alb_ingress_controller_default_tags = {}
 
   # The repository of the aws-load-balancer-controller docker image that should
   # be deployed.
@@ -391,12 +399,21 @@ module "eks_core_services" {
   # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/classic-mode/configuration-file#config_input).
   fluent_bit_additional_inputs = ""
 
+  # Configurations for adjusting the default input settings. Set to null if you
+  # do not wish to use the default filter.
+  fluent_bit_default_input_configuration = {"db":"/var/log/flb_kube.db","dockerMode":"On","enabled":true,"memBufLimit":"5MB","parser":"docker","path":"/var/log/containers/*.log","refreshInterval":"10","skipLongLines":"On","tag":"kube.*"}
+
   # Can be used to provide additional kubernetes plugin configuration parameters
   # for the default kubernetes filter that is pre-configured in the
   # aws-for-fluent-bit Helm chart. This string should be formatted according to
   # Fluent Bit docs, as it will append to the default kubernetes filter
   # configuration.
   fluent_bit_extra_filters = ""
+
+  # Can be used to append to existing input. This string should be formatted
+  # according to Fluent Bit docs, as it will be injected directly into the
+  # fluent-bit.conf file.
+  fluent_bit_extra_inputs = ""
 
   # Additional output streams that fluent-bit should export logs to. This string
   # should be formatted according to the Fluent-bit docs
@@ -575,8 +592,16 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # ARN of IAM Role to assume to create and control ALB's. This is useful if
+  # your VPC is shared from another account and needs to be created somewhere
+  # else.
+  alb_ingress_controller_alb_iam_role_arn = null
+
   # The version of the aws-load-balancer-controller helmchart to use.
   alb_ingress_controller_chart_version = "1.4.1"
+
+  # Tags to apply to all AWS resources managed by this controller
+  alb_ingress_controller_default_tags = {}
 
   # The repository of the aws-load-balancer-controller docker image that should
   # be deployed.
@@ -817,12 +842,21 @@ inputs = {
   # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/classic-mode/configuration-file#config_input).
   fluent_bit_additional_inputs = ""
 
+  # Configurations for adjusting the default input settings. Set to null if you
+  # do not wish to use the default filter.
+  fluent_bit_default_input_configuration = {"db":"/var/log/flb_kube.db","dockerMode":"On","enabled":true,"memBufLimit":"5MB","parser":"docker","path":"/var/log/containers/*.log","refreshInterval":"10","skipLongLines":"On","tag":"kube.*"}
+
   # Can be used to provide additional kubernetes plugin configuration parameters
   # for the default kubernetes filter that is pre-configured in the
   # aws-for-fluent-bit Helm chart. This string should be formatted according to
   # Fluent Bit docs, as it will append to the default kubernetes filter
   # configuration.
   fluent_bit_extra_filters = ""
+
+  # Can be used to append to existing input. This string should be formatted
+  # according to Fluent Bit docs, as it will be injected directly into the
+  # fluent-bit.conf file.
+  fluent_bit_extra_inputs = ""
 
   # Additional output streams that fluent-bit should export logs to. This string
   # should be formatted according to the Fluent-bit docs
@@ -1020,6 +1054,15 @@ The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to Fa
 
 ### Optional
 
+<HclListItem name="alb_ingress_controller_alb_iam_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of IAM Role to assume to create and control ALB's. This is useful if your VPC is shared from another account and needs to be created somewhere else.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="alb_ingress_controller_chart_version" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1027,6 +1070,15 @@ The version of the aws-load-balancer-controller helmchart to use.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;1.4.1&quot;"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply to all AWS resources managed by this controller
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="alb_ingress_controller_docker_image_repo" requirement="optional" type="string">
@@ -1937,10 +1989,183 @@ Can be used to add more inputs. This string should be formatted according to Flu
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
+<HclListItem name="fluent_bit_default_input_configuration" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Configurations for adjusting the default input settings. Set to null if you do not wish to use the default filter.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    # This assumes the filter is being created (ie, not null), and provides a
+    # means to disable it.
+    enabled = bool
+
+    # This option allows a tag name associated to all records coming from this plugin.
+    # logs, defaults to "kube.*" 
+    tag = string
+
+    # This option allows to change the default path where the plugin will look for
+    # Docker containers logs, defaults to "/var/log/containers/*.log"
+    path = string
+
+    # This option allows to change the default database file where the plugin will
+    # store the state of the logs, defaults to "/var/log/flb_kube.db"
+    db = string
+
+    # This option allows to change the default parser used to read the Docker
+    # containers logs, defaults to "docker"
+    parser = string
+
+    # This option enabled or disables the Docker Mode, defaults to "On"
+    dockerMode = string
+
+    # This option allows to change the default memory limit used, defaults to "5MB"
+    memBufLimit = string
+
+    # This option allows to change the default number of lines to skip if a line
+    # is bigger than the buffer size, defaults to "On"
+    skipLongLines = string
+
+    # This option allows to change the default refresh interval to check the
+    # status of the monitored files, defaults to "10"
+    refreshInterval = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  db = "/var/log/flb_kube.db",
+  dockerMode = "On",
+  enabled = true,
+  memBufLimit = "5MB",
+  parser = "docker",
+  path = "/var/log/containers/*.log",
+  refreshInterval = "10",
+  skipLongLines = "On",
+  tag = "kube.*"
+}
+```
+
+</HclListItemDefaultValue>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     This option allows a tag name associated to all records coming from this plugin.
+     logs, defaults to "kube.*" 
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     This option allows to change the default path where the plugin will look for
+     Docker containers logs, defaults to "/var/log/containers/*.log"
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     This option allows to change the default database file where the plugin will
+     store the state of the logs, defaults to "/var/log/flb_kube.db"
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     This option allows to change the default parser used to read the Docker
+     containers logs, defaults to "docker"
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     This option enabled or disables the Docker Mode, defaults to "On"
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     This option allows to change the default memory limit used, defaults to "5MB"
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     This option allows to change the default number of lines to skip if a line
+     is bigger than the buffer size, defaults to "On"
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     This option allows to change the default refresh interval to check the
+     status of the monitored files, defaults to "10"
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     Default settings for input
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 <HclListItem name="fluent_bit_extra_filters" requirement="optional" type="string">
 <HclListItemDescription>
 
 Can be used to provide additional kubernetes plugin configuration parameters for the default kubernetes filter that is pre-configured in the aws-for-fluent-bit Helm chart. This string should be formatted according to Fluent Bit docs, as it will append to the default kubernetes filter configuration.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="fluent_bit_extra_inputs" requirement="optional" type="string">
+<HclListItemDescription>
+
+Can be used to append to existing input. This string should be formatted according to Fluent Bit docs, as it will be injected directly into the fluent-bit.conf file.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
@@ -2311,6 +2536,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.2/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9dec27da0261c011a12790da32040a5c"
+  "hash": "0bde1485803ba58751b77114f0b702ca"
 }
 ##DOCS-SOURCER-END -->
