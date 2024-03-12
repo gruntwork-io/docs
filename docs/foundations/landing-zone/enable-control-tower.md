@@ -127,9 +127,9 @@ Control Tower Creation will take around an hour to complete
 Now that Control Tower is enabled in your root account, there are a few configuration changes that need to be made to
 prepare for Gruntwork Landing Zone.
 
-1. Navigate to the [AWS Control Tower Organization Dashboard](https://console.aws.amazon.com/controltower/home/organization)
-
 1. [Turn off the default VPC created for new accounts](https://docs.aws.amazon.com/controltower/latest/userguide/configure-without-vpc.html#create-without-vpc). Gruntwork VPCs will be created for each account using terraform.
+
+1. Navigate to the [AWS Control Tower Organization Dashboard](https://console.aws.amazon.com/controltower/home/organization)
 
 1. Choose **Create Resources** and select `Create organizational unit`.
 
@@ -137,7 +137,7 @@ prepare for Gruntwork Landing Zone.
 
 1. Choose **Create Resources** again and select `Create account`
 
-1. Name the account `Shared` and set the Organizational Unit to `Prod`
+1. Name the account `Shared`, use the shared email address from the Prerequisites, and set the Organizational Unit to `Prod`
 
    :::tip
    The shared account is meant to house resources shared with all other accounts. Examples might include KMS Keys, AMIs,
@@ -152,7 +152,7 @@ prepare for Gruntwork Landing Zone.
 
    1. Switch to the `Users` tab, select your management user from the list and click **Next**
 
-   1. Select `AdministratorAccess` from the list of Permission Sets, then click **Next**
+   1. Select `AWSAdministratorAccess` from the list of Permission Sets, then click **Next**
    
    1. Click `Submit` to finish assigning access to your user
 
@@ -168,6 +168,6 @@ Control Tower is now configured! Next you should consider:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7a4c5e1b88017bfb25746f1122cc7920"
+  "hash": "7f0cf25bc7a6d0be668c9df811b82396"
 }
 ##DOCS-SOURCER-END -->
