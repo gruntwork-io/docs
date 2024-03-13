@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.110.2" lastModifiedVersion="0.107.7"/>
+<VersionBadge version="0.110.3" lastModifiedVersion="0.107.7"/>
 
 # Amazon ElastiCache for Memcached
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.2/modules/data-stores/memcached" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.3/modules/data-stores/memcached" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fmemcached" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -64,7 +64,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.2/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.3/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -72,7 +72,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.2/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.3/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -91,7 +91,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "memcached" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/memcached?ref=v0.110.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/memcached?ref=v0.110.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -168,9 +168,19 @@ module "memcached" {
   # Version number of memcached to use (e.g. 1.5.16).
   memcached_version = "1.5.16"
 
+  # Name of the parameter group to associate with this cache cluster. This can
+  # be used to configure custom settings for the cluster.
+  parameter_group_name = null
+
   # The port number on which each of the cache nodes will accept connections
   # (e.g. 11211).
   port = 11211
+
+  # A set of tags to set for the Security Group created as part of this module.
+  security_group_tags = {}
+
+  # A set of tags to set for the ElastiCache Replication Group.
+  tags = {}
 
 }
 
@@ -187,7 +197,7 @@ module "memcached" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/memcached?ref=v0.110.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/memcached?ref=v0.110.3"
 }
 
 inputs = {
@@ -267,9 +277,19 @@ inputs = {
   # Version number of memcached to use (e.g. 1.5.16).
   memcached_version = "1.5.16"
 
+  # Name of the parameter group to associate with this cache cluster. This can
+  # be used to configure custom settings for the cluster.
+  parameter_group_name = null
+
   # The port number on which each of the cache nodes will accept connections
   # (e.g. 11211).
   port = 11211
+
+  # A set of tags to set for the Security Group created as part of this module.
+  security_group_tags = {}
+
+  # A set of tags to set for the ElastiCache Replication Group.
+  tags = {}
 
 }
 
@@ -411,6 +431,15 @@ Version number of memcached to use (e.g. 1.5.16).
 <HclListItemDefaultValue defaultValue="&quot;1.5.16&quot;"/>
 </HclListItem>
 
+<HclListItem name="parameter_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name of the parameter group to associate with this cache cluster. This can be used to configure custom settings for the cluster.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="port" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -418,6 +447,24 @@ The port number on which each of the cache nodes will accept connections (e.g. 1
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="11211"/>
+</HclListItem>
+
+<HclListItem name="security_group_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A set of tags to set for the Security Group created as part of this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A set of tags to set for the ElastiCache Replication Group.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 </TabItem>
@@ -470,11 +517,11 @@ The configuration endpoint to allow host discovery.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.2/modules/data-stores/memcached/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.2/modules/data-stores/memcached/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.2/modules/data-stores/memcached/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.3/modules/data-stores/memcached/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.3/modules/data-stores/memcached/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.3/modules/data-stores/memcached/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5427cc3ede00f965fe0f26e397890e0d"
+  "hash": "827a308b321913d43f2e8ff43810634d"
 }
 ##DOCS-SOURCER-END -->
