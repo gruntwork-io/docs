@@ -71,6 +71,44 @@ Resources:
     Type: AWS::CloudFormation::WaitConditionHandle
 ```
 
+## Troubleshooting Tips
+
+### `ResourceInUseException`
+
+If you attempt to create/update/remove too many accounts from ControlTower at once, you may encounter an error in Service Catalog that looks like this:
+
+```log
+ResourceInUseException: Account Factory cannot complete an operation on this account, because the allowed maximum of 5 concurrent account operations is exceeded. Try again later.
+```
+
+This is usually accompanied by this module returning outputs that look like the following:
+
+```text
+"account_email" = "(could not get email associated with account)"
+```
+
+Unfortunately, this is an unrecoverable error from an AWS Provider perspective, as the provider has no insight into the fact that Service Catalog is in a bad state when it fails in this fashion, and retries will not help.
+
+The easiest way to recover from this error is to make a small update to one of the variables that are passed into this module. For example, if you are integrating with this module via the [../control-tower-multi-account-factory](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.6.2/modules/control-tower-multi-account-factory) module, you could change the value of something in the relevant file in the directory referenced by the  `account_requests_folder`, then revert your change.
+
+e.g.
+
+```yml
+sso_user_first_name: "John"
+sso_user_last_name: "Doe"
+```
+
+to
+
+```yml
+sso_user_first_name: "Jane"
+sso_user_last_name: "Doe"
+```
+
+Perform an apply, then revert the change for another apply.
+
+This workaround should only be done to correct up to five Service Catalog provisioned products at a time.
+
 ## Sample Usage
 
 <Tabs>
@@ -543,6 +581,6 @@ The URL of the AWS SSO login page for this account
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.6.2/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e1c0b651c311f269024c155697bee067"
+  "hash": "54d038dca4c2ab716b68d0eeab65b249"
 }
 ##DOCS-SOURCER-END -->
