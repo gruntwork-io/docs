@@ -101,3 +101,17 @@ See the usage instructions with `yarn sidebar --help` to learn how to add a
 back button or specify an output file. The resulting file should be placed in
 the `sidebars/` directory. You'll also need to require this file in
 `sidebars.js`, and then re-run `yarn start` to see your changes.
+
+
+# Pull Request Flows
+There are two main categories of the Automated PRs that get opened in the Docs repostory:
+* PRs for Pull requests in module repositories - have "Automated Preview" title
+* PRs for Releases in module repositories - have "Automated Update" title
+
+## Automated Preview PRs
+The "Automated Preview" PRs are meant for the developers of different modules to be responsible for their docs while developing so they can ensure correctness. However, they are not intended to be merged since Docs are tied to versions of the modules
+
+When the Pull request in a module repository is closed or merged, the associated "Automated Preview" docs PR is automatically closed.
+
+## Automated Updated PRs
+When a module repository gets a new release, the "Automated Update" pull request is opened on the docs site and that is what is intended to be merged and eventually released to the Docs site.
