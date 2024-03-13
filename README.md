@@ -103,7 +103,7 @@ the `sidebars/` directory. You'll also need to require this file in
 `sidebars.js`, and then re-run `yarn start` to see your changes.
 
 
-# Pull Request Flows
+# Automated Pull Request Flows
 There are two main categories of the Automated PRs that get opened in the Docs repostory:
 * PRs for Pull requests in module repositories - have "Automated Preview" title
 * PRs for Releases in module repositories - have "Automated Update" title
@@ -115,3 +115,6 @@ When the Pull request in a module repository is closed or merged, the associated
 
 ## Automated Updated PRs
 When a module repository gets a new release, the "Automated Update" pull request is opened on the docs site and that is what is intended to be merged and eventually released to the Docs site.
+
+## Automation Setup
+The automation of the PRs is accomplished via docs-sourcer ([docs](https://github.com/gruntwork-io-team/dogfood-infrastructure-live/blob/main/OPERATOR.md#docs-sourcer) - [repo](https://github.com/gruntwork-io/docs-sourcer)), ultimately its a lambda function receiving GitHub webhooks.
