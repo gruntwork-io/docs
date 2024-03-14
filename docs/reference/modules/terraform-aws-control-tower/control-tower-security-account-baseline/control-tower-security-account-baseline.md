@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="0.6.2" lastModifiedVersion="0.5.5"/>
+<VersionBadge repoTitle="Control Tower" version="0.7.0" lastModifiedVersion="0.6.3"/>
 
 # Account Baseline Security with Control Tower Integration
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.6.2/modules/landingzone/control-tower-security-account-baseline" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.0/modules/landingzone/control-tower-security-account-baseline" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.5.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.6.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 A CIS compliant security baseline for AWS Landing Zone for configuring the security account (the one where all your IAM
 users and IAM groups are defined), as part of a Control Tower integration. This module fills in features NOT supported
@@ -34,7 +34,7 @@ by Control Tower, including setting up Amazon Guard Duty, Macie, IAM users, IAM 
 
 module "control_tower_security_account_baseline" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v0.6.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v0.7.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -204,11 +204,66 @@ module "control_tower_security_account_baseline" {
   # false (default), the AWS-managed aws/ebs key will be used.
   ebs_use_existing_kms_keys = false
 
+  # When true, enable the Encrypted Volumes check in AWS Config. This check
+  # identifies EBS volumes that are not encrypted. This check is useful for
+  # identifying and encrypting EBS volumes, which can help reduce the risk of
+  # unauthorized access to your AWS resources.
+  enable_encrypted_volumes = false
+
   # When true, create an Open ID Connect Provider that GitHub actions can use to
   # assume IAM roles in the account. Refer to
   # https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
   # for more information.
   enable_github_actions_access = false
+
+  # When true, enable the IAM Password Policy check in AWS Config. This check
+  # identifies IAM users whose password policy does not meet the specified
+  # requirements. This check is useful for identifying and enforcing a password
+  # policy for IAM users, which can help reduce the risk of unauthorized access
+  # to your AWS resources.
+  enable_iam_password_policy = false
+
+  # When true, enable the IAM User Unused Credentials check in AWS Config. This
+  # check identifies IAM users who have not used their credentials for a
+  # specified number of days. This check is useful for identifying and removing
+  # unused IAM users, which can help reduce the risk of unauthorized access to
+  # your AWS resources. Note that this is required for the
+  # `revoke_unused_iam_credentials` module, which is provisioned here and is the
+  # only reason this is set to true. The current recommended way to handle
+  # propagating Config rules in AWS is to use Control Tower Controls.
+  enable_iam_user_unused_credentials_check = true
+
+  # When true, enable the Insecure Security Group Rules check in AWS Config.
+  # This check identifies security groups that allow unrestricted inbound
+  # traffic. This check is useful for identifying and removing insecure security
+  # group rules, which can help reduce the risk of unauthorized access to your
+  # AWS resources.
+  enable_insecure_sg_rules = false
+
+  # When true, enable the RDS Storage Encrypted check in AWS Config. This check
+  # identifies RDS instances that are not encrypted. This check is useful for
+  # identifying and encrypting RDS instances, which can help reduce the risk of
+  # unauthorized access to your AWS resources.
+  enable_rds_storage_encrypted = false
+
+  # When true, enable the Root Account MFA check in AWS Config. This check
+  # identifies the AWS account root user that does not have multi-factor
+  # authentication (MFA) enabled. This check is useful for identifying and
+  # enabling MFA for the root account, which can help reduce the risk of
+  # unauthorized access to your AWS resources.
+  enable_root_account_mfa = false
+
+  # When true, enable the S3 Bucket Public Read Prohibited check in AWS Config.
+  # This check identifies S3 buckets that allow public read access. This check
+  # is useful for identifying and removing public read access from S3 buckets,
+  # which can help reduce the risk of unauthorized access to your AWS resources.
+  enable_s3_bucket_public_read_prohibited = false
+
+  # When true, enable the S3 Bucket Public Write Prohibited check in AWS Config.
+  # This check identifies S3 buckets that allow public write access. This check
+  # is useful for identifying and removing public write access from S3 buckets,
+  # which can help reduce the risk of unauthorized access to your AWS resources.
+  enable_s3_bucket_public_write_prohibited = false
 
   # If set to true, when you run 'terraform destroy', delete all objects from
   # the bucket macie_bucket_name so that the bucket can be destroyed without
@@ -684,7 +739,7 @@ module "control_tower_security_account_baseline" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v0.6.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v0.7.0"
 }
 
 inputs = {
@@ -857,11 +912,66 @@ inputs = {
   # false (default), the AWS-managed aws/ebs key will be used.
   ebs_use_existing_kms_keys = false
 
+  # When true, enable the Encrypted Volumes check in AWS Config. This check
+  # identifies EBS volumes that are not encrypted. This check is useful for
+  # identifying and encrypting EBS volumes, which can help reduce the risk of
+  # unauthorized access to your AWS resources.
+  enable_encrypted_volumes = false
+
   # When true, create an Open ID Connect Provider that GitHub actions can use to
   # assume IAM roles in the account. Refer to
   # https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
   # for more information.
   enable_github_actions_access = false
+
+  # When true, enable the IAM Password Policy check in AWS Config. This check
+  # identifies IAM users whose password policy does not meet the specified
+  # requirements. This check is useful for identifying and enforcing a password
+  # policy for IAM users, which can help reduce the risk of unauthorized access
+  # to your AWS resources.
+  enable_iam_password_policy = false
+
+  # When true, enable the IAM User Unused Credentials check in AWS Config. This
+  # check identifies IAM users who have not used their credentials for a
+  # specified number of days. This check is useful for identifying and removing
+  # unused IAM users, which can help reduce the risk of unauthorized access to
+  # your AWS resources. Note that this is required for the
+  # `revoke_unused_iam_credentials` module, which is provisioned here and is the
+  # only reason this is set to true. The current recommended way to handle
+  # propagating Config rules in AWS is to use Control Tower Controls.
+  enable_iam_user_unused_credentials_check = true
+
+  # When true, enable the Insecure Security Group Rules check in AWS Config.
+  # This check identifies security groups that allow unrestricted inbound
+  # traffic. This check is useful for identifying and removing insecure security
+  # group rules, which can help reduce the risk of unauthorized access to your
+  # AWS resources.
+  enable_insecure_sg_rules = false
+
+  # When true, enable the RDS Storage Encrypted check in AWS Config. This check
+  # identifies RDS instances that are not encrypted. This check is useful for
+  # identifying and encrypting RDS instances, which can help reduce the risk of
+  # unauthorized access to your AWS resources.
+  enable_rds_storage_encrypted = false
+
+  # When true, enable the Root Account MFA check in AWS Config. This check
+  # identifies the AWS account root user that does not have multi-factor
+  # authentication (MFA) enabled. This check is useful for identifying and
+  # enabling MFA for the root account, which can help reduce the risk of
+  # unauthorized access to your AWS resources.
+  enable_root_account_mfa = false
+
+  # When true, enable the S3 Bucket Public Read Prohibited check in AWS Config.
+  # This check identifies S3 buckets that allow public read access. This check
+  # is useful for identifying and removing public read access from S3 buckets,
+  # which can help reduce the risk of unauthorized access to your AWS resources.
+  enable_s3_bucket_public_read_prohibited = false
+
+  # When true, enable the S3 Bucket Public Write Prohibited check in AWS Config.
+  # This check identifies S3 buckets that allow public write access. This check
+  # is useful for identifying and removing public write access from S3 buckets,
+  # which can help reduce the risk of unauthorized access to your AWS resources.
+  enable_s3_bucket_public_write_prohibited = false
 
   # If set to true, when you run 'terraform destroy', delete all objects from
   # the bucket macie_bucket_name so that the bucket can be destroyed without
@@ -1709,10 +1819,82 @@ If set to true, the KMS Customer Managed Keys (CMK) with the name in <a href="#e
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="enable_encrypted_volumes" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, enable the Encrypted Volumes check in AWS Config. This check identifies EBS volumes that are not encrypted. This check is useful for identifying and encrypting EBS volumes, which can help reduce the risk of unauthorized access to your AWS resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="enable_github_actions_access" requirement="optional" type="bool">
 <HclListItemDescription>
 
 When true, create an Open ID Connect Provider that GitHub actions can use to assume IAM roles in the account. Refer to https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services for more information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_iam_password_policy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, enable the IAM Password Policy check in AWS Config. This check identifies IAM users whose password policy does not meet the specified requirements. This check is useful for identifying and enforcing a password policy for IAM users, which can help reduce the risk of unauthorized access to your AWS resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_iam_user_unused_credentials_check" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, enable the IAM User Unused Credentials check in AWS Config. This check identifies IAM users who have not used their credentials for a specified number of days. This check is useful for identifying and removing unused IAM users, which can help reduce the risk of unauthorized access to your AWS resources. Note that this is required for the `revoke_unused_iam_credentials` module, which is provisioned here and is the only reason this is set to true. The current recommended way to handle propagating Config rules in AWS is to use Control Tower Controls.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_insecure_sg_rules" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, enable the Insecure Security Group Rules check in AWS Config. This check identifies security groups that allow unrestricted inbound traffic. This check is useful for identifying and removing insecure security group rules, which can help reduce the risk of unauthorized access to your AWS resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_rds_storage_encrypted" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, enable the RDS Storage Encrypted check in AWS Config. This check identifies RDS instances that are not encrypted. This check is useful for identifying and encrypting RDS instances, which can help reduce the risk of unauthorized access to your AWS resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_root_account_mfa" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, enable the Root Account MFA check in AWS Config. This check identifies the AWS account root user that does not have multi-factor authentication (MFA) enabled. This check is useful for identifying and enabling MFA for the root account, which can help reduce the risk of unauthorized access to your AWS resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_s3_bucket_public_read_prohibited" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, enable the S3 Bucket Public Read Prohibited check in AWS Config. This check identifies S3 buckets that allow public read access. This check is useful for identifying and removing public read access from S3 buckets, which can help reduce the risk of unauthorized access to your AWS resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_s3_bucket_public_write_prohibited" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, enable the S3 Bucket Public Write Prohibited check in AWS Config. This check identifies S3 buckets that allow public write access. This check is useful for identifying and removing public write access from S3 buckets, which can help reduce the risk of unauthorized access to your AWS resources.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -3034,11 +3216,11 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.6.2/modules/control-tower-security-account-baseline/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.6.2/modules/control-tower-security-account-baseline/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.6.2/modules/control-tower-security-account-baseline/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.0/modules/control-tower-security-account-baseline/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.0/modules/control-tower-security-account-baseline/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.0/modules/control-tower-security-account-baseline/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b6fa76c7549d5c90c1326cbeed210bd1"
+  "hash": "330030bc050023d3e96d3093e8630328"
 }
 ##DOCS-SOURCER-END -->
