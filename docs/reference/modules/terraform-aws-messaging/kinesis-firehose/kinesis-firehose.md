@@ -22,9 +22,9 @@ an [Amazon Kinesis Data Firehose](https://docs.aws.amazon.com/firehose/latest/de
 
 ## Destination to Amazon S3
 
-This module currently only supports a fully managed service for delivering real-time streaming data to Amazon S3. Use
+This module currently only supports a fully managed service for delivering real-time streaming data to Amazon S3 and also deployed lambda for data transformation. Use
 the `var.s3_bucket_arn` to specify the s3 destination path and the `var.kinesis_stream_arn` to specify the kinesis data
-stream.
+stream, we also have a Map variable `var.lambda_function_attributes`which provides a way to configure the attributes for data transformation lambda.
 
 ## Sample Usage
 
@@ -53,6 +53,16 @@ module "kinesis_firehose" {
 
   # The ARN of the S3 bucket you want to export the data to.
   s3_bucket_arn = <string>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # All required lambda function attributes.
+  lambda_processing_attributes = {"lambda_function_directory":" ","lambda_function_handler":"lambda-function.lambda_handler","lambda_function_name":"data-transformation-lambda","lambda_function_runtime":"python3.8"}
+
+  # To enable lambda processing of messages from Kinesis
+  use_lambda_processing = false
 
 }
 
@@ -86,6 +96,16 @@ inputs = {
 
   # The ARN of the S3 bucket you want to export the data to.
   s3_bucket_arn = <string>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # All required lambda function attributes.
+  lambda_processing_attributes = {"lambda_function_directory":" ","lambda_function_handler":"lambda-function.lambda_handler","lambda_function_name":"data-transformation-lambda","lambda_function_runtime":"python3.8"}
+
+  # To enable lambda processing of messages from Kinesis
+  use_lambda_processing = false
 
 }
 
@@ -129,6 +149,49 @@ The ARN of the S3 bucket you want to export the data to.
 </HclListItemDescription>
 </HclListItem>
 
+### Optional
+
+<HclListItem name="lambda_processing_attributes" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+All required lambda function attributes.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    lambda_function_name     = string
+    lambda_function_handler  = string
+    lambda_function_runtime  = string
+    lambda_function_directory = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  lambda_function_directory = " ",
+  lambda_function_handler = "lambda-function.lambda_handler",
+  lambda_function_name = "data-transformation-lambda",
+  lambda_function_runtime = "python3.8"
+}
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="use_lambda_processing" requirement="optional" type="bool">
+<HclListItemDescription>
+
+To enable lambda processing of messages from Kinesis
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -148,6 +211,22 @@ Name of the Kinesis Firehose delivery stream.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="lambda_processing_arn">
+<HclListItemDescription>
+
+ARN of the lambda processing function
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="lambda_processing_function_name">
+<HclListItemDescription>
+
+Name of lambda processing function
+
+</HclListItemDescription>
+</HclListItem>
+
 </TabItem>
 </Tabs>
 
@@ -160,6 +239,6 @@ Name of the Kinesis Firehose delivery stream.
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/kinesis-firehose/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "234a6837df98457258a75b3cc8da6092"
+  "hash": "b76102de8a9a29d63711e75e52d32150"
 }
 ##DOCS-SOURCER-END -->
