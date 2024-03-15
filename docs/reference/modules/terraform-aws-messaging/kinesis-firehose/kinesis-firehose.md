@@ -48,14 +48,6 @@ module "kinesis_firehose" {
   # The ARN of the kinesis data stream.
   kinesis_stream_arn = <string>
 
-  # All required lambda function attributes.
-  lambda_processing_attributes = <object(
-    lambda_function_name     = string
-    lambda_function_handler  = string
-    lambda_function_runtime  = string
-    lambda_function_directory = string
-  )>
-
   # The name of the Kinesis Data Firehose.
   name = <string>
 
@@ -65,6 +57,9 @@ module "kinesis_firehose" {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # All required lambda function attributes.
+  lambda_processing_attributes = null
 
   # To enable lambda processing of messages from Kinesis
   use_lambda_processing = false
@@ -96,14 +91,6 @@ inputs = {
   # The ARN of the kinesis data stream.
   kinesis_stream_arn = <string>
 
-  # All required lambda function attributes.
-  lambda_processing_attributes = <object(
-    lambda_function_name     = string
-    lambda_function_handler  = string
-    lambda_function_runtime  = string
-    lambda_function_directory = string
-  )>
-
   # The name of the Kinesis Data Firehose.
   name = <string>
 
@@ -113,6 +100,9 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # All required lambda function attributes.
+  lambda_processing_attributes = null
 
   # To enable lambda processing of messages from Kinesis
   use_lambda_processing = false
@@ -143,26 +133,6 @@ The ARN of the kinesis data stream.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="lambda_processing_attributes" requirement="required" type="object(…)">
-<HclListItemDescription>
-
-All required lambda function attributes.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    lambda_function_name     = string
-    lambda_function_handler  = string
-    lambda_function_runtime  = string
-    lambda_function_directory = string
-  })
-```
-
-</HclListItemTypeDetails>
-</HclListItem>
-
 <HclListItem name="name" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -180,6 +150,27 @@ The ARN of the S3 bucket you want to export the data to.
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="lambda_processing_attributes" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+All required lambda function attributes.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    lambda_function_name      = string
+    lambda_function_handler   = string
+    lambda_function_runtime   = string
+    lambda_function_directory = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
 <HclListItem name="use_lambda_processing" requirement="optional" type="bool">
 <HclListItemDescription>
@@ -237,6 +228,6 @@ Name of lambda processing function
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/kinesis-firehose/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f8d661099c38ca1b4969cddadd1f80ed"
+  "hash": "99614f53ec8450b365962e336f4551e6"
 }
 ##DOCS-SOURCER-END -->
