@@ -57,8 +57,8 @@ This operation removes an AWS account from AWS Control Tower but does _not_ dele
 
 1. Close the account in AWS Organizations.
     1. Authenticate to your Management Account's AWS console.
-    1. Visit the AWS Organizations service dashboard.
-    1. For each account targeted for deletion, select the "close" option. This will initiate the process of closing the account, which will take 90 days to complete.
+    1. Visit the **AWS Organizations** service dashboard.
+    1. For each account targeted for deletion, select the **close** option. This will initiate the process of closing the account, which will take 90 days to complete.
 
     :::tip
     If you run into any trouble while closing your account(s), visit [this helpful GitHub discussion](https://github.com/orgs/gruntwork-io/discussions/797) for troubleshooting tips.
@@ -79,6 +79,6 @@ After you have made your modifications, push your branch and create a pull reque
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0f4db4697ea33331fef7fd5b8da4a0b1"
+  "hash": "4c768cfcdec825ec87bd7f8d0f7973c2"
 }
 ##DOCS-SOURCER-END -->
