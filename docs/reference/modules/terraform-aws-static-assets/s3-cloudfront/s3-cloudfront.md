@@ -281,6 +281,10 @@ module "s_3_cloudfront" {
   # The key is the tag name and the value is the tag value.
   custom_tags = {}
 
+  # Unique identifier of the cache policy that is attached to the default cache
+  # behavior. If this var is enabled, forwarded_values will not be set.
+  default_cache_policy_id = null
+
   # A list of existing CloudFront functions to associate with the default cached
   # behavior. CloudFront functions are lightweight alternatives to Lambda for
   # high-scale, latency sensitive CDN customizations
@@ -591,6 +595,10 @@ inputs = {
   # A map of custom tags to apply to the S3 bucket and Cloudfront Distribution.
   # The key is the tag name and the value is the tag value.
   custom_tags = {}
+
+  # Unique identifier of the cache policy that is attached to the default cache
+  # behavior. If this var is enabled, forwarded_values will not be set.
+  default_cache_policy_id = null
 
   # A list of existing CloudFront functions to associate with the default cached
   # behavior. CloudFront functions are lightweight alternatives to Lambda for
@@ -1074,6 +1082,15 @@ A map of custom tags to apply to the S3 bucket and Cloudfront Distribution. The 
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="default_cache_policy_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+Unique identifier of the cache policy that is attached to the default cache behavior. If this var is enabled, forwarded_values will not be set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="default_function_associations" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
@@ -1487,6 +1504,6 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.1/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a79156dc082617bf9d6d865091d8116a"
+  "hash": "3179fc71d4a3b02988f52451fad719e8"
 }
 ##DOCS-SOURCER-END -->
