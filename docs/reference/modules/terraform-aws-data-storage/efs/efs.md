@@ -144,6 +144,9 @@ module "efs" {
   # https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes
   performance_mode = "generalPurpose"
 
+  # Indicates whether replication overwrite protection is enabled
+  protection_replication_overwrite = false
+
   # The throughput, measured in MiB/s, that you want to provision for the file
   # system. Only applicable with "throughput_mode" set to "provisioned".
   provisioned_throughput_in_mibps = null
@@ -155,6 +158,14 @@ module "efs" {
   # "provisioned". When using "provisioned", also set
   # "provisioned_throughput_in_mibps".
   throughput_mode = "bursting"
+
+  # If specified, files will be transitioned to the archive storage class after
+  # the designated time. Requires `var.transition_to_ia`, `elastic` in
+  # `var.throughput_mode` and `generalPurpose` in  `performance_mode`. Valid
+  # values: AFTER_1_DAY, AFTER_7_DAYS, AFTER_14_DAYS, AFTER_30_DAYS,
+  # AFTER_60_DAYS, AFTER_90_DAYS, AFTER_180_DAYS, AFTER_270_DAYS, or
+  # AFTER_365_DAYS.
+  transition_to_archive = null
 
   # If specified, files will be transitioned to the IA storage class after the
   # designated time. Valid values: AFTER_7_DAYS, AFTER_14_DAYS, AFTER_30_DAYS,
@@ -249,6 +260,9 @@ inputs = {
   # https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes
   performance_mode = "generalPurpose"
 
+  # Indicates whether replication overwrite protection is enabled
+  protection_replication_overwrite = false
+
   # The throughput, measured in MiB/s, that you want to provision for the file
   # system. Only applicable with "throughput_mode" set to "provisioned".
   provisioned_throughput_in_mibps = null
@@ -260,6 +274,14 @@ inputs = {
   # "provisioned". When using "provisioned", also set
   # "provisioned_throughput_in_mibps".
   throughput_mode = "bursting"
+
+  # If specified, files will be transitioned to the archive storage class after
+  # the designated time. Requires `var.transition_to_ia`, `elastic` in
+  # `var.throughput_mode` and `generalPurpose` in  `performance_mode`. Valid
+  # values: AFTER_1_DAY, AFTER_7_DAYS, AFTER_14_DAYS, AFTER_30_DAYS,
+  # AFTER_60_DAYS, AFTER_90_DAYS, AFTER_180_DAYS, AFTER_270_DAYS, or
+  # AFTER_365_DAYS.
+  transition_to_archive = null
 
   # If specified, files will be transitioned to the IA storage class after the
   # designated time. Valid values: AFTER_7_DAYS, AFTER_14_DAYS, AFTER_30_DAYS,
@@ -453,6 +475,15 @@ The file system performance mode. Can be either 'generalPurpose' or 'maxIO'. For
 <HclListItemDefaultValue defaultValue="&quot;generalPurpose&quot;"/>
 </HclListItem>
 
+<HclListItem name="protection_replication_overwrite" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Indicates whether replication overwrite protection is enabled
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="provisioned_throughput_in_mibps" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -478,6 +509,15 @@ Throughput mode for the file system. Valid values: 'bursting', 'provisioned'. Wh
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;bursting&quot;"/>
+</HclListItem>
+
+<HclListItem name="transition_to_archive" requirement="optional" type="string">
+<HclListItemDescription>
+
+If specified, files will be transitioned to the archive storage class after the designated time. Requires `<a href="#transition_to_ia"><code>transition_to_ia</code></a>`, `elastic` in `<a href="#throughput_mode"><code>throughput_mode</code></a>` and `generalPurpose` in  `performance_mode`. Valid values: AFTER_1_DAY, AFTER_7_DAYS, AFTER_14_DAYS, AFTER_30_DAYS, AFTER_60_DAYS, AFTER_90_DAYS, AFTER_180_DAYS, AFTER_270_DAYS, or AFTER_365_DAYS.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="transition_to_ia" requirement="optional" type="string">
@@ -552,6 +592,6 @@ The IDs of the security groups created for the file system.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/efs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "daa1ae5fa01648125fb8e5d342f096cb"
+  "hash": "3dd715a844dff8e2137fd5e699819553"
 }
 ##DOCS-SOURCER-END -->
