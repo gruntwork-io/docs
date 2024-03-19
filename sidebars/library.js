@@ -35,6 +35,7 @@ const sidebar = [
           "library/usage/tfc-integration",
           "library/usage/contributing",
           "library/usage/self-hosting",
+          "library/usage/opentofu-terraform-compatibility"
         ],
       },
       {
