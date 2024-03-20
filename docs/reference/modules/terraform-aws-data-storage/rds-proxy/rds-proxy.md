@@ -1,5 +1,5 @@
 ---
-title: "How to use RDS Proxy Module"
+title: "Testing the connection to RDS Proxy"
 hide_title: true
 ---
 
@@ -9,22 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.32" lastModifiedVersion="0.31.4"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.33" lastModifiedVersion="0.33"/>
 
-# How to use RDS Proxy Module
+# Testing the connection to RDS Proxy
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/rds-proxy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.33/modules/rds-proxy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.31.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.33" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-In order to setup a RDS proxy, you need to setup database credentials in AWS Secrets Manager and pass it to this module.
-Refer to the [examples/rds-proxy](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/examples/rds-proxy) or https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy-setup.html#rds-proxy-secrets-arns for more information.
-
-Setting up a RDS proxy requires the following steps, which is handled by this module:
-
-*   Setting up network prerequisites
-*   Setting up database credentials
-*   Setting up AWS Identity and Access Management (IAM) policies
+You connect to an RDS DB instance through a proxy in generally the same way as you connect directly to the database. The main difference is that you specify the proxy endpoint instead of the DB endpoint. When using this module, the proxy endpoint will be avaialable from the [`rds_proxy_endpoint`](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.33/modules/rds-proxy/outputs.tf#L5) output variable. Note that RDS Proxy [can't be publicly accessible](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy.limitations), so you might need to use provision EC2 instance inside the same VPC to test the connection.
 
 ## Sample Usage
 
@@ -39,7 +32,7 @@ Setting up a RDS proxy requires the following steps, which is handled by this mo
 
 module "rds_proxy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-proxy?ref=v0.32"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-proxy?ref=v0.33"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -55,9 +48,6 @@ module "rds_proxy" {
     max_idle_connections_percent = number
     session_pinning_filters      = list(string)
   )>
-
-  # The DB instance identifier
-  db_instance_identifier = <string>
 
   # The DB secret should contain username and password for the DB as a key-value
   # pairs. Otherwise, you can insert plaintext secret with the format should
@@ -90,6 +80,14 @@ module "rds_proxy" {
   # Should typically be the CIDR blocks of the private app subnet in this VPC
   # plus the private subnet in the mgmt VPC.
   allow_connections_from_cidr_blocks = []
+
+  # The DB cluster identifier. Note that one of `db_instance_identifier` or
+  # `db_cluster_identifier` is required.
+  db_cluster_identifier = null
+
+  # The DB instance identifier. Note that one of `db_instance_identifier` or
+  # `db_cluster_identifier` is required.
+  db_instance_identifier = null
 
   # The number of seconds that a connection to the proxy can be inactive before
   # the proxy disconnects it. You can set this value higher or lower than the
@@ -119,7 +117,7 @@ module "rds_proxy" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-proxy?ref=v0.32"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-proxy?ref=v0.33"
 }
 
 inputs = {
@@ -138,9 +136,6 @@ inputs = {
     max_idle_connections_percent = number
     session_pinning_filters      = list(string)
   )>
-
-  # The DB instance identifier
-  db_instance_identifier = <string>
 
   # The DB secret should contain username and password for the DB as a key-value
   # pairs. Otherwise, you can insert plaintext secret with the format should
@@ -173,6 +168,14 @@ inputs = {
   # Should typically be the CIDR blocks of the private app subnet in this VPC
   # plus the private subnet in the mgmt VPC.
   allow_connections_from_cidr_blocks = []
+
+  # The DB cluster identifier. Note that one of `db_instance_identifier` or
+  # `db_cluster_identifier` is required.
+  db_cluster_identifier = null
+
+  # The DB instance identifier. Note that one of `db_instance_identifier` or
+  # `db_cluster_identifier` is required.
+  db_instance_identifier = null
 
   # The number of seconds that a connection to the proxy can be inactive before
   # the proxy disconnects it. You can set this value higher or lower than the
@@ -226,14 +229,6 @@ object({
 </HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="db_instance_identifier" requirement="required" type="string">
-<HclListItemDescription>
-
-The DB instance identifier
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="db_secret_arn" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -285,6 +280,24 @@ A list of CIDR-formatted IP address ranges that can connect to this DB. Should t
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="db_cluster_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+The DB cluster identifier. Note that one of `db_instance_identifier` or `db_cluster_identifier` is required.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="db_instance_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+The DB instance identifier. Note that one of `db_instance_identifier` or `db_cluster_identifier` is required.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="idle_client_timeout" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -328,11 +341,11 @@ The number of seconds that a connection to the proxy can be inactive before the 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/rds-proxy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/rds-proxy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/rds-proxy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.33/modules/rds-proxy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.33/modules/rds-proxy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.33/modules/rds-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6c6b0a034f8dc26300e781a667949399"
+  "hash": "bc67df6a168730e8fb54fc300c4a1f11"
 }
 ##DOCS-SOURCER-END -->
