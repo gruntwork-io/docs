@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="0.6.2" lastModifiedVersion="0.6.0"/>
+<VersionBadge repoTitle="Control Tower" version="0.7.0" lastModifiedVersion="0.6.4"/>
 
 # Control Tower Account Factory
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.6.2/modules/landingzone/control-tower-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.0/modules/landingzone/control-tower-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.6.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.6.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This is a Terraform module that will trigger the creation of a new AWS account by using Control Tower.
 
@@ -71,6 +71,44 @@ Resources:
     Type: AWS::CloudFormation::WaitConditionHandle
 ```
 
+## Troubleshooting Tips
+
+### `ResourceInUseException`
+
+If you attempt to create/update/remove too many accounts from ControlTower at once, you may encounter an error in Service Catalog that looks like this:
+
+```log
+ResourceInUseException: Account Factory cannot complete an operation on this account, because the allowed maximum of 5 concurrent account operations is exceeded. Try again later.
+```
+
+This is usually accompanied by this module returning outputs that look like the following:
+
+```text
+"account_email" = "(could not get email associated with account)"
+```
+
+Unfortunately, this is an unrecoverable error from an AWS Provider perspective, as the provider has no insight into the fact that Service Catalog is in a bad state when it fails in this fashion, and retries will not help.
+
+The easiest way to recover from this error is to make a small update to one of the variables that are passed into this module. For example, if you are integrating with this module via the [../control-tower-multi-account-factory](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.0/modules/control-tower-multi-account-factory) module, you could change the value of something in the relevant file in the directory referenced by the  `account_requests_folder`, then revert your change.
+
+e.g.
+
+```yml
+sso_user_first_name: "John"
+sso_user_last_name: "Doe"
+```
+
+to
+
+```yml
+sso_user_first_name: "Jane"
+sso_user_last_name: "Doe"
+```
+
+Perform an apply, then revert the change for another apply.
+
+This workaround should only be done to correct up to five Service Catalog provisioned products at a time.
+
 ## Sample Usage
 
 <Tabs>
@@ -84,7 +122,7 @@ Resources:
 
 module "control_tower_account_factory" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.6.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.7.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -192,7 +230,7 @@ module "control_tower_account_factory" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.6.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.7.0"
 }
 
 inputs = {
@@ -538,11 +576,11 @@ The URL of the AWS SSO login page for this account
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.6.2/modules/control-tower-account-factory/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.6.2/modules/control-tower-account-factory/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.6.2/modules/control-tower-account-factory/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.0/modules/control-tower-account-factory/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.0/modules/control-tower-account-factory/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.0/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e1c0b651c311f269024c155697bee067"
+  "hash": "aae927b005385649f605e25c6f0883bc"
 }
 ##DOCS-SOURCER-END -->
