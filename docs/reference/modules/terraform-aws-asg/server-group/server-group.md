@@ -333,6 +333,10 @@ module "server_group" {
   # termination by Amazon EC2 Auto Scaling when scaling in.
   protect_from_scale_in = false
 
+  # Set to 'true' to allow the server group role to assume itself. See
+  # https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/
+  role_allow_self_assume = false
+
   # The ARN of the policy that is used to set the permissions boundary for the
   # server group role. This policy should be created outside of this module.
   role_permissions_boundary = null
@@ -636,6 +640,10 @@ inputs = {
   # When true, newly launched instances are automatically protected from
   # termination by Amazon EC2 Auto Scaling when scaling in.
   protect_from_scale_in = false
+
+  # Set to 'true' to allow the server group role to assume itself. See
+  # https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/
+  role_allow_self_assume = false
 
   # The ARN of the policy that is used to set the permissions boundary for the
   # server group role. This policy should be created outside of this module.
@@ -1149,6 +1157,15 @@ When true, newly launched instances are automatically protected from termination
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="role_allow_self_assume" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to 'true' to allow the server group role to assume itself. See https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="role_permissions_boundary" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1370,6 +1387,6 @@ Other modules can depend on this variable to ensure those modules only deploy af
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.12/modules/server-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c09f559dc843a512f97efd03f57ce3a7"
+  "hash": "4eca0b6a1ad49ffd5a59dd790304f812"
 }
 ##DOCS-SOURCER-END -->
