@@ -67,11 +67,11 @@ here: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Replication.Re
 
 There are different types of modes you can deploy ElasticCache Redis:
 
-| Mode                 | Description                                     | Configuration                                                                     |
-|----------------------|-------------------------------------------------|-----------------------------------------------------------------------------------|
-| **Cluster Enabled**  | - supports sharding <br/> - supports replication | - `enable_single_instance_mode = false` <br/> - `cluster_mode:num_node_groups > 1` |
-| **Cluster Disabled** | - no replication <br/> - supports sharding       | - `enable_single_instance_mode = false` <br/> - `cluster_mode:num_node_groups = 1` |
-| **Single Instance**  | - no replication <br/> - no sharding             | - `enable_single_instance_mode = true`                                            |
+| Mode                 | Description                                      | Configuration                                                                                                                                                                           |
+|----------------------|--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Cluster Enabled**  | - supports sharding <br/> - supports replication | - `enable_single_instance_mode = false` <br/> - `cluster_mode:num_node_groups > 1`                                                                                                      |
+| **Cluster Disabled** | - no replication <br/> - supports sharding       | - `enable_single_instance_mode = false` <br/> - `cluster_mode:num_node_groups = 1` <br/> <br/> **Note**: do not include `.cluster.on` suffix if you are setting `parameter_group_name`. |
+| **Single Instance**  | - no replication <br/> - no sharding             | - `enable_single_instance_mode = true`                                                                                                                                                  |
 
 #### How to Enable Cluster Mode with Single Sharding
 
@@ -326,6 +326,10 @@ module "redis" {
   # var.name-subnet-group if not specified.
   aws_elasticache_subnet_group_name = null
 
+  # Whether to create the ElastiCache user group or not. If not then it will
+  # asume the group pointed by `user_group_id` already exists
+  create_user_group = true
+
   # The name of the new 'default' user_id, in the event is different from
   # 'default'.
   default_user_id = "default"
@@ -539,6 +543,10 @@ inputs = {
   # The name of the aws_elasticache_subnet_group that is created. Defaults to
   # var.name-subnet-group if not specified.
   aws_elasticache_subnet_group_name = null
+
+  # Whether to create the ElastiCache user group or not. If not then it will
+  # asume the group pointed by `user_group_id` already exists
+  create_user_group = true
 
   # The name of the new 'default' user_id, in the event is different from
   # 'default'.
@@ -829,6 +837,15 @@ The name of the aws_elasticache_subnet_group that is created. Defaults to <a hre
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="create_user_group" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to create the ElastiCache user group or not. If not then it will asume the group pointed by `user_group_id` already exists
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="default_user_id" requirement="optional" type="string">
@@ -1126,6 +1143,6 @@ This is a list of user IDs  that should be added to the group defined in the 'us
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.1/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "25c681ba55344ceef38f22b13ef6c75c"
+  "hash": "af3127054f46106ae30db863b55ab40c"
 }
 ##DOCS-SOURCER-END -->
