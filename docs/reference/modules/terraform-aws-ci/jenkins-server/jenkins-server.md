@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.53.1" lastModifiedVersion="0.52.17"/>
+<VersionBadge repoTitle="CI Modules" version="0.53.2" lastModifiedVersion="0.52.17"/>
 
 # Jenkins server
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.1/modules/jenkins-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.2/modules/jenkins-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.17" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -29,17 +29,17 @@ to run an ASG for Jenkins that can correctly reattach an EBS volume.
 
 ## Example code
 
-*   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.1/examples/jenkins) for working sample code.
-*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.1/modules/jenkins-server/vars.tf) for all parameters you can configure on this module.
+*   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.2/examples/jenkins) for working sample code.
+*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.2/modules/jenkins-server/vars.tf) for all parameters you can configure on this module.
 
 ## Jenkins AMI
 
-See the [install-jenkins module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.1/modules/install-jenkins) for a way to create an AMI with Jenkins installed and a
+See the [install-jenkins module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.2/modules/install-jenkins) for a way to create an AMI with Jenkins installed and a
 script you can run in User Data to start Jenkins while the server is booting.
 
 ## Backing up Jenkins
 
-See the [ec2-backup module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.1/modules/ec2-backup) for an automatic way to take scheduled backups of Jenkins and its EBS
+See the [ec2-backup module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.2/modules/ec2-backup) for an automatic way to take scheduled backups of Jenkins and its EBS
 volume.
 
 ## IAM permissions
@@ -112,7 +112,7 @@ data "aws_iam_policy_document" "example" {
 
 module "jenkins_server" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.53.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.53.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -320,6 +320,10 @@ module "jenkins_server" {
   # this to DEBUG when troubleshooting Jenkins redeploys.
   script_log_level = "INFO"
 
+  # Set to 'true' to allow the server group role to assume itself. See
+  # https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/
+  server_iam_role_allow_self_assume = false
+
   # If set to true, skip the health check, and start a rolling deployment of
   # Jenkins without waiting for it to initially be in a healthy state. This is
   # primarily useful if the server group is in a broken state and you want to
@@ -370,7 +374,7 @@ module "jenkins_server" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.53.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.53.2"
 }
 
 inputs = {
@@ -580,6 +584,10 @@ inputs = {
   # The log level to use with the rolling deploy script. It can be useful to set
   # this to DEBUG when troubleshooting Jenkins redeploys.
   script_log_level = "INFO"
+
+  # Set to 'true' to allow the server group role to assume itself. See
+  # https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/
+  server_iam_role_allow_self_assume = false
 
   # If set to true, skip the health check, and start a rolling deployment of
   # Jenkins without waiting for it to initially be in a healthy state. This is
@@ -1078,6 +1086,15 @@ The log level to use with the rolling deploy script. It can be useful to set thi
 <HclListItemDefaultValue defaultValue="&quot;INFO&quot;"/>
 </HclListItem>
 
+<HclListItem name="server_iam_role_allow_self_assume" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to 'true' to allow the server group role to assume itself. See https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="skip_health_check" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1196,11 +1213,11 @@ A maximum duration to wait for each server to be healthy before timing out (e.g.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.1/modules/jenkins-server/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.1/modules/jenkins-server/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.1/modules/jenkins-server/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.2/modules/jenkins-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.2/modules/jenkins-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.2/modules/jenkins-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "99577272a8ec44238507a1c4a47f1572"
+  "hash": "d6f2c8e76b23c7c80ab313e9f5bb497f"
 }
 ##DOCS-SOURCER-END -->
