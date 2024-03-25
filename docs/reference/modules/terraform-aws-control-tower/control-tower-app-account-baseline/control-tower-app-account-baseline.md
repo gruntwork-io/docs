@@ -305,8 +305,19 @@ module "control_tower_app_account_baseline" {
   # potential damage from a domain hijacking attack on GitHub domains.
   github_actions_openid_connect_provider_thumbprint_list = null
 
+  # Whether to accept an invite from the master account if the detector is not
+  # created automatically
+  guardduty_accept_invite = false
+
   # Name of the Cloudwatch event rules.
   guardduty_cloudwatch_event_rule_name = "guardduty-finding-events"
+
+  # Map of detector features to enable, where the key is the name of the feature
+  # the value is the feature configuration. When AWS Organizations delegated
+  # admin account is used, use var.organization_configuration_features in the
+  # deledated admin account instead. See
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/guardduty_detector_feature
+  guardduty_detector_features = {}
 
   # Specifies the frequency of notifications sent for subsequent finding
   # occurrences. If the detector is a GuardDuty member account, the value is
@@ -381,6 +392,12 @@ module "control_tower_app_account_baseline" {
   # The name of the S3 Bucket where GuardDuty findings will be stored.
   guardduty_findings_s3_bucket_name = null
 
+  # Optional prefix directory to create in the bucket. Must contain a trailing
+  # '/'. If you use a prefix for S3 findings publishing, you must pre-create the
+  # prefix in the findings bucket. See
+  # https://github.com/hashicorp/terraform-provider-aws/issues/16750.
+  guardduty_findings_s3_bucket_prefix = null
+
   # Enable MFA delete for either 'Change the versioning state of your bucket' or
   # 'Permanently delete an object version'. This setting only applies to the
   # bucket used to storage GuardDuty findings. This cannot be used to toggle
@@ -388,6 +405,11 @@ module "control_tower_app_account_baseline" {
   # in AWS. For instructions on how to enable MFA Delete, check out the README
   # from the terraform-aws-security/private-s3-bucket module.
   guardduty_findings_s3_mfa_delete = false
+
+  # The bucket prefix without trailing '/' under which the findings get
+  # exported. The prefix is optional and will be
+  # AWSLogs/[Account-ID]/GuardDuty/[Region]/ if not provided.
+  guardduty_findings_s3_prefix = null
 
   # Whether to create a bucket for GuardDuty findings. If set to true, you must
   # provide the var.guardduty_findings_s3_bucket_name.
@@ -933,8 +955,19 @@ inputs = {
   # potential damage from a domain hijacking attack on GitHub domains.
   github_actions_openid_connect_provider_thumbprint_list = null
 
+  # Whether to accept an invite from the master account if the detector is not
+  # created automatically
+  guardduty_accept_invite = false
+
   # Name of the Cloudwatch event rules.
   guardduty_cloudwatch_event_rule_name = "guardduty-finding-events"
+
+  # Map of detector features to enable, where the key is the name of the feature
+  # the value is the feature configuration. When AWS Organizations delegated
+  # admin account is used, use var.organization_configuration_features in the
+  # deledated admin account instead. See
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/guardduty_detector_feature
+  guardduty_detector_features = {}
 
   # Specifies the frequency of notifications sent for subsequent finding
   # occurrences. If the detector is a GuardDuty member account, the value is
@@ -1009,6 +1042,12 @@ inputs = {
   # The name of the S3 Bucket where GuardDuty findings will be stored.
   guardduty_findings_s3_bucket_name = null
 
+  # Optional prefix directory to create in the bucket. Must contain a trailing
+  # '/'. If you use a prefix for S3 findings publishing, you must pre-create the
+  # prefix in the findings bucket. See
+  # https://github.com/hashicorp/terraform-provider-aws/issues/16750.
+  guardduty_findings_s3_bucket_prefix = null
+
   # Enable MFA delete for either 'Change the versioning state of your bucket' or
   # 'Permanently delete an object version'. This setting only applies to the
   # bucket used to storage GuardDuty findings. This cannot be used to toggle
@@ -1016,6 +1055,11 @@ inputs = {
   # in AWS. For instructions on how to enable MFA Delete, check out the README
   # from the terraform-aws-security/private-s3-bucket module.
   guardduty_findings_s3_mfa_delete = false
+
+  # The bucket prefix without trailing '/' under which the findings get
+  # exported. The prefix is optional and will be
+  # AWSLogs/[Account-ID]/GuardDuty/[Region]/ if not provided.
+  guardduty_findings_s3_prefix = null
 
   # Whether to create a bucket for GuardDuty findings. If set to true, you must
   # provide the var.guardduty_findings_s3_bucket_name.
@@ -1688,6 +1732,15 @@ When set, use the statically provided hardcoded list of thumbprints rather than 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="guardduty_accept_invite" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to accept an invite from the master account if the detector is not created automatically
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="guardduty_cloudwatch_event_rule_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1695,6 +1748,28 @@ Name of the Cloudwatch event rules.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;guardduty-finding-events&quot;"/>
+</HclListItem>
+
+<HclListItem name="guardduty_detector_features" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+Map of detector features to enable, where the key is the name of the feature the value is the feature configuration. When AWS Organizations delegated admin account is used, use <a href="#organization_configuration_features"><code>organization_configuration_features</code></a> in the deledated admin account instead. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/guardduty_detector_feature
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    status = string
+    additional_configuration = list(object({
+      name   = string
+      status = string
+    }))
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="guardduty_finding_publishing_frequency" requirement="optional" type="string">
@@ -1881,6 +1956,15 @@ The name of the S3 Bucket where GuardDuty findings will be stored.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="guardduty_findings_s3_bucket_prefix" requirement="optional" type="string">
+<HclListItemDescription>
+
+Optional prefix directory to create in the bucket. Must contain a trailing '/'. If you use a prefix for S3 findings publishing, you must pre-create the prefix in the findings bucket. See https://github.com/hashicorp/terraform-provider-aws/issues/16750.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="guardduty_findings_s3_mfa_delete" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1888,6 +1972,15 @@ Enable MFA delete for either 'Change the versioning state of your bucket' or 'Pe
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="guardduty_findings_s3_prefix" requirement="optional" type="string">
+<HclListItemDescription>
+
+The bucket prefix without trailing '/' under which the findings get exported. The prefix is optional and will be AWSLogs/[Account-ID]/GuardDuty/[Region]/ if not provided.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="guardduty_findings_should_create_bucket" requirement="optional" type="bool">
@@ -2688,6 +2781,6 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.0/modules/control-tower-app-account-baseline/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "eecbeab6e4f92e4ddd03fabf30cbda45"
+  "hash": "c3a1b3658521eb6f1545531ac11a00c1"
 }
 ##DOCS-SOURCER-END -->
