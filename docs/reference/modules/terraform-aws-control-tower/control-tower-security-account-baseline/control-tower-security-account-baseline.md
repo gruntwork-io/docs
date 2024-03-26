@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="0.7.0" lastModifiedVersion="0.6.3"/>
+<VersionBadge repoTitle="Control Tower" version="0.7.2" lastModifiedVersion="0.7.1"/>
 
 # Account Baseline Security with Control Tower Integration
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.0/modules/landingzone/control-tower-security-account-baseline" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.2/modules/landingzone/control-tower-security-account-baseline" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.6.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.7.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 A CIS compliant security baseline for AWS Landing Zone for configuring the security account (the one where all your IAM
 users and IAM groups are defined), as part of a Control Tower integration. This module fills in features NOT supported
@@ -34,7 +34,7 @@ by Control Tower, including setting up Amazon Guard Duty, Macie, IAM users, IAM 
 
 module "control_tower_security_account_baseline" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v0.7.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v0.7.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -287,6 +287,13 @@ module "control_tower_security_account_baseline" {
   # Name of the Cloudwatch event rules.
   guardduty_cloudwatch_event_rule_name = "guardduty-finding-events"
 
+  # Map of detector features to enable, where the key is the name of the feature
+  # the value is the feature configuration. When AWS Organizations delegated
+  # admin account is used, use var.organization_configuration_features instead.
+  # See
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/guardduty_detector_feature
+  guardduty_detector_features = {}
+
   # Specifies the frequency of notifications sent for subsequent finding
   # occurrences. If the detector is a GuardDuty member account, the value is
   # determined by the GuardDuty master account and cannot be modified, otherwise
@@ -360,6 +367,12 @@ module "control_tower_security_account_baseline" {
   # The name of the S3 Bucket where GuardDuty findings will be stored.
   guardduty_findings_s3_bucket_name = null
 
+  # Optional prefix directory to create in the bucket. Must contain a trailing
+  # '/'. If you use a prefix for S3 findings publishing, you must pre-create the
+  # prefix in the findings bucket. See
+  # https://github.com/hashicorp/terraform-provider-aws/issues/16750.
+  guardduty_findings_s3_bucket_prefix = null
+
   # Enable MFA delete for either 'Change the versioning state of your bucket' or
   # 'Permanently delete an object version'. This setting only applies to the
   # bucket used to storage GuardDuty findings. This cannot be used to toggle
@@ -367,6 +380,11 @@ module "control_tower_security_account_baseline" {
   # in AWS. For instructions on how to enable MFA Delete, check out the README
   # from the terraform-aws-security/private-s3-bucket module.
   guardduty_findings_s3_mfa_delete = false
+
+  # The bucket prefix without trailing '/' under which the findings get
+  # exported. The prefix is optional and will be
+  # AWSLogs/[Account-ID]/GuardDuty/[Region]/ if not provided.
+  guardduty_findings_s3_prefix = null
 
   # Whether to create a bucket for GuardDuty findings. If set to true, you must
   # provide the var.guardduty_findings_s3_bucket_name.
@@ -378,6 +396,14 @@ module "control_tower_security_account_baseline" {
 
   # Tags to apply to the GuardDuty findings resources (S3 bucket and CMK).
   guardduty_findings_tags = {}
+
+  # The invitation message to send to the member accounts.
+  guardduty_invitation_message = "Please accept GuardDuty invitation."
+
+  # Map of member accounts to add to GuardDuty where key is the AWS account
+  # number. Use to add Organization accounts to delegated admin account or
+  # invite member accounts by invite.
+  guardduty_member_accounts = {}
 
   # Publish GuardDuty findings to an S3 bucket.
   guardduty_publish_findings_to_s3 = false
@@ -618,6 +644,11 @@ module "control_tower_security_account_baseline" {
   # var.max_session_duration_human_users.
   max_session_duration_machine_users = 3600
 
+  # Map of organization configuration features to enable, where key is the
+  # feature name and value is feature configuration. See
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/guardduty_organization_configuration_feature
+  organization_configuration_features = {}
+
   # Force the user to reset their password on initial login. Only used for users
   # with create_login_profile set to true.
   password_reset_required = true
@@ -739,7 +770,7 @@ module "control_tower_security_account_baseline" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v0.7.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v0.7.2"
 }
 
 inputs = {
@@ -995,6 +1026,13 @@ inputs = {
   # Name of the Cloudwatch event rules.
   guardduty_cloudwatch_event_rule_name = "guardduty-finding-events"
 
+  # Map of detector features to enable, where the key is the name of the feature
+  # the value is the feature configuration. When AWS Organizations delegated
+  # admin account is used, use var.organization_configuration_features instead.
+  # See
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/guardduty_detector_feature
+  guardduty_detector_features = {}
+
   # Specifies the frequency of notifications sent for subsequent finding
   # occurrences. If the detector is a GuardDuty member account, the value is
   # determined by the GuardDuty master account and cannot be modified, otherwise
@@ -1068,6 +1106,12 @@ inputs = {
   # The name of the S3 Bucket where GuardDuty findings will be stored.
   guardduty_findings_s3_bucket_name = null
 
+  # Optional prefix directory to create in the bucket. Must contain a trailing
+  # '/'. If you use a prefix for S3 findings publishing, you must pre-create the
+  # prefix in the findings bucket. See
+  # https://github.com/hashicorp/terraform-provider-aws/issues/16750.
+  guardduty_findings_s3_bucket_prefix = null
+
   # Enable MFA delete for either 'Change the versioning state of your bucket' or
   # 'Permanently delete an object version'. This setting only applies to the
   # bucket used to storage GuardDuty findings. This cannot be used to toggle
@@ -1075,6 +1119,11 @@ inputs = {
   # in AWS. For instructions on how to enable MFA Delete, check out the README
   # from the terraform-aws-security/private-s3-bucket module.
   guardduty_findings_s3_mfa_delete = false
+
+  # The bucket prefix without trailing '/' under which the findings get
+  # exported. The prefix is optional and will be
+  # AWSLogs/[Account-ID]/GuardDuty/[Region]/ if not provided.
+  guardduty_findings_s3_prefix = null
 
   # Whether to create a bucket for GuardDuty findings. If set to true, you must
   # provide the var.guardduty_findings_s3_bucket_name.
@@ -1086,6 +1135,14 @@ inputs = {
 
   # Tags to apply to the GuardDuty findings resources (S3 bucket and CMK).
   guardduty_findings_tags = {}
+
+  # The invitation message to send to the member accounts.
+  guardduty_invitation_message = "Please accept GuardDuty invitation."
+
+  # Map of member accounts to add to GuardDuty where key is the AWS account
+  # number. Use to add Organization accounts to delegated admin account or
+  # invite member accounts by invite.
+  guardduty_member_accounts = {}
 
   # Publish GuardDuty findings to an S3 bucket.
   guardduty_publish_findings_to_s3 = false
@@ -1325,6 +1382,11 @@ inputs = {
   # allow-read-only-access-from-other-accounts, see
   # var.max_session_duration_human_users.
   max_session_duration_machine_users = 3600
+
+  # Map of organization configuration features to enable, where key is the
+  # feature name and value is feature configuration. See
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/guardduty_organization_configuration_feature
+  organization_configuration_features = {}
 
   # Force the user to reset their password on initial login. Only used for users
   # with create_login_profile set to true.
@@ -1936,6 +1998,28 @@ Name of the Cloudwatch event rules.
 <HclListItemDefaultValue defaultValue="&quot;guardduty-finding-events&quot;"/>
 </HclListItem>
 
+<HclListItem name="guardduty_detector_features" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+Map of detector features to enable, where the key is the name of the feature the value is the feature configuration. When AWS Organizations delegated admin account is used, use <a href="#organization_configuration_features"><code>organization_configuration_features</code></a> instead. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/guardduty_detector_feature
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    status = string
+    additional_configuration = list(object({
+      name   = string
+      status = string
+    }))
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="guardduty_finding_publishing_frequency" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2120,6 +2204,15 @@ The name of the S3 Bucket where GuardDuty findings will be stored.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="guardduty_findings_s3_bucket_prefix" requirement="optional" type="string">
+<HclListItemDescription>
+
+Optional prefix directory to create in the bucket. Must contain a trailing '/'. If you use a prefix for S3 findings publishing, you must pre-create the prefix in the findings bucket. See https://github.com/hashicorp/terraform-provider-aws/issues/16750.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="guardduty_findings_s3_mfa_delete" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2127,6 +2220,15 @@ Enable MFA delete for either 'Change the versioning state of your bucket' or 'Pe
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="guardduty_findings_s3_prefix" requirement="optional" type="string">
+<HclListItemDescription>
+
+The bucket prefix without trailing '/' under which the findings get exported. The prefix is optional and will be AWSLogs/[Account-ID]/GuardDuty/[Region]/ if not provided.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="guardduty_findings_should_create_bucket" requirement="optional" type="bool">
@@ -2153,6 +2255,33 @@ Specifies a name for the created SNS topics where findings are published. publis
 Tags to apply to the GuardDuty findings resources (S3 bucket and CMK).
 
 </HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="guardduty_invitation_message" requirement="optional" type="string">
+<HclListItemDescription>
+
+The invitation message to send to the member accounts.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;Please accept GuardDuty invitation.&quot;"/>
+</HclListItem>
+
+<HclListItem name="guardduty_member_accounts" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+Map of member accounts to add to GuardDuty where key is the AWS account number. Use to add Organization accounts to delegated admin account or invite member accounts by invite.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    email = string
+  }))
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -2820,6 +2949,28 @@ The maximum allowable session duration, in seconds, for the credentials you get 
 <HclListItemDefaultValue defaultValue="3600"/>
 </HclListItem>
 
+<HclListItem name="organization_configuration_features" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+Map of organization configuration features to enable, where key is the feature name and value is feature configuration. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/guardduty_organization_configuration_feature
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    auto_enable = string
+    additional_configuration = list(object({
+      name        = string
+      auto_enable = string
+    }))
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="password_reset_required" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -3216,11 +3367,11 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.0/modules/control-tower-security-account-baseline/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.0/modules/control-tower-security-account-baseline/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.0/modules/control-tower-security-account-baseline/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.2/modules/control-tower-security-account-baseline/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.2/modules/control-tower-security-account-baseline/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.2/modules/control-tower-security-account-baseline/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "330030bc050023d3e96d3093e8630328"
+  "hash": "c989a8c744570cea3aee2886e333ae68"
 }
 ##DOCS-SOURCER-END -->
