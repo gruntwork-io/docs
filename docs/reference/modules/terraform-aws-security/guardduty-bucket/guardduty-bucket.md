@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.71.3" lastModifiedVersion="0.71.3"/>
+<VersionBadge repoTitle="Security Modules" version="0.71.5" lastModifiedVersion="0.71.5"/>
 
 # GuardDuty Bucket
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.71.3/modules/guardduty-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.71.5/modules/guardduty-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.71.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.71.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an S3 bucket for storing GuardDuty findings and optionally a KMS Customer Master Key (CMK) for encrypting that
 data, including all the appropriate lifecycle, encryption, and permission settings for GuardDuty.
@@ -35,7 +35,7 @@ It is particularly useful when configuring cross account access, for example whe
 
 module "guardduty_bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-bucket?ref=v0.71.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-bucket?ref=v0.71.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -64,6 +64,12 @@ module "guardduty_bucket" {
   # writes from manually-enabled regions. See
   # https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_exportfindings.html#guardduty_exportfindings-s3-policies
   allowed_regions = []
+
+  # Prefix directory to create in the bucket. Must contain a trailing '/'. If
+  # you use a prefix for S3 findings publishing, you must pre-create the prefix
+  # in the findings bucket. See
+  # https://github.com/hashicorp/terraform-provider-aws/issues/16750.
+  bucket_prefix = null
 
   # Whether or not to enable automatic annual rotation of the KMS key. Defaults
   # to true.
@@ -146,7 +152,7 @@ module "guardduty_bucket" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-bucket?ref=v0.71.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-bucket?ref=v0.71.5"
 }
 
 inputs = {
@@ -178,6 +184,12 @@ inputs = {
   # writes from manually-enabled regions. See
   # https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_exportfindings.html#guardduty_exportfindings-s3-policies
   allowed_regions = []
+
+  # Prefix directory to create in the bucket. Must contain a trailing '/'. If
+  # you use a prefix for S3 findings publishing, you must pre-create the prefix
+  # in the findings bucket. See
+  # https://github.com/hashicorp/terraform-provider-aws/issues/16750.
+  bucket_prefix = null
 
   # Whether or not to enable automatic annual rotation of the KMS key. Defaults
   # to true.
@@ -347,6 +359,15 @@ The AWS regions that are allowed to write to the GuardDuty findings S3 bucket. T
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="bucket_prefix" requirement="optional" type="string">
+<HclListItemDescription>
+
+Prefix directory to create in the bucket. Must contain a trailing '/'. If you use a prefix for S3 findings publishing, you must pre-create the prefix in the findings bucket. See https://github.com/hashicorp/terraform-provider-aws/issues/16750.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="enable_key_rotation" requirement="optional" type="bool">
@@ -607,11 +628,11 @@ The name of the S3 bucket where GuardDuty findings are delivered.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.71.3/modules/guardduty-bucket/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.71.3/modules/guardduty-bucket/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.71.3/modules/guardduty-bucket/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.71.5/modules/guardduty-bucket/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.71.5/modules/guardduty-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.71.5/modules/guardduty-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "680547fcea39993e834d2591b96ad157"
+  "hash": "d90ec9b80936d82a0e19f506cde4b2a6"
 }
 ##DOCS-SOURCER-END -->
