@@ -312,6 +312,9 @@ module "single_server" {
   # If set to true, the root volume will be encrypted. Default is set to false
   root_volume_encrypted = false
 
+  # The IOPS to allocate for the root volume.
+  root_volume_iops = null
+
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
 
@@ -587,6 +590,9 @@ inputs = {
 
   # If set to true, the root volume will be encrypted. Default is set to false
   root_volume_encrypted = false
+
+  # The IOPS to allocate for the root volume.
+  root_volume_iops = null
 
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
@@ -1059,6 +1065,15 @@ If set to true, the root volume will be encrypted. Default is set to false
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="root_volume_iops" requirement="optional" type="number">
+<HclListItemDescription>
+
+The IOPS to allocate for the root volume.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="root_volume_size" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1194,6 +1209,9 @@ When used in combination with user_data or user_data_base64, a user_data change 
 <HclListItem name="instance_ip">
 </HclListItem>
 
+<HclListItem name="instance_security_group_ids">
+</HclListItem>
+
 <HclListItem name="name">
 </HclListItem>
 
@@ -1209,9 +1227,6 @@ When used in combination with user_data or user_data_base64, a user_data change 
 <HclListItem name="secondary_private_ips">
 </HclListItem>
 
-<HclListItem name="security_group_id">
-</HclListItem>
-
 </TabItem>
 </Tabs>
 
@@ -1224,6 +1239,6 @@ When used in combination with user_data or user_data_base64, a user_data change 
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.13/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a79bfa79d148e2fe31dade6147547ac0"
+  "hash": "670fe7cdcefc1e347e91d6b9e35dba68"
 }
 ##DOCS-SOURCER-END -->
