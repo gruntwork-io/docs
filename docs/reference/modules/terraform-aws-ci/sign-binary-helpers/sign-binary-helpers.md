@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.53.1" lastModifiedVersion="0.51.2"/>
+<VersionBadge repoTitle="CI Modules" version="0.53.4" lastModifiedVersion="0.53.3"/>
 
 # Binary signing Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.1/modules/sign-binary-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.4/modules/sign-binary-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.51.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.53.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module contains helper script called `sign-binary` used to sign executable files for Windows and MacOS.
 
@@ -150,11 +150,11 @@ References:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.1/modules/sign-binary-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.1/modules/sign-binary-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.1/modules/sign-binary-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.4/modules/sign-binary-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.4/modules/sign-binary-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.4/modules/sign-binary-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3dca2c7a526dfd4a6a770542f8cd9d25"
+  "hash": "b3c8f6d090df50dd998bfaddee0838a5"
 }
 ##DOCS-SOURCER-END -->
