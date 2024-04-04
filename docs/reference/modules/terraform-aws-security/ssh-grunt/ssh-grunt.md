@@ -63,6 +63,12 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ## Deploy
 
+### Compatibility
+
+This module is known to work on **CentOS 7**, **Ubuntu**, **Amazon Linux 2**, and **Amazon Linux 2023**
+
+**Amazon Linux 1 Compatibility**: [Amazon Linux 1 reached EOL on December 31, 2023](https://aws.amazon.com/blogs/aws/update-on-amazon-linux-ami-end-of-life/) and is therefore no longer supported in this module.
+
 ### Non-production deployment (quick start for learning)
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
@@ -98,6 +104,6 @@ If you want to deploy this module in production, check out the following resourc
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.71.6/modules/ssh-grunt/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3ede0bbd4278501e9f6278154d6dff4e"
+  "hash": "c4cac90aac9e06ee3c264771be2d9e38"
 }
 ##DOCS-SOURCER-END -->
