@@ -87,6 +87,11 @@ module "eks_k_8_s_cluster_autoscaler_iam_policy" {
   # optionally create or not create the resources within this module.
   create_resources = true
 
+  # ARNs of the EKS Managed Node Groups to grant access to. If this is not
+  # specified the policy will match based on tags only (specifically, the tag
+  # 'k8s.io/cluster-autoscaler/NAME_PREFIX').
+  eks_managed_node_group_arns = []
+
   # ARNs of the Auto Scaling Groups to grant access to. If this is not specified
   # the policy will match based on tags only (specifically, the tag
   # 'k8s.io/cluster-autoscaler/NAME_PREFIX').
@@ -131,6 +136,11 @@ inputs = {
   # optionally create or not create the resources within this module.
   create_resources = true
 
+  # ARNs of the EKS Managed Node Groups to grant access to. If this is not
+  # specified the policy will match based on tags only (specifically, the tag
+  # 'k8s.io/cluster-autoscaler/NAME_PREFIX').
+  eks_managed_node_group_arns = []
+
   # ARNs of the Auto Scaling Groups to grant access to. If this is not specified
   # the policy will match based on tags only (specifically, the tag
   # 'k8s.io/cluster-autoscaler/NAME_PREFIX').
@@ -171,6 +181,15 @@ If you set this variable to false, this module will not create any resources. Th
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="eks_managed_node_group_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+ARNs of the EKS Managed Node Groups to grant access to. If this is not specified the policy will match based on tags only (specifically, the tag 'k8s.io/cluster-autoscaler/NAME_PREFIX').
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="eks_worker_asg_arns" requirement="optional" type="list(string)">
@@ -221,6 +240,6 @@ The name of the IAM policy created with the permissions for the Kubernetes clust
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.66.0/modules/eks-k8s-cluster-autoscaler-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "76145dca09e1e079dd6329d4f55f688e"
+  "hash": "e89feeb707f8e6e7dcc200427070009d"
 }
 ##DOCS-SOURCER-END -->
