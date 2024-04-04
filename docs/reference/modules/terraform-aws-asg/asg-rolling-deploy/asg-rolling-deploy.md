@@ -153,7 +153,9 @@ module "asg_rolling_deploy" {
   deletion_timeout = "10m"
 
   # Toggles if the autoscaling_lifecycle_hook will be enabled or not. If
-  # enabled, the
+  # enabled, the aws_autoscaling_lifecycle_hook resource will be created and
+  # attached to the ALB. Make sure you set all autoscaling_lifecycle_* variables
+  # to desired values if enabled.
   enable_autoscaling_lifecycle_hook = false
 
   # A list of metrics the ASG should enable for monitoring all instances in a
@@ -300,7 +302,9 @@ inputs = {
   deletion_timeout = "10m"
 
   # Toggles if the autoscaling_lifecycle_hook will be enabled or not. If
-  # enabled, the
+  # enabled, the aws_autoscaling_lifecycle_hook resource will be created and
+  # attached to the ALB. Make sure you set all autoscaling_lifecycle_* variables
+  # to desired values if enabled.
   enable_autoscaling_lifecycle_hook = false
 
   # A list of metrics the ASG should enable for monitoring all instances in a
@@ -549,7 +553,7 @@ Timeout value for deletion operations on autoscale groups.
 <HclListItem name="enable_autoscaling_lifecycle_hook" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Toggles if the autoscaling_lifecycle_hook will be enabled or not. If enabled, the
+Toggles if the autoscaling_lifecycle_hook will be enabled or not. If enabled, the aws_autoscaling_lifecycle_hook resource will be created and attached to the ALB. Make sure you set all autoscaling_lifecycle_* variables to desired values if enabled.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -690,6 +694,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.14/modules/asg-rolling-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "194dfe23ac15ce8eb86e97dee72d2a2c"
+  "hash": "dc4ba0fd473b092266140834665d0395"
 }
 ##DOCS-SOURCER-END -->
