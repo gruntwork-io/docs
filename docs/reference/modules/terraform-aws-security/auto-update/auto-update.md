@@ -57,12 +57,6 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ## Deploy
 
-### Compatibility
-
-This module is known to work on **CentOS 7**, **Ubuntu**, **Amazon Linux 2**, and **Amazon Linux 2023**
-
-**Amazon Linux 1 Compatibility**: [Amazon Linux 1 reached EOL on December 31, 2023](https://aws.amazon.com/blogs/aws/update-on-amazon-linux-ami-end-of-life/) and is therefore no longer supported in this module.
-
 ### Non-production deployment (quick start for learning)
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
@@ -84,6 +78,6 @@ If you want to deploy this repo in production, check out the following resources
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.71.6/modules/auto-update/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e09f5562ddc4ee7d8342ba48b4003b35"
+  "hash": "6fa8fabe6fb2a683206daeff1db6814a"
 }
 ##DOCS-SOURCER-END -->
