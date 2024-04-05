@@ -9,15 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.33" lastModifiedVersion="0.33"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.34" lastModifiedVersion="0.33"/>
 
 # Testing the connection to RDS Proxy
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.33/modules/rds-proxy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.34/modules/rds-proxy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.33" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-You connect to an RDS DB instance through a proxy in generally the same way as you connect directly to the database. The main difference is that you specify the proxy endpoint instead of the DB endpoint. When using this module, the proxy endpoint will be avaialable from the [`rds_proxy_endpoint`](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.33/modules/rds-proxy/outputs.tf#L5) output variable. Note that RDS Proxy [can't be publicly accessible](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy.limitations), so you might need to use provision EC2 instance inside the same VPC to test the connection.
+You connect to an RDS DB instance through a proxy in generally the same way as you connect directly to the database. The main difference is that you specify the proxy endpoint instead of the DB endpoint. When using this module, the proxy endpoint will be avaialable from the [`rds_proxy_endpoint`](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.34/modules/rds-proxy/outputs.tf#L5) output variable. Note that RDS Proxy [can't be publicly accessible](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy.limitations), so you might need to use provision EC2 instance inside the same VPC to test the connection.
 
 ## Sample Usage
 
@@ -32,7 +32,7 @@ You connect to an RDS DB instance through a proxy in generally the same way as y
 
 module "rds_proxy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-proxy?ref=v0.33"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-proxy?ref=v0.34"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -117,7 +117,7 @@ module "rds_proxy" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-proxy?ref=v0.33"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-proxy?ref=v0.34"
 }
 
 inputs = {
@@ -341,11 +341,11 @@ The number of seconds that a connection to the proxy can be inactive before the 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.33/modules/rds-proxy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.33/modules/rds-proxy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.33/modules/rds-proxy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.34/modules/rds-proxy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.34/modules/rds-proxy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.34/modules/rds-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bc67df6a168730e8fb54fc300c4a1f11"
+  "hash": "350d26df81eb2c876143f8be5193825b"
 }
 ##DOCS-SOURCER-END -->
