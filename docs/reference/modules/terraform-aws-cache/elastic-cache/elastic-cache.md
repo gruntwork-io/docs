@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="0.22.2" lastModifiedVersion="0.22.1"/>
+<VersionBadge repoTitle="Cache Modules" version="0.22.3" lastModifiedVersion="0.22.3"/>
 
 # ElasticCache Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.2/modules/elastic-cache" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.3/modules/elastic-cache" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.22.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.22.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an ElastiCache cluster, which manages either a Memcached cluster, a single-node Redis instance.
 
@@ -47,7 +47,7 @@ For more info, see [Scaling Memcached](http://docs.aws.amazon.com/AmazonElastiCa
 
 module "elastic_cache" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v0.22.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v0.22.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -110,6 +110,10 @@ module "elastic_cache" {
   # than 1.
   az_mode = "single-az"
 
+  # Enable encryption in-transit. Supported only with Memcached versions 1.6.12
+  # and later, running in a VPC. Also only settable on cluster creation.
+  enable_transport_encryption = false
+
   # Specifies the destination and format of Redis Engine Log. See the
   # documentation on Amazon ElastiCache. See Log Delivery Configuration below
   # for more details. You can find more information here
@@ -156,7 +160,7 @@ module "elastic_cache" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v0.22.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v0.22.3"
 }
 
 inputs = {
@@ -221,6 +225,10 @@ inputs = {
   # cross-az. If you want to choose cross-az, num_cache_nodes must be greater
   # than 1.
   az_mode = "single-az"
+
+  # Enable encryption in-transit. Supported only with Memcached versions 1.6.12
+  # and later, running in a VPC. Also only settable on cluster creation.
+  enable_transport_encryption = false
 
   # Specifies the destination and format of Redis Engine Log. See the
   # documentation on Amazon ElastiCache. See Log Delivery Configuration below
@@ -373,6 +381,15 @@ Specifies whether the nodes in this Memcached node group are created in a single
 <HclListItemDefaultValue defaultValue="&quot;single-az&quot;"/>
 </HclListItem>
 
+<HclListItem name="enable_transport_encryption" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable encryption in-transit. Supported only with Memcached versions 1.6.12 and later, running in a VPC. Also only settable on cluster creation.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="engine_log_delivery_configuration" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
@@ -489,11 +506,11 @@ A set of tags to set for the ElastiCache Cluster.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.2/modules/elastic-cache/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.2/modules/elastic-cache/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.2/modules/elastic-cache/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.3/modules/elastic-cache/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.3/modules/elastic-cache/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.3/modules/elastic-cache/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bc3b216ce2bd5f29019db0621cae10f7"
+  "hash": "b9597f4cb9ee977eb555468959977e3e"
 }
 ##DOCS-SOURCER-END -->
