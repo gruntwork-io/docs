@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.33" lastModifiedVersion="0.33"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.35.0" lastModifiedVersion="0.35.0"/>
 
 # RDS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.33/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.35.0/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.33" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.35.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Relational Database Service (RDS) cluster that can run MySQL, Postgres, MariaDB, Oracle,
 or SQL Server. The cluster is managed by AWS and automatically handles standby failover, read replicas, backups,
@@ -117,7 +117,7 @@ Set `multi_az=true`. When setting up a multi-AZ (Availability Zone) RDS deployme
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.33"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.35.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -427,6 +427,10 @@ module "rds" {
   # Only set this to true if you want the database open to the internet.
   publicly_accessible = false
 
+  # Redefine replica instance type, if you want to define a different RDS
+  # instance type for replica.
+  read_replica_instance_type = null
+
   # The amount of provisioned IOPS for read replicas. If null, the replica will
   # use the same value as the primary, which is set in var.iops.
   read_replica_iops = null
@@ -488,7 +492,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.33"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.35.0"
 }
 
 inputs = {
@@ -800,6 +804,10 @@ inputs = {
   # WARNING: - In nearly all cases a database should NOT be publicly accessible.
   # Only set this to true if you want the database open to the internet.
   publicly_accessible = false
+
+  # Redefine replica instance type, if you want to define a different RDS
+  # instance type for replica.
+  read_replica_instance_type = null
 
   # The amount of provisioned IOPS for read replicas. If null, the replica will
   # use the same value as the primary, which is set in var.iops.
@@ -1541,6 +1549,15 @@ WARNING: - In nearly all cases a database should NOT be publicly accessible. Onl
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="read_replica_instance_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Redefine replica instance type, if you want to define a different RDS instance type for replica.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="read_replica_iops" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1691,11 +1708,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.33/modules/rds/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.33/modules/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.33/modules/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.35.0/modules/rds/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.35.0/modules/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.35.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "448d51f423e9ca33f1bcbd5d5f186313"
+  "hash": "6baf5a0a0c6b596f9e6b5a0ff390375f"
 }
 ##DOCS-SOURCER-END -->
