@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.34" lastModifiedVersion="0.33"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.35.0" lastModifiedVersion="0.35.0"/>
 
 # Redshift Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.34/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.35.0/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.33" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.35.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Redshift cluster that you can use as a data warehouse. The cluster is managed by AWS and
 automatically handles leader nodes, worker nodes, backups, patching, and encryption.
@@ -63,7 +63,7 @@ workaround, you can re-run the destroy command once the workspace gets deleted c
 
 module "redshift" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.34"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.35.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -238,6 +238,11 @@ module "redshift" {
   # If non-null, the name of the cluster the source snapshot was created from.
   snapshot_cluster_identifier = null
 
+  # Configuration of automatic copy of snapshots from one region to another. See
+  # https://registry.terraform.io/providers/hashicorp/aws/5.40.0/docs/resources/redshift_cluster#snapshot_copy
+  # for more detail
+  snapshot_copy = null
+
   # If non-null, the Redshift cluster will be restored from the given Snapshot
   # ID. This is the Snapshot ID you'd find in the Redshift console, e.g:
   # rs:production-2015-06-26-06-05.
@@ -246,6 +251,11 @@ module "redshift" {
   # Required if you are restoring a snapshot you do not own, optional if you own
   # the snapshot. The AWS customer account used to create or copy the snapshot.
   snapshot_owner_account = null
+
+  # Automatic snapshot schedule definition. See
+  # https://registry.terraform.io/providers/hashicorp/aws/5.40.0/docs/resources/redshift_snapshot_schedule#definitions
+  # for more detail
+  snapshot_schedule_definitions = []
 
   # Specifies whether the DB instance is encrypted.
   storage_encrypted = true
@@ -268,7 +278,7 @@ module "redshift" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.34"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.35.0"
 }
 
 inputs = {
@@ -446,6 +456,11 @@ inputs = {
   # If non-null, the name of the cluster the source snapshot was created from.
   snapshot_cluster_identifier = null
 
+  # Configuration of automatic copy of snapshots from one region to another. See
+  # https://registry.terraform.io/providers/hashicorp/aws/5.40.0/docs/resources/redshift_cluster#snapshot_copy
+  # for more detail
+  snapshot_copy = null
+
   # If non-null, the Redshift cluster will be restored from the given Snapshot
   # ID. This is the Snapshot ID you'd find in the Redshift console, e.g:
   # rs:production-2015-06-26-06-05.
@@ -454,6 +469,11 @@ inputs = {
   # Required if you are restoring a snapshot you do not own, optional if you own
   # the snapshot. The AWS customer account used to create or copy the snapshot.
   snapshot_owner_account = null
+
+  # Automatic snapshot schedule definition. See
+  # https://registry.terraform.io/providers/hashicorp/aws/5.40.0/docs/resources/redshift_snapshot_schedule#definitions
+  # for more detail
+  snapshot_schedule_definitions = []
 
   # Specifies whether the DB instance is encrypted.
   storage_encrypted = true
@@ -841,6 +861,22 @@ If non-null, the name of the cluster the source snapshot was created from.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="snapshot_copy" requirement="optional" type="map(any)">
+<HclListItemDescription>
+
+Configuration of automatic copy of snapshots from one region to another. See https://registry.terraform.io/providers/hashicorp/aws/5.40.0/docs/resources/redshift_cluster#snapshot_copy for more detail
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="snapshot_identifier" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -857,6 +893,15 @@ Required if you are restoring a snapshot you do not own, optional if you own the
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="snapshot_schedule_definitions" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Automatic snapshot schedule definition. See https://registry.terraform.io/providers/hashicorp/aws/5.40.0/docs/resources/redshift_snapshot_schedule#definitions for more detail
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="storage_encrypted" requirement="optional" type="bool">
@@ -959,11 +1004,11 @@ The ID of the Security Group that controls access to the cluster
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.34/modules/redshift/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.34/modules/redshift/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.34/modules/redshift/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.35.0/modules/redshift/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.35.0/modules/redshift/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.35.0/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3cc2ecda64dce2fe4c1bc574ff62383a"
+  "hash": "e92d149d41d6598c3eb7d1be464bb195"
 }
 ##DOCS-SOURCER-END -->
