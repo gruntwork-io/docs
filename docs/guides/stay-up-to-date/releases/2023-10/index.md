@@ -945,6 +945,23 @@ Initial release of devops-foundations templates
 ## terraform-aws-monitoring
 
 
+### [v0.36.8](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.36.8)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/31/2023 | Modules affected: alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.36.8">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Add health check ID output - CORE-1405
+
+
+
+</div>
+
+
 ### [v0.36.7](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.36.7)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -966,23 +983,6 @@ Initial release of devops-foundations templates
 
 - https://github.com/gruntwork-io/terraform-aws-monitoring/pull/314
 
-
-
-
-</div>
-
-
-### [v0.36.8](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.36.8)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/31/2023 | Modules affected: alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.36.8">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- Add health check ID output - CORE-1405
 
 
 
@@ -1397,6 +1397,6 @@ Initial release of devops-foundations templates
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "35356f6f34c71a1de198f2c654b9b449"
+  "hash": "051366170d03ec77fd651775b2987234"
 }
 ##DOCS-SOURCER-END -->
