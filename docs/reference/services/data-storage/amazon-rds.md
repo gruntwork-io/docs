@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.110.5" lastModifiedVersion="0.108.2"/>
+<VersionBadge version="0.111.7" lastModifiedVersion="0.111.7"/>
 
 # Amazon Relational Database Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.7/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Frds" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -69,7 +69,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.7/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -77,12 +77,12 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.7/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
-*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
+*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.7/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
 
 
 ## Sample Usage
@@ -103,7 +103,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.110.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.111.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -199,6 +199,10 @@ module "rds" {
   # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup
   # runs.
   backup_window = "06:00-07:00"
+
+  # The Certificate Authority (CA) certificates bundle to use on the RDS
+  # instance.
+  ca_cert_identifier = null
 
   # A list of IAM ARNs for users who should be given administrator access to
   # this CMK (e.g. arn:aws:iam::<aws-account-id>:user/<iam-user-arn>). If this
@@ -557,7 +561,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.110.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.111.7"
 }
 
 inputs = {
@@ -656,6 +660,10 @@ inputs = {
   # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup
   # runs.
   backup_window = "06:00-07:00"
+
+  # The Certificate Authority (CA) certificates bundle to use on the RDS
+  # instance.
+  ca_cert_identifier = null
 
   # A list of IAM ARNs for users who should be given administrator access to
   # this CMK (e.g. arn:aws:iam::<aws-account-id>:user/<iam-user-arn>). If this
@@ -1172,6 +1180,15 @@ The daily time range during which automated backups are created (e.g. 04:00-09:0
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;06:00-07:00&quot;"/>
+</HclListItem>
+
+<HclListItem name="ca_cert_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Certificate Authority (CA) certificates bundle to use on the RDS instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="cmk_administrator_iam_arns" requirement="optional" type="list(string)">
@@ -2342,11 +2359,11 @@ The ID of the Security Group that controls access to the RDS DB instance.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/modules/data-stores/rds/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/modules/data-stores/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/modules/data-stores/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.7/modules/data-stores/rds/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.7/modules/data-stores/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.7/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d5948aa40c3f6f74dd623c64a27c34e2"
+  "hash": "94760b7991ff4c8246e1c7e5ecca52cb"
 }
 ##DOCS-SOURCER-END -->

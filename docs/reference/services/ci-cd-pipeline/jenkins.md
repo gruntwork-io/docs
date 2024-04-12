@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.110.5" lastModifiedVersion="0.108.5"/>
+<VersionBadge version="0.111.7" lastModifiedVersion="0.111.4"/>
 
 # Jenkins CI Server
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/modules/mgmt/jenkins" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.7/modules/mgmt/jenkins" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fjenkins" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,7 +68,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.7/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -76,7 +76,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.7/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -98,7 +98,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "jenkins" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/jenkins?ref=v0.110.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/jenkins?ref=v0.111.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -389,6 +389,15 @@ module "jenkins" {
   # OS, temp folders, apps, etc.
   root_volume_size = 100
 
+  # Set to 'true' to allow the server group role to assume itself. See
+  # https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/
+  server_iam_role_allow_self_assume = false
+
+  # Maximum session duration (in seconds) that you want to set for the server
+  # group role. This setting can have a value from 1 hour to 12 hours. Default
+  # is 1 hour (3600s).
+  server_iam_role_max_session_duration = 3600
+
   # When true, precreate the CloudWatch Log Group to use for log aggregation
   # from the EC2 instances. This is useful if you wish to customize the
   # CloudWatch Log Group with various settings such as retention periods and KMS
@@ -443,7 +452,7 @@ module "jenkins" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/jenkins?ref=v0.110.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/jenkins?ref=v0.111.7"
 }
 
 inputs = {
@@ -736,6 +745,15 @@ inputs = {
   # (see var.jenkins_volume_size), so this root volume is primarily used for the
   # OS, temp folders, apps, etc.
   root_volume_size = 100
+
+  # Set to 'true' to allow the server group role to assume itself. See
+  # https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/
+  server_iam_role_allow_self_assume = false
+
+  # Maximum session duration (in seconds) that you want to set for the server
+  # group role. This setting can have a value from 1 hour to 12 hours. Default
+  # is 1 hour (3600s).
+  server_iam_role_max_session_duration = 3600
 
   # When true, precreate the CloudWatch Log Group to use for log aggregation
   # from the EC2 instances. This is useful if you wish to customize the
@@ -1410,6 +1428,24 @@ The amount of disk space, in GB, to allocate for the root volume of this server.
 <HclListItemDefaultValue defaultValue="100"/>
 </HclListItem>
 
+<HclListItem name="server_iam_role_allow_self_assume" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to 'true' to allow the server group role to assume itself. See https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="server_iam_role_max_session_duration" requirement="optional" type="number">
+<HclListItemDescription>
+
+Maximum session duration (in seconds) that you want to set for the server group role. This setting can have a value from 1 hour to 12 hours. Default is 1 hour (3600s).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="3600"/>
+</HclListItem>
+
 <HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1609,11 +1645,11 @@ The ID of the Security Group attached to the Jenkins EC2 Instance
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/modules/mgmt/jenkins/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/modules/mgmt/jenkins/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/modules/mgmt/jenkins/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.7/modules/mgmt/jenkins/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.7/modules/mgmt/jenkins/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.7/modules/mgmt/jenkins/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f162a0709c292972055b5812f603ac95"
+  "hash": "6ff0b09071dd2a6ba64c475a5951fd5d"
 }
 ##DOCS-SOURCER-END -->
