@@ -239,7 +239,7 @@ This release introduces a couple changes that significantly alter how the archit
 - `landingzone`
 
 
-- Add ability to export GuardDuty findings to S3
+- Add ability to publish GuardDuty findings to S3 and/or SNS
 
 
 - https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/pull/592
@@ -883,6 +883,6 @@ Update the outputs of the Transit Gateway module.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "9887336821ef4b6d9dfbeeb3e3cbef71"
+  "hash": "082e8ce62b3348330cd1ea803cc434c2"
 }
 ##DOCS-SOURCER-END -->
