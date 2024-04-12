@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.110.5" lastModifiedVersion="0.108.2"/>
+<VersionBadge version="0.111.6" lastModifiedVersion="0.111.5"/>
 
 # Amazon Aurora
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.6/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.6/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.6/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.110.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.111.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -293,6 +293,9 @@ module "aurora" {
   # e.g. 5.7.mysql_aurora.2.08.1.
   engine_version = null
 
+  # Global cluster identifier when creating the global secondary cluster.
+  global_cluster_identifier = null
+
   # The period, in seconds, over which to measure the CPU utilization
   # percentage.
   high_cpu_utilization_period = 60
@@ -429,6 +432,10 @@ module "aurora" {
   # this option is ignored when engine_mode is set to serverless. 
   reader_domain_name = null
 
+  # ARN of a source DB cluster or DB instance if this DB cluster is to be
+  # created as a Read Replica.
+  replication_source_identifier = null
+
   # If non-empty, the Aurora cluster will be restored from the given source
   # cluster using the latest restorable time. Can only be used if
   # snapshot_identifier is null. For more information see
@@ -527,7 +534,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.110.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.111.6"
 }
 
 inputs = {
@@ -721,6 +728,9 @@ inputs = {
   # e.g. 5.7.mysql_aurora.2.08.1.
   engine_version = null
 
+  # Global cluster identifier when creating the global secondary cluster.
+  global_cluster_identifier = null
+
   # The period, in seconds, over which to measure the CPU utilization
   # percentage.
   high_cpu_utilization_period = 60
@@ -856,6 +866,10 @@ inputs = {
   # RDS database. Note that Aurora Serverless does not have reader endpoints, so
   # this option is ignored when engine_mode is set to serverless. 
   reader_domain_name = null
+
+  # ARN of a source DB cluster or DB instance if this DB cluster is to be
+  # created as a Read Replica.
+  replication_source_identifier = null
 
   # If non-empty, the Aurora cluster will be restored from the given source
   # cluster using the latest restorable time. Can only be used if
@@ -1650,6 +1664,15 @@ The Amazon Aurora DB engine version for the selected engine and engine_mode. Not
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="global_cluster_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+Global cluster identifier when creating the global secondary cluster.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="high_cpu_utilization_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1952,6 +1975,15 @@ If you wish to make your database accessible from the public Internet, set this 
 <HclListItemDescription>
 
 The domain name to create a route 53 record for the reader endpoint of the RDS database. Note that Aurora Serverless does not have reader endpoints, so this option is ignored when engine_mode is set to serverless. 
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="replication_source_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of a source DB cluster or DB instance if this DB cluster is to be created as a Read Replica.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -2266,11 +2298,11 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/modules/data-stores/aurora/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/modules/data-stores/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.110.5/modules/data-stores/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.6/modules/data-stores/aurora/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.6/modules/data-stores/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.111.6/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ae6c44949afd9b1ede0176280df82a9e"
+  "hash": "d4c553b8cfe1cb2ee5a03540b4e60d87"
 }
 ##DOCS-SOURCER-END -->
