@@ -316,6 +316,9 @@ module "redis" {
   # Target value of the auto_scale trigger metric
   auto_scale_trigger_metric_target_value = null
 
+  # Configuration variables for an ElastiCache Parameter Group.
+  aws_elasticache_parameter_group_config = null
+
   # The description of the aws_elasticache_security_group that is created.
   # Defaults to 'Security group for the var.name ElastiCache cluster' if not
   # specified.
@@ -551,6 +554,9 @@ inputs = {
 
   # Target value of the auto_scale trigger metric
   auto_scale_trigger_metric_target_value = null
+
+  # Configuration variables for an ElastiCache Parameter Group.
+  aws_elasticache_parameter_group_config = null
 
   # The description of the aws_elasticache_security_group that is created.
   # Defaults to 'Security group for the var.name ElastiCache cluster' if not
@@ -845,6 +851,27 @@ Metric type to trigger auto-scaling. Supported metric type can be found here: ht
 Target value of the auto_scale trigger metric
 
 </HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="aws_elasticache_parameter_group_config" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Configuration variables for an ElastiCache Parameter Group.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    name        = string
+    family      = string
+    description = string
+    parameters  = list(map(string))
+  })
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -1228,6 +1255,6 @@ This is a list of user IDs  that should be added to the group defined in the 'us
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.4/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "20e517b0a4b8b4f035b9a733b3e68dc0"
+  "hash": "5e9dd86b06fb73195a954959e293c5fa"
 }
 ##DOCS-SOURCER-END -->
