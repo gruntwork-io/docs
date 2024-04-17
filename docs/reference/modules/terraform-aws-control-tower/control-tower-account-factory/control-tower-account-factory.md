@@ -162,6 +162,9 @@ module "control_tower_account_factory" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # A map of tags to apply to the new account.
+  account_tags = {}
+
   # If specified, this is assumed to be the file path of a YAML file where the
   # details of the new account created by this module will be written (if the
   # file already exists, the module will merge its data into the file). The
@@ -272,6 +275,9 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # A map of tags to apply to the new account.
+  account_tags = {}
 
   # If specified, this is assumed to be the file path of a YAML file where the
   # details of the new account created by this module will be written (if the
@@ -439,6 +445,15 @@ The last name of the user who will be granted admin access to this new account t
 
 ### Optional
 
+<HclListItem name="account_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the new account.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="accounts_yaml_path" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -581,6 +596,6 @@ The URL of the AWS SSO login page for this account
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.2/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e69a680ef3cce3ad289a2f70cac9ff5b"
+  "hash": "0f2c5ce706d90a34d3a7db706e047a3a"
 }
 ##DOCS-SOURCER-END -->
