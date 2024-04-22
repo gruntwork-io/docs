@@ -31,6 +31,8 @@ This module, along with the [lambda-share-snapshot](https://github.com/gruntwork
 
 *   Clean up old snapshots automatically using the [lambda-cleanup-snapshots](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.35.0/modules/lambda-cleanup-snapshots) module.
 
+*   Add tags to snapshots by passing in `additional_environment_variables`
+
 ## Learn
 
 Note
@@ -108,6 +110,11 @@ module "lambda_create_snapshot" {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # A map of additional environment variables to pass to the Lambda function.
+  # Any additional environment variables prefixed with TAG_ will be added as
+  # tags to the RDS snapshot.
+  additional_environment_variables = {}
 
   # Set to false to have this module skip creating resources. This weird
   # parameter exists solely because Terraform does not support conditional
@@ -208,6 +215,11 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # A map of additional environment variables to pass to the Lambda function.
+  # Any additional environment variables prefixed with TAG_ will be added as
+  # tags to the RDS snapshot.
+  additional_environment_variables = {}
 
   # Set to false to have this module skip creating resources. This weird
   # parameter exists solely because Terraform does not support conditional
@@ -317,6 +329,15 @@ An expression that defines how often to run the lambda function to take snapshot
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="additional_environment_variables" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of additional environment variables to pass to the Lambda function. Any additional environment variables prefixed with TAG_ will be added as tags to the RDS snapshot.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
 <HclListItem name="create_resources" requirement="optional" type="bool">
 <HclListItemDescription>
@@ -447,6 +468,6 @@ Namespace all snapshots created by this module's jobs with this suffix. If not s
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.35.0/modules/lambda-create-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "aab3f9bd8218be15e206c705daac1a71"
+  "hash": "33161ccca3aa7f3a90589755e6387930"
 }
 ##DOCS-SOURCER-END -->

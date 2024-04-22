@@ -427,6 +427,10 @@ module "rds" {
   # Only set this to true if you want the database open to the internet.
   publicly_accessible = false
 
+  # Redefine replica instance type, if you want to define a different RDS
+  # instance type for replica.
+  read_replica_instance_type = null
+
   # The amount of provisioned IOPS for read replicas. If null, the replica will
   # use the same value as the primary, which is set in var.iops.
   read_replica_iops = null
@@ -800,6 +804,10 @@ inputs = {
   # WARNING: - In nearly all cases a database should NOT be publicly accessible.
   # Only set this to true if you want the database open to the internet.
   publicly_accessible = false
+
+  # Redefine replica instance type, if you want to define a different RDS
+  # instance type for replica.
+  read_replica_instance_type = null
 
   # The amount of provisioned IOPS for read replicas. If null, the replica will
   # use the same value as the primary, which is set in var.iops.
@@ -1541,6 +1549,15 @@ WARNING: - In nearly all cases a database should NOT be publicly accessible. Onl
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="read_replica_instance_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Redefine replica instance type, if you want to define a different RDS instance type for replica.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="read_replica_iops" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1696,6 +1713,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.35.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ea9f9c9af1663c1b94eb89762fd587b6"
+  "hash": "6baf5a0a0c6b596f9e6b5a0ff390375f"
 }
 ##DOCS-SOURCER-END -->
