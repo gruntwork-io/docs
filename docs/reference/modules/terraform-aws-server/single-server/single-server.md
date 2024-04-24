@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Module Server" version="0.15.13" lastModifiedVersion="0.15.13"/>
+<VersionBadge repoTitle="Module Server" version="0.15.15" lastModifiedVersion="0.15.15"/>
 
 # Single Server Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.13/modules/single-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.15/modules/single-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.15.13" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.15.15" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy a single server--that is, a single EC2 instance (e.g. a bastion host, Jenkins
 server) rather than an Auto Scaling Group or ECS Cluster--along with the all the resources it typically needs:
@@ -105,7 +105,7 @@ resource "aws_iam_policy_attachment" "attachment" {
 
 module "single_server" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.15.13"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.15.15"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -142,7 +142,8 @@ module "single_server" {
   additional_security_group_ids = []
 
   # A boolean that specifies whether or not to add a security group rule that
-  # allows all outbound traffic from this server.
+  # allows all outbound traffic from this server. Works if
+  # custom_egress_rules_cidr_blocks is not specified.
   allow_all_outbound_traffic = true
 
   # A list of IP address ranges in CIDR format from which rdp access will be
@@ -200,6 +201,14 @@ module "single_server" {
   # For more information see
   # https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html.
   create_instance_profile = true
+
+  # Whether to create a security group for the instance. If set to false, you
+  # will have to provide security group with 'var.additional_security_group_ids.
+  create_security_group = true
+
+  # Custom egress rules with the CIDR Blocks destination. If we use this, the
+  # security group rule that allows all outbound traffic won't be created.
+  custom_egress_rules_cidr_blocks = {}
 
   # ID of a dedicated host that the instance will be assigned to. Use when an
   # instance is to be launched on a specific dedicated host.
@@ -311,6 +320,9 @@ module "single_server" {
 
   # If set to true, the root volume will be encrypted. Default is set to false
   root_volume_encrypted = false
+
+  # The IOPS to allocate for the root volume.
+  root_volume_iops = null
 
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
@@ -378,7 +390,7 @@ module "single_server" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.15.13"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.15.15"
 }
 
 inputs = {
@@ -418,7 +430,8 @@ inputs = {
   additional_security_group_ids = []
 
   # A boolean that specifies whether or not to add a security group rule that
-  # allows all outbound traffic from this server.
+  # allows all outbound traffic from this server. Works if
+  # custom_egress_rules_cidr_blocks is not specified.
   allow_all_outbound_traffic = true
 
   # A list of IP address ranges in CIDR format from which rdp access will be
@@ -476,6 +489,14 @@ inputs = {
   # For more information see
   # https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html.
   create_instance_profile = true
+
+  # Whether to create a security group for the instance. If set to false, you
+  # will have to provide security group with 'var.additional_security_group_ids.
+  create_security_group = true
+
+  # Custom egress rules with the CIDR Blocks destination. If we use this, the
+  # security group rule that allows all outbound traffic won't be created.
+  custom_egress_rules_cidr_blocks = {}
 
   # ID of a dedicated host that the instance will be assigned to. Use when an
   # instance is to be launched on a specific dedicated host.
@@ -587,6 +608,9 @@ inputs = {
 
   # If set to true, the root volume will be encrypted. Default is set to false
   root_volume_encrypted = false
+
+  # The IOPS to allocate for the root volume.
+  root_volume_iops = null
 
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
@@ -719,7 +743,7 @@ A list of optional additional security group ids to assign to the server. Note: 
 <HclListItem name="allow_all_outbound_traffic" requirement="optional" type="bool">
 <HclListItemDescription>
 
-A boolean that specifies whether or not to add a security group rule that allows all outbound traffic from this server.
+A boolean that specifies whether or not to add a security group rule that allows all outbound traffic from this server. Works if custom_egress_rules_cidr_blocks is not specified.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -832,6 +856,58 @@ When true, this module will create an instance profile to pass the IAM role, eit
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="create_security_group" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to create a security group for the instance. If set to false, you will have to provide security group with '<a href="#additional_security_group_ids"><code>additional_security_group_ids</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="custom_egress_rules_cidr_blocks" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+Custom egress rules with the CIDR Blocks destination. If we use this, the security group rule that allows all outbound traffic won't be created.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    description = string
+    cidr_blocks = list(string)
+    from_port   = number
+    to_port     = number
+    protocol    = string
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   An example:
+   custom_egress_rules_cidr_blocks = {
+     db_instance = {
+       description = "Connect to the DB instance"
+       cidr_blocks = ["10.0.0.0/16"]
+       from_port   = 5432
+       to_port     = 5432
+       protocol    = "tcp"
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="dedicated_host_id" requirement="optional" type="string">
@@ -1059,6 +1135,15 @@ If set to true, the root volume will be encrypted. Default is set to false
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="root_volume_iops" requirement="optional" type="number">
+<HclListItemDescription>
+
+The IOPS to allocate for the root volume.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="root_volume_size" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1219,11 +1304,11 @@ When used in combination with user_data or user_data_base64, a user_data change 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.13/modules/single-server/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.13/modules/single-server/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.13/modules/single-server/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.15/modules/single-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.15/modules/single-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.15/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a79bfa79d148e2fe31dade6147547ac0"
+  "hash": "42061c9b89db25985e03a3b380c457d8"
 }
 ##DOCS-SOURCER-END -->
