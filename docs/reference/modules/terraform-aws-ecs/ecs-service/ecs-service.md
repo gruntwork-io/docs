@@ -39,8 +39,6 @@ This module creates an [Elastic Container Service (ECS) Service](http://docs.aws
 
 *   VPC support
 
-*   Verified deployments using the [ECS deployment checker binary](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.36.0/modules/ecs-deploy-check-binaries)
-
 ## Learn
 
 Note
@@ -77,7 +75,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
     *   [modules/ecs-deploy](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.36.0/modules/ecs-deploy): use the scripts in this module to run one or more docker containers as a one time task on an ECS cluster.
 
-    *   [modules/ecs-deploy-check-binaries](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.36.0/modules/ecs-deploy-check-binaries): use the python binary packages in this module to check ECS service deployments to ensure that they are active and healthy.
+    *   **\[DEPRECATED]** [modules/ecs-deploy-check-binaries](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.36.0/modules/ecs-deploy-check-binaries): use the python binary packages in this module to check ECS service deployments to ensure that they are active and healthy.
 
 *   [examples](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.36.0/examples): This folder contains working examples of how to use the submodules.
 
@@ -231,22 +229,11 @@ module "ecs_service" {
   # destroyed before the resources in the list.
   dependencies = []
 
-  # Set the logging level of the deployment check script. You can set this to
-  # `error`, `warn`, or `info`, in increasing verbosity.
-  deployment_check_loglevel = "info"
-
-  # Seconds to wait before timing out each check for verifying ECS service
-  # deployment. See ecs_deploy_check_binaries for more details.
-  deployment_check_timeout_seconds = 600
-
   # Set enable to 'true' to prevent the task from attempting to continuously
   # redeploy after a failed health check. Set rollback to 'true' to also
   # automatically roll back to the last successful deployment. If this setting
   # is used, both 'enable' and 'rollback' are required fields.
   deployment_circuit_breaker = null
-
-  # CloudWatch alarms which triggers deployment rollback if failure.
-  deployment_cloudwatch_alarms = null
 
   # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
   deployment_controller = null
@@ -369,12 +356,6 @@ module "ecs_service" {
   # group. Set to the empty object ({}) if you are not using an ALB or NLB.
   elb_target_groups = {}
 
-  # Whether or not to enable the ECS deployment check binary to make terraform
-  # wait for the task to be deployed. See ecs_deploy_check_binaries for more
-  # details. You must install the companion binary before the check can be used.
-  # Refer to the README for more details.
-  enable_ecs_deployment_check = true
-
   # Specifies whether to enable Amazon ECS Exec for the tasks within the
   # service.
   enable_execute_command = false
@@ -484,6 +465,11 @@ module "ecs_service" {
   # Define runtime platform options
   runtime_platform = null
 
+  # Use this variable to adjust the default timeout of 20m for create and update
+  # operations the the ECS service. Adjusting the value can be particularly
+  # useful when using 'wait_for_steady_state'.
+  service_create_update_timeout = "20m"
+
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
   service_tags = {}
@@ -545,10 +531,10 @@ module "ecs_service" {
   # but not including the name parameter.
   volumes = {}
 
-  # If true, Terraform will wait for the service to reach a steady state—as in,
-  # the ECS tasks you wanted are actually deployed—before 'apply' is considered
-  # complete.
-  wait_for_steady_state = false
+  # If true, Terraform will wait for the service to reach a steady state — as
+  # in, the ECS tasks you wanted are actually deployed — before 'apply' is
+  # considered complete.
+  wait_for_steady_state = true
 
 }
 
@@ -651,22 +637,11 @@ inputs = {
   # destroyed before the resources in the list.
   dependencies = []
 
-  # Set the logging level of the deployment check script. You can set this to
-  # `error`, `warn`, or `info`, in increasing verbosity.
-  deployment_check_loglevel = "info"
-
-  # Seconds to wait before timing out each check for verifying ECS service
-  # deployment. See ecs_deploy_check_binaries for more details.
-  deployment_check_timeout_seconds = 600
-
   # Set enable to 'true' to prevent the task from attempting to continuously
   # redeploy after a failed health check. Set rollback to 'true' to also
   # automatically roll back to the last successful deployment. If this setting
   # is used, both 'enable' and 'rollback' are required fields.
   deployment_circuit_breaker = null
-
-  # CloudWatch alarms which triggers deployment rollback if failure.
-  deployment_cloudwatch_alarms = null
 
   # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
   deployment_controller = null
@@ -789,12 +764,6 @@ inputs = {
   # group. Set to the empty object ({}) if you are not using an ALB or NLB.
   elb_target_groups = {}
 
-  # Whether or not to enable the ECS deployment check binary to make terraform
-  # wait for the task to be deployed. See ecs_deploy_check_binaries for more
-  # details. You must install the companion binary before the check can be used.
-  # Refer to the README for more details.
-  enable_ecs_deployment_check = true
-
   # Specifies whether to enable Amazon ECS Exec for the tasks within the
   # service.
   enable_execute_command = false
@@ -904,6 +873,11 @@ inputs = {
   # Define runtime platform options
   runtime_platform = null
 
+  # Use this variable to adjust the default timeout of 20m for create and update
+  # operations the the ECS service. Adjusting the value can be particularly
+  # useful when using 'wait_for_steady_state'.
+  service_create_update_timeout = "20m"
+
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
   service_tags = {}
@@ -965,10 +939,10 @@ inputs = {
   # but not including the name parameter.
   volumes = {}
 
-  # If true, Terraform will wait for the service to reach a steady state—as in,
-  # the ECS tasks you wanted are actually deployed—before 'apply' is considered
-  # complete.
-  wait_for_steady_state = false
+  # If true, Terraform will wait for the service to reach a steady state — as
+  # in, the ECS tasks you wanted are actually deployed — before 'apply' is
+  # considered complete.
+  wait_for_steady_state = true
 
 }
 
@@ -1155,24 +1129,6 @@ Create a dependency between the resources in this module to the interpolated val
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="deployment_check_loglevel" requirement="optional" type="string">
-<HclListItemDescription>
-
-Set the logging level of the deployment check script. You can set this to `error`, `warn`, or `info`, in increasing verbosity.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;info&quot;"/>
-</HclListItem>
-
-<HclListItem name="deployment_check_timeout_seconds" requirement="optional" type="number">
-<HclListItemDescription>
-
-Seconds to wait before timing out each check for verifying ECS service deployment. See ecs_deploy_check_binaries for more details.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="600"/>
-</HclListItem>
-
 <HclListItem name="deployment_circuit_breaker" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
@@ -1185,26 +1141,6 @@ Set enable to 'true' to prevent the task from attempting to continuously redeplo
 object({
     enable   = bool
     rollback = bool
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="deployment_cloudwatch_alarms" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-CloudWatch alarms which triggers deployment rollback if failure.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    cloudwatch_alarms = list(string)
-    enable            = bool
-    rollback          = bool
   })
 ```
 
@@ -1506,15 +1442,6 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="enable_ecs_deployment_check" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to enable the ECS deployment check binary to make terraform wait for the task to be deployed. See ecs_deploy_check_binaries for more details. You must install the companion binary before the check can be used. Refer to the README for more details.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="enable_execute_command" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1785,6 +1712,15 @@ object({
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="service_create_update_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Use this variable to adjust the default timeout of 20m for create and update operations the the ECS service. Adjusting the value can be particularly useful when using 'wait_for_steady_state'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;20m&quot;"/>
+</HclListItem>
+
 <HclListItem name="service_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -1928,10 +1864,10 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItem name="wait_for_steady_state" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If true, Terraform will wait for the service to reach a steady state—as in, the ECS tasks you wanted are actually deployed—before 'apply' is considered complete.
+If true, Terraform will wait for the service to reach a steady state — as in, the ECS tasks you wanted are actually deployed — before 'apply' is considered complete.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 </TabItem>
@@ -1997,6 +1933,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.36.0/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e736a3bd332d5dddff447f12487e4c28"
+  "hash": "798629d84cde8e125d90dea4d05c0a32"
 }
 ##DOCS-SOURCER-END -->
