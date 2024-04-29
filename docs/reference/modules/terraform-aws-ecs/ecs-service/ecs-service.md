@@ -235,6 +235,9 @@ module "ecs_service" {
   # is used, both 'enable' and 'rollback' are required fields.
   deployment_circuit_breaker = null
 
+  # CloudWatch alarms which triggers deployment rollback if failure.
+  deployment_cloudwatch_alarms = null
+
   # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
   deployment_controller = null
 
@@ -642,6 +645,9 @@ inputs = {
   # automatically roll back to the last successful deployment. If this setting
   # is used, both 'enable' and 'rollback' are required fields.
   deployment_circuit_breaker = null
+
+  # CloudWatch alarms which triggers deployment rollback if failure.
+  deployment_cloudwatch_alarms = null
 
   # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
   deployment_controller = null
@@ -1141,6 +1147,26 @@ Set enable to 'true' to prevent the task from attempting to continuously redeplo
 object({
     enable   = bool
     rollback = bool
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="deployment_cloudwatch_alarms" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+CloudWatch alarms which triggers deployment rollback if failure.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    cloudwatch_alarms = list(string)
+    enable            = bool
+    rollback          = bool
   })
 ```
 
@@ -1933,6 +1959,6 @@ If true, Terraform will wait for the service to reach a steady state — as in, 
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.36.0/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "798629d84cde8e125d90dea4d05c0a32"
+  "hash": "4d4f30d6165c4b3a82dd68832e91b55f"
 }
 ##DOCS-SOURCER-END -->
