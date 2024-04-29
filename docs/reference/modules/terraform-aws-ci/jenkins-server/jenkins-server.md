@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.54.0" lastModifiedVersion="0.53.5"/>
+<VersionBadge repoTitle="CI Modules" version="0.55.1" lastModifiedVersion="0.54.1"/>
 
 # Jenkins server
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.54.0/modules/jenkins-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.55.1/modules/jenkins-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.53.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.54.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to deploy [Jenkins CI server](https://jenkins.io) in AWS. It creates the following resources:
 
@@ -29,17 +29,17 @@ to run an ASG for Jenkins that can correctly reattach an EBS volume.
 
 ## Example code
 
-*   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.54.0/examples/jenkins) for working sample code.
-*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.54.0/modules/jenkins-server/vars.tf) for all parameters you can configure on this module.
+*   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.55.1/examples/jenkins) for working sample code.
+*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.55.1/modules/jenkins-server/vars.tf) for all parameters you can configure on this module.
 
 ## Jenkins AMI
 
-See the [install-jenkins module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.54.0/modules/install-jenkins) for a way to create an AMI with Jenkins installed and a
+See the [install-jenkins module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.55.1/modules/install-jenkins) for a way to create an AMI with Jenkins installed and a
 script you can run in User Data to start Jenkins while the server is booting.
 
 ## Backing up Jenkins
 
-See the [ec2-backup module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.54.0/modules/ec2-backup) for an automatic way to take scheduled backups of Jenkins and its EBS
+See the [ec2-backup module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.55.1/modules/ec2-backup) for an automatic way to take scheduled backups of Jenkins and its EBS
 volume.
 
 ## IAM permissions
@@ -112,7 +112,7 @@ data "aws_iam_policy_document" "example" {
 
 module "jenkins_server" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.54.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.55.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -335,6 +335,12 @@ module "jenkins_server" {
   # force a deployment anyway.
   skip_health_check = false
 
+  # If set to true, skip the rolling deployment, and destroy all the servers
+  # immediately. You should typically NOT enable this in prod, as it will cause
+  # downtime! The main use case for this flag is to make testing and cleanup
+  # easier. It can also be handy in case the rolling deployment code has a bug.
+  skip_rolling_deploy = false
+
   # The aws predefined policy for alb. A List of policies can be found here:
   # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies
   ssl_policy = "ELBSecurityPolicy-TLS-1-1-2017-01"
@@ -379,7 +385,7 @@ module "jenkins_server" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.54.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.55.1"
 }
 
 inputs = {
@@ -604,6 +610,12 @@ inputs = {
   # primarily useful if the server group is in a broken state and you want to
   # force a deployment anyway.
   skip_health_check = false
+
+  # If set to true, skip the rolling deployment, and destroy all the servers
+  # immediately. You should typically NOT enable this in prod, as it will cause
+  # downtime! The main use case for this flag is to make testing and cleanup
+  # easier. It can also be handy in case the rolling deployment code has a bug.
+  skip_rolling_deploy = false
 
   # The aws predefined policy for alb. A List of policies can be found here:
   # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies
@@ -1123,6 +1135,15 @@ If set to true, skip the health check, and start a rolling deployment of Jenkins
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="skip_rolling_deploy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, skip the rolling deployment, and destroy all the servers immediately. You should typically NOT enable this in prod, as it will cause downtime! The main use case for this flag is to make testing and cleanup easier. It can also be handy in case the rolling deployment code has a bug.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="ssl_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1232,11 +1253,11 @@ A maximum duration to wait for each server to be healthy before timing out (e.g.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.54.0/modules/jenkins-server/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.54.0/modules/jenkins-server/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.54.0/modules/jenkins-server/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.55.1/modules/jenkins-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.55.1/modules/jenkins-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.55.1/modules/jenkins-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2f5bc57586e622e836aba842c4fa90f0"
+  "hash": "8ff2cc7a77015244a6b2638b6cd8e0a8"
 }
 ##DOCS-SOURCER-END -->
