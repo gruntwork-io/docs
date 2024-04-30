@@ -105,13 +105,24 @@ const sidebar = [
           {
             label: "Upgrading from ECS Deploy Runner",
             type: "doc",
-            id: "pipelines/upgrading/index"
+            id: "pipelines/upgrading/upgrading-from-ecs-deploy-runner",
           },
           {
             label: "ECS Deploy Runner",
             type: "link",
             // Use a fully qualified URL to trigger the "external link" SVG here
             href: "https://docs.gruntwork.io/ecs-deploy-runner/overview",
+          },
+          {
+            label: "Upgrading from `infrastructure-pipelines`",
+            type: "doc",
+            id: "pipelines/upgrading/upgrading-from-infrastructure-pipelines",
+          },
+          {
+            label: "Infrastructure Pipelines",
+            type: "link",
+            // Use a fully qualified URL to trigger the "external link" SVG here
+            href: "https://docs.gruntwork.io/infrastructure-pipelines/deprecation",
           },
         ],
       },

@@ -1,16 +1,14 @@
 # What is Gruntwork Pipelines?
 
-:::info Recent Upgrade
-This documentation relates to the latest version of Gruntwork Pipelines that most customers have not yet adopted.
-
-If you are using the older version of Gruntwork Pipelines that includes the `infrastructure-pipelines` repository, click [here](../../infrastructure-pipelines/overview/deprecation.md) to learn more about the deprecation of that version.
+:::info Newer Version Available
+This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
 :::
 
 **Gruntwork Pipelines is a framework for securely and responsibly rolling out infrastructure changes to your AWS environments using GitOps workflows.** We often refer to Gruntwork Pipelines as simply "Pipelines."
 
-Gruntwork Pipelines features first-class support for Terragrunt, runs on top of GitHub Actions, and uses a pull request-centric workflow. This means that all information about a proposed infrastructure change is added as comments to the applicable pull request, and that you apply the infrastructure change by merging the pull request.
+Gruntwork Pipelines features first-class support for Terragrunt, runs on top of GitHub Actions, and uses a pull request-centric workflow. This means that all information about a proposed infrastructure change is added as comments to the applicable pull request, and that you apply the infrastructure change by taking action in the pull request.
 
-Gruntwork Pipelines runs as a combination of a binary and a [GitHub Workflow](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions) composed of [GitHub Actions](https://docs.github.com/en/actions/creating-actions/about-custom-actions), determining what _actions_ need to be taken, in which _environments_, based on the [_infrastructure changes_](#infrastructure-change) that occurred.
+Gruntwork Pipelines runs as a binary and series of steps in GitHub Actions, determining what _actions_ need to be taken, in which _environments_, based on the [_infrastructure changes_](#infrastructure-change) that occurred.
 
 ## Common Terms
 

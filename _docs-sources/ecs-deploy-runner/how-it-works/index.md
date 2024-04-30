@@ -1,5 +1,9 @@
 # How it works
 
+:::info Newer Version Available
+This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
+:::
+
 ![Gruntwork Pipelines Architecture](/img/guides/build-it-yourself/pipelines/tftg-pipeline-architecture.png)
 
 ## External CI Tool
