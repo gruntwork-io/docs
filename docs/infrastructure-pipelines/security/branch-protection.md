@@ -1,13 +1,11 @@
 # Branch Protection
 
-:::info Recent Upgrade
-This documentation relates to the latest version of Gruntwork Pipelines that most customers have not yet adopted.
-
-If you are using the older version of Gruntwork Pipelines that includes the `infrastructure-pipelines` repository, click [here](../../infrastructure-pipelines/overview/deprecation.md) to learn more about the deprecation of that version.
+:::info Newer Version Available
+This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
 :::
 
 Gruntwork Pipelines is designed to be used with a PR based workflow.
-This means an approval on a PR is an approval to deploy infrastructure, making the configuration of repository settings and branch protection especially important.
+This means an approval on a PR is an approval to deploy infrastructure, making the configuration of repo settings and branch protection especially important.
 
 ## Recommended Settings
 
@@ -39,11 +37,6 @@ The following is an example of the recommended settings for branch protection:
   protection rules. This will limit your options for applying emergency fixes, but is more secure.
 :::
 
-:::info
-  As of writing, GitHub has also released new functionality that is broadly only available to GitHub Enterprise customers.
-  This beta functionality allows for configuring [push rulesets](https://docs.github.com/en/enterprise-cloud@latest/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets#push-rulesets). To configure it, follow the documentation [here](https://docs.github.com/en/enterprise-cloud@latest/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository#creating-a-push-ruleset).
-  Enabling this feature is recommended if it is available for you, as it allows you to prevent edits to `.github/workflows` files, ensuring that all infrastructure changes are reviewed, approved and propagated through Pipelines.
-
 ## PR Workflow
 
 1. Developers make infrastructure changes on a branch and create a PR against `main`
@@ -52,13 +45,13 @@ The following is an example of the recommended settings for branch protection:
 1. Approvals are gathered. If codeowners is enabled, the owner of each changed folder/file must approve the PR before it can be merged
 1. Once approved, the PR is merged into `main`
 1. Gruntwork Pipelines runs `apply` on any changes from the PR
-   - On Success, the PR is updated to communicate the success of the apply
-   - On Failure, the PR is updated to communicate the failure of the apply. If the apply cannot be fixed by retrying, a new PR must be created to resolve any failures.
+   - On Success, a comment is placed on the PR indicating success
+   - On Failure, a new GitHub issue is created describing the failure. A new PR must be created to resolve any failures.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "2e694ca5c8bc4fea4354fadc733b49a4"
+  "hash": "79327c7c5cfee06581006fc3bbb85805"
 }
 ##DOCS-SOURCER-END -->

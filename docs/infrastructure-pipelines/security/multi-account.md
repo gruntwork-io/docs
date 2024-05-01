@@ -1,5 +1,9 @@
 # Multiple Infrastructure-Live Repos
 
+:::info Newer Version Available
+This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
+:::
+
 We recommend using a single `infrastructure-live` git repository for managing your organization's infrastructure.
 Sometimes, this isn't possible due to team structure, security requirements, or other limitations.
 You may choose to use multiple `infrastructure-live` repos to:
@@ -57,6 +61,6 @@ The `INFRA_LIVE_ACCESS_TOKEN` available to the `infrastructure-pipelines` reposi
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "f379ac3d345694272df57b975194b7ea"
+  "hash": "d492c3f3f068ced6c6c9af871eb11719"
 }
 ##DOCS-SOURCER-END -->

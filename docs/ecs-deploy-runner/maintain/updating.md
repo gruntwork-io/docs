@@ -3,6 +3,10 @@ import TabItem from '@theme/TabItem';
 
 # Updating Your ECS Deploy Runner
 
+:::info Newer Version Available
+This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
+:::
+
 Pipelines is built using the [`terraform-aws-ci`](../../reference/modules/terraform-aws-ci/ecs-deploy-runner/) module. We recommend updating your pipeline whenever there’s a new release of the module.
 
 By default, Pipelines cannot update it’s own infrastructure (ECS cluster, AWS Lambda function, etc), so you must run upgrades to Pipelines manually from your local machine. This safeguard is in place to prevent you from accidentally locking yourself out of the Pipeline when applying a change to permissions.
@@ -99,6 +103,6 @@ Once you have updated any references to the container image tags, you will need 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b1b0f08746d13799cf9560f450238c6f"
+  "hash": "6a2b0a06b22a1f9f52909f68250435fb"
 }
 ##DOCS-SOURCER-END -->

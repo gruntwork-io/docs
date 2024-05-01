@@ -3,6 +3,10 @@ import TabItem from '@theme/TabItem';
 
 # Extending your ECS Deploy Runner
 
+:::info Newer Version Available
+This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
+:::
+
 Pipelines can be extended in several ways:
 - Adding repositories to supporting building Docker images for many applications
 - Updating which branches can kick off which jobs
@@ -140,6 +144,6 @@ If you need to run a custom script in the `deploy-runner`, you must fork the ima
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "ef28141c1736959fba4ed2727f79ccb1"
+  "hash": "68f6551330b76b6bb8ef7b8a735a9d29"
 }
 ##DOCS-SOURCER-END -->
