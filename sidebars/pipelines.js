@@ -37,23 +37,6 @@ const sidebar = [
         ],
       },
       {
-        label: "Getting Started",
-        type: "category",
-        collapsed: false,
-        items: [
-          {
-            label: "Hello World",
-            type: "doc",
-            id: "pipelines/hello-world/index",
-          },
-          {
-            label: "Allowing Pipelines Actions",
-            type: "doc",
-            id: "pipelines/hello-world/github-enterprise",
-          },
-        ],
-      },
-      {
         label: "Security",
         type: "category",
         collapsible: false,
@@ -82,11 +65,6 @@ const sidebar = [
             label: "Machine Users",
             type: "doc",
             id: "pipelines/security/machine-users",
-          },
-          {
-            label: "Multiple Infrastructure-Live Repos",
-            type: "doc",
-            id: "pipelines/security/multi-account",
           },
         ]
       },
