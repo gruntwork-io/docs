@@ -20,12 +20,12 @@ Due to our integration with [Dependabot](https://docs.github.com/en/code-securit
 
 ## Updating Customized Workflows
 
-Note that if you follow the instructions under [Extending Pipelines](/pipelines/extending), you may have incurred greater burden in maintaining updates to your customized workflows. If you decide to fork the [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository to customize your workflows, you will need to manually update your workflows to include the latest changes from the upstream repository. This can be done by following the instructions in the [GitHub documentation](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork), as long as you have not made changes that conflict with the upstream repository.
+Note that if you follow the instructions under [Extending Pipelines](/pipelines/maintain/extending), you may have incurred greater burden in maintaining updates to your customized workflows. If you decide to fork the [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository to customize your workflows, you will need to manually update your workflows to include the latest changes from the upstream repository. This can be done by following the instructions in the [GitHub documentation](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork), as long as you have not made changes that conflict with the upstream repository.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "5c2fd2d8bf4ca726446bd5cb4d0cb5cc"
+  "hash": "b734368beb4d6ea76e50302bfd17aac0"
 }
 ##DOCS-SOURCER-END -->
