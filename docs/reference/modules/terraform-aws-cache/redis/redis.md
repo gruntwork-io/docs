@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="0.22.4" lastModifiedVersion="0.22.2"/>
+<VersionBadge repoTitle="Cache Modules" version="0.22.6" lastModifiedVersion="0.22.5"/>
 
 # Redis Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.4/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.6/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.22.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.22.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an ElastiCache cluster that runs [Redis](http://redis.io/).
 
@@ -84,7 +84,7 @@ here: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/ParameterGroup
 #### Choosing Cluster Mode vs. Single Instance
 
 You can use `var.enable_single_instance_mode=true` to deploy a single node Redis instance. Refer
-to [examples/redis_single_instance](https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.4/examples/redis_single_instance) as an example.
+to [examples/redis_single_instance](https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.6/examples/redis_single_instance) as an example.
 
 Here are some of the points you may consider while choosing which mode to run:
 
@@ -243,7 +243,7 @@ ElastiCache for Redis supports the following types of automatic scaling dimensio
 
 module "redis" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.22.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.22.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -315,6 +315,9 @@ module "redis" {
 
   # Target value of the auto_scale trigger metric
   auto_scale_trigger_metric_target_value = null
+
+  # Configuration variables for an ElastiCache Parameter Group.
+  aws_elasticache_parameter_group_config = null
 
   # The description of the aws_elasticache_security_group that is created.
   # Defaults to 'Security group for the var.name ElastiCache cluster' if not
@@ -476,7 +479,7 @@ module "redis" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.22.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.22.6"
 }
 
 inputs = {
@@ -551,6 +554,9 @@ inputs = {
 
   # Target value of the auto_scale trigger metric
   auto_scale_trigger_metric_target_value = null
+
+  # Configuration variables for an ElastiCache Parameter Group.
+  aws_elasticache_parameter_group_config = null
 
   # The description of the aws_elasticache_security_group that is created.
   # Defaults to 'Security group for the var.name ElastiCache cluster' if not
@@ -845,6 +851,27 @@ Metric type to trigger auto-scaling. Supported metric type can be found here: ht
 Target value of the auto_scale trigger metric
 
 </HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="aws_elasticache_parameter_group_config" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Configuration variables for an ElastiCache Parameter Group.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    name        = string
+    family      = string
+    description = string
+    parameters  = list(map(string))
+  })
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -1223,11 +1250,11 @@ This is a list of user IDs  that should be added to the group defined in the 'us
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.4/modules/redis/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.4/modules/redis/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.4/modules/redis/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.6/modules/redis/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.6/modules/redis/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.6/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "20e517b0a4b8b4f035b9a733b3e68dc0"
+  "hash": "6b6efa4ce67469188a3d77a07b42fb97"
 }
 ##DOCS-SOURCER-END -->
