@@ -26,6 +26,6 @@ Note that if you follow the instructions under [Extending Pipelines](/pipelines/
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b734368beb4d6ea76e50302bfd17aac0"
+  "hash": "6d58ce75f6b3810e2c15e8eaadd2e96f"
 }
 ##DOCS-SOURCER-END -->

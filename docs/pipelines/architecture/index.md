@@ -32,6 +32,6 @@ In addition, each AWS IAM role provisioned as part of DevOps Foundations only tr
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7048cf5d848ac9fccc6332f11e791528"
+  "hash": "7849eafdb71da19971fc4621d286755c"
 }
 ##DOCS-SOURCER-END -->

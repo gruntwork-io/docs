@@ -59,6 +59,6 @@ The following is an example of the recommended settings for branch protection:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "2e694ca5c8bc4fea4354fadc733b49a4"
+  "hash": "eea67b29d9823c1fe72af383a27280a5"
 }
 ##DOCS-SOURCER-END -->

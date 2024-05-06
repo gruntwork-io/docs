@@ -79,6 +79,6 @@ CloudTrail can be configured to automatically store events in an S3 bucket of yo
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "4c1b7e8f5ef0fef269051ba25d0cf4d2"
+  "hash": "e0ddaa37b7ec46c7ad1d5a4a18ce6d02"
 }
 ##DOCS-SOURCER-END -->

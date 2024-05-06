@@ -42,7 +42,13 @@ Your organization is required to rotate the GitHub tokens and update all GitHub 
 
 The `ci-user` orchestrates workflows, can open pull requests from automated code generation, and leave comments on pull requests. This user should have two GitHub Fine Grained [Personal Access Tokens (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens)s with the following permissions.
 
-First, invite the `ci-user` to your `infrastructure-live-root` repository with collaborator access. Then, create the following access tokens in the `ci-user`'s GitHub account:
+#### Invite the `ci-user` to your repository
+
+Invite the `ci-user` to your `infrastructure-live-root` repository with write access.
+
+#### Create the appropriate tokens for the `ci-user`
+
+Create the following access tokens in the `ci-user`'s GitHub account:
 
 1. `INFRA_ROOT_WRITE_TOKEN`. This is a fine-grained GitHub Personal Access Token and will be used to grant GitHub Actions access to clone your `infrastructure-live-root` repository, open PRs, and create/update comments.
 
@@ -74,7 +80,13 @@ This user is created to download private software within GitHub Actions Workflow
 
 The `ci-read-only-user` should have a single classic token [Personal Access Tokens (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with read permissions. Classic PATs have coarse granularity, we recommend putting this user in a GitHub team that only has READ access to `infrastructure-live-root` and any relevant module repositories in your own GitHub Organization. By adding this user to the Gruntwork Developer portal, they will automatically gain access to the Gruntwork Library.
 
-Invite `ci-user-read-only` to your `infrastructure-live-root` repository with collaborator access. Create the following token for the `ci-read-only-user`:
+#### Invite the `ci-read-only-user` to your repository
+
+Invite `ci-user-read-only` to your `infrastructure-live-root` repository with read access.
+
+#### Create the appropriate tokens for the `ci-read-only-user`
+
+Create the following token for the `ci-read-only-user`:
 
 1. `PIPELINES_READ_TOKEN`. This token will be used to manage access to private software during GitHub Action runs.
 

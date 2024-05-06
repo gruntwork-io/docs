@@ -24,6 +24,6 @@ If you'd like to request a new Pipelines action, please email us at <feedback@gr
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "f221a97081aa2398f95980a6e94e7c5d"
+  "hash": "f2f6558e306627b9ed19c3362929c75a"
 }
 ##DOCS-SOURCER-END -->
