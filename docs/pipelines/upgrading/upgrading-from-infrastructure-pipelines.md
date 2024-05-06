@@ -11,7 +11,7 @@ To get an idea of what makes the most recent version of Pipelines different from
 Before you begin the migration process, ensure that you have the following prerequisites:
 
 - [mise](https://mise.jdx.dev/) installed.
-- [AWS Administrator (or similar) permissions] in all AWS accounts managed by this repository.
+- AWS Administrator (or similar) permissions in all AWS accounts managed by this repository.
 - A solid understanding of Infrastructure as Code (IAC) fundamentals, or support from Gruntwork.
 
 ## Step 1: Update the `bootstrap.yml` workflow
@@ -109,7 +109,7 @@ These roles are what Pipelines uses to plan and apply changes to your infrastruc
 Given the chicken and egg issue that arises from needing the roles present to use the roles, you will need to apply these changes manually:
 
 :::warning
-Never make changes to your Identity and Access Management (IAM) without reviewing the changes that are being made. Make sure you understand the permissions being assigned to these roles before applying them, and ensure that they are appropriate for your organization.
+Never make changes to Identity and Access Management (IAM) resources without carefully reviewing the changes that are being made. Make sure you understand the permissions being assigned to these roles before applying them, and ensure that they are appropriate for your organization.
 :::
 
 ```bash
@@ -202,6 +202,6 @@ If you have any questions, or if you have encountered any issues during this mig
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "c5b875e72924d8f58de7667ff5a8f859"
+  "hash": "f27ed26156a0dc6b3d103739fcc748b9"
 }
 ##DOCS-SOURCER-END -->
