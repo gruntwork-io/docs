@@ -11,7 +11,7 @@ It is important to regularly update your version of Terraform to ensure you have
 Neglecting regular updates may lead to increased complexity and difficulty when attempting to upgrade from multiple versions behind. This was particularly true during the pre-1.0 era of Terraform where significant changes and breaking modifications were more frequent.
 
 The test pipeline's workhorse, the ECS Deploy Runner, includes a Terraform version manager,
-[`tfenv`](https://github.com/tfutils/tfenv), so that you can run multiple versions of Terraform with your
+[`mise`](https://github.com/jdx/mise), so that you can run multiple versions of Terraform with your
 `infrastructure-live` repo. This is especially useful when you want to upgrade Terraform versions.
 
 1. You'll first need to add a `.terraform-version` file to the module directory of the module you're upgrading.
@@ -32,6 +32,6 @@ The test pipeline's workhorse, the ECS Deploy Runner, includes a Terraform versi
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "c67cfbfdf13c6a38dd41d140f8a8e4cd"
+  "hash": "c4fbcba8e2d7fb60bde477269de7d9da"
 }
 ##DOCS-SOURCER-END -->

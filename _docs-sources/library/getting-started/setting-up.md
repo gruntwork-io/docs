@@ -11,7 +11,7 @@ Gruntwork’s IaC library is built using Terraform, so having Terraform installe
 ### Installation
 Terraform is supported on Mac (x86 and Apple Silicon), Windows, and Linux. To learn how to install for your specific OS, follow the guide to [install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli#install-cli) on the Hashicorp website.
 
-If you need multiple versions of Terraform installed, [tfenv](https://github.com/tfutils/tfenv#installation) is a tool for managing and using multiple versions of Terraform. It was inspired by similar tools `rbenv` for Ruby versions and `pyenv` for Python.
+If you need multiple versions of Terraform installed, [mise](https://github.com/jdx/mise) is a tool that can be used for managing and using multiple versions of Terraform.
 
 ### Learn more
 If you’re new to Terraform, we recommend starting with learning about Terraform’s [configuration language](https://developer.hashicorp.com/terraform/language) then familiarizing yourself with the basics of [provisioning infrastructure](https://developer.hashicorp.com/terraform/cli/run) using Terraform.
@@ -29,7 +29,7 @@ Terragrunt is not a required tool to use the IaC library, but it does provide ma
 ### Installation
 Terragrunt is supported on Mac (x86 and Apple Silicon), Windows, and Linux. To install Terragrunt, follow the guide on how to [install Terragrunt](https://terragrunt.gruntwork.io/docs/getting-started/install/) on the Terragrunt website.
 
-If you need multiple versions of Terragrunt installed, [tgswitch](https://github.com/warrensbox/tgswitch#installation) is a tool for managing and using multiple versions of Terragrunt with a similar feature set to `tfenv`.
+If you need multiple versions of Terragrunt installed, [mise](https://github.com/jdx/mise) supports the use of the [3rd party ASDF Terragrunt plugin](https://github.com/lotia/asdf-terragrunt).
 
 ### Learn more
 To learn more about Terragrunt, check out the [official documentation](https://terragrunt.gruntwork.io/docs/).
