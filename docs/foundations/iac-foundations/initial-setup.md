@@ -12,19 +12,19 @@ For each repository below, navigate to the template repository and select **Use 
 
 The repository template will be created, and you can follow the instructions in the `README` to bootstrap your IaC Foundations. Gruntwork is available to assist with questions around other patterns as they arise.
 
-### Infrastructure Live Root Template
+## Infrastructure Live Root Template
 
 [infrastructure-live-root-template](https://github.com/gruntwork-io/infrastructure-live-root-template)
 
 This template creates an infrastructure-live-root repository with scaffolding for a best practices Terragrunt configuration, including patterns for module defaults, global variables, and account baselines. It also configures Gruntwork Pipelines, which is easy to remove if you don't want it.
 
-### Infrastructure Live Access Control Template
+## Infrastructure Live Access Control Template
 
 [infrastructure-live-access-control-template](https://github.com/gruntwork-io/infrastructure-live-access-control-template)
 
 This template is only necessary for Enterprise customers, but is recommended for all customers.
 
-### Infrastructure Modules Template
+## Infrastructure Modules Template
 
 [infrastructure-modules-template](https://github.com/gruntwork-io/infrastructure-modules-template)
 
@@ -34,6 +34,6 @@ This template creates an empty infrastructure-modules repository that will be us
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "3df2b1e581fd887339fa147c20ae13e4"
+  "hash": "c727d1e5c94ef7864a331765302d032a"
 }
 ##DOCS-SOURCER-END -->
