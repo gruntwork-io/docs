@@ -11,7 +11,7 @@ To get an idea of what makes the most recent version of Pipelines different from
 Before you begin the migration process, ensure that you have the following prerequisites:
 
 - [mise](https://mise.jdx.dev/) installed.
-- AWS Administrator (or similar) permissions in all AWS accounts managed by this repository.
+- AWS Administrator (or similar) permissions in all AWS accounts managed by your `infrastructure-live` repository.
 - A solid understanding of Infrastructure as Code (IAC) fundamentals, or support from Gruntwork.
 
 ## Step 1: Update the `bootstrap.yml` workflow
@@ -20,16 +20,16 @@ Copy the [bootstrap.yml](https://github.com/gruntwork-io/infrastructure-live-roo
 
 Make sure to read the [README](https://github.com/gruntwork-io/infrastructure-live-root-template/tree/main?tab=readme-ov-file#infrastructure-live-root-template) to understand how inputs will be used by this workflow in the subsequent step. Take special care to read the [Workflow Inputs](https://github.com/gruntwork-io/infrastructure-live-root-template/tree/main?tab=readme-ov-file#workflow-inputs) section of the `README.md` to understand how to configure the inputs for the workflow.
 
-## Step 2: Run `bootstrap.yml` workflow
+## Step 2: Run the `bootstrap.yml` workflow
 
 Find the workflow labeled `Infrastructure Live Root Bootstrap` in the `Actions` tab of your repository.
 
-Run the workflow by clicking the `Run workflow` button, providing the necessary inputs as described in the [Workflow Inputs section](https://github.com/gruntwork-io/infrastructure-live-root-template/tree/main?tab=readme-ov-file#workflow-inputs) (you can find a lot of those values in your `accounts.yml` file).
+Run the workflow by clicking the green `Run workflow` button, providing the necessary inputs as described in the [Workflow Inputs section](https://github.com/gruntwork-io/infrastructure-live-root-template/tree/main?tab=readme-ov-file#workflow-inputs) (you can find a lot of those values in your `accounts.yml` file).
 
 You will now have a new branch in your repository named `bootstrap-repository` and a pull request to merge it into the default branch of your repository.
 
 :::caution
-Make sure you do not proceed with the merge, as you will need to modify your pull request to avoid conflicts with the existing codebase.
+Make sure you do not proceed with the merge, as you will need to modify your pull request to avoid conflicts with your existing codebase.
 :::
 
 You will definitely need to make at least _some_ adjustments to the pull request. Access the `bootstrap-repository` branch and make the necessary changes to the pull request to ensure that it is compatible with your existing codebase.
@@ -75,7 +75,7 @@ awscli = "2.15.44"
 ```
 
 :::info
-If you have not made the switch over to OpenTofu yet, you can simply set your current version of Terraform in the `.mise.toml` file.
+If you have not made the switch over to OpenTofu yet, you can simply set your current version of `terraform` in the `.mise.toml` file.
 :::
 
 Run the following in order to install the dependencies locally:
@@ -94,7 +94,7 @@ This has been adjusted to leverage a more flexible, and repeatable approach to g
 
 A sample form has been added as part of this initial pull request, and you can find it in the `.github/workflows/account-factory-inputs.html` file. You can modify this form as necessary to meet your needs so that account requests can be made in a way that is consistent with your organization's needs.
 
-A common pattern seen here is to either use an external ticketing system like JIRA to collect the necessary information, and use an integration with the GitHub API to create the account request once it has been approved, or to simply generate the JSON input string to be passed into the GitHub Actions workflow.
+A common pattern seen here is to either use an external ticketing system like JIRA to collect the necessary information, and use an integration with the GitHub API to automatically submit the account request pull request once it has been reviewed in the ticketing system, or to simply generate the JSON input string to be passed into the GitHub Actions workflow.
 
 ### The `state_bucket_pattern` value in `account.yml`
 
@@ -102,7 +102,7 @@ Previously, the `account.yml` file had a `state_bucket_name` value that was used
 
 ### Adding missing `root-pipelines-plan` and `root-pipelines-apply` roles
 
-You might need to copy over the `github-actions-openid-connect-provider`, `root-pipelines-plan` and `root-pipelines-apply` folders from the `management` account to all of your accounts, depending on what your current account structure looks like.
+You might need to copy over the `github-actions-openid-connect-provider`, `root-pipelines-plan` and `root-pipelines-apply` folders from the `management` account to all of your other accounts, depending on what your current account structure looks like.
 
 These roles are what Pipelines uses to plan and apply changes to your infrastructure. They must be present in any account that pipelines is going to operate in from the `infrastructure-live-root` repository.
 
@@ -202,6 +202,6 @@ If you have any questions, or if you have encountered any issues during this mig
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "f27ed26156a0dc6b3d103739fcc748b9"
+  "hash": "2d64b97299e5bb4dc6a722b1988c44a7"
 }
 ##DOCS-SOURCER-END -->
