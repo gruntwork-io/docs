@@ -11,7 +11,7 @@ To get an idea of what makes the most recent version of Pipelines different from
 Before you begin the migration process, ensure that you have the following prerequisites:
 
 - [mise](https://mise.jdx.dev/) installed.
-- AWS Administrator (or similar) permissions in all AWS accounts managed by this repository.
+- AWS Administrator (or similar) permissions in all AWS accounts managed by your `infrastructure-live` repository.
 - A solid understanding of Infrastructure as Code (IAC) fundamentals, or support from Gruntwork.
 
 ## Step 1: Update the `bootstrap.yml` workflow
@@ -20,16 +20,16 @@ Copy the [bootstrap.yml](https://github.com/gruntwork-io/infrastructure-live-roo
 
 Make sure to read the [README](https://github.com/gruntwork-io/infrastructure-live-root-template/tree/main?tab=readme-ov-file#infrastructure-live-root-template) to understand how inputs will be used by this workflow in the subsequent step. Take special care to read the [Workflow Inputs](https://github.com/gruntwork-io/infrastructure-live-root-template/tree/main?tab=readme-ov-file#workflow-inputs) section of the `README.md` to understand how to configure the inputs for the workflow.
 
-## Step 2: Run `bootstrap.yml` workflow
+## Step 2: Run the `bootstrap.yml` workflow
 
 Find the workflow labeled `Infrastructure Live Root Bootstrap` in the `Actions` tab of your repository.
 
-Run the workflow by clicking the `Run workflow` button, providing the necessary inputs as described in the [Workflow Inputs section](https://github.com/gruntwork-io/infrastructure-live-root-template/tree/main?tab=readme-ov-file#workflow-inputs) (you can find a lot of those values in your `accounts.yml` file).
+Run the workflow by clicking the green `Run workflow` button, providing the necessary inputs as described in the [Workflow Inputs section](https://github.com/gruntwork-io/infrastructure-live-root-template/tree/main?tab=readme-ov-file#workflow-inputs) (you can find a lot of those values in your `accounts.yml` file).
 
 You will now have a new branch in your repository named `bootstrap-repository` and a pull request to merge it into the default branch of your repository.
 
 :::caution
-Make sure you do not proceed with the merge, as you will need to modify your pull request to avoid conflicts with the existing codebase.
+Make sure you do not proceed with the merge, as you will need to modify your pull request to avoid conflicts with your existing codebase.
 :::
 
 You will definitely need to make at least _some_ adjustments to the pull request. Access the `bootstrap-repository` branch and make the necessary changes to the pull request to ensure that it is compatible with your existing codebase.
@@ -75,7 +75,7 @@ awscli = "2.15.44"
 ```
 
 :::info
-If you have not made the switch over to OpenTofu yet, you can simply set your current version of Terraform in the `.mise.toml` file.
+If you have not made the switch over to OpenTofu yet, you can simply set your current version of `terraform` in the `.mise.toml` file.
 :::
 
 Run the following in order to install the dependencies locally:
@@ -94,7 +94,7 @@ This has been adjusted to leverage a more flexible, and repeatable approach to g
 
 A sample form has been added as part of this initial pull request, and you can find it in the `.github/workflows/account-factory-inputs.html` file. You can modify this form as necessary to meet your needs so that account requests can be made in a way that is consistent with your organization's needs.
 
-A common pattern seen here is to either use an external ticketing system like JIRA to collect the necessary information, and use an integration with the GitHub API to create the account request once it has been approved, or to simply generate the JSON input string to be passed into the GitHub Actions workflow.
+A common pattern seen here is to either use an external ticketing system like JIRA to collect the necessary information, and use an integration with the GitHub API to automatically submit the account request pull request once it has been reviewed in the ticketing system, or to simply generate the JSON input string to be passed into the GitHub Actions workflow.
 
 ### The `state_bucket_pattern` value in `account.yml`
 
@@ -102,7 +102,7 @@ Previously, the `account.yml` file had a `state_bucket_name` value that was used
 
 ### Adding missing `root-pipelines-plan` and `root-pipelines-apply` roles
 
-You might need to copy over the `github-actions-openid-connect-provider`, `root-pipelines-plan` and `root-pipelines-apply` folders from the `management` account to all of your accounts, depending on what your current account structure looks like.
+You might need to copy over the `github-actions-openid-connect-provider`, `root-pipelines-plan` and `root-pipelines-apply` folders from the `management` account to all of your other accounts, depending on what your current account structure looks like.
 
 These roles are what Pipelines uses to plan and apply changes to your infrastructure. They must be present in any account that pipelines is going to operate in from the `infrastructure-live-root` repository.
 
@@ -116,6 +116,7 @@ Never make changes to Identity and Access Management (IAM) resources without car
 # With permissions for the account you are working in
 cd <path-to-account>/_global/github-actions-openid-connect-provider
 # If this resource already exists, in your account, but you do not have the OIDC provider in state, you can import it
+# Note: If you do not have `jq` installed, you can simply replace the code in `$()` below with the relevant account ID.
 terragrunt import 'aws_iam_openid_connect_provider.github' "arn:aws:iam::$(aws sts get-caller-identity | jq -r '.Account'):oidc-provider/token.actions.githubusercontent.com"
 terragrunt apply
 # Note that if you did need to import this resource, you will need to remove it from state if defined in IAC elsewhere to avoid a potential error later.
@@ -136,9 +137,9 @@ Going forward, the account baseline process will ensure that the necessary roles
 
 The `pipelines.yml` workflow is the main workflow that Pipelines uses to plan and apply changes to your infrastructure. Previously, you may have had a workflow file that was significantly more complicated, and interacted with a secondary `infrastructure-pipelines` repository. The adjustments made to this workflow is the main reason for this migration guide, so it is important to understand the changes that have been made here.
 
-The logic that was previously done by creating a workflow dispatch to secondary `infrastructure-pipelines` repository has been moved to a shared workflow in a Gruntwork managed [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository. This shared workflow is used by default by any repository that is using Pipelines.
+The logic that was previously done by creating a workflow dispatch to a secondary `infrastructure-pipelines` repository has been moved to a shared workflow in the Gruntwork managed [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository. This shared workflow is used by default by any repository that is using Pipelines.
 
-`infrastructure-live` repositories that reference this shared workflow will now run with their own context (the secrets and role assumptions are specific to the repository that is running the workflow), and maintenance of a secondary repository is no longer necessary.
+`infrastructure-live` repositories that reference this shared workflow will now run with their own context (the secrets and role assumptions are specific to the `infrastructure-live` repository that is running the workflow), and maintenance of a secondary repository is no longer necessary.
 
 This change is designed to make it easier to manage infrastructure at scale, and has myriad advantages over the previous approach. To learn more about this change, read the [deprecation notice here](../../infrastructure-pipelines/overview/deprecation.md).
 
@@ -158,11 +159,11 @@ The `config.yml` file in the `.gruntwork` directory has expanded in responsibili
 
 By moving these configurations into a central configuration file with improved documentation, the goal is to make it clearer to understand how and why Pipelines is using particular versions of templates, etc.
 
-Note that the Pipelines CLI, Terragrunt and Terraform versions are no longer specified in this file. Instead, they are specified in the `.mise.toml` file, and the [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository. This adjustment was made to maximize parity between the versions of tools that you use locally, that your colleagues use and the versions of tools that Pipelines uses.
+Note that the Pipelines CLI, Terragrunt and OpenTofu/Terraform versions are no longer specified in this file. Instead, they are specified in the `.mise.toml` file, and the [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository. This adjustment was made to maximize parity between the versions of tools that you use locally, that your colleagues use on their workstations and the versions of tools that Pipelines uses.
 
 ### The `tags.yml` file
 
-Depending on when you configured your `infrastructure-live` repository, you may not have a `tags.yml` file at the root of your repository and the root of each folder representing an account in your repository.
+Depending on when you configured your `infrastructure-live` repository, you may not have had a `tags.yml` file at the root of your repository and the root of each folder representing each account in your repository.
 
 These files are used as part of a system for ensuring that every resource provisioned via IAC is tagged with the appropriate tags for your organization. This is a critical best practice for cloud infrastructure, and is vital in ensuring a strong cost optimization and security posture (when used in a context leveraging [Attribute Based Access Control](https://en.wikipedia.org/wiki/Attribute-based_access_control)).
 
@@ -181,7 +182,7 @@ Once you have made the necessary changes to the pull request, and you are confid
 Ensure that the commit message in the pull request includes the text `[skip ci]`. This will prevent Pipelines from running, and you don't really need it to run at this stage.
 
 :::tip
-If at any time you would like to revert these changes, you can do so by opening the pull request and clicking the `Revert` button. This will generate a corresponding revert pull request. Just make sure you include that same `[skip ci]` text in the commit message to avoid any unintended infrastructure changes.
+If at any time you would like to revert these changes, you can do so by loading the merged pull request in your browser and clicking the `Revert` button. This will generate a corresponding revert pull request. Just make sure you include that same `[skip ci]` text in the commit message when merging it to avoid any unintended infrastructure changes.
 :::
 
 ## Conclusion :tada:
@@ -192,7 +193,7 @@ We hope this migration has been smooth for you, and excited for you to experienc
 
 Now that you have fully migrated your repository, we recommend carrying out some small tests to make sure that you are both confident of the stability of your repository, and that you are comfortable with making changes to it.
 
-Create a new pull request that makes a small change to your infrastructure, and ensure that the plan and apply workflows run as expected, that you know where the logs will appear, and that you have a good understanding of how to troubleshoot any issues that may arise.
+Create a new pull request that makes a small change to your infrastructure code (adding a comment to a `terragrunt.hcl` file should trigger Pipelines), and ensure that the plan and apply workflows run as expected, that you know where the logs will appear, and that you have a good understanding of how to troubleshoot any issues that may arise.
 
 Also, if you encountered any road bumps that might be smoothed over for the next customer reading this guide, please consider opening an issue or creating a pull request to improve this guide for the community!
 

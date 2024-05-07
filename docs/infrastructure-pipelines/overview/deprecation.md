@@ -1,5 +1,9 @@
 # Deprecation
 
+:::info
+If you are using the older version of Gruntwork Pipelines that includes the `infrastructure-pipelines` repository, click [here](./index.md) to find the old docs.
+:::
+
 The previous version of Gruntwork Pipelines used the `infrastructure-pipelines` repository to manage infrastructure changes. This repository has been deprecated in a new architecture of Pipelines, which no longer requires maintaining a separate repository for initiating infrastructure changes.
 
 Documentation on the architecture used in this version of Gruntwork Pipelines can be found [here](../architecture/).
@@ -13,6 +17,8 @@ If you have any questions or need help, please reach out to us at <support@grunt
 While we do recommend migrating to the new version of Pipelines, we understand that this might not be trivial for all users. If you are unable to migrate to the new version of Pipelines, you can continue using the previous version of Pipelines that used the `infrastructure-pipelines` repository until you are ready to make the switch.
 
 However, please note that we will no longer be actively maintaining the architecture that uses the `infrastructure-pipelines` repository, and new features will only be added to the new version of Pipelines.
+
+If you still need documentation for the previous version of Pipelines, you can find it [here](./index.md).
 
 ## How Do I Migrate to the New Version?
 
@@ -135,6 +141,6 @@ Gruntwork is excited to bring you this new architecture for Pipelines, and we ho
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "aed0f3781377fb5ca3adf4ff84253320"
+  "hash": "92588491ab555608b508cf3cbbba362d"
 }
 ##DOCS-SOURCER-END -->
