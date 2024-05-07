@@ -157,12 +157,12 @@ Since this guide implements secrets that are scoped to specific repositories, an
 
 After the bootstrap process is complete, you can do the following:
 
-    - Remove the `infrastructure-live-access-control` repository from the `Selected repositories` dropdown in the `ORG_REPO_ADMIN_TOKEN` GitHub Actions secret
+- Remove the `infrastructure-live-access-control` repository from the `Selected repositories` dropdown in the `ORG_REPO_ADMIN_TOKEN` GitHub Actions secret
 
 If you are not an Enterprise customer, you can do the following as well:
 
-    - Remove the `infrastructure-live-root` repository from the `Selected repositories` dropdown in the `ORG_REPO_ADMIN_TOKEN` GitHub Actions secret
-    - Delete the `ORG_REPO_ADMIN_TOKEN` Personal Access Token from the `ci-user` GitHub account
+- Remove the `infrastructure-live-root` repository from the `Selected repositories` dropdown in the `ORG_REPO_ADMIN_TOKEN` GitHub Actions secret
+- Delete the `ORG_REPO_ADMIN_TOKEN` Personal Access Token from the `ci-user` GitHub account
 
 :::
 
@@ -196,12 +196,12 @@ In the `infrastructure-live-access-control` repository create hte following secr
 
 After the bootstrap process is complete, you can delete the following secret:
 
-    - The `ORG_REPO_ADMIN_TOKEN` GitHub Actions secret from the `infrastructure-live-access-control` repository
+- The `ORG_REPO_ADMIN_TOKEN` GitHub Actions secret from the `infrastructure-live-access-control` repository
 
 If you are not an Enterprise customer, you can delete the following as well:
 
-    - The `ORG_REPO_ADMIN_TOKEN` GitHub Actions secret from the `infrastructure-live-root` repository
-    - The `ORG_REPO_ADMIN_TOKEN` Personal Access Token from the `ci-user` GitHub account
+- The `ORG_REPO_ADMIN_TOKEN` GitHub Actions secret from the `infrastructure-live-root` repository
+- The `ORG_REPO_ADMIN_TOKEN` Personal Access Token from the `ci-user` GitHub account
 
 :::
 
@@ -218,6 +218,6 @@ For additional information on creating and using Github Actions Repository secre
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "8c0ce18247362d616f21598b93fd4926"
+  "hash": "9202d14dbde7e7bf3f5641ceeb8fd3db"
 }
 ##DOCS-SOURCER-END -->
