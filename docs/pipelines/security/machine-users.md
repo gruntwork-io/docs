@@ -52,7 +52,7 @@ Create the following access tokens in the `ci-user`'s GitHub account:
 
 1. `INFRA_ROOT_WRITE_TOKEN`. This is a fine-grained GitHub Personal Access Token and will be used to grant GitHub Actions access to clone your `infrastructure-live-root` repository, open PRs, and create/update comments.
 
-   This token **must** have the following permissions to your **`infrastructure-live-root`** repo in your GitHub Organization:
+   This token **must** have the following permissions to your **`infrastructure-live-root`** repo **in your GitHub Organization**:
 
    - Content read & write access
    - Issues read & write access
@@ -62,13 +62,15 @@ Create the following access tokens in the `ci-user`'s GitHub account:
 
    ![INFRA_ROOT_WRITE_TOKEN PAT Configuration](/img/pipelines/security/INFRA_ROOT_WRITE_TOKEN.png)
 
-2. `ORG_REPO_ADMIN_TOKEN`. This token will be used to initially bootstrap repositories vended as part of DevOps Foundations.
+2. `ORG_REPO_ADMIN_TOKEN`. This is a fine-grained GitHub Personal Access Token that will be used to initially bootstrap repositories vended as part of DevOps Foundations.
 
-   In addition, for Enterprise customers, it is used to create new `infra-live-<TEAM-NAME>` repositories in your GitHub Organization when vending delegated AWS accounts.
+   In addition, Enterprise customers will have it used during account vending to create new delegated `infrastructure-live` repositories in their GitHub Organization when vending AWS accounts with the `isDelegated` value selected.
 
-   If you are a Teams customer, you can delete it after DevOps Foundations setup.
+   :::tip
+   If you are not an Enterprise customer, you can delete it after DevOps Foundations setup.
+   :::
 
-   This token **must** have the following permissions to **all** repositories the `ci-user` has access to:
+   This token **must** have the following permissions to **all** repositories the `ci-user` has access to **in your GitHub Organization**:
 
    - Administration read & write access
    - Contents read & write access
@@ -192,6 +194,6 @@ For additional information on creating and using Github Actions Repository secre
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "97750a34756b07a27217d5c41bafdf72"
+  "hash": "4987e9ad62e9858a0fe07be3cb72fb09"
 }
 ##DOCS-SOURCER-END -->
