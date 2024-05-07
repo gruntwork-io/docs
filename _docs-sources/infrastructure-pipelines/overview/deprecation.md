@@ -94,7 +94,7 @@ Customers now have two new capabilities to help them stay up to date with the la
           uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines-root.yml@v1
      ```
 
-More documentation on upgrading to the latest version of Pipelines can be found [here](../../pipelines/maintain/upgrading).
+More documentation on upgrading to the latest version of Pipelines can be found [here](../../pipelines/maintain/updating).
 
 ### Flexible
 
