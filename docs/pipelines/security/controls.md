@@ -26,7 +26,7 @@ The same principles of least privilege apply to the `infrastructure-live-access-
 
 One key difference between the `infrastructure-live-root` and `infrastructure-live-access-control` repositories is that the `infrastructure-live-access-control` repository is used to manage access to your infrastructure, rather than defining the infrastructure itself. This might mean that you want to grant write access to the repository to a broader set of individuals who are responsible for managing access to your infrastructure, while retaining the same restrictions on the `main` branch.
 
-This encourages a dialogue between the individuals for defining critical infrastructure that keeps your AWS accounts functional and secure, and the individuals responsible for deploying workloads to those accounts. Consider encouraging a culture of collaboration between these groups to ensure that access control is continuously reviewed, refined and restricted to the minimum necessary permissions for workloads to be deployed.
+This encourages a dialogue between the individuals responsible for defining critical infrastructure that keeps your AWS accounts functional and secure, and the individuals responsible for deploying workloads to those accounts. Consider encouraging a culture of collaboration between these groups to ensure that access control is continuously reviewed, refined and restricted to the minimum necessary permissions for workloads to be deployed.
 
 ## Token strategy
 
@@ -85,6 +85,6 @@ Refer to [Configuring OpenId Connect in Amazon Web Services](https://docs.github
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "fe1cd441c29946a24dc420e911debd20"
+  "hash": "8e41a880708b25066a21db04424945ad"
 }
 ##DOCS-SOURCER-END -->
