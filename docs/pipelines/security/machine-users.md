@@ -44,7 +44,7 @@ The `ci-user` orchestrates workflows, can open pull requests from automated code
 
 #### Invite the `ci-user` to your repository
 
-Invite the `ci-user` to your `infrastructure-live-root` repository with write access.
+Invite the `ci-user` to your `infrastructure-live-root` and `infrastructure-live-access-control` repositories with write access.
 
 #### Create the appropriate tokens for the `ci-user`
 
@@ -218,6 +218,6 @@ For additional information on creating and using Github Actions Repository secre
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "9202d14dbde7e7bf3f5641ceeb8fd3db"
+  "hash": "05ee7cee6b3d83acba95112703dbe1c5"
 }
 ##DOCS-SOURCER-END -->
