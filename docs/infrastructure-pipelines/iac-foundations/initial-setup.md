@@ -26,12 +26,12 @@ This template creates an empty infrastructure-modules repository that will be us
 
 _[https://github.com/gruntwork-io/infrastructure-pipelines-template](https://github.com/gruntwork-io/infrastructure-pipelines-template)_
 
-This template is only necessary if you plan on implementing [Gruntwork Pipelines](../pipelines).
+This template is only necessary if you plan on implementing [Gruntwork Pipelines](../overview/index.md).
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e978f2e952bf1882815dd2aba6cd208b"
+  "hash": "4a382866f3c80d23319a902b0b1a872b"
 }
 ##DOCS-SOURCER-END -->

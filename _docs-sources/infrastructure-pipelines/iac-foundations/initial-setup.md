@@ -26,4 +26,4 @@ This template creates an empty infrastructure-modules repository that will be us
 
 _[https://github.com/gruntwork-io/infrastructure-pipelines-template](https://github.com/gruntwork-io/infrastructure-pipelines-template)_
 
-This template is only necessary if you plan on implementing [Gruntwork Pipelines](../pipelines).
+This template is only necessary if you plan on implementing [Gruntwork Pipelines](../overview/index.md).
