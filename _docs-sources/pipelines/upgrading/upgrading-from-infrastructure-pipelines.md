@@ -116,6 +116,7 @@ Never make changes to Identity and Access Management (IAM) resources without car
 # With permissions for the account you are working in
 cd <path-to-account>/_global/github-actions-openid-connect-provider
 # If this resource already exists, in your account, but you do not have the OIDC provider in state, you can import it
+# Note: If you do not have `jq` installed, you can simply replace the code in `$()` below with the relevant account ID.
 terragrunt import 'aws_iam_openid_connect_provider.github' "arn:aws:iam::$(aws sts get-caller-identity | jq -r '.Account'):oidc-provider/token.actions.githubusercontent.com"
 terragrunt apply
 # Note that if you did need to import this resource, you will need to remove it from state if defined in IAC elsewhere to avoid a potential error later.
@@ -136,9 +137,9 @@ Going forward, the account baseline process will ensure that the necessary roles
 
 The `pipelines.yml` workflow is the main workflow that Pipelines uses to plan and apply changes to your infrastructure. Previously, you may have had a workflow file that was significantly more complicated, and interacted with a secondary `infrastructure-pipelines` repository. The adjustments made to this workflow is the main reason for this migration guide, so it is important to understand the changes that have been made here.
 
-The logic that was previously done by creating a workflow dispatch to secondary `infrastructure-pipelines` repository has been moved to a shared workflow in a Gruntwork managed [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository. This shared workflow is used by default by any repository that is using Pipelines.
+The logic that was previously done by creating a workflow dispatch to a secondary `infrastructure-pipelines` repository has been moved to a shared workflow in the Gruntwork managed [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository. This shared workflow is used by default by any repository that is using Pipelines.
 
-`infrastructure-live` repositories that reference this shared workflow will now run with their own context (the secrets and role assumptions are specific to the repository that is running the workflow), and maintenance of a secondary repository is no longer necessary.
+`infrastructure-live` repositories that reference this shared workflow will now run with their own context (the secrets and role assumptions are specific to the `infrastructure-live` repository that is running the workflow), and maintenance of a secondary repository is no longer necessary.
 
 This change is designed to make it easier to manage infrastructure at scale, and has myriad advantages over the previous approach. To learn more about this change, read the [deprecation notice here](../../infrastructure-pipelines/overview/deprecation.md).
 
@@ -158,11 +159,11 @@ The `config.yml` file in the `.gruntwork` directory has expanded in responsibili
 
 By moving these configurations into a central configuration file with improved documentation, the goal is to make it clearer to understand how and why Pipelines is using particular versions of templates, etc.
 
-Note that the Pipelines CLI, Terragrunt and Terraform versions are no longer specified in this file. Instead, they are specified in the `.mise.toml` file, and the [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository. This adjustment was made to maximize parity between the versions of tools that you use locally, that your colleagues use and the versions of tools that Pipelines uses.
+Note that the Pipelines CLI, Terragrunt and OpenTofu/Terraform versions are no longer specified in this file. Instead, they are specified in the `.mise.toml` file, and the [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository. This adjustment was made to maximize parity between the versions of tools that you use locally, that your colleagues use on their workstations and the versions of tools that Pipelines uses.
 
 ### The `tags.yml` file
 
-Depending on when you configured your `infrastructure-live` repository, you may not have a `tags.yml` file at the root of your repository and the root of each folder representing an account in your repository.
+Depending on when you configured your `infrastructure-live` repository, you may not have had a `tags.yml` file at the root of your repository and the root of each folder representing each account in your repository.
 
 These files are used as part of a system for ensuring that every resource provisioned via IAC is tagged with the appropriate tags for your organization. This is a critical best practice for cloud infrastructure, and is vital in ensuring a strong cost optimization and security posture (when used in a context leveraging [Attribute Based Access Control](https://en.wikipedia.org/wiki/Attribute-based_access_control)).
 
@@ -181,7 +182,7 @@ Once you have made the necessary changes to the pull request, and you are confid
 Ensure that the commit message in the pull request includes the text `[skip ci]`. This will prevent Pipelines from running, and you don't really need it to run at this stage.
 
 :::tip
-If at any time you would like to revert these changes, you can do so by opening the pull request and clicking the `Revert` button. This will generate a corresponding revert pull request. Just make sure you include that same `[skip ci]` text in the commit message to avoid any unintended infrastructure changes.
+If at any time you would like to revert these changes, you can do so by loading the merged pull request in your browser and clicking the `Revert` button. This will generate a corresponding revert pull request. Just make sure you include that same `[skip ci]` text in the commit message when merging it to avoid any unintended infrastructure changes.
 :::
 
 ## Conclusion :tada:
@@ -192,7 +193,7 @@ We hope this migration has been smooth for you, and excited for you to experienc
 
 Now that you have fully migrated your repository, we recommend carrying out some small tests to make sure that you are both confident of the stability of your repository, and that you are comfortable with making changes to it.
 
-Create a new pull request that makes a small change to your infrastructure, and ensure that the plan and apply workflows run as expected, that you know where the logs will appear, and that you have a good understanding of how to troubleshoot any issues that may arise.
+Create a new pull request that makes a small change to your infrastructure code (adding a comment to a `terragrunt.hcl` file should trigger Pipelines), and ensure that the plan and apply workflows run as expected, that you know where the logs will appear, and that you have a good understanding of how to troubleshoot any issues that may arise.
 
 Also, if you encountered any road bumps that might be smoothed over for the next customer reading this guide, please consider opening an issue or creating a pull request to improve this guide for the community!
 
