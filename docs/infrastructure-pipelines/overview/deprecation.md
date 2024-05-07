@@ -6,7 +6,7 @@ If you are using the older version of Gruntwork Pipelines that includes the `inf
 
 The previous version of Gruntwork Pipelines used the `infrastructure-pipelines` repository to manage infrastructure changes. This repository has been deprecated in a new architecture of Pipelines, which no longer requires maintaining a separate repository for initiating infrastructure changes.
 
-Documentation on the architecture used in this version of Gruntwork Pipelines can be found [here](../architecture/).
+Documentation on the architecture used in this version of Gruntwork Pipelines can be found [here](../architecture/index.md).
 
 This section will preserve the legacy documentation for the `infrastructure-pipelines` repository, and provide guidance on how to migrate to the new version of Pipelines.
 
@@ -149,6 +149,6 @@ Gruntwork is excited to bring you this new architecture for Pipelines, and we ho
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "6201632afd53123d539e4bc2f1546af8"
+  "hash": "7eeff5a7e5b4415bf7c35d3ac9fbb398"
 }
 ##DOCS-SOURCER-END -->
