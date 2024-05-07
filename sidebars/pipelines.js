@@ -66,7 +66,7 @@ const sidebar = [
             type: "doc",
             id: "pipelines/security/machine-users",
           },
-        ]
+        ],
       },
       // TODO write these docs once we identify common cases
       // {
@@ -81,9 +81,15 @@ const sidebar = [
         collapsible: false,
         items: [
           {
-            label: "Upgrading from ECS Deploy Runner",
+            label: "Infrastructure Pipelines",
+            type: "link",
+            // Use a fully qualified URL to trigger the "external link" SVG here
+            href: "https://docs.gruntwork.io/infrastructure-pipelines/overview/deprecation",
+          },
+          {
+            label: "Upgrading from Infrastructure-Pipelines",
             type: "doc",
-            id: "pipelines/upgrading/upgrading-from-ecs-deploy-runner",
+            id: "pipelines/upgrading/upgrading-from-infrastructure-pipelines",
           },
           {
             label: "ECS Deploy Runner",
@@ -92,15 +98,9 @@ const sidebar = [
             href: "https://docs.gruntwork.io/ecs-deploy-runner/overview",
           },
           {
-            label: "Upgrading from `infrastructure-pipelines`",
+            label: "Upgrading from ECS Deploy Runner",
             type: "doc",
-            id: "pipelines/upgrading/upgrading-from-infrastructure-pipelines",
-          },
-          {
-            label: "Infrastructure Pipelines",
-            type: "link",
-            // Use a fully qualified URL to trigger the "external link" SVG here
-            href: "https://docs.gruntwork.io/infrastructure-pipelines/deprecation",
+            id: "pipelines/upgrading/upgrading-from-ecs-deploy-runner",
           },
         ],
       },
@@ -112,10 +112,10 @@ const sidebar = [
           {
             type: "link",
             label: "Knowledge Base",
-            href: kbLink
+            href: kbLink,
           },
-        ]
-      }
+        ],
+      },
     ],
   },
 ]

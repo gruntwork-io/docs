@@ -5,7 +5,7 @@ const kbLink =
 
 const sidebar = [
   {
-    label: "Gruntwork Pipelines",
+    label: "Infrastructure Pipelines",
     type: "category",
     collapsible: false,
     items: [
@@ -88,7 +88,7 @@ const sidebar = [
             type: "doc",
             id: "infrastructure-pipelines/security/multi-account",
           },
-        ]
+        ],
       },
       // TODO write these docs once we identify common cases
       // {
@@ -105,10 +105,10 @@ const sidebar = [
           {
             type: "link",
             label: "Knowledge Base",
-            href: kbLink
+            href: kbLink,
           },
-        ]
-      }
+        ],
+      },
     ],
   },
 ]
