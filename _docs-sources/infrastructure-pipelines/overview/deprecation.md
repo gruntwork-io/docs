@@ -20,7 +20,7 @@ Follow the steps outlined in the [migration guide](../../pipelines/upgrading/upg
 
 ## Why Was This Deprecation Necessary?
 
-As we at Gruntwork continue to improve and refine our products, we look to continuously optimize for an experience that is maximally simple to interact with, without compromising on security or capability. The new architecture of Pipelines is designed to be easier to secure, customize and maintain, while also providing a more streamlined experience for our customers.
+At Gruntwork we continue to improve and refine our products. We look to continuously optimize for an experience that is maximally simple to interact with, without compromising on security or capability. The new architecture of Pipelines is designed to be easier to secure, customize and maintain, while also providing a more streamlined experience for our customers.
 
 ### The `infrastructure-pipelines` Repository
 
@@ -71,15 +71,15 @@ This allows customers to focus on the code that matters, their infrastructure co
 e.g.
 
 ```yml
-  GruntworkPipelines:
-    uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines-root.yml@v1.1.0
+GruntworkPipelines:
+  uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines-root.yml@v1.1.0
 ```
 
 to
 
 ```yml
-  GruntworkPipelines:
-    uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines-root.yml@v1.2.0
+GruntworkPipelines:
+  uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines-root.yml@v1.2.0
 ```
 
 Customers now have two new capabilities to help them stay up to date with the latest version of Pipelines:
@@ -87,12 +87,12 @@ Customers now have two new capabilities to help them stay up to date with the la
 1. Dependabot integration: Customers can now leverage Dependabot to automatically create pull requests that suggest updates to the `pipelines.yml` file in their repositories. This will help customers stay up to date with the latest changes in Pipelines. Make sure to [read the release notes](https://github.com/gruntwork-io/pipelines-workflows/releases) before upgrading!
 2. Major version tag: Customers can also use the unqualified major version tag to automatically receive the latest version of Pipelines without having to make any manual adjustments to the `pipelines.yml` file.
 
-     e.g.
+   e.g.
 
-     ```yml
-       GruntworkPipelines:
-          uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines-root.yml@v1
-     ```
+   ```yml
+   GruntworkPipelines:
+     uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines-root.yml@v1
+   ```
 
 More documentation on upgrading to the latest version of Pipelines can be found [here](../../pipelines/maintain/updating).
 
@@ -116,8 +116,8 @@ To reflect the change in the way Pipelines is now architected, the default `infr
 
 Explaining the security posture of Pipelines is now as simple as:
 
-* The `infrastructure-live-root` repository can initiate GitHub Actions workflows that are allowed to assume read-only permissions via a `root-pipelines-plan` role on pull request create/open, and read-write permissions via a `root-pipelines-apply` role on pull request merge.
-* Any other access that needs to be granted to interact with cloud resources can be delegated via the `infrastructure-live-access-control` repository, which comes pre-configured with the boilerplate necessary for granting least privilege access to create similar plan/apply roles for other repositories to assume.
+- The `infrastructure-live-root` repository can initiate GitHub Actions workflows that are allowed to assume read-only permissions via a `root-pipelines-plan` role upon opening/creating a pull request, and read-write permissions via a `root-pipelines-apply` role on a pull request merge.
+- Any other access that needs to be granted to interact with cloud resources can be delegated via the `infrastructure-live-access-control` repository, which comes pre-configured with the boilerplate necessary for granting least privilege access to create similar plan/apply roles for other repositories to assume.
 
 ### Scalable
 
@@ -129,4 +129,4 @@ Customers can also expect a much easier time reasoning about their infrastructur
 
 ## Conclusion
 
-We at Gruntwork are excited to bring you this new architecture for Pipelines, and we hope that it will make your experience with managing infrastructure changes more enjoyable and productive. We're always looking for feedback on how we can improve our products, so please don't hesitate to reach out to us at <feedback@gruntwork.io>.
+Gruntwork is excited to bring you this new architecture for Pipelines, and we hope that it will make your experience with managing infrastructure changes more enjoyable and productive. We're always looking for feedback on how we can improve our products, so please don't hesitate to reach out to us at <feedback@gruntwork.io>.
