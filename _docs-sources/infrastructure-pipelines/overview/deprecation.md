@@ -30,7 +30,7 @@ Follow the steps outlined in the [migration guide](../../pipelines/upgrading/upg
 
 ## Why Was This Deprecation Necessary?
 
-At Gruntwork we continue to improve and refine our products. We look to continuously optimize for an experience that is maximally simple to interact with, without compromising on security or capability. The new architecture of Pipelines is designed to be easier to secure, customize and maintain, while also providing a more streamlined experience for our customers.
+At Gruntwork, we continue to improve and refine our products, optimizing for an experience that is maximally simple to interact with, without compromising on security or capability. The new architecture of Pipelines is designed to be easier to secure, customize and maintain, while also providing a more streamlined experience for our customers.
 
 ### The `infrastructure-pipelines` Repository
 

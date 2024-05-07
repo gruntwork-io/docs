@@ -16,9 +16,13 @@ Before you begin the migration process, ensure that you have the following prere
 
 ## Step 1: Update the `bootstrap.yml` workflow
 
-Copy the [bootstrap.yml](https://github.com/gruntwork-io/infrastructure-live-root-template/blob/main/.github/workflows/bootstrap.yml) workflow, and place it in the `.github/workflows` directory of your repository (if you already have a workflow file here, you can overwrite it).
+Copy the [bootstrap.yml](https://github.com/gruntwork-io/infrastructure-live-root-template/blob/main/.github/workflows/bootstrap.yml) workflow, and place it in the `.github/workflows` directory of your `infrastructure-live` repository (if you already have a workflow file here, you can overwrite it).
 
-Make sure to read the [README](https://github.com/gruntwork-io/infrastructure-live-root-template/tree/main?tab=readme-ov-file#infrastructure-live-root-template) to understand how inputs will be used by this workflow in the subsequent step. Take special care to read the [Workflow Inputs](https://github.com/gruntwork-io/infrastructure-live-root-template/tree/main?tab=readme-ov-file#workflow-inputs) section of the `README.md` to understand how to configure the inputs for the workflow.
+:::tip
+Use the [README](https://github.com/gruntwork-io/infrastructure-live-root-template/tree/main?tab=readme-ov-file#infrastructure-live-root-template) to understand what the workflow does and the required inputs for running it.
+
+Be extra careful to ensure that you have replaced all instances of `<REPLACE>` in the `bootstrap.yml` workflow file!
+:::
 
 ## Step 2: Run the `bootstrap.yml` workflow
 
