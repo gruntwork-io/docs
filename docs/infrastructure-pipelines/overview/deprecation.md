@@ -1,10 +1,6 @@
 # Deprecation
 
-:::info
-If you are using the older version of Gruntwork Pipelines that includes the `infrastructure-pipelines` repository, click [here](./index.md) to find the old docs.
-:::
-
-The previous version of Gruntwork Pipelines used the `infrastructure-pipelines` repository to manage infrastructure changes. This repository has been deprecated in a new architecture of Pipelines, which no longer requires maintaining a separate repository for initiating infrastructure changes.
+This version of Gruntwork Pipelines uses the `infrastructure-pipelines` repository to manage infrastructure changes. This repository has been deprecated in a new architecture of Pipelines, which no longer requires maintaining a separate repository for initiating infrastructure changes.
 
 Documentation on the architecture used in this version of Gruntwork Pipelines can be found [here](../architecture/index.md).
 
@@ -149,6 +145,6 @@ Gruntwork is excited to bring you this new architecture for Pipelines, and we ho
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7eeff5a7e5b4415bf7c35d3ac9fbb398"
+  "hash": "97b4b979cca3122ed80c75840b43bb5c"
 }
 ##DOCS-SOURCER-END -->

@@ -84,7 +84,7 @@ const sidebar = [
             label: "Infrastructure Pipelines",
             type: "link",
             // Use a fully qualified URL to trigger the "external link" SVG here
-            href: "https://docs.gruntwork.io/infrastructure-pipelines/overview/deprecation",
+            href: "https://docs.gruntwork.io/infrastructure-pipelines/overview",
           },
           {
             label: "Upgrading from Infrastructure-Pipelines",

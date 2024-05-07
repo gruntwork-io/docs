@@ -34,6 +34,11 @@ const sidebar = [
             type: "doc",
             id: "infrastructure-pipelines/data-collection/index",
           },
+          {
+            label: "Deprecation",
+            type: "doc",
+            id: "infrastructure-pipelines/overview/deprecation",
+          },
         ],
       },
       {
