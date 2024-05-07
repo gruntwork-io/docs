@@ -62,7 +62,11 @@ Create the following access tokens in the `ci-user`'s GitHub account:
 
    ![INFRA_ROOT_WRITE_TOKEN PAT Configuration](/img/pipelines/security/INFRA_ROOT_WRITE_TOKEN.png)
 
-2. `ORG_REPO_ADMIN_TOKEN`. This token will be used to initially bootstrap repositories vended as part of DevOps Foundations (If you are a Teams customer, you can delete it after DevOps Foundations setup). In addition, for Enterprise customers, it is used to create new `infra-live-<TEAM-NAME>` repositories in your GitHub Organization when vending delegated AWS accounts.
+2. `ORG_REPO_ADMIN_TOKEN`. This token will be used to initially bootstrap repositories vended as part of DevOps Foundations.
+
+   In addition, for Enterprise customers, it is used to create new `infra-live-<TEAM-NAME>` repositories in your GitHub Organization when vending delegated AWS accounts.
+
+   If you are a Teams customer, you can delete it after DevOps Foundations setup.
 
    This token **must** have the following permissions to **all** repositories the `ci-user` has access to:
 
