@@ -1,5 +1,9 @@
 # Hello world
 
+:::info Newer Version Available
+This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
+:::
+
 In this tutorial, we’ll walk you through the process of setting up Gruntwork Pipelines for a single AWS account. This is useful both as a "hello world" for Gruntwork Pipelines and as the first step to getting it ready for production.
 
 ## What you'll get
@@ -236,6 +240,6 @@ If you are not going to continue using Pipelines after this tutorial, clean up t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "cec6982d1aff77d800c2de902a30abdc"
+  "hash": "ccca5db263ce74234ac7bd87b1493e6f"
 }
 ##DOCS-SOURCER-END -->

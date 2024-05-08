@@ -19,6 +19,7 @@ const libraryRefSidebars = require("./sidebars/library-reference.js")
 const developerPortalSidebars = require("./sidebars/developer-portal.js")
 const patcherSidebars = require("./sidebars/patcher.js")
 const pipelinesSidebars = require("./sidebars/pipelines.js")
+const infrastructurePipelinesSidebars = require("./sidebars/infrastructure-pipelines.js")
 const ecsDeployRunnerSidebars = require("./sidebars/ecs-deploy-runner.js")
 const landingZoneSidebars = require("./sidebars/landing-zone.js")
 const refarchSidebar = require("./sidebars/refarch.js")
@@ -37,6 +38,7 @@ const sidebars = {
   developerPortalSidebars,
   patcherSidebars,
   pipelinesSidebars,
+  infrastructurePipelinesSidebars,
   ecsDeployRunnerSidebars,
   landingZoneSidebars,
   refarchSidebar,

@@ -1,5 +1,9 @@
 # Allowing Pipelines Actions in GitHub Actions
 
+:::info Newer Version Available
+This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
+:::
+
 Gruntwork Pipelines uses a set of Gruntwork-built reusable Github Actions, which are available in the GitHub Marketplace. Gruntwork is a Verified Creator of GitHub Actions.
 
 ### GitHub Enterprise
@@ -37,3 +41,11 @@ Navigate to each Gruntwork repository to retrieve the latest tagged release for 
 
 Currently GitHub Actions does not support selecting specific repos outside of your own GitHub organization for the team and pro tier. To use Gruntwork Pipelines you must select the **Allow all actions and reusable workflows** option in the Actions general settings at the Organization level.
 
+
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "local-copier",
+  "hash": "3aabe632e15cbdf89976e5fc6fd4a30a"
+}
+##DOCS-SOURCER-END -->
