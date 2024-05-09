@@ -22,15 +22,15 @@ Common reasons that you might decide to do this include:
 :::caution
 This will result in a public fork of Gruntwork's `pipelines-workflows` in your GitHub organization. If you have concerns about this, you will need to create a manual private fork of the repository. Reach out to <support@gruntwork.io> if you need assistance with this.
 
-Do not include any sensitive information in your forked repository if hosted publicly.
+Do not include any sensitive information in your forked repository, especially if hosted publicly.
 :::
 
 ## Extending the GitHub Actions
 
 In addition to extending the top-level workflow, you can also extend the underlying custom GitHub Actions that the workflow uses, as they are made public as well. This allows you to customize the behavior of individual Actions to suit your organization's needs.
 
-:::warning
-Note that in order to customize the behavior of an Action, you will need to fork the repository that contains the Action, which might be another GitHub Action, or a Workflow.
+:::note
+In order to customize the behavior of an Action, you will need to fork the repository that contains the Action, which might be another GitHub Action, or a Workflow.
 :::
 
 ## How to Extend the Pipelines Workflow
@@ -45,6 +45,6 @@ If you are comfortable with us sharing your story, we would like to document you
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "4b405e9603b7b24760b29788f9a8676c"
+  "hash": "15cd39ec36706531e30624841921c0b3"
 }
 ##DOCS-SOURCER-END -->

@@ -68,13 +68,12 @@ const sidebar = [
           },
         ],
       },
-      // TODO write these docs once we identify common cases
-      // {
-      //   label: "Maintain Pipelines",
-      //   type: "category",
-      //   collapsed: false,
-      //   items: ["pipelines/maintain/updating", "pipelines/maintain/extending"],
-      // },
+      {
+        label: "Maintain Pipelines",
+        type: "category",
+        collapsed: false,
+        items: ["pipelines/maintain/updating", "pipelines/maintain/extending"],
+      },
       {
         label: "Previous Versions",
         type: "category",
