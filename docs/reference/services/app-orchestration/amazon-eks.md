@@ -702,22 +702,23 @@ module "eks_cluster" {
   tenancy = "default"
 
   # When set to true, the sync-core-components command will skip updating
-  # coredns. This variable is ignored if `use_upgrade_cluster_script` is false.
+  # coredns. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
   upgrade_cluster_script_skip_coredns = false
 
   # When set to true, the sync-core-components command will skip updating
-  # kube-proxy. This variable is ignored if `use_upgrade_cluster_script` is
+  # kube-proxy. This variable is ignored if `use_kubergrunt_sync_components` is
   # false.
   upgrade_cluster_script_skip_kube_proxy = false
 
   # When set to true, the sync-core-components command will skip updating
-  # aws-vpc-cni. This variable is ignored if `use_upgrade_cluster_script` is
+  # aws-vpc-cni. This variable is ignored if `use_kubergrunt_sync_components` is
   # false.
   upgrade_cluster_script_skip_vpc_cni = false
 
   # When set to true, the sync-core-components command will wait until the new
   # versions are rolled out in the cluster. This variable is ignored if
-  # `use_upgrade_cluster_script` is false.
+  # `use_kubergrunt_sync_components` is false.
   upgrade_cluster_script_wait_for_rollout = true
 
   # If this variable is set to true, then use an exec-based plugin to
@@ -1436,22 +1437,23 @@ inputs = {
   tenancy = "default"
 
   # When set to true, the sync-core-components command will skip updating
-  # coredns. This variable is ignored if `use_upgrade_cluster_script` is false.
+  # coredns. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
   upgrade_cluster_script_skip_coredns = false
 
   # When set to true, the sync-core-components command will skip updating
-  # kube-proxy. This variable is ignored if `use_upgrade_cluster_script` is
+  # kube-proxy. This variable is ignored if `use_kubergrunt_sync_components` is
   # false.
   upgrade_cluster_script_skip_kube_proxy = false
 
   # When set to true, the sync-core-components command will skip updating
-  # aws-vpc-cni. This variable is ignored if `use_upgrade_cluster_script` is
+  # aws-vpc-cni. This variable is ignored if `use_kubergrunt_sync_components` is
   # false.
   upgrade_cluster_script_skip_vpc_cni = false
 
   # When set to true, the sync-core-components command will wait until the new
   # versions are rolled out in the cluster. This variable is ignored if
-  # `use_upgrade_cluster_script` is false.
+  # `use_kubergrunt_sync_components` is false.
   upgrade_cluster_script_wait_for_rollout = true
 
   # If this variable is set to true, then use an exec-based plugin to
@@ -3387,7 +3389,7 @@ The tenancy of this server. Must be one of: default, dedicated, or host.
 <HclListItem name="upgrade_cluster_script_skip_coredns" requirement="optional" type="bool">
 <HclListItemDescription>
 
-When set to true, the sync-core-components command will skip updating coredns. This variable is ignored if `use_upgrade_cluster_script` is false.
+When set to true, the sync-core-components command will skip updating coredns. This variable is ignored if `use_kubergrunt_sync_components` is false.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -3396,7 +3398,7 @@ When set to true, the sync-core-components command will skip updating coredns. T
 <HclListItem name="upgrade_cluster_script_skip_kube_proxy" requirement="optional" type="bool">
 <HclListItemDescription>
 
-When set to true, the sync-core-components command will skip updating kube-proxy. This variable is ignored if `use_upgrade_cluster_script` is false.
+When set to true, the sync-core-components command will skip updating kube-proxy. This variable is ignored if `use_kubergrunt_sync_components` is false.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -3405,7 +3407,7 @@ When set to true, the sync-core-components command will skip updating kube-proxy
 <HclListItem name="upgrade_cluster_script_skip_vpc_cni" requirement="optional" type="bool">
 <HclListItemDescription>
 
-When set to true, the sync-core-components command will skip updating aws-vpc-cni. This variable is ignored if `use_upgrade_cluster_script` is false.
+When set to true, the sync-core-components command will skip updating aws-vpc-cni. This variable is ignored if `use_kubergrunt_sync_components` is false.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -3414,7 +3416,7 @@ When set to true, the sync-core-components command will skip updating aws-vpc-cn
 <HclListItem name="upgrade_cluster_script_wait_for_rollout" requirement="optional" type="bool">
 <HclListItemDescription>
 
-When set to true, the sync-core-components command will wait until the new versions are rolled out in the cluster. This variable is ignored if `use_upgrade_cluster_script` is false.
+When set to true, the sync-core-components command will wait until the new versions are rolled out in the cluster. This variable is ignored if `use_kubergrunt_sync_components` is false.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -3724,6 +3726,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.5/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "93307e113a1091852dee868d9dbf2c6a"
+  "hash": "85c7014c7f53f6b37b21a194b9f296ba"
 }
 ##DOCS-SOURCER-END -->
