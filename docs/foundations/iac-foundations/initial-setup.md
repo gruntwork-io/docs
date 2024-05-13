@@ -18,11 +18,15 @@ The repository template will be created, and you can follow the instructions in 
 
 This template creates an infrastructure-live-root repository with scaffolding for a best practices Terragrunt configuration, including patterns for module defaults, global variables, and account baselines. It also configures Gruntwork Pipelines, which is easy to remove if you don't want it.
 
+See [Infrastructure Live Root](/foundations/iac-foundations/architecture.md#infrastructure-live-root) for more information.
+
 ## Infrastructure Live Access Control Template
 
 [infrastructure-live-access-control-template](https://github.com/gruntwork-io/infrastructure-live-access-control-template)
 
 This template is only necessary for Enterprise customers, but is recommended for all customers.
+
+See [Infrastructure Live Access Control](/foundations/iac-foundations/architecture#infrastructure-live-access-control) for more information.
 
 ## Infrastructure Modules Template
 
@@ -30,10 +34,12 @@ This template is only necessary for Enterprise customers, but is recommended for
 
 This template creates an empty infrastructure-modules repository that will be used to store Terraform/OpenTofu modules that your organization has authored and intends to use within your organization.
 
+See [Infrastructure Modules](/foundations/iac-foundations/architecture#infrastructure-modules) for more information.
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "c727d1e5c94ef7864a331765302d032a"
+  "hash": "fbcf71ba6f7c47d44079231f8447bfda"
 }
 ##DOCS-SOURCER-END -->

@@ -33,3 +33,5 @@ When more than one infra-change is made at a time, we call this an _infrastructu
 When a user proposes to make an infra-change by opening a pull request, we want to take some kind of "action" in response to that proposed-change. For example, we may want to run a `terragrunt plan` and estimate the cost of applying this Terragrunt plan. We call these _pipelines actions._
 
 Gruntwork is responsible for adding support for a growing library of Pipelines Actions and we will continue to add more over time.
+
+In a future version of Pipelines, this will be a more extensible system, allowing you to add your own custom actions.
