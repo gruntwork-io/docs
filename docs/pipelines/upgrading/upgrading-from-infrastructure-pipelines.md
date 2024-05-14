@@ -56,6 +56,14 @@ The `bootstrap.yml` workflow sets your `accounts.yml` file as if you were settin
 git checkout origin/main -- accounts.yml
 ```
 
+### Reverting the update of your `multi_region_common.hcl` file
+
+The `bootstrap.yml` workflow sets your `multi_region_common.hcl` file as if you were setting up a new repository from scratch. You have likely already made changes to this file, and you will want to revert the changes that the `bootstrap.yml` workflow made to this file:
+
+```bash
+git checkout origin/main -- multi_region_common.hcl
+```
+
 ### Adding `.mise.toml`
 
 In order to synchronize the versions of tools that you use locally with the versions of tools that Pipelines uses, Pipelines now leverages the open source tool, [mise](https://mise.jdx.dev/). Mise allows you to specify the versions of tools you use in a `.mise.toml` file, which Pipelines will use to ensure that the versions of tools you use locally match the versions of tools that Pipelines uses.
@@ -262,6 +270,6 @@ If you have any questions, or if you have encountered any issues during this mig
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "94c8cb6dd4aa7c4cdbd03052e46bb889"
+  "hash": "f398bac9d79dbf5f98cc4997f2cb58fd"
 }
 ##DOCS-SOURCER-END -->
