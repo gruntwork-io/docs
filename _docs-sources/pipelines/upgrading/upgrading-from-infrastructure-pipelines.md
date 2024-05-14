@@ -48,12 +48,20 @@ The following will explain each of the major changes that are presented to you i
 
 If you find that any changes that are not listed here that you are concerned about, or if you find the instructions on how to handle them unclear, please do not hesitate to reach out to Gruntwork support at <support@gruntwork.io>.
 
-### Reverting the update of your `accounts.yml` file
+### Reverting the update of your `accounts.hcl` file
 
 The `bootstrap.yml` workflow sets your `accounts.yml` file as if you were setting up a new repository from scratch. You have likely already made changes to this file, and you will want to revert the changes that the `bootstrap.yml` workflow made to this file:
 
 ```bash
 git checkout origin/main -- accounts.yml
+```
+
+### Reverting the update of your `multi_region_common.hcl` file
+
+The `bootstrap.yml` workflow sets your `multi_region_common.hcl` file as if you were setting up a new repository from scratch. You have likely already made changes to this file, and you will want to revert the changes that the `bootstrap.yml` workflow made to this file:
+
+```bash
+git checkout origin/main -- multi_region_common.hcl
 ```
 
 ### Adding `.mise.toml`
@@ -106,14 +114,16 @@ Previously, the `account.yml` file had a `state_bucket_name` value that was used
 
 ### Adding missing `root-pipelines-plan` and `root-pipelines-apply` roles
 
-You might need to copy over the `github-actions-openid-connect-provider`, `root-pipelines-plan` and `root-pipelines-apply` folders from the `management` account to all of your other accounts, depending on what your current account structure looks like.
+You might need to copy over the `github-actions-openid-connect-provider`, `root-pipelines-plan` and `root-pipelines-apply` folders from another account (like the `security` account) to all of your other accounts, depending on what your current account structure looks like.
 
 These roles are what Pipelines uses to plan and apply changes to your infrastructure. They must be present in any account that pipelines is going to operate in from the `infrastructure-live-root` repository.
 
 Given the chicken and egg issue that arises from needing the roles present to use the roles, you will need to apply these changes manually:
 
 :::warning
-Never make changes to Identity and Access Management (IAM) resources without carefully reviewing the changes that are being made. Make sure you understand the permissions being assigned to these roles before applying them, and ensure that they are appropriate for your organization.
+Never make changes to Identity and Access Management (IAM) resources without carefully reviewing and understanding the changes that are being made.
+
+Make sure you understand the permissions being assigned to these roles before applying them, and ensure that they are appropriate for your organization.
 :::
 
 ```bash
@@ -146,6 +156,8 @@ The logic that was previously done by creating a workflow dispatch to a secondar
 `infrastructure-live` repositories that reference this shared workflow will now run with their own context (the secrets and role assumptions are specific to the `infrastructure-live` repository that is running the workflow), and maintenance of a secondary repository is no longer necessary.
 
 This change is designed to make it easier to manage infrastructure at scale, and has myriad advantages over the previous approach. To learn more about this change, read the [deprecation notice here](../../infrastructure-pipelines/overview/deprecation.md).
+
+To make sure that Pipelines is able to run correctly, make sure that you have the appropriate tokens and secrets configured to allow your machine users to assume the necessary roles to interact with your infrastructure. For more information on how to do this, visit the instructions in [Machine Users](../security/machine-users.md).
 
 Please make sure you understand the changes here, and if you have any questions, please reach out to Gruntwork support.
 
@@ -188,6 +200,57 @@ Ensure that the commit message in the pull request includes the text `[skip ci]`
 :::tip
 If at any time you would like to revert these changes, you can do so by loading the merged pull request in your browser and clicking the `Revert` button. This will generate a corresponding revert pull request. Just make sure you include that same `[skip ci]` text in the commit message when merging it to avoid any unintended infrastructure changes.
 :::
+
+## Step 4: Cleanup
+
+You should now have a working modern Pipelines setup in your `infrastructure-live` repository. Before considering the migration process complete, you should engage in some cleanup to make sure that you are not leaving any unnecessary resources behind.
+
+:::tip
+If you would like to make sure that you can quickly revert back to the `infrastructure-pipelines` setup, feel free to skip this step for now, then revisit once you are confident that the new setup is working as expected.
+:::
+
+### Remove unnecessary files
+
+Depending on the current structure of your `infrastructure-live` repository, you may have additional folders that are no longer necessary. Feel free to clean out those folders as necessary. Now that you have a working modern Pipelines setup, you can use it to drive the cleanup process.
+
+Some files that you should remove include:
+
+- `_envcommon/landingzone/pipelines-pre-auth-role.hcl`
+- `_envcommon/landingzone/central-pipelines-plan-role.hcl`
+- `_envcommon/landingzone/central-pipelines-apply-role.hcl`
+- `_envcommon/landingzone/team-pipelines-plan-role.hcl`
+- `_envcommon/landingzone/team-pipelines-apply-role.hcl`
+- `_envcommon/landingzone/pipelines-policy-plan-update-role.hcl`
+- `_envcommon/landingzone/pipelines-policy-apply-update-role.hcl`
+- `_envcommon/landingzone/github-oidc-role.hcl`
+
+Some folders that you should search across your repository for removal include:
+
+- `pipelines-pre-auth-role`
+- `team-pipelines-plan-role`
+- `team-pipelines-apply-role`
+- `pipelines-pre-auth-role`
+- `central-pipelines-plan-role`
+- `central-pipelines-apply-role`
+- `pipelines-policy-plan-update-role`
+- `pipelines-policy-apply-update-role`
+- `github-oidc-role`
+
+It is very likely that you will not have _all_ of these files in your `infrastructure-live` repository, but you should search for them to ensure that you are not leaving any unnecessary files in your repository.
+
+If you have any residual files that you are not sure about, please reach out to Gruntwork support for assistance.
+
+### Delete Old Tokens and Secrets
+
+Now that you have a working modern Pipelines setup, you can delete any old tokens that were used to interact with the `infrastructure-pipelines` repository. This will ensure that you are not leaving any unnecessary tokens lying around that could be used to interact with your infrastructure.
+
+You can see a list of tokens and secrets that are created as part of the `infrastructure-pipelines` version of Pipelines [here](../../infrastructure-pipelines/security/machine-users.md). These tokens and secrets have been renamed in the latest version of Pipelines, and as a consequence, you can safely delete the old tokens and secrets after you've created the new ones.
+
+### Archive the `infrastructure-pipelines` repository
+
+You no longer need your `infrastructure-pipelines` repository, and you can archive it to ensure that you are not accidentally using it in the future. Once you've deleted all of the roles, tokens and secrets in the previous sections, this repository will not have any access to your infrastructure, but it's a good practice not to leave behind any unnecessary resources.
+
+Follow [GitHub documentation on archiving the repository](https://docs.github.com/en/repositories/archiving-a-github-repository/archiving-repositories). Note that this is a reversible process, which is advisable in case you need to revert back to the old setup for any reason. If you would prefer to permanently delete the repository instead, you can refer to the [GitHub documentation on deleting the repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/deleting-a-repository).
 
 ## Conclusion :tada:
 
