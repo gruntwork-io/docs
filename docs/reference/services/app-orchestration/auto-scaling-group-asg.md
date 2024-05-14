@@ -54,7 +54,7 @@ Under the hood, this is all implemented using Terraform modules from the Gruntwo
 access to this repo, email <support@gruntwork.io>.
 
 *   [ASG Documentation](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html):
-    Amazon’s docs for ASG that cover core concepts such as launch templates, launch configuration and auto scaling groups.
+    Amazon’s docs for ASG that cover core concepts such as launch templates and auto scaling groups.
 *   [User Data](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.6/modules/services/asg-service/core-concepts.md)
 
 ## Deploy
@@ -260,6 +260,48 @@ module "asg_service" {
   # Time, in seconds, after an EC2 Instance comes into service before checking
   # health.
   health_check_grace_period = 300
+
+  # The period, in seconds, over which to measure the CPU utilization percentage
+  # for the ASG.
+  high_asg_cpu_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster CPU utilization
+  # percentage above this threshold.
+  high_asg_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_asg_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the ASG.
+  high_asg_disk_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster root disk utilization
+  # percentage above this threshold.
+  high_asg_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_asg_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization
+  # percentage for the ASG.
+  high_asg_memory_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster Memory utilization
+  # percentage above this threshold.
+  high_asg_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_asg_memory_utilization_treat_missing_data = "missing"
 
   # The ID of the Route 53 Hosted Zone in which to create a DNS A record for the
   # Auto Scaling Group. Optional if create_route53_entry = false.
@@ -581,6 +623,48 @@ inputs = {
   # Time, in seconds, after an EC2 Instance comes into service before checking
   # health.
   health_check_grace_period = 300
+
+  # The period, in seconds, over which to measure the CPU utilization percentage
+  # for the ASG.
+  high_asg_cpu_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster CPU utilization
+  # percentage above this threshold.
+  high_asg_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_asg_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the ASG.
+  high_asg_disk_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster root disk utilization
+  # percentage above this threshold.
+  high_asg_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_asg_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization
+  # percentage for the ASG.
+  high_asg_memory_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster Memory utilization
+  # percentage above this threshold.
+  high_asg_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_asg_memory_utilization_treat_missing_data = "missing"
 
   # The ID of the Route 53 Hosted Zone in which to create a DNS A record for the
   # Auto Scaling Group. Optional if create_route53_entry = false.
@@ -1354,6 +1438,87 @@ Time, in seconds, after an EC2 Instance comes into service before checking healt
 <HclListItemDefaultValue defaultValue="300"/>
 </HclListItem>
 
+<HclListItem name="high_asg_cpu_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the CPU utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_asg_cpu_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster CPU utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_asg_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_asg_disk_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the root disk utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_asg_disk_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster root disk utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_asg_disk_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_asg_memory_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the Memory utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_asg_memory_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster Memory utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_asg_memory_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="hosted_zone_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1817,18 +1982,18 @@ The Fully Qualified Domain Name built using the zone domain and name.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="launch_configuration_id">
+<HclListItem name="launch_template_id">
 <HclListItemDescription>
 
-The ID of the launch configuration used for the ASG.
+The ID of the launch template used for the ASG.
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="launch_configuration_name">
+<HclListItem name="launch_template_name">
 <HclListItemDescription>
 
-The name of the launch configuration used for the ASG.
+The name of the launch template used for the ASG.
 
 </HclListItemDescription>
 </HclListItem>
@@ -1877,6 +2042,6 @@ The ID of the Security Group that belongs to the ASG.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.6/modules/services/asg-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ba24563766b73226d2e696c896698a7d"
+  "hash": "4e0cd42d0b19ce73fdbc2e03983f3ff2"
 }
 ##DOCS-SOURCER-END -->

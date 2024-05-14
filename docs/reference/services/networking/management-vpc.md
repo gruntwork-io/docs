@@ -215,6 +215,17 @@ module "vpc_mgmt" {
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = false
 
+  # Specifies the number of days you want to retain log events. Possible values
+  # are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096,
+  # 1827, 2192, 2557, 2922, 3288, 3653, and 0. If you select 0, the events in
+  # the log group are always retained and never expire.
+  flow_log_cloudwatch_log_group_retention_in_days = 0
+
+  # The maximum interval of time during which a flow of packets is captured and
+  # aggregated into a flow log record. Valid values: 60 seconds (1 minute) or
+  # 600 seconds (10 minutes).
+  flow_log_max_aggregation_interval = 600
+
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role.
   iam_role_permissions_boundary = null
@@ -416,6 +427,17 @@ inputs = {
 
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = false
+
+  # Specifies the number of days you want to retain log events. Possible values
+  # are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096,
+  # 1827, 2192, 2557, 2922, 3288, 3653, and 0. If you select 0, the events in
+  # the log group are always retained and never expire.
+  flow_log_cloudwatch_log_group_retention_in_days = 0
+
+  # The maximum interval of time during which a flow of packets is captured and
+  # aggregated into a flow log record. Valid values: 60 seconds (1 minute) or
+  # 600 seconds (10 minutes).
+  flow_log_max_aggregation_interval = 600
 
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role.
@@ -758,6 +780,24 @@ If set to false, the default security groups will NOT be created.
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="flow_log_cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+Specifies the number of days you want to retain log events. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096, 1827, 2192, 2557, 2922, 3288, 3653, and 0. If you select 0, the events in the log group are always retained and never expire.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="flow_log_max_aggregation_interval" requirement="optional" type="number">
+<HclListItemDescription>
+
+The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record. Valid values: 60 seconds (1 minute) or 600 seconds (10 minutes).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="600"/>
+</HclListItem>
+
 <HclListItem name="iam_role_permissions_boundary" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1011,6 +1051,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.6/modules/networking/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "918d0e078d25c1e6acd7a077e5916eda"
+  "hash": "5ed62bbc2be4d74d7dcf1450aa9d499f"
 }
 ##DOCS-SOURCER-END -->
