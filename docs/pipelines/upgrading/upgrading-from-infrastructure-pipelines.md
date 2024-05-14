@@ -147,6 +147,8 @@ The logic that was previously done by creating a workflow dispatch to a secondar
 
 This change is designed to make it easier to manage infrastructure at scale, and has myriad advantages over the previous approach. To learn more about this change, read the [deprecation notice here](../../infrastructure-pipelines/overview/deprecation.md).
 
+To make sure that Pipelines is able to run correctly, make sure that you have the appropriate tokens and secrets configured to allow your machine users to assume the necessary roles to interact with your infrastructure. For more information on how to do this, visit the instructions in [Machine Users](../security/machine-users.md).
+
 Please make sure you understand the changes here, and if you have any questions, please reach out to Gruntwork support.
 
 ### The `.gitignore` file
@@ -191,6 +193,14 @@ If at any time you would like to revert these changes, you can do so by loading 
 
 ## Step 4: Cleanup
 
+You should now have a working modern Pipelines setup in your `infrastructure-live` repository. Before considering the migration process complete, you should engage in some cleanup to make sure that you are not leaving any unnecessary resources behind.
+
+:::tip
+If you would like to make sure that you can quickly revert back to the `infrastructure-pipelines` setup, feel free to skip this step for now, then revisit once you are confident that the new setup is working as expected.
+:::
+
+### Remove unnecessary files
+
 Depending on the current structure of your `infrastructure-live` repository, you may have additional folders that are no longer necessary. Feel free to clean out those folders as necessary. Now that you have a working modern Pipelines setup, you can use it to drive the cleanup process.
 
 Some files that you should remove include:
@@ -220,6 +230,18 @@ It is very likely that you will not have _all_ of these files in your `infrastru
 
 If you have any residual files that you are not sure about, please reach out to Gruntwork support for assistance.
 
+### Delete Old Tokens and Secrets
+
+Now that you have a working modern Pipelines setup, you can delete any old tokens that were used to interact with the `infrastructure-pipelines` repository. This will ensure that you are not leaving any unnecessary tokens lying around that could be used to interact with your infrastructure.
+
+You can see a list of tokens and secrets that are created as part of the `infrastructure-pipelines` version of Pipelines [here](../../infrastructure-pipelines/security/machine-users.md). These tokens and secrets have been renamed in the latest version of Pipelines, and as a consequence, you can safely delete the old tokens and secrets after you've created the new ones.
+
+### Archive the `infrastructure-pipelines` repository
+
+You no longer need your `infrastructure-pipelines` repository, and you can archive it to ensure that you are not accidentally using it in the future. Once you've deleted all of the roles, tokens and secrets in the previous sections, this repository will not have any access to your infrastructure, but it's a good practice not to leave behind any unnecessary resources.
+
+Follow [GitHub documentation on archiving the repository](https://docs.github.com/en/repositories/archiving-a-github-repository/archiving-repositories). Note that this is a reversible process, which is advisable in case you need to revert back to the old setup for any reason. If you would prefer to permanently delete the repository instead, you can refer to the [GitHub documentation on deleting the repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/deleting-a-repository).
+
 ## Conclusion :tada:
 
 You have successfully migrated your repository from `infrastructure-pipelines`!
@@ -238,6 +260,6 @@ If you have any questions, or if you have encountered any issues during this mig
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "310b419bcaa460a243d7d6edfdaa45e9"
+  "hash": "0abaff48c1d632e2cd1edc680e0f8201"
 }
 ##DOCS-SOURCER-END -->
