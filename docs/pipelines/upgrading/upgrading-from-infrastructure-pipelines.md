@@ -189,6 +189,37 @@ Ensure that the commit message in the pull request includes the text `[skip ci]`
 If at any time you would like to revert these changes, you can do so by loading the merged pull request in your browser and clicking the `Revert` button. This will generate a corresponding revert pull request. Just make sure you include that same `[skip ci]` text in the commit message when merging it to avoid any unintended infrastructure changes.
 :::
 
+## Step 4: Cleanup
+
+Depending on the current structure of your `infrastructure-live` repository, you may have additional folders that are no longer necessary. Feel free to clean out those folders as necessary. Now that you have a working modern Pipelines setup, you can use it to drive the cleanup process.
+
+Some files that you should remove include:
+
+- `_envcommon/landingzone/pipelines-pre-auth-role.hcl`
+- `_envcommon/landingzone/central-pipelines-plan-role.hcl`
+- `_envcommon/landingzone/central-pipelines-apply-role.hcl`
+- `_envcommon/landingzone/team-pipelines-plan-role.hcl`
+- `_envcommon/landingzone/team-pipelines-apply-role.hcl`
+- `_envcommon/landingzone/pipelines-policy-plan-update-role.hcl`
+- `_envcommon/landingzone/pipelines-policy-apply-update-role.hcl`
+- `_envcommon/landingzone/github-oidc-role.hcl`
+
+Some folders that you should search across your repository for removal include:
+
+- `pipelines-pre-auth-role`
+- `team-pipelines-plan-role`
+- `team-pipelines-apply-role`
+- `pipelines-pre-auth-role`
+- `central-pipelines-plan-role`
+- `central-pipelines-apply-role`
+- `pipelines-policy-plan-update-role`
+- `pipelines-policy-apply-update-role`
+- `github-oidc-role`
+
+It is very likely that you will not have _all_ of these files in your `infrastructure-live` repository, but you should search for them to ensure that you are not leaving any unnecessary files in your repository.
+
+If you have any residual files that you are not sure about, please reach out to Gruntwork support for assistance.
+
 ## Conclusion :tada:
 
 You have successfully migrated your repository from `infrastructure-pipelines`!
@@ -207,6 +238,6 @@ If you have any questions, or if you have encountered any issues during this mig
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b68c7aa10613e306ae1180a8e313d580"
+  "hash": "310b419bcaa460a243d7d6edfdaa45e9"
 }
 ##DOCS-SOURCER-END -->
