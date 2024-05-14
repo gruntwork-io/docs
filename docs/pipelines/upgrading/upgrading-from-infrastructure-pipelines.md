@@ -48,7 +48,7 @@ The following will explain each of the major changes that are presented to you i
 
 If you find that any changes that are not listed here that you are concerned about, or if you find the instructions on how to handle them unclear, please do not hesitate to reach out to Gruntwork support at <support@gruntwork.io>.
 
-### Reverting the update of your `accounts.yml` file
+### Reverting the update of your `accounts.hcl` file
 
 The `bootstrap.yml` workflow sets your `accounts.yml` file as if you were setting up a new repository from scratch. You have likely already made changes to this file, and you will want to revert the changes that the `bootstrap.yml` workflow made to this file:
 
@@ -207,6 +207,6 @@ If you have any questions, or if you have encountered any issues during this mig
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "a3ecd99158d18815520d337903c8edb2"
+  "hash": "b68c7aa10613e306ae1180a8e313d580"
 }
 ##DOCS-SOURCER-END -->
