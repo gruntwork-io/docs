@@ -30,13 +30,18 @@ We’ll refer to this user as `ci-user` and `ci-read-only-user`, but you may nam
 
 During this setup, you will need to generate and securely store three GitHub tokens for two GitHub users. You will need a temporary location for these sensitive values between generating them and storing them in GitHub Actions. Do so according to your company's recommended security best practices (e.g., do not store them in Slack, a sticky note, etc., during this exercise.)
 
-:::tip
-Gruntwork recommends that you use a password manager like [1Password](https://1password.com) to store these secrets securely.
-:::
 
 :::note
 Your organization is required to rotate the GitHub tokens and update all GitHub secrets that use them.
 :::
+
+:::tip
+Gruntwork recommends that you use a password manager like [1Password](https://1password.com) to store these secrets securely.
+
+If you are screen sharing when generating these tokens, **hide or pause your screen** before selecting the `Generate token` button to prevent the token from being exposed.
+:::
+
+
 
 ### ci-user
 
@@ -218,6 +223,6 @@ For additional information on creating and using Github Actions Repository secre
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "9cb119d1b2c3ccff36713c5cb1d0efc2"
+  "hash": "b614927da529e70f23b999766dfbbf60"
 }
 ##DOCS-SOURCER-END -->
