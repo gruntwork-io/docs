@@ -106,14 +106,16 @@ Previously, the `account.yml` file had a `state_bucket_name` value that was used
 
 ### Adding missing `root-pipelines-plan` and `root-pipelines-apply` roles
 
-You might need to copy over the `github-actions-openid-connect-provider`, `root-pipelines-plan` and `root-pipelines-apply` folders from the `management` account to all of your other accounts, depending on what your current account structure looks like.
+You might need to copy over the `github-actions-openid-connect-provider`, `root-pipelines-plan` and `root-pipelines-apply` folders from another account (like the `security` account) to all of your other accounts, depending on what your current account structure looks like.
 
 These roles are what Pipelines uses to plan and apply changes to your infrastructure. They must be present in any account that pipelines is going to operate in from the `infrastructure-live-root` repository.
 
 Given the chicken and egg issue that arises from needing the roles present to use the roles, you will need to apply these changes manually:
 
 :::warning
-Never make changes to Identity and Access Management (IAM) resources without carefully reviewing the changes that are being made. Make sure you understand the permissions being assigned to these roles before applying them, and ensure that they are appropriate for your organization.
+Never make changes to Identity and Access Management (IAM) resources without carefully reviewing and understanding the changes that are being made.
+
+Make sure you understand the permissions being assigned to these roles before applying them, and ensure that they are appropriate for your organization.
 :::
 
 ```bash
