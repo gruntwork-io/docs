@@ -27,7 +27,7 @@ Be extra careful to ensure that you have replaced all instances of `<REPLACE>` i
 ## Step 2: Run the `bootstrap.yml` workflow
 
 :::caution
-Make sure that you have the appropriate tokens and secrets configured to allow your workflows to access the necessary secrets to interact with your infrastructure. For more information on how to do this, visit the instructions in [Machine Users](../security/machine-users.md).
+Make sure that you have the appropriate tokens and secrets configured to allow your workflows to access the necessary secrets to interact with your infrastructure. For more information on how to do this, visit the instructions in [Machine Users](../security/machine-users.mdx).
 :::
 
 Find the workflow labeled `Infrastructure Live Root Bootstrap` in the `Actions` tab of your repository.
