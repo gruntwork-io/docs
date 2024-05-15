@@ -40,7 +40,7 @@ Gruntwork Pipelines uses a series of GitHub Personal Access Tokens (PAT) to allo
 
 Steps to create a PAT can be found in the official documentation. Refer to [creating a personal access token classic](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) and [creating a fine-grained personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token), respectively.
 
-We recommend using [machine users](../security/machine-users.md) for this use case.
+We recommend using [machine users](../security/machine-users.mdx) for this use case.
 
 To learn more about GitHub PATs, refer to their documentation on [managing personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
 
@@ -85,6 +85,6 @@ Refer to [Configuring OpenId Connect in Amazon Web Services](https://docs.github
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "8e41a880708b25066a21db04424945ad"
+  "hash": "96d185738a284617ac787053df061612"
 }
 ##DOCS-SOURCER-END -->

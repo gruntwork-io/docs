@@ -17,19 +17,9 @@ This guide will take approximately 30 minutes to complete.
 
 :::
 
-## Creating machine users
-
-Gruntwork Pipelines requires using two machine users; one with the ability to open pull requests and run workflows on your behalf and another that can only has read access to repositories in GitHub. Restrictive permissions are then granted to each user, granting them requisite permissions to accomplish their tasks. This means that in order to actually run a pipeline job, both users may be involved at separate stages.
-
-We’ll refer to this user as `ci-user` and `ci-read-only-user`, but you may name them anything you like. These users **must**:
-
-1. Both be members of your GitHub Organization
-2. Both be members of your team in **Gruntwork**’s GitHub Organization (See [instructions on inviting a user to your team](https://docs.gruntwork.io/developer-portal/invite-team#inviting-team-members) and [linking the user’s GitHub ID to Gruntwork](https://docs.gruntwork.io/developer-portal/link-github-id))
-
-## Storing secrets
+## Storing Secrets
 
 During this setup, you will need to generate and securely store three GitHub tokens for two GitHub users. You will need a temporary location for these sensitive values between generating them and storing them in GitHub Actions. Do so according to your company's recommended security best practices (e.g., do not store them in Slack, a sticky note, etc., during this exercise.)
-
 
 :::note
 Your organization is required to rotate the GitHub tokens and update all GitHub secrets that use them.
@@ -37,11 +27,80 @@ Your organization is required to rotate the GitHub tokens and update all GitHub 
 
 :::tip
 Gruntwork recommends that you use a password manager like [1Password](https://1password.com) to store these secrets securely.
+:::
 
+:::caution
 If you are screen sharing when generating these tokens, **hide or pause your screen** before selecting the `Generate token` button to prevent the token from being exposed.
 :::
 
+## Generating Tokens
 
+GitHub has two types of tokens that can be generated:
+
+1. Classic tokens
+2. Fine-grained tokens
+
+### Classic Tokens
+
+Classic tokens have coarse granularity and for the most part grant similar access to the user that generated them.
+
+The restrictions that can be applied to them are few, but they are still useful for some limited use cases.
+
+In Pipelines, the `ci-read-only-user` will need a Classic token because it needs to access software across **multiple GitHub organizations**. This is something that classic tokens can do that fine-grained tokens cannot.
+
+:::tip
+The `PIPELINES_READ_TOKEN` token must be created as a **Classic token**.
+:::
+
+### Fine-grained
+
+Fine-grained tokens have more granular permissions, and are generally recommended over Classic tokens when they are applicable.
+
+The only limitations on Fine-grained tokens that are relevant from a Pipelines perspective is that:
+
+1. They have a single **Resource owner**, which is the organization that is allowed to access the token.
+2. They must have an expiration shorter than 1 year (Classic tokens can be configured to never expire).
+
+In Pipelines, the `ci-user` will need two Fine-grained tokens because they allow for very limited access to specific repositories, with minimal permissions to them.
+
+:::tip
+The `INFRA_ROOT_WRITE_TOKEN` and `ORG_REPO_ADMIN_TOKEN` tokens must be created as **Fine-grained tokens**.
+:::
+
+:::tip
+The **Resource owner** must be set to the GitHub organization of the repositories that the tokens will be used to access (e.g. `infrastructure-live-root`).
+:::
+
+![Resource owner](/img/pipelines/security/resource_owner.png)
+
+:::tip
+You might see your token status as **pending** after generating it. This is because some GitHub organizations require that fine-grained tokens be approved by an organization owner before they can be used.
+
+If you have the appropriate access, you can approve your new token by navigating to the settings of your GitHub organization and finding the token in the **Pending requests** section.
+:::
+
+![Pending requests](/img/pipelines/security/pending_requests.png)
+
+## Creating machine users
+
+Gruntwork Pipelines recommends using two machine users; one with the ability to open pull requests and run workflows on your behalf and another that can only has read access to repositories in GitHub. Restrictive permissions are then granted to each user, granting them requisite permissions to accomplish their tasks. This means that in order to actually run a pipeline job, both users may be involved at separate stages.
+
+We’ll refer to this user as `ci-user` and `ci-read-only-user`, but you may name them anything you like. These users **must**:
+
+1. Both be members of your GitHub Organization
+2. Both be members of your team in **Gruntwork**’s GitHub Organization (See [instructions on inviting a user to your team](https://docs.gruntwork.io/developer-portal/invite-team#inviting-team-members) and [linking the user’s GitHub ID to Gruntwork](https://docs.gruntwork.io/developer-portal/link-github-id))
+
+:::tip
+While we recommend creating two machine users for this use case, you can create more or fewer, depending on the needs of your organization.
+
+What is required is that the correct tokens are created, and that the permissions for the machine user(s) and tokens are appropriate for the access they need.
+:::
+
+:::caution
+There is a security implication to having one machine user for all the tokens generated here, as it would need to have write access to all repositories that the `ci-user` and `ci-read-only-user` need to access. This violates the security [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) access.
+
+Make sure you are aware of trade-offs in security for convenience when making decisions related to this.
+:::
 
 ### ci-user
 
@@ -221,3 +280,11 @@ For additional information on creating and using Github Actions Repository secre
 
 </TabItem>
 </Tabs>
+
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "local-copier",
+  "hash": "a186a4aec2caf423aef4df4b36186c06"
+}
+##DOCS-SOURCER-END -->
