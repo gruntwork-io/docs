@@ -287,25 +287,26 @@ module "aws_config_multi_region" {
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
 
-  # The mode for AWS Config to record configuration changes.
-  # recording_frequency:
+  # The mode for AWS Config to record configuration
+  # changes.
+recording_frequency:
 The frequency with which AWS Config records
   # configuration changes (service defaults to CONTINUOUS).
 - CONTINUOUS
 -
   # DAILY
-
 You can also override the recording frequency for specific resource
   # types.
 recording_mode_override:  description:    A description for the
   # override.  recording_frequency:    The frequency with which AWS Config
   # records configuration changes for the specified resource types.    -
   # CONTINUOUS    - DAILY  resource_types:    A list of resource types for which
-  # AWS Config records configuration changes. For example, AWS::EC2::Instance.  
-  #  See the following for more
+  # AWS Config records configuration changes. For example,
+  # AWS::EC2::Instance.
+
+See the following for more
   # information:
 https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
-
 /*
 recording_mode
   # = {  recording_frequency = "DAILY"  recording_mode_override = {   
@@ -615,25 +616,26 @@ inputs = {
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
 
-  # The mode for AWS Config to record configuration changes.
-  # recording_frequency:
+  # The mode for AWS Config to record configuration
+  # changes.
+recording_frequency:
 The frequency with which AWS Config records
   # configuration changes (service defaults to CONTINUOUS).
 - CONTINUOUS
 -
   # DAILY
-
 You can also override the recording frequency for specific resource
   # types.
 recording_mode_override:  description:    A description for the
   # override.  recording_frequency:    The frequency with which AWS Config
   # records configuration changes for the specified resource types.    -
   # CONTINUOUS    - DAILY  resource_types:    A list of resource types for which
-  # AWS Config records configuration changes. For example, AWS::EC2::Instance.  
-  #  See the following for more
+  # AWS Config records configuration changes. For example,
+  # AWS::EC2::Instance.
+
+See the following for more
   # information:
 https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
-
 /*
 recording_mode
   # = {  recording_frequency = "DAILY"  recording_mode_override = {   
@@ -1181,13 +1183,11 @@ KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS stor
 <HclListItem name="recording_mode" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-The mode for AWS Config to record configuration changes. 
-
+The mode for AWS Config to record configuration changes.
 recording_frequency:
 The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
 - CONTINUOUS
 - DAILY
-
 You can also override the recording frequency for specific resource types.
 recording_mode_override:
   description:
@@ -1198,10 +1198,9 @@ recording_mode_override:
     - DAILY
   resource_types:
     A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
-    
+
 See the following for more information:
 https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
-
 /*
 recording_mode = {
   recording_frequency = 'DAILY'
@@ -1428,6 +1427,6 @@ The ARNs of the SNS Topic used by the config notifications.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.73.2/modules/aws-config-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e15ab198d7562d65f36bff7dd41a93cf"
+  "hash": "349b35b60eb2587626e4e026090cde38"
 }
 ##DOCS-SOURCER-END -->
