@@ -56,15 +56,15 @@ The `PIPELINES_READ_TOKEN` token must be created as a **Classic token**.
 
 Fine-grained tokens have more granular permissions, and are generally recommended over Classic tokens when they are applicable.
 
-The only limitations on Fine-grained tokens that are relevant from a Pipelines perspective is that:
+The only limitations on fine-grained tokens that are relevant from a Pipelines perspective is that:
 
 1. They have a single **Resource owner**, which is the organization that is allowed to access the token.
 2. They must have an expiration shorter than 1 year (Classic tokens can be configured to never expire).
 
-In Pipelines, the `ci-user` will need two Fine-grained tokens because they allow for very limited access to specific repositories, with minimal permissions to them.
+In Pipelines, the `ci-user` will need two fine-grained tokens because they allow for very limited access to specific repositories, with minimal permissions to them.
 
 :::tip
-The `INFRA_ROOT_WRITE_TOKEN` and `ORG_REPO_ADMIN_TOKEN` tokens must be created as **Fine-grained tokens**.
+The `INFRA_ROOT_WRITE_TOKEN` and `ORG_REPO_ADMIN_TOKEN` tokens must be created as **fine-grained tokens**.
 :::
 
 :::tip
@@ -114,7 +114,7 @@ Invite the `ci-user` to your `infrastructure-live-root` and `infrastructure-live
 
 Create the following access tokens in the `ci-user`'s GitHub account:
 
-1. `INFRA_ROOT_WRITE_TOKEN`. This is a fine-grained GitHub Personal Access Token and will be used to grant GitHub Actions access to clone your `infrastructure-live-root` repository, open PRs, and create/update comments.
+1. `INFRA_ROOT_WRITE_TOKEN`. This is a [fine-grained GitHub Personal Access Token](#fine-grained) and will be used to grant GitHub Actions access to clone your `infrastructure-live-root` repository, open PRs, and create/update comments.
 
    This token **must** have the following permissions to your **`infrastructure-live-root`** repo **in your GitHub Organization**:
 
@@ -126,7 +126,7 @@ Create the following access tokens in the `ci-user`'s GitHub account:
 
    ![INFRA_ROOT_WRITE_TOKEN PAT Configuration](/img/pipelines/security/INFRA_ROOT_WRITE_TOKEN.png)
 
-2. `ORG_REPO_ADMIN_TOKEN`. This is a fine-grained GitHub Personal Access Token that will be used to initially bootstrap repositories vended as part of DevOps Foundations.
+2. `ORG_REPO_ADMIN_TOKEN`. This is a [fine-grained GitHub Personal Access Token](#fine-grained) that will be used to initially bootstrap repositories vended as part of DevOps Foundations.
 
    In addition, Enterprise customers will have it used during account vending to create new delegated `infrastructure-live` repositories in their GitHub Organization when vending AWS accounts with the `isDelegated` value selected.
 
@@ -158,7 +158,7 @@ Invite `ci-user-read-only` to your `infrastructure-live-root` repository with re
 
 Create the following token for the `ci-read-only-user`:
 
-1. `PIPELINES_READ_TOKEN`. This token will be used to manage access to private software during GitHub Action runs.
+1. `PIPELINES_READ_TOKEN`. This [Classic Personal Access Token](#classic-tokens) will be used to manage access to private software during GitHub Action runs.
 
 This token **must** have `repo` scopes.
 
@@ -285,6 +285,6 @@ For additional information on creating and using Github Actions Repository secre
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "c94d7839796428fbbce1bce3b580e4dc"
+  "hash": "90049a4126a7510d55d8346f678dea95"
 }
 ##DOCS-SOURCER-END -->
