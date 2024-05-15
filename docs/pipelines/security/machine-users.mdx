@@ -83,7 +83,7 @@ If you have the appropriate access, you can approve your new token by navigating
 
 ## Creating machine users
 
-Gruntwork Pipelines recommends using two machine users; one with the ability to open pull requests and run workflows on your behalf and another that can only has read access to repositories in GitHub. Restrictive permissions are then granted to each user, granting them requisite permissions to accomplish their tasks. This means that in order to actually run a pipeline job, both users may be involved at separate stages.
+The recommended setup for Pipelines uses two machine users; one with the ability to open pull requests and run workflows on your behalf and another that can only has read access to repositories in GitHub. Restrictive permissions are then granted to each user, granting them requisite permissions to accomplish their tasks. This means that in order to actually run a pipeline job, both users may be involved at separate stages.
 
 We’ll refer to this user as `ci-user` and `ci-read-only-user`, but you may name them anything you like. These users **must**:
 
@@ -285,6 +285,6 @@ For additional information on creating and using Github Actions Repository secre
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "a186a4aec2caf423aef4df4b36186c06"
+  "hash": "c94d7839796428fbbce1bce3b580e4dc"
 }
 ##DOCS-SOURCER-END -->
