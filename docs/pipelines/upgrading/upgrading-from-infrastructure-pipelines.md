@@ -27,7 +27,7 @@ Be extra careful to ensure that you have replaced all instances of `<REPLACE>` i
 ## Step 2: Run the `bootstrap.yml` workflow
 
 :::caution
-Make sure that you have the appropriate tokens and secrets configured to allow your workflows to access the necessary secrets to interact with your infrastructure. For more information on how to do this, visit the instructions in [Machine Users](../security/machine-users.md).
+Make sure that you have the appropriate tokens and secrets configured to allow your workflows to access the necessary secrets to interact with your infrastructure. For more information on how to do this, visit the instructions in [Machine Users](../security/machine-users.mdx).
 :::
 
 Find the workflow labeled `Infrastructure Live Root Bootstrap` in the `Actions` tab of your repository.
@@ -280,6 +280,6 @@ If you have any questions, or if you have encountered any issues during this mig
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "c71c9d48bc433a26c94f177b4f8af25a"
+  "hash": "e62c48248b00ada09be6cfb2bc7d0791"
 }
 ##DOCS-SOURCER-END -->
