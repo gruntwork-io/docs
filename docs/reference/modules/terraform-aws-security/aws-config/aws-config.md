@@ -212,6 +212,9 @@ module "aws_config" {
   # empty, config aggregation will be enabled in all regions.
   opt_in_regions = []
 
+  # Map of recording group configurations
+  recording_groups = {"default_group":{"all_supported":true,"include_global_resource_types":true,"recording_strategy":{"use_only":"ALL_SUPPORTED_RESOURCE_TYPES"},"resource_types":[]}}
+
   # The mode for AWS Config to record configuration changes.
   # recording_frequency:
 The frequency with which AWS Config records
@@ -467,6 +470,9 @@ inputs = {
   # Enables config aggregation in only the provided regions. If this list is
   # empty, config aggregation will be enabled in all regions.
   opt_in_regions = []
+
+  # Map of recording group configurations
+  recording_groups = {"default_group":{"all_supported":true,"include_global_resource_types":true,"recording_strategy":{"use_only":"ALL_SUPPORTED_RESOURCE_TYPES"},"resource_types":[]}}
 
   # The mode for AWS Config to record configuration changes.
   # recording_frequency:
@@ -799,6 +805,44 @@ Enables config aggregation in only the provided regions. If this list is empty, 
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="recording_groups" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+Map of recording group configurations
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    all_supported                 = bool
+    include_global_resource_types = bool
+    resource_types                = list(string)
+    recording_strategy = object({
+      use_only = string
+    })
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  default_group = {
+    all_supported = true,
+    include_global_resource_types = true,
+    recording_strategy = {
+      use_only = "ALL_SUPPORTED_RESOURCE_TYPES"
+    },
+    resource_types = []
+  }
+}
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
 <HclListItem name="recording_mode" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
@@ -1083,6 +1127,6 @@ The ARN of the SNS topic to which Config delivers notifications.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.73.2/modules/aws-config/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f284f1adfcfe6d926e9f6973ba36334e"
+  "hash": "4c15b40f32ca079cd8ff4b8a435acfa6"
 }
 ##DOCS-SOURCER-END -->

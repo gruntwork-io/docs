@@ -287,6 +287,9 @@ module "aws_config_multi_region" {
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
 
+  # Map of recording group configurations
+  recording_groups = {"default_group":{"all_supported":true,"include_global_resource_types":true,"recording_strategy":{"use_only":"ALL_SUPPORTED_RESOURCE_TYPES"},"resource_types":[]}}
+
   # The mode for AWS Config to record configuration changes.
   # recording_frequency:
 The frequency with which AWS Config records
@@ -614,6 +617,9 @@ inputs = {
   # KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
+
+  # Map of recording group configurations
+  recording_groups = {"default_group":{"all_supported":true,"include_global_resource_types":true,"recording_strategy":{"use_only":"ALL_SUPPORTED_RESOURCE_TYPES"},"resource_types":[]}}
 
   # The mode for AWS Config to record configuration changes.
   # recording_frequency:
@@ -1178,6 +1184,44 @@ KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS stor
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="recording_groups" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+Map of recording group configurations
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    all_supported                 = bool
+    include_global_resource_types = bool
+    resource_types                = list(string)
+    recording_strategy = object({
+      use_only = string
+    })
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  default_group = {
+    all_supported = true,
+    include_global_resource_types = true,
+    recording_strategy = {
+      use_only = "ALL_SUPPORTED_RESOURCE_TYPES"
+    },
+    resource_types = []
+  }
+}
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
 <HclListItem name="recording_mode" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
@@ -1428,6 +1472,6 @@ The ARNs of the SNS Topic used by the config notifications.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.73.2/modules/aws-config-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e15ab198d7562d65f36bff7dd41a93cf"
+  "hash": "ea0daf6ecb0887d745393caa2ab61519"
 }
 ##DOCS-SOURCER-END -->
