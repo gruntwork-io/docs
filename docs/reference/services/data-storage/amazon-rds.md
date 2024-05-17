@@ -150,6 +150,11 @@ module "rds" {
   # database to be reachable.
   allow_connections_from_security_groups = []
 
+  # Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be
+  # permitted. Note that these updates must always be manually performed and
+  # will never be automatically applied.
+  allow_major_version_upgrade = true
+
   # If true, both the CMK's Key Policy and IAM Policies (permissions) can be
   # used to grant permissions on the CMK. If false, only the CMK's Key Policy
   # can be used to grant permissions on the CMK. False is more secure (and
@@ -160,6 +165,14 @@ module "rds" {
   # during the next maintenance window. Note that cluster modifications may
   # cause degraded performance or downtime.
   apply_immediately = false
+
+  # Indicates that minor engine upgrades will be applied automatically to the DB
+  # instance during the maintenance window. If set to true, you should set
+  # var.engine_version to MAJOR.MINOR and omit the .PATCH at the end (e.g., use
+  # 5.7 and not 5.7.11); otherwise, you'll get Terraform state drift. See
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance.html#engine_version
+  # for more details.
+  auto_minor_version_upgrade = true
 
   # The name of the aws_db_security_group that is created. Defaults to var.name
   # if not specified.
@@ -172,6 +185,12 @@ module "rds" {
   # updated within this time period, as that indicates the backup failed to run.
   backup_job_alarm_period = 3600
 
+  # Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA
+  # state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  backup_job_alarm_treat_missing_data = "missing"
+
   # How many days to keep backup snapshots around before cleaning them up. Must
   # be 1 or greater to support read replicas.
   backup_retention_period = 30
@@ -180,6 +199,10 @@ module "rds" {
   # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup
   # runs.
   backup_window = "06:00-07:00"
+
+  # The Certificate Authority (CA) certificates bundle to use on the RDS
+  # instance.
+  ca_cert_identifier = null
 
   # A list of IAM ARNs for users who should be given administrator access to
   # this CMK (e.g. arn:aws:iam::<aws-account-id>:user/<iam-user-arn>). If this
@@ -196,6 +219,9 @@ module "rds" {
   # empty, and var.kms_key_arn is null, the ARN of the current user will be
   # used.
   cmk_user_iam_arns = []
+
+  # Copy all the RDS instance tags to snapshots. Default is false.
+  copy_tags_to_snapshot = false
 
   # If set to true, create a KMS CMK and use it to encrypt data on disk in the
   # database. The permissions for this CMK will be assigned by the following
@@ -310,6 +336,12 @@ module "rds" {
   # this threshold.
   high_cpu_utilization_threshold = 90
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_cpu_utilization_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the read latency.
   high_read_latency_period = 60
 
@@ -335,6 +367,11 @@ module "rds" {
   # The instance type to use for the db (e.g. db.t3.micro)
   instance_type = "db.t3.micro"
 
+  # The amount of provisioned IOPS for the primary instance. Setting this
+  # implies a storage_type of 'io1'. Can only be set when storage_type is 'gp3'
+  # or 'io1'. Set to 0 to disable.
+  iops = 0
+
   # The Amazon Resource Name (ARN) of an existing KMS customer master key (CMK)
   # that will be used to encrypt/decrypt backup files. If you leave this blank,
   # the default RDS KMS key for the account will be used. If you set
@@ -353,12 +390,29 @@ module "rds" {
   # drops below this threshold.
   low_disk_space_available_threshold = 1000000000
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  low_disk_space_available_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the available free memory.
   low_memory_available_period = 60
 
   # Trigger an alarm if the amount of free memory, in Bytes, on the DB instance
   # drops below this threshold.
   low_memory_available_threshold = 100000000
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  low_memory_available_treat_missing_data = "missing"
+
+  # The weekly day and time range during which system maintenance can occur
+  # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
+  # there may even be a downtime during maintenance windows.
+  maintenance_window = "sun:07:00-sun:08:00"
 
   # Set to true to allow RDS to manage the master user password in Secrets
   # Manager. Cannot be set if password is provided.
@@ -476,9 +530,20 @@ module "rds" {
   # Specifies whether the DB instance is encrypted.
   storage_encrypted = true
 
+  # The type of storage to use for the primary instance. Must be one of
+  # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
+  # SSD that needs iops independently), or 'io1' (provisioned IOPS SSD).
+  storage_type = "gp2"
+
   # Trigger an alarm if the number of connections to the DB instance goes above
   # this threshold.
   too_many_db_connections_threshold = null
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  too_many_db_connections_treat_missing_data = "missing"
 
 }
 
@@ -550,6 +615,11 @@ inputs = {
   # database to be reachable.
   allow_connections_from_security_groups = []
 
+  # Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be
+  # permitted. Note that these updates must always be manually performed and
+  # will never be automatically applied.
+  allow_major_version_upgrade = true
+
   # If true, both the CMK's Key Policy and IAM Policies (permissions) can be
   # used to grant permissions on the CMK. If false, only the CMK's Key Policy
   # can be used to grant permissions on the CMK. False is more secure (and
@@ -560,6 +630,14 @@ inputs = {
   # during the next maintenance window. Note that cluster modifications may
   # cause degraded performance or downtime.
   apply_immediately = false
+
+  # Indicates that minor engine upgrades will be applied automatically to the DB
+  # instance during the maintenance window. If set to true, you should set
+  # var.engine_version to MAJOR.MINOR and omit the .PATCH at the end (e.g., use
+  # 5.7 and not 5.7.11); otherwise, you'll get Terraform state drift. See
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance.html#engine_version
+  # for more details.
+  auto_minor_version_upgrade = true
 
   # The name of the aws_db_security_group that is created. Defaults to var.name
   # if not specified.
@@ -572,6 +650,12 @@ inputs = {
   # updated within this time period, as that indicates the backup failed to run.
   backup_job_alarm_period = 3600
 
+  # Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA
+  # state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  backup_job_alarm_treat_missing_data = "missing"
+
   # How many days to keep backup snapshots around before cleaning them up. Must
   # be 1 or greater to support read replicas.
   backup_retention_period = 30
@@ -580,6 +664,10 @@ inputs = {
   # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup
   # runs.
   backup_window = "06:00-07:00"
+
+  # The Certificate Authority (CA) certificates bundle to use on the RDS
+  # instance.
+  ca_cert_identifier = null
 
   # A list of IAM ARNs for users who should be given administrator access to
   # this CMK (e.g. arn:aws:iam::<aws-account-id>:user/<iam-user-arn>). If this
@@ -596,6 +684,9 @@ inputs = {
   # empty, and var.kms_key_arn is null, the ARN of the current user will be
   # used.
   cmk_user_iam_arns = []
+
+  # Copy all the RDS instance tags to snapshots. Default is false.
+  copy_tags_to_snapshot = false
 
   # If set to true, create a KMS CMK and use it to encrypt data on disk in the
   # database. The permissions for this CMK will be assigned by the following
@@ -710,6 +801,12 @@ inputs = {
   # this threshold.
   high_cpu_utilization_threshold = 90
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_cpu_utilization_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the read latency.
   high_read_latency_period = 60
 
@@ -735,6 +832,11 @@ inputs = {
   # The instance type to use for the db (e.g. db.t3.micro)
   instance_type = "db.t3.micro"
 
+  # The amount of provisioned IOPS for the primary instance. Setting this
+  # implies a storage_type of 'io1'. Can only be set when storage_type is 'gp3'
+  # or 'io1'. Set to 0 to disable.
+  iops = 0
+
   # The Amazon Resource Name (ARN) of an existing KMS customer master key (CMK)
   # that will be used to encrypt/decrypt backup files. If you leave this blank,
   # the default RDS KMS key for the account will be used. If you set
@@ -753,12 +855,29 @@ inputs = {
   # drops below this threshold.
   low_disk_space_available_threshold = 1000000000
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  low_disk_space_available_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the available free memory.
   low_memory_available_period = 60
 
   # Trigger an alarm if the amount of free memory, in Bytes, on the DB instance
   # drops below this threshold.
   low_memory_available_threshold = 100000000
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  low_memory_available_treat_missing_data = "missing"
+
+  # The weekly day and time range during which system maintenance can occur
+  # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
+  # there may even be a downtime during maintenance windows.
+  maintenance_window = "sun:07:00-sun:08:00"
 
   # Set to true to allow RDS to manage the master user password in Secrets
   # Manager. Cannot be set if password is provided.
@@ -876,9 +995,20 @@ inputs = {
   # Specifies whether the DB instance is encrypted.
   storage_encrypted = true
 
+  # The type of storage to use for the primary instance. Must be one of
+  # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
+  # SSD that needs iops independently), or 'io1' (provisioned IOPS SSD).
+  storage_type = "gp2"
+
   # Trigger an alarm if the number of connections to the DB instance goes above
   # this threshold.
   too_many_db_connections_threshold = null
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  too_many_db_connections_treat_missing_data = "missing"
 
 }
 
@@ -967,6 +1097,15 @@ The list of IDs or Security Groups to allow network access to RDS from. All secu
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="allow_major_version_upgrade" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be permitted. Note that these updates must always be manually performed and will never be automatically applied.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="allow_manage_key_permissions_with_iam" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -983,6 +1122,15 @@ Specifies whether any cluster modifications are applied immediately, or during t
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="auto_minor_version_upgrade" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window. If set to true, you should set <a href="#engine_version"><code>engine_version</code></a> to MAJOR.MINOR and omit the .PATCH at the end (e.g., use 5.7 and not 5.7.11); otherwise, you'll get Terraform state drift. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance.html#engine_version for more details.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="aws_db_security_group_name" requirement="optional" type="string">
@@ -1015,6 +1163,15 @@ How often, in seconds, the backup job is expected to run. This is the same as <a
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="backup_job_alarm_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="backup_retention_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1031,6 +1188,15 @@ The daily time range during which automated backups are created (e.g. 04:00-09:0
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;06:00-07:00&quot;"/>
+</HclListItem>
+
+<HclListItem name="ca_cert_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Certificate Authority (CA) certificates bundle to use on the RDS instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="cmk_administrator_iam_arns" requirement="optional" type="list(string)">
@@ -1095,6 +1261,15 @@ list(object({
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="copy_tags_to_snapshot" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Copy all the RDS instance tags to snapshots. Default is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="create_custom_kms_key" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1135,6 +1310,9 @@ object({
     # Name of the parameter group to create
     name = string
 
+    # Description of the parameter group to create
+    description = optional(string)
+
     # The family of the DB parameter group.
     family = string
 
@@ -1155,6 +1333,16 @@ object({
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 <HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     Description of the parameter group to create
+
+```
+</details>
+
 <details>
 
 
@@ -1597,6 +1785,15 @@ Trigger an alarm if the DB instance has a CPU utilization percentage above this 
 <HclListItemDefaultValue defaultValue="90"/>
 </HclListItem>
 
+<HclListItem name="high_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="high_read_latency_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1660,6 +1857,15 @@ The instance type to use for the db (e.g. db.t3.micro)
 <HclListItemDefaultValue defaultValue="&quot;db.t3.micro&quot;"/>
 </HclListItem>
 
+<HclListItem name="iops" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of provisioned IOPS for the primary instance. Setting this implies a storage_type of 'io1'. Can only be set when storage_type is 'gp3' or 'io1'. Set to 0 to disable.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
 <HclListItem name="kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1708,6 +1914,15 @@ Trigger an alarm if the amount of disk space, in Bytes, on the DB instance drops
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="low_disk_space_available_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="low_memory_available_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1736,6 +1951,24 @@ Trigger an alarm if the amount of free memory, in Bytes, on the DB instance drop
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="low_memory_available_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="maintenance_window" requirement="optional" type="string">
+<HclListItemDescription>
+
+The weekly day and time range during which system maintenance can occur (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may even be a downtime during maintenance windows.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;sun:07:00-sun:08:00&quot;"/>
 </HclListItem>
 
 <HclListItem name="manage_master_user_password" requirement="optional" type="bool">
@@ -1954,6 +2187,15 @@ Specifies whether the DB instance is encrypted.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="storage_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of storage to use for the primary instance. Must be one of 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose SSD that needs iops independently), or 'io1' (provisioned IOPS SSD).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
+</HclListItem>
+
 <HclListItem name="too_many_db_connections_threshold" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1974,6 +2216,15 @@ Trigger an alarm if the number of connections to the DB instance goes above this
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="too_many_db_connections_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -2151,6 +2402,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.10/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "92bd0847a30b46e914088586814ace2d"
+  "hash": "aa508af3657235b0807db26d779e76a2"
 }
 ##DOCS-SOURCER-END -->

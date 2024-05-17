@@ -115,16 +115,6 @@ module "ecs_service" {
   # corresponds to a different ECS container definition.
   container_definitions = <any>
 
-  # A map of all the listeners on the load balancer. The keys should be the port
-  # numbers and the values should be the ARN of the listener for that port.
-  default_listener_arns = <map(string)>
-
-  # The default port numbers on the load balancer to attach listener rules to.
-  # You can override this default on a rule-by-rule basis by setting the
-  # listener_ports parameter in each rule. The port numbers specified in this
-  # variable and the listener_ports parameter must exist in var.listener_arns.
-  default_listener_ports = <list(string)>
-
   # The ARN of the cluster to which the ecs service should be deployed.
   ecs_cluster_arn = <string>
 
@@ -201,6 +191,11 @@ module "ecs_service" {
   # to never expire. Only used if var.create_cloudwatch_log_group is true.
   cloudwatch_log_group_retention = null
 
+  # A map of tags to apply to the Cloudwatch log group. Each item in this list
+  # should be a map with the parameters key and value. Only used if
+  # var.create_cloudwatch_log_group is true.
+  cloudwatch_log_group_tags = {}
+
   # The number of CPU units to allocate to the ECS Service.
   cpu = 1
 
@@ -234,6 +229,16 @@ module "ecs_service" {
   # CloudWatch and ECR.
   custom_task_execution_iam_role_name_prefix = null
 
+  # A map of all the listeners on the load balancer. The keys should be the port
+  # numbers and the values should be the ARN of the listener for that port.
+  default_listener_arns = {}
+
+  # The default port numbers on the load balancer to attach listener rules to.
+  # You can override this default on a rule-by-rule basis by setting the
+  # listener_ports parameter in each rule. The port numbers specified in this
+  # variable and the listener_ports parameter must exist in var.listener_arns.
+  default_listener_ports = []
+
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
   # resources in this module will now depend on the resources backing the values
@@ -258,6 +263,9 @@ module "ecs_service" {
   # deployment. deploy_circuit_breaker_enabled must also be true to enable this
   # behavior.
   deployment_circuit_breaker_rollback = false
+
+  # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
+  deployment_controller = null
 
   # The upper limit, as a percentage of var.desired_number_of_tasks, of the
   # number of running tasks that can be running in a service during a
@@ -316,7 +324,7 @@ module "ecs_service" {
   elb_target_groups = {}
 
   # Set to true to enable Cloudwatch alarms on the ecs service instances
-  enable_cloudwatch_alarms = false
+  enable_cloudwatch_alarms = true
 
   # Whether or not to enable the ECS deployment check binary to make terraform
   # wait for the task to be deployed. See ecs_deploy_check_binaries for more
@@ -386,6 +394,10 @@ module "ecs_service" {
   # this threshold
   high_cpu_utilization_threshold = 90
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must
+  # be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_cpu_utilization_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the memory utilization
   # percentage
   high_memory_utilization_period = 300
@@ -393,6 +405,10 @@ module "ecs_service" {
   # Trigger an alarm if the ECS Service has a memory utilization percentage
   # above this threshold
   high_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must
+  # be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_memory_utilization_treat_missing_data = "missing"
 
   # The ID of the Route 53 hosted zone into which the Route 53 DNS record should
   # be written
@@ -403,6 +419,11 @@ module "ecs_service" {
   # object fields are the resources, actions, and the effect ("Allow" or "Deny")
   # of the statement.
   iam_policy = null
+
+  # Whether or not to ignore changes to the target groups in the listener
+  # forwarding rule. Can be used with AWS CodeDeploy to allow changes to target
+  # group mapping outside of Terraform.
+  ignore_changes_to_target_groups = false
 
   # The launch type of the ECS service. Must be one of EC2 or FARGATE. When
   # using FARGATE, you must set the network mode to awsvpc and configure it.
@@ -419,6 +440,10 @@ module "ecs_service" {
   # A map of tags to apply to the elb target group. Each item in this list
   # should be a map with the parameters key and value.
   lb_target_group_tags = {}
+
+  # Listener rules list required first to be provisioned before creation of ECS
+  # cluster.
+  listener_rule_ids = []
 
   # The maximum number of instances of the ECS Service to run. Auto scaling will
   # never scale out above this number.
@@ -440,6 +465,13 @@ module "ecs_service" {
   # awsvpc, you must configure var.network_configuration.
   network_mode = "bridge"
 
+  # Service level strategy rules that are taken into consideration during task
+  # placement. List from top to bottom in order of precedence. Updates to this
+  # configuration will take effect next task deployment unless
+  # force_new_deployment is enabled. The maximum number of
+  # ordered_placement_strategy blocks is 5.
+  ordered_placement_strategy = [{"field":"cpu","type":"binpack"}]
+
   # The DNS name that was assigned by AWS to the load balancer upon creation
   original_lb_dns_name = null
 
@@ -451,17 +483,9 @@ module "ecs_service" {
   # valid values at this time are memberOf and distinctInstance.
   placement_constraint_type = "memberOf"
 
-  # The field to apply the placement strategy against. For the spread placement
-  # strategy, valid values are instanceId (or host, which has the same effect),
-  # or any platform or custom attribute that is applied to a container instance,
-  # such as attribute:ecs.availability-zone. For the binpack placement strategy,
-  # valid values are cpu and memory. For the random placement strategy, this
-  # field is not used.
-  placement_strategy_field = "cpu"
-
-  # The strategy to use when placing ECS tasks on EC2 instances. Can be binpack
-  # (default), random, or spread.
-  placement_strategy_type = "binpack"
+  # The platform version on which to run your service. Only applicable for
+  # launch_type set to FARGATE. Defaults to LATEST.
+  platform_version = null
 
   # Whether tags should be propogated to the tasks from the service or from the
   # task definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to
@@ -517,6 +541,9 @@ module "ecs_service" {
   # its own AWS provider to ensure resources are created in us-east-1.
   route53_health_check_provider_shared_credentials_file = null
 
+  # Define runtime platform options
+  runtime_platform = null
+
   # A list of ARNs of Secrets Manager secrets that the task should have
   # permissions to read. The IAM role for the task will be granted
   # `secretsmanager:GetSecretValue` for each secret in the list. The ARN can be
@@ -530,7 +557,11 @@ module "ecs_service" {
   # A list of ARNs for Secrets Manager secrets that the ECS execution IAM policy
   # should be granted access to read. Note that this is different from the ECS
   # task IAM policy. The execution policy is concerned with permissions required
-  # to run the ECS task.
+  # to run the ECS task. The ARN can be either the complete ARN, including the
+  # randomly generated suffix, or the ARN without the suffix. If the latter, the
+  # module will look up the full ARN automatically. This is helpful in cases
+  # where you don't yet know the randomly generated suffix because the rest of
+  # the ARN is a predictable value.
   secrets_manager_arns = []
 
   # The ARN of the kms key associated with secrets manager
@@ -554,6 +585,10 @@ module "ecs_service" {
   # A map of tags to apply to the task definition. Each item in this list should
   # be a map with the parameters key and value.
   task_definition_tags = {}
+
+  # Ephemeral storage size for Fargate tasks. See:
+  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_definition_ephemeralStorage
+  task_ephemeral_storage = null
 
   # The memory units for the instances that Fargate will spin up. Options here:
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
@@ -608,16 +643,6 @@ inputs = {
   # corresponds to a different ECS container definition.
   container_definitions = <any>
 
-  # A map of all the listeners on the load balancer. The keys should be the port
-  # numbers and the values should be the ARN of the listener for that port.
-  default_listener_arns = <map(string)>
-
-  # The default port numbers on the load balancer to attach listener rules to.
-  # You can override this default on a rule-by-rule basis by setting the
-  # listener_ports parameter in each rule. The port numbers specified in this
-  # variable and the listener_ports parameter must exist in var.listener_arns.
-  default_listener_ports = <list(string)>
-
   # The ARN of the cluster to which the ecs service should be deployed.
   ecs_cluster_arn = <string>
 
@@ -694,6 +719,11 @@ inputs = {
   # to never expire. Only used if var.create_cloudwatch_log_group is true.
   cloudwatch_log_group_retention = null
 
+  # A map of tags to apply to the Cloudwatch log group. Each item in this list
+  # should be a map with the parameters key and value. Only used if
+  # var.create_cloudwatch_log_group is true.
+  cloudwatch_log_group_tags = {}
+
   # The number of CPU units to allocate to the ECS Service.
   cpu = 1
 
@@ -727,6 +757,16 @@ inputs = {
   # CloudWatch and ECR.
   custom_task_execution_iam_role_name_prefix = null
 
+  # A map of all the listeners on the load balancer. The keys should be the port
+  # numbers and the values should be the ARN of the listener for that port.
+  default_listener_arns = {}
+
+  # The default port numbers on the load balancer to attach listener rules to.
+  # You can override this default on a rule-by-rule basis by setting the
+  # listener_ports parameter in each rule. The port numbers specified in this
+  # variable and the listener_ports parameter must exist in var.listener_arns.
+  default_listener_ports = []
+
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
   # resources in this module will now depend on the resources backing the values
@@ -751,6 +791,9 @@ inputs = {
   # deployment. deploy_circuit_breaker_enabled must also be true to enable this
   # behavior.
   deployment_circuit_breaker_rollback = false
+
+  # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
+  deployment_controller = null
 
   # The upper limit, as a percentage of var.desired_number_of_tasks, of the
   # number of running tasks that can be running in a service during a
@@ -809,7 +852,7 @@ inputs = {
   elb_target_groups = {}
 
   # Set to true to enable Cloudwatch alarms on the ecs service instances
-  enable_cloudwatch_alarms = false
+  enable_cloudwatch_alarms = true
 
   # Whether or not to enable the ECS deployment check binary to make terraform
   # wait for the task to be deployed. See ecs_deploy_check_binaries for more
@@ -879,6 +922,10 @@ inputs = {
   # this threshold
   high_cpu_utilization_threshold = 90
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must
+  # be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_cpu_utilization_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the memory utilization
   # percentage
   high_memory_utilization_period = 300
@@ -886,6 +933,10 @@ inputs = {
   # Trigger an alarm if the ECS Service has a memory utilization percentage
   # above this threshold
   high_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must
+  # be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_memory_utilization_treat_missing_data = "missing"
 
   # The ID of the Route 53 hosted zone into which the Route 53 DNS record should
   # be written
@@ -896,6 +947,11 @@ inputs = {
   # object fields are the resources, actions, and the effect ("Allow" or "Deny")
   # of the statement.
   iam_policy = null
+
+  # Whether or not to ignore changes to the target groups in the listener
+  # forwarding rule. Can be used with AWS CodeDeploy to allow changes to target
+  # group mapping outside of Terraform.
+  ignore_changes_to_target_groups = false
 
   # The launch type of the ECS service. Must be one of EC2 or FARGATE. When
   # using FARGATE, you must set the network mode to awsvpc and configure it.
@@ -912,6 +968,10 @@ inputs = {
   # A map of tags to apply to the elb target group. Each item in this list
   # should be a map with the parameters key and value.
   lb_target_group_tags = {}
+
+  # Listener rules list required first to be provisioned before creation of ECS
+  # cluster.
+  listener_rule_ids = []
 
   # The maximum number of instances of the ECS Service to run. Auto scaling will
   # never scale out above this number.
@@ -933,6 +993,13 @@ inputs = {
   # awsvpc, you must configure var.network_configuration.
   network_mode = "bridge"
 
+  # Service level strategy rules that are taken into consideration during task
+  # placement. List from top to bottom in order of precedence. Updates to this
+  # configuration will take effect next task deployment unless
+  # force_new_deployment is enabled. The maximum number of
+  # ordered_placement_strategy blocks is 5.
+  ordered_placement_strategy = [{"field":"cpu","type":"binpack"}]
+
   # The DNS name that was assigned by AWS to the load balancer upon creation
   original_lb_dns_name = null
 
@@ -944,17 +1011,9 @@ inputs = {
   # valid values at this time are memberOf and distinctInstance.
   placement_constraint_type = "memberOf"
 
-  # The field to apply the placement strategy against. For the spread placement
-  # strategy, valid values are instanceId (or host, which has the same effect),
-  # or any platform or custom attribute that is applied to a container instance,
-  # such as attribute:ecs.availability-zone. For the binpack placement strategy,
-  # valid values are cpu and memory. For the random placement strategy, this
-  # field is not used.
-  placement_strategy_field = "cpu"
-
-  # The strategy to use when placing ECS tasks on EC2 instances. Can be binpack
-  # (default), random, or spread.
-  placement_strategy_type = "binpack"
+  # The platform version on which to run your service. Only applicable for
+  # launch_type set to FARGATE. Defaults to LATEST.
+  platform_version = null
 
   # Whether tags should be propogated to the tasks from the service or from the
   # task definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to
@@ -1010,6 +1069,9 @@ inputs = {
   # its own AWS provider to ensure resources are created in us-east-1.
   route53_health_check_provider_shared_credentials_file = null
 
+  # Define runtime platform options
+  runtime_platform = null
+
   # A list of ARNs of Secrets Manager secrets that the task should have
   # permissions to read. The IAM role for the task will be granted
   # `secretsmanager:GetSecretValue` for each secret in the list. The ARN can be
@@ -1023,7 +1085,11 @@ inputs = {
   # A list of ARNs for Secrets Manager secrets that the ECS execution IAM policy
   # should be granted access to read. Note that this is different from the ECS
   # task IAM policy. The execution policy is concerned with permissions required
-  # to run the ECS task.
+  # to run the ECS task. The ARN can be either the complete ARN, including the
+  # randomly generated suffix, or the ARN without the suffix. If the latter, the
+  # module will look up the full ARN automatically. This is helpful in cases
+  # where you don't yet know the randomly generated suffix because the rest of
+  # the ARN is a predictable value.
   secrets_manager_arns = []
 
   # The ARN of the kms key associated with secrets manager
@@ -1047,6 +1113,10 @@ inputs = {
   # A map of tags to apply to the task definition. Each item in this list should
   # be a map with the parameters key and value.
   task_definition_tags = {}
+
+  # Ephemeral storage size for Fargate tasks. See:
+  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_definition_ephemeralStorage
+  task_ephemeral_storage = null
 
   # The memory units for the instances that Fargate will spin up. Options here:
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
@@ -1132,22 +1202,6 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="default_listener_arns" requirement="required" type="map(string)">
-<HclListItemDescription>
-
-A map of all the listeners on the load balancer. The keys should be the port numbers and the values should be the ARN of the listener for that port.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="default_listener_ports" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-The default port numbers on the load balancer to attach listener rules to. You can override this default on a rule-by-rule basis by setting the listener_ports parameter in each rule. The port numbers specified in this variable and the listener_ports parameter must exist in <a href="#listener_arns"><code>listener_arns</code></a>.
-
-</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="ecs_cluster_arn" requirement="required" type="string">
@@ -1362,6 +1416,15 @@ Number of days to retain log events. Possible values are: 1, 3, 5, 7, 14, 30, 60
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the Cloudwatch log group. Each item in this list should be a map with the parameters key and value. Only used if <a href="#create_cloudwatch_log_group"><code>create_cloudwatch_log_group</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="cpu" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1434,6 +1497,24 @@ Prefix for name of task execution IAM role and policy that grants access to Clou
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="default_listener_arns" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of all the listeners on the load balancer. The keys should be the port numbers and the values should be the ARN of the listener for that port.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="default_listener_ports" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The default port numbers on the load balancer to attach listener rules to. You can override this default on a rule-by-rule basis by setting the listener_ports parameter in each rule. The port numbers specified in this variable and the listener_ports parameter must exist in <a href="#listener_arns"><code>listener_arns</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="dependencies" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1477,6 +1558,15 @@ Set to 'true' to also automatically roll back to the last successful deployment.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="deployment_controller" requirement="optional" type="string">
+<HclListItemDescription>
+
+Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="deployment_maximum_percent" requirement="optional" type="number">
@@ -1651,7 +1741,7 @@ Any types represent complex values of variable type. For details, please consult
 Set to true to enable Cloudwatch alarms on the ecs service instances
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="enable_ecs_deployment_check" requirement="optional" type="bool">
@@ -2019,6 +2109,15 @@ Trigger an alarm if the ECS Service has a CPU utilization percentage above this 
 <HclListItemDefaultValue defaultValue="90"/>
 </HclListItem>
 
+<HclListItem name="high_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="high_memory_utilization_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2035,6 +2134,15 @@ Trigger an alarm if the ECS Service has a memory utilization percentage above th
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_memory_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="hosted_zone_id" requirement="optional" type="string">
@@ -2089,6 +2197,15 @@ map(object({
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="ignore_changes_to_target_groups" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to ignore changes to the target groups in the listener forwarding rule. Can be used with AWS CodeDeploy to allow changes to target group mapping outside of Terraform.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="launch_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2114,6 +2231,15 @@ A map of tags to apply to the elb target group. Each item in this list should be
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="listener_rule_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Listener rules list required first to be provisioned before creation of ECS cluster.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="max_number_of_tasks" requirement="optional" type="number">
@@ -2240,6 +2366,36 @@ The Docker networking mode to use for the containers in the task. The valid valu
 <HclListItemDefaultValue defaultValue="&quot;bridge&quot;"/>
 </HclListItem>
 
+<HclListItem name="ordered_placement_strategy" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+Service level strategy rules that are taken into consideration during task placement. List from top to bottom in order of precedence. Updates to this configuration will take effect next task deployment unless force_new_deployment is enabled. The maximum number of ordered_placement_strategy blocks is 5.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    type  = string
+    field = string
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+[
+  {
+    field = "cpu",
+    type = "binpack"
+  }
+]
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
 <HclListItem name="original_lb_dns_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2267,22 +2423,13 @@ The type of constraint to apply for container instance placement. The only valid
 <HclListItemDefaultValue defaultValue="&quot;memberOf&quot;"/>
 </HclListItem>
 
-<HclListItem name="placement_strategy_field" requirement="optional" type="string">
+<HclListItem name="platform_version" requirement="optional" type="string">
 <HclListItemDescription>
 
-The field to apply the placement strategy against. For the spread placement strategy, valid values are instanceId (or host, which has the same effect), or any platform or custom attribute that is applied to a container instance, such as attribute:ecs.availability-zone. For the binpack placement strategy, valid values are cpu and memory. For the random placement strategy, this field is not used.
+The platform version on which to run your service. Only applicable for launch_type set to FARGATE. Defaults to LATEST.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;cpu&quot;"/>
-</HclListItem>
-
-<HclListItem name="placement_strategy_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-The strategy to use when placing ECS tasks on EC2 instances. Can be binpack (default), random, or spread.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;binpack&quot;"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="propagate_tags" requirement="optional" type="string">
@@ -2501,6 +2648,25 @@ The optional path to a credentials file used in the us-east-1 provider block def
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="runtime_platform" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Define runtime platform options
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    operating_system_family = string
+    cpu_architecture        = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="secrets_access" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -2513,7 +2679,7 @@ A list of ARNs of Secrets Manager secrets that the task should have permissions 
 <HclListItem name="secrets_manager_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-A list of ARNs for Secrets Manager secrets that the ECS execution IAM policy should be granted access to read. Note that this is different from the ECS task IAM policy. The execution policy is concerned with permissions required to run the ECS task.
+A list of ARNs for Secrets Manager secrets that the ECS execution IAM policy should be granted access to read. Note that this is different from the ECS task IAM policy. The execution policy is concerned with permissions required to run the ECS task. The ARN can be either the complete ARN, including the randomly generated suffix, or the ARN without the suffix. If the latter, the module will look up the full ARN automatically. This is helpful in cases where you don't yet know the randomly generated suffix because the rest of the ARN is a predictable value.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -2562,6 +2728,15 @@ A map of tags to apply to the task definition. Each item in this list should be 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="task_ephemeral_storage" requirement="optional" type="number">
+<HclListItemDescription>
+
+Ephemeral storage size for Fargate tasks. See: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_definition_ephemeralStorage
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="task_memory" requirement="optional" type="number">
@@ -2816,6 +2991,6 @@ The names of the ECS service's load balancer's target groups
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.10/modules/services/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "bfe2351d9bc274edadf377316329fd15"
+  "hash": "b4bdd3b90db0b744be500b66aca1817f"
 }
 ##DOCS-SOURCER-END -->
