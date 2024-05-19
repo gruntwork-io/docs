@@ -1,0 +1,187 @@
+---
+title: "Control Tower Landing Zone"
+hide_title: true
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Control Tower" version="0.7.5" />
+
+# Control Tower Landing Zone
+
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.5/modules/landingzone/control-tower-landing-zone" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=control-tower-landing-zone" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+
+This is a Terraform module that deploys the AWS Control Tower Landing Zone in the
+management account.
+
+## Usage
+
+```hcl
+TBD
+```
+
+## How to upgrade the landing zone
+
+TBD
+
+## How to import exiting landing zones
+
+TBD
+
+## Sample Usage
+
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S CONTROL-TOWER-LANDING-ZONE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "control_tower_landing_zone" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-landing-zone?ref=v0.7.5"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The email address to use for the account to use for audit.
+  email_address_account_audit = <string>
+
+  # The email address to use for the account to use for centralized logging.
+  email_address_account_log_archiver = <string>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The number of days to retain log objects in the centralized access logging
+  # bucket.
+  access_logging_bucket_retention_days = 60
+
+  # The name of the account to use for audit.
+  account_name_audit = "Security"
+
+  # The name of the account to use for centralized logging.
+  account_name_log_archiver = "Logs"
+
+  # The name of an additional organizational unit to create in AWS Control
+  # Tower.
+  additional_organizational_unit_name = "Pre-Prod"
+
+  # Whether to enable access management in AWS Control Tower.
+  enable_access_management = true
+
+  # The name of the foundational organizational unit to create in AWS Control
+  # Tower.
+  foundational_organizational_unit_name = "Security"
+
+  # A list of AWS regions to govern with AWS Control Tower. The region where you
+  # deploy the landing zone MUST always be included in this list.
+  governed_regions = ["us-east-1","us-west-2"]
+
+  # The version of the AWS Control Tower landing zone to deploy.
+  landing_zone_version = "3.2"
+
+  # The number of days to retain log objects in the centralized logging bucket.
+  logging_bucket_retention_days = 60
+
+  # A map of tags to apply to the AWS Control Tower landing zone.
+  tags = {}
+
+}
+
+
+```
+
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S CONTROL-TOWER-LANDING-ZONE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-landing-zone?ref=v0.7.5"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The email address to use for the account to use for audit.
+  email_address_account_audit = <string>
+
+  # The email address to use for the account to use for centralized logging.
+  email_address_account_log_archiver = <string>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The number of days to retain log objects in the centralized access logging
+  # bucket.
+  access_logging_bucket_retention_days = 60
+
+  # The name of the account to use for audit.
+  account_name_audit = "Security"
+
+  # The name of the account to use for centralized logging.
+  account_name_log_archiver = "Logs"
+
+  # The name of an additional organizational unit to create in AWS Control
+  # Tower.
+  additional_organizational_unit_name = "Pre-Prod"
+
+  # Whether to enable access management in AWS Control Tower.
+  enable_access_management = true
+
+  # The name of the foundational organizational unit to create in AWS Control
+  # Tower.
+  foundational_organizational_unit_name = "Security"
+
+  # A list of AWS regions to govern with AWS Control Tower. The region where you
+  # deploy the landing zone MUST always be included in this list.
+  governed_regions = ["us-east-1","us-west-2"]
+
+  # The version of the AWS Control Tower landing zone to deploy.
+  landing_zone_version = "3.2"
+
+  # The number of days to retain log objects in the centralized logging bucket.
+  logging_bucket_retention_days = 60
+
+  # A map of tags to apply to the AWS Control Tower landing zone.
+  tags = {}
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
+
+
+<!-- ##DOCS-SOURCER-START
+{
+  "originalSources": [
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.5/modules/control-tower-landing-zone/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.5/modules/control-tower-landing-zone/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.5/modules/control-tower-landing-zone/outputs.tf"
+  ],
+  "sourcePlugin": "module-catalog-api",
+  "hash": "93e3d4ea69840fd185ff111df2cd2554"
+}
+##DOCS-SOURCER-END -->
