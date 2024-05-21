@@ -104,7 +104,7 @@ of the `CLOUDFLARE_API_TOKEN`
 
 ```hcl
 inputs = {
-  cloudflare_api_token = "${run_cmd("--terragrunt-non-interactive", "./fetch-cloudflare-api-token.sh")}"
+  cloudflare_api_token = "${run_cmd("--terragrunt-quiet", "./fetch-cloudflare-api-token.sh")}"
 }
 ```
 
@@ -157,7 +157,7 @@ terraform {
     commands = ["apply", "plan"]
 
     env_vars = {
-      CLOUDFLARE_API_TOKEN = "${run_cmd("--terragrunt-non-interactive", "./fetch-cloudflare-api-token.sh")}"
+      CLOUDFLARE_API_TOKEN = "${run_cmd("--terragrunt-quiet", "./fetch-cloudflare-api-token.sh")}"
     }
   }
 }
