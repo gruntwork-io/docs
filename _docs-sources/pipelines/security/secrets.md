@@ -14,13 +14,15 @@ to improve the security posture of Pipelines, and are actively working on ways t
 
 ## Authenticating With GitHub
 
-To authenticate with GitHub, Pipelines uses [Personal Access Tokens (PATs)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) to authenticate as GitHub Machine Users to interact with the GitHub API. You can learn more about how these tokens are created and managed in the [Machine Users](./machine-users.mdx) documentation.
+To authenticate with GitHub, Pipelines uses [Personal Access Tokens (PATs)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) to authenticate as GitHub Machine Users to interact with the GitHub API. You can
+learn more about how these tokens are created and managed in the [Machine Users](./machine-users.mdx) documentation.
 
 ## Authenticating With AWS
 
 At a minimum, Pipelines also needs to authenticate with AWS. It does not do so with long lived credentials, however.
-Instead, it leverages [OIDC to authenticate with AWS](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) as a particular git reference on a particular repository to assume
-a role in AWS that trusts role assumptions from that context.
+Instead, it leverages [OIDC to authenticate with AWS](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services). OIDC allows for an authenticated relationship to be defined between
+a particular git reference in a particular repository with a particular role in AWS, allowing pipelines to assume a role
+simply by virtue of where that pipeline is run.
 
 The process for this role assumption looks like the following:
 
