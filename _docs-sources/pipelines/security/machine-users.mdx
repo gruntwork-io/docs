@@ -1,5 +1,5 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
 
 # Machine users
 
@@ -93,9 +93,9 @@ We’ll refer to this user as `ci-user` and `ci-read-only-user`, but you may nam
 2. Both be members of your team in **Gruntwork**’s GitHub Organization (See [instructions on inviting a user to your team](https://docs.gruntwork.io/developer-portal/invite-team#inviting-team-members) and [linking the user’s GitHub ID to Gruntwork](https://docs.gruntwork.io/developer-portal/link-github-id))
 
 :::tip
-While we recommend creating two machine users for this use case, you can create more or fewer, depending on the needs of your organization.
+We recommend creating two machine users for this use case, but you can adjust this based on your organization's needs. Ensure that the correct tokens are created and that the permissions for the machine users and tokens are appropriate for their required access.
 
-What is required is that the correct tokens are created, and that the permissions for the machine user(s) and tokens are appropriate for the access they need.
+Note that additional licenses in your GitHub subscription might be required if you are at capacity.
 :::
 
 :::caution
@@ -227,7 +227,6 @@ If you are **not an Enterprise customer**:
 
 - Delete the `ORG_REPO_ADMIN_TOKEN` Personal Access Token from the `ci-user`&rsquo;s GitHub account
 - Delete the Organization secret `ORG_REPO_ADMIN_TOKEN` from the GitHub Organization
-
 
 Enterprise customers:
 
