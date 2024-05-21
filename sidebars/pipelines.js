@@ -66,6 +66,11 @@ const sidebar = [
             type: "doc",
             id: "pipelines/security/machine-users",
           },
+          {
+            label: "Secrets",
+            type: "doc",
+            id: "pipelines/security/secrets",
+          }
         ],
       },
       {

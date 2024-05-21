@@ -84,6 +84,14 @@ const config = {
 
   plugins: plugins,
 
+  markdown: {
+    mermaid: true,
+  },
+
+  themes: [
+    '@docusaurus/theme-mermaid',
+  ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({

@@ -93,7 +93,7 @@ We’ll refer to this user as `ci-user` and `ci-read-only-user`, but you may nam
 2. Both be members of your team in **Gruntwork**’s GitHub Organization (See [instructions on inviting a user to your team](https://docs.gruntwork.io/developer-portal/invite-team#inviting-team-members) and [linking the user’s GitHub ID to Gruntwork](https://docs.gruntwork.io/developer-portal/link-github-id))
 
 :::tip
-We recommend creating two machine users for this use case but you can adjust based on your organization's need. Simply ensure the correct tokens are created and the permissions for the machine users and tokens are appropriate for their required access.
+We recommend creating two machine users for this use case, but you can adjust this based on your organization's needs. Ensure that the correct tokens are created and that the permissions for the machine users and tokens are appropriate for their required access.
 
 Note that additional licenses in your GitHub subscription might be required if you are at capacity.
 :::
@@ -106,7 +106,7 @@ Make sure you are aware of trade-offs in security for convenience when making de
 
 ### ci-user
 
-The `ci-user` orchestrates workflows, can open pull requests from automated code generation, and leave comments on pull requests. This user should have two GitHub Fine Grained [Personal Access Tokens (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens)s with the following permissions.
+The `ci-user` orchestrates workflows, can open pull requests from automated code generation, and leave comments on pull requests. This user should have two GitHub Fine Grained [Personal Access Tokens (PATs)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens) with the following permissions.
 
 #### Invite the `ci-user` to your repository
 
@@ -150,7 +150,7 @@ Create the following access tokens in the `ci-user`'s GitHub account:
 
 This user is created to download private software within GitHub Actions Workflows. The `ci-read-only-user` is used to access Gruntwork Library modules, your own `infrastructure-modules` repository, any other custom module repositories that are private and the Pipelines CLI itself.
 
-The `ci-read-only-user` should have a single classic token [Personal Access Tokens (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with read permissions. Classic PATs have coarse granularity, we recommend putting this user in a GitHub team that only has READ access to `infrastructure-live-root` and any relevant module repositories in your own GitHub Organization. By adding this user to the Gruntwork Developer portal, they will automatically gain access to the Gruntwork Library.
+The `ci-read-only-user` should have a single classic [Personal Access Token (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with read permissions. Classic PATs have coarse granularity, we recommend putting this user in a GitHub team that only has READ access to `infrastructure-live-root` and any relevant module repositories in your own GitHub Organization. By adding this user to the Gruntwork Developer portal, they will automatically gain access to the Gruntwork Library.
 
 #### Invite the `ci-read-only-user` to your repository
 
@@ -286,6 +286,6 @@ For additional information on creating and using Github Actions Repository secre
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "05f548e290d92db1948e56afc6a2e2de"
+  "hash": "a2c016871916f71251f2c41df3895b7c"
 }
 ##DOCS-SOURCER-END -->

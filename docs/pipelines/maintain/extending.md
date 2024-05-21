@@ -27,7 +27,7 @@ Do not include any sensitive information in your forked repository, especially i
 
 ## Extending the GitHub Actions
 
-In addition to extending the top-level workflow, you can also extend the underlying custom GitHub Actions that the workflow uses, as they are made public as well. This allows you to customize the behavior of individual Actions to suit your organization's needs.
+In addition to extending the top-level workflow, you can also extend the underlying custom GitHub Actions that the workflow uses. This allows you to customize the behavior of individual Actions to suit your organization's needs.
 
 :::note
 In order to customize the behavior of an Action, you will need to fork the repository that contains the Action, which might be another GitHub Action, or a Workflow.
@@ -45,6 +45,6 @@ If you are comfortable with us sharing your story, we would like to document you
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "15cd39ec36706531e30624841921c0b3"
+  "hash": "fc384a42a6b3e7ceea3a6201727dde9d"
 }
 ##DOCS-SOURCER-END -->
