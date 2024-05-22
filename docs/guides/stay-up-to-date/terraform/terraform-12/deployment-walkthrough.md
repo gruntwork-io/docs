@@ -34,7 +34,7 @@ replace your existing `terraform` binary to the newer version, because that woul
 Here are two ways for you to support having 0.11 and 0.12 simultaneously on your machine:
 
 - [Using homebrew to manage multiple terraform versions](#using-homebrew-to-manage-multiple-terraform-versions)
-- [Using tfenv to manage multiple terraform versions](#using-tfenv-to-manage-multiple-terraform-versions)
+- [Using mise to manage multiple terraform versions](#using-mise-to-manage-multiple-terraform-versions)
 - [Manually managing multiple terraform versions](#manually-managing-multiple-terraform-versions)
 
 #### <a id="using-homebrew-to-manage-multiple-terraform-versions"></a>Using homebrew to manage multiple terraform versions
@@ -44,41 +44,37 @@ instructions published in our blog post [Installing Multiple Versions of Terrafo
 Homebrew](https://blog.gruntwork.io/installing-multiple-versions-of-terraform-with-homebrew-899f6d124ff9) to setup
 Homebrew to manage multiple versions of terraform, which you can then use `brew switch` to switch between them.
 
-#### <a id="using-tfenv-to-manage-multiple-terraform-versions"></a>Using tfenv to manage multiple terraform versions
+#### <a id="using-mise-to-manage-multiple-terraform-versions"></a>Using mise to manage multiple terraform versions
 
-If you are on any Unix based system, you have the option of relying on [tfenv](https://github.com/tfutils/tfenv).
-`tfenv` is a tool inspired by `rbenv` to provide a CLI for managing multiple versions of terraform. Once you have it
-installed, `tfenv` will manage the binaries in your home directory and create symlinks that allow it to invoke the
+If you are on any Unix based system, you have the option of relying on [mise](https://github.com/jdx/mise).
+`mise` is a tool used to provide a CLI for managing multiple versions of terraform (and many other software packages). Once you have it
+installed, `mise` will manage the binaries in your home directory and create symlinks that allow it to invoke the
 currently selected Terraform version.
 
-For example, here is an example of using `tfenv` to install and manage both TF11 and TF12:
+For example, here is an example of using `mise` to install and manage both TF11 and TF12:
 
 First, you need to install the versions that you wish to use:
 
 ```bash
-$ tfenv install 0.11.14
-$ tfenv install 0.12.6
+$ mise install terraform@0.11.14
+$ mise install terraform@0.12.6
 ```
 
 Once the versions are installed, you can switch between the two using the `use` command:
 
 ```bash
-$ tfenv use 0.11.14
+$ mise use terraform@0.11.14
 $ terraform version
 # Terraform v0.11.14
 
-$ tfenv use 0.12.6
+$ mise use terraform@0.12.6
 $ terraform version
 # Terraform v0.12.6
 ```
 
-Note that it can get confusing which version of terraform is currently in use, especially if you frequently switch
-between the two. `tfenv` tracks the current version in a file available in `$TFENV_ROOT/version`. You can take advantage
-of this fact to setup your shell prompt to display the currently selected Terraform version.
-
 #### <a name="manually-managing-multiple-terraform-versions"></a>Manually managing multiple terraform versions
 
-If you are on a non-Unix based machine (such that you can't use `tfenv`), or if you have restrictions on software that
+If you are on a non-Unix based machine (such that you can't use `mise`), or if you have restrictions on software that
 can be installed on your machine, then your only option is to manage the Terraform versions manually. In this method,
 you download each version of Terraform under a different alias (e.g `terraform0.12` for TF12 and `terraform0.11` for
 TF11), and then have it available in a common folder that you can track and find. Then, whenever you need to use a
@@ -184,14 +180,15 @@ Here is the rough process:
 
 You will also need to setup the Terragrunt 0.19 binary in a [similar fashion to setting up Terraform
 0.12](#install-and-setup-terraform-0-12). You can use the same instructions available for managing Terraform 0.12 as for
-managing Terragrunt 0.19, except for `tfenv` which only supports Terraform
+managing Terragrunt 0.19.
 
 - [Using homebrew to manage multiple terragrunt versions](#using-homebrew-to-manage-multiple-terraform-versions)
+- [Using mise to manage multiple terragrunt versions](#using-mise-to-manage-multiple-terragrunt-versions)
 - [Manually managing multiple terragrunt versions](#manually-managing-multiple-terragrunt-versions)
 
 #### <a name="using-homebrew-to-manage-multiple-terraform-versions"></a>Using homebrew to manage multiple terragrunt versions
 
-Like `terraform`, you can use Homebrew to manage multiple `terraform` versions, using the same method described above in
+Like `terraform`, you can use Homebrew to manage multiple `terragrunt` versions, using the same method described above in
 [Using homebrew to manage multiple terraform versions](#using-homebrew-to-manage-multiple-terraform-versions). To use
 the method for terragrunt, replace the references for `terraform` with `terragrunt`. For example, in the first step when
 searching for the homebrew commit that introduces the Terragrunt version for `0.18.7`, you would run:
@@ -201,6 +198,18 @@ $ git log master -- Formula/terragrunt.rb
 ```
 
 instead of the equivalent one for Terraform.
+
+#### <a id="using-mise-to-manage-multiple-terragrunt-versions"></a>Using mise to manage multiple terragrunt versions
+
+As with Homebrew, you can also use `mise` to manage multiple `terragrunt` versions, using the same method described above in
+[Using mise to manage multiple terraform versions](#using-mise-to-manage-multiple-terraform-versions). To use 
+the method for Terragrunt, replace the references for `terraform` with `terragrunt`. 
+
+For example, to install and use `terragrunt` version `0.18.7`, you would run:
+```
+mise install terragrunt@0.18.7
+mise use terragrunt@0.18.7
+```
 
 #### <a name="manually-managing-multiple-terragrunt-versions"></a>Manually managing multiple terragrunt versions
 
@@ -432,6 +441,6 @@ At the end of this, you should be able to run `terragrunt plan` cleanly.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "1133a6f06da0e83fa0be975301931929"
+  "hash": "0b6134c7f61964b2acd5e15e2acdc2f2"
 }
 ##DOCS-SOURCER-END -->
