@@ -382,6 +382,10 @@ module "aurora" {
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   low_memory_available_treat_missing_data = "missing"
 
+  # Set to true to allow RDS to manage the master user password in Secrets
+  # Manager. Cannot be set if password is provided.
+  manage_master_user_password = null
+
   # The value to use for the master password of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
   # db_config_secrets_manager_id. A value here overrides the value in
@@ -816,6 +820,10 @@ inputs = {
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   low_memory_available_treat_missing_data = "missing"
+
+  # Set to true to allow RDS to manage the master user password in Secrets
+  # Manager. Cannot be set if password is provided.
+  manage_master_user_password = null
 
   # The value to use for the master password of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
@@ -1890,6 +1898,15 @@ Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
 <HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
+<HclListItem name="manage_master_user_password" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to allow RDS to manage the master user password in Secrets Manager. Cannot be set if password is provided.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="master_password" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2171,6 +2188,14 @@ The ID of the RDS Aurora cluster (e.g TODO).
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="cluster_master_password_secret_arn">
+<HclListItemDescription>
+
+The ARN of master user secret. Only available when `manage_master_user_password` is set to true
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="cluster_resource_id">
 <HclListItemDescription>
 
@@ -2303,6 +2328,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.11/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "4ce0b88aff1efa8bc4fe37de2c4cae2e"
+  "hash": "e7cde4ecf446a13e4bc28492a5caf16e"
 }
 ##DOCS-SOURCER-END -->
