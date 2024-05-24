@@ -54,7 +54,7 @@ module "lambda_function_url" {
   # Alias name of the lambda function
   alias = <string>
 
-  # Autherisation type of genrating function url
+  # Authorization type for the generated function URL
   authorization_type = <string>
 
   # CORS configuration for the Lambda function URL
@@ -67,7 +67,7 @@ module "lambda_function_url" {
     max_age           = number
   )>
 
-  # The name of the Lambda function. Used to generate function url
+  # The name of the Lambda function receiving a function URL
   lambda_function_name = <string>
 
 }
@@ -97,7 +97,7 @@ inputs = {
   # Alias name of the lambda function
   alias = <string>
 
-  # Autherisation type of genrating function url
+  # Authorization type for the generated function URL
   authorization_type = <string>
 
   # CORS configuration for the Lambda function URL
@@ -110,7 +110,7 @@ inputs = {
     max_age           = number
   )>
 
-  # The name of the Lambda function. Used to generate function url
+  # The name of the Lambda function receiving a function URL
   lambda_function_name = <string>
 
 }
@@ -142,7 +142,7 @@ Alias name of the lambda function
 <HclListItem name="authorization_type" requirement="required" type="string">
 <HclListItemDescription>
 
-Autherisation type of genrating function url
+Authorization type for the generated function URL
 
 </HclListItemDescription>
 </HclListItem>
@@ -172,7 +172,7 @@ object({
 <HclListItem name="lambda_function_name" requirement="required" type="string">
 <HclListItemDescription>
 
-The name of the Lambda function. Used to generate function url
+The name of the Lambda function receiving a function URL
 
 </HclListItemDescription>
 </HclListItem>
@@ -216,6 +216,6 @@ A generated ID for the endpoint.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda-function-url/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0f1153bbcb8085fadbcf4ff4554d0aa5"
+  "hash": "7dafae7b8587c75cce94d2ec109cb754"
 }
 ##DOCS-SOURCER-END -->
