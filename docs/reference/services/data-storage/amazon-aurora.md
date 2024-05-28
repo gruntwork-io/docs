@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.112.11" lastModifiedVersion="0.111.5"/>
+<VersionBadge version="0.112.12" lastModifiedVersion="0.112.12"/>
 
 # Amazon Aurora
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.11/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.12/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.11/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.12/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.11/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.12/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.112.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.112.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -382,6 +382,10 @@ module "aurora" {
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   low_memory_available_treat_missing_data = "missing"
 
+  # Set to true to allow RDS to manage the master user password in Secrets
+  # Manager. Cannot be set if password is provided.
+  manage_master_user_password = null
+
   # The value to use for the master password of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
   # db_config_secrets_manager_id. A value here overrides the value in
@@ -534,7 +538,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.112.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.112.12"
 }
 
 inputs = {
@@ -816,6 +820,10 @@ inputs = {
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   low_memory_available_treat_missing_data = "missing"
+
+  # Set to true to allow RDS to manage the master user password in Secrets
+  # Manager. Cannot be set if password is provided.
+  manage_master_user_password = null
 
   # The value to use for the master password of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
@@ -1890,6 +1898,15 @@ Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
 <HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
+<HclListItem name="manage_master_user_password" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to allow RDS to manage the master user password in Secrets Manager. Cannot be set if password is provided.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="master_password" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2171,6 +2188,14 @@ The ID of the RDS Aurora cluster (e.g TODO).
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="cluster_master_password_secret_arn">
+<HclListItemDescription>
+
+The ARN of master user secret. Only available when `manage_master_user_password` is set to true
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="cluster_resource_id">
 <HclListItemDescription>
 
@@ -2298,11 +2323,11 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.11/modules/data-stores/aurora/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.11/modules/data-stores/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.11/modules/data-stores/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.12/modules/data-stores/aurora/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.12/modules/data-stores/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.12/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "4ce0b88aff1efa8bc4fe37de2c4cae2e"
+  "hash": "248615a774a0da7b5c734e3816654ebe"
 }
 ##DOCS-SOURCER-END -->
