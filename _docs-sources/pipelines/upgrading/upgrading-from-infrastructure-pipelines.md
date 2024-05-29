@@ -24,11 +24,13 @@ Use the [README](https://github.com/gruntwork-io/infrastructure-live-root-templa
 Be extra careful to ensure that you have replaced all instances of `<REPLACE>` in the `bootstrap.yml` workflow file!
 :::
 
-## Step 2: Run the `bootstrap.yml` workflow
+## Step 2: Ensure Machine Users are configured
 
-:::caution
-Make sure that you have the appropriate tokens and secrets configured to allow your workflows to access the necessary secrets to interact with your infrastructure. For more information on how to do this, visit the instructions in [Machine Users](../security/machine-users.mdx).
-:::
+Make sure that you have the appropriate tokens and secrets configured to allow your workflows to access the necessary secrets to interact with your infrastructure.
+
+For information on how to do this, visit the instructions in [Machine Users](../security/machine-users.mdx).
+
+## Step 3: Run the `bootstrap.yml` workflow
 
 Find the workflow labeled `Infrastructure Live Root Bootstrap` in the `Actions` tab of your repository.
 
@@ -201,7 +203,7 @@ The `README.md` file has been updated to provide additional information that is 
 
 Please review the changes to this file to ensure that it adequately explains how the repository is structured, and how it is intended to be used.
 
-## Step 3: Merge the pull request
+## Step 4: Merge the pull request
 
 Once you have made the necessary changes to the pull request, and you are confident that the changes are compatible with your existing codebase, you can merge the pull request.
 
@@ -211,7 +213,7 @@ Ensure that the commit message in the pull request includes the text `[skip ci]`
 If at any time you would like to revert these changes, you can do so by loading the merged pull request in your browser and clicking the `Revert` button. This will generate a corresponding revert pull request. Just make sure you include that same `[skip ci]` text in the commit message when merging it to avoid any unintended infrastructure changes.
 :::
 
-## Step 4: Cleanup
+## Step 5: Cleanup
 
 You should now have a working modern Pipelines setup in your `infrastructure-live` repository. Before considering the migration process complete, you should engage in some cleanup to make sure that you are not leaving any unnecessary resources behind.
 
