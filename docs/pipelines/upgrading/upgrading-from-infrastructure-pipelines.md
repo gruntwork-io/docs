@@ -151,6 +151,8 @@ cd ../root-pipelines-apply
 terragrunt apply
 ```
 
+You will need to repeat this process for every existing account in your repository, as all accounts need to have these roles present in order for Pipelines to operate in them.
+
 Going forward, the account baseline process will ensure that the necessary roles are present in all accounts before Pipelines attempts to use them.
 
 ### The `pipelines.yml` workflow
@@ -282,6 +284,6 @@ If you have any questions, or if you have encountered any issues during this mig
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "74338c16b441b9756823d2d88bd51ba2"
+  "hash": "0f6ef642a699bd07bb1c7f7abb7ca92f"
 }
 ##DOCS-SOURCER-END -->
