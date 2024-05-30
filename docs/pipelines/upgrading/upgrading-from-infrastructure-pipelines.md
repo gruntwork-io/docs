@@ -116,7 +116,7 @@ A common pattern seen here is to either use an external ticketing system like JI
 
 ### The `state_bucket_pattern` value in `account.hcl`
 
-Previously, the `account.yml` file had a `state_bucket_name` value that was used to specify the name of the S3 bucket that would be used to store the state of resources in that account. This value has been replaced with a `state_bucket_pattern` value so that roles interacting with S3 state can access a different state bucket per region if necessary, as a mechanism for fault tolerance and data isolation in a particular region.
+Previously, the `account.hcl` file had a `state_bucket_name` value that was used to specify the name of the S3 bucket that would be used to store the state of resources in that account. This value has been replaced with a `state_bucket_pattern` value so that roles interacting with S3 state can access a different state bucket per region if necessary, as a mechanism for fault tolerance and data isolation in a particular region.
 
 ### Adding missing `root-pipelines-plan` and `root-pipelines-apply` roles
 
@@ -284,6 +284,6 @@ If you have any questions, or if you have encountered any issues during this mig
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0f6ef642a699bd07bb1c7f7abb7ca92f"
+  "hash": "2550aaaf752da69cf9bb58140cb2d2e3"
 }
 ##DOCS-SOURCER-END -->
