@@ -38,6 +38,16 @@ const sidebar = [
         ],
       },
       {
+        label: "Principles and Practices",
+        type: "category",
+        collapsible: false,
+        items: [
+          "library/principles/overview",
+          "library/principles/control-provider-usage",
+          "library/principles/be-judicious-with-new-features",
+        ]
+      },
+      {
         label: "Staying up to date",
         type: "category",
         collapsible: false,
