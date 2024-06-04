@@ -183,6 +183,10 @@ By moving these configurations into a central configuration file with improved d
 
 Note that the Pipelines CLI, Terragrunt and OpenTofu/Terraform versions are no longer specified in this file. Instead, they are specified in the `.mise.toml` file, and the [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository. This adjustment was made to maximize parity between the versions of tools that you use locally, that your colleagues use on their workstations and the versions of tools that Pipelines uses.
 
+### OpenTofu by default
+
+Gruntwork Pipelines now uses OpenTofu by default.  If you wish to use the Terraform binary instead, there is a `tf-binary` configuration value in `.gruntwork/config.yml` that you can update to specify what pipelines will use.
+
 ### The `tags.yml` file
 
 Depending on when you configured your `infrastructure-live` repository, you may not have had a `tags.yml` file at the root of your repository and the root of each folder representing each account in your repository.
@@ -284,6 +288,6 @@ If you have any questions, or if you have encountered any issues during this mig
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "2550aaaf752da69cf9bb58140cb2d2e3"
+  "hash": "797a9db66be3dff877241d6a1dc9d94a"
 }
 ##DOCS-SOURCER-END -->
