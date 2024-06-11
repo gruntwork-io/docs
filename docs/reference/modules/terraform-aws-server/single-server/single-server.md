@@ -162,7 +162,7 @@ module "single_server" {
   # A list of IP address ranges in CIDR format from which SSH access will be
   # permitted. Attempts to access the server from all other IP addresses will be
   # blocked.
-  allow_ssh_from_cidr_list = ["0.0.0.0/0"]
+  allow_ssh_from_cidr_list = []
 
   # A list of IPv6 address ranges in CIDR format from which SSH access will be
   # permitted. Attempts to access the server from all other IP addresses will be
@@ -290,14 +290,14 @@ module "single_server" {
   # Whether or not the metadata service requires session tokens, also referred
   # to as Instance Metadata Service Version 2 (IMDSv2). Valid values include
   # optional or required. Defaults to optional.
-  metadata_http_tokens = "optional"
+  metadata_http_tokens = "required"
 
   # Enables or disables access to instance tags from the instance metadata
   # service. Valid values include enabled or disabled. Defaults to disabled.
   metadata_tags = "disabled"
 
   # If true, the launched EC2 instance will have detailed monitoring enabled.
-  monitoring = false
+  monitoring = true
 
   # Private IP address to associate with the instance in a VPC
   private_ip = null
@@ -450,7 +450,7 @@ inputs = {
   # A list of IP address ranges in CIDR format from which SSH access will be
   # permitted. Attempts to access the server from all other IP addresses will be
   # blocked.
-  allow_ssh_from_cidr_list = ["0.0.0.0/0"]
+  allow_ssh_from_cidr_list = []
 
   # A list of IPv6 address ranges in CIDR format from which SSH access will be
   # permitted. Attempts to access the server from all other IP addresses will be
@@ -578,14 +578,14 @@ inputs = {
   # Whether or not the metadata service requires session tokens, also referred
   # to as Instance Metadata Service Version 2 (IMDSv2). Valid values include
   # optional or required. Defaults to optional.
-  metadata_http_tokens = "optional"
+  metadata_http_tokens = "required"
 
   # Enables or disables access to instance tags from the instance metadata
   # service. Valid values include enabled or disabled. Defaults to disabled.
   metadata_tags = "disabled"
 
   # If true, the launched EC2 instance will have detailed monitoring enabled.
-  monitoring = false
+  monitoring = true
 
   # Private IP address to associate with the instance in a VPC
   private_ip = null
@@ -782,9 +782,7 @@ The IDs of security groups from which rdp connections will be allowed.
 A list of IP address ranges in CIDR format from which SSH access will be permitted. Attempts to access the server from all other IP addresses will be blocked.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[
-  &quot;0.0.0.0/0&quot;
-]"/>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="allow_ssh_from_ipv6_cidr_list" requirement="optional" type="list(string)">
@@ -1069,7 +1067,7 @@ Desired HTTP PUT response hop limit for instance metadata requests. The larger t
 Whether or not the metadata service requires session tokens, also referred to as Instance Metadata Service Version 2 (IMDSv2). Valid values include optional or required. Defaults to optional.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;optional&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;required&quot;"/>
 </HclListItem>
 
 <HclListItem name="metadata_tags" requirement="optional" type="string">
@@ -1087,7 +1085,7 @@ Enables or disables access to instance tags from the instance metadata service. 
 If true, the launched EC2 instance will have detailed monitoring enabled.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="private_ip" requirement="optional" type="string">
@@ -1309,6 +1307,6 @@ When used in combination with user_data or user_data_base64, a user_data change 
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.16/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b95869b5d6b514481ec8b08826441f71"
+  "hash": "dd9344fc0e55f4b4dbd5dbf9fc937a38"
 }
 ##DOCS-SOURCER-END -->
