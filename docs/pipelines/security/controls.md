@@ -150,7 +150,7 @@ These roles have permissions to manage IAM roles and policies within the account
 
 The read-only plan role for delegated repositories.
 
-The `infrastructure-live-access-control`
+The `infrastructure-live-access-control` repository is vended ready to provision these roles with the configuration baked in.
 
 Enterprise customers will see pull requests opened automatically in the `infrastructure-live-access-control` repository to vend these roles for every new account vended as a delegated account. Given that delegated accounts have their own repositories that are separate from the main `infrastructure-live-root` and `infrastructure-live-access-control` repositories, these roles are used to ensure that the delegated repositories have adqueate access to the infrastructure they need to manage.
 
@@ -165,6 +165,8 @@ It is up to the user provisioning these roles to ensure that this role has only 
 #### `delegated-pipelines-apply`
 
 The read/write apply role for delegated repositories.
+
+The `infrastructure-live-access-control` repository is vended ready to provision these roles with the configuration baked in.
 
 Enterprise customers will see pull requests opened automatically in the `infrastructure-live-access-control` repository to vend these roles for every new account vended as a delegated account. Given that delegated accounts have their own repositories that are separate from the main `infrastructure-live-root` and `infrastructure-live-access-control` repositories, these roles are used to ensure that the delegated repositories have adqueate access to the infrastructure they need to manage.
 
@@ -181,6 +183,6 @@ It is up to the user provisioning these roles to ensure that this role has only 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d64c5ef5f90365074903e4fcc92442c9"
+  "hash": "dcb29bbdabc00cf74cbcd68de7a535e3"
 }
 ##DOCS-SOURCER-END -->
