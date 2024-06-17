@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="0.29.23" lastModifiedVersion="0.29.21"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="0.29.25" lastModifiedVersion="0.29.25"/>
 
 # Application Load Balancer (ALB) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.23/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.25/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.21" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.25" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an [Application Load Balancer](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)
 that you can use as a load balancer for any [ALB Target Group](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html).
@@ -191,7 +191,7 @@ There are two ways for you to override this behavior:
 
 module "alb" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.23"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.25"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -332,6 +332,11 @@ module "alb" {
   # balancers. Defaults to true.
   enable_xff_client_port = true
 
+  # Define the default action for HTTP listeners. Use this to override the
+  # default_action variable for HTTP listeners. This is particularly useful if
+  # you for example want to redirect all HTTP traffic to HTTPS.
+  http_default_action = null
+
   # A list of ports for which an HTTP Listener should be created on the ALB.
   # Tip: When you define Listener Rules for these Listeners, be sure that, for
   # each Listener, at least one Listener Rule uses the '*' path to ensure that
@@ -408,7 +413,7 @@ module "alb" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.23"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.25"
 }
 
 inputs = {
@@ -551,6 +556,11 @@ inputs = {
   # that the client used to connect to the load balancer in application load
   # balancers. Defaults to true.
   enable_xff_client_port = true
+
+  # Define the default action for HTTP listeners. Use this to override the
+  # default_action variable for HTTP listeners. This is particularly useful if
+  # you for example want to redirect all HTTP traffic to HTTPS.
+  http_default_action = null
 
   # A list of ports for which an HTTP Listener should be created on the ALB.
   # Tip: When you define Listener Rules for these Listeners, be sure that, for
@@ -899,6 +909,41 @@ Indicates whether the X-Forwarded-For header should preserve the source port tha
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="http_default_action" requirement="optional" type="map(any)">
+<HclListItemDescription>
+
+Define the default action for HTTP listeners. Use this to override the default_action variable for HTTP listeners. This is particularly useful if you for example want to redirect all HTTP traffic to HTTPS.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Example (redirect all HTTP traffic to HTTPS):
+   default = {
+    redirect = {
+      protocol    = "HTTPS"
+      port        = "443"
+      status_code = "HTTP_301"
+    }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 <HclListItem name="http_listener_ports" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1124,11 +1169,11 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.23/modules/alb/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.23/modules/alb/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.23/modules/alb/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.25/modules/alb/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.25/modules/alb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.25/modules/alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "deed4c11a158f2ee268151bcd7cc3386"
+  "hash": "97a54c33cb5b36dd7c3f8f0ecef9c477"
 }
 ##DOCS-SOURCER-END -->
