@@ -1,5 +1,5 @@
 ---
-title: "What is RDS Proxy?"
+title: "RDS Proxy Module"
 hide_title: true
 ---
 
@@ -11,7 +11,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <VersionBadge repoTitle="Data Storage Modules" version="0.37.2" lastModifiedVersion="0.37.2"/>
 
-# What is RDS Proxy?
+# RDS Proxy Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.2/modules/rds-proxy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -29,7 +29,7 @@ establishes and manages the database connections on behalf of the application, p
 multiplexing requests to reduce overhead and improve performance. It also provides features like connection
 pooling, read/write splitting, and automatic failover to improve database availability and resilience.
 
-## How to use RDS Proxy Module
+## How to use the RDS Proxy Module
 
 In order to setup a RDS proxy, you need to setup database credentials in AWS Secrets Manager and pass it to this module.
 Refer to the [examples/rds-proxy](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.2/examples/rds-proxy) or <https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy-setup.html#rds-proxy-secrets-arns> for more information.
@@ -424,6 +424,6 @@ The number of seconds that a connection to the proxy can be inactive before the 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.2/modules/rds-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d0f484b660cc3e7c4d0638349c213cca"
+  "hash": "c88d238becba4d8080e0217c0fada97f"
 }
 ##DOCS-SOURCER-END -->
