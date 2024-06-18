@@ -9,21 +9,21 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.37.0" lastModifiedVersion="0.36.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.37.1" lastModifiedVersion="0.36.0"/>
 
 # Testing the connection to RDS Proxy
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.0/modules/rds-proxy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.1/modules/rds-proxy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.36.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-You connect to an RDS DB instance through a proxy in generally the same way as you connect directly to the database. The main difference is that you specify the proxy endpoint instead of the DB endpoint. When using this module, the proxy endpoint will be avaialable from the [`rds_proxy_endpoint`](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.0/modules/rds-proxy/outputs.tf#L5) output variable. Note that RDS Proxy [can't be publicly accessible](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy.limitations), so you might need to use provision EC2 instance inside the same VPC to test the connection.
+You connect to an RDS DB instance through a proxy in generally the same way as you connect directly to the database. The main difference is that you specify the proxy endpoint instead of the DB endpoint. When using this module, the proxy endpoint will be avaialable from the [`rds_proxy_endpoint`](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.1/modules/rds-proxy/outputs.tf#L5) output variable. Note that RDS Proxy [can't be publicly accessible](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy.limitations), so you might need to use provision EC2 instance inside the same VPC to test the connection.
 
 ## Configuring access to RDS Proxy
 
 If you don't provide the `allow_connections_from_cidr_blocks` variable, you will need to provision your own access. To
 do that create an ingress rule on the security group that this module creates. The security group ID will be available
-from the [`security_group_id`](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.0/modules/rds-proxy/outputs.tf#L9) output variable.
+from the [`security_group_id`](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.1/modules/rds-proxy/outputs.tf#L9) output variable.
 
 ## Sample Usage
 
@@ -38,7 +38,7 @@ from the [`security_group_id`](https://github.com/gruntwork-io/terraform-aws-dat
 
 module "rds_proxy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-proxy?ref=v0.37.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-proxy?ref=v0.37.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -87,6 +87,10 @@ module "rds_proxy" {
   # plus the private subnet in the mgmt VPC.
   allow_connections_from_cidr_blocks = []
 
+  # Configuration block(s) with authorization mechanisms to connect to the
+  # associated instances or clusters
+  auth = {}
+
   # The DB cluster identifier. Note that one of `db_instance_identifier` or
   # `db_cluster_identifier` is required.
   db_cluster_identifier = null
@@ -126,7 +130,7 @@ module "rds_proxy" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-proxy?ref=v0.37.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-proxy?ref=v0.37.1"
 }
 
 inputs = {
@@ -177,6 +181,10 @@ inputs = {
   # Should typically be the CIDR blocks of the private app subnet in this VPC
   # plus the private subnet in the mgmt VPC.
   allow_connections_from_cidr_blocks = []
+
+  # Configuration block(s) with authorization mechanisms to connect to the
+  # associated instances or clusters
+  auth = {}
 
   # The DB cluster identifier. Note that one of `db_instance_identifier` or
   # `db_cluster_identifier` is required.
@@ -292,6 +300,24 @@ A list of CIDR-formatted IP address ranges that can connect to this DB. Should t
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="auth" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+Configuration block(s) with authorization mechanisms to connect to the associated instances or clusters
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    secret_arn = string
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="db_cluster_identifier" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -365,11 +391,11 @@ The number of seconds that a connection to the proxy can be inactive before the 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.0/modules/rds-proxy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.0/modules/rds-proxy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.0/modules/rds-proxy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.1/modules/rds-proxy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.1/modules/rds-proxy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.1/modules/rds-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "55cbc6cd396fbc3d7e7c7eb763797b0a"
+  "hash": "5929f01801b7a7c8a3d381aa07dcc831"
 }
 ##DOCS-SOURCER-END -->
