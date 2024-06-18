@@ -230,6 +230,11 @@ module "lambda_edge" {
   # non-empty.
   set_source_code_hash = true
 
+  # (Optional) Set to true if you do not wish the log group to be deleted at
+  # destroy time, and instead just remove the log group from the Terraform
+  # state. Defaults to `false`.
+  skip_destroy = false
+
   # Set to true to skip zip archive creation and assume that var.source_path
   # points to a pregenerated zip archive.
   skip_zip = false
@@ -414,6 +419,11 @@ inputs = {
   # separately) and want to avoid a plan diff. Used only if var.source_path is
   # non-empty.
   set_source_code_hash = true
+
+  # (Optional) Set to true if you do not wish the log group to be deleted at
+  # destroy time, and instead just remove the log group from the Terraform
+  # state. Defaults to `false`.
+  skip_destroy = false
 
   # Set to true to skip zip archive creation and assume that var.source_path
   # points to a pregenerated zip archive.
@@ -727,6 +737,15 @@ If set to false, this function will no longer set the source_code_hash parameter
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="skip_destroy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) Set to true if you do not wish the log group to be deleted at destroy time, and instead just remove the log group from the Terraform state. Defaults to `false`.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="skip_zip" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -825,6 +844,6 @@ Name of the (optionally) created CloudWatch log groups for the lambda function.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda-edge/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f3e1d597dc227cc1ad9287fa7d1f1141"
+  "hash": "adaf95f66032767ae926697d19148140"
 }
 ##DOCS-SOURCER-END -->

@@ -133,6 +133,11 @@ module "lambda_edge_log_group" {
   # group to use.
   should_create_cloudwatch_log_group = true
 
+  # (Optional) Set to true if you do not wish the log group to be deleted at
+  # destroy time, and instead just remove the log group from the Terraform
+  # state. Defaults to `false`.
+  skip_destroy = false
+
 }
 
 
@@ -202,6 +207,11 @@ inputs = {
   # KMS encryption. When false, AWS Lambda will automatically create a basic log
   # group to use.
   should_create_cloudwatch_log_group = true
+
+  # (Optional) Set to true if you do not wish the log group to be deleted at
+  # destroy time, and instead just remove the log group from the Terraform
+  # state. Defaults to `false`.
+  skip_destroy = false
 
 }
 
@@ -303,6 +313,15 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="skip_destroy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) Set to true if you do not wish the log group to be deleted at destroy time, and instead just remove the log group from the Terraform state. Defaults to `false`.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -321,6 +340,6 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda-edge-log-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dcffb18fc5a0161e2731adad13c3d0db"
+  "hash": "9d88a3747b48b3e73803f6abab53f787"
 }
 ##DOCS-SOURCER-END -->
