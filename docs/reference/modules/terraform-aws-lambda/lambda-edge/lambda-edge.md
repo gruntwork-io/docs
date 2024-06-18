@@ -250,6 +250,11 @@ module "lambda_edge" {
   # A map of tags to apply to the Lambda function.
   tags = {}
 
+  # Whether to sample and trace a subset of incoming requests with AWS X-Ray.
+  # Valid values are `PassThrough` and `Active`. More information available at:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function#tracing_config.
+  tracing_config_mode = null
+
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
   # are friendlier to automated policy checkers, which may scan a single
@@ -439,6 +444,11 @@ inputs = {
 
   # A map of tags to apply to the Lambda function.
   tags = {}
+
+  # Whether to sample and trace a subset of incoming requests with AWS X-Ray.
+  # Valid values are `PassThrough` and `Active`. More information available at:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function#tracing_config.
+  tracing_config_mode = null
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -773,6 +783,15 @@ A map of tags to apply to the Lambda function.
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="tracing_config_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+Whether to sample and trace a subset of incoming requests with AWS X-Ray. Valid values are `PassThrough` and `Active`. More information available at: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function#tracing_config.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -844,6 +863,6 @@ Name of the (optionally) created CloudWatch log groups for the lambda function.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda-edge/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "adaf95f66032767ae926697d19148140"
+  "hash": "dc9fecf4a7c662b0ef0b0c8196dc239e"
 }
 ##DOCS-SOURCER-END -->

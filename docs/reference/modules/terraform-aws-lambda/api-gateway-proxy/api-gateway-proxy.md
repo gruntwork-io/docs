@@ -242,6 +242,9 @@ module "api_gateway_proxy" {
   # Name of the stage to create with this API Gateway deployment.
   stage_name = "live"
 
+  # Whether active tracing with X-ray is enabled.
+  stage_xray_tracing_enabled = true
+
 }
 
 
@@ -402,6 +405,9 @@ inputs = {
 
   # Name of the stage to create with this API Gateway deployment.
   stage_name = "live"
+
+  # Whether active tracing with X-ray is enabled.
+  stage_xray_tracing_enabled = true
 
 }
 
@@ -715,6 +721,15 @@ Name of the stage to create with this API Gateway deployment.
 <HclListItemDefaultValue defaultValue="&quot;live&quot;"/>
 </HclListItem>
 
+<HclListItem name="stage_xray_tracing_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether active tracing with X-ray is enabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -762,6 +777,6 @@ The URL of the API Gateway that you can use to invoke it.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/api-gateway-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6092e97455f033e64255433a3e9ca454"
+  "hash": "47ca4d7c41edbbd0e6c20622ea8b63b0"
 }
 ##DOCS-SOURCER-END -->
