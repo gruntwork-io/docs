@@ -55,11 +55,6 @@ module "rds_proxy" {
     session_pinning_filters      = list(string)
   )>
 
-  # The DB secret should contain username and password for the DB as a key-value
-  # pairs. Otherwise, you can insert plaintext secret with the format should
-  # look like {"username":"your_username","password":"your_password"}.
-  db_secret_arn = <string>
-
   # The kinds of databases that the proxy can connect to. This value determines
   # which database network protocol the proxy recognizes when it interprets
   # network traffic to and from the database. The engine family applies to MySQL
@@ -149,11 +144,6 @@ inputs = {
     max_idle_connections_percent = number
     session_pinning_filters      = list(string)
   )>
-
-  # The DB secret should contain username and password for the DB as a key-value
-  # pairs. Otherwise, you can insert plaintext secret with the format should
-  # look like {"username":"your_username","password":"your_password"}.
-  db_secret_arn = <string>
 
   # The kinds of databases that the proxy can connect to. This value determines
   # which database network protocol the proxy recognizes when it interprets
@@ -247,14 +237,6 @@ object({
 ```
 
 </HclListItemTypeDetails>
-</HclListItem>
-
-<HclListItem name="db_secret_arn" requirement="required" type="string">
-<HclListItemDescription>
-
-The DB secret should contain username and password for the DB as a key-value pairs. Otherwise, you can insert plaintext secret with the format should look like {'username':'your_username','password':'your_password'}.
-
-</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="engine_family" requirement="required" type="string">
@@ -396,6 +378,6 @@ The number of seconds that a connection to the proxy can be inactive before the 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.1/modules/rds-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5929f01801b7a7c8a3d381aa07dcc831"
+  "hash": "6746989428edc51e5c218a839c19ab03"
 }
 ##DOCS-SOURCER-END -->
