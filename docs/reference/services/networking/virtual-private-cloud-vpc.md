@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.112.12" lastModifiedVersion="0.110.2"/>
+<VersionBadge version="0.112.14" lastModifiedVersion="0.112.14"/>
 
 # VPC
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.12/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.14/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fvpc" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -65,9 +65,9 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.12/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.12/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.12/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.14/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.14/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.14/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.12/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.14/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.12/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.14/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -105,7 +105,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "vpc" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.112.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.112.14"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -159,9 +159,22 @@ module "vpc" {
   # if the subnets are associated with a custom NACL later.
   associate_default_nacl_to_subnets = true
 
+  # List of excluded Availability Zone IDs.
+  availability_zone_exclude_ids = []
+
   # Specific Availability Zones in which subnets SHOULD NOT be created. Useful
   # for when features / support is missing from a given AZ.
   availability_zone_exclude_names = []
+
+  # List of specific Availability Zone IDs to use. If null (default), all
+  # availability zones in the configured AWS region will be used.
+  availability_zone_ids = null
+
+  # Allows to filter list of Availability Zones based on their current state.
+  # Can be either "available", "information", "impaired" or "unavailable". By
+  # default the list includes a complete set of Availability Zones to which the
+  # underlying AWS account has access, regardless of their state.
+  availability_zone_state = null
 
   # DEPRECATED. The AWS Region where this VPC will exist. This variable is no
   # longer used and only kept around for backwards compatibility. We now
@@ -271,6 +284,11 @@ module "vpc" {
   # Create VPC endpoints for S3 and DynamoDB.
   create_vpc_endpoints = true
 
+  # The list of EIPs (allocation ids) to use for the NAT gateways. Their number
+  # has to match the one given in 'num_nat_gateways'. Must be set if
+  # var.use_custom_nat_eips us true.
+  custom_nat_eips = []
+
   # A map of tags to apply to the VPC, Subnets, Route Tables, Internet Gateway,
   # default security group, and default NACLs. The key is the tag name and the
   # value is the tag value. Note that the tag 'Name' is automatically added by
@@ -314,6 +332,12 @@ module "vpc" {
   # 'DESTINATION_VPC_NAME-from-ORIGIN_VPC_NAME-in'.
   destination_vpc_resolver_name = null
 
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  dynamodb_endpoint_policy = null
+
   # The names of EKS clusters that will be deployed into the VPC, if
   # var.tag_for_use_with_eks is true.
   eks_cluster_names = []
@@ -321,8 +345,20 @@ module "vpc" {
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = true
 
+  # (Optional) A boolean flag to enable/disable DNS hostnames in the VPC.
+  # Defaults true.
+  enable_dns_hostnames = true
+
+  # (Optional) A boolean flag to enable/disable DNS support in the VPC. Defaults
+  # true.
+  enable_dns_support = true
+
   # (Optional) Enables IPv6 resources for the VPC. Defaults to false.
   enable_ipv6 = false
+
+  # (Optional) A boolean flag to enable/disable network address usage metrics in
+  # the VPC. Defaults false.
+  enable_network_address_usage_metrics = false
 
   # (Optional) A boolean flag to enable/disable a private NAT gateway. If this
   # is set to true, it will disable public NAT gateways. Private NAT gateways
@@ -479,6 +515,11 @@ module "vpc" {
   # fourth octet in the IP address.
   nat_private_ip_host_num = null
 
+  # (Optional) The number of secondary private IP addresses to assign to each
+  # NAT gateway. These IP addresses are used for source NAT (SNAT) for the
+  # instances in the private subnets. Defaults to 0.
+  nat_secondary_private_ip_address_count = 0
+
   # How many AWS Availability Zones (AZs) to use. One subnet of each type
   # (public, private app) will be created in each AZ. Note that this must be
   # less than or equal to the total number of AZs in a region. A value of null
@@ -486,6 +527,14 @@ module "vpc" {
   # 5 AZs, subnets will be created in just 3 AZs instead of all 5. Defaults to
   # all AZs in a region.
   num_availability_zones = null
+
+  # If set to true, create one route table shared amongst all the public
+  # subnets; if set to false, create a separate route table per public subnet.
+  # Historically, we created one route table for all the public subnets, as they
+  # all routed through the Internet Gateway anyway, but in certain use cases
+  # (e.g., for use with Network Firewall), you may want to have separate route
+  # tables for each public subnet.
+  one_route_table_public_subnets = true
 
   # The CIDR block of the origin VPC.
   origin_vpc_cidr_block = null
@@ -647,6 +696,29 @@ module "vpc" {
   # resources.
   public_subnet_name = "public"
 
+  # The timeout for the creation of the Route Tables. It defines how long to
+  # wait for a route table to be created before considering the operation
+  # failed. Ref:
+  # https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_table_creation_timeout = "5m"
+
+  # The timeout for the deletion of the Route Tables. It defines how long to
+  # wait for a route table to be deleted before considering the operation
+  # failed. Ref:
+  # https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_table_deletion_timeout = "5m"
+
+  # The timeout for the update of the Route Tables. It defines how long to wait
+  # for a route table to be updated before considering the operation failed.
+  # Ref: https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_table_update_timeout = "2m"
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  s3_endpoint_policy = null
+
   # A list of secondary CIDR blocks to associate with the VPC.
   secondary_cidr_blocks = []
 
@@ -673,6 +745,12 @@ module "vpc" {
   # no routes will be propagated.
   transit_propagating_vgws = []
 
+  # A map of tags to apply to the transit route table(s), on top of the
+  # custom_tags. The key is the tag name and the value is the tag value. Note
+  # that tags defined here will override tags defined as custom_tags in case of
+  # conflict.
+  transit_route_table_custom_tags = {}
+
   # Takes the CIDR prefix and adds these many bits to it for calculating subnet
   # ranges.  MAKE SURE if you change this you also change the CIDR spacing or
   # you may hit errors.  See cidrsubnet interpolation in terraform config for
@@ -693,6 +771,13 @@ module "vpc" {
   # The name of the transit subnet tier. This is used to tag the subnet and its
   # resources.
   transit_subnet_name = "transit"
+
+  # The amount of spacing between the transit subnets.
+  transit_subnet_spacing = null
+
+  # Set to true to use existing EIPs, passed in via var.custom_nat_eips, for the
+  # NAT gateway(s), instead of creating new ones.
+  use_custom_nat_eips = false
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -722,7 +807,7 @@ module "vpc" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.112.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.112.14"
 }
 
 inputs = {
@@ -779,9 +864,22 @@ inputs = {
   # if the subnets are associated with a custom NACL later.
   associate_default_nacl_to_subnets = true
 
+  # List of excluded Availability Zone IDs.
+  availability_zone_exclude_ids = []
+
   # Specific Availability Zones in which subnets SHOULD NOT be created. Useful
   # for when features / support is missing from a given AZ.
   availability_zone_exclude_names = []
+
+  # List of specific Availability Zone IDs to use. If null (default), all
+  # availability zones in the configured AWS region will be used.
+  availability_zone_ids = null
+
+  # Allows to filter list of Availability Zones based on their current state.
+  # Can be either "available", "information", "impaired" or "unavailable". By
+  # default the list includes a complete set of Availability Zones to which the
+  # underlying AWS account has access, regardless of their state.
+  availability_zone_state = null
 
   # DEPRECATED. The AWS Region where this VPC will exist. This variable is no
   # longer used and only kept around for backwards compatibility. We now
@@ -891,6 +989,11 @@ inputs = {
   # Create VPC endpoints for S3 and DynamoDB.
   create_vpc_endpoints = true
 
+  # The list of EIPs (allocation ids) to use for the NAT gateways. Their number
+  # has to match the one given in 'num_nat_gateways'. Must be set if
+  # var.use_custom_nat_eips us true.
+  custom_nat_eips = []
+
   # A map of tags to apply to the VPC, Subnets, Route Tables, Internet Gateway,
   # default security group, and default NACLs. The key is the tag name and the
   # value is the tag value. Note that the tag 'Name' is automatically added by
@@ -934,6 +1037,12 @@ inputs = {
   # 'DESTINATION_VPC_NAME-from-ORIGIN_VPC_NAME-in'.
   destination_vpc_resolver_name = null
 
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  dynamodb_endpoint_policy = null
+
   # The names of EKS clusters that will be deployed into the VPC, if
   # var.tag_for_use_with_eks is true.
   eks_cluster_names = []
@@ -941,8 +1050,20 @@ inputs = {
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = true
 
+  # (Optional) A boolean flag to enable/disable DNS hostnames in the VPC.
+  # Defaults true.
+  enable_dns_hostnames = true
+
+  # (Optional) A boolean flag to enable/disable DNS support in the VPC. Defaults
+  # true.
+  enable_dns_support = true
+
   # (Optional) Enables IPv6 resources for the VPC. Defaults to false.
   enable_ipv6 = false
+
+  # (Optional) A boolean flag to enable/disable network address usage metrics in
+  # the VPC. Defaults false.
+  enable_network_address_usage_metrics = false
 
   # (Optional) A boolean flag to enable/disable a private NAT gateway. If this
   # is set to true, it will disable public NAT gateways. Private NAT gateways
@@ -1099,6 +1220,11 @@ inputs = {
   # fourth octet in the IP address.
   nat_private_ip_host_num = null
 
+  # (Optional) The number of secondary private IP addresses to assign to each
+  # NAT gateway. These IP addresses are used for source NAT (SNAT) for the
+  # instances in the private subnets. Defaults to 0.
+  nat_secondary_private_ip_address_count = 0
+
   # How many AWS Availability Zones (AZs) to use. One subnet of each type
   # (public, private app) will be created in each AZ. Note that this must be
   # less than or equal to the total number of AZs in a region. A value of null
@@ -1106,6 +1232,14 @@ inputs = {
   # 5 AZs, subnets will be created in just 3 AZs instead of all 5. Defaults to
   # all AZs in a region.
   num_availability_zones = null
+
+  # If set to true, create one route table shared amongst all the public
+  # subnets; if set to false, create a separate route table per public subnet.
+  # Historically, we created one route table for all the public subnets, as they
+  # all routed through the Internet Gateway anyway, but in certain use cases
+  # (e.g., for use with Network Firewall), you may want to have separate route
+  # tables for each public subnet.
+  one_route_table_public_subnets = true
 
   # The CIDR block of the origin VPC.
   origin_vpc_cidr_block = null
@@ -1267,6 +1401,29 @@ inputs = {
   # resources.
   public_subnet_name = "public"
 
+  # The timeout for the creation of the Route Tables. It defines how long to
+  # wait for a route table to be created before considering the operation
+  # failed. Ref:
+  # https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_table_creation_timeout = "5m"
+
+  # The timeout for the deletion of the Route Tables. It defines how long to
+  # wait for a route table to be deleted before considering the operation
+  # failed. Ref:
+  # https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_table_deletion_timeout = "5m"
+
+  # The timeout for the update of the Route Tables. It defines how long to wait
+  # for a route table to be updated before considering the operation failed.
+  # Ref: https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_table_update_timeout = "2m"
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  s3_endpoint_policy = null
+
   # A list of secondary CIDR blocks to associate with the VPC.
   secondary_cidr_blocks = []
 
@@ -1293,6 +1450,12 @@ inputs = {
   # no routes will be propagated.
   transit_propagating_vgws = []
 
+  # A map of tags to apply to the transit route table(s), on top of the
+  # custom_tags. The key is the tag name and the value is the tag value. Note
+  # that tags defined here will override tags defined as custom_tags in case of
+  # conflict.
+  transit_route_table_custom_tags = {}
+
   # Takes the CIDR prefix and adds these many bits to it for calculating subnet
   # ranges.  MAKE SURE if you change this you also change the CIDR spacing or
   # you may hit errors.  See cidrsubnet interpolation in terraform config for
@@ -1313,6 +1476,13 @@ inputs = {
   # The name of the transit subnet tier. This is used to tag the subnet and its
   # resources.
   transit_subnet_name = "transit"
+
+  # The amount of spacing between the transit subnets.
+  transit_subnet_spacing = null
+
+  # Set to true to use existing EIPs, passed in via var.custom_nat_eips, for the
+  # NAT gateway(s), instead of creating new ones.
+  use_custom_nat_eips = false
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -1425,6 +1595,15 @@ If true, will associate the default NACL to the public, private, and persistence
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="availability_zone_exclude_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of excluded Availability Zone IDs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="availability_zone_exclude_names" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1432,6 +1611,24 @@ Specific Availability Zones in which subnets SHOULD NOT be created. Useful for w
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="availability_zone_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of specific Availability Zone IDs to use. If null (default), all availability zones in the configured AWS region will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="availability_zone_state" requirement="optional" type="string">
+<HclListItemDescription>
+
+Allows to filter list of Availability Zones based on their current state. Can be either 'available', 'information', 'impaired' or 'unavailable'. By default the list includes a complete set of Availability Zones to which the underlying AWS account has access, regardless of their state.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="aws_region" requirement="optional" type="string">
@@ -1642,6 +1839,15 @@ Create VPC endpoints for S3 and DynamoDB.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="custom_nat_eips" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The list of EIPs (allocation ids) to use for the NAT gateways. Their number has to match the one given in 'num_nat_gateways'. Must be set if <a href="#use_custom_nat_eips"><code>use_custom_nat_eips</code></a> us true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -1785,6 +1991,15 @@ Name to set for the destination VPC resolver (inbound from origin VPC to destina
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="dynamodb_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="eks_cluster_names" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1803,10 +2018,37 @@ If set to false, the default security groups will NOT be created.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="enable_dns_hostnames" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) A boolean flag to enable/disable DNS hostnames in the VPC. Defaults true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_dns_support" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) A boolean flag to enable/disable DNS support in the VPC. Defaults true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="enable_ipv6" requirement="optional" type="bool">
 <HclListItemDescription>
 
 (Optional) Enables IPv6 resources for the VPC. Defaults to false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_network_address_usage_metrics" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) A boolean flag to enable/disable network address usage metrics in the VPC. Defaults false.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -2228,6 +2470,15 @@ The host number in the IP address of the NAT Gateway. You would only use this if
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="nat_secondary_private_ip_address_count" requirement="optional" type="number">
+<HclListItemDescription>
+
+(Optional) The number of secondary private IP addresses to assign to each NAT gateway. These IP addresses are used for source NAT (SNAT) for the instances in the private subnets. Defaults to 0.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
 <HclListItem name="num_availability_zones" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2235,6 +2486,15 @@ How many AWS Availability Zones (AZs) to use. One subnet of each type (public, p
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="one_route_table_public_subnets" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, create one route table shared amongst all the public subnets; if set to false, create a separate route table per public subnet. Historically, we created one route table for all the public subnets, as they all routed through the Internet Gateway anyway, but in certain use cases (e.g., for use with Network Firewall), you may want to have separate route tables for each public subnet.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="origin_vpc_cidr_block" requirement="optional" type="string">
@@ -2604,6 +2864,42 @@ The name of the public subnet tier. This is used to tag the subnet and its resou
 <HclListItemDefaultValue defaultValue="&quot;public&quot;"/>
 </HclListItem>
 
+<HclListItem name="route_table_creation_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+The timeout for the creation of the Route Tables. It defines how long to wait for a route table to be created before considering the operation failed. Ref: https://www.terraform.io/language/resources/syntax#operation-timeouts
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;5m&quot;"/>
+</HclListItem>
+
+<HclListItem name="route_table_deletion_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+The timeout for the deletion of the Route Tables. It defines how long to wait for a route table to be deleted before considering the operation failed. Ref: https://www.terraform.io/language/resources/syntax#operation-timeouts
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;5m&quot;"/>
+</HclListItem>
+
+<HclListItem name="route_table_update_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+The timeout for the update of the Route Tables. It defines how long to wait for a route table to be updated before considering the operation failed. Ref: https://www.terraform.io/language/resources/syntax#operation-timeouts
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;2m&quot;"/>
+</HclListItem>
+
+<HclListItem name="s3_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="secondary_cidr_blocks" requirement="optional" type="set(string)">
 <HclListItemDescription>
 
@@ -2658,6 +2954,15 @@ A list of Virtual Private Gateways that will propagate routes to transit subnets
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="transit_route_table_custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the transit route table(s), on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="transit_subnet_bits" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2692,6 +2997,24 @@ The name of the transit subnet tier. This is used to tag the subnet and its reso
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;transit&quot;"/>
+</HclListItem>
+
+<HclListItem name="transit_subnet_spacing" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of spacing between the transit subnets.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="use_custom_nat_eips" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to use existing EIPs, passed in via <a href="#custom_nat_eips"><code>custom_nat_eips</code></a>, for the NAT gateway(s), instead of creating new ones.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
@@ -2731,6 +3054,14 @@ The ID of the ENI used as a 'blackhole' destination for routing. Only available 
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="default_route_table_id">
+<HclListItemDescription>
+
+The ID of the default routing table.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="default_security_group_id">
 <HclListItemDescription>
 
@@ -2740,12 +3071,33 @@ The ID of the default security group of this VPC.
 </HclListItem>
 
 <HclListItem name="dynamodb_vpc_endpoint_id">
+<HclListItemDescription>
+
+ID of the DynamoDB VPC endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="internet_gateway_id">
+<HclListItemDescription>
+
+ID of the Internet Gateway.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="ipv6_cidr_block">
 <HclListItemDescription>
 
 The IPv6 CIDR block associated with the VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="nat_gateway_ids">
+<HclListItemDescription>
+
+ID of the NAT Gateways
 
 </HclListItemDescription>
 </HclListItem>
@@ -2770,6 +3122,14 @@ A list of public IPs from the NAT Gateway
 <HclListItemDescription>
 
 The number of availability zones of the VPC
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="private_app_subnet_arns">
+<HclListItemDescription>
+
+List of private app subnet ARNs.
 
 </HclListItemDescription>
 </HclListItem>
@@ -2814,10 +3174,26 @@ The ID of the private subnet's ACL
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="private_nat_gateway_ids">
+<HclListItemDescription>
+
+ID of the private NAT Gateways
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="private_persistence_route_table_ids">
 <HclListItemDescription>
 
 A list of IDs of the private persistence subnet routing table.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="private_persistence_subnet_arns">
+<HclListItemDescription>
+
+List of private persistence subnet ARNs.
 
 </HclListItemDescription>
 </HclListItem>
@@ -2858,6 +3234,14 @@ A map of all private-persistence subnets, with the subnet name as key, and all `
 <HclListItemDescription>
 
 The ID of the private persistence subnet's ACL
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="public_subnet_arns">
+<HclListItemDescription>
+
+List of public subnet ARNs.
 
 </HclListItemDescription>
 </HclListItem>
@@ -2911,6 +3295,27 @@ The ID of the public subnet's ACL
 </HclListItem>
 
 <HclListItem name="s3_vpc_endpoint_id">
+<HclListItemDescription>
+
+ID of the S3 VPC endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="secondary_cidr_block_ids">
+<HclListItemDescription>
+
+Map of the secondary CIDR block associations with the VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="transit_subnet_arns">
+<HclListItemDescription>
+
+List of transit subnet ARNs.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="transit_subnet_cidr_blocks">
@@ -2992,11 +3397,11 @@ Indicates whether or not the VPC has finished creating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.12/modules/networking/vpc/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.12/modules/networking/vpc/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.12/modules/networking/vpc/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.14/modules/networking/vpc/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.14/modules/networking/vpc/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.14/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "8d105bdb0a132501f9bf5c610c64c0f0"
+  "hash": "b16cd4604c5606375cfbb3b5efdbb4df"
 }
 ##DOCS-SOURCER-END -->
