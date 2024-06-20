@@ -34,7 +34,7 @@ An exception to the general rule of avoiding pinning maximum provider versions i
 
 When running `tofu init` in a directory with `.tf` files, a [`.terraform.lock.hcl`](https://opentofu.org/docs/language/files/dependency-lock) file will be automatically generated if it doesn't exist.
 
-Generally speaking, this file shouldn't be committed in module repositories, but should be committed to repositories where those modules are used to provision live infrastructure.
+This file shouldn't be committed in module repositories, but should be committed to repositories where those modules are referenced to provision live infrastructure.
 
 When using Terragrunt, note how [Terragrunt handles lock files](https://terragrunt.gruntwork.io/docs/features/lock-file-handling/).
 

@@ -2,7 +2,9 @@
 
 Sometimes new features in OpenTofu are released that make module authoring more convenient.
 
-Leveraging them can make it convenient author modules, but it can be really inconvenient for module consumers, as they can be inadvertently forced into adopting the newer version of OpenTofu that supports those new features.
+Leveraging them can make it convenient author modules, but it can be really inconvenient for module consumers, as they can be inadvertently forced into adopting the newer version of OpenTofu in order to use the new version of the module. Some organizations may not have the bandwidth to invest in upgrading to a newer version of OpenTofu just to use the latest version of a module.
+
+This is compounded by the way in which modules in the library can depend upon each other. If a module is updated to require a newer version of OpenTofu, all modules that depend on it will also need to be updated to require the newer version of OpenTofu.
 
 ## How to Decide to Use Newer Features
 
