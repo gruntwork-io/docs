@@ -24,11 +24,13 @@ Use the [README](https://github.com/gruntwork-io/infrastructure-live-root-templa
 Be extra careful to ensure that you have replaced all instances of `<REPLACE>` in the `bootstrap.yml` workflow file!
 :::
 
-## Step 2: Run the `bootstrap.yml` workflow
+## Step 2: Ensure Machine Users are configured
 
-:::caution
-Make sure that you have the appropriate tokens and secrets configured to allow your workflows to access the necessary secrets to interact with your infrastructure. For more information on how to do this, visit the instructions in [Machine Users](../security/machine-users.mdx).
-:::
+Make sure that you have the appropriate tokens and secrets configured to allow your workflows to access the necessary secrets to interact with your infrastructure.
+
+For information on how to do this, visit the instructions in [Machine Users](../security/machine-users.mdx).
+
+## Step 3: Run the `bootstrap.yml` workflow
 
 Find the workflow labeled `Infrastructure Live Root Bootstrap` in the `Actions` tab of your repository.
 
@@ -114,7 +116,7 @@ A common pattern seen here is to either use an external ticketing system like JI
 
 ### The `state_bucket_pattern` value in `account.hcl`
 
-Previously, the `account.yml` file had a `state_bucket_name` value that was used to specify the name of the S3 bucket that would be used to store the state of resources in that account. This value has been replaced with a `state_bucket_pattern` value so that roles interacting with S3 state can access a different state bucket per region if necessary, as a mechanism for fault tolerance and data isolation in a particular region.
+Previously, the `account.hcl` file had a `state_bucket_name` value that was used to specify the name of the S3 bucket that would be used to store the state of resources in that account. This value has been replaced with a `state_bucket_pattern` value so that roles interacting with S3 state can access a different state bucket per region if necessary, as a mechanism for fault tolerance and data isolation in a particular region.
 
 ### Adding missing `root-pipelines-plan` and `root-pipelines-apply` roles
 
@@ -149,6 +151,8 @@ cd ../root-pipelines-apply
 terragrunt apply
 ```
 
+You will need to repeat this process for every existing account in your repository, as all accounts need to have these roles present in order for Pipelines to operate in them.
+
 Going forward, the account baseline process will ensure that the necessary roles are present in all accounts before Pipelines attempts to use them.
 
 ### The `pipelines.yml` workflow
@@ -179,6 +183,10 @@ By moving these configurations into a central configuration file with improved d
 
 Note that the Pipelines CLI, Terragrunt and OpenTofu/Terraform versions are no longer specified in this file. Instead, they are specified in the `.mise.toml` file, and the [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository. This adjustment was made to maximize parity between the versions of tools that you use locally, that your colleagues use on their workstations and the versions of tools that Pipelines uses.
 
+### OpenTofu by default
+
+Gruntwork Pipelines now uses OpenTofu by default.  If you wish to use the Terraform binary instead, there is a `tf-binary` configuration value in `.gruntwork/config.yml` that you can update to specify what pipelines will use.
+
 ### The `tags.yml` file
 
 Depending on when you configured your `infrastructure-live` repository, you may not have had a `tags.yml` file at the root of your repository and the root of each folder representing each account in your repository.
@@ -201,7 +209,7 @@ The `README.md` file has been updated to provide additional information that is 
 
 Please review the changes to this file to ensure that it adequately explains how the repository is structured, and how it is intended to be used.
 
-## Step 3: Merge the pull request
+## Step 4: Merge the pull request
 
 Once you have made the necessary changes to the pull request, and you are confident that the changes are compatible with your existing codebase, you can merge the pull request.
 
@@ -211,7 +219,7 @@ Ensure that the commit message in the pull request includes the text `[skip ci]`
 If at any time you would like to revert these changes, you can do so by loading the merged pull request in your browser and clicking the `Revert` button. This will generate a corresponding revert pull request. Just make sure you include that same `[skip ci]` text in the commit message when merging it to avoid any unintended infrastructure changes.
 :::
 
-## Step 4: Cleanup
+## Step 5: Cleanup
 
 You should now have a working modern Pipelines setup in your `infrastructure-live` repository. Before considering the migration process complete, you should engage in some cleanup to make sure that you are not leaving any unnecessary resources behind.
 
@@ -280,6 +288,6 @@ If you have any questions, or if you have encountered any issues during this mig
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e62c48248b00ada09be6cfb2bc7d0791"
+  "hash": "797a9db66be3dff877241d6a1dc9d94a"
 }
 ##DOCS-SOURCER-END -->

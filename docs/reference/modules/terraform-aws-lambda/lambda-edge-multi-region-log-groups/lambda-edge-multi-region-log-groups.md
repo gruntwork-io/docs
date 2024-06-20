@@ -126,6 +126,11 @@ module "lambda_edge_multi_region_log_groups" {
   # are tag keys and values are tag values.
   cloudwatch_log_group_tags = {}
 
+  # (Optional) Set to true if you do not wish the log group to be deleted at
+  # destroy time, and instead just remove the log group from the Terraform
+  # state. Defaults to `false`.
+  skip_destroy = false
+
 }
 
 
@@ -188,6 +193,11 @@ inputs = {
   # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys
   # are tag keys and values are tag values.
   cloudwatch_log_group_tags = {}
+
+  # (Optional) Set to true if you do not wish the log group to be deleted at
+  # destroy time, and instead just remove the log group from the Terraform
+  # state. Defaults to `false`.
+  skip_destroy = false
 
 }
 
@@ -280,6 +290,15 @@ Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are t
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="skip_destroy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) Set to true if you do not wish the log group to be deleted at destroy time, and instead just remove the log group from the Terraform state. Defaults to `false`.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -303,6 +322,6 @@ Map of log group names per region
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda-edge-multi-region-log-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "be5802f93b88889284e8b5522c4277e4"
+  "hash": "6af1bd028aab00e7e66efc5774d4eb83"
 }
 ##DOCS-SOURCER-END -->
