@@ -45,6 +45,7 @@ const sidebar = [
           "library/principles/overview",
           "library/principles/control-provider-usage",
           "library/principles/be-judicious-with-new-features",
+          "library/principles/quality-in-depth",
         ]
       },
       {
