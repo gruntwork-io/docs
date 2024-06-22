@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.19" lastModifiedVersion="0.21.16"/>
+<VersionBadge repoTitle="AWS Lambda" version="0.22.0" lastModifiedVersion="0.22.0"/>
 
 # Lambda@Edge Function Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda-edge" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.22.0/modules/lambda-edge" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.16" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.22.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy and manage an [AWS Lambda@Edge](https://aws.amazon.com/lambda/edge/) function.
 Lambda@Edge gives you a way to run code on-demand in AWS Edge locations without having to manage servers.
@@ -65,7 +65,7 @@ resource "aws_lambda_permission" "with_sns" {
 
 Lambda@Edge stores CloudWatch Logs in the AWS Regions closest to the location where the function receives traffic and is
 executed. That means a log group must be created in every region that have [Regional Edge Caches](https://aws.amazon.com/blogs/networking-and-content-delivery/aggregating-lambdaedge-logs/).
-Instructions on how to do this can be found at the   [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda-edge-multi-region-log-groups). To see which regions are receiving traffic, you can find graphs of metrics for the
+Instructions on how to do this can be found at the   [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.22.0/modules/lambda-edge-multi-region-log-groups). To see which regions are receiving traffic, you can find graphs of metrics for the
 function on the CloudFront console and choose your region there.
 
 ## How to trigger this Lambda function from Cloudfront
@@ -94,7 +94,7 @@ triggers:
 
 module "lambda_edge" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v0.21.19"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v0.22.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -187,16 +187,6 @@ module "lambda_edge" {
   # default is set to all regions that have a Regional Edge Cache.
   log_regions = ["us-east-1","us-east-2","us-west-1","us-west-2","ap-south-1","ap-northeast-2","ap-southeast-1","ap-southeast-2","ap-northeast-1","eu-central-1","eu-west-1","eu-west-2","sa-east-1"]
 
-  # Replaces the security groups on network interfaces with the default security
-  # group or the defined replacement security groups when destroying to speed up
-  # destruction.
-  replace_security_groups_on_destroy = false
-
-  # Replaces the security groups on the network interfaces with these security
-  # groups for faster destroy. replace_security_groups_on_destroy must be set to
-  # true for this to take effect.
-  replacement_security_group_ids = []
-
   # The amount of reserved concurrent executions for this lambda function or -1
   # if unreserved.
   reserved_concurrent_executions = null
@@ -281,7 +271,7 @@ module "lambda_edge" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v0.21.19"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v0.22.0"
 }
 
 inputs = {
@@ -376,16 +366,6 @@ inputs = {
   # respective providers still need to be passed to the lambda-edge module. The
   # default is set to all regions that have a Regional Edge Cache.
   log_regions = ["us-east-1","us-east-2","us-west-1","us-west-2","ap-south-1","ap-northeast-2","ap-southeast-1","ap-southeast-2","ap-northeast-1","eu-central-1","eu-west-1","eu-west-2","sa-east-1"]
-
-  # Replaces the security groups on network interfaces with the default security
-  # group or the defined replacement security groups when destroying to speed up
-  # destruction.
-  replace_security_groups_on_destroy = false
-
-  # Replaces the security groups on the network interfaces with these security
-  # groups for faster destroy. replace_security_groups_on_destroy must be set to
-  # true for this to take effect.
-  replacement_security_group_ids = []
 
   # The amount of reserved concurrent executions for this lambda function or -1
   # if unreserved.
@@ -665,24 +645,6 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="replace_security_groups_on_destroy" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Replaces the security groups on network interfaces with the default security group or the defined replacement security groups when destroying to speed up destruction.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="replacement_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Replaces the security groups on the network interfaces with these security groups for faster destroy. replace_security_groups_on_destroy must be set to true for this to take effect.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
 <HclListItem name="reserved_concurrent_executions" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -839,11 +801,11 @@ Name of the (optionally) created CloudWatch log groups for the lambda function.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda-edge/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda-edge/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda-edge/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.22.0/modules/lambda-edge/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.22.0/modules/lambda-edge/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.22.0/modules/lambda-edge/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "adaf95f66032767ae926697d19148140"
+  "hash": "f15271d0bdeca7378725d453d41239a3"
 }
 ##DOCS-SOURCER-END -->

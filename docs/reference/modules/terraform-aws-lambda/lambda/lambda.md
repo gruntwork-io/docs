@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.19" lastModifiedVersion="0.21.19"/>
+<VersionBadge repoTitle="AWS Lambda" version="0.22.0" lastModifiedVersion="0.22.0"/>
 
 # Lambda Function Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.22.0/modules/lambda" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.19" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.22.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy and manage an [AWS Lambda](https://aws.amazon.com/lambda/) function. Lambda gives
 you a way to run code on-demand in AWS without having to manage servers.
@@ -105,7 +105,7 @@ Lambda function are still in use. If necessary, the variable `enable_eni_cleanup
 of the function from the VPC during `terraform destroy` and unblock the Security Group for destruction. Note: this
 requires the [`aws` cli tool](https://aws.amazon.com/cli/) to be installed.
 
-Check out the [lambda-vpc example](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/examples/lambda-vpc) for working sample code. Make sure to note the Known Issues
+Check out the [lambda-vpc example](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.22.0/examples/lambda-vpc) for working sample code. Make sure to note the Known Issues
 section in that example's README.
 
 ## How do you share Lambda functions across multiple AWS accounts?
@@ -153,7 +153,7 @@ If you want to have a central S3 bucket that you use as a repository for your La
 
 module "lambda" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v0.21.19"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v0.22.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -330,16 +330,6 @@ module "lambda" {
   # config to have any effect.
   mount_to_file_system = false
 
-  # Replaces the security groups on network interfaces with the default security
-  # group or the defined replacement security groups when destroying to speed up
-  # destruction.
-  replace_security_groups_on_destroy = false
-
-  # Replaces the security groups on the network interfaces with these security
-  # groups for faster destroy. replace_security_groups_on_destroy must be set to
-  # true for this to take effect.
-  replacement_security_group_ids = []
-
   # The amount of reserved concurrent executions for this lambda function or -1
   # if unreserved.
   reserved_concurrent_executions = null
@@ -453,7 +443,7 @@ module "lambda" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v0.21.19"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v0.22.0"
 }
 
 inputs = {
@@ -632,16 +622,6 @@ inputs = {
   # must also be deployed inside a VPC (run_in_vpc must be set to true) for this
   # config to have any effect.
   mount_to_file_system = false
-
-  # Replaces the security groups on network interfaces with the default security
-  # group or the defined replacement security groups when destroying to speed up
-  # destruction.
-  replace_security_groups_on_destroy = false
-
-  # Replaces the security groups on the network interfaces with these security
-  # groups for faster destroy. replace_security_groups_on_destroy must be set to
-  # true for this to take effect.
-  replacement_security_group_ids = []
 
   # The amount of reserved concurrent executions for this lambda function or -1
   # if unreserved.
@@ -1085,24 +1065,6 @@ Set to true to mount your Lambda function on an EFS. Note that the lambda must a
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="replace_security_groups_on_destroy" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Replaces the security groups on network interfaces with the default security group or the defined replacement security groups when destroying to speed up destruction.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="replacement_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Replaces the security groups on the network interfaces with these security groups for faster destroy. replace_security_groups_on_destroy must be set to true for this to take effect.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
 <HclListItem name="reserved_concurrent_executions" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1325,11 +1287,11 @@ Name of the (optionally) created CloudWatch log group for the lambda function.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.22.0/modules/lambda/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.22.0/modules/lambda/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.22.0/modules/lambda/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "be526a5fd75d48fddc23d45631b935a2"
+  "hash": "0e182c6786f84409b38b4af6633730cd"
 }
 ##DOCS-SOURCER-END -->
