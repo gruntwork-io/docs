@@ -1,5 +1,5 @@
 ---
-title: "RDS Proxy Module"
+title: "Testing the connection to RDS Proxy"
 hide_title: true
 ---
 
@@ -11,47 +11,19 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <VersionBadge repoTitle="Data Storage Modules" version="0.37.3" lastModifiedVersion="0.37.3"/>
 
-# RDS Proxy Module
+# Testing the connection to RDS Proxy
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.3/modules/rds-proxy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.37.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-Amazon RDS Proxy is a fully managed database proxy service that makes it easy to manage database
-connections for Amazon Relational Database Service (RDS) and Amazon Aurora. It allows you to
-efficiently pool and share database connections among multiple application processes, reducing
-the connection overhead on your database instances and providing improved scalability, availability,
-and security for your database workloads.
-
-RDS Proxy works by creating a secure database proxy endpoint that applications can connect to instead of
-connecting directly to the database instance. When an application connects to the proxy endpoint, the proxy
-establishes and manages the database connections on behalf of the application, pooling connections and
-multiplexing requests to reduce overhead and improve performance. It also provides features like connection
-pooling, read/write splitting, and automatic failover to improve database availability and resilience.
-
-## How to use the RDS Proxy Module
-
-In order to setup a RDS proxy, you need to setup database credentials in AWS Secrets Manager and pass it to this module.
-Refer to the [examples/rds-proxy](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.3/examples/rds-proxy) or <https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy-setup.html#rds-proxy-secrets-arns> for more information.
-
-If you use a customer managed KMS key to encrypt the secret, you will need to provide the KMS key ARN to this module
-using the `db_secret_kms_key_arn` parameter.
-
-Setting up a RDS proxy requires the following steps, which is handled by this module:
-
-*   Setting up network prerequisites
-*   Setting up database credentials
-*   Setting up AWS Identity and Access Management (IAM) policies
+You connect to an RDS DB instance through a proxy in generally the same way as you connect directly to the database. The main difference is that you specify the proxy endpoint instead of the DB endpoint. When using this module, the proxy endpoint will be avaialable from the [`rds_proxy_endpoint`](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.3/modules/rds-proxy/outputs.tf#L5) output variable. Note that RDS Proxy [can't be publicly accessible](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy.limitations), so you might need to use provision EC2 instance inside the same VPC to test the connection.
 
 ## Configuring access to RDS Proxy
 
 If you don't provide the `allow_connections_from_cidr_blocks` variable, you will need to provision your own access. To
 do that create an ingress rule on the security group that this module creates. The security group ID will be available
 from the [`security_group_id`](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.3/modules/rds-proxy/outputs.tf#L9) output variable.
-
-## Testing the connection to RDS Proxy
-
-You connect to an RDS DB instance through a proxy in generally the same way as you connect directly to the database. The main difference is that you specify the proxy endpoint instead of the DB endpoint. When using this module, the proxy endpoint will be avaialable from the [`rds_proxy_endpoint`](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.3/modules/rds-proxy/outputs.tf#L5) output variable. Note that RDS Proxy [can't be publicly accessible](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy.limitations), so you might need to use provision EC2 instance inside the same VPC to test the connection.
 
 ## Sample Usage
 
@@ -83,11 +55,6 @@ module "rds_proxy" {
     session_pinning_filters      = list(string)
   )>
 
-  # The DB secret should contain username and password for the DB as a key-value
-  # pairs. Otherwise, you can insert plaintext secret with the format should
-  # look like {"username":"your_username","password":"your_password"}.
-  db_secret_arn = <string>
-
   # The kinds of databases that the proxy can connect to. This value determines
   # which database network protocol the proxy recognizes when it interprets
   # network traffic to and from the database. The engine family applies to MySQL
@@ -117,7 +84,7 @@ module "rds_proxy" {
 
   # Configuration block(s) with authorization mechanisms to connect to the
   # associated instances or clusters
-  auth = {}
+  auth = null
 
   # The DB cluster identifier. Note that one of `db_instance_identifier` or
   # `db_cluster_identifier` is required.
@@ -126,6 +93,18 @@ module "rds_proxy" {
   # The DB instance identifier. Note that one of `db_instance_identifier` or
   # `db_cluster_identifier` is required.
   db_instance_identifier = null
+
+  # This variable is deprecated, please use db_secret_arns instead. The DB
+  # secrets should contain username and password for the DB as key-value pairs.
+  # Otherwise, you can insert plaintext secret with the format should look like
+  # {"username":"your_username","password":"your_password"}.
+  db_secret_arn = null
+
+  # The DB secrets should contain username and password for the DB as a map of
+  # key-value pairs. Otherwise, you can insert plaintext secret with the format
+  # should look like {"key_name":
+  # {"username":"your_username","password":"your_password"}}.
+  db_secret_arns = null
 
   # The KMS key used to encrypt the DB secret.
   db_secret_kms_key_arn = null
@@ -178,11 +157,6 @@ inputs = {
     session_pinning_filters      = list(string)
   )>
 
-  # The DB secret should contain username and password for the DB as a key-value
-  # pairs. Otherwise, you can insert plaintext secret with the format should
-  # look like {"username":"your_username","password":"your_password"}.
-  db_secret_arn = <string>
-
   # The kinds of databases that the proxy can connect to. This value determines
   # which database network protocol the proxy recognizes when it interprets
   # network traffic to and from the database. The engine family applies to MySQL
@@ -212,7 +186,7 @@ inputs = {
 
   # Configuration block(s) with authorization mechanisms to connect to the
   # associated instances or clusters
-  auth = {}
+  auth = null
 
   # The DB cluster identifier. Note that one of `db_instance_identifier` or
   # `db_cluster_identifier` is required.
@@ -221,6 +195,18 @@ inputs = {
   # The DB instance identifier. Note that one of `db_instance_identifier` or
   # `db_cluster_identifier` is required.
   db_instance_identifier = null
+
+  # This variable is deprecated, please use db_secret_arns instead. The DB
+  # secrets should contain username and password for the DB as key-value pairs.
+  # Otherwise, you can insert plaintext secret with the format should look like
+  # {"username":"your_username","password":"your_password"}.
+  db_secret_arn = null
+
+  # The DB secrets should contain username and password for the DB as a map of
+  # key-value pairs. Otherwise, you can insert plaintext secret with the format
+  # should look like {"key_name":
+  # {"username":"your_username","password":"your_password"}}.
+  db_secret_arns = null
 
   # The KMS key used to encrypt the DB secret.
   db_secret_kms_key_arn = null
@@ -277,14 +263,6 @@ object({
 </HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="db_secret_arn" requirement="required" type="string">
-<HclListItemDescription>
-
-The DB secret should contain username and password for the DB as a key-value pairs. Otherwise, you can insert plaintext secret with the format should look like {'username':'your_username','password':'your_password'}.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="engine_family" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -338,12 +316,13 @@ Configuration block(s) with authorization mechanisms to connect to the associate
 
 ```hcl
 map(object({
-    secret_arn = string
+    description = optional(string)
+    iam_auth    = optional(string, "DISABLED") # REQUIRED or DISABLED
   }))
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="db_cluster_identifier" requirement="optional" type="string">
@@ -359,6 +338,24 @@ The DB cluster identifier. Note that one of `db_instance_identifier` or `db_clus
 <HclListItemDescription>
 
 The DB instance identifier. Note that one of `db_instance_identifier` or `db_cluster_identifier` is required.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="db_secret_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+This variable is deprecated, please use db_secret_arns instead. The DB secrets should contain username and password for the DB as key-value pairs. Otherwise, you can insert plaintext secret with the format should look like {'username':'your_username','password':'your_password'}.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="db_secret_arns" requirement="optional" type="string">
+<HclListItemDescription>
+
+The DB secrets should contain username and password for the DB as a map of key-value pairs. Otherwise, you can insert plaintext secret with the format should look like {'key_name': {'username':'your_username','password':'your_password'}}.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -424,6 +421,6 @@ The number of seconds that a connection to the proxy can be inactive before the 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.3/modules/rds-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e1d33e92f62c58e07afc7d23ea224769"
+  "hash": "bb2179bfb4bbeda0f791e42bf6f37813"
 }
 ##DOCS-SOURCER-END -->

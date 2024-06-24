@@ -1701,9 +1701,6 @@ Timeout for DB updating
 <HclListItem name="read_replica_ids">
 </HclListItem>
 
-<HclListItem name="resource_id">
-</HclListItem>
-
 <HclListItem name="security_group_id">
 </HclListItem>
 
@@ -1719,6 +1716,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.3/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "300f21f7103e97a1c25f9f5531480dac"
+  "hash": "cf56af237bdbcf46e9ad3b0df123bcbe"
 }
 ##DOCS-SOURCER-END -->
