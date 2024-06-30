@@ -9,15 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.19" lastModifiedVersion="0.21.15"/>
+<VersionBadge repoTitle="AWS Lambda" version="0.23.0" lastModifiedVersion="0.23.0"/>
 
 # Multiregional Log groups for Lambda Edge
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda-edge-multi-region-log-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.23.0/modules/lambda-edge-multi-region-log-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.15" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.23.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module uses the [`lambda-edge-log-group` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda-edge-log-group) to create a Cloudwatch log group to receive Lambda Edge function logs in multiple AWS Regions.
+This module uses the [`lambda-edge-log-group` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.23.0/modules/lambda-edge-log-group) to create a Cloudwatch log group to receive Lambda Edge function logs in multiple AWS Regions.
 
 ## Why are the resources in this module not created within the Lambda Edge Module?
 
@@ -27,8 +27,8 @@ region that have [Regional Edge Caches](https://aws.amazon.com/blogs/networking-
 
 Unfortunately, it is not possible to use a `for_each` on provider blocks and there are multiple issues related to
 using nested providers. That means that, currently, the only way to create multi-regional modules is by code generating each
-block and passing down the providers using the [`codegen`](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/codegen/) module. A full example of creating the providers and using
-this module can be found at the [lambda-edge example](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/examples/lambda-edge).
+block and passing down the providers using the [`codegen`](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.23.0/codegen/) module. A full example of creating the providers and using
+this module can be found at the [lambda-edge example](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.23.0/examples/lambda-edge).
 
 ## Which regions have regional edge caches?
 
@@ -81,7 +81,7 @@ More information:
 
 module "lambda_edge_multi_region_log_groups" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-multi-region-log-groups?ref=v0.21.19"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-multi-region-log-groups?ref=v0.23.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -146,7 +146,7 @@ module "lambda_edge_multi_region_log_groups" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-multi-region-log-groups?ref=v0.21.19"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-multi-region-log-groups?ref=v0.23.0"
 }
 
 inputs = {
@@ -317,11 +317,11 @@ Map of log group names per region
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda-edge-multi-region-log-groups/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda-edge-multi-region-log-groups/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.19/modules/lambda-edge-multi-region-log-groups/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.23.0/modules/lambda-edge-multi-region-log-groups/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.23.0/modules/lambda-edge-multi-region-log-groups/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.23.0/modules/lambda-edge-multi-region-log-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6af1bd028aab00e7e66efc5774d4eb83"
+  "hash": "544c06e6c52f03f36f4f97247cba8787"
 }
 ##DOCS-SOURCER-END -->
