@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.67.5" lastModifiedVersion="0.64.3"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.67.6" lastModifiedVersion="0.64.3"/>
 
 # EKS IAM Role Assume Role Policy for Kubernetes Service Accounts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.5/modules/eks-iam-role-assume-role-policy-for-service-account" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.6/modules/eks-iam-role-assume-role-policy-for-service-account" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.64.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -22,7 +22,7 @@ Kubernetes Service Accounts. This requires a compatible EKS cluster that support
 Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) feature.
 
 See the [corresponding section of the eks-cluster-control-plane module
-README](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.5/modules/eks-cluster-control-plane/README.md#how-do-i-associate-iam-roles-to-the-pods) for information on how to set
+README](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.6/modules/eks-cluster-control-plane/README.md#how-do-i-associate-iam-roles-to-the-pods) for information on how to set
 up IRSA and how it works.
 
 ## Sample Usage
@@ -38,7 +38,7 @@ up IRSA and how it works.
 
 module "eks_iam_role_assume_role_policy_for_service_account" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-iam-role-assume-role-policy-for-service-account?ref=v0.67.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-iam-role-assume-role-policy-for-service-account?ref=v0.67.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -89,7 +89,7 @@ module "eks_iam_role_assume_role_policy_for_service_account" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-iam-role-assume-role-policy-for-service-account?ref=v0.67.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-iam-role-assume-role-policy-for-service-account?ref=v0.67.6"
 }
 
 inputs = {
@@ -217,11 +217,11 @@ JSON value for IAM Role Assume Role Policy that allows Kubernetes Service Accoun
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.5/modules/eks-iam-role-assume-role-policy-for-service-account/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.5/modules/eks-iam-role-assume-role-policy-for-service-account/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.5/modules/eks-iam-role-assume-role-policy-for-service-account/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.6/modules/eks-iam-role-assume-role-policy-for-service-account/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.6/modules/eks-iam-role-assume-role-policy-for-service-account/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.6/modules/eks-iam-role-assume-role-policy-for-service-account/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2383401dc68f3b7f2ab88978cc6172ac"
+  "hash": "237983ca32437f0215c7ff399cc5dc76"
 }
 ##DOCS-SOURCER-END -->

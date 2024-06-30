@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.67.5" lastModifiedVersion="0.65.4"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.67.6" lastModifiedVersion="0.67.6"/>
 
 # EKS Container Logs Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.5/modules/eks-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.6/modules/eks-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.65.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.67.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module installs and configures
 [aws-for-fluent-bit](https://github.com/aws/aws-for-fluent-bit) on an EKS cluster, so that
@@ -25,7 +25,7 @@ Kinesis Firehose.
 This module uses the community helm chart, with a set of best practices inputs.
 
 **This module is for setting up log aggregation for EKS Pods on EC2 workers (self-managed or managed node groups). For
-Fargate pods, take a look at the [eks-fargate-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.5/modules/eks-fargate-container-logs) module.**
+Fargate pods, take a look at the [eks-fargate-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.6/modules/eks-fargate-container-logs) module.**
 
 ## How does this work?
 
@@ -105,7 +105,7 @@ fields @timestamp, @message
 
 module "eks_container_logs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.67.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.67.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -226,6 +226,13 @@ module "eks_container_logs" {
   # been tainted. Each item in the list specifies a toleration rule.
   pod_tolerations = []
 
+  # Merge and mask sensitive values like apikeys or passwords that are part of
+  # the helm charts `values.yaml`. These sensitive values will show up in the
+  # final metadata as clear text unless passed in as K:V pairs that are injected
+  # into the `values.yaml`. Key should be the paramater path and value should be
+  # the value.
+  sensitive_values = {}
+
   # Optionally use a cri parser instead of the default Docker parser. This
   # should be used for EKS v1.24 and later.
   use_cri_parser_conf = true
@@ -252,7 +259,7 @@ module "eks_container_logs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.67.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.67.6"
 }
 
 inputs = {
@@ -376,6 +383,13 @@ inputs = {
   # been tainted. Each item in the list specifies a toleration rule.
   pod_tolerations = []
 
+  # Merge and mask sensitive values like apikeys or passwords that are part of
+  # the helm charts `values.yaml`. These sensitive values will show up in the
+  # final metadata as clear text unless passed in as K:V pairs that are injected
+  # into the `values.yaml`. Key should be the paramater path and value should be
+  # the value.
+  sensitive_values = {}
+
   # Optionally use a cri parser instead of the default Docker parser. This
   # should be used for EKS v1.24 and later.
   use_cri_parser_conf = true
@@ -399,11 +413,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.5/modules/eks-container-logs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.5/modules/eks-container-logs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.5/modules/eks-container-logs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.6/modules/eks-container-logs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.6/modules/eks-container-logs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.6/modules/eks-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "363d3766c9a6c292d148985f62cb3793"
+  "hash": "6a5369a3673d49392e50c2d7c76f5390"
 }
 ##DOCS-SOURCER-END -->

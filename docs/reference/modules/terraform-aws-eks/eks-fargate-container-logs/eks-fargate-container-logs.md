@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.67.5" lastModifiedVersion="0.64.3"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.67.6" lastModifiedVersion="0.64.3"/>
 
 # EKS Fargate Container Logs Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.5/modules/eks-fargate-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.6/modules/eks-fargate-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.64.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -25,7 +25,7 @@ Bit](https://fluentbit.io/) instance that runs on Fargate worker nodes. This all
 aggregation on Fargate Pods in EKS without setting up a side car container.
 
 **This module is for setting up log aggregation for EKS Fargate Pods. For other pods, take a look at the
-[eks-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.5/modules/eks-container-logs) module.**
+[eks-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.6/modules/eks-container-logs) module.**
 
 ## How does this work?
 
@@ -106,7 +106,7 @@ fields @timestamp, @message
 
 module "eks_fargate_container_logs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.67.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.67.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -203,7 +203,7 @@ module "eks_fargate_container_logs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.67.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.67.6"
 }
 
 inputs = {
@@ -633,11 +633,11 @@ The ID of the Kubernetes ConfigMap containing the logging configuration. This ca
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.5/modules/eks-fargate-container-logs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.5/modules/eks-fargate-container-logs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.5/modules/eks-fargate-container-logs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.6/modules/eks-fargate-container-logs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.6/modules/eks-fargate-container-logs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.6/modules/eks-fargate-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f92bf864f878f75a2e81db9c41078362"
+  "hash": "5a589bd50baf4fe0f651e72a9086d89d"
 }
 ##DOCS-SOURCER-END -->
