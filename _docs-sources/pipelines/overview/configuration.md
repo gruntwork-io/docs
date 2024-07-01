@@ -59,9 +59,7 @@ pipelines:
     sdlc:
     # Map of account identifiers to account vending configurations.
     # A valid account vending configuration includes:
-    # - account-identifiers: List of account identifiers that will be created (required).
-    # - catalog-repositories: List of repositories used by Terragrunt catalog (optional).
-    # - github-collaborators: List of GitHub teams and their permissions (optional).
+      # account-identifiers: List of account identifiers that will be created (required).
       account-identifiers:
         # Alphanumeric account identifiers only. On account requests, an account
         # will be created for each specified identifier & the account name will
@@ -69,10 +67,11 @@ pipelines:
         - dev
         - stage
         - prod
+      # catalog-repositories: List of repositories used by Terragrunt catalog (optional).  
       catalog-repositories:
         # List of repositories that contain infrastructure modules that can be easily leveraged as a catalog by delegated repositories vended by the infrastructure-root repository.
         # For more information, see https://terragrunt.gruntwork.io/docs/features/catalog/
-        - "{{ .RepoBaseUrl }}/{{ .InfraModulesRepoName }}"
+        - "{{ .RepoBaseUrl }}/{{ .InfraModulesRepoName }}"        
       # github-collaborators:
       # List of GitHub teams and their permissions automatically added to delegated repositories vended by the infrastructure-root repository.
       # Valid permissions are: pull, triage, push, maintain and admin (in addition to custom roles if any exist)
