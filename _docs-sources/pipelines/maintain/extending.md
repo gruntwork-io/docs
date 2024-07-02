@@ -17,10 +17,10 @@ If you would like to extend this workflow to introduce custom logic that is spec
 Common reasons that you might decide to do this include:
 
 - You wish to add additional steps to the workflow that are specific to your organization.
-- You wish to utilize a forked action used in an existing steps in the workflow to suit your organization's needs (more on that below).
+- You wish to utilize a forked action used in existing step(s) in the workflow to suit your organization's needs (more on that below).
 
 :::caution
-If you chose to fork Gruntwork's `pipelines-workflows` in your GitHub organization note that Gruntwork will have visibility to that repository ([docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-permissions-and-visibility-of-forks#about-permissions-for-creating-forks)). If you have concerns about this you can instead [mirror](https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository) the repository. Reach out to <support@gruntwork.io> if you need assistance with this.
+If you choose to fork Gruntwork's `pipelines-workflows` into your GitHub organization note that Gruntwork will have visibility to that repository ([docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-permissions-and-visibility-of-forks#about-permissions-for-creating-forks)). If you have concerns about this you can instead [mirror](https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository) the repository. Reach out to <support@gruntwork.io> if you need assistance with this.
 
 Do not include any sensitive information in your forked repository, especially if hosted publicly.
 :::
@@ -42,7 +42,7 @@ There are many ways to actually implement custom actions in your workflow, this 
 1. Create a new folder in that repository, `.github/actions/`
 1. Identify where in the workflow you want to customize (we provide a set of [example](https://github.com/gruntwork-io/pipelines-actions/tree/main/.github/custom-actions) actions and [custom-action hook locations](https://github.com/gruntwork-io/pipelines-workflows/blob/main/.github/workflows/pipelines-root.yml) for reference).
 1. If you're using one of our default hook points, copy the stub example hook `action.yml` file from the `pipelines-actions` [repository](https://github.com/gruntwork-io/pipelines-actions/tree/main/.github/custom-actions) and place it into `.github/actions/$HOOK_NAME/action.yml`.
-    1. If you're not using a sample hook then it may still be helpful to copy an existing one for reference, particularly around the inputs that the custom actions accept.
+    1. If you're not using a sample hook it may still be helpful to copy an existing one for reference, particularly around the inputs that the custom actions accept.
 1. At this point you can customize `action.yml` to execute your desired logic
 
 **Adding the custom action to your workflow:**
@@ -117,9 +117,6 @@ There are two key components to the hook, 1) Checking out actions and 2) Running
         INFRA_ROOT_WRITE_TOKEN: ${{ secrets.INFRA_ROOT_WRITE_TOKEN }}
         gruntwork_context: ${{ toJson(steps.gruntwork_context.outputs) }}
 ```
-
-
-
 
 ### Support for extending Workflows
 
