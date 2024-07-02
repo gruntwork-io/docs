@@ -131,6 +131,32 @@ terraform &#x7B;
 ## pipelines-cli
 
 
+### [v0.10.0-alpha](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.10.0-alpha)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 5/31/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.10.0-alpha">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.10.0-alpha
+
+</div>
+
+
+### [v0.10.0](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.10.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 5/31/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.10.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.10.0
+
+</div>
+
+
 ### [v0.9.11](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.9.11)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -237,6 +263,38 @@ terraform &#x7B;
 
 
 ## terraform-aws-architecture-catalog
+
+
+### [v2.3.2](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v2.3.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 5/31/2024 | <a href="https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v2.3.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * feat: Adding parallelism restriction by @yhakbar in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/1086
+
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-architecture-catalog/compare/v2.3.1...v2.3.2
+
+</div>
+
+
+### [v2.3.1](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v2.3.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 5/31/2024 | <a href="https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v2.3.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * feat: Adding CIS compliance common findings docs by @yhakbar in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/1087
+
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-architecture-catalog/compare/v2.3.0...v2.3.1
+
+</div>
 
 
 ### [v2.3.0](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v2.3.0)
@@ -861,6 +919,6 @@ terraform &#x7B;
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "137d27d82033f1804478206fe636c3ed"
+  "hash": "c915a9773f68ec31da1ea1f4ffe070fe"
 }
 ##DOCS-SOURCER-END -->
