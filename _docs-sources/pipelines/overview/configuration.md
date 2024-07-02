@@ -4,7 +4,7 @@
 :::warning This page is under active development and is a work in progress, June 2024
 :::
 
-Pipelines behavior is primarily configured via a yaml file at `.gruntwork/config.yml` in your repository. Pipelines also reads `.mise.toml` at the root of the repository to determine what version of OpenTofu/Terraform and Terragrunt to use. (TODO: Link to our background on mise, why we use it)
+Pipelines behavior is primarily configured via a yaml file at `.gruntwork/config.yml` in your repository. Pipelines also reads [.mise.toml](https://docs.gruntwork.io/pipelines/upgrading/upgrading-from-infrastructure-pipelines#adding-misetoml) at the root of the repository to determine what version of OpenTofu/Terraform and Terragrunt to use.
 
 A sample `config.yml` with a full set of options is below.
 
@@ -67,11 +67,11 @@ pipelines:
         - dev
         - stage
         - prod
-      # catalog-repositories: List of repositories used by Terragrunt catalog (optional).  
+      # catalog-repositories: List of repositories used by Terragrunt catalog (optional).
       catalog-repositories:
         # List of repositories that contain infrastructure modules that can be easily leveraged as a catalog by delegated repositories vended by the infrastructure-root repository.
         # For more information, see https://terragrunt.gruntwork.io/docs/features/catalog/
-        - "{{ .RepoBaseUrl }}/{{ .InfraModulesRepoName }}"        
+        - "{{ .RepoBaseUrl }}/{{ .InfraModulesRepoName }}"
       # github-collaborators:
       # List of GitHub teams and their permissions automatically added to delegated repositories vended by the infrastructure-root repository.
       # Valid permissions are: pull, triage, push, maintain and admin (in addition to custom roles if any exist)
