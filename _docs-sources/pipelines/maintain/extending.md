@@ -55,6 +55,7 @@ There are many ways to actually implement custom actions in your workflow, this 
         with:
             path: pipelines-actions-customizations
             repository: acme-org/pipelines-actions-customizations
+            # We recommend pinning this to a specific commit, branch or tag instead of main
             ref: main
     ```
 1. Call your custom action. Make sure you pay attention to what inputs you are passing to your custom action.  Most custom actions will need access to tokens (e.g. `PIPELINES_READ_TOKEN`) as well as the `gruntwork_context` object. The context object contains all of the [outputs](https://github.com/gruntwork-io/pipelines-actions/blob/main/.github/actions/pipelines-bootstrap/action.yml#L43) from the `pipelines-bootstrap` action which includes useful metadata about the current workflow execution.
@@ -105,6 +106,7 @@ There are two key components to the hook, 1) Checking out actions and 2) Running
     with:
         path: pipelines-actions-customizations
         repository: acme-org/pipelines-actions-customizations
+        # We recommend pinning this to a specific commit, branch or tag instead of main
         ref: main
 
   - name: "[Baseline]: Pre Provision New Account Custom Action"
