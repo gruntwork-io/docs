@@ -33,9 +33,6 @@ to get more information:
 *   [Querying Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/query-databases.html)
 *   [Redshift best practices](https://docs.aws.amazon.com/redshift/latest/dg/best-practices.html)
 
-**Note**: currently, this module does not
-support [Amazon Redshift Serverless](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-serverless.html).
-
 ## Serverless
 
 Amazon Redshift Serverless makes it convenient for you to run and scale analytics without having to provision and manage
@@ -1009,6 +1006,6 @@ The ID of the Security Group that controls access to the cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.3/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "51087ab5e1188e3a59dd4cef84b15eac"
+  "hash": "3bacda0130c37f8e9e7cc9fb2c8484ee"
 }
 ##DOCS-SOURCER-END -->
