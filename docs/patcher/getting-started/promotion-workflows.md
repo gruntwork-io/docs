@@ -1,21 +1,25 @@
 # Using Patcher Promotion Workflows
 :::info
 
-As of this writing in July 2024 Gruntwork only officially supports Patcher Promotion Workflows using GitHub Actions.  Other CI systems will come in future releases.
+As of this writing in July 2024 Gruntwork only officially supports Patcher Promotion Workflows using GitHub Actions. Other CI systems will come in future releases.
 
 :::
 
 # Introduction
 
-Patcher is built with the idea of being able to detect an infrastructure change and then facilitate incorporating that change across environments (e.g. dev, stage, prod). The idea is to create a series of pull requests for your code that each include the relevant changes for a particular environment which can then be reviewed and tested.  Once approved the act of merging a given pull request with "dispatch" a patcher workflow which will generate an analogous pull request on the next environment in the chain. This continues until the end of the chain at which point the final pull request is merged and no further dispatching occurs.
+Before you promote an infrastructure change to production its natural to want to validate that change in a lower environment. We call this general process of moving changes between environments a promotion workflow.
 
-TODO: Insert a sequence diagram here demonstrating the process.
+Patcher was built with promotion workflows in mind, and this document aims to outline how to integrate that flow with GitHub Actions. Specifically, Patcher is able to detect an infrastructure change and then facilitate incorporating that change across environments (e.g. dev, stage, prod). The idea is to create a series of pull requests for your code that each include the relevant changes for a particular environment which can then be reviewed and tested. Once approved the act of merging a given pull request with "dispatch" a patcher workflow which will generate an analogous pull request on the next environment in the chain. This continues until the end of the chain at which point the final pull request is merged and no further dispatching occurs.
+
+Patcher was built specifically for infrastructure as code and has a first-class understanding of versioning in Terraform/OpenTofu/Terragrunt. As a result, even if your infrastructure has differences between environments, Patcher is still able to identify out of date modules and apply updates in a sane way through a promotion workflow.
+
+(Coming soon a sequence diagram here demonstrating the promotion workflow process)
 
 # Patcher Promotion Workflow Architecture
 
 ## Environments
 
-The concept of environments in Patcher Promotion Workflows is modelled via glob-pattern matched folder structures.  Patcher commands then accept commands to match those folders, such as `include_dirs: "{*prod*}/**"`.  A given environment can include 1 or many (without limit) folders.  Patcher will scan the entire group of folders at once for potential updates and changes.
+Patcher allows teams to define environments as a grouping of folders using glob patterns. Patcher commands (on the CLI and in GitHub Actions) accept commands to match those folders, such as the argument to `patcher-action` -- `include_dirs: "{*prod*}/**"` which would match all folders with "prod" in the name. A given environment can include 1 or many (without limit) folders. Patcher will scan the entire group of folders at once for potential updates and changes.
 
 There is no limit on how many environments you can have, or other limit on the naming structure for those environments.
 
@@ -23,7 +27,9 @@ In the future it is planned to model environments using a configuration based sy
 
 ## Dependencies
 
-A `dependency` in Patcher workflows is a reference to code that is versioned and in use by your codebase. Patcher generally models promotion workflows around the idea of grouping changes together per-dependency. For example, if you are using `gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v0.8.0` as a terraform source in a terragrunt unit, then your dependency would be `gruntwork-io/terraform-aws-messaging/sqs`.  Patcher would then identify all usages of `gruntwork-io/terraform-aws-messaging/sqs` within a given environment and create a single pull request to update to the next appropriate version.  You'll notice that
+A `dependency` in Patcher workflows is a reference to code that is versioned and in use by your codebase, generally a Terraform or Tofu module that exists in a git repo using a specific git tag for versioning. For example, if you are using `gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v0.8.0` as a terraform source module, then your dependency would be `gruntwork-io/terraform-aws-messaging/sqs`.
+
+Patcher generally models promotion workflows around the idea of grouping changes together per-dependency. Patcher would then identify all usages of `gruntwork-io/terraform-aws-messaging/sqs` within a given environment and create a single pull request to update to the next appropriate version.
 
 # Prerequisites
 
@@ -43,18 +49,20 @@ Then you would define your dev environments as `dev-*`, stage as `stage-*` and p
 
 # Implementation & Setup Example
 
-For the purposes of this we'll setup a promotion workflow that promotes through `dev`, `stage` and finally `prod`.
+The Patcher Promotion Workflow process consists of a series of GitHub Actions workflow files.  Each environment is modeled as an individual workflow.  The process begins with the lowest stage (usually something like `dev`) which scans the entire `dev` environment for all dependencies which may require updates.  It will then generate one pull request per dependency that updates that dependency exclusively in the `dev` environment.  As each of those pull requests is approved and merged, they then general new pull requests for the subsequent stage (triggered via `repository dispatch` events).  This process continues until the last stage at which point no further PRs are opened and all stages have been updated.
+
+The easiest way to get started is likely by copying and tweaking the example files below.  For the purposes of this example we'll set up a promotion workflow that promotes through `dev`, `stage` and finally `prod`, though of course feel free to tweak these to match the environment patterns you use.
 
 ## Setting up the initial dev promotion step
 
-The initial GitHub Actions Workflow file, which for this example lets call `update-dev.yml`, contains several key points
+The initial GitHub Actions Workflow file, which for this example lets call `update-dev.yml`, contains several key points:
 
-* We setup the job to run on a schedule, to be a pull request target, a workflow dispatch and a repository dispatch.
+* We set up the job to run on a schedule, to be a pull request target, a workflow dispatch and a repository dispatch.
     * The schedule is of course optional but recommended
     * The workflow dispatch is a recommended testing mechanism
     * The pull request target is required to trigger certain jobs
 * The `trigger-next-env` Job
-    * This job is run only on pull request merge, and it sends a dispatch to the next stage.  Specifically it fires an event called `dev_updates_merged` which the next job will listen for.
+    * This job is run only on pull request merge, and it sends a dispatch to the next stage. Specifically it fires an event called `dev_updates_merged` which the next job will listen for.
     * This job also includes metadata, specifically a `dependency` (which is derived from the git branch name), to indicate to the subsequent job which dependency to run for.
 * The `patcher-report` Job
     * This job runs patcher report to generate a list of updates for a specific environment (defined based on the `include_dirs` argument)
@@ -62,7 +70,7 @@ The initial GitHub Actions Workflow file, which for this example lets call `upda
 * The `update-env` Job
     * This job takes the spec output from the report, puts it into a file, then calls patcher update.
     * Patcher update reads the spec file, checks out the code, makes a commit and then pushes a pull request
-    * Note it is critically important for the correct functioning of the pull request workflow that the `pull_request_branch` be defined as `$PREFIX$DEPENDENCYID`.  We strip out the prefix to identify the dependency ID in the `trigger-next-env` Job.
+    * Note it is critically important for the correct functioning of the pull request workflow that the `pull_request_branch` be defined as `$PREFIX$DEPENDENCYID`. We strip out the prefix to identify the dependency ID in the `trigger-next-env` Job.
 
 ```yml
 name: Update Dev Dependencies
@@ -310,6 +318,6 @@ jobs:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "1fc34fc5b6528ba84517513259b78b09"
+  "hash": "149d3ed221b55972da6b139fa890da88"
 }
 ##DOCS-SOURCER-END -->
