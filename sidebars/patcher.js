@@ -32,6 +32,11 @@ const sidebar = [
             id: "patcher/getting-started/index"
           },
           {
+            label: "Promotion Workflows",
+            type: "doc",
+            id: "patcher/getting-started/promotion-workflows"
+          },
+          {
             label: "Telemetry",
             type: "doc",
             id: "patcher/getting-started/telemetry"
