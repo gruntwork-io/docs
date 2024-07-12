@@ -10,6 +10,12 @@ YAML configurations are read by Pipelines when HCL configurations are not presen
 This means that if you have a `.gruntwork/config.yml` file in your repository, you can continue to use it as you have been, and Pipelines will continue to work as expected. If you do introduce any HCL configurations into your `.gruntwork` directory or introduce a `gruntwork.hcl` file into a directory, Pipelines will begin to use the HCL configuration system instead of the YAML configuration system.
 :::
 
+## Should I Migrate?
+
+At this time, there is no need to migrate from YAML configurations to HCL configurations. Pipelines will continue to work as expected with YAML configurations.
+
+Gruntwork does not currently recommend migrating from YAML configurations to HCL configurations. There may be a future point where YAML configurations are deprecated, but there will be robust tooling and documentation to support this migration when it becomes necessary.
+
 ## YAML Configurations
 
 The documentation below is what was previously documented [here](../overview/configuration.md):
@@ -103,6 +109,6 @@ pipelines:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "80d62fa7b8bdc5ada68072d9454e9e10"
+  "hash": "3f98994f1dd4c6c737ba3812f743bc07"
 }
 ##DOCS-SOURCER-END -->
