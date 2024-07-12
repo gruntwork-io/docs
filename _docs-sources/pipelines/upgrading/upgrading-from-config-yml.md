@@ -5,9 +5,9 @@ Previously, certain configurations for Pipelines were defined within a `.gruntwo
 To improve the quality of the Pipelines experience, configurations are now defined in the Pipelines Configuration as Code system. This system allows for more flexibility and control over configurations, allowing Pipelines to be used in a wider variety of use-cases, for a larger number of users.
 
 :::note
-Legacy configurations are read by Pipelines when modern configurations are not present, and the Pipelines binary falls back to interpretting legacy configurations as if they were defined in the modern configuration system in this scenario.
+Legacy configurations are read by Pipelines when HCL configurations are not present, and the Pipelines binary falls back to interpretting legacy configurations as if they were defined in the HCL configuration system in this scenario.
 
-This means that if you have a `.gruntwork/config.yml` file in your repository, you can continue to use it as you have been, and Pipelines will continue to work as expected. If you do introduce any HCL configurations into your `.gruntwork` directory or introduce a `gruntwork.hcl` file into a directory, Pipelines will begin to use the modern configuration system instead of the legacy configuration system.
+This means that if you have a `.gruntwork/config.yml` file in your repository, you can continue to use it as you have been, and Pipelines will continue to work as expected. If you do introduce any HCL configurations into your `.gruntwork` directory or introduce a `gruntwork.hcl` file into a directory, Pipelines will begin to use the HCL configuration system instead of the legacy configuration system.
 :::
 
 ## Legacy Configurations

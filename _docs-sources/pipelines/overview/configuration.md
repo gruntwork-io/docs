@@ -1,15 +1,15 @@
 # Pipelines Configurations as Code
 
 :::note
-This page includes documentation for modern Pipelines Configuration as Code.
+This page includes documentation for HCL Pipelines Configuration as Code.
 
 If you are using an older version of Pipelines, please refer to the documentation on [Upgrading from config.yml](../upgrading/upgrading-from-config-yml.md).
 :::
 
 :::caution
-As of July, 2024, the legacy configuration is still the primary mechanism for configuring Pipelines in DevOps Foundations. The best experience in DevOps Foundations remains with the legacy configuration system, as interactions with Account Factory still need improvement in the modern configuration system.
+As of July, 2024, the YAML configuration is still the primary mechanism for configuring Pipelines in DevOps Foundations. The best experience in DevOps Foundations remains with the YAML configuration system, as interactions with Account Factory still need improvement in the HCL configuration system.
 
-If you are currently using legacy configurations, you should not migrate to the new configuration system at this time.
+If you are currently using YAML configurations, you should not migrate to the new configuration system at this time.
 :::
 
 Pipelines relies on configurations written in [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl) to drive dynamic behavior. These configurations are primarily used by Pipelines to determine how to interact with cloud environments within the context of the Infrastructure As Code (IAC) within a code repository.
