@@ -35,6 +35,11 @@ const sidebar = [
             id: "pipelines/overview/configuration",
           },
           {
+            label: "CLI",
+            type: "doc",
+            id: "pipelines/overview/cli",
+          },
+          {
             label: "Usage Data",
             type: "doc",
             id: "pipelines/data-collection/index",
