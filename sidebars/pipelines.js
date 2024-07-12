@@ -111,6 +111,11 @@ const sidebar = [
             type: "doc",
             id: "pipelines/upgrading/upgrading-from-ecs-deploy-runner",
           },
+          {
+            label: "Upgrading from config.yml",
+            type: "doc",
+            id: "pipelines/upgrading/upgrading-from-config-yml",
+          },
         ],
       },
       {

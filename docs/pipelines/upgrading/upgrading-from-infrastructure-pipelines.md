@@ -14,7 +14,14 @@ Before you begin the migration process, ensure that you have the following prere
 - AWS Administrator (or similar) permissions in all AWS accounts managed by your `infrastructure-live` repository.
 - A solid understanding of Infrastructure as Code (IAC) fundamentals, or support from Gruntwork.
 
-## Step 1: Update the `bootstrap.yml` workflow
+## Step 1: Ensure Machine Users are configured
+
+Make sure that you have the appropriate tokens and secrets configured to allow your workflows to access the necessary secrets to interact with your infrastructure.
+
+For information on how to do this, visit the instructions in [Machine Users](../security/machine-users.mdx).
+
+
+## Step 2: Update the `bootstrap.yml` workflow
 
 Copy the [bootstrap.yml](https://github.com/gruntwork-io/infrastructure-live-root-template/blob/main/.github/workflows/bootstrap.yml) workflow, and place it in the `.github/workflows` directory of your `infrastructure-live` repository (if you already have a workflow file here, you can overwrite it).
 
@@ -24,11 +31,6 @@ Use the [README](https://github.com/gruntwork-io/infrastructure-live-root-templa
 Be extra careful to ensure that you have replaced all instances of `<REPLACE>` in the `bootstrap.yml` workflow file!
 :::
 
-## Step 2: Ensure Machine Users are configured
-
-Make sure that you have the appropriate tokens and secrets configured to allow your workflows to access the necessary secrets to interact with your infrastructure.
-
-For information on how to do this, visit the instructions in [Machine Users](../security/machine-users.mdx).
 
 ## Step 3: Run the `bootstrap.yml` workflow
 
@@ -288,6 +290,6 @@ If you have any questions, or if you have encountered any issues during this mig
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "797a9db66be3dff877241d6a1dc9d94a"
+  "hash": "17ef09d14d89b9517184af7eb4dedec4"
 }
 ##DOCS-SOURCER-END -->
