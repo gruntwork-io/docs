@@ -322,7 +322,7 @@ filter {
 }
 ```
 
-All configuration blocks contain a `filter` block will only be applied to units that match the filter.
+All configuration blocks that contain a `filter` block will only be applied to units that match the filter.
 
 *Supported Attributes:*
 
@@ -363,6 +363,6 @@ In this example, Pipelines will use OIDC to authenticate with AWS and assume the
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e7d34009561c47b81d3ebb1b871bbf42"
+  "hash": "0120503338b58ca5ad8bd533451401ec"
 }
 ##DOCS-SOURCER-END -->

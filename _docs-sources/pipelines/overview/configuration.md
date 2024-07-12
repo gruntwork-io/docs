@@ -322,7 +322,7 @@ filter {
 }
 ```
 
-All configuration blocks contain a `filter` block will only be applied to units that match the filter.
+All configuration blocks that contain a `filter` block will only be applied to units that match the filter.
 
 *Supported Attributes:*
 
