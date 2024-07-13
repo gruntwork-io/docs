@@ -338,7 +338,11 @@ Configuration block(s) with authorization mechanisms to connect to the associate
 
 ```hcl
 map(object({
-    secret_arn = string
+    auth_scheme               = optional(string, "SECRETS")
+    secret_arn                = string
+    description               = optional(string)
+    iam_auth                  = optional(string, "DISABLED") # REQUIRED or DISABLED
+    client_password_auth_type = optional(string)
   }))
 ```
 
@@ -424,6 +428,6 @@ The number of seconds that a connection to the proxy can be inactive before the 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.3/modules/rds-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e1d33e92f62c58e07afc7d23ea224769"
+  "hash": "b9f63c2ea03c84127d2a3829dfc5296b"
 }
 ##DOCS-SOURCER-END -->
