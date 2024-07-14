@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="0.7.6" lastModifiedVersion="0.7.1"/>
+<VersionBadge repoTitle="Control Tower" version="0.7.8" lastModifiedVersion="0.7.1"/>
 
 # Account Baseline Security with Control Tower Integration
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.6/modules/landingzone/control-tower-security-account-baseline" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.8/modules/landingzone/control-tower-security-account-baseline" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.7.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -34,7 +34,7 @@ by Control Tower, including setting up Amazon Guard Duty, Macie, IAM users, IAM 
 
 module "control_tower_security_account_baseline" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v0.7.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v0.7.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -341,6 +341,10 @@ module "control_tower_security_account_baseline" {
   # enforces findings to be encrypted. Only used if
   # guardduty_publish_findings_to_s3 is true.
   guardduty_findings_kms_key_arn = null
+
+  # Additional service principals beyond GuardDuty that should have access to
+  # the KMS key used to encrypt the logs.
+  guardduty_findings_kms_key_service_principals = []
 
   # All GuardDuty findings will be encrypted with a KMS Key (a Customer Master
   # Key). The IAM Users specified in this list will have read-only access to the
@@ -770,7 +774,7 @@ module "control_tower_security_account_baseline" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v0.7.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v0.7.8"
 }
 
 inputs = {
@@ -1080,6 +1084,10 @@ inputs = {
   # enforces findings to be encrypted. Only used if
   # guardduty_publish_findings_to_s3 is true.
   guardduty_findings_kms_key_arn = null
+
+  # Additional service principals beyond GuardDuty that should have access to
+  # the KMS key used to encrypt the logs.
+  guardduty_findings_kms_key_service_principals = []
 
   # All GuardDuty findings will be encrypted with a KMS Key (a Customer Master
   # Key). The IAM Users specified in this list will have read-only access to the
@@ -2099,6 +2107,105 @@ The ARN of the KMS key used to encrypt GuardDuty findings. GuardDuty enforces fi
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="guardduty_findings_kms_key_service_principals" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+Additional service principals beyond GuardDuty that should have access to the KMS key used to encrypt the logs.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    # The name of the service principal (e.g.: s3.amazonaws.com).
+    name = string
+
+    # The list of actions that the given service principal is allowed to perform (e.g. ["kms:DescribeKey",
+    # "kms:GenerateDataKey"]).
+    actions = list(string)
+
+    # List of additional service principals. Useful when, for example, granting
+    # access to opt-in region service endpoints (e.g. guardduty.us-east-1.amazonaws.com).
+    additional_principals = list(string)
+
+    # List of conditions to apply to the permissions for the service principal. Use this to apply conditions on the
+    # permissions for accessing the KMS key (e.g., only allow access for certain encryption contexts).
+    conditions = list(object({
+      # Name of the IAM condition operator to evaluate.
+      test = string
+
+      # Name of a Context Variable to apply the condition to. Context variables may either be standard AWS variables
+      # starting with aws: or service-specific variables prefixed with the service name.
+      variable = string
+
+      # Values to evaluate the condition against. If multiple values are provided, the condition matches if at least one
+      # of them applies. That is, AWS evaluates multiple values as though using an "OR" boolean operation.
+      values = list(string)
+    }))
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     The list of actions that the given service principal is allowed to perform (e.g. ["kms:DescribeKey",
+     "kms:GenerateDataKey"]).
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of additional service principals. Useful when, for example, granting
+     access to opt-in region service endpoints (e.g. guardduty.us-east-1.amazonaws.com).
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of conditions to apply to the permissions for the service principal. Use this to apply conditions on the
+     permissions for accessing the KMS key (e.g., only allow access for certain encryption contexts).
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Name of a Context Variable to apply the condition to. Context variables may either be standard AWS variables
+       starting with aws: or service-specific variables prefixed with the service name.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Values to evaluate the condition against. If multiple values are provided, the condition matches if at least one
+       of them applies. That is, AWS evaluates multiple values as though using an "OR" boolean operation.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="guardduty_findings_kms_key_user_iam_arns" requirement="optional" type="list(string)">
@@ -3367,11 +3474,11 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.6/modules/control-tower-security-account-baseline/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.6/modules/control-tower-security-account-baseline/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.6/modules/control-tower-security-account-baseline/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.8/modules/control-tower-security-account-baseline/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.8/modules/control-tower-security-account-baseline/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.8/modules/control-tower-security-account-baseline/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4b4a179b88fdeeedaab1141ac0c6f126"
+  "hash": "635df754ef7fec48da4cfb767a0f8d07"
 }
 ##DOCS-SOURCER-END -->
