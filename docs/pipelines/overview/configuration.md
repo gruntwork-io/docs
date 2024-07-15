@@ -39,15 +39,15 @@ unit {
 
 Placing this configuration in a `gruntwork.hcl` file in the same directory as a `terragrunt.hcl` file will cause Pipelines to assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when running Terragrunt plan commands, using [OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) to authenticate to AWS and assume that role.
 
-In most circumstances, the same role would be assumed by multiple units of configuration within a repository (e.g. all units within a given directory configure resources for the same AWS account). In that circumstance, it would be more appropriate not to define a `gruntwork.hcl` file at all, and instead define a `.gruntwork` directory at the root of the repository with a file ending in `.hcl` that contains configurations that are applicable to all units within that directory.
+In most circumstances, the same role would be assumed by multiple units of configuration within a repository (e.g. all units within a given directory configure resources for the same AWS account). Hence, it would be more appropriate to define a `.gruntwork` directory at the root of the repository with configuration files ending in `.hcl` that are applicable to all units within a given directory.
 
 e.g.
 
 ```hcl
 # .gruntwork/environments.hcl
-environment "an_account" {
+environment "an_environment" {
   filter {
-    paths = ["an-account/*"]
+    paths = ["an-environment/*"]
   }
 
   authentication {
@@ -62,15 +62,45 @@ environment "an_account" {
 }
 ```
 
-In this example, all the units located within the `an-account` directory sibling to the `.gruntwork` directory will assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when running Terragrunt plan commands by Pipelines.
+In this example, all the units located within the `an-environment` directory sibling to the `.gruntwork` directory will assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when running Terragrunt plan commands by Pipelines.
 
 A typical approach to building Pipelines configurations is to first define minimal configurations that address the most common use-cases, and then to refactor and generalize those configurations as needed to reduce repetition.
 
 More details on how these configurations are defined will be detailed below.
 
+## Primer on HCL Terminology
+
+HCL is an extensible configuration language developed by HashiCorp. See [this](https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md) for the full specification.
+
+The main terminology you need to know to understand the documentation below includes:
+
+- **Blocks**: A block is a collection of nested configurations that are defined within curly braces `{}`.
+
+  :::tip
+  A `filter` block is nested in the `environment` block in the example above.
+  :::
+
+- **Attributes**: An attribute is a key-value pair separated by an `=` that is defined within a block.
+
+  :::tip
+  The `paths` attribute is defined within the `filter` block in the example above.
+  :::
+
+- **Labels**: A label is one or more strings that are used to qualify a block.
+
+  :::tip
+  The `an_environment` label is used to qualify the `environment` block in the example above.
+  :::
+
+  Note that some blocks have multiple labels. Labels can both serve as a mechanism for disambiguating blocks from each other, and as a way to have concrete implementations of general behavior.
+
+  :::tip
+  In the `authentication_profile` block, the first label of `aws_oidc` is used to qualify the block as an `aws_oidc` authentication profile block, which means that the content inside the block is relevant for `aws_oidc` authentication profiles, and the second label of `profile` is used to qualify the block as an `aws_oidc` authentication profile block named `profile`.
+  :::
+
 ## Global Configurations
 
-The configurations found within a `.gruntwork` directory found in the current working directory, or a parent directory of the current working directory are referred to as global configurations. These configurations are typically applicable within a wide range of contexts within a repository, and are the primary mechanism for configuring Pipelines.
+Any configurations located within a `.gruntwork` directory either in the current working directory, or a parent directory of the current working directory are referred to as global configurations. These configurations are typically applicable within a wide range of contexts within a repository, and are the primary mechanism for configuring Pipelines.
 
 Pipelines will attempt to find exactly one directory named `.gruntwork` when it is attempting to discover configurations. It will not continue to search for configurations in parent directories once it finds a `.gruntwork` directory.
 
@@ -105,7 +135,7 @@ environment "an_environment" {
 
 In this example, the `an_environment` environment is defined to match all units located within the `an-environment` directory sibling to the `.gruntwork` directory. All units that match this filter will assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when running Terragrunt plan commands by Pipelines.
 
-The environment block is most idiomatically used in conjunction with other configuration blocks, as the contents frequently involve configurations that are applicable to multiple units within a repository.
+Environment blocks should reference other configuration blocks rather than continuously redefining configurations when possible.
 
 As such, you will typically see environment blocks that look more like the following:
 
@@ -142,7 +172,7 @@ More on configuration components like [aws_accounts](#aws-accounts-blocks) and [
 - `authentication` (Required): An authentication block that determines how Pipelines will authenticate with cloud platforms when running Terragrunt commands. See [Authentication Blocks](#authentication-blocks) for more information.
 
 :::caution
-Every unit must be uniquely identified by a single environment block. If a unit is matched by multiple environment blocks, Pipelines will throw an error.
+Every unit must be uniquely matched by the filters of a single environment block. If a unit is matched by multiple environment blocks, Pipelines will throw an error.
 :::
 
 ### Authentication Profile Blocks
@@ -204,7 +234,7 @@ aws_accounts "all" {
 
 In this example, the `all` AWS accounts block is defined in a file named `aws_accounts.yml` within the `.gruntwork` directory. The `all` AWS accounts block references an external file located at `aws/accounts.yml` that contains the definitions of AWS accounts.
 
-DevOps Foundations customers may be familiar with the `accounts.yml` file as a file that is used by Account Factory to define the configurations of AWS accounts. In an effort to reduce the burden of migrating to the new configuration system, Pipelines uses the same schema for the `accounts.yml` file as Account Factory. This means that the `accounts.yml` file that is used by Account Factory can be used by the `aws_accounts` block without modification.
+DevOps Foundations customers may be familiar with the `accounts.yml` file as a file that is used by Account Factory to define the configurations of AWS accounts. Pipelines uses the same schema for the `accounts.yml` file as Account Factory. Consequently, the `accounts.yml` file that is used by Account Factory can be used by the `aws_accounts` block without modification.
 
 The expected schema for the `accounts.yml` file is as follows:
 
@@ -221,7 +251,9 @@ an_account:
 
 Note that multiple AWS Accounts blocks can be defined, pointing to different `accounts.yml` files. This allows for the segmentation of AWS accounts into different YAML files for organizational purposes.
 
+:::info
 The decision to leverage YAML files instead of HCL files for defining the configurations for AWS accounts was an intentional decision to increase the portability of these configurations for usage outside of Pipelines. Tools like [Terragrunt](https://github.com/gruntwork-io/terragrunt/) and [yq](https://github.com/mikefarah/yq) can be used to leverage these files, as they are more portable than HCL files.
+:::
 
 *Supported Attributes:*
 
@@ -260,12 +292,14 @@ annotation "dev" {
   }
 
   labels = {
-    "environment" = "dev"
+    "sdlc" = "dev"
   }
 }
 ```
 
-In this example, the `an_annotation` annotation is defined to match all units located within a directory that contains `dev` at the end of the path. All units that match this filter will have the label `key` set to `value`.
+In this example, the `dev` annotation is defined to match all units located within a directory that contains `dev` at the end of the path. All units that match this filter will have the label `sdlc` (corresponding to the [Software Development Lifecycle](https://en.wikipedia.org/wiki/Systems_development_life_cycle)) set to `dev`.
+
+Annotation blocks aren't used directly by Pipelines today, but will be in the future. They provide a mechanism for defining metadata about overlapping configurations that can be used to make decisions about how to interact with infrastructure that has particular characteristics. For example, Pipelines could use annotations to determine which environments are development environments vs production environments, and behave differently based on that information.
 
 *Supported Blocks:*
 
@@ -363,6 +397,6 @@ In this example, Pipelines will use OIDC to authenticate with AWS and assume the
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0120503338b58ca5ad8bd533451401ec"
+  "hash": "d7cfc7f8fc48ebb0c47bec90938b6822"
 }
 ##DOCS-SOURCER-END -->
