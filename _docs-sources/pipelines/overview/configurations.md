@@ -1,26 +1,14 @@
-# Upgrading from config.yml
-
-Previously, certain configurations for Pipelines were defined within a `.gruntwork/config.yml` file located at the root of repositories using Pipelines.
-
-To improve the quality of the Pipelines experience, configurations are now defined in the Pipelines Configuration as Code system. This system allows for more flexibility and control over configurations, allowing Pipelines to be used in a wider variety of use-cases, for a larger number of users.
+# Pipelines Configurations
 
 :::note
+Pipelines configurations are currently undergoing a transition from YAML configurations to new HCL [Configurations as Code](./configurations-as-code.md). These new configurations will offer a richer configuration experience, but are not yet required for use. YAML configurations will continue to work as expected for the time being.
+
 YAML configurations are read by Pipelines when HCL configurations are not present, and the Pipelines binary falls back to interpretting YAML configurations as if they were defined in the HCL configuration system in this scenario.
 
-This means that if you have a `.gruntwork/config.yml` file in your repository, you can continue to use it as you have been, and Pipelines will continue to work as expected. If you do introduce any HCL configurations into your `.gruntwork` directory or introduce a `gruntwork.hcl` file into a directory, Pipelines will begin to use the HCL configuration system instead of the YAML configuration system.
+This means that if you have a `.gruntwork/config.yml` file in your repository, you can continue to use it as you have been, and Pipelines will continue to work as expected.
+
+If you do introduce any HCL configurations into your `.gruntwork` directory or introduce a `gruntwork.hcl` file into a directory, Pipelines will begin to use the HCL configuration system instead of the YAML configuration system.
 :::
-
-## Should I Migrate?
-
-At this time, there is no need to migrate from YAML configurations to HCL configurations. Pipelines will continue to work as expected with YAML configurations.
-
-Gruntwork does not currently recommend migrating from YAML configurations to HCL configurations. There may be a future point where YAML configurations are deprecated, but there will be robust tooling and documentation to support this migration when it becomes necessary.
-
-## YAML Configurations
-
-The documentation below is what was previously documented [here](../overview/configuration.md):
-
----
 
 Pipelines behavior is primarily configured via a yaml file at `.gruntwork/config.yml` in your repository. Pipelines also reads [.mise.toml](https://docs.gruntwork.io/pipelines/upgrading/upgrading-from-infrastructure-pipelines#adding-misetoml) at the root of the repository to determine what version of OpenTofu/Terraform and Terragrunt to use.
 
@@ -104,11 +92,3 @@ pipelines:
         - "{{ .RepoBaseUrl }}/{{ .InfraModulesRepoName }}"
 ```
 
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "3f98994f1dd4c6c737ba3812f743bc07"
-}
-##DOCS-SOURCER-END -->

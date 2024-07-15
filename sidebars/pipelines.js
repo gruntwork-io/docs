@@ -30,9 +30,14 @@ const sidebar = [
             id: "pipelines/overview/actions",
           },
           {
-            label: "Configuration",
+            label: "Configurations",
             type: "doc",
-            id: "pipelines/overview/configuration",
+            id: "pipelines/overview/configurations",
+          },
+          {
+            label: "Configurations as Code (Beta)",
+            type: "doc",
+            id: "pipelines/overview/configurations-as-code",
           },
           {
             label: "Usage Data",
@@ -110,11 +115,6 @@ const sidebar = [
             label: "Upgrading from ECS Deploy Runner",
             type: "doc",
             id: "pipelines/upgrading/upgrading-from-ecs-deploy-runner",
-          },
-          {
-            label: "Upgrading from config.yml",
-            type: "doc",
-            id: "pipelines/upgrading/upgrading-from-config-yml",
           },
         ],
       },

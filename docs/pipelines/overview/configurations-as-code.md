@@ -1,13 +1,9 @@
-# Pipelines Configurations as Code
-
-:::note
-This page includes documentation for HCL Pipelines Configuration as Code.
-
-If you are using an older version of Pipelines, please refer to the documentation on [Upgrading from config.yml](../upgrading/upgrading-from-config-yml.md).
-:::
+# Pipelines Configurations as Code (Beta)
 
 :::caution
-As of July, 2024, the YAML configuration is still the primary mechanism for configuring Pipelines in DevOps Foundations. The best experience in DevOps Foundations remains with the YAML configuration system, as interactions with Account Factory still need improvement in the HCL configuration system.
+As of July, 2024, the YAML configuration is still the primary mechanism for configuring Pipelines in DevOps Foundations.
+
+The best experience in DevOps Foundations remains with the YAML configuration system, as interactions with Account Factory are still under development.
 
 If you are currently using YAML configurations, you should not migrate to the new configuration system at this time.
 :::
@@ -397,6 +393,6 @@ In this example, Pipelines will use OIDC to authenticate with AWS and assume the
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d7cfc7f8fc48ebb0c47bec90938b6822"
+  "hash": "f9ae1b4c47f854f187e1d46f79526449"
 }
 ##DOCS-SOURCER-END -->
