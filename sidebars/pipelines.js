@@ -30,9 +30,14 @@ const sidebar = [
             id: "pipelines/overview/actions",
           },
           {
-            label: "Configuration",
+            label: "Configurations",
             type: "doc",
-            id: "pipelines/overview/configuration",
+            id: "pipelines/overview/configurations",
+          },
+          {
+            label: "Configurations as Code (Beta)",
+            type: "doc",
+            id: "pipelines/overview/configurations-as-code",
           },
           {
             label: "Usage Data",
