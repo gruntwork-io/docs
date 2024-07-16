@@ -337,7 +337,7 @@ const config = {
         {
           name: "keywords",
           content:
-            "gruntwork, devops, devops platform, infrastructure as code, iac, account factory, account vending, terraform, terragrunt, terratest, aws, devops library, devops tools, devops courses",
+            "gruntwork, devops, devops platform, infrastructure as code, iac, account factory, account vending, pipelines, terragrunt pipelines, terraform, terragrunt, terratest, aws, devops library, devops tools, devops courses",
         },
         { name: "buildVersion", content: buildVersion },
         { name: "buildTime", content: new Date().toString() },
