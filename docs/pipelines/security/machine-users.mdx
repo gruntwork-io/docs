@@ -19,7 +19,7 @@ This guide will take approximately 30 minutes to complete.
 
 ## Storing Secrets
 
-During this setup, you will need to generate and securely store three GitHub tokens for two GitHub users. You will need a temporary location for these sensitive values between generating them and storing them in GitHub Actions. Do so according to your company's recommended security best practices (e.g., do not store them in Slack, a sticky note, etc., during this exercise.)
+During this setup, you will need to generate and securely store GitHub tokens for a Github user. You will need a temporary location for these sensitive values between generating them and storing them in GitHub Actions. Do so according to your company's recommended security best practices (e.g., do not store them in Slack, a sticky note, etc., during this exercise.)
 
 :::note
 Your organization is required to rotate the GitHub tokens and update all GitHub secrets that use them.
@@ -48,11 +48,13 @@ The restrictions that can be applied to them are few, but they are still useful 
 
 In Pipelines, the `ci-read-only-user` will need a Classic token because it needs to access software across **multiple GitHub organizations**. This is something that classic tokens can do that fine-grained tokens cannot.
 
-:::tip
-The `PIPELINES_READ_TOKEN` token must be created as a **Classic token**.
+### Fine-grained
+
+:::info
+Fine grained tokens are only required for users with a [Gruntwork DevOps Foundations setup](../../foundations/overview) for use with the Landing Zone(Account Factory) component.
 :::
 
-### Fine-grained
+<details><summary><strong>Details specific to Gruntwork DevOps Foundations setup</strong></summary>
 
 Fine-grained tokens have more granular permissions, and are generally recommended over Classic tokens when they are applicable.
 
@@ -62,10 +64,6 @@ The only limitations on fine-grained tokens that are relevant from a Pipelines p
 2. They must have an expiration shorter than 1 year (Classic tokens can be configured to never expire).
 
 In Pipelines, the `ci-user` will need two fine-grained tokens because they allow for very limited access to specific repositories, with minimal permissions to them.
-
-:::tip
-The `INFRA_ROOT_WRITE_TOKEN` and `ORG_REPO_ADMIN_TOKEN` tokens must be created as **fine-grained tokens**.
-:::
 
 :::tip
 The **Resource owner** must be set to the GitHub organization of the repositories that the tokens will be used to access (e.g. `infrastructure-live-root`).
@@ -83,28 +81,64 @@ More information can be found on that [here](https://docs.github.com/en/organiza
 
 ![Pending requests](/img/pipelines/security/pending_requests.png)
 
+</details>
+
 ## Creating machine users
 
-The recommended setup for Pipelines uses two machine users; one with the ability to open pull requests and run workflows on your behalf and another that can only has read access to repositories in GitHub. Restrictive permissions are then granted to each user, granting them requisite permissions to accomplish their tasks. This means that in order to actually run a pipeline job, both users may be involved at separate stages.
+The recommended setup for Pipelines uses a machine user that only has read access to repositories in GitHub referred to as the `ci-read-only-user`.
 
-We’ll refer to this user as `ci-user` and `ci-read-only-user`, but you may name them anything you like. These users **must**:
-
-1. Both be members of your GitHub Organization
-2. Both be members of your team in **Gruntwork**’s GitHub Organization (See [instructions on inviting a user to your team](https://docs.gruntwork.io/developer-portal/invite-team#inviting-team-members) and [linking the user’s GitHub ID to Gruntwork](https://docs.gruntwork.io/developer-portal/link-github-id))
-
-:::tip
-We recommend creating two machine users for this use case, but you can adjust this based on your organization's needs. Ensure that the correct tokens are created and that the permissions for the machine users and tokens are appropriate for their required access.
-
+:::info
 Note that additional licenses in your GitHub subscription might be required if you are at capacity.
+
+Also a second Github user(`ci-user`) with the ability to open pull requests and run workflows is recommended for integrating with the Account Factory component of the [Gruntwork DevOps Foundations setup](../../foundations/overview).
 :::
 
+Restrictive permissions are then granted to the Github user(s), granting them requisite permissions to accomplish their tasks. This means that in order to actually run a pipeline job, both users may be involved at separate stages.
+
+While we refer to these users as `ci-read-only-user` and `ci-user`, but you may name them anything you like. Ensure that the user(s) are:
+
+1. A member of your GitHub Organization
+2. A member of your team in **Gruntwork**’s GitHub Organization (See [instructions on inviting a user to your team](https://docs.gruntwork.io/developer-portal/invite-team#inviting-team-members) and [linking the user’s GitHub ID to Gruntwork](https://docs.gruntwork.io/developer-portal/link-github-id))
+
+### ci-read-only-user
+
+This user is created to download private software within GitHub Actions Workflows. The `ci-read-only-user` is used to access the following:
+
+- Gruntwork Library modules & Pipelines CLI
+- Your infrastructure repository and
+- Any other custom module repositories that are private and used in your infrastructure repository
+
+The `ci-read-only-user` should have a single classic [Personal Access Token (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with read permissions. Classic PATs have coarse granularity, we recommend putting this user in a GitHub team that only has READ access to `infrastructure-live-root` and any relevant module repositories in your own GitHub Organization. By adding this user to the Gruntwork Developer portal, they will automatically gain access to the Gruntwork Library.
+
+#### Invite the `ci-read-only-user` to your repository
+
+Invite `ci-user-read-only` to your `infrastructure-live-root` repository with read access.
+
+#### Create the appropriate tokens for the `ci-read-only-user`
+
+Create the following token for the `ci-read-only-user`:
+
+1. `PIPELINES_READ_TOKEN`. This [Classic Personal Access Token](#classic-tokens) will be used to manage access to private software during GitHub Action runs.
+
+This token **must** have `repo` scopes.
+
+![PIPELINES_READ_TOKEN PAT Configuration](/img/pipelines/security/PIPELINES_READ_TOKEN.png)
+
+The expiration of this token is up to you and the security posture of your organization, Gruntwork recommends 90 days to reduce the burden of rotating tokens and secrets.
+
+### ci-user
+
+:::info
+We recommend creating a second machine user for integrating with the Account Factory component of the [Gruntwork DevOps Foundations setup](../../foundations/overview) but you can adjust this based on your organization's needs and ensure that the correct tokens are created and that the permissions for the machine users and tokens are appropriate for their required access.
+:::
+
+<details><summary><strong>Details specific to Gruntwork DevOps Foundations setup</strong></summary>
+
 :::caution
-There is a security implication to having one machine user for all the tokens generated here, as it would need to have write access to all repositories that the `ci-user` and `ci-read-only-user` need to access. This violates the security [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) access.
+I you decide against creating a second user, be aware that there is a security implication to having one machine user for all the tokens used by Pipelines, as it would need to have write access to all repositories that the `ci-user` and `ci-read-only-user` need to access. This violates the security [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) access.
 
 Make sure you are aware of trade-offs in security for convenience when making decisions related to this.
 :::
-
-### ci-user
 
 The `ci-user` orchestrates workflows, can open pull requests from automated code generation, and leave comments on pull requests. This user should have two GitHub Fine Grained [Personal Access Tokens (PATs)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens) with the following permissions.
 
@@ -146,31 +180,7 @@ Create the following access tokens in the `ci-user`'s GitHub account:
 
    ![ORG_REPO_ADMIN_TOKEN PAT Configuration](/img/pipelines/security/ORG_REPO_ADMIN_TOKEN.png)
 
-### ci-read-only-user
-
-This user is created to download private software within GitHub Actions Workflows. The `ci-read-only-user` is used to access Gruntwork Library modules, your own `infrastructure-modules` repository, any other custom module repositories that are private and the Pipelines CLI itself.
-
-The `ci-read-only-user` should have a single classic [Personal Access Token (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with read permissions. Classic PATs have coarse granularity, we recommend putting this user in a GitHub team that only has READ access to `infrastructure-live-root` and any relevant module repositories in your own GitHub Organization. By adding this user to the Gruntwork Developer portal, they will automatically gain access to the Gruntwork Library.
-
-#### Invite the `ci-read-only-user` to your repository
-
-Invite `ci-user-read-only` to your `infrastructure-live-root` repository with read access.
-
-#### Create the appropriate tokens for the `ci-read-only-user`
-
-Create the following token for the `ci-read-only-user`:
-
-1. `PIPELINES_READ_TOKEN`. This [Classic Personal Access Token](#classic-tokens) will be used to manage access to private software during GitHub Action runs.
-
-This token **must** have `repo` scopes.
-
-![PIPELINES_READ_TOKEN PAT Configuration](/img/pipelines/security/PIPELINES_READ_TOKEN.png)
-
-The expiration of this token is up to you and the security posture of your organization, Gruntwork recommends 90 days to reduce the burden of rotating tokens and secrets.
-
-## Invite both machine users to Gruntwork
-
-Ensure both of these machine users are members of your team in **Gruntwork**’s GitHub Organization (See [instructions on inviting a user to your team](https://docs.gruntwork.io/developer-portal/invite-team#inviting-team-members) and [linking the user’s GitHub ID to Gruntwork](https://docs.gruntwork.io/developer-portal/link-github-id))
+</details>
 
 ### Configure secrets for GitHub Actions
 
@@ -179,6 +189,30 @@ Ensure both of these machine users are members of your team in **Gruntwork**’s
 The recommended path for storing secrets in GitHub Actions is with Organization level secrets, however not all GitHub plans support repository specific Organization secrets. If this is the case for your GitHub organization, you should use Repository level secrets.
 
 :::
+
+<details><summary>Instructions for setup <strong>without Gruntwork DevOps Foundations</strong></summary>
+
+<Tabs groupId="github-actions-secrets-non-devops-foundations">
+<TabItem value="Organization Secrets" label="Organization Secrets" default>
+
+1. Navigate to your top level GitHub Organization and select the **Settings** tab.
+
+2. From the navigation bar on the left side, select **Secrets and variables** then select **Actions**.
+
+3. Using the **New organization secret** option, add the following a secret:
+
+   - `PIPELINES_READ_TOKEN`
+
+     1. This should be assigned the _`PIPELINES_READ_TOKEN`_ token generated by the `ci-read-only-user` in the [secrets section](#ci-read-only-user) as its value.
+
+     1. **Repository access**. Select the `Private Repositories` option.
+
+</TabItem>
+</Tabs>
+
+</details>
+
+<details><summary>Instructions for setup with Gruntwork DevOps Foundations</summary>
 
 :::info
 
@@ -282,10 +316,12 @@ For additional information on creating and using Github Actions Repository secre
 </TabItem>
 </Tabs>
 
+</details>
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "a2c016871916f71251f2c41df3895b7c"
+  "hash": "1dd42f9f818fe74fd927e4d0f3611253"
 }
 ##DOCS-SOURCER-END -->
