@@ -33,10 +33,10 @@ pipelines:
   cis-service-catalog-repo-url: git@github.com:gruntwork-io/terraform-aws-cis-service-catalog.git
 
   # URL of the terraform-aws-utilities repo
-  aws-utilities-repo-url: git@github.com/gruntwork-io/terraform-aws-utilities.git
+  aws-utilities-repo-url: git@github.com:gruntwork-io/terraform-aws-utilities.git
 
   # Name of the architecture catalog repo (including github org e.g. acme/terraform-aws-architecture-catalog).
-  arch-catalog-repo-url: git@github.com/gruntwork-io/terraform-aws-architecture-catalog
+  arch-catalog-repo-url: git@github.com:gruntwork-io/terraform-aws-architecture-catalog
 
   # Version of the https://github.com/gruntwork-io/terraform-aws-architecture-catalog modules used in templates
   arch-catalog-version: v2.2.5
