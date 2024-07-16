@@ -20,6 +20,11 @@ const sidebar = [
             id: "pipelines/overview/index",
           },
           {
+            label: "Setup",
+            type: "doc",
+            id: "pipelines/overview/setup",
+          },
+          {
             label: "Architecture",
             type: "doc",
             id: "pipelines/architecture/index",

@@ -1,0 +1,36 @@
+# Setup
+
+Given that Pipelines is a GitOps technology, there isn't necessarily any requirement that a binary be installed locally to use it. As long as you have a GitHub repository, and it is able to run Pipelines as part of a GitHub Actions workflow, you can use Pipelines.
+
+There are some additional niceties to be had by installing the Pipelines binary locally, however.<!-- TODO: To learn more about that, see the cli ./cli.md documentation. -->
+
+The examples below will show you a step by step guide on setting up Pipelines from scratch. Pipelines has been designed to support brownfield and greenfield projects, so you may need to adjust some steps to address your specific needs.
+
+## 1. Setting up a GitHub repository
+
+To use Pipelines, you need to have a GitHub repository. If you don't have one, you can create one by following the instructions on the [GitHub website](https://docs.github.com/en/github/getting-started-with-github/create-a-repo).
+
+Once you've created your repository, think through the access controls you want to ensure. It is always a good idea to carefully evaluate the risk involved in managing your infrastructure in an automated fashion. Ensure that you have the necessary security controls in place to protect your infrastructure. For guidance on ensuring those controls, read the [controls](../security/controls.md) documentation.
+
+## 2. Setting up a Machine User
+
+To access content that isn't publicly available, you will need to set up a GitHub machine user. This user will be used to authenticate with GitHub and access the private content you need to use Pipelines (including downloading the Pipelines binary in workflows).
+
+For detailed guidance on machine users, read the [machine users](../security/machine-users.mdx) documentation.
+
+<details>
+<summary>Setting up a Machine User</summary>
+
+1. Navigate to [GitHub Signup](https://github.com/signup) and follow the user creation process to create a new machine user, following [documentation provided by GitHub](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github).
+2. Once you have a machine user available, ensure that it has the requisite access to
+
+</details>
+
+
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "local-copier",
+  "hash": "94b43e180e8e353f67fd1133bae63102"
+}
+##DOCS-SOURCER-END -->
