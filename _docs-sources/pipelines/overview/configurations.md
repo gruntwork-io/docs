@@ -70,6 +70,9 @@ pipelines:
   # Configuration options below are ONLY for Pipelines Enterprise customers
   ###########################################################################
 
+  # (Optional) The full path to a tags.yaml file for centrally managed tags, e.g. acme/repo/path/to/tags.yaml
+  catalog-tags-location: gruntwork-io-demo/infrastructure-modules/common_tags.yaml
+
   # Only set to true for delegated (vended) repositories from account factory
   is-delegated-repo: false
   # Only set to true for infrastructure-live-access-control
