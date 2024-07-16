@@ -170,7 +170,9 @@ aws_accounts "all" {
 }
 ```
 
-In this example, the `all` AWS accounts block is defined in a file named `aws_accounts.yml` within the `.gruntwork` directory. The `all` AWS accounts block references an external file located at `aws/accounts.yml` that contains the definitions of AWS accounts.
+In this example, the `all` AWS accounts block is defined in a file named `aws_accounts.hcl` within the `.gruntwork` directory.
+
+The `all` AWS accounts block references an external file located at `aws/accounts.yml` via the `path` attribute that contains the definitions of AWS accounts in YAML format.
 
 DevOps Foundations customers may be familiar with the `accounts.yml` file as a file that is used by Account Factory to define the configurations of AWS accounts. Pipelines uses the same schema for the `accounts.yml` file as Account Factory. Consequently, the `accounts.yml` file that is used by Account Factory can be used by the `aws_accounts` block without modification.
 
@@ -334,6 +336,6 @@ In this example, Pipelines will use OIDC to authenticate with AWS and assume the
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "652859d4d71bbffc265213433880459f"
+  "hash": "e343eb4c06cb0a2b6839c099d5f597b5"
 }
 ##DOCS-SOURCER-END -->
