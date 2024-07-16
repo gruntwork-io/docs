@@ -88,9 +88,7 @@ const config = {
     mermaid: true,
   },
 
-  themes: [
-    '@docusaurus/theme-mermaid',
-  ],
+  themes: ["@docusaurus/theme-mermaid"],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -334,6 +332,13 @@ const config = {
           }
         : undefined,
       metadata: [
+        // https://docusaurus.io/docs/2.x/seo#global-metadata
+        // This would become <meta name="keywords" content="..."/> in the generated HTML
+        {
+          name: "keywords",
+          content:
+            "gruntwork, devops, devops platform, infrastructure as code, iac, account factory, account vending, terraform, terragrunt, terratest, aws, devops library, devops tools, devops courses",
+        },
         { name: "buildVersion", content: buildVersion },
         { name: "buildTime", content: new Date().toString() },
       ],
