@@ -23,11 +23,9 @@ The following is an example of a minimal configuration that would allow Pipeline
 unit {
   authentication {
     aws_oidc {
-      account_id = "an-aws-account-id"
-      authentication_profile = {
-        plan_iam_role = "role-to-assume-for-plans"
-        apply_iam_role = "role-to-assume-for-applies"
-      }
+      account_id         = "an-aws-account-id"
+      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role-to-assume-for-plans"
+      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role-to-assume-for-applies"
     }
   }
 }
@@ -48,11 +46,9 @@ environment "an_environment" {
 
   authentication {
     aws_oidc {
-      account_id = "an-aws-account-id"
-      authentication_profile = {
-        plan_iam_role = "role-to-assume-for-plans"
-        apply_iam_role = "role-to-assume-for-applies"
-      }
+      account_id         = "an-aws-account-id"
+      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role-to-assume-for-plans"
+      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role-to-assume-for-applies"
     }
   }
 }
@@ -88,12 +84,6 @@ The main terminology you need to know to understand the documentation below incl
   The `an_environment` label is used to qualify the `environment` block in the example above.
   :::
 
-  Note that some blocks have multiple labels. Labels can both serve as a mechanism for disambiguating blocks from each other, and as a way to have concrete implementations of general behavior.
-
-  :::tip
-  In the `authentication_profile` block, the first label of `aws_oidc` is used to qualify the block as an `aws_oidc` authentication profile block, which means that the content inside the block is relevant for `aws_oidc` authentication profiles, and the second label of `profile` is used to qualify the block as an `aws_oidc` authentication profile block named `profile`.
-  :::
-
 ## Global Configurations
 
 Any configurations located within a `.gruntwork` directory either in the current working directory, or a parent directory of the current working directory are referred to as global configurations. These configurations are typically applicable within a wide range of contexts within a repository, and are the primary mechanism for configuring Pipelines.
@@ -119,11 +109,9 @@ environment "an_environment" {
 
   authentication {
     aws_oidc {
-      account_id = "an-aws-account-id"
-      authentication_profile = {
-        plan_iam_role  = "role-to-assume-for-plans"
-        apply_iam_role = "role-to-assume-for-applies"
-      }
+      account_id         = "an-aws-account-id"
+      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role-to-assume-for-plans"
+      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role-to-assume-for-applies"
     }
   }
 }
@@ -144,8 +132,9 @@ environment "an_environment" {
 
   authentication {
     aws_oidc {
-      account_id = aws_accounts.all.an_account.id
-      authentication_profile = authentication_profile.aws_oidc.profile
+      account_id         = aws_accounts.all.an_account.id
+      plan_iam_role_arn  = "arn:aws:iam::${aws_accounts.all.an_account.id}:role-to-assume-for-plans"
+      apply_iam_role_arn = "arn:aws:iam::${aws_accounts.all.an_account.id}:role-to-assume-for-applies"
     }
   }
 }
@@ -153,14 +142,9 @@ environment "an_environment" {
 aws_accounts "all" {
   path = "aws/accounts.yml"
 }
-
-authentication_profile "aws_oidc" "profile" {
-  plan_iam_role  = "role-to-assume-for-plans"
-  apply_iam_role = "role-to-assume-for-applies"
-}
 ```
 
-More on configuration components like [aws_accounts](#aws-accounts-blocks) and [authentication_profile](#authentication-profile-blocks) can be found below.
+More on configuration components like [aws_accounts](#aws-accounts-blocks) can be found below.
 
 *Supported Blocks:*
 
@@ -170,48 +154,6 @@ More on configuration components like [aws_accounts](#aws-accounts-blocks) and [
 :::caution
 Every unit must be uniquely matched by the filters of a single environment block. If a unit is matched by multiple environment blocks, Pipelines will throw an error.
 :::
-
-### Authentication Profile Blocks
-
-Authentication Profile blocks are configurations used by [authentication](#authentication-blocks) blocks to have commonly re-used authentication configurations codified and referenced by multiple authentication blocks.
-
-Note that this is a configuration block that is qualified by the first label used on it. In the example below, the first label is `aws_oidc`, so the block is an `aws_oidc` authentication profile block.
-
-At this time, the only supported label that can be set for the first label is `aws_oidc`.
-
-The second label is the name of the authentication profile. This is a user-defined name that can be used to reference the authentication profile in other parts of the configuration. This label must be globally unique.
-
-e.g.
-
-```hcl
-# .gruntwork/authentication_profile.hcl
-authentication_profile "aws_oidc" "profile" {
-  plan_iam_role  = "role-to-assume-for-plans"
-  apply_iam_role = "role-to-assume-for-applies"
-
-  region           = "us-east-1"
-  session_duration = 3600
-}
-
-# some-unit/gruntwork.hcl
-unit {
-  authentication {
-    aws_oidc {
-      account_id = "an-aws-account-id"
-      authentication_profile = authentication_profile.aws_oidc.profile
-    }
-  }
-}
-```
-
-In this example, the `aws_oidc` authentication profile named `profile` is defined in a file named `authentication_profile.hcl` in the `.gruntwork` directory. The `aws_oidc` authentication block in the `gruntwork.hcl` file in the `some-unit` directory references the `profile` authentication profile.
-
-*Supported Attributes:*
-
-- `plan_iam_role` (Required): The IAM role that Pipelines will assume when running Terragrunt plan commands.
-- `apply_iam_role` (Required): The IAM role that Pipelines will assume when running Terragrunt apply commands.
-- `region` (Optional): The AWS region that Pipelines will use when running Terragrunt commands. If not set, Pipelines will use the default region of `us-east-1`.
-- `session_duration` (Optional): The duration in seconds that the AWS session will be valid for. If not set, Pipelines will use the default session duration of `3600` seconds.
 
 ### AWS Accounts Blocks
 
@@ -228,7 +170,9 @@ aws_accounts "all" {
 }
 ```
 
-In this example, the `all` AWS accounts block is defined in a file named `aws_accounts.yml` within the `.gruntwork` directory. The `all` AWS accounts block references an external file located at `aws/accounts.yml` that contains the definitions of AWS accounts.
+In this example, the `all` AWS accounts block is defined in a file named `aws_accounts.hcl` within the `.gruntwork` directory.
+
+The `all` AWS accounts block references an external file located at `aws/accounts.yml` via the `path` attribute that contains the definitions of AWS accounts in YAML format.
 
 DevOps Foundations customers may be familiar with the `accounts.yml` file as a file that is used by Account Factory to define the configurations of AWS accounts. Pipelines uses the same schema for the `accounts.yml` file as Account Factory. Consequently, the `accounts.yml` file that is used by Account Factory can be used by the `aws_accounts` block without modification.
 
@@ -320,11 +264,9 @@ e.g.
 unit {
   authentication {
     aws_oidc {
-      account_id = "an-aws-account-id"
-      authentication_profile = {
-        plan_iam_role = "role-to-assume-for-plans"
-        apply_iam_role = "role-to-assume-for-applies"
-      }
+      account_id     = "an-aws-account-id"
+      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role-to-assume-for-plans"
+      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role-to-assume-for-applies"
     }
   }
 }
@@ -371,11 +313,9 @@ e.g.
 ```hcl
 authentication {
   aws_oidc {
-    account_id = "an-aws-account-id"
-    authentication_profile = {
-      plan_iam_role  = "role-to-assume-for-plans"
-      apply_iam_role = "role-to-assume-for-applies"
-    }
+    account_id     = "an-aws-account-id"
+    plan_iam_role  = "arn:aws:iam::an-aws-account-id:role-to-assume-for-plans"
+    apply_iam_role = "arn:aws:iam::an-aws-account-id:role-to-assume-for-applies"
   }
 }
 ```
@@ -386,5 +326,8 @@ In this example, Pipelines will use OIDC to authenticate with AWS and assume the
 
 - `aws_oidc` (Required): An AWS OIDC authentication block that determines how Pipelines will authenticate with AWS using OIDC. See [AWS OIDC Authentication Blocks](#aws-oidc-authentication-blocks) for more information.
   - `account_id` (Required): The AWS account ID that Pipelines will authenticate with.
-  - `authentication_profile` (Required): An authentication profile attribute that determines how Pipelines will authenticate to a particular AWS account using OIDC. This is what's referred to as an "inline" Authentication Profile, and is shorthand for the DRY-er (Don't Repeat Yourself) approach of leveraging an Authentication Profile by reference. See [Authentication Profile Blocks](#authentication-profile-blocks) for more information.
+  - `plan_iam_role_arn` (Required): The IAM role ARN that Pipelines will assume when running Terragrunt plan commands.
+  - `apply_iam_role_arn` (Required): The IAM role ARN that Pipelines will assume when running Terragrunt apply commands.
+  - `region` (Optional): The AWS region that Pipelines will use when running Terragrunt commands. If not set, Pipelines will use the default region of `us-east-1`.
+  - `session_duration` (Optional): The duration in seconds that the AWS session will be valid for. If not set, Pipelines will use the default session duration of `3600` seconds.
 
