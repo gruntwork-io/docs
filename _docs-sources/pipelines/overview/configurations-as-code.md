@@ -199,14 +199,14 @@ The decision to leverage YAML files instead of HCL files for defining the config
 
 - `path` (Required): The path to the YAML file that contains the definitions of AWS accounts.
 
-### Pipelines Blocks
+### Repository Blocks
 
-Pipelines blocks are used to define configurations that are applicable to Pipelines itself.
+Repository blocks are used to define configurations that are applicable to the entire repository.
 
 e.g.
 
 ```hcl
-pipelines {
+repository {
   deploy_branch_name = "main"
 }
 ```
