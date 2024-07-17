@@ -8,15 +8,15 @@ The best experience in DevOps Foundations remains with the YAML configuration sy
 If you are currently using YAML configurations, you should not migrate to the new configuration system at this time.
 :::
 
-Pipelines relies on configurations written in [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl) to drive dynamic behavior. These configurations are primarily used by Pipelines to determine how to interact with cloud environments within the context of the Infrastructure As Code (IAC) within a code repository.
+Pipelines relies on configurations written in [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl) to drive dynamic behavior. These configurations are primarily used by Pipelines to determine how to interact with cloud environments within the context of the Infrastructure As Code (IaC) within a code repository.
 
-At a high level, Pipelines will read these configurations by parsing all files that end with `.hcl` within a directory named `.gruntwork` or a single file named `gruntwork.hcl`. In typical usage, the configurations that are global to the IAC in a repository will be defined within a `.gruntwork` directory at the root of the repository, and configurations that are specific to a particular `terragrunt.hcl` file (a unit) located in the same directory as the `terragrunt.hcl` file.
+At a high level, Pipelines will read these configurations by parsing all files that end with `.hcl` within a directory named `.gruntwork` or a single file named `gruntwork.hcl`. In typical usage, the configurations that are global to the IaC in a repository will be defined within a `.gruntwork` directory at the root of the repository, and configurations that are specific to a particular `terragrunt.hcl` file (a unit) located in the same directory as the `terragrunt.hcl` file.
 
 ## Minimum Required Configuration
 
 The minimum configurations required for Pipelines to operate correctly will vary depending on context. For the most common usage, Pipelines will need to be able to determine how to authenticate with a cloud provider in order to run Terragrunt commands. If it is not able to determine how to authenticate within a context where it needs to be able to do so, Pipelines will throw an error.
 
-The following is an example of a minimal configuration that would allow Pipelines to determine how to authenticate with AWS for exactly one unit of IAC:
+The following is an example of a minimal configuration that would allow Pipelines to determine how to authenticate with AWS for exactly one unit of IaC:
 
 ```hcl
 # gruntwork.hcl
@@ -248,7 +248,7 @@ Annotation blocks aren't used directly by Pipelines today, but will be in the fu
 
 ## Local Configurations
 
-The configurations found within a directory that contains a `terragrunt.hcl` file are referred to as local configurations. These configurations are typically used to define configurations that are specific to a single unit of IAC within a repository.
+The configurations found within a directory that contains a `terragrunt.hcl` file are referred to as local configurations. These configurations are typically used to define configurations that are specific to a single unit of IaC within a repository.
 
 They must be specified within a single file named `gruntwork.hcl` in the same directory as the `terragrunt.hcl` file.
 
@@ -256,7 +256,7 @@ Local configurations can be used both to define the complete configurations requ
 
 ### Unit Blocks
 
-Unit blocks are used to define configurations that are applicable to a single unit of IAC within a repository.
+Unit blocks are used to define configurations that are applicable to a single unit of IaC within a repository.
 
 e.g.
 
