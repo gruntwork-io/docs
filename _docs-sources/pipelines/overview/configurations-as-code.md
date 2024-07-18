@@ -90,6 +90,30 @@ A label is one or more strings that are used to qualify a block.
 The `an_environment` label is used to qualify the `environment` block in the example above.
 :::
 
+## Configuration Hierarchy
+
+Pipelines configurations are designed to be organized into a hierarchy. This hierarchy reflects the specificity of configurations, with configurations more specific to a single unit of IaC taking precedence over configurations that are more general when they are in conflict.
+
+The hierarchy of configurations is as follows:
+
+### Repository Configurations
+
+These are the most general configurations that are applicable to the entire repository, regardless of working directory context. They are always defined in [global configurations](#global-configurations) via [repository blocks](#repository-blocks).
+
+These configurations are the most general and will will always be overridden by more specific configurations when they are in conflict.
+
+### Environment Configurations
+
+These are configurations that are applicable to a specific environment within a repository. They are only ever applicable to units that match a specific [filter](#filter-blocks). They are always defined in [global configurations](#global-configurations) via [environment blocks](#environment-blocks).
+
+These configurations are more specific than repository configurations, and as such override repository configurations when they are in conflict within the context of a matched filter.
+
+### Unit Configurations
+
+These are configurations that are applicable to a single unit of IaC within a repository. They are always defined in [local configurations](#local-configurations) via [unit blocks](#unit-blocks).
+
+These configurations are the most specific and will always override other configurations when they are in conflict.
+
 ## Global Configurations
 
 Any configurations located within a `.gruntwork` directory either in the current working directory, or a parent directory of the current working directory are referred to as global configurations. These configurations are typically applicable within a wide range of contexts within a repository, and are the primary mechanism for configuring Pipelines.
@@ -281,9 +305,17 @@ All configuration blocks that contain a `filter` block will only be applied to u
 
 Authentication blocks are components used by [environment](#environment-blocks) and [unit](#unit-blocks) blocks to determine how Pipelines will authenticate with cloud platforms when running Terragrunt commands.
 
-Note that `authentication` blocks wrap other, more specific authentication blocks that are used to authenticate with specific cloud platforms. When Pipelines encounters an `authentication` block, it will attempt to authenticate with all cloud platforms defined within the block.
+:::note
+Authentication blocks wrap other, more specific authentication blocks that are used to authenticate with specific cloud platforms. When Pipelines encounters an `authentication` block, it will attempt to authenticate with all cloud platforms defined within the block.
 
 At this time, the only supported block that can be nested within the `authentication` block is `aws_oidc`.
+:::
+
+:::caution
+Authentication blocks can be defined at both the environment and unit levels. When defined at the environment level, they will be applied to all units that match the filter of the environment.
+
+When defined at the unit level, they will only be applied to the unit that contains the block. Unit-level authentication blocks will override environment-level authentication blocks when they are in conflict.
+:::
 
 e.g.
 
