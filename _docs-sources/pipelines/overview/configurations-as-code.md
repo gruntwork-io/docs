@@ -10,13 +10,13 @@ If you are currently using YAML configurations, you should not migrate to the ne
 
 Pipelines relies on configurations written in [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl) to drive dynamic behavior. These configurations are primarily used by Pipelines to determine how to interact with cloud environments within the context of the Infrastructure As Code (IaC) within a code repository.
 
-At a high level, Pipelines will read these configurations by parsing all files that end with `.hcl` within a directory named `.gruntwork` or a single file named `gruntwork.hcl`. In typical usage, the configurations that are global to the IaC in a repository will be defined within a `.gruntwork` directory at the root of the repository, and configurations that are specific to a particular `terragrunt.hcl` file (a unit) located in the same directory as the `terragrunt.hcl` file.
+At a high level, Pipelines will read these configurations by parsing all files that end with `.hcl` within a directory named `.gruntwork` or a single file named `gruntwork.hcl`. In typical usage, the configurations that are global to the git repository will be defined within the `.gruntwork` directory at the root of the repository, and configurations that are specific to a particular `terragrunt.hcl` file (a "unit") located in the same directory as the `terragrunt.hcl` file.
 
 ## Minimum Required Configuration
 
 The minimum configurations required for Pipelines to operate correctly will vary depending on context. For the most common usage, Pipelines will need to be able to determine how to authenticate with a cloud provider in order to run Terragrunt commands. If it is not able to determine how to authenticate within a context where it needs to be able to do so, Pipelines will throw an error.
 
-The following is an example of a minimal configuration that would allow Pipelines to determine how to authenticate with AWS for exactly one unit of IaC:
+The following is an example of a minimal configuration for a single Terragrunt unit that tells Pipelines how to authenticate with AWS using OIDC:
 
 ```hcl
 # gruntwork.hcl
@@ -33,7 +33,7 @@ unit {
 
 Placing this configuration in a `gruntwork.hcl` file in the same directory as a `terragrunt.hcl` file will cause Pipelines to assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when running Terragrunt plan commands, using [OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) to authenticate to AWS and assume that role.
 
-In most circumstances, the same role would be assumed by multiple units of configuration within a repository (e.g. all units within a given directory configure resources for the same AWS account). Hence, it would be more appropriate to define a `.gruntwork` directory at the root of the repository with configuration files ending in `.hcl` that are applicable to all units within a given directory.
+In most circumstances, the same role would be assumed by multiple Terragrunt units of configuration within a repository (e.g. all units within a given directory configure resources for the same AWS account). In this situation, it would be more convenient to set the AWS authentication at the environment level by declaring an `enivronment` block in one of the `.hcl` files in the `.gruntwork` directory at the root of the repository, and declaring the AWS authentication configuration there.
 
 e.g.
 
@@ -66,23 +66,29 @@ HCL is an extensible configuration language developed by HashiCorp. See [this](h
 
 The main terminology you need to know to understand the documentation below includes:
 
-- **Blocks**: A block is a collection of nested configurations that are defined within curly braces `{}`.
+### Blocks
 
-  :::tip
-  A `filter` block is nested in the `environment` block in the example above.
-  :::
+A block is a collection of nested configurations that are defined within curly braces `{}`, immediately after the identifier of the block.
 
-- **Attributes**: An attribute is a key-value pair separated by an `=` that is defined within a block.
+:::tip
+A `filter` block is nested in the `environment` block in the example above.
+:::
 
-  :::tip
-  The `paths` attribute is defined within the `filter` block in the example above.
-  :::
+### Attributes
 
-- **Labels**: A label is one or more strings that are used to qualify a block.
+An attribute is a key-value pair separated by an `=` that is defined within a block.
 
-  :::tip
-  The `an_environment` label is used to qualify the `environment` block in the example above.
-  :::
+:::tip
+The `paths` attribute is defined within the `filter` block in the example above.
+:::
+
+### Labels
+
+A label is one or more strings that are used to qualify a block.
+
+:::tip
+The `an_environment` label is used to qualify the `environment` block in the example above.
+:::
 
 ## Global Configurations
 
@@ -217,35 +223,6 @@ In this example, the `deploy_branch_name` attribute is set to `main`, which mean
 
 - `deploy_branch_name` (Optional): The branch that Pipelines will deploy infrastructure changes from. If not set, Pipelines will deploy infrastructure changes from the `main` branch.
 
-### Annotation Blocks
-
-Annotation blocks are used to define configurations that are applicable to multiple units within a repository. These configurations are typically used to provide metadata about configurations that can be used by Pipelines to make decisions about how to interact with those configurations.
-
-The label applied to an annotation block is the name of the annotation. This is a user-defined label for the annotation, and must be globally unique.
-
-e.g.
-
-```hcl
-annotation "dev" {
-  filter {
-    paths = ["*dev/*"]
-  }
-
-  labels = {
-    "sdlc" = "dev"
-  }
-}
-```
-
-In this example, the `dev` annotation is defined to match all units located within a directory that contains `dev` at the end of the path. All units that match this filter will have the label `sdlc` (corresponding to the [Software Development Lifecycle](https://en.wikipedia.org/wiki/Systems_development_life_cycle)) set to `dev`.
-
-Annotation blocks aren't used directly by Pipelines today, but will be in the future. They provide a mechanism for defining metadata about overlapping configurations that can be used to make decisions about how to interact with infrastructure that has particular characteristics. For example, Pipelines could use annotations to determine which environments are development environments vs production environments, and behave differently based on that information.
-
-*Supported Blocks:*
-
-- `filter` (Required): A filter block that determines which units the annotation is applicable to. See [Filter Blocks](#filter-blocks) for more information.
-- `labels` (Required): A map of key-value pairs that provide metadata about the units that the annotation is applicable to.
-
 ## Local Configurations
 
 The configurations found within a directory that contains a `terragrunt.hcl` file are referred to as local configurations. These configurations are typically used to define configurations that are specific to a single unit of IaC within a repository.
@@ -264,7 +241,7 @@ e.g.
 unit {
   authentication {
     aws_oidc {
-      account_id     = "an-aws-account-id"
+      account_id         = "an-aws-account-id"
       plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role-to-assume-for-plans"
       apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role-to-assume-for-applies"
     }
@@ -284,7 +261,7 @@ Some configurations are only relevant within the context of other configurations
 
 ### Filter Blocks
 
-Filter blocks are components used by [environment](#environment-blocks) and [annotation](#annotation-blocks) blocks to determine where certain configurations are applicable.
+Filter blocks are components used by [environment](#environment-blocks) blocks to determine where certain configurations are applicable.
 
 e.g.
 
