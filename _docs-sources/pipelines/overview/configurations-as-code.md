@@ -100,7 +100,7 @@ The hierarchy of configurations is as follows:
 
 These are the most general configurations that are applicable to the entire repository, regardless of working directory context. They are always defined in [global configurations](#global-configurations) via [repository blocks](#repository-blocks).
 
-These configurations are the most general and will will always be overridden by more specific configurations when they are in conflict.
+These configurations are the most general and will always be overridden by more specific configurations when they are in conflict.
 
 ### Environment Configurations
 
@@ -311,7 +311,7 @@ Authentication blocks wrap other, more specific authentication blocks that are u
 At this time, the only supported block that can be nested within the `authentication` block is `aws_oidc`.
 :::
 
-:::caution
+:::tip
 Authentication blocks can be defined at both the environment and unit levels. When defined at the environment level, they will be applied to all units that match the filter of the environment.
 
 When defined at the unit level, they will only be applied to the unit that contains the block. Unit-level authentication blocks will override environment-level authentication blocks when they are in conflict.
