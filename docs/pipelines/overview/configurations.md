@@ -16,20 +16,34 @@ A sample `config.yml` with a full set of options is below.
 
 ```
 pipelines:
-  # Branch that IAC is deployed from
+  # Branch that IaC is deployed from
   deploy-branch-name: main
+
+  # URL of the terraform-aws-security repo
+  aws-security-repo-url: git@github.com:gruntwork-io/terraform-aws-security.git
   # Version of the https://github.com/gruntwork-io/terraform-aws-security modules used in templates
   module-security-version: v0.68.3
+
+  # URL of the terraform-aws-control-tower repo
+  control-tower-repo-url: git@github.com:gruntwork-io/terraform-aws-control-tower.git
   # Version of the https://github.com/gruntwork-io/terraform-aws-control-tower modules used in templates
   control-tower-modules-version: v0.4.2
+
+  # URL of the terraform-aws-cis-service-catalog repo
+  cis-service-catalog-repo-url: git@github.com:gruntwork-io/terraform-aws-cis-service-catalog.git
+
+  # URL of the terraform-aws-utilities repo
+  aws-utilities-repo-url: git@github.com:gruntwork-io/terraform-aws-utilities.git
+
+  # Name of the architecture catalog repo (including github org e.g. acme/terraform-aws-architecture-catalog).
+  arch-catalog-repo-url: git@github.com:gruntwork-io/terraform-aws-architecture-catalog
+
   # Version of the https://github.com/gruntwork-io/terraform-aws-architecture-catalog modules used in templates
   arch-catalog-version: v2.2.5
-  # (Optional) Override the repository in use for the architecture catalog
-  arch-catalog-repo-name: gruntwork-io/terraform-aws-architecture-catalog
-  # (Optional) Override the base path within the architecture catalog
-  arch-catalog-base-path: ./terraform-aws-architecture-catalog
+
   # (Optional) Override the path within the architecture catalog where to find the template for boilerplating new account baselines
   single-account-baseline-template-path: /templates/single-account-baseline
+
   # Default AWS region for infrastructure managed in this repository
   default-aws-region: us-east-1
   # GitHub Organization this repository belongs to
@@ -55,6 +69,9 @@ pipelines:
   ###########################################################################
   # Configuration options below are ONLY for Pipelines Enterprise customers
   ###########################################################################
+
+  # (Optional) The full path to a tags.yaml file for centrally managed tags, e.g. acme/repo/contents/path/to/tags.yaml
+  catalog-tags-location: gruntwork-io-demo/infrastructure-modules/contents/common_tags.yaml
 
   # Only set to true for delegated (vended) repositories from account factory
   is-delegated-repo: false
@@ -93,10 +110,9 @@ pipelines:
 ```
 
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "a794ff53219ed956782a93170b6979e5"
+  "hash": "829707da75b285a1e9e58d6101d156f4"
 }
 ##DOCS-SOURCER-END -->
