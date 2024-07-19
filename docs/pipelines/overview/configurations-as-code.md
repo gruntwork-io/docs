@@ -162,19 +162,21 @@ environment "an_environment" {
 
   authentication {
     aws_oidc {
-      account_id         = aws_accounts.all.an_account.id
-      plan_iam_role_arn  = "arn:aws:iam::${aws_accounts.all.an_account.id}:role-to-assume-for-plans"
-      apply_iam_role_arn = "arn:aws:iam::${aws_accounts.all.an_account.id}:role-to-assume-for-applies"
+      account_id         = aws.accounts.all.an_account.id
+      plan_iam_role_arn  = "arn:aws:iam::${aws.accounts.all.an_account.id}:role-to-assume-for-plans"
+      apply_iam_role_arn = "arn:aws:iam::${aws.accounts.all.an_account.id}:role-to-assume-for-applies"
     }
   }
 }
 
-aws_accounts "all" {
-  path = "aws/accounts.yml"
+aws {
+  accounts "all" {
+    path = "aws/accounts.yml"
+  }
 }
 ```
 
-More on configuration components like [aws_accounts](#aws-accounts-blocks) can be found below.
+More on configuration components like [aws](#aws-blocks) blocks can be found below.
 
 *Supported Blocks:*
 
@@ -185,26 +187,32 @@ More on configuration components like [aws_accounts](#aws-accounts-blocks) can b
 Every unit must be uniquely matched by the filters of a single environment block. If a unit is matched by multiple environment blocks, Pipelines will throw an error.
 :::
 
-### AWS Accounts Blocks
+### AWS Blocks
 
-AWS Accounts blocks are configurations used by `aws-oidc` [authentication](#authentication-blocks) blocks to have commonly re-used AWS account configurations codified and referenced by multiple authentication blocks.
+AWS blocks are configurations used by `aws-oidc` [authentication](#authentication-blocks) blocks to have commonly re-used AWS configurations codified and referenced by multiple authentication blocks.
 
-The label applied to an AWS Accounts block is the name of the AWS accounts block. This is a user-defined label for the collection of AWS accounts defined by the block, and must be globally unique.
+There can only be one `aws` block defined within [global configurations](#global-configurations).
+
+Nested within the `aws` block are `accounts` blocks that define the configurations for collections of AWS accounts.
+
+The label applied to an `accounts` block is the name of the Accounts block. This is a user-defined label for the collection of AWS accounts defined by the block, and must be unique within the context of the `aws` block.
 
 e.g.
 
 ```hcl
-# .gruntwork/aws_accounts.hcl
-aws_accounts "all" {
-  path = "aws/accounts.yml"
+# .gruntwork/aws.hcl
+aws {
+  accounts "all" {
+    path = "aws/accounts.yml"
+  }
 }
 ```
 
-In this example, the `all` AWS accounts block is defined in a file named `aws_accounts.hcl` within the `.gruntwork` directory.
+In this example, the `all` AWS accounts block is defined within an `aws` block in a file named `aws.hcl` within the `.gruntwork` directory.
 
-The `all` AWS accounts block references an external file located at `aws/accounts.yml` via the `path` attribute that contains the definitions of AWS accounts in YAML format.
+The `all` Accounts block references an external file located at `aws/accounts.yml` via the `path` attribute that contains the definitions of AWS accounts in YAML format.
 
-DevOps Foundations customers may be familiar with the `accounts.yml` file as a file that is used by Account Factory to define the configurations of AWS accounts. Pipelines uses the same schema for the `accounts.yml` file as Account Factory. Consequently, the `accounts.yml` file that is used by Account Factory can be used by the `aws_accounts` block without modification.
+DevOps Foundations customers may be familiar with the `accounts.yml` file as a file that is used by Account Factory to define the configurations of AWS accounts. Pipelines uses the same schema for the `accounts.yml` file as Account Factory. Consequently, the `accounts.yml` file that is used by Account Factory can be used by the `accounts` block without modification.
 
 The expected schema for the `accounts.yml` file is as follows:
 
@@ -345,6 +353,6 @@ In this example, Pipelines will use OIDC to authenticate with AWS and assume the
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "11cc7be29ae7e33214eb7b32638320b6"
+  "hash": "39f2f876844a3dd05e5ea0e41b3ddb87"
 }
 ##DOCS-SOURCER-END -->
