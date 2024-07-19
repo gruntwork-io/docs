@@ -73,6 +73,12 @@ pipelines:
   # (Optional) The full path to a tags.yaml file for centrally managed tags, e.g. acme/repo/contents/path/to/tags.yaml
   catalog-tags-location: gruntwork-io-demo/infrastructure-modules/contents/common_tags.yaml
 
+  # (Optional) The location of the pipelines workflow to use for delegated repositories
+  pipelines-workflow-location: gruntwork-io/pipelines-workflows/.github/workflows/pipelines.yml@v2
+
+  # (Optional) The name of the PIPELINES_READ_TOKEN secret to use in delegated repositories
+  pipelines-read-token-name: PIPELINES_READ_TOKEN
+
   # Only set to true for delegated (vended) repositories from account factory
   is-delegated-repo: false
   # Only set to true for infrastructure-live-access-control
@@ -113,6 +119,6 @@ pipelines:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "829707da75b285a1e9e58d6101d156f4"
+  "hash": "e236b0007f230617ac66bdb5bc56e0e5"
 }
 ##DOCS-SOURCER-END -->
