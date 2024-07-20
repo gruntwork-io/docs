@@ -6,11 +6,32 @@ This documentation relates to the latest version of Gruntwork Pipelines released
 If you are using the older version of Gruntwork Pipelines that includes the `infrastructure-pipelines` repository, click [here](../../infrastructure-pipelines/overview/deprecation.md) to learn more about the deprecation of that version.
 :::
 
-**Gruntwork Pipelines is a framework for securely and responsibly rolling out infrastructure changes to your AWS environments using GitOps workflows.** We often refer to Gruntwork Pipelines as simply "Pipelines."
+**Gruntwork Pipelines is designed to enable your organization to deploy infrastructure changes to cloud environments with control and confidence.**
 
-Gruntwork Pipelines features first-class support for Terragrunt, runs on top of GitHub Actions, and uses a pull request-centric workflow. This means that all information about a proposed infrastructure change is added as comments to the applicable pull request, and that you apply the infrastructure change by merging the pull request.
+Having worked with hundreds of organizations to help them improve DevOps, we've discovered two truths about making changes to infrastructure:
 
-Gruntwork Pipelines runs as a combination of a [binary](https://github.com/gruntwork-io/pipelines-cli) and a [GitHub Workflow](https://github.com/gruntwork-io/pipelines-workflows) composed of [GitHub Actions](https://github.com/search?q=topic%3Aaction+topic%3Apipelines+org%3Agruntwork-io&type=repositories), determining what _actions_ need to be taken, in which _environments_, based on the [_infrastructure changes_](#infrastructure-change) that occurred.
+1. Teams want to control exactly how infrastructure change gets rolled out
+2. Deploying infrastructure changes is scary!
+
+To address your need for _control_, we've designed Gruntwork Pipelines to use [configuration as code](configurations-as-code), where you use HCL (a popular alternative to JSON and YAML) to set configuration values that apply to your entire git repo, to just one environment, or to a single deployable unit of infrastructure. For example, you can specify a unique AWS authentication strategy for each deployable unit of infrastructure, one per environment, or a single strategy for the entire git repo.
+
+To address your need for _assurance_ that an infrastructure change is safe to apply, we include a thoughtfully formatted `terragrunt plan` user experience, and the ability to customize Gruntwork Pipelines to support arbitrary steps that your organization needs to establish confidence in a deployment. Building assurance also factors heavily into our roadmap.
+
+## Built for Terragrunt
+
+Gruntwork is the creator and maintainer of [Terragrunt](https://terragrunt.gruntwork.io), so we built Gruntwork Pipelines with first-class support for the full Terragrunt lifecycle, including:
+- `terragrunt plan`
+- `terragrunt apply`
+- `terragrunt destroy`
+- `terragrunt run-all`
+
+We also make updates directly to Terragrunt to support the functionality we want to see in Gruntwork Pipelines.
+
+## Runs directly in GitHub Actions
+
+Gruntwork Pipelines runs directly in GitHub Actions, and uses a pull request-centric workflow. This means that all information about a proposed infrastructure change is added as comments to the applicable pull request, and that you apply the infrastructure change by interacting with the pull request.
+
+Gruntwork does not need access to your secrets or state files, as these remain in GitHub Actions. At the same time, we continually push new features and updates to Gruntwork Pipelines so that your user experience, security posture, and feature set continues to improve with no effort on your part.
 
 ## Common Terms
 
