@@ -128,6 +128,35 @@ Create the following access tokens in the `ci-user`'s GitHub account:
 
    ![INFRA_ROOT_WRITE_TOKEN PAT Configuration](/img/pipelines/security/INFRA_ROOT_WRITE_TOKEN.png)
 
+   <details>
+     <summary>Why does this token need these permissions?</summary>
+
+     What follows is a breakdown of the permissions required by the `INFRA_ROOT_WRITE_TOKEN` token, as per our testing, incrementally introducing more permissions to achieve the minimal set of permissions required to support Pipelines. Note that some permissions are specific to certain behavior, and some are only used by Enterpise customers.
+
+     If you are not an Enterprise customer, or don't want Pipelines to perform those specific behaviors, you can chose to not grant the corresponding permissions.
+
+     ### Content read & write access
+
+     This is required to clone `infrastructure-live-root` and push changes to it. The `infrastructure-live-root` repository updates itself in automated processes during account vending, and baselining. Without this permission, the pull request opened by the GitHub Actions workflow would not trigger the necessary automation to support account vending.
+
+     ### Issues read & write access
+
+     This is required to open issues. Pipelines will open issues when necessary to signal that manual intervention is required.
+
+     ### Metadata read access
+
+     This is required to read the repository metadata. This is added onto the token by default by GitHub when selecting the `repo` scope.
+
+     ### Pull requests read & write access
+
+     This is required to open pull requests. Pipelines opens pull requests to automate the process of introducing new Infrastructure as Code changes to drive infrastructure updates.
+
+     ### Workflows read & write access
+
+     This is required to update GitHub Action workflow files. When vending delegated repositories for Enterprise customers, Pipelines will create new repositories, including content in the `.github/workflows` directory. Without this permission, Pipelines would not be able to provision repositories with this content.
+
+   </details>
+
 2. `ORG_REPO_ADMIN_TOKEN`. This is a [fine-grained GitHub Personal Access Token](#fine-grained) that will be used to initially bootstrap repositories vended as part of DevOps Foundations.
 
    In addition, Enterprise customers will have it used during account vending to create new delegated `infrastructure-live` repositories in their GitHub Organization when vending AWS accounts with the `isDelegated` value selected.
@@ -144,7 +173,44 @@ Create the following access tokens in the `ci-user`'s GitHub account:
    - Pull requests read & write access
    - Workflows read & write access
 
+   In addition, the token **may** require the following permissions in your organization:
+
+   - Members read & write access
+
    ![ORG_REPO_ADMIN_TOKEN PAT Configuration](/img/pipelines/security/ORG_REPO_ADMIN_TOKEN.png)
+
+   <details>
+     <summary>Why does this token need these permissions?</summary>
+
+     What follows is a breakdown of the permissions required by the `ORG_REPO_ADMIN_TOKEN` token, as per our testing, incrementally introducing more permissions to achieve the minimal set of permissions required to support Pipelines. Note that some permissions are specific to certain behavior, and some are only used by Enterpise customers.
+
+     If you are not an Enterprise customer, or don't want Pipelines to perform those specific behaviors, you can chose to not grant the corresponding permissions.
+
+     ### Administration read & write access
+
+     This is required to create new repositories. Pipelines will create new repositories when vending delegated repositories for Enterprise customers. Without this permission, Pipelines would not be able to provision repositories.
+
+     ### Contents read & write access
+
+     This is required to read and write repository contents. This token is used for bootstrapping repositories by all customers, and to populate delegated respoitories for Enterprise customers.
+
+     ### Metadata read access
+
+     This is required to read the repository metadata. This is added onto the token by default by GitHub when selecting the `repo` scope.
+
+     ### Pull requests read & write access
+
+     This is required to open pull requests. When vending delegated repositories for Enterprise customers, Pipelines will open pull requests to automate the process of introducing new Infrastructure as Code changes to drive infrastructure updates.
+
+     ### Workflows read & write access
+
+     This is required to update GitHub Action workflow files. When vending delegated repositories for Enterprise customers, Pipelines will create new repositories, including content in the `.github/workflows` directory. Without this permission, Pipelines would not be able to provision repositories with this content.
+
+     ### Members read & write access
+
+     This is required to update GitHub organization team members. When vending delegated repositories for Enterprise customers, Pipelines will add team members to a team that has access to a delegated repository. Without this permission, Pipelines would not be able to provision repositories that are accessible to the correct team members.
+
+   </details>
 
 ### ci-read-only-user
 
