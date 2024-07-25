@@ -35,14 +35,14 @@ Below you'll find a table with common AWS account operations and the Gruntwork r
 
 ### Remove an AWS account
 
-We recommend the following:
+We recommend the following three step procedure to close an AWS account managed by Devops Foundations:
 
-1. [Cleanup OpenTofu/Terraform State for the Control Tower module](#1-cleanup-opentofuterraform-state-for-the-control-tower-module)
+1. [Cleanup the OpenTofu/Terraform State for the Control Tower module](#1-cleanup-opentofuterraform-state-for-the-control-tower-module)
 1. [Cleanup Infrastructure Code](#2-cleanup-infrastructure-code)
-1. [Close Account with Clickops](#3-close-the-accounts-in-aws-organizations)
+1. [Close the Account with Clickops](#3-close-the-accounts-in-aws-organizations)
 
 
-#### 1. Cleanup OpenTofu/Terraform State for the Control Tower module
+#### 1. Cleanup the OpenTofu/Terraform State for the Control Tower module
 
 1. Obtain AWS CLI credentials for the your *management* account.
 1. Remove the targeted account(s) from being controlled by the *management* account's Control Tower module by running the following commands:
