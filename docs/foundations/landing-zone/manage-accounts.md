@@ -54,7 +54,7 @@ You may choose or need to destroy some or all of your provisioned resources, if 
     :::danger
     Make sure you are deleting the correct resources in the right account and that you have a backup of any data you may need in the future.
 
-    Do not delete the OIDC provider and Pipelines IAM roles except you longer need Gruntwork Pipelines to deploy changes to any other resource in the account.
+    It is not recommended that you delete the AWS IAM OIDC provider or the AWS IAM roles used by Pipelines within the AWS account before closing the account. This ensures that you can continue to use Pipelines to manage resources within it (including destroying resources) prior to its full closure.
     :::
 
     :::note
@@ -142,6 +142,6 @@ After you have made your modifications, push your branch and create a pull reque
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0330efad103224849952bb28e534eee0"
+  "hash": "43449a6b5d1e15ac3df1d0436e605c17"
 }
 ##DOCS-SOURCER-END -->
