@@ -41,6 +41,7 @@ We recommend the following three step procedure to close an AWS account managed 
 1. [Cleanup Infrastructure Code](#2-cleanup-infrastructure-code)
 1. [Close the Account with Clickops](#3-close-the-accounts-in-aws-organizations)
 
+Note that we are recommending that ultimately accounts be closed with ClickOps instead of using Gruntwork Pipelines. Removing the account via pipelines by deleting the account request file can and often does work, however the underlying AWS Service Catalog that we use to interact with Control Tower and deprovision the account is not reliable and often returns spurious errors that can require multiple retries to complete successfully.  The procedure here is fundamentally about working around that unreliability.
 
 #### 1. Cleanup the OpenTofu/Terraform State for the Control Tower module
 
