@@ -35,34 +35,97 @@ Below you'll find a table with common AWS account operations and the Gruntwork r
 
 ### Remove an AWS account
 
-This operation removes an AWS account from AWS Control Tower but does _not_ delete the AWS account.
+We recommend using the AWS Console's Organizations interface for closing an account and destroying all of its resources, due to current flakiness of the AWS Service Catalog when performing deletes via OpenTofu/Terraform providers. See the steps below for the complete sequence of actions to remove an account.
 
-1. Create a branch and delete the directory in your `infrastructure-live` repository that corresponds to the account you would like to remove.
+:::note
+AWS Organizations will permanently [close an account](https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-closing.html) after 90 days.
+:::
 
-    :::warning
-    This will delete all resources in the account. Make sure you are deleting the correct directory.
+
+
+#### 1. (Optional) Destroy resources in the account to be removed
+
+You may choose or need to destroy some or all of your provisioned resources, if the resources are managed by Terragrunt in your infrastructure repository which has Gruntwork Pipelines integrated, you can destroy them by doing the following:
+
+1. Checkout a new branch in the infrastructure repository
+1. Remove the folder(s) containing the resources you want to destroy
+1. Commit your changes and create a Pull Request which will trigger Gruntwork Pipelines to destroy the resource once the Pull Request is merged.
+
+    :::danger
+    Make sure you are deleting the correct resources in the right account and that you have a backup of any data you may need in the future.
+
+    It is not recommended that you delete the AWS IAM OIDC provider or the AWS IAM roles used by Pipelines within the AWS account before closing the account. This ensures that you can continue to use Pipelines to manage resources within it (including destroying resources) prior to its full closure.
     :::
 
-    Push your changes and create a PR. Pipelines will detect that an account is deleted. Verify that all expected resources will be removed in the `plan` output.
-
-    Once you have confirmed everything looks as expected, merge the PR.
-
-1. Create a branch and delete the account request file in `_new_account_requests`.
-
-    This will de-provision the product in AWS Service Catalog, but will not delete the account.
-
-    Push your changes and create a PR. Pipelines will detect that the account should be removed, which can be verified in the `plan` output.
-
-    Once you have confirmed everything looks as expected, merge the PR. After `apply` runs, the account status should be `Suspended`.
-
-1. Close the account in AWS Organizations.
-    1. Authenticate to your Management Account's AWS console.
-    1. Visit the **AWS Organizations** service dashboard.
-    1. For each account targeted for deletion, select the **close** option. This will initiate the process of closing the account, which will take 90 days to complete.
-
-    :::tip
-    If you run into any trouble while closing your account(s), visit [this helpful GitHub discussion](https://github.com/orgs/gruntwork-io/discussions/797) for troubleshooting tips.
+    :::note
+    You may also need to delete resources if you encounter issues with coordination between different accounts where resources remain present in the account to be closed that are referenced in other accounts.
     :::
+
+
+#### 2. Cleanup Central/Root Infrastructure Repository
+
+:::caution
+All code changes should be committed, **at the end**, to Git with a **[skip ci]** in the commit message to avoid triggering Gruntwork Pipelines and flakiness of account removal from Control Tower using AWS Service Catalog.
+:::
+
+1. Obtain AWS CLI credentials for the your *management* account.
+1. Checkout a new branch in your central/root infrastructure repository
+1. Navigate to the `_new-account-requests` folder in the repository
+1. Delete the account request file corresponding to each account slated for removal
+
+    :::danger
+    Make sure you are deleting the correct account request file and do not attempt to delete more than 5 accounts at once because [Control Tower has concurrent operations limit of 5](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/main/modules/landingzone/control-tower-account-factory#resourceinuseexception).
+    :::
+
+1. Locate and modify the `accounts.yml` file in the central/root infrastructure repository, removing any data associated with the accounts to be removed.
+1. (Optional) Remove AWS Transit Gateway(TGW) attachments. If an account being removed uses AWS TGW, you will need to remove the attachments by running the following commands sequentially:
+
+    ```bash
+    cd <NETWORK-ACCOUNT>/_global/transit_gateway_attachments/
+    terragrunt plan
+    terragrunt apply
+    ```
+
+    This is a plan/apply operation because the TGW module reads the `accounts.yml` file to determine which accounts are attached to the TGW.
+
+1. Remove the targeted account(s) from being controlled by the *management* account's Control Tower module
+
+  ```bash
+  cd management/_global/control-tower-multi-account-factory/
+  terragrunt plan # Observe that targeted accounts are set for destruction
+  terragrunt state rm 'module.accounts["<ACCOUNT_NAME>"].aws_servicecatalog_provisioned_product.control_tower_factory' # Optionally, use 'rm -dry-run' to preview the removal.
+  terragrunt plan # Verify no accounts are set for destruction but outputs are updated
+  terragrunt apply # Apply the changes.
+  ```
+
+1. Delete the folders for the targeted accounts from the repository.
+1. Commit all changes to your branch, ensuring to include `[skip ci]` in the commit message.
+1. Open a Pull Request and observe that `Pipelines Plan` is absent.
+1. Approve and **squash-merge**(if you have multiple commits) the Pull Request, again ensuring to include `[skip ci]` in the commit message to prevent Gruntwork Pipelines from initiating any destruction processes.
+
+
+#### 3. Close the account(s) in AWS Organizations
+
+1. Authenticate to your Management Account's AWS console.
+2. Visit the AWS Organizations page.
+3. For each account targeted for deletion, select the "close" option. In 90 days, AWS will permanently delete the account.
+
+
+#### 4. (Optional) Cleanup Team Infrastructure Repository
+
+If targeted accounts were created as part of a separate infra-live-team repository and;
+
+1. If all the accounts in a team-repo have been closed; delete the entire repository else delete the accounts folders for only the closed accounts and repeat the CI steps of creating a PR and merging it with `[skip ci]` in the commit message.
+2. If team repositories were removed above **and** you have a setup that includes an `infrastructure-pipelines` repository; complete the cleanup process by removing the deleted repository references from the Gruntwork Pipelines configuration in `.gruntwork/config` file located in the `infrastructure-pipelines` repository via a Pull Request and merge it into the designated *main* branch.
+
+#### 5. (Optional) Cleanup Access Control Infrastructure Repository
+
+If your setup includes an `infrastructure-access-control` repository;
+
+1. Remove the deleted account references from the `accounts.yml` file in the access control repository.
+2. Remove the folders for the deleted accounts from the repository.
+3. Repeat the CI steps of creating a PR and merging it with `[skip ci]` in the commit message.
+
 
 ### Update the new AWS account request
 
@@ -79,6 +142,6 @@ After you have made your modifications, push your branch and create a pull reque
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "4c768cfcdec825ec87bd7f8d0f7973c2"
+  "hash": "43449a6b5d1e15ac3df1d0436e605c17"
 }
 ##DOCS-SOURCER-END -->
