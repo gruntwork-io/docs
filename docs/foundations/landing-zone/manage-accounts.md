@@ -35,7 +35,7 @@ Below you'll find a table with common AWS account operations and the Gruntwork r
 
 ### Remove an AWS account
 
-We recommend using AWS Organizations interface for closing an account and destroying all of its resources for a smooth experience due to current flakiness of the AWS Service Catalog when performing deletes via OpenTofu/Terraform providers. See the steps below for the complete sequence of actions to remove an account.
+We recommend using the AWS Console's Organizations interface for closing an account and destroying all of its resources, due to current flakiness of the AWS Service Catalog when performing deletes via OpenTofu/Terraform providers. See the steps below for the complete sequence of actions to remove an account.
 
 :::note
 AWS Organizations will permanently [close an account](https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-closing.html) after 90 days.
@@ -53,6 +53,8 @@ You may choose or need to destroy some or all of your provisioned resources, if 
 
     :::danger
     Make sure you are deleting the correct resources in the right account and that you have a backup of any data you may need in the future.
+
+    Do not delete the OIDC provider and Pipelines IAM roles except you longer need Gruntwork Pipelines to deploy changes to any other resource in the account.
     :::
 
     :::note
@@ -111,7 +113,8 @@ All code changes should be committed, **at the end**, to Git with a **[skip ci]*
 
 #### 4. (Optional) Cleanup Team Infrastructure Repository
 
-If targeted accounts were created as part of a separate infra-live-team repository:
+If targeted accounts were created as part of a separate infra-live-team repository and;
+
 1. If all the accounts in a team-repo have been closed; delete the entire repository else delete the accounts folders for only the closed accounts and repeat the CI steps of creating a PR and merging it with `[skip ci]` in the commit message.
 2. If team repositories were removed above **and** you have a setup that includes an `infrastructure-pipelines` repository; complete the cleanup process by removing the deleted repository references from the Gruntwork Pipelines configuration in `.gruntwork/config` file located in the `infrastructure-pipelines` repository via a Pull Request and merge it into the designated *main* branch.
 
@@ -139,6 +142,6 @@ After you have made your modifications, push your branch and create a pull reque
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0c6fb0f1db50714e8f95fbe0c3d21e62"
+  "hash": "0330efad103224849952bb28e534eee0"
 }
 ##DOCS-SOURCER-END -->
