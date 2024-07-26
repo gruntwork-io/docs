@@ -182,12 +182,6 @@ module "eks_cluster_managed_workers" {
   # all locations.
   allow_ssh_from_security_groups = []
 
-  # Where to get the AMI from. Can be 'auto', 'launch_template', or
-  # 'eks_nodegroup'. WARNING there are limitation on what the value is, check
-  # the documentation for more information
-  # https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#mng-ami-id-conditions
-  ami_source = "auto"
-
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
 
@@ -347,12 +341,6 @@ inputs = {
   # var.cluster_instance_keypair_name is set. Set to null to allow access from
   # all locations.
   allow_ssh_from_security_groups = []
-
-  # Where to get the AMI from. Can be 'auto', 'launch_template', or
-  # 'eks_nodegroup'. WARNING there are limitation on what the value is, check
-  # the documentation for more information
-  # https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#mng-ami-id-conditions
-  ami_source = "auto"
 
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
@@ -624,15 +612,6 @@ List of Security Group IDs to allow SSH access from. Only used if <a href="#clus
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ami_source" requirement="optional" type="string">
-<HclListItemDescription>
-
-Where to get the AMI from. Can be 'auto', 'launch_template', or 'eks_nodegroup'. WARNING there are limitation on what the value is, check the documentation for more information https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#mng-ami-id-conditions
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;auto&quot;"/>
 </HclListItem>
 
 <HclListItem name="aws_partition" requirement="optional" type="string">
@@ -962,6 +941,6 @@ Map of Node Group names to ARNs of the created EKS Node Groups
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.8/modules/eks-cluster-managed-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "627c3db800f8408b0bb8c2d05b2f8931"
+  "hash": "1f33d430053783e610f8187ebfdfd9c7"
 }
 ##DOCS-SOURCER-END -->
