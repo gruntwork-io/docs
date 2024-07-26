@@ -35,7 +35,7 @@ Below you'll find a table with common AWS account operations and the Gruntwork r
 
 ### Remove an AWS account
 
-We recommend following two step procedure to close ab AWS Account managed by Devops Foundations:
+We recommend following a two step procedure to close AWS Accounts managed by Devops Foundations:
 
 1. [Cleanup Infrastructure Code](#1-cleanup-infrastructure-code) and modify OpenTofu/Terraform state for the Control Tower module.
 1. [Close Account with Clickops](#2-close-the-accounts-in-aws-organizations)
