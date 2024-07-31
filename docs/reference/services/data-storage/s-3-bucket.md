@@ -106,6 +106,11 @@ module "s_3_bucket" {
   # null to disable access logging.
   access_logging_bucket = null
 
+  # Whether or not to use a pre-existing bucket for access logging. If set to
+  # false, a new bucket will be created. If set to true, an existing bucket
+  # specified in access_logging_bucket will be used.
+  access_logging_bucket_already_exists = false
+
   # The lifecycle rules for the access logs bucket. See var.lifecycle_rules for
   # details.
   access_logging_bucket_lifecycle_rules = {}
@@ -335,6 +340,11 @@ inputs = {
   # null to disable access logging.
   access_logging_bucket = null
 
+  # Whether or not to use a pre-existing bucket for access logging. If set to
+  # false, a new bucket will be created. If set to true, an existing bucket
+  # specified in access_logging_bucket will be used.
+  access_logging_bucket_already_exists = false
+
   # The lifecycle rules for the access logs bucket. See var.lifecycle_rules for
   # details.
   access_logging_bucket_lifecycle_rules = {}
@@ -563,6 +573,15 @@ The S3 bucket where access logs for this bucket should be stored. Set to null to
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="access_logging_bucket_already_exists" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to use a pre-existing bucket for access logging. If set to false, a new bucket will be created. If set to true, an existing bucket specified in access_logging_bucket will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="access_logging_bucket_lifecycle_rules" requirement="optional" type="any">
@@ -1221,6 +1240,6 @@ The name of the replica S3 bucket.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.19/modules/data-stores/s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b4850de5b0f8406ed198e9eed81891ba"
+  "hash": "ff0cc83e6ab7773d46df66c691d69dae"
 }
 ##DOCS-SOURCER-END -->
