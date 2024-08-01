@@ -21,8 +21,6 @@ This is the last version of HashiCorp Terraform that is licensed under the MPLv2
 
 Going forward, we recommend that all Gruntwork customers adopt [OpenTofu](https://opentofu.org/) as a "drop-in" replacement for HashiCorp Terraform. We will be developing against OpenTofu releases, testing for compatiability with OpenTofu, and offering full support for any issues you experience with our modules and OpenTofu.
 
-You are welcome to try using versions of Terraform above v1.5.7, however we can't guarantee compatibility, we will not be testing our code with those versions, and we cannot offer support for those versions.
-
 ## As a user of Gruntwork Library, do I need to change anything?
 
 No. You can continue using any version of HashiCorp Terraform up to and including v1.5.7.
