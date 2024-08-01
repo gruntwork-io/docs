@@ -38,7 +38,7 @@ Here are the repos that were updated:
 
 ⭐  Patcher now supports publishing the results of an upgrade as a GitHub Pull Request. ⭐ 
 
-&lt;img width=&quot;1674&quot; alt=&quot;Screenshot 2024-07-03 at 8 12 16 AM&quot; src=&quot;https://github.com/gruntwork-io/patcher/assets/178939/1224198c-ee3c-4f83-aaa4-aa072916a1e7&quot;&gt;
+![PatcherPreviewScreenshot](https://github.com/gruntwork-io/patcher/assets/178939/1224198c-ee3c-4f83-aaa4-aa072916a1e7)
 
 The `update` command now supports three additional flags:
 
