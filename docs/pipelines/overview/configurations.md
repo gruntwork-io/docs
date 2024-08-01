@@ -65,6 +65,10 @@ pipelines:
   # (Optional) override the folder for the management account, default is 'management'
   management-account-name: management
 
+  # (Optional) enable experimental Terragrunt Provider Cache behavior
+  # See https://terragrunt.gruntwork.io/docs/features/provider-cache/ for more information
+  enable-terragrunt-provider-cache: false
+
 
   ###########################################################################
   # Configuration options below are ONLY for Pipelines Enterprise customers
@@ -119,6 +123,6 @@ pipelines:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e236b0007f230617ac66bdb5bc56e0e5"
+  "hash": "6df6d78cdd53ae6c9fa8bd3f56f28a04"
 }
 ##DOCS-SOURCER-END -->
