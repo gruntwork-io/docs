@@ -7,7 +7,7 @@ sidebar_label: "OpenTofu & Terraform Compatibility"
 All code in Gruntwork Library is compatible with:
 
 - All versions of [OpenTofu](https://opentofu.org/)
-- HashiCorp Terraform versions v1.5.6 and below
+- HashiCorp Terraform versions v1.5.7 and below
 
 ## Why the split?
 
