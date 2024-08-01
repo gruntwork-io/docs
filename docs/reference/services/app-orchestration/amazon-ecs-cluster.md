@@ -211,6 +211,10 @@ module "ecs_cluster" {
   # ECS instances.
   allow_ssh_from_security_group_ids = []
 
+  # Enables or disables a graceful shutdown of instances without disturbing
+  # workloads.
+  autoscaling_managed_draining = true
+
   # Protect EC2 instances running ECS tasks from being terminated due to scale
   # in (spot instances do not support lifecycle modifications). Note that the
   # behavior of termination protection differs between clusters with capacity
@@ -507,6 +511,10 @@ inputs = {
   # The IDs of security groups from which to allow incoming SSH requests to the
   # ECS instances.
   allow_ssh_from_security_group_ids = []
+
+  # Enables or disables a graceful shutdown of instances without disturbing
+  # workloads.
+  autoscaling_managed_draining = true
 
   # Protect EC2 instances running ECS tasks from being terminated due to scale
   # in (spot instances do not support lifecycle modifications). Note that the
@@ -870,6 +878,15 @@ The IDs of security groups from which to allow incoming SSH requests to the ECS 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="autoscaling_managed_draining" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enables or disables a graceful shutdown of instances without disturbing workloads.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="autoscaling_termination_protection" requirement="optional" type="bool">
@@ -1473,6 +1490,6 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.112.19/modules/services/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a4fe698ba7c960dbaefcd45386e279a6"
+  "hash": "190de7e8d4f14e92cdf91b0955742061"
 }
 ##DOCS-SOURCER-END -->
