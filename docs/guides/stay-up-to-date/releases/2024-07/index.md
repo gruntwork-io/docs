@@ -130,7 +130,7 @@ You can invoke the dry run mode by specifying the `--dry-run` flag:
 patcher update --non-interactive --update-strategy next-breaking --dry-run
 ```
 
-![](Screenshot%202024-07-02%20at%204.58.13%E2%80%AFPM.png)
+### What's Changed:
 
 * Add the ability to include or exclude report command dependencies.
 * Add support for outputting plan and spec files.
