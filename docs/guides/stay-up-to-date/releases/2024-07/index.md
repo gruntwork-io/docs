@@ -38,8 +38,6 @@ Here are the repos that were updated:
 
 ⭐  Patcher now supports publishing the results of an upgrade as a GitHub Pull Request. ⭐ 
 
-![PatcherPreviewScreenshot](https://github.com/gruntwork-io/patcher/assets/178939/1224198c-ee3c-4f83-aaa4-aa072916a1e7)
-
 The `update` command now supports three additional flags:
 
 * `--publish`: Publish the changes to the remote Git repository and open a pull request.
