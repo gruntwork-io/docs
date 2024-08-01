@@ -28,6 +28,6 @@ If you'd like to request a new Pipelines action, please email us at <feedback@gr
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "f2f6558e306627b9ed19c3362929c75a"
+  "hash": "08bff68a304a1c4ad67f8a54ffed55fb"
 }
 ##DOCS-SOURCER-END -->
