@@ -909,7 +909,8 @@ terraform &#x7B;
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  Release duplicated from https://github.com/gruntwork-io/terrapatch/releases/tag/v0.1.5
+  * Bumped internal dependencies
+
 
 </div>
 
@@ -919,6 +920,6 @@ terraform &#x7B;
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "c915a9773f68ec31da1ea1f4ffe070fe"
+  "hash": "832cfa078d26303268d4be6a6a9c18c3"
 }
 ##DOCS-SOURCER-END -->
