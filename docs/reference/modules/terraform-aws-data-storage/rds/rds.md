@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.37.3" lastModifiedVersion="0.37.3"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.38.0" lastModifiedVersion="0.38.0"/>
 
 # RDS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.3/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.0/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.37.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.38.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Relational Database Service (RDS) cluster that can run MySQL, Postgres, MariaDB, Oracle,
 or SQL Server. The cluster is managed by AWS and automatically handles standby failover, read replicas, backups,
@@ -117,7 +117,7 @@ Set `multi_az=true`. When setting up a multi-AZ (Availability Zone) RDS deployme
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.37.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.38.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -193,6 +193,11 @@ module "rds" {
   # permitted. Note that these updates must always be manually performed and
   # will never automatically applied.
   allow_major_version_upgrade = true
+
+  # A list of CIDR-formatted IP address ranges that the database is allowed to
+  # send traffit to. Should typically be the CIDR blocks of the private app
+  # subnet in this VPC plus the private subnet in the mgmt VPC.
+  allow_outbound_connections_to_cidr_blocks = []
 
   # The availability zones within which it should be possible to spin up
   # replicas
@@ -492,7 +497,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.37.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.38.0"
 }
 
 inputs = {
@@ -571,6 +576,11 @@ inputs = {
   # permitted. Note that these updates must always be manually performed and
   # will never automatically applied.
   allow_major_version_upgrade = true
+
+  # A list of CIDR-formatted IP address ranges that the database is allowed to
+  # send traffit to. Should typically be the CIDR blocks of the private app
+  # subnet in this VPC plus the private subnet in the mgmt VPC.
+  allow_outbound_connections_to_cidr_blocks = []
 
   # The availability zones within which it should be possible to spin up
   # replicas
@@ -1001,6 +1011,15 @@ Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be perm
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="allow_outbound_connections_to_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of CIDR-formatted IP address ranges that the database is allowed to send traffit to. Should typically be the CIDR blocks of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="allowed_replica_zones" requirement="optional" type="list(string)">
@@ -1714,11 +1733,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.3/modules/rds/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.3/modules/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.37.3/modules/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.0/modules/rds/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.0/modules/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "300f21f7103e97a1c25f9f5531480dac"
+  "hash": "36ca2d3df266a8f186d7b2f67046a33f"
 }
 ##DOCS-SOURCER-END -->
