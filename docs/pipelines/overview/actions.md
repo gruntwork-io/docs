@@ -18,7 +18,7 @@ When a pull request is merged, Pipelines will automatically execute either `terr
 
 ## Skipping Runs
 
-Sometimes you find it necessary to make a change without going through the full pipelines process. This can be accomplished using GitHub's [built in method for skipping workflow runs](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/skipping-workflow-runs).
+Sometimes you find it necessary to make a change without going through the full pipelines process. This can be accomplished using GitHub's built in method for skipping workflow runs [by adding [skip ci] to your commit message](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/skipping-workflow-runs).
 
 ## Other Actions
 
