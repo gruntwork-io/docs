@@ -913,7 +913,7 @@ ARN of permissions boundary to apply to the worker IAM role - the IAM role creat
 <HclListItem name="eks_worker_asg_arns">
 <HclListItemDescription>
 
-Map of Node Group names to Auto Scaling Group ARNs
+Map of Node Group names to lists of Auto Scaling Group ARNs
 
 </HclListItemDescription>
 </HclListItem>
@@ -970,6 +970,6 @@ Map of Node Group names to ARNs of the created EKS Node Groups
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.8/modules/eks-cluster-managed-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5fdc91a71dc7a10cd72981275614337a"
+  "hash": "e7aff5db79269be5f9dae5aab65622c2"
 }
 ##DOCS-SOURCER-END -->
