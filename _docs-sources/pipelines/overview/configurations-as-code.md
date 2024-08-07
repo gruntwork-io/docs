@@ -254,6 +254,12 @@ In this example, the `deploy_branch_name` attribute is set to `main`, which mean
 *Supported Attributes:*
 
 - `deploy_branch_name` (Optional): The branch that Pipelines will deploy infrastructure changes from. If not set, Pipelines will deploy infrastructure changes from the `main` branch.
+- `consolidate_added_or_changed` (Optional): Whether or not Pipelines will consolidate added or changed resources when running Terragrunt commands. If not set, Pipelines will consolidate added or changed resources.
+- `consolidate_deleted` (Optional): Whether or not Pipelines will consolidate deleted resources when running Terragrunt plan commands. If not set, Pipelines will not consolidate deleted resources.
+
+  :::caution
+  This is disabled by default because there can be unintended consequences to deleting additional resources via a `run-all` Terragrunt command. It is recommended to enable this feature only when you are confident that you understand the implications of doing so.
+  :::
 
 ## Local Configurations
 
