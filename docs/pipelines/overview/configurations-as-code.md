@@ -255,10 +255,36 @@ In this example, the `deploy_branch_name` attribute is set to `main`, which mean
 
 - `deploy_branch_name` (Optional): The branch that Pipelines will deploy infrastructure changes from. If not set, Pipelines will deploy infrastructure changes from the `main` branch.
 - `consolidate_added_or_changed` (Optional): Whether or not Pipelines will consolidate added or changed resources when running Terragrunt commands. If not set, Pipelines will consolidate added or changed resources.
+
+  :::info
+
+  Job consolidation is the mechanism whereby Pipelines will take multiple jobs (e.g. `ModuleAdded`, `ModuleChanged`) and consolidate them into a single job (e.g. `ModulesAddedOrChanged`) when running Terragrunt commands.
+
+  This is a useful optimization that Pipelines can perform, as it divides the CI/CD costs of running Terragrunt in CI by the number of jobs that are consolidated. In addition, this results in more accurate runs, as it allows Terragrunt to leverage the Directed Acyclic Graph (DAG) to order updates.
+
+  e.g. Instead of running the following jobs:
+  A. `ModuleAdded`
+  B. `ModuleChanged`
+
+  Where `ModuleChanged` depends on `ModuleAdded`, Pipelines will consolidate these jobs into a single job:
+  C. `ModulesAddedOrChanged`
+
+  Because the underlying implementation of a `ModulesAddedOrChanged` uses the `run-all` Terragrunt command, it will use the DAG to ensure that the `ModuleAdded` job runs before the `ModuleChanged` job.
+
+  :::
+
+  :::tip
+
+  In very rare circumstances, you may want to disable this in order to maximize the resources allocated to your CI/CD run. This is not generally recommended, but can be a useful workaround if the runner you are using is exhausting allocated resources.
+
+  :::
+
 - `consolidate_deleted` (Optional): Whether or not Pipelines will consolidate deleted resources when running Terragrunt plan commands. If not set, Pipelines will not consolidate deleted resources.
 
   :::caution
+
   This is disabled by default because there can be unintended consequences to deleting additional resources via a `run-all` Terragrunt command. It is recommended to enable this feature only when you are confident that you understand the implications of doing so.
+
   :::
 
 ## Local Configurations
@@ -359,6 +385,6 @@ In this example, Pipelines will use OIDC to authenticate with AWS and assume the
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "bfc8c7ff6ea75403342f62445cd37767"
+  "hash": "72763d5ef13787fd6acea271d7e9d0ff"
 }
 ##DOCS-SOURCER-END -->
