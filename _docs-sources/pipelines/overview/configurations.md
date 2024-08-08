@@ -69,6 +69,23 @@ pipelines:
   # See https://terragrunt.gruntwork.io/docs/features/provider-cache/ for more information
   enable-terragrunt-provider-cache: false
 
+  # (Optional) override default session duration for assumed roles in seconds
+  # Added in https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.26.0
+  session-duration: 3600
+
+  # (Optional) enable added or changed job consolidation.
+  # Is enabled by default.
+  # Added in https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.27.0
+  consolidate-added-or-changed: true
+
+  # (Optional) enable deleted job consolidation.
+  # Is disabled by default.
+  # The reason this is disabled by default is that it is generally safer to
+  # avoid using `run-all` when deleting resources, as it can lead to accidental
+  # deletion of more resources than intended.
+  # Added in https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.27.0
+  consolidate-deleted: false
+
 
   ###########################################################################
   # Configuration options below are ONLY for Pipelines Enterprise customers
