@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Terraform Utility Modules" version="0.10.2" lastModifiedVersion="0.9.6"/>
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.10.2" lastModifiedVersion="0.10.2"/>
 
 # Operating System Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.2/modules/operating-system" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.2/modules/patcher-test" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.9.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.10.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This is a module that can be used to figure out what operating system is being used to run Terraform. This may be used
 to modify Terraform's behavior depending on the OS, such as modifying the way you format file paths on Linux vs
@@ -53,11 +53,11 @@ path_separator        = "${module.os.path_separator}"
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.2/modules/operating-system/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.2/modules/operating-system/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.2/modules/operating-system/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.2/modules/patcher-test/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.2/modules/patcher-test/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.2/modules/patcher-test/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "979a1692e178e93eae10e53fff20c725"
+  "hash": "19dda4400ccb105504fcd7b04fbf04d4"
 }
 ##DOCS-SOURCER-END -->
