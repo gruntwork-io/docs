@@ -473,6 +473,10 @@ module "ecs_service" {
   # useful when using 'wait_for_steady_state'.
   service_create_update_timeout = "20m"
 
+  # Use this variable to adjust the default timeout of 5m for delete operations
+  # the the ECS service.
+  service_delete_timeout = "5m"
+
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
   service_tags = {}
@@ -883,6 +887,10 @@ inputs = {
   # operations the the ECS service. Adjusting the value can be particularly
   # useful when using 'wait_for_steady_state'.
   service_create_update_timeout = "20m"
+
+  # Use this variable to adjust the default timeout of 5m for delete operations
+  # the the ECS service.
+  service_delete_timeout = "5m"
 
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
@@ -1747,6 +1755,15 @@ Use this variable to adjust the default timeout of 20m for create and update ope
 <HclListItemDefaultValue defaultValue="&quot;20m&quot;"/>
 </HclListItem>
 
+<HclListItem name="service_delete_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Use this variable to adjust the default timeout of 5m for delete operations the the ECS service.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;5m&quot;"/>
+</HclListItem>
+
 <HclListItem name="service_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -1959,6 +1976,6 @@ If true, Terraform will wait for the service to reach a steady state — as in, 
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.1/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "59fc39a01a472c0b6fe30635276d15fe"
+  "hash": "2af9993f440f4a410d0f7d797fd364d8"
 }
 ##DOCS-SOURCER-END -->
