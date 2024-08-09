@@ -178,27 +178,27 @@ optional variables (with defaults) using block comments.
 Example:
 
 ```hcl
-## ---------------------------------------------------------------------------------------------------------------------
-## ENVIRONMENT VARIABLES
-## Define these secrets as environment variables
-## ---------------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
+# ENVIRONMENT VARIABLES
+# Define these secrets as environment variables
+# ---------------------------------------------------------------------------------------------------------------------
 
-## TF_VAR_master_password
+# TF_VAR_master_password
 
-## ---------------------------------------------------------------------------------------------------------------------
-## MODULE PARAMETERS
-## These variables are expected to be passed in by the operator
-## ---------------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
+# MODULE PARAMETERS
+# These variables are expected to be passed in by the operator
+# ---------------------------------------------------------------------------------------------------------------------
 
 variable "required_var" {
   description = "This variable must be set in order to create the resource."
   type        = string
 }
 
-## ---------------------------------------------------------------------------------------------------------------------
-## OPTIONAL PARAMETERS
-## These variables have defaults and may be overridden
-## ---------------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
+# OPTIONAL PARAMETERS
+# These variables have defaults and may be overridden
+# ---------------------------------------------------------------------------------------------------------------------
 
 variable "optional_var" {
   description = "This variable has a sensible default so it is not necessary to set it explicitly for this module to work."
@@ -217,11 +217,11 @@ managed in the section.
 Example:
 
 ```hcl
-## ---------------------------------------------------------------------------------------------------------------------
-## ONE LINE SUMMARY DESCRIBING WHAT IS BEING MANAGED IN THIS SECTION IN ALL CAPS
-## The rest of the comments should be in standard casing. This section should contain an overall description of the
-## component that is being managed, and highlight any unconventional workarounds or configurations that are in place.
-## ---------------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
+# ONE LINE SUMMARY DESCRIBING WHAT IS BEING MANAGED IN THIS SECTION IN ALL CAPS
+# The rest of the comments should be in standard casing. This section should contain an overall description of the
+# component that is being managed, and highlight any unconventional workarounds or configurations that are in place.
+# ---------------------------------------------------------------------------------------------------------------------
 ```
 
 ### Testing: Terratest
