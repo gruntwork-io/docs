@@ -404,8 +404,8 @@ module "redis" {
   # (e.g. 6379).
   port = 6379
 
-  # Version number of redis to use (e.g. 5.0.5). Set to 6.x to use redis 6.
-  redis_version = "5.0.5"
+  # Version number of redis to use (e.g. 5.0.6). Set to 6.x to use redis 6.
+  redis_version = "5.0.6"
 
   #  Number of replica nodes in each node group. Changing this number will
   # trigger a resizing operation before other settings modifications. Valid
@@ -643,8 +643,8 @@ inputs = {
   # (e.g. 6379).
   port = 6379
 
-  # Version number of redis to use (e.g. 5.0.5). Set to 6.x to use redis 6.
-  redis_version = "5.0.5"
+  # Version number of redis to use (e.g. 5.0.6). Set to 6.x to use redis 6.
+  redis_version = "5.0.6"
 
   #  Number of replica nodes in each node group. Changing this number will
   # trigger a resizing operation before other settings modifications. Valid
@@ -1072,10 +1072,10 @@ The port number on which each of the cache nodes will accept connections (e.g. 6
 <HclListItem name="redis_version" requirement="optional" type="string">
 <HclListItemDescription>
 
-Version number of redis to use (e.g. 5.0.5). Set to 6.x to use redis 6.
+Version number of redis to use (e.g. 5.0.6). Set to 6.x to use redis 6.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;5.0.5&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;5.0.6&quot;"/>
 </HclListItem>
 
 <HclListItem name="replicas_per_node_group" requirement="optional" type="number">
@@ -1255,6 +1255,6 @@ This is a list of user IDs  that should be added to the group defined in the 'us
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.6/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6b6efa4ce67469188a3d77a07b42fb97"
+  "hash": "5bde137ea29ece96394722c840c51a1d"
 }
 ##DOCS-SOURCER-END -->
