@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="0.22.6" lastModifiedVersion="0.22.5"/>
+<VersionBadge repoTitle="Cache Modules" version="0.22.7" lastModifiedVersion="0.22.7"/>
 
 # Redis Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.6/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.7/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.22.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.22.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an ElastiCache cluster that runs [Redis](http://redis.io/).
 
@@ -84,7 +84,7 @@ here: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/ParameterGroup
 #### Choosing Cluster Mode vs. Single Instance
 
 You can use `var.enable_single_instance_mode=true` to deploy a single node Redis instance. Refer
-to [examples/redis_single_instance](https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.6/examples/redis_single_instance) as an example.
+to [examples/redis_single_instance](https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.7/examples/redis_single_instance) as an example.
 
 Here are some of the points you may consider while choosing which mode to run:
 
@@ -243,7 +243,7 @@ ElastiCache for Redis supports the following types of automatic scaling dimensio
 
 module "redis" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.22.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.22.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -404,8 +404,8 @@ module "redis" {
   # (e.g. 6379).
   port = 6379
 
-  # Version number of redis to use (e.g. 5.0.5). Set to 6.x to use redis 6.
-  redis_version = "5.0.5"
+  # Version number of redis to use (e.g. 5.0.6). Set to 6.x to use redis 6.
+  redis_version = "5.0.6"
 
   #  Number of replica nodes in each node group. Changing this number will
   # trigger a resizing operation before other settings modifications. Valid
@@ -479,7 +479,7 @@ module "redis" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.22.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.22.7"
 }
 
 inputs = {
@@ -643,8 +643,8 @@ inputs = {
   # (e.g. 6379).
   port = 6379
 
-  # Version number of redis to use (e.g. 5.0.5). Set to 6.x to use redis 6.
-  redis_version = "5.0.5"
+  # Version number of redis to use (e.g. 5.0.6). Set to 6.x to use redis 6.
+  redis_version = "5.0.6"
 
   #  Number of replica nodes in each node group. Changing this number will
   # trigger a resizing operation before other settings modifications. Valid
@@ -1072,10 +1072,10 @@ The port number on which each of the cache nodes will accept connections (e.g. 6
 <HclListItem name="redis_version" requirement="optional" type="string">
 <HclListItemDescription>
 
-Version number of redis to use (e.g. 5.0.5). Set to 6.x to use redis 6.
+Version number of redis to use (e.g. 5.0.6). Set to 6.x to use redis 6.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;5.0.5&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;5.0.6&quot;"/>
 </HclListItem>
 
 <HclListItem name="replicas_per_node_group" requirement="optional" type="number">
@@ -1250,11 +1250,11 @@ This is a list of user IDs  that should be added to the group defined in the 'us
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.6/modules/redis/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.6/modules/redis/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.6/modules/redis/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.7/modules/redis/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.7/modules/redis/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.7/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6b6efa4ce67469188a3d77a07b42fb97"
+  "hash": "8d690e38ed4fa15727bc19eb7657aee4"
 }
 ##DOCS-SOURCER-END -->
