@@ -86,6 +86,13 @@ pipelines:
   # Added in https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.27.0
   consolidate-deleted: false
 
+  # (Optional) additional env vars to set for pipelines executions, e.g. TF_VAR
+  # or TERRAGRUNT_ values to customize the Terragrunt/Terraform/Opentofu run.
+  env:
+    - name: TERRAGRUNT_PARALLELISM
+      value: 10
+    - name: CUSTOM_ENVVAR
+      value: somedata
 
   ###########################################################################
   # Configuration options below are ONLY for Pipelines Enterprise customers
