@@ -19,7 +19,7 @@ Extending Gruntwork Pipelines involves managing code in three different source c
 
 The intention is that customers will never have to touch code that is frequently modified by Gruntwork, namely `pipelines-actions`.  Instead customers will update code references inside `pipelines-workflows` to point to custom code in another repository, so the only surface area for merge conflict/code maintaince is a scant few lines of reference change in `pipelines-workflows`.
 
-<img src="/img/pipelines/pipelines_customizations_code_locations.svg" />
+<img alt="Diagram of Gruntwork Pipelines Repositories" className="img_node_modules-@docusaurus-theme-classic-lib-theme-MDXComponents-Img-styles-module medium-zoom-image" src="/img/pipelines/pipelines_customization_code_locations.svg" />
 
 ## Extend the GitHub Actions Workflow
 
@@ -148,6 +148,6 @@ In order to customize the behavior of an Action, you will need to fork the repos
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7df1e40313a3aabdddc43e7516215be3"
+  "hash": "283ca647091b41e3f5681fd17a6fc7e4"
 }
 ##DOCS-SOURCER-END -->
