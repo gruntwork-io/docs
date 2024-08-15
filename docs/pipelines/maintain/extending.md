@@ -8,6 +8,19 @@ If you are using the older version of Gruntwork Pipelines that includes the `inf
 
 Gruntwork Pipelines is designed to be extensible. This means that you can add your own customizations to the GitHub Actions Workflows, and the underlying custom GitHub Actions to suit your organization's needs. This document will guide you through the process of extending your pipeline.
 
+
+## Pipelines Extension Architecture
+
+Extending Gruntwork Pipelines involves managing code in three different source code repositories. We've architected these repositories in such a way that customer modifications live in a different repository from code that Gruntwork maintains, therefore dramatically limiting, or even eliminating, the work required to incorporate upstream changes from Gruntwork.  The three repositories are:
+
+* `pipelines-workflows` - This is the central orchestration of the control flow within pipelines. This repo contains as little business logic as possible and generally makes calls to other repositories to do work.
+* `pipelines-actions` - This is where the bulk of the business logic for pipelines lives
+* `pipelines-actions-customization` - This is where a customer's custom logic primarily lives.
+
+The intention is that customers will never have to touch code that is frequently modified by Gruntwork, namely `pipelines-actions`.  Instead customers will update code references inside `pipelines-workflows` to point to custom code in another repository, so the only surface area for merge conflict/code maintaince is a scant few lines of reference change in `pipelines-workflows`.
+
+<img src="/img/pipelines/pipelines_customizations_code_locations.svg" />
+
 ## Extend the GitHub Actions Workflow
 
 The GitHub Actions Workflow that Pipelines uses is a [Reusable Workflow](https://docs.github.com/en/actions/using-workflows/reusing-workflows). This allows your `infrastructure-live` repositories to reference a specific pinned version of it in your `.github/workflows/pipelines.yml` file without having to host any of the code yourself.
@@ -135,6 +148,6 @@ In order to customize the behavior of an Action, you will need to fork the repos
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "012419152e3e140d994d0f5b3fe4e9ab"
+  "hash": "7df1e40313a3aabdddc43e7516215be3"
 }
 ##DOCS-SOURCER-END -->
