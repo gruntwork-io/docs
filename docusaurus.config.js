@@ -8,7 +8,7 @@ const darkCodeTheme = themes.dracula;
 
 const cfg = require("config")
 
-const captionsPlugin = require("./src/plugins/captions")
+const captionsPlugin = require("./src/plugins/captions.mjs")
 
 const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined
 
