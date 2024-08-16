@@ -54,7 +54,7 @@ git checkout bootstrap-repository
 
 The following will explain each of the major changes that are presented to you in this pull request, and how to handle them as desired for your repository.
 
-If you find that any changes that are not listed here that you are concerned about, or if you find the instructions on how to handle them unclear, please do not hesitate to reach out to Gruntwork support at [support@gruntwork.io](support@gruntwork.io).
+If you find that any changes that are not listed here that you are concerned about, or if you find the instructions on how to handle them unclear, please do not hesitate to reach out to Gruntwork support at [mailto:support@gruntwork.io](support@gruntwork.io).
 
 ### Reverting the update of your `accounts.yml` file
 
@@ -284,4 +284,4 @@ Create a new pull request that makes a small change to your infrastructure code 
 
 Also, if you encountered any road bumps that might be smoothed over for the next customer reading this guide, please consider opening an issue or creating a pull request to improve this guide for the community!
 
-If you have any questions, or if you have encountered any issues during this migration, please do not hesitate to reach out to Gruntwork support at [support@gruntwork.io](support@gruntwork.io).
+If you have any questions, or if you have encountered any issues during this migration, please do not hesitate to reach out to Gruntwork support at [mailto:support@gruntwork.io](support@gruntwork.io).

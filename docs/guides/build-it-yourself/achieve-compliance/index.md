@@ -72,6 +72,6 @@ walkthrough.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "62afd671cf06da950d577fe88796bfe0"
+  "hash": "399c7297ff4c7b8722233da4e871c2da"
 }
 ##DOCS-SOURCER-END -->

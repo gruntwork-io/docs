@@ -6,7 +6,7 @@ Documentation on the architecture used in this version of Gruntwork Pipelines ca
 
 This section will preserve the legacy documentation for the `infrastructure-pipelines` repository, and provide guidance on how to migrate to the new version of Pipelines.
 
-If you have any questions or need help, please reach out to us at [support@gruntwork.io](support@gruntwork.io).
+If you have any questions or need help, please reach out to us at [mailto:support@gruntwork.io](support@gruntwork.io).
 
 ## Do I Have to Migrate to the New Version?
 
@@ -139,12 +139,12 @@ Customers can also expect a much easier time reasoning about their infrastructur
 
 ## Conclusion
 
-Gruntwork is excited to bring you this new architecture for Pipelines, and we hope that it will make your experience with managing infrastructure changes more enjoyable and productive. We're always looking for feedback on how we can improve our products, so please don't hesitate to reach out to us at [feedback@gruntwork.io](feedback@gruntwork.io).
+Gruntwork is excited to bring you this new architecture for Pipelines, and we hope that it will make your experience with managing infrastructure changes more enjoyable and productive. We're always looking for feedback on how we can improve our products, so please don't hesitate to reach out to us at [mailto:feedback@gruntwork.io](feedback@gruntwork.io).
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "c9fea8c55ea47241d576c2f38b843d96"
+  "hash": "cbb132b312c70eaf53df149eda54b288"
 }
 ##DOCS-SOURCER-END -->

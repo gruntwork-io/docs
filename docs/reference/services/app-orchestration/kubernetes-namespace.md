@@ -48,7 +48,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-kubernetes-namespace](https://github.com/gruntwork-io/terraform-kubernetes-namespace) repo. If you are a
-subscriber and don’t have access to this repo, email [support@gruntwork.io](support@gruntwork.io).
+subscriber and don’t have access to this repo, email [mailto:support@gruntwork.io](support@gruntwork.io).
 
 ### Core concepts
 

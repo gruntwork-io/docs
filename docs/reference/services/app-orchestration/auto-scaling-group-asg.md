@@ -51,7 +51,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-asg](https://github.com/gruntwork-io/terraform-aws-asg) repo. If you are a subscriber and don’t have
-access to this repo, email [support@gruntwork.io](support@gruntwork.io).
+access to this repo, email [mailto:support@gruntwork.io](support@gruntwork.io).
 
 *   [ASG Documentation](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html):
     Amazon’s docs for ASG that cover core concepts such as launch templates and auto scaling groups.
