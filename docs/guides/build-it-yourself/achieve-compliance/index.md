@@ -4,6 +4,7 @@ pagination_label: Achieve Compliance with the CIS AWS Foundations Benchmark
 ---
 
 import { CardList } from "/src/components/CardGroup"
+import { Card } from "/src/components/Card"
 
 # Achieve Compliance with the CIS AWS Foundations Benchmark
 
