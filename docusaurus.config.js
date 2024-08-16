@@ -2,8 +2,10 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 const path = require("path")
 
-const lightCodeTheme = require("prism-react-renderer/themes/github")
-const darkCodeTheme = require("prism-react-renderer/themes/dracula")
+const {themes} = require('prism-react-renderer');
+const lightCodeTheme = themes.github;
+const darkCodeTheme = themes.dracula;
+
 const cfg = require("config")
 
 const captionsPlugin = require("./src/plugins/captions")
@@ -66,6 +68,7 @@ const config = {
             "guides/build-it-yourself/landing-zone/**",
             "guides/build-it-yourself/kubernetes-cluster/**",
             "guides/build-it-yourself/vpc/**",
+            "**/node_modules/**",
           ],
           beforeDefaultRemarkPlugins: [captionsPlugin],
         },
