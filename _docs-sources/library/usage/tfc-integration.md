@@ -77,7 +77,7 @@ To set up this access, take the following steps:
 
 1.  First, if you don’t have one already, you’ll need a machine user that has access to Gruntwork. A machine user is an
     account that is only used for automation, and is not used by humans. In this case, the "machine" in question is the TFC
-    executor. Create a new Github user, and send the machine user’s username and email address to [mailto:support@gruntwork.io](support@gruntwork.io). We’ll make sure the user has access to our repositories.
+    executor. Create a new Github user, and send the machine user’s username and email address to [support@gruntwork.io](mailto:support@gruntwork.io). We’ll make sure the user has access to our repositories.
 
 2.  Next, generate an SSH key pair, and add the public key to the new GitHub machine user. GitHub has [easy-to-follow instructions](https://help.github.com/en/enterprise/2.19/user/github/authenticating-to-github/connecting-to-github-with-ssh).
 

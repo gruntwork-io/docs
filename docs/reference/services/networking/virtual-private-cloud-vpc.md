@@ -56,7 +56,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-vpc](https://github.com/gruntwork-io/terraform-aws-vpc) repo. If you don’t have access to this repo,
-email [mailto:support@gruntwork.io](support@gruntwork.io).
+email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ### Core concepts
 

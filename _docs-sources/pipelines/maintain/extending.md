@@ -33,7 +33,7 @@ Common reasons that you might decide to do this include:
 - You wish to utilize a forked action used in existing step(s) in the workflow to suit your organization's needs (more on that below).
 
 :::caution
-If you choose to fork Gruntwork's `pipelines-workflows` into your GitHub organization note that Gruntwork will have visibility to that repository ([docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-permissions-and-visibility-of-forks#about-permissions-for-creating-forks)). If you have concerns about this you can instead [mirror](https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository) the repository. Reach out to [mailto:support@gruntwork.io](support@gruntwork.io) if you need assistance with this.
+If you choose to fork Gruntwork's `pipelines-workflows` into your GitHub organization note that Gruntwork will have visibility to that repository ([docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-permissions-and-visibility-of-forks#about-permissions-for-creating-forks)). If you have concerns about this you can instead [mirror](https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository) the repository. Reach out to [support@gruntwork.io](mailto:support@gruntwork.io) if you need assistance with this.
 
 Do not include any sensitive information in your forked repository, especially if hosted publicly.
 :::
@@ -133,7 +133,7 @@ There are two key components to the hook, 1) Checking out actions and 2) Running
 
 ### Support for extending Workflows
 
-We, at Gruntwork, want to make sure we're addressing real business use-cases with our documentation, so if you have a need to extend the Pipelines Workflow and are not comfortable with doing so following the documentation above, please reach out to us at [mailto:support@gruntwork.io](support@gruntwork.io).
+We, at Gruntwork, want to make sure we're addressing real business use-cases with our documentation, so if you have a need to extend the Pipelines Workflow and are not comfortable with doing so following the documentation above, please reach out to us at [support@gruntwork.io](mailto:support@gruntwork.io).
 
 
 ## Extending the GitHub Actions
