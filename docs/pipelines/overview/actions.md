@@ -22,12 +22,12 @@ Sometimes you find it necessary to make a change without going through the full 
 
 ## Other Actions
 
-If you'd like to request a new Pipelines action, please email us at <feedback@gruntwork.io>.
+If you'd like to request a new Pipelines action, please email us at [feedback@gruntwork.io](feedback@gruntwork.io).
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "076ffa02c765736e1055938abd15ab58"
+  "hash": "7f3e70bd5f2244db7a4b403ee379cb22"
 }
 ##DOCS-SOURCER-END -->

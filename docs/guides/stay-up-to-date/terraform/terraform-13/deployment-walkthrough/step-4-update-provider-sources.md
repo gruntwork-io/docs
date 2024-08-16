@@ -6,7 +6,7 @@ sidebar_label: Update provider sources
 
 Terraform 0.13 introduced a new registry for managing provider releases. This makes it easier to publish and distribute
 third party providers. As a part of this, Terraform changed the way providers are tracked in the state file. When
-running `terraform init` for the first time on a module that has been updated from <0.13 to 0.13+, you might notice
+running `terraform init` for the first time on a module that has been updated from &lt;0.13 to 0.13+, you might notice
 Terraform installing two providers:
 
 - `-/PROVIDER`
@@ -36,6 +36,6 @@ terraform state replace-provider -- -/aws registry.terraform.io/hashicorp/aws
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0c5aa574c82b473c254f163ea660dffa"
+  "hash": "cbd959c092bb7e6dc1f6da8dbd29aba2"
 }
 ##DOCS-SOURCER-END -->

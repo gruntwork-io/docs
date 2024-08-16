@@ -21,7 +21,8 @@ A collection of reusable code that enables you to deploy and manage infrastructu
 <Card
   title="Reference Architecture"
   href="/refarch/whats-this/what-is-a-reference-architecture">
-An end-to-end tech stack built using best practices on top of our Infrastructure as Code Library, deployed into your AWS accounts.</Card>
+An end-to-end tech stack built using best practices on top of our Infrastructure as Code Library, deployed into your AWS accounts.
+</Card>
 <Card
   title="Pipelines"
   href="/pipelines/overview">

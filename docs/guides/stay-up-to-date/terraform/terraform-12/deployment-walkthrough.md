@@ -1,6 +1,6 @@
 # Deployment Walkthrough
 
-The following sections outline the steps you need to take in order to migrate from Terraform <= 0.11.X and Terragrunt <=
+The following sections outline the steps you need to take in order to migrate from Terraform &lt;= 0.11.X and Terragrunt &lt;=
 v0.18.x to Terraform 0.12.x and newer and Terragrunt 0.19.x and newer:
 
 1. [Upgrade modules for compatibility with Terraform 0.12.x](#upgrade-modules-for-compatibility-with-terraform-012x)
@@ -139,7 +139,7 @@ it is very easy to "start over", such as a sandbox or dev environment!**
    - Duplicated comment blocks. Sometimes, the upgrade tool will duplicate comment blocks in the middle of the code.
      This was most common when there is a comment on a resource attribute.
    - Reorganized comment blocks. The tool sometimes moves the comment block somewhere you don't expect. This is
-     especially problematic for comments within blocks (e.g., in the middle of a vars = { … }) block.
+     especially problematic for comments within blocks (e.g., in the middle of a vars = \{ … \}) block.
    - `bool` no longer converts to `1` and `0` automatically. If you had the pattern of doing `count = bool`, this no
      longer works. You have to explicitly add a conditional: `count = bool ? 1 : 0`.
    - In tf11 and under, sometimes you had to do `attr = ["${list}"]` when passing in a `list` to an attribute. In tf12,
@@ -202,8 +202,8 @@ instead of the equivalent one for Terraform.
 #### <a id="using-mise-to-manage-multiple-terragrunt-versions"></a>Using mise to manage multiple terragrunt versions
 
 As with Homebrew, you can also use `mise` to manage multiple `terragrunt` versions, using the same method described above in
-[Using mise to manage multiple terraform versions](#using-mise-to-manage-multiple-terraform-versions). To use 
-the method for Terragrunt, replace the references for `terraform` with `terragrunt`. 
+[Using mise to manage multiple terraform versions](#using-mise-to-manage-multiple-terraform-versions). To use
+the method for Terragrunt, replace the references for `terraform` with `terragrunt`.
 
 For example, to install and use `terragrunt` version `0.18.7`, you would run:
 ```
@@ -441,6 +441,6 @@ At the end of this, you should be able to run `terragrunt plan` cleanly.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0b6134c7f61964b2acd5e15e2acdc2f2"
+  "hash": "9ccf2005b8561195476d33d189d1d44e"
 }
 ##DOCS-SOURCER-END -->

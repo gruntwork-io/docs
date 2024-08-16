@@ -53,7 +53,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo. If you are a subscriber and don’t have
-access to this repo, email <support@gruntwork.io>.
+access to this repo, email [support@gruntwork.io](support@gruntwork.io).
 
 ### Core concepts
 
@@ -1132,9 +1132,9 @@ list(object({
    Each item in the list represents a matchExpression for requiredDuringSchedulingIgnoredDuringExecution.
    https://kubernetes.io/docs/concepts/configuration/assign-pod-node/affinity-and-anti-affinity for the various
    configuration option.
-  
+
    Example:
-  
+
    [
      {
        "key" = "node-label-key"
@@ -1142,9 +1142,9 @@ list(object({
        "operator" = "In"
      }
    ]
-  
+
    Translates to:
-  
+
    nodeAffinity:
      requiredDuringSchedulingIgnoredDuringExecution:
        nodeSelectorTerms:
@@ -1183,9 +1183,9 @@ list(map(any))
 
    Each item in the list represents a particular toleration. See
    https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ for the various rules you can specify.
-  
+
    Example:
-  
+
    [
      {
        key = "node.kubernetes.io/unreachable"
@@ -1273,9 +1273,9 @@ list(object({
    Each item in the list represents a matchExpression for requiredDuringSchedulingIgnoredDuringExecution.
    https://kubernetes.io/docs/concepts/configuration/assign-pod-node/affinity-and-anti-affinity for the various
    configuration option.
-  
+
    Example:
-  
+
    [
      {
        "key" = "node-label-key"
@@ -1283,9 +1283,9 @@ list(object({
        "operator" = "In"
      }
    ]
-  
+
    Translates to:
-  
+
    nodeAffinity:
      requiredDuringSchedulingIgnoredDuringExecution:
        nodeSelectorTerms:
@@ -1373,9 +1373,9 @@ list(map(any))
 
    Each item in the list represents a particular toleration. See
    https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ for the various rules you can specify.
-  
+
    Example:
-  
+
    [
      {
        key = "node.kubernetes.io/unreachable"
@@ -1445,9 +1445,9 @@ list(object({
    Each item in the list represents a matchExpression for requiredDuringSchedulingIgnoredDuringExecution.
    https://kubernetes.io/docs/concepts/configuration/assign-pod-node/affinity-and-anti-affinity for the various
    configuration option.
-  
+
    Example:
-  
+
    [
      {
        "key" = "node-label-key"
@@ -1455,9 +1455,9 @@ list(object({
        "operator" = "In"
      }
    ]
-  
+
    Translates to:
-  
+
    nodeAffinity:
      requiredDuringSchedulingIgnoredDuringExecution:
        nodeSelectorTerms:
@@ -1551,9 +1551,9 @@ list(map(any))
 
    Each item in the list represents a particular toleration. See
    https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ for the various rules you can specify.
-  
+
    Example:
-  
+
    [
      {
        key = "node.kubernetes.io/unreachable"
@@ -1740,9 +1740,9 @@ list(object({
    Each item in the list represents a matchExpression for requiredDuringSchedulingIgnoredDuringExecution.
    https://kubernetes.io/docs/concepts/configuration/assign-pod-node/affinity-and-anti-affinity for the various
    configuration option.
-  
+
    Example:
-  
+
    [
      {
        "key" = "node-label-key"
@@ -1750,9 +1750,9 @@ list(object({
        "operator" = "In"
      }
    ]
-  
+
    Translates to:
-  
+
    nodeAffinity:
      requiredDuringSchedulingIgnoredDuringExecution:
        nodeSelectorTerms:
@@ -1791,9 +1791,9 @@ list(map(any))
 
    Each item in the list represents a particular toleration. See
    https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ for the various rules you can specify.
-  
+
    Example:
-  
+
    [
      {
        key = "node.kubernetes.io/unreachable"
@@ -2019,7 +2019,7 @@ object({
     enabled = bool
 
     # This option allows a tag name associated to all records coming from this plugin.
-    # logs, defaults to "kube.*" 
+    # logs, defaults to "kube.*"
     tag = string
 
     # This option allows to change the default path where the plugin will look for
@@ -2075,7 +2075,7 @@ object({
 ```hcl
 
      This option allows a tag name associated to all records coming from this plugin.
-     logs, defaults to "kube.*" 
+     logs, defaults to "kube.*"
 
 ```
 </details>
@@ -2303,9 +2303,9 @@ list(object({
    Each item in the list represents a matchExpression for requiredDuringSchedulingIgnoredDuringExecution.
    https://kubernetes.io/docs/concepts/configuration/assign-pod-node/affinity-and-anti-affinity for the various
    configuration option.
-  
+
    Example:
-  
+
    [
      {
        "key" = "node-label-key"
@@ -2313,9 +2313,9 @@ list(object({
        "operator" = "In"
      }
    ]
-  
+
    Translates to:
-  
+
    nodeAffinity:
      requiredDuringSchedulingIgnoredDuringExecution:
        nodeSelectorTerms:
@@ -2354,9 +2354,9 @@ list(map(any))
 
    Each item in the list represents a particular toleration. See
    https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ for the various rules you can specify.
-  
+
    Example:
-  
+
    [
      {
        key = "node.kubernetes.io/unreachable"

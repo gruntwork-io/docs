@@ -4,7 +4,7 @@
 
 People make mistakes all the time: forgetting to remove accounts, keeping ports open, including test credentials in
 production code, etc. Rather than living in an idealized model where you assume people won’t make mistakes, you can
-employ a [Defense in Depth](<https://en.wikipedia.org/wiki/Defense_in_depth_(computing)>) strategy of setting up multiple
+employ a [Defense in Depth](https://en.wikipedia.org/wiki/Defense_in_depth_(computing)) strategy of setting up multiple
 layers of protection so that a failure in any single layer doesn’t immediately lead to disaster. You never want to be
 one typo away from a security incident.
 
@@ -17,6 +17,6 @@ described in the next few sections.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "241d7669f0872b5219798ddc187be0b9"
+  "hash": "a416c8f8b2b950fe84740b0736f09765"
 }
 ##DOCS-SOURCER-END -->

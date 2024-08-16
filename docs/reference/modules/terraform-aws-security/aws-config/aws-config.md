@@ -215,7 +215,7 @@ module "aws_config" {
   # Map of recording group configurations.
 
 See the official AWS provider
-  # documentation for futher context 
+  # documentation for futher context
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_recorder#recording_group-configuration-block
 
 Each
@@ -225,7 +225,7 @@ all_supported bool
   # (required):  Whether to records configuration changes for every supported
   # type of regional resource.
 
-include_global_resource_types bool (required): 
+include_global_resource_types bool (required):
   # Whether to records configuration changes for every supported type of global
   # resource.
 
@@ -234,8 +234,8 @@ resource_types list(string) (required):  List of resource types
   # and a recording_strategy of
   # "INCLUSION_BY_RESOURCE_TYPES"
 
-recording_strategy object({}) (required): 
-  # use_only list(string):    The recording stratgy to use which can be one of: 
+recording_strategy object({}) (required):
+  # use_only list(string):    The recording stratgy to use which can be one of:
   #   - "ALL_SUPPORTED_RESOURCE_TYPES"    - "EXCLUSION_BY_RESOURCE_TYPES"    -
   # "INCLUSION_BY_RESOURCE_TYPES"
 
@@ -259,15 +259,15 @@ recording_mode_override:  description:    A description for the
   # override.  recording_frequency:    The frequency with which AWS Config
   # records configuration changes for the specified resource types.    -
   # CONTINUOUS    - DAILY  resource_types:    A list of resource types for which
-  # AWS Config records configuration changes. For example, AWS::EC2::Instance.  
+  # AWS Config records configuration changes. For example, AWS::EC2::Instance.
   #  See the following for more
   # information:
 https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
 
 /*
 recording_mode
-  # = {  recording_frequency = "DAILY"  recording_mode_override = {   
-  # description         = "Override for specific resource types"   
+  # = {  recording_frequency = "DAILY"  recording_mode_override = {
+  # description         = "Override for specific resource types"
   # recording_frequency = "CONTINUOUS"    resource_types      =
   # ["AWS::EC2::Instance"]  }
 }
@@ -504,7 +504,7 @@ inputs = {
   # Map of recording group configurations.
 
 See the official AWS provider
-  # documentation for futher context 
+  # documentation for futher context
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_recorder#recording_group-configuration-block
 
 Each
@@ -514,7 +514,7 @@ all_supported bool
   # (required):  Whether to records configuration changes for every supported
   # type of regional resource.
 
-include_global_resource_types bool (required): 
+include_global_resource_types bool (required):
   # Whether to records configuration changes for every supported type of global
   # resource.
 
@@ -523,8 +523,8 @@ resource_types list(string) (required):  List of resource types
   # and a recording_strategy of
   # "INCLUSION_BY_RESOURCE_TYPES"
 
-recording_strategy object({}) (required): 
-  # use_only list(string):    The recording stratgy to use which can be one of: 
+recording_strategy object({}) (required):
+  # use_only list(string):    The recording stratgy to use which can be one of:
   #   - "ALL_SUPPORTED_RESOURCE_TYPES"    - "EXCLUSION_BY_RESOURCE_TYPES"    -
   # "INCLUSION_BY_RESOURCE_TYPES"
 
@@ -548,15 +548,15 @@ recording_mode_override:  description:    A description for the
   # override.  recording_frequency:    The frequency with which AWS Config
   # records configuration changes for the specified resource types.    -
   # CONTINUOUS    - DAILY  resource_types:    A list of resource types for which
-  # AWS Config records configuration changes. For example, AWS::EC2::Instance.  
+  # AWS Config records configuration changes. For example, AWS::EC2::Instance.
   #  See the following for more
   # information:
 https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
 
 /*
 recording_mode
-  # = {  recording_frequency = "DAILY"  recording_mode_override = {   
-  # description         = "Override for specific resource types"   
+  # = {  recording_frequency = "DAILY"  recording_mode_override = {
+  # description         = "Override for specific resource types"
   # recording_frequency = "CONTINUOUS"    resource_types      =
   # ["AWS::EC2::Instance"]  }
 }
@@ -937,7 +937,7 @@ map(object({
 <HclListItem name="recording_mode" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-The mode for AWS Config to record configuration changes. 
+The mode for AWS Config to record configuration changes.
 
 recording_frequency:
 The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
@@ -954,19 +954,19 @@ recording_mode_override:
     - DAILY
   resource_types:
     A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
-    
+
 See the following for more information:
 https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
 
 /*
-recording_mode = {
+recording_mode = \{
   recording_frequency = 'DAILY'
-  recording_mode_override = {
+  recording_mode_override = \{
     description         = 'Override for specific resource types'
     recording_frequency = 'CONTINUOUS'
     resource_types      = ['AWS::EC2::Instance']
-  }
-}
+  \}
+\}
 */
 
 
