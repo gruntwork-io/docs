@@ -297,6 +297,11 @@ module "s_3_cloudfront" {
   # for available options).
   default_lambda_associations = []
 
+  # Unique identifier of the origin request policy that is attached to the
+  # behavior. This variable can be passed only if a default_cache_policy_id is
+  # specified as well.
+  default_origin_request_policy_id = null
+
   # Option to disable cloudfront log delivery to s3.  This is required in
   # regions where cloudfront cannot deliver logs to s3, see
   # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html#access-logs-choosing-s3-bucket
@@ -611,6 +616,11 @@ inputs = {
   # https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#lambda_function_association
   # for available options).
   default_lambda_associations = []
+
+  # Unique identifier of the origin request policy that is attached to the
+  # behavior. This variable can be passed only if a default_cache_policy_id is
+  # specified as well.
+  default_origin_request_policy_id = null
 
   # Option to disable cloudfront log delivery to s3.  This is required in
   # regions where cloudfront cannot deliver logs to s3, see
@@ -1130,6 +1140,15 @@ list(object({
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="default_origin_request_policy_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+Unique identifier of the origin request policy that is attached to the behavior. This variable can be passed only if a default_cache_policy_id is specified as well.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="disable_logging" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1504,6 +1523,6 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.3/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3c22af16a7656e51290091360ba07580"
+  "hash": "9a68549cb43b86d392f221f685511847"
 }
 ##DOCS-SOURCER-END -->
