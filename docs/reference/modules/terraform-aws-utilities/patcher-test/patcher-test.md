@@ -65,11 +65,11 @@ module "patcher_test" {
   source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/patcher-test?ref=v0.10.4"
 
   # ----------------------------------------------------------------------------------------------------
-  # OPTIONAL VARIABLES
+  # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
   # Sample input for the module
-  sampleinput = "unset-value"
+  sampleinput = <string>
 
 }
 
@@ -92,11 +92,11 @@ terraform {
 inputs = {
 
   # ----------------------------------------------------------------------------------------------------
-  # OPTIONAL VARIABLES
+  # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
   # Sample input for the module
-  sampleinput = "unset-value"
+  sampleinput = <string>
 
 }
 
@@ -114,15 +114,14 @@ inputs = {
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
-### Optional
+### Required
 
-<HclListItem name="sampleinput" requirement="optional" type="string">
+<HclListItem name="sampleinput" requirement="required" type="string">
 <HclListItemDescription>
 
 Sample input for the module
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;unset-value&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -149,6 +148,6 @@ Sample input for the module
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.4/modules/patcher-test/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "53b765bbf685babcbcf9754ab5a62618"
+  "hash": "883ca7d35f9aa0c85bda534847301703"
 }
 ##DOCS-SOURCER-END -->
