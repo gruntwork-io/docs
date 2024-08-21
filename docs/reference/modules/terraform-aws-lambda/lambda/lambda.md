@@ -330,16 +330,6 @@ module "lambda" {
   # config to have any effect.
   mount_to_file_system = false
 
-  # Replaces the security groups on network interfaces with the default security
-  # group or the defined replacement security groups when destroying to speed up
-  # destruction.
-  replace_security_groups_on_destroy = false
-
-  # Replaces the security groups on the network interfaces with these security
-  # groups for faster destroy. replace_security_groups_on_destroy must be set to
-  # true for this to take effect.
-  replacement_security_group_ids = []
-
   # The amount of reserved concurrent executions for this lambda function or -1
   # if unreserved.
   reserved_concurrent_executions = null
@@ -632,16 +622,6 @@ inputs = {
   # must also be deployed inside a VPC (run_in_vpc must be set to true) for this
   # config to have any effect.
   mount_to_file_system = false
-
-  # Replaces the security groups on network interfaces with the default security
-  # group or the defined replacement security groups when destroying to speed up
-  # destruction.
-  replace_security_groups_on_destroy = false
-
-  # Replaces the security groups on the network interfaces with these security
-  # groups for faster destroy. replace_security_groups_on_destroy must be set to
-  # true for this to take effect.
-  replacement_security_group_ids = []
 
   # The amount of reserved concurrent executions for this lambda function or -1
   # if unreserved.
@@ -1085,24 +1065,6 @@ Set to true to mount your Lambda function on an EFS. Note that the lambda must a
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="replace_security_groups_on_destroy" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Replaces the security groups on network interfaces with the default security group or the defined replacement security groups when destroying to speed up destruction.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="replacement_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Replaces the security groups on the network interfaces with these security groups for faster destroy. replace_security_groups_on_destroy must be set to true for this to take effect.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
 <HclListItem name="reserved_concurrent_executions" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1330,6 +1292,6 @@ Name of the (optionally) created CloudWatch log group for the lambda function.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.23.0/modules/lambda/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4217e633640f0b83c5527d44f71f8326"
+  "hash": "463d7307572deff25aaf5e2c089fc0da"
 }
 ##DOCS-SOURCER-END -->
