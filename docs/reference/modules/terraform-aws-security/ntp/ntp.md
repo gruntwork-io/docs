@@ -25,7 +25,7 @@ This script currently works on:
 
 *   Ubuntu
 *   Amazon Linux 2 (currently a no-op, since Amazon Linux already has NTP installed & configured)
-*   CentOS
+*   CentOS Stream 9
 
 ## Why does a module called NTP install something other than NTP?
 
@@ -40,6 +40,6 @@ Originally, Amazon recommended installing `ntpd` to prevent clock drift. Today, 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.1/modules/ntp/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8fa90b2055aff662ca8a6b4c104d626b"
+  "hash": "9f63ee0d9621cac2733245b46e3ccb99"
 }
 ##DOCS-SOURCER-END -->
