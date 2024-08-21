@@ -187,16 +187,6 @@ module "lambda_edge" {
   # default is set to all regions that have a Regional Edge Cache.
   log_regions = ["us-east-1","us-east-2","us-west-1","us-west-2","ap-south-1","ap-northeast-2","ap-southeast-1","ap-southeast-2","ap-northeast-1","eu-central-1","eu-west-1","eu-west-2","sa-east-1"]
 
-  # Replaces the security groups on network interfaces with the default security
-  # group or the defined replacement security groups when destroying to speed up
-  # destruction.
-  replace_security_groups_on_destroy = false
-
-  # Replaces the security groups on the network interfaces with these security
-  # groups for faster destroy. replace_security_groups_on_destroy must be set to
-  # true for this to take effect.
-  replacement_security_group_ids = []
-
   # The amount of reserved concurrent executions for this lambda function or -1
   # if unreserved.
   reserved_concurrent_executions = null
@@ -249,11 +239,6 @@ module "lambda_edge" {
 
   # A map of tags to apply to the Lambda function.
   tags = {}
-
-  # Whether to sample and trace a subset of incoming requests with AWS X-Ray.
-  # Valid values are `PassThrough` and `Active`. More information available at:
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function#tracing_config.
-  tracing_config_mode = null
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -382,16 +367,6 @@ inputs = {
   # default is set to all regions that have a Regional Edge Cache.
   log_regions = ["us-east-1","us-east-2","us-west-1","us-west-2","ap-south-1","ap-northeast-2","ap-southeast-1","ap-southeast-2","ap-northeast-1","eu-central-1","eu-west-1","eu-west-2","sa-east-1"]
 
-  # Replaces the security groups on network interfaces with the default security
-  # group or the defined replacement security groups when destroying to speed up
-  # destruction.
-  replace_security_groups_on_destroy = false
-
-  # Replaces the security groups on the network interfaces with these security
-  # groups for faster destroy. replace_security_groups_on_destroy must be set to
-  # true for this to take effect.
-  replacement_security_group_ids = []
-
   # The amount of reserved concurrent executions for this lambda function or -1
   # if unreserved.
   reserved_concurrent_executions = null
@@ -444,11 +419,6 @@ inputs = {
 
   # A map of tags to apply to the Lambda function.
   tags = {}
-
-  # Whether to sample and trace a subset of incoming requests with AWS X-Ray.
-  # Valid values are `PassThrough` and `Active`. More information available at:
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function#tracing_config.
-  tracing_config_mode = null
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -675,24 +645,6 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="replace_security_groups_on_destroy" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Replaces the security groups on network interfaces with the default security group or the defined replacement security groups when destroying to speed up destruction.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="replacement_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Replaces the security groups on the network interfaces with these security groups for faster destroy. replace_security_groups_on_destroy must be set to true for this to take effect.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
 <HclListItem name="reserved_concurrent_executions" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -783,15 +735,6 @@ A map of tags to apply to the Lambda function.
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="tracing_config_mode" requirement="optional" type="string">
-<HclListItemDescription>
-
-Whether to sample and trace a subset of incoming requests with AWS X-Ray. Valid values are `PassThrough` and `Active`. More information available at: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function#tracing_config.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -863,6 +806,6 @@ Name of the (optionally) created CloudWatch log groups for the lambda function.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.23.0/modules/lambda-edge/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1cf827d8cf23b8f8026ee3c958cbf2fd"
+  "hash": "c937dedb74da932115e9ceb241de31c3"
 }
 ##DOCS-SOURCER-END -->

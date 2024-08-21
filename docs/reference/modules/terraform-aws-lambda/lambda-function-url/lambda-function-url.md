@@ -57,6 +57,12 @@ module "lambda_function_url" {
   # Autherisation type of genrating function url
   authorization_type = <string>
 
+  # The AWS region in which all resources will be created
+  aws_region = <string>
+
+  # Name of the CloudFront Origin Access Control
+  cloudfront_oac_name = <string>
+
   # CORS configuration for the Lambda function URL
   cors_config = <object(
     allow_credentials = bool
@@ -73,12 +79,21 @@ module "lambda_function_url" {
   # The name of the Lambda function. Used to generate function url
   lambda_function_name = <string>
 
+  # Specifies which requests CloudFront signs. Specify always for the most
+  # common use case. Allowed values: always, never, and no-override.
+  oac_signing_behavior = <string>
+
+  # Determines how CloudFront signs (authenticates) requests. The only valid
+  # value is sigv4.
+  oac_signing_protocol = <string>
+
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The AWS region in which all resources will be created
-  aws_region = "us-east-1"
+  # The type of origin that this Origin Access Control is for. Valid values are
+  # lambda, mediapackagev2, mediastore, and s3
+  oac_origin_type = "lambda"
 
 }
 
@@ -110,6 +125,12 @@ inputs = {
   # Autherisation type of genrating function url
   authorization_type = <string>
 
+  # The AWS region in which all resources will be created
+  aws_region = <string>
+
+  # Name of the CloudFront Origin Access Control
+  cloudfront_oac_name = <string>
+
   # CORS configuration for the Lambda function URL
   cors_config = <object(
     allow_credentials = bool
@@ -126,12 +147,21 @@ inputs = {
   # The name of the Lambda function. Used to generate function url
   lambda_function_name = <string>
 
+  # Specifies which requests CloudFront signs. Specify always for the most
+  # common use case. Allowed values: always, never, and no-override.
+  oac_signing_behavior = <string>
+
+  # Determines how CloudFront signs (authenticates) requests. The only valid
+  # value is sigv4.
+  oac_signing_protocol = <string>
+
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The AWS region in which all resources will be created
-  aws_region = "us-east-1"
+  # The type of origin that this Origin Access Control is for. Valid values are
+  # lambda, mediapackagev2, mediastore, and s3
+  oac_origin_type = "lambda"
 
 }
 
@@ -163,6 +193,22 @@ Alias name of the lambda function
 <HclListItemDescription>
 
 Autherisation type of genrating function url
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="aws_region" requirement="required" type="string">
+<HclListItemDescription>
+
+The AWS region in which all resources will be created
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cloudfront_oac_name" requirement="required" type="string">
+<HclListItemDescription>
+
+Name of the CloudFront Origin Access Control
 
 </HclListItemDescription>
 </HclListItem>
@@ -205,15 +251,31 @@ The name of the Lambda function. Used to generate function url
 </HclListItemDescription>
 </HclListItem>
 
-### Optional
-
-<HclListItem name="aws_region" requirement="optional" type="string">
+<HclListItem name="oac_signing_behavior" requirement="required" type="string">
 <HclListItemDescription>
 
-The AWS region in which all resources will be created
+Specifies which requests CloudFront signs. Specify always for the most common use case. Allowed values: always, never, and no-override.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;us-east-1&quot;"/>
+</HclListItem>
+
+<HclListItem name="oac_signing_protocol" requirement="required" type="string">
+<HclListItemDescription>
+
+Determines how CloudFront signs (authenticates) requests. The only valid value is sigv4.
+
+</HclListItemDescription>
+</HclListItem>
+
+### Optional
+
+<HclListItem name="oac_origin_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of origin that this Origin Access Control is for. Valid values are lambda, mediapackagev2, mediastore, and s3
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;lambda&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -231,6 +293,14 @@ The Amazon Resource Name (ARN) of the function.
 <HclListItemDescription>
 
 The HTTP URL endpoint for the function in the format https://&lt;url_id>.lambda-url.&lt;region>.on.aws/
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="oac_id">
+<HclListItemDescription>
+
+The unique identifier of Origin Access Control
 
 </HclListItemDescription>
 </HclListItem>
@@ -255,6 +325,6 @@ A generated ID for the endpoint.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.23.0/modules/lambda-function-url/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a7bfa2d23a2dca114edd5269e556d0eb"
+  "hash": "20dc7f916649897e1316715dcb2a5e3a"
 }
 ##DOCS-SOURCER-END -->
