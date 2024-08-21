@@ -2340,9 +2340,6 @@ This output has been superseded by public_subnet_route_table_ids. However, it is
 <HclListItem name="public_subnet_route_table_ids">
 </HclListItem>
 
-<HclListItem name="public_subnet_route_table_ids">
-</HclListItem>
-
 <HclListItem name="public_subnets">
 <HclListItemDescription>
 
@@ -2406,6 +2403,6 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b675ea04fbd5aa240ce7eabc2c66f321"
+  "hash": "5b9b9538b36558669bedca87027348ce"
 }
 ##DOCS-SOURCER-END -->
