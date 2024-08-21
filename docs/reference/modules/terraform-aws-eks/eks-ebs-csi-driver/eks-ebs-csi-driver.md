@@ -216,11 +216,12 @@ Any types represent complex values of variable type. For details, please consult
    See the following AWS Blog for more details on advanced configuration of EKS add-ons: https://aws.amazon.com/blogs/containers/amazon-eks-add-ons-advanced-configuration/
    Example:
    {
-     addon_version        = "v1.14.0-eksbuild.1"
-     configuration_values = {}
-     preserve                 = false
-     resolve_conflicts        = "NONE"
-     service_account_role_arn = "arn:aws:iam::123456789012:role/role-name"
+     addon_version               = "v1.14.0-eksbuild.1"
+     configuration_values        = {}
+     preserve                    = false
+     resolve_conflicts_on_create = "OVERWRITE"
+     resolve_conflicts_on_update = "NONE"
+     service_account_role_arn    = "arn:aws:iam::123456789012:role/role-name"
    }
 
 ```
@@ -337,6 +338,6 @@ The latest available version of the EBS CSI AddOn.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.11/modules/eks-ebs-csi-driver/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2ae23830908fdfa2dc0236f87ad48203"
+  "hash": "d44404538fbbea9303e17fd4b1e2fec8"
 }
 ##DOCS-SOURCER-END -->

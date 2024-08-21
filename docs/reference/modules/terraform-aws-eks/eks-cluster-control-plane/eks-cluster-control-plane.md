@@ -1266,11 +1266,12 @@ Any types represent complex values of variable type. For details, please consult
    See the following AWS Blog for more details on advanced configuration of EKS add-ons: https://aws.amazon.com/blogs/containers/amazon-eks-add-ons-advanced-configuration/
    Example:
    {
-     addon_version        = "v1.14.0-eksbuild.1"
-     configuration_values = {}
-     preserve                 = false
-     resolve_conflicts        = "NONE"
-     service_account_role_arn = "arn:aws:iam::123456789012:role/role-name"
+     addon_version               = "v1.14.0-eksbuild.1"
+     configuration_values        = {}
+     preserve                    = false
+     resolve_conflicts_on_create = "OVERWRITE"
+     resolve_conflicts_on_update = "NONE"
+     service_account_role_arn    = "arn:aws:iam::123456789012:role/role-name"
    }
 
 ```
@@ -1363,9 +1364,10 @@ Any types represent complex values of variable type. For details, please consult
             mode      = "iptables"
             resources = {}
          }
-         preserve                 = false
-         resolve_conflicts        = "NONE"
-         service_account_role_arn = "arn:aws:iam::123456789012:role/role-name"
+         preserve                    = false
+         resolve_conflicts_on_create = "OVERWRITE"
+         resolve_conflicts_on_update = "NONE"
+         service_account_role_arn    = "arn:aws:iam::123456789012:role/role-name"
        }
      }
 
@@ -1810,6 +1812,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.11/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5765ab92fbb78e4d872314768d91853b"
+  "hash": "ecbae897a56b6b35446e17a48bf24f4f"
 }
 ##DOCS-SOURCER-END -->
