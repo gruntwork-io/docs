@@ -57,7 +57,7 @@ To summarize:
 *   In a given subnet tier, there are usually three subnets, one for each Availability Zone.
 *   Therefore, if we created a single VPC in the `us-west-2` region, which has Availability Zones `us-west-2a`,`us-west-2b`,
     and `us-west-2c`, each subnet tier would have three subnets (one per Availability Zone) for a total of twelve subnets in all.
-*   The only way to reach this VPC is from the public internet via a publicly exposed sevice, a service such as SSM, a transit
+*   The only way to reach this VPC is from the public internet via a publicly exposed service, a service such as SSM, a transit
     gateway, VPC peering, or a VPN connection.
 *   Philosophically, everything in a VPC should be isolated from all resources in any other VPC. In particular, we want
     to ensure that our stage environment is completely independent from prod. This architecture helps to reinforce that.
@@ -66,6 +66,10 @@ Throughout our diagrams and examples we recommend a /16 CIDR range for VPCs. The
 CIDR math quite straightforward. If using the 10.0.0.0/8 [RFC1918](http://www.faqs.org/rfcs/rfc1918.html) address space,
 this allows for 256 VPCs (10.0.0.0/16-10.255.255.255/16) with 65,534 IP addresses per VPC. This should be sufficient for
 nearly all use-cases, and is consistent with many examples and existing documentation found elsewhere.
+
+## Network Firewall
+
+This module can optionally create an [AWS Network Firewall](https://aws.amazon.com/network-firewall). For additional details, refer to [core concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/vpc-app/core-concepts.md).
 
 ## Gotchas
 
@@ -199,6 +203,9 @@ module "vpc_app" {
   # routed from other VPC hosting the IGW.
   create_igw = true
 
+  # Whether to create an AWS Network Firewall at the perimeter of the network.
+  create_network_firewall = false
+
   # If set to false, this module will NOT create the private app subnet tier.
   create_private_app_subnets = true
 
@@ -227,9 +234,10 @@ module "vpc_app" {
   custom_nat_eips = []
 
   # A map of tags to apply to the VPC, Subnets, Route Tables, Internet Gateway,
-  # default security group, and default NACLs. The key is the tag name and the
-  # value is the tag value. Note that the tag 'Name' is automatically added by
-  # this module but may be optionally overwritten by this variable.
+  # default security group, default NACLs, and network firewall (if enabled).
+  # The key is the tag name and the value is the tag value. Note that the tag
+  # 'Name' is automatically added by this module but may be optionally
+  # overwritten by this variable.
   custom_tags = {}
 
   # The egress rules to apply to the default NACL in the VPC. This is the
@@ -362,6 +370,50 @@ module "vpc_app" {
   # instances in the private subnets. Defaults to 0.
   nat_secondary_private_ip_address_count = 0
 
+  # Whether to enable deletion protection on the Network Firewall.
+  network_firewall_delete_protection = false
+
+  # The description to use for the Network Firewall.
+  network_firewall_description = ""
+
+  # A list of logging configuration objects for the Network Firewall.
+  network_firewall_logging_configuration = []
+
+  # Whether to enable logging on the Network Firewall.
+  network_firewall_logging_enabled = false
+
+  # The name to use for the Network Firewall. Defaults to
+  # var.vpc_name-network-firewall-AZ-index.
+  network_firewall_name = ""
+
+  # The ARN of the Network Firewall policy to attach to the Firewall. Required
+  # if var.create_network_firewall is true.
+  network_firewall_policy_arn = ""
+
+  # Takes the CIDR prefix and adds these many bits to it for calculating subnet
+  # ranges.  MAKE SURE if you change this you also change the CIDR spacing or
+  # you may hit errors.  See cidrsubnet interpolation in terraform config for
+  # more information.
+  network_firewall_subnet_bits = 9
+
+  # Whether to enable subnet change protection on the Network Firewall.
+  network_firewall_subnet_change_protection = true
+
+  # A map listing the specific CIDR blocks desired for each network firewall
+  # subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the
+  # number of Availability Zones. If left blank, we will compute a reasonable
+  # CIDR block for each subnet.
+  network_firewall_subnet_cidr_blocks = {}
+
+  # A map of tags to apply to the network firewall subnets in addition to the
+  # custom_tags. The key is the tag name and the value is the tag value. Note
+  # that tags defined here will override tags defined as custom_tags in case of
+  # conflict.
+  network_firewall_subnet_custom_tags = {}
+
+  # The amount of spacing between the network firewall subnets.
+  network_firewall_subnet_spacing = 480
+
   # How many AWS Availability Zones (AZs) to use. One subnet of each type
   # (public, private app, private persistence) will be created in each AZ. All
   # AZs will be used if you provide a value that is more than the number of AZs
@@ -376,7 +428,7 @@ module "vpc_app" {
   # Historically, we created one route table for all the public subnets, as they
   # all routed through the Internet Gateway anyway, but in certain use cases
   # (e.g., for use with Network Firewall), you may want to have separate route
-  # tables for each public subnet.
+  # tables for each public subnet. Ignored if create_network_firewall = true
   one_route_table_public_subnets = true
 
   # A list of Virtual Private Gateways that will propagate routes to persistence
@@ -391,7 +443,8 @@ module "vpc_app" {
   # more information.
   persistence_subnet_bits = 5
 
-  # The amount of spacing between the private persistence subnets.
+  # The amount of spacing between the private persistence subnets. Default: 2
+  # times the value of subnet_spacing.
   persistence_subnet_spacing = null
 
   # A map of tags to apply to the private-app route table(s), on top of the
@@ -682,6 +735,9 @@ inputs = {
   # routed from other VPC hosting the IGW.
   create_igw = true
 
+  # Whether to create an AWS Network Firewall at the perimeter of the network.
+  create_network_firewall = false
+
   # If set to false, this module will NOT create the private app subnet tier.
   create_private_app_subnets = true
 
@@ -710,9 +766,10 @@ inputs = {
   custom_nat_eips = []
 
   # A map of tags to apply to the VPC, Subnets, Route Tables, Internet Gateway,
-  # default security group, and default NACLs. The key is the tag name and the
-  # value is the tag value. Note that the tag 'Name' is automatically added by
-  # this module but may be optionally overwritten by this variable.
+  # default security group, default NACLs, and network firewall (if enabled).
+  # The key is the tag name and the value is the tag value. Note that the tag
+  # 'Name' is automatically added by this module but may be optionally
+  # overwritten by this variable.
   custom_tags = {}
 
   # The egress rules to apply to the default NACL in the VPC. This is the
@@ -845,6 +902,50 @@ inputs = {
   # instances in the private subnets. Defaults to 0.
   nat_secondary_private_ip_address_count = 0
 
+  # Whether to enable deletion protection on the Network Firewall.
+  network_firewall_delete_protection = false
+
+  # The description to use for the Network Firewall.
+  network_firewall_description = ""
+
+  # A list of logging configuration objects for the Network Firewall.
+  network_firewall_logging_configuration = []
+
+  # Whether to enable logging on the Network Firewall.
+  network_firewall_logging_enabled = false
+
+  # The name to use for the Network Firewall. Defaults to
+  # var.vpc_name-network-firewall-AZ-index.
+  network_firewall_name = ""
+
+  # The ARN of the Network Firewall policy to attach to the Firewall. Required
+  # if var.create_network_firewall is true.
+  network_firewall_policy_arn = ""
+
+  # Takes the CIDR prefix and adds these many bits to it for calculating subnet
+  # ranges.  MAKE SURE if you change this you also change the CIDR spacing or
+  # you may hit errors.  See cidrsubnet interpolation in terraform config for
+  # more information.
+  network_firewall_subnet_bits = 9
+
+  # Whether to enable subnet change protection on the Network Firewall.
+  network_firewall_subnet_change_protection = true
+
+  # A map listing the specific CIDR blocks desired for each network firewall
+  # subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the
+  # number of Availability Zones. If left blank, we will compute a reasonable
+  # CIDR block for each subnet.
+  network_firewall_subnet_cidr_blocks = {}
+
+  # A map of tags to apply to the network firewall subnets in addition to the
+  # custom_tags. The key is the tag name and the value is the tag value. Note
+  # that tags defined here will override tags defined as custom_tags in case of
+  # conflict.
+  network_firewall_subnet_custom_tags = {}
+
+  # The amount of spacing between the network firewall subnets.
+  network_firewall_subnet_spacing = 480
+
   # How many AWS Availability Zones (AZs) to use. One subnet of each type
   # (public, private app, private persistence) will be created in each AZ. All
   # AZs will be used if you provide a value that is more than the number of AZs
@@ -859,7 +960,7 @@ inputs = {
   # Historically, we created one route table for all the public subnets, as they
   # all routed through the Internet Gateway anyway, but in certain use cases
   # (e.g., for use with Network Firewall), you may want to have separate route
-  # tables for each public subnet.
+  # tables for each public subnet. Ignored if create_network_firewall = true
   one_route_table_public_subnets = true
 
   # A list of Virtual Private Gateways that will propagate routes to persistence
@@ -874,7 +975,8 @@ inputs = {
   # more information.
   persistence_subnet_bits = 5
 
-  # The amount of spacing between the private persistence subnets.
+  # The amount of spacing between the private persistence subnets. Default: 2
+  # times the value of subnet_spacing.
   persistence_subnet_spacing = null
 
   # A map of tags to apply to the private-app route table(s), on top of the
@@ -1220,6 +1322,15 @@ If the VPC will create an Internet Gateway. There are use cases when the VPC is 
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="create_network_firewall" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to create an AWS Network Firewall at the perimeter of the network.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="create_private_app_subnets" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1277,7 +1388,7 @@ The list of EIPs (allocation ids) to use for the NAT gateways. Their number has 
 <HclListItem name="custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
-A map of tags to apply to the VPC, Subnets, Route Tables, Internet Gateway, default security group, and default NACLs. The key is the tag name and the value is the tag value. Note that the tag 'Name' is automatically added by this module but may be optionally overwritten by this variable.
+A map of tags to apply to the VPC, Subnets, Route Tables, Internet Gateway, default security group, default NACLs, and network firewall (if enabled). The key is the tag name and the value is the tag value. Note that the tag 'Name' is automatically added by this module but may be optionally overwritten by this variable.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
@@ -1633,6 +1744,112 @@ The host number in the IP address of the NAT Gateway. You would only use this if
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
+<HclListItem name="network_firewall_delete_protection" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to enable deletion protection on the Network Firewall.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="network_firewall_description" requirement="optional" type="string">
+<HclListItemDescription>
+
+The description to use for the Network Firewall.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="network_firewall_logging_configuration" requirement="optional" type="any">
+<HclListItemDescription>
+
+A list of logging configuration objects for the Network Firewall.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="network_firewall_logging_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to enable logging on the Network Firewall.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="network_firewall_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name to use for the Network Firewall. Defaults to <a href="#vpc_name"><code>vpc_name</code></a>-network-firewall-AZ-index.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="network_firewall_policy_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the Network Firewall policy to attach to the Firewall. Required if <a href="#create_network_firewall"><code>create_network_firewall</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="network_firewall_subnet_bits" requirement="optional" type="number">
+<HclListItemDescription>
+
+Takes the CIDR prefix and adds these many bits to it for calculating subnet ranges.  MAKE SURE if you change this you also change the CIDR spacing or you may hit errors.  See cidrsubnet interpolation in terraform config for more information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="9"/>
+</HclListItem>
+
+<HclListItem name="network_firewall_subnet_change_protection" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to enable subnet change protection on the Network Firewall.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="network_firewall_subnet_cidr_blocks" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map listing the specific CIDR blocks desired for each network firewall subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="network_firewall_subnet_custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the network firewall subnets in addition to the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="network_firewall_subnet_spacing" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of spacing between the network firewall subnets.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="480"/>
+</HclListItem>
+
 <HclListItem name="num_availability_zones" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1645,7 +1862,7 @@ How many AWS Availability Zones (AZs) to use. One subnet of each type (public, p
 <HclListItem name="one_route_table_public_subnets" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If set to true, create one route table shared amongst all the public subnets; if set to false, create a separate route table per public subnet. Historically, we created one route table for all the public subnets, as they all routed through the Internet Gateway anyway, but in certain use cases (e.g., for use with Network Firewall), you may want to have separate route tables for each public subnet.
+If set to true, create one route table shared amongst all the public subnets; if set to false, create a separate route table per public subnet. Historically, we created one route table for all the public subnets, as they all routed through the Internet Gateway anyway, but in certain use cases (e.g., for use with Network Firewall), you may want to have separate route tables for each public subnet. Ignored if create_network_firewall = true
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -1672,7 +1889,7 @@ Takes the CIDR prefix and adds these many bits to it for calculating subnet rang
 <HclListItem name="persistence_subnet_spacing" requirement="optional" type="number">
 <HclListItemDescription>
 
-The amount of spacing between the private persistence subnets.
+The amount of spacing between the private persistence subnets. Default: 2 times the value of subnet_spacing.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -2011,6 +2228,9 @@ A map of tags to apply just to the VPC itself, but not any of the other resource
 <HclListItem name="internet_gateway_id">
 </HclListItem>
 
+<HclListItem name="internet_gateway_route_table_id">
+</HclListItem>
+
 <HclListItem name="ipv6_cidr_block">
 <HclListItemDescription>
 
@@ -2023,6 +2243,18 @@ The IPv6 CIDR block associated with the VPC.
 </HclListItem>
 
 <HclListItem name="nat_gateway_public_ips">
+</HclListItem>
+
+<HclListItem name="network_firewall_ids">
+</HclListItem>
+
+<HclListItem name="network_firewall_subnet_arns">
+</HclListItem>
+
+<HclListItem name="network_firewall_subnet_cidr_blocks">
+</HclListItem>
+
+<HclListItem name="network_firewall_subnet_route_table_ids">
 </HclListItem>
 
 <HclListItem name="num_availability_zones">
@@ -2098,6 +2330,14 @@ A map of all private-persistence subnets, with the subnet ID as the key, and all
 </HclListItem>
 
 <HclListItem name="public_subnet_route_table_id">
+<HclListItemDescription>
+
+This output has been superseded by public_subnet_route_table_ids. However, it is maintained for backward compatibility.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="public_subnet_route_table_ids">
 </HclListItem>
 
 <HclListItem name="public_subnet_route_table_ids">
@@ -2166,6 +2406,6 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "63c1fe0c40c85c98664528f578ec74cf"
+  "hash": "b675ea04fbd5aa240ce7eabc2c66f321"
 }
 ##DOCS-SOURCER-END -->
