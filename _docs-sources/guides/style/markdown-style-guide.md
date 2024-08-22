@@ -617,7 +617,7 @@ This is a bare link to https://docs.gruntwork.io.
 If you wish to present a link as its own link text, wrap it in angle brackets:
 
 ```markdown title="✅ DO THIS"
-This is a proper link to <https://docs.gruntwork.io>
+This is a proper link to [https://docs.gruntwork.io](https://docs.gruntwork.io)
 ```
 
 If you're using the text of a link purely informatively and _do not want it to
@@ -625,14 +625,6 @@ function as a link_, use backticks to treat it as inline code:
 
 ```markdown
 This link to `https://docs.gruntwork.io` is for informational purposes only.
-```
-
-### Email addresses
-
-Use angle brackets to automatically create `mailto` links for any emails:
-
-```markdown
-Contact <support@gruntwork.io>.
 ```
 
 ## Images

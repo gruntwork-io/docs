@@ -57,7 +57,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [helm-kubernetes-services](https://github.com/gruntwork-io/helm-kubernetes-services) repo. If you are a subscriber and
-don’t have access to this repo, email <support@gruntwork.io>.
+don’t have access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ### Core concepts
 

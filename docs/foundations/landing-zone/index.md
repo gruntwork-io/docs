@@ -33,7 +33,7 @@ Gruntwork Landing Zone directly addresses these limitations by extending Control
 1. Request new AWS accounts using a simple YAML file, GitHub Actions, or any system that can trigger a GitHub Action (e.g. ServiceNow)
 1. Review and customize all new AWS account requests using GitHub Pull Request functionality
 1. Define a customized account baseline unique to your organization
-1. Enable AWS account baselines to stay up to date automatically using [Patcher](./patcher)
+1. Enable AWS account baselines to stay up to date automatically using [Patcher](/patcher)
 
 ## Greenfield vs. brownfield
 
@@ -45,6 +45,6 @@ While it possible to migrate an existing Control Tower deployment into Gruntwork
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "1b06ee488ae3edb9026ead2ed2671f35"
+  "hash": "c28290d0e94495c518e32adb721167e8"
 }
 ##DOCS-SOURCER-END -->

@@ -20,7 +20,7 @@ you can use to login to the AWS console.
 #### Logging into the AWS console
 
 After the initial sign up, if you wish to login as the root user, you have to go to
-<https://console.aws.amazon.com> and login using the root user’s email address and password.
+[https://console.aws.amazon.com](https://console.aws.amazon.com) and login using the root user’s email address and password.
 
 #### Access keys
 
@@ -53,7 +53,3 @@ more limited permissions, and then you’ll likely never touch the root user acc
 
 
 </div>
-
-
-
-

@@ -22,7 +22,7 @@ IAM user to your AWS account in a web browser by using the IAM user sign-in URL.
 
 Every AWS account has a unique
 _[IAM user sign-in URL](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_how-users-sign-in.html)_. Note
-that to login as an IAM user, you do NOT go to <https://console.aws.amazon.com>, as that’s solely the sign-in URL for
+that to login as an IAM user, you do NOT go to [https://console.aws.amazon.com](https://console.aws.amazon.com), as that’s solely the sign-in URL for
 root users. Instead, IAM users will need to use a sign-in URL of the form
 `\https://<ID_OR_ALIAS>.signin.aws.amazon.com/console`, where `ID_OR_ALIAS` is either your AWS account ID (e.g.,
 `\https://111122223333.signin.aws.amazon.com/console`) or a
@@ -65,13 +65,9 @@ user permissions, you will need to use IAM policies, which are the topic of the 
 </div>
 
 
-
-
-
-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "17f37d79f888c3473e9bb0d065d07342"
+  "hash": "f5c2768cb60cf430b9538607a615ecea"
 }
 ##DOCS-SOURCER-END -->

@@ -1,4 +1,4 @@
-const visit = require("unist-util-visit")
+import { visit } from 'unist-util-visit';
 
 // This plugin repurposes the alt text specified for images to
 // automatically generate captions for them. For example:
@@ -15,8 +15,8 @@ const visit = require("unist-util-visit")
 // ![Alt text, overridden by the caption below](/img/example.png)
 // _A custom caption, which overrides the alt text above_
 
-const plugin = (options) => {
-  const transformer = async (ast) => {
+export default function captionPlugin() {
+  return (ast) => {
     visit(ast, "paragraph", (node) => {
       if (
         node.children &&
@@ -45,7 +45,4 @@ const plugin = (options) => {
       }
     })
   }
-  return transformer
 }
-
-module.exports = plugin

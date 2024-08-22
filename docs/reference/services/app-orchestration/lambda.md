@@ -50,7 +50,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-lambda](https://github.com/gruntwork-io/terraform-aws-lambda) repo. If you are a subscriber and don’t
-have access to this repo, email <support@gruntwork.io>.
+have access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ### Core concepts
 

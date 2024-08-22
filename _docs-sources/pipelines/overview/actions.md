@@ -22,4 +22,4 @@ Sometimes you find it necessary to make a change without going through the full 
 
 ## Other Actions
 
-If you'd like to request a new Pipelines action, please email us at <feedback@gruntwork.io>.
+If you'd like to request a new Pipelines action, please email us at [feedback@gruntwork.io](mailto:feedback@gruntwork.io).

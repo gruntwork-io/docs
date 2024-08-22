@@ -290,7 +290,7 @@ module "aws_config_multi_region" {
   # Map of recording group configurations.
 
 See the official AWS provider
-  # documentation for futher context 
+  # documentation for futher context
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_recorder#recording_group-configuration-block
 
 Each
@@ -300,7 +300,7 @@ all_supported bool
   # (required):  Whether to records configuration changes for every supported
   # type of regional resource.
 
-include_global_resource_types bool (required): 
+include_global_resource_types bool (required):
   # Whether to records configuration changes for every supported type of global
   # resource.
 
@@ -309,8 +309,8 @@ resource_types list(string) (required):  List of resource types
   # and a recording_strategy of
   # "INCLUSION_BY_RESOURCE_TYPES"
 
-recording_strategy object({}) (required): 
-  # use_only list(string):    The recording stratgy to use which can be one of: 
+recording_strategy object({}) (required):
+  # use_only list(string):    The recording stratgy to use which can be one of:
   #   - "ALL_SUPPORTED_RESOURCE_TYPES"    - "EXCLUSION_BY_RESOURCE_TYPES"    -
   # "INCLUSION_BY_RESOURCE_TYPES"
 
@@ -342,8 +342,8 @@ See the following for more
 https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
 /*
 recording_mode
-  # = {  recording_frequency = "DAILY"  recording_mode_override = {   
-  # description         = "Override for specific resource types"   
+  # = {  recording_frequency = "DAILY"  recording_mode_override = {
+  # description         = "Override for specific resource types"
   # recording_frequency = "CONTINUOUS"    resource_types      =
   # ["AWS::EC2::Instance"]  }
 }
@@ -652,7 +652,7 @@ inputs = {
   # Map of recording group configurations.
 
 See the official AWS provider
-  # documentation for futher context 
+  # documentation for futher context
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_recorder#recording_group-configuration-block
 
 Each
@@ -662,7 +662,7 @@ all_supported bool
   # (required):  Whether to records configuration changes for every supported
   # type of regional resource.
 
-include_global_resource_types bool (required): 
+include_global_resource_types bool (required):
   # Whether to records configuration changes for every supported type of global
   # resource.
 
@@ -671,8 +671,8 @@ resource_types list(string) (required):  List of resource types
   # and a recording_strategy of
   # "INCLUSION_BY_RESOURCE_TYPES"
 
-recording_strategy object({}) (required): 
-  # use_only list(string):    The recording stratgy to use which can be one of: 
+recording_strategy object({}) (required):
+  # use_only list(string):    The recording stratgy to use which can be one of:
   #   - "ALL_SUPPORTED_RESOURCE_TYPES"    - "EXCLUSION_BY_RESOURCE_TYPES"    -
   # "INCLUSION_BY_RESOURCE_TYPES"
 
@@ -704,8 +704,8 @@ See the following for more
 https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
 /*
 recording_mode
-  # = {  recording_frequency = "DAILY"  recording_mode_override = {   
-  # description         = "Override for specific resource types"   
+  # = {  recording_frequency = "DAILY"  recording_mode_override = {
+  # description         = "Override for specific resource types"
   # recording_frequency = "CONTINUOUS"    resource_types      =
   # ["AWS::EC2::Instance"]  }
 }
@@ -1337,14 +1337,14 @@ recording_mode_override:
 See the following for more information:
 https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
 /*
-recording_mode = {
+recording_mode = \{
   recording_frequency = 'DAILY'
-  recording_mode_override = {
+  recording_mode_override = \{
     description         = 'Override for specific resource types'
     recording_frequency = 'CONTINUOUS'
     resource_types      = ['AWS::EC2::Instance']
-  }
-}
+  \}
+\}
 */
 
 
@@ -1352,14 +1352,14 @@ recording_mode = {
 <HclListItemTypeDetails>
 
 ```hcl
-object({
+object(\{
     recording_frequency = string
-    recording_mode_override = optional(object({
+    recording_mode_override = optional(object(\{
       description         = string
       recording_frequency = string
       resource_types      = list(string)
-    }))
-  })
+    \}))
+  \})
 ```
 
 </HclListItemTypeDetails>

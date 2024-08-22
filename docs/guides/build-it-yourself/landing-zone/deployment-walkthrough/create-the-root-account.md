@@ -3,7 +3,7 @@
 Now let’s create your root AWS account. This account will be the parent of all of your other AWS accounts and
 the central place where you manage billing. You create this initial account manually, via a web browser:
 
-1. Go to <https://aws.amazon.com>.
+1. Go to [https://aws.amazon.com](https://aws.amazon.com).
 
 2. Click Create an AWS Account.
 
@@ -16,6 +16,6 @@ the central place where you manage billing. You create this initial account manu
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "429cdfbcd62cd69e8a3eebd428aff6a6"
+  "hash": "5be9e9692d9440191b6cbc01c5a2f7f1"
 }
 ##DOCS-SOURCER-END -->
