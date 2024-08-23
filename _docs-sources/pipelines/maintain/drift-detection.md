@@ -69,9 +69,11 @@ Pipelines Drift Detection can be run on a schedule or manually.
 
 ### Running on a schedule
 
-To enable running on a schedule, uncomment the schedule block containing `- cron: '0 0 * * 1-5'` in `.github/workflows/pipelines-drift-detection.yml`. The default schedule runs at 00:00UTC Monday through Friday. You can increase or decrease the frequency that the schedule runs using [crontab syntax](https://crontab.guru/#0_0_*_*_1-5).
+To enable running on a schedule:
 
-Each time Drift Detection runs and detects drift it will open a Pull Request in your repository. If there is an existing Drift Detection Pull Request that has not been merged it will be replaced.
+1. Uncomment the schedule block containing `- cron: '0 0 * * 1-5'` in `.github/workflows/pipelines-drift-detection.yml`.
+1. Update the cron schedule to suit your desired frequency. The default schedule runs at 00:00UTC Monday through Friday. You can increase or decrease the frequency that the schedule runs using [crontab syntax](https://crontab.guru/#0_0_*_*_1-5).
+1. Each time Drift Detection runs and detects drift it will open a Pull Request in your repository. If there is an existing Drift Detection Pull Request that has not been merged it will be replaced.
 
 :::note
 Running Pipelines Drift Detection too frequently can easily eat through your GitHub Action minutes. We recommend starting with a low frequency and increasing only when you are comfortable with the usage.
@@ -101,7 +103,7 @@ Drift can be resolved by either applying the commited IaC from your repository, 
 
 ### Merging The Pull Request
 
-Merging the Pull Request will trigger a `terragrunt apply` on the drifted modules. In most cases this will resolve the drift.
+Merging the Pull Request will trigger a `terragrunt apply` on the drifted modules.
 
 ### Updating Units
 

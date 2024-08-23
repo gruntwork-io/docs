@@ -1,16 +1,16 @@
 # Pipelines Drift Detection
 
 :::note
-Pipelines Drift Detection is only available to Pipelines Enterprise customers.
+Pipelines Drift Detection is only available to Devops Foundations Enterprise customers.
 :::
 
-## What Is Pipelines Drift Detection
+## What is Pipelines Drift Detection
 
 Infrastructure Drift occurs when the applied terragrunt cloud configuration differs from the commited Infrastructure as Code (IaC).
 
 Pipelines Drift Detection helps to mitigate Drift in your repositories by running `terragrunt plan` on infrastructure units. If the plan detects any units have drifted from their applied configuration Pipelines will open a Drift Detected Pull Request tracking this drift in your repository.
 
-When the Drift Detected Pull Request is merged, Pipelines will run `terragrunt apply` on all units where drift was detected.
+When the Drift Detected Pull Request is merged, Pipelines will run `terragrunt apply` on all units where drift was detected to ensure resources once again match what is specified in code.
 
 ## Installing Pipelines Drift Detection
 
@@ -69,9 +69,11 @@ Pipelines Drift Detection can be run on a schedule or manually.
 
 ### Running on a schedule
 
-To enable running on a schedule, uncomment the schedule block containing `- cron: '0 0 * * 1-5'` in `.github/workflows/pipelines-drift-detection.yml`. The default schedule runs at 00:00UTC Monday through Friday. You can increase or decrease the frequency that the schedule runs using [crontab syntax](https://crontab.guru/#0_0_*_*_1-5).
+To enable running on a schedule:
 
-Each time Drift Detection runs and detects drift it will open a Pull Request in your repository. If there is an existing Drift Detection Pull Request that has not been merged it will be replaced.
+1. Uncomment the schedule block containing `- cron: '0 0 * * 1-5'` in `.github/workflows/pipelines-drift-detection.yml`.
+1. Update the cron schedule to suit your desired frequency. The default schedule runs at 00:00UTC Monday through Friday. You can increase or decrease the frequency that the schedule runs using [crontab syntax](https://crontab.guru/#0_0_*_*_1-5).
+1. Each time Drift Detection runs and detects drift it will open a Pull Request in your repository. If there is an existing Drift Detection Pull Request that has not been merged it will be replaced.
 
 :::note
 Running Pipelines Drift Detection too frequently can easily eat through your GitHub Action minutes. We recommend starting with a low frequency and increasing only when you are comfortable with the usage.
@@ -101,18 +103,18 @@ Drift can be resolved by either applying the commited IaC from your repository, 
 
 ### Merging The Pull Request
 
-Merging the Pull Request will trigger a `terragrunt apply` on the drifted modules. In most cases this will resolve the drift.
+Merging the Pull Request will trigger a `terragrunt apply` on the drifted modules.
 
 ### Updating Units
 
-You can make modifications to modules that have drifted and commit those changes to the Drift Detection branch. Each change will re-trigger `terragrunt plan` on the Pull Request, and you can inspect the plan to ensure that the unit is no longer drifting.
+You can make modifications to modules that have drifted and commit those changes to the Drift Detection branch. Each change to a terragrunt unit change will re-trigger `terragrunt plan` in those units on the Pull Request, and you can inspect the plan to ensure that the unit no longer has drift.
 
-When the Pull Request is merged, Pipelines will run `terragrunt apply` on all the units that had drift detected **or** were modified in the Pull Request. If the unit is no longer drifting the apply will be a no-op.
+When the Pull Request is merged, Pipelines will run `terragrunt apply` on all the units that had drift detected **or** were modified in the Pull Request. If the unit no longer has drift the apply will be a no-op and no infrastructure changes will be made.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e7acdcdb9bb871255275d41cfb784bf2"
+  "hash": "a06ba81f5f28691ab23ce90ed7f7a40b"
 }
 ##DOCS-SOURCER-END -->
