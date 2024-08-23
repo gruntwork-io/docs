@@ -1,16 +1,16 @@
 # Pipelines Drift Detection
 
 :::note
-Pipelines Drift Detection is only available to Pipelines Enterprise customers.
+Pipelines Drift Detection is only available to Devops Foundations Enterprise customers.
 :::
 
-## What Is Pipelines Drift Detection
+## What is Pipelines Drift Detection
 
 Infrastructure Drift occurs when the applied terragrunt cloud configuration differs from the commited Infrastructure as Code (IaC).
 
 Pipelines Drift Detection helps to mitigate Drift in your repositories by running `terragrunt plan` on infrastructure units. If the plan detects any units have drifted from their applied configuration Pipelines will open a Drift Detected Pull Request tracking this drift in your repository.
 
-When the Drift Detected Pull Request is merged, Pipelines will run `terragrunt apply` on all units where drift was detected.
+When the Drift Detected Pull Request is merged, Pipelines will run `terragrunt apply` on all units where drift was detected to ensure resources once again match what is specified in code.
 
 ## Installing Pipelines Drift Detection
 
@@ -105,6 +105,6 @@ Merging the Pull Request will trigger a `terragrunt apply` on the drifted module
 
 ### Updating Units
 
-You can make modifications to modules that have drifted and commit those changes to the Drift Detection branch. Each change will re-trigger `terragrunt plan` on the Pull Request, and you can inspect the plan to ensure that the unit is no longer drifting.
+You can make modifications to modules that have drifted and commit those changes to the Drift Detection branch. Each change to a terragrunt unit change will re-trigger `terragrunt plan` in those units on the Pull Request, and you can inspect the plan to ensure that the unit no longer has drift.
 
-When the Pull Request is merged, Pipelines will run `terragrunt apply` on all the units that had drift detected **or** were modified in the Pull Request. If the unit is no longer drifting the apply will be a no-op.
+When the Pull Request is merged, Pipelines will run `terragrunt apply` on all the units that had drift detected **or** were modified in the Pull Request. If the unit no longer has drift the apply will be a no-op and no infrastructure changes will be made.
