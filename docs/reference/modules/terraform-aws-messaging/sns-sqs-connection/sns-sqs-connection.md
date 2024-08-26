@@ -57,6 +57,11 @@ module "sns_sqs_connection" {
   # https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html.
   filter_policy = null
 
+  # Whether to enable raw message delivery (the original message is directly
+  # passed, not wrapped in JSON with the original message in the message
+  # property)
+  raw_message_delivery = false
+
 }
 
 
@@ -99,6 +104,11 @@ inputs = {
   # SNS docs for more details
   # https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html.
   filter_policy = null
+
+  # Whether to enable raw message delivery (the original message is directly
+  # passed, not wrapped in JSON with the original message in the message
+  # property)
+  raw_message_delivery = false
 
 }
 
@@ -153,6 +163,15 @@ The queue URL for the Simple Queue Service (SQS).
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="raw_message_delivery" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to enable raw message delivery (the original message is directly passed, not wrapped in JSON with the original message in the message property)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -171,6 +190,6 @@ The queue URL for the Simple Queue Service (SQS).
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/sns-sqs-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bd186105dc1c64fe64daa7578c5a44f0"
+  "hash": "fd3cd416a747ed47f2a977a9870c0818"
 }
 ##DOCS-SOURCER-END -->
