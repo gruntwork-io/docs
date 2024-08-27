@@ -9,17 +9,17 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.57.3" lastModifiedVersion="0.52.5"/>
+<VersionBadge repoTitle="CI Modules" version="0.57.3" lastModifiedVersion="0.58.0"/>
 
 # Install Jenkins Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.57.3/modules/install-jenkins" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.58.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module contains two scripts for working with [Jenkins CI server](https://jenkins.io):
 
-1.  `install.sh`: This script will install Jenkins on a Linux server. Currently, Ubuntu and CentOS are supported.
+1.  `install.sh`: This script will install Jenkins on a Linux server. Currently, Ubuntu is supported.
     This script also installs the `run-jenkins` script.
 2.  `run-jenkins`: This script can be used to configure and run Jenkins. You will typically run this script while your
     server is booting.
@@ -79,6 +79,6 @@ Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.57.3/modules/install-jenkins/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "51a0dad3798833c7c87779a1d6806410"
+  "hash": "0ce963b0cabeb3fcd8a30d4825fd6108"
 }
 ##DOCS-SOURCER-END -->

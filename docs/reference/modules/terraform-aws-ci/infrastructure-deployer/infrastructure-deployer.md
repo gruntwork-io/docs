@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.57.3" lastModifiedVersion="0.52.18"/>
+<VersionBadge repoTitle="CI Modules" version="0.57.3" lastModifiedVersion="0.58.0"/>
 
 # Infrastructure Pipeline: Infrastructure Deployer CLI
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.57.3/modules/infrastructure-deployer" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.18" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.58.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module contains a CLI that can be used to set up a secure CI/CD pipeline for your infrastructure code ([Terraform](https://www.terraform.io), [Terragrunt](https://terragrunt.gruntwork.io), [Packer](https://www.packer.io/), [Docker](https://www.docker.com/), etc). This CLI can be used to in existing CI servers (e.g Jenkins, CircleCI, GitLab) to set up workflows that:
 
@@ -86,6 +86,6 @@ If you just want to try this repo out for experimenting and learning, check out 
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.57.3/modules/infrastructure-deployer/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "05f40b0aa236ad41a48a6929355cfd4e"
+  "hash": "c57266cc193bd92c445111dd2786df5d"
 }
 ##DOCS-SOURCER-END -->
