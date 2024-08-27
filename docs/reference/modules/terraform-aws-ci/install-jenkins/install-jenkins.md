@@ -19,7 +19,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 This module contains two scripts for working with [Jenkins CI server](https://jenkins.io):
 
-1.  `install.sh`: This script will install Jenkins on a Linux server. Currently, Ubuntu and CentOS are supported.
+1.  `install.sh`: This script will install Jenkins on a Linux server. Currently, Ubuntu is supported.
     This script also installs the `run-jenkins` script.
 2.  `run-jenkins`: This script can be used to configure and run Jenkins. You will typically run this script while your
     server is booting.
@@ -79,6 +79,6 @@ Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.57.3/modules/install-jenkins/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "51a0dad3798833c7c87779a1d6806410"
+  "hash": "383fc637d3e9801145db816e675abd7c"
 }
 ##DOCS-SOURCER-END -->
