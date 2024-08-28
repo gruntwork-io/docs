@@ -145,6 +145,6 @@ Congratulations! If you have followed this guide, you will be deploying infrastr
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e7707912665f3400ec9b3d7a25e37b95"
+  "hash": "706b2e65e7b53da6cbe4129963b36070"
 }
 ##DOCS-SOURCER-END -->
