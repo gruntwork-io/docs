@@ -1,5 +1,11 @@
 # Upgrading from the ECS Deploy Runner
 
+:::warning
+This document is deprecated.  It covers upgrading from the ecs-deploy-runner to infrastructure-pipelines, however infrastructure-pipelines has been [deprecated](https://docs.gruntwork.io/infrastructure-pipelines/overview/deprecation) in favor of Gruntwork Pipelines.  If you're interested in upgrading from ecs-deploy-runner directly to the latest Gruntwork Pipelines please reach out to us at [support@gruntwork.io](mailto:support@gruntwork.io).
+
+:::
+
+
 This migration guide is intended for those running the previous version of Gruntwork Pipelines, known as "ECS Deploy Runner" (EDR), who want to upgrade to the latest version of Gruntwork Pipelines. We will refer to the latest version of Gruntwork Pipelines simply as "Pipelines" in the rest of this document.
 
 To accomplish this task, we'll be using ECS Deploy Runner to deploy Pipelines, then using Pipelines to destroy ECS Deploy Runner.
