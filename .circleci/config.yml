@@ -159,7 +159,7 @@ jobs:
       - *notify_slack_staging
       - *install_bash_commons
       - setup_remote_docker:
-          version: 19.03.13
+          version: 23
       - *rebuild_stage_search_index
       - *notify_slack_stage_reindex
 
@@ -173,7 +173,7 @@ jobs:
       - *notify_slack_prod
       - *install_bash_commons
       - setup_remote_docker:
-          version: 19.03.13
+          version: 23
       - *rebuild_prod_search_index
       - *notify_slack_prod_reindex
 
