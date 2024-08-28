@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.113.0" lastModifiedVersion="0.100.0"/>
+<VersionBadge version="0.114.0" lastModifiedVersion="0.114.0"/>
 
 # Amazon EKS Core Services
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.113.0/modules/services/eks-core-services" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.0/modules/services/eks-core-services" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-core-services" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -53,7 +53,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo. If you are a subscriber and don’t have
-access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
+access to this repo, email <support@gruntwork.io>.
 
 ### Core concepts
 
@@ -68,9 +68,9 @@ For information on each of the core services deployed by this service, see the d
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.113.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.113.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.113.0/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ For information on each of the core services deployed by this service, see the d
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.113.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.113.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -108,7 +108,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "eks_core_services" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v0.113.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v0.114.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -184,6 +184,10 @@ module "eks_core_services" {
   # for scale down.
   autoscaler_down_delay_after_add = "10m"
 
+  # ARN of permissions boundary to apply to the autoscaler IAM role - the IAM
+  # role created for the Autoscaler
+  autoscaler_iam_role_permissions_boundary = null
+
   # Number for the log level verbosity. Lower numbers are less verbose, higher
   # numbers are more verbose. (Default: 4)
   autoscaler_log_level_verbosity = 4
@@ -222,6 +226,18 @@ module "eks_core_services" {
   # default version set in the chart. Only applies to non-fargate workers.
   aws_cloudwatch_agent_version = null
 
+  # Restrict the cluster autoscaler to a list of absolute ASG ARNs upon initial
+  # apply to ensure no new ASGs can be managed by the autoscaler without
+  # explicitly running another apply. Setting this to false will ensure that the
+  # cluster autoscaler is automatically given access to manage any new ASGs with
+  # the k8s.io/cluster-autoscaler/CLUSTER_NAME tag applied.
+  cluster_autoscaler_absolute_arns = true
+
+  # The version of the cluster-autoscaler helm chart to deploy. Note that this
+  # is different from the app/container version, which is sepecified with
+  # var.cluster_autoscaler_version.
+  cluster_autoscaler_chart_version = "9.21.0"
+
   # Annotations to apply to the cluster autoscaler pod(s), as key value pairs.
   cluster_autoscaler_pod_annotations = {}
 
@@ -255,15 +271,27 @@ module "eks_core_services" {
   # https://github.com/kubernetes/autoscaler/releases
   cluster_autoscaler_repository = "registry.k8s.io/autoscaling/cluster-autoscaler"
 
+  # ARN of IAM Role to use for the Cluster Autoscaler. Only used when
+  # var.create_cluster_autoscaler_role is false.
+  cluster_autoscaler_role_arn = null
+
   # Specifies an 'expander' for the cluster autoscaler. This helps determine
   # which ASG to scale when additional resource capacity is needed.
   cluster_autoscaler_scaling_strategy = "least-waste"
+
+  # The name of the service account to create for the cluster autoscaler.
+  cluster_autoscaler_service_account_name = "cluster-autoscaler-aws-cluster-autoscaler"
 
   # Which version of the cluster autoscaler to install. This should match the
   # major/minor version (e.g., v1.20) of your Kubernetes Installation. See
   # https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases
   # for a list of versions.
   cluster_autoscaler_version = "v1.29.0"
+
+  # When set to true, create a new dedicated IAM Role for the cluster
+  # autoscaler. When set to true, var.iam_role_for_service_accounts_config is
+  # required.
+  create_cluster_autoscaler_role = true
 
   # Whether or not to enable the AWS LB Ingress controller.
   enable_alb_ingress_controller = true
@@ -475,6 +503,13 @@ module "eks_core_services" {
   # rule.
   fluent_bit_pod_tolerations = []
 
+  # Merge and mask sensitive values like apikeys or passwords that are part of
+  # the helm charts `values.yaml`. These sensitive values will show up in the
+  # final metadata as clear text unless passed in as K:V pairs that are injected
+  # into the `values.yaml`. Key should be the paramater path and value should be
+  # the value.
+  fluent_bit_sensitive_values = {}
+
   # Optionally use a cri parser instead of the default Docker parser. This
   # should be used for EKS v1.24 and later.
   fluent_bit_use_cri_parser_conf = true
@@ -551,7 +586,7 @@ module "eks_core_services" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v0.113.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v0.114.0"
 }
 
 inputs = {
@@ -630,6 +665,10 @@ inputs = {
   # for scale down.
   autoscaler_down_delay_after_add = "10m"
 
+  # ARN of permissions boundary to apply to the autoscaler IAM role - the IAM
+  # role created for the Autoscaler
+  autoscaler_iam_role_permissions_boundary = null
+
   # Number for the log level verbosity. Lower numbers are less verbose, higher
   # numbers are more verbose. (Default: 4)
   autoscaler_log_level_verbosity = 4
@@ -668,6 +707,18 @@ inputs = {
   # default version set in the chart. Only applies to non-fargate workers.
   aws_cloudwatch_agent_version = null
 
+  # Restrict the cluster autoscaler to a list of absolute ASG ARNs upon initial
+  # apply to ensure no new ASGs can be managed by the autoscaler without
+  # explicitly running another apply. Setting this to false will ensure that the
+  # cluster autoscaler is automatically given access to manage any new ASGs with
+  # the k8s.io/cluster-autoscaler/CLUSTER_NAME tag applied.
+  cluster_autoscaler_absolute_arns = true
+
+  # The version of the cluster-autoscaler helm chart to deploy. Note that this
+  # is different from the app/container version, which is sepecified with
+  # var.cluster_autoscaler_version.
+  cluster_autoscaler_chart_version = "9.21.0"
+
   # Annotations to apply to the cluster autoscaler pod(s), as key value pairs.
   cluster_autoscaler_pod_annotations = {}
 
@@ -701,15 +752,27 @@ inputs = {
   # https://github.com/kubernetes/autoscaler/releases
   cluster_autoscaler_repository = "registry.k8s.io/autoscaling/cluster-autoscaler"
 
+  # ARN of IAM Role to use for the Cluster Autoscaler. Only used when
+  # var.create_cluster_autoscaler_role is false.
+  cluster_autoscaler_role_arn = null
+
   # Specifies an 'expander' for the cluster autoscaler. This helps determine
   # which ASG to scale when additional resource capacity is needed.
   cluster_autoscaler_scaling_strategy = "least-waste"
+
+  # The name of the service account to create for the cluster autoscaler.
+  cluster_autoscaler_service_account_name = "cluster-autoscaler-aws-cluster-autoscaler"
 
   # Which version of the cluster autoscaler to install. This should match the
   # major/minor version (e.g., v1.20) of your Kubernetes Installation. See
   # https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases
   # for a list of versions.
   cluster_autoscaler_version = "v1.29.0"
+
+  # When set to true, create a new dedicated IAM Role for the cluster
+  # autoscaler. When set to true, var.iam_role_for_service_accounts_config is
+  # required.
+  create_cluster_autoscaler_role = true
 
   # Whether or not to enable the AWS LB Ingress controller.
   enable_alb_ingress_controller = true
@@ -920,6 +983,13 @@ inputs = {
   # nodes that have been tainted. Each item in the list specifies a toleration
   # rule.
   fluent_bit_pod_tolerations = []
+
+  # Merge and mask sensitive values like apikeys or passwords that are part of
+  # the helm charts `values.yaml`. These sensitive values will show up in the
+  # final metadata as clear text unless passed in as K:V pairs that are injected
+  # into the `values.yaml`. Key should be the paramater path and value should be
+  # the value.
+  fluent_bit_sensitive_values = {}
 
   # Optionally use a cri parser instead of the default Docker parser. This
   # should be used for EKS v1.24 and later.
@@ -1132,9 +1202,9 @@ list(object({
    Each item in the list represents a matchExpression for requiredDuringSchedulingIgnoredDuringExecution.
    https://kubernetes.io/docs/concepts/configuration/assign-pod-node/affinity-and-anti-affinity for the various
    configuration option.
-
+  
    Example:
-
+  
    [
      {
        "key" = "node-label-key"
@@ -1142,9 +1212,9 @@ list(object({
        "operator" = "In"
      }
    ]
-
+  
    Translates to:
-
+  
    nodeAffinity:
      requiredDuringSchedulingIgnoredDuringExecution:
        nodeSelectorTerms:
@@ -1183,9 +1253,9 @@ list(map(any))
 
    Each item in the list represents a particular toleration. See
    https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ for the various rules you can specify.
-
+  
    Example:
-
+  
    [
      {
        key = "node.kubernetes.io/unreachable"
@@ -1208,6 +1278,15 @@ Minimum time to wait after a scale up event before any node is considered for sc
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;10m&quot;"/>
+</HclListItem>
+
+<HclListItem name="autoscaler_iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of permissions boundary to apply to the autoscaler IAM role - the IAM role created for the Autoscaler
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="autoscaler_log_level_verbosity" requirement="optional" type="number">
@@ -1273,9 +1352,9 @@ list(object({
    Each item in the list represents a matchExpression for requiredDuringSchedulingIgnoredDuringExecution.
    https://kubernetes.io/docs/concepts/configuration/assign-pod-node/affinity-and-anti-affinity for the various
    configuration option.
-
+  
    Example:
-
+  
    [
      {
        "key" = "node-label-key"
@@ -1283,9 +1362,9 @@ list(object({
        "operator" = "In"
      }
    ]
-
+  
    Translates to:
-
+  
    nodeAffinity:
      requiredDuringSchedulingIgnoredDuringExecution:
        nodeSelectorTerms:
@@ -1373,9 +1452,9 @@ list(map(any))
 
    Each item in the list represents a particular toleration. See
    https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ for the various rules you can specify.
-
+  
    Example:
-
+  
    [
      {
        key = "node.kubernetes.io/unreachable"
@@ -1398,6 +1477,24 @@ Which version of amazon/cloudwatch-agent to install. When null, uses the default
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_autoscaler_absolute_arns" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Restrict the cluster autoscaler to a list of absolute ASG ARNs upon initial apply to ensure no new ASGs can be managed by the autoscaler without explicitly running another apply. Setting this to false will ensure that the cluster autoscaler is automatically given access to manage any new ASGs with the k8s.io/cluster-autoscaler/CLUSTER_NAME tag applied.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="cluster_autoscaler_chart_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+The version of the cluster-autoscaler helm chart to deploy. Note that this is different from the app/container version, which is sepecified with <a href="#cluster_autoscaler_version"><code>cluster_autoscaler_version</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;9.21.0&quot;"/>
 </HclListItem>
 
 <HclListItem name="cluster_autoscaler_pod_annotations" requirement="optional" type="map(string)">
@@ -1445,9 +1542,9 @@ list(object({
    Each item in the list represents a matchExpression for requiredDuringSchedulingIgnoredDuringExecution.
    https://kubernetes.io/docs/concepts/configuration/assign-pod-node/affinity-and-anti-affinity for the various
    configuration option.
-
+  
    Example:
-
+  
    [
      {
        "key" = "node-label-key"
@@ -1455,9 +1552,9 @@ list(object({
        "operator" = "In"
      }
    ]
-
+  
    Translates to:
-
+  
    nodeAffinity:
      requiredDuringSchedulingIgnoredDuringExecution:
        nodeSelectorTerms:
@@ -1551,9 +1648,9 @@ list(map(any))
 
    Each item in the list represents a particular toleration. See
    https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ for the various rules you can specify.
-
+  
    Example:
-
+  
    [
      {
        key = "node.kubernetes.io/unreachable"
@@ -1587,6 +1684,15 @@ Which docker repository to use to install the cluster autoscaler. Check the foll
 <HclListItemDefaultValue defaultValue="&quot;registry.k8s.io/autoscaling/cluster-autoscaler&quot;"/>
 </HclListItem>
 
+<HclListItem name="cluster_autoscaler_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of IAM Role to use for the Cluster Autoscaler. Only used when <a href="#create_cluster_autoscaler_role"><code>create_cluster_autoscaler_role</code></a> is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="cluster_autoscaler_scaling_strategy" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1596,6 +1702,15 @@ Specifies an 'expander' for the cluster autoscaler. This helps determine which A
 <HclListItemDefaultValue defaultValue="&quot;least-waste&quot;"/>
 </HclListItem>
 
+<HclListItem name="cluster_autoscaler_service_account_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the service account to create for the cluster autoscaler.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;cluster-autoscaler-aws-cluster-autoscaler&quot;"/>
+</HclListItem>
+
 <HclListItem name="cluster_autoscaler_version" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1603,6 +1718,15 @@ Which version of the cluster autoscaler to install. This should match the major/
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;v1.29.0&quot;"/>
+</HclListItem>
+
+<HclListItem name="create_cluster_autoscaler_role" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, create a new dedicated IAM Role for the cluster autoscaler. When set to true, <a href="#iam_role_for_service_accounts_config"><code>iam_role_for_service_accounts_config</code></a> is required.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="enable_alb_ingress_controller" requirement="optional" type="bool">
@@ -1740,9 +1864,9 @@ list(object({
    Each item in the list represents a matchExpression for requiredDuringSchedulingIgnoredDuringExecution.
    https://kubernetes.io/docs/concepts/configuration/assign-pod-node/affinity-and-anti-affinity for the various
    configuration option.
-
+  
    Example:
-
+  
    [
      {
        "key" = "node-label-key"
@@ -1750,9 +1874,9 @@ list(object({
        "operator" = "In"
      }
    ]
-
+  
    Translates to:
-
+  
    nodeAffinity:
      requiredDuringSchedulingIgnoredDuringExecution:
        nodeSelectorTerms:
@@ -1791,9 +1915,9 @@ list(map(any))
 
    Each item in the list represents a particular toleration. See
    https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ for the various rules you can specify.
-
+  
    Example:
-
+  
    [
      {
        key = "node.kubernetes.io/unreachable"
@@ -2019,7 +2143,7 @@ object({
     enabled = bool
 
     # This option allows a tag name associated to all records coming from this plugin.
-    # logs, defaults to "kube.*"
+    # logs, defaults to "kube.*" 
     tag = string
 
     # This option allows to change the default path where the plugin will look for
@@ -2075,7 +2199,7 @@ object({
 ```hcl
 
      This option allows a tag name associated to all records coming from this plugin.
-     logs, defaults to "kube.*"
+     logs, defaults to "kube.*" 
 
 ```
 </details>
@@ -2303,9 +2427,9 @@ list(object({
    Each item in the list represents a matchExpression for requiredDuringSchedulingIgnoredDuringExecution.
    https://kubernetes.io/docs/concepts/configuration/assign-pod-node/affinity-and-anti-affinity for the various
    configuration option.
-
+  
    Example:
-
+  
    [
      {
        "key" = "node-label-key"
@@ -2313,9 +2437,9 @@ list(object({
        "operator" = "In"
      }
    ]
-
+  
    Translates to:
-
+  
    nodeAffinity:
      requiredDuringSchedulingIgnoredDuringExecution:
        nodeSelectorTerms:
@@ -2354,9 +2478,9 @@ list(map(any))
 
    Each item in the list represents a particular toleration. See
    https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ for the various rules you can specify.
-
+  
    Example:
-
+  
    [
      {
        key = "node.kubernetes.io/unreachable"
@@ -2365,6 +2489,30 @@ list(map(any))
        tolerationSeconds = 6000
      }
    ]
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="fluent_bit_sensitive_values" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Merge and mask sensitive values like apikeys or passwords that are part of the helm charts `values.yaml`. These sensitive values will show up in the final metadata as clear text unless passed in as K:V pairs that are injected into the `values.yaml`. Key should be the paramater path and value should be the value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   EXAMPLE
+   {
+    "additionalOutputs" = var.extraOutputs
+   }
 
 ```
 </details>
@@ -2546,11 +2694,11 @@ A list of names of Kubernetes PriorityClass objects created by this module.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.113.0/modules/services/eks-core-services/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.113.0/modules/services/eks-core-services/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.113.0/modules/services/eks-core-services/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.0/modules/services/eks-core-services/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.0/modules/services/eks-core-services/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.0/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d068d200e512a63570dbc3e864d1a169"
+  "hash": "663983d99e3979e4606d5f06dc1a014d"
 }
 ##DOCS-SOURCER-END -->
