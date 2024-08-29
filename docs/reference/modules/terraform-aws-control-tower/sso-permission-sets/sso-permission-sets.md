@@ -114,6 +114,10 @@ module "sso_permission_sets" {
   # A list of managed policy names to add to the Permission set.
   managed_policy_names = []
 
+  # The policy, as a map, to be used as permission boundary policy for the
+  # permission set.
+  permission_boundary_policy = {"description":"","name":"","policy":""}
+
   # The length, in hours, that a session is valid.
   session_duration_hours = 1
 
@@ -161,6 +165,10 @@ inputs = {
 
   # A list of managed policy names to add to the Permission set.
   managed_policy_names = []
+
+  # The policy, as a map, to be used as permission boundary policy for the
+  # permission set.
+  permission_boundary_policy = {"description":"","name":"","policy":""}
 
   # The length, in hours, that a session is valid.
   session_duration_hours = 1
@@ -214,6 +222,25 @@ A list of managed policy names to add to the Permission set.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="permission_boundary_policy" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+The policy, as a map, to be used as permission boundary policy for the permission set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  description = "",
+  name = "",
+  policy = ""
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="session_duration_hours" requirement="optional" type="number">
@@ -274,6 +301,6 @@ The name of the permission set that was created.
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.10/modules/sso-permission-sets/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0e717d703f1b4b7b1d577ba4d03b1688"
+  "hash": "c962b088f560728bbea03c006721b787"
 }
 ##DOCS-SOURCER-END -->
