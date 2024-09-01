@@ -15,6 +15,7 @@ Here are the repos that were updated:
 - [terraform-aws-architecture-catalog](#terraform-aws-architecture-catalog)
 - [terraform-aws-cis-service-catalog](#terraform-aws-cis-service-catalog)
 - [terraform-aws-control-tower](#terraform-aws-control-tower)
+- [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
@@ -37,6 +38,8 @@ Here are the repos that were updated:
 
 
 ⭐  Patcher now supports publishing the results of an upgrade as a GitHub Pull Request. ⭐ 
+
+&lt;img width=&quot;1674&quot; alt=&quot;Screenshot 2024-07-03 at 8 12 16 AM&quot; src=&quot;https://github.com/gruntwork-io/patcher/assets/178939/1224198c-ee3c-4f83-aaa4-aa072916a1e7&quot;&gt;
 
 The `update` command now supports three additional flags:
 
@@ -128,7 +131,7 @@ You can invoke the dry run mode by specifying the `--dry-run` flag:
 patcher update --non-interactive --update-strategy next-breaking --dry-run
 ```
 
-### What's Changed:
+![](Screenshot%202024-07-02%20at%204.58.13%E2%80%AFPM.png)
 
 * Add the ability to include or exclude report command dependencies.
 * Add support for outputting plan and spec files.
@@ -145,6 +148,44 @@ patcher update --non-interactive --update-strategy next-breaking --dry-run
 
 
 ## pipelines-cli
+
+
+### [v0.23.1](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.23.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/31/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.23.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Fix accidental stdout output by @Resonance1584 in https://github.com/gruntwork-io/pipelines/pull/220
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines/compare/v0.23.0...v0.23.1
+
+
+</div>
+
+
+### [v0.23.0](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.23.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/31/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.23.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * feat: Resolve Configurations Lazily by @yhakbar in https://github.com/gruntwork-io/pipelines/pull/213
+* feat: Adding latest check by @yhakbar in https://github.com/gruntwork-io/pipelines/pull/217
+* feat: Adding Linting by @yhakbar in https://github.com/gruntwork-io/pipelines/pull/219
+* fix: Addressing #213 Review Feedback by @yhakbar in https://github.com/gruntwork-io/pipelines/pull/218
+* DEV-227 Add segment SDK telemetry by @Resonance1584 in https://github.com/gruntwork-io/pipelines/pull/216
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines/compare/v0.22.0...v0.23.0
+
+
+</div>
 
 
 ### [v0.23.0-rc4](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.23.0-rc4)
@@ -827,6 +868,25 @@ Addressing usage feedback, the following has changed in Pipelines HCL configurat
 ## terraform-aws-control-tower
 
 
+### [v0.7.10](https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.7.10)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/31/2024 | Modules affected: landingzone | <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.7.10">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Add module to create Landing Zone via IaC
+
+
+
+
+
+</div>
+
+
 ### [v0.7.9](https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.7.9)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -869,6 +929,28 @@ Addressing usage feedback, the following has changed in Pipelines HCL configurat
   Doc only change- fix sso docs, add 2 examples
 
 
+
+</div>
+
+
+
+## terraform-aws-data-storage
+
+
+### [v0.38.0](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.38.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/1/2024 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.38.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * SME-788 - delete note that we don&apos;t support Redshift Serverless by @odgrim in https://github.com/gruntwork-io/terraform-aws-data-storage/pull/479
+* Enhance multiple auth block on RDS Proxy by @james03160927 in https://github.com/gruntwork-io/terraform-aws-data-storage/pull/480
+
+* @odgrim made their first contribution in https://github.com/gruntwork-io/terraform-aws-data-storage/pull/479
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-data-storage/compare/v0.37.3...v0.38.0
 
 </div>
 
@@ -1070,6 +1152,6 @@ Addressing usage feedback, the following has changed in Pipelines HCL configurat
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "1fc3b2518ce30f1b38a4fc092e1ef4fb"
+  "hash": "255ff2c8668858d85a3f0111ddfebdd8"
 }
 ##DOCS-SOURCER-END -->
