@@ -178,8 +178,8 @@ module "iam_users" {
   force_destroy = false
 
   # ARN or Id of the AWS KMS key to be used to encrypt the secret values in the
-  # versions stored in this secret. f you don't specify this value, then Secrets
-  # Manager defaults to using the AWS account's default KMS key
+  # versions stored in this secret. If you don't specify this value, then
+  # Secrets Manager defaults to using the AWS account's default KMS key
   kms_key_id = null
 
   # The length for the generated AWS Web Console password. Only used for users
@@ -247,8 +247,8 @@ inputs = {
   force_destroy = false
 
   # ARN or Id of the AWS KMS key to be used to encrypt the secret values in the
-  # versions stored in this secret. f you don't specify this value, then Secrets
-  # Manager defaults to using the AWS account's default KMS key
+  # versions stored in this secret. If you don't specify this value, then
+  # Secrets Manager defaults to using the AWS account's default KMS key
   kms_key_id = null
 
   # The length for the generated AWS Web Console password. Only used for users
@@ -453,7 +453,7 @@ When destroying this user, destroy even if it has non-Terraform-managed IAM acce
 <HclListItem name="kms_key_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-ARN or Id of the AWS KMS key to be used to encrypt the secret values in the versions stored in this secret. f you don't specify this value, then Secrets Manager defaults to using the AWS account's default KMS key
+ARN or Id of the AWS KMS key to be used to encrypt the secret values in the versions stored in this secret. If you don't specify this value, then Secrets Manager defaults to using the AWS account's default KMS key
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -532,6 +532,6 @@ A map of usernames to that user's AWS SSH Security Credential ID
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.1/modules/iam-users/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b1796b85987a558430b381fe153343e7"
+  "hash": "e744c001ece07c8dd9ca0d5cbf3491d1"
 }
 ##DOCS-SOURCER-END -->
