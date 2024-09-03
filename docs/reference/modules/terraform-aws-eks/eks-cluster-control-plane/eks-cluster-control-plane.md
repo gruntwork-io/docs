@@ -9,20 +9,20 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.67.11" lastModifiedVersion="0.67.11"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.68.0" lastModifiedVersion="0.68.0"/>
 
 # EKS Cluster Control Plane Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.11/modules/eks-cluster-control-plane" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.68.0/modules/eks-cluster-control-plane" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.67.11" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.68.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches an [Elastic Container Service for Kubernetes
 Cluster](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html).
 
 This module is responsible for the EKS Control Plane in [the EKS cluster topology](#what-is-an-eks-cluster). You must
 launch worker nodes in order to be able to schedule pods on your cluster. See the [eks-cluster-workers
-module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.11/modules/eks-cluster-workers) for managing EKS worker nodes.
+module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.68.0/modules/eks-cluster-workers) for managing EKS worker nodes.
 
 ## What is the EKS Control Plane?
 
@@ -46,7 +46,7 @@ Specifically, the control plane consists of:
     This includes resources like the
     [`LoadBalancers`](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/).
 
-You can read more about the different components of EKS in [the project README](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.11/core-concepts.md#what-is-an-eks-cluster).
+You can read more about the different components of EKS in [the project README](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.68.0/core-concepts.md#what-is-an-eks-cluster).
 
 ## What security group rules are created?
 
@@ -134,7 +134,7 @@ role that is being assumed. Specifically, you need to:
         that role).
 
 You can use the
-[eks-iam-role-assume-role-policy-for-service-account module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.11/modules/eks-iam-role-assume-role-policy-for-service-account) to
+[eks-iam-role-assume-role-policy-for-service-account module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.68.0/modules/eks-iam-role-assume-role-policy-for-service-account) to
 construct the policy using a more convenient interface. Refer to the module documentation for more info.
 
 Once you have an IAM Role that can be assumed by the Kubernetes Service Account, you can configure your Pods to exchange
@@ -242,7 +242,7 @@ Some additional notes on using Fargate:
     [the `aws_eks_fargate_profile` resource](https://www.terraform.io/docs/providers/aws/r/eks_fargate_profile.html) to
     provision Fargate Profiles with Terraform). The Pod Execution Role created by the module may be reused for other
     Fargate Profiles.
-*   Fargate does not support DaemonSets. This means that you can't rely on the [eks-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.11/modules/eks-container-logs)
+*   Fargate does not support DaemonSets. This means that you can't rely on the [eks-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.68.0/modules/eks-container-logs)
     module to forward logs to CloudWatch. Instead, you need to manually configure a sidecar `fluentd` container that
     forwards the log entries to CloudWatch Logs. Refer to [this AWS blog
     post](https://aws.amazon.com/blogs/containers/how-to-capture-application-logs-when-using-amazon-eks-on-aws-fargate/)
@@ -284,7 +284,7 @@ If you omit the `addon_version`, correct versions are automatically applied.
 Note that you must update the nodes to use the corresponding `kubelet` version as well. This means that when you update
 minor versions, you will also need to update the AMIs used by the worker nodes to match the version and rotate the
 workers. For more information on rotating worker nodes, refer to [How do I roll out an update to the
-instances?](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.11/modules/eks-cluster-workers/README.md#how-do-i-roll-out-an-update-to-the-instances) in the `eks-cluster-workers`
+instances?](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.68.0/modules/eks-cluster-workers/README.md#how-do-i-roll-out-an-update-to-the-instances) in the `eks-cluster-workers`
 module README.
 
 ### Detailed upgrade steps
@@ -345,6 +345,40 @@ You can learn more details about how prefix delegation mode works, and the behav
 target in [the official AWS blog
 post](https://aws.amazon.com/blogs/containers/amazon-vpc-cni-increases-pods-per-node-limits/) about the feature.
 
+## EKS Add-ons adoption and migration
+
+This module supports the use of EKS add-ons to manage the core components of the EKS cluster. EKS add-ons are a set of
+preconfigured Kubernetes resources that are deployed to the cluster to manage the core components. This includes
+components like the `kube-proxy`, `core-dns`, and `aws-node` DaemonSets. The add-ons are managed by the EKS service and
+are automatically updated when the cluster version is updated.
+
+For more information on EKS add-ons, refer to the [official documentation](https://docs.aws.amazon.com/eks/latest/userguide/workloads-add-ons-available-eks.html).
+
+To enable EKS add-ons, set the `enable_eks_addons` input variable to `true`. This will automatically deploy the add-ons
+to the cluster when the cluster is created or updated.
+
+**Important:** You should not modify the EKS-managed add-ons directly. To customize them, use the `configuration_values` input variables.
+To get a full list of configuration options for each add-on, refer to the [official documentation](https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-field-management.html).
+
+Before the existence of EKS add-ons, the same functionality was provided by the `kubergrunt` tool or by manually
+deploying the resources. If you have existing clusters that were created using the `kubergrunt` tool, we recommend
+migrating to EKS add-ons to take advantage of the automatic updates and management provided by the EKS service.
+
+### Migration Steps:
+
+1.  **Enable EKS Add-ons:**
+    *   Set `enable_eks_addons` to `true` in the `eks-cluster-control-plane` module block.
+
+2.  **Match Existing Configurations:**
+    *   Configure the `eks_addons` input variable to align with your existing core components.
+        Specify the `addon_name`, `addon_version`, and `configuration_values`.
+        Refer to the [official documentation](https://docs.aws.amazon.com/eks/latest/userguide/add-ons-configuration.html) for the correct versions.
+
+3.  **Disable `kubergrunt` usage :**
+    *   Disable the `kubergrunt` tool by setting `use_upgrade_cluster_script` to `false`. Alternatively,
+        you can selectively disable services by setting any of the following variables to
+        `false`: `upgrade_cluster_script_skip_coredns`, `upgrade_cluster_script_skip_kube_proxy`, `upgrade_cluster_script_skip_vpc_cni`.
+
 ## Troubleshooting
 
 ### AccessDenied when provisioning Services of LoadBalancer type
@@ -383,7 +417,7 @@ approaches:
 
 module "eks_cluster_control_plane" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.67.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.68.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -698,7 +732,7 @@ module "eks_cluster_control_plane" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.67.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.68.0"
 }
 
 inputs = {
@@ -1266,11 +1300,12 @@ Any types represent complex values of variable type. For details, please consult
    See the following AWS Blog for more details on advanced configuration of EKS add-ons: https://aws.amazon.com/blogs/containers/amazon-eks-add-ons-advanced-configuration/
    Example:
    {
-     addon_version        = "v1.14.0-eksbuild.1"
-     configuration_values = {}
-     preserve                 = false
-     resolve_conflicts        = "NONE"
-     service_account_role_arn = "arn:aws:iam::123456789012:role/role-name"
+     addon_version               = "v1.14.0-eksbuild.1"
+     configuration_values        = {}
+     preserve                    = false
+     resolve_conflicts_on_create = "OVERWRITE"
+     resolve_conflicts_on_update = "NONE"
+     service_account_role_arn    = "arn:aws:iam::123456789012:role/role-name"
    }
 
 ```
@@ -1363,9 +1398,10 @@ Any types represent complex values of variable type. For details, please consult
             mode      = "iptables"
             resources = {}
          }
-         preserve                 = false
-         resolve_conflicts        = "NONE"
-         service_account_role_arn = "arn:aws:iam::123456789012:role/role-name"
+         preserve                    = false
+         resolve_conflicts_on_create = "OVERWRITE"
+         resolve_conflicts_on_update = "NONE"
+         service_account_role_arn    = "arn:aws:iam::123456789012:role/role-name"
        }
      }
 
@@ -1805,11 +1841,11 @@ The path to the kubergrunt binary, if in use.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.11/modules/eks-cluster-control-plane/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.11/modules/eks-cluster-control-plane/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.67.11/modules/eks-cluster-control-plane/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.68.0/modules/eks-cluster-control-plane/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.68.0/modules/eks-cluster-control-plane/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.68.0/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5765ab92fbb78e4d872314768d91853b"
+  "hash": "e87b4ef4f32f145a0c549f927c2974ef"
 }
 ##DOCS-SOURCER-END -->
