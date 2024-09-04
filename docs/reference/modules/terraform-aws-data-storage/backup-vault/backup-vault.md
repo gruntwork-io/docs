@@ -121,6 +121,10 @@ module "backup_vault" {
   # plan for the given vault
   default_min_retention_days = 7
 
+  # The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a
+  # custom CMK
+  sns_topic_encryption_kms_key_id = null
+
 }
 
 
@@ -163,6 +167,10 @@ inputs = {
   # The minimum number of retention days that can be configured via a backup
   # plan for the given vault
   default_min_retention_days = 7
+
+  # The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a
+  # custom CMK
+  sns_topic_encryption_kms_key_id = null
 
 }
 
@@ -219,6 +227,15 @@ The minimum number of retention days that can be configured via a backup plan fo
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="7"/>
+</HclListItem>
+
+<HclListItem name="sns_topic_encryption_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 </TabItem>
@@ -292,6 +309,6 @@ A map of tags assigned to the vault resources, including those inherited from th
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.0/modules/backup-vault/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b80c134fafeba83480b79ecf18cad06c"
+  "hash": "4bfb823b6603ac7d9bb26d6bdad24387"
 }
 ##DOCS-SOURCER-END -->
