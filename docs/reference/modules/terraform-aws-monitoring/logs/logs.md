@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Monitoring Modules" version="0.36.23" lastModifiedVersion="0.36.23"/>
+<VersionBadge repoTitle="AWS Monitoring Modules" version="0.36.23" lastModifiedVersion="0.36.24"/>
 
 # Log modules
 
 <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/tree/v0.36.23/modules/logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.36.23" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.36.24" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains modules that help with logging:
 
@@ -36,6 +36,6 @@ Click on each module above to see its documentation. Head over to the [examples 
     "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/v0.36.23/modules/logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3f59a60f9cbd6168f466fd513ab8888c"
+  "hash": "c5a5068355c9602b6e620fc98a9f6da4"
 }
 ##DOCS-SOURCER-END -->
