@@ -304,6 +304,12 @@ module "lambda" {
   # var.existing_role_arn is null.
   iam_role_tags = {}
 
+  # When true, this will ignore changes to image_uri for container based
+  # Lambdas. This will allow the image tag to be managed and deployed outside of
+  # Terraform using your favorite CICD deployment tool without configuration
+  # drift.
+  ignore_image_uri_changes = false
+
   # The ECR image URI containing the function's deployment package. Example:
   # 01234501234501.dkr.ecr.us-east-1.amazonaws.com/image_name:image_tag
   image_uri = null
@@ -596,6 +602,12 @@ inputs = {
   # will be merged with the var.tags parameter. Only used if
   # var.existing_role_arn is null.
   iam_role_tags = {}
+
+  # When true, this will ignore changes to image_uri for container based
+  # Lambdas. This will allow the image tag to be managed and deployed outside of
+  # Terraform using your favorite CICD deployment tool without configuration
+  # drift.
+  ignore_image_uri_changes = false
 
   # The ECR image URI containing the function's deployment package. Example:
   # 01234501234501.dkr.ecr.us-east-1.amazonaws.com/image_name:image_tag
@@ -1011,6 +1023,15 @@ A map of tags to apply to the IAM role created for the lambda function. This wil
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="ignore_image_uri_changes" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, this will ignore changes to image_uri for container based Lambdas. This will allow the image tag to be managed and deployed outside of Terraform using your favorite CICD deployment tool without configuration drift.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="image_uri" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1292,6 +1313,6 @@ Name of the (optionally) created CloudWatch log group for the lambda function.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.23.0/modules/lambda/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "463d7307572deff25aaf5e2c089fc0da"
+  "hash": "564358d59eee9d0d4a8e24b9dd788763"
 }
 ##DOCS-SOURCER-END -->

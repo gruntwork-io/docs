@@ -240,6 +240,10 @@ module "lambda_edge" {
   # A map of tags to apply to the Lambda function.
   tags = {}
 
+  # Whether to sample and trace a subset of incoming requests with AWS X-Ray.
+  # Valid values are PassThrough and Active.
+  tracing_config_mode = null
+
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
   # are friendlier to automated policy checkers, which may scan a single
@@ -419,6 +423,10 @@ inputs = {
 
   # A map of tags to apply to the Lambda function.
   tags = {}
+
+  # Whether to sample and trace a subset of incoming requests with AWS X-Ray.
+  # Valid values are PassThrough and Active.
+  tracing_config_mode = null
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -735,6 +743,15 @@ A map of tags to apply to the Lambda function.
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="tracing_config_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+Whether to sample and trace a subset of incoming requests with AWS X-Ray. Valid values are PassThrough and Active.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -806,6 +823,6 @@ Name of the (optionally) created CloudWatch log groups for the lambda function.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.23.0/modules/lambda-edge/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c937dedb74da932115e9ceb241de31c3"
+  "hash": "b10fb7f7ec35273704b9e1bf28d10abd"
 }
 ##DOCS-SOURCER-END -->
