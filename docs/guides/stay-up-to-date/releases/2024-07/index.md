@@ -39,7 +39,6 @@ Here are the repos that were updated:
 
 ⭐  Patcher now supports publishing the results of an upgrade as a GitHub Pull Request. ⭐ 
 
-&lt;img width=&quot;1674&quot; alt=&quot;Screenshot 2024-07-03 at 8 12 16 AM&quot; src=&quot;https://github.com/gruntwork-io/patcher/assets/178939/1224198c-ee3c-4f83-aaa4-aa072916a1e7&quot;&gt;
 
 The `update` command now supports three additional flags:
 
@@ -131,7 +130,6 @@ You can invoke the dry run mode by specifying the `--dry-run` flag:
 patcher update --non-interactive --update-strategy next-breaking --dry-run
 ```
 
-![](Screenshot%202024-07-02%20at%204.58.13%E2%80%AFPM.png)
 
 * Add the ability to include or exclude report command dependencies.
 * Add support for outputting plan and spec files.
@@ -1152,6 +1150,6 @@ Addressing usage feedback, the following has changed in Pipelines HCL configurat
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "255ff2c8668858d85a3f0111ddfebdd8"
+  "hash": "b78d87697cdc92c97c391b4b0607dd33"
 }
 ##DOCS-SOURCER-END -->

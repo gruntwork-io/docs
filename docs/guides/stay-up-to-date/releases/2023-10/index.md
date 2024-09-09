@@ -50,7 +50,6 @@ Here are the repos that were updated:
 
 Patcher includes a revised interactive mode. The interactive mode can be used to update dependencies individually.
 
-&lt;img width=&quot;1827&quot; alt=&quot;Screenshot 2023-10-27 at 4 05 23 pm&quot; src=&quot;https://github.com/gruntwork-io/patcher/assets/178939/84abdbec-16af-4d5c-990d-bf139a7e5ece&quot;&gt;
 
 * Patcher now applies patches in the interactive mode
 * Documentation improvements
@@ -1397,6 +1396,6 @@ Initial release of devops-foundations templates
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "051366170d03ec77fd651775b2987234"
+  "hash": "6f4844a4fa3ace04104f08214022e416"
 }
 ##DOCS-SOURCER-END -->
