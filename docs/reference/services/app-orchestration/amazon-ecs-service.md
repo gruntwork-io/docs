@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.113.0" lastModifiedVersion="0.113.0"/>
+<VersionBadge version="0.114.2" lastModifiedVersion="0.113.0"/>
 
 # Amazon ECS Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.113.0/modules/services/ecs-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules/services/ecs-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fecs-service" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -53,7 +53,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-ecs](https://github.com/gruntwork-io/terraform-aws-ecs) repo. If you are a subscriber and don’t have
-access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
+access to this repo, email <support@gruntwork.io>.
 
 ### Core concepts
 
@@ -63,10 +63,10 @@ more, see the documentation in the
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.113.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal
     submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.113.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.113.0/test): Automated tests for the modules and examples.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -74,14 +74,14 @@ more, see the documentation in the
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.113.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and testing (but not direct production usage).
 
 ### Production deployment
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.113.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -105,7 +105,7 @@ For information on how to manage your ECS service, see the documentation in the
 
 module "ecs_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-service?ref=v0.113.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-service?ref=v0.114.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -247,6 +247,14 @@ module "ecs_service" {
   # destroyed before the resources in the list.
   dependencies = []
 
+  # Set the logging level of the deployment check script. You can set this to
+  # `error`, `warn`, or `info`, in increasing verbosity.
+  deployment_check_loglevel = "info"
+
+  # Seconds to wait before timing out each check for verifying ECS service
+  # deployment. See ecs_deploy_check_binaries for more details.
+  deployment_check_timeout_seconds = 600
+
   # Set to 'true' to prevent the task from attempting to continuously redeploy
   # after a failed health check.
   deployment_circuit_breaker_enabled = false
@@ -255,9 +263,6 @@ module "ecs_service" {
   # deployment. deploy_circuit_breaker_enabled must also be true to enable this
   # behavior.
   deployment_circuit_breaker_rollback = false
-
-  # CloudWatch alarms which triggers deployment rollback if failure.
-  deployment_cloudwatch_alarms = null
 
   # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
   deployment_controller = null
@@ -320,6 +325,12 @@ module "ecs_service" {
 
   # Set to true to enable Cloudwatch alarms on the ecs service instances
   enable_cloudwatch_alarms = true
+
+  # Whether or not to enable the ECS deployment check binary to make terraform
+  # wait for the task to be deployed. See ecs_deploy_check_binaries for more
+  # details. You must install the companion binary before the check can be used.
+  # Refer to the README for more details.
+  enable_ecs_deployment_check = true
 
   # Specifies whether to enable Amazon ECS Exec for the tasks within the
   # service.
@@ -556,11 +567,6 @@ module "ecs_service" {
   # The ARN of the kms key associated with secrets manager
   secrets_manager_kms_key_arn = null
 
-  # Use this variable to adjust the default timeout of 20m for create and update
-  # operations the the ECS service. Adjusting the value can be particularly
-  # useful when using 'wait_for_steady_state'.
-  service_create_update_timeout = "20m"
-
   # The name of the aws_security_group that gets created if var.network_mode is
   # awsvpc and custom rules are specified for the ECS Fargate worker via
   # var.network_configuration.security_group_rules. Defaults to var.service_name
@@ -609,11 +615,6 @@ module "ecs_service" {
   # but not including the name parameter.
   volumes = {}
 
-  # If true, Terraform will wait for the service to reach a steady state — as
-  # in, the ECS tasks you wanted are actually deployed — before 'apply' is
-  # considered complete.
-  wait_for_steady_state = true
-
 }
 
 
@@ -629,7 +630,7 @@ module "ecs_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-service?ref=v0.113.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-service?ref=v0.114.2"
 }
 
 inputs = {
@@ -774,6 +775,14 @@ inputs = {
   # destroyed before the resources in the list.
   dependencies = []
 
+  # Set the logging level of the deployment check script. You can set this to
+  # `error`, `warn`, or `info`, in increasing verbosity.
+  deployment_check_loglevel = "info"
+
+  # Seconds to wait before timing out each check for verifying ECS service
+  # deployment. See ecs_deploy_check_binaries for more details.
+  deployment_check_timeout_seconds = 600
+
   # Set to 'true' to prevent the task from attempting to continuously redeploy
   # after a failed health check.
   deployment_circuit_breaker_enabled = false
@@ -782,9 +791,6 @@ inputs = {
   # deployment. deploy_circuit_breaker_enabled must also be true to enable this
   # behavior.
   deployment_circuit_breaker_rollback = false
-
-  # CloudWatch alarms which triggers deployment rollback if failure.
-  deployment_cloudwatch_alarms = null
 
   # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
   deployment_controller = null
@@ -847,6 +853,12 @@ inputs = {
 
   # Set to true to enable Cloudwatch alarms on the ecs service instances
   enable_cloudwatch_alarms = true
+
+  # Whether or not to enable the ECS deployment check binary to make terraform
+  # wait for the task to be deployed. See ecs_deploy_check_binaries for more
+  # details. You must install the companion binary before the check can be used.
+  # Refer to the README for more details.
+  enable_ecs_deployment_check = true
 
   # Specifies whether to enable Amazon ECS Exec for the tasks within the
   # service.
@@ -1083,11 +1095,6 @@ inputs = {
   # The ARN of the kms key associated with secrets manager
   secrets_manager_kms_key_arn = null
 
-  # Use this variable to adjust the default timeout of 20m for create and update
-  # operations the the ECS service. Adjusting the value can be particularly
-  # useful when using 'wait_for_steady_state'.
-  service_create_update_timeout = "20m"
-
   # The name of the aws_security_group that gets created if var.network_mode is
   # awsvpc and custom rules are specified for the ECS Fargate worker via
   # var.network_configuration.security_group_rules. Defaults to var.service_name
@@ -1135,11 +1142,6 @@ inputs = {
   # https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-block-arguments,
   # but not including the name parameter.
   volumes = {}
-
-  # If true, Terraform will wait for the service to reach a steady state — as
-  # in, the ECS tasks you wanted are actually deployed — before 'apply' is
-  # considered complete.
-  wait_for_steady_state = true
 
 }
 
@@ -1522,6 +1524,24 @@ Create a dependency between the resources in this module to the interpolated val
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="deployment_check_loglevel" requirement="optional" type="string">
+<HclListItemDescription>
+
+Set the logging level of the deployment check script. You can set this to `error`, `warn`, or `info`, in increasing verbosity.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;info&quot;"/>
+</HclListItem>
+
+<HclListItem name="deployment_check_timeout_seconds" requirement="optional" type="number">
+<HclListItemDescription>
+
+Seconds to wait before timing out each check for verifying ECS service deployment. See ecs_deploy_check_binaries for more details.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="600"/>
+</HclListItem>
+
 <HclListItem name="deployment_circuit_breaker_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1538,26 +1558,6 @@ Set to 'true' to also automatically roll back to the last successful deployment.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="deployment_cloudwatch_alarms" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-CloudWatch alarms which triggers deployment rollback if failure.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    cloudwatch_alarms = list(string)
-    enable            = bool
-    rollback          = bool
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="deployment_controller" requirement="optional" type="string">
@@ -1744,6 +1744,15 @@ Set to true to enable Cloudwatch alarms on the ecs service instances
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="enable_ecs_deployment_check" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to enable the ECS deployment check binary to make terraform wait for the task to be deployed. See ecs_deploy_check_binaries for more details. You must install the companion binary before the check can be used. Refer to the README for more details.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="enable_execute_command" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1789,11 +1798,11 @@ Any types represent complex values of variable type. For details, please consult
     {
       "health-path" = {
         priority     = 130
-
+  
         content_type = "text/plain"
         message_body = "HEALTHY"
         status_code  = "200"
-
+  
       Conditions:
       You need to provide *at least ONE* per set of rules. It should contain one of the following:
         host_headers         = ["foo.com", "www.foo.com"]
@@ -1822,11 +1831,11 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map supports the following attributes:
-
+  
    REQUIRED
    - content_type [string]: The content type. Valid values are `text/plain`, `text/css`, `text/html`, `application/javascript`
                             and `application/json`.
-
+  
    OPTIONAL (defaults to value of corresponding module input):
    - priority      [number]       : A value between 1 and 50000. Leaving it unset will automatically set the rule with the next
                                    available priority after currently existing highest rule. This value must be unique for each
@@ -1834,12 +1843,12 @@ Any types represent complex values of variable type. For details, please consult
    - listener_arns [list(string)]: A list of listener ARNs to override `var.default_listener_arns`
    - message_body  [string]      : The message body.
    - status_code   [string]      : The HTTP response code. Valid values are `2XX`, `4XX`, or `5XX`.
-
+  
    Wildcard characters:
    * - matches 0 or more characters
    ? - matches exactly 1 character
    To search for a literal '*' or '?' character in a query string, escape the character with a backslash (\).
-
+  
    Conditions (need to specify at least one):
    - path_patterns        [list(string)]     : A list of paths to match (note that "/foo" is different than "/foo/").
                                               Comparison is case sensitive. Wildcard characters supported: * and ?.
@@ -1882,7 +1891,7 @@ Any types represent complex values of variable type. For details, please consult
     {
       "foo" = {
         priority = 120
-
+  
         host_headers         = ["www.foo.com", "*.foo.com"]
         path_patterns        = ["/foo/*"]
         source_ips           = ["127.0.0.1/32"]
@@ -1899,7 +1908,7 @@ Any types represent complex values of variable type. For details, please consult
      "auth" = {
        priority       = 128
        listener_ports = ["443"]
-
+  
        host_headers      = ["intern.example.com]
        path_patterns     = ["/admin", "/admin/*]
        authenticate_oidc = {
@@ -1923,7 +1932,7 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map supports the following attributes:
-
+  
    OPTIONAL (defaults to value of corresponding module input):
    - priority          [number]                    : A value between 1 and 50000. Leaving it unset will automatically set
                                                     the rule with the next available priority after currently existing highest
@@ -1932,7 +1941,7 @@ Any types represent complex values of variable type. For details, please consult
    - stickiness        [map(object[Stickiness])]   : Target group stickiness for the rule. Only applies if more than one
                                                     target_group_arn is defined.
    - authenticate_oidc map(object)                 : OIDC authentication configuration. Only applies, if not null.
-
+  
 
 ```
 </details>
@@ -2488,12 +2497,12 @@ Any types represent complex values of variable type. For details, please consult
         priority = 120
         port     = 443
         protocol = "HTTPS"
-
+  
         status_code = "HTTP_301"
         host  = "gruntwork.in"
         path  = "/signup"
         query = "foo"
-
+  
       Conditions:
         host_headers         = ["foo.com", "www.foo.com"]
         path_patterns        = ["/health"]
@@ -2521,14 +2530,14 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map supports the following attributes:
-
+  
    OPTIONAL (defaults to value of corresponding module input):
    - priority       [number]: A value between 1 and 50000. Leaving it unset will automatically set the rule with the next
                            available priority after currently existing highest rule. This value must be unique for each
                            listener.
    - listener_arns [list(string)]: A list of listener ARNs to override `var.default_listener_arns`
    - status_code   [string]: The HTTP redirect code. The redirect is either permanent `HTTP_301` or temporary `HTTP_302`.
-
+  
    The URI consists of the following components: `protocol://hostname:port/path?query`. You must modify at least one of
    the following components to avoid a redirect loop: protocol, hostname, port, or path. Any components that you do not
    modify retain their original values.
@@ -2537,12 +2546,12 @@ Any types represent complex values of variable type. For details, please consult
    - port        [string]: The port. Specify a value from 1 to 65525.
    - protocol    [string]: The protocol. Valid values are `HTTP` and `HTTPS`. You cannot redirect HTTPS to HTTP.
    - query       [string]: The query params. Do not include the leading "?".
-
+  
    Wildcard characters:
    * - matches 0 or more characters
    ? - matches exactly 1 character
    To search for a literal '*' or '?' character in a query string, escape the character with a backslash (\).
-
+  
    Conditions (need to specify at least one):
    - path_patterns        [list(string)]     : A list of paths to match (note that "/foo" is different than "/foo/").
                                               Comparison is case sensitive. Wildcard characters supported: * and ?.
@@ -2685,15 +2694,6 @@ The ARN of the kms key associated with secrets manager
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="service_create_update_timeout" requirement="optional" type="string">
-<HclListItemDescription>
-
-Use this variable to adjust the default timeout of 20m for create and update operations the the ECS service. Adjusting the value can be particularly useful when using 'wait_for_steady_state'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;20m&quot;"/>
-</HclListItem>
-
 <HclListItem name="service_security_group_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2799,7 +2799,7 @@ Any types represent complex values of variable type. For details, please consult
      datadog = {
        host_path = "/var/run/datadog"
      }
-
+  
      logs = {
        host_path = "/var/log"
        docker_volume_configuration = {
@@ -2814,15 +2814,6 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="wait_for_steady_state" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, Terraform will wait for the service to reach a steady state — as in, the ECS tasks you wanted are actually deployed — before 'apply' is considered complete.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 </TabItem>
@@ -2911,7 +2902,7 @@ The name of the IAM role granting permissions to the running ECS task itself. No
 <HclListItem name="metric_widget_ecs_service_cpu_usage">
 <HclListItemDescription>
 
-The metric widget for the ECS service's CPU usage
+The metric widget for the ECS service's CPU usage 
 
 </HclListItemDescription>
 </HclListItem>
@@ -2995,11 +2986,11 @@ The names of the ECS service's load balancer's target groups
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.113.0/modules/services/ecs-service/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.113.0/modules/services/ecs-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.113.0/modules/services/ecs-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules/services/ecs-service/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules/services/ecs-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules/services/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "4dce0cfa172f7e7c1290de0e7d32be7a"
+  "hash": "ff90d5e9177f5c35e275445332a1173b"
 }
 ##DOCS-SOURCER-END -->
