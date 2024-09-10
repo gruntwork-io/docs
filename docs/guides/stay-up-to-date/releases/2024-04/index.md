@@ -465,6 +465,28 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/1047/fil
 ## terraform-aws-asg
 
 
+### [v0.21.14](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.14)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 4/2/2024 | Modules affected: server-group | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.14">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+- `server-group`
+
+
+- Expose `max_session_duration` for server-group vended role
+
+
+- https://github.com/gruntwork-io/terraform-aws-asg/pull/211
+
+
+
+</div>
+
+
 ### [v0.21.15](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.15)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -1525,6 +1547,6 @@ Default EKS version is 1.29 with this release! Please see the links below for fu
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "5fea04506d90754434253f158cd59601"
+  "hash": "7780b1bc4b45aae60c5eb32b6a6347ac"
 }
 ##DOCS-SOURCER-END -->
