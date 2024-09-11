@@ -57,7 +57,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [helm-kubernetes-services](https://github.com/gruntwork-io/helm-kubernetes-services) repo. If you are a subscriber and
-don’t have access to this repo, email <support@gruntwork.io>.
+don’t have access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ### Core concepts
 
@@ -2051,6 +2051,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules/services/k8s-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1cbf38319841f832be21178335b289d6"
+  "hash": "9bafa539a74aa8c655e82bb6908224b0"
 }
 ##DOCS-SOURCER-END -->

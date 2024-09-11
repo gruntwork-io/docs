@@ -50,7 +50,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-lambda](https://github.com/gruntwork-io/terraform-aws-lambda) repo. If you are a subscriber and don’t
-have access to this repo, email <support@gruntwork.io>.
+have access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ### Core concepts
 
@@ -1429,6 +1429,6 @@ Latest published version of your Lambda Function
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules/services/lambda/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "947e43fcbe755713e45bda4aa3508a25"
+  "hash": "db9795f2fe1eca975c476dda29b479ec"
 }
 ##DOCS-SOURCER-END -->

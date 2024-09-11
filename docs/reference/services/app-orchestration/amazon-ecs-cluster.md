@@ -86,7 +86,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-ecs](https://github.com/gruntwork-io/terraform-aws-ecs) repo. If you are a subscriber and don’t have
-access to this repo, email <support@gruntwork.io>.
+access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ### Core concepts
 
@@ -1490,6 +1490,6 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules/services/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a9db9ca7e260b5158d31950f91090e0a"
+  "hash": "dfffc2776bb3d6977610d016a93b9b1a"
 }
 ##DOCS-SOURCER-END -->

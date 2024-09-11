@@ -56,7 +56,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-vpc](https://github.com/gruntwork-io/terraform-aws-vpc) repo. If you don’t have access to this repo,
-email <support@gruntwork.io>.
+email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ### Core concepts
 
@@ -3402,6 +3402,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9da8f38134122441855f9685a35e756c"
+  "hash": "d53760cf9edb357f15c62fe7506f15a5"
 }
 ##DOCS-SOURCER-END -->

@@ -55,7 +55,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-ecs](https://github.com/gruntwork-io/terraform-aws-ecs) repo. If you are a subscriber and don’t have
-access to this repo, email <support@gruntwork.io>.
+access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ### Core concepts
 
@@ -241,6 +241,6 @@ The name of the ECS cluster.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules/services/ecs-fargate-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a88393d5f620c675cfa8872c7b34e9fa"
+  "hash": "13339d41983a1d7b838dd7e52454137f"
 }
 ##DOCS-SOURCER-END -->
