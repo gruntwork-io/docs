@@ -32,7 +32,7 @@ pooling, read/write splitting, and automatic failover to improve database availa
 ## How to use the RDS Proxy Module
 
 In order to setup a RDS proxy, you need to setup database credentials in AWS Secrets Manager and pass it to this module.
-Refer to the [examples/rds-proxy](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/examples/rds-proxy) or <https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy-setup.html#rds-proxy-secrets-arns> for more information.
+Refer to the [examples/rds-proxy](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/examples/rds-proxy) or [https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy-setup.html#rds-proxy-secrets-arns](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy-setup.html#rds-proxy-secrets-arns) for more information.
 
 If you use a customer managed KMS key to encrypt the secret, you will need to provide the KMS key ARN to this module
 using the `db_secret_kms_key_arn` parameter.
@@ -280,7 +280,7 @@ object({
 <HclListItem name="db_secret_arn" requirement="required" type="string">
 <HclListItemDescription>
 
-The DB secret should contain username and password for the DB as a key-value pairs. Otherwise, you can insert plaintext secret with the format should look like {'username':'your_username','password':'your_password'}.
+The DB secret should contain username and password for the DB as a key-value pairs. Otherwise, you can insert plaintext secret with the format should look like &#123;'username':'your_username','password':'your_password'&#125;.
 
 </HclListItemDescription>
 </HclListItem>
@@ -428,6 +428,6 @@ The number of seconds that a connection to the proxy can be inactive before the 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/rds-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a8327a540e3ae1d3a7da420b42e81fbb"
+  "hash": "b91c9221094bbec7aec29ccb2fd3cbce"
 }
 ##DOCS-SOURCER-END -->
