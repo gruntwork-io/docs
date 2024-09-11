@@ -1776,7 +1776,7 @@ Any types represent complex values of variable type. For details, please consult
          port = number                         : (Required) Listening port number for the Service Connect proxy. This port is available inside of all of the tasks within the same namespace.
        }             
        discovery_name = string                 : (Optional) Name of the new AWS Cloud Map service that Amazon ECS creates for this Amazon ECS service.
-       ingress_port_override = number          : (Optional) Port number for the Service Connect proxy to listen on.
+       ingress_port_override= number           : (Optional) Port number for the Service Connect proxy to listen on.
        port_name = string                      : (Required) Name of one of the portMappings from all the containers in the task definition of this Amazon ECS service.
        timeout = {                             : (Optional) Configuration timeouts for Service Connect
          idle_timeout_seconds = number         : (Optional) Amount of time in seconds a connection will stay active while idle. A value of 0 can be set to disable idleTimeout
@@ -2027,6 +2027,6 @@ If true, Terraform will wait for the service to reach a steady state — as in, 
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.2/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "10ba5d80468cc4de8bfe509affdad068"
+  "hash": "313cfd2bfd345d9b53e736b68251a28c"
 }
 ##DOCS-SOURCER-END -->
