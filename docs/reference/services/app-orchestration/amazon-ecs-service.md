@@ -53,7 +53,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-ecs](https://github.com/gruntwork-io/terraform-aws-ecs) repo. If you are a subscriber and don’t have
-access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
+access to this repo, email <support@gruntwork.io>.
 
 ### Core concepts
 
@@ -3000,6 +3000,6 @@ The names of the ECS service's load balancer's target groups
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules/services/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "42d03105d13d7cec3f0d955ff5b2e91f"
+  "hash": "781efda551c4e96b67cb115d4e6a5285"
 }
 ##DOCS-SOURCER-END -->

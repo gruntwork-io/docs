@@ -59,7 +59,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo. If you are a subscriber and don’t have
-access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
+access to this repo, email <support@gruntwork.io>.
 
 ### Core concepts
 
@@ -2716,6 +2716,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5913f196e0aa458891c9c4b3b54e4761"
+  "hash": "7a688124aef3b5e19ada617d21edd02c"
 }
 ##DOCS-SOURCER-END -->

@@ -53,7 +53,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo. If you are a subscriber and don’t have
-access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
+access to this repo, email <support@gruntwork.io>.
 
 ### Core concepts
 
@@ -2699,6 +2699,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e7b33e2d0f431e329b5365930514e0fa"
+  "hash": "8d0a18ca5d5f5779210d2eb27ed85373"
 }
 ##DOCS-SOURCER-END -->

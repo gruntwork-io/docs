@@ -86,7 +86,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-ecs](https://github.com/gruntwork-io/terraform-aws-ecs) repo. If you are a subscriber and don’t have
-access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
+access to this repo, email <support@gruntwork.io>.
 
 ### Core concepts
 
@@ -326,7 +326,7 @@ module "ecs_cluster" {
   enable_ecs_cloudwatch_alarms = true
 
   # Enable fail2ban to block brute force log in attempts. Defaults to true
-  enable_fail2ban = true
+  enable_fail2ban = false
 
   # Set this variable to true to enable the Instance Metadata Service (IMDS)
   # endpoint, which is used to fetch information such as user-data scripts,
@@ -627,7 +627,7 @@ inputs = {
   enable_ecs_cloudwatch_alarms = true
 
   # Enable fail2ban to block brute force log in attempts. Defaults to true
-  enable_fail2ban = true
+  enable_fail2ban = false
 
   # Set this variable to true to enable the Instance Metadata Service (IMDS)
   # endpoint, which is used to fetch information such as user-data scripts,
@@ -1136,7 +1136,7 @@ Set to true to enable several basic Cloudwatch alarms around CPU usage, memory u
 Enable fail2ban to block brute force log in attempts. Defaults to true
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="enable_imds" requirement="optional" type="bool">
@@ -1490,6 +1490,6 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules/services/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "dfffc2776bb3d6977610d016a93b9b1a"
+  "hash": "4180972344cb4de2b07b7315a226ea53"
 }
 ##DOCS-SOURCER-END -->
