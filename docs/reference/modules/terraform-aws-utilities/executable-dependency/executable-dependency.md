@@ -36,7 +36,7 @@ page](https://github.com/gruntwork-io/terraform-aws-utilities/releases):
 
 ```hcl
 module "path" {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/join-path?ref=<VERSION>"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/executable-dependency?ref=<VERSION>"
   
   executable     = "kubergrunt"
   download_url   = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.5.13/kubergrunt"
@@ -252,6 +252,6 @@ The path to use to run the executable. Will either be the path of the executable
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.4/modules/executable-dependency/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "674445179958eed59383512d772e0152"
+  "hash": "078f8701a6b27cad1a8b87f1886ace83"
 }
 ##DOCS-SOURCER-END -->
