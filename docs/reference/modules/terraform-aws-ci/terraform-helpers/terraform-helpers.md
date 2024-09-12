@@ -313,9 +313,9 @@ live/us-east-1/non-prod
 Each of these were detected as terraform modules (because they contain `.tf` files), and were marked as changed because
 one of the underlying `.tf` or `.tfvars` files have changed. Specifically:
 
-*   `modules/mysql` &lt;= `modules/mysql/outputs.tf`
-*   `live/us-east-1/prod` &lt;= `live/us-east-1/prod/main.tf` and `live/us-east-1/prod/outputs.tf`
-*   `live/us-east-1/non-prod` &lt;= `live/us-east-1/non-prod/terraform.tfvars`
+*   `modules/mysql` <= `modules/mysql/outputs.tf`
+*   `live/us-east-1/prod` <= `live/us-east-1/prod/main.tf` and `live/us-east-1/prod/outputs.tf`
+*   `live/us-east-1/non-prod` <= `live/us-east-1/non-prod/terraform.tfvars`
 
 ### Deleted folders
 
@@ -346,6 +346,6 @@ and `apply` actions so that Terraform/Terragrunt can run. If you wish to impleme
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/terraform-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5d4a7fd03e0da6265e3d7350568cd876"
+  "hash": "4017935286372a6729b441a8438116a5"
 }
 ##DOCS-SOURCER-END -->
