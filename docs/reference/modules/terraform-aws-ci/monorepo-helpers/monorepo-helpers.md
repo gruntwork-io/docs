@@ -19,7 +19,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 This module contains scripts that help with adapting CI/CD pipelines for infrastructure code to monorepo setups. These scripts can be used to setup pipelines that only run tests on the infrastructure modules that changed, as opposed to always running all tests on every change. By only running the relevant tests for each commit, you can drastically reduce the runtime of your CI/CD pipelines (as only a subset of the tests run each time).
 
-NOTE: - These scripts are built for running Go tests, such as \[Terratest]\([https://terratest.gruntwork.io/](https://terratest.gruntwork.io/)). - The scripts rely on certain heuristics and assumptions to decide which tests should or shouldn’t run. If you follow Gruntwork conventions, those heuristics will work for you; otherwise, they may not detect the correct tests to run.
+NOTE: - These scripts are built for running Go tests, such as \[Terratest]\(<https://terratest.gruntwork.io/>). - The scripts rely on certain heuristics and assumptions to decide which tests should or shouldn’t run. If you follow Gruntwork conventions, those heuristics will work for you; otherwise, they may not detect the correct tests to run.
 
 ## Features
 
@@ -82,6 +82,6 @@ If you just want to try this module out for experimenting and learning, check ou
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/monorepo-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c900603f1508f899a51f66babaa8b259"
+  "hash": "8ba1d1aabfc13b6328e5846cc5eb9ea4"
 }
 ##DOCS-SOURCER-END -->
