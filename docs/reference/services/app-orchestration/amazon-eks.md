@@ -2556,11 +2556,11 @@ Any types represent complex values of variable type. For details, please consult
    See the following AWS Blog for more details on advanced configuration of EKS add-ons: https://aws.amazon.com/blogs/containers/amazon-eks-add-ons-advanced-configuration/
    Example:
    {
-     addon_version        = "v1.14.0-eksbuild.1"
-     configuration_values = {}
-     preserve                 = false
-     resolve_conflicts        = "NONE"
-     service_account_role_arn = "arn:aws:iam::123456789012:role/role-name"
+     addon_version               = "v1.14.0-eksbuild.1"
+     configuration_values        = {}
+     preserve                    = false
+     resolve_conflicts_on_create = "OVERWRITE"
+     service_account_role_arn    = "arn:aws:iam::123456789012:role/role-name"
    }
 
 ```
@@ -2644,9 +2644,9 @@ Any types represent complex values of variable type. For details, please consult
        coredns    = {}
        kube-proxy = {}
        vpc-cni    = {
-         addon_version            = "1.10.1-eksbuild.1"
-         resolve_conflicts        = "NONE"
-         service_account_role_arn = "arn:aws:iam::123456789012:role/role-name"
+         addon_version               = "1.10.1-eksbuild.1"
+         resolve_conflicts_on_create = "OVERWRITE"
+         service_account_role_arn    = "arn:aws:iam::123456789012:role/role-name"
        }
      }
 
@@ -3726,6 +3726,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "4f9c3fdaee945e34059ce83b78da07a4"
+  "hash": "973f0d8a61fd650c87d6295782ebccc0"
 }
 ##DOCS-SOURCER-END -->
