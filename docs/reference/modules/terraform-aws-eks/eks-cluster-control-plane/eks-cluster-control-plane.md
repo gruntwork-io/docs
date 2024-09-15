@@ -460,6 +460,9 @@ module "eks_cluster_control_plane" {
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
 
+  # Specify the log class of the cloudwatch log group
+  cloudwatch_log_group_class = "STANDARD"
+
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting log data in the CloudWatch log group for EKS control plane logs.
   cloudwatch_log_group_kms_key_id = null
@@ -777,6 +780,9 @@ inputs = {
 
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
+
+  # Specify the log class of the cloudwatch log group
+  cloudwatch_log_group_class = "STANDARD"
 
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting log data in the CloudWatch log group for EKS control plane logs.
@@ -1112,6 +1118,15 @@ The AWS partition used for default AWS Resources.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;aws&quot;"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_class" requirement="optional" type="string">
+<HclListItemDescription>
+
+Specify the log class of the cloudwatch log group
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;STANDARD&quot;"/>
 </HclListItem>
 
 <HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
@@ -1846,6 +1861,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.69.1/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "267ccb7f5a801a3de71ced2adccbcbbf"
+  "hash": "435445d0bc2ce8b80a10a965b2f88e33"
 }
 ##DOCS-SOURCER-END -->
