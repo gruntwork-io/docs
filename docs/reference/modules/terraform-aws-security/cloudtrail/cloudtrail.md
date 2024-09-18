@@ -137,12 +137,16 @@ module "cloudtrail" {
   # below.
   additional_bucket_policy_statements = null
 
-  # Map of advanced event selector name to list of field selectors to apply for that event selector. Advanced event selectors allow for more fine grained data logging of events.
-  #
-  # Note that you can not configure basic data logging (var.data_logging_enabled) if advanced event logging is enabled.
-  #
-  # Refer to the AWS docs on data event selection for more details on the difference between basic data logging and advanced data logging.
-  #
+  # Map of advanced event selector name to list of field selectors to apply for
+  # that event selector. Advanced event selectors allow for more fine grained
+  # data logging of events.
+
+Note that you can not configure basic data logging
+  # (var.data_logging_enabled) if advanced event logging is enabled.
+
+Refer to
+  # the AWS docs on data event selection for more details on the difference
+  # between basic data logging and advanced data logging.
   advanced_event_selectors = {}
 
   # Whether or not to allow kms:DescribeKey to external AWS accounts with write
@@ -393,12 +397,16 @@ inputs = {
   # below.
   additional_bucket_policy_statements = null
 
-  # Map of advanced event selector name to list of field selectors to apply for that event selector. Advanced event selectors allow for more fine grained data logging of events.
-  #
-  # Note that you can not configure basic data logging (var.data_logging_enabled) if advanced event logging is enabled.
-  #
-  # Refer to the AWS docs on data event selection for more details on the difference between basic data logging and advanced data logging.
-  #
+  # Map of advanced event selector name to list of field selectors to apply for
+  # that event selector. Advanced event selectors allow for more fine grained
+  # data logging of events.
+
+Note that you can not configure basic data logging
+  # (var.data_logging_enabled) if advanced event logging is enabled.
+
+Refer to
+  # the AWS docs on data event selection for more details on the difference
+  # between basic data logging and advanced data logging.
   advanced_event_selectors = {}
 
   # Whether or not to allow kms:DescribeKey to external AWS accounts with write
@@ -1402,6 +1410,6 @@ The name of the cloudtrail trail.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/cloudtrail/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cdaae2903a15193f6e90249ba1ef9c9b"
+  "hash": "8ff8581a85de901445b86419f75f5ff6"
 }
 ##DOCS-SOURCER-END -->
