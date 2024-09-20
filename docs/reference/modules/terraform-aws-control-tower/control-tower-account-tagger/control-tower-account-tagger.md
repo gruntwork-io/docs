@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="0.7.11" lastModifiedVersion="0.7.5"/>
+<VersionBadge repoTitle="Control Tower" version="0.8.0" lastModifiedVersion="0.7.5"/>
 
 # Control Tower Account Tagger
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.11/modules/landingzone/control-tower-account-tagger" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.0/modules/landingzone/control-tower-account-tagger" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.7.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -62,7 +62,7 @@ This module assume that the account is managed by AWS Control Tower and has two 
 
 module "control_tower_account_tagger" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-tagger?ref=v0.7.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-tagger?ref=v0.8.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -82,6 +82,9 @@ module "control_tower_account_tagger" {
   # terraform state any manual changes will not be picked up. This will force a
   # refresh on every apply.
   always_refresh = false
+
+  # Enable AWS CLI debug output
+  enable_aws_cli_debug = false
 
   # The method used to apply the tags. APPEND will add the tags to the account
   # overwitting only conflicting keys, EXCLUSIVE_OVERWRITE will remove all tags
@@ -103,7 +106,7 @@ module "control_tower_account_tagger" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-tagger?ref=v0.7.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-tagger?ref=v0.8.0"
 }
 
 inputs = {
@@ -127,6 +130,9 @@ inputs = {
   # refresh on every apply.
   always_refresh = false
 
+  # Enable AWS CLI debug output
+  enable_aws_cli_debug = false
+
   # The method used to apply the tags. APPEND will add the tags to the account
   # overwitting only conflicting keys, EXCLUSIVE_OVERWRITE will remove all tags
   # and apply the new ones.
@@ -144,11 +150,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.11/modules/control-tower-account-tagger/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.11/modules/control-tower-account-tagger/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.7.11/modules/control-tower-account-tagger/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.0/modules/control-tower-account-tagger/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.0/modules/control-tower-account-tagger/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.0/modules/control-tower-account-tagger/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a01069346b785ade54781b0f6dfbb4f6"
+  "hash": "32c0b233eb9d4ba1d4dc2690508daf15"
 }
 ##DOCS-SOURCER-END -->
