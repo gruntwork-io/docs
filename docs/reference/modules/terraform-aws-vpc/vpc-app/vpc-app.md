@@ -57,7 +57,7 @@ To summarize:
 *   In a given subnet tier, there are usually three subnets, one for each Availability Zone.
 *   Therefore, if we created a single VPC in the `us-west-2` region, which has Availability Zones `us-west-2a`,`us-west-2b`,
     and `us-west-2c`, each subnet tier would have three subnets (one per Availability Zone) for a total of twelve subnets in all.
-*   The only way to reach this VPC is from the public internet via a publicly exposed sevice, a service such as SSM, a transit
+*   The only way to reach this VPC is from the public internet via a publicly exposed service, a service such as SSM, a transit
     gateway, VPC peering, or a VPN connection.
 *   Philosophically, everything in a VPC should be isolated from all resources in any other VPC. In particular, we want
     to ensure that our stage environment is completely independent from prod. This architecture helps to reinforce that.
@@ -135,6 +135,12 @@ module "vpc_app" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # Should the inspection subnet be allowed outbound access to the internet?
+  allow_inspection_internet_access = false
+
+  # Should the private app subnet be allowed outbound access to the internet?
+  allow_private_app_internet_access = true
+
   # Should the private persistence subnet be allowed outbound access to the
   # internet?
   allow_private_persistence_internet_access = false
@@ -198,6 +204,9 @@ module "vpc_app" {
   # subnets exist but they are not directly public facing, since they can be
   # routed from other VPC hosting the IGW.
   create_igw = true
+
+  # If set to false, this module will NOT create the inspection subnets.
+  create_inspection_subnets = false
 
   # If set to false, this module will NOT create the private app subnet tier.
   create_private_app_subnets = true
@@ -302,6 +311,42 @@ module "vpc_app" {
   # The amount of spacing between the different subnet types when all subnets
   # are present, such as the transit subnets.
   global_subnet_spacing = 6
+
+  # A list of Virtual Private Gateways that will propagate routes to inspection
+  # subnets. All routes from VPN connections that use Virtual Private Gateways
+  # listed here will appear in route tables of persistence subnets. If left
+  # empty, no routes will be propagated.
+  inspection_propagating_vgws = []
+
+  # A map of tags to apply to the inspection route tables(s), on top of the
+  # custom_tags. The key is the tag name and the value is the tag value. Note
+  # that tags defined here will override tags defined as custom_tags in case of
+  # conflict.
+  inspection_route_table_custom_tags = {}
+
+  # Takes the CIDR prefix and adds these many bits to it for calculating subnet
+  # ranges. MAKE SURE if you change this you also change the CIDR spacing or you
+  # may hit errors. See cidrsubnet interpolation in terraform config for more
+  # information.
+  inspection_subnet_bits = 5
+
+  # A map listing the specific CIDR blocks desired for each private-persistence
+  # subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the
+  # number of Availability Zones. If left blank, we will compute a reasonable
+  # CIDR block for each subnet.
+  inspection_subnet_cidr_blocks = {}
+
+  # A map of tags to apply to the inspection subnets, on top of the custom_tags.
+  # The key is the tag name and the value is the tag value. Note that tags
+  # defined here will override tags defined as custom_tags in case of conflict.
+  inspection_subnet_custom_tags = {}
+
+  # The name of the inspection subnet tier. This is used to tag the subnet and
+  # its resources.
+  inspection_subnet_name = "inspection"
+
+  # The amount of spacing between the inspection subnets.
+  inspection_subnet_spacing = null
 
   # Filters to select the IPv4 IPAM pool to use for allocated this VPCs
   ipv4_ipam_pool_filters = null
@@ -618,6 +663,12 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # Should the inspection subnet be allowed outbound access to the internet?
+  allow_inspection_internet_access = false
+
+  # Should the private app subnet be allowed outbound access to the internet?
+  allow_private_app_internet_access = true
+
   # Should the private persistence subnet be allowed outbound access to the
   # internet?
   allow_private_persistence_internet_access = false
@@ -681,6 +732,9 @@ inputs = {
   # subnets exist but they are not directly public facing, since they can be
   # routed from other VPC hosting the IGW.
   create_igw = true
+
+  # If set to false, this module will NOT create the inspection subnets.
+  create_inspection_subnets = false
 
   # If set to false, this module will NOT create the private app subnet tier.
   create_private_app_subnets = true
@@ -785,6 +839,42 @@ inputs = {
   # The amount of spacing between the different subnet types when all subnets
   # are present, such as the transit subnets.
   global_subnet_spacing = 6
+
+  # A list of Virtual Private Gateways that will propagate routes to inspection
+  # subnets. All routes from VPN connections that use Virtual Private Gateways
+  # listed here will appear in route tables of persistence subnets. If left
+  # empty, no routes will be propagated.
+  inspection_propagating_vgws = []
+
+  # A map of tags to apply to the inspection route tables(s), on top of the
+  # custom_tags. The key is the tag name and the value is the tag value. Note
+  # that tags defined here will override tags defined as custom_tags in case of
+  # conflict.
+  inspection_route_table_custom_tags = {}
+
+  # Takes the CIDR prefix and adds these many bits to it for calculating subnet
+  # ranges. MAKE SURE if you change this you also change the CIDR spacing or you
+  # may hit errors. See cidrsubnet interpolation in terraform config for more
+  # information.
+  inspection_subnet_bits = 5
+
+  # A map listing the specific CIDR blocks desired for each private-persistence
+  # subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the
+  # number of Availability Zones. If left blank, we will compute a reasonable
+  # CIDR block for each subnet.
+  inspection_subnet_cidr_blocks = {}
+
+  # A map of tags to apply to the inspection subnets, on top of the custom_tags.
+  # The key is the tag name and the value is the tag value. Note that tags
+  # defined here will override tags defined as custom_tags in case of conflict.
+  inspection_subnet_custom_tags = {}
+
+  # The name of the inspection subnet tier. This is used to tag the subnet and
+  # its resources.
+  inspection_subnet_name = "inspection"
+
+  # The amount of spacing between the inspection subnets.
+  inspection_subnet_spacing = null
 
   # Filters to select the IPv4 IPAM pool to use for allocated this VPCs
   ipv4_ipam_pool_filters = null
@@ -1103,6 +1193,24 @@ Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
 
 ### Optional
 
+<HclListItem name="allow_inspection_internet_access" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Should the inspection subnet be allowed outbound access to the internet?
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="allow_private_app_internet_access" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Should the private app subnet be allowed outbound access to the internet?
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="allow_private_persistence_internet_access" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1218,6 +1326,15 @@ If the VPC will create an Internet Gateway. There are use cases when the VPC is 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="create_inspection_subnets" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to false, this module will NOT create the inspection subnets.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="create_private_app_subnets" requirement="optional" type="bool">
@@ -1494,6 +1611,69 @@ The amount of spacing between the different subnet types when all subnets are pr
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="6"/>
+</HclListItem>
+
+<HclListItem name="inspection_propagating_vgws" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of Virtual Private Gateways that will propagate routes to inspection subnets. All routes from VPN connections that use Virtual Private Gateways listed here will appear in route tables of persistence subnets. If left empty, no routes will be propagated.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="inspection_route_table_custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the inspection route tables(s), on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="inspection_subnet_bits" requirement="optional" type="number">
+<HclListItemDescription>
+
+Takes the CIDR prefix and adds these many bits to it for calculating subnet ranges. MAKE SURE if you change this you also change the CIDR spacing or you may hit errors. See cidrsubnet interpolation in terraform config for more information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="5"/>
+</HclListItem>
+
+<HclListItem name="inspection_subnet_cidr_blocks" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map listing the specific CIDR blocks desired for each private-persistence subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="inspection_subnet_custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the inspection subnets, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="inspection_subnet_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the inspection subnet tier. This is used to tag the subnet and its resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;inspection&quot;"/>
+</HclListItem>
+
+<HclListItem name="inspection_subnet_spacing" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of spacing between the inspection subnets.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="ipv4_ipam_pool_filters" requirement="optional" type="list(object(…))">
@@ -2008,6 +2188,29 @@ A map of tags to apply just to the VPC itself, but not any of the other resource
 <HclListItem name="dynamodb_vpc_endpoint_id">
 </HclListItem>
 
+<HclListItem name="inspection_route_table_ids">
+</HclListItem>
+
+<HclListItem name="inspection_subnet_arns">
+</HclListItem>
+
+<HclListItem name="inspection_subnet_cidr_blocks">
+</HclListItem>
+
+<HclListItem name="inspection_subnet_ids">
+</HclListItem>
+
+<HclListItem name="inspection_subnet_route_table_ids">
+</HclListItem>
+
+<HclListItem name="inspection_subnets">
+<HclListItemDescription>
+
+A map of all inspection subnets, with the subnet ID as the key, and all `aws-subnet` properties as the value.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="internet_gateway_id">
 </HclListItem>
 
@@ -2111,6 +2314,14 @@ A map of all public subnets, with the subnet ID as the key, and all `aws-subnet`
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="route_tables_for_network_firewall">
+<HclListItemDescription>
+
+A map of subnet IDs to routing tables IDs used for routing establishment purposes.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="s3_vpc_endpoint_id">
 </HclListItem>
 
@@ -2118,6 +2329,14 @@ A map of all public subnets, with the subnet ID as the key, and all `aws-subnet`
 <HclListItemDescription>
 
 Map of the secondary CIDR block associations with the VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="subnets_attr_for_network_firewall">
+<HclListItemDescription>
+
+A map of subnet IDs to various attributes used for routing establishment purposes.
 
 </HclListItemDescription>
 </HclListItem>
@@ -2166,6 +2385,6 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "63c1fe0c40c85c98664528f578ec74cf"
+  "hash": "c5e6d6d04bcf0c6623d07d547a60afbf"
 }
 ##DOCS-SOURCER-END -->
