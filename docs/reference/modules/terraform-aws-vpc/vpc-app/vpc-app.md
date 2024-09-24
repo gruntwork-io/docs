@@ -57,7 +57,7 @@ To summarize:
 *   In a given subnet tier, there are usually three subnets, one for each Availability Zone.
 *   Therefore, if we created a single VPC in the `us-west-2` region, which has Availability Zones `us-west-2a`,`us-west-2b`,
     and `us-west-2c`, each subnet tier would have three subnets (one per Availability Zone) for a total of twelve subnets in all.
-*   The only way to reach this VPC is from the public internet via a publicly exposed sevice, a service such as SSM, a transit
+*   The only way to reach this VPC is from the public internet via a publicly exposed service, a service such as SSM, a transit
     gateway, VPC peering, or a VPN connection.
 *   Philosophically, everything in a VPC should be isolated from all resources in any other VPC. In particular, we want
     to ensure that our stage environment is completely independent from prod. This architecture helps to reinforce that.
@@ -2166,6 +2166,6 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "63c1fe0c40c85c98664528f578ec74cf"
+  "hash": "a821f75a93d82a5df8cf6b7c2aeeebb0"
 }
 ##DOCS-SOURCER-END -->
