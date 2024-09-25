@@ -20,14 +20,14 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 This Terraform module deploys Network Firewall resources. It is a managed service that allows you to filter and monitor network traffic.
 The module creates Network Firewall, Network Firewall Policy and Network Firewall Rule Group.
 
-## Planned Features
+## Limitations (Planned Features)
 
-*   Custom actions.
-*   TLS inspection configuration.
-*   Network Firewall Resource Policy.
-*   Reference sets (reference to prefixes list).
-*   Logging Configuration.
-*   Proper update operation for Rule Groups.
+*   Custom actions are not implemented.
+*   TLS inspection configuration is not implemented.
+*   Network Firewall Resource Policy is not implemented.
+*   Reference sets (reference to prefixes list) are not implemented.
+*   Logging Configuration is not implemented.
+*   Proper update operation for Rule Groups is not implemented.
 
 ## Usage
 
@@ -163,7 +163,8 @@ module "network_firewall" {
   firewall_policy_change_protection = false
 
   # A list of AWS Managed Rule Groups names to associate with the firewall
-  # policy. Example: ["AbusedLegitMalwareDomainsActionOrder"]. More:
+  # policy. Example: ["AbusedLegitMalwareDomainsActionOrder",
+  # "ThreatSignaturesWebAttacksActionOrder"]. More:
   # https://docs.aws.amazon.com/network-firewall/latest/developerguide/aws-managed-rule-groups-list.html
   managed_stateful_rule_groups_to_associate = []
 
@@ -232,7 +233,8 @@ inputs = {
   firewall_policy_change_protection = false
 
   # A list of AWS Managed Rule Groups names to associate with the firewall
-  # policy. Example: ["AbusedLegitMalwareDomainsActionOrder"]. More:
+  # policy. Example: ["AbusedLegitMalwareDomainsActionOrder",
+  # "ThreatSignaturesWebAttacksActionOrder"]. More:
   # https://docs.aws.amazon.com/network-firewall/latest/developerguide/aws-managed-rule-groups-list.html
   managed_stateful_rule_groups_to_associate = []
 
@@ -348,7 +350,7 @@ A flag indicating whether the firewall is protected against a change to the fire
 <HclListItem name="managed_stateful_rule_groups_to_associate" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-A list of AWS Managed Rule Groups names to associate with the firewall policy. Example: ['AbusedLegitMalwareDomainsActionOrder']. More: https://docs.aws.amazon.com/network-firewall/latest/developerguide/aws-managed-rule-groups-list.html
+A list of AWS Managed Rule Groups names to associate with the firewall policy. Example: ['AbusedLegitMalwareDomainsActionOrder', 'ThreatSignaturesWebAttacksActionOrder']. More: https://docs.aws.amazon.com/network-firewall/latest/developerguide/aws-managed-rule-groups-list.html
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -954,6 +956,6 @@ A map of AZs to Network Firewall Endpoint IDs used for routing establishment pur
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/network-firewall/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dd882969053592a0b27cf6e10e01363f"
+  "hash": "fcc4c02d9b717322a36862b02d45fff8"
 }
 ##DOCS-SOURCER-END -->
