@@ -7,9 +7,12 @@ If you are using the older version of Gruntwork Pipelines that includes the `inf
 :::
 
 
+:::info GitHub App
+Setting up IaC repositories requires the Gruntwork GitHub App. [Click here](FIXME: link) for installation instructions.
+:::
+
 To set up your IaC Foundations you'll need to complete the following steps:
 1. Create your `infrastructure-live-root` repository from Gruntwork's GitHub template.
-1. Install the Gruntwork GitHub App into your organization.
 1. Configure the Gruntwork GitHub App to authorize your `infrastructure-live-root` repository.
 1. Update the Bootstrap Workflow to configure your AWS settings.
 1. Run the Bootstrap Workflow in your `infrastructure-live-root` repository to create pull requests and repositories.
@@ -27,15 +30,9 @@ The workflow also optionally creates and scaffolds your `infrastructure-live-acc
 
 Navigate to the template repository and select **Use this template** -> **Create a new Repository**. This will initiate repository creation. You should select your org as the owner, add a description if you like, make sure you are creating a **private** repo, and click **Create repository**.
 
-## Installing The Gruntwork GitHub App
-
-Gruntwork Workflows use the Gruntwork GitHub App to perform authorized actions within your repositories, and to access Gruntwork code. The app must be installed in your organization in order to create new repositories.
-
-[Click here](FIXME: Link to prod app installation) to install the Gruntwork GitHub app.
-
 ## Configuring Gruntwork App Settings
 
-After installing the Gruntwork GitHub App you should be redirected to the Gruntwork Developer Portal. If not - [click here](FIXME: URL to app settings) to access the settings page. Under the section Infrastructure Root Repositories add your new repository.
+Configure the Gruntwork GitHub App to add this repository as an Infra Root repository.
 
 ## Update The Bootstrap Workflow
 
@@ -62,6 +59,6 @@ Each of your repositories will now contain a Bootstrap Pull Request. Follow the 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7a2d61e80ae20fbe64a65567cea3862c"
+  "hash": "760ac6c2092a81e18aec1bc3e77572fe"
 }
 ##DOCS-SOURCER-END -->

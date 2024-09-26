@@ -10,6 +10,20 @@ const sidebar = [
     collapsible: false,
     items: [
       {
+        label: "Gruntwork GitHub App",
+        type: "category",
+        collapsible: false,
+        items: [
+          {
+            label: "Overview",
+            type: "doc",
+            id: "foundations/grunty/index",
+          },
+          "foundations/grunty/setup",
+          "foundations/grunty/configuration",
+        ]
+      },
+      {
         label: "DevOps Components",
         type: "category",
         collapsed: false,
