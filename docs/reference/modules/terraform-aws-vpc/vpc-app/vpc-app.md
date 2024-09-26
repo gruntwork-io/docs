@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.24" lastModifiedVersion="0.26.22"/>
+<VersionBadge repoTitle="VPC Modules" version="0.26.25" lastModifiedVersion="0.26.25"/>
 
 # IPv6
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.22" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.25" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 ## What's a VPC?
 
@@ -57,7 +57,7 @@ To summarize:
 *   In a given subnet tier, there are usually three subnets, one for each Availability Zone.
 *   Therefore, if we created a single VPC in the `us-west-2` region, which has Availability Zones `us-west-2a`,`us-west-2b`,
     and `us-west-2c`, each subnet tier would have three subnets (one per Availability Zone) for a total of twelve subnets in all.
-*   The only way to reach this VPC is from the public internet via a publicly exposed sevice, a service such as SSM, a transit
+*   The only way to reach this VPC is from the public internet via a publicly exposed service, a service such as SSM, a transit
     gateway, VPC peering, or a VPN connection.
 *   Philosophically, everything in a VPC should be isolated from all resources in any other VPC. In particular, we want
     to ensure that our stage environment is completely independent from prod. This architecture helps to reinforce that.
@@ -73,7 +73,7 @@ nearly all use-cases, and is consistent with many examples and existing document
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
 
 ## IPv6 Design
 
@@ -111,7 +111,7 @@ module "vpc_app_ipv6_example" {
 
 module "vpc_app" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.24"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.25"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -591,7 +591,7 @@ module "vpc_app" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.24"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.25"
 }
 
 inputs = {
@@ -2161,11 +2161,11 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/vpc-app/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/vpc-app/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/vpc-app/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules/vpc-app/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules/vpc-app/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "63c1fe0c40c85c98664528f578ec74cf"
+  "hash": "c42bd87a03b90977d8212f6f68c3b6d6"
 }
 ##DOCS-SOURCER-END -->
