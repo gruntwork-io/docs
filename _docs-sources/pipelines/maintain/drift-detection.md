@@ -12,57 +12,6 @@ Pipelines Drift Detection helps to mitigate Drift in your repositories by runnin
 
 When the Drift Detected Pull Request is merged, Pipelines will run `terragrunt apply` on all units where drift was detected to ensure resources once again match what is specified in code.
 
-## Installing Pipelines Drift Detection
-
-Pipelines Drift Detection is automatically vended in new Enterprise repositories.
-
-To add Drift Detection to an existing repository:
-
-1. Create a new file at `.github/workflows/pipelines-drift-detection.yml`
-2. Paste in the workflow yml from below
-<details>
-  <summary>pipelines-drift-detection.yml</summary>
-
-  ```yaml
-  name: Pipelines Drift Detection
-  run-name: "[GWP]: Pipelines Drift Detection"
-  on:
-    # Uncomment to enable scheduled Drift Detection
-    # schedule:
-    #  - cron: '0 0 * * 1-5'
-    workflow_dispatch:
-
-  permissions:
-    actions: read
-    id-token: write
-    contents: write
-    # Uncomment the following line in infrastructure-live-root and infrastructure-live-access-control
-    # pull-requests: read
-    # Uncomment the following line in delegated repositories
-    # pull-requests: write
-
-  jobs:
-    GruntworkPipelines:
-      uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines-drift-detection.yml@v2
-      secrets:
-        PIPELINES_READ_TOKEN: ${{ secrets.PIPELINES_READ_TOKEN }}
-        # Uncomment the following line for your repository:
-        # infrastructure-live-root:
-        # PR_CREATE_TOKEN: ${{ secrets.INFRA_ROOT_WRITE_TOKEN }}
-        # infrastructure-live-access-control:
-        # PR_CREATE_TOKEN: ${{ secrets.ACCESS_CONTROL_WRITE_TOKEN }}
-        # delegated repositories:
-        # PR_CREATE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  ```
-
-</details>
-3. Uncomment the appropriate line in the permissions block for pull-request permissions
-4. Uncomment the appropriate line in the secrets block for PR_CREATE_TOKEN
-5. For delegated repositories - ensure that **Allow GitHub Actions to create and approve pull requests** is checked in the repository settings.
-
-![Allow Actions To Create Pull Requests](/img/pipelines/maintain/drift_detection_allow_pr_create.png)
-
-
 ## Detecting Drift
 
 Pipelines Drift Detection can be run on a schedule or manually.
@@ -71,8 +20,8 @@ Pipelines Drift Detection can be run on a schedule or manually.
 
 To enable running on a schedule:
 
-1. Uncomment the schedule block containing `- cron: '0 0 * * 1-5'` in `.github/workflows/pipelines-drift-detection.yml`.
-1. Update the cron schedule to suit your desired frequency. The default schedule runs at 00:00UTC Monday through Friday. You can increase or decrease the frequency that the schedule runs using [crontab syntax](https://crontab.guru/#0_0_*_*_1-5).
+1. Uncomment the schedule block containing `- cron: '15 12 * * 1'` in `.github/workflows/pipelines-drift-detection.yml`.
+1. Update the cron schedule to suit your desired frequency. The default schedule runs at 12:15UTC Monday. You can increase or decrease the frequency that the schedule runs using [crontab syntax](https://crontab.guru/#15_12_*_*_1).
 1. Each time Drift Detection runs and detects drift it will open a Pull Request in your repository. If there is an existing Drift Detection Pull Request that has not been merged it will be replaced.
 
 :::note
