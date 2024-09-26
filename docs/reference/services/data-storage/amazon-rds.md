@@ -175,7 +175,7 @@ module "rds" {
   auto_minor_version_upgrade = true
 
   # The description of the aws_db_security_group that is created. Defaults to
-  # 'Security group for the ${var.name} DB' if not specified
+  # 'Security group for the var.name DB' if not specified
   aws_db_security_group_description = null
 
   # The name of the aws_db_security_group that is created. Defaults to var.name
@@ -644,7 +644,7 @@ inputs = {
   auto_minor_version_upgrade = true
 
   # The description of the aws_db_security_group that is created. Defaults to
-  # 'Security group for the ${var.name} DB' if not specified
+  # 'Security group for the var.name DB' if not specified
   aws_db_security_group_description = null
 
   # The name of the aws_db_security_group that is created. Defaults to var.name
@@ -1144,7 +1144,7 @@ Indicates that minor engine upgrades will be applied automatically to the DB ins
 <HclListItem name="aws_db_security_group_description" requirement="optional" type="string">
 <HclListItemDescription>
 
-The description of the aws_db_security_group that is created. Defaults to 'Security group for the ${<a href="#name"><code>name</code></a>} DB' if not specified
+The description of the aws_db_security_group that is created. Defaults to 'Security group for the <a href="#name"><code>name</code></a> DB' if not specified
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -2419,6 +2419,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.1/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "fc114311bdebbd3c7699d246bda041d4"
+  "hash": "3252e5a0e77eaeb9392024aa20fca036"
 }
 ##DOCS-SOURCER-END -->
