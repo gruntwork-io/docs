@@ -16,22 +16,7 @@ import CardGroup from "/src/components/CardGroup"
 
 <CardGroup cols={1} gap="1rem" stacked equalHeightRows={false} commonCardProps={{padding: "1.25rem"}}>
 
-<Card title="Update to 2024-08" href="/guides/stay-up-to-date/releases/2024-08" />
-<Card title="Update to 2024-07" href="/guides/stay-up-to-date/releases/2024-07" />
-<Card title="Update to 2024-06" href="/guides/stay-up-to-date/releases/2024-06" />
-<Card title="Update to 2024-05" href="/guides/stay-up-to-date/releases/2024-05" />
-<Card title="Update to 2024-04" href="/guides/stay-up-to-date/releases/2024-04" />
-<Card title="Update to 2024-03" href="/guides/stay-up-to-date/releases/2024-03" />
-<Card title="Update to 2024-02" href="/guides/stay-up-to-date/releases/2024-02" />
-<Card title="Update to 2024-01" href="/guides/stay-up-to-date/releases/2024-01" />
-<Card title="Update to 2023-12" href="/guides/stay-up-to-date/releases/2023-12" />
-<Card title="Update to 2023-11" href="/guides/stay-up-to-date/releases/2023-11" />
-<Card title="Update to 2023-10" href="/guides/stay-up-to-date/releases/2023-10" />
-<Card title="Update to 2023-09" href="/guides/stay-up-to-date/releases/2023-09" />
-<Card title="Update to 2023-08" href="/guides/stay-up-to-date/releases/2023-08" />
-<Card title="Update to 2023-07" href="/guides/stay-up-to-date/releases/2023-07" />
-<Card title="Update to 2023-06" href="/guides/stay-up-to-date/releases/2023-06" />
-<Card title="See older releases" href="/guides/stay-up-to-date/releases" />
+<!-- replaced-by-docs-sourcer-automatically-do-not-edit -->
 
 </CardGroup>
 
@@ -113,7 +98,7 @@ href="/guides/stay-up-to-date/cis/cis-1.5.0"
 
 <!-- ##DOCS-SOURCER-START
 {
-  "sourcePlugin": "releases",
-  "hash": "7168545e37e8621a982f5c8b64742df6"
+  "sourcePlugin": "local-copier",
+  "hash": "83b5997fd4c9852bc578ed27cb2e494e"
 }
 ##DOCS-SOURCER-END -->

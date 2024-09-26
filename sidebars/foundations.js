@@ -50,6 +50,7 @@ const sidebar = [
             id: "foundations/iac-foundations/index",
           },
           "foundations/iac-foundations/initial-setup",
+          "foundations/iac-foundations/github-app",
           "foundations/iac-foundations/folder-structure",
           "foundations/iac-foundations/labels-tags",
           {
