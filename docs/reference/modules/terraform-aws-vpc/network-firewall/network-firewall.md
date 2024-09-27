@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.24" />
+<VersionBadge repoTitle="VPC Modules" version="0.26.25" />
 
 # Network Firewall Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/network-firewall" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules/network-firewall" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=network-firewall" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -31,7 +31,7 @@ The module creates Network Firewall, Network Firewall Policy and Network Firewal
 
 ## Usage
 
-For usage examples, check out the [One VPC](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/examples/vpc-app-with-network-firewall/) and [Multi-VPC](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/examples/vpc-app-with-network-firewall-and-transit-gateway/) deployment.
+For usage examples, check out the [One VPC](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/examples/vpc-app-with-network-firewall/) and [Multi-VPC](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/examples/vpc-app-with-network-firewall-and-transit-gateway/) deployment.
 
 ## Deployment models for AWS Network Firewall
 
@@ -142,7 +142,7 @@ No modules.
 
 module "network_firewall" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-firewall?ref=v0.26.24"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-firewall?ref=v0.26.25"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -209,7 +209,7 @@ module "network_firewall" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-firewall?ref=v0.26.24"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-firewall?ref=v0.26.25"
 }
 
 inputs = {
@@ -951,11 +951,11 @@ A map of AZs to Network Firewall Endpoint IDs used for routing establishment pur
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/network-firewall/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/network-firewall/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/network-firewall/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules/network-firewall/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules/network-firewall/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules/network-firewall/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fcc4c02d9b717322a36862b02d45fff8"
+  "hash": "13e6131b11d9674757e1aee9fd61919b"
 }
 ##DOCS-SOURCER-END -->
