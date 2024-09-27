@@ -1,6 +1,6 @@
 # Setup
 
-To install the Gruntwork GitHub App in your organization follow these steps.
+To install the Grunty GitHub App in your organization follow these steps.
 
 1. Login to the Gruntwork Developer Portal and navigate to Account Settings
 1. Click Install App
@@ -12,6 +12,6 @@ To install the Gruntwork GitHub App in your organization follow these steps.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "14d41e5eda379abeb35dcb458950b649"
+  "hash": "91ee6c6022c5430d5167c2ee621a153e"
 }
 ##DOCS-SOURCER-END -->

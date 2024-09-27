@@ -8,12 +8,12 @@ If you are using the older version of Gruntwork Pipelines that includes the `inf
 
 
 :::info GitHub App
-Setting up IaC repositories requires the Gruntwork GitHub App. [Click here](FIXME: link) for installation instructions.
+Setting up IaC repositories requires the Grunty GitHub App. [Click here](FIXME: link) for installation instructions.
 :::
 
 To set up your IaC Foundations you'll need to complete the following steps:
 1. Create your `infrastructure-live-root` repository from Gruntwork's GitHub template.
-1. Configure the Gruntwork GitHub App to authorize your `infrastructure-live-root` repository.
+1. Configure the Grunty GitHub App to authorize your `infrastructure-live-root` repository.
 1. Update the Bootstrap Workflow to configure your AWS settings.
 1. Run the Bootstrap Workflow in your `infrastructure-live-root` repository to create pull requests and repositories.
 
@@ -32,7 +32,7 @@ Navigate to the template repository and select **Use this template** -> **Create
 
 ## Configuring Gruntwork App Settings
 
-Configure the Gruntwork GitHub App to add this repository as an Infra Root repository.
+Configure the Grunty GitHub App to add this repository as an Infra Root repository.
 
 ## Update The Bootstrap Workflow
 

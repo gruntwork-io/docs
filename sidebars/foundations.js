@@ -10,7 +10,7 @@ const sidebar = [
     collapsible: false,
     items: [
       {
-        label: "Gruntwork GitHub App",
+        label: "Grunty GitHub App",
         type: "category",
         collapsible: false,
         items: [
