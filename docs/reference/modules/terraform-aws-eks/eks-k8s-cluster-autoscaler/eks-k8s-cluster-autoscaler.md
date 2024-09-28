@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.69.0" lastModifiedVersion="0.69.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.70.1" lastModifiedVersion="0.69.0"/>
 
 # K8S Cluster Autoscaler Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.69.0/modules/eks-k8s-cluster-autoscaler" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.1/modules/eks-k8s-cluster-autoscaler" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.69.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -21,9 +21,9 @@ This Terraform Module installs a [Cluster Autoscaler](https://github.com/kuberne
 to automatically scale up and down the nodes in a cluster in response to resource utilization.
 
 This module is responsible for manipulating each Auto Scaling Group (ASG) that was created by the [EKS cluster
-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.69.0/modules/eks-cluster-workers) module. By default, the ASG is configured to allow zero-downtime
+workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.1/modules/eks-cluster-workers) module. By default, the ASG is configured to allow zero-downtime
 deployments but is not configured to scale automatically. You must launch an [EKS control
-plane](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.69.0/modules/eks-cluster-control-plane) with worker nodes for this module to function.
+plane](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.1/modules/eks-cluster-control-plane) with worker nodes for this module to function.
 
 ## IAM Policy Considerations
 
@@ -62,7 +62,7 @@ variables.
 
 module "eks_k_8_s_cluster_autoscaler" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler?ref=v0.69.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler?ref=v0.70.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -225,7 +225,7 @@ module "eks_k_8_s_cluster_autoscaler" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler?ref=v0.69.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler?ref=v0.70.1"
 }
 
 inputs = {
@@ -388,11 +388,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.69.0/modules/eks-k8s-cluster-autoscaler/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.69.0/modules/eks-k8s-cluster-autoscaler/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.69.0/modules/eks-k8s-cluster-autoscaler/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.1/modules/eks-k8s-cluster-autoscaler/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.1/modules/eks-k8s-cluster-autoscaler/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.1/modules/eks-k8s-cluster-autoscaler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5411593005a7aabcecf079149efb14c2"
+  "hash": "aa4776a496f94dc2c85786a06e04666d"
 }
 ##DOCS-SOURCER-END -->
