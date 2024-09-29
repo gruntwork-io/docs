@@ -1441,7 +1441,7 @@ The ID of the VPC in which to create the target group. Only used if <a href="#el
 <HclListItem name="elb_target_groups" requirement="optional" type="any">
 <HclListItemDescription>
 
-Configurations for ELB target groups for ALBs and NLBs that should be associated with the ECS Tasks. Each entry corresponds to a separate target group. Set to the empty object ({}) if you are not using an ALB or NLB.
+Configurations for ELB target groups for ALBs and NLBs that should be associated with the ECS Tasks. Each entry corresponds to a separate target group. Set to the empty object (&#123;&#125;) if you are not using an ALB or NLB.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1959,6 +1959,6 @@ If true, Terraform will wait for the service to reach a steady state — as in, 
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.2/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b7d97f1354fcc271e7183bc18947475a"
+  "hash": "8acc7808609924f522add939fa236445"
 }
 ##DOCS-SOURCER-END -->
