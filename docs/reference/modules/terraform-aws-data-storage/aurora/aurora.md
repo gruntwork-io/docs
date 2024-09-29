@@ -386,6 +386,21 @@ module "aurora" {
   # the VPC, which is much more secure.
   publicly_accessible = false
 
+  # Whether to enable read replica auto scaling
+  read_replica_scaling_enabled = false
+
+  # Max capacity of the read replica.
+  read_replica_scaling_max_capacity = null
+
+  # The predefine metric type that determine the scaling operation.
+  read_replica_scaling_metric_type = "RDSReaderAverageCPUUtilization"
+
+  # The predefine metric value that determine the scaling operation.
+  read_replica_scaling_metric_value = null
+
+  # Min capacity of the read replica.
+  read_replica_scaling_min_capacity = null
+
   # ARN of a source DB cluster or DB instance if this DB cluster is to be
   # created as a Read Replica.
   replication_source_identifier = null
@@ -734,6 +749,21 @@ inputs = {
   # default is false, which means the database is only accessible from within
   # the VPC, which is much more secure.
   publicly_accessible = false
+
+  # Whether to enable read replica auto scaling
+  read_replica_scaling_enabled = false
+
+  # Max capacity of the read replica.
+  read_replica_scaling_max_capacity = null
+
+  # The predefine metric type that determine the scaling operation.
+  read_replica_scaling_metric_type = "RDSReaderAverageCPUUtilization"
+
+  # The predefine metric value that determine the scaling operation.
+  read_replica_scaling_metric_value = null
+
+  # Min capacity of the read replica.
+  read_replica_scaling_min_capacity = null
 
   # ARN of a source DB cluster or DB instance if this DB cluster is to be
   # created as a Read Replica.
@@ -1300,6 +1330,51 @@ If you wish to make your database accessible from the public Internet, set this 
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="read_replica_scaling_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to enable read replica auto scaling
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="read_replica_scaling_max_capacity" requirement="optional" type="number">
+<HclListItemDescription>
+
+Max capacity of the read replica.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="read_replica_scaling_metric_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The predefine metric type that determine the scaling operation.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;RDSReaderAverageCPUUtilization&quot;"/>
+</HclListItem>
+
+<HclListItem name="read_replica_scaling_metric_value" requirement="optional" type="number">
+<HclListItemDescription>
+
+The predefine metric value that determine the scaling operation.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="read_replica_scaling_min_capacity" requirement="optional" type="number">
+<HclListItemDescription>
+
+Min capacity of the read replica.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="replication_source_identifier" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1510,6 +1585,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "91dd688ce36ad456d7be4573cc250c8f"
+  "hash": "463c2aab9266092fce7afe0940b1a5e0"
 }
 ##DOCS-SOURCER-END -->
