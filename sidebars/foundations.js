@@ -64,6 +64,7 @@ const sidebar = [
             id: "foundations/iac-foundations/index",
           },
           "foundations/iac-foundations/initial-setup",
+          "foundations/iac-foundations/architecture",
           "foundations/iac-foundations/folder-structure",
           "foundations/iac-foundations/labels-tags",
           {

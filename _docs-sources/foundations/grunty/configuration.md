@@ -1,7 +1,14 @@
 # Configuration
 
-## Infra Root Repositories
+## Infrastructure Root Repositories
 
-Adding infra-root repositories controls authentication for te Grunty GitHub App. Only Gruntwork workflows in the the root repository are able to create new repositories and make changes to workflow files.
+DevOps Foundations treats certain repositories as especially privileged in order to perform critical operations like vending new AWS accounts and creating new repositories. These repositories are called "infrastructure root repositories" and you can configure them in the `Account` section in your organization developer portal.
 
-Instructions...
+<!-- TODO: Add screenshot -->
+
+The Grunty app will cross reference this list when attempting to perform these privileged operations. If the repository is not listed here, the Grunty app will not be able to perform these operations on your behalf.
+
+Keeping this list up to date is critical to ensure the Grunty app can perform its duties in and only in the repositories you trust as the "root" of your infrastructure management.
+
+For more information, see the [relevant architecture documentation](). <!-- TODO: Add link to infrastructure-live-root architecture docs. -->
+
