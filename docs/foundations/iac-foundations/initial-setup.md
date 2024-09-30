@@ -1,11 +1,5 @@
 # Initial setup
 
-:::info Recent Upgrade
-This documentation relates to the latest version of Gruntwork Pipelines released in May 2024.
-
-If you are using the older version of Gruntwork Pipelines that includes the `infrastructure-pipelines` repository, click [here](../../infrastructure-pipelines/iac-foundations/initial-setup.md) to get the documentation for that version.
-:::
-
 To set up IaC Foundations, we use three pre-configured git repository templates that include best practices and also allow for customization.
 
 For each repository below, navigate to the template repository and select **Use this template** -> **Create a new Repository**. This will initiate repository creation. You should select your org as the owner, add a description if you like, make sure you are creating a **private** repo, and click **Create repository**.
@@ -34,6 +28,6 @@ This template creates an empty infrastructure-modules repository that will be us
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "c727d1e5c94ef7864a331765302d032a"
+  "hash": "bf3eaeb6a4f922d46183237aeff5b4bf"
 }
 ##DOCS-SOURCER-END -->

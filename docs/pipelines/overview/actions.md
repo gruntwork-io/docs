@@ -1,11 +1,5 @@
 # Pipelines Actions
 
-:::info Recent Upgrade
-This documentation relates to the latest version of Gruntwork Pipelines released in May 2024.
-
-If you are using the older version of Gruntwork Pipelines that includes the `infrastructure-pipelines` repository, click [here](../../infrastructure-pipelines/overview/deprecation.md) to learn more about the deprecation of that version.
-:::
-
 When a user opens a pull request, Pipelines runs a set of operations as a Github Action Workflow in response to the proposed [infrastructure changes](../overview/#infrastructure-change). We call these operations _pipelines actions_. Gruntwork Pipelines supports the following pipelines actions:
 
 ## Terragrunt plan
@@ -28,6 +22,6 @@ If you'd like to request a new Pipelines action, please email us at [feedback@gr
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "14b565cd10511c47abd81b1a535431a8"
+  "hash": "6dfd5542e8e8cbe86eff0053b6d85a01"
 }
 ##DOCS-SOURCER-END -->

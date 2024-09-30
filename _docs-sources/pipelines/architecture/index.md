@@ -1,11 +1,5 @@
 # Architecture
 
-:::info Recent Upgrade
-This documentation relates to the latest version of Gruntwork Pipelines released in May 2024.
-
-If you are using the older version of Gruntwork Pipelines that includes the `infrastructure-pipelines` repository, click [here](../../infrastructure-pipelines/overview/deprecation.md) to learn more about the deprecation of that version.
-:::
-
 There are two major components in pipelines - the orchestrator and the executor. The orchestrator determines the jobs to be executed and the executor actually executes the jobs and makes any necessary updates in AWS.
 
 ## Orchestrator

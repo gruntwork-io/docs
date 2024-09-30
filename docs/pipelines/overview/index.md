@@ -1,11 +1,5 @@
 # What is Gruntwork Pipelines?
 
-:::info Recent Upgrade
-This documentation relates to the latest version of Gruntwork Pipelines released in May 2024.
-
-If you are using the older version of Gruntwork Pipelines that includes the `infrastructure-pipelines` repository, click [here](../../infrastructure-pipelines/overview/deprecation.md) to learn more about the deprecation of that version.
-:::
-
 **Gruntwork Pipelines is designed to enable your organization to deploy infrastructure changes to cloud environments with control and confidence.**
 
 Having worked with hundreds of organizations to help them improve DevOps, we've discovered two truths about making changes to infrastructure:
@@ -13,7 +7,7 @@ Having worked with hundreds of organizations to help them improve DevOps, we've 
 1. Teams want to control exactly how infrastructure change gets rolled out
 2. Deploying infrastructure changes is scary!
 
-To address your need for _control_, we've designed Gruntwork Pipelines to use [configuration as code](configurations-as-code), where you use HCL (a popular alternative to JSON and YAML) to set configuration values that apply to your entire git repo, to just one environment, or to a single deployable unit of infrastructure. For example, you can specify a unique AWS authentication strategy for each deployable unit of infrastructure, one per environment, or a single strategy for the entire git repo.
+To address your need for _control_, we've designed Gruntwork Pipelines to use [configuration as code](./configurations-as-code.md), where you use HCL (a popular alternative to JSON and YAML) to set configuration values that apply to your entire git repo, to just one environment, or to a single deployable unit of infrastructure. For example, you can specify a unique AWS authentication strategy for each deployable unit of infrastructure, one per environment, or a single strategy for the entire git repo.
 
 To address your need for _assurance_ that an infrastructure change is safe to apply, we include a thoughtfully formatted `terragrunt plan` user experience, and the ability to customize Gruntwork Pipelines to support arbitrary steps that your organization needs to establish confidence in a deployment. Building assurance also factors heavily into our roadmap.
 
@@ -59,6 +53,6 @@ Gruntwork is responsible for adding support for a growing library of Pipelines A
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "4a7a651db403c68be5bac7a77e06265d"
+  "hash": "fa078a0b4d9c9a327c2c95f1db75038f"
 }
 ##DOCS-SOURCER-END -->
