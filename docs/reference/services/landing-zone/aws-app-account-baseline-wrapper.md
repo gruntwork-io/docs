@@ -845,33 +845,38 @@ module "account_baseline_app" {
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
 
-  # The mode for AWS Config to record configuration changes.
+  # The mode for AWS Config to record configuration changes. 
+  #
   # recording_frequency:
-The frequency with which AWS Config records
-  # configuration changes (service defaults to CONTINUOUS).
-- CONTINUOUS
--
-  # DAILY
-
-You can also override the recording frequency for specific resource
-  # types.
-recording_mode_override:  description:    A description for the
-  # override.  recording_frequency:    The frequency with which AWS Config
-  # records configuration changes for the specified resource types.    -
-  # CONTINUOUS    - DAILY  resource_types:    A list of resource types for which
-  # AWS Config records configuration changes. For example, AWS::EC2::Instance.  
-  #  See the following for more
-  # information:
-https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
-
-/*
-recording_mode
-  # = {  recording_frequency = "DAILY"  recording_mode_override = {   
-  # description         = "Override for specific resource types"   
-  # recording_frequency = "CONTINUOUS"    resource_types      =
-  # ["AWS::EC2::Instance"]  }
-}
-*/
+  # The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
+  # - CONTINUOUS
+  # - DAILY
+  #
+  # You can also override the recording frequency for specific resource types.
+  # recording_mode_override:
+  #   description:
+  #     A description for the override.
+  #   recording_frequency:
+  #     The frequency with which AWS Config records configuration changes for the specified resource types.
+  #     - CONTINUOUS
+  #     - DAILY
+  #   resource_types:
+  #     A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
+  #     
+  # See the following for more information:
+  # https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
+  #
+  # /*
+  # recording_mode = {
+  #   recording_frequency = "DAILY"
+  #   recording_mode_override = {
+  #     description         = "Override for specific resource types"
+  #     recording_frequency = "CONTINUOUS"
+  #     resource_types      = ["AWS::EC2::Instance"]
+  #   }
+  # }
+  # */
+  #
   recording_mode = null
 
   # Create service-linked roles for this set of services. You should pass in the
@@ -1660,33 +1665,38 @@ inputs = {
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
 
-  # The mode for AWS Config to record configuration changes.
+  # The mode for AWS Config to record configuration changes. 
+  #
   # recording_frequency:
-The frequency with which AWS Config records
-  # configuration changes (service defaults to CONTINUOUS).
-- CONTINUOUS
--
-  # DAILY
-
-You can also override the recording frequency for specific resource
-  # types.
-recording_mode_override:  description:    A description for the
-  # override.  recording_frequency:    The frequency with which AWS Config
-  # records configuration changes for the specified resource types.    -
-  # CONTINUOUS    - DAILY  resource_types:    A list of resource types for which
-  # AWS Config records configuration changes. For example, AWS::EC2::Instance.  
-  #  See the following for more
-  # information:
-https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
-
-/*
-recording_mode
-  # = {  recording_frequency = "DAILY"  recording_mode_override = {   
-  # description         = "Override for specific resource types"   
-  # recording_frequency = "CONTINUOUS"    resource_types      =
-  # ["AWS::EC2::Instance"]  }
-}
-*/
+  # The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
+  # - CONTINUOUS
+  # - DAILY
+  #
+  # You can also override the recording frequency for specific resource types.
+  # recording_mode_override:
+  #   description:
+  #     A description for the override.
+  #   recording_frequency:
+  #     The frequency with which AWS Config records configuration changes for the specified resource types.
+  #     - CONTINUOUS
+  #     - DAILY
+  #   resource_types:
+  #     A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
+  #     
+  # See the following for more information:
+  # https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
+  #
+  # /*
+  # recording_mode = {
+  #   recording_frequency = "DAILY"
+  #   recording_mode_override = {
+  #     description         = "Override for specific resource types"
+  #     recording_frequency = "CONTINUOUS"
+  #     resource_types      = ["AWS::EC2::Instance"]
+  #   }
+  # }
+  # */
+  #
   recording_mode = null
 
   # Create service-linked roles for this set of services. You should pass in the
@@ -3549,16 +3559,16 @@ recording_mode_override:
 See the following for more information:
 https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
 
-/*
-recording_mode = {
+```
+recording_mode = &#123;
   recording_frequency = 'DAILY'
-  recording_mode_override = {
+  recording_mode_override = &#123;
     description         = 'Override for specific resource types'
     recording_frequency = 'CONTINUOUS'
     resource_types      = ['AWS::EC2::Instance']
-  }
-}
-*/
+  &#125;
+&#125;
+```
 
 
 </HclListItemDescription>
@@ -3947,6 +3957,6 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.2/modules/landingzone/account-baseline-app/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "078ca31a306bf9cc966786532934611e"
+  "hash": "1ceee13a5adaf609b0faec4c716d49e3"
 }
 ##DOCS-SOURCER-END -->

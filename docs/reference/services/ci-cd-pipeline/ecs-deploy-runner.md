@@ -2123,7 +2123,7 @@ The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypt
 <HclListItem name="ecs_task_cloudwatch_log_group_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-A custom name to set for the CloudWatch Log Group used to stream the container logs. When null, the Log Group will default to /ecs/{<a href="#name"><code>name</code></a>}.
+A custom name to set for the CloudWatch Log Group used to stream the container logs. When null, the Log Group will default to /ecs/&#123;<a href="#name"><code>name</code></a>&#125;.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -2547,6 +2547,6 @@ Security Group ID of the ECS task
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.2/modules/mgmt/ecs-deploy-runner/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "06c7412903a6245c6daa16565d14c4f4"
+  "hash": "4a8a05626e17413888a524571d8256e0"
 }
 ##DOCS-SOURCER-END -->

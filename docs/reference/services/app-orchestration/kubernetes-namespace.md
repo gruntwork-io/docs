@@ -48,7 +48,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-kubernetes-namespace](https://github.com/gruntwork-io/terraform-kubernetes-namespace) repo. If you are a
-subscriber and don’t have access to this repo, email <support@gruntwork.io>.
+subscriber and don’t have access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ### Core concepts
 
@@ -433,6 +433,6 @@ The name of the rbac role that grants read only permissions on the namespace.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.2/modules/services/k8s-namespace/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "efc88a54aa3bae101884e51c678764f7"
+  "hash": "f06c7e592cfd73ceceb3eeafa6d92224"
 }
 ##DOCS-SOURCER-END -->

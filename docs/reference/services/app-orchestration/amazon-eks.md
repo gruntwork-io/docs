@@ -59,7 +59,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo. If you are a subscriber and don’t have
-access to this repo, email <support@gruntwork.io>.
+access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ### Core concepts
 
@@ -3019,7 +3019,7 @@ Version of Kubernetes to use. Refer to EKS docs for list of available versions (
 <HclListItem name="managed_node_group_configurations" requirement="optional" type="any">
 <HclListItemDescription>
 
-Configure one or more Node Groups to manage the EC2 instances in this cluster. Set to empty object ({}) if you do not wish to configure managed node groups.
+Configure one or more Node Groups to manage the EC2 instances in this cluster. Set to empty object (&#123;&#125;) if you do not wish to configure managed node groups.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -3726,6 +3726,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.2/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5add1a01884ddbd810bb348d6d9e9462"
+  "hash": "cf5543de30787e357a2b9f2c2f658a87"
 }
 ##DOCS-SOURCER-END -->

@@ -59,7 +59,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo. If you are a subscriber and don’t have
-access to this repo, email <support@gruntwork.io>.
+access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ### Core concepts
 
@@ -1168,7 +1168,7 @@ inputs = {
 <HclListItem name="autoscaling_group_configurations" requirement="required" type="any">
 <HclListItemDescription>
 
-Configure one or more self-managed Auto Scaling Groups (ASGs) to manage the EC2 instances in this cluster. Set to empty object ({}) if you do not wish to configure self-managed ASGs.
+Configure one or more self-managed Auto Scaling Groups (ASGs) to manage the EC2 instances in this cluster. Set to empty object (&#123;&#125;) if you do not wish to configure self-managed ASGs.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1345,7 +1345,7 @@ The name of the EKS cluster. The cluster must exist/already be deployed.
 <HclListItem name="managed_node_group_configurations" requirement="required" type="any">
 <HclListItemDescription>
 
-Configure one or more Node Groups to manage the EC2 instances in this cluster. Set to empty object ({}) if you do not wish to configure managed node groups.
+Configure one or more Node Groups to manage the EC2 instances in this cluster. Set to empty object (&#123;&#125;) if you do not wish to configure managed node groups.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -2716,6 +2716,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.2/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e6600c0103d5b9da36c4337f93d04623"
+  "hash": "9a783dae012f366bd3f40032fc1e83cd"
 }
 ##DOCS-SOURCER-END -->

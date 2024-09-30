@@ -53,7 +53,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-ecs](https://github.com/gruntwork-io/terraform-aws-ecs) repo. If you are a subscriber and don’t have
-access to this repo, email <support@gruntwork.io>.
+access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ### Core concepts
 
@@ -1708,7 +1708,7 @@ The ID of the VPC in which to create the target group. Only used if <a href="#el
 <HclListItem name="elb_target_groups" requirement="optional" type="any">
 <HclListItemDescription>
 
-Configurations for ELB target groups for ALBs and NLBs that should be associated with the ECS Tasks. Each entry corresponds to a separate target group. Set to the empty object ({}) if you are not using an ALB or NLB.
+Configurations for ELB target groups for ALBs and NLBs that should be associated with the ECS Tasks. Each entry corresponds to a separate target group. Set to the empty object (&#123;&#125;) if you are not using an ALB or NLB.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -3000,6 +3000,6 @@ The names of the ECS service's load balancer's target groups
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.2/modules/services/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e8930cff395f57a194313d3003c0de3a"
+  "hash": "ced06fc5b24b97f19e98072a2500fdbd"
 }
 ##DOCS-SOURCER-END -->
