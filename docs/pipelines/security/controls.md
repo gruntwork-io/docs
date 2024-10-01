@@ -1,11 +1,5 @@
 # Controls
 
-:::info Recent Upgrade
-This documentation relates to the latest version of Gruntwork Pipelines released in May 2024.
-
-If you are using the older version of Gruntwork Pipelines that includes the `infrastructure-pipelines` repository, click [here](../../infrastructure-pipelines/overview/deprecation.md) to learn more about the deprecation of that version.
-:::
-
 Pipelines takes a defense in depth approach to securing workflows. This document provides an overview of the controls that Pipelines employs to ensure that only infrastructure that has been written in code and approved by a reviewer can be deployed in your AWS accounts.
 
 ## Least privilege principle
@@ -183,6 +177,6 @@ It is up to the user provisioning these roles to ensure that this role has only 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "dcb29bbdabc00cf74cbcd68de7a535e3"
+  "hash": "e663d09612e345a027def347871ed66f"
 }
 ##DOCS-SOURCER-END -->

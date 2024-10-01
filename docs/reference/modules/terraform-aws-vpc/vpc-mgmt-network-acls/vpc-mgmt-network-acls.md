@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.24" lastModifiedVersion="0.26.8"/>
+<VersionBadge repoTitle="VPC Modules" version="0.26.25" lastModifiedVersion="0.26.8"/>
 
 # \[DEPRECATED] VPC-Mgmt Network ACLs Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/vpc-mgmt-network-acls" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules/vpc-mgmt-network-acls" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -28,7 +28,7 @@ aware that, in a future release, once we feel the new functionality in `vpc-app`
 
 This Terraform Module adds a default set of [Network
 ACLs](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html) to a VPC created using the
-[vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/vpc-mgmt) module. The ACLs enforce the following security settings  (based on [A Reference VPC
+[vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules/vpc-mgmt) module. The ACLs enforce the following security settings  (based on [A Reference VPC
 Architecture](https://www.whaletech.co/2014/10/02/reference-vpc-architecture.html)):
 
 *   **Public subnet**: Allow all requests.
@@ -63,7 +63,7 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 
 module "vpc_mgmt_network_acls" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt-network-acls?ref=v0.26.24"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt-network-acls?ref=v0.26.25"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -142,7 +142,7 @@ module "vpc_mgmt_network_acls" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt-network-acls?ref=v0.26.24"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt-network-acls?ref=v0.26.25"
 }
 
 inputs = {
@@ -345,11 +345,11 @@ The number to use for the first rule that is created by this module. All rules i
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/vpc-mgmt-network-acls/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/vpc-mgmt-network-acls/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.24/modules/vpc-mgmt-network-acls/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules/vpc-mgmt-network-acls/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules/vpc-mgmt-network-acls/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules/vpc-mgmt-network-acls/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "82e9e21f38e0fa050fd63619b75e7caa"
+  "hash": "683a01115254eb1db71eafc5def2075f"
 }
 ##DOCS-SOURCER-END -->

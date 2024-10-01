@@ -1,11 +1,5 @@
 # Updating Your Pipeline
 
-:::info Recent Upgrade
-This documentation relates to the latest version of Gruntwork Pipelines released in May 2024.
-
-If you are using the older version of Gruntwork Pipelines that includes the `infrastructure-pipelines` repository, click [here](../../infrastructure-pipelines/overview/deprecation.md) to learn more about the deprecation of that version.
-:::
-
 Staying up to date with the latest in Gruntwork Pipelines is fairly simple. We release new versions of the Pipelines CLI, the associated GitHub Actions Workflows and the underlying custom GitHub Actions regularly to provide the optimal experience for managing infrastructure changes at scale.
 
 To pull in the latest changes across all three of these dimensions, you can simply edit the `pipelines.yml` file found under `.github/workflows` in any repository integrated with Gruntwork Pipelines in order to select the latest version of the Pipelines GitHub Actions Workflow:

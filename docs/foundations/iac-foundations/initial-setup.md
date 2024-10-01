@@ -1,11 +1,6 @@
 # Initial setup
 
-:::info Recent Upgrade
-This documentation relates to the latest version of Gruntwork Pipelines released in May 2024.
-
-If you are using the older version of Gruntwork Pipelines that includes the `infrastructure-pipelines` repository, click [here](../../infrastructure-pipelines/iac-foundations/initial-setup.md) to get the documentation for that version.
-:::
-
+To set up IaC Foundations, we use three pre-configured git repository templates that include best practices and also allow for customization.
 
 :::info GitHub App
 Setting up IaC repositories requires the Grunty GitHub App. [Click here](FIXME: link) for installation instructions.
@@ -59,6 +54,6 @@ Each of your repositories will now contain a Bootstrap Pull Request. Follow the 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "207286a2c43cc22f3945af1c0c251f22"
+  "hash": "175ad2d6048fb2880141cb86711797e4"
 }
 ##DOCS-SOURCER-END -->
