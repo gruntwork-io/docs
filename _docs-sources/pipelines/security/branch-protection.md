@@ -1,11 +1,5 @@
 # Branch Protection
 
-:::info Recent Upgrade
-This documentation relates to the latest version of Gruntwork Pipelines released in May 2024.
-
-If you are using the older version of Gruntwork Pipelines that includes the `infrastructure-pipelines` repository, click [here](../../infrastructure-pipelines/overview/deprecation.md) to learn more about the deprecation of that version.
-:::
-
 Gruntwork Pipelines is designed to be used with a PR based workflow.
 This means an approval on a PR is an approval to deploy infrastructure, making the configuration of repository settings and branch protection especially important.
 

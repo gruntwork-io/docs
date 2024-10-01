@@ -1,11 +1,5 @@
 # Audit logs
 
-:::info Recent Upgrade
-This documentation relates to the latest version of Gruntwork Pipelines released in May 2024.
-
-If you are using the older version of Gruntwork Pipelines that includes the `infrastructure-pipelines` repository, click [here](../../infrastructure-pipelines/overview/deprecation.md) to learn more about the deprecation of that version.
-:::
-
 Gruntwork Pipelines provides an audit log of which GitHub user performed _what_ operation in your AWS accounts as a result of a [Pipelines Action](../overview/actions.md).
 
 Accessing AWS environments from a CI/CD system is commonly done by assuming temporary credentials using [OpenID Connect (OIDC)](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services). Usage of shared credentials complicates the task of maintaining an accurate log of who did what in your AWS accounts. Gruntwork Pipelines solves this issue by leveraging [AWS CloudTrail](https://aws.amazon.com/cloudtrail/) and a naming scheme based on context from the triggering Pipelines Action in GitHub. This setup associates every single API operation performed by Gruntwork Pipelines with a GitHub username and a pull request or branch. This allows your security team to quickly triage access related issues and perform analytics on usage patterns of individual users from your version control system in your AWS accounts.
@@ -79,6 +73,6 @@ CloudTrail can be configured to automatically store events in an S3 bucket of yo
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e0ddaa37b7ec46c7ad1d5a4a18ce6d02"
+  "hash": "0ce77267cc0423e0a3dffaa4cce28c4b"
 }
 ##DOCS-SOURCER-END -->

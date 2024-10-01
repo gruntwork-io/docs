@@ -1,11 +1,5 @@
 # Extending Your Pipeline
 
-:::info Recent Upgrade
-This documentation relates to the latest version of Gruntwork Pipelines released in May 2024.
-
-If you are using the older version of Gruntwork Pipelines that includes the `infrastructure-pipelines` repository, click [here](../../infrastructure-pipelines/overview/deprecation.md) to learn more about the deprecation of that version.
-:::
-
 Gruntwork Pipelines is designed to be extensible. This means that you can add your own customizations to the GitHub Actions Workflows, and the underlying custom GitHub Actions to suit your organization's needs. This document will guide you through the process of extending your pipeline.
 
 
