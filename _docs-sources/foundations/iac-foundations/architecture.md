@@ -56,6 +56,8 @@ The `infrastructure-live-access-control` repository does not have to be named "i
 
 It also doesn't have to be the only access control repository in your organization. You can have multiple access control repositories if you have a complex organization structure that requires it. Make sure to evaluate the trade-offs of having multiple access control repositories before doing so. It can be a significant source of complexity and operational overhead. Also note that doing this will sacrifice some of the benefits of having a single source of truth for access control.
 
+:::
+
 ### Workflows
 
 - **Pipelines** - This workflow will be used by the `infrastructure-live-access-control` repository to manage access control infrastructure in response to changes in the repository in a GitOps fashion.

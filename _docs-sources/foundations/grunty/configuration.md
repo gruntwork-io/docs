@@ -10,5 +10,5 @@ The Grunty app will cross reference this list when attempting to perform these p
 
 Keeping this list up to date is critical to ensure the Grunty app can perform its duties in and only in the repositories you trust as the "root" of your infrastructure management.
 
-For more information, see the [relevant architecture documentation](). <!-- TODO: Add link to infrastructure-live-root architecture docs. -->
+For more information, see the [relevant architecture documentation](/foundations/iac-foundations/architecture#infrastructure-live-root).
 
