@@ -40,21 +40,6 @@ To enable running on a schedule:
 Running Pipelines Drift Detection too frequently can easily eat through your GitHub Action minutes. We recommend starting with a low frequency and increasing only when you are comfortable with the usage.
 :::
 
-
-## Customizing the Drift Detection Branch Name
-
-By default Pipelines will create a Pull Request on the branch `drift-detection`. You can customize the branch name used for the Drift Detection Pull Request by adding a branch-name parameter to `./gitub/workflows/pipelines-drift-detection.yml`
-
-E.g.
-
-```yml
-  jobs:
-    GruntworkPipelines:
-      uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines-drift-detection.yml@v2
-      with:
-        branch-name: "customized-branch-name"
-```
-
 ## Resolving Drift
 
 Drift can be resolved by either applying the commited IaC from your repository, or modifying modules until they reflect the infrastructure state in the cloud.
