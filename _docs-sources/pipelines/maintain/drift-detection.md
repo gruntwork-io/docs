@@ -14,7 +14,19 @@ When the Drift Detected Pull Request is merged, Pipelines will run `terragrunt a
 
 ## Detecting Drift
 
-Pipelines Drift Detection can be run on a schedule or manually.
+Pipelines Drift Detection can be run on a manually or on a schedule.
+
+:::note
+We recommend starting manually and running Drift Detection against each directory of your IaC before enabling scheduled Drift Detection on your entire repository. This allows you to fix any existing drift on a smaller set of units at a time.
+:::
+
+### Running manually
+
+Pipelines Drift Detection can be run manually by navigating to Actions in your GitHub repository, selecting Pipelines Drift Detection from the left hand menu, and then selecting Run Workflow.
+
+By default the workflow will run on all units in your repository, and create a pull request on the branch `drift-detection`. You can specify a path filter to restrict Drift Detection to a subset of your units and customize the branch name. For example to to run Drift Detection only on IaC in the `management` directory, the filter should be `./management/*`. Note the leading `./`.
+
+![Manual Dispatch](/img/pipelines/maintain/drift-detection-manual-dispatch.png)
 
 ### Running on a schedule
 
@@ -24,13 +36,10 @@ To enable running on a schedule:
 1. Update the cron schedule to suit your desired frequency. The default schedule runs at 12:15UTC Monday. You can increase or decrease the frequency that the schedule runs using [crontab syntax](https://crontab.guru/#15_12_*_*_1).
 1. Each time Drift Detection runs and detects drift it will open a Pull Request in your repository. If there is an existing Drift Detection Pull Request that has not been merged it will be replaced.
 
-:::note
+:::caution
 Running Pipelines Drift Detection too frequently can easily eat through your GitHub Action minutes. We recommend starting with a low frequency and increasing only when you are comfortable with the usage.
 :::
 
-### Running manually
-
-Pipelines Drift Detection can be run manually by navigating to Actions in your GitHub repository, selecting Pipelines Drift Detection from the left hand menu, and then selecting Run Workflow.
 
 ## Customizing the Drift Detection Branch Name
 
