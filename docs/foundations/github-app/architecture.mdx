@@ -6,8 +6,8 @@ The Gruntwork.io GitHub App is a GitHub App introduced to help reduce the burden
 
 There are three major components to keep in mind when working with the Gruntwork.io GitHub App:
 
-1. **GitHub App**: The Gruntwork.io GitHub App itself, which is installed in your GitHub organization.
-2. **Gruntwork.io App Service**: The service that interacts with the GitHub API on behalf of the Gruntwork.io GitHub App.
+1. **Gruntwork.io GitHub App**: The Gruntwork.io GitHub App itself, which is installed in your GitHub organization.
+2. **Gruntwork.io GitHub App Service**: The service that interacts with the GitHub API on behalf of the Gruntwork.io GitHub App. Outside of this page, this is typically what we refer to as the Gruntwork.io GitHub App when discussing topics like availability.
 3. **Clients**: Clients that interact with the Gruntwork.io GitHub App Service to perform operations on GitHub resources.
 
 ## GitHub App
@@ -28,7 +28,7 @@ As of 2024/09/10, the Gruntwork.io GitHub App requests the following permissions
 <details>
   <summary>Why does Gruntwork.io need these permissions?</summary>
 
-  Gruntwork.io requests all of these permissions because it requires them for different operations. Unfortunately, the way GitHub apps work prevents us from requesting permissions on a more granular basis. Know that Grunty will scope down its permissions whenever possible to the minimum required for the operation at hand.
+  Gruntwork.io requests all of these permissions because it requires them for different operations. Unfortunately, the way GitHub apps work prevents us from requesting permissions on a more granular basis. Know that the Gruntwork.io GitHub App Service will scope down its permissions whenever possible to the minimum required for the operation at hand.
 
   The level of granularity available to customers when configuring the GitHub App installation is to either install the app on a per-repository basis or on an entire organization. Our recommendation is to install the app on the organization as a whole, as this will allow Gruntwork.io to do all it's meant to do. You should use your best judgement when deciding on this, however. If you are unsure, reach out to Gruntwork Support for guidance.
 
@@ -97,6 +97,6 @@ The Gruntwork.io GitHub App Service is used by two major clients:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "01b34c57006089228900abac3ad70107"
+  "hash": "2e7c0bd823ccd8c3a5c007e1c954697d"
 }
 ##DOCS-SOURCER-END -->

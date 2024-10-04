@@ -6,9 +6,9 @@ DevOps Foundations treats certain repositories as especially privileged in order
 
 <!-- TODO: Add screenshot -->
 
-The Grunty app will cross reference this list when attempting to perform these privileged operations. If the repository is not listed here, the Grunty app will not be able to perform these operations on your behalf.
+The Gruntwork.io GitHub App will cross reference this list when attempting to perform these privileged operations. If the repository is not listed here, the Gruntwork.io GitHub App will not be able to perform these operations on your behalf.
 
-Keeping this list up to date is critical to ensure the Grunty app can perform its duties in and only in the repositories you trust as the "root" of your infrastructure management.
+Keeping this list up to date is critical to ensure the Gruntwork.io GitHub App can perform its duties in and only in the repositories you trust as the "root" of your infrastructure management.
 
 For more information, see the [relevant architecture documentation](/foundations/iac-foundations/architecture#infrastructure-live-root).
 
@@ -17,6 +17,6 @@ For more information, see the [relevant architecture documentation](/foundations
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "6f29aa35178107d75e0c209f2098a36e"
+  "hash": "c4cbf8bb147a009b8e2594827f830489"
 }
 ##DOCS-SOURCER-END -->
