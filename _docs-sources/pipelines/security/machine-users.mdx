@@ -1,6 +1,12 @@
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
+:::info Gruntwork.io GitHub App
+This documentation assumes you are using static machine users to have Pipelines authenticate to GitHub.
+
+The Gruntwork.io GitHub App is the preferred way to authenticate with GitHub, and is recommended for most users. For more information, click [here](../../foundations/github-app/setup.md).
+:::
+
 # Machine users
 
 Gruntwork recommends using CI users in Gruntwork Pipelines, separate from human users in your organization. Using a CI user ensures that a workflow won't break due to an employee leaving your company. Using CI users allows you to apply granular permissions that may normally be too restrictive for a normal employee to do their daily work.

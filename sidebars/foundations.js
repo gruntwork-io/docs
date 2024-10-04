@@ -21,6 +21,7 @@ const sidebar = [
           },
           "foundations/github-app/setup",
           "foundations/github-app/configuration",
+          "foundations/github-app/architecture",
         ]
       },
       {

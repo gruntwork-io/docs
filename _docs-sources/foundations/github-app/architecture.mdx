@@ -7,8 +7,8 @@ The Gruntwork.io GitHub App is a GitHub App introduced to help reduce the burden
 There are three major components to keep in mind when working with the Gruntwork.io GitHub App:
 
 1. **GitHub App**: The Gruntwork.io GitHub App itself, which is installed in your GitHub organization.
-2. **Gruntwork.io API**: The API that interacts with the GitHub API on behalf of the Gruntwork.io GitHub App.
-3. **Clients**: Clients that interact with the Gruntwork.io API to perform operations on GitHub resources.
+2. **Gruntwork.io App Service**: The service that interacts with the GitHub API on behalf of the Gruntwork.io GitHub App.
+3. **Clients**: Clients that interact with the Gruntwork.io GitHub App Service to perform operations on GitHub resources.
 
 ## GitHub App
 
@@ -80,15 +80,15 @@ As of 2024/09/10, the Gruntwork.io GitHub App requests the following permissions
 
 ## Clients
 
-The Gruntwork.io API is used by two major clients:
+The Gruntwork.io GitHub App Service is used by two major clients:
 
 1. **Gruntwork Developer Portal**
 
    This is the entrypoint all Gruntwork customers will use to interact Gruntwork products.
 
-   The Gruntwork.io API is used here for administration of access to relevant GitHub resources by the Gruntwork.io App. Customers can follow the installation flow in the [Gruntwork Developer Portal](https://app.gruntwork.io) to install the Gruntwork.io GitHub App in their GitHub organization, then automatically get redirected to the Gruntwork Developer Portal to link the installed GitHub app to their Gruntwork organization profile, and configure it.
+   The Gruntwork.io GitHub App Service is used here for administration of access to relevant GitHub resources by the Gruntwork.io App. Customers can follow the installation flow in the [Gruntwork Developer Portal](https://app.gruntwork.io) to install the Gruntwork.io GitHub App in their GitHub organization, then automatically get redirected to the Gruntwork Developer Portal to link the installed GitHub app to their Gruntwork organization profile, and configure it.
 
 2. **Terragrunt Pipelines**
 
-   The main client for the Gruntwork.io App, and where most of the value is derived. Pipelines uses the Gruntwork.io API to acquire the relevant permissions to interact with GitHub resources on behalf of the user. Access Control rules are enforced here to ensure that only the level of access required, and explicitly specified in the Gruntwork Developer Portal can be used by Pipelines to interact with GitHub resources on behalf of the user.
+   The main client for the Gruntwork.io App, and where most of the value is derived. Pipelines uses the Gruntwork.io GitHub App Service to acquire the relevant permissions to interact with GitHub resources on behalf of the user. Access Control rules are enforced here to ensure that only the level of access required, and explicitly specified in the Gruntwork Developer Portal can be used by Pipelines to interact with GitHub resources on behalf of the user.
 
