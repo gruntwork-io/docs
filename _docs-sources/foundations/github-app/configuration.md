@@ -1,8 +1,8 @@
 # Configuration
 
-## Infrastructure Root Repositories
+## Infrastructure Live Root Repositories
 
-DevOps Foundations treats certain repositories as especially privileged in order to perform critical operations like vending new AWS accounts and creating new repositories. These repositories are called "infrastructure root repositories" and you can configure them in the `Account` section in your organization developer portal.
+DevOps Foundations treats certain repositories as especially privileged in order to perform critical operations like vending new AWS accounts and creating new repositories. These repositories are called "infrastructure live root repositories" and you can configure them in the `Account` section in your organization developer portal.
 
 <!-- TODO: Add screenshot -->
 
@@ -10,5 +10,5 @@ The Gruntwork.io GitHub App will cross reference this list when attempting to pe
 
 Keeping this list up to date is critical to ensure the Gruntwork.io GitHub App can perform its duties in and only in the repositories you trust as the "root" of your infrastructure management.
 
-For more information, see the [relevant architecture documentation](/foundations/iac-foundations/architecture#infrastructure-live-root).
+For more information, see the [relevant architecture documentation](../iac-foundations/architecture.md#infrastructure-live-root).
 
