@@ -14,9 +14,9 @@ The following features of the Gruntwork.io GitHub App will be unavailable during
 
 ## Fallback
 
-In order to ensure that the availability of the Gruntwork.io GitHub App is not something that can impair the ability of users to drive infrastructure updates, the legacy mechanism of authenticating with GitHub using [Machine users](../../pipelines/security/machine-users.mdx) is supported.
+In order to ensure that the availability of the Gruntwork.io GitHub App is not something that can impair the ability of users to drive infrastructure updates, the legacy mechanism of authenticating with GitHub using [Machine users](../../pipelines/security/machine-users.mdx) is still supported.
 
-Configuring the `PIPELINES_READ_TOKEN`, `INFRA_ROOT_WRITE_TOKEN` and `ORG_REPO_ADMIN_TOKEN` where necessary will result in Pipelines using the legacy mechanism to authenticate with GitHub, rather than the Gruntwork.io GitHub App.
+Configuring the `PIPELINES_READ_TOKEN`, `INFRA_ROOT_WRITE_TOKEN` and `ORG_REPO_ADMIN_TOKEN` where necessary (following the documentation linked above) will result in Pipelines using the legacy mechanism to authenticate with GitHub, rather than the Gruntwork.io GitHub App.
 
 Using these fallback tokens will ensure that Pipelines can continue to perform operations like:
 
@@ -24,11 +24,13 @@ Using these fallback tokens will ensure that Pipelines can continue to perform o
 - Apply on Pull Request merge.
 - Destroy on Pull Request merge.
 
+Note that this will be a degraded experience, as the Gruntwork.io GitHub App provides a more feature-rich experience.
+
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e376df28ae942b570afedb9d233c1c06"
+  "hash": "dcb39b685712199464846665c6e83264"
 }
 ##DOCS-SOURCER-END -->
