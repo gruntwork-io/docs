@@ -87,7 +87,11 @@ const sidebar = [
         label: "Maintain Pipelines",
         type: "category",
         collapsed: false,
-        items: ["pipelines/maintain/updating", "pipelines/maintain/extending"],
+        items: [
+          "pipelines/maintain/updating",
+          "pipelines/maintain/extending",
+          "pipelines/maintain/drift-detection",
+        ],
       },
       {
         label: "Previous Versions",
