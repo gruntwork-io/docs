@@ -27,7 +27,7 @@ Navigate to the template repository and select **Use this template** -> **Create
 
 ## Configuring Gruntwork App Settings
 
-Configure the Gruntwork.io GitHub App to [add this repository as an Infra Root repository](../github-app/setup.md#infrastructure-root-repositories).
+Configure the Gruntwork.io GitHub App to [add this repository as an Infra Root repository](../github-app/configuration.md#infrastructure-root-repositories).
 
 ## Update The Bootstrap Workflow
 

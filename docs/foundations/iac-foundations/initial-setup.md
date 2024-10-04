@@ -27,7 +27,7 @@ Navigate to the template repository and select **Use this template** -> **Create
 
 ## Configuring Gruntwork App Settings
 
-Configure the Gruntwork.io GitHub App to [add this repository as an Infra Root repository](../github-app/setup.md#infrastructure-root-repositories).
+Configure the Gruntwork.io GitHub App to [add this repository as an Infra Root repository](../github-app/configuration.md#infrastructure-root-repositories).
 
 ## Update The Bootstrap Workflow
 
@@ -54,6 +54,6 @@ Each of your repositories will now contain a Bootstrap Pull Request. Follow the 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "000bb283d88eb4cc4a2ab8966c569fe0"
+  "hash": "da3563099276c0b8a5c71b8bd6259126"
 }
 ##DOCS-SOURCER-END -->
