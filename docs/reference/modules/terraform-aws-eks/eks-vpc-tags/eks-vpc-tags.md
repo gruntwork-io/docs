@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.70.1" lastModifiedVersion="0.64.3"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.70.2" lastModifiedVersion="0.64.3"/>
 
 # EKS VPC Tags Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.1/modules/eks-vpc-tags" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-vpc-tags" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.64.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -39,7 +39,7 @@ with EKS.
 
 module "eks_vpc_tags" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-vpc-tags?ref=v0.70.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-vpc-tags?ref=v0.70.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -63,7 +63,7 @@ module "eks_vpc_tags" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-vpc-tags?ref=v0.70.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-vpc-tags?ref=v0.70.2"
 }
 
 inputs = {
@@ -143,11 +143,11 @@ Tags for public subnets in the VPC to use for integration with EKS.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.1/modules/eks-vpc-tags/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.1/modules/eks-vpc-tags/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.1/modules/eks-vpc-tags/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-vpc-tags/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-vpc-tags/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-vpc-tags/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0d0b794defe3d74487176e25c5fb310a"
+  "hash": "2e6d743232330abd9362c5f01947662a"
 }
 ##DOCS-SOURCER-END -->
