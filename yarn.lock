@@ -5398,9 +5398,9 @@ dns-packet@^5.2.2:
   dependencies:
     "@leichtgewicht/ip-codec" "^2.0.1"
 
-"docs-sourcer@git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.27":
+"docs-sourcer@git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.29":
   version "0.0.1"
-  resolved "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#f9d3b1403b7ed422885cf25523e6b1d1bec35ec0"
+  resolved "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#8e1da1b66f567891139134d8ef8eba278618e046"
   dependencies:
     "@octokit/auth-app" "^3.6.1"
     "@octokit/plugin-retry" "^3.0.9"
@@ -5426,7 +5426,7 @@ dns-packet@^5.2.2:
     remark-stringify "9.0.1"
     showdown "^2.1.0"
     spark-md5 "^3.0.2"
-    ts-commons gruntwork-io/ts-commons#v4.0.0
+    ts-commons gruntwork-io/ts-commons#v5.3.1
     turndown "^7.1.1"
     unescape "^1.0.1"
     url-loader "^4.1.1"
@@ -8633,7 +8633,7 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==
 
-medium-zoom@^1.0.8:
+medium-zoom@^1.0.4:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/medium-zoom/-/medium-zoom-1.1.0.tgz#6efb6bbda861a02064ee71a2617a8dc4381ecc71"
   integrity sha512-ewyDsp7k4InCUp3jRmwHBRFGyjBimKps/AJLjRSox+2q/2H4p/PNpQf+pwONWlJiOudkBXtbdmVbFjqyybfTmQ==
@@ -11875,13 +11875,9 @@ trough@^2.0.0:
   resolved "https://registry.yarnpkg.com/trough/-/trough-2.2.0.tgz#94a60bd6bd375c152c1df911a4b11d5b0256f50f"
   integrity sha512-tmMpK00BjZiUyVyvrBK7knerNgmgvcV/KLVyuma/SC+TQN167GrMRciANTz09+k3zW8L8t60jWO1GpfkZdjTaw==
 
-ts-commons@gruntwork-io/ts-commons#5.3.1:
+ts-commons@gruntwork-io/ts-commons#5.3.1, ts-commons@gruntwork-io/ts-commons#v5.3.1:
   version "5.3.1"
   resolved "git+ssh://git@github.com/gruntwork-io/ts-commons.git#a02d6c5003b699e411520c5a180ab5d3264cbf88"
-
-ts-commons@gruntwork-io/ts-commons#v4.0.0:
-  version "4.0.0"
-  resolved "git+ssh://git@github.com/gruntwork-io/ts-commons.git#2314e0187d34c21a9d2262cce6036fcbae05f6a8"
 
 ts-dedent@^2.2.0:
   version "2.2.0"

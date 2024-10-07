@@ -4,5 +4,5 @@
 
 You can find the installation ID of the Gruntwork.io GitHub App in the URL of the installation page.
 
-<!-- TODO: Screenshot here -->
+![GitHub App Installation ID](/img/devops-foundations/github-app/get-installation-id.png)
 
