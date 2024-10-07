@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.114.2" lastModifiedVersion="0.114.0"/>
+<VersionBadge version="0.115.3" lastModifiedVersion="0.114.0"/>
 
 # Amazon EKS Core Services
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules/services/eks-core-services" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.3/modules/services/eks-core-services" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-core-services" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ For information on each of the core services deployed by this service, see the d
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.3/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.3/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ For information on each of the core services deployed by this service, see the d
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.3/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.3/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -108,7 +108,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "eks_core_services" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v0.114.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v0.115.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -286,7 +286,7 @@ module "eks_core_services" {
   # major/minor version (e.g., v1.20) of your Kubernetes Installation. See
   # https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases
   # for a list of versions.
-  cluster_autoscaler_version = "v1.29.0"
+  cluster_autoscaler_version = "v1.30.0"
 
   # When set to true, create a new dedicated IAM Role for the cluster
   # autoscaler. When set to true, var.iam_role_for_service_accounts_config is
@@ -586,7 +586,7 @@ module "eks_core_services" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v0.114.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v0.115.3"
 }
 
 inputs = {
@@ -767,7 +767,7 @@ inputs = {
   # major/minor version (e.g., v1.20) of your Kubernetes Installation. See
   # https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases
   # for a list of versions.
-  cluster_autoscaler_version = "v1.29.0"
+  cluster_autoscaler_version = "v1.30.0"
 
   # When set to true, create a new dedicated IAM Role for the cluster
   # autoscaler. When set to true, var.iam_role_for_service_accounts_config is
@@ -1717,7 +1717,7 @@ The name of the service account to create for the cluster autoscaler.
 Which version of the cluster autoscaler to install. This should match the major/minor version (e.g., v1.20) of your Kubernetes Installation. See https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases for a list of versions.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v1.29.0&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v1.30.0&quot;"/>
 </HclListItem>
 
 <HclListItem name="create_cluster_autoscaler_role" requirement="optional" type="bool">
@@ -2694,11 +2694,11 @@ A list of names of Kubernetes PriorityClass objects created by this module.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules/services/eks-core-services/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules/services/eks-core-services/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.114.2/modules/services/eks-core-services/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.3/modules/services/eks-core-services/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.3/modules/services/eks-core-services/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.3/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e7b33e2d0f431e329b5365930514e0fa"
+  "hash": "7e5adf0bf022852de73d93e5e718e70b"
 }
 ##DOCS-SOURCER-END -->
