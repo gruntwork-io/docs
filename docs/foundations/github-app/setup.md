@@ -12,7 +12,7 @@ To install the Gruntwork.io GitHub App in your organization follow these steps.
 
     ![Install in GitHub Organization](/img/devops-foundations/github-app/install-in-organization.png)
 
-1. You will be redirected back to your Gruntwork Developer Portal's Account page. If the App was installed and linked with Organization in the Developer Portal, you will get a success message like below.
+1. You will be redirected back to your Gruntwork Developer Portal's Account page. If the App was installed and linked with your Organization in the Developer Portal, you will get a success message like below.
 
     ![GitHub App installed and linked](/img/devops-foundations/github-app/app-installed-and-linked.png)
 
@@ -21,6 +21,6 @@ To install the Gruntwork.io GitHub App in your organization follow these steps.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "8d039429fafa240b64c7ddb42081d0e2"
+  "hash": "7028e2c440de1ce82c130bae67535930"
 }
 ##DOCS-SOURCER-END -->
