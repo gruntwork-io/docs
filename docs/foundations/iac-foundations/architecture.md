@@ -14,15 +14,29 @@ All of the other infrastructure that is managed using Gruntwork software will ul
 
 ### Workflows
 
-- **Pipelines Root** - This workflow will be used by the `infrastructure-live-root` repository to manage infrastructure in response to changes in the repository in a GitOps fashion.
+- **Account Factory** - This workflow provides a convenient API for interacting with Gruntwork Account Factory.
+
+  This workflow uses a [repository dispatch](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#repository_dispatch) to create a standard AWS account creation request in the repository.
+
+  The payload for the workflow dispatch is a JSON object that can be conveniently constructed using the sample HTML file located next to the workflow file in the repository.
+
+  :::tip
+
+  This HTML file can be customized as needed to fit the needs of your organization. You may want to add additional fields to the form for tagging purposes, or to provide additional context to the person who will be approving the account vend.
+
+  You don't even need to use the form at all if you don't want to. An alternative would be to use a service like ServiceNow to populate the requisite fields, then trigger the workflow using the GitHub API.
+
+  You can learn more about this [here](../../foundations/landing-zone/add-aws-account.md).
+
+  :::
+
+- **Pipelines** - This workflow will be used by the `infrastructure-live-root` repository to manage infrastructure in response to changes in the repository in a GitOps fashion.
 
   While the permissions for this workflow are largely read-only when proposing infrastructure changes, the workflow will have the ability to make changes to relevant infrastructure when the changes are merged.
 
-  Because of the responsibilities of the `infrastructure-live-root` repository, it necessarily has very broad permissions.
-
 :::tip
 
-The `infrastructure-live-root` repository does not have to be named "infrastructure-live-root". You can name it whatever you like. It is highly recommended that the repository is named something similar to `infrastructure-live-root` to make it clear what it is when reading Gruntwork documentation, however.
+The `infrastructure-live-root` repository does not have to be named "infrastructure-live-root". You can customize the name during the bootstrap process. It is highly recommended that the repository is named something similar to `infrastructure-live-root` to make it clear what it is when reading Gruntwork documentation, however.
 
 It also doesn't have to be the only root repository in your organization. You can have multiple root repositories if you have a complex organization structure that requires it. Make sure to evaluate the trade-offs of having multiple root repositories before doing so. It can be a significant source of complexity and operational overhead.
 
@@ -62,7 +76,7 @@ It also doesn't have to be the only access control repository in your organizati
 
 - **Pipelines** - This workflow will be used by the `infrastructure-live-access-control` repository to manage access control infrastructure in response to changes in the repository in a GitOps fashion.
 
-  While the permissions for this workflow are largely read-only when proposing access control changes, the workflow will have the ability to make changes to relevant access control infrastructure when changes are merged.
+  While the permissions for this workflow are largely read-only when proposing access control changes, the workflow also has the ability to make changes to relevant access control infrastructure when the changes are merged.
 
 ## `infrastructure-modules`
 
@@ -74,7 +88,7 @@ A common pattern used by customers is to leverage the Gruntwork IaC library when
 
 :::tip
 
-The `infrastructure-modules` repository does not have to be named "infrastructure-modules". You can name it whatever you like. It is highly recommended that the repository is named something similar to `infrastructure-modules` to make it clear what it is when reading Gruntwork documentation, however.
+The `infrastructure-modules` repository does not have to be named "infrastructure-modules". You can customize the name during the bootstrap process. It is highly recommended that the repository is named something similar to `infrastructure-modules` to make it clear what it is when reading Gruntwork documentation, however.
 
 It also doesn't have to be the only modules repository in your organization. You can have multiple modules repositories if you have a complex organization structure that requires it. Make sure to evaluate the trade-offs of having multiple modules repositories before doing so. It can be advantageous to have one repository for all modules to make it easier to find and share modules across your organization. However, it can also be advantageous to have multiple repositories if you have different teams that need to manage their own modules, or want to have different modules available to different teams within your organization.
 
@@ -125,6 +139,6 @@ If users opt-in to creating and managing modules centrally, they can create and 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "8a9f1a9cc1ba49ae9d6d6f35a3024d55"
+  "hash": "6b0d66559c98ba0109f4010cf148ec69"
 }
 ##DOCS-SOURCER-END -->

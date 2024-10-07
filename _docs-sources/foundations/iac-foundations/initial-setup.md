@@ -1,7 +1,5 @@
 # Initial setup
 
-To set up IaC Foundations, we use three pre-configured git repository templates that include best practices and also allow for customization.
-
 :::info GitHub App
 Setting up IaC repositories requires the Gruntwork.io GitHub App. [Click here](../github-app/setup.md) for installation instructions.
 :::
@@ -43,8 +41,7 @@ This repository is only necessary for Enterprise customers, but is recommended f
 
 ### Infrastructure Modules
 
-This template creates an empty infrastructure-modules repository that will be used to store Terraform/OpenTofu modules that your organization has authored and intends to use within your organization. When running the Bootstrap workflow in your `infrastructure-live-root` account, select the option to "Bootstrap the infrastructure-modules repository".
-
+The Bootstrap workflow creates an empty infrastructure-modules repository that will be used to store Terraform/OpenTofu modules that your organization has authored and intends to use within your organization. When running the Bootstrap workflow in your `infrastructure-live-root` account, select the option to "Bootstrap the infrastructure-modules repository".
 
 ## Complete Instructions In The Bootstrap Pull Requests
 

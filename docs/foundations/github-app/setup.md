@@ -2,13 +2,7 @@
 
 To install the Gruntwork.io GitHub App in your organization follow these steps.
 
-1. Login to the Gruntwork Developer Portal and navigate to Account Settings.
-
-   <!-- TODO: Add screenshot -->
-
-1. Click Install App.
-
-   <!-- TODO: Add screenshot -->
+1. Follow the instructions in the [Gruntwork Developer Portal's Account Settings](https://app.gruntwork.io/account?scroll_to=github-app).
 
 1. Allow access to your GitHub Organization.
 
@@ -27,6 +21,6 @@ To install the Gruntwork.io GitHub App in your organization follow these steps.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "2af490491a85726f8555cb57fc977aff"
+  "hash": "ee4f3b1217d79624e6c6f54d25b1045d"
 }
 ##DOCS-SOURCER-END -->
