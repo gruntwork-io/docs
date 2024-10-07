@@ -4,13 +4,13 @@
 
 You can find the installation ID of the Gruntwork.io GitHub App in the URL of the installation page.
 
-<!-- TODO: Screenshot here -->
+![GitHub App Installation ID](/img/devops-foundations/github-app/get-installation-id.png)
 
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "67851c03da59b5741e41e2eba3054c5c"
+  "hash": "99f6edd185584d1c86f6276d7ece4e13"
 }
 ##DOCS-SOURCER-END -->
