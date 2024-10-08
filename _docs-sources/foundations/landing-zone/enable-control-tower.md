@@ -49,7 +49,7 @@ waiting on Control Tower Operations at the conclusion of the setup flow.
 
 ### Configure Organizational Units (OUs)
 
-1. Rename the "Additional OU" to "Pre-prod"
+1. Rename the "Additional OU" to **"Pre-prod"** (Take note of the casing here).
 
    <details>
    <summary>Screenshot</summary>

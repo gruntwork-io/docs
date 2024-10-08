@@ -49,7 +49,7 @@ waiting on Control Tower Operations at the conclusion of the setup flow.
 
 ### Configure Organizational Units (OUs)
 
-1. Rename the "Additional OU" to "Pre-prod"
+1. Rename the "Additional OU" to **"Pre-prod"** (Take note of the casing here).
 
    <details>
    <summary>Screenshot</summary>
@@ -168,6 +168,6 @@ Control Tower is now configured! Next you should consider:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7f0cf25bc7a6d0be668c9df811b82396"
+  "hash": "f05a755d8aeb2634ebac2449e46b7afd"
 }
 ##DOCS-SOURCER-END -->
