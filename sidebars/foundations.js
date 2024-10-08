@@ -10,6 +10,23 @@ const sidebar = [
     collapsible: false,
     items: [
       {
+        label: "Gruntwork.io GitHub App",
+        type: "category",
+        collapsible: false,
+        items: [
+          {
+            label: "Overview",
+            type: "doc",
+            id: "foundations/github-app/index",
+          },
+          "foundations/github-app/setup",
+          "foundations/github-app/configuration",
+          "foundations/github-app/architecture",
+          "foundations/github-app/availability",
+          "foundations/github-app/faq",
+        ]
+      },
+      {
         label: "DevOps Components",
         type: "category",
         collapsed: false,
@@ -50,6 +67,7 @@ const sidebar = [
             id: "foundations/iac-foundations/index",
           },
           "foundations/iac-foundations/initial-setup",
+          "foundations/iac-foundations/architecture",
           "foundations/iac-foundations/folder-structure",
           "foundations/iac-foundations/labels-tags",
           {
