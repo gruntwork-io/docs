@@ -9,23 +9,23 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.25" lastModifiedVersion="0.26.8"/>
+<VersionBadge repoTitle="VPC Modules" version="0.26.26" lastModifiedVersion="0.26.8"/>
 
 # Transit Gateway Peering Attachment Accepter Accepter Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules/transit-gateway-peering-attachment-accepter" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/transit-gateway-peering-attachment-accepter" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates Transit Gateway peering resources for the `accepter` side of the connection. This allows for connectivity between multiple regions or multiple AWS accounts. Transit Gateway peering is a one-to-one relationship between two transit gateways. If you need to peer multiple transit gateways, you will need to create multiple transit gateway peering attachments.
 
-See [VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules//_docs/vpc-core-concepts.md) for more information on the core networking components and topologies.
+See [VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules//_docs/vpc-core-concepts.md) for more information on the core networking components and topologies.
 
 ## What is a Transit Gateway Peering Attachment Accepter?
 
 A transit gateway peering attachment accepter is a way to connect two transit gateways to each other. Much like the VPC attachment, this can be thought of as a network cable. By attaching them, you 'plug' the two transit gateways together. This allows you to route traffic between the two transit gateways. Unlike VPC attachments, peering attachments have two components to the attachment a `requester` and an `accepter`. This is important because each attachment must be accepted prior to the attachment being completed. This is a security measure to ensure a malicious attachment from a random account does not gain network access to your environment. The `accepter` is the side of the peering attachment that accepts the request from the `requester`.
 
-For usage examples, check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/examples/transit-gateway-peering-attachment).
+For usage examples, check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/examples/transit-gateway-peering-attachment).
 
 <!-- BEGIN_TF_DOCS -->
 
@@ -86,7 +86,7 @@ No modules.
 
 module "transit_gateway_peering_attachment_accepter" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-peering-attachment-accepter?ref=v0.26.25"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-peering-attachment-accepter?ref=v0.26.26"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -130,7 +130,7 @@ module "transit_gateway_peering_attachment_accepter" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-peering-attachment-accepter?ref=v0.26.25"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-peering-attachment-accepter?ref=v0.26.26"
 }
 
 inputs = {
@@ -259,11 +259,11 @@ The identifer of the transit gateway for the accepter resources.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules/transit-gateway-peering-attachment-accepter/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules/transit-gateway-peering-attachment-accepter/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.25/modules/transit-gateway-peering-attachment-accepter/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/transit-gateway-peering-attachment-accepter/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/transit-gateway-peering-attachment-accepter/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/transit-gateway-peering-attachment-accepter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d18eb9770a9883cb5e004cb3a42784dd"
+  "hash": "3764abc99fac2eaeda7986c042a476a0"
 }
 ##DOCS-SOURCER-END -->
