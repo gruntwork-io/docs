@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.58.0" lastModifiedVersion="0.58.0"/>
+<VersionBadge repoTitle="CI Modules" version="0.59.0" lastModifiedVersion="0.58.1"/>
 
 # GitHub Release Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/github-release-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.0/modules/github-release-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.58.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.58.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This repository contains a collection of scripts designed to automate the creation and management of GitHub releases.
 These scripts streamline the process of preparing release files, signing them with GPG, and publishing them as release
@@ -84,11 +84,11 @@ create-release --repo-owner gruntwork-io --repo-name terragrunt-engine-opentofu 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/github-release-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/github-release-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/github-release-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.0/modules/github-release-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.0/modules/github-release-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.0/modules/github-release-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "997bcf7c13613ca97b5d083461317ac3"
+  "hash": "7521c2ac17d33b11b9ee67adff47db70"
 }
 ##DOCS-SOURCER-END -->
