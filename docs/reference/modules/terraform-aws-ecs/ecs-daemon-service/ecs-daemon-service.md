@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.38.2" lastModifiedVersion="0.38.1"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.38.3" lastModifiedVersion="0.38.1"/>
 
 # ECS Daemon Service Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.2/modules/ecs-daemon-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-daemon-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.38.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -33,7 +33,7 @@ environment variables to set, and so on. To actually run an ECS Task, you define
 
 ## How do you create an ECS cluster?
 
-To use ECS, you first deploy one or more EC2 Instances into a "cluster". See the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.2/modules/ecs-cluster)
+To use ECS, you first deploy one or more EC2 Instances into a "cluster". See the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-cluster)
 for how to create a cluster.
 
 ## How do you add additional IAM policies?
@@ -82,7 +82,7 @@ EOF
 
 module "ecs_daemon_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.38.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.38.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -198,7 +198,7 @@ module "ecs_daemon_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.38.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.38.3"
 }
 
 inputs = {
@@ -567,11 +567,11 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.2/modules/ecs-daemon-service/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.2/modules/ecs-daemon-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.2/modules/ecs-daemon-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-daemon-service/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-daemon-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-daemon-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b879c00e6a74f6364a5ca39c034c3004"
+  "hash": "b3be7f105cd2d7c1b5b815e3ad662ccf"
 }
 ##DOCS-SOURCER-END -->
