@@ -49,7 +49,7 @@ waiting on Control Tower Operations at the conclusion of the setup flow.
 
 ### Configure Organizational Units (OUs)
 
-1. Rename the "Additional OU" to "Pre-prod"
+1. Rename the "Additional OU" to **"Pre-prod"** (Note the casing of the name here).
 
    <details>
    <summary>Screenshot</summary>
@@ -153,7 +153,7 @@ prepare for Gruntwork Landing Zone.
    1. Switch to the `Users` tab, select your management user from the list and click **Next**
 
    1. Select `AWSAdministratorAccess` from the list of Permission Sets, then click **Next**
-   
+
    1. Click `Submit` to finish assigning access to your user
 
 ## Next Steps
@@ -168,6 +168,6 @@ Control Tower is now configured! Next you should consider:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7f0cf25bc7a6d0be668c9df811b82396"
+  "hash": "d62e1f2a4a0b3c5f2d97987ea4050585"
 }
 ##DOCS-SOURCER-END -->
