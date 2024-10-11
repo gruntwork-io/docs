@@ -16,13 +16,13 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.115.2" lastModifiedVersion="0.105.0"/>
+<VersionBadge version="0.115.4" lastModifiedVersion="0.105.0"/>
 
 # RDS Read Replicas Module
 
 This module creates a read replica (read-only copy) of a DB instance.
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.2/modules/data-stores/rds-replica" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/rds-replica" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Frds-replica" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -48,7 +48,7 @@ This module creates a read replica (read-only copy) of a DB instance.
 
 module "rds_replica" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds-replica?ref=v0.115.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds-replica?ref=v0.115.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -350,7 +350,7 @@ module "rds_replica" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds-replica?ref=v0.115.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds-replica?ref=v0.115.4"
 }
 
 inputs = {
@@ -1669,11 +1669,11 @@ A list of IDs of the RDS DB instance's read replicas.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.2/modules/data-stores/rds-replica/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.2/modules/data-stores/rds-replica/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.2/modules/data-stores/rds-replica/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/rds-replica/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/rds-replica/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/rds-replica/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ef2b4a1deb21d517d9a99aaa1fb8533d"
+  "hash": "dbe4270b87a66e5cc78f58646fc54489"
 }
 ##DOCS-SOURCER-END -->
