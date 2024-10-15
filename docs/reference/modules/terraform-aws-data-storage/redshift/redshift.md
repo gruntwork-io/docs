@@ -186,12 +186,24 @@ module "redshift" {
   # KMS key for the account will be used.
   kms_key_arn = null
 
-  # Configures logging information such as queries and connection attempts for
-  # the specified Amazon Redshift cluster. If enable is set to true. The
-  # bucket_name and s3_key_prefix must be set. The bucket must be in the same
-  # region as the cluster and the cluster must have read bucket and put object
-  # permission.
-  logging = {"bucket_name":null,"enable":false,"s3_key_prefix":null}
+  # Required when log_destination_type is s3. Name of an existing S3 bucket
+  # where the log files are to be stored. Must be in the same region as the
+  # cluster and the cluster must have read bucket and put object permissions.
+  logging_bucket_name = null
+
+  # Boolean to toggle database audit logging.
+  logging_enable = false
+
+  # Type of the rule group. Valid values: "s3", "cloudwatch"
+  logging_log_destination_type = null
+
+  # Required when log_destination_type is cloudwatch. Collection of exported log
+  # types. See variable definition for details
+  logging_log_exports = null
+
+  # Required when log_destination_type is s3. Prefix applied to the log file
+  # names.
+  logging_s3_key_prefix = null
 
   # The weekly day and time range during which system maintenance can occur
   # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
@@ -404,12 +416,24 @@ inputs = {
   # KMS key for the account will be used.
   kms_key_arn = null
 
-  # Configures logging information such as queries and connection attempts for
-  # the specified Amazon Redshift cluster. If enable is set to true. The
-  # bucket_name and s3_key_prefix must be set. The bucket must be in the same
-  # region as the cluster and the cluster must have read bucket and put object
-  # permission.
-  logging = {"bucket_name":null,"enable":false,"s3_key_prefix":null}
+  # Required when log_destination_type is s3. Name of an existing S3 bucket
+  # where the log files are to be stored. Must be in the same region as the
+  # cluster and the cluster must have read bucket and put object permissions.
+  logging_bucket_name = null
+
+  # Boolean to toggle database audit logging.
+  logging_enable = false
+
+  # Type of the rule group. Valid values: "s3", "cloudwatch"
+  logging_log_destination_type = null
+
+  # Required when log_destination_type is cloudwatch. Collection of exported log
+  # types. See variable definition for details
+  logging_log_exports = null
+
+  # Required when log_destination_type is s3. Prefix applied to the log file
+  # names.
+  logging_s3_key_prefix = null
 
   # The weekly day and time range during which system maintenance can occur
   # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
@@ -738,34 +762,49 @@ The ARN of a KMS key that should be used to encrypt data on disk. Only used if <
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="logging" requirement="optional" type="object(…)">
+<HclListItem name="logging_bucket_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-Configures logging information such as queries and connection attempts for the specified Amazon Redshift cluster. If enable is set to true. The bucket_name and s3_key_prefix must be set. The bucket must be in the same region as the cluster and the cluster must have read bucket and put object permission.
+Required when log_destination_type is s3. Name of an existing S3 bucket where the log files are to be stored. Must be in the same region as the cluster and the cluster must have read bucket and put object permissions.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-```hcl
-object({
-    enable        = bool
-    bucket_name   = string
-    s3_key_prefix = string
-  })
-```
+<HclListItem name="logging_enable" requirement="optional" type="bool">
+<HclListItemDescription>
 
-</HclListItemTypeDetails>
-<HclListItemDefaultValue>
+Boolean to toggle database audit logging.
 
-```hcl
-{
-  bucket_name = null,
-  enable = false,
-  s3_key_prefix = null
-}
-```
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-</HclListItemDefaultValue>
+<HclListItem name="logging_log_destination_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Type of the rule group. Valid values: 's3', 'cloudwatch'
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="logging_log_exports" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Required when log_destination_type is cloudwatch. Collection of exported log types. See variable definition for details
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="logging_s3_key_prefix" requirement="optional" type="string">
+<HclListItemDescription>
+
+Required when log_destination_type is s3. Prefix applied to the log file names.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="maintenance_window" requirement="optional" type="string">
@@ -1006,6 +1045,6 @@ The ID of the Security Group that controls access to the cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "38a70fd55b527d62f01d8515c0868fd1"
+  "hash": "e7235697530b336ca6d2707ca69df676"
 }
 ##DOCS-SOURCER-END -->
