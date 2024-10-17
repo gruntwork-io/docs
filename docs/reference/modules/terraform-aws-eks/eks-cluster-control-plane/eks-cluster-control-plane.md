@@ -450,6 +450,16 @@ module "eks_cluster_control_plane" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # The authentication mode for the cluster. Valid values are CONFIG_MAP, API or
+  # API_AND_CONFIG_MAP.
+  access_config_authentication_mode = "API_AND_CONFIG_MAP"
+
+  # Map of EKS Access Entries to be created for the cluster.
+  access_entries = {}
+
+  # Map of EKS Access Entry Policy Associations to be created for the cluster.
+  access_entry_poilcy_associations = {}
+
   # A list of additional security group IDs to attach to the control plane.
   additional_security_groups = []
 
@@ -459,6 +469,10 @@ module "eks_cluster_control_plane" {
 
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
+
+  # Whether or not to bootstrap an access entry with cluster admin permissions
+  # for the cluster creator.
+  bootstrap_cluster_creator_admin_permissions = false
 
   # Specify the log class of the cloudwatch log group
   cloudwatch_log_group_class = "STANDARD"
@@ -771,6 +785,16 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # The authentication mode for the cluster. Valid values are CONFIG_MAP, API or
+  # API_AND_CONFIG_MAP.
+  access_config_authentication_mode = "API_AND_CONFIG_MAP"
+
+  # Map of EKS Access Entries to be created for the cluster.
+  access_entries = {}
+
+  # Map of EKS Access Entry Policy Associations to be created for the cluster.
+  access_entry_poilcy_associations = {}
+
   # A list of additional security group IDs to attach to the control plane.
   additional_security_groups = []
 
@@ -780,6 +804,10 @@ inputs = {
 
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
+
+  # Whether or not to bootstrap an access entry with cluster admin permissions
+  # for the cluster creator.
+  bootstrap_cluster_creator_admin_permissions = false
 
   # Specify the log class of the cloudwatch log group
   cloudwatch_log_group_class = "STANDARD"
@@ -1093,6 +1121,93 @@ The ID of the VPC in which the EKS Cluster's EC2 Instances will reside.
 
 ### Optional
 
+<HclListItem name="access_config_authentication_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+The authentication mode for the cluster. Valid values are CONFIG_MAP, API or API_AND_CONFIG_MAP.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;API_AND_CONFIG_MAP&quot;"/>
+</HclListItem>
+
+<HclListItem name="access_entries" requirement="optional" type="any">
+<HclListItemDescription>
+
+Map of EKS Access Entries to be created for the cluster.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   {
+     namespace_admin = {
+       principal_arn     = arn:aws:iam::123456789101:user/my-user
+       type              = "STANDARD"
+       kubernetes_groups = ["group-1", "group-2"]
+     },
+     cluster_admin = {
+       principal_arn = arn:aws:iam::123456789101:role/my-role
+       type          = "STANDARD"
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="access_entry_poilcy_associations" requirement="optional" type="any">
+<HclListItemDescription>
+
+Map of EKS Access Entry Policy Associations to be created for the cluster.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   {
+     namespace_admin = {
+       principal_arn = aws_iam_role.namespace_admin.arn
+       policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy"
+       type          = "namespace"
+       namespaces    = ["default", "dev-namespace"]
+     },
+     cluster_admin = {
+       principal_arn = aws_iam_role.cluster_admin.arn
+       policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+       type          = "cluster"
+       namespaces    = []
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 <HclListItem name="additional_security_groups" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1118,6 +1233,15 @@ The AWS partition used for default AWS Resources.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;aws&quot;"/>
+</HclListItem>
+
+<HclListItem name="bootstrap_cluster_creator_admin_permissions" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to bootstrap an access entry with cluster admin permissions for the cluster creator.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="cloudwatch_log_group_class" requirement="optional" type="string">
@@ -1861,6 +1985,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1a2e2e54c899afde4ccc16193b8d3571"
+  "hash": "f58ff211ebf2250e5ece43e6f9d82e13"
 }
 ##DOCS-SOURCER-END -->
