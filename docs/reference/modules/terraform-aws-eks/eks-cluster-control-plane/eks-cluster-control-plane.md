@@ -452,7 +452,7 @@ module "eks_cluster_control_plane" {
 
   # The authentication mode for the cluster. Valid values are CONFIG_MAP, API or
   # API_AND_CONFIG_MAP.
-  access_config_authentication_mode = "API_AND_CONFIG_MAP"
+  access_config_authentication_mode = "CONFIG_MAP"
 
   # Map of EKS Access Entries to be created for the cluster.
   access_entries = {}
@@ -787,7 +787,7 @@ inputs = {
 
   # The authentication mode for the cluster. Valid values are CONFIG_MAP, API or
   # API_AND_CONFIG_MAP.
-  access_config_authentication_mode = "API_AND_CONFIG_MAP"
+  access_config_authentication_mode = "CONFIG_MAP"
 
   # Map of EKS Access Entries to be created for the cluster.
   access_entries = {}
@@ -1127,7 +1127,7 @@ The ID of the VPC in which the EKS Cluster's EC2 Instances will reside.
 The authentication mode for the cluster. Valid values are CONFIG_MAP, API or API_AND_CONFIG_MAP.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;API_AND_CONFIG_MAP&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;CONFIG_MAP&quot;"/>
 </HclListItem>
 
 <HclListItem name="access_entries" requirement="optional" type="any">
@@ -1985,6 +1985,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f58ff211ebf2250e5ece43e6f9d82e13"
+  "hash": "b83aae315bb13e2479f26ca5aefd0f26"
 }
 ##DOCS-SOURCER-END -->
