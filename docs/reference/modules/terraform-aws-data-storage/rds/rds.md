@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.38.1" lastModifiedVersion="0.38.1"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.39.0" lastModifiedVersion="0.39.0"/>
 
 # RDS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.39.0/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.38.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.39.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Relational Database Service (RDS) cluster that can run MySQL, Postgres, MariaDB, Oracle,
 or SQL Server. The cluster is managed by AWS and automatically handles standby failover, read replicas, backups,
@@ -117,7 +117,7 @@ Set `multi_az=true`. When setting up a multi-AZ (Availability Zone) RDS deployme
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.38.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.39.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -497,7 +497,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.38.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.39.0"
 }
 
 inputs = {
@@ -1733,11 +1733,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/rds/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.39.0/modules/rds/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.39.0/modules/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.39.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2096e9117641e6be8e4e23ef2f2a79fa"
+  "hash": "85678079d93ece9dc4c58ee272a321ff"
 }
 ##DOCS-SOURCER-END -->
