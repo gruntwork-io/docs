@@ -472,7 +472,7 @@ module "eks_cluster_control_plane" {
 
   # Whether or not to bootstrap an access entry with cluster admin permissions
   # for the cluster creator.
-  bootstrap_cluster_creator_admin_permissions = false
+  bootstrap_cluster_creator_admin_permissions = true
 
   # Specify the log class of the cloudwatch log group
   cloudwatch_log_group_class = "STANDARD"
@@ -807,7 +807,7 @@ inputs = {
 
   # Whether or not to bootstrap an access entry with cluster admin permissions
   # for the cluster creator.
-  bootstrap_cluster_creator_admin_permissions = false
+  bootstrap_cluster_creator_admin_permissions = true
 
   # Specify the log class of the cloudwatch log group
   cloudwatch_log_group_class = "STANDARD"
@@ -1241,7 +1241,7 @@ The AWS partition used for default AWS Resources.
 Whether or not to bootstrap an access entry with cluster admin permissions for the cluster creator.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="cloudwatch_log_group_class" requirement="optional" type="string">
@@ -1985,6 +1985,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b83aae315bb13e2479f26ca5aefd0f26"
+  "hash": "a71de4a8992964f33d6a72c07881daad"
 }
 ##DOCS-SOURCER-END -->
