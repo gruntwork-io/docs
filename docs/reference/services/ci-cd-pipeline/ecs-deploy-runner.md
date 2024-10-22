@@ -2362,6 +2362,7 @@ Create multi-region resources in the specified regions. The best practice is to 
       "us-gov-west-1",   GovCloud
       "cn-north-1",      China
       "cn-northwest-1",  China
+      "eu-central-2",    Zurich
     
      This region is enabled by default but is brand-new and some services like AWS Config don't work.
      "ap-northeast-3",  Asia Pacific (Osaka)
@@ -2546,6 +2547,6 @@ Security Group ID of the ECS task
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/mgmt/ecs-deploy-runner/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "cdfddb9907d067eb27805ae0c82be323"
+  "hash": "710e7bebf00d26f305f69419482bd401"
 }
 ##DOCS-SOURCER-END -->
