@@ -176,6 +176,9 @@ module "elasticsearch" {
   # var.zone_awareness_enabled. Defaults to 2. Valid values: 2 or 3.
   availability_zone_count = 2
 
+  # ARN of the Cloudwatch log group to which log needs to be published.
+  cloudwatch_log_group_arn = null
+
   # The period, in seconds, over which to measure the CPU utilization percentage
   cluster_high_cpu_utilization_period = 60
 
@@ -368,6 +371,9 @@ module "elasticsearch" {
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   kms_key_inaccessible_treat_missing_data = "missing"
+
+  # Type of Elasticsearch log.
+  log_type = null
 
   # The period, in seconds, over which to measure the master nodes' CPU
   # utilization
@@ -547,6 +553,9 @@ inputs = {
   # var.zone_awareness_enabled. Defaults to 2. Valid values: 2 or 3.
   availability_zone_count = 2
 
+  # ARN of the Cloudwatch log group to which log needs to be published.
+  cloudwatch_log_group_arn = null
+
   # The period, in seconds, over which to measure the CPU utilization percentage
   cluster_high_cpu_utilization_period = 60
 
@@ -739,6 +748,9 @@ inputs = {
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   kms_key_inaccessible_treat_missing_data = "missing"
+
+  # Type of Elasticsearch log.
+  log_type = null
 
   # The period, in seconds, over which to measure the master nodes' CPU
   # utilization
@@ -956,6 +968,15 @@ Number of Availability Zones for the domain to use with <a href="#zone_awareness
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="2"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of the Cloudwatch log group to which log needs to be published.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="cluster_high_cpu_utilization_period" requirement="optional" type="number">
@@ -1338,6 +1359,15 @@ Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
 <HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
+<HclListItem name="log_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Type of Elasticsearch log.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="master_cpu_utilization_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1554,6 +1584,6 @@ Domain-specific endpoint for Kibana without https scheme.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/elasticsearch/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b1c8a0ad2bc86faa7c5daadd05e0e4d8"
+  "hash": "e342ecfbd586c53cd31390d742f0f1f9"
 }
 ##DOCS-SOURCER-END -->
