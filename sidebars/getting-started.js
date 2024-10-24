@@ -57,8 +57,16 @@ const sidebar = [
           },
           {
             label: "Setup & Installation",
-            type: "doc",
-            id: "2.0/getting-started/library/setup",
+            type: "category",
+            collapsed: true,
+            link: { type: 'generated-index', title: "Library Guides", slug: "2.0/getting-started/library/setup" },
+            items: [
+              {
+                label: "Overview",
+                type: "doc",
+                id: "2.0/getting-started/library/setup/overview",
+              }
+            ]
           },
           {
             label: "Tutorials",
