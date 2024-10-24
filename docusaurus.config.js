@@ -109,7 +109,7 @@ const config = {
             type: "doc",
             position: "left",
             label: "Getting Started",
-            docId: "2.0/gettingstarted/index",
+            docId: "2.0/getting-started/index",
           },
           {
             type: "doc",

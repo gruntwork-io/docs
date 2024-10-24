@@ -24,7 +24,8 @@ const ecsDeployRunnerSidebars = require("./sidebars/ecs-deploy-runner.js")
 const landingZoneSidebars = require("./sidebars/landing-zone.js")
 const refarchSidebar = require("./sidebars/refarch.js")
 const foundationsSidebar = require("./sidebars/foundations.js")
-
+const gettingStartedSidebar = require("./sidebars/getting-started.js")
+const guidesSidebar = require("./sidebars/guides.js")
 // @ts-check
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
@@ -45,6 +46,8 @@ const sidebars = {
   foundationsSidebar,
   libraryRefSidebars,
   foundationsSidebar,
+  gettingStartedSidebar,
+  guidesSidebar
 }
 
 module.exports = sidebars
