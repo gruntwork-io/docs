@@ -1,10 +1,3 @@
-
-
-const kbLink =
-  "https://github.com/orgs/gruntwork-io/discussions?discussions_q=" +
-  // filter by discussions with the label s:CI/Pipelines & sort by top voted discussions first
-  encodeURIComponent("label:s:CI/Pipelines sort:top")
-
 const sidebar = [
   {
     label: "Getting Started",
@@ -48,6 +41,23 @@ const sidebar = [
             type: "doc",
             id: "2.0/getting-started/library/architecture",
           },
+          {
+            label: "Setup & Installation",
+            type: "doc",
+            id: "2.0/getting-started/library/setup",
+          },
+          {
+            label: "Tutorials",
+            type: "category",
+            collapsed: true,
+            items: [
+              {
+                label: "Deploying your first Gruntwork Module",
+                type: "doc",
+                id: "2.0/getting-started/library/tutorials/deploying-your-first-gruntwork-module",
+              }
+            ]
+          }
         ],
       },
       {
@@ -79,9 +89,74 @@ const sidebar = [
           },
           {
             label: "Architecture",
-            type: "doc",
-            id: "2.0/getting-started/pipelines/architecture",
+            type: "category",
+            collapsed: true,
+            items: [
+              {
+                label: 'Overview',
+                type: 'doc',
+                id: "2.0/getting-started/pipelines/architecture",
+              }
+            ]
           },
+          {
+            label: "Setup & Installation",
+            type: "category",
+            collapsed: true,
+            items: [
+              {
+                label: "Installation",
+                type: "category",
+                collapsed: false,
+                items: [
+                  {
+                    label: "Installation via GitHub App",
+                    type: "doc",
+                    id: "2.0/getting-started/pipelines/installation/viagithubapp",
+                  },
+                  {
+                    label: "Installation via Machine Users",
+                    type: "doc",
+                    id: "2.0/getting-started/pipelines/installation/viamachineusers",
+                  },
+                ]
+              },
+              {
+                label: "Configuration",
+                type: "category",
+                collapsed: false,
+                items: [
+                  {
+                    label: "Setting up Drift Detection",
+                    type: "doc",
+                    id: "2.0/getting-started/pipelines/configuration/driftdetection",
+                  },
+                  {
+                    label: "Customizing & Extending Pipelines",
+                    type: "doc",
+                    id: "2.0/getting-started/pipelines/configuration/customizing",
+                  },
+                ]
+              }
+            ]
+          },
+          {
+            label: "Tutorials",
+            type: "category",
+            collapsed: true,
+            items: [
+              {
+                label: "Deploy your first infrastructure change with Pipelines",
+                type: "doc",
+                id: "2.0/getting-started/pipelines/tutorials/deploying-your-first-infrastructure-change",
+              },
+              {
+                label: "Destroying infrastructure with Pipelines",
+                type: "doc",
+                id: "2.0/getting-started/pipelines/tutorials/destroying-infrastructure",
+              }
+            ]
+          }
         ],
       },
       {
@@ -99,6 +174,28 @@ const sidebar = [
             type: "doc",
             id: "2.0/getting-started/patcher/architecture",
           },
+          {
+            label: "Setup & Installation",
+            type: "doc",
+            id: "2.0/getting-started/patcher/setup",
+          },
+          {
+            label: "Tutorials",
+            type: "category",
+            collapsed: true,
+            items: [
+              {
+                label: "Applying your first patch",
+                type: "doc",
+                id: "2.0/getting-started/patcher/tutorials/applying-first-patch",
+              },
+              {
+                label: "Authoring your first patch",
+                type: "doc",
+                id: "2.0/getting-started/patcher/tutorials/authoring-first-patch",
+              }
+            ]
+          }
         ],
       },
       {
@@ -115,6 +212,11 @@ const sidebar = [
             label: "Architecture",
             type: "doc",
             id: "2.0/getting-started/accountfactory/architecture",
+          },
+          {
+            label: "Setup & Installation",
+            type: "doc",
+            id: "2.0/getting-started/accountfactory/setup",
           },
         ],
       },

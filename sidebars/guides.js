@@ -5,31 +5,78 @@ const kbLink =
 
 const sidebar = [
   {
-    label: "Guides",
+    label: "How To Guides",
     type: "category",
     collapsible: false,
     items: [
       {
-        label: "Gruntwork Pipelines",
+        type: "doc",
+        label: "Gruntwork Guides",
+        id: "2.0/guides/index",
+      },
+      {
+        label: "Gruntwork Library",
         type: "category",
-        collapsed: false,
+        collapsed: true,
         items: [
           {
-            label: "How To ....",
+            label: "Create your own Service Module",
             type: "doc",
-            id: "2.0/guides/index",
+            id: "2.0/guides/library/create-service-module",
+          },
+          {
+            label: "Customize a Module",
+            type: "doc",
+            id: "2.0/guides/library/customize-module",
+          },
+          {
+            label: "Integrate with Terraform Cloud",
+            type: "doc",
+            id: "2.0/guides/library/integrate-tfc",
+          },
+          {
+            label: "Contributing to the Library",
+            type: "doc",
+            id: "2.0/guides/library/contributing",
+          },
+          {
+            label: "Self-Hosting the Library",
+            type: "doc",
+            id: "2.0/guides/library/self-hosting",
+          },
+          {
+            label: "Updating a module to a newer version",
+            type: "doc",
+            id: "2.0/guides/library/updating-modules",
+          },
+        ],
+      },
+      {
+        label: "Gruntwork Pipelines",
+        type: "category",
+        collapsed: true,
+        items: [
+          {
+            label: "Managing Secrets in your Pipelines",
+            type: "doc",
+            id: "2.0/guides/pipelines/managing-secrets",
+          },
+          {
+            label: "Updating Pipelines",
+            type: "doc",
+            id: "2.0/guides/pipelines/updating-pipelines",
           },
         ],
       },
       {
         label: "Gruntwork Patcher",
         type: "category",
-        collapsed: false,
+        collapsed: true,
         items: [
           {
-            label: "How To ....",
+            label: "Setting up Promotion Workflows",
             type: "doc",
-            id: "2.0/guides/index",
+            id: "2.0/guides/patcher/promotion-workflows",
           },
         ],
       },
