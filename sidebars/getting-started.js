@@ -5,14 +5,10 @@ const sidebar = [
     collapsible: false,
     items: [
       {
-        label: "Welcome to Gruntwork",
-        type: "doc",
-        id: "2.0/getting-started/welcome",
-      },
-      {
         label: "The Gruntwork Methodology",
         type: "category",
         collapsed: true,
+        link: {type: 'doc', id: '2.0/getting-started/welcome'},
         items: [
           {
             label: "Concepts",
@@ -68,7 +64,7 @@ const sidebar = [
           {
             label: "Concepts",
             type: "category",
-            collapsed: false,
+            collapsed: true,
             items: [
               {
                 label: 'CI/CD for Infrastructure',
@@ -156,6 +152,18 @@ const sidebar = [
                 id: "2.0/getting-started/pipelines/tutorials/destroying-infrastructure",
               }
             ]
+          },
+          {
+            label: "Guides",
+            type: "ref",
+            className: 'external-link',
+            id: '2.0/guides/pipelines/index',
+          },
+          {
+            label: "Guides2.0",
+            type: "link",
+
+            href: 'http://google.com',
           }
         ],
       },

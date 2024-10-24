@@ -55,6 +55,7 @@ const sidebar = [
         label: "Gruntwork Pipelines",
         type: "category",
         collapsed: true,
+        link: { type: 'doc', id: '2.0/guides/pipelines/index' },
         items: [
           {
             label: "Managing Secrets in your Pipelines",

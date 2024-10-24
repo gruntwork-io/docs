@@ -421,3 +421,18 @@ html[data-theme="dark"] .link-button:hover {
 .dont_show {
   display: none;
 }
+
+.external-link a::after {
+  content: "";
+  display: inline-block;
+  width: 13.5px;
+  height: 13.5px;
+  margin-left: 0.3rem;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"%3E%3Cpath fill="%23606770" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"%3E%3C/path%3E%3C/svg%3E');
+  background-size: contain; /* Add this line */
+  background-repeat: no-repeat; /* Add this line too */
+}
+
+ html[data-theme="dark"] .external-link a::after {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"%3E%3Cpath fill="%23DADDE1" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"%3E%3C/path%3E%3C/svg%3E');
+}
