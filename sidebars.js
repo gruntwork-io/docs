@@ -26,6 +26,8 @@ const refarchSidebar = require("./sidebars/refarch.js")
 const foundationsSidebar = require("./sidebars/foundations.js")
 const gettingStartedSidebar = require("./sidebars/getting-started.js")
 const guidesSidebar = require("./sidebars/guides.js")
+const referenceSidebar = require("./sidebars/reference.js")
+
 // @ts-check
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
@@ -47,7 +49,8 @@ const sidebars = {
   libraryRefSidebars,
   foundationsSidebar,
   gettingStartedSidebar,
-  guidesSidebar
+  guidesSidebar,
+  referenceSidebar,
 }
 
 module.exports = sidebars

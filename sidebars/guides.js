@@ -7,17 +7,14 @@ const sidebar = [
   {
     label: "How To Guides",
     type: "category",
+    link: { type: 'generated-index', title: "Gruntwork How-To Guides", slug: "2.0/guides" },
     collapsible: false,
     items: [
-      {
-        type: "doc",
-        label: "Gruntwork Guides",
-        id: "2.0/guides/index",
-      },
       {
         label: "Gruntwork Library",
         type: "category",
         collapsed: true,
+        link: { type: 'generated-index', title: "Library Guides", slug: "2.0/guides/library/index" },
         items: [
           {
             label: "Create your own Service Module",
@@ -49,13 +46,19 @@ const sidebar = [
             type: "doc",
             id: "2.0/guides/library/updating-modules",
           },
+          {
+            label: "Module Reference",
+            type: "link",
+            className: 'external-link',
+            href: '/2.0/reference/library',
+          },
         ],
       },
       {
         label: "Gruntwork Pipelines",
         type: "category",
         collapsed: true,
-        link: { type: 'doc', id: '2.0/guides/pipelines/index' },
+        link: { type: 'generated-index', title: "Pipelines Guides", slug: "2.0/guides/pipelines" },
         items: [
           {
             label: "Managing Secrets in your Pipelines",
@@ -67,17 +70,49 @@ const sidebar = [
             type: "doc",
             id: "2.0/guides/pipelines/updating-pipelines",
           },
+          {
+            label: "Configuration Reference",
+            type: "link",
+            className: 'external-link',
+            href: '/2.0/reference/pipelines',
+          },
         ],
       },
       {
         label: "Gruntwork Patcher",
         type: "category",
         collapsed: true,
+        link: { type: 'generated-index', title: "Patcher Guides", slug: "2.0/guides/patcher" },
         items: [
           {
             label: "Setting up Promotion Workflows",
             type: "doc",
             id: "2.0/guides/patcher/promotion-workflows",
+          },
+          {
+            label: "Configuration Reference",
+            type: "link",
+            className: 'external-link',
+            href: '/2.0/reference/patcher',
+          },
+        ],
+      },
+      {
+        label: "Gruntwork Account Factory",
+        type: "category",
+        collapsed: true,
+        link: { type: 'generated-index', title: "Patcher Guides", slug: "2.0/guides/accountfactory" },
+        items: [
+          {
+            label: "Customizing something",
+            type: "doc",
+            id: "2.0/guides/accountfactory/index",
+          },
+          {
+            label: "Configuration Reference",
+            type: "link",
+            className: 'external-link',
+            href: '/2.0/reference/accountfactory',
           },
         ],
       },
