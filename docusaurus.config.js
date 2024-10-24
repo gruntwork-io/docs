@@ -108,51 +108,18 @@ const config = {
           {
             type: "doc",
             position: "left",
-            label: "Intro",
-            docId: "intro/overview/intro-to-gruntwork",
-          },
-          {
-            type: "dropdown",
-            position: "left",
-            label: "Docs",
-            id: "docs",
-            items: [
-              {
-                type: "doc",
-                label: "DevOps Foundations",
-                docId: "foundations/overview/index",
-              },
-              {
-                type: "doc",
-                label: "Library",
-                docId: "library/overview/index",
-              },
-              {
-                type: "doc",
-                label: "Pipelines",
-                docId: "pipelines/overview/index",
-              },
-              {
-                type: "doc",
-                label: "Patcher",
-                docId: "patcher/index",
-              },
-              {
-                type: "doc",
-                label: "Reference Architecture",
-                docId: "refarch/whats-this/what-is-a-reference-architecture",
-              },
-              {
-                type: "doc",
-                label: "Developer Portal",
-                docId: "developer-portal/create-account",
-              },
-            ],
+            label: "Getting Started",
+            docId: "2.0/gettingstarted/index",
           },
           {
             type: "doc",
-            label: "Library Reference",
-            docId: "library/reference/index",
+            label: "Guides",
+            docId: "2.0/guides/index",
+          },
+          {
+            type: "doc",
+            label: "Reference",
+            docId: "2.0/reference/index",
           },
           { to: "/tools", label: "Tools", position: "left" },
           { to: "/courses", label: "Courses", position: "left" },
