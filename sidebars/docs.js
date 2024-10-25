@@ -278,18 +278,42 @@ const sidebar = [
         items: [
           {
             label: "Concepts",
-            type: "doc",
-            id: "2.0/docs/patcher/concepts",
+            type: "category",
+            collapsed: true,
+            link: { type: 'generated-index', title: "Patcher Concepts", slug: "2.0/docs/patcher/concepts" },
+            items: [
+              {
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/patcher/concepts/index",
+              }
+            ]
           },
           {
             label: "Architecture",
-            type: "doc",
-            id: "2.0/docs/patcher/architecture",
+            type: "category",
+            collapsed: true,
+            link: { type: 'generated-index', title: "Patcher Architecture", slug: "2.0/docs/patcher/architecture" },
+            items: [
+              {
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/patcher/architecture/index",
+              }
+            ]
           },
           {
             label: "Setup & Installation",
-            type: "doc",
-            id: "2.0/docs/patcher/setup",
+            type: "category",
+            collapsed: true,
+            link: { type: 'generated-index', title: "Patcher Setup & Installation", slug: "2.0/docs/patcher/installation" },
+            items: [
+              {
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/patcher/installation/index",
+              }
+            ]
           },
           {
             label: "Tutorials",
