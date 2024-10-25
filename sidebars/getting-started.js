@@ -1,36 +1,50 @@
 const sidebar = [
   {
-    label: "Getting Started",
+    label: "Gruntwork Documentation",
     type: "category",
     link: { type: 'generated-index', title: "Library Guides", slug: "2.0/getting-started" },
     collapsible: false,
     items: [
       {
-        label: "Concepts",
+        label: "Overview",
         type: "category",
         collapsed: false,
-        link: { type: 'generated-index', title: "Gruntwork Concepts", slug: "2.0/getting-started/gruntworkmethodology" },
+        link: { type: 'generated-index', title: "Concepts", slug: "2.0/getting-started/gruntworkmethodology" },
         items: [
           {
             label: "Devops Foundations",
             type: "doc",
-            id: "2.0/getting-started/gruntworkmethodology/concepts/devopsfoundations",
+            id: "2.0/docs/overview/devopsfoundations",
+          },
+          {
+            label: "Getting Started",
+            type: "doc",
+            id: "2.0/docs/overview/gettingstarted",
+          },
+          {
+            label: "Support",
+            type: "doc",
+            id: "support",
           }
         ]
       },
-
       {
-        label: "Gruntwork Pipelines",
+        label: "Pipelines",
         type: "category",
         collapsed: true,
-        link: { type: 'generated-index', title: "Getting Started with Gruntwork Pipelines", slug: "2.0/getting-started/pipelines" },
+        link: { type: 'generated-index', title: "Getting Started with Pipelines", slug: "2.0/getting-started/pipelines" },
         items: [
           {
             label: "Concepts",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Gruntwork Pipelines Concepts", slug: "2.0/getting-started/pipelines/concepts/" },
+            link: { type: 'generated-index', title: "Pipelines Concepts", slug: "2.0/getting-started/pipelines/concepts/" },
             items: [
+              {
+                label: 'Overview',
+                type: 'doc',
+                id: '2.0/getting-started/pipelines/concepts/cicd-for-infrastructure',
+              },
               {
                 label: 'CI/CD for Infrastructure',
                 type: 'doc',
@@ -52,7 +66,7 @@ const sidebar = [
             label: "Architecture",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Gruntwork Pipelines Architecture", slug: "2.0/getting-started/pipelines/concepts2/" },
+            link: { type: 'generated-index', title: "Pipelines Architecture", slug: "2.0/getting-started/pipelines/concepts2/" },
             items: [
               {
                 label: 'Overview',
@@ -65,7 +79,7 @@ const sidebar = [
             label: "Setup & Installation",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Setting up and Installing Gruntwork Pipelines", slug: "2.0/getting-started/pipelines/installation/" },
+            link: { type: 'generated-index', title: "Setting up and Installing Pipelines", slug: "2.0/getting-started/pipelines/installation/" },
             items: [
 
               {
@@ -118,7 +132,7 @@ const sidebar = [
                 label: "Configuration",
                 type: "category",
                 collapsed: false,
-                link: { type: 'generated-index', title: "Gruntwork Pipelines Configuration", slug: "2.0/getting-started/pipelines/configuration/" },
+                link: { type: 'generated-index', title: "Pipelines Configuration", slug: "2.0/getting-started/pipelines/configuration/" },
                 items: [
                   {
                     label: "Setting up Drift Detection",
@@ -138,7 +152,7 @@ const sidebar = [
             label: "Tutorials",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Gruntwork Pipelines Tutorials", slug: "2.0/getting-started/pipelines/tutorials/" },
+            link: { type: 'generated-index', title: "Pipelines Tutorials", slug: "2.0/getting-started/pipelines/tutorials/" },
             items: [
               {
                 label: "Deploy your first infrastructure change with Pipelines",
@@ -154,9 +168,27 @@ const sidebar = [
           },
           {
             label: "Guides",
-            type: "link",
-            className: 'external-link',
-            href: '/2.0/guides/pipelines',
+            type: "category",
+            collapsed: true,
+            link: { type: 'generated-index', title: "Pipelines Guides", slug: "2.0/getting-started/pipelines/guides/" },
+            items: [
+              {
+                label: "Managing Secrets in your Pipelines",
+                type: "doc",
+                id: "2.0/guides/pipelines/managing-secrets",
+              },
+              {
+                label: "Updating Pipelines",
+                type: "doc",
+                id: "2.0/guides/pipelines/updating-pipelines",
+              },
+              {
+                label: "Configuration Reference",
+                type: "link",
+                className: 'external-link',
+                href: '/2.0/reference/pipelines',
+              },
+            ],
           },
           {
             label: "Configuration Reference",
@@ -168,7 +200,7 @@ const sidebar = [
       },
       {
         label: "Account Factory",
-        link: { type: 'generated-index', title: "Getting Started with Gruntwork Account Factory", slug: "2.0/getting-started/accountfactory" },
+        link: { type: 'generated-index', title: "Getting Started with Account Factory", slug: "2.0/getting-started/accountfactory" },
         type: "category",
         collapsed: true,
         items: [
@@ -189,9 +221,22 @@ const sidebar = [
           },
           {
             label: "Guides",
-            type: "link",
-            className: 'external-link',
-            href: '/2.0/guides/accountfactory',
+            type: "category",
+            collapsed: true,
+            link: { type: 'generated-index', title: "Account Factory Guides", slug: "2.0/guides/accountfactory" },
+            items: [
+              {
+                label: "Customizing something",
+                type: "doc",
+                id: "2.0/guides/accountfactory/index",
+              },
+              {
+                label: "Configuration Reference",
+                type: "link",
+                className: 'external-link',
+                href: '/2.0/reference/accountfactory',
+              },
+            ],
           },
           {
             label: "Configuration Reference",
@@ -202,9 +247,9 @@ const sidebar = [
         ],
       },
       {
-        label: "Gruntwork Patcher",
+        label: "Patcher",
         type: "category",
-        link: { type: 'generated-index', title: "Getting Started with Gruntwork Patcher", slug: "2.0/getting-started/patcher" },
+        link: { type: 'generated-index', title: "Getting Started with Patcher", slug: "2.0/getting-started/patcher" },
         collapsed: true,
         items: [
           {
@@ -241,9 +286,22 @@ const sidebar = [
           },
           {
             label: "Guides",
-            type: "link",
-            className: 'external-link',
-            href: '/2.0/guides/patcher',
+            type: "category",
+            collapsed: true,
+            link: { type: 'generated-index', title: "Patcher Guides", slug: "2.0/guides/patcher" },
+            items: [
+              {
+                label: "Setting up Promotion Workflows",
+                type: "doc",
+                id: "2.0/guides/patcher/promotion-workflows",
+              },
+              {
+                label: "Configuration Reference",
+                type: "link",
+                className: 'external-link',
+                href: '/2.0/reference/patcher',
+              },
+            ]
           },
           {
             label: "Configuration Reference",
@@ -255,10 +313,10 @@ const sidebar = [
       },
 
       {
-        label: "Gruntwork Library",
+        label: "Library",
         type: "category",
         collapsed: true,
-        link: { type: 'generated-index', title: "Getting Started with the Gruntwork Library", slug: "2.0/getting-started/library" },
+        link: { type: 'generated-index', title: "Getting Started with the Library", slug: "2.0/getting-started/library" },
         items: [
           {
             label: "Concepts",
@@ -277,7 +335,7 @@ const sidebar = [
             label: "Architecture",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Library Guides", slug: "2.0/getting-started/library/architecture" },
+            link: { type: 'generated-index', title: "Library Architecture", slug: "2.0/getting-started/library/architecture" },
             items: [
               {
                 label: "Overview",
@@ -290,7 +348,7 @@ const sidebar = [
             label: "Setup & Installation",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Library Guides", slug: "2.0/getting-started/library/setup" },
+            link: { type: 'generated-index', title: "Library Setup & Installation", slug: "2.0/getting-started/library/setup" },
             items: [
               {
                 label: "Overview",
@@ -313,9 +371,47 @@ const sidebar = [
           },
           {
             label: "Guides",
-            type: "link",
-            className: 'external-link',
-            href: '/2.0/guides/library',
+            type: "category",
+            collapsed: true,
+            link: { type: 'generated-index', title: "Library Guides", slug: "2.0/getting-started/library/guides" },
+            items: [
+              {
+                label: "Create your own Service Module",
+                type: "doc",
+                id: "2.0/guides/library/create-service-module",
+              },
+              {
+                label: "Customize a Module",
+                type: "doc",
+                id: "2.0/guides/library/customize-module",
+              },
+              {
+                label: "Integrate with Terraform Cloud",
+                type: "doc",
+                id: "2.0/guides/library/integrate-tfc",
+              },
+              {
+                label: "Contributing to the Library",
+                type: "doc",
+                id: "2.0/guides/library/contributing",
+              },
+              {
+                label: "Self-Hosting the Library",
+                type: "doc",
+                id: "2.0/guides/library/self-hosting",
+              },
+              {
+                label: "Updating a module to a newer version",
+                type: "doc",
+                id: "2.0/guides/library/updating-modules",
+              },
+              {
+                label: "Module Reference",
+                type: "link",
+                className: 'external-link',
+                href: '/2.0/reference/library',
+              },
+            ],
           },
           {
             label: "Module Reference",
@@ -327,9 +423,13 @@ const sidebar = [
       },
       {
         label: "Tools",
-        type: "ref",
+        type: "doc",
         id: "tools",
-        className: 'external-link',
+      },
+      {
+        label: "Training",
+        type: "doc",
+        id: "courses",
       },
     ],
   },

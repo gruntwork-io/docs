@@ -108,21 +108,19 @@ const config = {
           {
             type: "doc",
             position: "left",
-            label: "Getting Started",
+            label: "Docs",
             docId: "2.0/getting-started",
-          },
-          {
-            type: "doc",
-            label: "Guides",
-            docId: "2.0/guides",
           },
           {
             type: "doc",
             label: "Reference",
             docId: "2.0/reference",
           },
-          { to: "/tools", label: "Tools", position: "left" },
-          { to: "/courses", label: "Courses", position: "left" },
+          {
+            type: "doc",
+            label: "Release Notes",
+            docId: "guides/stay-up-to-date/index",
+          },
           {
             href: "https://github.com/gruntwork-io/knowledge-base/discussions",
             label: "Knowledge Base",
