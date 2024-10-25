@@ -2,7 +2,7 @@ const sidebar = [
   {
     label: "Gruntwork Documentation",
     type: "category",
-    link: { type: 'generated-index', title: "Library Guides", slug: "2.0/docs/getting-started" },
+    link: { type: 'generated-index', title: "Library Guides", slug: "2.0/docs" },
     collapsible: false,
     items: [
       {
@@ -206,18 +206,42 @@ const sidebar = [
         items: [
           {
             label: "Concepts",
-            type: "doc",
-            id: "2.0/docs/accountfactory/concepts",
+            type: "category",
+            collapsed: true,
+            link: { type: 'generated-index', title: "Account Factory Concepts", slug: "2.0/docs/accountfactory/concepts" },
+            items: [
+              {
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/accountfactory/concepts/index",
+              }
+            ]
           },
           {
             label: "Architecture",
-            type: "doc",
-            id: "2.0/docs/accountfactory/architecture",
+            type: "category",
+            collapsed: true,
+            link: { type: 'generated-index', title: "Account Factory Architecture", slug: "2.0/docs/accountfactory/architecture" },
+            items: [
+              {
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/accountfactory/architecture/index",
+              }
+            ]
           },
           {
             label: "Setup & Installation",
-            type: "doc",
-            id: "2.0/docs/accountfactory/setup",
+            type: "category",
+            collapsed: true,
+            link: { type: 'generated-index', title: "Account Factory Setup & Installation", slug: "2.0/docs/accountfactory/installation" },
+            items: [
+              {
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/accountfactory/installation/index",
+              }
+            ]
           },
           {
             label: "Guides",
