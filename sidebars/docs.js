@@ -2,14 +2,14 @@ const sidebar = [
   {
     label: "Gruntwork Documentation",
     type: "category",
-    link: { type: 'generated-index', title: "Library Guides", slug: "2.0/getting-started" },
+    link: { type: 'generated-index', title: "Library Guides", slug: "2.0/docs/getting-started" },
     collapsible: false,
     items: [
       {
         label: "Overview",
         type: "category",
         collapsed: false,
-        link: { type: 'generated-index', title: "Concepts", slug: "2.0/getting-started/gruntworkmethodology" },
+        link: { type: 'generated-index', title: "Concepts", slug: "2.0/docs/gruntworkmethodology" },
         items: [
           {
             label: "Devops Foundations",
@@ -32,33 +32,33 @@ const sidebar = [
         label: "Pipelines",
         type: "category",
         collapsed: true,
-        link: { type: 'generated-index', title: "Getting Started with Pipelines", slug: "2.0/getting-started/pipelines" },
+        link: { type: 'generated-index', title: "Getting Started with Pipelines", slug: "2.0/docs/pipelines" },
         items: [
           {
             label: "Concepts",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Pipelines Concepts", slug: "2.0/getting-started/pipelines/concepts/" },
+            link: { type: 'generated-index', title: "Pipelines Concepts", slug: "2.0/docs/pipelines/concepts/" },
             items: [
               {
                 label: 'Overview',
                 type: 'doc',
-                id: '2.0/getting-started/pipelines/concepts/cicd-for-infrastructure',
+                id: '2.0/docs/pipelines/concepts/cicd-for-infrastructure',
               },
               {
                 label: 'CI/CD for Infrastructure',
                 type: 'doc',
-                id: '2.0/getting-started/pipelines/concepts/cicd-for-infrastructure',
+                id: '2.0/docs/pipelines/concepts/cicd-for-infrastructure',
               },
               {
                 label: 'Security',
                 type: 'doc',
-                id: '2.0/getting-started/pipelines/concepts/security',
+                id: '2.0/docs/pipelines/concepts/security',
               },
               {
                 label: 'Drift Detection',
                 type: 'doc',
-                id: '2.0/getting-started/pipelines/concepts/driftdetection',
+                id: '2.0/docs/pipelines/concepts/driftdetection',
               }
             ]
           },
@@ -66,12 +66,12 @@ const sidebar = [
             label: "Architecture",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Pipelines Architecture", slug: "2.0/getting-started/pipelines/concepts2/" },
+            link: { type: 'generated-index', title: "Pipelines Architecture", slug: "2.0/docs/pipelines/concepts2/" },
             items: [
               {
                 label: 'Overview',
                 type: 'doc',
-                id: "2.0/getting-started/pipelines/architecture",
+                id: "2.0/docs/pipelines/architecture",
               }
             ]
           },
@@ -79,7 +79,7 @@ const sidebar = [
             label: "Setup & Installation",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Setting up and Installing Pipelines", slug: "2.0/getting-started/pipelines/installation/" },
+            link: { type: 'generated-index', title: "Setting up and Installing Pipelines", slug: "2.0/docs/pipelines/installation/" },
             items: [
 
               {
@@ -90,7 +90,7 @@ const sidebar = [
                   {
                     label: "AWS Landing Zone",
                     type: "doc",
-                    id: "2.0/getting-started/pipelines/installation/prerequisites/awslandingzone",
+                    id: "2.0/docs/pipelines/installation/prerequisites/awslandingzone",
                   },
                 ]
               },
@@ -102,12 +102,12 @@ const sidebar = [
                   {
                     label: "Auth via GitHub App",
                     type: "doc",
-                    id: "2.0/getting-started/pipelines/installation/viagithubapp",
+                    id: "2.0/docs/pipelines/installation/viagithubapp",
                   },
                   {
                     label: "Auth via Machine Users",
                     type: "doc",
-                    id: "2.0/getting-started/pipelines/installation/viamachineusers",
+                    id: "2.0/docs/pipelines/installation/viamachineusers",
                   },
                 ]
               },
@@ -119,12 +119,12 @@ const sidebar = [
                   {
                     label: "Creating a New Repository with Pipelines",
                     type: "doc",
-                    id: "2.0/getting-started/pipelines/installation/addingnewrepo",
+                    id: "2.0/docs/pipelines/installation/addingnewrepo",
                   },
                   {
                     label: "Adding Pipelines to an Existing Repository",
                     type: "doc",
-                    id: "2.0/getting-started/pipelines/installation/addingexistingrepo",
+                    id: "2.0/docs/pipelines/installation/addingexistingrepo",
                   },
                 ]
               },
@@ -132,17 +132,17 @@ const sidebar = [
                 label: "Configuration",
                 type: "category",
                 collapsed: false,
-                link: { type: 'generated-index', title: "Pipelines Configuration", slug: "2.0/getting-started/pipelines/configuration/" },
+                link: { type: 'generated-index', title: "Pipelines Configuration", slug: "2.0/docs/pipelines/configuration/" },
                 items: [
                   {
                     label: "Setting up Drift Detection",
                     type: "doc",
-                    id: "2.0/getting-started/pipelines/configuration/driftdetection",
+                    id: "2.0/docs/pipelines/configuration/driftdetection",
                   },
                   {
                     label: "Customizing & Extending Pipelines",
                     type: "doc",
-                    id: "2.0/getting-started/pipelines/configuration/customizing",
+                    id: "2.0/docs/pipelines/configuration/customizing",
                   },
                 ]
               }
@@ -152,17 +152,17 @@ const sidebar = [
             label: "Tutorials",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Pipelines Tutorials", slug: "2.0/getting-started/pipelines/tutorials/" },
+            link: { type: 'generated-index', title: "Pipelines Tutorials", slug: "2.0/docs/pipelines/tutorials/" },
             items: [
               {
                 label: "Deploy your first infrastructure change with Pipelines",
                 type: "doc",
-                id: "2.0/getting-started/pipelines/tutorials/deploying-your-first-infrastructure-change",
+                id: "2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change",
               },
               {
                 label: "Destroying infrastructure with Pipelines",
                 type: "doc",
-                id: "2.0/getting-started/pipelines/tutorials/destroying-infrastructure",
+                id: "2.0/docs/pipelines/tutorials/destroying-infrastructure",
               }
             ]
           },
@@ -170,17 +170,17 @@ const sidebar = [
             label: "Guides",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Pipelines Guides", slug: "2.0/getting-started/pipelines/guides/" },
+            link: { type: 'generated-index', title: "Pipelines Guides", slug: "2.0/docs/pipelines/guides/" },
             items: [
               {
                 label: "Managing Secrets in your Pipelines",
                 type: "doc",
-                id: "2.0/guides/pipelines/managing-secrets",
+                id: "2.0/docs/pipelines/guides/managing-secrets",
               },
               {
                 label: "Updating Pipelines",
                 type: "doc",
-                id: "2.0/guides/pipelines/updating-pipelines",
+                id: "2.0/docs/pipelines/guides/updating-pipelines",
               },
               {
                 label: "Configuration Reference",
@@ -200,35 +200,35 @@ const sidebar = [
       },
       {
         label: "Account Factory",
-        link: { type: 'generated-index', title: "Getting Started with Account Factory", slug: "2.0/getting-started/accountfactory" },
+        link: { type: 'generated-index', title: "Getting Started with Account Factory", slug: "2.0/docs/accountfactory" },
         type: "category",
         collapsed: true,
         items: [
           {
             label: "Concepts",
             type: "doc",
-            id: "2.0/getting-started/accountfactory/concepts",
+            id: "2.0/docs/accountfactory/concepts",
           },
           {
             label: "Architecture",
             type: "doc",
-            id: "2.0/getting-started/accountfactory/architecture",
+            id: "2.0/docs/accountfactory/architecture",
           },
           {
             label: "Setup & Installation",
             type: "doc",
-            id: "2.0/getting-started/accountfactory/setup",
+            id: "2.0/docs/accountfactory/setup",
           },
           {
             label: "Guides",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Account Factory Guides", slug: "2.0/guides/accountfactory" },
+            link: { type: 'generated-index', title: "Account Factory Guides", slug: "2.0/docs/accountfactory/guides" },
             items: [
               {
                 label: "Customizing something",
                 type: "doc",
-                id: "2.0/guides/accountfactory/index",
+                id: "2.0/docs/accountfactory/guides/index",
               },
               {
                 label: "Configuration Reference",
@@ -249,23 +249,23 @@ const sidebar = [
       {
         label: "Patcher",
         type: "category",
-        link: { type: 'generated-index', title: "Getting Started with Patcher", slug: "2.0/getting-started/patcher" },
+        link: { type: 'generated-index', title: "Getting Started with Patcher", slug: "2.0/docs/patcher" },
         collapsed: true,
         items: [
           {
             label: "Concepts",
             type: "doc",
-            id: "2.0/getting-started/patcher/concepts",
+            id: "2.0/docs/patcher/concepts",
           },
           {
             label: "Architecture",
             type: "doc",
-            id: "2.0/getting-started/patcher/architecture",
+            id: "2.0/docs/patcher/architecture",
           },
           {
             label: "Setup & Installation",
             type: "doc",
-            id: "2.0/getting-started/patcher/setup",
+            id: "2.0/docs/patcher/setup",
           },
           {
             label: "Tutorials",
@@ -275,12 +275,12 @@ const sidebar = [
               {
                 label: "Applying your first patch",
                 type: "doc",
-                id: "2.0/getting-started/patcher/tutorials/applying-first-patch",
+                id: "2.0/docs/patcher/tutorials/applying-first-patch",
               },
               {
                 label: "Authoring your first patch",
                 type: "doc",
-                id: "2.0/getting-started/patcher/tutorials/authoring-first-patch",
+                id: "2.0/docs/patcher/tutorials/authoring-first-patch",
               }
             ]
           },
@@ -288,12 +288,12 @@ const sidebar = [
             label: "Guides",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Patcher Guides", slug: "2.0/guides/patcher" },
+            link: { type: 'generated-index', title: "Patcher Guides", slug: "2.0/docs/patcher/guides" },
             items: [
               {
                 label: "Setting up Promotion Workflows",
                 type: "doc",
-                id: "2.0/guides/patcher/promotion-workflows",
+                id: "2.0/docs/patcher/guides/promotion-workflows",
               },
               {
                 label: "Configuration Reference",
@@ -316,18 +316,18 @@ const sidebar = [
         label: "Library",
         type: "category",
         collapsed: true,
-        link: { type: 'generated-index', title: "Getting Started with the Library", slug: "2.0/getting-started/library" },
+        link: { type: 'generated-index', title: "Getting Started with the Library", slug: "2.0/docs/library" },
         items: [
           {
             label: "Concepts",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Library Guides", slug: "2.0/getting-started/library/concepts" },
+            link: { type: 'generated-index', title: "Library Guides", slug: "2.0/docs/library/concepts" },
             items: [
               {
                 label: "Service Modules",
                 type: "doc",
-                id: "2.0/getting-started/library/concepts/servicemodules",
+                id: "2.0/docs/library/concepts/servicemodules",
               }
             ]
           },
@@ -335,12 +335,12 @@ const sidebar = [
             label: "Architecture",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Library Architecture", slug: "2.0/getting-started/library/architecture" },
+            link: { type: 'generated-index', title: "Library Architecture", slug: "2.0/docs/library/architecture" },
             items: [
               {
                 label: "Overview",
                 type: "doc",
-                id: "2.0/getting-started/library/architecture/overview",
+                id: "2.0/docs/library/architecture/overview",
               }
             ]
           },
@@ -348,12 +348,12 @@ const sidebar = [
             label: "Setup & Installation",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Library Setup & Installation", slug: "2.0/getting-started/library/setup" },
+            link: { type: 'generated-index', title: "Library Setup & Installation", slug: "2.0/docs/library/setup" },
             items: [
               {
                 label: "Overview",
                 type: "doc",
-                id: "2.0/getting-started/library/setup/overview",
+                id: "2.0/docs/library/setup/overview",
               }
             ]
           },
@@ -365,7 +365,7 @@ const sidebar = [
               {
                 label: "Deploying your first Gruntwork Module",
                 type: "doc",
-                id: "2.0/getting-started/library/tutorials/deploying-your-first-gruntwork-module",
+                id: "2.0/docs/library/tutorials/deploying-your-first-gruntwork-module",
               }
             ]
           },
@@ -373,37 +373,37 @@ const sidebar = [
             label: "Guides",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Library Guides", slug: "2.0/getting-started/library/guides" },
+            link: { type: 'generated-index', title: "Library Guides", slug: "2.0/docs/library/guides" },
             items: [
               {
                 label: "Create your own Service Module",
                 type: "doc",
-                id: "2.0/guides/library/create-service-module",
+                id: "2.0/docs/library/guides/create-service-module",
               },
               {
                 label: "Customize a Module",
                 type: "doc",
-                id: "2.0/guides/library/customize-module",
+                id: "2.0/docs/library/guides/customize-module",
               },
               {
                 label: "Integrate with Terraform Cloud",
                 type: "doc",
-                id: "2.0/guides/library/integrate-tfc",
+                id: "2.0/docs/library/guides/integrate-tfc",
               },
               {
                 label: "Contributing to the Library",
                 type: "doc",
-                id: "2.0/guides/library/contributing",
+                id: "2.0/docs/library/guides/contributing",
               },
               {
                 label: "Self-Hosting the Library",
                 type: "doc",
-                id: "2.0/guides/library/self-hosting",
+                id: "2.0/docs/library/guides/self-hosting",
               },
               {
                 label: "Updating a module to a newer version",
                 type: "doc",
-                id: "2.0/guides/library/updating-modules",
+                id: "2.0/docs/library/guides/updating-modules",
               },
               {
                 label: "Module Reference",

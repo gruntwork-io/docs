@@ -24,8 +24,7 @@ const ecsDeployRunnerSidebars = require("./sidebars/ecs-deploy-runner.js")
 const landingZoneSidebars = require("./sidebars/landing-zone.js")
 const refarchSidebar = require("./sidebars/refarch.js")
 const foundationsSidebar = require("./sidebars/foundations.js")
-const gettingStartedSidebar = require("./sidebars/getting-started.js")
-const guidesSidebar = require("./sidebars/guides.js")
+const docsSidebar = require("./sidebars/docs.js")
 const referenceSidebar = require("./sidebars/reference.js")
 
 // @ts-check
@@ -48,8 +47,7 @@ const sidebars = {
   foundationsSidebar,
   libraryRefSidebars,
   foundationsSidebar,
-  gettingStartedSidebar,
-  guidesSidebar,
+  docsSidebar,
   referenceSidebar,
 }
 
