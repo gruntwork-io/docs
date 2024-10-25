@@ -17,6 +17,11 @@ const sidebar = [
             id: "2.0/docs/overview/devopsfoundations",
           },
           {
+            label: "IaC Foundations",
+            type: "doc",
+            id: "2.0/docs/overview/iac-foundations",
+          },
+          {
             label: "Getting Started",
             type: "doc",
             id: "2.0/docs/overview/gettingstarted",
