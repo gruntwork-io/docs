@@ -1,12 +1,12 @@
 # Logging
 
-Gruntwork Landing Zone sets up [AWS CloudTrail](https://aws.amazon.com/cloudtrail/) for all accounts in your [AWS Organization](https://aws.amazon.com/organizations/). CloudTrail allows you to answer the question of _who_ did _what_ and _when_ in each of your AWS accounts.
+Gruntwork Account Factory sets up [AWS CloudTrail](https://aws.amazon.com/cloudtrail/) for all accounts in your [AWS Organization](https://aws.amazon.com/organizations/). CloudTrail allows you to answer the question of _who_ did _what_ and _when_ in each of your AWS accounts.
 
 ## Where you can find logs
 
-AWS CloudTrail is automatically configured to log all operations in your AWS accounts when you use Gruntwork Landing Zone. By default, CloudTrail maintains your data for 90 days and is queryable using CloudTrail UI.
+AWS CloudTrail is automatically configured to log all operations in your AWS accounts when you use Gruntwork Account Factory. By default, CloudTrail maintains your data for 90 days and is queryable using CloudTrail UI.
 
-Landing Zone sets up CloudTrail to output all events from all of your AWS accounts to an S3 bucket in your `logs` AWS account with a default rule to expire objects after 1 year. Once logs are in S3, you may set up an additional tool for [querying the logs](#querying-data).
+Account Factory sets up CloudTrail to output all events from all of your AWS accounts to an S3 bucket in your `logs` AWS account with a default rule to expire objects after 1 year. Once logs are in S3, you may set up an additional tool for [querying the logs](#querying-data).
 
 ### CloudTrail
 
