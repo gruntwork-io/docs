@@ -233,6 +233,11 @@ const sidebar = [
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/accountfactory/architecture/index",
+              },
+              {
+                label: "Logging",
+                type: "doc",
+                id: "2.0/docs/accountfactory/architecture/logging",
               }
             ]
           },
