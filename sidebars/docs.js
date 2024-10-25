@@ -258,6 +258,16 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/accountfactory/tutorials/vend-aws-account",
               },
+              {
+                label: "Modify an AWS Account",
+                type: "doc",
+                id: "2.0/docs/accountfactory/tutorials/modify-account",
+              },
+              {
+                label: "Remove an AWS Account",
+                type: "doc",
+                id: "2.0/docs/accountfactory/tutorials/remove-account",
+              },
             ]
           },
           {
