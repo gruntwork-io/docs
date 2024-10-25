@@ -162,3 +162,11 @@ The Gruntwork.io GitHub App will cross reference this list when attempting to pe
 Keeping this list up to date is critical to ensure the Gruntwork.io GitHub App can perform its duties in and only in the repositories you trust as the "root" of your infrastructure management.
 
 For more information, see the [relevant architecture documentation](../iac-foundations/architecture.md#infrastructure-live-root).
+
+## Frequently Asked Questions
+
+#### How do I find my Gruntwork.io GitHub App installation ID?
+
+You can find the installation ID of the Gruntwork.io GitHub App in the URL of the installation page.
+
+![GitHub App Installation ID](/img/devops-foundations/github-app/get-installation-id.png)
