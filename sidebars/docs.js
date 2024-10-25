@@ -2,24 +2,37 @@ const sidebar = [
   {
     label: "Gruntwork Documentation",
     type: "category",
-    link: { type: 'generated-index', title: "Library Guides", slug: "2.0/docs" },
+    link: { type: 'generated-index', title: "Gruntwork Documentation", slug: "2.0/docs" },
     collapsible: false,
     items: [
       {
         label: "Overview",
         type: "category",
         collapsed: false,
-        link: { type: 'generated-index', title: "Concepts", slug: "2.0/docs/gruntworkmethodology" },
+        link: { type: 'generated-index', title: "Overview", slug: "2.0/docs/overview" },
         items: [
           {
-            label: "Devops Foundations",
-            type: "doc",
-            id: "2.0/docs/overview/devopsfoundations",
-          },
-          {
-            label: "IaC Foundations",
-            type: "doc",
-            id: "2.0/docs/overview/iac-foundations",
+            label: "Concepts",
+            type: "category",
+            collapsed: false,
+            link: { type: 'generated-index', title: "Gruntwork Concepts", slug: "2.0/docs/overview/concepts" },
+            items: [
+              {
+                label: "Devops Foundations",
+                type: "doc",
+                id: "2.0/docs/overview/concepts/devopsfoundations",
+              },
+              {
+                label: "Recommended Folder Structure: Infrastructure Live",
+                type: "doc",
+                id: "2.0/docs/overview/concepts/infrastructure-live",
+              },
+              {
+                label: "Labels and Tags",
+                type: "doc",
+                id: "2.0/docs/overview/concepts/labels-tags",
+              },
+            ]
           },
           {
             label: "Getting Started",
