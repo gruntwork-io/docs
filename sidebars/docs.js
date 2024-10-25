@@ -9,13 +9,11 @@ const sidebar = [
         label: "Overview",
         type: "category",
         collapsed: false,
-        link: { type: 'generated-index', title: "Overview", slug: "2.0/docs/overview" },
         items: [
           {
             label: "Concepts",
             type: "category",
             collapsed: false,
-            link: { type: 'generated-index', title: "Gruntwork Concepts", slug: "2.0/docs/overview/concepts" },
             items: [
               {
                 label: "Devops Foundations",
@@ -50,13 +48,11 @@ const sidebar = [
         label: "Pipelines",
         type: "category",
         collapsed: true,
-        link: { type: 'generated-index', title: "Getting Started with Pipelines", slug: "2.0/docs/pipelines" },
         items: [
           {
             label: "Concepts",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Pipelines Concepts", slug: "2.0/docs/pipelines/concepts/" },
             items: [
               {
                 label: 'Overview',
@@ -84,7 +80,6 @@ const sidebar = [
             label: "Architecture",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Pipelines Architecture", slug: "2.0/docs/pipelines/concepts2/" },
             items: [
               {
                 label: 'Overview',
@@ -97,7 +92,6 @@ const sidebar = [
             label: "Setup & Installation",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Setting up and Installing Pipelines", slug: "2.0/docs/pipelines/installation/" },
             items: [
 
               {
@@ -150,7 +144,6 @@ const sidebar = [
                 label: "Configuration",
                 type: "category",
                 collapsed: false,
-                link: { type: 'generated-index', title: "Pipelines Configuration", slug: "2.0/docs/pipelines/configuration/" },
                 items: [
                   {
                     label: "Setting up Drift Detection",
@@ -170,7 +163,6 @@ const sidebar = [
             label: "Tutorials",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Pipelines Tutorials", slug: "2.0/docs/pipelines/tutorials/" },
             items: [
               {
                 label: "Deploy your first infrastructure change with Pipelines",
@@ -188,7 +180,6 @@ const sidebar = [
             label: "Guides",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Pipelines Guides", slug: "2.0/docs/pipelines/guides/" },
             items: [
               {
                 label: "Managing Secrets in your Pipelines",
@@ -218,7 +209,6 @@ const sidebar = [
       },
       {
         label: "Account Factory",
-        link: { type: 'generated-index', title: "Getting Started with Account Factory", slug: "2.0/docs/accountfactory" },
         type: "category",
         collapsed: true,
         items: [
@@ -226,7 +216,6 @@ const sidebar = [
             label: "Concepts",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Account Factory Concepts", slug: "2.0/docs/accountfactory/concepts" },
             items: [
               {
                 label: "Overview",
@@ -239,7 +228,6 @@ const sidebar = [
             label: "Architecture",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Account Factory Architecture", slug: "2.0/docs/accountfactory/architecture" },
             items: [
               {
                 label: "Overview",
@@ -252,7 +240,6 @@ const sidebar = [
             label: "Setup & Installation",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Account Factory Setup & Installation", slug: "2.0/docs/accountfactory/installation" },
             items: [
               {
                 label: "Overview",
@@ -265,7 +252,6 @@ const sidebar = [
             label: "Guides",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Account Factory Guides", slug: "2.0/docs/accountfactory/guides" },
             items: [
               {
                 label: "Customizing something",
@@ -291,14 +277,12 @@ const sidebar = [
       {
         label: "Patcher",
         type: "category",
-        link: { type: 'generated-index', title: "Getting Started with Patcher", slug: "2.0/docs/patcher" },
         collapsed: true,
         items: [
           {
             label: "Concepts",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Patcher Concepts", slug: "2.0/docs/patcher/concepts" },
             items: [
               {
                 label: "Overview",
@@ -311,7 +295,6 @@ const sidebar = [
             label: "Architecture",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Patcher Architecture", slug: "2.0/docs/patcher/architecture" },
             items: [
               {
                 label: "Overview",
@@ -324,7 +307,6 @@ const sidebar = [
             label: "Setup & Installation",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Patcher Setup & Installation", slug: "2.0/docs/patcher/installation" },
             items: [
               {
                 label: "Overview",
@@ -354,7 +336,6 @@ const sidebar = [
             label: "Guides",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Patcher Guides", slug: "2.0/docs/patcher/guides" },
             items: [
               {
                 label: "Setting up Promotion Workflows",
@@ -382,13 +363,11 @@ const sidebar = [
         label: "Library",
         type: "category",
         collapsed: true,
-        link: { type: 'generated-index', title: "Getting Started with the Library", slug: "2.0/docs/library" },
         items: [
           {
             label: "Concepts",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Library Guides", slug: "2.0/docs/library/concepts" },
             items: [
               {
                 label: "Service Modules",
@@ -401,7 +380,6 @@ const sidebar = [
             label: "Architecture",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Library Architecture", slug: "2.0/docs/library/architecture" },
             items: [
               {
                 label: "Overview",
@@ -414,7 +392,6 @@ const sidebar = [
             label: "Setup & Installation",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Library Setup & Installation", slug: "2.0/docs/library/setup" },
             items: [
               {
                 label: "Overview",
@@ -439,7 +416,6 @@ const sidebar = [
             label: "Guides",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Library Guides", slug: "2.0/docs/library/guides" },
             items: [
               {
                 label: "Create your own Service Module",
