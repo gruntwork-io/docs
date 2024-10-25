@@ -241,7 +241,7 @@ Control Tower Creation will take around an hour to complete
 
    ![Root User's Access Portal](/img/devops-foundations/account/root-user-access-portal.png)
 
-## Initial Configuration
+## Post Setup Configuration
 
 Now that Control Tower is enabled in your root account, there are a few configuration changes that need to be made to
 prepare for Gruntwork Landing Zone.

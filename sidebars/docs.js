@@ -249,6 +249,18 @@ const sidebar = [
             ]
           },
           {
+            label: "Tutorials",
+            type: "category",
+            collapsed: true,
+            items: [
+              {
+                label: "Vending a new AWS Account",
+                type: "doc",
+                id: "2.0/docs/accountfactory/tutorials/vend-aws-account",
+              },
+            ]
+          },
+          {
             label: "Guides",
             type: "category",
             collapsed: true,
