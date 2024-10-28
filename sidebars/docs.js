@@ -218,12 +218,6 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/pipelines/guides/updating-pipelines",
               },
-              {
-                label: "Configuration Reference",
-                type: "link",
-                className: 'external-link',
-                href: '/2.0/reference/pipelines',
-              },
             ],
           },
           {
@@ -316,12 +310,6 @@ const sidebar = [
                 label: "Customizing something",
                 type: "doc",
                 id: "2.0/docs/accountfactory/guides/index",
-              },
-              {
-                label: "Configuration Reference",
-                type: "link",
-                className: 'external-link',
-                href: '/2.0/reference/accountfactory',
               },
             ],
           },
@@ -435,12 +423,6 @@ const sidebar = [
                 label: "Disable Telemetry",
                 type: "doc",
                 id: "2.0/docs/patcher/guides/telemetry",
-              },
-              {
-                label: "Configuration Reference",
-                type: "link",
-                className: 'external-link',
-                href: '/2.0/reference/patcher',
               },
             ]
           },
