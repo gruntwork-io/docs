@@ -490,10 +490,9 @@ const sidebar = [
                 id: "2.0/docs/library/guides/updating-modules",
               },
               {
-                label: "Module Reference",
-                type: "link",
-                className: 'external-link',
-                href: '/2.0/reference/library',
+                label: "Running Apps",
+                type: "doc",
+                id: '2.0/docs/library/guides/running-apps',
               },
             ],
           },
