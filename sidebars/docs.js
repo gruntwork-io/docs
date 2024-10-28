@@ -1,3 +1,8 @@
+const developerPortalKBLink =
+  "https://github.com/orgs/gruntwork-io/discussions?discussions_q=" +
+  // filter by discussions with the label "s:dev-portal" & sort by top voted discussions first
+  encodeURIComponent("label:s:dev-portal sort:top")
+
 const sidebar = [
   {
     label: "Gruntwork Documentation",
@@ -36,6 +41,38 @@ const sidebar = [
             label: "Getting Started",
             type: "doc",
             id: "2.0/docs/overview/gettingstarted",
+          },
+          {
+            label: "Developer Portal",
+            type: "category",
+            collapsed: true,
+            items: [
+              {
+                label: 'Overview',
+                type: "doc",
+                id: "2.0/docs/overview/developer-portal/index",
+              },
+              {
+                label: "Create Account",
+                type: "doc",
+                id: "2.0/docs/overview/developer-portal/create-account",
+              },
+              {
+                label: "Invite Team",
+                type: "doc",
+                id: "2.0/docs/overview/developer-portal/invite-team",
+              },
+              {
+                label: "Link GitHub ID",
+                type: "doc",
+                id: "2.0/docs/overview/developer-portal/link-github-id",
+              },
+              {
+                type: "link",
+                label: "Knowledge Base",
+                href: developerPortalKBLink,
+              },
+            ]
           },
           {
             label: "Support",
