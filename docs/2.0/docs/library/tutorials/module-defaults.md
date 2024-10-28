@@ -39,6 +39,7 @@ Finally, you can define inputs. This is where the module defaults pattern really
 
 In the example block below, we’ve set default values for the `vpc_name` and `num_nat_gateways` variables. A quick inspection of the [`vpc-app`](../../../../reference/modules/terraform-aws-vpc/vpc-app/) module shows us that we’re only missing one additional required variable — `cidr_block`. This means that consumers of our defaults module only need to specify a value for one input variable, a 66% reduction! You could even expand this example to always use the same CIDR block, allowing consumers to override it should they require a different block.
 
+
 ```hcl title=_module_defaults/networking/vpc-app.hcl
 inputs = {
     // cidr_block is a required input but note we are excluding it!
