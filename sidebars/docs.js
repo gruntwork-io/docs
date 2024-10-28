@@ -400,6 +400,11 @@ const sidebar = [
                 label: "Service Modules",
                 type: "doc",
                 id: "2.0/docs/library/concepts/servicemodules",
+              },
+              {
+                label: "Module Defaults",
+                type: "doc",
+                id: "2.0/docs/library/concepts/module-defaults",
               }
             ]
           },
@@ -436,6 +441,11 @@ const sidebar = [
                 label: "Deploying your first Gruntwork Module",
                 type: "doc",
                 id: "2.0/docs/library/tutorials/deploying-your-first-gruntwork-module",
+              },
+              {
+                label: "Defining and using Module Defaults",
+                type: "doc",
+                id: "2.0/docs/library/tutorials/module-defaults",
               }
             ]
           },
