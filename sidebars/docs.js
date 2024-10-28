@@ -325,6 +325,21 @@ const sidebar = [
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/patcher/concepts/index",
+              },
+              {
+               label: "Patches",
+               type: "doc",
+               id: "2.0/docs/patcher/concepts/patches",
+              },
+              {
+                label: "Promotion Workflows",
+                type: "doc",
+                id: "2.0/docs/patcher/concepts/promotion-workflows",
+              },
+              {
+                label: "Update Strategies",
+                type: "doc",
+                id: "2.0/docs/patcher/concepts/update-strategies",
               }
             ]
           },
@@ -378,6 +393,26 @@ const sidebar = [
                 label: "Setting up Promotion Workflows",
                 type: "doc",
                 id: "2.0/docs/patcher/guides/promotion-workflows",
+              },
+              {
+                label: "Using Patcher Report",
+                type: "doc",
+                id: "2.0/docs/patcher/guides/report",
+              },
+              {
+                label: "Using Patcher Update",
+                type: "doc",
+                id: "2.0/docs/patcher/guides/update",
+              },
+              {
+                label: "Using Patcher Upgrade",
+                type: "doc",
+                id: "2.0/docs/patcher/guides/upgrade",
+              },
+              {
+                label: "Disable Telemetry",
+                type: "doc",
+                id: "2.0/docs/patcher/guides/telemetry",
               },
               {
                 label: "Configuration Reference",
