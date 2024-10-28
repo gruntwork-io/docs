@@ -60,6 +60,11 @@ const sidebar = [
                 id: '2.0/docs/pipelines/concepts/cicd-for-infrastructure',
               },
               {
+                label: 'Authenticating with Cloud Providers',
+                type: 'doc',
+                id: '2.0/docs/pipelines/concepts/cloud-auth',
+              },
+              {
                 label: 'CI/CD for Infrastructure',
                 type: 'doc',
                 id: '2.0/docs/pipelines/concepts/cicd-for-infrastructure',
