@@ -317,6 +317,16 @@ const sidebar = [
                 id: "2.0/docs/patcher/concepts/index",
               },
               {
+               label: "Patches",
+               type: "doc",
+               id: "2.0/docs/patcher/concepts/patches",
+              },
+              {
+                label: "Promotion Workflows",
+                type: "doc",
+                id: "2.0/docs/patcher/concepts/promotion-workflows",
+              },
+              {
                 label: "Update Strategies",
                 type: "doc",
                 id: "2.0/docs/patcher/concepts/update-strategies",
