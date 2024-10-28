@@ -77,7 +77,7 @@ Non-interactive mode supports both the `next-safe` and `next-breaking` update st
 
 ### Next Safe (Default)
 
-Using the [next safe update strategy](2.0/docs/patcher/concepts/update-strategies#next-safe-update-strategy-default), if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the highest version **before** that breaking change. Otherwise, it will update the dependencies the latest version of that module.
+Using the [next safe update strategy](/patcher/update-strategies#next-safe-update-strategy-default), if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the highest version **before** that breaking change. Otherwise, it will update the dependencies the latest version of that module.
 
 Example usage:
 ```
@@ -90,7 +90,7 @@ patcher update --non-interactive --skip-container-runtime prod
 
 ### Next Breaking
 
-Using the [next breaking update strategy](/patcher/update-strategies#next-breaking-update-strategy), if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the version with the breaking change and stop. Otherwise, it will update the dependencies the latest version of that module.
+Using the [next breaking update strategy](/2.0/docs/patcher/concepts/update-strategies#next-breaking-update-strategy), if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the version with the breaking change and stop. Otherwise, it will update the dependencies the latest version of that module.
 
 If Patcher updates a dependency to a breaking version, a `README-TO-COMPLETE-UPDATE.md` is written into the folder containing the dependendency. The `README-TO-COMPLETE-UPDATE.md` file contains a release note extract for each dependency in that folder that was updated to a breaking change.
 
@@ -140,15 +140,3 @@ Here are the release notes for version v5.0.0:
 Running Patcher again will complete the update to `5.1.1`, the `README-TO-COMPLETE-UPDATE.md` file should be read, actioned and deleted first.
 
 ![Screenshot of third party module dependency full up to date](/img/guides/stay-up-to-date/patcher/patcher-report-overview-3p-futd.png)
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "82d2b541ef40b825238ca314baae000c"
-}
-##DOCS-SOURCER-END -->
-
-import {Redirect} from '@docusaurus/router';
-
-<Redirect to="/2.0/docs/patcher/guides/update" />

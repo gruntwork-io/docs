@@ -24,15 +24,3 @@ You can opt out of sending telemetry data by setting the `PATCHER_TELEMETRY_OPT_
 ```bash
 export PATCHER_TELEMETRY_OPT_OUT=true
 ```
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "c29e061bc9421b3e8929c62a41847140"
-}
-##DOCS-SOURCER-END -->
-
-import {Redirect} from '@docusaurus/router';
-
-<Redirect to="/2.0/docs/patcher/guides/telemetry" />

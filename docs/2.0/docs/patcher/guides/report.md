@@ -61,7 +61,3 @@ The report command outpust a list of module dependencies in JSON format to `stdo
   "hash": "dfd6a16ded9deaced37f0acc5f66e0f3"
 }
 ##DOCS-SOURCER-END -->
-
-import {Redirect} from '@docusaurus/router';
-
-<Redirect to="/2.0/docs/patcher/guides/report" />

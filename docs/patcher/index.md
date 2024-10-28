@@ -15,3 +15,7 @@ Gruntwork Patcher provides a straightforward README driven workflow for use when
   "hash": "668d3f89f01f72d1ebb09fa5c9463714"
 }
 ##DOCS-SOURCER-END -->
+
+import {Redirect} from '@docusaurus/router';
+
+<Redirect to="/2.0/docs/patcher/concepts/" />

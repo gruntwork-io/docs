@@ -65,3 +65,7 @@ patcher report --loglevel debug
   "hash": "9ee56fd08f671b08f7486567a8757bd7"
 }
 ##DOCS-SOURCER-END -->
+
+import {Redirect} from '@docusaurus/router';
+
+<Redirect to="/2.0/docs/patcher/installation/" />

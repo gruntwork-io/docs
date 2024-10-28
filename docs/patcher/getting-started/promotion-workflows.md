@@ -321,3 +321,7 @@ jobs:
   "hash": "149d3ed221b55972da6b139fa890da88"
 }
 ##DOCS-SOURCER-END -->
+
+import {Redirect} from '@docusaurus/router';
+
+<Redirect to="/2.0/docs/patcher/guides/promotion-workflows" />
