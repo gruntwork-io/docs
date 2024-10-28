@@ -39,38 +39,23 @@ const sidebar = [
           },
           {
             label: "Getting Started",
-            type: "doc",
-            id: "2.0/docs/overview/gettingstarted",
-          },
-          {
-            label: "Developer Portal",
             type: "category",
-            collapsed: true,
+            collapsed: false,
             items: [
               {
-                label: 'Overview',
-                type: "doc",
-                id: "2.0/docs/overview/developer-portal/index",
-              },
-              {
-                label: "Create Account",
+                label: "Activating your Gruntwork Account",
                 type: "doc",
                 id: "2.0/docs/overview/developer-portal/create-account",
               },
               {
-                label: "Invite Team",
+                label: "Inviting Team Members",
                 type: "doc",
                 id: "2.0/docs/overview/developer-portal/invite-team",
               },
               {
-                label: "Link GitHub ID",
+                label: "Link your GitHub Organization to Gruntwork",
                 type: "doc",
                 id: "2.0/docs/overview/developer-portal/link-github-id",
-              },
-              {
-                type: "link",
-                label: "Knowledge Base",
-                href: developerPortalKBLink,
               },
             ]
           },
