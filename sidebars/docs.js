@@ -53,7 +53,7 @@ const sidebar = [
                 id: "2.0/docs/overview/developer-portal/invite-team",
               },
               {
-                label: "Link your GitHub Organization to Gruntwork",
+                label: "Linking GitHub to Gruntwork",
                 type: "doc",
                 id: "2.0/docs/overview/developer-portal/link-github-id",
               },
