@@ -238,6 +238,11 @@ const sidebar = [
                 label: "Logging",
                 type: "doc",
                 id: "2.0/docs/accountfactory/architecture/logging",
+              },
+              {
+                label: "Network Topology",
+                type: "doc",
+                id: "2.0/docs/accountfactory/architecture/network-topology",
               }
             ]
           },

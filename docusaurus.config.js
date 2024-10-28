@@ -9,6 +9,7 @@ const darkCodeTheme = themes.dracula;
 const cfg = require("config")
 
 const captionsPlugin = require("./src/plugins/captions.mjs")
+const { redirects } = require("./src/redirects.js");
 
 const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined
 
@@ -36,6 +37,16 @@ const plugins = ["plugin-image-zoom"]
 if (enablePosthog) {
   plugins.push("posthog-docusaurus")
 }
+
+const redirectPlugin = [
+  '@docusaurus/plugin-client-redirects',
+      {
+        redirects,
+      }
+]
+
+// @ts-ignore - types don't understand the plugin config
+plugins.push(redirectPlugin)
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
