@@ -1,3 +1,8 @@
+const developerPortalKBLink =
+  "https://github.com/orgs/gruntwork-io/discussions?discussions_q=" +
+  // filter by discussions with the label "s:dev-portal" & sort by top voted discussions first
+  encodeURIComponent("label:s:dev-portal sort:top")
+
 const sidebar = [
   {
     label: "Gruntwork Documentation",
@@ -38,8 +43,25 @@ const sidebar = [
           },
           {
             label: "Getting Started",
-            type: "doc",
-            id: "2.0/docs/overview/gettingstarted",
+            type: "category",
+            collapsed: false,
+            items: [
+              {
+                label: "Activating your Gruntwork Account",
+                type: "doc",
+                id: "2.0/docs/overview/developer-portal/create-account",
+              },
+              {
+                label: "Inviting Team Members",
+                type: "doc",
+                id: "2.0/docs/overview/developer-portal/invite-team",
+              },
+              {
+                label: "Linking GitHub to Gruntwork",
+                type: "doc",
+                id: "2.0/docs/overview/developer-portal/link-github-id",
+              },
+            ]
           },
           {
             label: "Support",
@@ -63,10 +85,10 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/pipelines/concepts/cicd-for-infrastructure",
               },
-              {
-                label: "CI/CD for Infrastructure",
-                type: "doc",
-                id: "2.0/docs/pipelines/concepts/cicd-for-infrastructure",
+              {              
+                label: 'Authenticating with Cloud Providers',
+                type: 'doc',
+                id: '2.0/docs/pipelines/concepts/cloud-auth',                           
               },
               {
                 label: "Security",
@@ -218,13 +240,7 @@ const sidebar = [
                 label: "Managing Drift",
                 type: "doc",
                 id: "2.0/docs/pipelines/guides/managing-drift",
-              },
-              {
-                label: "Configuration Reference",
-                type: "link",
-                className: "external-link",
-                href: "/2.0/reference/pipelines",
-              },
+              }, 
             ],
           },
           {
@@ -267,7 +283,12 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/accountfactory/architecture/logging",
               },
-            ],
+              {
+                label: "Network Topology",
+                type: "doc",
+                id: "2.0/docs/accountfactory/architecture/network-topology",
+              }
+            ]
           },
           {
             label: "Setup & Installation",
@@ -313,12 +334,6 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/accountfactory/guides/index",
               },
-              {
-                label: "Configuration Reference",
-                type: "link",
-                className: "external-link",
-                href: "/2.0/reference/accountfactory",
-              },
             ],
           },
           {
@@ -344,7 +359,22 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/patcher/concepts/index",
               },
-            ],
+              {
+               label: "Patches",
+               type: "doc",
+               id: "2.0/docs/patcher/concepts/patches",
+              },
+              {
+                label: "Promotion Workflows",
+                type: "doc",
+                id: "2.0/docs/patcher/concepts/promotion-workflows",
+              },
+              {
+                label: "Update Strategies",
+                type: "doc",
+                id: "2.0/docs/patcher/concepts/update-strategies",
+              }
+            ]
           },
           {
             label: "Architecture",
@@ -398,10 +428,24 @@ const sidebar = [
                 id: "2.0/docs/patcher/guides/promotion-workflows",
               },
               {
-                label: "Configuration Reference",
-                type: "link",
-                className: "external-link",
-                href: "/2.0/reference/patcher",
+                label: "Using Patcher Report",
+                type: "doc",
+                id: "2.0/docs/patcher/guides/report",
+              },
+              {
+                label: "Using Patcher Update",
+                type: "doc",
+                id: "2.0/docs/patcher/guides/update",
+              },
+              {
+                label: "Using Patcher Upgrade",
+                type: "doc",
+                id: "2.0/docs/patcher/guides/upgrade",
+              },
+              {
+                label: "Disable Telemetry",
+                type: "doc",
+                id: "2.0/docs/patcher/guides/telemetry",
               },
             ],
           },
@@ -429,7 +473,12 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/library/concepts/servicemodules",
               },
-            ],
+              {
+                label: "Module Defaults",
+                type: "doc",
+                id: "2.0/docs/library/concepts/module-defaults",
+              }
+            ]
           },
           {
             label: "Architecture",
@@ -465,7 +514,12 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/library/tutorials/deploying-your-first-gruntwork-module",
               },
-            ],
+              {
+                label: "Defining and using Module Defaults",
+                type: "doc",
+                id: "2.0/docs/library/tutorials/module-defaults",
+              }
+            ]
           },
           {
             label: "Guides",
@@ -503,10 +557,9 @@ const sidebar = [
                 id: "2.0/docs/library/guides/updating-modules",
               },
               {
-                label: "Module Reference",
-                type: "link",
-                className: "external-link",
-                href: "/2.0/reference/library",
+                label: "Running Apps",
+                type: "doc",
+                id: '2.0/docs/library/guides/running-apps',
               },
             ],
           },
