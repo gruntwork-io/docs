@@ -76,7 +76,7 @@ const sidebar = [
               {
                 label: "Drift Detection",
                 type: "doc",
-                id: "2.0/docs/pipelines/concepts/driftdetection",
+                id: "2.0/docs/pipelines/concepts/drift-detection",
               },
             ],
           },
@@ -208,6 +208,16 @@ const sidebar = [
                 label: "Updating Pipelines",
                 type: "doc",
                 id: "2.0/docs/pipelines/guides/updating-pipelines",
+              },
+              {
+                label: "Extending Pipelines",
+                type: "doc",
+                id: "2.0/docs/pipelines/guides/extending-pipelines",
+              },
+              {
+                label: "Managing Drift",
+                type: "doc",
+                id: "2.0/docs/pipelines/guides/managing-drift",
               },
               {
                 label: "Configuration Reference",
