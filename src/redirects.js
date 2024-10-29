@@ -23,5 +23,9 @@ export const redirects = [
     {
         from: '/pipelines/security/machine-users',
         to: '/2.0/docs/pipelines/installation/viamachineusers#creating-machine-users'
+    },
+    {
+        to: '/2.0/docs/pipelines/installation/branch-protection',
+        from: '/pipelines/security/branch-protection'
     }
 ]

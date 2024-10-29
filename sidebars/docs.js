@@ -188,6 +188,11 @@ const sidebar = [
                     type: "doc",
                     id: "2.0/docs/pipelines/installation/addingexistingrepo",
                   },
+                  {
+                    label: "Adding Branch Protection to a Repository",
+                    type: "doc",
+                    id: "2.0/docs/pipelines/installation/branch-protection",
+                  }
                 ],
               },
               {
