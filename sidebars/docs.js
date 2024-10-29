@@ -2,12 +2,20 @@ const developerPortalKBLink =
   "https://github.com/orgs/gruntwork-io/discussions?discussions_q=" +
   // filter by discussions with the label "s:dev-portal" & sort by top voted discussions first
   encodeURIComponent("label:s:dev-portal sort:top")
+  const pipelinesKBLink =
+  "https://github.com/orgs/gruntwork-io/discussions?discussions_q=" +
+  // filter by discussions with the label s:CI/Pipelines & sort by top voted discussions first
+  encodeURIComponent("label:s:CI/Pipelines sort:top")
 
 const sidebar = [
   {
     label: "Gruntwork Documentation",
     type: "category",
-    link: { type: 'generated-index', title: "Gruntwork Documentation", slug: "2.0/docs" },
+    link: {
+      type: "generated-index",
+      title: "Gruntwork Documentation",
+      slug: "2.0/docs",
+    },
     collapsible: false,
     items: [
       {
@@ -35,7 +43,7 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/overview/concepts/labels-tags",
               },
-            ]
+            ],
           },
           {
             label: "Getting Started",
@@ -63,8 +71,8 @@ const sidebar = [
             label: "Support",
             type: "doc",
             id: "support",
-          }
-        ]
+          },
+        ],
       },
       {
         label: "Pipelines",
@@ -77,9 +85,9 @@ const sidebar = [
             collapsed: true,
             items: [
               {
-                label: 'Overview',
-                type: 'doc',
-                id: '2.0/docs/pipelines/concepts/cicd-for-infrastructure',
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/pipelines/concepts/overview",
               },
               {
                 label: 'Authenticating with Cloud Providers',
@@ -87,21 +95,11 @@ const sidebar = [
                 id: '2.0/docs/pipelines/concepts/cloud-auth',
               },
               {
-                label: 'CI/CD for Infrastructure',
-                type: 'doc',
-                id: '2.0/docs/pipelines/concepts/cicd-for-infrastructure',
+                label: "Drift Detection",
+                type: "doc",
+                id: "2.0/docs/pipelines/concepts/drift-detection",
               },
-              {
-                label: 'Security',
-                type: 'doc',
-                id: '2.0/docs/pipelines/concepts/security',
-              },
-              {
-                label: 'Drift Detection',
-                type: 'doc',
-                id: '2.0/docs/pipelines/concepts/driftdetection',
-              }
-            ]
+            ],
           },
           {
             label: "Architecture",
@@ -109,18 +107,42 @@ const sidebar = [
             collapsed: true,
             items: [
               {
-                label: 'Overview',
-                type: 'doc',
-                id: "2.0/docs/pipelines/architecture",
-              }
-            ]
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/pipelines/architecture/index",
+              },
+              {
+                label: "Components",
+                type: "doc",
+                id: "2.0/docs/pipelines/architecture/components",
+              },
+              {
+                label: "Actions",
+                type: "doc",
+                id: "2.0/docs/pipelines/architecture/actions",
+              },
+              {
+                label: "Security Controls",
+                type: "doc",
+                id: '2.0/docs/pipelines/architecture/security-controls',
+              },
+              {
+                label: "Audit Logs",
+                type: "doc",
+                id: '2.0/docs/pipelines/architecture/audit-logs',
+              },
+              {
+                label: "Usage Data",
+                type: "doc",
+                id: "2.0/docs/pipelines/architecture/usage-data",
+              },
+            ],
           },
           {
             label: "Setup & Installation",
             type: "category",
             collapsed: true,
             items: [
-
               {
                 label: "Prerequisites",
                 type: "category",
@@ -131,7 +153,7 @@ const sidebar = [
                     type: "doc",
                     id: "2.0/docs/pipelines/installation/prerequisites/awslandingzone",
                   },
-                ]
+                ],
               },
               {
                 type: "category",
@@ -148,7 +170,7 @@ const sidebar = [
                     type: "doc",
                     id: "2.0/docs/pipelines/installation/viamachineusers",
                   },
-                ]
+                ],
               },
               {
                 type: "category",
@@ -165,7 +187,12 @@ const sidebar = [
                     type: "doc",
                     id: "2.0/docs/pipelines/installation/addingexistingrepo",
                   },
-                ]
+                  {
+                    label: "Adding Branch Protection to a Repository",
+                    type: "doc",
+                    id: "2.0/docs/pipelines/installation/branch-protection",
+                  }
+                ],
               },
               {
                 label: "Configuration",
@@ -173,18 +200,18 @@ const sidebar = [
                 collapsed: false,
                 items: [
                   {
+                    label: "Settings",
+                    type: "doc",
+                    id: "2.0/docs/pipelines/configuration/settings",
+                  },
+                  {
                     label: "Setting up Drift Detection",
                     type: "doc",
                     id: "2.0/docs/pipelines/configuration/driftdetection",
                   },
-                  {
-                    label: "Customizing & Extending Pipelines",
-                    type: "doc",
-                    id: "2.0/docs/pipelines/configuration/customizing",
-                  },
-                ]
-              }
-            ]
+                ],
+              },
+            ],
           },
           {
             label: "Tutorials",
@@ -200,14 +227,19 @@ const sidebar = [
                 label: "Destroying infrastructure with Pipelines",
                 type: "doc",
                 id: "2.0/docs/pipelines/tutorials/destroying-infrastructure",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Guides",
             type: "category",
             collapsed: true,
             items: [
+              {
+                label: "Running Plan/Apply",
+                type: "doc",
+                id: "2.0/docs/pipelines/guides/running-plan-apply",
+              },
               {
                 label: "Managing Secrets in your Pipelines",
                 type: "doc",
@@ -218,14 +250,57 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/pipelines/guides/updating-pipelines",
               },
+              {
+                label: "Extending Pipelines",
+                type: "doc",
+                id: "2.0/docs/pipelines/guides/extending-pipelines",
+              },
+              {
+                label: "Running Drift Detection",
+                type: "doc",
+                id: "2.0/docs/pipelines/guides/running-drift-detection",
+              },
+            ],
+          },
+          {
+            label: "Previous Versions",
+            type: "category",
+            items: [
+              {
+                label: "Infrastructure Pipelines",
+                type: "link",
+                className: "external-link",
+                href: "/infrastructure-pipelines/overview",
+              },
+              {
+                label: "Upgrading from Infrastructure-Pipelines",
+                type: "doc",
+                id: "2.0/docs/pipelines/previous-versions/upgrading-from-infrastructure-pipelines",
+              },
+              {
+                label: "ECS Deploy Runner",
+                type: "link",
+                className: "external-link",
+                href: "/ecs-deploy-runner/overview",
+              },
+              {
+                label: "Upgrading from ECS Deploy Runner",
+                type: "doc",
+                id: "2.0/docs/pipelines/previous-versions/upgrading-from-ecs-deploy-runner",
+              },
             ],
           },
           {
             label: "Configuration Reference",
             type: "link",
-            className: 'external-link',
-            href: '/2.0/reference/pipelines',
+            className: "external-link",
+            href: "/2.0/reference/pipelines",
           },
+          {
+            label: "Knowledge Base",
+            type: "link",
+            href: pipelinesKBLink,
+          }
         ],
       },
       {
@@ -242,8 +317,8 @@ const sidebar = [
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/accountfactory/concepts/index",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Architecture",
@@ -276,8 +351,8 @@ const sidebar = [
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/accountfactory/installation/index",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Tutorials",
@@ -299,7 +374,7 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/accountfactory/tutorials/remove-account",
               },
-            ]
+            ],
           },
           {
             label: "Guides",
@@ -316,8 +391,8 @@ const sidebar = [
           {
             label: "Configuration Reference",
             type: "link",
-            className: 'external-link',
-            href: '/2.0/reference/accountfactory',
+            className: "external-link",
+            href: "/2.0/reference/accountfactory",
           },
         ],
       },
@@ -362,8 +437,8 @@ const sidebar = [
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/patcher/architecture/index",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Setup & Installation",
@@ -374,8 +449,8 @@ const sidebar = [
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/patcher/installation/index",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Tutorials",
@@ -391,8 +466,8 @@ const sidebar = [
                 label: "Authoring your first patch",
                 type: "doc",
                 id: "2.0/docs/patcher/tutorials/authoring-first-patch",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Guides",
@@ -424,13 +499,13 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/patcher/guides/telemetry",
               },
-            ]
+            ],
           },
           {
             label: "Configuration Reference",
             type: "link",
-            className: 'external-link',
-            href: '/2.0/reference/patcher',
+            className: "external-link",
+            href: "/2.0/reference/patcher",
           },
         ],
       },
@@ -591,8 +666,8 @@ const sidebar = [
           {
             label: "Module Reference",
             type: "link",
-            className: 'external-link',
-            href: '/2.0/reference/library',
+            className: "external-link",
+            href: "/2.0/reference/library",
           },
         ],
       },
@@ -608,7 +683,6 @@ const sidebar = [
       },
     ],
   },
-
 ]
 
 module.exports = sidebar

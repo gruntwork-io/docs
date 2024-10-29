@@ -26,7 +26,7 @@ All of the other infrastructure that is managed using Gruntwork software will ul
 
   You don't even need to use the form at all if you don't want to. An alternative would be to use a service like ServiceNow to populate the requisite fields, then trigger the workflow using the GitHub API.
 
-  You can learn more about this [here](../../foundations/landing-zone/add-aws-account.md).
+  You can learn more about this [here](../../accountfactory/tutorials/vend-aws-account.md).
 
   :::
 
