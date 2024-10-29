@@ -128,6 +128,11 @@ const sidebar = [
                 id: '2.0/docs/pipelines/architecture/security-controls',
               },
               {
+                label: "Audit Logs",
+                type: "doc",
+                id: '2.0/docs/pipelines/architecture/audit-logs',
+              },
+              {
                 label: "Usage Data",
                 type: "doc",
                 id: "2.0/docs/pipelines/architecture/usage-data",

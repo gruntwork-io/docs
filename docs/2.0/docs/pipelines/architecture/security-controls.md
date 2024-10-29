@@ -171,12 +171,3 @@ These roles have almost no permissions by default. They are pre-configured by de
 It is up to the user provisioning these roles to ensure that this role has only the necessary _read/write_ permissions required to manage infrastructure changes relevant to the delegated repository.
 
 :::
-
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "e663d09612e345a027def347871ed66f"
-}
-##DOCS-SOURCER-END -->
