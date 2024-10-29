@@ -2,7 +2,7 @@
 
 We offer a collection of [service modules](/2.0/docs/library/concepts/service-modules) that piece together individual [modules](/2.0/docs/library/concepts/modules) for specific use cases such as EKS clusters and VPCs with public and private subnets. While we strive to make our service catalog as a complete as possible, you may need to create your own service to suit a specific use case or need for your company.
 
-In this guide, you will learn how to create a service that provisions a simple API using the [AWS Lambda Function](/2.0/reference/library/modules/terraform-aws-lambda/lambda/) and [API Gateway](/2.0/reference/library/modules/terraform-aws-lambda/lambda-http-api-gateway/) modules from the Gruntwork Infrastructure as Code (IaC) Library.
+In this guide, you will learn how to create a service that provisions a simple API using the [AWS Lambda Function](/reference/library/modules/terraform-aws-lambda/lambda/) and [API Gateway](/reference/library/modules/terraform-aws-lambda/lambda-http-api-gateway/) modules from the Gruntwork Infrastructure as Code (IaC) Library.
 
 ## Prerequisites
 
@@ -84,7 +84,7 @@ variable "lambda_handler" {
 
 ### Specify the outputs
 
-Next, define the outputs from the module. Outputs are convenient ways to pass values between modules when composing a service comprised of many modules. For this guide, we only want a single output — the URL for the API we are provisioning. You may want to define more outputs when developing a module for your company or team. Refer to the Library Reference for the [Lambda function module](/2.0/reference/library/modules/terraform-aws-lambda/lambda/#reference) and [HTTP API Gateway module](/2.0/reference/library/modules/terraform-aws-lambda/lambda-http-api-gateway/#reference) for a full list of outputs available.
+Next, define the outputs from the module. Outputs are convenient ways to pass values between modules when composing a service comprised of many modules. For this guide, we only want a single output — the URL for the API we are provisioning. You may want to define more outputs when developing a module for your company or team. Refer to the Library Reference for the [Lambda function module](/reference/library/modules/terraform-aws-lambda/lambda/#reference) and [HTTP API Gateway module](/reference/library/modules/terraform-aws-lambda/lambda-http-api-gateway/#reference) for a full list of outputs available.
 
 ```hcl title=gw_service_guide/serverless-api/outputs.tf
 output "api_endpoint" {

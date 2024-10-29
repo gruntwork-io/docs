@@ -1,10 +1,6 @@
 
 export const redirects = [
     {
-        to: '/foundations/network-topology',
-        from: '/2.0/docs/accountfactory/architecture/network-topology',
-    },
-    {
         to: '/2.0/docs/pipelines/architecture/audit-logs',
         from: '/pipelines/security/audit-log'
     },
@@ -173,7 +169,7 @@ export const redirects = [
         from: "/foundations/iac-foundations/labels-tags"
     },
     {
-        to: "/2.0/docs/overview/concepts/infrastructure-live/",
+        to: "/2.0/docs/overview/concepts/infrastructure-live",
         from: "/foundations/iac-foundations/index"
     },
     {
@@ -245,7 +241,7 @@ export const redirects = [
         from: "/library/getting-started/accessing-the-code"
     },
     {
-        to: "/2.0/docs/library/concepts/services",
+        to: "/2.0/docs/library/concepts/service-modules",
         from: "/library/overview/services"
     },
     {
@@ -277,7 +273,7 @@ export const redirects = [
         from: "/library/principles/quality-in-depth"
     },
     {
-        to: "/2.0/docs/library/concepts/principles",
+        to: "/2.0/docs/library/concepts/principles/overview",
         from: "/library/principles/overview"
     },
     {
@@ -305,7 +301,7 @@ export const redirects = [
         from: "/library/usage/self-hosting"
     },
     {
-        to: "/2.0/docs/library/tutorials/deploy-your-first-gruntwork-module",
+        to: "/2.0/docs/library/tutorials/deploying-your-first-gruntwork-module",
         from: "/library/usage/using-the-library"
     }
 ]

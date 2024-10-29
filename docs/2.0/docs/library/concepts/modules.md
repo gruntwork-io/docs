@@ -6,7 +6,7 @@ Most modules are written in Terraform and define several AWS resources.
 
 ## Example
 
-Let’s look at an example module. The [rds module](/2.0/reference/library/modules/terraform-aws-data-storage/rds/) is a Terraform module that creates an RDS database, the IAM roles needed to operate that database, optional read replicas, database subnet groups, and the relevant security groups.
+Let’s look at an example module. The [rds module](/reference/library/modules/terraform-aws-data-storage/rds/) is a Terraform module that creates an RDS database, the IAM roles needed to operate that database, optional read replicas, database subnet groups, and the relevant security groups.
 
 The module deploys a key element of an overall RDS deployment, but it's not a _complete_ RDS deployment. That's because the `rds` module does not include backup policies using AWS Backup (for disaster recovery), or RDS Proxy (to pool database connections), or CloudWatch alarms (to alert you when something goes wrong). These missing pieces are best thought of as building block modules themselves. Gruntwork has modules for `backup-plan`, `backup-vault`, and `rds-proxy` that can all be used in combination with the `rds` module.
 

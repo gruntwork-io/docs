@@ -6,7 +6,7 @@ Service modules are usually written in Terraform, represent a full use case, and
 
 ## Example
 
-Let’s look at an example service module. The [`rds` service module](/2.0/reference/library/services/data-storage/amazon-rds) creates not only an RDS database, but also a DNS record in Amazon Route53, CloudWatch alarms, a CloudWatch dashboard, and scheduled snapshots of the database, all using a combination of "building block" modules.
+Let’s look at an example service module. The [`rds` service module](/reference/library/services/data-storage/amazon-rds) creates not only an RDS database, but also a DNS record in Amazon Route53, CloudWatch alarms, a CloudWatch dashboard, and scheduled snapshots of the database, all using a combination of "building block" modules.
 
 After applying, you will have an RDS instance that you can access via a human-friendly name, alarms to alert you if something goes wrong, a dashboard for viewing RDS KPIs, and a strategy for disaster recovery.
 
