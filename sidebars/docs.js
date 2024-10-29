@@ -2,6 +2,10 @@ const developerPortalKBLink =
   "https://github.com/orgs/gruntwork-io/discussions?discussions_q=" +
   // filter by discussions with the label "s:dev-portal" & sort by top voted discussions first
   encodeURIComponent("label:s:dev-portal sort:top")
+  const pipelinesKBLink =
+  "https://github.com/orgs/gruntwork-io/discussions?discussions_q=" +
+  // filter by discussions with the label s:CI/Pipelines & sort by top voted discussions first
+  encodeURIComponent("label:s:CI/Pipelines sort:top")
 
 const sidebar = [
   {
@@ -297,6 +301,11 @@ const sidebar = [
             className: "external-link",
             href: "/2.0/reference/pipelines",
           },
+          {
+            label: "Knowledge Base",
+            type: "link",
+            href: pipelinesKBLink,
+          }
         ],
       },
       {
