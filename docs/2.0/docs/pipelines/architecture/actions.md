@@ -1,6 +1,6 @@
 # Pipelines Actions
 
-When a user opens a pull request, Pipelines runs a set of operations as a Github Action Workflow in response to the proposed [infrastructure changes](/2.0/docs/pipelines/concepts/cicd-for-infrastructure/#infrastructure-change). We call these operations _pipelines actions_. Gruntwork Pipelines supports the following pipelines actions:
+When a user opens a pull request, Pipelines runs a set of operations as a Github Action Workflow in response to the proposed [infrastructure changes](/2.0/docs/pipelines/concepts/overview/#infrastructure-change). We call these operations _pipelines actions_. Gruntwork Pipelines supports the following pipelines actions:
 
 ## Terragrunt plan
 
@@ -17,4 +17,3 @@ Sometimes you find it necessary to make a change without going through the full 
 ## Other Actions
 
 If you'd like to request a new Pipelines action, please email us at [feedback@gruntwork.io](mailto:feedback@gruntwork.io).
-

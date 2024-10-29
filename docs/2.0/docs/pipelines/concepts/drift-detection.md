@@ -12,4 +12,4 @@ Pipelines Drift Detection helps to mitigate Drift in your repositories by runnin
 
 When the Drift Detected Pull Request is merged, Pipelines will run `terragrunt apply` on all units where drift was detected to ensure resources once again match what is specified in code.
 
-See [Managing Drift](/2.0/docs/pipelines/guides/managing-drift) for more information on how to manage drift in your repositories.
+See [Setting up Drift Detection](/2.0/docs/pipelines/configuration/driftdetection) and [Running Drift Detection](/2.0/docs/pipelines/guides/running-drift-detection) for more information on how to detect and remediate drift in your repositories.

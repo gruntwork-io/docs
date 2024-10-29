@@ -87,17 +87,12 @@ const sidebar = [
               {
                 label: "Overview",
                 type: "doc",
-                id: "2.0/docs/pipelines/concepts/cicd-for-infrastructure",
+                id: "2.0/docs/pipelines/concepts/overview",
               },
               {
                 label: 'Authenticating with Cloud Providers',
                 type: 'doc',
                 id: '2.0/docs/pipelines/concepts/cloud-auth',
-              },
-              {
-                label: "Security",
-                type: "doc",
-                id: "2.0/docs/pipelines/concepts/security",
               },
               {
                 label: "Drift Detection",
@@ -261,9 +256,9 @@ const sidebar = [
                 id: "2.0/docs/pipelines/guides/extending-pipelines",
               },
               {
-                label: "Managing Drift",
+                label: "Running Drift Detection",
                 type: "doc",
-                id: "2.0/docs/pipelines/guides/managing-drift",
+                id: "2.0/docs/pipelines/guides/running-drift-detection",
               },
             ],
           },
