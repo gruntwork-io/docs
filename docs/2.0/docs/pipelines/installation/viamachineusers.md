@@ -54,7 +54,7 @@ import TabItem from "@theme/TabItem"
 :::info Gruntwork.io GitHub App
 This documentation assumes you are using static machine users to have Pipelines authenticate to GitHub.
 
-The Gruntwork.io GitHub App is the preferred way to authenticate with GitHub, and is recommended for most users. For more information, click [here](../../foundations/github-app/setup.md).
+The Gruntwork.io GitHub App is the preferred way to authenticate with GitHub, and is recommended for most users. For more information, click [here](./viagithubapp.md).
 :::
 
 

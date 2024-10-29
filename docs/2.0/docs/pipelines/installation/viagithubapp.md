@@ -119,7 +119,7 @@ The following features of the Gruntwork.io GitHub App will be unavailable during
 
 #### Fallback
 
-In order to ensure that the availability of the Gruntwork.io GitHub App is not something that can impair the ability of users to drive infrastructure updates, the legacy mechanism of authenticating with GitHub using [Machine users](../../pipelines/security/machine-users.mdx) is still supported.
+In order to ensure that the availability of the Gruntwork.io GitHub App is not something that can impair the ability of users to drive infrastructure updates, the legacy mechanism of authenticating with GitHub using [Machine users](./viamachineusers.md) is still supported.
 
 Configuring the `PIPELINES_READ_TOKEN`, `INFRA_ROOT_WRITE_TOKEN` and `ORG_REPO_ADMIN_TOKEN` where necessary (following the documentation linked above) will result in Pipelines using the legacy mechanism to authenticate with GitHub, rather than the Gruntwork.io GitHub App.
 
@@ -161,7 +161,7 @@ The Gruntwork.io GitHub App will cross reference this list when attempting to pe
 
 Keeping this list up to date is critical to ensure the Gruntwork.io GitHub App can perform its duties in and only in the repositories you trust as the "root" of your infrastructure management.
 
-For more information, see the [relevant architecture documentation](../iac-foundations/architecture.md#infrastructure-live-root).
+For more information, see the [relevant architecture documentation](/2.0/docs/pipelines/architecture/#infrastructure-live-root).
 
 ## Frequently Asked Questions
 
