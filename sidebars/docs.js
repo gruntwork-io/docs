@@ -446,9 +446,19 @@ const sidebar = [
             collapsed: true,
             items: [
               {
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/library/concepts/overview",
+              },
+              {
+                label: "Modules",
+                type: "doc",
+                id: "2.0/docs/library/concepts/modules",
+              },
+              {
                 label: "Service Modules",
                 type: "doc",
-                id: "2.0/docs/library/concepts/servicemodules",
+                id: "2.0/docs/library/concepts/service-modules",
               },
               {
                 label: "Module Defaults",
