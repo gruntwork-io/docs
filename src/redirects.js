@@ -27,5 +27,9 @@ export const redirects = [
     {
         to: '/2.0/docs/pipelines/installation/branch-protection',
         from: '/pipelines/security/branch-protection'
+    },
+    {
+        from: '/pipelines/security/secrets',
+        to: '/2.0/docs/pipelines/guides/managing-secrets'
     }
 ]
