@@ -40,17 +40,6 @@ Each of these use cases covers one or more Subject Matter Expert (SME) topics su
 
 To browse the module catalog, see the [Library Reference](/2.0/reference/library) and look for "Module Catalog" on the sidebar. You can also visit the list of [private Gruntwork GitHub repos](https://github.com/orgs/gruntwork-io/repositories?q=&type=private&language=&sort=).
 
-## How modules are structured
-
-The code in the module repos are organized into three primary folders:
-
-1. `modules`: The core implementation code. All of the modules that you will use and deploy are defined within. For example to ECS cluster module in the `terraform-aws-ecs` repo in `modules/ecs-cluster`.
-
-1. `examples`: Sample code that shows how to use the modules in the `modules` folder and allows you to try them out without having to write any code: `cd` into one of the folders, follow a few steps in the README (e.g. run `terraform apply`), and you’ll have a fully working module up and running. In other words, this is executable documentation.
-
-1. `test`: Automated tests for the code in modules and examples.
-
-We follow Hashicorp's [Standard Model Structure](https://developer.hashicorp.com/terraform/language/modules/develop/structure) for our files (`main.tf`, `variables.tf`, `outputs.tf`). In the `variables.tf` file we always put the required variables at the top of the file, followed by the optional variables. Although there are often a lot of ways to configure our modules, we set reasonable defaults and try to minimize the effort required to configure the modules to the most common use cases.
 
 ## How modules are updated
 

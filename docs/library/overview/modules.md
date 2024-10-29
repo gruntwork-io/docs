@@ -1,3 +1,3 @@
 import {Redirect} from '@docusaurus/router';
 
-<Redirect to="/2.0/docs/overview/library/concepts/modules" />
+<Redirect to="/2.0/docs/library/concepts/modules" />
