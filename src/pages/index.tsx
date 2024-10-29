@@ -17,7 +17,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/intro/overview/intro-to-gruntwork"
+            to="/2.0/docs/overview/developer-portal/create-account"
           >
             Get Started
           </Link>
@@ -38,10 +38,10 @@ export default function Home(): JSX.Element {
             <CardGroup>
               <Card
                 title="What is Gruntwork?"
-                href="/intro/overview/intro-to-gruntwork"
+                href="/2.0/docs/overview/concepts/devopsfoundations"
                 icon="/img/icons/learn.svg"
               >
-                Learn how Gruntwork products can help you deploy a world class
+                Learn how Gruntwork's Devops Foundations can help you deploy a world class
                 infrastructure.
               </Card>
               <Card
