@@ -1,7 +1,3 @@
----
-sidebar_label: "OpenTofu & Terraform Compatibility"
----
-
 # Compatibility with OpenTofu and Terraform
 
 All code in Gruntwork Library is compatible with:
