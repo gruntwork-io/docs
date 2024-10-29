@@ -13,10 +13,6 @@ export const redirects = [
         to: '/2.0/docs/pipelines/architecture/security-controls',
     },
     {
-        from: '/2.0/reference',
-        to: '/docs/reference2',
-    },
-    {
         from: '/pipelines/security/repository-access',
         to: '/2.0/docs/pipelines/installation/viamachineusers#repository-access',
     },
