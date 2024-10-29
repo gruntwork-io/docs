@@ -2,7 +2,11 @@ const sidebar = [
   {
     label: "Gruntwork Documentation",
     type: "category",
-    link: { type: 'generated-index', title: "Gruntwork Documentation", slug: "2.0/docs" },
+    link: {
+      type: "generated-index",
+      title: "Gruntwork Documentation",
+      slug: "2.0/docs",
+    },
     collapsible: false,
     items: [
       {
@@ -30,7 +34,7 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/overview/concepts/labels-tags",
               },
-            ]
+            ],
           },
           {
             label: "Getting Started",
@@ -41,8 +45,8 @@ const sidebar = [
             label: "Support",
             type: "doc",
             id: "support",
-          }
-        ]
+          },
+        ],
       },
       {
         label: "Pipelines",
@@ -55,26 +59,26 @@ const sidebar = [
             collapsed: true,
             items: [
               {
-                label: 'Overview',
-                type: 'doc',
-                id: '2.0/docs/pipelines/concepts/cicd-for-infrastructure',
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/pipelines/concepts/cicd-for-infrastructure",
               },
               {
-                label: 'CI/CD for Infrastructure',
-                type: 'doc',
-                id: '2.0/docs/pipelines/concepts/cicd-for-infrastructure',
+                label: "CI/CD for Infrastructure",
+                type: "doc",
+                id: "2.0/docs/pipelines/concepts/cicd-for-infrastructure",
               },
               {
-                label: 'Security',
-                type: 'doc',
-                id: '2.0/docs/pipelines/concepts/security',
+                label: "Security",
+                type: "doc",
+                id: "2.0/docs/pipelines/concepts/security",
               },
               {
-                label: 'Drift Detection',
-                type: 'doc',
-                id: '2.0/docs/pipelines/concepts/driftdetection',
-              }
-            ]
+                label: "Drift Detection",
+                type: "doc",
+                id: "2.0/docs/pipelines/concepts/driftdetection",
+              },
+            ],
           },
           {
             label: "Architecture",
@@ -82,18 +86,32 @@ const sidebar = [
             collapsed: true,
             items: [
               {
-                label: 'Overview',
-                type: 'doc',
-                id: "2.0/docs/pipelines/architecture",
-              }
-            ]
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/pipelines/architecture/index",
+              },
+              {
+                label: "Components",
+                type: "doc",
+                id: "2.0/docs/pipelines/architecture/components",
+              },
+              {
+                label: "Actions",
+                type: "doc",
+                id: "2.0/docs/pipelines/architecture/actions",
+              },
+              {
+                label: "Usage Data",
+                type: "doc",
+                id: "2.0/docs/pipelines/architecture/usage-data",
+              },
+            ],
           },
           {
             label: "Setup & Installation",
             type: "category",
             collapsed: true,
             items: [
-
               {
                 label: "Prerequisites",
                 type: "category",
@@ -104,7 +122,7 @@ const sidebar = [
                     type: "doc",
                     id: "2.0/docs/pipelines/installation/prerequisites/awslandingzone",
                   },
-                ]
+                ],
               },
               {
                 type: "category",
@@ -121,7 +139,7 @@ const sidebar = [
                     type: "doc",
                     id: "2.0/docs/pipelines/installation/viamachineusers",
                   },
-                ]
+                ],
               },
               {
                 type: "category",
@@ -138,7 +156,7 @@ const sidebar = [
                     type: "doc",
                     id: "2.0/docs/pipelines/installation/addingexistingrepo",
                   },
-                ]
+                ],
               },
               {
                 label: "Configuration",
@@ -155,9 +173,9 @@ const sidebar = [
                     type: "doc",
                     id: "2.0/docs/pipelines/configuration/customizing",
                   },
-                ]
-              }
-            ]
+                ],
+              },
+            ],
           },
           {
             label: "Tutorials",
@@ -173,8 +191,8 @@ const sidebar = [
                 label: "Destroying infrastructure with Pipelines",
                 type: "doc",
                 id: "2.0/docs/pipelines/tutorials/destroying-infrastructure",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Guides",
@@ -194,16 +212,16 @@ const sidebar = [
               {
                 label: "Configuration Reference",
                 type: "link",
-                className: 'external-link',
-                href: '/2.0/reference/pipelines',
+                className: "external-link",
+                href: "/2.0/reference/pipelines",
               },
             ],
           },
           {
             label: "Configuration Reference",
             type: "link",
-            className: 'external-link',
-            href: '/2.0/reference/pipelines',
+            className: "external-link",
+            href: "/2.0/reference/pipelines",
           },
         ],
       },
@@ -221,8 +239,8 @@ const sidebar = [
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/accountfactory/concepts/index",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Architecture",
@@ -238,8 +256,8 @@ const sidebar = [
                 label: "Logging",
                 type: "doc",
                 id: "2.0/docs/accountfactory/architecture/logging",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Setup & Installation",
@@ -250,8 +268,8 @@ const sidebar = [
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/accountfactory/installation/index",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Tutorials",
@@ -273,7 +291,7 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/accountfactory/tutorials/remove-account",
               },
-            ]
+            ],
           },
           {
             label: "Guides",
@@ -288,16 +306,16 @@ const sidebar = [
               {
                 label: "Configuration Reference",
                 type: "link",
-                className: 'external-link',
-                href: '/2.0/reference/accountfactory',
+                className: "external-link",
+                href: "/2.0/reference/accountfactory",
               },
             ],
           },
           {
             label: "Configuration Reference",
             type: "link",
-            className: 'external-link',
-            href: '/2.0/reference/accountfactory',
+            className: "external-link",
+            href: "/2.0/reference/accountfactory",
           },
         ],
       },
@@ -315,8 +333,8 @@ const sidebar = [
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/patcher/concepts/index",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Architecture",
@@ -327,8 +345,8 @@ const sidebar = [
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/patcher/architecture/index",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Setup & Installation",
@@ -339,8 +357,8 @@ const sidebar = [
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/patcher/installation/index",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Tutorials",
@@ -356,8 +374,8 @@ const sidebar = [
                 label: "Authoring your first patch",
                 type: "doc",
                 id: "2.0/docs/patcher/tutorials/authoring-first-patch",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Guides",
@@ -372,16 +390,16 @@ const sidebar = [
               {
                 label: "Configuration Reference",
                 type: "link",
-                className: 'external-link',
-                href: '/2.0/reference/patcher',
+                className: "external-link",
+                href: "/2.0/reference/patcher",
               },
-            ]
+            ],
           },
           {
             label: "Configuration Reference",
             type: "link",
-            className: 'external-link',
-            href: '/2.0/reference/patcher',
+            className: "external-link",
+            href: "/2.0/reference/patcher",
           },
         ],
       },
@@ -400,8 +418,8 @@ const sidebar = [
                 label: "Service Modules",
                 type: "doc",
                 id: "2.0/docs/library/concepts/servicemodules",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Architecture",
@@ -412,8 +430,8 @@ const sidebar = [
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/library/architecture/overview",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Setup & Installation",
@@ -424,8 +442,8 @@ const sidebar = [
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/library/setup/overview",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Tutorials",
@@ -436,8 +454,8 @@ const sidebar = [
                 label: "Deploying your first Gruntwork Module",
                 type: "doc",
                 id: "2.0/docs/library/tutorials/deploying-your-first-gruntwork-module",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Guides",
@@ -477,16 +495,16 @@ const sidebar = [
               {
                 label: "Module Reference",
                 type: "link",
-                className: 'external-link',
-                href: '/2.0/reference/library',
+                className: "external-link",
+                href: "/2.0/reference/library",
               },
             ],
           },
           {
             label: "Module Reference",
             type: "link",
-            className: 'external-link',
-            href: '/2.0/reference/library',
+            className: "external-link",
+            href: "/2.0/reference/library",
           },
         ],
       },
@@ -502,7 +520,6 @@ const sidebar = [
       },
     ],
   },
-
 ]
 
 module.exports = sidebar
