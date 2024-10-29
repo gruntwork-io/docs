@@ -200,14 +200,14 @@ const sidebar = [
                 collapsed: false,
                 items: [
                   {
+                    label: "Settings",
+                    type: "doc",
+                    id: "2.0/docs/pipelines/configuration/settings",
+                  },
+                  {
                     label: "Setting up Drift Detection",
                     type: "doc",
                     id: "2.0/docs/pipelines/configuration/driftdetection",
-                  },
-                  {
-                    label: "Customizing & Extending Pipelines",
-                    type: "doc",
-                    id: "2.0/docs/pipelines/configuration/customizing",
                   },
                 ],
               },
