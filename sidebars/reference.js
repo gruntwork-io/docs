@@ -1,3 +1,6 @@
+
+const libraryReference = require('./library-reference');
+
 const sidebar = [
   {
     // label: "Developer Reference",
@@ -22,13 +25,7 @@ const sidebar = [
           title: "Library reference",
           slug: "2.0/reference/library/index",
         },
-        items: [
-          {
-            label: "Stuff",
-            type: "doc",
-            id: "2.0/reference/library/index",
-          },
-        ],
+        items: libraryReference,
       },
       {
         label: "Gruntwork Pipelines",
