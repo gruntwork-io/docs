@@ -45,20 +45,19 @@ export default function Home(): JSX.Element {
                 infrastructure.
               </Card>
               <Card
-                title="The Reference Architecture"
-                href="/refarch/configuration/"
-                icon="/img/icons/refarch.svg"
-              >
-                Bought a Reference Architecture? Get your new infrastructure up
-                and running quickly with our getting started guide.
-              </Card>
-              <Card
-                title="Developer Portal"
+                title="Create your Gruntwork Account"
                 href="/developer-portal/create-account"
                 icon="/img/icons/deploy.svg"
               >
                 Create your account in the Gruntwork Developer Portal and add
                 your teammates.
+              </Card>
+              <Card
+                title="Library Reference"
+                href="/library/reference"
+                icon="/img/icons/refarch.svg"
+              >
+                Find a specific module in the Gruntowrk Library
               </Card>
             </CardGroup>
           </div>
@@ -93,11 +92,11 @@ export default function Home(): JSX.Element {
                 Terraform, Packer, Docker, Kubernetes, AWS, GCP, and more.
               </Card>
               <Card
-                title="Gruntwork Installer"
-                href="https://github.com/gruntwork-io/gruntwork-installer"
+                title="Boilerplate"
+                href="https://github.com/gruntwork-io/boilerplate"
               >
-                The Gruntwork Installer provides conveniences for downloading
-                and installing Gruntwork modules.
+                Boilerplate is a Go Library and Command that makes rendering "boilerplate"
+                content as part of devops pipelines easy.
               </Card>
             </CardGroup>
           </div>
