@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.115.4" lastModifiedVersion="0.112.8"/>
+<VersionBadge version="0.115.6" lastModifiedVersion="0.112.8"/>
 
 # Account Baseline for app accounts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/landingzone/account-baseline-app" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.6/modules/landingzone/account-baseline-app" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-app" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -57,13 +57,13 @@ If you’ve never used the Service Catalog before, make sure to read
 
 *   Learn more about each individual module, click the link in the [Features](#features) section.
 *   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
-*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
+*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.6/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.6/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.6/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.6/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-learning-and-testing/landingzone): The
+*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.6/examples/for-learning-and-testing/landingzone): The
     `examples/for-learning-and-testing/landingzone` folder contains standalone sample code optimized for learning,
     experimenting, and testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.6/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end integrated tech stack on top of the Gruntwork Service Catalog.
@@ -100,7 +100,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "account_baseline_app" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.115.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.115.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -392,6 +392,10 @@ module "account_baseline_app" {
   # AWS. For instructions on how to enable MFA Delete, check out the README from
   # the terraform-aws-security/private-s3-bucket module.
   cloudtrail_s3_mfa_delete = false
+
+  # Name of the existing SNS topic to which the delivery notification will be
+  # sent.
+  cloudtrail_sns_topic_name = null
 
   # Tags to apply to the CloudTrail resources.
   cloudtrail_tags = {}
@@ -845,7 +849,7 @@ module "account_baseline_app" {
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
 
-  # The mode for AWS Config to record configuration changes. 
+  # The mode for AWS Config to record configuration changes.
   #
   # recording_frequency:
   # The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
@@ -862,7 +866,7 @@ module "account_baseline_app" {
   #     - DAILY
   #   resource_types:
   #     A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
-  #     
+  #
   # See the following for more information:
   # https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
   #
@@ -917,7 +921,7 @@ module "account_baseline_app" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.115.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.115.6"
 }
 
 inputs = {
@@ -1213,6 +1217,10 @@ inputs = {
   # the terraform-aws-security/private-s3-bucket module.
   cloudtrail_s3_mfa_delete = false
 
+  # Name of the existing SNS topic to which the delivery notification will be
+  # sent.
+  cloudtrail_sns_topic_name = null
+
   # Tags to apply to the CloudTrail resources.
   cloudtrail_tags = {}
 
@@ -1665,7 +1673,7 @@ inputs = {
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
 
-  # The mode for AWS Config to record configuration changes. 
+  # The mode for AWS Config to record configuration changes.
   #
   # recording_frequency:
   # The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
@@ -1682,7 +1690,7 @@ inputs = {
   #     - DAILY
   #   resource_types:
   #     A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
-  #     
+  #
   # See the following for more information:
   # https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
   #
@@ -2375,6 +2383,15 @@ Enable MFA delete for either 'Change the versioning state of your bucket' or 'Pe
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="cloudtrail_sns_topic_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name of the existing SNS topic to which the delivery notification will be sent.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="cloudtrail_tags" requirement="optional" type="map(string)">
@@ -3538,7 +3555,7 @@ KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS stor
 <HclListItem name="recording_mode" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-The mode for AWS Config to record configuration changes. 
+The mode for AWS Config to record configuration changes.
 
 recording_frequency:
 The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
@@ -3555,7 +3572,7 @@ recording_mode_override:
     - DAILY
   resource_types:
     A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
-    
+
 See the following for more information:
 https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
 
@@ -3952,11 +3969,11 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/landingzone/account-baseline-app/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/landingzone/account-baseline-app/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/landingzone/account-baseline-app/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.6/modules/landingzone/account-baseline-app/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.6/modules/landingzone/account-baseline-app/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.6/modules/landingzone/account-baseline-app/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "da84d35a4e879ad8c2388d47406b300f"
+  "hash": "a73453fdb14518070f09c8e5b32c013c"
 }
 ##DOCS-SOURCER-END -->
