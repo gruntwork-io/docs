@@ -9,7 +9,6 @@
  Create as many sidebars as you want.
  */
 
-const introSidebar = require("./sidebars/intro-guide.js")
 const productionFrameworkSidebar = require("./sidebars/production-framework-guide.js")
 const complianceSidebar = require("./sidebars/compliance-guide.js")
 const updateGuideSidebars = require("./sidebars/update-guides.js")
@@ -23,7 +22,6 @@ const referenceSidebar = require("./sidebars/reference.js")
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
-  introSidebar,
   productionFrameworkSidebar,
   complianceSidebar,
   ...updateGuideSidebars,

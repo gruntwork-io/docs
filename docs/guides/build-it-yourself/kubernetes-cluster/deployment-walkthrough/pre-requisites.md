@@ -13,8 +13,7 @@ This walkthrough has the following pre-requisites:
 #### Gruntwork Infrastructure as Code Library
 
 This guide uses code from the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), as it
-implements most of the production-grade design for you out of the box. Make sure to read
-our [Introduction to Gruntwork](/intro/overview/intro-to-gruntwork).
+implements most of the production-grade design for you out of the box.
 
 </div>
 
@@ -30,8 +29,7 @@ You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to 
 
 This guide uses [Terraform](https://www.terraform.io/) to define and manage all the infrastructure as code. If you’re
 not familiar with Terraform, check out [A
-Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca), [A Crash Course on Terraform](https://training.gruntwork.io/p/terraform), and
-our [Introduction to Gruntwork](/intro/overview/intro-to-gruntwork).
+Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca), [A Crash Course on Terraform](https://training.gruntwork.io/p/terraform).
 
 #### Python and Kubergrunt
 
@@ -43,8 +41,7 @@ Python and `kubergrunt` installed on any computer where you will be running Terr
 
 This guide assumes you are deploying a Kubernetes cluster for use with [Docker](https://www.docker.com). The guide also
 uses [Packer](https://www.packer.io) to build VM images. If you’re not familiar with Docker or Packer, check out
-[A Crash Course on Docker and Packer](https://training.gruntwork.io/p/a-crash-course-on-docker-packer) and
-our [Introduction to Gruntwork](/intro/overview/intro-to-gruntwork).
+[A Crash Course on Docker and Packer](https://training.gruntwork.io/p/a-crash-course-on-docker-packer).
 
 #### AWS accounts
 
