@@ -25,7 +25,7 @@ Gruntwork Landing Zone directly addresses these limitations by extending Control
    2. (Via Gruntwork Account Factory) Request new AWS accounts using a simple YAML file, GitHub Actions, or any system that can trigger a GitHub Action (e.g. ServiceNow)
    3. Review and customize all new AWS account requests using GitHub Pull Request functionality
    4. Define a customized account baseline unique to your organization
-   5. Enable AWS account baselines to stay up to date automatically using [Patcher](/patcher)
+   5. Enable AWS account baselines to stay up to date automatically using [Patcher](../../../patcher/patcher.md)
 
 ## Prerequisites
 

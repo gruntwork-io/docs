@@ -5,7 +5,7 @@ import TabItem from '@theme/TabItem';
 
 The Terraform modules in the Gruntwork Infrastructure as Code Library allow you to configure the `provider` and `backend` settings to suit your needs. This makes it possible to use Gruntwork modules alongside any existing modules you may have already developed, with minimal duplication of configuration.
 
-In this guide, you will learn how to use a [module](/reference/library/concepts/modules) from the Gruntwork Infrastructure as Code (IaC) Library to create an AWS Lambda function. You will also learn how to organize your IaC code to be able to support many deployments. The same steps can be followed when using a [service](2.0/reference/library/concepts/services-modules), since both modules and services can be referenced in `module` blocks.
+In this guide, you will learn how to use a [module](/2.0/docs/library/concepts/modules) from the Gruntwork Infrastructure as Code (IaC) Library to create an AWS Lambda function. You will also learn how to organize your IaC code to be able to support many deployments. The same steps can be followed when using a [service](2.0/docs/library/concepts/services-modules), since both modules and services can be referenced in `module` blocks.
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ In this guide, you will learn how to use a [module](/reference/library/concepts/
 
 ## Create a module
 
-In this section you’ll create a module that provisions an AWS Lambda Function using the [`terraform-aws-lambda`](/reference/library/modules/terraform-aws-lambda/lambda/) Gruntwork module. This module automatically creates the AWS IAM role and Cloudwatch Log Group for the Lambda function. For more information about the configuration of the module, refer to the [Library Reference](/reference/library/modules/terraform-aws-lambda/lambda/#reference).
+In this section you’ll create a module that provisions an AWS Lambda Function using the [`terraform-aws-lambda`](/reference/modules/terraform-aws-lambda/lambda/) Gruntwork module. This module automatically creates the AWS IAM role and Cloudwatch Log Group for the Lambda function. For more information about the configuration of the module, refer to the [Library Reference](/reference/modules/terraform-aws-lambda/lambda/#reference).
 
 ### Create the basic file structure
 
@@ -65,7 +65,7 @@ touch gw_module_guide/example/<YOUR REGION>/example/serverless-api/src/main.py
 
 ### Create the reference to the Gruntwork module
 
-Next, we'll create a reference to the Gruntwork module. One of the benefits of referencing modules this way is the ability to set defaults for your organization. As an example — the `terraform-aws-lambda` exposes many variables but in the module block below, we are hard coding the value `run_in_vpc` to be `false`. This will ensure that anyone consuming this module will only create AWS Lambda functions that are not in a VPC. For a full list of configuration options for this module, refer to the [Library Reference](/reference/library/modules/terraform-aws-lambda/lambda/#reference).
+Next, we'll create a reference to the Gruntwork module. One of the benefits of referencing modules this way is the ability to set defaults for your organization. As an example — the `terraform-aws-lambda` exposes many variables but in the module block below, we are hard coding the value `run_in_vpc` to be `false`. This will ensure that anyone consuming this module will only create AWS Lambda functions that are not in a VPC. For a full list of configuration options for this module, refer to the [Library Reference](/reference/modules/terraform-aws-lambda/lambda/#reference).
 
 <Tabs groupId="tool-choice">
 <TabItem value="Terraform" label="Terraform" default>
@@ -415,6 +415,6 @@ You should expect to see `--- PASS: TestLambdaCreated` in the final log lines of
 
 ## What’s next
 
-Now that you’ve used a Gruntwork module to provision resources, consider how you would need to expand this usage to make the Lambda function available via a URL using an [AWS API Gateway HTTP API](/reference/library/modules/terraform-aws-lambda/api-gateway-proxy/). We refer to combining multiple modules into a single deliverable module as a [service](/2.0/docs/library/concepts/service-modules).
+Now that you’ve used a Gruntwork module to provision resources, consider how you would need to expand this usage to make the Lambda function available via a URL using an [AWS API Gateway HTTP API](/reference/modules/terraform-aws-lambda/api-gateway-proxy/). We refer to combining multiple modules into a single deliverable module as a [service](/2.0/docs/library/concepts/service-modules).
 
 Finally, consider how else you might test your module. Are there additional success or failure cases you would want to add? To learn more about testing using Terratest, refer to the [official document](https://terratest.gruntwork.io/docs/getting-started/quick-start/).

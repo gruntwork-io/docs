@@ -2,7 +2,7 @@
 
 We offer a collection of [service modules](/2.0/docs/library/concepts/service-modules) that piece together individual [modules](/2.0/docs/library/concepts/modules) for specific use cases such as EKS clusters and VPCs with public and private subnets. While we strive to make our service catalog as a complete as possible, you may need to create your own service to suit a specific use case or need for your company.
 
-In this guide, you will learn how to create a service that provisions a simple API using the [AWS Lambda Function](/reference/library/modules/terraform-aws-lambda/lambda/) and [API Gateway](/reference/library/modules/terraform-aws-lambda/lambda-http-api-gateway/) modules from the Gruntwork Infrastructure as Code (IaC) Library.
+In this guide, you will learn how to create a service that provisions a simple API using the [AWS Lambda Function](/reference/modules/terraform-aws-lambda/lambda/) and [API Gateway](/reference/modules/terraform-aws-lambda/lambda-http-api-gateway/) modules from the Gruntwork Infrastructure as Code (IaC) Library.
 
 ## Prerequisites
 
@@ -28,7 +28,7 @@ touch gw_service_guide/serverless-api/outputs.tf
 
 ### Define the service
 
-Next, define the module blocks for the AWS Lambda function and HTTP API Gateway. For the Lambda, we will use the [Lambda function module](../../reference/modules/terraform-aws-lambda/lambda/), for the HTTP API Gateway we will use the [HTTP API Gateway module](../../reference/modules/terraform-aws-lambda/lambda-http-api-gateway/).
+Next, define the module blocks for the AWS Lambda function and HTTP API Gateway. For the Lambda, we will use the [Lambda function module](../../../../reference/modules/terraform-aws-lambda/lambda/), for the HTTP API Gateway we will use the [HTTP API Gateway module](../../../../reference/modules/terraform-aws-lambda/lambda-http-api-gateway/).
 
 To keep the configuration simple for this guide, we define a single route — `ANY /{proxy+}`. This tells the API Gateway to send any requests matching the path `/*` to the Lambda. This is an effective approach if you are using an API framework in the Lambda function code that can handle request routing. We will also set some defaults for the Lambda to not run in a VPC, have a maximum run time of 30 seconds, and 128MB of memory.
 
@@ -84,7 +84,7 @@ variable "lambda_handler" {
 
 ### Specify the outputs
 
-Next, define the outputs from the module. Outputs are convenient ways to pass values between modules when composing a service comprised of many modules. For this guide, we only want a single output — the URL for the API we are provisioning. You may want to define more outputs when developing a module for your company or team. Refer to the Library Reference for the [Lambda function module](/reference/library/modules/terraform-aws-lambda/lambda/#reference) and [HTTP API Gateway module](/reference/library/modules/terraform-aws-lambda/lambda-http-api-gateway/#reference) for a full list of outputs available.
+Next, define the outputs from the module. Outputs are convenient ways to pass values between modules when composing a service comprised of many modules. For this guide, we only want a single output — the URL for the API we are provisioning. You may want to define more outputs when developing a module for your company or team. Refer to the Library Reference for the [Lambda function module](/reference/modules/terraform-aws-lambda/lambda/#reference) and [HTTP API Gateway module](/reference/modules/terraform-aws-lambda/lambda-http-api-gateway/#reference) for a full list of outputs available.
 
 ```hcl title=gw_service_guide/serverless-api/outputs.tf
 output "api_endpoint" {

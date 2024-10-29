@@ -6,7 +6,7 @@ Service modules are usually written in Terraform, represent a full use case, and
 
 ## Example
 
-Let’s look at an example service module. The [`rds` service module](/reference/library/services/data-storage/amazon-rds) creates not only an RDS database, but also a DNS record in Amazon Route53, CloudWatch alarms, a CloudWatch dashboard, and scheduled snapshots of the database, all using a combination of "building block" modules.
+Let’s look at an example service module. The [`rds` service module](/reference/services/data-storage/amazon-rds) creates not only an RDS database, but also a DNS record in Amazon Route53, CloudWatch alarms, a CloudWatch dashboard, and scheduled snapshots of the database, all using a combination of "building block" modules.
 
 After applying, you will have an RDS instance that you can access via a human-friendly name, alarms to alert you if something goes wrong, a dashboard for viewing RDS KPIs, and a strategy for disaster recovery.
 
@@ -16,7 +16,7 @@ Whereas "building block" modules are optimized for control, service modules are 
 
 A service module reflects a complete Gruntwork opinion on how you should run a piece of infrastructure. Using a service module gives you the convenience of a single Terraform module that does everything you need, with Gruntwork maintaining the code.
 
-If you do not agree with our opinions, you can either [customize the module](/2.0/docs/library/guides/customize-module), or sacrifice convenience in favor of control and build your own module, possibly out of our [building block modules](./modules).
+If you do not agree with our opinions, you can either [customize the module](/2.0/docs/library/tutorials/customizing-modules), or sacrifice convenience in favor of control and build your own module, possibly out of our [building block modules](./modules).
 
 ## When to use a service module
 
