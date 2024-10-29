@@ -14,24 +14,12 @@ When you set up a new DevOps component, you also have access to guidance from Gr
 
 ## Available components
 
-There are 5 DevOps components available today.
+There are XYZ DevOps components available today.
 
-1. **[Landing Zone.](/2.0/docs/pipelines/installation/prerequisites/awslandingzone)** Set up a best-practice AWS multi-account setup, easily create new AWS accounts, and set secure account baselines.
-1. **[IaC Foundations.](./iac-foundations)** Set up the foundational Terraform and Terragrunt coding patterns that enable your team to scale.
-1. **[Pipelines.](../pipelines)** Roll out an infrastructure change in a way that meets the needs of your organization.
-1. **[Network Topology.](../network-topology)** Protect your internal cloud resources from external access.
-1. **[Running Apps.](../running-apps)** Run your apps on EKS, ECS, or Lambda in a best-practices way.
+TODO: Flesh this out
 
 All DevOps components are focused on AWS and Terraform/OpenTofu. We may add support for additional technologies in the future.
 
 ## Building your own components
 
 The Gruntwork DevOps components implement a meaningful portion of a modern cloud infrastructure, but not 100% of it. We expect you to build on top of the Gruntwork DevOps components by adding your own solutions to build out your full infrastructure.
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "8443059126ca0f93cea9eea74cdb19ad"
-}
-##DOCS-SOURCER-END -->

@@ -24,7 +24,7 @@ This encourages a dialogue between the individuals responsible for defining crit
 
 ## Token strategy
 
-Gruntwork Pipelines uses a series of GitHub Personal Access Tokens (PAT) to allow cross-repository code and workflow access. This approach ensures that each token has the minimal required permissions to perform its tasks. The full list of tokens and required permissions are listed below.
+Gruntwork Pipelines (when setup via Machine Users and not the GitHub App) uses a series of GitHub Personal Access Tokens (PAT) to allow cross-repository code and workflow access. This approach ensures that each token has the minimal required permissions to perform its tasks. The full list of tokens and required permissions are listed below.
 
 - `PIPELINES_READ_TOKEN` - A [classic PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with repository read access to your `infrastructure-live` and `infrastructure-modules` repositories, as well as Gruntwork Library modules and the Pipelines CLI.
 - `INFRA_ROOT_WRITE_TOKEN` - A [fine-grained PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) that has read and write access to your `infrastructure-live-root` repository. This token is used in Pipelines to create pull requests after code generation and add pull request comments.
@@ -33,8 +33,6 @@ Gruntwork Pipelines uses a series of GitHub Personal Access Tokens (PAT) to allo
   - Enterprise only: This token is also used by Pipelines to create new repositories for delegated management of infrastructure, and to create pull requests that baseline those repositories.
 
 Steps to create a PAT can be found in the official documentation. Refer to [creating a personal access token classic](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) and [creating a fine-grained personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token), respectively.
-
-We recommend using [machine users](../security/machine-users.mdx) for this use case.
 
 To learn more about GitHub PATs, refer to their documentation on [managing personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
 

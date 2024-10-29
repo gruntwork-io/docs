@@ -7,7 +7,7 @@ Having worked with hundreds of organizations to help them improve DevOps, we've 
 1. Teams want to control exactly how infrastructure change gets rolled out
 2. Deploying infrastructure changes is scary!
 
-To address your need for _control_, we've designed Gruntwork Pipelines to use [configuration as code](./configurations-as-code.md), where you use HCL (a popular alternative to JSON and YAML) to set configuration values that apply to your entire git repo, to just one environment, or to a single deployable unit of infrastructure. For example, you can specify a unique AWS authentication strategy for each deployable unit of infrastructure, one per environment, or a single strategy for the entire git repo.
+To address your need for _control_, we've designed Gruntwork Pipelines to use [configuration as code](../../../reference/pipelines/configurations-as-code.md), where you use HCL (a popular alternative to JSON and YAML) to set configuration values that apply to your entire git repo, to just one environment, or to a single deployable unit of infrastructure. For example, you can specify a unique AWS authentication strategy for each deployable unit of infrastructure, one per environment, or a single strategy for the entire git repo.
 
 To address your need for _assurance_ that an infrastructure change is safe to apply, we include a thoughtfully formatted `terragrunt plan` user experience, and the ability to customize Gruntwork Pipelines to support arbitrary steps that your organization needs to establish confidence in a deployment. Building assurance also factors heavily into our roadmap.
 

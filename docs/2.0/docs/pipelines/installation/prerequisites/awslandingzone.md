@@ -213,9 +213,9 @@ waiting on Control Tower Operations at the conclusion of the setup flow.
 
 1. Under **KMS Encryption** Check the box for `Enable and customize encryption settings`
 
-1. Select the KMS Key you created following the guide in [prerequisites](./prerequisites)
+2. Select the KMS Key you created following the guide in [prerequisites](#prerequisites) above.
 
-1. Click **Next** to continue
+3. Click **Next** to continue
 
 ### Finish Control Tower Setup
 
