@@ -18,7 +18,7 @@ Before you begin the migration process, ensure that you have the following prere
 
 Make sure that you have the appropriate tokens and secrets configured to allow your workflows to access the necessary secrets to interact with your infrastructure.
 
-For information on how to do this, visit the instructions in [Machine Users](../security/machine-users.mdx).
+For information on how to do this, visit the instructions in [Machine Users](../../../../infrastructure-pipelines/security/machine-users.md)).
 
 
 ## Step 2: Update the `bootstrap.yml` workflow
@@ -165,7 +165,7 @@ The logic that was previously done by creating a workflow dispatch to a secondar
 
 `infrastructure-live` repositories that reference this shared workflow will now run with their own context (the secrets and role assumptions are specific to the `infrastructure-live` repository that is running the workflow), and maintenance of a secondary repository is no longer necessary.
 
-This change is designed to make it easier to manage infrastructure at scale, and has myriad advantages over the previous approach. To learn more about this change, read the [deprecation notice here](../../infrastructure-pipelines/overview/deprecation.md).
+This change is designed to make it easier to manage infrastructure at scale, and has myriad advantages over the previous approach. To learn more about this change, read the [deprecation notice here](../../../../infrastructure-pipelines/overview/deprecation.md).
 
 Please make sure you understand the changes here, and if you have any questions, please reach out to Gruntwork support.
 
@@ -264,7 +264,7 @@ If you have any residual files that you are not sure about, please reach out to 
 
 Now that you have a working modern Pipelines setup, you can delete any old tokens that were used to interact with the `infrastructure-pipelines` repository. This will ensure that you are not leaving any unnecessary tokens lying around that could be used to interact with your infrastructure.
 
-You can see a list of tokens and secrets that are created as part of the `infrastructure-pipelines` version of Pipelines [here](../../infrastructure-pipelines/security/machine-users.md). These tokens and secrets have been renamed in the latest version of Pipelines, and as a consequence, you can safely delete the old tokens and secrets after you've created the new ones.
+You can see a list of tokens and secrets that are created as part of the `infrastructure-pipelines` version of Pipelines [here](../../../../infrastructure-pipelines/security/machine-users.md). These tokens and secrets have been renamed in the latest version of Pipelines, and as a consequence, you can safely delete the old tokens and secrets after you've created the new ones.
 
 ### Archive the `infrastructure-pipelines` repository
 
