@@ -85,10 +85,10 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/pipelines/concepts/cicd-for-infrastructure",
               },
-              {              
+              {
                 label: 'Authenticating with Cloud Providers',
                 type: 'doc',
-                id: '2.0/docs/pipelines/concepts/cloud-auth',                           
+                id: '2.0/docs/pipelines/concepts/cloud-auth',
               },
               {
                 label: "Security",
@@ -121,6 +121,11 @@ const sidebar = [
                 label: "Actions",
                 type: "doc",
                 id: "2.0/docs/pipelines/architecture/actions",
+              },
+              {
+                label: "Security Controls",
+                type: "doc",
+                id: '2.0/docs/pipelines/architecture/security-controls',
               },
               {
                 label: "Usage Data",
@@ -222,6 +227,11 @@ const sidebar = [
             collapsed: true,
             items: [
               {
+                label: "Running Plan/Apply",
+                type: "doc",
+                id: "2.0/docs/pipelines/guides/running-plan-apply",
+              },
+              {
                 label: "Managing Secrets in your Pipelines",
                 type: "doc",
                 id: "2.0/docs/pipelines/guides/managing-secrets",
@@ -240,14 +250,8 @@ const sidebar = [
                 label: "Managing Drift",
                 type: "doc",
                 id: "2.0/docs/pipelines/guides/managing-drift",
-              }, 
+              },
             ],
-          },
-          {
-            label: "Configuration Reference",
-            type: "link",
-            className: "external-link",
-            href: "/2.0/reference/pipelines",
           },
           {
             label: "Previous Versions",
@@ -276,6 +280,12 @@ const sidebar = [
                 id: "2.0/docs/pipelines/previous-versions/upgrading-from-ecs-deploy-runner",
               },
             ],
+          },
+          {
+            label: "Configuration Reference",
+            type: "link",
+            className: "external-link",
+            href: "/2.0/reference/pipelines",
           },
         ],
       },
