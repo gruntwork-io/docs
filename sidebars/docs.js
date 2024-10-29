@@ -521,14 +521,47 @@ const sidebar = [
             collapsed: true,
             items: [
               {
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/library/concepts/overview",
+              },
+              {
+                label: "Modules",
+                type: "doc",
+                id: "2.0/docs/library/concepts/modules",
+              },
+              {
                 label: "Service Modules",
                 type: "doc",
-                id: "2.0/docs/library/concepts/servicemodules",
+                id: "2.0/docs/library/concepts/service-modules",
               },
               {
                 label: "Module Defaults",
                 type: "doc",
                 id: "2.0/docs/library/concepts/module-defaults",
+              },
+              {
+                label: "Principles",
+                type: "category",
+                collapsed: true,
+                link: {type: 'doc', id: '2.0/docs/library/concepts/principles/overview'},
+                items: [
+                  {
+                    label: "Control Provider Usage",
+                    type: "doc",
+                    id: "2.0/docs/library/concepts/principles/control-provider-usage",
+                  },
+                  {
+                    label: "Be Judicious with New Features",
+                    type: "doc",
+                    id: "2.0/docs/library/concepts/principles/be-judicious-with-new-features",
+                  },
+                  {
+                    label: "Quality In Depth",
+                    type: "doc",
+                    id: "2.0/docs/library/concepts/principles/quality-in-depth",
+                  },
+                ]
               }
             ]
           },
@@ -542,7 +575,12 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/library/architecture/overview",
               },
-            ],
+              {
+                label: "OpenTofu & Terraform Compatibility",
+                type: "doc",
+                id: "2.0/docs/library/architecture/opentofu-terraform-compatibility",
+              }
+            ]
           },
           {
             label: "Setup & Installation",
@@ -550,11 +588,16 @@ const sidebar = [
             collapsed: true,
             items: [
               {
-                label: "Overview",
+                label: "Setting Up",
                 type: "doc",
-                id: "2.0/docs/library/setup/overview",
+                id: "2.0/docs/library/setup/setting-up",
               },
-            ],
+              {
+                label: "Accessing The Code",
+                type: "doc",
+                id: "2.0/docs/library/setup/accessing-the-code",
+              },
+            ]
           },
           {
             label: "Tutorials",
@@ -570,7 +613,17 @@ const sidebar = [
                 label: "Defining and using Module Defaults",
                 type: "doc",
                 id: "2.0/docs/library/tutorials/module-defaults",
-              }
+              },
+              {
+                label: "Creating your own Service Module",
+                type: "doc",
+                id: "2.0/docs/library/tutorials/creating-service-module",
+              },
+              {
+                label: "Customizing Modules",
+                type: "doc",
+                id: "2.0/docs/library/tutorials/customizing-modules",
+              },
             ]
           },
           {
@@ -579,19 +632,14 @@ const sidebar = [
             collapsed: true,
             items: [
               {
-                label: "Create your own Service Module",
+                label: "Using Versioned Modules",
                 type: "doc",
-                id: "2.0/docs/library/guides/create-service-module",
+                id: "2.0/docs/library/guides/versioning",
               },
               {
-                label: "Customize a Module",
+                label: "Updating Versioned Modules",
                 type: "doc",
-                id: "2.0/docs/library/guides/customize-module",
-              },
-              {
-                label: "Integrate with Terraform Cloud",
-                type: "doc",
-                id: "2.0/docs/library/guides/integrate-tfc",
+                id: "2.0/docs/library/guides/updating-modules",
               },
               {
                 label: "Contributing to the Library",
@@ -604,14 +652,14 @@ const sidebar = [
                 id: "2.0/docs/library/guides/self-hosting",
               },
               {
-                label: "Updating a module to a newer version",
-                type: "doc",
-                id: "2.0/docs/library/guides/updating-modules",
-              },
-              {
                 label: "Running Apps",
                 type: "doc",
                 id: '2.0/docs/library/guides/running-apps',
+              },
+              {
+                label: "Integrate with Terraform Cloud",
+                type: "doc",
+                id: "2.0/docs/library/guides/integrate-tfc",
               },
             ],
           },
