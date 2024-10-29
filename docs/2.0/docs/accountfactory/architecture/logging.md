@@ -34,7 +34,7 @@ Access to CloudTrail is controlled by AWS IAM policies that are assigned to indi
 Gruntwork recommends that only those with administrative access to an AWS account have access to view CloudTrail logs, as they contain a record of every single API operation that was performed in the account, which may expose the name or configuration of resources an individual user may otherwise not have access to.
 :::
 
-Further, the configuration of CloudTrail trails should be defined as code, with all changes reviewed in a pull request before being applied automatically by [Gruntwork Pipelines](../../pipelines/overview/index.md).
+Further, the configuration of CloudTrail trails should be defined as code, with all changes reviewed in a pull request before being applied automatically by [Gruntwork Pipelines](../../pipelines/overview.md).
 
 See [Identity-based policy examples for AWS CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/security_iam_id-based-policy-examples.html) to learn more about granting access to CloudTrail.
 
