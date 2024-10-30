@@ -13,6 +13,10 @@ identify those files by the `##DOCS-SOURCER-START` tag at the end of the file. I
 this is content that is pulled from external sources, such as change logs, release notes and
 GitHub discussions.
 
+Docs Sourcer is generally run in CI or via webhooks and doesn't have to be run locally. If, however, you do need
+to run it locally you will need access to various secrets.  These secrets live in 1password under a secure note called
+"docs sourcer .env file".
+
 ## Installing dependencies
 
 ```sh
