@@ -77,7 +77,6 @@ const config = {
           editUrl: "https://github.com/gruntwork-io/docs/edit/master/",
           exclude: [
             "guides/build-it-yourself/landing-zone/**",
-            "guides/build-it-yourself/kubernetes-cluster/**",
             "guides/build-it-yourself/vpc/**",
             "**/node_modules/**",
           ],

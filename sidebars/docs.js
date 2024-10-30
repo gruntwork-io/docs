@@ -2,10 +2,13 @@ const developerPortalKBLink =
   "https://github.com/orgs/gruntwork-io/discussions?discussions_q=" +
   // filter by discussions with the label "s:dev-portal" & sort by top voted discussions first
   encodeURIComponent("label:s:dev-portal sort:top")
-  const pipelinesKBLink =
+const pipelinesKBLink =
   "https://github.com/orgs/gruntwork-io/discussions?discussions_q=" +
   // filter by discussions with the label s:CI/Pipelines & sort by top voted discussions first
   encodeURIComponent("label:s:CI/Pipelines sort:top")
+
+const complianceSidebar = require('./compliance-guide');
+const updateGuideSidebars = require("./update-guides.js")
 
 const sidebar = [
   {
@@ -66,6 +69,12 @@ const sidebar = [
                 id: "2.0/docs/overview/developer-portal/link-github-id",
               },
             ]
+          },
+          complianceSidebar,
+          {
+            label: "Staying up to Date Guides",
+            type: "category",
+            items: updateGuideSidebars,
           },
           {
             label: "Support",
@@ -412,9 +421,9 @@ const sidebar = [
                 id: "2.0/docs/patcher/concepts/index",
               },
               {
-               label: "Patches",
-               type: "doc",
-               id: "2.0/docs/patcher/concepts/patches",
+                label: "Patches",
+                type: "doc",
+                id: "2.0/docs/patcher/concepts/patches",
               },
               {
                 label: "Promotion Workflows",
@@ -544,7 +553,7 @@ const sidebar = [
                 label: "Principles",
                 type: "category",
                 collapsed: true,
-                link: {type: 'doc', id: '2.0/docs/library/concepts/principles/overview'},
+                link: { type: 'doc', id: '2.0/docs/library/concepts/principles/overview' },
                 items: [
                   {
                     label: "Control Provider Usage",
@@ -667,7 +676,7 @@ const sidebar = [
             label: "Module Reference",
             type: "link",
             className: "external-link",
-            href: "/2.0/reference/library",
+            href: "/2.0/reference/library/index",
           },
         ],
       },
