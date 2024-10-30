@@ -1,5 +1,18 @@
 
 export const redirects = [
+    // BEGIN - Deleted / Moved Content
+    {
+        from: '/docs/guides/build-it-yourself/landing-zone',
+        to: '/reference/services/landing-zone/aws-app-account-baseline-wrapper/'
+    },
+    {
+        from: '/reference/services/intro/overview',
+        to: '/2.0/docs/library/concepts/service-modules'
+    },
+    {
+        from: '/foundations/github-app',
+        to: '/2.0/docs/pipelines/installation/viagithubapp'
+    },
     {
         to: '/2.0/docs/pipelines/architecture/audit-logs',
         from: '/pipelines/security/audit-log'
@@ -19,6 +32,10 @@ export const redirects = [
     {
         to: "/2.0/docs/pipelines/architecture/components",
         from: "/pipelines/architecture/index"
+    },
+    {
+        to: "/2.0/docs/pipelines/architecture/components",
+        from: "/pipelines/architecture"
     },
     {
         to: "/2.0/docs/pipelines/previous-versions/upgrading-from-ecs-deploy-runner",
@@ -81,16 +98,32 @@ export const redirects = [
         from: "/pipelines/data-collection/index"
     },
     {
+        to: "/2.0/docs/pipelines/architecture/usage-data",
+        from: "/pipelines/data-collection"
+    },
+    {
         to: "/2.0/docs/overview/concepts/devopsfoundations",
         from: "/foundations/overview/index"
+    },
+    {
+        to: "/2.0/docs/overview/concepts/devopsfoundations",
+        from: "/foundations/overview"
     },
     {
         to: "/2.0/docs/pipelines/concepts/cloud-auth",
         from: "/foundations/pipelines/aws-authentication"
     },
     {
+        to: "/2.0/docs/pipelines/concepts/overview",
+        from: "/foundations/pipelines/"
+    },
+    {
         to: "/2.0/docs/accountfactory/architecture/network-topology",
         from: "/foundations/network-topology/index"
+    },
+    {
+        to: "/2.0/docs/accountfactory/architecture/network-topology",
+        from: "/foundations/network-topology"
     },
     {
         to: "/2.0/docs/pipelines/installation/viagithubapp",
@@ -117,12 +150,20 @@ export const redirects = [
         from: "/foundations/running-apps/index"
     },
     {
+        to: "/2.0/docs/library/guides/running-apps",
+        from: "/foundations/running-apps"
+    },
+    {
         to: "/2.0/docs/pipelines/installation/prerequisites/awslandingzone#prerequisites",
         from: "/foundations/landing-zone/prerequisites"
     },
     {
         to: "/2.0/docs/pipelines/installation/prerequisites/awslandingzone",
         from: "/foundations/landing-zone/index"
+    },
+    {
+        to: "/2.0/docs/pipelines/installation/prerequisites/awslandingzone",
+        from: "/foundations/landing-zone"
     },
     {
         to: "/2.0/docs/accountfactory/tutorials/vend-aws-account",
@@ -161,8 +202,16 @@ export const redirects = [
         from: "/foundations/iac-foundations/initial-setup"
     },
     {
+        to: "/2.0/docs/pipelines/installation/addingnewrepo",
+        from: "/foundations/iac-foundations"
+    },
+    {
         to: "/2.0/docs/library/concepts/module-defaults",
         from: "/foundations/iac-foundations/module_defaults/index"
+    },
+    {
+        to: "/2.0/docs/library/concepts/module-defaults",
+        from: "/foundations/iac-foundations/module_defaults"
     },
     {
         to: "/2.0/docs/library/tutorials/module-defaults#using-module-defaults",
@@ -174,7 +223,7 @@ export const redirects = [
     },
     {
         to: "/2.0/docs/patcher/concepts/",
-        from: "/patcher/index"
+        from: "/patcher"
     },
     {
         to: "/2.0/docs/patcher/concepts/update-strategies",
@@ -182,7 +231,7 @@ export const redirects = [
     },
     {
         to: "/2.0/docs/patcher/installation/",
-        from: "/patcher/getting-started/index"
+        from: "/patcher/getting-started"
     },
     {
         to: "/2.0/docs/patcher/guides/promotion-workflows",
@@ -222,7 +271,7 @@ export const redirects = [
     },
     {
         to: "/2.0/docs/library/concepts/overview",
-        from: "/library/overview/index"
+        from: "/library/overview"
     },
     {
         to: "/2.0/docs/library/concepts/modules",
@@ -279,5 +328,33 @@ export const redirects = [
     {
         to: "/2.0/docs/library/tutorials/deploying-your-first-gruntwork-module",
         from: "/library/usage/using-the-library"
-    }
+    },
+    {
+        to: "/2.0/docs/library/tutorials/deploying-your-first-gruntwork-module",
+        from: "/reference/services/intro/deploy-new-infrastructure"
+    },
+    {
+        from: '/guides',
+        to: '/2.0/docs'
+    },
+    {
+        from: '/intro/overview/getting-started',
+        to: '/2.0/docs/overview/concepts/devopsfoundations'
+    },
+    {
+        from: '/intro/overview/intro-to-gruntwork',
+        to: '/2.0/docs/overview/concepts/devopsfoundations'
+    },
+    {
+        from: '/intro/overview/prerequisites',
+        to: '/2.0/docs/overview/concepts/devopsfoundations'
+    },
+    {
+        from: '/intro/overview/what-you-provide',
+        to: '/2.0/docs/overview/concepts/devopsfoundations'
+    },
+    {
+        from: '/intro/overview/what-we-provide',
+        to: '/2.0/docs/overview/concepts/devopsfoundations'
+    },
 ]
