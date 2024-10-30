@@ -21,7 +21,7 @@ Navigate to the template repository and select **Use this template** -> **Create
 
 ## Configuring Gruntwork App Settings
 
-Configure the Gruntwork.io GitHub App to [add this repository as an Infra Root repository](../github-app/configuration.md#infrastructure-root-repositories).
+Configure the Gruntwork.io GitHub App to [add this repository as an Infra Root repository](/2.0/docs/pipelines/installation/viagithubapp#configuration).
 
 TODO: Reference machine user version of this flow here
 

@@ -1,4 +1,4 @@
-# What are module defaults?
+# Module Defaults
 
 Module defaults is a pattern that allows infrastructure as code developers to reference a terraform module, set locals, and set default (but mutable) variable values. This pattern helps keep your Terragrunt architecture DRY, reducing the likelihood of errors when making changes across environments.
 

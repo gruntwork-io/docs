@@ -25,7 +25,7 @@ Gruntwork Landing Zone directly addresses these limitations by extending Control
    2. (Via Gruntwork Account Factory) Request new AWS accounts using a simple YAML file, GitHub Actions, or any system that can trigger a GitHub Action (e.g. ServiceNow)
    3. Review and customize all new AWS account requests using GitHub Pull Request functionality
    4. Define a customized account baseline unique to your organization
-   5. Enable AWS account baselines to stay up to date automatically using [Patcher](/patcher)
+   5. Enable AWS account baselines to stay up to date automatically using [Patcher](../../../patcher/patcher.md)
 
 ## Prerequisites
 
@@ -213,9 +213,9 @@ waiting on Control Tower Operations at the conclusion of the setup flow.
 
 1. Under **KMS Encryption** Check the box for `Enable and customize encryption settings`
 
-1. Select the KMS Key you created following the guide in [prerequisites](./prerequisites)
+2. Select the KMS Key you created following the guide in [prerequisites](#prerequisites) above.
 
-1. Click **Next** to continue
+3. Click **Next** to continue
 
 ### Finish Control Tower Setup
 
