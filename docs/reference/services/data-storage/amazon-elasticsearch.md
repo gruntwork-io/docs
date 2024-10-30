@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.115.4" lastModifiedVersion="0.95.1"/>
+<VersionBadge version="0.116.0" lastModifiedVersion="0.95.1"/>
 
 # Amazon Elasticsearch Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/elasticsearch" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/data-stores/elasticsearch" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Felasticsearch" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -63,7 +63,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -76,7 +76,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -101,7 +101,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "elasticsearch" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/elasticsearch?ref=v0.115.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/elasticsearch?ref=v0.116.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -175,6 +175,9 @@ module "elasticsearch" {
   # Number of Availability Zones for the domain to use with
   # var.zone_awareness_enabled. Defaults to 2. Valid values: 2 or 3.
   availability_zone_count = 2
+
+  # ARN of the Cloudwatch log group to which log needs to be published.
+  cloudwatch_log_group_arn = null
 
   # The period, in seconds, over which to measure the CPU utilization percentage
   cluster_high_cpu_utilization_period = 60
@@ -368,6 +371,9 @@ module "elasticsearch" {
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   kms_key_inaccessible_treat_missing_data = "missing"
+
+  # Type of Elasticsearch log.
+  log_type = null
 
   # The period, in seconds, over which to measure the master nodes' CPU
   # utilization
@@ -469,7 +475,7 @@ module "elasticsearch" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/elasticsearch?ref=v0.115.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/elasticsearch?ref=v0.116.0"
 }
 
 inputs = {
@@ -546,6 +552,9 @@ inputs = {
   # Number of Availability Zones for the domain to use with
   # var.zone_awareness_enabled. Defaults to 2. Valid values: 2 or 3.
   availability_zone_count = 2
+
+  # ARN of the Cloudwatch log group to which log needs to be published.
+  cloudwatch_log_group_arn = null
 
   # The period, in seconds, over which to measure the CPU utilization percentage
   cluster_high_cpu_utilization_period = 60
@@ -739,6 +748,9 @@ inputs = {
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   kms_key_inaccessible_treat_missing_data = "missing"
+
+  # Type of Elasticsearch log.
+  log_type = null
 
   # The period, in seconds, over which to measure the master nodes' CPU
   # utilization
@@ -956,6 +968,15 @@ Number of Availability Zones for the domain to use with <a href="#zone_awareness
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="2"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of the Cloudwatch log group to which log needs to be published.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="cluster_high_cpu_utilization_period" requirement="optional" type="number">
@@ -1338,6 +1359,15 @@ Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
 <HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
+<HclListItem name="log_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Type of Elasticsearch log.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="master_cpu_utilization_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1549,11 +1579,11 @@ Domain-specific endpoint for Kibana without https scheme.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/elasticsearch/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/elasticsearch/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/elasticsearch/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/data-stores/elasticsearch/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/data-stores/elasticsearch/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/data-stores/elasticsearch/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b1c8a0ad2bc86faa7c5daadd05e0e4d8"
+  "hash": "85c7ee4f498e6a697be8594cfdd18775"
 }
 ##DOCS-SOURCER-END -->
