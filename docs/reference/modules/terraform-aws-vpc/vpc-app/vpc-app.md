@@ -1,5 +1,5 @@
 ---
-title: "IPv6"
+title: "VPC-App Terraform Module"
 hide_title: true
 ---
 
@@ -11,11 +11,14 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <VersionBadge repoTitle="VPC Modules" version="0.26.26" lastModifiedVersion="0.26.25"/>
 
-# IPv6
+# VPC-App Terraform Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.25" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+
+This Terraform Module launches a single VPC meant to house applications. By contrast, DevOps-related services such as
+Jenkins or InfluxDB should be in a "mgmt" VPC. (See the [vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-mgmt) module.)
 
 ## What's a VPC?
 
@@ -75,13 +78,15 @@ nearly all use-cases, and is consistent with many examples and existing document
 
 Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
 
-## IPv6 Design
+## IPv6
+
+### IPv6 Design
 
 ![IPv6 Topology](/img/reference/modules/terraform-aws-vpc/vpc-app/_dual_stack_vpc.png)
 
 For more IPv6 information, please see the following documentation from AWS - [IPv6 on AWS](https://docs.aws.amazon.com/whitepapers/latest/ipv6-on-aws/IPv6-on-AWS.html)
 
-## Simple IPv6 Assigned from AWS Example
+### Simple IPv6 Assigned from AWS Example
 
 The following example assigns your VPC a CIDR block from AWS and assigns an IPv6 CIDR block to each public subnet.
 
@@ -198,6 +203,9 @@ module "vpc_app" {
   # subnets exist but they are not directly public facing, since they can be
   # routed from other VPC hosting the IGW.
   create_igw = true
+
+  # Flag that controls attachment of secondary EIP to NAT gateway.
+  create_nat_secondary_eip = false
 
   # If set to false, this module will NOT create the private app subnet tier.
   create_private_app_subnets = true
@@ -681,6 +689,9 @@ inputs = {
   # subnets exist but they are not directly public facing, since they can be
   # routed from other VPC hosting the IGW.
   create_igw = true
+
+  # Flag that controls attachment of secondary EIP to NAT gateway.
+  create_nat_secondary_eip = false
 
   # If set to false, this module will NOT create the private app subnet tier.
   create_private_app_subnets = true
@@ -1218,6 +1229,15 @@ If the VPC will create an Internet Gateway. There are use cases when the VPC is 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="create_nat_secondary_eip" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Flag that controls attachment of secondary EIP to NAT gateway.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="create_private_app_subnets" requirement="optional" type="bool">
@@ -2166,6 +2186,6 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b0d33732b5f822e2cd20f930218de9ca"
+  "hash": "41f25a5ab7f4ecc6921036574d17e531"
 }
 ##DOCS-SOURCER-END -->
