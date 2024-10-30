@@ -1,3 +1,0 @@
-This folder exists in this repo to ensure that the LocalCopierPlugin to docs-sourcer doesn't crash.  That plugin expects markdown content in this folder, which
-would then be copied over to the `docs/` folder.  However, as of Q4 2024, we no longer copy the markdown content, we instead edit it directly in the `docs/` folder.
-We do still use docs-sourcer, just for its other plugins, not the local copier plugin.

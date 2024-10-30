@@ -51,11 +51,3 @@ For running complex Serverless applications, we recommend the [Serverless Framew
 ### Missing functionality
 
 If you are looking to add functionality not yet supported by Gruntwork, you can either [contribute a pull request](http://localhost:3000/library/usage/contributing), add the functionality on your own, work with Gruntwork as part of paid engagement, or request we add it to our roadmap.
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "70bb78f23223052c4d4e8fe85735a442"
-}
-##DOCS-SOURCER-END -->

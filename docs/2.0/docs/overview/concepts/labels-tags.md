@@ -262,11 +262,3 @@ Name: vpc-prod
 ```
 
 In other words, any of your Terragrunt modules can now include a `tags.yml` file to override the "default" config from the root `terragrunt.hcl`.
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "bf987f7ab80f1edc8727b3054d8b9f6c"
-}
-##DOCS-SOURCER-END -->

@@ -27,11 +27,3 @@ All DevOps components are focused on AWS and Terraform/OpenTofu. We may add supp
 ## Building your own components
 
 The Gruntwork DevOps components implement a meaningful portion of a modern cloud infrastructure, but not 100% of it. We expect you to build on top of the Gruntwork DevOps components by adding your own solutions to build out your full infrastructure.
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "8443059126ca0f93cea9eea74cdb19ad"
-}
-##DOCS-SOURCER-END -->

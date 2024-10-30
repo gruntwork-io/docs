@@ -77,11 +77,3 @@ For more details and the other options, see [Keep your Terragrunt Architecture D
 ### Module defaults
 
 Now that you have your accounts, environments, categories, resources, and state figured out, you may be wondering how you can increase code re-use across your `live` repository. Gruntwork recommends using the ["module defaults"](./module_defaults/index.md) pattern to keep your Terragrunt architecture DRY.
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "2399e94f2698f60d3efe7783d670d310"
-}
-##DOCS-SOURCER-END -->
