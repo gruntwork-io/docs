@@ -123,6 +123,8 @@ Note that you will frequently see filenames for configurations within the `.grun
 
 ### Environment Blocks
 
+[Full Reference for Environment Blocks](/2.0/reference/pipelines/configurations-as-code#environment)
+
 Environment blocks are used to define configurations that are applicable to a specific environment within a repository.
 
 The label applied to an environment block is the name of the environment. This is a user-defined label for the environment, and must be globally unique.
@@ -175,18 +177,13 @@ aws {
 }
 ```
 
-More on configuration components like [aws](#aws-blocks) blocks can be found below.
-
-*Supported Blocks:*
-
-- `filter` (Required): A filter block that determines which units the environment is applicable to. See [Filter Blocks](#filter-blocks) for more information.
-- `authentication` (Required): An authentication block that determines how Pipelines will authenticate with cloud platforms when running Terragrunt commands. See [Authentication Blocks](#authentication-blocks) for more information.
-
 :::caution
 Every unit must be uniquely matched by the filters of a single environment block. If a unit is matched by multiple environment blocks, Pipelines will throw an error.
 :::
 
 ### AWS Blocks
+
+[Full Reference for AWS Blocks](/2.0/reference/pipelines/configurations-as-code#aws)
 
 AWS blocks are configurations used by `aws-oidc` [authentication](#authentication-blocks) blocks to have commonly re-used AWS configurations codified and referenced by multiple authentication blocks.
 
@@ -232,11 +229,9 @@ Note that multiple AWS Accounts blocks can be defined, pointing to different `ac
 The decision to leverage YAML files instead of HCL files for defining the configurations for AWS accounts was an intentional decision to increase the portability of these configurations for usage outside of Pipelines. Tools like [Terragrunt](https://github.com/gruntwork-io/terragrunt/) and [yq](https://github.com/mikefarah/yq) can be used to leverage these files, as they are more portable than HCL files.
 :::
 
-*Supported Attributes:*
-
-- `path` (Required): The path to the YAML file that contains the definitions of AWS accounts.
-
 ### Repository Blocks
+
+[Full Reference for Repository Blocks](/2.0/reference/pipelines/configurations-as-code#repository)
 
 Repository blocks are used to define configurations that are applicable to the entire repository.
 
@@ -249,11 +244,6 @@ repository {
 ```
 
 In this example, the `deploy_branch_name` attribute is set to `main`, which means that Pipelines will deploy infrastructure changes when the `main` branch is updated.
-
-*Supported Attributes:*
-
-- `deploy_branch_name` (Optional): The branch that Pipelines will deploy infrastructure changes from. If not set, Pipelines will deploy infrastructure changes from the `main` branch.
-- `consolidate_added_or_changed` (Optional): Whether or not Pipelines will consolidate added or changed resources when running Terragrunt commands. If not set, Pipelines will consolidate added or changed resources.
 
   :::info
 
@@ -278,14 +268,6 @@ In this example, the `deploy_branch_name` attribute is set to `main`, which mean
 
   :::
 
-- `consolidate_deleted` (Optional): Whether or not Pipelines will consolidate deleted resources when running Terragrunt plan commands. If not set, Pipelines will not consolidate deleted resources.
-
-  :::caution
-
-  This is disabled by default because there can be unintended consequences to deleting additional resources via a `run-all` Terragrunt command. It is recommended to enable this feature only when you are confident that you understand the implications of doing so.
-
-  :::
-
 ## Local Configurations
 
 The configurations found within a directory that contains a `terragrunt.hcl` file are referred to as local configurations. These configurations are typically used to define configurations that are specific to a single unit of IaC within a repository.
@@ -295,6 +277,8 @@ They must be specified within a single file named `gruntwork.hcl` in the same di
 Local configurations can be used both to define the complete configurations required for Pipelines to operate within the context of a single unit, or to override global configurations that are defined in the `.gruntwork` directory.
 
 ### Unit Blocks
+
+[Full Reference for Unit Blocks](/2.0/reference/pipelines/configurations-as-code#unit)
 
 Unit blocks are used to define configurations that are applicable to a single unit of IaC within a repository.
 
@@ -314,15 +298,13 @@ unit {
 
 In this example, the `unit` block is defined to assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when running Terragrunt plan commands by Pipelines.
 
-*Supported Blocks:*
-
-- `authentication` (Required): An authentication block that determines how Pipelines will authenticate with cloud platforms when running Terragrunt commands. See [Authentication Blocks](#authentication-blocks) for more information.
-
 ## Configuration Components
 
 Some configurations are only relevant within the context of other configurations. These configurations are referred to as configuration components. Some configuration components are required for other configurations to be valid, while others can be used to reduce repetition in configurations.
 
 ### Filter Blocks
+
+[Full Reference for Filter Blocks](/2.0/reference/pipelines/configurations-as-code#filter)
 
 Filter blocks are components used by [environment](#environment-blocks) blocks to determine where certain configurations are applicable.
 
@@ -336,11 +318,10 @@ filter {
 
 All configuration blocks that contain a `filter` block will only be applied to units that match the filter.
 
-*Supported Attributes:*
-
-- `paths` (Required): A list of path globs that the filter should match against. Paths are relative to the directory containing the `.gruntwork` directory.
 
 ### Authentication Blocks
+
+[Full Reference for Authentication Blocks](/2.0/reference/pipelines/configurations-as-code#authentication)
 
 Authentication blocks are components used by [environment](#environment-blocks) and [unit](#unit-blocks) blocks to determine how Pipelines will authenticate with cloud platforms when running Terragrunt commands.
 
@@ -369,12 +350,3 @@ authentication {
 ```
 
 In this example, Pipelines will use OIDC to authenticate with AWS and assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when running Terragrunt plan commands.
-
-*Supported Blocks:*
-
-- `aws_oidc` (Required): An AWS OIDC authentication block that determines how Pipelines will authenticate with AWS using OIDC. See [AWS OIDC Authentication Blocks](#aws-oidc-authentication-blocks) for more information.
-  - `account_id` (Required): The AWS account ID that Pipelines will authenticate with.
-  - `plan_iam_role_arn` (Required): The IAM role ARN that Pipelines will assume when running Terragrunt plan commands.
-  - `apply_iam_role_arn` (Required): The IAM role ARN that Pipelines will assume when running Terragrunt apply commands.
-  - `region` (Optional): The AWS region that Pipelines will use when running Terragrunt commands. If not set, Pipelines will use the default region of `us-east-1`.
-  - `session_duration` (Optional): The duration in seconds that the AWS session will be valid for. If not set, Pipelines will use the default session duration of `3600` seconds.

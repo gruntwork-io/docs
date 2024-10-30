@@ -4,13 +4,43 @@ import TabItem from '@theme/TabItem';
 import { HclListItem, HclListItemExample, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 //import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-## File Reference
-| Variable            | Type       | Description     | Default value   |
-|---------------------|------------|-----------------|-----------------|
-| `gruntwork.hcl`           | `String`   | Query text. See the [query language doc](query-language.md) | _required_ |
-| `environments.hcl` | `i64`      | If set, restrict search to documents with a `timestamp >= start_timestamp`, taking advantage of potential time pruning opportunities. The value must be in seconds. | |
-
 ## Block Reference
+
+
+<HclListItem name="environment" requirement="optional" type="labeled-block">
+<HclListItemDescription>
+Environment blocks are used to define configurations that are applicable to a specific environment within a repository.
+<br />
+The label applied to an environment block is the name of the environment. This is a user-defined label for the environment, and must be globally unique.
+<br />
+See more [below](#environment-block-attributes).
+</HclListItemDescription>
+<HclListItemExample>
+
+```hcl
+# .gruntwork/environments.hcl
+environment "an_environment" {
+  filter {
+    paths = ["an-environment/*"]
+  }
+
+  authentication {
+    aws_oidc {
+      account_id         = aws.accounts.all.an_account.id
+      plan_iam_role_arn  = "arn:aws:iam::${aws.accounts.all.an_account.id}:role-to-assume-for-plans"
+      apply_iam_role_arn = "arn:aws:iam::${aws.accounts.all.an_account.id}:role-to-assume-for-applies"
+    }
+  }
+}
+
+aws {
+  accounts "all" {
+    path = "aws/accounts.yml"
+  }
+}
+```
+</HclListItemExample>
+</HclListItem>
 
 <HclListItem name="unit" requirement="optional" type="block">
 <HclListItemDescription>
@@ -18,32 +48,39 @@ import { HclListItem, HclListItemExample, HclListItemDescription, HclListItemTyp
 Unit blocks are used to define configurations that are applicable to a single unit of IaC within a repository. See more [below](#unit-block-attributes).
 
 </HclListItemDescription>
-
+<HclListItemExample>
+```hcl
+unit {
+  authentication {
+    aws_oidc {
+      account_id         = "an-aws-account-id"
+      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role-to-assume-for-plans"
+      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role-to-assume-for-applies"
+    }
+  }
+}
+```
+</HclListItemExample>
 </HclListItem>
-
-<HclListItem name="environment" requirement="optional" type="block">
-<HclListItemDescription>
-
-Environment blocks are used to define configurations that are applicable to a specific environment within a repository. See more [below](#environment-block-attributes).
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="authentication" requirement="optional" type="block">
 <HclListItemDescription>
 
 Authentication blocks are components used by environment and unit blocks to determine how Pipelines will authenticate with cloud platforms when running Terragrunt commands. See more [below](#authentication-block-attributes).
 
 </HclListItemDescription>
+<HclListItemExample>
+```hcl
+authentication {
+  aws_oidc {
+    account_id     = "an-aws-account-id"
+    plan_iam_role  = "arn:aws:iam::an-aws-account-id:role-to-assume-for-plans"
+    apply_iam_role = "arn:aws:iam::an-aws-account-id:role-to-assume-for-applies"
+  }
+}
+```
+</HclListItemExample>
 </HclListItem>
 
-<HclListItem name="aws_oidc" requirement="optional" type="block">
-<HclListItemDescription>
-
-An AWS OIDC authentication block that determines how Pipelines will authenticate with AWS using OIDC. See more [below](#aws_oidc-block-attributes).
-
-</HclListItemDescription>
-</HclListItem>
 
 <HclListItem name="repository" requirement="optional" type="block">
 <HclListItemDescription>
@@ -51,6 +88,14 @@ An AWS OIDC authentication block that determines how Pipelines will authenticate
 Repository blocks are used to define configurations that are applicable to the entire repository. See more [below](#repository-block-attributes).
 
 </HclListItemDescription>
+<HclListItemExample>
+
+```hcl
+repository {
+  deploy_branch_name = "main"
+}
+```
+</HclListItemExample>
 </HclListItem>
 
 <HclListItem name="filter" requirement="optional" type="block">
@@ -63,14 +108,93 @@ The ceiling of retention days that can be configured via a backup plan for the g
 
 <HclListItem name="aws" type="block">
 <HclListItemDescription>
+<p>
 AWS blocks are configurations used by aws-oidc authentication blocks to have commonly re-used AWS configurations codified and referenced by multiple authentication blocks.
-
+</p><p>
 There can only be one aws block defined within global configurations.
-
+</p><p>
 Nested within the aws block are accounts blocks that define the configurations for collections of AWS accounts.
-
+</p><p>
 The label applied to an accounts block is the name of the Accounts block. This is a user-defined label for the collection of AWS accounts defined by the block, and must be unique within the context of the aws block.
+</p>
+<p>
+For more information on importing accounts from `accounts.yml` [click here](/2.0/docs/pipelines/installation/addingexistingrepo#aws-blocks)
+</p>
+<p>
+See more [below](#aws-block-attributes).
+</p>
 </HclListItemDescription>
+<HclListItemExample>
+```hcl
+aws {
+  accounts "all" {
+    path = "aws/accounts.yml"
+  }
+}
+```
+</HclListItemExample>
+
+</HclListItem>
+
+<HclListItem name="accounts" requirement="optional" type="labeled block">
+<HclListItemDescription>
+
+<p>Accounts blocks define the configurations for collections of AWS accounts.</p>
+<br />
+<p>
+The label applied to an accounts block is the name of the Accounts block. This is a user-defined label for the collection of AWS accounts defined by the block, and must be unique within the context of the aws block.
+</p>
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="aws_oidc" requirement="optional" type="block">
+<HclListItemDescription>
+
+An AWS OIDC authentication block that determines how Pipelines will authenticate with AWS using OIDC. See more [below](#aws_oidc-block-attributes).
+
+</HclListItemDescription>
+</HclListItem>
+
+## Block Attributes
+
+### `environment` block attributes
+
+<HclListItem name="filter" requirement="required" type="block">
+<HclListItemDescription>
+
+A filter block that determines which units the environment is applicable to.  See more [below](#filter-block-attributes).
+
+:::caution
+Every unit must be uniquely matched by the filters of a single environment block. If a unit is matched by multiple environment blocks, Pipelines will throw an error.
+:::
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="authentication" requirement="required" type="block">
+<HclListItemDescription>
+An authentication block that determines how Pipelines will authenticate with cloud platforms when running Terragrunt commands. See more [below](#authentication-block-attributes).
+</HclListItemDescription>
+</HclListItem>
+
+### `unit` block attributes
+
+<HclListItem name="authentication" requirement="required" type="block">
+<HclListItemDescription>
+
+An authentication block that determines how Pipelines will authenticate with cloud platforms when running Terragrunt commands.  See more [below](#authentication-block-attributes).
+</HclListItemDescription>
+
+</HclListItem>
+
+### `authentication` block attributes
+
+
+<HclListItem name="aws_oidc" requirement="required" type="block">
+<HclListItemDescription>
+
+An AWS OIDC authentication block that determines how Pipelines will authenticate with AWS using OIDC See more [below](#aws_oidc-block-attributes).
+</HclListItemDescription>
+
 </HclListItem>
 
 ### `repository` block attributes
@@ -112,56 +236,46 @@ Whether or not Pipelines will consolidate added or changed resources when runnin
 <HclListItemDescription>
 
 Whether or not Pipelines will consolidate deleted resources when running Terragrunt plan commands.
+  :::caution
 
+  This is disabled by default because there can be unintended consequences to deleting additional resources via a `run-all` Terragrunt command. It is recommended to enable this feature only when you are confident that you understand the implications of doing so.
+
+  :::
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-### `environment` block attributes
 
-<HclListItem name="filter" requirement="required" type="block">
+
+### `filter` block attributes
+
+<HclListItem name="paths" requirement="required" type="array[string]">
 <HclListItemDescription>
 
-A filter block that determines which units the environment is applicable to.  See more [below](#filter-block-attributes).
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="authentication" requirement="required" type="block">
-<HclListItemDescription>
-An authentication block that determines how Pipelines will authenticate with cloud platforms when running Terragrunt commands. See more [below](#authentication-block-attributes).
+A list of path globs that the filter should match against. Paths are relative to the directory containing the .gruntwork directory.
 </HclListItemDescription>
 </HclListItem>
 
 ### `aws` block attributes
 
-<HclListItem name="accounts" requirement="required" type="qualified block">
+<HclListItem name="accounts" requirement="required" type="labeled block">
 <HclListItemDescription>
 
-The AWS account ID that Pipelines will authenticate with.
-</HclListItemDescription>
-<HclListItemExample>
-```hcl
-aws {
-  accounts "all" {
-    path = "aws/accounts.yml"
-  }
-}
-```
-</HclListItemExample>
-</HclListItem>
-
-### `unit` block attributes
-
-<HclListItem name="authentication" requirement="required" type="block">
-<HclListItemDescription>
-
-The AWS account ID that Pipelines will authenticate with.
+The AWS account ID that Pipelines will authenticate with.  See more [below](#accounts-block-attributes).
 </HclListItemDescription>
 </HclListItem>
 
-### `authentication` block attributes
+### `accounts` block attributes
 
-### `filter` block attributes
+<HclListItem name="path" requirement="required" type="string">
+<HclListItemDescription>
+
+The path to the `accounts.yml` file that contains the definition of AWS accounts.
+
+</HclListItemDescription>
+</HclListItem>
+
+
 
 ### `aws_oidc` block attributes
 
