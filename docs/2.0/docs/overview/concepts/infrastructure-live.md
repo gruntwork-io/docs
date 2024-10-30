@@ -76,4 +76,5 @@ For more details and the other options, see [Keep your Terragrunt Architecture D
 
 ### Module defaults
 
+
 Now that you have your accounts, environments, categories, resources, and state figured out, you may be wondering how you can increase code re-use across your `live` repository. Gruntwork recommends using the ["module defaults"](../../library/concepts/module-defaults.md) pattern to keep your Terragrunt architecture DRY.

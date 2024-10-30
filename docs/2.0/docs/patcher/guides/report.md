@@ -53,11 +53,3 @@ The report command outpust a list of module dependencies in JSON format to `stdo
    "gruntwork-io/terraform-aws-service-catalog/networking/route53"
 ]
 ```
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "dfd6a16ded9deaced37f0acc5f66e0f3"
-}
-##DOCS-SOURCER-END -->

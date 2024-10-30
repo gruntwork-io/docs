@@ -44,11 +44,3 @@ The Bootstrap workflow creates an empty infrastructure-modules repository that w
 ## Complete Instructions In The Bootstrap Pull Requests
 
 Each of your repositories will now contain a Bootstrap Pull Request. Follow the instructions in the Pull Requests to complete setup of your IaC repositories.
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "cec86a7a85853cce71a5b94513d94e39"
-}
-##DOCS-SOURCER-END -->

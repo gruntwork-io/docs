@@ -7,7 +7,7 @@
   },
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "NODE_OPTIONS=--max-old-space-size=10248 docusaurus start --port 3000 #& onchange -i '_docs-sources/**/*(*.md|*.mdx|*.json)' -- yarn regenerate:local",
+    "start": "NODE_OPTIONS=--max-old-space-size=10248 docusaurus start --port 3000",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -17,7 +17,7 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
     "regenerate": "env-cmd --silent docs-sourcer",
-    "regenerate:local": "yarn regenerate --plugins local-copier",
+    "run-docs-sourcer": "docs-sourcer -p service-catalog-api -p module-catalog-api",
     "sidebar": "scripts/generate-sidebar.js",
     "test": "jest"
   },
