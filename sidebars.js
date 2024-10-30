@@ -10,9 +10,6 @@
  */
 
 const productionFrameworkSidebar = require("./sidebars/production-framework-guide.js")
-const complianceSidebar = require("./sidebars/compliance-guide.js")
-const updateGuideSidebars = require("./sidebars/update-guides.js")
-const faqSidebars = require("./sidebars/faq.js")
 const infrastructurePipelinesSidebars = require("./sidebars/infrastructure-pipelines.js")
 const ecsDeployRunnerSidebars = require("./sidebars/ecs-deploy-runner.js")
 const docsSidebar = require("./sidebars/docs.js")
@@ -23,9 +20,6 @@ const referenceSidebar = require("./sidebars/reference.js")
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   productionFrameworkSidebar,
-  complianceSidebar,
-  ...updateGuideSidebars,
-  faqSidebars,
   infrastructurePipelinesSidebars,
   ecsDeployRunnerSidebars,
   docsSidebar,

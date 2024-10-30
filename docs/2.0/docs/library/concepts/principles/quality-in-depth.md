@@ -32,7 +32,7 @@ In addition to static analysis, we also use the [Steampipe](https://github.com/t
 
 Generally, the best documentation is that which is written by a person and accurately conveys not only the technical details of a module, but also the intent behind the module. However, it is also useful to have automated documentation generation to ensure that the documentation is always up to date.
 
-To achieve that goal, some custom tooling is used to automatically generate documentation for modules in the library in the context of the manually written documentation to express intent. You can see this documentation by navigating to the [Library Reference](/2.0/reference/library)
+To achieve that goal, some custom tooling is used to automatically generate documentation for modules in the library in the context of the manually written documentation to express intent. You can see this documentation by navigating to the [Library Reference](/2.0/reference/library/index)
 
 ## Quality Checks We Don't Use
 
@@ -49,4 +49,3 @@ A useful tool for evaluating the cost of infrastructure is [Infracost](https://g
 ### More to be Discovered
 
 Quality checks that are _not_ used are harder to think of than those that _are_ used. If you have any suggestions for quality checks that we should consider, please let us know by sending a pull request to this document.
-

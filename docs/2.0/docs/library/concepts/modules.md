@@ -38,7 +38,7 @@ The module catalog features over 250 "building block" modules spanning three maj
 
 Each of these use cases covers one or more Subject Matter Expert (SME) topics such as AWS account management, VPC/Networking, EKS, ECS, and RDS. SME topics are a first-class concept within Gruntwork, but do not have much visibility in the product itself at this time.
 
-To browse the module catalog, see the [Library Reference](/2.0/reference/library) and look for "Module Catalog" on the sidebar. You can also visit the list of [private Gruntwork GitHub repos](https://github.com/orgs/gruntwork-io/repositories?q=&type=private&language=&sort=).
+To browse the module catalog, see the [Library Reference](/2.0/reference/library/index) and look for "Module Catalog" on the sidebar. You can also visit the list of [private Gruntwork GitHub repos](https://github.com/orgs/gruntwork-io/repositories?q=&type=private&language=&sort=).
 
 
 ## How modules are updated
