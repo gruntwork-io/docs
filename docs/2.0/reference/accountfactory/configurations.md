@@ -26,8 +26,9 @@ pipelines:
 
 <HclListItem name="account-baseline-disable-vpc-inputs" requirement="optional" type="boolean">
 <HclListItemDescription>
-Defaults to `false`
+    If set to true, the terragrunt.hcl generated for the VPC in new delegated accounts will not pass any inputs to the VPC module. This is useful for customers with custom VPC configurations: e.g., IPAM, transit subnets, private NAT, etc. All of this custom config can go into vpc-app.hcl in _envcommon directly in the customer's infra-live repo.
 </HclListItemDescription>
+<HclListItemDefaultValue>false</HclListItemDefaultValue>
 <HclListItemExample>
 
 ```yaml
