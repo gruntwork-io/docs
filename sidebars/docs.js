@@ -297,21 +297,9 @@ const sidebar = [
             type: "category",
             items: [
               {
-                label: "Infrastructure Pipelines",
-                type: "link",
-                className: "external-link",
-                href: "/infrastructure-pipelines/overview",
-              },
-              {
                 label: "Upgrading from Infrastructure-Pipelines",
                 type: "doc",
                 id: "2.0/docs/pipelines/previous-versions/upgrading-from-infrastructure-pipelines",
-              },
-              {
-                label: "ECS Deploy Runner",
-                type: "link",
-                className: "external-link",
-                href: "/ecs-deploy-runner/overview",
               },
               {
                 label: "Upgrading from ECS Deploy Runner",
@@ -406,18 +394,18 @@ const sidebar = [
               },
             ],
           },
-          {
-            label: "Guides",
-            type: "category",
-            collapsed: true,
-            items: [
-              {
-                label: "Customizing something",
-                type: "doc",
-                id: "2.0/docs/accountfactory/guides/index",
-              },
-            ],
-          },
+          // {
+          //   label: "Guides",
+          //   type: "category",
+          //   collapsed: true,
+          //   items: [
+          //     {
+          //       label: "Customizing something",
+          //       type: "doc",
+          //       id: "2.0/docs/accountfactory/guides/index",
+          //     },
+          //   ],
+          // },
           {
             label: "Configuration Reference",
             type: "link",
