@@ -191,6 +191,23 @@ repo-allow-list:
 </HclListItemExample>
 </HclListItem>
 
+### session-duration
+
+<HclListItem name="session-duration" requirement="optional" type="number">
+<HclListItemDescription>
+Duration in seconds for each session terragunt assumes in AWS during plans and applies.
+Defaults to `3600`
+</HclListItemDescription>
+<HclListItemExample>
+
+```yaml
+pipelines:
+  session-duration: 3600
+```
+
+</HclListItemExample>
+</HclListItem>
+
 ### terraform-version
 
 <HclListItem name="terraform-version" requirement="deprecated" type="string">

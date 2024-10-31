@@ -335,23 +335,6 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
-### session-duration
-
-<HclListItem name="session-duration" requirement="optional" type="number">
-<HclListItemDescription>
-Duration in seconds for each session terragunt assumes in AWS during plans and applies.
-Defaults to `3600`
-</HclListItemDescription>
-<HclListItemExample>
-
-```yaml
-pipelines:
-  session-duration: 3600
-```
-
-</HclListItemExample>
-</HclListItem>
-
 ### shared-account-name
 
 <HclListItem name="shared-account-name" requirement="optional" type="string">
