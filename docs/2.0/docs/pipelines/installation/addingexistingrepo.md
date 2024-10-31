@@ -33,7 +33,7 @@ Pipelines is implemented as a GitHub [reusable workflow](https://docs.github.com
 
 * Create a file called `.github/workflows/pipelines.yml`
 * The contents of the file should be sourced from our template [here](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/blob/main/templates/devops-foundations-infrastructure-live-root/.github/workflows/pipelines.yml)
-* NOTE: As of writing this in October 2024 the above template points to a boilerplate template which is not directly usable; the file is meant to be rendered by boilerplate into a usable file.  Please reach out to your Gruntwork solutions architect for assistance if you need help rendering the template.
+* NOTE: As of writing this in October 2024 the above template points to a [boilerplate](https://github.com/gruntwork-io/boilerplate) template; the file is meant to be rendered by boilerplate into a usable file.  Please reach out to your Gruntwork solutions architect for assistance if you need help rendering the template.
 
 ## Basic Configuration
 
