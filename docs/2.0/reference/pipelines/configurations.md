@@ -1,5 +1,3 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 import { HclListItem, HclListItemExample, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '/src/components/HclListItem.tsx';
 
 # Pipelines Configurations
@@ -29,8 +27,6 @@ awscli = "latest"
 
 `./.gruntwork/config.yml`
 
-<Tabs groupId="subscription">
-<TabItem value="Standard" label="Standard" default>
 ## Standard Options
 
 ### access-control-repo-name
@@ -193,6 +189,41 @@ Defaults to `git@github.com:gruntwork-io/terraform-aws-cis-service-catalog.git`
 ```yaml
 pipelines:
   cis-service-catalog-repo-url: git@github.com:gruntwork-io/terraform-aws-cis-service-catalog.git
+```
+
+</HclListItemExample>
+</HclListItem>
+
+### consolidate-added-or-changed
+
+<HclListItem name="consolidate-added-or-changed" requirement="optional" type="boolean">
+<HclListItemDescription>
+When set to true enables consolidating added and changed units such that dependencies are respected.
+Defaults to `true`
+</HclListItemDescription>
+<HclListItemExample>
+
+```yaml
+pipelines:
+  consolidate-added-or-changed: false
+```
+
+</HclListItemExample>
+</HclListItem>
+
+### consolidate-deleted
+
+<HclListItem name="consolidate-deleted" requirement="optional" type="boolean">
+<HclListItemDescription>
+When set to true enables consolidating deleted units such that dependencies are respected.
+This is disabled by default as it may result in unexpected deletions.
+Defaults to `false`
+</HclListItemDescription>
+<HclListItemExample>
+
+```yaml
+pipelines:
+  consolidate-deleted: true
 ```
 
 </HclListItemExample>
@@ -447,6 +478,23 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
+### session-duration
+
+<HclListItem name="session-duration" requirement="optional" type="number">
+<HclListItemDescription>
+Duration in seconds for each session terragunt assumes in AWS during plans and applies.
+Defaults to `3600`
+</HclListItemDescription>
+<HclListItemExample>
+
+```yaml
+pipelines:
+  session-duration: 3600
+```
+
+</HclListItemExample>
+</HclListItem>
+
 ### shared-account-name
 
 <HclListItem name="shared-account-name" requirement="optional" type="string">
@@ -488,9 +536,6 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
-</TabItem>
-
-<TabItem value="Enterprise" label="Enterprise">
 ## Enterprise Options
 
 ### catalog-tags-location
@@ -540,9 +585,6 @@ pipelines:
 
 </HclListItemExample>
 </HclListItem>
-
-</TabItem>
-</Tabs>
 
 
 # Deprecated Configuration Options
