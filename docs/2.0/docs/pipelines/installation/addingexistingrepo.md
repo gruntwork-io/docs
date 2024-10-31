@@ -2,7 +2,7 @@
 
 
 :::info
-In July 2024 Gruntwork released a new configuration paradigm for Pipelines referred to as ["Pipelines Configuration as Code."](/2.0/reference/pipelines/configurations-as-code).  This new system allows developers to use pipelines with arbitrary folder layouts inside their IaC repositories.  Prior to this system, pipelines required using a specific folder layout in order to map folders in source control to AWS Accounts for authentication.  As of Q4 2024 this new configuration system does not yet support Gruntwork Account Factory, and so if you're using both Pipelines and Account factory we strongly advise you to start with a [new repository](/2.0/docs/pipelines/installation/addingnewrepo).
+In July 2024 Gruntwork released a new configuration paradigm for Pipelines referred to as ["Pipelines Configuration as Code."](/2.0/reference/pipelines/configurations-as-code).  This new system allows developers to use pipelines with arbitrary folder layouts inside their IaC repositories. Prior to this system, pipelines required using a specific folder layout in order to map folders in source control to AWS Accounts for authentication. As of Q4 2024 this new configuration system does not yet support Gruntwork Account Factory, and so if you're using both Pipelines and Account factory we strongly advise you to start with a [new repository](/2.0/docs/pipelines/installation/addingnewrepo).
 :::
 
 ## Pipelines Configuration as Code
