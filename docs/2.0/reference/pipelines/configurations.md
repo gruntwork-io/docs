@@ -1,6 +1,5 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import ConfigOptionItem from "/src/components/ConfigOptionItem"
 import { HclListItem, HclListItemExample, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '/src/components/HclListItem.tsx';
 
 # Pipelines Configurations
@@ -22,8 +21,6 @@ Pipelines behavior is primarily configured via a yaml file at `.gruntwork/config
 <Tabs groupId="subscription">
 <TabItem value="Standard" label="Standard" default>
 ## Standard Options
-
-
 
 ### access-control-repo-name
 
