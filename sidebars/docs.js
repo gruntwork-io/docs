@@ -108,6 +108,11 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/pipelines/concepts/drift-detection",
               },
+              {
+                label: "The HCL Language",
+                type: "doc",
+                id: "2.0/docs/pipelines/concepts/hcl-config-language",
+              },
             ],
           },
           {

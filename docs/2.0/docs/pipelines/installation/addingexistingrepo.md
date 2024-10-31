@@ -5,13 +5,37 @@
 In July 2024 Gruntwork released a new configuration paradigm for Pipelines referred to as ["Pipelines Configuration as Code."](/2.0/reference/pipelines/configurations-as-code).  This new system allows developers to use pipelines with arbitrary folder layouts inside their IaC repositories.  Prior to this system, pipelines required using a specific folder layout in order to map folders in source control to AWS Accounts for authentication.  As of Q4 2024 this new configuration system does not yet support Gruntwork Account Factory, and so if you're using both Pipelines and Account factory we strongly advise you to start with a [new repository](/2.0/docs/pipelines/installation/addingnewrepo).
 :::
 
-## Installing Pipelines
+## Pipelines Configuration as Code
 
 Pipelines relies on configurations written in [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl) to drive dynamic behavior. These configurations are primarily used by Pipelines to determine how to interact with cloud environments within the context of the Infrastructure As Code (IaC) within a code repository.
 
 At a high level, Pipelines will read these configurations by parsing all files that end with `.hcl` within a directory named `.gruntwork` or a single file named `gruntwork.hcl`. In typical usage, the configurations that are global to the git repository will be defined within the `.gruntwork` directory at the root of the repository, and configurations that are specific to a particular `terragrunt.hcl` file (a "unit") located in the same directory as the `terragrunt.hcl` file.
 
-## Minimum Required Configuration
+:::info
+We recommend reading our [concepts page](../concepts/hcl-config-language.md) on the HCL language to ensure you're up to date on the specifics of HCL before diving into pipelines configuration
+:::
+
+## Installation Process
+
+The below steps are a high level description of the steps to install pipelines in an existing repository with an arbitrary folder structure of IaC.  The content in the rest of this document goes into detail on how to apply the configurations to match how your IaC is structured.
+
+<ol>
+<li>Identify where your account authentication information is stored.  This is typically in a file named `accounts.yml` in the root of your repository, although you can also store the file in another location or inline the configuration in an [aws block](#aws-blocks) in your pipelines configuration.</li>
+<li>Create a file called `.gruntwork/gruntwork.hcl` in the root of your repository</li>
+<li>Apply the [basic configurations below](#basic-configuration) to your `gruntwork.hcl` file</li>
+<li>Augment the `gruntwork.hcl` file with additional configurations as needed to match your IaC structure</li>
+<li>Install the pipelines workflow files</li>
+</ol>
+
+## Installing the Pipelines workflow files
+
+Pipelines is implemented as a GitHub [reusable workflow](https://docs.github.com/en/actions/sharing-automations/reusing-workflows#creating-a-reusable-workflow). This means that the code to implement Pipelines and all of its features lives in an external repository (generally you'll point to [ours](https://github.com/gruntwork-io/pipelines-workflows/)) and the code in your repository simply makes a reference.
+
+* Create a file called `.github/workflows/pipelines.yml`
+* The contents of the file should be sourced from our template [here](https://github.com/gruntwork-io/.terraform-aws-architecture-catalog/blob/main/templates/devops-foundations-infrastructure-live-root/.github/workflows/pipelines.yml)
+* NOTE: As of writing this in October 2024 the above template points to a boilerplate template which is not directly usable; the file is meant to be rendered by boilerplate into a usable file.  Please reach out to your Gruntwork solutions architect for assistance if you need help rendering the template.
+
+## Basic Configuration
 
 The minimum configurations required for Pipelines to operate correctly will vary depending on context. For the most common usage, Pipelines will need to be able to determine how to authenticate with a cloud provider in order to run Terragrunt commands. If it is not able to determine how to authenticate within a context where it needs to be able to do so, Pipelines will throw an error.
 
@@ -58,36 +82,6 @@ In this example, all the units located within the `an-environment` directory sib
 A typical approach to building Pipelines configurations is to first define minimal configurations that address the most common use-cases, and then to refactor and generalize those configurations as needed to reduce repetition.
 
 More details on how these configurations are defined will be detailed below.
-
-## Primer on HCL Terminology
-
-HCL is an extensible configuration language developed by HashiCorp. See [this](https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md) for the full specification.
-
-The main terminology you need to know to understand the documentation below includes:
-
-### Blocks
-
-A block is a collection of nested configurations that are defined within curly braces `{}`, immediately after the identifier of the block.
-
-:::tip
-A `filter` block is nested in the `environment` block in the example above.
-:::
-
-### Attributes
-
-An attribute is a key-value pair separated by an `=` that is defined within a block.
-
-:::tip
-The `paths` attribute is defined within the `filter` block in the example above.
-:::
-
-### Labels
-
-A label is one or more strings that are used to qualify a block.
-
-:::tip
-The `an_environment` label is used to qualify the `environment` block in the example above.
-:::
 
 ## Configuration Hierarchy
 

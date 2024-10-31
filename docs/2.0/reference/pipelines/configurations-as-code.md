@@ -6,7 +6,10 @@ import { HclListItem, HclListItemExample, HclListItemDescription, HclListItemTyp
 
 ## Block Reference
 
+For a more comprehensive walkthrough of how blocks work please see the Pipelines Configurations as Code [documentation](/2.0/docs/pipelines/installation/addingexistingrepo).
 
+
+### `environment` block
 <HclListItem name="environment" requirement="optional" type="labeled-block">
 <HclListItemDescription>
 Environment blocks are used to define configurations that are applicable to a specific environment within a repository.
@@ -42,6 +45,7 @@ aws {
 </HclListItemExample>
 </HclListItem>
 
+### `unit` block
 <HclListItem name="unit" requirement="optional" type="block">
 <HclListItemDescription>
 
@@ -62,6 +66,9 @@ unit {
 ```
 </HclListItemExample>
 </HclListItem>
+
+### `authentication` block
+
 <HclListItem name="authentication" requirement="optional" type="block">
 <HclListItemDescription>
 
@@ -81,6 +88,7 @@ authentication {
 </HclListItemExample>
 </HclListItem>
 
+### `repository` block
 
 <HclListItem name="repository" requirement="optional" type="block">
 <HclListItemDescription>
@@ -98,6 +106,8 @@ repository {
 </HclListItemExample>
 </HclListItem>
 
+### `filter` block
+
 <HclListItem name="filter" requirement="optional" type="block">
 <HclListItemDescription>
 
@@ -105,6 +115,8 @@ The ceiling of retention days that can be configured via a backup plan for the g
 
 </HclListItemDescription>
 </HclListItem>
+
+### `aws` block
 
 <HclListItem name="aws" type="block">
 <HclListItemDescription>
@@ -136,6 +148,8 @@ aws {
 
 </HclListItem>
 
+### `accounts` block
+
 <HclListItem name="accounts" requirement="optional" type="labeled block">
 <HclListItemDescription>
 
@@ -146,6 +160,8 @@ The label applied to an accounts block is the name of the Accounts block. This i
 </p>
 </HclListItemDescription>
 </HclListItem>
+
+### `aws_oidc` block
 
 <HclListItem name="aws_oidc" requirement="optional" type="block">
 <HclListItemDescription>
