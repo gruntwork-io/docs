@@ -14,9 +14,15 @@ When you set up a new DevOps component, you also have access to guidance from Gr
 
 ## Available components
 
-There are XYZ DevOps components available today.
+There are several DevOps components available today:
 
-TODO: Flesh this out
+* [Infrastructure-Live](./infrastructure-live.md): An opinionated structure for IaC repositories that includes a set of best practices for how to structure your Terraform code to keep things DRY at enterprise scale.
+* [Pipelines](/docs/2.0/docs/pipelines/concepts/overview.md): A complete CI/CD pipeline for infrastructure code, a set of best practices for how to structure your Terraform code, and a set of scripts for managing the pipeline.
+* [Account Factory](/docs/2.0/docs/accountfactory/concepts/): A set of automated workflows to provision new AWS accounts and apply compliance, security and infrastructure baselines to enforce business rules across many accounts.
+* [Patcher](/docs/2.0/docs/patcher/concepts/index): Identify out of date modules across your repositories and create pull requests that both updates versions and automatically refactors code to get through breaking changes without developer intervention.
+* [Library](/docs/2.0/docs/library/concepts/overview): Over 300,000 lines of terraform code modules that are designed to be used as building blocks for your infrastructure. From VPCs to ECS clusters to S3 buckets, the library has you covered.
+<!-- * [Catalog]  -- see DEV-628 -->
+<!-- Something about networking / transit gateway? -->
 
 All DevOps components are focused on AWS and Terraform/OpenTofu. We may add support for additional technologies in the future.
 
