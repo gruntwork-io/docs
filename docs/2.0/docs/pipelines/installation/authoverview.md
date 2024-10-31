@@ -10,7 +10,7 @@ Gruntwork Pipelines needs to authenticate with GitHub for various reasons, inclu
 
 Gruntwork provides two mechanisms to achieve this authentication: a [GitHub App](./viagithubapp.md) and a strategy of using CI Users (aka [Machine Users](./viamachineusers.md)) for generating/installing personal access tokens for pipelines to use.
 
-Broadly the two approaches achieve the same result and core pipelines functionality will work with either mechanism.  There are, however, some features and benefits only available with authenticating using the GitHub app and as such it is our recommended approach. As we roll out new features to pipelines we endeavor to ensure they are available to both authentication mechanisms. However, we do anticipate that the list of features that are GitHub App exclusive will grow over tim.
+Broadly the two approaches achieve the same result and core pipelines functionality will work with either mechanism.  There are, however, some features and benefits only available with authenticating using the GitHub app and as such it is our recommended approach. As we roll out new features to pipelines we endeavor to ensure they are available to both authentication mechanisms. However, we do anticipate that the list of features that are GitHub App exclusive will grow over time.
 
 In summary:
 
