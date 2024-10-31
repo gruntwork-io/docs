@@ -1,3 +1,12 @@
+import ecsDeployRunnerSidebar from "./ecs-deploy-runner"
+import infrastructurePipelinesSidebar from "./infrastructure-pipelines"
+
+// Collapse these categories by default
+ecsDeployRunnerSidebar[0].collapsible = true
+ecsDeployRunnerSidebar[0].collapsed = true
+infrastructurePipelinesSidebar[0].collapsible = true
+infrastructurePipelinesSidebar[0].collapsed = true
+
 const developerPortalKBLink =
   "https://github.com/orgs/gruntwork-io/discussions?discussions_q=" +
   // filter by discussions with the label "s:dev-portal" & sort by top voted discussions first
@@ -7,7 +16,7 @@ const pipelinesKBLink =
   // filter by discussions with the label s:CI/Pipelines & sort by top voted discussions first
   encodeURIComponent("label:s:CI/Pipelines sort:top")
 
-const complianceSidebar = require('./compliance-guide');
+const complianceSidebar = require("./compliance-guide")
 const updateGuideSidebars = require("./update-guides.js")
 
 const sidebar = [
@@ -68,7 +77,7 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/overview/developer-portal/link-github-id",
               },
-            ]
+            ],
           },
           complianceSidebar,
           {
@@ -99,9 +108,9 @@ const sidebar = [
                 id: "2.0/docs/pipelines/concepts/overview",
               },
               {
-                label: 'Authenticating with Cloud Providers',
-                type: 'doc',
-                id: '2.0/docs/pipelines/concepts/cloud-auth',
+                label: "Authenticating with Cloud Providers",
+                type: "doc",
+                id: "2.0/docs/pipelines/concepts/cloud-auth",
               },
               {
                 label: "Drift Detection",
@@ -133,12 +142,12 @@ const sidebar = [
               {
                 label: "Security Controls",
                 type: "doc",
-                id: '2.0/docs/pipelines/architecture/security-controls',
+                id: "2.0/docs/pipelines/architecture/security-controls",
               },
               {
                 label: "Audit Logs",
                 type: "doc",
-                id: '2.0/docs/pipelines/architecture/audit-logs',
+                id: "2.0/docs/pipelines/architecture/audit-logs",
               },
               {
                 label: "Usage Data",
@@ -200,7 +209,7 @@ const sidebar = [
                     label: "Adding Branch Protection to a Repository",
                     type: "doc",
                     id: "2.0/docs/pipelines/installation/branch-protection",
-                  }
+                  },
                 ],
               },
               {
@@ -309,7 +318,7 @@ const sidebar = [
             label: "Knowledge Base",
             type: "link",
             href: pipelinesKBLink,
-          }
+          },
         ],
       },
       {
@@ -348,8 +357,8 @@ const sidebar = [
                 label: "Network Topology",
                 type: "doc",
                 id: "2.0/docs/accountfactory/architecture/network-topology",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Setup & Installation",
@@ -434,8 +443,8 @@ const sidebar = [
                 label: "Update Strategies",
                 type: "doc",
                 id: "2.0/docs/patcher/concepts/update-strategies",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Architecture",
@@ -518,7 +527,6 @@ const sidebar = [
           },
         ],
       },
-
       {
         label: "Library",
         type: "category",
@@ -553,7 +561,10 @@ const sidebar = [
                 label: "Principles",
                 type: "category",
                 collapsed: true,
-                link: { type: 'doc', id: '2.0/docs/library/concepts/principles/overview' },
+                link: {
+                  type: "doc",
+                  id: "2.0/docs/library/concepts/principles/overview",
+                },
                 items: [
                   {
                     label: "Control Provider Usage",
@@ -570,9 +581,9 @@ const sidebar = [
                     type: "doc",
                     id: "2.0/docs/library/concepts/principles/quality-in-depth",
                   },
-                ]
-              }
-            ]
+                ],
+              },
+            ],
           },
           {
             label: "Architecture",
@@ -588,8 +599,8 @@ const sidebar = [
                 label: "OpenTofu & Terraform Compatibility",
                 type: "doc",
                 id: "2.0/docs/library/architecture/opentofu-terraform-compatibility",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Setup & Installation",
@@ -606,7 +617,7 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/library/setup/accessing-the-code",
               },
-            ]
+            ],
           },
           {
             label: "Tutorials",
@@ -633,7 +644,7 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/library/tutorials/customizing-modules",
               },
-            ]
+            ],
           },
           {
             label: "Guides",
@@ -663,7 +674,7 @@ const sidebar = [
               {
                 label: "Running Apps",
                 type: "doc",
-                id: '2.0/docs/library/guides/running-apps',
+                id: "2.0/docs/library/guides/running-apps",
               },
               {
                 label: "Integrate with Terraform Cloud",
@@ -689,6 +700,19 @@ const sidebar = [
         label: "Training",
         type: "doc",
         id: "courses",
+      },
+      {
+        label: "Legacy Products",
+        type: "category",
+        items: [
+          infrastructurePipelinesSidebar,
+          ecsDeployRunnerSidebar,
+          {
+            label: "Reference Architecture",
+            type: "category",
+            items: [{ type: "autogenerated", dirName: "refarch" }],
+          },
+        ],
       },
     ],
   },
