@@ -46,7 +46,7 @@ export const HomeContent = () => {
               </Card>
               <Card
                 title="Create your Gruntwork Account"
-                href="/developer-portal/create-account"
+                href="/2.0/docs/overview/developer-portal/create-account"
                 icon="/img/icons/deploy.svg"
               >
                 Create your account in the Gruntwork Developer Portal and add
@@ -64,15 +64,15 @@ export const HomeContent = () => {
           <div className="container" style={{ margin: "6rem auto" }}>
             <h2>Products</h2>
             <CardGroup commonCardProps={{ appearance: "invisible" }}>
-              <Card title="Gruntwork Library" href="/library/overview/">
+              <Card title="Gruntwork Library" href="/2.0/docs/library/concepts/overview">
                 A collection of reusable code that enables you to deploy and
                 manage infrastructure quickly and reliably.
               </Card>
-              <Card title="Gruntwork Pipelines" href="/pipelines/overview">
+              <Card title="Gruntwork Pipelines" href="/2.0/docs/pipelines/concepts/overview">
                 A framework for running secure deployments for infrastructure
                 code and application code.
               </Card>
-              <Card title="Gruntwork Patcher" href="/patcher">
+              <Card title="Gruntwork Patcher" href="/2.0/docs/patcher/concepts/">
                 Keep your infrastructure up to date, with support for automatic
                 updates and patches for any breaking changes.
               </Card>
