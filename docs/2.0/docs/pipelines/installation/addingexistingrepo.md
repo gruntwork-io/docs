@@ -20,7 +20,7 @@ We recommend reading our [concepts page](../concepts/hcl-config-language.md) on 
 The steps below are a high level description of the steps to install pipelines in an existing repository with an arbitrary folder structure of IaC.  The content in the rest of this document goes into detail on how to apply the configurations to match how your IaC is structured.
 
 <ol>
-<li>Identify where your account authentication information is stored.  This is typically in a file named `accounts.yml` in the root of your repository, although you can also store the file in another location or inline the configuration in an [aws block](#aws-blocks) in your pipelines configuration.</li>
+<li>Identify where your account authentication information is stored. This is typically in a file named `accounts.yml` in the root of your repository, although you can also store the file in another location or inline the configuration in an [aws block](#aws-blocks) in your pipelines configuration.</li>
 <li>Create a file called `.gruntwork/gruntwork.hcl` in the root of your repository</li>
 <li>Apply the [basic configurations below](#basic-configuration) to your `gruntwork.hcl` file</li>
 <li>Augment the `gruntwork.hcl` file with additional configurations as needed to match your IaC structure</li>
