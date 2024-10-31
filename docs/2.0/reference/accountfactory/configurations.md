@@ -28,7 +28,7 @@ pipelines:
 <HclListItemDescription>
     If set to true, the terragrunt.hcl generated for the VPC in new delegated accounts will not pass any inputs to the VPC module. This is useful for customers with custom VPC configurations: e.g., IPAM, transit subnets, private NAT, etc. All of this custom config can go into vpc-app.hcl in _envcommon directly in the customer's infra-live repo.
 </HclListItemDescription>
-<HclListItemDefaultValue>false</HclListItemDefaultValue>
+<HclListItemDefaultValue>`false`</HclListItemDefaultValue>
 <HclListItemExample>
 
 ```yaml
@@ -44,8 +44,9 @@ pipelines:
 <HclListItem name="account-baseline-vpc-module-url" requirement="optional" type="string">
 <HclListItemDescription>
 URL of the account baseline VPC module used by account factory
-Defaults to `git@github.com:gruntwork-io/terraform-aws-cis-service-catalog.git//modules/networking/vpc`
+
 </HclListItemDescription>
+<HclListItemDefaultValue>`git@github.com:gruntwork-io/terraform-aws-cis-service-catalog.git//modules/networking/vpc`</HclListItemDefaultValue>
 <HclListItemExample>
 
 ```yaml
@@ -61,8 +62,9 @@ pipelines:
 <HclListItem name="account-baseline-vpc-module-version" requirement="optional" type="string">
 <HclListItemDescription>
 Version of the account-baseline-vpc-module
-Defaults to `v0.48.1`
 </HclListItemDescription>
+<HclListItemDefaultValue>v0.48.1</HclListItemDefaultValue>
+
 <HclListItemExample>
 
 ```yaml
@@ -77,8 +79,8 @@ pipelines:
 
 <HclListItem name="arch-catalog-base-path" requirement="optional" type="string">
 <HclListItemDescription>
-Defaults to `./terraform-aws-architecture-catalog`
 </HclListItemDescription>
+<HclListItemDefaultValue>`./terraform-aws-architecture-catalog`</HclListItemDefaultValue>
 <HclListItemExample>
 
 ```yaml
@@ -125,9 +127,9 @@ pipelines:
 
 <HclListItem name="aws-security-repo-url" requirement="optional" type="string">
 <HclListItemDescription>
-URL of the terraform-aws-security repo.
-Defaults to `git@github.com:gruntwork-io/terraform-aws-security.git`
+URL of the terraform-aws-security repo to use in delegated repositories
 </HclListItemDescription>
+<HclListItemDefaultValue>`git@github.com:gruntwork-io/terraform-aws-security.git`</HclListItemDefaultValue>
 <HclListItemExample>
 
 ```yaml
@@ -142,9 +144,9 @@ pipelines:
 
 <HclListItem name="aws-utilities-repo-url" requirement="optional" type="string">
 <HclListItemDescription>
-URL of the terraform-aws-utilities repo
-Defaults to `git@github.com:gruntwork-io/terraform-aws-utilities.git`
+URL of the terraform-aws-utilities repo to use in delegated repositories
 </HclListItemDescription>
+<HclListItemDefaultValue>`git@github.com:gruntwork-io/terraform-aws-utilities.git`</HclListItemDefaultValue>
 <HclListItemExample>
 
 ```yaml
@@ -159,9 +161,9 @@ pipelines:
 
 <HclListItem name="cis-service-catalog-repo-url" requirement="optional" type="string">
 <HclListItemDescription>
-URL of the terraform-aws-cis-service-catalog repo
-Defaults to `git@github.com:gruntwork-io/terraform-aws-cis-service-catalog.git`
+URL of the terraform-aws-cis-service-catalog repo to use in delegated repositories
 </HclListItemDescription>
+<HclListItemDefaultValue>`git@github.com:gruntwork-io/terraform-aws-cis-service-catalog.git`</HclListItemDefaultValue>
 <HclListItemExample>
 
 ```yaml
@@ -193,8 +195,8 @@ pipelines:
 <HclListItem name="control-tower-repo-url" requirement="optional" type="string">
 <HclListItemDescription>
 URL of the terraform-aws-control-tower repo
-Defaults to `git@github.com:gruntwork-io/terraform-aws-control-tower.git`
 </HclListItemDescription>
+<HclListItemDefaultValue>`git@github.com:gruntwork-io/terraform-aws-control-tower.git`</HclListItemDefaultValue>
 <HclListItemExample>
 
 ```yaml
@@ -276,6 +278,7 @@ pipelines:
 Override the folder for the logs account
 Defaults to `logs`
 </HclListItemDescription>
+<HclListItemDefaultValue>`logs`</HclListItemDefaultValue>
 <HclListItemExample>
 
 ```yaml
@@ -291,8 +294,8 @@ pipelines:
 <HclListItem name="management-account-name" requirement="optional" type="string">
 <HclListItemDescription>
 Override the folder for the management account
-Defaults to `management`
 </HclListItemDescription>
+<HclListItemDefaultValue>`management`</HclListItemDefaultValue>
 <HclListItemExample>
 
 ```yaml
@@ -324,8 +327,8 @@ pipelines:
 <HclListItem name="security-account-name" requirement="optional" type="string">
 <HclListItemDescription>
 Override the folder for the security account
-Defaults to `security`
 </HclListItemDescription>
+<HclListItemDefaultValue>`security`</HclListItemDefaultValue>
 <HclListItemExample>
 
 ```yaml
@@ -341,8 +344,8 @@ pipelines:
 <HclListItem name="shared-account-name" requirement="optional" type="string">
 <HclListItemDescription>
 Override the folder for the shared account
-Defaults to `shared`
 </HclListItemDescription>
+<HclListItemDefaultValue>`shared`</HclListItemDefaultValue>
 <HclListItemExample>
 
 ```yaml
@@ -418,6 +421,7 @@ pipelines:
 ```
 
 </HclListItemExample>
+<HclListItemDefaultValue>`PIPELINES_READ_TOKEN`</HclListItemDefaultValue>
 </HclListItem>
 
 ### pipelines-workflow-location
