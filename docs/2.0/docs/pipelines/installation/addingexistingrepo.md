@@ -9,7 +9,7 @@ In July 2024 Gruntwork released a new configuration paradigm for Pipelines refer
 
 Pipelines relies on configurations written in [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl) to drive dynamic behavior. These configurations are primarily used by Pipelines to determine how to interact with cloud environments within the context of the Infrastructure As Code (IaC) within a code repository.
 
-At a high level, Pipelines will read these configurations by parsing all files that end with `.hcl` within a directory named `.gruntwork` or a single file named `gruntwork.hcl`. In typical usage, the configurations that are global to the git repository will be defined within the `.gruntwork` directory at the root of the repository, and configurations that are specific to a particular `terragrunt.hcl` file (a "unit") located in the same directory as the `terragrunt.hcl` file.
+At a high level, Pipelines will read these configurations by parsing all files that end with `.hcl` within a directory named `.gruntwork` or a single file named `gruntwork.hcl`. In typical usage, the configurations that are global to the git repository will be defined within the `.gruntwork` directory at the root of the repository, and configurations that are specific to a particular `terragrunt.hcl` file (a "unit") will be located in the same directory as the `terragrunt.hcl` file.
 
 :::info
 We recommend reading our [concepts page](../concepts/hcl-config-language.md) on the HCL language to ensure you're up to date on the specifics of HCL before diving into pipelines configuration
