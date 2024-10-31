@@ -18,7 +18,7 @@ In summary:
 * _Dramatically_ streamlined setup
 * Access to more features and functionality
 * Improved day to day user experience
-* Less maintenance overhead (no need to rotate tokens)
+* Less maintenance overhead (no need to install, maintain and rotate powerful tokens)
 
 **Reasons to use Machine Users**
 * More fine grained control over the access granted to Pipelines
