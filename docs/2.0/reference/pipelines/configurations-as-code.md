@@ -2,7 +2,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import { HclListItem, HclListItemExample, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '/src/components/HclListItem.tsx';
-//import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+//import { ModuleUsage } from "/src/components/ModuleUsage";
 
 ## Block Reference
 
