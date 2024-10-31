@@ -12,7 +12,7 @@ This means that if you have a `.gruntwork/config.yml` file in your repository, y
 If you do introduce any HCL configurations into your `.gruntwork` directory or introduce a `gruntwork.hcl` file into a directory, Pipelines will begin to use the HCL configuration system instead of the YAML configuration system.
 :::
 
-Pipelines behavior is primarily configured via a yaml file at `.gruntwork/config.yml` in your repository. Pipelines also reads [.mise.toml](https://docs.gruntwork.io/pipelines/upgrading/upgrading-from-infrastructure-pipelines#adding-misetoml) at the root of the repository to determine what version of OpenTofu/Terraform and Terragrunt to use.
+Pipelines behavior is primarily configured via a yaml file at `.gruntwork/config.yml` in your repository. Pipelines also reads [.mise.toml](/docs/2.0/docs/pipelines/previous-versions/upgrading-from-infrastructure-pipelines.md#adding-misetoml) at the root of the repository to determine what version of OpenTofu/Terraform and Terragrunt to use.
 
 ### Example Mise Configuration
 `./.mise.toml`
@@ -25,9 +25,12 @@ awscli = "latest"
 
 # Pipelines Configuration Options
 
-`./.gruntwork/config.yml`
 
-## Standard Options
+Configurations for `./.gruntwork/config.yml`:
+
+## `pipelines` Options
+
+The below options are all nested under the `pipelines` key in the `config.yml` file.
 
 ### consolidate-added-or-changed
 
@@ -177,7 +180,7 @@ Pipelines CLI version - no longer used as this is determined by the pipelines wo
 
 ### repo-allow-list
 
-<HclListItem name="repo-allow-list" requirement="required(deprecated)" type="string">
+<HclListItem name="repo-allow-list" requirement="required(deprecated)" type="array[string]">
 <HclListItemDescription>
 No longer used but still required and should be set to the example. Will be fully removed in a later version of pipelines.
 </HclListItemDescription>
@@ -228,6 +231,6 @@ Terragrunt version to use for plans and applies. Will be used if mise configurat
 
 <HclListItem name="tofu-version" requirement="deprecated" type="string">
 <HclListItemDescription>
-Tofu version to use for plans and applies. Will be used if mise configuration is not present, but should removed in favor of [mise configuration](#example-mise-configuration).
+OpenTofu version to use for plans and applies. Will be used if mise configuration is not present, but should removed in favor of [mise configuration](#example-mise-configuration).
 </HclListItemDescription>
 </HclListItem>
