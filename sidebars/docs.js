@@ -170,6 +170,11 @@ const sidebar = [
                 collapsed: false,
                 items: [
                   {
+                    label: "Auth Overview",
+                    type: "doc",
+                    id: "2.0/docs/pipelines/installation/authoverview",
+                  },
+                  {
                     label: "Auth via GitHub App",
                     type: "doc",
                     id: "2.0/docs/pipelines/installation/viagithubapp",
