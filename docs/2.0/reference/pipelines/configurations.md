@@ -37,8 +37,8 @@ The below options are all nested under the `pipelines` key in the `config.yml` f
 <HclListItem name="consolidate-added-or-changed" requirement="optional" type="boolean">
 <HclListItemDescription>
 When set to true enables consolidating added and changed units such that dependencies are respected.
-Defaults to `true`
 </HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 <HclListItemExample>
 
 ```yaml
@@ -55,8 +55,8 @@ pipelines:
 <HclListItemDescription>
 When set to true enables consolidating deleted units such that dependencies are respected.
 This is disabled by default as it may result in unexpected deletions.
-Defaults to `false`
 </HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 <HclListItemExample>
 
 ```yaml
@@ -88,8 +88,8 @@ pipelines:
 <HclListItem name="enable-terragrunt-provider-cache" requirement="optional" type="boolean">
 <HclListItemDescription>
 Enables the <span class="external-link"><a href="https://terragrunt.gruntwork.io/docs/features/provider-cache/">Terragrunt Provider Cache</a></span> for plans and applies.
-Defaults to `false`
 </HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 <HclListItemExample>
 
 ```yaml
@@ -152,12 +152,30 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
+### session-duration
+
+<HclListItem name="session-duration" requirement="optional" type="number">
+<HclListItemDescription>
+Duration in seconds for each session terragunt assumes in AWS during plans and applies.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="3600"/>
+<HclListItemExample>
+
+```yaml
+pipelines:
+  session-duration: 3600
+```
+
+</HclListItemExample>
+</HclListItem>
+
 ### tf-binary
 
 <HclListItem name="tf-binary" requirement="optional" type="string">
 <HclListItemDescription>
-The IaC runtime binary, valid options are opentofu or terraform. Will default to opentofu if not set.
+The IaC runtime binary, valid options are opentofu or terraform.
 </HclListItemDescription>
+<HclListItemDefaultValue defaultValue="opentofu"/>
 <HclListItemExample>
 
 ```yaml
@@ -189,23 +207,6 @@ No longer used but still required and should be set to the example. Will be full
 ```yaml
 repo-allow-list:
   - "."
-```
-
-</HclListItemExample>
-</HclListItem>
-
-### session-duration
-
-<HclListItem name="session-duration" requirement="optional" type="number">
-<HclListItemDescription>
-Duration in seconds for each session terragunt assumes in AWS during plans and applies.
-Defaults to `3600`
-</HclListItemDescription>
-<HclListItemExample>
-
-```yaml
-pipelines:
-  session-duration: 3600
 ```
 
 </HclListItemExample>
