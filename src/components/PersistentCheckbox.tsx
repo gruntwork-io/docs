@@ -1,9 +1,9 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
 
 interface Props {
   id: string;
-  label?: string;
+  label?: string | ReactNode;
 }
 
 const PersistentCheckbox: React.FC<Props> = ({ id, label }) => {
