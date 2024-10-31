@@ -1,6 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import ConfigOptionItem from "/src/components/ConfigOptionItem"
+import { HclListItem, HclListItemExample, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '/src/components/HclListItem.tsx';
 
 # Pipelines Configurations
 
@@ -21,343 +22,414 @@ Pipelines behavior is primarily configured via a yaml file at `.gruntwork/config
 <Tabs groupId="subscription">
 <TabItem value="Standard" label="Standard" default>
 ## Standard Options
-<ul>
-<li>
+
+
 
 ### access-control-repo-name
 
-<ConfigOptionItem
-  Description="Name of the infrastructure-live-access-control repository"
-  Required="true"
-  FullPath="pipelines.access-control-repo-name"
-  Example="access-control-repo-name: infrastructure-live-access-control"
-/>
+<HclListItem name="access-control-repo-name" requirement="required" type="string">
+<HclListItemDescription>
+Name of the infrastructure-live-access-control repository
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  access-control-repo-name: infrastructure-live-access-control
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### account-baseline-vpc-module-url
 
-<ConfigOptionItem
-  Description="URL of the account baseline VPC module used by account factory"
-  Required="true"
-  FullPath="pipelines.account-baseline-vpc-module-url"
-  Example="account-baseline-vpc-module-url: git@github.com:gruntwork-io/terraform-aws-cis-service-catalog.git//modules/networking/vpc"
-/>
+<HclListItem name="account-baseline-vpc-module-url" requirement="required" type="string">
+<HclListItemDescription>
+URL of the account baseline VPC module used by account factory
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  account-baseline-vpc-module-url: git@github.com:gruntwork-io/terraform-aws-cis-service-catalog.git//modules/networking/vpc
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### account-baseline-vpc-module-version
 
-<ConfigOptionItem
-  Description="Version of the account-baseline-vpc-module"
-  Required="true"
-  FullPath="pipelines.account-baseline-vpc-module-version"
-  Example="account-baseline-vpc-module-version: v0.48.1"
-/>
+<HclListItem name="account-baseline-vpc-module-version" requirement="required" type="string">
+<HclListItemDescription>
+Version of the account-baseline-vpc-module
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  account-baseline-vpc-module-version: v0.48.1
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### arch-catalog-repo-url
 
-<ConfigOptionItem
-  Description="Name of the architecture catalog repo (including github org e.g. acme/terraform-aws-architecture-catalog)."
-  Required="true"
-  FullPath="pipelines.arch-catalog-repo-url"
-  Example="arch-catalog-repo-url: git@github.com:gruntwork-io/terraform-aws-architecture-catalog"
-/>
+<HclListItem name="arch-catalog-repo-url" requirement="required" type="string">
+<HclListItemDescription>
+Name of the architecture catalog repo (including github org e.g. acme/terraform-aws-architecture-catalog).
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  arch-catalog-repo-url: git@github.com:gruntwork-io/terraform-aws-architecture-catalog
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### arch-catalog-version
 
-<ConfigOptionItem
-  Description="Version of the arch-catalog-repo modules used in templates."
-  Required="true"
-  FullPath="pipelines.arch-catalog-version"
-  Example="arch-catalog-version: v2.11.1"
-/>
+<HclListItem name="arch-catalog-version" requirement="required" type="string">
+<HclListItemDescription>
+Version of the arch-catalog-repo modules used in templates.
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  arch-catalog-version: v2.11.1
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### aws-security-repo-url
 
-<ConfigOptionItem
-  Description="URL of the terraform-aws-security repo."
-  Required="true"
-  FullPath="pipelines.aws-security-repo-url"
-  Example="aws-security-repo-url: git@github.com:gruntwork-io/terraform-aws-security.git"
-/>
+<HclListItem name="aws-security-repo-url" requirement="required" type="string">
+<HclListItemDescription>
+URL of the terraform-aws-security repo.
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  aws-security-repo-url: git@github.com:gruntwork-io/terraform-aws-security.git
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### aws-utilities-repo-url
 
-<ConfigOptionItem
-  Description="URL of the terraform-aws-utilities repo"
-  Required="true"
-  FullPath="pipelines.aws-utilities-repo-url"
-  Example="aws-utilities-repo-url: git@github.com:gruntwork-io/terraform-aws-utilities.git"
-/>
+<HclListItem name="aws-utilities-repo-url" requirement="required" type="string">
+<HclListItemDescription>
+URL of the terraform-aws-utilities repo
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  aws-utilities-repo-url: git@github.com:gruntwork-io/terraform-aws-utilities.git
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### cis-service-catalog-repo-url
 
-<ConfigOptionItem
-  Description="URL of the terraform-aws-cis-service-catalog repo"
-  Required="true"
-  FullPath="pipelines.cis-service-catalog-repo-url"
-  Example="cis-service-catalog-repo-url: git@github.com:gruntwork-io/terraform-aws-cis-service-catalog.git"
-/>
+<HclListItem name="cis-service-catalog-repo-url" requirement="required" type="string">
+<HclListItemDescription>
+URL of the terraform-aws-cis-service-catalog repo
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  cis-service-catalog-repo-url: git@github.com:gruntwork-io/terraform-aws-cis-service-catalog.git
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### control-tower-modules-version
 
-<ConfigOptionItem
-  Description="Version of the control-tower-repo modules used in templates"
-  Required="true"
-  FullPath="pipelines.control-tower-modules-version"
-  Example="control-tower-modules-version: v0.7.5"
-/>
+<HclListItem name="control-tower-modules-version" requirement="required" type="string">
+<HclListItemDescription>
+Version of the control-tower-repo modules used in templates
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  control-tower-modules-version: v0.7.5
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### control-tower-repo-url
 
-<ConfigOptionItem
-  Description="URL of the terraform-aws-control-tower repo"
-  Required="true"
-  FullPath="pipelines.control-tower-repo-url"
-  Example="control-tower-repo-url: git@github.com:gruntwork-io/terraform-aws-control-tower.git"
-/>
+<HclListItem name="control-tower-repo-url" requirement="required" type="string">
+<HclListItemDescription>
+URL of the terraform-aws-control-tower repo
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  control-tower-repo-url: git@github.com:gruntwork-io/terraform-aws-control-tower.git
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### default-aws-region
 
-<ConfigOptionItem
-  Description="Default AWS region for infrastructure managed in this repository"
-  Required="true"
-  FullPath="pipelines.default-aws-region"
-  Example="default-aws-region: us-east-1"
-/>
+<HclListItem name="default-aws-region" requirement="required" type="string">
+<HclListItemDescription>
+Default AWS region for infrastructure managed in this repository
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  default-aws-region: us-east-1
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### deploy-branch-name
 
-<ConfigOptionItem
-  Description="The branch in this repository where IaC changes will be applied. Typically this is the default branch."
-  Required="true"
-  FullPath="pipelines.deploy-branch-name"
-  Example="deploy-branch-name: main"
-/>
+<HclListItem name="deploy-branch-name" requirement="required" type="string">
+<HclListItemDescription>
+The branch in this repository where IaC changes will be applied. Typically this is the default branch.
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  deploy-branch-name: main
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### env
 
-<ConfigOptionItem
-  Description="(Optional) additional env vars to set for pipelines executions, e.g. TF_VAR
-    or TERRAGRUNT_ values to customize the Terragrunt/Terraform/Opentofu run."
-  FullPath="pipelines.env"
-  Example="env:
-  - name: TERRAGRUNT_PARALLELISM
-    value: 10
-  - name: CUSTOM_ENVVAR
-    value: somedata"
-/>
+<HclListItem name="env" requirement="optional" type="sequence(mapping)">
+<HclListItemDescription>
+(Optional) additional env vars to set for pipelines executions, e.g. TF_VAR or TERRAGRUNT_ values to customize the Terragrunt/Terraform/Opentofu run.
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  env:
+    - name: TERRAGRUNT_PARALLELISM
+      value: 10
+    - name: CUSTOM_ENVVAR
+      value: somedata"
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### github-org
 
-<ConfigOptionItem
-  Description="GitHub Organization this repository belongs to"
-  Required="true"
-  FullPath="pipelines.github-org"
-  Example="github-org: acmecorp"
-/>
+<HclListItem name="github-org" requirement="required" type="string">
+<HclListItemDescription>
+GitHub Organization this repository belongs to
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  github-org: acmecorp
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### is-access-control-repo
 
-<ConfigOptionItem
-  Description="Only set to true for infrastructure-live-access-control"
-  FullPath="pipelines.is-access-control-repo"
-  Example="is-access-control-repo: true"
-/>
+<HclListItem name="is-access-control-repo" requirement="optional" type="boolean">
+<HclListItemDescription>
+Only set to true for infrastructure-live-access-control
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  is-access-control-repo: true
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### is-delegated-repo
 
-<ConfigOptionItem
-  Description="Only set to true for infrastructure-live-access-control and enterprise delegated (vended) repositories from account factory"
-  FullPath="pipelines.is-delegated-repo"
-  Example="is-delegated-repo: true"
-/>
+<HclListItem name="is-delegated-repo" requirement="optional" type="boolean">
+<HclListItemDescription>
+Only set to true for infrastructure-live-access-control and enterprise delegated (vended) repositories from account factory
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  is-delegated-repo: true
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### infra-modules-repo-name
 
-<ConfigOptionItem
-  Description="Name of the infrastructure-modules repository"
-  Required="true"
-  FullPath="pipelines.infra-modules-repo-name"
-  Example="infra-modules-repo-name: infrastructure-modules"
-/>
+<HclListItem name="infra-modules-repo-name" requirement="required" type="string">
+<HclListItemDescription>
+Name of the infrastructure-modules repository
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  infra-modules-repo-name: infrastructure-modules
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### infra-modules-release-version
 
-<ConfigOptionItem
-  Description="Version of the infrastructure-modules modules used in templates"
-  Required="true"
-  FullPath="pipelines.infra-modules-release-version"
-  Example="infra-modules-release-version: v0.1.0"
-/>
+<HclListItem name="infra-modules-release-version" requirement="required" type="string">
+<HclListItemDescription>
+Version of the infrastructure-modules modules used in templates
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  infra-modules-release-version: v0.1.0
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### module-security-version
 
-<ConfigOptionItem
-  Description="Version of the aws-security-repo modules used in templates."
-  Required="true"
-  FullPath="pipelines.module-security-version"
-  Example="module-security-version: v0.73.2"
-/>
+<HclListItem name="module-security-version" requirement="required" type="string">
+<HclListItemDescription>
+Version of the aws-security-repo modules used in templates.
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  module-security-version: v0.73.2
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### tf-binary
 
-<ConfigOptionItem
-  Description="The IaC runtime binary, valid options are opentofu or terraform"
-  Required="true"
-  FullPath="pipelines.tf-binary"
-  Example="tf-binary: opentofu"
-/>
+<HclListItem name="tf-binary" requirement="required" type="string">
+<HclListItemDescription>
+The IaC runtime binary, valid options are opentofu or terraform
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
-</ul>
+```yaml
+pipelines:
+  tf-binary: opentofu
+```
+
+</HclListItemExample>
+</HclListItem>
+
 </TabItem>
 
 <TabItem value="Enterprise" label="Enterprise">
 ## Enterprise Options
-<ul>
-<li>
 
 ### catalog-tags-location
 
-<ConfigOptionItem
-  Description="(Optional) The full path to a tags.yml file for centrally managed tags, e.g. acme/repo/contents/path/to/tags.yml"
-  FullPath="pipelines.catalog-tags-location"
-  Example="catalog-tags-location: acmecorp/infrastructure-modules/contents/common_tags.yml"
-/>
+<HclListItem name="catalog-tags-location" requirement="optional" type="string">
+<HclListItemDescription>
+The full path to a tags.yml file for centrally managed tags, e.g. acme/repo/contents/path/to/tags.yml
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  catalog-tags-location: acmecorp/infrastructure-modules/contents/common_tags.yml
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### pipelines-read-token-name
 
-<ConfigOptionItem
-  Description="(Optional) The name of the PIPELINES_READ_TOKEN secret to use in delegated repositories"
-  FullPath="pipelines.pipelines-read-token-name"
-  Example="pipelines-read-token-name: PIPELINES_READ_TOKEN"
-/>
+<HclListItem name="pipelines-read-token-name" requirement="optional" type="string">
+<HclListItemDescription>
+The name of the PIPELINES_READ_TOKEN secret to use in delegated repositories
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+pipelines:
+  pipelines-read-token-name: PIPELINES_READ_TOKEN
+```
 
-<li>
+</HclListItemExample>
+</HclListItem>
 
 ### pipelines-workflow-location
 
-<ConfigOptionItem
-  Description="(Optional) The location of the pipelines workflow to use for delegated repositories"
-  FullPath="pipelines.pipelines-workflow-location"
-  Example="pipelines-workflow-location: gruntwork-io/pipelines-workflows/.github/workflows/pipelines.yml@v3"
-/>
+<HclListItem name="pipelines-workflow-location" requirement="optional" type="string">
+<HclListItemDescription>
+The location of the pipelines workflow to use for delegated repositories
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
-</ul>
+```yaml
+pipelines:
+  pipelines-workflow-location: gruntwork-io/pipelines-workflows/.github/workflows/pipelines.yml@v3
+```
+
+</HclListItemExample>
+</HclListItem>
+
 </TabItem>
 </Tabs>
 
 # Deprecated Configuration Options
 
-<ul>
-<li>
-
 ### cli-version
 
-<ConfigOptionItem
-  Description="(Deprecated) Pipelines CLI version - no longer used as this is determined by the piplines workflow version"
-  FullPath="pipelines.cli-version"
-/>
-
-</li>
-
-<li>
+<HclListItem name="cli-version" requirement="deprecated" type="string">
+<HclListItemDescription>
+Pipelines CLI version - no longer used as this is determined by the piplines workflow version
+</HclListItemDescription>
+</HclListItem>
 
 ### repo-allow-list
 
-<ConfigOptionItem
-  Description="(Deprecated) No longer used but still required and should be set to the example. Will be fully removed in a later version of pipelines."
-  Required="true"
-  FullPath="repo-allow-list"
-  Example="repo-allow-list:
-   - .
-"
-/>
+<HclListItem name="repo-allow-list" requirement="required(deprecated)" type="string">
+<HclListItemDescription>
+No longer used but still required and should be set to the example. Will be fully removed in a later version of pipelines.
+</HclListItemDescription>
+<HclListItemExample>
 
-</li>
+```yaml
+repo-allow-list:
+  - "."
+```
 
-</ul>
+</HclListItemExample>
+</HclListItem>
 
 A sample `config.yml` with a full set of options is below.
 
