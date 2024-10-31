@@ -21,7 +21,5 @@ In summary:
 * Less maintenance overhead (no need to install, maintain and rotate powerful tokens)
 
 **Reasons to use Machine Users**
-* More fine grained control over the access granted to Pipelines
-* Ability to work with GitHub on-prem Enterprise
-* You want to ensure that Pipelines can continue to function even if the Gruntwork-hosted backend that powers the GitHub App goes down
-* For InfoSec reasons you cannot allow Gruntwork's servers to have access to authentication tokens for your GitHub repositories
+* You need to work with GitHub on-prem Enterprise and your on-premise install doesn't allow interacting with third party servers (e.g. Gruntwork's backend)
+* You want a fallback solution to ensure that Pipelines can continue to function even if the Gruntwork-hosted backend that powers the GitHub App goes down

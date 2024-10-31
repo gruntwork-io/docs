@@ -4,7 +4,7 @@ import TOCInline from '@theme/TOCInline';
 
 <TOCInline toc={toc} />
 
-Gruntwork generally recommends using the [GitHub App](./viagithubapp.md) to install pipelines. However, if you're unable to use the app, or if you wish to setup machine users as a [fallback](http://localhost:3000/2.0/docs/pipelines/installation/viagithubapp#fallback) then you can use this guide to setup authentication for pipeline via access tokens and machine users.
+Of the [two ways](./authoverview.md) of installing Pipelines, we strongly encourage users to use [GitHub App](./viagithubapp.md) to install pipelines. However, if you're unable to use the app, or if you wish to setup machine users as a [fallback](http://localhost:3000/2.0/docs/pipelines/installation/viagithubapp#fallback) then you can use this guide to setup authentication for pipeline via access tokens and machine users.
 
 When using GitHub tokens Gruntwork recommends using CI users in Gruntwork Pipelines, separate from human users in your organization. Using a CI user ensures that a workflow won't break due to an employee leaving your company. Further, using CI users allow you to apply granular permissions that may normally be too restrictive for a normal employee to do their daily work.
 
