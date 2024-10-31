@@ -28,6 +28,7 @@ Blocks come in three variants: `bare`, `labeled` or `fully qualified`.
 <li>Most terraform you've seen uses `fully qualified` blocks that have both a type and a label. For example, `resource "aws_instance" "my_instance" { ... }` - in this case the type is `aws_instance` and the label is `my_instance`.</li>
 
 </ul>
+
 ### Attributes
 
 An attribute is a key-value pair separated by an `=` that is defined within a block.
