@@ -37,7 +37,7 @@ Pipelines is implemented as a GitHub [reusable workflow](https://docs.github.com
 
 ## Basic Configuration
 
-The minimum configurations required for Pipelines to operate correctly will vary depending on context. For the most common usage, Pipelines will need to be able to determine how to authenticate with a cloud provider in order to run Terragrunt commands. If it is not able to determine how to authenticate within a context where it needs to be able to do so, Pipelines will throw an error.
+The minimum configurations required for Pipelines to operate correctly will vary depending on context. For the most common usage, Pipelines will need to be able to determine how to authenticate with a cloud provider in order to run Terragrunt commands. If it is not able to do so in a context where it is required, Pipelines will throw an error.
 
 The following is an example of a minimal configuration for a single Terragrunt unit that tells Pipelines how to authenticate with AWS using OIDC:
 
