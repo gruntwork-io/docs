@@ -695,6 +695,15 @@ const sidebar = [
         ],
       },
       {
+        label: "Legacy Products",
+        type: "category",
+        items: [
+          refarchSidebar,
+          infrastructurePipelinesSidebar,
+          ecsDeployRunnerSidebar,
+        ],
+      },
+      {
         label: "Tools",
         type: "doc",
         id: "tools",
@@ -703,15 +712,6 @@ const sidebar = [
         label: "Training",
         type: "doc",
         id: "courses",
-      },
-      {
-        label: "Legacy Products",
-        type: "category",
-        items: [
-          refarchSidebar,
-          infrastructurePipelinesSidebar,
-          ecsDeployRunnerSidebar,
-        ],
       },
     ],
   },
