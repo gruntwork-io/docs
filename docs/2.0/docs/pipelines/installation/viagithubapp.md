@@ -8,10 +8,6 @@ toc_max_heading_level: 3
 
 The [Gruntwork.io GitHub App](https://github.com/apps/gruntwork-io) is a [GitHub App](https://docs.github.com/en/apps/overview)  introduced to help reduce the burden of integrating Gruntwork products to GitHub resources. The app is designed to be lightweight and flexible, providing a simple way to get started with Gruntwork products.
 
-import TOCInline from '@theme/TOCInline';
-
-<TOCInline toc={toc} />
-
 ## Overview
 
 There are three major components to keep in mind when working with the Gruntwork.io GitHub App:

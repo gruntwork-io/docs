@@ -1,7 +1,5 @@
 # Landing Zone
-import TOCInline from '@theme/TOCInline';
 
-<TOCInline toc={toc} />
 ## Overview
 
 The Landing Zone component is focused on creating an initial best-practice AWS multi-account setup
