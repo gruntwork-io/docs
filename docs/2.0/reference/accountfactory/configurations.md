@@ -276,7 +276,6 @@ pipelines:
 <HclListItem name="logs-account-name" requirement="optional" type="string">
 <HclListItemDescription>
 Override the folder for the logs account
-Defaults to `logs`
 </HclListItemDescription>
 <HclListItemDefaultValue>`logs`</HclListItemDefaultValue>
 <HclListItemExample>
@@ -360,8 +359,10 @@ pipelines:
 
 <HclListItem name="single-account-baseline-template-path" requirement="optional" type="string">
 <HclListItemDescription>
-Defaults to `/templates/single-account-baseline`
+
 </HclListItemDescription>
+<HclListItemDefaultValue>`/templates/single-account-baseline`</HclListItemDefaultValue>
+
 </HclListItem>
 
 ## Enterprise Options
