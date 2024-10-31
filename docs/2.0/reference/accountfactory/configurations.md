@@ -6,8 +6,6 @@ Account factory configurations are located under the `pipelines` key in `./.grun
 
 ## `pipelines` Options
 
-The below options are all nested under the `pipelines` key in the `config.yml` file.
-
 ### access-control-repo-name
 
 <HclListItem name="access-control-repo-name" requirement="required" type="string">
