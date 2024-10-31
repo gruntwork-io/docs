@@ -70,11 +70,21 @@ const sidebar = [
         label: "Account Factory",
         type: "category",
         collapsed: true,
+        link: {
+          type: "generated-index",
+          title: "Account Factory reference",
+          slug: "2.0/reference/accountfactory",
+        },
         items: [
           {
-            label: "Stuff",
+            label: "Overview",
             type: "doc",
             id: "2.0/reference/accountfactory/index",
+          },
+          {
+            label: "Configurations",
+            type: "doc",
+            id: "2.0/reference/accountfactory/configurations",
           },
         ],
       },
