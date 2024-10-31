@@ -32,7 +32,7 @@ The steps below are a high level description of the steps to install pipelines i
 Pipelines is implemented as a GitHub [reusable workflow](https://docs.github.com/en/actions/sharing-automations/reusing-workflows#creating-a-reusable-workflow). This means that the code to implement Pipelines and all of its features lives in an external repository (generally you'll point to [ours](https://github.com/gruntwork-io/pipelines-workflows/)) and the code in your repository simply makes a reference.
 
 * Create a file called `.github/workflows/pipelines.yml`
-* The contents of the file should be sourced from our template [here](https://github.com/gruntwork-io/.terraform-aws-architecture-catalog/blob/main/templates/devops-foundations-infrastructure-live-root/.github/workflows/pipelines.yml)
+* The contents of the file should be sourced from our template [here](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/blob/main/templates/devops-foundations-infrastructure-live-root/.github/workflows/pipelines.yml)
 * NOTE: As of writing this in October 2024 the above template points to a boilerplate template which is not directly usable; the file is meant to be rendered by boilerplate into a usable file.  Please reach out to your Gruntwork solutions architect for assistance if you need help rendering the template.
 
 ## Basic Configuration
