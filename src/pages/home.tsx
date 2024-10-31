@@ -27,12 +27,12 @@ function HomepageHeader() {
   )
 }
 
-export default function Home(): JSX.Element {
+export const HomeContent = () => {
   const { siteConfig } = useDocusaurusContext()
   return (
-    <Layout description="Documentation and guides for Gruntwork's tools and services">
-      <HomepageHeader />
-      <main>
+    <>
+    <HomepageHeader />
+    <main>
         <section className={styles.features}>
           <div className="container">
             <CardGroup>
@@ -102,6 +102,14 @@ export default function Home(): JSX.Element {
           </div>
         </section>
       </main>
+       </>
+      );
+}
+
+export default function Home(): JSX.Element {
+  return (
+    <Layout description="Documentation and guides for Gruntwork's tools and services">
+      <HomeContent />
     </Layout>
   )
 }

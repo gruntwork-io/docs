@@ -15,9 +15,8 @@ const sidebar = [
     label: "Gruntwork Documentation",
     type: "category",
     link: {
-      type: "generated-index",
-      title: "Gruntwork Documentation",
-      slug: "2.0/docs",
+      type: "doc",
+      id: 'index',
     },
     collapsible: false,
     items: [

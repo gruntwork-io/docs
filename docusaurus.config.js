@@ -119,7 +119,7 @@ const config = {
             type: "doc",
             position: "left",
             label: "Docs",
-            docId: "2.0/docs",
+            docId: "index",
           },
           {
             type: "doc",
