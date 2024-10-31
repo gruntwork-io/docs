@@ -38,11 +38,28 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
+### account-baseline-disable-vpc-inputs
+
+<HclListItem name="account-baseline-disable-vpc-inputs" requirement="optional" type="boolean">
+<HclListItemDescription>
+Defaults to `false`
+</HclListItemDescription>
+<HclListItemExample>
+
+```yaml
+pipelines:
+  account-baseline-disable-vpc-inputs: true
+```
+
+</HclListItemExample>
+</HclListItem>
+
 ### account-baseline-vpc-module-url
 
-<HclListItem name="account-baseline-vpc-module-url" requirement="required" type="string">
+<HclListItem name="account-baseline-vpc-module-url" requirement="optional" type="string">
 <HclListItemDescription>
 URL of the account baseline VPC module used by account factory
+Defaults to `git@github.com:gruntwork-io/terraform-aws-cis-service-catalog.git//modules/networking/vpc`
 </HclListItemDescription>
 <HclListItemExample>
 
@@ -56,9 +73,10 @@ pipelines:
 
 ### account-baseline-vpc-module-version
 
-<HclListItem name="account-baseline-vpc-module-version" requirement="required" type="string">
+<HclListItem name="account-baseline-vpc-module-version" requirement="optional" type="string">
 <HclListItemDescription>
 Version of the account-baseline-vpc-module
+Defaults to `v0.48.1`
 </HclListItemDescription>
 <HclListItemExample>
 
@@ -70,11 +88,27 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
+### arch-catalog-base-path
+
+<HclListItem name="arch-catalog-base-path" requirement="optional" type="string">
+<HclListItemDescription>
+Defaults to `./terraform-aws-architecture-catalog`
+</HclListItemDescription>
+<HclListItemExample>
+
+```yaml
+pipelines:
+  arch-catalog-base-path: ./terraform-aws-architecture-catalog
+```
+
+</HclListItemExample>
+</HclListItem>
+
 ### arch-catalog-repo-url
 
 <HclListItem name="arch-catalog-repo-url" requirement="required" type="string">
 <HclListItemDescription>
-Name of the architecture catalog repo (including github org e.g. acme/terraform-aws-architecture-catalog).
+URL of the architecture catalog repo used in templates
 </HclListItemDescription>
 <HclListItemExample>
 
@@ -104,9 +138,10 @@ pipelines:
 
 ### aws-security-repo-url
 
-<HclListItem name="aws-security-repo-url" requirement="required" type="string">
+<HclListItem name="aws-security-repo-url" requirement="optional" type="string">
 <HclListItemDescription>
 URL of the terraform-aws-security repo.
+Defaults to `git@github.com:gruntwork-io/terraform-aws-security.git`
 </HclListItemDescription>
 <HclListItemExample>
 
@@ -120,9 +155,10 @@ pipelines:
 
 ### aws-utilities-repo-url
 
-<HclListItem name="aws-utilities-repo-url" requirement="required" type="string">
+<HclListItem name="aws-utilities-repo-url" requirement="optional" type="string">
 <HclListItemDescription>
 URL of the terraform-aws-utilities repo
+Defaults to `git@github.com:gruntwork-io/terraform-aws-utilities.git`
 </HclListItemDescription>
 <HclListItemExample>
 
@@ -136,9 +172,10 @@ pipelines:
 
 ### cis-service-catalog-repo-url
 
-<HclListItem name="cis-service-catalog-repo-url" requirement="required" type="string">
+<HclListItem name="cis-service-catalog-repo-url" requirement="optional" type="string">
 <HclListItemDescription>
 URL of the terraform-aws-cis-service-catalog repo
+Defaults to `git@github.com:gruntwork-io/terraform-aws-cis-service-catalog.git`
 </HclListItemDescription>
 <HclListItemExample>
 
@@ -168,9 +205,10 @@ pipelines:
 
 ### control-tower-repo-url
 
-<HclListItem name="control-tower-repo-url" requirement="required" type="string">
+<HclListItem name="control-tower-repo-url" requirement="optional" type="string">
 <HclListItemDescription>
 URL of the terraform-aws-control-tower repo
+Defaults to `git@github.com:gruntwork-io/terraform-aws-control-tower.git`
 </HclListItemDescription>
 <HclListItemExample>
 
@@ -209,6 +247,23 @@ The branch in this repository where IaC changes will be applied. Typically this 
 ```yaml
 pipelines:
   deploy-branch-name: main
+```
+
+</HclListItemExample>
+</HclListItem>
+
+### enable-terragrunt-provider-cache
+
+<HclListItem name="enable-terragrunt-provider-cache" requirement="optional" type="boolean">
+<HclListItemDescription>
+Enables the <span class="external-link"><a href="https://terragrunt.gruntwork.io/docs/features/provider-cache/">Terragrunt Provider Cache</a></span> for plans and applies.
+Defaults to `false`
+</HclListItemDescription>
+<HclListItemExample>
+
+```yaml
+pipelines:
+  enable-terragrunt-provider-cache: true
 ```
 
 </HclListItemExample>
@@ -314,6 +369,40 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
+### logs-account-name
+
+<HclListItem name="logs-account-name" requirement="optional" type="string">
+<HclListItemDescription>
+Override the folder for the logs account
+Defaults to `logs`
+</HclListItemDescription>
+<HclListItemExample>
+
+```yaml
+pipelines:
+  logs-account-name: logs
+```
+
+</HclListItemExample>
+</HclListItem>
+
+### management-account-name
+
+<HclListItem name="management-account-name" requirement="optional" type="string">
+<HclListItemDescription>
+Override the folder for the management account
+Defaults to `management`
+</HclListItemDescription>
+<HclListItemExample>
+
+```yaml
+pipelines:
+  management-account-name: management
+```
+
+</HclListItemExample>
+</HclListItem>
+
 ### module-security-version
 
 <HclListItem name="module-security-version" requirement="required" type="string">
@@ -330,11 +419,53 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
+### security-account-name
+
+<HclListItem name="security-account-name" requirement="optional" type="string">
+<HclListItemDescription>
+Override the folder for the security account
+Defaults to `security`
+</HclListItemDescription>
+<HclListItemExample>
+
+```yaml
+pipelines:
+  security-account-name: security
+```
+
+</HclListItemExample>
+</HclListItem>
+
+### shared-account-name
+
+<HclListItem name="shared-account-name" requirement="optional" type="string">
+<HclListItemDescription>
+Override the folder for the shared account
+Defaults to `shared`
+</HclListItemDescription>
+<HclListItemExample>
+
+```yaml
+pipelines:
+  shared-account-name: shared
+```
+
+</HclListItemExample>
+</HclListItem>
+
+### single-account-baseline-template-path
+
+<HclListItem name="single-account-baseline-template-path" requirement="optional" type="string">
+<HclListItemDescription>
+Defaults to `/templates/single-account-baseline`
+</HclListItemDescription>
+</HclListItem>
+
 ### tf-binary
 
-<HclListItem name="tf-binary" requirement="required" type="string">
+<HclListItem name="tf-binary" requirement="optional" type="string">
 <HclListItemDescription>
-The IaC runtime binary, valid options are opentofu or terraform
+The IaC runtime binary, valid options are opentofu or terraform. Will default to opentofu if not set.
 </HclListItemDescription>
 <HclListItemExample>
 
@@ -402,13 +533,30 @@ pipelines:
 </TabItem>
 </Tabs>
 
+
 # Deprecated Configuration Options
+
+### arch-catalog-repo-name
+
+<HclListItem name="arch-catalog-repo-name" requirement="deprecated" type="string">
+<HclListItemDescription>
+Name of the architecture catalog - will be used if [arch-catalog-repo-url](#arch-catalog-repo-url) is not present but should be removed in favor of `arch-catalog-repo-url`.
+</HclListItemDescription>
+</HclListItem>
 
 ### cli-version
 
 <HclListItem name="cli-version" requirement="deprecated" type="string">
 <HclListItemDescription>
-Pipelines CLI version - no longer used as this is determined by the piplines workflow version
+Pipelines CLI version - no longer used as this is determined by the pipelines workflow version
+</HclListItemDescription>
+</HclListItem>
+
+### infra-modules-version
+
+<HclListItem name="infra-modules-version" requirement="deprecated" type="string">
+<HclListItemDescription>
+Version of infrastructure-modules - will be used if [infra-modules-release-version](#infra-modules-release-version) is not present but should be removed in favor of `infra-modules-release-version`.
 </HclListItemDescription>
 </HclListItem>
 
@@ -428,133 +576,26 @@ repo-allow-list:
 </HclListItemExample>
 </HclListItem>
 
-A sample `config.yml` with a full set of options is below.
+### terraform-version
 
-```
-pipelines:
-  # Branch that IaC is deployed from
-  deploy-branch-name: main
+<HclListItem name="terraform-version" requirement="deprecated" type="string">
+<HclListItemDescription>
+Terraform version to use for plans and applies. Will be used if mise configuration is not present, but should removed in favor of mise configuration.
+</HclListItemDescription>
+</HclListItem>
 
-  # URL of the terraform-aws-security repo
-  aws-security-repo-url: git@github.com:gruntwork-io/terraform-aws-security.git
-  # Version of the https://github.com/gruntwork-io/terraform-aws-security modules used in templates
-  module-security-version: v0.68.3
+### terragrunt-version
 
-  # URL of the terraform-aws-control-tower repo
-  control-tower-repo-url: git@github.com:gruntwork-io/terraform-aws-control-tower.git
-  # Version of the https://github.com/gruntwork-io/terraform-aws-control-tower modules used in templates
-  control-tower-modules-version: v0.4.2
+<HclListItem name="terragrunt-version" requirement="deprecated" type="string">
+<HclListItemDescription>
+Terragrunt version to use for plans and applies. Will be used if mise configuration is not present, but should removed in favor of mise configuration.
+</HclListItemDescription>
+</HclListItem>
 
-  # URL of the terraform-aws-cis-service-catalog repo
-  cis-service-catalog-repo-url: git@github.com:gruntwork-io/terraform-aws-cis-service-catalog.git
+### tofu-version
 
-  # URL of the terraform-aws-utilities repo
-  aws-utilities-repo-url: git@github.com:gruntwork-io/terraform-aws-utilities.git
-
-  # Name of the architecture catalog repo (including github org e.g. acme/terraform-aws-architecture-catalog).
-  arch-catalog-repo-url: git@github.com:gruntwork-io/terraform-aws-architecture-catalog
-
-  # Version of the https://github.com/gruntwork-io/terraform-aws-architecture-catalog modules used in templates
-  arch-catalog-version: v2.2.5
-
-  # (Optional) Override the path within the architecture catalog where to find the template for boilerplating new account baselines
-  single-account-baseline-template-path: /templates/single-account-baseline
-
-  # Default AWS region for infrastructure managed in this repository
-  default-aws-region: us-east-1
-  # GitHub Organization this repository belongs to
-  github-org: gruntwork-io-demo
-  # Name of the infrastructure-live-access-control repository
-  access-control-repo-name: infrastructure-live-access-control
-  # Name of the infrastructure-modules repository
-  infra-modules-repo-name: infrastructure-modules
-  # Version of the https://github.com/gruntwork-io-demo/infrastructure-modules modules used in templates
-  infra-modules-release-version: v0.1.0
-  # The IaC runtime binary, valid options are opentofu or terraform
-  tf-binary: opentofu
-  # (Optional) override the folder for the security account, default is 'security'
-  security-account-name: security
-  # (Optional) override the folder for the shared account, default is 'shared'
-  shared-account-name: shared
-  # (Optional) override the folder for the logs account, default is 'logs'
-  logs-account-name: logs
-  # (Optional) override the folder for the management account, default is 'management'
-  management-account-name: management
-
-  # (Optional) enable experimental Terragrunt Provider Cache behavior
-  # See https://terragrunt.gruntwork.io/docs/features/provider-cache/ for more information
-  enable-terragrunt-provider-cache: false
-
-  # (Optional) override default session duration for assumed roles in seconds
-  # Added in https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.26.0
-  session-duration: 3600
-
-  # (Optional) enable added or changed job consolidation.
-  # Is enabled by default.
-  # Added in https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.27.0
-  consolidate-added-or-changed: true
-
-  # (Optional) enable deleted job consolidation.
-  # Is disabled by default.
-  # The reason this is disabled by default is that it is generally safer to
-  # avoid using `run-all` when deleting resources, as it can lead to accidental
-  # deletion of more resources than intended.
-  # Added in https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.27.0
-  consolidate-deleted: false
-
-  # (Optional) additional env vars to set for pipelines executions, e.g. TF_VAR
-  # or TERRAGRUNT_ values to customize the Terragrunt/Terraform/Opentofu run.
-  env:
-    - name: TERRAGRUNT_PARALLELISM
-      value: 10
-    - name: CUSTOM_ENVVAR
-      value: somedata
-
-  ###########################################################################
-  # Configuration options below are ONLY for Pipelines Enterprise customers
-  ###########################################################################
-
-  # (Optional) The full path to a tags.yaml file for centrally managed tags, e.g. acme/repo/contents/path/to/tags.yaml
-  catalog-tags-location: gruntwork-io-demo/infrastructure-modules/contents/common_tags.yaml
-
-  # (Optional) The location of the pipelines workflow to use for delegated repositories
-  pipelines-workflow-location: gruntwork-io/pipelines-workflows/.github/workflows/pipelines.yml@v2
-
-  # (Optional) The name of the PIPELINES_READ_TOKEN secret to use in delegated repositories
-  pipelines-read-token-name: PIPELINES_READ_TOKEN
-
-  # Only set to true for delegated (vended) repositories from account factory
-  is-delegated-repo: false
-  # Only set to true for infrastructure-live-access-control
-  is-access-control-repo: false
-
-  account-vending:
-    sdlc:
-    # Map of account identifiers to account vending configurations.
-    # A valid account vending configuration includes:
-      # account-identifiers: List of account identifiers that will be created (required).
-      account-identifiers:
-        # Alphanumeric account identifiers only. On account requests, an account
-        # will be created for each specified identifier & the account name will
-        # include the identifier. e.g. "<ACCOUNT-FAMILY>-dev"
-        - dev
-        - stage
-        - prod
-      # catalog-repositories: List of repositories used by Terragrunt catalog (optional).
-      catalog-repositories:
-        # List of repositories that contain infrastructure modules that can be easily leveraged as a catalog by delegated repositories vended by the infrastructure-root repository.
-        # For more information, see https://terragrunt.gruntwork.io/docs/features/catalog/
-        - "{{ .RepoBaseUrl }}/{{ .InfraModulesRepoName }}"
-      # github-collaborators:
-      # List of GitHub teams and their permissions automatically added to delegated repositories vended by the infrastructure-root repository.
-      # Valid permissions are: pull, triage, push, maintain and admin (in addition to custom roles if any exist)
-      # See https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization#permissions-for-each-role
-      # for more information on GitHub repository roles.
-      #   - team: 'team-name'
-      #     permission: pull
-    sandbox:
-      account-identifiers:
-        - sandbox
-      catalog-repositories:
-        - "{{ .RepoBaseUrl }}/{{ .InfraModulesRepoName }}"
-```
+<HclListItem name="tofu-version" requirement="deprecated" type="string">
+<HclListItemDescription>
+Tofu version to use for plans and applies. Will be used if mise configuration is not present, but should removed in favor of mise configuration.
+</HclListItemDescription>
+</HclListItem>
