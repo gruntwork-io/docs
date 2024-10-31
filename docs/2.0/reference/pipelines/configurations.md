@@ -16,7 +16,18 @@ If you do introduce any HCL configurations into your `.gruntwork` directory or i
 
 Pipelines behavior is primarily configured via a yaml file at `.gruntwork/config.yml` in your repository. Pipelines also reads [.mise.toml](https://docs.gruntwork.io/pipelines/upgrading/upgrading-from-infrastructure-pipelines#adding-misetoml) at the root of the repository to determine what version of OpenTofu/Terraform and Terragrunt to use.
 
+### Example Mise Configuration
+`./.mise.toml`
+```
+[tools]
+opentofu = "1.7.2"
+terragrunt = "0.67.16"
+awscli = "latest"
+```
+
 # Pipelines Configuration Options
+
+`./.gruntwork/config.yml`
 
 <Tabs groupId="subscription">
 <TabItem value="Standard" label="Standard" default>
@@ -580,7 +591,7 @@ repo-allow-list:
 
 <HclListItem name="terraform-version" requirement="deprecated" type="string">
 <HclListItemDescription>
-Terraform version to use for plans and applies. Will be used if mise configuration is not present, but should removed in favor of mise configuration.
+Terraform version to use for plans and applies. Will be used if mise configuration is not present, but should removed in favor of [mise configuration](#example-mise-configuration).
 </HclListItemDescription>
 </HclListItem>
 
@@ -588,7 +599,7 @@ Terraform version to use for plans and applies. Will be used if mise configurati
 
 <HclListItem name="terragrunt-version" requirement="deprecated" type="string">
 <HclListItemDescription>
-Terragrunt version to use for plans and applies. Will be used if mise configuration is not present, but should removed in favor of mise configuration.
+Terragrunt version to use for plans and applies. Will be used if mise configuration is not present, but should removed in favor of [mise configuration](#example-mise-configuration).
 </HclListItemDescription>
 </HclListItem>
 
@@ -596,6 +607,6 @@ Terragrunt version to use for plans and applies. Will be used if mise configurat
 
 <HclListItem name="tofu-version" requirement="deprecated" type="string">
 <HclListItemDescription>
-Tofu version to use for plans and applies. Will be used if mise configuration is not present, but should removed in favor of mise configuration.
+Tofu version to use for plans and applies. Will be used if mise configuration is not present, but should removed in favor of [mise configuration](#example-mise-configuration).
 </HclListItemDescription>
 </HclListItem>
