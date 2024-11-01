@@ -36,7 +36,7 @@ In this section, you’ll create a resource in your AWS account using Pipelines 
 
     ```hcl title="$$ACCOUNT_NAME$$/$$REGION$$/region.hcl"
     locals {
-      aws_region = "<your region>"
+      aws_region = "$$REGION$$"
     }
     ```
 
