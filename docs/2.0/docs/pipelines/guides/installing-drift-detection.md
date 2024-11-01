@@ -4,13 +4,13 @@
 Pipelines Drift Detection is only available to Devops Foundations Enterprise customers.
 :::
 
-If you're creating new pipelines repositories using the latest version of Pipelines Drift Detection will already be installed.
+If you're creating new pipelines repositories using the latest version of Pipelines, then Drift Detection will be installed automatically without any action on your part.
 
 If you want to upgrade an older repository to add Drift Detection perform the following steps:
 
 ### Step 1
 
-Ensure you are using the [GitHub App](/2.0/docs/pipelines/installation/viagithubapp) in this repository. Drift Detection requires permissions from the GitHub App and is not available via fallback tokens.
+Ensure you are using the [GitHub App](/2.0/docs/pipelines/installation/viagithubapp) in this repository. Drift Detection requires permissions from the GitHub App and is not available via machine user tokens.
 
 <PersistentCheckbox id="install-drift-1" label="GitHub App In Use" />
 
