@@ -84,7 +84,7 @@ const CustomizableValue: React.FC<Props> = ({ id, placeholder }) => {
             onKeyDown={handleKeyDown}
           />
         ) : (
-          <span onClick={handleEditClick}>
+          <span onClick={handleEditClick} title={id}>
             {customValue || `<${placeholder}>`}
           </span>
         )}
