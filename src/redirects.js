@@ -18,7 +18,7 @@ export const redirects = [
         from: '/pipelines/security/audit-log'
     },
     {
-        to: "/2.0/docs/overview/developer-portal/invite-team",
+        to: "/2.0/docs/overview/getting-started/invite-team",
         from: "/developer-portal/invite-team"
     },
     {

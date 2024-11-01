@@ -72,7 +72,6 @@ const CustomizableValue: React.FC<Props> = ({ id, placeholder }) => {
   };
 
   return (
-    <BrowserOnly>
       <span className="customizable-value" style={{ alignItems: 'center', cursor: 'pointer' }}>
         {isEditing ? (
           <input
@@ -90,7 +89,6 @@ const CustomizableValue: React.FC<Props> = ({ id, placeholder }) => {
           </span>
         )}
       </span>
-    </BrowserOnly>
   );
 };
 

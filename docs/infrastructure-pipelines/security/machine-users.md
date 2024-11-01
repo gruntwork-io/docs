@@ -22,7 +22,7 @@ Gruntwork Pipelines requires using two machine users; one with the ability to op
 We’ll refer to this user as `ci-user` and `ci-read-only-user`, but you may name them anything you like. These users **must**:
 
 1. Both be members of your GitHub Organization
-1. Both be members of your team in **Gruntwork**’s GitHub Organization (See [instructions on inviting a user to your team](https://docs.gruntwork.io/developer-portal/invite-team#inviting-team-members) and [linking the user’s GitHub ID to Gruntwork](https://docs.gruntwork.io/developer-portal/link-github-id))
+2. Both be members of your team in **Gruntwork**’s GitHub Organization (See [instructions on inviting a user to your team](/2.0/docs/overview/getting-started/invite-team) and [linking the user’s GitHub ID to Gruntwork](/2.0/docs/overview/getting-started/link-github-id))
 
 ## Storing secrets
 

@@ -5,7 +5,7 @@ The [Gruntwork Developer Portal](https://app.gruntwork.io) provides access to al
 
 Now that your GitHub Organization and Accounts are linked you can start working with DevOps Foundations.
 
-### Step 1: [Activate Your Gruntwork Account](/2.0/docs/overview/getting-started/activate-account)
+### Step 1: [Activate Your Gruntwork Account](/2.0/docs/overview/getting-started/create-account)
 
 Setup your Gruntwork account and invite your team mates to gain access to Gruntwork resources.
 
