@@ -83,7 +83,7 @@ const sidebar = [
                 label: "Linking GitHub to Gruntwork",
                 type: "doc",
                 id: "2.0/docs/overview/getting-started/link-github-id",
-              },
+              }
             ],
           },
           complianceSidebar,
