@@ -41,6 +41,22 @@ yarn build && yarn serve
 This will create and serve a production build. This can be used to verify the
 expected behaviors in a production environment and view the Google analytics.
 
+# Customizable Values
+
+It's often useful to present the user with the ability to edit a variable inline to documentation.  For example, you're about to present a block of code that references an S3 bucket name.  Rather than put in a fixed placeholder like <BUCKET_NAME> which the user has to manually edit, you can use our CustomizableValue component.  This component will render as a clickable text field which, when clicked, switches to an input. Any inputted characters will be auto-propegated to all other instances of the component that share the same ID.  You can use this component both as a React component and inline to MDX code blocks.  We have swizzled the CodeBlock components to make this possible.
+
+Example usage:
+
+As a component:
+```js
+<CustomizableValue id="BUCKET_NAME">
+```
+
+Using the \$\$ID\$\$ syntax inside a code block
+```md
+This is inside a code block, $$BUCKET_NAME$$
+```
+
 
 # Automated Pull Request Flows
 There are two main categories of the Automated PRs that get opened in the Docs repostory:
