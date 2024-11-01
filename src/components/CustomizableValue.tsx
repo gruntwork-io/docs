@@ -82,6 +82,7 @@ const CustomizableValue: React.FC<Props> = ({ id }) => {
             onChange={handleInputChange}
             onBlur={handleInputBlur}
             onKeyDown={handleKeyDown}
+            size={customValue.length}
           />
         ) : (
           <span onClick={handleEditClick} title={id}>

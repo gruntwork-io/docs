@@ -1,5 +1,7 @@
 # Deploying your first Infrastructure Change
 
+import CustomizableValue from '/src/components/CustomizableValue';
+
 In this tutorial, we’ll walk you through the process of deploying an S3 bucket. This is useful both as a "hello world" for Gruntwork Pipelines and also as the first step to getting you ready for Gruntwork Pipelines usage in production.
 
 ## What you'll get
@@ -22,17 +24,17 @@ In this section, you’ll create a resource in your AWS account using Pipelines 
 
 ### Adding a new S3 bucket
 
-1. Create the folder structure that will contain the new S3 bucket in your environment. Replace `<account name>` with the value for the account you are deploying to, and `<region>` with the region you would like to deploy the S3 bucket in.
+1. Create the folder structure that will contain the new S3 bucket in your environment. Replace <CustomizableValue id="ACCOUNT_NAME" /> with the value for the account you are deploying to, and <CustomizableValue id="REGION" /> with the region you would like to deploy the S3 bucket in.
 
     ```bash
-    mkdir -p <account name>/<region>/<account name>/data-storage/s3
-    touch <account name>/<region>/region.hcl
-    touch <account name>/<region>/<account name>/data-storage/s3/terragrunt.hcl
+    mkdir -p $$ACCOUNT_NAME$$/$$REGION$$/$$ACCOUNT_NAME$$/data-storage/s3
+    touch $$ACCOUNT_NAME$$/$$REGION$$/region.hcl
+    touch $$ACCOUNT_NAME$$/$$REGION$$/$$ACCOUNT_NAME$$/data-storage/s3/terragrunt.hcl
     ```
 
 1. Add the following content to the `region.hcl` file created above
 
-    ```hcl title="<account name>/<region>/region.hcl"
+    ```hcl title="$$ACCOUNT_NAME$$/$$REGION$$/region.hcl"
     locals {
       aws_region = "<your region>"
     }

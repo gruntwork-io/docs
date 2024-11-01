@@ -446,7 +446,11 @@ html[data-theme="dark"] .link-button:hover {
 
 .customizable-value input {
   appearance: none;
+  font-family: monospace;
+  font-weight: bold;
+  font-style: italic;
   outline: none;
+  color: #6f5bd7;
   background-color: transparent;
   border: 1px solid #e7eaf3;
   border-radius: 4px;
@@ -459,13 +463,19 @@ html[data-theme="dark"] .link-button:hover {
   width: 13.5px;
   height: 13.5px;
   margin-left: 0.3rem;
-  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236f5bd7%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolygon%20points%3D%2214%202%2018%206%207%2017%203%2017%203%2013%2014%202%22%3E%3C%2Fpolygon%3E%3Cline%20x1%3D%223%22%20y1%3D%2222%22%20x2%3D%2221%22%20y2%3D%2222%22%3E%3C%2Fline%3E%3C%2Fsvg%3E');
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236f5bd7%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolygon%20points%3D%2216%203%2021%208%208%2021%203%2021%203%2016%2016%203%22%3E%3C%2Fpolygon%3E%3C%2Fsvg%3E');
   background-size: contain; /* Add this line */
   background-repeat: no-repeat; /* Add this line too */
 }
 
+
+html[data-theme="dark"] .customizable-value {
+  color: #ab80fe;
+ }
+
+
  html[data-theme="dark"] .customizable-value span::after {
-  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236f5bd7%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolygon%20points%3D%2214%202%2018%206%207%2017%203%2017%203%2013%2014%202%22%3E%3C%2Fpolygon%3E%3Cline%20x1%3D%223%22%20y1%3D%2222%22%20x2%3D%2221%22%20y2%3D%2222%22%3E%3C%2Fline%3E%3C%2Fsvg%3E');
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ab80fe%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolygon%20points%3D%2216%203%2021%208%208%2021%203%2021%203%2016%2016%203%22%3E%3C%2Fpolygon%3E%3C%2Fsvg%3E');
  }
 
 .persistent-checkbox {
