@@ -83,11 +83,6 @@ const sidebar = [
                 label: "Linking GitHub to Gruntwork",
                 type: "doc",
                 id: "2.0/docs/overview/getting-started/link-github-id",
-              },
-              {
-                label: "Install and use the DevOps Foundations Components",
-                type: "doc",
-                id: "2.0/docs/overview/getting-started/next-steps",
               }
             ],
           },
