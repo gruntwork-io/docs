@@ -40,10 +40,10 @@ In this section, you’ll create a resource in your AWS account using Pipelines 
     }
     ```
 
-1. Add the terragrunt code below to the created `terragrunt.hcl` file to create an S3 bucket . Replace `<your S3 bucket name>` with your desired bucket name. You may name the bucket whatever you like, just make sure it’s unique.
+2. Add the terragrunt code below to the created `terragrunt.hcl` file to create an S3 bucket . Replace <CustomizableValue id='S3_BUCKET_NAME'/> with your desired bucket name. You may name the bucket whatever you like, just make sure it’s unique.
 
 
-    ```hcl title="<account name>/<region>/<account name>/data-storage/s3/terragrunt.hcl"
+    ```hcl title="$$ACCOUNT_NAME$$/$$REGION$$/$$ACCOUNT_NAME$$/data-storage/s3/terragrunt.hcl"
     # ------------------------------------------------------------------------------------------------------
     # DEPLOY GRUNTWORK’s S3-BUCKET MODULE
     # ------------------------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ In this section, you’ll create a resource in your AWS account using Pipelines 
     }
 
     inputs = {
-      primary_bucket = "<your S3 bucket name>"
+      primary_bucket = "$$S3_BUCKET_NAME$$"
     }
     ```
 

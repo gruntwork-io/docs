@@ -1,11 +1,27 @@
 import BrowserOnly from '@docusaurus/BrowserOnly';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, ReactNode } from 'react';
 
 interface Props {
   id: string; // Unique identifier for localStorage and event handling
 }
 
 const storage = typeof sessionStorage === 'undefined' ? null : sessionStorage;
+
+export const parseCustomizableValues = (content: string): ReactNode => {
+  const regex = /(\$\$.+?\$\$)/g;
+  const matches = content.split(regex);
+  console.log({content, matches})
+  const nodes = [];
+  for (const match of matches) {
+    if (!match.match(/\$\$.+?\$\$/)) {
+      nodes.push(match);
+    } else {
+      const id = match.replace(/\$/g, '');
+      nodes.push(<CustomizableValue key={nodes.length} id={id} />);
+    }
+  }
+  return nodes;
+}
 
 const CustomizableValue: React.FC<Props> = ({ id }) => {
   const placeholder = id;
