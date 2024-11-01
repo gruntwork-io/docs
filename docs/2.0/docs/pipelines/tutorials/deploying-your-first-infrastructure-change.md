@@ -12,7 +12,7 @@ By the end, you’ll have:
 
 Before you begin, make sure you have:
 
-- Pipelines installed in a GitHub repository. See [Setup & Installation](2.0/docs/pipelines/installation/prerequisites/awslandingzone) for more information.
+- Pipelines installed in a GitHub repository. See [Setup & Installation](/2.0/docs/pipelines/installation/overview) for more information.
 - A sandbox or development AWS account that was set up during the Pipelines installation process
 - Permissions to create a pull request in the GitHub repository where Pipelines is installed
 

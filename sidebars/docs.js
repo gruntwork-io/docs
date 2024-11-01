@@ -169,6 +169,11 @@ const sidebar = [
             collapsed: true,
             items: [
               {
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/pipelines/installation/overview",
+              },
+              {
                 label: "Prerequisites",
                 type: "category",
                 collapsed: false,
