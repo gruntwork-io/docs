@@ -1,3 +1,4 @@
+import BrowserOnly from '@docusaurus/BrowserOnly';
 import React, { useState, useEffect, useRef } from 'react';
 
 interface Props {
@@ -5,9 +6,11 @@ interface Props {
   placeholder: string; // Default placeholder text
 }
 
+const storage = typeof localStorage === 'undefined' ? null : localStorage;
+
 const CustomizableValue: React.FC<Props> = ({ id, placeholder }) => {
   const [customValue, setCustomValue] = useState(() => {
-    const storedValue = localStorage.getItem(id);
+    const storedValue = storage?.getItem(id);
     return storedValue || '';
   });
   const [isEditing, setIsEditing] = useState(false);
@@ -15,7 +18,7 @@ const CustomizableValue: React.FC<Props> = ({ id, placeholder }) => {
 
   // Load from localStorage on mount
   useEffect(() => {
-    const storedValue = localStorage.getItem(id);
+    const storedValue = storage?.getItem(id);
     if (storedValue) {
       setCustomValue(storedValue);
     }
@@ -23,7 +26,7 @@ const CustomizableValue: React.FC<Props> = ({ id, placeholder }) => {
 
   // Update localStorage and all instances whenever customValue changes
   useEffect(() => {
-    localStorage.setItem(id, customValue);
+    storage.setItem(id, customValue);
 
     // Trigger a custom event to notify other instances
     const event = new CustomEvent(`valueChanged-${id}`, {
@@ -69,23 +72,25 @@ const CustomizableValue: React.FC<Props> = ({ id, placeholder }) => {
   };
 
   return (
-    <span className="customizable-value" style={{ alignItems: 'center', cursor: 'pointer' }}>
-      {isEditing ? (
-        <input
-          placeholder={placeholder}
-          ref={inputRef}
-          type="text"
-          value={customValue}
-          onChange={handleInputChange}
-          onBlur={handleInputBlur}
-          onKeyDown={handleKeyDown}
-        />
-      ) : (
-        <span onClick={handleEditClick}>
-          {customValue || `<${placeholder}>`}
-        </span>
-      )}
-    </span>
+    <BrowserOnly>
+      <span className="customizable-value" style={{ alignItems: 'center', cursor: 'pointer' }}>
+        {isEditing ? (
+          <input
+            placeholder={placeholder}
+            ref={inputRef}
+            type="text"
+            value={customValue}
+            onChange={handleInputChange}
+            onBlur={handleInputBlur}
+            onKeyDown={handleKeyDown}
+          />
+        ) : (
+          <span onClick={handleEditClick}>
+            {customValue || `<${placeholder}>`}
+          </span>
+        )}
+      </span>
+    </BrowserOnly>
   );
 };
 

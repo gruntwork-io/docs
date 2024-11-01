@@ -51,7 +51,7 @@ function parseAndReplaceSpecialKeysInTokens(tokens) {
 
 function parseAndReplaceSpecialKeysInTokensOld(tokens) {
   const nodes = [];
-  console.log({tokens})
+  //console.log({tokens})
   for (const token of tokens) {
 
     const content = token.props.children;
@@ -69,7 +69,7 @@ function parseAndReplaceSpecialKeysInTokensOld(tokens) {
       const key = match[1];
       const id = key.toLowerCase();
       const placeholder = key.replace(/([A-Z])/g, ' $1').trim().toLowerCase();
-      console.log('ADDING CUSTOM THING')
+      //console.log('ADDING CUSTOM THING')
       nodes.push(
         <CustomizableValue
           key={id}
@@ -112,7 +112,7 @@ export default function CodeBlockLine({
     <span key={key} {...getTokenProps({token})} />
   ));
 
-  console.log(line)
+  //console.log(line)
 
   return (
     <span {...lineProps}>

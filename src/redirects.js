@@ -22,11 +22,11 @@ export const redirects = [
         from: "/developer-portal/invite-team"
     },
     {
-        to: "/2.0/docs/overview/developer-portal/create-account",
+        to: "/2.0/docs/overview/getting-started/create-account",
         from: "/developer-portal/create-account"
     },
     {
-        to: "/2.0/docs/overview/developer-portal/link-github-id",
+        to: "/2.0/docs/overview/getting-started/link-github-id",
         from: "/developer-portal/link-github-id"
     },
     {
@@ -335,7 +335,7 @@ export const redirects = [
     },
     {
         from: '/guides',
-        to: '/2.0/docs'
+        to: 'index',
     },
     {
         from: '/intro/overview/getting-started',
