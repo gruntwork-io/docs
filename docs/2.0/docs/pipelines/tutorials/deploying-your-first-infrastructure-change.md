@@ -22,48 +22,48 @@ In this section, you’ll create a resource in your AWS account using Pipelines 
 
 ### Adding a new S3 bucket
 
-First, create the folder structure that will contain the new S3 bucket in your environment. Replace `<account name>` with the value for the account you are deploying to, and `<region>` with the region you would like to deploy the S3 bucket in.
+1. Create the folder structure that will contain the new S3 bucket in your environment. Replace `<account name>` with the value for the account you are deploying to, and `<region>` with the region you would like to deploy the S3 bucket in.
 
-```bash
-mkdir -p <account name>/<region>/<account name>/data-storage/s3
-touch <account name>/<region>/region.hcl
-touch <account name>/<region>/<account name>/data-storage/s3/terragrunt.hcl
-```
+    ```bash
+    mkdir -p <account name>/<region>/<account name>/data-storage/s3
+    touch <account name>/<region>/region.hcl
+    touch <account name>/<region>/<account name>/data-storage/s3/terragrunt.hcl
+    ```
 
-Add the following content to the `region.hcl` file created above
+1. Add the following content to the `region.hcl` file created above
 
-```hcl title="<account name>/<region>/region.hcl"
-locals {
-  aws_region = "<your region>"
-}
-```
+    ```hcl title="<account name>/<region>/region.hcl"
+    locals {
+      aws_region = "<your region>"
+    }
+    ```
 
-Next, add the terragrunt code below to the created `terragrunt.hcl` file to create an S3 bucket . Replace `<your S3 bucket name>` with your desired bucket name. You may name the bucket whatever you like, just make sure it’s unique.
+1. Add the terragrunt code below to the created `terragrunt.hcl` file to create an S3 bucket . Replace `<your S3 bucket name>` with your desired bucket name. You may name the bucket whatever you like, just make sure it’s unique.
 
 
-```hcl title="<account name>/<region>/<account name>/data-storage/s3/terragrunt.hcl"
-# ------------------------------------------------------------------------------------------------------
-# DEPLOY GRUNTWORK’s S3-BUCKET MODULE
-# ------------------------------------------------------------------------------------------------------
+    ```hcl title="<account name>/<region>/<account name>/data-storage/s3/terragrunt.hcl"
+    # ------------------------------------------------------------------------------------------------------
+    # DEPLOY GRUNTWORK’s S3-BUCKET MODULE
+    # ------------------------------------------------------------------------------------------------------
 
-terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/s3-bucket?ref=v0.116.1"
-}
+    terraform {
+      source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/s3-bucket?ref=v0.116.1"
+    }
 
-include "root" {
-  path = find_in_parent_folders()
-}
+    include "root" {
+      path = find_in_parent_folders()
+    }
 
-inputs = {
-  primary_bucket = "<your S3 bucket name>"
-}
-```
+    inputs = {
+      primary_bucket = "<your S3 bucket name>"
+    }
+    ```
 
 ### Planning the changes
 
 1. Create a new branch for your changes
 1. Commit the changes to your branch, then push your branch.
-1. Create a PR against `main` (the default branch in your repository). You may follow this GitHub tutorial to [create a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) using your preferred tool of choice.
+1. Create a PR against `main`(the default branch in your repository). You may follow this GitHub tutorial to [create a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) using your preferred tool of choice.
 
 After you create the PR, GitHub Actions (GHA) will automatically run the GHA workflow defined in `/.github/workflows/pipelines.yml` in the repository.
 
@@ -77,7 +77,7 @@ Click the *View full logs* link see the full output of the Gruntwork pipelines r
 
 ### Applying the changes
 
-If the `terragrunt plan` output looks as expected, then you are ready to merge your PR and create the S3 bucket.
+If you are satisfied with the `terragrunt plan` output then you are ready to merge your PR and create the S3 bucket.
 
 Approve the PR and click the `Merge pull request` button to merge the pull request. On merge, Pipelines will automatically run an `apply` action to provision the S3 bucket.
 
@@ -93,4 +93,4 @@ To view the GHA workflow run associated with the merged PR in the progress state
 
 Congratulations! You've just used Gruntwork Pipelines and a GitOps workflow to provision resources in AWS. To verify the S3 bucket was created, navigate to the AWS Management Console and check the S3 service for the bucket you created.
 
-To clean up the resources created in this tutorial, follow instructions in the next tutorial [Destroying infrastructure with Pipelines](/2.0/docs/pipelines/tutorials/destroying-infrastructure).
+To clean up the resources created in this tutorial, follow instructions in the next tutorial [Destroying infrastructure with Pipelines](/2.0/docs/pipelines/tutorials/destroying-infrastructure#destroying-with-pipelines).
