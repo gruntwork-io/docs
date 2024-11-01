@@ -30,6 +30,7 @@
     "@mdx-js/react": "^3.0.1",
     "@svgr/webpack": "^5.5.0",
     "@types/jest": "^27.4.0",
+    "algoliasearch": "^5.12.0",
     "buffer": "^6.0.3",
     "clsx": "^1.1.1",
     "config": "^3.3.6",
@@ -58,6 +59,9 @@
     "tsconfig-paths": "^3.14.1",
     "typescript": "^5.2.2",
     "yargs": "^17.4.0"
+  },
+  "resolutions": {
+    "algoliasearch": "^5.12.0"
   },
   "optionalDependencies": {
     "docs-sourcer": "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.31",
