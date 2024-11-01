@@ -60,9 +60,6 @@
     "typescript": "^5.2.2",
     "yargs": "^17.4.0"
   },
-  "resolutions": {
-    "algoliasearch": "^5.12.0"
-  },
   "optionalDependencies": {
     "docs-sourcer": "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.31",
     "ts-commons": "gruntwork-io/ts-commons#5.3.1"
