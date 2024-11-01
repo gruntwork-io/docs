@@ -12,14 +12,14 @@ By the end, you’ll have:
 
 Before you begin, make sure you have:
 
-- Pipelines installed in a GitHub repository. See [Setup & Installation](2.0/docs/pipelines/installation/prerequisites/awslandingzone) for more information.
+- Pipelines installed in a GitHub repository. See [Setup & Installation](/2.0/docs/pipelines/installation/overview) for more information.
 - A sandbox or development AWS account that was set up during the Pipelines installation process
 - Permissions to create a pull request in the GitHub repository where Pipelines is installed
-- An existing AWS resource that you want to destroy which was created using Infrastructure as Code (IaC) and Pipelines. If you don't have an existing resource, you can follow the steps in the [Deploying your first infrastructure change](2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change) tutorial to create one and that is what we will destroy in this tutorial.
+- An existing AWS resource that you want to destroy which was created using Infrastructure as Code (IaC) and Pipelines. If you don't have an existing resource, you can follow the steps in the [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change) tutorial to create one and that is what we will destroy in this tutorial.
 
 ## Destroying with Pipelines
 
-In this section, you’ll destroy an existing AWS resource using Pipelines and GitOps workflows. We will use the same S3 bucket created in the [Deploying your first infrastructure change](2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change) tutorial as an example but you can replace it with any other resource you want to destroy.
+In this section, you’ll destroy an existing AWS resource using Pipelines and GitOps workflows. We will use the same S3 bucket created in the [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change) tutorial as an example but you can replace it with any other resource you want to destroy.
 
 ### Delete the Infrastructure Code
 

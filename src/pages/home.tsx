@@ -17,7 +17,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/2.0/docs/overview/developer-portal/create-account"
+            to="/2.0/docs/overview/getting-started/create-account"
           >
             Get Started
           </Link>
@@ -46,7 +46,7 @@ export const HomeContent = () => {
               </Card>
               <Card
                 title="Create your Gruntwork Account"
-                href="/2.0/docs/overview/developer-portal/create-account"
+                href="/2.0/docs/overview/getting-started/create-account"
                 icon="/img/icons/deploy.svg"
               >
                 Create your account in the Gruntwork Developer Portal and add

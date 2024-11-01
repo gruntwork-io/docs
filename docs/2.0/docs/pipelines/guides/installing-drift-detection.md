@@ -1,5 +1,7 @@
 # Installing Drift Detection
 
+import PersistentCheckbox from '/src/components/PersistentCheckbox';
+
 :::note
 Pipelines Drift Detection is only available to Devops Foundations Enterprise customers.
 :::

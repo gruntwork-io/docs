@@ -3642,7 +3642,7 @@ algoliasearch@^4.17.0, algoliasearch@^4.18.0:
     "@algolia/requester-node-http" "4.24.0"
     "@algolia/transporter" "4.24.0"
 
-algoliasearch@^5.11.0:
+algoliasearch@^5.11.0, algoliasearch@^5.12.0:
   version "5.12.0"
   resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-5.12.0.tgz#2e822a7916d691e55058ea7dba277d5110969dd0"
   integrity sha512-psGBRYdGgik8I6m28iAB8xpubvjEt7UQU+w5MAJUA2324WHiGoHap5BPkkjB14rMaXeRts6pmOsrVIglGyOVwg==

@@ -1,5 +1,7 @@
 # Deploying your first Infrastructure Change
 
+import CustomizableValue from '/src/components/CustomizableValue';
+
 In this tutorial, we’ll walk you through the process of deploying an S3 bucket. This is useful both as a "hello world" for Gruntwork Pipelines and also as the first step to getting you ready for Gruntwork Pipelines usage in production.
 
 ## What you'll get
@@ -22,26 +24,26 @@ In this section, you’ll create a resource in your AWS account using Pipelines 
 
 ### Adding a new S3 bucket
 
-1. Create the folder structure that will contain the new S3 bucket in your environment. Replace `<account name>` with the value for the account you are deploying to, and `<region>` with the region you would like to deploy the S3 bucket in.
+1. Create the folder structure that will contain the new S3 bucket in your environment. Replace <CustomizableValue id="ACCOUNT_NAME" /> with the value for the account you are deploying to, and <CustomizableValue id="REGION" /> with the region you would like to deploy the S3 bucket in.
 
     ```bash
-    mkdir -p <account name>/<region>/<account name>/data-storage/s3
-    touch <account name>/<region>/region.hcl
-    touch <account name>/<region>/<account name>/data-storage/s3/terragrunt.hcl
+    mkdir -p $$ACCOUNT_NAME$$/$$REGION$$/$$ACCOUNT_NAME$$/data-storage/s3
+    touch $$ACCOUNT_NAME$$/$$REGION$$/region.hcl
+    touch $$ACCOUNT_NAME$$/$$REGION$$/$$ACCOUNT_NAME$$/data-storage/s3/terragrunt.hcl
     ```
 
 1. Add the following content to the `region.hcl` file created above
 
-    ```hcl title="<account name>/<region>/region.hcl"
+    ```hcl title="$$ACCOUNT_NAME$$/$$REGION$$/region.hcl"
     locals {
       aws_region = "<your region>"
     }
     ```
 
-1. Add the terragrunt code below to the created `terragrunt.hcl` file to create an S3 bucket . Replace `<your S3 bucket name>` with your desired bucket name. You may name the bucket whatever you like, just make sure it’s unique.
+2. Add the terragrunt code below to the created `terragrunt.hcl` file to create an S3 bucket . Replace <CustomizableValue id='S3_BUCKET_NAME'/> with your desired bucket name. You may name the bucket whatever you like, just make sure it’s unique.
 
 
-    ```hcl title="<account name>/<region>/<account name>/data-storage/s3/terragrunt.hcl"
+    ```hcl title="$$ACCOUNT_NAME$$/$$REGION$$/$$ACCOUNT_NAME$$/data-storage/s3/terragrunt.hcl"
     # ------------------------------------------------------------------------------------------------------
     # DEPLOY GRUNTWORK’s S3-BUCKET MODULE
     # ------------------------------------------------------------------------------------------------------
@@ -55,7 +57,7 @@ In this section, you’ll create a resource in your AWS account using Pipelines 
     }
 
     inputs = {
-      primary_bucket = "<your S3 bucket name>"
+      primary_bucket = "$$S3_BUCKET_NAME$$"
     }
     ```
 
