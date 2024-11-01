@@ -291,6 +291,11 @@ const sidebar = [
                 id: "2.0/docs/pipelines/guides/extending-pipelines",
               },
               {
+                label: "Installing Drift Detection",
+                type: "doc",
+                id: "2.0/docs/pipelines/guides/installing-drift-detection",
+              },
+              {
                 label: "Running Drift Detection",
                 type: "doc",
                 id: "2.0/docs/pipelines/guides/running-drift-detection",
