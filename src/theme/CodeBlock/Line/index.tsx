@@ -1,95 +1,46 @@
 import clsx from 'clsx';
 import type {Props} from '@theme/CodeBlock/Line';
+import { cloneElement } from 'react';
 
 import styles from './styles.module.css';
 import CustomizableValue from '../../../components/CustomizableValue';
 
+function replaceCustomizeableValues(tokens) {
+  let newTokens = [];
+  let captured = '';
+  let capturing = false;
+  for (let token of tokens) {
+    let content = token.props.children;
+    for (let i = 0; i < content.length; i++) {
+      if (content[i] === '$' && i < content.length - 1 && content[i + 1] === '$') {
+        if (capturing) {
+          newTokens.push(
+            <CustomizableValue
+              key={captured + newTokens.length}
+              id={captured}
+            />
+          );
+        } else {
+          let newToken = cloneElement(token, {key: newTokens.length}, captured)
+          newTokens.push(newToken)
+        }
 
-function parseAndReplaceSpecialKeysInTokens(tokens) {
-  const nodes = [];
-  let tempContent = '';
-  let started = false;
-
-  for (const token of tokens) {
-    tempContent += token.props.children; // Access token.props.children
-
-    const regex = /\$\$([a-zA-Z0-9]+)\$\$/g;
-    let match = regex.exec(tempContent);
-
-    if (match) {
-      const key = match[1];
-      const id = key.toLowerCase();
-      const placeholder = key.replace(/([A-Z])/g, ' $1').trim().toLowerCase();
-
-      nodes.push(
-        <CustomizableValue
-          key={id}
-          id={id}
-          placeholder={placeholder}
-          fieldId={key}
-        />
-      );
-
-      tempContent = tempContent.slice(match.index + match[0].length);
-      started = false;
-    } else if (tempContent.startsWith('$$')) {
-      started = true;
-    } else if (started) {
-      continue;
-    } else {
-      nodes.push(token);
-      tempContent = '';
-    }
-  }
-
-  // if (tempContent) {
-  //   nodes.push(token);
-  // }
-
-  return nodes;
-}
-
-function parseAndReplaceSpecialKeysInTokensOld(tokens) {
-  const nodes = [];
-  //console.log({tokens})
-  for (const token of tokens) {
-
-    const content = token.props.children;
-    const regex = /\$\$([a-zA-Z0-9]+)/g; // Match $$ID$$
-    let match;
-    let lastIndex = 0;
-
-    while ((match = regex.exec(content)) !== null) {
-      // Add the text before the match
-      if (match.index > lastIndex) {
-        //token.props.children = token.props.children.substring(lastIndex, match.index)
-        nodes.push(token);
+        captured = '';
+        capturing = !capturing;
+        i += 2;
+        if (i >= content.length) {
+          break;
+        }
       }
-
-      const key = match[1];
-      const id = key.toLowerCase();
-      const placeholder = key.replace(/([A-Z])/g, ' $1').trim().toLowerCase();
-      //console.log('ADDING CUSTOM THING')
-      nodes.push(
-        <CustomizableValue
-          key={id}
-          id={id}
-          placeholder={placeholder}
-          fieldId={key}
-        />
-      );
-
-      lastIndex = match.index + match[0].length;
+      captured += content[i];
     }
-
-    // Add the remaining text after the last match
-    if (lastIndex < content.length) {
-      //token.props.children = token.props.children.substring(lastIndex)
-      nodes.push(token);
+    if (captured.length > 0 && !capturing) {
+      let newToken = cloneElement(token, {key: newTokens.length}, captured)
+      newTokens.push(newToken)
+      captured = '';
     }
   }
-
-  return nodes;
+  return newTokens;
 }
 
 export default function CodeBlockLine({
@@ -112,8 +63,6 @@ export default function CodeBlockLine({
     <span key={key} {...getTokenProps({token})} />
   ));
 
-  //console.log(line)
-
   return (
     <span {...lineProps}>
       {showLineNumbers ? (
@@ -122,7 +71,7 @@ export default function CodeBlockLine({
           <span className={styles.codeLineContent}>{lineTokens}</span>
         </>
       ) : (
-        parseAndReplaceSpecialKeysInTokens(lineTokens)
+        replaceCustomizeableValues(lineTokens)
       )}
       <br />
     </span>

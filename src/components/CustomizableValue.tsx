@@ -3,12 +3,12 @@ import React, { useState, useEffect, useRef } from 'react';
 
 interface Props {
   id: string; // Unique identifier for localStorage and event handling
-  placeholder: string; // Default placeholder text
 }
 
 const storage = typeof localStorage === 'undefined' ? null : localStorage;
 
-const CustomizableValue: React.FC<Props> = ({ id, placeholder }) => {
+const CustomizableValue: React.FC<Props> = ({ id }) => {
+  const placeholder = id;
   const [customValue, setCustomValue] = useState(() => {
     const storedValue = storage?.getItem(id);
     return storedValue || '';
