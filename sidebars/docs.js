@@ -65,20 +65,25 @@ const sidebar = [
             collapsed: false,
             items: [
               {
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/overview/getting-started/index",
+              },
+              {
                 label: "Activating your Gruntwork Account",
                 type: "doc",
-                id: "2.0/docs/overview/developer-portal/create-account",
+                id: "2.0/docs/overview/getting-started/create-account",
               },
               {
                 label: "Inviting Team Members",
                 type: "doc",
-                id: "2.0/docs/overview/developer-portal/invite-team",
+                id: "2.0/docs/overview/getting-started/invite-team",
               },
               {
                 label: "Linking GitHub to Gruntwork",
                 type: "doc",
-                id: "2.0/docs/overview/developer-portal/link-github-id",
-              },
+                id: "2.0/docs/overview/getting-started/link-github-id",
+              }
             ],
           },
           complianceSidebar,
@@ -168,6 +173,11 @@ const sidebar = [
             type: "category",
             collapsed: true,
             items: [
+              {
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/pipelines/installation/overview",
+              },
               {
                 label: "Prerequisites",
                 type: "category",
@@ -284,6 +294,11 @@ const sidebar = [
                 label: "Extending Pipelines",
                 type: "doc",
                 id: "2.0/docs/pipelines/guides/extending-pipelines",
+              },
+              {
+                label: "Installing Drift Detection",
+                type: "doc",
+                id: "2.0/docs/pipelines/guides/installing-drift-detection",
               },
               {
                 label: "Running Drift Detection",

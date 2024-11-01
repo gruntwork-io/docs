@@ -464,4 +464,73 @@ html[data-theme="dark"] .link-button:hover {
 
  html[data-theme="dark"] .customizable-value span::after {
   background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolygon%20points%3D%2214%202%2018%206%207%2017%203%2017%203%2013%2014%202%22%3E%3C%2Fpolygon%3E%3Cline%20x1%3D%223%22%20y1%3D%2222%22%20x2%3D%2221%22%20y2%3D%2222%22%3E%3C%2Fline%3E%3C%2Fsvg%3E');
+
+.persistent-checkbox {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px; /* Increased font size */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+}
+
+/* Hide the default checkbox */
+.persistent-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px; /* Increased size */
+  width: 25px; /* Increased size */
+  background-color: #eee;
+  border-radius: 5px; /* Added rounded corners */
+  border: 2px solid #ccc; /* Added a more prominent border */
+
+}
+
+/* On mouse-over, add a grey background color */
+.persistent-checkbox:hover input ~ .checkmark {
+  background-color: #ccc;
+  border: 2px solid #ccc; /* Added a more prominent border */
+}
+
+/* When the checkbox is checked, add a blue background */
+.persistent-checkbox input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.persistent-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.persistent-checkbox .checkmark:after {
+  left: 7px; /* Adjusted left position */
+  top: 4px;  /* Adjusted top position */
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
 }
