@@ -5,7 +5,7 @@ interface Props {
   id: string; // Unique identifier for localStorage and event handling
 }
 
-const storage = typeof localStorage === 'undefined' ? null : localStorage;
+const storage = typeof sessionStorage === 'undefined' ? null : sessionStorage;
 
 const CustomizableValue: React.FC<Props> = ({ id }) => {
   const placeholder = id;
