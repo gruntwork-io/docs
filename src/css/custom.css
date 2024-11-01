@@ -437,7 +437,21 @@ html[data-theme="dark"] .link-button:hover {
   background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"%3E%3Cpath fill="%23DADDE1" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"%3E%3C/path%3E%3C/svg%3E');
 }
 
-.customizable-value::after {
+.customizable-value {
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.customizable-value input {
+  appearance: none;
+  outline: none;
+  background-color: transparent;
+  border: 1px solid #e7eaf3;
+  border-radius: 4px;
+  padding: 2px;
+}
+
+.customizable-value span::after {
   content: "";
   display: inline-block;
   width: 13.5px;
@@ -448,6 +462,6 @@ html[data-theme="dark"] .link-button:hover {
   background-repeat: no-repeat; /* Add this line too */
 }
 
- html[data-theme="dark"] .customizable-value::after {
-  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolygon%20points%3D%2214%202%2018%206%207%2017%203%2017%203%2013%2014%202%22%3E%3C%2Fpolygon%3E%3Cline%20x1%3D%223%22%20y1%3D%2222%22%20x2%3D%2221%22%20y2%3D%2222%22%3E%3C%2Fline%3E%3C%2Fsvg%3E');
+ html[data-theme="dark"] .customizable-value span::after {
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolygon%20points%3D%2214%202%2018%206%207%2017%203%2017%203%2013%2014%202%22%3E%3C%2Fpolygon%3E%3Cline%20x1%3D%223%22%20y1%3D%2222%22%20x2%3D%2221%22%20y2%3D%2222%22%3E%3C%2Fline%3E%3C%2Fsvg%3E');
 }

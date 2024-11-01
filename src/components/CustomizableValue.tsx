@@ -69,19 +69,19 @@ const CustomizableValue: React.FC<Props> = ({ id, placeholder }) => {
   };
 
   return (
-    <span style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+    <span className="customizable-value" style={{ alignItems: 'center', cursor: 'pointer' }}>
       {isEditing ? (
         <input
+          placeholder={placeholder}
           ref={inputRef}
           type="text"
           value={customValue}
           onChange={handleInputChange}
           onBlur={handleInputBlur}
           onKeyDown={handleKeyDown}
-          style={{ border: '1px solid #ccc', padding: '4px', borderRadius: '4px' }}
         />
       ) : (
-        <span className="customizable-value" onClick={handleEditClick}>
+        <span onClick={handleEditClick}>
           {customValue || `<${placeholder}>`}
         </span>
       )}
