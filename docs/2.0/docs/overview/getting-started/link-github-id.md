@@ -1,3 +1,7 @@
+---
+pagination_next: 2.0/docs/overview/getting-started/index
+---
+
 # Link Your GitHub Account
 
 Gruntwork provides all code included in your subscription through GitHub. You need to link a GitHub ID to your Gruntwork Developer Portal account in order to access the IaC Library on GitHub. Follow the steps below to link your GitHub ID.
@@ -19,6 +23,10 @@ Once you’ve linked your account, the notice on the home page will disappear an
 [GitHub has begun requiring](https://github.blog/2023-03-09-raising-the-bar-for-software-security-github-2fa-begins-march-13) users to enable two-factor authentication (2FA). If you haven't already done so, we recommend [enabling 2FA](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication) for your account and any machine users. For more information on the benefits of two-factor authentication and how this change may impact you, please take a look at our [Knowledge Base article](https://github.com/orgs/gruntwork-io/discussions/764).
 
 :::
+
+## Next Steps
+
+Now that you've completed setting up your Gruntwork account, return to the [DevOps Foundations Getting Started Checklist](./index.md) to continue setting up your DevOps Foundations.
 
 ## Related Knowledge Base Discussions
 
