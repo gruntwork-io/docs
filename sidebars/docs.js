@@ -84,6 +84,11 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/overview/getting-started/link-github-id",
               },
+              {
+                label: "Install and use the Devops Foundations Components",
+                type: "doc",
+                id: "2.0/docs/overview/getting-started/next-steps",
+              }
             ],
           },
           complianceSidebar,
