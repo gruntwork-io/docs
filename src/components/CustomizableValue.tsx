@@ -7,10 +7,25 @@ interface Props {
 
 const storage = typeof sessionStorage === 'undefined' ? null : sessionStorage;
 
+export const parseCustomizableValuesToString = (content: string): string => {
+  const regex = /\$\$(.+?)\$\$/g;
+  const matches = content.matchAll(regex);
+  if (!matches) {
+    return content;
+  }
+
+  const values = Array.from(matches, match => match[1]);
+  for (const value of values) {
+    const storedValue = storage?.getItem(value);
+    content = content.replace(`\$\$${value}\$\$`, storedValue || `<${value}>`);
+  }
+  console.log({content})
+  return content;
+}
+
 export const parseCustomizableValues = (content: string): ReactNode => {
   const regex = /(\$\$.+?\$\$)/g;
   const matches = content.split(regex);
-  console.log({content, matches})
   const nodes = [];
   for (const match of matches) {
     if (!match.match(/\$\$.+?\$\$/)) {
