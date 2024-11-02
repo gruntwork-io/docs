@@ -1,5 +1,7 @@
 # Destroying infrastructure with Pipelines
 
+import CustomizableValue from '/src/components/CustomizableValue';
+
 In this Tutorial, you'll learn how to destroy infrastructure using Gruntwork Pipelines and GitOps workflows.
 
 ## What you'll get
@@ -23,13 +25,13 @@ In this section, you’ll destroy an existing AWS resource using Pipelines and G
 
 ### Delete the Infrastructure Code
 
-1. Delete the folder containing the infrastructure code for the resource you want to destroy. In this case, delete the folder containing the S3 bucket code. Replace `<account name>` and `<region>`appropriately.
+1. Delete the folder containing the infrastructure code for the resource you want to destroy. In this case, delete the folder containing the S3 bucket code. Replace <CustomizableValue id="ACCOUNT_NAME" /> and <CustomizableValue id="REGION" /> appropriately.
 
     ```bash
-    rm -rf <account name>/<region>/<account name>/data-storage/s3
+    rm -rf $$ACCOUNT_NAME$$/$$REGION$$/$$ACCOUNT_NAME$$/data-storage/s3
     ```
 
-1. Create a new branch, commit the changes, and push the branch to your GitHub repository.
+2. Create a new branch, commit the changes, and push the branch to your GitHub repository.
 
 ### Planning the destruction
 
