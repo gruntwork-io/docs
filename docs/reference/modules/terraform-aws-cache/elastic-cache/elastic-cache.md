@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="0.22.8" lastModifiedVersion="0.22.8"/>
+<VersionBadge repoTitle="Cache Modules" version="0.23.0" lastModifiedVersion="0.22.8"/>
 
 # ElasticCache Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.8/modules/elastic-cache" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.23.0/modules/elastic-cache" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.22.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -47,7 +47,7 @@ For more info, see [Scaling Memcached](http://docs.aws.amazon.com/AmazonElastiCa
 
 module "elastic_cache" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v0.22.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v0.23.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -60,7 +60,7 @@ module "elastic_cache" {
   allow_connections_from_cidr_blocks = <list(string)>
 
   # Name of the cache engine to be used for this cache cluster. Valid values are
-  # memcached or redis.
+  # memcached, redis, or valkey.
   engine = <string>
 
   # Version number of ElasticCache cluster to use.
@@ -160,7 +160,7 @@ module "elastic_cache" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v0.22.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v0.23.0"
 }
 
 inputs = {
@@ -176,7 +176,7 @@ inputs = {
   allow_connections_from_cidr_blocks = <list(string)>
 
   # Name of the cache engine to be used for this cache cluster. Valid values are
-  # memcached or redis.
+  # memcached, redis, or valkey.
   engine = <string>
 
   # Version number of ElasticCache cluster to use.
@@ -290,7 +290,7 @@ A list of CIDR-formatted IP address ranges that can connect to this ElastiCache 
 <HclListItem name="engine" requirement="required" type="string">
 <HclListItemDescription>
 
-Name of the cache engine to be used for this cache cluster. Valid values are memcached or redis.
+Name of the cache engine to be used for this cache cluster. Valid values are memcached, redis, or valkey.
 
 </HclListItemDescription>
 </HclListItem>
@@ -506,11 +506,11 @@ A set of tags to set for the ElastiCache Cluster.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.8/modules/elastic-cache/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.8/modules/elastic-cache/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.8/modules/elastic-cache/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.23.0/modules/elastic-cache/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.23.0/modules/elastic-cache/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.23.0/modules/elastic-cache/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d0d4bdf1a1c0d9d2a19e4d9a082990ab"
+  "hash": "67e3d24803678c251069e00cd744a8d1"
 }
 ##DOCS-SOURCER-END -->
