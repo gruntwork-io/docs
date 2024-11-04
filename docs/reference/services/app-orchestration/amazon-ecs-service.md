@@ -530,9 +530,6 @@ module "ecs_service" {
   # its own AWS provider to ensure resources are created in us-east-1.
   route53_health_check_provider_shared_credentials_file = null
 
-  # Define runtime platform options
-  runtime_platform = null
-
   # A list of ARNs of Secrets Manager secrets that the task should have
   # permissions to read. The IAM role for the task will be granted
   # `secretsmanager:GetSecretValue` for each secret in the list. The ARN can be
@@ -1056,9 +1053,6 @@ inputs = {
   # defined in the route53-health-check-alarms module.  This module configures
   # its own AWS provider to ensure resources are created in us-east-1.
   route53_health_check_provider_shared_credentials_file = null
-
-  # Define runtime platform options
-  runtime_platform = null
 
   # A list of ARNs of Secrets Manager secrets that the task should have
   # permissions to read. The IAM role for the task will be granted
@@ -2639,25 +2633,6 @@ The optional path to a credentials file used in the us-east-1 provider block def
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="runtime_platform" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Define runtime platform options
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    operating_system_family = string
-    cpu_architecture        = string
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="secrets_access" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -3000,6 +2975,6 @@ The names of the ECS service's load balancer's target groups
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "62a2382f0da2222633def810798f4576"
+  "hash": "04fff7be00e1a60d21714b6753b4d1c3"
 }
 ##DOCS-SOURCER-END -->
