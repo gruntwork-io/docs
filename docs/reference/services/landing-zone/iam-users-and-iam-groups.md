@@ -240,7 +240,7 @@ module "iam_users_and_groups" {
   max_session_duration_human_users = 43200
 
   # The maximum allowable session duration, in seconds, for the credentials you
-  # get when assuming the IAM roles created by this module. This variable 
+  # get when assuming the IAM roles created by this module. This variable
   # applies to all IAM roles created by this module that are intended for
   # machine users, such as allow-auto-deploy-from-other-accounts. For IAM roles
   # that are intended for human users, such as
@@ -264,7 +264,7 @@ module "iam_users_and_groups" {
   # billing features only. (true or false)
   should_create_iam_group_billing = false
 
-  # Should we create the IAM Group for access to all external AWS accounts? 
+  # Should we create the IAM Group for access to all external AWS accounts?
   should_create_iam_group_cross_account_access_all = true
 
   # Should we create the IAM Group for developers? The permissions of that group
@@ -464,7 +464,7 @@ inputs = {
   max_session_duration_human_users = 43200
 
   # The maximum allowable session duration, in seconds, for the credentials you
-  # get when assuming the IAM roles created by this module. This variable 
+  # get when assuming the IAM roles created by this module. This variable
   # applies to all IAM roles created by this module that are intended for
   # machine users, such as allow-auto-deploy-from-other-accounts. For IAM roles
   # that are intended for human users, such as
@@ -488,7 +488,7 @@ inputs = {
   # billing features only. (true or false)
   should_create_iam_group_billing = false
 
-  # Should we create the IAM Group for access to all external AWS accounts? 
+  # Should we create the IAM Group for access to all external AWS accounts?
   should_create_iam_group_cross_account_access_all = true
 
   # Should we create the IAM Group for developers? The permissions of that group
@@ -867,7 +867,7 @@ Should we create the IAM Group for billing? Allows read-write access to billing 
 <HclListItem name="should_create_iam_group_cross_account_access_all" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Should we create the IAM Group for access to all external AWS accounts? 
+Should we create the IAM Group for access to all external AWS accounts?
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -978,7 +978,7 @@ Any types represent complex values of variable type. For details, please consult
      alice = {
        groups = ["user-self-mgmt", "developers", "ssh-sudo-users"]
      }
-  
+
      bob = {
        path   = "/"
        groups = ["user-self-mgmt", "ops", "admins"]
@@ -986,7 +986,7 @@ Any types represent complex values of variable type. For details, please consult
          foo = "bar"
        }
      }
-  
+
      carol = {
        groups               = ["user-self-mgmt", "developers", "ssh-users"]
        pgp_key              = "keybase:carol_on_keybase"

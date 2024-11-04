@@ -327,7 +327,7 @@ module "elasticsearch" {
   # key for a better security posture when configuring encryption at rest.
   enable_encryption_at_rest = true
 
-  # Whether to enable node-to-node encryption. 
+  # Whether to enable node-to-node encryption.
   enable_node_to_node_encryption = true
 
   # The ID of the KMS key to use to encrypt the Elasticsearch domain storage.
@@ -704,7 +704,7 @@ inputs = {
   # key for a better security posture when configuring encryption at rest.
   enable_encryption_at_rest = true
 
-  # Whether to enable node-to-node encryption. 
+  # Whether to enable node-to-node encryption.
   enable_node_to_node_encryption = true
 
   # The ID of the KMS key to use to encrypt the Elasticsearch domain storage.
@@ -1270,7 +1270,7 @@ False by default because encryption at rest is not included in the free tier. Wh
 <HclListItem name="enable_node_to_node_encryption" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Whether to enable node-to-node encryption. 
+Whether to enable node-to-node encryption.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>

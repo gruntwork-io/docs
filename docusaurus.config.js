@@ -9,6 +9,7 @@ const darkCodeTheme = themes.dracula;
 const cfg = require("config")
 
 const captionsPlugin = require("./src/plugins/captions.mjs")
+const { redirects } = require("./src/redirects.js");
 
 const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined
 
@@ -36,6 +37,16 @@ const plugins = ["plugin-image-zoom"]
 if (enablePosthog) {
   plugins.push("posthog-docusaurus")
 }
+
+const redirectPlugin = [
+  '@docusaurus/plugin-client-redirects',
+      {
+        redirects,
+      }
+]
+
+// @ts-ignore - types don't understand the plugin config
+plugins.push(redirectPlugin)
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -66,7 +77,6 @@ const config = {
           editUrl: "https://github.com/gruntwork-io/docs/edit/master/",
           exclude: [
             "guides/build-it-yourself/landing-zone/**",
-            "guides/build-it-yourself/kubernetes-cluster/**",
             "guides/build-it-yourself/vpc/**",
             "**/node_modules/**",
           ],
@@ -108,54 +118,19 @@ const config = {
           {
             type: "doc",
             position: "left",
-            label: "Intro",
-            docId: "intro/overview/intro-to-gruntwork",
-          },
-          {
-            type: "dropdown",
-            position: "left",
             label: "Docs",
-            id: "docs",
-            items: [
-              {
-                type: "doc",
-                label: "DevOps Foundations",
-                docId: "foundations/overview/index",
-              },
-              {
-                type: "doc",
-                label: "Library",
-                docId: "library/overview/index",
-              },
-              {
-                type: "doc",
-                label: "Pipelines",
-                docId: "pipelines/overview/index",
-              },
-              {
-                type: "doc",
-                label: "Patcher",
-                docId: "patcher/index",
-              },
-              {
-                type: "doc",
-                label: "Reference Architecture",
-                docId: "refarch/whats-this/what-is-a-reference-architecture",
-              },
-              {
-                type: "doc",
-                label: "Developer Portal",
-                docId: "developer-portal/create-account",
-              },
-            ],
+            docId: "index",
           },
           {
             type: "doc",
-            label: "Library Reference",
-            docId: "library/reference/index",
+            label: "Reference",
+            docId: "2.0/reference",
           },
-          { to: "/tools", label: "Tools", position: "left" },
-          { to: "/courses", label: "Courses", position: "left" },
+          {
+            type: "doc",
+            label: "Release Notes",
+            docId: "guides/stay-up-to-date/index",
+          },
           {
             href: "https://github.com/gruntwork-io/knowledge-base/discussions",
             label: "Knowledge Base",

@@ -933,7 +933,7 @@ object({
 
      Configurations for setting up private git repo access to https based git URLs for each supported VCS platform.
      The following keys are supported:
-    
+
      - github_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitHub
                                              Personal Access Token for accessing git repos over HTTPS.
      - gitlab_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitLab
@@ -1121,17 +1121,17 @@ object({
 
      ARNs of AWS Secrets Manager entries that can be used for authenticating to HTTPS based git repos that contain the
      Dockerfile for building the images. The associated user is recommended to be limited to read access only.
-    
+
      Settings for each git service provider:
-    
+
      Github:
      - `username_secrets_manager_arn` should contain a valid Personal Access Token for the corresponding machine user.
      - `password_secrets_manager_arn` should be set to null.
-    
+
      BitBucket:
      - `username_secrets_manager_arn` should contain the bitbucket username for the corresponding machine user.
      - `password_secrets_manager_arn` should contain a valid App password for the corresponding machine user.
-    
+
      GitLab:
      - `username_secrets_manager_arn` should contain the hardcoded string "oauth2" (without the quotes).
      - `password_secrets_manager_arn` should contain a valid Personal Access Token for the corresponding machine user.
@@ -1392,7 +1392,7 @@ object({
 
      Configurations for setting up private git repo access to https based git URLs for each supported VCS platform.
      The following keys are supported:
-    
+
      - github_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitHub
                                              Personal Access Token for accessing git repos over HTTPS.
      - gitlab_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitLab
@@ -1610,7 +1610,7 @@ object({
 
      Configurations for setting up private git repo access to https based git URLs for each supported VCS platform.
      The following keys are supported:
-    
+
      - github_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitHub
                                              Personal Access Token for accessing git repos over HTTPS.
      - gitlab_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitLab
@@ -2352,7 +2352,7 @@ Create multi-region resources in the specified regions. The best practice is to 
 ```hcl
 
      By default, skip regions that are not enabled in most AWS accounts:
-    
+
       "af-south-1",      Cape Town
       "ap-east-1",       Hong Kong
       "eu-south-1",      Milan
@@ -2363,7 +2363,7 @@ Create multi-region resources in the specified regions. The best practice is to 
       "cn-north-1",      China
       "cn-northwest-1",  China
       "eu-central-2",    Zurich
-    
+
      This region is enabled by default but is brand-new and some services like AWS Config don't work.
      "ap-northeast-3",  Asia Pacific (Osaka)
 

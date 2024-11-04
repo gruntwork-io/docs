@@ -1307,11 +1307,11 @@ Any types represent complex values of variable type. For details, please consult
     {
       "health-path" = {
         priority     = 130
-  
+
         content_type = "text/plain"
         message_body = "HEALTHY"
         status_code  = "200"
-  
+
       Conditions:
       You need to provide *at least ONE* per set of rules. It should contain one of the following:
         host_headers         = ["foo.com", "www.foo.com"]
@@ -1340,11 +1340,11 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map supports the following attributes:
-  
+
    REQUIRED
    - content_type [string]: The content type. Valid values are `text/plain`, `text/css`, `text/html`, `application/javascript`
                             and `application/json`.
-  
+
    OPTIONAL (defaults to value of corresponding module input):
    - priority      [number]       : A value between 1 and 50000. Leaving it unset will automatically set the rule with the next
                                    available priority after currently existing highest rule. This value must be unique for each
@@ -1352,12 +1352,12 @@ Any types represent complex values of variable type. For details, please consult
    - listener_arns [list(string)]: A list of listener ARNs to override `var.listener_arns`
    - message_body  [string]      : The message body.
    - status_code   [string]      : The HTTP response code. Valid values are `2XX`, `4XX`, or `5XX`.
-  
+
    Wildcard characters:
    * - matches 0 or more characters
    ? - matches exactly 1 character
    To search for a literal '*' or '?' character in a query string, escape the character with a backslash (\).
-  
+
    Conditions (need to specify at least one):
    - path_patterns        [list(string)]     : A list of paths to match (note that "/foo" is different than "/foo/").
                                               Comparison is case sensitive. Wildcard characters supported: * and ?.
@@ -1405,7 +1405,7 @@ Any types represent complex values of variable type. For details, please consult
     {
       "foo" = {
         priority = 120
-  
+
         host_headers         = ["www.foo.com", "*.foo.com"]
         path_patterns        = ["/foo/*"]
         source_ips           = ["127.0.0.1/32"]
@@ -1432,7 +1432,7 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map supports the following attributes:
-  
+
    OPTIONAL (defaults to value of corresponding module input):
    - priority          [number]                    : A value between 1 and 50000. Leaving it unset will automatically set
                                                     the rule with the next available priority after currently existing highest
@@ -1752,12 +1752,12 @@ Any types represent complex values of variable type. For details, please consult
         priority = 120
         port     = 443
         protocol = "HTTPS"
-  
+
         status_code = "HTTP_301"
         host  = "gruntwork.in"
         path  = "/signup"
         query = "foo"
-  
+
       Conditions:
         host_headers         = ["foo.com", "www.foo.com"]
         path_patterns        = ["/health"]
@@ -1785,14 +1785,14 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map supports the following attributes:
-  
+
    OPTIONAL (defaults to value of corresponding module input):
    - priority       [number]: A value between 1 and 50000. Leaving it unset will automatically set the rule with the next
                            available priority after currently existing highest rule. This value must be unique for each
                            listener.
    - listener_arns [list(string)]: A list of listener ARNs to override `var.listener_arns`
    - status_code   [string]: The HTTP redirect code. The redirect is either permanent `HTTP_301` or temporary `HTTP_302`.
-  
+
    The URI consists of the following components: `protocol://hostname:port/path?query`. You must modify at least one of
    the following components to avoid a redirect loop: protocol, hostname, port, or path. Any components that you do not
    modify retain their original values.
@@ -1801,12 +1801,12 @@ Any types represent complex values of variable type. For details, please consult
    - port        [string]: The port. Specify a value from 1 to 65525.
    - protocol    [string]: The protocol. Valid values are `HTTP` and `HTTPS`. You cannot redirect HTTPS to HTTP.
    - query       [string]: The query params. Do not include the leading "?".
-  
+
    Wildcard characters:
    * - matches 0 or more characters
    ? - matches exactly 1 character
    To search for a literal '*' or '?' character in a query string, escape the character with a backslash (\).
-  
+
    Conditions (need to specify at least one):
    - path_patterns        [list(string)]     : A list of paths to match (note that "/foo" is different than "/foo/").
                                               Comparison is case sensitive. Wildcard characters supported: * and ?.
@@ -1926,10 +1926,10 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map supports the following attributes:
-  
+
    REQUIRED:
    - server_port        number      : The port of the endpoint to be checked (e.g. 80).
-  
+
    OPTIONAL (defaults to value of corresponding module input):
    - target_group_name                   string      : A unique name to use for the corresponding target group. If
                                                        omitted, defaults to "SERVICE_NAME-ENTRY_KEY" where SERVICE_NAME
@@ -1949,7 +1949,7 @@ Any types represent complex values of variable type. For details, please consult
                                                        or fail for the health check to declare your site up or
                                                        down. Defaults to 2.
    - r53_health_check_request_interval   number      : The number of seconds between health checks. Defaults to 30.
-  
+
    - enable_lb_health_check  bool   : Set to false if you want to disable Target Group health's check.
                                       Defaults to true.
    - lb_healthy_threshold    number : The number of consecutive health checks *successes* required before

@@ -2112,7 +2112,7 @@ Any types represent complex values of variable type. For details, please consult
 
    See the 'statement' block in the aws_iam_policy_document data
    source for context: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document
-  
+
    - effect           string            (optional): Either "Allow" or "Deny", to specify whether this statement allows
                                                     or denies the given actions.
    - actions          list(string)      (optional): A list of actions that this statement either allows or denies. For
@@ -2131,9 +2131,9 @@ Any types represent complex values of variable type. For details, please consult
    - condition        map(object)       (optional): A nested configuration block (described below) that defines a
                                                     further, possibly-service-specific condition that constrains
                                                     whether this statement applies.
-  
+
    condition is a map ndition to an object that can define the following properties:
-  
+
    - test             string            (required): The name of the IAM condition operator to evaluate.
    - variable         string            (required): The name of a Context Variable to apply the condition to. Context
                                                     variables may either be standard AWS variables starting with aws:,

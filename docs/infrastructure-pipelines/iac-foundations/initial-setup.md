@@ -1,7 +1,7 @@
 # Initial setup
 
 :::info Newer Version Available
-This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/index.md) to view documentation for the most recent version.
+This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](/2.0/docs/pipelines/concepts/overview) to view documentation for the most recent version.
 :::
 
 To set up IaC Foundations, we use three pre-configured git repository templates that include best practices and also allow for customization.

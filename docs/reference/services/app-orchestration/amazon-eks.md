@@ -2042,13 +2042,13 @@ Any types represent complex values of variable type. For details, please consult
 
    Each configuration must be keyed by a unique string that will be used as a suffix for the ASG name. The values
    support the following attributes:
-  
+
    REQUIRED (must be provided for every entry):
    - subnet_ids  list(string)  : A list of the subnets into which the EKS Cluster's worker nodes will be launched.
                                  These should usually be all private subnets and include one in each AWS Availability
                                  Zone. NOTE: If using a cluster autoscaler, each ASG may only belong to a single
                                  availability zone.
-  
+
    OPTIONAL (defaults to value of corresponding module input):
    - min_size            number             : (Defaults to value from var.asg_default_min_size) The minimum number of
                                               EC2 Instances representing workers launchable for this EKS Cluster.
@@ -2106,13 +2106,13 @@ Any types represent complex values of variable type. For details, please consult
                                                Per-ASG cloud init scripts to run at boot time on the node.  See var.cloud_init_parts for accepted keys.
    - http_put_response_hop_limit     number  : (Defaults to value from var.asg_default_http_put_response_hop_limit) The
                                                desired HTTP PUT response hop limit for instance metadata requests.
-  
+
    Structure of Tag object:
    - key                  string  : The key for the tag to apply to the instance.
    - value                string  : The value for the tag to apply to the instance.
    - propagate_at_launch  bool    : Whether or not the tags should be propagated to the instance at launch time.
-  
-  
+
+
    Example:
    autoscaling_group_configurations = {
      "asg1" = {
@@ -2123,7 +2123,7 @@ Any types represent complex values of variable type. For details, please consult
        max_size          = 3
        asg_instance_type = "t2.large"
        subnet_ids        = [data.terraform_remote_state.vpc.outputs.private_app_subnet_ids[1]]
-  
+
        tags = [{
          key                 = "size"
          value               = "large"
@@ -2630,7 +2630,7 @@ Any types represent complex values of variable type. For details, please consult
 
 ```hcl
 
-   EKS add-on advanced configuration via configuration_values must follow the configuration schema for the deployed version of the add-on. 
+   EKS add-on advanced configuration via configuration_values must follow the configuration schema for the deployed version of the add-on.
    See the following AWS Blog for more details on advanced configuration of EKS add-ons: https://aws.amazon.com/blogs/containers/amazon-eks-add-ons-advanced-configuration/
    Example:
    {
@@ -3116,8 +3116,8 @@ Any types represent complex values of variable type. For details, please consult
 
    Each configuration must be keyed by a unique string that will be used as a suffix for the node group name. The
    values support the following attributes:
-  
-  
+
+
    OPTIONAL (defaults to value of corresponding module input):
    - subnet_ids          list(string)       : (Defaults to value from var.node_group_default_subnet_ids) A list of the
                                               subnets into which the EKS Cluster's managed nodes will be launched.
@@ -3184,12 +3184,12 @@ Any types represent complex values of variable type. For details, please consult
                                               passed through directly to the bootstrap script.
    - cloud_init_parts    map(string)        : (Defaults to value from var.cloud_init_parts)
                                               Per-ASG cloud init scripts to run at boot time on the node.  See var.cloud_init_parts for accepted keys.
-  
+
    Structure of LaunchTemplate object:
    - name     string  : The Name of the Launch Template to use. One of ID or Name should be provided.
    - id       string  : The ID of the Launch Template to use. One of ID or Name should be provided.
    - version  string  : The version of the Launch Template to use.
-  
+
    Example:
    managed_node_group_configurations = {
      ngroup1 = {

@@ -806,7 +806,7 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    The objects that can define the following properties:
-  
+
    - allowed_origins list(string)      (required): The origins that you want to allow cross-domain requests from.
    - allowed_methods list(string)      (required): From the set of GET, PUT, POST, DELETE, HEAD
    - allowed_headers list(string)      (optional): The AllowedHeader element specifies which headers are allowed in a preflight request through the Access-Control-Request-Headers header.

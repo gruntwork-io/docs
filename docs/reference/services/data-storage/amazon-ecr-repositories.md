@@ -143,7 +143,7 @@ module "ecr_repos" {
   default_strict_deny_rules_enabled = false
 
   # The default list of users or roles that should be able to perform functions
-  # on these ECR repos. All other users and roles are to be forbidden. 
+  # on these ECR repos. All other users and roles are to be forbidden.
   # Formatted as 21 letters or numbers: AROAXXXXXXXXXXXXXXXXX or
   # AIDAXXXXXXXXXXXXXXXXX -
   # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids.
@@ -232,7 +232,7 @@ inputs = {
   default_strict_deny_rules_enabled = false
 
   # The default list of users or roles that should be able to perform functions
-  # on these ECR repos. All other users and roles are to be forbidden. 
+  # on these ECR repos. All other users and roles are to be forbidden.
   # Formatted as 21 letters or numbers: AROAXXXXXXXXXXXXXXXXX or
   # AIDAXXXXXXXXXXXXXXXXX -
   # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids.
@@ -285,7 +285,7 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map supports the following attributes:
-  
+
    OPTIONAL (defaults to value of corresponding module input):
    - external_account_ids_with_read_access   list(string)             : List of account IDs that should have read
                                                                         access on the repo. If omitted, use
@@ -299,7 +299,7 @@ Any types represent complex values of variable type. For details, please consult
                                                                         var.default_external_account_ids_with_lambda_access.
    - users_or_roles_to_allow_deny_all_else   list(string)             : List of users or roles that should be able to
                                                                         access to perform functions on this ECR repo. All
-                                                                        other users and roles are to be forbidden. If ommitted, 
+                                                                        other users and roles are to be forbidden. If ommitted,
                                                                         use var.default_users_or_roles_to_allow_deny_all_else
    - strict_deny_rules_enabled               bool                     : Whether or not to enable strict deny rules on repo,
                                                                         including deny on change repo policy. If ommitted,
@@ -319,19 +319,19 @@ Any types represent complex values of variable type. For details, please consult
    - lifecycle_policy_rules                  list(object[LifecycleRule]) : List of lifecycle rules to apply to the ECR
                                                                            repository. See below for the schema of the
                                                                            lifecycle rule.
-  
+
    Structure of EncryptionConfig object:
    - encryption_type  string  : The encryption type to use for the repository. Must be AES256 or KMS.
    - kms_key          string  : The KMS key to use for encrypting the images. Only used when encryption_type is KMS. If
                                 not specified, defaults to the default AWS managed key for ECR.
-  
-  
+
+
    Structure of LifecycleRule object:
      Refer to the AWS documentation on supported policy parameters:
      https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.htmllifecycle_policy_parameters
-  
+
    Example:
-  
+
    repositories = {
      myapp1 = {
        external_account_ids_with_read_access = ["11111111"]

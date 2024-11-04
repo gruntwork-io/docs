@@ -178,7 +178,7 @@ module "account_baseline_root" {
   # repositories. Refer to the docs for github-actions-iam-role for more
   # information. Note that this is mutually exclusive with
   # var.allow_auto_deploy_from_other_account_arns. Only used if
-  # var.enable_github_actions_access is true. 
+  # var.enable_github_actions_access is true.
   allow_auto_deploy_from_github_actions_for_sources = {}
 
   # A list of IAM ARNs from other AWS accounts that will be allowed to assume
@@ -1039,7 +1039,7 @@ inputs = {
   # repositories. Refer to the docs for github-actions-iam-role for more
   # information. Note that this is mutually exclusive with
   # var.allow_auto_deploy_from_other_account_arns. Only used if
-  # var.enable_github_actions_access is true. 
+  # var.enable_github_actions_access is true.
   allow_auto_deploy_from_github_actions_for_sources = {}
 
   # A list of IAM ARNs from other AWS accounts that will be allowed to assume
@@ -1876,10 +1876,10 @@ Any types represent complex values of variable type. For details, please consult
 
    Expected value for the `child_accounts` is a map of child accounts. The map key is the name of the account and
    the value is another map with one required key (email) and several optional keys:
-  
+
    - email (required):
      Email address for the account.
-  
+
    - is_logs_account:
      Set to `true` to mark this account as the "logs" account, which is the one to use to aggregate AWS Config and
      CloudTrail data. This module will create an S3 bucket for AWS Config and an S3 bucket and KMS CMK for CloudTrail
@@ -1890,24 +1890,24 @@ Any types represent complex values of variable type. For details, please consult
      If is_logs_account is not set on any child account (not recommended!), then either you must disable AWS Config
      and CloudTrail (via the enable_config and enable_cloudtrail variables) or configure this module to use S3 buckets
      and a KMS CMK that ALREADY exist!
-  
+
    - parent_id:
      Parent Organizational Unit ID or Root ID for the account
      Defaults to the Organization default Root ID.
-  
+
    - role_name:
      The name of an IAM role that Organizations automatically preconfigures in the new member account. This role trusts
      the master account, allowing users in the master account to assume the role, as permitted by the master account
      administrator. The role has administrator permissions in the new member account. Note that the Organizations API
      provides no method for reading this information after account creation.
      If no value is present and no ´default_role_name´ is provided, AWS automatically assigns a value.
-  
+
    - iam_user_access_to_billing:
      If set to ´ALLOW´, the new account enables IAM users to access account billing information if they have the required
      permissions. If set to ´DENY´, then only the root user of the new account can access account billing information.
      Defaults to ´default_iam_user_access_to_billing´.
-  
-  
+
+
    - enable_config_rules:
      Set to `true` to enable org-level AWS Config Rules for this child account. This is only used if
      var.config_create_account_rules is false (which is NOT recommened) to force org-level rules. If you do go with
@@ -1917,13 +1917,13 @@ Any types represent complex values of variable type. For details, please consult
      running 'apply' on a security baseline in that account, (4) come back to this root module and set
      enable_config_rules to true, (5) run 'apply' again. This is a brittle, error-prone, multi-step process, which is
      why we recommend using account-level rules (the default) and avoiding it entirely!
-  
+
    - tags:
      Key-value mapping of resource tags.
-  
-  
+
+
    Example:
-  
+
    child_accounts = {
      logs = {
        email                       = "root-accounts+logs@acme.com"
@@ -2050,7 +2050,7 @@ map(object({
 <HclListItem name="allow_auto_deploy_from_github_actions_for_sources" requirement="optional" type="map(list(…))">
 <HclListItemDescription>
 
-Map of github repositories to the list of branches that are allowed to assume the IAM role. The repository should be encoded as org/repo-name (e.g., gruntwork-io/terrraform-aws-ci). Allows GitHub Actions to assume the auto deploy IAM role using an OpenID Connect Provider for the given repositories. Refer to the docs for github-actions-iam-role for more information. Note that this is mutually exclusive with <a href="#allow_auto_deploy_from_other_account_arns"><code>allow_auto_deploy_from_other_account_arns</code></a>. Only used if <a href="#enable_github_actions_access"><code>enable_github_actions_access</code></a> is true. 
+Map of github repositories to the list of branches that are allowed to assume the IAM role. The repository should be encoded as org/repo-name (e.g., gruntwork-io/terrraform-aws-ci). Allows GitHub Actions to assume the auto deploy IAM role using an OpenID Connect Provider for the given repositories. Refer to the docs for github-actions-iam-role for more information. Note that this is mutually exclusive with <a href="#allow_auto_deploy_from_other_account_arns"><code>allow_auto_deploy_from_other_account_arns</code></a>. Only used if <a href="#enable_github_actions_access"><code>enable_github_actions_access</code></a> is true.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -2265,7 +2265,7 @@ Any types represent complex values of variable type. For details, please consult
 
    See the 'statement' block in the aws_iam_policy_document data
    source for context: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document
-  
+
    - effect                                      string            (optional): Either "Allow" or "Deny", to specify whether this statement allows or denies the given actions.
    - actions                                     list(string)      (optional): A list of actions that this statement either allows or denies. For example, ["s3:GetObject", "s3:PutObject"].
    - not_actions                                 list(string)      (optional): A list of actions that this statement does NOT apply to. Used to apply a policy statement to all actions except those listed.
@@ -2273,9 +2273,9 @@ Any types represent complex values of variable type. For details, please consult
    - not_principals                              map(list(string)) (optional): The principals to which this statement does NOT apply. The keys are the principal type ("AWS", "Service", or "Federated") and the value is a list of identifiers.
    - keys                                        list(string)      (optional): A list of keys within the bucket to which this policy applies. For example, ["", "/*"] would apply to (a) the bucket itself and (b) all keys within the bucket. The default is [""].
    - condition                                   map(object)       (optional): A nested configuration block (described below) that defines a further, possibly-service-specific condition that constrains whether this statement applies.
-  
+
    condition is a map from a unique ID for the condition to an object that can define the following properties:
-  
+
    - test                                        string            (required): The name of the IAM condition operator to evaluate.
    - variable                                    string            (required): The name of a Context Variable to apply the condition to. Context variables may either be standard AWS variables starting with aws:, or service-specific variables prefixed with the service name.
    - values                                      list(string)      (required):  The values to evaluate the condition against. If multiple values are provided, the condition matches if at least one of them applies. (That is, the tests are combined with the "OR" boolean operation.)
@@ -2337,7 +2337,7 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map is a list of field selector objects, each of which supports the following attributes:
-  
+
    REQUIRED
    - field             string        : Specifies a field in an event record on which to filter events to be logged. You
                                        can specify only the following values: readOnly, eventSource, eventName,
@@ -2356,7 +2356,7 @@ Any types represent complex values of variable type. For details, please consult
                                        event record field specified as the value of field.
    - not_ends_with     list(string)  : A list of values that excludes events that match the last few characters of the
                                        event record field specified as the value of field.
-  
+
    EXAMPLE:
    cloudtrail_advanced_event_selectors = {
      LogDeleteEvents = [
@@ -3862,7 +3862,7 @@ Any types represent complex values of variable type. For details, please consult
      alice = {
        groups = ["user-self-mgmt", "developers", "ssh-sudo-users"]
      }
-  
+
      bob = {
        path   = "/"
        groups = ["user-self-mgmt", "ops", "admins"]
@@ -3870,7 +3870,7 @@ Any types represent complex values of variable type. For details, please consult
          foo = "bar"
        }
      }
-  
+
      carol = {
        groups               = ["user-self-mgmt", "developers", "ssh-users"]
        pgp_key              = "keybase:carol_on_keybase"

@@ -530,9 +530,6 @@ module "ecs_service" {
   # its own AWS provider to ensure resources are created in us-east-1.
   route53_health_check_provider_shared_credentials_file = null
 
-  # Define runtime platform options
-  runtime_platform = null
-
   # A list of ARNs of Secrets Manager secrets that the task should have
   # permissions to read. The IAM role for the task will be granted
   # `secretsmanager:GetSecretValue` for each secret in the list. The ARN can be
@@ -1056,9 +1053,6 @@ inputs = {
   # defined in the route53-health-check-alarms module.  This module configures
   # its own AWS provider to ensure resources are created in us-east-1.
   route53_health_check_provider_shared_credentials_file = null
-
-  # Define runtime platform options
-  runtime_platform = null
 
   # A list of ARNs of Secrets Manager secrets that the task should have
   # permissions to read. The IAM role for the task will be granted
@@ -1789,11 +1783,11 @@ Any types represent complex values of variable type. For details, please consult
     {
       "health-path" = {
         priority     = 130
-  
+
         content_type = "text/plain"
         message_body = "HEALTHY"
         status_code  = "200"
-  
+
       Conditions:
       You need to provide *at least ONE* per set of rules. It should contain one of the following:
         host_headers         = ["foo.com", "www.foo.com"]
@@ -1822,11 +1816,11 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map supports the following attributes:
-  
+
    REQUIRED
    - content_type [string]: The content type. Valid values are `text/plain`, `text/css`, `text/html`, `application/javascript`
                             and `application/json`.
-  
+
    OPTIONAL (defaults to value of corresponding module input):
    - priority      [number]       : A value between 1 and 50000. Leaving it unset will automatically set the rule with the next
                                    available priority after currently existing highest rule. This value must be unique for each
@@ -1834,12 +1828,12 @@ Any types represent complex values of variable type. For details, please consult
    - listener_arns [list(string)]: A list of listener ARNs to override `var.default_listener_arns`
    - message_body  [string]      : The message body.
    - status_code   [string]      : The HTTP response code. Valid values are `2XX`, `4XX`, or `5XX`.
-  
+
    Wildcard characters:
    * - matches 0 or more characters
    ? - matches exactly 1 character
    To search for a literal '*' or '?' character in a query string, escape the character with a backslash (\).
-  
+
    Conditions (need to specify at least one):
    - path_patterns        [list(string)]     : A list of paths to match (note that "/foo" is different than "/foo/").
                                               Comparison is case sensitive. Wildcard characters supported: * and ?.
@@ -1882,7 +1876,7 @@ Any types represent complex values of variable type. For details, please consult
     {
       "foo" = {
         priority = 120
-  
+
         host_headers         = ["www.foo.com", "*.foo.com"]
         path_patterns        = ["/foo/*"]
         source_ips           = ["127.0.0.1/32"]
@@ -1899,7 +1893,7 @@ Any types represent complex values of variable type. For details, please consult
      "auth" = {
        priority       = 128
        listener_ports = ["443"]
-  
+
        host_headers      = ["intern.example.com]
        path_patterns     = ["/admin", "/admin/*]
        authenticate_oidc = {
@@ -1923,7 +1917,7 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map supports the following attributes:
-  
+
    OPTIONAL (defaults to value of corresponding module input):
    - priority          [number]                    : A value between 1 and 50000. Leaving it unset will automatically set
                                                     the rule with the next available priority after currently existing highest
@@ -1932,7 +1926,7 @@ Any types represent complex values of variable type. For details, please consult
    - stickiness        [map(object[Stickiness])]   : Target group stickiness for the rule. Only applies if more than one
                                                     target_group_arn is defined.
    - authenticate_oidc map(object)                 : OIDC authentication configuration. Only applies, if not null.
-  
+
 
 ```
 </details>
@@ -2488,12 +2482,12 @@ Any types represent complex values of variable type. For details, please consult
         priority = 120
         port     = 443
         protocol = "HTTPS"
-  
+
         status_code = "HTTP_301"
         host  = "gruntwork.in"
         path  = "/signup"
         query = "foo"
-  
+
       Conditions:
         host_headers         = ["foo.com", "www.foo.com"]
         path_patterns        = ["/health"]
@@ -2521,14 +2515,14 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map supports the following attributes:
-  
+
    OPTIONAL (defaults to value of corresponding module input):
    - priority       [number]: A value between 1 and 50000. Leaving it unset will automatically set the rule with the next
                            available priority after currently existing highest rule. This value must be unique for each
                            listener.
    - listener_arns [list(string)]: A list of listener ARNs to override `var.default_listener_arns`
    - status_code   [string]: The HTTP redirect code. The redirect is either permanent `HTTP_301` or temporary `HTTP_302`.
-  
+
    The URI consists of the following components: `protocol://hostname:port/path?query`. You must modify at least one of
    the following components to avoid a redirect loop: protocol, hostname, port, or path. Any components that you do not
    modify retain their original values.
@@ -2537,12 +2531,12 @@ Any types represent complex values of variable type. For details, please consult
    - port        [string]: The port. Specify a value from 1 to 65525.
    - protocol    [string]: The protocol. Valid values are `HTTP` and `HTTPS`. You cannot redirect HTTPS to HTTP.
    - query       [string]: The query params. Do not include the leading "?".
-  
+
    Wildcard characters:
    * - matches 0 or more characters
    ? - matches exactly 1 character
    To search for a literal '*' or '?' character in a query string, escape the character with a backslash (\).
-  
+
    Conditions (need to specify at least one):
    - path_patterns        [list(string)]     : A list of paths to match (note that "/foo" is different than "/foo/").
                                               Comparison is case sensitive. Wildcard characters supported: * and ?.
@@ -2636,25 +2630,6 @@ The optional session_name to be used in the us-east-1 provider block defined in 
 The optional path to a credentials file used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="runtime_platform" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Define runtime platform options
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    operating_system_family = string
-    cpu_architecture        = string
-  })
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -2799,7 +2774,7 @@ Any types represent complex values of variable type. For details, please consult
      datadog = {
        host_path = "/var/run/datadog"
      }
-  
+
      logs = {
        host_path = "/var/log"
        docker_volume_configuration = {
@@ -2911,7 +2886,7 @@ The name of the IAM role granting permissions to the running ECS task itself. No
 <HclListItem name="metric_widget_ecs_service_cpu_usage">
 <HclListItemDescription>
 
-The metric widget for the ECS service's CPU usage 
+The metric widget for the ECS service's CPU usage
 
 </HclListItemDescription>
 </HclListItem>

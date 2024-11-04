@@ -258,7 +258,7 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Example: Request a certificate protecting only the apex domain
-  
+
    public_zones = {
        "example.com" = {
            comment = "You can add arbitrary text here"
@@ -322,9 +322,9 @@ Any types represent complex values of variable type. For details, please consult
            }
        }
    }
-  
+
    Example: Request a wildcard certificate that does NOT protect the apex domain:
-  
+
    public_zones = {
        "*.example.com = {
              comment = ""
@@ -336,9 +336,9 @@ Any types represent complex values of variable type. For details, please consult
              verify_certificate         = true
        }
    }
-  
+
    Example: Request a wildcard certificate that covers BOTH the apex and first-level subdomains
-  
+
    public_zones = {
        "example.com" = {
            comment = ""
@@ -435,10 +435,10 @@ Any types represent complex values of variable type. For details, please consult
 
    Whether or not to create a Route 53 DNS record for use in validating the issued certificate. You may want to set this to false if you are not using Route 53 as your DNS provider.
     create_verification_record = bool
-  
+
    Whether or not to attempt to verify the issued certificate via DNS entries automatically created via Route 53 records. You may want to set this to false on your certificate inputs if you are not using Route 53 as your DNS provider.
     verify_certificate = bool
-  
+
    Whether or not to create ACM TLS certificates for the domain. When true, Route53 certificates will automatically be
    created for the root domain. Defaults to true.
     provision_certificates = bool

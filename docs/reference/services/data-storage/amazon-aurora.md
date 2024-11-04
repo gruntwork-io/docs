@@ -433,7 +433,7 @@ module "aurora" {
 
   # The domain name to create a route 53 record for the reader endpoint of the
   # RDS database. Note that Aurora Serverless does not have reader endpoints, so
-  # this option is ignored when engine_mode is set to serverless. 
+  # this option is ignored when engine_mode is set to serverless.
   reader_domain_name = null
 
   # ARN of a source DB cluster or DB instance if this DB cluster is to be
@@ -872,7 +872,7 @@ inputs = {
 
   # The domain name to create a route 53 record for the reader endpoint of the
   # RDS database. Note that Aurora Serverless does not have reader endpoints, so
-  # this option is ignored when engine_mode is set to serverless. 
+  # this option is ignored when engine_mode is set to serverless.
   reader_domain_name = null
 
   # ARN of a source DB cluster or DB instance if this DB cluster is to be
@@ -1991,7 +1991,7 @@ If you wish to make your database accessible from the public Internet, set this 
 <HclListItem name="reader_domain_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The domain name to create a route 53 record for the reader endpoint of the RDS database. Note that Aurora Serverless does not have reader endpoints, so this option is ignored when engine_mode is set to serverless. 
+The domain name to create a route 53 record for the reader endpoint of the RDS database. Note that Aurora Serverless does not have reader endpoints, so this option is ignored when engine_mode is set to serverless.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
