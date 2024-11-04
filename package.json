@@ -61,7 +61,6 @@
     "yargs": "^17.4.0"
   },
   "optionalDependencies": {
-    "docs-sourcer": "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.31",
     "ts-commons": "gruntwork-io/ts-commons#v5.3.1"
   },
   "browserslist": {
