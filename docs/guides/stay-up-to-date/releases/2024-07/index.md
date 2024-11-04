@@ -11,7 +11,9 @@ documentation](/library/stay-up-to-date/updating).
 Here are the repos that were updated:
 
 - [patcher-cli](#patcher-cli)
+- [pipelines-actions](#pipelines-actions)
 - [pipelines-cli](#pipelines-cli)
+- [pipelines-workflows](#pipelines-workflows)
 - [terraform-aws-architecture-catalog](#terraform-aws-architecture-catalog)
 - [terraform-aws-cis-service-catalog](#terraform-aws-cis-service-catalog)
 - [terraform-aws-control-tower](#terraform-aws-control-tower)
@@ -145,6 +147,163 @@ patcher update --non-interactive --update-strategy next-breaking --dry-run
 
 
 
+## pipelines-actions
+
+
+### [v1.9.0](https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.9.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/26/2024 | <a href="https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.9.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * fix: read tf versions from config by @gruntwork-ci in https://github.com/gruntwork-io/pipelines-actions/pull/50
+* fix: shell default expansion by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/53
+* feat: pass through new params for customizing delegated repos by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/52
+* Chore: more flexible mise config read regex by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/51
+* DEV-427 - Support for force unlock workflow by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/54
+* Add comment when infrastructures changes are not detected by @oredavids in https://github.com/gruntwork-io/pipelines-actions/pull/56
+* DEV-159: Fix idempotency in creating access control PRs by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/59
+* Dev-441 fix empty bootstrap by @odgrim in https://github.com/gruntwork-io/pipelines-actions/pull/58
+* Add extra logging if SKIP_TERRAGRUNT is set by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/60
+* DEV-129: Add additional pipelines preflight checks by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/57
+
+* @odgrim made their first contribution in https://github.com/gruntwork-io/pipelines-actions/pull/58
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-actions/compare/v1.8.0...v1.9.0
+
+</div>
+
+
+### [v1.8.0](https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.8.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/16/2024 | <a href="https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.8.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * New catalog tags value passthrough for account factory by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/48
+* feat: Using updated `pipelines config repository` instead of `pipelines config pipelines` by @yhakbar in https://github.com/gruntwork-io/pipelines-actions/pull/49
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-actions/compare/v1.7.1...v1.8.0
+
+</div>
+
+
+### [v1.7.1](https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.7.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/16/2024 | <a href="https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.7.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Bugfix - Default arch_catalog_repo_url had a typo.
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-actions/compare/v1.7.0...v1.7.1
+
+</div>
+
+
+### [v1.7.0](https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.7.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/15/2024 | <a href="https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.7.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Fixes for provisioning delegated repositories.
+* Removal of unnecessary `Plan Summary` section on comments for applies.
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-actions/compare/v1.6.1...v1.7.0
+
+</div>
+
+
+### [v1.6.1](https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.6.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/10/2024 | <a href="https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.6.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * New flag to disable provisioning accounts by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/40
+* Use github event name to determine pipelines event type by @oredavids in https://github.com/gruntwork-io/pipelines-actions/pull/38
+* fix: Hide `.` working directory by @yhakbar in https://github.com/gruntwork-io/pipelines-actions/pull/42
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-actions/compare/v1.6.0...v1.6.1
+
+</div>
+
+
+### [v1.6.0](https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.6.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/9/2024 | <a href="https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.6.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Update bootstrap action to use binary for deploy branch config by @oredavids in https://github.com/gruntwork-io/pipelines-actions/pull/36
+* DEV-376: Pass through VPC inputs for baseline customization by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/41
+* fix: Adding default for `tf_binary` by @yhakbar in https://github.com/gruntwork-io/pipelines-actions/pull/39
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-actions/compare/v1.5.0...v1.6.0
+
+</div>
+
+
+### [v1.5.0](https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.5.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/8/2024 | <a href="https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.5.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+This version of pipelines-actions introduces a new architecture for how we manage state for updating comments with the results of plans/applies.  The prior architecture included a central mutex to &quot;lock&quot; a state file to ensure that state was consistent across multiple parallel-jobs. The issue with the mutex is locking and unlocking was slow, and with many jobs in parallel (20+) could introduce severe delays to overall pipelines runs.  The updated architecture uploads a distinct artifact per job, which then gets aggregated when updating the comment.  This removes the need for any central locking and results in a ~20s speedup for small pipelines runs, and a dramatic speedup for large jobs.
+
+* Remove the Mutex around posting comments, replace with alternative synchronization strategy by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/24
+* fix: dev-364: use deploy branch name everywhere by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/34
+* Fix: Don&apos;t break if we don&apos;t have a valid merged pr url by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/35
+* fix: Set default deploy branch name to `main` when not defined by @yhakbar in https://github.com/gruntwork-io/pipelines-actions/pull/37
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-actions/compare/v1.4.0...v1.5.0
+
+</div>
+
+
+### [v1.4.0](https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.4.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/2/2024 | <a href="https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.4.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * feat: plumb through arch catalog configs by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/28
+* Extract Pipelines install logic into composite action by @oredavids in https://github.com/gruntwork-io/pipelines-actions/pull/29
+* feat: move gruntwork context to pipelines root from baseline child account by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/30
+* feat: add pr outputs for delegated repo vending step by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/31
+* Use the default GH_TOKEN for posting step-summary after account provisioning instead of infra root to align with how we do other comments (DEV-356) by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/32
+* Custom Action Stubs by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/33
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-actions/compare/v1.3.4...v1.4.0
+
+</div>
+
+
+
 ## pipelines-cli
 
 
@@ -181,62 +340,6 @@ patcher update --non-interactive --update-strategy next-breaking --dry-run
 
 
 **Full Changelog**: https://github.com/gruntwork-io/pipelines/compare/v0.22.0...v0.23.0
-
-
-</div>
-
-
-### [v0.23.0-rc4](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.23.0-rc4)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/30/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.23.0-rc4">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.23.0-rc3](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.23.0-rc3)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/30/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.23.0-rc3">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.23.0-rc2](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.23.0-rc2)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/29/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.23.0-rc2">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.23.0-rc1](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.23.0-rc1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/26/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.23.0-rc1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  For internal use only
 
 
 </div>
@@ -680,6 +783,219 @@ Addressing usage feedback, the following has changed in Pipelines HCL configurat
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.14.0
+
+</div>
+
+
+
+## pipelines-workflows
+
+
+### [v2](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/2/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  This is a floating release tracking the latest release with major version `2`.
+
+</div>
+
+
+### [v2.5.0](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.5.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/30/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.5.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * DEV-427 - Unlock State Workflow by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-workflows/pull/64
+* chore: Bumping `pipelines` to `v0.21.2` by @yhakbar in https://github.com/gruntwork-io/pipelines-workflows/pull/65
+* DEV-129: Add additional pipelines preflight checks by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-workflows/pull/67
+* Fix action reference in account bootstrap job&apos;s name by @oredavids in https://github.com/gruntwork-io/pipelines-workflows/pull/70
+* Bump to version v1.9.0 of pipelines-actions which brings in complementary changes for the above new features (unlocking and preflight) as well as a handful of bug fixes - https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.9.0
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v2...v2.5.0
+
+</div>
+
+
+### [v2.4.0](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.4.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/19/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.4.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  This pulls in a change to Pipelines HCL Configuration as Code system to segment the `aws_accounts` block into an `accounts` block nested as the `aws` block.
+
+While this is a breaking change, it is not in use by any customers at the moment, and should be safe to use without modification.
+
+* chore: Bumping `pipelines` and `pipelines-actions` versions by @yhakbar in https://github.com/gruntwork-io/pipelines-workflows/pull/63
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v2.3.3...v2.4.0
+
+</div>
+
+
+### [v2.3.3](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.3.3)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/16/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.3.3">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+This pulls in a rename of the `pipelines` HCL configuration block for Pipelines to `repository` via updates to the `pipelines-cli`.
+
+In addition, it pulls in changes to `pipelines-actions` which result in a new `CATALOG_TAGS` value being used during repository vending. This allows for central management of AWS cost allocation tags for delegated repositories.
+
+Some plumbing changes have been done in addition to improve the configurability of the `TF_BINARY` configuration, making it easier to decide whether you want to use OpenTofu or Terraform.
+
+* feat: Bumping `pipelines-cli` to `v0.20.0` and `pipelines-actions` to `v1.8.0` by @yhakbar in https://github.com/gruntwork-io/pipelines-workflows/pull/62
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v2...v2.3.3
+
+</div>
+
+
+### [v2.3.2](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.3.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/16/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.3.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+* Include bugfix version of pipelines actions https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.7.1
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v2...v2.3.2
+
+</div>
+
+
+### [v2.3.1](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.3.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/16/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.3.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * chore: Bumping `pipelines-cli` to `v0.19.1` by @yhakbar in https://github.com/gruntwork-io/pipelines-workflows/pull/61
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v2.3.0...v2.3.1
+
+</div>
+
+
+### [v2.3.0](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.3.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/16/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.3.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * feat: Adding `pipelines.yml` workflow by @yhakbar in https://github.com/gruntwork-io/pipelines-workflows/pull/51
+* chore: Bumping `pipelines-cli` to `v0.19.0` by @yhakbar in https://github.com/gruntwork-io/pipelines-workflows/pull/60
+* chore: Bumping `pipelines-actions` to `v1.7.0` by @yhakbar in https://github.com/gruntwork-io/pipelines-workflows/pull/59
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v2.2.1...v2.3.0
+
+</div>
+
+
+### [v2.2.1](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.2.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/8/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.2.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Bump to version [v1.5.0 of pipelines actions](https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.5.0) which includes an updated commenting strategy that should be much faster for all users.
+* Fix delegated workflow&apos;s bootstrap reference by @oredavids in https://github.com/gruntwork-io/pipelines-workflows/pull/48
+
+* @oredavids made their first contribution in https://github.com/gruntwork-io/pipelines-workflows/pull/48
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v2...v2.2.0
+
+</div>
+
+
+### [v2.1.0](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.1.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/3/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.1.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+Take special note of the changes in https://github.com/gruntwork-io/pipelines-workflows/pull/45. It introduces significant changes to how Pipelines workflows operate, and should be evaluated carefully when considering an upgrade to this release.
+
+In particular, https://github.com/gruntwork-io/pipelines-workflows/pull/45 changes the behavior of the EnvCommonChanged job. Pipelines Orchestrate will no longer emit a single job for each AWS account, looking for relevant updates to an _envcommon file that has changed. Instead, a single job will be emitted from the root of the repository that will look for changes throughout the repository. This change leverages the new capabilities released as of [v2.0.0](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.0.0) where Terragrunt will dynamically assume the correct role in a given directory through integration with Pipelines.
+
+* fix: Adjusting delegated workflow so that it uses dynamic authentication too by @yhakbar in https://github.com/gruntwork-io/pipelines-workflows/pull/44
+* feat: Bumping Pipelines CLI to `v0.15.1` by @yhakbar in https://github.com/gruntwork-io/pipelines-workflows/pull/45
+* chore: Pin actions version by @yhakbar in https://github.com/gruntwork-io/pipelines-workflows/pull/46
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v1.6.0...v2.1.0
+
+</div>
+
+
+### [v2.0.0](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.0.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/2/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.0.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+This release introduces the concept of &quot;hooks&quot; in `pipelines-root.yml` as a mechanism to customize the account factory workflows.  The intention is that consumers will fork `pipelines-workflows`, add a step to checkout their own actions repository (or their own fork of `pipelines-actions`), and then change the &quot;uses&quot; block in the pre/post steps to point to their customized workflows.  
+
+We&apos;re actively trying to balance providing a highly extensible mechanism for users to adapt pipelines to their needs, whilst also maintaining upgrade-ability down the line. We hope that by encouraging customizations to live in separate actions that future updates to `pipelines-root.yml` will not cause significant merge conflicts, and that updates to `pipelines-actions` can continue to be pulled in via a version bump, even in a highly customized environment.
+
+
+This release includes a breaking change requiring that a minimum version of `v0.59.5` for Terragrunt is used in CI.
+
+This is due to the fact that Pipelines now integrates with the newly available [dynamic authentication capabilities in Terragrunt](https://github.com/gruntwork-io/terragrunt/releases/tag/v0.59.5).
+
+For most, this entails making an update to the `.mise.toml` file in the root of the repository where Pipelines runs.
+
+While this is the minimum version required, take note of the bug fix introduced in [v0.59.7](https://github.com/gruntwork-io/terragrunt/releases/tag/v0.59.7). If you are using the `get_aws_account_id` function in your Terragrunt configurations, you are advised to upgrade to this version to incorporate that bug fix.
+
+For Pipelines users that allowlist specific actions, version 2.0 includes the following new actions
+* ./pipelines-actions/.github/custom-actions/pre-provision-new-account
+* ./pipelines-actions/.github/custom-actions/post-provision-new-account
+* ./pipelines-actions/.github/custom-actions/pre-baseline-core-accounts
+* ./pipelines-actions/.github/custom-actions/post-baseline-core-accounts
+* ./pipelines-actions/.github/custom-actions/pre-baseline-child-account
+* ./pipelines-actions/.github/custom-actions/post-baseline-child-account
+* ./pipelines-actions/.github/custom-actions/post-create-delegated-repo
+
+
+* Use pipelines auth for terragrunt execute by @Resonance1584 in https://github.com/gruntwork-io/pipelines-workflows/pull/37
+* chore: add bootstrap to root, make bootstrap step id consistent by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-workflows/pull/41
+* Fix missed rename by @Resonance1584 in https://github.com/gruntwork-io/pipelines-workflows/pull/42
+* Customization Hooks by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-workflows/pull/40
+* fix: Moving yml configurations for custom actions to an `action.yml` nested under the action name by @yhakbar in https://github.com/gruntwork-io/pipelines-workflows/pull/43
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v1...v2.0.0
 
 </div>
 
@@ -1150,6 +1466,6 @@ Addressing usage feedback, the following has changed in Pipelines HCL configurat
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "b78d87697cdc92c97c391b4b0607dd33"
+  "hash": "fbce45517e35521b3826ff74bdec1a28"
 }
 ##DOCS-SOURCER-END -->

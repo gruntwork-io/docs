@@ -12,7 +12,9 @@ Here are the repos that were updated:
 
 - [boilerplate](#boilerplate)
 - [patcher-cli](#patcher-cli)
+- [pipelines-actions](#pipelines-actions)
 - [pipelines-cli](#pipelines-cli)
+- [pipelines-workflows](#pipelines-workflows)
 - [terraform-aws-asg](#terraform-aws-asg)
 - [terraform-aws-cache](#terraform-aws-cache)
 - [terraform-aws-ci](#terraform-aws-ci)
@@ -98,35 +100,44 @@ Here are the repos that were updated:
 
 
 
-## pipelines-cli
+## pipelines-actions
 
 
-### [v0.29.0-rc2](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc2)
+### [v1.11.0](https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.11.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/29/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc2">Release notes</a></small>
+  <small>Published: 8/14/2024 | <a href="https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.11.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  Internal use only
+  * Use drift remediation title for jobs containing drift by @oredavids in https://github.com/gruntwork-io/pipelines-actions/pull/63
+* feat: allow any arbitrary extra env values by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-actions/pull/64
 
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-actions/compare/v1.10.0...v1.11.0
 
 </div>
 
 
-### [v0.29.0-rc1](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc1)
+### [v1.10.0](https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.10.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/27/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc1">Release notes</a></small>
+  <small>Published: 8/1/2024 | <a href="https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.10.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  * feat: Adds the ability to read the configuration `enable-provider-cache` to dynamically activate the experimental [Terragrunt Provider Cache](https://terragrunt.gruntwork.io/docs/features/provider-cache) by @yhakbar in https://github.com/gruntwork-io/pipelines-actions/pull/62
   
 
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-actions/compare/v1.9.0...v1.10.0
 
 </div>
+
+
+
+## pipelines-cli
 
 
 ### [v0.28.1](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.1)
@@ -160,90 +171,6 @@ Here are the repos that were updated:
 
 
 **Full Changelog**: https://github.com/gruntwork-io/pipelines/compare/v0.27.2...v0.28.0
-
-
-</div>
-
-
-### [v0.28.0-rc6](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.0-rc6)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/14/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.0-rc6">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.28.0-rc5](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.0-rc5)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/9/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.0-rc5">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.28.0-rc4](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.0-rc4)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/9/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.0-rc4">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.28.0-rc3](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.0-rc3)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/8/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.0-rc3">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.28.0-rc2](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.0-rc2)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/8/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.0-rc2">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.28.0-rc1](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.0-rc1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/8/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.0-rc1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
 
 
 </div>
@@ -321,20 +248,6 @@ The reason for this difference is that it is generally safer to default to conso
 </div>
 
 
-### [v0.26.2-rc1](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.26.2-rc1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/6/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.26.2-rc1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
 ### [v0.26.1](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.26.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -367,62 +280,6 @@ The reason for this difference is that it is generally safer to default to conso
 
 
 **Full Changelog**: https://github.com/gruntwork-io/pipelines/compare/v0.25.0...v0.26.0
-
-
-</div>
-
-
-### [v0.26.0-rc4](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.26.0-rc4)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/6/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.26.0-rc4">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.26.0-rc3](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.26.0-rc3)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/5/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.26.0-rc3">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.26.0-rc2](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.26.0-rc2)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/5/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.26.0-rc2">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.26.0-rc1](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.26.0-rc1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/5/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.26.0-rc1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
 
 
 </div>
@@ -465,33 +322,35 @@ The reason for this difference is that it is generally safer to default to conso
 </div>
 
 
-### [v0.24.0-rc2](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.24.0-rc2)
+
+## pipelines-workflows
+
+
+### [v2.6.0](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.6.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/1/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.24.0-rc2">Release notes</a></small>
+  <small>Published: 8/14/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.6.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  * DEV-442 Add disk backed caching for session name by @Resonance1584 in https://github.com/gruntwork-io/pipelines/pull/221
+  
+* We now allow for specifying arbitrary env values via `config.yml`.  See the [docs](https://docs.gruntwork.io/pipelines/overview/configurations) for an example of how to set `.pipelines.env` with your custom environment values.
+* An update to the `pipelines-unlock` workflow with an optional `unlock_all` flag that iterates over every state file and unlocks all of them.  This is useful in the event of a large run, e.g. `run-all plan` that is cancelled midway leaving many locks stuck.
 
 
-**Full Changelog**: https://github.com/gruntwork-io/pipelines/compare/v0.23.1...v0.24.0-rc2
+* Pipelines now detects if the `PIPELINES_READ_TOKEN` is invalid and posts a more helpful error to logs, the PR comment and the step summary letting you know to ensure the token is valid.
 
 
-</div>
+* Pipelines CLI v0.23.0 by @Resonance1584 in https://github.com/gruntwork-io/pipelines-workflows/pull/71
+* Pipelines CLI v0.23.1 by @Resonance1584 in https://github.com/gruntwork-io/pipelines-workflows/pull/72
+* Pipelines CLI v0.24.0 by @Resonance1584 in https://github.com/gruntwork-io/pipelines-workflows/pull/74
+* Force unlock all by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-workflows/pull/77
+* feat: detect invalid read tokens by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-workflows/pull/80
+* chore: Bumping `pipelines-cli` to `v0.28.0` by @yhakbar in https://github.com/gruntwork-io/pipelines-workflows/pull/81
 
 
-### [v0.24.0-rc1](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.24.0-rc1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/1/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.24.0-rc1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v2...v2.6.0
 
 </div>
 
@@ -1005,6 +864,6 @@ This is a no-op release to include a patcher config change, no module code was c
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e0cfef8e55ce12a996a9ab0f12dc1d98"
+  "hash": "29d93378c463bd53200a6d3441b38901"
 }
 ##DOCS-SOURCER-END -->
