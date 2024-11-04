@@ -58,10 +58,11 @@
     "ts-node": "^10.7.0",
     "tsconfig-paths": "^3.14.1",
     "typescript": "^5.2.2",
+    "webpack-cli": "^5.1.4",
     "yargs": "^17.4.0"
   },
   "optionalDependencies": {
-    "docs-sourcer": "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.31",
+    "docs-sourcer": "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.32",
     "ts-commons": "gruntwork-io/ts-commons#5.3.1"
   },
   "browserslist": {
