@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.116.0" lastModifiedVersion="0.112.17"/>
+<VersionBadge version="0.116.1" lastModifiedVersion="0.112.17"/>
 
 # Amazon ECR Repositories
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/data-stores/ecr-repos" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/data-stores/ecr-repos" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fecr-repos" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -60,7 +60,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -68,7 +68,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -87,7 +87,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "ecr_repos" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/ecr-repos?ref=v0.116.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/ecr-repos?ref=v0.116.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -143,7 +143,7 @@ module "ecr_repos" {
   default_strict_deny_rules_enabled = false
 
   # The default list of users or roles that should be able to perform functions
-  # on these ECR repos. All other users and roles are to be forbidden. 
+  # on these ECR repos. All other users and roles are to be forbidden.
   # Formatted as 21 letters or numbers: AROAXXXXXXXXXXXXXXXXX or
   # AIDAXXXXXXXXXXXXXXXXX -
   # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids.
@@ -173,7 +173,7 @@ module "ecr_repos" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/ecr-repos?ref=v0.116.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/ecr-repos?ref=v0.116.1"
 }
 
 inputs = {
@@ -232,7 +232,7 @@ inputs = {
   default_strict_deny_rules_enabled = false
 
   # The default list of users or roles that should be able to perform functions
-  # on these ECR repos. All other users and roles are to be forbidden. 
+  # on these ECR repos. All other users and roles are to be forbidden.
   # Formatted as 21 letters or numbers: AROAXXXXXXXXXXXXXXXXX or
   # AIDAXXXXXXXXXXXXXXXXX -
   # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids.
@@ -285,7 +285,7 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map supports the following attributes:
-  
+
    OPTIONAL (defaults to value of corresponding module input):
    - external_account_ids_with_read_access   list(string)             : List of account IDs that should have read
                                                                         access on the repo. If omitted, use
@@ -299,7 +299,7 @@ Any types represent complex values of variable type. For details, please consult
                                                                         var.default_external_account_ids_with_lambda_access.
    - users_or_roles_to_allow_deny_all_else   list(string)             : List of users or roles that should be able to
                                                                         access to perform functions on this ECR repo. All
-                                                                        other users and roles are to be forbidden. If ommitted, 
+                                                                        other users and roles are to be forbidden. If ommitted,
                                                                         use var.default_users_or_roles_to_allow_deny_all_else
    - strict_deny_rules_enabled               bool                     : Whether or not to enable strict deny rules on repo,
                                                                         including deny on change repo policy. If ommitted,
@@ -319,19 +319,19 @@ Any types represent complex values of variable type. For details, please consult
    - lifecycle_policy_rules                  list(object[LifecycleRule]) : List of lifecycle rules to apply to the ECR
                                                                            repository. See below for the schema of the
                                                                            lifecycle rule.
-  
+
    Structure of EncryptionConfig object:
    - encryption_type  string  : The encryption type to use for the repository. Must be AES256 or KMS.
    - kms_key          string  : The KMS key to use for encrypting the images. Only used when encryption_type is KMS. If
                                 not specified, defaults to the default AWS managed key for ECR.
-  
-  
+
+
    Structure of LifecycleRule object:
      Refer to the AWS documentation on supported policy parameters:
      https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.htmllifecycle_policy_parameters
-  
+
    Example:
-  
+
    repositories = {
      myapp1 = {
        external_account_ids_with_read_access = ["11111111"]
@@ -532,11 +532,11 @@ A list of IAM policy actions necessary for ECR write access.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/data-stores/ecr-repos/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/data-stores/ecr-repos/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/data-stores/ecr-repos/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/data-stores/ecr-repos/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/data-stores/ecr-repos/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/data-stores/ecr-repos/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b1c7f3b8b1594eaa5c0da5caf70b7d1b"
+  "hash": "4c9ecc44994d35288fe5ef5560bf4dca"
 }
 ##DOCS-SOURCER-END -->

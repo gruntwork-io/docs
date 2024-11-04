@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.116.0" lastModifiedVersion="0.112.8"/>
+<VersionBadge version="0.116.1" lastModifiedVersion="0.112.8"/>
 
 # Account Baseline for app accounts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/landingzone/account-baseline-app" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/landingzone/account-baseline-app" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-app" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -57,13 +57,13 @@ If you’ve never used the Service Catalog before, make sure to read
 
 *   Learn more about each individual module, click the link in the [Features](#features) section.
 *   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
-*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
+*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/examples/for-learning-and-testing/landingzone): The
+*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/examples/for-learning-and-testing/landingzone): The
     `examples/for-learning-and-testing/landingzone` folder contains standalone sample code optimized for learning,
     experimenting, and testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end integrated tech stack on top of the Gruntwork Service Catalog.
@@ -100,7 +100,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "account_baseline_app" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.116.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.116.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -177,7 +177,7 @@ module "account_baseline_app" {
   # repositories. Refer to the docs for github-actions-iam-role for more
   # information. Note that this is mutually exclusive with
   # var.allow_auto_deploy_from_other_account_arns. Only used if
-  # var.enable_github_actions_access is true. 
+  # var.enable_github_actions_access is true.
   allow_auto_deploy_from_github_actions_for_sources = {}
 
   # A list of IAM ARNs from other AWS accounts that will be allowed to assume
@@ -837,7 +837,7 @@ module "account_baseline_app" {
   max_session_duration_human_users = 43200
 
   # The maximum allowable session duration, in seconds, for the credentials you
-  # get when assuming the IAM roles created by this module. This variable 
+  # get when assuming the IAM roles created by this module. This variable
   # applies to all IAM roles created by this module that are intended for
   # machine users, such as allow-auto-deploy-from-other-accounts. For IAM roles
   # that are intended for human users, such as
@@ -921,7 +921,7 @@ module "account_baseline_app" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.116.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.116.1"
 }
 
 inputs = {
@@ -1001,7 +1001,7 @@ inputs = {
   # repositories. Refer to the docs for github-actions-iam-role for more
   # information. Note that this is mutually exclusive with
   # var.allow_auto_deploy_from_other_account_arns. Only used if
-  # var.enable_github_actions_access is true. 
+  # var.enable_github_actions_access is true.
   allow_auto_deploy_from_github_actions_for_sources = {}
 
   # A list of IAM ARNs from other AWS accounts that will be allowed to assume
@@ -1661,7 +1661,7 @@ inputs = {
   max_session_duration_human_users = 43200
 
   # The maximum allowable session duration, in seconds, for the credentials you
-  # get when assuming the IAM roles created by this module. This variable 
+  # get when assuming the IAM roles created by this module. This variable
   # applies to all IAM roles created by this module that are intended for
   # machine users, such as allow-auto-deploy-from-other-accounts. For IAM roles
   # that are intended for human users, such as
@@ -1865,7 +1865,7 @@ map(object({
 <HclListItem name="allow_auto_deploy_from_github_actions_for_sources" requirement="optional" type="map(list(…))">
 <HclListItemDescription>
 
-Map of github repositories to the list of branches that are allowed to assume the IAM role. The repository should be encoded as org/repo-name (e.g., gruntwork-io/terrraform-aws-ci). Allows GitHub Actions to assume the auto deploy IAM role using an OpenID Connect Provider for the given repositories. Refer to the docs for github-actions-iam-role for more information. Note that this is mutually exclusive with <a href="#allow_auto_deploy_from_other_account_arns"><code>allow_auto_deploy_from_other_account_arns</code></a>. Only used if <a href="#enable_github_actions_access"><code>enable_github_actions_access</code></a> is true. 
+Map of github repositories to the list of branches that are allowed to assume the IAM role. The repository should be encoded as org/repo-name (e.g., gruntwork-io/terrraform-aws-ci). Allows GitHub Actions to assume the auto deploy IAM role using an OpenID Connect Provider for the given repositories. Refer to the docs for github-actions-iam-role for more information. Note that this is mutually exclusive with <a href="#allow_auto_deploy_from_other_account_arns"><code>allow_auto_deploy_from_other_account_arns</code></a>. Only used if <a href="#enable_github_actions_access"><code>enable_github_actions_access</code></a> is true.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -2080,7 +2080,7 @@ Any types represent complex values of variable type. For details, please consult
 
    See the 'statement' block in the aws_iam_policy_document data
    source for context: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document
-  
+
    - effect                                      string            (optional): Either "Allow" or "Deny", to specify whether this statement allows or denies the given actions.
    - actions                                     list(string)      (optional): A list of actions that this statement either allows or denies. For example, ["s3:GetObject", "s3:PutObject"].
    - not_actions                                 list(string)      (optional): A list of actions that this statement does NOT apply to. Used to apply a policy statement to all actions except those listed.
@@ -2088,9 +2088,9 @@ Any types represent complex values of variable type. For details, please consult
    - not_principals                              map(list(string)) (optional): The principals to which this statement does NOT apply. The keys are the principal type ("AWS", "Service", or "Federated") and the value is a list of identifiers.
    - keys                                        list(string)      (optional): A list of keys within the bucket to which this policy applies. For example, ["", "/*"] would apply to (a) the bucket itself and (b) all keys within the bucket. The default is [""].
    - condition                                   map(object)       (optional): A nested configuration block (described below) that defines a further, possibly-service-specific condition that constrains whether this statement applies.
-  
+
    condition is a map from a unique ID for the condition to an object that can define the following properties:
-  
+
    - test                                        string            (required): The name of the IAM condition operator to evaluate.
    - variable                                    string            (required): The name of a Context Variable to apply the condition to. Context variables may either be standard AWS variables starting with aws:, or service-specific variables prefixed with the service name.
    - values                                      list(string)      (required):  The values to evaluate the condition against. If multiple values are provided, the condition matches if at least one of them applies. (That is, the tests are combined with the "OR" boolean operation.)
@@ -3342,7 +3342,7 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map supports the following attributes:
-  
+
    OPTIONAL (defaults to value of corresponding module input):
    - region                                  string                : The region (e.g., us-west-2) where the key should be created. If null or
                                                                      omitted, the key will be created in all enabled regions. Any keys
@@ -3390,7 +3390,7 @@ Any types represent complex values of variable type. For details, please consult
                                                                               permissions to use this CMK (e.g. s3.amazonaws.com). See
                                                                               below for the structure of the object that should be passed
                                                                               in.
-  
+
    Structure of ServicePrincipal object:
    - name          string                   : The name of the service principal (e.g.: s3.amazonaws.com).
    - actions       list(string)             : The list of actions that the given service principal is allowed to
@@ -3447,7 +3447,7 @@ Any types represent complex values of variable type. For details, please consult
        allow_manage_key_permissions_with_iam = true
         Override the default value for all keys configured with var.default_deletion_window_in_days
        deletion_window_in_days = 7
-  
+
         Set extra tags on the CMK for prod
        tags = {
          Environment = "prod"
@@ -3969,11 +3969,11 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/landingzone/account-baseline-app/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/landingzone/account-baseline-app/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/landingzone/account-baseline-app/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/landingzone/account-baseline-app/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/landingzone/account-baseline-app/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/landingzone/account-baseline-app/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f0c20143737f5dc00f301d21d3d6441e"
+  "hash": "35b9f8bc45d54c1811122097625964dd"
 }
 ##DOCS-SOURCER-END -->

@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.116.0" lastModifiedVersion="0.116.0"/>
+<VersionBadge version="0.116.1" lastModifiedVersion="0.116.0"/>
 
 # Route 53 Hosted Zones
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/networking/route53" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/networking/route53" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Froute53" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -49,7 +49,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 :::
 
-*   [Should you use AWS Route 53 or CloudMap for your DNS entries?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/networking/route53/core-concepts.md#should-i-use-route53-or-cloud-map)
+*   [Should you use AWS Route 53 or CloudMap for your DNS entries?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/networking/route53/core-concepts.md#should-i-use-route53-or-cloud-map)
 *   [AWS Cloud Map Documentation](https://docs.aws.amazon.com/cloud-map/latest/dg/what-is-cloud-map.html): Amazon’s docs
     for AWS Cloud Map that cover core concepts and configuration.
 *   [Route 53 Documentation](https://docs.aws.amazon.com/route53/): Amazon’s docs for Route 53 that cover core concepts
@@ -61,7 +61,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -69,7 +69,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -88,7 +88,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "route_53" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/route53?ref=v0.116.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/route53?ref=v0.116.1"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -126,7 +126,7 @@ module "route_53" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/route53?ref=v0.116.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/route53?ref=v0.116.1"
 }
 
 inputs = {
@@ -258,7 +258,7 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Example: Request a certificate protecting only the apex domain
-  
+
    public_zones = {
        "example.com" = {
            comment = "You can add arbitrary text here"
@@ -322,9 +322,9 @@ Any types represent complex values of variable type. For details, please consult
            }
        }
    }
-  
+
    Example: Request a wildcard certificate that does NOT protect the apex domain:
-  
+
    public_zones = {
        "*.example.com = {
              comment = ""
@@ -336,9 +336,9 @@ Any types represent complex values of variable type. For details, please consult
              verify_certificate         = true
        }
    }
-  
+
    Example: Request a wildcard certificate that covers BOTH the apex and first-level subdomains
-  
+
    public_zones = {
        "example.com" = {
            comment = ""
@@ -435,10 +435,10 @@ Any types represent complex values of variable type. For details, please consult
 
    Whether or not to create a Route 53 DNS record for use in validating the issued certificate. You may want to set this to false if you are not using Route 53 as your DNS provider.
     create_verification_record = bool
-  
+
    Whether or not to attempt to verify the issued certificate via DNS entries automatically created via Route 53 records. You may want to set this to false on your certificate inputs if you are not using Route 53 as your DNS provider.
     verify_certificate = bool
-  
+
    Whether or not to create ACM TLS certificates for the domain. When true, Route53 certificates will automatically be
    created for the root domain. Defaults to true.
     provision_certificates = bool
@@ -549,11 +549,11 @@ A map of domains to resource arns and hosted zones of the created Service Discov
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/networking/route53/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/networking/route53/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/networking/route53/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/networking/route53/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/networking/route53/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/networking/route53/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "88282382016bee419e4e79975cd82929"
+  "hash": "af9a1a9ad6f7fef1d9ce01036b68221c"
 }
 ##DOCS-SOURCER-END -->
