@@ -1,5 +1,5 @@
 ---
-title: "Redis Module"
+title: "Valkey Module"
 hide_title: true
 ---
 
@@ -9,17 +9,17 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="0.23.0" lastModifiedVersion="0.22.9"/>
+<VersionBadge repoTitle="Cache Modules" version="0.23.0" lastModifiedVersion="0.23.0"/>
 
-# Redis Module
+# Valkey Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.23.0/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.23.0/modules/valkey" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.22.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.23.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module creates an ElastiCache cluster that runs [Redis](http://redis.io/).
+This module creates an ElastiCache cluster that runs [Valkey](http://valkey.io/).
 
-The redis cluster is managed by AWS and automatically detects and replaces failed nodes, streamlines software upgrades
+The valkey cluster is managed by AWS and automatically detects and replaces failed nodes, streamlines software upgrades
 and patches, enables easy scaling of the cluster both horizontally (add more nodes) and vertically (increase the power
 of existing nodes), and simplifies backup and restore functionality.
 
@@ -28,23 +28,23 @@ of existing nodes), and simplifies backup and restore functionality.
 ### What is Amazon ElastiCache?
 
 Before [Amazon ElastiCache](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/WhatIs.html) existed, teams
-would painstakingly configure the memcached or redis caching engines on their own. Setting up automatic failover, read
+would painstakingly configure the memcached or valkey caching engines on their own. Setting up automatic failover, read
 replicas, backups, and handling upgrades are all non-trivial and AWS recognized they could implement these features
 according to best practices themselves, sparing customers the time and cost of doing it themselves. Behind the scenes,
 ElastiCache runs on EC2 Instances located in subnets and protected by security groups you specify.
 
-### Structure of an ElastiCache Redis deployment
+### Structure of an ElastiCache Valkey deployment
 
-*   **Nodes:** The smallest unit of an ElastiCache Redis deployment is a node. It's basically the network-attached RAM on
-    which the cache engine (Redis in this case) runs
+*   **Nodes:** The smallest unit of an ElastiCache Valkey deployment is a node. It's basically the network-attached RAM on
+    which the cache engine (Valkey in this case) runs
 *   **Shards:** Also sometimes called "Node Group". A Shard is a replication-enabled collection of multiple nodes. Within
     a Shard, one node is the primary read/write node while the rest are read-only replicas of the primary node.
 *   **Cluster:** An ElastiCache cluster is a collection of one or more Shards. Somewhat confusingly, an ElastiCache
     Cluster has a "cluster mode" property that allows a Cluster to distribute its data over multiple Shards.
 
-### Concept of Sharding & Replication in ElasticCache Redis
+### Concept of Sharding & Replication in ElasticCache Valkey
 
-Redis implements replication in two ways:
+Valkey implements replication in two ways:
 
 *   **Cluster Mode Disabled**: With a single shard that contains all of the cluster's data in each node
 *   **Cluster Mode Enabled**: With data partitioned across up to 500 shards
@@ -54,18 +54,18 @@ create a cluster with higher number of shards and lower number of replicas total
 cluster configuration can range from 90 shards and 0 replicas to 15 shards and 5 replicas, which is the maximum number
 of replicas allowed.
 
-The node or shard limit can be increased to a maximum of 500 per cluster if the Redis engine version is 5.0.6 or higher.
+The node or shard limit can be increased to a maximum of 500 per cluster if the Valkey engine version is 5.0.6 or higher.
 For example, you can choose to configure a 500 node cluster that ranges between 83 shards (one primary and 5 replicas
 per shard) and 500 shards (single primary and no replicas). Make sure there are enough available IP addresses to
 accommodate the increase. Common pitfalls include the subnets in the subnet group have too small a CIDR range or the
 subnets are shared and heavily used by other clusters.
 
 You can find more information
-here: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Replication.Redis.Groups.html
+here: [https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Replication.Valkey.Groups.html](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Replication.Valkey.Groups.html)
 
-### Different Modes of ElasticCache Redis deployment
+### Different Modes of ElasticCache Valkey deployment
 
-There are different types of modes you can deploy ElasticCache Redis:
+There are different types of modes you can deploy ElasticCache Valkey:
 
 | Mode                 | Description                                      | Configuration                                                                                                                                                                           |
 |----------------------|--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -75,40 +75,37 @@ There are different types of modes you can deploy ElasticCache Redis:
 
 #### How to Enable Cluster Mode with Single Sharding
 
-By default, if you set `cluster_mode::num_node_groups = 1`, you are deploying Redis with the cluster mode disabled. If
-you want to enable cluster mode for redis with single sharding, you need to explicitly set the parameter group with
-`cluster-enabled=yes` (e.g., default.redis5.0.cluster.on). You can find the list of default parameter group for
-different redis version family group
-here: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/ParameterGroups.Redis.html
+By default, if you set `cluster_mode::num_node_groups = 1`, you are deploying Valkey with the cluster mode disabled. If
+you want to enable cluster mode for valkey with single sharding, you need to explicitly set the parameter group with
+`cluster-enabled=yes`.
 
 #### Choosing Cluster Mode vs. Single Instance
 
-You can use `var.enable_single_instance_mode=true` to deploy a single node Redis instance. Refer
-to [examples/redis_single_instance](https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.23.0/examples/redis_single_instance) as an example.
+You can use `var.enable_single_instance_mode=true` to deploy a single node Valkey instance.
 
 Here are some of the points you may consider while choosing which mode to run:
 
-*   **Scalability**: Redis single instance is limited to a single server node, which can be scaled vertically, while Redis
+*   **Scalability**: Valkey single instance is limited to a single server node, which can be scaled vertically, while Valkey
     cluster mode supports horizontal scaling by distributing data across multiple nodes, up to 1000 nodes. This allows for
     increased capacity, availability, and fault tolerance.
-*   **High Availability**: Redis single instance has limited high availability options, as it can only be replicated to a
-    slave node. In contrast, Redis cluster mode provides more robust high availability features by automatically
+*   **High Availability**: Valkey single instance has limited high availability options, as it can only be replicated to a
+    slave node. In contrast, Valkey cluster mode provides more robust high availability features by automatically
     distributing data across multiple nodes and ensuring data replication, even in the case of node failures.
-*   **Performance**: Redis cluster mode provides improved performance, as it allows for distributing the data across
-    multiple nodes, providing more CPU and memory resources. Additionally, Redis cluster mode uses sharding to distribute
+*   **Performance**: Valkey cluster mode provides improved performance, as it allows for distributing the data across
+    multiple nodes, providing more CPU and memory resources. Additionally, Valkey cluster mode uses sharding to distribute
     keys across multiple nodes, allowing for parallel data processing and faster data access.
-*   **Complexity**: Redis cluster mode introduces more complexity than Redis single instance. Configuring and managing a
-    Redis cluster requires more effort and expertise, as it involves setting up and managing multiple nodes, and
+*   **Complexity**: Valkey cluster mode introduces more complexity than Valkey single instance. Configuring and managing a
+    Valkey cluster requires more effort and expertise, as it involves setting up and managing multiple nodes, and
     configuring the sharding and replication.
 
-### How do you connect to the Redis Cluster?
+### How do you connect to the Valkey Cluster?
 
-*   When connecting to Redis (cluster mode disabled) from your app, direct all operations to the **Primary Endpoint** of
+*   When connecting to Valkey (cluster mode disabled) from your app, direct all operations to the **Primary Endpoint** of
     the **Cluster.** This way, in the event of a failover, your app will be resolving a DNS record that automatically gets
     updated to the latest primary node.
 
-*   When connecting to Redis (cluster mode enabled) from your app, direct all reads/writes to the \*\*Configuration Endpoint
-    \*\* of the **Cluster.** Ensure you have a client that supports Redis Cluster (redis 3.2). You can still read from
+*   When connecting to Valkey (cluster mode enabled) from your app, direct all reads/writes to the \*\*Configuration Endpoint
+    \*\* of the **Cluster.** Ensure you have a client that supports Valkey Cluster. You can still read from
     individual node enpoints.
 
 *   In both "cluster mode enabled" and "cluster mode disabled" deployment models you can still direct reads to any of the
@@ -120,11 +117,11 @@ Here are some of the points you may consider while choosing which mode to run:
     the [ElasticCache RBAC Access](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html)
     documentation for further information.
 
-*   (Optional) It is also possible to update the `default` user id used by AWS when creating a redis cluster and replace
-    it with your own `default` user. This is actually recommended by AWS as a first step to securing your Redis cluster.
+*   (Optional) It is also possible to update the `default` user id used by AWS when creating a valkey cluster and replace
+    it with your own `default` user. This is actually recommended by AWS as a first step to securing your Valkey cluster.
     Refer to
     the [Role-Based Access Control (RBAC)](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html)
-    documentation on how to do this. The new user_id can be passed into the Redis clusters user group via
+    documentation on how to do this. The new user_id can be passed into the Valkey clusters user group via
     the `default_user_id` variable.
 
 This module outputs [Terraform output variables](https://www.terraform.io/intro/getting-started/outputs.html) that
@@ -132,14 +129,14 @@ contain the address of the primary endpoint and read endpoints. You can programm
 Terraform templates and pass them to other resources (e.g. as environment variables in an EC2 Instance) You'll also see
 the variables at the end of each `terraform apply` call or if you run `terraform output`.
 
-### How do you scale the Redis Cluster?
+### How do you scale the Valkey Cluster?
 
 You can scale your ElastiCache Cluster either horizontally (by adding more nodes) or vertically (by using more powerful
 nodes), but the method depends on whether Cluster Mode is enabled or disabled.
 
 #### When Cluster Mode is Disabled
 
-This mode is useful when you'd prefer to have only a single point for data to be written to the redis database. All data
+This mode is useful when you'd prefer to have only a single point for data to be written to the valkey database. All data
 is written to the primary node of the single shard which is now replicated to the replica nodes. The advantage of this
 approach is that you're sure that all your data is present at a single point which could make migrations and backups a
 lot easier, if there's a problem with the primary write node however, all write attempts will fail.
@@ -147,12 +144,12 @@ lot easier, if there's a problem with the primary write node however, all write 
 *   **Vertical:** You can increase the type of the read replica nodes using the `instance_type` parameter (
     see [here](https://aws.amazon.com/elasticache/details/#Available_Cache_Node_Types) for valid values).
 
-*   **Horizontal:** You can add up to 5 replica nodes to a Redis Cluster using the `cluster_size` parameter. There is
+*   **Horizontal:** You can add up to 5 replica nodes to a Valkey Cluster using the `cluster_size` parameter. There is
     always a primary node where all writes take place, but you can reduce load on this primary node by offloading reads to
     the non-primary nodes, which are known as Read Replicas.
 
 For more info on both methods,
-see [Scaling Single-Node Redis (cluster mode disabled) Clusters](https://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Scaling.RedisStandalone.html).
+see [Scaling Single-Node (cluster mode disabled) Clusters](https://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Scaling.RedisStandalone.html).
 
 #### When Cluster Mode is Enabled
 
@@ -160,7 +157,7 @@ When cluster mode is enabled, data you write is split among the primary nodes in
 in those Shards are replicated among the read replicas. If one Shard becomes unavailable for whatever reason, other
 shards are still available for writing.
 
-To deploy a Redis "cluster mode enabled" cluster you must ensure that the `enable_automatic_failover` parameter is set
+To deploy a Valkey "cluster mode enabled" cluster you must ensure that the `enable_automatic_failover` parameter is set
 to `true` and the `cluster_mode` variable has a single map with `num_shards` and `replicas_per_shard` parameters.
 
 E.g. the following Terraform code specifies a "cluster mode enabled" Cluster with 2 Shards and 1 Read Replica per Shard
@@ -183,48 +180,48 @@ cluster_mode = [
     and the backup restored to that new cluster. During this process your entire cluster will experience a downtime which
     could last for any length of time depending on how much data the original cluster contained.
 
-For more info on scaling "cluster mode enabled" Redis clusters,
-see [Scaling Multishard Redis (cluster mode disabled) Clusters](https://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/scaling-redis-cluster-mode-enabled.html)
+For more info on scaling "cluster mode enabled" Valkey clusters,
+see [Scaling Multishard (cluster mode disabled) Clusters](https://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/scaling-redis-cluster-mode-enabled.html)
 
 ### How do you use the auto-scaling feature?
 
-[Auto Scaling ElastiCache for Redis clusters](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoScaling.html)
-summarizes how auto-scaling works for Redis clusters. You can enable auto-scaling via using the following variables:
+[Auto Scaling ElastiCache for Valkey clusters](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoScaling.html)
+summarizes how auto-scaling works for Valkey clusters. You can enable auto-scaling via using the following variables:
 
 *   `enable_auto_scaling`: true
 *   `auto_scale_dimension`: choose one from the supported scalable dimension mentioned below
 *   `auto_scale_trigger_metric`: choose one from the supported trigger metric mentioned below
 *   `auto_scale_min_capacity`: choose the desired min capacity
-*   `auto_scale_max_capacity`: choose the desired max capacity (**Note**: depends on the configuration of the Redis
+*   `auto_scale_max_capacity`: choose the desired max capacity (**Note**: depends on the configuration of the Valkey
     cluster. (e.g., 5 would be the maximum for
     replica auto-scaling)
 
 #### Prerequisites
 
-ElastiCache for Redis Auto Scaling is limited to the following:
+ElastiCache for Valkey Auto Scaling is limited to the following:
 
-*   Redis (cluster mode enabled) clusters running Redis engine version 6.0 onwards
+*   Valkey (cluster mode enabled) clusters running Valkey engine version 7.2 onwards
 *   Instance type families - R5, R6g, M5, M6g
 *   Instance sizes - Large, XLarge, 2XLarge
-*   Auto Scaling in ElastiCache for Redis is not supported for clusters running in Global datastores, Outposts or Local
+*   Auto Scaling in ElastiCache for Valkey is not supported for clusters running in Global datastores, Outposts or Local
     Zones.
-*   AWS Auto Scaling for ElastiCache for Redis is not available in the following regions: China (Beijing), China (
+*   AWS Auto Scaling for ElastiCache for Valkey is not available in the following regions: China (Beijing), China (
     Ningxia), AWS GovCloud (US-West) and AWS GovCloud (US-East).
 
 #### Supported Predefined Metrics
 
-Here are some predefined metrics available for Redis: `ElastiCachePrimaryEngineCPUUtilization` (shards
+Here are some predefined metrics available for Valkey: `ElastiCachePrimaryEngineCPUUtilization` (shards
 auto-scale), `ElastiCacheReplicaEngineCPUUtilization` (replica auto-scale). You can find more information here:
 
 *   [Auto-Scaling with Replicas](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoScaling-Scaling-Policies-Replicas-Replicas.html)
 *   [Auto-Scaling with Shards](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoScaling-Scaling-Policies-Target.html)
 
-Both pages also explain how to use a custom metric and you can find the list of CloudWatch metrics for Redis from
-here: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheMetrics.Redis.html
+Both pages also explain how to use a custom metric and you can find the list of CloudWatch metrics from
+here: [https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheMetrics.Redis.html](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheMetrics.Redis.html)
 
 #### Supported Scalable Dimensions
 
-ElastiCache for Redis supports the following types of automatic scaling dimensions:
+ElastiCache for Valkey supports the following types of automatic scaling dimensions:
 
 *   `elasticache:replication-group:NodeGroups` - The number of node groups for an Amazon ElastiCache replication group.
 *   `elasticache:replication-group:Replicas` - The number of replicas per node group for an Amazon ElastiCache replication
@@ -238,12 +235,12 @@ ElastiCache for Redis supports the following types of automatic scaling dimensio
 ```hcl title="main.tf"
 
 # ------------------------------------------------------------------------------------------------------
-# DEPLOY GRUNTWORK'S REDIS MODULE
+# DEPLOY GRUNTWORK'S VALKEY MODULE
 # ------------------------------------------------------------------------------------------------------
 
-module "redis" {
+module "valkey" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.23.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/valkey?ref=v0.23.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -253,7 +250,7 @@ module "redis" {
   instance_type = <string>
 
   # The name used to namespace all resources created by these templates,
-  # including the ElastiCache cluster itself (e.g. rediscache). Must be unique
+  # including the ElastiCache cluster itself (e.g. valkeycache). Must be unique
   # in this region. Must be a lowercase string.
   name = <string>
 
@@ -292,8 +289,8 @@ module "redis" {
 
   # Specifies whether minor version engine upgrades will be applied
   # automatically to the underlying Cache Cluster instances during the
-  # maintenance window. Only supported for engine type 'redis' and if the engine
-  # version is 6 or higher
+  # maintenance window. Only supported for engine type 'valkey' and if the
+  # engine version is 6 or higher
   auto_minor_version_upgrade = true
 
   # Scalable dimension of the scalable target. Supported dimensions are:
@@ -310,14 +307,11 @@ module "redis" {
 
   # Metric type to trigger auto-scaling. Supported metric type can be found
   # here:
-  # https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheMetrics.Redis.html
+  # https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheMetrics.Valkey.html
   auto_scale_trigger_metric = null
 
   # Target value of the auto_scale trigger metric
   auto_scale_trigger_metric_target_value = null
-
-  # Configuration variables for an ElastiCache Parameter Group.
-  aws_elasticache_parameter_group_config = null
 
   # The description of the aws_elasticache_security_group that is created.
   # Defaults to 'Security group for the var.name ElastiCache cluster' if not
@@ -347,13 +341,13 @@ module "redis" {
   enable_at_rest_encryption = true
 
   # Whether to enable auto-scaling or not. Please refer to the prerequisite
-  # section to understand the supported Redis configuration:
+  # section to understand the supported Valkey configuration:
   # https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoScaling.html
   enable_auto_scaling = false
 
   # Specifies whether a read-only replica is automatically promoted to
   # read/write primary if the existing primary fails. It must be enabled for
-  # Redis (cluster mode enabled) replication groups. This is required if
+  # Valkey (cluster mode enabled) replication groups. This is required if
   # enable_single_instance_mode is set to false.
   enable_automatic_failover = null
 
@@ -364,13 +358,13 @@ module "redis" {
   # enable_single_instance_mode is set to false
   enable_multi_az = null
 
-  # Whether to enable single-node Redis instance.
+  # Whether to enable single-node Valkey instance.
   enable_single_instance_mode = false
 
   # Whether to enable encryption in transit.
   enable_transit_encryption = true
 
-  # Specifies the destination and format of Redis Engine Log. See the
+  # Specifies the destination and format of Valkey Engine Log. See the
   # documentation on Amazon ElastiCache. See Log Delivery Configuration below
   # for more details. You can find more information here
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
@@ -380,7 +374,7 @@ module "redis" {
   # at_rest_encryption_enabled = true.
   kms_key_id = null
 
-  # Specifies the destination and format of Redis SLOWLOG or Redis Engine Log.
+  # Specifies the destination and format of Valkey SLOWLOG or Valkey Engine Log.
   # See the documentation on Amazon ElastiCache. See Log Delivery Configuration
   # below for more details. You can find more information here
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
@@ -391,7 +385,7 @@ module "redis" {
   # (24H Clock UTC). The minimum maintenance window is a 60 minute period.
   maintenance_window = "sat:07:00-sat:08:00"
 
-  # Number of node groups (shards) for this Redis replication group. Changing
+  # Number of node groups (shards) for this Valkey replication group. Changing
   # this number will trigger a resizing operation before other settings
   # modifications.
   num_node_groups = null
@@ -404,15 +398,12 @@ module "redis" {
   # (e.g. 6379).
   port = 6379
 
-  # Version number of redis to use (e.g. 5.0.6). Set to 6.x to use redis 6.
-  redis_version = "5.0.6"
-
   #  Number of replica nodes in each node group. Changing this number will
   # trigger a resizing operation before other settings modifications. Valid
   # values are 0 to 5.
   replicas_per_node_group = null
 
-  # The total number of nodes in the Redis Replication Group. E.g. 1 represents
+  # The total number of nodes in the Valkey Replication Group. E.g. 1 represents
   # just the primary node, 2 represents the primary plus a single Read Replica.
   # This is required if enable_single_instance_mode is set to false
   replication_group_size = null
@@ -420,18 +411,18 @@ module "redis" {
   # A set of tags to set for the Security Group created as part of this module.
   security_group_tags = {}
 
-  # Specifies the destination and format of Redis SLOWLOG. See the documentation
-  # on Amazon ElastiCache. See Log Delivery Configuration below for more
-  # details. You can find more information here
+  # Specifies the destination and format of Valkey SLOWLOG. See the
+  # documentation on Amazon ElastiCache. See Log Delivery Configuration below
+  # for more details. You can find more information here
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
   slow_log_delivery_configuration = null
 
-  # The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon
-  # S3. You can use this parameter to restore from an externally created
+  # The Amazon Resource Name (ARN) of a Valkey RDB snapshot file stored in
+  # Amazon S3. You can use this parameter to restore from an externally created
   # snapshot. If you have an ElastiCache snapshot, use snapshot_name.
   snapshot_arn = null
 
-  # The name of a snapshot from which to restore the Redis cluster. You can use
+  # The name of a snapshot from which to restore the Valkey cluster. You can use
   # this to restore from an ElastiCache snapshot. If you have an externally
   # created snapshot, use snapshot_arn.
   snapshot_name = null
@@ -456,13 +447,16 @@ module "redis" {
   tags = {}
 
   # The group id of the AWS Elasticache group which can be used to provide
-  # access to a Redis replication group or cluster and allow for RBAC access
+  # access to a Valkey replication group or cluster and allow for RBAC access
   user_group_id = null
 
   # This is a list of user IDs  that should be added to the group defined in the
   # 'user_group_id' variable. This list should always include the 'default' user
   # in addition to user Ids
   user_ids = []
+
+  # Version number of valkey to use (e.g. 7.2).
+  valkey_version = "7.2"
 
 }
 
@@ -475,11 +469,11 @@ module "redis" {
 ```hcl title="terragrunt.hcl"
 
 # ------------------------------------------------------------------------------------------------------
-# DEPLOY GRUNTWORK'S REDIS MODULE
+# DEPLOY GRUNTWORK'S VALKEY MODULE
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.23.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/valkey?ref=v0.23.0"
 }
 
 inputs = {
@@ -492,7 +486,7 @@ inputs = {
   instance_type = <string>
 
   # The name used to namespace all resources created by these templates,
-  # including the ElastiCache cluster itself (e.g. rediscache). Must be unique
+  # including the ElastiCache cluster itself (e.g. valkeycache). Must be unique
   # in this region. Must be a lowercase string.
   name = <string>
 
@@ -531,8 +525,8 @@ inputs = {
 
   # Specifies whether minor version engine upgrades will be applied
   # automatically to the underlying Cache Cluster instances during the
-  # maintenance window. Only supported for engine type 'redis' and if the engine
-  # version is 6 or higher
+  # maintenance window. Only supported for engine type 'valkey' and if the
+  # engine version is 6 or higher
   auto_minor_version_upgrade = true
 
   # Scalable dimension of the scalable target. Supported dimensions are:
@@ -549,14 +543,11 @@ inputs = {
 
   # Metric type to trigger auto-scaling. Supported metric type can be found
   # here:
-  # https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheMetrics.Redis.html
+  # https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheMetrics.Valkey.html
   auto_scale_trigger_metric = null
 
   # Target value of the auto_scale trigger metric
   auto_scale_trigger_metric_target_value = null
-
-  # Configuration variables for an ElastiCache Parameter Group.
-  aws_elasticache_parameter_group_config = null
 
   # The description of the aws_elasticache_security_group that is created.
   # Defaults to 'Security group for the var.name ElastiCache cluster' if not
@@ -586,13 +577,13 @@ inputs = {
   enable_at_rest_encryption = true
 
   # Whether to enable auto-scaling or not. Please refer to the prerequisite
-  # section to understand the supported Redis configuration:
+  # section to understand the supported Valkey configuration:
   # https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoScaling.html
   enable_auto_scaling = false
 
   # Specifies whether a read-only replica is automatically promoted to
   # read/write primary if the existing primary fails. It must be enabled for
-  # Redis (cluster mode enabled) replication groups. This is required if
+  # Valkey (cluster mode enabled) replication groups. This is required if
   # enable_single_instance_mode is set to false.
   enable_automatic_failover = null
 
@@ -603,13 +594,13 @@ inputs = {
   # enable_single_instance_mode is set to false
   enable_multi_az = null
 
-  # Whether to enable single-node Redis instance.
+  # Whether to enable single-node Valkey instance.
   enable_single_instance_mode = false
 
   # Whether to enable encryption in transit.
   enable_transit_encryption = true
 
-  # Specifies the destination and format of Redis Engine Log. See the
+  # Specifies the destination and format of Valkey Engine Log. See the
   # documentation on Amazon ElastiCache. See Log Delivery Configuration below
   # for more details. You can find more information here
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
@@ -619,7 +610,7 @@ inputs = {
   # at_rest_encryption_enabled = true.
   kms_key_id = null
 
-  # Specifies the destination and format of Redis SLOWLOG or Redis Engine Log.
+  # Specifies the destination and format of Valkey SLOWLOG or Valkey Engine Log.
   # See the documentation on Amazon ElastiCache. See Log Delivery Configuration
   # below for more details. You can find more information here
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
@@ -630,7 +621,7 @@ inputs = {
   # (24H Clock UTC). The minimum maintenance window is a 60 minute period.
   maintenance_window = "sat:07:00-sat:08:00"
 
-  # Number of node groups (shards) for this Redis replication group. Changing
+  # Number of node groups (shards) for this Valkey replication group. Changing
   # this number will trigger a resizing operation before other settings
   # modifications.
   num_node_groups = null
@@ -643,15 +634,12 @@ inputs = {
   # (e.g. 6379).
   port = 6379
 
-  # Version number of redis to use (e.g. 5.0.6). Set to 6.x to use redis 6.
-  redis_version = "5.0.6"
-
   #  Number of replica nodes in each node group. Changing this number will
   # trigger a resizing operation before other settings modifications. Valid
   # values are 0 to 5.
   replicas_per_node_group = null
 
-  # The total number of nodes in the Redis Replication Group. E.g. 1 represents
+  # The total number of nodes in the Valkey Replication Group. E.g. 1 represents
   # just the primary node, 2 represents the primary plus a single Read Replica.
   # This is required if enable_single_instance_mode is set to false
   replication_group_size = null
@@ -659,18 +647,18 @@ inputs = {
   # A set of tags to set for the Security Group created as part of this module.
   security_group_tags = {}
 
-  # Specifies the destination and format of Redis SLOWLOG. See the documentation
-  # on Amazon ElastiCache. See Log Delivery Configuration below for more
-  # details. You can find more information here
+  # Specifies the destination and format of Valkey SLOWLOG. See the
+  # documentation on Amazon ElastiCache. See Log Delivery Configuration below
+  # for more details. You can find more information here
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
   slow_log_delivery_configuration = null
 
-  # The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon
-  # S3. You can use this parameter to restore from an externally created
+  # The Amazon Resource Name (ARN) of a Valkey RDB snapshot file stored in
+  # Amazon S3. You can use this parameter to restore from an externally created
   # snapshot. If you have an ElastiCache snapshot, use snapshot_name.
   snapshot_arn = null
 
-  # The name of a snapshot from which to restore the Redis cluster. You can use
+  # The name of a snapshot from which to restore the Valkey cluster. You can use
   # this to restore from an ElastiCache snapshot. If you have an externally
   # created snapshot, use snapshot_arn.
   snapshot_name = null
@@ -695,13 +683,16 @@ inputs = {
   tags = {}
 
   # The group id of the AWS Elasticache group which can be used to provide
-  # access to a Redis replication group or cluster and allow for RBAC access
+  # access to a Valkey replication group or cluster and allow for RBAC access
   user_group_id = null
 
   # This is a list of user IDs  that should be added to the group defined in the
   # 'user_group_id' variable. This list should always include the 'default' user
   # in addition to user Ids
   user_ids = []
+
+  # Version number of valkey to use (e.g. 7.2).
+  valkey_version = "7.2"
 
 }
 
@@ -732,7 +723,7 @@ The compute and memory capacity of the nodes (e.g. cache.t3.medium).
 <HclListItem name="name" requirement="required" type="string">
 <HclListItemDescription>
 
-The name used to namespace all resources created by these templates, including the ElastiCache cluster itself (e.g. rediscache). Must be unique in this region. Must be a lowercase string.
+The name used to namespace all resources created by these templates, including the ElastiCache cluster itself (e.g. valkeycache). Must be unique in this region. Must be a lowercase string.
 
 </HclListItemDescription>
 </HclListItem>
@@ -803,7 +794,7 @@ The password used to access a password protected server. Can be specified only i
 <HclListItem name="auto_minor_version_upgrade" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Specifies whether minor version engine upgrades will be applied automatically to the underlying Cache Cluster instances during the maintenance window. Only supported for engine type 'redis' and if the engine version is 6 or higher
+Specifies whether minor version engine upgrades will be applied automatically to the underlying Cache Cluster instances during the maintenance window. Only supported for engine type 'valkey' and if the engine version is 6 or higher
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -839,7 +830,7 @@ Min capacity of the scalable target.
 <HclListItem name="auto_scale_trigger_metric" requirement="optional" type="string">
 <HclListItemDescription>
 
-Metric type to trigger auto-scaling. Supported metric type can be found here: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheMetrics.Redis.html
+Metric type to trigger auto-scaling. Supported metric type can be found here: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheMetrics.Valkey.html
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -851,27 +842,6 @@ Metric type to trigger auto-scaling. Supported metric type can be found here: ht
 Target value of the auto_scale trigger metric
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="aws_elasticache_parameter_group_config" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Configuration variables for an ElastiCache Parameter Group.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    name        = string
-    family      = string
-    description = string
-    parameters  = list(map(string))
-  })
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -941,7 +911,7 @@ Whether to enable encryption at rest.
 <HclListItem name="enable_auto_scaling" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Whether to enable auto-scaling or not. Please refer to the prerequisite section to understand the supported Redis configuration: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoScaling.html
+Whether to enable auto-scaling or not. Please refer to the prerequisite section to understand the supported Valkey configuration: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoScaling.html
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -950,7 +920,7 @@ Whether to enable auto-scaling or not. Please refer to the prerequisite section 
 <HclListItem name="enable_automatic_failover" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Specifies whether a read-only replica is automatically promoted to read/write primary if the existing primary fails. It must be enabled for Redis (cluster mode enabled) replication groups. This is required if enable_single_instance_mode is set to false.
+Specifies whether a read-only replica is automatically promoted to read/write primary if the existing primary fails. It must be enabled for Valkey (cluster mode enabled) replication groups. This is required if enable_single_instance_mode is set to false.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -968,7 +938,7 @@ Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only rep
 <HclListItem name="enable_single_instance_mode" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Whether to enable single-node Redis instance.
+Whether to enable single-node Valkey instance.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -986,7 +956,7 @@ Whether to enable encryption in transit.
 <HclListItem name="engine_log_delivery_configuration" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-Specifies the destination and format of Redis Engine Log. See the documentation on Amazon ElastiCache. See Log Delivery Configuration below for more details. You can find more information here https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+Specifies the destination and format of Valkey Engine Log. See the documentation on Amazon ElastiCache. See Log Delivery Configuration below for more details. You can find more information here https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1015,7 +985,7 @@ The KMS key ARN used to encrypt data at rest. Can be specified only if at_rest_e
 <HclListItem name="log_delivery_configuration" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-Specifies the destination and format of Redis SLOWLOG or Redis Engine Log. See the documentation on Amazon ElastiCache. See Log Delivery Configuration below for more details. You can find more information here https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+Specifies the destination and format of Valkey SLOWLOG or Valkey Engine Log. See the documentation on Amazon ElastiCache. See Log Delivery Configuration below for more details. You can find more information here https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1045,7 +1015,7 @@ Specifies the weekly time range for when maintenance on the cache cluster is per
 <HclListItem name="num_node_groups" requirement="optional" type="number">
 <HclListItemDescription>
 
-Number of node groups (shards) for this Redis replication group. Changing this number will trigger a resizing operation before other settings modifications.
+Number of node groups (shards) for this Valkey replication group. Changing this number will trigger a resizing operation before other settings modifications.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1069,15 +1039,6 @@ The port number on which each of the cache nodes will accept connections (e.g. 6
 <HclListItemDefaultValue defaultValue="6379"/>
 </HclListItem>
 
-<HclListItem name="redis_version" requirement="optional" type="string">
-<HclListItemDescription>
-
-Version number of redis to use (e.g. 5.0.6). Set to 6.x to use redis 6.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;5.0.6&quot;"/>
-</HclListItem>
-
 <HclListItem name="replicas_per_node_group" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1090,7 +1051,7 @@ Version number of redis to use (e.g. 5.0.6). Set to 6.x to use redis 6.
 <HclListItem name="replication_group_size" requirement="optional" type="number">
 <HclListItemDescription>
 
-The total number of nodes in the Redis Replication Group. E.g. 1 represents just the primary node, 2 represents the primary plus a single Read Replica. This is required if enable_single_instance_mode is set to false
+The total number of nodes in the Valkey Replication Group. E.g. 1 represents just the primary node, 2 represents the primary plus a single Read Replica. This is required if enable_single_instance_mode is set to false
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1108,7 +1069,7 @@ A set of tags to set for the Security Group created as part of this module.
 <HclListItem name="slow_log_delivery_configuration" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-Specifies the destination and format of Redis SLOWLOG. See the documentation on Amazon ElastiCache. See Log Delivery Configuration below for more details. You can find more information here https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+Specifies the destination and format of Valkey SLOWLOG. See the documentation on Amazon ElastiCache. See Log Delivery Configuration below for more details. You can find more information here https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1128,7 +1089,7 @@ object({
 <HclListItem name="snapshot_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon S3. You can use this parameter to restore from an externally created snapshot. If you have an ElastiCache snapshot, use snapshot_name.
+The Amazon Resource Name (ARN) of a Valkey RDB snapshot file stored in Amazon S3. You can use this parameter to restore from an externally created snapshot. If you have an ElastiCache snapshot, use snapshot_name.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1137,7 +1098,7 @@ The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon S3.
 <HclListItem name="snapshot_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name of a snapshot from which to restore the Redis cluster. You can use this to restore from an ElastiCache snapshot. If you have an externally created snapshot, use snapshot_arn.
+The name of a snapshot from which to restore the Valkey cluster. You can use this to restore from an ElastiCache snapshot. If you have an externally created snapshot, use snapshot_arn.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1182,7 +1143,7 @@ A set of tags to set for the ElastiCache Replication Group.
 <HclListItem name="user_group_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-The group id of the AWS Elasticache group which can be used to provide access to a Redis replication group or cluster and allow for RBAC access
+The group id of the AWS Elasticache group which can be used to provide access to a Valkey replication group or cluster and allow for RBAC access
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1201,13 +1162,22 @@ This is a list of user IDs  that should be added to the group defined in the 'us
 
 ```hcl
 
-   When a Redis cluster is created, there is always a default user, and that
+   When a Valkey cluster is created, there is always a default user, and that
    user always must be added to the group.
 
 ```
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="valkey_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+Version number of valkey to use (e.g. 7.2).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;7.2&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -1250,11 +1220,11 @@ This is a list of user IDs  that should be added to the group defined in the 'us
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.23.0/modules/redis/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.23.0/modules/redis/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.23.0/modules/redis/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.23.0/modules/valkey/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.23.0/modules/valkey/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.23.0/modules/valkey/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0bfb9ed3e16f72409b1de470d1b1f0dd"
+  "hash": "b73c268e9ccd8d5bb2111c7ad492af14"
 }
 ##DOCS-SOURCER-END -->
