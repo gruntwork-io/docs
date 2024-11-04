@@ -267,3 +267,11 @@ workflows:
           context:
             - SLACK__WEBHOOK__team-platform
             - GITHUB__PAT__gruntwork-ci
+  create_releases_pull_request_api:
+    when:
+        equal: [ api, << pipeline.trigger_source >> ]
+    jobs:
+      - create-releases-pr:
+          context:
+            - SLACK__WEBHOOK__team-platform
+            - GITHUB__PAT__gruntwork-ci
