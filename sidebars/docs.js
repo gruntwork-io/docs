@@ -409,18 +409,18 @@ const sidebar = [
               },
             ],
           },
-          // {
-          //   label: "Guides",
-          //   type: "category",
-          //   collapsed: true,
-          //   items: [
-          //     {
-          //       label: "Customizing something",
-          //       type: "doc",
-          //       id: "2.0/docs/accountfactory/guides/index",
-          //     },
-          //   ],
-          // },
+          {
+            label: "Guides",
+            type: "category",
+            collapsed: true,
+            items: [
+              {
+                label: "Vending Delegated Repositories",
+                type: "doc",
+                id: "2.0/docs/accountfactory/guides/delegated-repositories",
+              },
+            ],
+          },
           {
             label: "Configuration Reference",
             type: "link",
