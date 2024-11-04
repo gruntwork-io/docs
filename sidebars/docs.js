@@ -1,87 +1,183 @@
+import refarchSidebar from "./refarch"
+import ecsDeployRunnerSidebar from "./ecs-deploy-runner"
+import infrastructurePipelinesSidebar from "./infrastructure-pipelines"
+
+// Collapse these categories by default
+refarchSidebar[0].collapsible = true
+refarchSidebar[0].collapsed = true
+ecsDeployRunnerSidebar[0].collapsible = true
+ecsDeployRunnerSidebar[0].collapsed = true
+infrastructurePipelinesSidebar[0].collapsible = true
+infrastructurePipelinesSidebar[0].collapsed = true
+
+const developerPortalKBLink =
+  "https://github.com/orgs/gruntwork-io/discussions?discussions_q=" +
+  // filter by discussions with the label "s:dev-portal" & sort by top voted discussions first
+  encodeURIComponent("label:s:dev-portal sort:top")
+const pipelinesKBLink =
+  "https://github.com/orgs/gruntwork-io/discussions?discussions_q=" +
+  // filter by discussions with the label s:CI/Pipelines & sort by top voted discussions first
+  encodeURIComponent("label:s:CI/Pipelines sort:top")
+
+const complianceSidebar = require("./compliance-guide")
+const updateGuideSidebars = require("./update-guides.js")
+
 const sidebar = [
   {
     label: "Gruntwork Documentation",
     type: "category",
-    link: { type: 'generated-index', title: "Library Guides", slug: "2.0/docs" },
+    link: {
+      type: "doc",
+      id: 'index',
+    },
     collapsible: false,
     items: [
       {
         label: "Overview",
         type: "category",
         collapsed: false,
-        link: { type: 'generated-index', title: "Concepts", slug: "2.0/docs/gruntworkmethodology" },
         items: [
           {
-            label: "Devops Foundations",
-            type: "doc",
-            id: "2.0/docs/overview/devopsfoundations",
+            label: "Concepts",
+            type: "category",
+            collapsed: false,
+            items: [
+              {
+                label: "Devops Foundations",
+                type: "doc",
+                id: "2.0/docs/overview/concepts/devopsfoundations",
+              },
+              {
+                label: "Recommended Folder Structure: Infrastructure Live",
+                type: "doc",
+                id: "2.0/docs/overview/concepts/infrastructure-live",
+              },
+              {
+                label: "Labels and Tags",
+                type: "doc",
+                id: "2.0/docs/overview/concepts/labels-tags",
+              },
+            ],
           },
           {
             label: "Getting Started",
-            type: "doc",
-            id: "2.0/docs/overview/gettingstarted",
+            type: "category",
+            collapsed: false,
+            items: [
+              {
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/overview/getting-started/index",
+              },
+              {
+                label: "Activating your Gruntwork Account",
+                type: "doc",
+                id: "2.0/docs/overview/getting-started/create-account",
+              },
+              {
+                label: "Inviting Team Members",
+                type: "doc",
+                id: "2.0/docs/overview/getting-started/invite-team",
+              },
+              {
+                label: "Linking GitHub to Gruntwork",
+                type: "doc",
+                id: "2.0/docs/overview/getting-started/link-github-id",
+              }
+            ],
+          },
+          complianceSidebar,
+          {
+            label: "Staying up to Date Guides",
+            type: "category",
+            items: updateGuideSidebars,
           },
           {
             label: "Support",
             type: "doc",
             id: "support",
-          }
-        ]
+          },
+        ],
       },
       {
         label: "Pipelines",
         type: "category",
         collapsed: true,
-        link: { type: 'generated-index', title: "Getting Started with Pipelines", slug: "2.0/docs/pipelines" },
         items: [
           {
             label: "Concepts",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Pipelines Concepts", slug: "2.0/docs/pipelines/concepts/" },
             items: [
               {
-                label: 'Overview',
-                type: 'doc',
-                id: '2.0/docs/pipelines/concepts/cicd-for-infrastructure',
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/pipelines/concepts/overview",
               },
               {
-                label: 'CI/CD for Infrastructure',
-                type: 'doc',
-                id: '2.0/docs/pipelines/concepts/cicd-for-infrastructure',
+                label: "Authenticating with Cloud Providers",
+                type: "doc",
+                id: "2.0/docs/pipelines/concepts/cloud-auth",
               },
               {
-                label: 'Security',
-                type: 'doc',
-                id: '2.0/docs/pipelines/concepts/security',
+                label: "Drift Detection",
+                type: "doc",
+                id: "2.0/docs/pipelines/concepts/drift-detection",
               },
               {
-                label: 'Drift Detection',
-                type: 'doc',
-                id: '2.0/docs/pipelines/concepts/driftdetection',
-              }
-            ]
+                label: "The HCL Language",
+                type: "doc",
+                id: "2.0/docs/pipelines/concepts/hcl-config-language",
+              },
+            ],
           },
           {
             label: "Architecture",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Pipelines Architecture", slug: "2.0/docs/pipelines/concepts2/" },
             items: [
               {
-                label: 'Overview',
-                type: 'doc',
-                id: "2.0/docs/pipelines/architecture",
-              }
-            ]
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/pipelines/architecture/index",
+              },
+              {
+                label: "Components",
+                type: "doc",
+                id: "2.0/docs/pipelines/architecture/components",
+              },
+              {
+                label: "Actions",
+                type: "doc",
+                id: "2.0/docs/pipelines/architecture/actions",
+              },
+              {
+                label: "Security Controls",
+                type: "doc",
+                id: "2.0/docs/pipelines/architecture/security-controls",
+              },
+              {
+                label: "Audit Logs",
+                type: "doc",
+                id: "2.0/docs/pipelines/architecture/audit-logs",
+              },
+              {
+                label: "Usage Data",
+                type: "doc",
+                id: "2.0/docs/pipelines/architecture/usage-data",
+              },
+            ],
           },
           {
             label: "Setup & Installation",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Setting up and Installing Pipelines", slug: "2.0/docs/pipelines/installation/" },
             items: [
-
+              {
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/pipelines/installation/overview",
+              },
               {
                 label: "Prerequisites",
                 type: "category",
@@ -92,13 +188,18 @@ const sidebar = [
                     type: "doc",
                     id: "2.0/docs/pipelines/installation/prerequisites/awslandingzone",
                   },
-                ]
+                ],
               },
               {
                 type: "category",
                 label: "Enable Auth for Pipelines",
                 collapsed: false,
                 items: [
+                  {
+                    label: "Auth Overview",
+                    type: "doc",
+                    id: "2.0/docs/pipelines/installation/authoverview",
+                  },
                   {
                     label: "Auth via GitHub App",
                     type: "doc",
@@ -109,7 +210,7 @@ const sidebar = [
                     type: "doc",
                     id: "2.0/docs/pipelines/installation/viamachineusers",
                   },
-                ]
+                ],
               },
               {
                 type: "category",
@@ -126,33 +227,36 @@ const sidebar = [
                     type: "doc",
                     id: "2.0/docs/pipelines/installation/addingexistingrepo",
                   },
-                ]
+                  {
+                    label: "Adding Branch Protection to a Repository",
+                    type: "doc",
+                    id: "2.0/docs/pipelines/installation/branch-protection",
+                  },
+                ],
               },
               {
                 label: "Configuration",
                 type: "category",
                 collapsed: false,
-                link: { type: 'generated-index', title: "Pipelines Configuration", slug: "2.0/docs/pipelines/configuration/" },
                 items: [
+                  {
+                    label: "Settings",
+                    type: "doc",
+                    id: "2.0/docs/pipelines/configuration/settings",
+                  },
                   {
                     label: "Setting up Drift Detection",
                     type: "doc",
                     id: "2.0/docs/pipelines/configuration/driftdetection",
                   },
-                  {
-                    label: "Customizing & Extending Pipelines",
-                    type: "doc",
-                    id: "2.0/docs/pipelines/configuration/customizing",
-                  },
-                ]
-              }
-            ]
+                ],
+              },
+            ],
           },
           {
             label: "Tutorials",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Pipelines Tutorials", slug: "2.0/docs/pipelines/tutorials/" },
             items: [
               {
                 label: "Deploy your first infrastructure change with Pipelines",
@@ -163,15 +267,19 @@ const sidebar = [
                 label: "Destroying infrastructure with Pipelines",
                 type: "doc",
                 id: "2.0/docs/pipelines/tutorials/destroying-infrastructure",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Guides",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Pipelines Guides", slug: "2.0/docs/pipelines/guides/" },
             items: [
+              {
+                label: "Running Plan/Apply",
+                type: "doc",
+                id: "2.0/docs/pipelines/guides/running-plan-apply",
+              },
               {
                 label: "Managing Secrets in your Pipelines",
                 type: "doc",
@@ -183,24 +291,53 @@ const sidebar = [
                 id: "2.0/docs/pipelines/guides/updating-pipelines",
               },
               {
-                label: "Configuration Reference",
-                type: "link",
-                className: 'external-link',
-                href: '/2.0/reference/pipelines',
+                label: "Extending Pipelines",
+                type: "doc",
+                id: "2.0/docs/pipelines/guides/extending-pipelines",
+              },
+              {
+                label: "Installing Drift Detection",
+                type: "doc",
+                id: "2.0/docs/pipelines/guides/installing-drift-detection",
+              },
+              {
+                label: "Running Drift Detection",
+                type: "doc",
+                id: "2.0/docs/pipelines/guides/running-drift-detection",
+              },
+            ],
+          },
+          {
+            label: "Previous Versions",
+            type: "category",
+            items: [
+              {
+                label: "Upgrading from Infrastructure-Pipelines",
+                type: "doc",
+                id: "2.0/docs/pipelines/previous-versions/upgrading-from-infrastructure-pipelines",
+              },
+              {
+                label: "Upgrading from ECS Deploy Runner",
+                type: "doc",
+                id: "2.0/docs/pipelines/previous-versions/upgrading-from-ecs-deploy-runner",
               },
             ],
           },
           {
             label: "Configuration Reference",
             type: "link",
-            className: 'external-link',
-            href: '/2.0/reference/pipelines',
+            className: "external-link",
+            href: "/2.0/reference/pipelines",
+          },
+          {
+            label: "Knowledge Base",
+            type: "link",
+            href: pipelinesKBLink,
           },
         ],
       },
       {
         label: "Account Factory",
-        link: { type: 'generated-index', title: "Getting Started with Account Factory", slug: "2.0/docs/accountfactory" },
         type: "category",
         collapsed: true,
         items: [
@@ -208,112 +345,145 @@ const sidebar = [
             label: "Concepts",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Account Factory Concepts", slug: "2.0/docs/accountfactory/concepts" },
             items: [
               {
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/accountfactory/concepts/index",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Architecture",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Account Factory Architecture", slug: "2.0/docs/accountfactory/architecture" },
             items: [
               {
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/accountfactory/architecture/index",
-              }
-            ]
+              },
+              {
+                label: "Logging",
+                type: "doc",
+                id: "2.0/docs/accountfactory/architecture/logging",
+              },
+              {
+                label: "Network Topology",
+                type: "doc",
+                id: "2.0/docs/accountfactory/architecture/network-topology",
+              },
+            ],
           },
           {
             label: "Setup & Installation",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Account Factory Setup & Installation", slug: "2.0/docs/accountfactory/installation" },
             items: [
               {
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/accountfactory/installation/index",
-              }
-            ]
-          },
-          {
-            label: "Guides",
-            type: "category",
-            collapsed: true,
-            link: { type: 'generated-index', title: "Account Factory Guides", slug: "2.0/docs/accountfactory/guides" },
-            items: [
-              {
-                label: "Customizing something",
-                type: "doc",
-                id: "2.0/docs/accountfactory/guides/index",
-              },
-              {
-                label: "Configuration Reference",
-                type: "link",
-                className: 'external-link',
-                href: '/2.0/reference/accountfactory',
               },
             ],
           },
           {
+            label: "Tutorials",
+            type: "category",
+            collapsed: true,
+            items: [
+              {
+                label: "Vending a new AWS Account",
+                type: "doc",
+                id: "2.0/docs/accountfactory/tutorials/vend-aws-account",
+              },
+              {
+                label: "Modify an AWS Account",
+                type: "doc",
+                id: "2.0/docs/accountfactory/tutorials/modify-account",
+              },
+              {
+                label: "Remove an AWS Account",
+                type: "doc",
+                id: "2.0/docs/accountfactory/tutorials/remove-account",
+              },
+            ],
+          },
+          // {
+          //   label: "Guides",
+          //   type: "category",
+          //   collapsed: true,
+          //   items: [
+          //     {
+          //       label: "Customizing something",
+          //       type: "doc",
+          //       id: "2.0/docs/accountfactory/guides/index",
+          //     },
+          //   ],
+          // },
+          {
             label: "Configuration Reference",
             type: "link",
-            className: 'external-link',
-            href: '/2.0/reference/accountfactory',
+            className: "external-link",
+            href: "/2.0/reference/accountfactory",
           },
         ],
       },
       {
         label: "Patcher",
         type: "category",
-        link: { type: 'generated-index', title: "Getting Started with Patcher", slug: "2.0/docs/patcher" },
         collapsed: true,
         items: [
           {
             label: "Concepts",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Patcher Concepts", slug: "2.0/docs/patcher/concepts" },
             items: [
               {
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/patcher/concepts/index",
-              }
-            ]
+              },
+              {
+                label: "Patches",
+                type: "doc",
+                id: "2.0/docs/patcher/concepts/patches",
+              },
+              {
+                label: "Promotion Workflows",
+                type: "doc",
+                id: "2.0/docs/patcher/concepts/promotion-workflows",
+              },
+              {
+                label: "Update Strategies",
+                type: "doc",
+                id: "2.0/docs/patcher/concepts/update-strategies",
+              },
+            ],
           },
           {
             label: "Architecture",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Patcher Architecture", slug: "2.0/docs/patcher/architecture" },
             items: [
               {
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/patcher/architecture/index",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Setup & Installation",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Patcher Setup & Installation", slug: "2.0/docs/patcher/installation" },
             items: [
               {
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/patcher/installation/index",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Tutorials",
@@ -329,14 +499,13 @@ const sidebar = [
                 label: "Authoring your first patch",
                 type: "doc",
                 id: "2.0/docs/patcher/tutorials/authoring-first-patch",
-              }
-            ]
+              },
+            ],
           },
           {
             label: "Guides",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Patcher Guides", slug: "2.0/docs/patcher/guides" },
             items: [
               {
                 label: "Setting up Promotion Workflows",
@@ -344,66 +513,126 @@ const sidebar = [
                 id: "2.0/docs/patcher/guides/promotion-workflows",
               },
               {
-                label: "Configuration Reference",
-                type: "link",
-                className: 'external-link',
-                href: '/2.0/reference/patcher',
+                label: "Using Patcher Report",
+                type: "doc",
+                id: "2.0/docs/patcher/guides/report",
               },
-            ]
+              {
+                label: "Using Patcher Update",
+                type: "doc",
+                id: "2.0/docs/patcher/guides/update",
+              },
+              {
+                label: "Using Patcher Upgrade",
+                type: "doc",
+                id: "2.0/docs/patcher/guides/upgrade",
+              },
+              {
+                label: "Disable Telemetry",
+                type: "doc",
+                id: "2.0/docs/patcher/guides/telemetry",
+              },
+            ],
           },
           {
             label: "Configuration Reference",
             type: "link",
-            className: 'external-link',
-            href: '/2.0/reference/patcher',
+            className: "external-link",
+            href: "/2.0/reference/patcher",
           },
         ],
       },
-
       {
         label: "Library",
         type: "category",
         collapsed: true,
-        link: { type: 'generated-index', title: "Getting Started with the Library", slug: "2.0/docs/library" },
         items: [
           {
             label: "Concepts",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Library Guides", slug: "2.0/docs/library/concepts" },
             items: [
+              {
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/library/concepts/overview",
+              },
+              {
+                label: "Modules",
+                type: "doc",
+                id: "2.0/docs/library/concepts/modules",
+              },
               {
                 label: "Service Modules",
                 type: "doc",
-                id: "2.0/docs/library/concepts/servicemodules",
-              }
-            ]
+                id: "2.0/docs/library/concepts/service-modules",
+              },
+              {
+                label: "Module Defaults",
+                type: "doc",
+                id: "2.0/docs/library/concepts/module-defaults",
+              },
+              {
+                label: "Principles",
+                type: "category",
+                collapsed: true,
+                link: {
+                  type: "doc",
+                  id: "2.0/docs/library/concepts/principles/overview",
+                },
+                items: [
+                  {
+                    label: "Control Provider Usage",
+                    type: "doc",
+                    id: "2.0/docs/library/concepts/principles/control-provider-usage",
+                  },
+                  {
+                    label: "Be Judicious with New Features",
+                    type: "doc",
+                    id: "2.0/docs/library/concepts/principles/be-judicious-with-new-features",
+                  },
+                  {
+                    label: "Quality In Depth",
+                    type: "doc",
+                    id: "2.0/docs/library/concepts/principles/quality-in-depth",
+                  },
+                ],
+              },
+            ],
           },
           {
             label: "Architecture",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Library Architecture", slug: "2.0/docs/library/architecture" },
             items: [
               {
                 label: "Overview",
                 type: "doc",
                 id: "2.0/docs/library/architecture/overview",
-              }
-            ]
+              },
+              {
+                label: "OpenTofu & Terraform Compatibility",
+                type: "doc",
+                id: "2.0/docs/library/architecture/opentofu-terraform-compatibility",
+              },
+            ],
           },
           {
             label: "Setup & Installation",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Library Setup & Installation", slug: "2.0/docs/library/setup" },
             items: [
               {
-                label: "Overview",
+                label: "Setting Up",
                 type: "doc",
-                id: "2.0/docs/library/setup/overview",
-              }
-            ]
+                id: "2.0/docs/library/setup/setting-up",
+              },
+              {
+                label: "Accessing The Code",
+                type: "doc",
+                id: "2.0/docs/library/setup/accessing-the-code",
+              },
+            ],
           },
           {
             label: "Tutorials",
@@ -414,29 +643,38 @@ const sidebar = [
                 label: "Deploying your first Gruntwork Module",
                 type: "doc",
                 id: "2.0/docs/library/tutorials/deploying-your-first-gruntwork-module",
-              }
-            ]
+              },
+              {
+                label: "Defining and using Module Defaults",
+                type: "doc",
+                id: "2.0/docs/library/tutorials/module-defaults",
+              },
+              {
+                label: "Creating your own Service Module",
+                type: "doc",
+                id: "2.0/docs/library/tutorials/creating-service-module",
+              },
+              {
+                label: "Customizing Modules",
+                type: "doc",
+                id: "2.0/docs/library/tutorials/customizing-modules",
+              },
+            ],
           },
           {
             label: "Guides",
             type: "category",
             collapsed: true,
-            link: { type: 'generated-index', title: "Library Guides", slug: "2.0/docs/library/guides" },
             items: [
               {
-                label: "Create your own Service Module",
+                label: "Using Versioned Modules",
                 type: "doc",
-                id: "2.0/docs/library/guides/create-service-module",
+                id: "2.0/docs/library/guides/versioning",
               },
               {
-                label: "Customize a Module",
+                label: "Updating Versioned Modules",
                 type: "doc",
-                id: "2.0/docs/library/guides/customize-module",
-              },
-              {
-                label: "Integrate with Terraform Cloud",
-                type: "doc",
-                id: "2.0/docs/library/guides/integrate-tfc",
+                id: "2.0/docs/library/guides/updating-modules",
               },
               {
                 label: "Contributing to the Library",
@@ -449,24 +687,32 @@ const sidebar = [
                 id: "2.0/docs/library/guides/self-hosting",
               },
               {
-                label: "Updating a module to a newer version",
+                label: "Running Apps",
                 type: "doc",
-                id: "2.0/docs/library/guides/updating-modules",
+                id: "2.0/docs/library/guides/running-apps",
               },
               {
-                label: "Module Reference",
-                type: "link",
-                className: 'external-link',
-                href: '/2.0/reference/library',
+                label: "Integrate with Terraform Cloud",
+                type: "doc",
+                id: "2.0/docs/library/guides/integrate-tfc",
               },
             ],
           },
           {
             label: "Module Reference",
             type: "link",
-            className: 'external-link',
-            href: '/2.0/reference/library',
+            className: "external-link",
+            href: "/2.0/reference/library/index",
           },
+        ],
+      },
+      {
+        label: "Legacy Products",
+        type: "category",
+        items: [
+          refarchSidebar,
+          infrastructurePipelinesSidebar,
+          ecsDeployRunnerSidebar,
         ],
       },
       {
@@ -481,7 +727,6 @@ const sidebar = [
       },
     ],
   },
-
 ]
 
 module.exports = sidebar

@@ -9,6 +9,7 @@ const darkCodeTheme = themes.dracula;
 const cfg = require("config")
 
 const captionsPlugin = require("./src/plugins/captions.mjs")
+const { redirects } = require("./src/redirects.js");
 
 const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined
 
@@ -36,6 +37,16 @@ const plugins = ["plugin-image-zoom"]
 if (enablePosthog) {
   plugins.push("posthog-docusaurus")
 }
+
+const redirectPlugin = [
+  '@docusaurus/plugin-client-redirects',
+      {
+        redirects,
+      }
+]
+
+// @ts-ignore - types don't understand the plugin config
+plugins.push(redirectPlugin)
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -66,7 +77,6 @@ const config = {
           editUrl: "https://github.com/gruntwork-io/docs/edit/master/",
           exclude: [
             "guides/build-it-yourself/landing-zone/**",
-            "guides/build-it-yourself/kubernetes-cluster/**",
             "guides/build-it-yourself/vpc/**",
             "**/node_modules/**",
           ],
@@ -109,7 +119,7 @@ const config = {
             type: "doc",
             position: "left",
             label: "Docs",
-            docId: "2.0/docs",
+            docId: "index",
           },
           {
             type: "doc",

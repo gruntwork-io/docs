@@ -436,3 +436,114 @@ html[data-theme="dark"] .link-button:hover {
  html[data-theme="dark"] .external-link a::after {
   background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"%3E%3Cpath fill="%23DADDE1" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"%3E%3C/path%3E%3C/svg%3E');
 }
+
+.customizable-value {
+  font-family: monospace;
+  font-weight: bold;
+  font-style: italic;
+  color: #6f5bd7;
+}
+
+.customizable-value input {
+  appearance: none;
+  font-family: monospace;
+  font-weight: bold;
+  font-style: italic;
+  outline: none;
+  color: #6f5bd7;
+  background-color: transparent;
+  border: 1px solid #e7eaf3;
+  border-radius: 4px;
+  padding: 2px;
+}
+
+.customizable-value span::after {
+  content: "";
+  display: inline-block;
+  width: 13.5px;
+  height: 13.5px;
+  margin-left: 0.3rem;
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236f5bd7%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolygon%20points%3D%2216%203%2021%208%208%2021%203%2021%203%2016%2016%203%22%3E%3C%2Fpolygon%3E%3C%2Fsvg%3E');
+  background-size: contain; /* Add this line */
+  background-repeat: no-repeat; /* Add this line too */
+}
+
+
+html[data-theme="dark"] .customizable-value {
+  color: #ab80fe;
+ }
+
+
+ html[data-theme="dark"] .customizable-value span::after {
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ab80fe%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolygon%20points%3D%2216%203%2021%208%208%2021%203%2021%203%2016%2016%203%22%3E%3C%2Fpolygon%3E%3C%2Fsvg%3E');
+ }
+
+.persistent-checkbox {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px; /* Increased font size */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+}
+
+/* Hide the default checkbox */
+.persistent-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px; /* Increased size */
+  width: 25px; /* Increased size */
+  background-color: #eee;
+  border-radius: 5px; /* Added rounded corners */
+  border: 2px solid #ccc; /* Added a more prominent border */
+
+}
+
+/* On mouse-over, add a grey background color */
+.persistent-checkbox:hover input ~ .checkmark {
+  background-color: #ccc;
+  border: 2px solid #ccc; /* Added a more prominent border */
+}
+
+/* When the checkbox is checked, add a blue background */
+.persistent-checkbox input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.persistent-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.persistent-checkbox .checkmark:after {
+  left: 7px; /* Adjusted left position */
+  top: 4px;  /* Adjusted top position */
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
