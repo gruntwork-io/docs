@@ -313,9 +313,9 @@ live/us-east-1/non-prod
 Each of these were detected as terraform modules (because they contain `.tf` files), and were marked as changed because
 one of the underlying `.tf` or `.tfvars` files have changed. Specifically:
 
-*   `modules/mysql` <= `modules/mysql/outputs.tf`
-*   `live/us-east-1/prod` <= `live/us-east-1/prod/main.tf` and `live/us-east-1/prod/outputs.tf`
-*   `live/us-east-1/non-prod` <= `live/us-east-1/non-prod/terraform.tfvars`
+*   `modules/mysql` &lt;= `modules/mysql/outputs.tf`
+*   `live/us-east-1/prod` &lt;= `live/us-east-1/prod/main.tf` and `live/us-east-1/prod/outputs.tf`
+*   `live/us-east-1/non-prod` &lt;= `live/us-east-1/non-prod/terraform.tfvars`
 
 ### Deleted folders
 
