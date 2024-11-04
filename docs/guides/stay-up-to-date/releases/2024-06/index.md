@@ -11,7 +11,9 @@ documentation](/library/stay-up-to-date/updating).
 Here are the repos that were updated:
 
 - [patcher-cli](#patcher-cli)
+- [pipelines-actions](#pipelines-actions)
 - [pipelines-cli](#pipelines-cli)
+- [pipelines-workflows](#pipelines-workflows)
 - [terraform-aws-architecture-catalog](#terraform-aws-architecture-catalog)
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-cis-service-catalog](#terraform-aws-cis-service-catalog)
@@ -86,6 +88,75 @@ Here are the repos that were updated:
   * You can now specify multiple `--target` flags when using the `update` command non-interactively.
 
 **Full Changelog**: https://github.com/gruntwork-io/patcher-cli/compare/v0.8.0...v0.8.1
+
+</div>
+
+
+
+## pipelines-actions
+
+
+### [v1.3.4](https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.3.4)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 6/24/2024 | <a href="https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.3.4">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Bump default terragrunt to v0.59.5 by @Resonance1584 in https://github.com/gruntwork-io/pipelines-actions/pull/25
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-actions/compare/v1.3.3...v1.3.4
+
+</div>
+
+
+### [v1.3.3](https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.3.3)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 6/14/2024 | <a href="https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.3.3">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Cleanup redundant mgmt auth by @Resonance1584 in https://github.com/gruntwork-io/pipelines-actions/pull/22
+* feat: Migrating unnecssary configs out by @yhakbar in https://github.com/gruntwork-io/pipelines-actions/pull/21
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-actions/compare/v1.3.2...v1.3.3
+
+</div>
+
+
+### [v1.3.2](https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.3.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 6/12/2024 | <a href="https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.3.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * fix: Only show summary for plans by @yhakbar in https://github.com/gruntwork-io/pipelines-actions/pull/20
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-actions/compare/v1.3.1...v1.4.0
+
+</div>
+
+
+### [v1.3.1](https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.3.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 6/4/2024 | <a href="https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.3.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Use pipelines_jobs output by @Resonance1584 in https://github.com/gruntwork-io/pipelines-actions/pull/16
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-actions/compare/v1.3.0...v1.3.1
 
 </div>
 
@@ -181,6 +252,82 @@ Here are the repos that were updated:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.10.1
+
+</div>
+
+
+
+## pipelines-workflows
+
+
+### [v1.5.0](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v1.5.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 6/17/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v1.5.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Remove out of date comment by @Resonance1584 in https://github.com/gruntwork-io/pipelines-workflows/pull/35
+* chore: Bump `pipelines-actions` to `v1.3.3` by @yhakbar in https://github.com/gruntwork-io/pipelines-workflows/pull/36
+
+As of this release, the `gruntwork-installer-version` and `boilerplate-version` versions are no longer configurable in the `.gruntwork/config.yml` in `infrastructure-live` repositories.
+
+They are now configurable as environment variables directly in the workflows instead, as the average customer has no need to configure them on a per-infrastructure-live repository basis.
+
+No action needs to be taken to adopt this change. Just take note that the configurations in `.gruntwork/config.yml` will be ignored if present.
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v1...v1.5.0
+
+</div>
+
+
+### [v1.4.0](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v1.4.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 6/13/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v1.4.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Add runner as input by @Resonance1584 in https://github.com/gruntwork-io/pipelines-workflows/pull/34
+* chore: Bump `pipelines-actions` to `1.3.2` by @yhakbar in https://github.com/gruntwork-io/pipelines-workflows/pull/33
+* feat: Migrating unnecessary configs out of `.gruntwork/config.yml` by @yhakbar in https://github.com/gruntwork-io/pipelines-workflows/pull/32
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v1...v1.4.0
+
+</div>
+
+
+### [v1.3.2](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v1.3.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 6/4/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v1.3.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Bump pipelines to 0.10.1 actions to 1.3.1 by @Resonance1584 in https://github.com/gruntwork-io/pipelines-workflows/pull/31
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v1...v1.3.2
+
+</div>
+
+
+### [v1.3.1](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v1.3.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 6/3/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v1.3.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Upgrade pipelines-cli and actions to use tfplan output by @Resonance1584 in https://github.com/gruntwork-io/pipelines-workflows/pull/30
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v1...v1.3.1
 
 </div>
 
@@ -732,6 +879,6 @@ This release updates our multi-region code generators to use [Boilerplate](https
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "437c0f780d1102951b1b2d7a76b3cf35"
+  "hash": "a2595f0c9dc5448645d65f864a99ae68"
 }
 ##DOCS-SOURCER-END -->
