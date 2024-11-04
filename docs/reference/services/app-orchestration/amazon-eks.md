@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.12" lastModifiedVersion="0.100.0"/>
+<VersionBadge version="0.115.4" lastModifiedVersion="0.114.0"/>
 
 # Amazon EKS
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-cluster" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -59,7 +59,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo. If you are a subscriber and don’t have
-access to this repo, email <support@gruntwork.io>.
+access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ### Core concepts
 
@@ -68,9 +68,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -116,7 +116,7 @@ To add and manage additional worker groups, refer to the [eks-workers module](/r
 
 module "eks_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/eks-cluster?ref=v0.104.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.115.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -340,6 +340,19 @@ module "eks_cluster" {
   # cluster
   cluster_instance_keypair_name = null
 
+  # The IP family used to assign Kubernetes pod and service addresses. Valid
+  # values are ipv4 (default) and ipv6. You can only specify an IP family when
+  # you create a cluster, changing this value will force a new cluster to be
+  # created.
+  cluster_network_config_ip_family = "ipv4"
+
+  # The CIDR block to assign Kubernetes pod and service IP addresses from. If
+  # you don't specify a block, Kubernetes assigns addresses from either the
+  # 10.100.0.0/16 or 172.20.0.0/16 CIDR blocks. You can only specify a custom
+  # CIDR block when you create a cluster, changing this value will force a new
+  # cluster to be created.
+  cluster_network_config_service_ipv4_cidr = null
+
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting log data in the CloudWatch log group for EKS control plane logs.
   control_plane_cloudwatch_log_group_kms_key_id = null
@@ -389,6 +402,24 @@ module "eks_cluster" {
   # CloudWatch dashboard.
   dashboard_memory_usage_widget_parameters = {"height":6,"period":60,"width":8}
 
+  # Configuraiton object for the EBS CSI Driver EKS AddOn
+  ebs_csi_driver_addon_config = {}
+
+  # A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the
+  # tag name and the value is the tag value.
+  ebs_csi_driver_addon_tags = {}
+
+  # If using KMS encryption of EBS volumes, provide the KMS Key ARN to be used
+  # for a policy attachment.
+  ebs_csi_driver_kms_key_arn = null
+
+  # The namespace for the EBS CSI Driver. This will almost always be the
+  # kube-system namespace.
+  ebs_csi_driver_namespace = "kube-system"
+
+  # The Service Account name to be used with the EBS CSI Driver
+  ebs_csi_driver_sa_name = "ebs-csi-controller-sa"
+
   # Map of EKS add-ons, where key is name of the add-on and value is a map of
   # add-on properties.
   eks_addons = {}
@@ -421,6 +452,11 @@ module "eks_cluster" {
   # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent
   # to get memory and disk metrics in CloudWatch for your Bastion host.
   enable_cloudwatch_metrics = true
+
+  # When set to true, the module configures and install the EBS CSI Driver as an
+  # EKS managed AddOn
+  # (https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html).
+  enable_ebs_csi_driver = false
 
   # When set to true, the module configures EKS add-ons
   # (https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html)
@@ -521,13 +557,13 @@ module "eks_cluster" {
   # The URL from which to download Kubergrunt if it's not installed already. Use
   # to specify a version of kubergrunt that is compatible with your specified
   # kubernetes version. Ex.
-  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.1/kubergrunt'
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.1/kubergrunt"
+  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt_<platform>'
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt_<platform>"
 
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.25"
+  kubernetes_version = "1.30"
 
   # Configure one or more Node Groups to manage the EC2 instances in this
   # cluster. Set to empty object ({}) if you do not wish to configure managed
@@ -665,6 +701,26 @@ module "eks_cluster" {
   # The tenancy of this server. Must be one of: default, dedicated, or host.
   tenancy = "default"
 
+  # When set to true, the sync-core-components command will skip updating
+  # coredns. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
+  upgrade_cluster_script_skip_coredns = false
+
+  # When set to true, the sync-core-components command will skip updating
+  # kube-proxy. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
+  upgrade_cluster_script_skip_kube_proxy = false
+
+  # When set to true, the sync-core-components command will skip updating
+  # aws-vpc-cni. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
+  upgrade_cluster_script_skip_vpc_cni = false
+
+  # When set to true, the sync-core-components command will wait until the new
+  # versions are rolled out in the cluster. This variable is ignored if
+  # `use_kubergrunt_sync_components` is false.
+  upgrade_cluster_script_wait_for_rollout = true
+
   # If this variable is set to true, then use an exec-based plugin to
   # authenticate and fetch tokens for EKS. This is useful because EKS clusters
   # use short-lived authentication tokens that can expire in the middle of an
@@ -792,7 +848,7 @@ module "eks_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/eks-cluster?ref=v0.104.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.115.4"
 }
 
 inputs = {
@@ -1019,6 +1075,19 @@ inputs = {
   # cluster
   cluster_instance_keypair_name = null
 
+  # The IP family used to assign Kubernetes pod and service addresses. Valid
+  # values are ipv4 (default) and ipv6. You can only specify an IP family when
+  # you create a cluster, changing this value will force a new cluster to be
+  # created.
+  cluster_network_config_ip_family = "ipv4"
+
+  # The CIDR block to assign Kubernetes pod and service IP addresses from. If
+  # you don't specify a block, Kubernetes assigns addresses from either the
+  # 10.100.0.0/16 or 172.20.0.0/16 CIDR blocks. You can only specify a custom
+  # CIDR block when you create a cluster, changing this value will force a new
+  # cluster to be created.
+  cluster_network_config_service_ipv4_cidr = null
+
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting log data in the CloudWatch log group for EKS control plane logs.
   control_plane_cloudwatch_log_group_kms_key_id = null
@@ -1068,6 +1137,24 @@ inputs = {
   # CloudWatch dashboard.
   dashboard_memory_usage_widget_parameters = {"height":6,"period":60,"width":8}
 
+  # Configuraiton object for the EBS CSI Driver EKS AddOn
+  ebs_csi_driver_addon_config = {}
+
+  # A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the
+  # tag name and the value is the tag value.
+  ebs_csi_driver_addon_tags = {}
+
+  # If using KMS encryption of EBS volumes, provide the KMS Key ARN to be used
+  # for a policy attachment.
+  ebs_csi_driver_kms_key_arn = null
+
+  # The namespace for the EBS CSI Driver. This will almost always be the
+  # kube-system namespace.
+  ebs_csi_driver_namespace = "kube-system"
+
+  # The Service Account name to be used with the EBS CSI Driver
+  ebs_csi_driver_sa_name = "ebs-csi-controller-sa"
+
   # Map of EKS add-ons, where key is name of the add-on and value is a map of
   # add-on properties.
   eks_addons = {}
@@ -1100,6 +1187,11 @@ inputs = {
   # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent
   # to get memory and disk metrics in CloudWatch for your Bastion host.
   enable_cloudwatch_metrics = true
+
+  # When set to true, the module configures and install the EBS CSI Driver as an
+  # EKS managed AddOn
+  # (https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html).
+  enable_ebs_csi_driver = false
 
   # When set to true, the module configures EKS add-ons
   # (https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html)
@@ -1200,13 +1292,13 @@ inputs = {
   # The URL from which to download Kubergrunt if it's not installed already. Use
   # to specify a version of kubergrunt that is compatible with your specified
   # kubernetes version. Ex.
-  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.1/kubergrunt'
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.1/kubergrunt"
+  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt_<platform>'
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt_<platform>"
 
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.25"
+  kubernetes_version = "1.30"
 
   # Configure one or more Node Groups to manage the EC2 instances in this
   # cluster. Set to empty object ({}) if you do not wish to configure managed
@@ -1343,6 +1435,26 @@ inputs = {
 
   # The tenancy of this server. Must be one of: default, dedicated, or host.
   tenancy = "default"
+
+  # When set to true, the sync-core-components command will skip updating
+  # coredns. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
+  upgrade_cluster_script_skip_coredns = false
+
+  # When set to true, the sync-core-components command will skip updating
+  # kube-proxy. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
+  upgrade_cluster_script_skip_kube_proxy = false
+
+  # When set to true, the sync-core-components command will skip updating
+  # aws-vpc-cni. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
+  upgrade_cluster_script_skip_vpc_cni = false
+
+  # When set to true, the sync-core-components command will wait until the new
+  # versions are rolled out in the cluster. This variable is ignored if
+  # `use_kubergrunt_sync_components` is false.
+  upgrade_cluster_script_wait_for_rollout = true
 
   # If this variable is set to true, then use an exec-based plugin to
   # authenticate and fetch tokens for EKS. This is useful because EKS clusters
@@ -2131,6 +2243,24 @@ The name of the Key Pair that can be used to SSH to each instance in the EKS clu
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="cluster_network_config_ip_family" requirement="optional" type="string">
+<HclListItemDescription>
+
+The IP family used to assign Kubernetes pod and service addresses. Valid values are ipv4 (default) and ipv6. You can only specify an IP family when you create a cluster, changing this value will force a new cluster to be created.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;ipv4&quot;"/>
+</HclListItem>
+
+<HclListItem name="cluster_network_config_service_ipv4_cidr" requirement="optional" type="string">
+<HclListItemDescription>
+
+The CIDR block to assign Kubernetes pod and service IP addresses from. If you don't specify a block, Kubernetes assigns addresses from either the 10.100.0.0/16 or 172.20.0.0/16 CIDR blocks. You can only specify a custom CIDR block when you create a cluster, changing this value will force a new cluster to be created.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="control_plane_cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2402,6 +2532,94 @@ object({
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="ebs_csi_driver_addon_config" requirement="optional" type="any">
+<HclListItemDescription>
+
+Configuraiton object for the EBS CSI Driver EKS AddOn
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   EKS add-on advanced configuration via configuration_values must follow the configuration schema for the deployed version of the add-on. 
+   See the following AWS Blog for more details on advanced configuration of EKS add-ons: https://aws.amazon.com/blogs/containers/amazon-eks-add-ons-advanced-configuration/
+   Example:
+   {
+     addon_version               = "v1.14.0-eksbuild.1"
+     configuration_values        = {}
+     preserve                    = false
+     resolve_conflicts_on_create = "OVERWRITE"
+     service_account_role_arn    = "arn:aws:iam::123456789012:role/role-name"
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_addon_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+     {
+       key1 = "value1"
+       key2 = "value2"
+     }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+If using KMS encryption of EBS volumes, provide the KMS Key ARN to be used for a policy attachment.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_namespace" requirement="optional" type="string">
+<HclListItemDescription>
+
+The namespace for the EBS CSI Driver. This will almost always be the kube-system namespace.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;kube-system&quot;"/>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_sa_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Service Account name to be used with the EBS CSI Driver
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;ebs-csi-controller-sa&quot;"/>
+</HclListItem>
+
 <HclListItem name="eks_addons" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -2426,9 +2644,9 @@ Any types represent complex values of variable type. For details, please consult
        coredns    = {}
        kube-proxy = {}
        vpc-cni    = {
-         addon_version            = "1.10.1-eksbuild.1"
-         resolve_conflicts        = "NONE"
-         service_account_role_arn = "arn:aws:iam::123456789012:role/role-name"
+         addon_version               = "1.10.1-eksbuild.1"
+         resolve_conflicts_on_create = "OVERWRITE"
+         service_account_role_arn    = "arn:aws:iam::123456789012:role/role-name"
        }
      }
 
@@ -2536,6 +2754,15 @@ Set to true to add IAM permissions to send custom metrics to CloudWatch. This is
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_ebs_csi_driver" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the module configures and install the EBS CSI Driver as an EKS managed AddOn (https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="enable_eks_addons" requirement="optional" type="bool">
@@ -2774,10 +3001,10 @@ map(list(string))
 <HclListItem name="kubergrunt_download_url" requirement="optional" type="string">
 <HclListItemDescription>
 
-The URL from which to download Kubergrunt if it's not installed already. Use to specify a version of kubergrunt that is compatible with your specified kubernetes version. Ex. 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.1/kubergrunt'
+The URL from which to download Kubergrunt if it's not installed already. Use to specify a version of kubergrunt that is compatible with your specified kubernetes version. Ex. 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt_&lt;platform>'
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.1/kubergrunt&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt_<platform>&quot;"/>
 </HclListItem>
 
 <HclListItem name="kubernetes_version" requirement="optional" type="string">
@@ -2786,13 +3013,13 @@ The URL from which to download Kubergrunt if it's not installed already. Use to 
 Version of Kubernetes to use. Refer to EKS docs for list of available versions (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.25&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;1.30&quot;"/>
 </HclListItem>
 
 <HclListItem name="managed_node_group_configurations" requirement="optional" type="any">
 <HclListItemDescription>
 
-Configure one or more Node Groups to manage the EC2 instances in this cluster. Set to empty object ({}) if you do not wish to configure managed node groups.
+Configure one or more Node Groups to manage the EC2 instances in this cluster. Set to empty object (&#123;&#125;) if you do not wish to configure managed node groups.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -3159,6 +3386,42 @@ The tenancy of this server. Must be one of: default, dedicated, or host.
 <HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
 </HclListItem>
 
+<HclListItem name="upgrade_cluster_script_skip_coredns" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the sync-core-components command will skip updating coredns. This variable is ignored if `use_kubergrunt_sync_components` is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="upgrade_cluster_script_skip_kube_proxy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the sync-core-components command will skip updating kube-proxy. This variable is ignored if `use_kubergrunt_sync_components` is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="upgrade_cluster_script_skip_vpc_cni" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the sync-core-components command will skip updating aws-vpc-cni. This variable is ignored if `use_kubergrunt_sync_components` is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="upgrade_cluster_script_wait_for_rollout" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the sync-core-components command will wait until the new versions are rolled out in the cluster. This variable is ignored if `use_kubergrunt_sync_components` is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="use_exec_plugin_for_auth" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -3331,6 +3594,14 @@ The ARN of the EKS cluster that was deployed.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="eks_cluster_endpoint">
+<HclListItemDescription>
+
+URL endpoint of the Kubernetes control plane provided by EKS.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="eks_cluster_name">
 <HclListItemDescription>
 
@@ -3450,11 +3721,11 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/eks-cluster/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/eks-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/eks-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/eks-cluster/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/eks-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b304bc02b7a699bce38a51f6063285c0"
+  "hash": "b8e2460705240f93e1bb7c34cd4ea9f3"
 }
 ##DOCS-SOURCER-END -->

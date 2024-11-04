@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.2" lastModifiedVersion="0.7.0"/>
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.10.5" lastModifiedVersion="0.9.6"/>
 
 # Join Path Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/join-path" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/join-path" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.7.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.9.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This is a module that can be used to join a list of given path parts (that is, file and folder names) into a single
 path with the appropriate path separator (backslash or forward slash) for the current operating system. This is useful
@@ -25,7 +25,7 @@ This module uses Python under the hood so, the Python must be installed on the O
 
 ## Example code
 
-See the [join-path example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/examples/join-path) for working sample code.
+See the [join-path example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/examples/join-path) for working sample code.
 
 ## Usage
 
@@ -61,7 +61,7 @@ joined_path = "${module.path.path}"
 
 module "join_path" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/join-path?ref=v0.9.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/join-path?ref=v0.10.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -86,7 +86,7 @@ module "join_path" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/join-path?ref=v0.9.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/join-path?ref=v0.10.5"
 }
 
 inputs = {
@@ -150,11 +150,11 @@ A list of folder and file names to combine into a path, using the proper path se
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/join-path/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/join-path/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.2/modules/join-path/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/join-path/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/join-path/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/join-path/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "49214841b76aaa719087de4cacc0870b"
+  "hash": "a54a4a68a72268f03c53f7ffffa7097e"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="0.29.7" lastModifiedVersion="0.29.7"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="0.29.26" lastModifiedVersion="0.29.26"/>
 
 # Application Load Balancer (ALB) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.26/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.26" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an [Application Load Balancer](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)
 that you can use as a load balancer for any [ALB Target Group](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html).
@@ -191,7 +191,7 @@ There are two ways for you to override this behavior:
 
 module "alb" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.26"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -282,17 +282,10 @@ module "alb" {
   # the tag name and the value is the tag value.
   custom_tags = {}
 
-  # If a request to the load balancer does not match any of your listener rules,
-  # the default action will return a fixed response with this body.
-  default_action_body = null
-
-  # If a request to the load balancer does not match any of your listener rules,
-  # the default action will return a fixed response with this content type.
-  default_action_content_type = "text/plain"
-
-  # If a request to the load balancer does not match any of your listener rules,
-  # the default action will return a fixed response with this status code.
-  default_action_status_code = 404
+  # Define the default action if a request to the load balancer does not match
+  # any of your listener rules.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener#default_action
+  default_action = {"fixed-response":{"content_type":"text/plain","message_body":null,"status_code":404}}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -301,6 +294,11 @@ module "alb" {
   # resources in this module, and the resources in this module need to be
   # destroyed before the resources in the list.
   dependencies = []
+
+  # Determines how the load balancer handles requests that might pose a security
+  # risk to an application due to HTTP desync. Valid values are monitor,
+  # defensive (default), strictest.
+  desync_mitigation_mode = "defensive"
 
   # If true, the ALB will drop invalid headers. Elastic Load Balancing requires
   # that message header names contain only alphanumeric characters and hyphens.
@@ -332,6 +330,11 @@ module "alb" {
   # that the client used to connect to the load balancer in application load
   # balancers. Defaults to true.
   enable_xff_client_port = true
+
+  # Define the default action for HTTP listeners. Use this to override the
+  # default_action variable for HTTP listeners. This is particularly useful if
+  # you for example want to redirect all HTTP traffic to HTTPS.
+  http_default_action = null
 
   # A list of ports for which an HTTP Listener should be created on the ALB.
   # Tip: When you define Listener Rules for these Listeners, be sure that, for
@@ -381,6 +384,10 @@ module "alb" {
   # be idle before the ALB closes the TCP connection.  
   idle_timeout = 60
 
+  # The type of IP addresses used by the subnets for your load balancer. The
+  # possible values are ipv4 and dualstack.
+  ip_address_type = null
+
   # DEPRECATED. The VPC ID in which this ALB will be placed.
   vpc_id = ""
 
@@ -405,7 +412,7 @@ module "alb" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.26"
 }
 
 inputs = {
@@ -499,17 +506,10 @@ inputs = {
   # the tag name and the value is the tag value.
   custom_tags = {}
 
-  # If a request to the load balancer does not match any of your listener rules,
-  # the default action will return a fixed response with this body.
-  default_action_body = null
-
-  # If a request to the load balancer does not match any of your listener rules,
-  # the default action will return a fixed response with this content type.
-  default_action_content_type = "text/plain"
-
-  # If a request to the load balancer does not match any of your listener rules,
-  # the default action will return a fixed response with this status code.
-  default_action_status_code = 404
+  # Define the default action if a request to the load balancer does not match
+  # any of your listener rules.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener#default_action
+  default_action = {"fixed-response":{"content_type":"text/plain","message_body":null,"status_code":404}}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -518,6 +518,11 @@ inputs = {
   # resources in this module, and the resources in this module need to be
   # destroyed before the resources in the list.
   dependencies = []
+
+  # Determines how the load balancer handles requests that might pose a security
+  # risk to an application due to HTTP desync. Valid values are monitor,
+  # defensive (default), strictest.
+  desync_mitigation_mode = "defensive"
 
   # If true, the ALB will drop invalid headers. Elastic Load Balancing requires
   # that message header names contain only alphanumeric characters and hyphens.
@@ -549,6 +554,11 @@ inputs = {
   # that the client used to connect to the load balancer in application load
   # balancers. Defaults to true.
   enable_xff_client_port = true
+
+  # Define the default action for HTTP listeners. Use this to override the
+  # default_action variable for HTTP listeners. This is particularly useful if
+  # you for example want to redirect all HTTP traffic to HTTPS.
+  http_default_action = null
 
   # A list of ports for which an HTTP Listener should be created on the ALB.
   # Tip: When you define Listener Rules for these Listeners, be sure that, for
@@ -597,6 +607,10 @@ inputs = {
   # The time in seconds that the client TCP connection to the ALB is allowed to
   # be idle before the ALB closes the TCP connection.  
   idle_timeout = 60
+
+  # The type of IP addresses used by the subnets for your load balancer. The
+  # possible values are ipv4 and dualstack.
+  ip_address_type = null
 
   # DEPRECATED. The VPC ID in which this ALB will be placed.
   vpc_id = ""
@@ -784,31 +798,32 @@ A map of custom tags to apply to the ALB and its Security Group. The key is the 
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="default_action_body" requirement="optional" type="string">
+<HclListItem name="default_action" requirement="optional" type="any">
 <HclListItemDescription>
 
-If a request to the load balancer does not match any of your listener rules, the default action will return a fixed response with this body.
+Define the default action if a request to the load balancer does not match any of your listener rules. https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener#default_action
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
+<HclListItemTypeDetails>
 
-<HclListItem name="default_action_content_type" requirement="optional" type="string">
-<HclListItemDescription>
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
 
-If a request to the load balancer does not match any of your listener rules, the default action will return a fixed response with this content type.
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
 
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;text/plain&quot;"/>
-</HclListItem>
+```hcl
+{
+  fixed-response = {
+    content_type = "text/plain",
+    message_body = null,
+    status_code = 404
+  }
+}
+```
 
-<HclListItem name="default_action_status_code" requirement="optional" type="number">
-<HclListItemDescription>
-
-If a request to the load balancer does not match any of your listener rules, the default action will return a fixed response with this status code.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="404"/>
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="dependencies" requirement="optional" type="list(string)">
@@ -818,6 +833,15 @@ Create a dependency between the resources in this module to the interpolated val
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="desync_mitigation_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+Determines how the load balancer handles requests that might pose a security risk to an application due to HTTP desync. Valid values are monitor, defensive (default), strictest.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;defensive&quot;"/>
 </HclListItem>
 
 <HclListItem name="drop_invalid_header_fields" requirement="optional" type="bool">
@@ -881,6 +905,41 @@ Indicates whether the X-Forwarded-For header should preserve the source port tha
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="http_default_action" requirement="optional" type="map(any)">
+<HclListItemDescription>
+
+Define the default action for HTTP listeners. Use this to override the default_action variable for HTTP listeners. This is particularly useful if you for example want to redirect all HTTP traffic to HTTPS.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Example (redirect all HTTP traffic to HTTPS):
+   default = {
+    redirect = {
+      protocol    = "HTTPS"
+      port        = "443"
+      status_code = "HTTP_301"
+    }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="http_listener_ports" requirement="optional" type="list(string)">
@@ -991,6 +1050,15 @@ The time in seconds that the client TCP connection to the ALB is allowed to be i
 <HclListItemDefaultValue defaultValue="60"/>
 </HclListItem>
 
+<HclListItem name="ip_address_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of IP addresses used by the subnets for your load balancer. The possible values are ipv4 and dualstack.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="vpc_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1099,11 +1167,11 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/alb/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/alb/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/alb/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.26/modules/alb/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.26/modules/alb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.26/modules/alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cc98337bdd384d717d638613fc745bc7"
+  "hash": "d87b9015a947cdf119124cdd26c3bd91"
 }
 ##DOCS-SOURCER-END -->

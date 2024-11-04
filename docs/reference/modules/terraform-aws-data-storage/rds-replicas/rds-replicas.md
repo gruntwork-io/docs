@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.28.0" />
+<VersionBadge repoTitle="Data Storage Modules" version="0.38.1" lastModifiedVersion="0.38.1"/>
 
 # RDS Read Replicas Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/rds-replicas" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/rds-replicas" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases?q=rds-replicas" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.38.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates a read replica (read-only copy) of a DB instance.
 
@@ -25,6 +25,44 @@ A read replica is a read-only copy of a DB instance. You can reduce the load on 
 queries from your applications to the read replica. Refer to
 [Working with DB instance read replicas](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html)
 for more information.
+
+## Promoting Read Replica as Primary
+
+For disaster recovery, you may need to promote a read replica as a primary instance. Promoting an RDS replica to be a
+primary instance is not a supported operation in Terraform and requires direct interaction with AWS APIs. Subsequent
+steps are then required to ensure your Terraform state is up-to-date. Please see the following walk-through for steps to
+promote a replica to primary.
+
+1.  **Promote the replica**: Run AWS CLI command to promote read replica as primary with the following command:
+
+```shell
+aws rds promote-read-replica \
+   --db-instance-identifier <replica-identifier> \
+   --region <region>
+```
+
+**Note**: This command triggers the promotion process and takes an additional 30-60 mins to complete the
+modification.
+
+2.  **Update the Terraform configuration**: Modify your Terraform configuration file (e.g., main.tf) to reflect the new
+    state. There's no way to automatically reflect the new state in terraform.
+3.  **Import the new primary instance into Terraform state**: Run the `terraform import` command. This command associates
+    the
+    resource in your Terraform configuration with the existing resource in AWS.
+
+```shell
+terraform import aws_db_instance.<identifier> <primary_instance_arn>
+```
+
+4.  **Refresh the Terraform state**: Run `terraform refresh` to fetch the current state of the primary instance from AWS
+    and update the Terraform state file accordingly. This ensures that Terraform is aware of the new primary instance's
+    attributes.
+5.  **Verify the Terraform plan**: Run `terraform plan` to review the changes that Terraform will apply based on the
+    updated configuration and current state. Make sure the plan reflects the desired changes, including the new primary
+    instance attributes.
+6.  **Apply the Terraform changes**: If the plan looks correct, apply the changes by running `terraform apply`. Terraform
+    will update the resources to match the desired configuration, reflecting the newly promoted primary
+    instance.
 
 ## Sample Usage
 
@@ -39,7 +77,7 @@ for more information.
 
 module "rds_replicas" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-replicas?ref=v0.28.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-replicas?ref=v0.38.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -103,9 +141,22 @@ module "rds_replicas" {
   # for more details.
   auto_minor_version_upgrade = true
 
+  # The description of the aws_db_subnet_group that is created. Defaults to
+  # 'Subnet group for the var.name DB' if not specified.
+  aws_db_subnet_group_description = null
+
+  # The name of the aws_db_subnet_group that is created, or an existing one to
+  # use if create_subnet_group is false. Defaults to var.name if not specified.
+  aws_db_subnet_group_name = null
+
   # How many days to keep backup snapshots around before cleaning them up. Must
   # be 1 or greater to support read replicas. 0 means disable automated backups.
   backup_retention_period = 21
+
+  # The daily time range during which automated backups are created (e.g.
+  # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup
+  # runs.
+  backup_window = null
 
   # The Certificate Authority (CA) certificates bundle to use on the RDS
   # instance.
@@ -114,12 +165,21 @@ module "rds_replicas" {
   # Copy all the RDS instance tags to snapshots. Default is false.
   copy_tags_to_snapshot = false
 
+  # When working with read replicas, only configure db subnet group if the
+  # source database specifies an instance in another AWS Region. If true, it
+  # will create a new subnet group.
+  create_subnet_group = false
+
   # Timeout for DB creating
   creating_timeout = "40m"
 
   # A map of custom tags to apply to the RDS Instance and the Security Group
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
+
+  # Specifies whether to remove automated backups immediately after the DB
+  # instance is deleted
+  delete_automated_backups = null
 
   # Timeout for DB deleting
   deleting_timeout = "60m"
@@ -147,6 +207,11 @@ module "rds_replicas" {
   # KMS key for the account will be used.
   kms_key_arn = null
 
+  # The weekly day and time range during which system maintenance can occur
+  # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
+  # there may even be a downtime during maintenance windows.
+  maintenance_window = null
+
   # When configured, the upper limit to which Amazon RDS can automatically scale
   # the storage of the DB instance. Configuring this will automatically ignore
   # differences to allocated_storage. Must be greater than or equal to
@@ -165,6 +230,14 @@ module "rds_replicas" {
   # monitoring_role_arn is let as an empty string, a default IAM role that
   # allows enhanced monitoring will be created.
   monitoring_role_arn = null
+
+  # Specifies if a standby instance should be deployed in another availability
+  # zone. If the primary fails, this instance will automatically take over.
+  multi_az = false
+
+  # (Optional) The network type of the DB instance. Valid values: IPV4, DUAL. By
+  # default, it's set to IPV4.
+  network_type = null
 
   # The number of read replicas to create. RDS will asynchronously replicate all
   # data from the master to these replicas, which you can use to horizontally
@@ -195,6 +268,10 @@ module "rds_replicas" {
   # Only set this to true if you want the database open to the internet.
   publicly_accessible = false
 
+  # Identifiers of the replica you want to create. Use this variable if you want
+  # to set custom identifier for your read replicas.
+  replica_identifiers = null
+
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
   # this DB instance, you will not have any backups of the data!
@@ -207,6 +284,11 @@ module "rds_replicas" {
   # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
   # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
   storage_type = "gp2"
+
+  # A list of subnet ids where the database should be deployed. In the standard
+  # Gruntwork VPC setup, these should be the private persistence subnet ids.
+  # This is ignored if create_subnet_group=false.
+  subnet_ids = null
 
   # Timeout for DB updating
   updating_timeout = "80m"
@@ -226,7 +308,7 @@ module "rds_replicas" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-replicas?ref=v0.28.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-replicas?ref=v0.38.1"
 }
 
 inputs = {
@@ -293,9 +375,22 @@ inputs = {
   # for more details.
   auto_minor_version_upgrade = true
 
+  # The description of the aws_db_subnet_group that is created. Defaults to
+  # 'Subnet group for the var.name DB' if not specified.
+  aws_db_subnet_group_description = null
+
+  # The name of the aws_db_subnet_group that is created, or an existing one to
+  # use if create_subnet_group is false. Defaults to var.name if not specified.
+  aws_db_subnet_group_name = null
+
   # How many days to keep backup snapshots around before cleaning them up. Must
   # be 1 or greater to support read replicas. 0 means disable automated backups.
   backup_retention_period = 21
+
+  # The daily time range during which automated backups are created (e.g.
+  # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup
+  # runs.
+  backup_window = null
 
   # The Certificate Authority (CA) certificates bundle to use on the RDS
   # instance.
@@ -304,12 +399,21 @@ inputs = {
   # Copy all the RDS instance tags to snapshots. Default is false.
   copy_tags_to_snapshot = false
 
+  # When working with read replicas, only configure db subnet group if the
+  # source database specifies an instance in another AWS Region. If true, it
+  # will create a new subnet group.
+  create_subnet_group = false
+
   # Timeout for DB creating
   creating_timeout = "40m"
 
   # A map of custom tags to apply to the RDS Instance and the Security Group
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
+
+  # Specifies whether to remove automated backups immediately after the DB
+  # instance is deleted
+  delete_automated_backups = null
 
   # Timeout for DB deleting
   deleting_timeout = "60m"
@@ -337,6 +441,11 @@ inputs = {
   # KMS key for the account will be used.
   kms_key_arn = null
 
+  # The weekly day and time range during which system maintenance can occur
+  # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
+  # there may even be a downtime during maintenance windows.
+  maintenance_window = null
+
   # When configured, the upper limit to which Amazon RDS can automatically scale
   # the storage of the DB instance. Configuring this will automatically ignore
   # differences to allocated_storage. Must be greater than or equal to
@@ -355,6 +464,14 @@ inputs = {
   # monitoring_role_arn is let as an empty string, a default IAM role that
   # allows enhanced monitoring will be created.
   monitoring_role_arn = null
+
+  # Specifies if a standby instance should be deployed in another availability
+  # zone. If the primary fails, this instance will automatically take over.
+  multi_az = false
+
+  # (Optional) The network type of the DB instance. Valid values: IPV4, DUAL. By
+  # default, it's set to IPV4.
+  network_type = null
 
   # The number of read replicas to create. RDS will asynchronously replicate all
   # data from the master to these replicas, which you can use to horizontally
@@ -385,6 +502,10 @@ inputs = {
   # Only set this to true if you want the database open to the internet.
   publicly_accessible = false
 
+  # Identifiers of the replica you want to create. Use this variable if you want
+  # to set custom identifier for your read replicas.
+  replica_identifiers = null
+
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
   # this DB instance, you will not have any backups of the data!
@@ -397,6 +518,11 @@ inputs = {
   # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
   # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
   storage_type = "gp2"
+
+  # A list of subnet ids where the database should be deployed. In the standard
+  # Gruntwork VPC setup, these should be the private persistence subnet ids.
+  # This is ignored if create_subnet_group=false.
+  subnet_ids = null
 
   # Timeout for DB updating
   updating_timeout = "80m"
@@ -524,6 +650,24 @@ Indicates that minor engine upgrades will be applied automatically to the DB ins
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="aws_db_subnet_group_description" requirement="optional" type="string">
+<HclListItemDescription>
+
+The description of the aws_db_subnet_group that is created. Defaults to 'Subnet group for the <a href="#name"><code>name</code></a> DB' if not specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="aws_db_subnet_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the aws_db_subnet_group that is created, or an existing one to use if create_subnet_group is false. Defaults to <a href="#name"><code>name</code></a> if not specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="backup_retention_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -531,6 +675,15 @@ How many days to keep backup snapshots around before cleaning them up. Must be 1
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="21"/>
+</HclListItem>
+
+<HclListItem name="backup_window" requirement="optional" type="string">
+<HclListItemDescription>
+
+The daily time range during which automated backups are created (e.g. 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="ca_cert_identifier" requirement="optional" type="string">
@@ -546,6 +699,15 @@ The Certificate Authority (CA) certificates bundle to use on the RDS instance.
 <HclListItemDescription>
 
 Copy all the RDS instance tags to snapshots. Default is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="create_subnet_group" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When working with read replicas, only configure db subnet group if the source database specifies an instance in another AWS Region. If true, it will create a new subnet group.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -567,6 +729,15 @@ A map of custom tags to apply to the RDS Instance and the Security Group created
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="delete_automated_backups" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether to remove automated backups immediately after the DB instance is deleted
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="deleting_timeout" requirement="optional" type="string">
@@ -623,6 +794,15 @@ The ARN of a KMS key that should be used to encrypt data on disk. Only used if <
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="maintenance_window" requirement="optional" type="string">
+<HclListItemDescription>
+
+The weekly day and time range during which system maintenance can occur (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may even be a downtime during maintenance windows.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="max_allocated_storage" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -645,6 +825,24 @@ The interval, in seconds, between points when Enhanced Monitoring metrics are co
 <HclListItemDescription>
 
 The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs. If monitoring_interval is greater than 0, but monitoring_role_arn is let as an empty string, a default IAM role that allows enhanced monitoring will be created.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="multi_az" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies if a standby instance should be deployed in another availability zone. If the primary fails, this instance will automatically take over.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="network_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Optional) The network type of the DB instance. Valid values: IPV4, DUAL. By default, it's set to IPV4.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -704,6 +902,15 @@ WARNING: - In nearly all cases a database should NOT be publicly accessible. Onl
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="replica_identifiers" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Identifiers of the replica you want to create. Use this variable if you want to set custom identifier for your read replicas.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -729,6 +936,15 @@ The type of storage to use for the primary instance. Must be one of 'standard' (
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
+</HclListItem>
+
+<HclListItem name="subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of subnet ids where the database should be deployed. In the standard Gruntwork VPC setup, these should be the private persistence subnet ids. This is ignored if create_subnet_group=false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="updating_timeout" requirement="optional" type="string">
@@ -768,11 +984,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/rds-replicas/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/rds-replicas/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.0/modules/rds-replicas/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/rds-replicas/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/rds-replicas/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/rds-replicas/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7a85472b91445dc1187e19b8e281ab54"
+  "hash": "563a6e71aef1d4dec321490b87eeb4cd"
 }
 ##DOCS-SOURCER-END -->

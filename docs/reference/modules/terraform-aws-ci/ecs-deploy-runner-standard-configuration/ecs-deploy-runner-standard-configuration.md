@@ -9,16 +9,16 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.52.3" lastModifiedVersion="0.50.6"/>
+<VersionBadge repoTitle="CI Modules" version="0.58.0" lastModifiedVersion="0.52.17"/>
 
 # ECS Deploy Runner Standard Configuration module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner-standard-configuration" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/ecs-deploy-runner-standard-configuration" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.17" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module provides a streamlined interface to configure the [ecs-deploy-runner
-module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner) for a standard infrastructure and applications pipeline. This includes:
+module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/ecs-deploy-runner) for a standard infrastructure and applications pipeline. This includes:
 
 *   Base pipeline of build image, update variables, deploy infrastructure with Terraform/Terragrunt.
 *   Restricting git repos that can deploy infrastructure.
@@ -100,8 +100,8 @@ for more information).
 
 ## How do I invoke scripts in a given container?
 
-You can use the [infrastructure-deployer CLI](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/infrastructure-deployer) to invoke a deployed ECS deploy runner. Refer
-to [How do I invoke the ECS deploy runner](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/infrastructure-deployer/core-concepts.md#how-do-i-invoke-the-ecs-deploy-runner)
+You can use the [infrastructure-deployer CLI](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/infrastructure-deployer) to invoke a deployed ECS deploy runner. Refer
+to [How do I invoke the ECS deploy runner](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/infrastructure-deployer/core-concepts.md#how-do-i-invoke-the-ecs-deploy-runner)
 for more information.
 
 ## Sample Usage
@@ -117,7 +117,7 @@ for more information.
 
 module "ecs_deploy_runner_standard_configuration" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-standard-configuration?ref=v0.52.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-standard-configuration?ref=v0.58.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -165,6 +165,7 @@ module "ecs_deploy_runner_standard_configuration" {
     )
     infrastructure_live_repositories = list(string)
     infrastructure_live_repositories_regex = list(string)
+    additional_allowed_options = list(string)
     allowed_update_variable_names = list(string)
     allowed_apply_git_refs = list(string)
     machine_user_git_info = object(
@@ -188,6 +189,7 @@ module "ecs_deploy_runner_standard_configuration" {
     )
     infrastructure_live_repositories = list(string)
     infrastructure_live_repositories_regex = list(string)
+    additional_allowed_options = list(string)
     secrets_manager_env_vars = map(string)
     environment_vars = map(string)
   )>
@@ -221,7 +223,7 @@ module "ecs_deploy_runner_standard_configuration" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-standard-configuration?ref=v0.52.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-standard-configuration?ref=v0.58.0"
 }
 
 inputs = {
@@ -272,6 +274,7 @@ inputs = {
     )
     infrastructure_live_repositories = list(string)
     infrastructure_live_repositories_regex = list(string)
+    additional_allowed_options = list(string)
     allowed_update_variable_names = list(string)
     allowed_apply_git_refs = list(string)
     machine_user_git_info = object(
@@ -295,6 +298,7 @@ inputs = {
     )
     infrastructure_live_repositories = list(string)
     infrastructure_live_repositories_regex = list(string)
+    additional_allowed_options = list(string)
     secrets_manager_env_vars = map(string)
     environment_vars = map(string)
   )>
@@ -597,6 +601,11 @@ object({
     # Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
     infrastructure_live_repositories_regex = list(string)
 
+    # List of additional allowed options to pass to terraform plan. This is useful for passing in additional options
+    # that are not supported by the pipeline by default. For example, if you want to pass in the -var option,
+    # you would set this to ["-var"].
+    additional_allowed_options = list(string)
+
     # List of variable names that are allowed to be automatically updated by the CI/CD pipeline. Recommended to set to:
     # ["image_version", "version", "ami_version_tag", "ami"]
     allowed_update_variable_names = list(string)
@@ -670,6 +679,18 @@ object({
      configuration to deploy infrastructure) that the deploy runner is allowed to deploy. These should be the SSH git
      URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
      Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of additional allowed options to pass to terraform plan. This is useful for passing in additional options
+     that are not supported by the pipeline by default. For example, if you want to pass in the -var option,
+     you would set this to ["-var"].
 
 ```
 </details>
@@ -799,6 +820,11 @@ object({
     # Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
     infrastructure_live_repositories_regex = list(string)
 
+    # List of additional allowed options to pass to terraform plan. This is useful for passing in additional options
+    # that are not supported by the pipeline by default. For example, if you want to pass in the -var option,
+    # you would set this to ["-var"].
+    additional_allowed_options = list(string)
+
     # Map of key value pairs where keys are environment variable names and values are ARNs of secrets manager entries to
     # inject as that variable. Note that these environment variables will be available to the
     # infrastructure-deploy-script. For the terraform planner, the following environment variables are recommended:
@@ -837,6 +863,18 @@ object({
      configuration to deploy infrastructure) that the deploy runner is allowed to deploy. These should be the SSH git
      URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
      Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of additional allowed options to pass to terraform plan. This is useful for passing in additional options
+     that are not supported by the pipeline by default. For example, if you want to pass in the -var option,
+     you would set this to ["-var"].
 
 ```
 </details>
@@ -916,11 +954,11 @@ Configuration map for the ecs-deploy-runner module that can be passed straight i
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner-standard-configuration/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner-standard-configuration/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/ecs-deploy-runner-standard-configuration/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/ecs-deploy-runner-standard-configuration/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/ecs-deploy-runner-standard-configuration/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/ecs-deploy-runner-standard-configuration/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2558a7542059abe5da7666a5c2c8e29c"
+  "hash": "57d460eafdc973dd0757ebfa4e7d5942"
 }
 ##DOCS-SOURCER-END -->

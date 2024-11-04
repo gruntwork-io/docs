@@ -1,12 +1,15 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
-const path = require('path')
+const path = require("path")
 
-const lightCodeTheme = require("prism-react-renderer/themes/github")
-const darkCodeTheme = require("prism-react-renderer/themes/dracula")
+const {themes} = require('prism-react-renderer');
+const lightCodeTheme = themes.github;
+const darkCodeTheme = themes.dracula;
+
 const cfg = require("config")
 
-const captionsPlugin = require("./src/plugins/captions")
+const captionsPlugin = require("./src/plugins/captions.mjs")
+const { redirects } = require("./src/redirects.js");
 
 const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined
 
@@ -22,8 +25,8 @@ const enableGoogleAnalytics =
 const siteUrl = cfg.has("siteUrl")
   ? cfg.get("siteUrl")
   : process.env["NETLIFY"]
-    ? process.env["DEPLOY_URL"]
-    : "http://localhost:3000"
+  ? process.env["DEPLOY_URL"]
+  : "http://localhost:3000"
 
 const buildVersion = cfg.has("app.buildVersion")
   ? cfg.get("app.buildVersion")
@@ -34,6 +37,16 @@ const plugins = ["plugin-image-zoom"]
 if (enablePosthog) {
   plugins.push("posthog-docusaurus")
 }
+
+const redirectPlugin = [
+  '@docusaurus/plugin-client-redirects',
+      {
+        redirects,
+      }
+]
+
+// @ts-ignore - types don't understand the plugin config
+plugins.push(redirectPlugin)
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -49,7 +62,9 @@ const config = {
     "https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap",
   ],
   customFields: {
-    libraryIndexName: algoliaConfig ? algoliaConfig.libraryIndexName : undefined
+    libraryIndexName: algoliaConfig
+      ? algoliaConfig.libraryIndexName
+      : undefined,
   },
   presets: [
     [
@@ -62,8 +77,8 @@ const config = {
           editUrl: "https://github.com/gruntwork-io/docs/edit/master/",
           exclude: [
             "guides/build-it-yourself/landing-zone/**",
-            "guides/build-it-yourself/kubernetes-cluster/**",
             "guides/build-it-yourself/vpc/**",
+            "**/node_modules/**",
           ],
           beforeDefaultRemarkPlugins: [captionsPlugin],
         },
@@ -73,14 +88,20 @@ const config = {
         },
         googleTagManager: enableGoogleAnalytics
           ? {
-            containerId: googleAnalyticsConfig.trackingID,
-          }
+              containerId: googleAnalyticsConfig.trackingID,
+            }
           : undefined,
       },
     ],
   ],
 
   plugins: plugins,
+
+  markdown: {
+    mermaid: true,
+  },
+
+  themes: ["@docusaurus/theme-mermaid"],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -97,44 +118,19 @@ const config = {
           {
             type: "doc",
             position: "left",
-            label: "Intro",
-            docId: "intro/overview/intro-to-gruntwork",
-          },
-          {
-            type: "dropdown",
-            position: "left",
             label: "Docs",
-            id: "docs",
-            items: [
-              {
-                type: "doc",
-                label: "Library",
-                docId: "library/overview/index",
-              },
-              {
-                type: "doc",
-                label: "Pipelines",
-                docId: "pipelines/overview/index",
-              },
-              {
-                type: "doc",
-                label: "Reference Architecture",
-                docId: "refarch/whats-this/what-is-a-reference-architecture",
-              },
-              {
-                type: "doc",
-                label: "Developer Portal",
-                docId: "developer-portal/create-account",
-              },
-            ],
+            docId: "index",
           },
           {
             type: "doc",
-            label: "Library Reference",
-            docId: "library/reference/index",
+            label: "Reference",
+            docId: "2.0/reference",
           },
-          { to: "/tools", label: "Tools", position: "left" },
-          { to: "/courses", label: "Courses", position: "left" },
+          {
+            type: "doc",
+            label: "Release Notes",
+            docId: "guides/stay-up-to-date/index",
+          },
           {
             href: "https://github.com/gruntwork-io/knowledge-base/discussions",
             label: "Knowledge Base",
@@ -222,7 +218,7 @@ const config = {
             items: [
               {
                 label: "Production Framework",
-                href: "/guides/production-framework"
+                href: "/guides/production-framework",
               },
               {
                 label: "Developer Portal",
@@ -298,22 +294,29 @@ const config = {
       },
       algolia: algoliaConfig
         ? {
-          appId: algoliaConfig.appId,
-          // Public API key: safe to commit, but still sourced from config
-          apiKey: algoliaConfig.apiKey,
-          indexName: algoliaConfig.indexName,
-          libraryIndexName: algoliaConfig.libraryIndexName,
-          contextualSearch: true,
-        }
+            appId: algoliaConfig.appId,
+            // Public API key: safe to commit, but still sourced from config
+            apiKey: algoliaConfig.apiKey,
+            indexName: algoliaConfig.indexName,
+            libraryIndexName: algoliaConfig.libraryIndexName,
+            contextualSearch: true,
+          }
         : undefined,
       zoomSelector: ".markdown :not(em) > img:not(.no-zoom)",
       posthog: enablePosthog
         ? {
-          apiKey: posthogConfig.apiKey,
-          appUrl: posthogConfig.appUrl,
-        }
+            apiKey: posthogConfig.apiKey,
+            appUrl: posthogConfig.appUrl,
+          }
         : undefined,
       metadata: [
+        // https://docusaurus.io/docs/2.x/seo#global-metadata
+        // This would become <meta name="keywords" content="..."/> in the generated HTML
+        {
+          name: "keywords",
+          content:
+            "gruntwork, devops, devops platform, infrastructure as code, iac, account factory, account vending, pipelines, terragrunt pipelines, opentofu, tofu, terraform, terragrunt, terratest, aws, devops library, devops tools, devops courses",
+        },
         { name: "buildVersion", content: buildVersion },
         { name: "buildTime", content: new Date().toString() },
       ],

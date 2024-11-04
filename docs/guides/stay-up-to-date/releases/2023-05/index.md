@@ -19,14 +19,17 @@ Here are the repos that were updated:
 - [terraform-aws-cache](#terraform-aws-cache)
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-cis-service-catalog](#terraform-aws-cis-service-catalog)
+- [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
 - [terraform-aws-lambda](#terraform-aws-lambda)
+- [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-messaging](#terraform-aws-messaging)
 - [terraform-aws-openvpn](#terraform-aws-openvpn)
 - [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-service-catalog](#terraform-aws-service-catalog)
+- [terraform-aws-vpc](#terraform-aws-vpc)
 
 
 ## aws-sample-app
@@ -89,6 +92,41 @@ Here are the repos that were updated:
 ## patcher-cli
 
 
+### [v0.3.1](https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.3.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 5/30/2023 | <a href="https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.3.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+This release includes the following changes.
+
+  - `patcher update`
+  - User selects the module dependencies to be updated
+  - Supports bumping to the next safe version
+  - Outputs YAML to `stdout` detailing the updates that were applied
+
+  - `patcher update --non-interactive`
+  - Updates all module dependencies in the current folder (and child folders) according to the specified update strategy
+  -  Outputs YAML to `stdout` detailing the updates that were applied
+  -  Outputs YAML to `stdout` listing all the `README-TO-COMPLETE-UPDATE.md` files that were created (`--update-strategy next-breaking` only)
+  -  `--no-color` flag for better output handling in CI pipelines
+ 
+
+- This version only supports updating each selected dependency to either the highest version **before** the next closest breaking change or the latest version of the dependency, whichever is encountered first.
+
+- Setting `--update-strategy next-safe` (default)` will update all dependencies to either the highest version **before** the next closest breaking change or the latest version of the dependency, whichever is encountered first.
+- Setting `--update-strategy next-breaking` will update all dependencies to either the the next closest breaking change or the latest version of the dependency, whichever is encountered first.
+  - This may result in an update that requires manual intervention. 
+  - If a dependency is updated to a breaking change, a `README-TO-COMPLETE-UPDATE.md` containing an extract of the relevant release note is written to the folder containing the dependency
+
+
+
+</div>
+
+
 ### [v0.2.3](https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.2.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -147,6 +185,23 @@ Updated the views to have a responsive height.
 ## terraform-aws-asg
 
 
+### [v0.21.7](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.7)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 5/31/2023 | Modules affected: asg-instance-refresh, asg-rolling-deploy, server-group | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.7">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Pin AWS provider &lt;v5.0.0
+
+
+
+</div>
+
+
 ### [v0.21.6](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.6)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -167,6 +222,24 @@ Updated the views to have a responsive height.
 
 
 ## terraform-aws-cache
+
+
+### [v0.20.1](https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.20.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 5/31/2023 | Modules affected: redis | <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.20.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Pin AWS provider &lt;v5.0.0
+
+
+
+
+</div>
 
 
 ### [v0.20.0](https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.20.0)
@@ -200,6 +273,26 @@ Updated the views to have a responsive height.
 
 
 ## terraform-aws-ci
+
+
+### [v0.52.2](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 5/30/2023 | Modules affected: ecs-deploy-runner, jenkins-server | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Bump kubegrunt to v0.11.2
+- Fix: Jenkins ebs volume mapping var
+
+
+
+
+
+</div>
 
 
 ### [v0.52.1](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.1)
@@ -293,6 +386,47 @@ Updated the views to have a responsive height.
 
 
 
+## terraform-aws-data-storage
+
+
+### [v0.27.1](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 5/31/2023 | Modules affected: rds-proxy, aurora, rds, redshift | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Implement a new module for RDS proxy
+- Correct default values for min &amp; max capacity for aurora serverless
+
+- Fix improper usage of depends_on variables on example modules
+- Fix the unit tests for MariaDB RDS
+- Skip taking final snapshot for RDS instance
+- Remove custom default values for variables
+- Remove parameter_group_name from rds-proxy example module
+- Modify ADOC to Markdown for Redshift README doc
+- Increase the terraform aws provider version to 4.61.0
+- Add a new feature to deploy Redshift serverless in Redshift module.
+- Consolidate multiple README pages into a single markdown file for RDS module
+- Make necessary changes to address recently failing tests.
+- Support password management with secrets manager in Aurora
+- Convert Aurora README format to markdwon from ADOC
+- Pin AWS provider &lt;v5.0.0
+
+
+Special thanks to the following users for their contribution!
+
+
+
+
+
+</div>
+
+
+
 ## terraform-aws-ecs
 
 
@@ -375,7 +509,46 @@ Updated the views to have a responsive height.
 
 
 
+## terraform-aws-load-balancer
+
+
+### [v0.29.7](https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.7)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 5/31/2023 | Modules affected: acm-tls-certificate, alb, lb-listener-rules | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.7">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Pin AWS provider &lt;v5.0.0
+
+
+
+
+
+
+</div>
+
+
+
 ## terraform-aws-messaging
+
+
+### [v0.12.1](https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.12.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 6/1/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.12.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Pin AWS provider &lt;v5.0.0
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-messaging/compare/v0.12.0...v0.12.1
+
+</div>
 
 
 ### [v0.12.0](https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.12.0)
@@ -509,6 +682,26 @@ Fixed the user certificate request with pattern name similar to the already adde
 ## terraform-aws-service-catalog
 
 
+### [v0.104.8](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.104.8)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 5/30/2023 | Modules affected: mgmt | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.104.8">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Bump requests from 2.25.1 to 2.31.0 in /examples/for-learning-and-testing/services/lambda/python
+- Bump jenkins module version
+
+
+
+
+
+</div>
+
+
 ### [v0.104.7](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.104.7)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -621,10 +814,33 @@ Fixed the user certificate request with pattern name similar to the already adde
 
 
 
+## terraform-aws-vpc
+
+
+### [v0.23.1](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.23.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 5/31/2023 | Modules affected: vpc-peering-cross-accounts-accepter, vpc-peering-cross-accounts-requester, vpc-peering | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.23.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Pin AWS provider &lt;v5.0.0
+
+
+
+
+
+</div>
+
+
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "2f2b30e6c8865001e879b5b5efb3baa0"
+  "hash": "add3917ce70157a766bb1f07259836bb"
 }
 ##DOCS-SOURCER-END -->

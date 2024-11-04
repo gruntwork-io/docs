@@ -9,19 +9,19 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.23.1" lastModifiedVersion="0.23.1"/>
+<VersionBadge repoTitle="VPC Modules" version="0.26.26" lastModifiedVersion="0.26.8"/>
 
 # VPC-Peering Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-peering" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-peering" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.23.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates [VPC Peering
 Connections](http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide/Welcome.html) between VPCs. Normally, VPCs are
 completely isolated from each other, but sometimes, you want to allow traffic to flow between them, such as allowing
-DevOps tools running in a Mgmt VPC (see [vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-mgmt)) to talk to apps running in a Stage or Prod VPC (see
-[vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-app)). This module can create peering connections and route table entries that make this sort of
+DevOps tools running in a Mgmt VPC (see [vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-mgmt)) to talk to apps running in a Stage or Prod VPC (see
+[vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-app)). This module can create peering connections and route table entries that make this sort of
 cross-VPC communication possible.
 
 ## What's a VPC?
@@ -57,7 +57,7 @@ and production, someone in staging *cannot* access production.
 
 module "vpc_peering" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering?ref=v0.23.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering?ref=v0.26.26"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -107,17 +107,9 @@ module "vpc_peering" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # A boolean parameter to allow connection from the classic link to VPC over
-  # the peering connection. 
-  allow_classic_link_to_remote_vpc = false
-
   # A boolean parameter to enable or disable DNS resolution on both accepter and
   # requester side of the connection peering. 
   allow_remote_vpc_dns_resolution = false
-
-  # A boolean parameter to allow connection from the VPC to the classic link
-  # over the peering connection. 
-  allow_vpc_to_remote_classic_link = false
 
   # A boolean parameter to auto-accept the VPC peering connection.
   auto_accept = true
@@ -149,7 +141,7 @@ module "vpc_peering" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering?ref=v0.23.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering?ref=v0.26.26"
 }
 
 inputs = {
@@ -202,17 +194,9 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # A boolean parameter to allow connection from the classic link to VPC over
-  # the peering connection. 
-  allow_classic_link_to_remote_vpc = false
-
   # A boolean parameter to enable or disable DNS resolution on both accepter and
   # requester side of the connection peering. 
   allow_remote_vpc_dns_resolution = false
-
-  # A boolean parameter to allow connection from the VPC to the classic link
-  # over the peering connection. 
-  allow_vpc_to_remote_classic_link = false
 
   # A boolean parameter to auto-accept the VPC peering connection.
   auto_accept = true
@@ -241,11 +225,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-peering/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-peering/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.23.1/modules/vpc-peering/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-peering/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-peering/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-peering/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8f0f0aff236024662c5a2769f3378c06"
+  "hash": "a3b39a1a7e7008d666bc0077a4f08e73"
 }
 ##DOCS-SOURCER-END -->

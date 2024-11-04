@@ -1,6 +1,27 @@
 {
   "module": "eks-k8s-cluster-autoscaler",
   "releases": {
+    "v0.62.0": {
+      "contains_changes": true
+    },
+    "v0.61.1": {
+      "contains_changes": false
+    },
+    "v0.61.0": {
+      "contains_changes": false
+    },
+    "v0.60.0": {
+      "contains_changes": true
+    },
+    "v0.59.4": {
+      "contains_changes": false
+    },
+    "v0.59.3": {
+      "contains_changes": true
+    },
+    "v0.59.2": {
+      "contains_changes": false
+    },
     "v0.59.1": {
       "contains_changes": false
     },

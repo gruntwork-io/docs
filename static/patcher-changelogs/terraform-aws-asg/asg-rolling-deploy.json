@@ -1,6 +1,12 @@
 {
   "module": "asg-rolling-deploy",
   "releases": {
+    "v0.21.9": {
+      "contains_changes": true
+    },
+    "v0.21.8": {
+      "contains_changes": false
+    },
     "v0.21.7": {
       "contains_changes": true
     },

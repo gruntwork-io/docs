@@ -9,21 +9,21 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.52.3" lastModifiedVersion="0.52.3"/>
+<VersionBadge repoTitle="CI Modules" version="0.58.0" lastModifiedVersion="0.52.17"/>
 
 # IAM Policies
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.17" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains modules that create an IAM Policy with the minimum permissions needed to support specific CI use
 cases. It includes:
 
-*   [ecr-docker-push](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/iam-policies/ecr-docker-push): An IAM Policy that enables checking for an existing Docker image in Amazon ECR and pushing a new one.
-*   [ecs-service-deployment](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/iam-policies/ecs-service-deployment): An IAM Policy that enables deploying a new Docker image to the ECS Cluster.
-*   [terraform-remote-state-s3](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/iam-policies/terraform-remote-state-s3): An IAM Policy that enables using Terraform Remote State with S3.
-*   [terragrunt](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/iam-policies/terragrunt): An IAM Policy that enables using the locking and user-identity features of Terragrunt.
+*   [ecr-docker-push](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/iam-policies/ecr-docker-push): An IAM Policy that enables checking for an existing Docker image in Amazon ECR and pushing a new one.
+*   [ecs-service-deployment](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/iam-policies/ecs-service-deployment): An IAM Policy that enables deploying a new Docker image to the ECS Cluster.
+*   [terraform-remote-state-s3](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/iam-policies/terraform-remote-state-s3): An IAM Policy that enables using Terraform Remote State with S3.
+*   [terragrunt](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/iam-policies/terragrunt): An IAM Policy that enables using the locking and user-identity features of Terragrunt.
 
 ## Background
 
@@ -67,11 +67,11 @@ Some modules are configurable to support whatever level of
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/iam-policies/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/iam-policies/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.3/modules/iam-policies/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/iam-policies/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/iam-policies/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "49f90bec2dd972f3f23640409185c06c"
+  "hash": "758cb00be925956e88350de4d41dd237"
 }
 ##DOCS-SOURCER-END -->

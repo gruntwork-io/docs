@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="0.29.7" lastModifiedVersion="0.29.7"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="0.29.26" lastModifiedVersion="0.29.20"/>
 
 # ACM TLS Certificate
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/acm-tls-certificate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.26/modules/acm-tls-certificate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.20" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to issue and validate free, auto-renewing TLS certificates using [AWS Certificate
 Manager (ACM)](https://aws.amazon.com/certificate-manager/). It supports issuing and validating multiple ACM certificates.
@@ -104,6 +104,42 @@ acm_tls_certificates = {
     }
  }
 ```
+
+## Requesting a certificate for a subdomain with a subject alternative name that uses a unique hosted zone
+
+If you are requesting a a certificate for a subdomain with a subject alternative name where both use a unique (and different) hosted zone that differes from the zone used by the parent/root domain, then you will need to specify a domain:zone mapping using the var `domain_hosted_zone_ids`.
+
+Assume that you want a wildcard certificate created for '*.foo.acm-test.test-domain.in' with a subject alternative name of '*.bar.acm-test.test-domain.in.' In this example, the subdomain 'acm-test.test-domain.in' uses zone ID Z11111, the subdomain 'foo.acm-test.test-domain.in' uses zone ID Z12345 and the subdomain 'bar.acm-test.test-domain.in' uses zone ID Z67890. In order for certificate validation records to be created in the correct zone, a domain:zone mapping can be specified similar to the following example:
+
+```
+  acm_tls_certificates = {
+    "*.foo.acm-test.test-domain.in" = {
+      subject_alternative_names = ["*.bar.acm-test.test-domain.in"]
+      tags = {
+        test-tag-1 = true
+      }
+      create_verification_record = true
+      verify_certificate         = true
+    }
+  }
+  domain_hosted_zone_ids = {
+    "*.foo.acm-test.test-domain.in" = "Z12345"
+    "*.bar.acm-test.test-domain.in" = "Z67890"
+  }
+```
+
+This will allow the validation records for 'foo.acm-test.test-domain.in' to be created in zone Z12345, and the validation records for 'bar.acm-test.test-domain.in' to be created in zone Z67890.
+
+Make sure the domain string passed to the `domain_hosted_zone_ids` exactly matches the domain string(s) set in `acm_tls_certificates`.
+
+## Certificate Renewal and Expiration
+
+If you use this module to create a new certificate, it should automatically renew so long as the following criteria are met at least 60 days prior to expiration:
+
+*   The certificate is currently in use by an AWS service.
+*   All required ACM-provided DNS records are present and accessible via public DNS (this module configures this automatically).
+
+If a certificate expires because the above criteria is not met and you now need to use that certificate, the best course of action would be to delete the expired certificate and allow this module to recreate it.
 
 ## Special handling for use with API Gateway
 
@@ -196,7 +232,7 @@ In this example, the `acm-tls-certificates` module will "wait" until your `aws_r
 
 module "acm_tls_certificate" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v0.29.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v0.29.26"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -254,7 +290,7 @@ module "acm_tls_certificate" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v0.29.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v0.29.26"
 }
 
 inputs = {
@@ -326,47 +362,6 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-    acm_tls_certificates = {
-      "mail.example.com" = {
-        subject_alternative_names = ["mailme.example.com"]
-        tags = {
-          Environment       = "stage"
-          run_destroy_check = true
-        }
-        create_verification_record = true
-        verify_certificate         = true
-        hosted_zone_id = 12345536646
-      }
-      "smtp.example.com" = {
-        subject_alternative_names = ["smtps.example.com"]
-        tags = {
-          Environment       = "stage"
-          run_destroy_check = true
-        }
-        create_verification_record = false
-        verify_certificate         = true
-       }
-      "spare.example.com" = {
-        subject_alternative_names = ["placeholder.example.com"]
-        tags = {
-          Environment       = "stage"
-          run_destroy_check = true
-        }
-        create_verification_record = true
-        verify_certificate         = true
-       }
-    } 
-
-```
-</details>
-
-</HclGeneralListItem>
 <HclGeneralListItem title="More Details">
 <details>
 
@@ -409,6 +404,53 @@ Any types represent complex values of variable type. For details, please consult
   
    - hosted_zone_id                         [string]       : The ID of the Route53 public hosted zone that the certificate's validation DNS records should be written to. If not 
                                                              supplied, the module will attempt to look up the ID of the zone by name at runtime  
+  
+  
+   - key_algorithm                          [string]       : (Optional) Specifies the algorithm of the public and private key pair that your Amazon issued certificate uses to encrypt data
+                                                              See ACM Certificate characteristics for more details (https://docs.aws.amazon.com/acm/latest/userguide/acm-certificate.htmlalgorithms)
+                                                              If not specified, defaults to RSA 2048
+  
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+
+   Example: 
+    acm_tls_certificates = {
+      "mail.example.com" = {
+        subject_alternative_names = ["mailme.example.com"]
+        tags = {
+          Environment       = "stage"
+          run_destroy_check = true
+        }
+        create_verification_record = true
+        verify_certificate         = true
+        hosted_zone_id = 12345536646
+      }
+      "smtp.example.com" = {
+        subject_alternative_names = ["smtps.example.com"]
+        tags = {
+          Environment       = "stage"
+          run_destroy_check = true
+        }
+        create_verification_record = false
+        verify_certificate         = true
+       }
+      "spare.example.com" = {
+        subject_alternative_names = ["placeholder.example.com"]
+        tags = {
+          Environment       = "stage"
+          run_destroy_check = true
+        }
+        create_verification_record = true
+        verify_certificate         = true
+       }
+    } 
 
 ```
 </details>
@@ -452,6 +494,23 @@ Map of domains to hosted zone IDs that can be used in place of looking up with a
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Example var usage:
+     domain_hosted_zone_ids = {
+       "*.foo.acm-test.test-domain.in" = "Z12345"
+       "*.bar.acm-test.test-domain.in" = "Z67890"
+     }
+  
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="global_tags" requirement="optional" type="map(string)">
@@ -485,11 +544,11 @@ Global tags to apply to all ACM certificates issued via this module. These globa
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/acm-tls-certificate/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/acm-tls-certificate/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.7/modules/acm-tls-certificate/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.26/modules/acm-tls-certificate/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.26/modules/acm-tls-certificate/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.26/modules/acm-tls-certificate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7ad3ba56608032b454acc5be36eb386f"
+  "hash": "bdbbd15683e1860f393a1c23e2ff552f"
 }
 ##DOCS-SOURCER-END -->

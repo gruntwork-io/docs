@@ -1,4 +1,3 @@
-import algoliasearch from "algoliasearch/lite"
 import React, { PropsWithChildren, useEffect, useRef, useState } from "react"
 import Select from "react-select"
 
@@ -7,6 +6,7 @@ import { CardGroup } from "./CardGroup"
 import styles from "./SearchArea.module.css"
 import Grid from "./Grid"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
+import { algoliasearch } from "algoliasearch"
 
 interface SearchAreaProps {
   name: string
@@ -107,7 +107,6 @@ export const SearchArea: React.FunctionComponent<
   const indexName: string = siteConfig.themeConfig.algolia.libraryIndexName
 
   const searchClient = algoliasearch(algoliaAppId, algoliaSearchKey)
-  const index = searchClient.initIndex(indexName)
 
   const [searchTerm, setSearchTerm] = useState("")
   const [facetFilters, setFacetFilters] = useState([])
@@ -131,12 +130,14 @@ export const SearchArea: React.FunctionComponent<
   const loadSearchHits = async () => {
     setIsLoading(true)
 
-    await index
-      .search(searchTerm, {
+    await searchClient.searchSingleIndex({
+      indexName, searchParams: {
+        query: searchTerm,
         facets: ["type"],
         facetFilters: facetFilters,
         hitsPerPage: 300,
-      })
+      }
+    })
       .then((resp) => {
         setSearchHits(resp["hits"])
 
@@ -178,10 +179,10 @@ export const SearchArea: React.FunctionComponent<
   }
 
   const inputElement = useRef(null);
-    useEffect(() => {
-      if (inputElement.current) {
-        inputElement.current.focus();
-      }
+  useEffect(() => {
+    if (inputElement.current) {
+      inputElement.current.focus();
+    }
   }, []);
 
 

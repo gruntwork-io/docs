@@ -1,6 +1,12 @@
 {
   "module": "start-openvpn-admin",
   "releases": {
+    "v0.26.5": {
+      "contains_changes": false
+    },
+    "v0.26.4": {
+      "contains_changes": false
+    },
     "v0.26.3": {
       "contains_changes": false
     },

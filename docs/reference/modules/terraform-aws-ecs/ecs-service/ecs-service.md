@@ -9,15 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.7" lastModifiedVersion="0.35.7"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.38.3" lastModifiedVersion="0.38.3"/>
 
 # ECS Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.35.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.38.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module creates an [Elastic Container Service (ECS) Service](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) that you can use to run one or more related, long-running Docker containers, such as a web service. An ECS service can automatically deploy multiple instances of your Docker containers across an ECS cluster (see the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-cluster)), restart any failed Docker containers, route traffic across your containers using an optional Elastic Load Balancer (ELB), and optionally register the services to AWS Service Discovery Service.
+This module creates an [Elastic Container Service (ECS) Service](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) that you can use to run one or more related, long-running Docker containers, such as a web service. An ECS service can automatically deploy multiple instances of your Docker containers across an ECS cluster (see the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-cluster)), restart any failed Docker containers, route traffic across your containers using an optional Elastic Load Balancer (ELB), and optionally register the services to AWS Service Discovery Service. Additionally, CodeDeploy blue/green deployments are supported as the module can be enabled to ignore CodeDeploy managed resources.
 
 ![ECS Service architecture](/img/reference/modules/terraform-aws-ecs/ecs-service/ecs-service-architecture.png)
 
@@ -31,13 +31,13 @@ This module creates an [Elastic Container Service (ECS) Service](http://docs.aws
 
 *   Canary deployments
 
+*   CodeDeploy blue/green deployment support (using external CICD)
+
 *   Service discovery through AWS Service Discovery Service
 
 *   ELB (CLB, ALB, and NLB) support
 
 *   VPC support
-
-*   Verified deployments using the [ECS deployment checker binary](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-deploy-check-binaries)
 
 ## Learn
 
@@ -47,15 +47,15 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What is Amazon ECS?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/core-concepts.md#what-is-elastic-container-service)
+*   [What is Amazon ECS?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/core-concepts.md#what-is-elastic-container-service)
 
-*   [Helpful vocabulary for ECS](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/core-concepts.md#helpful-vocabulary)
+*   [Helpful vocabulary for ECS](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/core-concepts.md#helpful-vocabulary)
 
-*   [What is Fargate?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/core-concepts.md#what-is-fargate)
+*   [What is Fargate?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/core-concepts.md#what-is-fargate)
 
-*   [What is an ECS Service?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-service/core-concepts.md#what-is-an-ecs-service)
+*   [What is an ECS Service?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/core-concepts.md#what-is-an-ecs-service)
 
-*   [What is ECS Service Discovery?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-service/core-concepts.md#what-is-ecs-service-discovery)
+*   [What is ECS Service Discovery?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/core-concepts.md#what-is-ecs-service-discovery)
 
 *   [ECS Documentation](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html): Amazon’s docs for ECS that cover core concepts such as the different cluster hosting options, scheduling properties, Docker, security, and monitoring.
 
@@ -63,27 +63,27 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-    *   [modules/ecs-cluster](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-cluster): use this module to provision an ECS cluster with ECS container instances.
+    *   [modules/ecs-cluster](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-cluster): use this module to provision an ECS cluster with ECS container instances.
 
-    *   [modules/ecs-scripts](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-scripts): use the scripts in this module to configure private docker registries and register ECS container instances to ECS clusters.
+    *   [modules/ecs-scripts](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-scripts): use the scripts in this module to configure private docker registries and register ECS container instances to ECS clusters.
 
-    *   [modules/ecs-service](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-service): use this module to deploy one or more docker containers as a ECS service, with options to use ELBs (CLB, ALB, or NLB), Service Discovery, or Fargate.
+    *   [modules/ecs-service](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service): use this module to deploy one or more docker containers as a ECS service, with options to use ELBs (CLB, ALB, or NLB), Service Discovery, or Fargate.
 
-    *   [modules/ecs-daemon-service](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-daemon-service): use this module to deploy one or more docker containers that run on a regular schedule.
+    *   [modules/ecs-daemon-service](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-daemon-service): use this module to deploy one or more docker containers that run on a regular schedule.
 
-    *   [modules/ecs-deploy](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-deploy): use the scripts in this module to run one or more docker containers as a one time task on an ECS cluster.
+    *   [modules/ecs-deploy](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-deploy): use the scripts in this module to run one or more docker containers as a one time task on an ECS cluster.
 
-    *   [modules/ecs-deploy-check-binaries](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-deploy-check-binaries): use the python binary packages in this module to check ECS service deployments to ensure that they are active and healthy.
+    *   **\[DEPRECATED]** [modules/ecs-deploy-check-binaries](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-deploy-check-binaries): use the python binary packages in this module to check ECS service deployments to ensure that they are active and healthy.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/test): Automated tests for the modules and examples.
 
 ### Gruntwork analysis
 
-*   [EC2 vs Fargate launch types](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/core-concepts.md#ec2-vs-fargate-launch-types): A detailed comparison between the two available launch types for ECS, showing you the trade-offs between ECS container instances and Fargate.
+*   [EC2 vs Fargate launch types](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/core-concepts.md#ec2-vs-fargate-launch-types): A detailed comparison between the two available launch types for ECS, showing you the trade-offs between ECS container instances and Fargate.
 
 ## Deploy
 
@@ -91,7 +91,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples folder](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -115,23 +115,23 @@ Production-ready sample code from the Reference Architecture:
 
 ### Day-to-day operations
 
-*   [How do I use Fargate?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-service/core-concepts.md#how-do-i-use-fargate)
+*   [How do I use Fargate?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/core-concepts.md#how-do-i-use-fargate)
 
-*   [How do I associate the ECS Service with an ALB or NLB?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-service/core-concepts.md#how-do-i-associate-the-ecs-service-with-an-alb-or-nlb)
+*   [How do I associate the ECS Service with an ALB or NLB?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/core-concepts.md#how-do-i-associate-the-ecs-service-with-an-alb-or-nlb)
 
-*   [How do I setup Service Discovery?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-service/core-concepts.md#how-do-i-setup-service-discovery)
+*   [How do I setup Service Discovery?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/core-concepts.md#how-do-i-setup-service-discovery)
 
-*   [How do I add IAM policies to the ECS service?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-service/core-concepts.md#how-do-you-add-additional-iam-policies-to-the-ecs-service)
+*   [How do I add IAM policies to the ECS service?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/core-concepts.md#how-do-you-add-additional-iam-policies-to-the-ecs-service)
 
-*   [How do I scale an ECS service?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-service/core-concepts.md#how-do-you-scale-an-ecs-service)
+*   [How do I scale an ECS service?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/core-concepts.md#how-do-you-scale-an-ecs-service)
 
 ### Major changes
 
-*   [How do you make changes to the EC2 instances in the cluster?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/module/ecs-cluster/README.md#how-do-you-make-changes-to-the-ec-2-instances-in-the-cluster)
+*   [How do you make changes to the EC2 instances in the cluster?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/module/ecs-cluster/README.md#how-do-you-make-changes-to-the-ec-2-instances-in-the-cluster)
 
-*   [How do ECS Services deploy new versions of containers?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-service/core-concepts.md#how-do-ecs-services-deploy-new-versions-of-containers)
+*   [How do ECS Services deploy new versions of containers?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/core-concepts.md#how-do-ecs-services-deploy-new-versions-of-containers)
 
-*   [How do I do a canary deployment?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-service/core-concepts.md#how-do-i-do-a-canary-deployment)
+*   [How do I do a canary deployment?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/core-concepts.md#how-do-i-do-a-canary-deployment)
 
 ## Sample Usage
 
@@ -146,7 +146,7 @@ Production-ready sample code from the Reference Architecture:
 
 module "ecs_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-service?ref=v0.35.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-service?ref=v0.38.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -229,19 +229,14 @@ module "ecs_service" {
   # destroyed before the resources in the list.
   dependencies = []
 
-  # Set the logging level of the deployment check script. You can set this to
-  # `error`, `warn`, or `info`, in increasing verbosity.
-  deployment_check_loglevel = "info"
-
-  # Seconds to wait before timing out each check for verifying ECS service
-  # deployment. See ecs_deploy_check_binaries for more details.
-  deployment_check_timeout_seconds = 600
-
   # Set enable to 'true' to prevent the task from attempting to continuously
   # redeploy after a failed health check. Set rollback to 'true' to also
   # automatically roll back to the last successful deployment. If this setting
   # is used, both 'enable' and 'rollback' are required fields.
   deployment_circuit_breaker = null
+
+  # CloudWatch alarms which triggers deployment rollback if failure.
+  deployment_cloudwatch_alarms = null
 
   # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
   deployment_controller = null
@@ -267,10 +262,23 @@ module "ecs_service" {
   # var.discovery_use_public_dns is true.
   discovery_alias_record_evaluate_target_health = true
 
+  # Container name value, already specified in the task definition, to be used
+  # for your service discovery service. Required when using `SRV` record type.
+  discovery_container_name = null
+
+  # Port value, already specified in the task definition, to be used for your
+  # service discovery service. Required when using `SRV` record type.
+  discovery_container_port = null
+
   # The number of 30-second intervals that you want service discovery to wait
   # before it changes the health status of a service instance. Maximum value of
   # 10. Only used if var.use_service_discovery is true.
   discovery_custom_health_check_failure_threshold = 1
+
+  # The type of the resource, which indicates the value that Amazon Route 53
+  # returns in response to DNS queries corresponded to service discovery
+  # requests.
+  discovery_dns_record_type = "A"
 
   # The routing policy that you want to apply to all records that Route 53
   # creates when you register an instance and specify the service. Valid Values:
@@ -323,6 +331,10 @@ module "ecs_service" {
   # values are none, bridge, awsvpc, and host
   ecs_task_definition_network_mode = "bridge"
 
+  # Process namespace to use for the containers in the task. The valid values
+  # are host and task.
+  ecs_task_definition_pid_mode = null
+
   # (Optional) A map of EFS volumes that containers in your task may use. Each
   # item in the list should be a map compatible with
   # https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#efs-volume-configuration-arguments.
@@ -350,12 +362,6 @@ module "ecs_service" {
   # associated with the ECS Tasks. Each entry corresponds to a separate target
   # group. Set to the empty object ({}) if you are not using an ALB or NLB.
   elb_target_groups = {}
-
-  # Whether or not to enable the ECS deployment check binary to make terraform
-  # wait for the task to be deployed. See ecs_deploy_check_binaries for more
-  # details. You must install the companion binary before the check can be used.
-  # Refer to the README for more details.
-  enable_ecs_deployment_check = true
 
   # Specifies whether to enable Amazon ECS Exec for the tasks within the
   # service.
@@ -413,10 +419,9 @@ module "ecs_service" {
   # using the default capacity provider strategyfrom the ECS cluster. Valid
   # value must be one of EC2 or FARGATE. When using FARGATE, you must set the
   # network mode to awsvpc and configure it. When using EC2, you can configure
-  # the placement strategy using the variables placement_strategy_type,
-  # placement_strategy_field, placement_constraint_type,
-  # placement_constraint_expression. This variable is ignored if
-  # var.capacity_provider_strategy is provided.
+  # the placement strategy using the variables ordered_placement_strategy,
+  # placement_constraint_type, placement_constraint_expression. This variable is
+  # ignored if var.capacity_provider_strategy is provided.
   launch_type = null
 
   # A map of tags to apply to the elb target group. Each item in this list
@@ -437,13 +442,16 @@ module "ecs_service" {
   # var.use_auto_scaling is true.
   min_number_of_tasks = null
 
+  # Service level strategy rules that are taken into consideration during task
+  # placement. List from top to bottom in order of precedence. Updates to this
+  # configuration will take effect next task deployment unless
+  # force_new_deployment is enabled. The maximum number of
+  # ordered_placement_strategy blocks is 5.
+  ordered_placement_strategy = [{"field":"cpu","type":"binpack"}]
+
   placement_constraint_expression = "attribute:ecs.ami-id != 'ami-fake'"
 
   placement_constraint_type = "memberOf"
-
-  placement_strategy_field = "cpu"
-
-  placement_strategy_type = "binpack"
 
   # The platform version on which to run your service. Only applicable for
   # launch_type set to FARGATE. Defaults to LATEST.
@@ -464,9 +472,21 @@ module "ecs_service" {
   # Define runtime platform options
   runtime_platform = null
 
+  # Use this variable to adjust the default timeout of 20m for create and update
+  # operations the the ECS service. Adjusting the value can be particularly
+  # useful when using 'wait_for_steady_state'.
+  service_create_update_timeout = "20m"
+
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
   service_tags = {}
+
+  # Whether or not to include check for ALB/NLB health checks. When set to true,
+  # no health check will be performed against the load balancer. This can be
+  # used to speed up deployments, but keep in mind that disabling health checks
+  # mean you won't have confirmed status of the service being operational.
+  # Defaults to false (health checks enabled).
+  skip_load_balancer_check_arg = false
 
   # The CPU units for the instances that Fargate will spin up. Options here:
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
@@ -518,10 +538,10 @@ module "ecs_service" {
   # but not including the name parameter.
   volumes = {}
 
-  # If true, Terraform will wait for the service to reach a steady state—as in,
-  # the ECS tasks you wanted are actually deployed—before 'apply' is considered
-  # complete.
-  wait_for_steady_state = false
+  # If true, Terraform will wait for the service to reach a steady state — as
+  # in, the ECS tasks you wanted are actually deployed — before 'apply' is
+  # considered complete.
+  wait_for_steady_state = true
 
 }
 
@@ -538,7 +558,7 @@ module "ecs_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-service?ref=v0.35.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-service?ref=v0.38.3"
 }
 
 inputs = {
@@ -624,19 +644,14 @@ inputs = {
   # destroyed before the resources in the list.
   dependencies = []
 
-  # Set the logging level of the deployment check script. You can set this to
-  # `error`, `warn`, or `info`, in increasing verbosity.
-  deployment_check_loglevel = "info"
-
-  # Seconds to wait before timing out each check for verifying ECS service
-  # deployment. See ecs_deploy_check_binaries for more details.
-  deployment_check_timeout_seconds = 600
-
   # Set enable to 'true' to prevent the task from attempting to continuously
   # redeploy after a failed health check. Set rollback to 'true' to also
   # automatically roll back to the last successful deployment. If this setting
   # is used, both 'enable' and 'rollback' are required fields.
   deployment_circuit_breaker = null
+
+  # CloudWatch alarms which triggers deployment rollback if failure.
+  deployment_cloudwatch_alarms = null
 
   # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
   deployment_controller = null
@@ -662,10 +677,23 @@ inputs = {
   # var.discovery_use_public_dns is true.
   discovery_alias_record_evaluate_target_health = true
 
+  # Container name value, already specified in the task definition, to be used
+  # for your service discovery service. Required when using `SRV` record type.
+  discovery_container_name = null
+
+  # Port value, already specified in the task definition, to be used for your
+  # service discovery service. Required when using `SRV` record type.
+  discovery_container_port = null
+
   # The number of 30-second intervals that you want service discovery to wait
   # before it changes the health status of a service instance. Maximum value of
   # 10. Only used if var.use_service_discovery is true.
   discovery_custom_health_check_failure_threshold = 1
+
+  # The type of the resource, which indicates the value that Amazon Route 53
+  # returns in response to DNS queries corresponded to service discovery
+  # requests.
+  discovery_dns_record_type = "A"
 
   # The routing policy that you want to apply to all records that Route 53
   # creates when you register an instance and specify the service. Valid Values:
@@ -718,6 +746,10 @@ inputs = {
   # values are none, bridge, awsvpc, and host
   ecs_task_definition_network_mode = "bridge"
 
+  # Process namespace to use for the containers in the task. The valid values
+  # are host and task.
+  ecs_task_definition_pid_mode = null
+
   # (Optional) A map of EFS volumes that containers in your task may use. Each
   # item in the list should be a map compatible with
   # https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#efs-volume-configuration-arguments.
@@ -745,12 +777,6 @@ inputs = {
   # associated with the ECS Tasks. Each entry corresponds to a separate target
   # group. Set to the empty object ({}) if you are not using an ALB or NLB.
   elb_target_groups = {}
-
-  # Whether or not to enable the ECS deployment check binary to make terraform
-  # wait for the task to be deployed. See ecs_deploy_check_binaries for more
-  # details. You must install the companion binary before the check can be used.
-  # Refer to the README for more details.
-  enable_ecs_deployment_check = true
 
   # Specifies whether to enable Amazon ECS Exec for the tasks within the
   # service.
@@ -808,10 +834,9 @@ inputs = {
   # using the default capacity provider strategyfrom the ECS cluster. Valid
   # value must be one of EC2 or FARGATE. When using FARGATE, you must set the
   # network mode to awsvpc and configure it. When using EC2, you can configure
-  # the placement strategy using the variables placement_strategy_type,
-  # placement_strategy_field, placement_constraint_type,
-  # placement_constraint_expression. This variable is ignored if
-  # var.capacity_provider_strategy is provided.
+  # the placement strategy using the variables ordered_placement_strategy,
+  # placement_constraint_type, placement_constraint_expression. This variable is
+  # ignored if var.capacity_provider_strategy is provided.
   launch_type = null
 
   # A map of tags to apply to the elb target group. Each item in this list
@@ -832,13 +857,16 @@ inputs = {
   # var.use_auto_scaling is true.
   min_number_of_tasks = null
 
+  # Service level strategy rules that are taken into consideration during task
+  # placement. List from top to bottom in order of precedence. Updates to this
+  # configuration will take effect next task deployment unless
+  # force_new_deployment is enabled. The maximum number of
+  # ordered_placement_strategy blocks is 5.
+  ordered_placement_strategy = [{"field":"cpu","type":"binpack"}]
+
   placement_constraint_expression = "attribute:ecs.ami-id != 'ami-fake'"
 
   placement_constraint_type = "memberOf"
-
-  placement_strategy_field = "cpu"
-
-  placement_strategy_type = "binpack"
 
   # The platform version on which to run your service. Only applicable for
   # launch_type set to FARGATE. Defaults to LATEST.
@@ -859,9 +887,21 @@ inputs = {
   # Define runtime platform options
   runtime_platform = null
 
+  # Use this variable to adjust the default timeout of 20m for create and update
+  # operations the the ECS service. Adjusting the value can be particularly
+  # useful when using 'wait_for_steady_state'.
+  service_create_update_timeout = "20m"
+
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
   service_tags = {}
+
+  # Whether or not to include check for ALB/NLB health checks. When set to true,
+  # no health check will be performed against the load balancer. This can be
+  # used to speed up deployments, but keep in mind that disabling health checks
+  # mean you won't have confirmed status of the service being operational.
+  # Defaults to false (health checks enabled).
+  skip_load_balancer_check_arg = false
 
   # The CPU units for the instances that Fargate will spin up. Options here:
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
@@ -913,10 +953,10 @@ inputs = {
   # but not including the name parameter.
   volumes = {}
 
-  # If true, Terraform will wait for the service to reach a steady state—as in,
-  # the ECS tasks you wanted are actually deployed—before 'apply' is considered
-  # complete.
-  wait_for_steady_state = false
+  # If true, Terraform will wait for the service to reach a steady state — as
+  # in, the ECS tasks you wanted are actually deployed — before 'apply' is
+  # considered complete.
+  wait_for_steady_state = true
 
 }
 
@@ -1103,24 +1143,6 @@ Create a dependency between the resources in this module to the interpolated val
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="deployment_check_loglevel" requirement="optional" type="string">
-<HclListItemDescription>
-
-Set the logging level of the deployment check script. You can set this to `error`, `warn`, or `info`, in increasing verbosity.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;info&quot;"/>
-</HclListItem>
-
-<HclListItem name="deployment_check_timeout_seconds" requirement="optional" type="number">
-<HclListItemDescription>
-
-Seconds to wait before timing out each check for verifying ECS service deployment. See ecs_deploy_check_binaries for more details.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="600"/>
-</HclListItem>
-
 <HclListItem name="deployment_circuit_breaker" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
@@ -1133,6 +1155,26 @@ Set enable to 'true' to prevent the task from attempting to continuously redeplo
 object({
     enable   = bool
     rollback = bool
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="deployment_cloudwatch_alarms" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+CloudWatch alarms which triggers deployment rollback if failure.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    cloudwatch_alarms = list(string)
+    enable            = bool
+    rollback          = bool
   })
 ```
 
@@ -1185,6 +1227,24 @@ Check alias target health before routing to the service. Only used if <a href="#
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="discovery_container_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Container name value, already specified in the task definition, to be used for your service discovery service. Required when using `SRV` record type.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="discovery_container_port" requirement="optional" type="string">
+<HclListItemDescription>
+
+Port value, already specified in the task definition, to be used for your service discovery service. Required when using `SRV` record type.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="discovery_custom_health_check_failure_threshold" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1192,6 +1252,15 @@ The number of 30-second intervals that you want service discovery to wait before
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
+
+<HclListItem name="discovery_dns_record_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of the resource, which indicates the value that Amazon Route 53 returns in response to DNS queries corresponded to service discovery requests.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;A&quot;"/>
 </HclListItem>
 
 <HclListItem name="discovery_dns_routing_policy" requirement="optional" type="string">
@@ -1295,6 +1364,15 @@ The Docker networking mode to use for the containers in the task. The valid valu
 <HclListItemDefaultValue defaultValue="&quot;bridge&quot;"/>
 </HclListItem>
 
+<HclListItem name="ecs_task_definition_pid_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+Process namespace to use for the containers in the task. The valid values are host and task.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="efs_volumes" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
@@ -1380,7 +1458,7 @@ The ID of the VPC in which to create the target group. Only used if <a href="#el
 <HclListItem name="elb_target_groups" requirement="optional" type="any">
 <HclListItemDescription>
 
-Configurations for ELB target groups for ALBs and NLBs that should be associated with the ECS Tasks. Each entry corresponds to a separate target group. Set to the empty object ({}) if you are not using an ALB or NLB.
+Configurations for ELB target groups for ALBs and NLBs that should be associated with the ECS Tasks. Each entry corresponds to a separate target group. Set to the empty object (&#123;&#125;) if you are not using an ALB or NLB.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1405,15 +1483,6 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="enable_ecs_deployment_check" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to enable the ECS deployment check binary to make terraform wait for the task to be deployed. See ecs_deploy_check_binaries for more details. You must install the companion binary before the check can be used. Refer to the README for more details.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="enable_execute_command" requirement="optional" type="bool">
@@ -1527,7 +1596,7 @@ The number of consecutive failed health checks required before considering a tar
 <HclListItem name="launch_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-The launch type of the ECS service. Defaults to null, which will result in using the default capacity provider strategyfrom the ECS cluster. Valid value must be one of EC2 or FARGATE. When using FARGATE, you must set the network mode to awsvpc and configure it. When using EC2, you can configure the placement strategy using the variables placement_strategy_type, placement_strategy_field, placement_constraint_type, placement_constraint_expression. This variable is ignored if <a href="#capacity_provider_strategy"><code>capacity_provider_strategy</code></a> is provided.
+The launch type of the ECS service. Defaults to null, which will result in using the default capacity provider strategyfrom the ECS cluster. Valid value must be one of EC2 or FARGATE. When using FARGATE, you must set the network mode to awsvpc and configure it. When using EC2, you can configure the placement strategy using the variables ordered_placement_strategy, placement_constraint_type, placement_constraint_expression. This variable is ignored if <a href="#capacity_provider_strategy"><code>capacity_provider_strategy</code></a> is provided.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1569,20 +1638,42 @@ The minimum number of ECS Task instances of the ECS Service to run. Auto scaling
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="ordered_placement_strategy" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+Service level strategy rules that are taken into consideration during task placement. List from top to bottom in order of precedence. Updates to this configuration will take effect next task deployment unless force_new_deployment is enabled. The maximum number of ordered_placement_strategy blocks is 5.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    type  = string
+    field = string
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+[
+  {
+    field = "cpu",
+    type = "binpack"
+  }
+]
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
 <HclListItem name="placement_constraint_expression" requirement="optional" type="string">
 <HclListItemDefaultValue defaultValue="&quot;attribute:ecs.ami-id != &apos;ami-fake&apos;&quot;"/>
 </HclListItem>
 
 <HclListItem name="placement_constraint_type" requirement="optional" type="string">
 <HclListItemDefaultValue defaultValue="&quot;memberOf&quot;"/>
-</HclListItem>
-
-<HclListItem name="placement_strategy_field" requirement="optional" type="string">
-<HclListItemDefaultValue defaultValue="&quot;cpu&quot;"/>
-</HclListItem>
-
-<HclListItem name="placement_strategy_type" requirement="optional" type="string">
-<HclListItemDefaultValue defaultValue="&quot;binpack&quot;"/>
 </HclListItem>
 
 <HclListItem name="platform_version" requirement="optional" type="string">
@@ -1664,6 +1755,15 @@ object({
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="service_create_update_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Use this variable to adjust the default timeout of 20m for create and update operations the the ECS service. Adjusting the value can be particularly useful when using 'wait_for_steady_state'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;20m&quot;"/>
+</HclListItem>
+
 <HclListItem name="service_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -1671,6 +1771,15 @@ A map of tags to apply to the ECS service. Each item in this list should be a ma
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="skip_load_balancer_check_arg" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to include check for ALB/NLB health checks. When set to true, no health check will be performed against the load balancer. This can be used to speed up deployments, but keep in mind that disabling health checks mean you won't have confirmed status of the service being operational. Defaults to false (health checks enabled).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="task_cpu" requirement="optional" type="number">
@@ -1798,10 +1907,10 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItem name="wait_for_steady_state" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If true, Terraform will wait for the service to reach a steady state—as in, the ECS tasks you wanted are actually deployed—before 'apply' is considered complete.
+If true, Terraform will wait for the service to reach a steady state — as in, the ECS tasks you wanted are actually deployed — before 'apply' is considered complete.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 </TabItem>
@@ -1862,11 +1971,11 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-service/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.7/modules/ecs-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "597501afd8c3699adb5ee9a35b32d0b2"
+  "hash": "90fc6d4e98c3e1849758820a2d2bbd6f"
 }
 ##DOCS-SOURCER-END -->

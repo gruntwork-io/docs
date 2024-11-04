@@ -15,7 +15,7 @@ orbs:
 references:
   base_container: &base_container
     docker:
-      - image: cimg/node:16.14
+      - image: cimg/node:18.17.1
 
   ######################################################################################################################
   # Build steps
@@ -159,7 +159,7 @@ jobs:
       - *notify_slack_staging
       - *install_bash_commons
       - setup_remote_docker:
-          version: 19.03.13
+          version: 23
       - *rebuild_stage_search_index
       - *notify_slack_stage_reindex
 
@@ -173,7 +173,7 @@ jobs:
       - *notify_slack_prod
       - *install_bash_commons
       - setup_remote_docker:
-          version: 19.03.13
+          version: 23
       - *rebuild_prod_search_index
       - *notify_slack_prod_reindex
 
@@ -258,7 +258,9 @@ workflows:
         # Only trigger the pipeline when BOTH conditions are met
         # 1. Trigger source is scheduled pipeline (other options are api, and webhook, which we don't want)
         - equal: [scheduled_pipeline, << pipeline.trigger_source >>]
-        # 2. A scheduled job with the name "monthly"
+        # 2. A scheduled trigger with the name "monthly" configured in the CircleCI UI https://app.circleci.com/settings/project/github/gruntwork-io/docs/triggers
+        # Configured to run on the first day of every month. Triggers can be attributed to a specific entity, like a user. If the Job getting triggered needs restricted permissions,
+        # like context or environment variables, the entity that triggers the job must have the required permissions.
         - equal: ["monthly", << pipeline.schedule.name >>]
     jobs:
       - create-releases-pr:

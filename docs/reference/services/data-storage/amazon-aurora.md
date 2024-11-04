@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.12" lastModifiedVersion="0.102.14"/>
+<VersionBadge version="0.115.4" lastModifiedVersion="0.112.15"/>
 
 # Amazon Aurora
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/aurora?ref=v0.104.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.115.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -172,6 +172,11 @@ module "aurora" {
   # How many days to keep backup snapshots around before cleaning them up. Max:
   # 35
   backup_retention_period = 30
+
+  # The Certificate Authority (CA) certificate bundle to use on the Aurora DB
+  # instances. Possible values: rds-ca-2019 (default if nothing is specified),
+  # rds-ca-rsa2048-g1, rds-ca-rsa4096-g1, rds-ca-ecc384-g1.
+  ca_cert_identifier = null
 
   # Copy all the Aurora cluster tags to snapshots. Default is false.
   copy_tags_to_snapshot = false
@@ -288,6 +293,9 @@ module "aurora" {
   # e.g. 5.7.mysql_aurora.2.08.1.
   engine_version = null
 
+  # Global cluster identifier when creating the global secondary cluster.
+  global_cluster_identifier = null
+
   # The period, in seconds, over which to measure the CPU utilization
   # percentage.
   high_cpu_utilization_period = 60
@@ -341,7 +349,7 @@ module "aurora" {
 
   # The instance type to use for the db (e.g. db.r3.large). Only used when
   # var.engine_mode is set to provisioned.
-  instance_type = "db.t3.small"
+  instance_type = "db.t3.medium"
 
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used
   # if var.storage_encrypted is true. If you leave this null, the default RDS
@@ -373,6 +381,10 @@ module "aurora" {
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   low_memory_available_treat_missing_data = "missing"
+
+  # Set to true to allow RDS to manage the master user password in Secrets
+  # Manager. Cannot be set if password is provided.
+  manage_master_user_password = null
 
   # The value to use for the master password of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
@@ -423,6 +435,10 @@ module "aurora" {
   # RDS database. Note that Aurora Serverless does not have reader endpoints, so
   # this option is ignored when engine_mode is set to serverless. 
   reader_domain_name = null
+
+  # ARN of a source DB cluster or DB instance if this DB cluster is to be
+  # created as a Read Replica.
+  replication_source_identifier = null
 
   # If non-empty, the Aurora cluster will be restored from the given source
   # cluster using the latest restorable time. Can only be used if
@@ -522,7 +538,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/aurora?ref=v0.104.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.115.4"
 }
 
 inputs = {
@@ -595,6 +611,11 @@ inputs = {
   # How many days to keep backup snapshots around before cleaning them up. Max:
   # 35
   backup_retention_period = 30
+
+  # The Certificate Authority (CA) certificate bundle to use on the Aurora DB
+  # instances. Possible values: rds-ca-2019 (default if nothing is specified),
+  # rds-ca-rsa2048-g1, rds-ca-rsa4096-g1, rds-ca-ecc384-g1.
+  ca_cert_identifier = null
 
   # Copy all the Aurora cluster tags to snapshots. Default is false.
   copy_tags_to_snapshot = false
@@ -711,6 +732,9 @@ inputs = {
   # e.g. 5.7.mysql_aurora.2.08.1.
   engine_version = null
 
+  # Global cluster identifier when creating the global secondary cluster.
+  global_cluster_identifier = null
+
   # The period, in seconds, over which to measure the CPU utilization
   # percentage.
   high_cpu_utilization_period = 60
@@ -764,7 +788,7 @@ inputs = {
 
   # The instance type to use for the db (e.g. db.r3.large). Only used when
   # var.engine_mode is set to provisioned.
-  instance_type = "db.t3.small"
+  instance_type = "db.t3.medium"
 
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used
   # if var.storage_encrypted is true. If you leave this null, the default RDS
@@ -796,6 +820,10 @@ inputs = {
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   low_memory_available_treat_missing_data = "missing"
+
+  # Set to true to allow RDS to manage the master user password in Secrets
+  # Manager. Cannot be set if password is provided.
+  manage_master_user_password = null
 
   # The value to use for the master password of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
@@ -846,6 +874,10 @@ inputs = {
   # RDS database. Note that Aurora Serverless does not have reader endpoints, so
   # this option is ignored when engine_mode is set to serverless. 
   reader_domain_name = null
+
+  # ARN of a source DB cluster or DB instance if this DB cluster is to be
+  # created as a Read Replica.
+  replication_source_identifier = null
 
   # If non-empty, the Aurora cluster will be restored from the given source
   # cluster using the latest restorable time. Can only be used if
@@ -1060,6 +1092,15 @@ How many days to keep backup snapshots around before cleaning them up. Max: 35
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="30"/>
+</HclListItem>
+
+<HclListItem name="ca_cert_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Certificate Authority (CA) certificate bundle to use on the Aurora DB instances. Possible values: rds-ca-2019 (default if nothing is specified), rds-ca-rsa2048-g1, rds-ca-rsa4096-g1, rds-ca-ecc384-g1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="copy_tags_to_snapshot" requirement="optional" type="bool">
@@ -1631,6 +1672,15 @@ The Amazon Aurora DB engine version for the selected engine and engine_mode. Not
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="global_cluster_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+Global cluster identifier when creating the global secondary cluster.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="high_cpu_utilization_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1745,7 +1795,7 @@ The number of DB instances, including the primary, to run in the RDS cluster. On
 The instance type to use for the db (e.g. db.r3.large). Only used when <a href="#engine_mode"><code>engine_mode</code></a> is set to provisioned.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;db.t3.small&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;db.t3.medium&quot;"/>
 <HclGeneralListItem title="More Details">
 <details>
 
@@ -1848,6 +1898,15 @@ Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
 <HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
+<HclListItem name="manage_master_user_password" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to allow RDS to manage the master user password in Secrets Manager. Cannot be set if password is provided.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="master_password" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1933,6 +1992,15 @@ If you wish to make your database accessible from the public Internet, set this 
 <HclListItemDescription>
 
 The domain name to create a route 53 record for the reader endpoint of the RDS database. Note that Aurora Serverless does not have reader endpoints, so this option is ignored when engine_mode is set to serverless. 
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="replication_source_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of a source DB cluster or DB instance if this DB cluster is to be created as a Read Replica.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -2120,6 +2188,14 @@ The ID of the RDS Aurora cluster (e.g TODO).
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="cluster_master_password_secret_arn">
+<HclListItemDescription>
+
+The ARN of master user secret. Only available when `manage_master_user_password` is set to true
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="cluster_resource_id">
 <HclListItemDescription>
 
@@ -2247,11 +2323,11 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/data-stores/aurora/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/data-stores/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/data-stores/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/aurora/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "860e03e48d841720dd6df6878763d59b"
+  "hash": "3d8377fee3212a5f7f85530c13880a58"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.59.1" lastModifiedVersion="0.58.4"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.70.2" lastModifiedVersion="0.70.1"/>
 
 # EKS Container Logs Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.58.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.70.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module installs and configures
 [aws-for-fluent-bit](https://github.com/aws/aws-for-fluent-bit) on an EKS cluster, so that
@@ -25,7 +25,7 @@ Kinesis Firehose.
 This module uses the community helm chart, with a set of best practices inputs.
 
 **This module is for setting up log aggregation for EKS Pods on EC2 workers (self-managed or managed node groups). For
-Fargate pods, take a look at the [eks-fargate-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-fargate-container-logs) module.**
+Fargate pods, take a look at the [eks-fargate-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-fargate-container-logs) module.**
 
 ## How does this work?
 
@@ -53,6 +53,52 @@ capabilities on top of the logs prior to aggregating in the data store.
 For most EKS deployments, it is recommended to use this `fluent-bit` module for container log aggregation. Unless you have a specific
 need for a plugin only supported by `fluentd`, the superior performance and memory footprint of `fluent-bit` will
 ensure resources are available on your EKS workers for your Pods.
+
+## Using the new high performance plugin for Cloudwatch Logs
+
+[fluent-bit](https://fluentbit.io/) added support for a new, higher performance, plugin to aggregate logs and push them to Cloudwatch logs. However, the configuration parameters differ slightly between the old plugin vs the new plugin.
+
+For example, the following configuration input enables the old cloudwatch logs plugin, with a few minor adjustments:
+
+```terraform
+  cloudwatch_configuration = {
+    enabled           = true
+    region            = "us-west-2"
+    log_group_name    = "/aws/eks/example-log-group"
+    log_stream_prefix = "prefix-example"
+  }
+
+```
+
+However, with the new input, the same configuration would look like this:
+
+```terraform
+  cloudwatch_logs_configuration = {
+    enabled         = true
+    region          = "us-west-2"
+    logGroupName    = "/aws/eks/example-log-group"
+    logStreamPrefix = "prefix-example"
+  }
+```
+
+A new input was deemed important due to subtle configuration differences with the new plugin itself, as new parameters, and differing parameters are used by Helm to configure the new plugin.
+
+### Custom Credential Endpoint with the new plugin
+
+There is one key difference between the old plugin vs the new plugin, and that relates to using a custom credential endpoint. The old cloudwatch plugin uses an HTTP endpoint, where as the new plugin uses an STS based endpoint.
+
+An example of the new configuration would look like this:
+
+```terraform
+  cloudwatch_logs_configuration = {
+    ...
+    stsEndpoint = "https://sts.eu-west-1.amazonaws.com"
+  }
+```
+
+For more information see the following documentation:
+
+*   [amazon-cloudwatch-logs-for-fluent-bit](https://github.com/aws/amazon-cloudwatch-logs-for-fluent-bit)
 
 ## Log format
 
@@ -105,7 +151,7 @@ fields @timestamp, @message
 
 module "eks_container_logs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.59.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.70.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -127,6 +173,11 @@ module "eks_container_logs" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # Can be used to add additional filter configuration blocks. This string
+  # should be formatted according to Fluent Bit docs, as it will be injected
+  # directly into the fluent-bit.conf file.
+  additional_filters = ""
+
   # Can be used to add more inputs. This string should be formatted according to
   # Fluent Bit docs, as it will be injected directly into the fluent-bit.conf
   # file.
@@ -139,7 +190,7 @@ module "eks_container_logs" {
   # The version of the aws-for-fluent-bit helm chart to deploy. Note that this
   # is different from the app/container version (use
   # var.aws_for_fluent_bit_version to control the app/container version).
-  aws_for_fluent_bit_chart_version = "0.1.23"
+  aws_for_fluent_bit_chart_version = "0.1.24"
 
   # The Container repository to use for looking up the aws-for-fluent-bit
   # Container image when deploying the pods. When null, uses the default
@@ -153,9 +204,24 @@ module "eks_container_logs" {
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
 
-  # Configurations for forwarding logs to CloudWatch Logs. Set to null if you do
-  # not wish to forward the logs to CloudWatch Logs.
-  cloudwatch_configuration = null
+  # Configurations for forwarding logs to CloudWatch Logs using the original
+  # plugin. Set to null if you do not wish to forward the logs to CloudWatch
+  # Logs using the older plugin. This is disabled by default in fluent-bit.
+  cloudwatch_configuration = {"autoCreateGroup":null,"credentialsEndpoint":null,"enabled":null,"endpoint":null,"extraOutputs":null,"logFormat":null,"logKey":null,"logRetentionDays":null,"logStreamName":null,"log_group_name":null,"log_stream_prefix":null,"match":null,"region":null,"roleArn":null}
+
+  # Configurations for forwarding logs to CloudWatch Logs using a higher
+  # performance plugin. Set to null if you do not wish to forward the logs to
+  # CloudWatch Logs using this plugin. This plugin is enabled by default in
+  # fluent-bit.
+  cloudwatch_logs_configuration = {"autoCreateGroup":null,"autoRetryRequests":null,"enabled":true,"endpoint":null,"externalId":null,"extraOutputs":null,"logFormat":null,"logGroupName":null,"logGroupTemplate":null,"logKey":null,"logRetentionDays":null,"logStreamName":null,"logStreamPrefix":null,"logStreamTemplate":null,"match":null,"metricDimensions":null,"metricNamespace":null,"region":null,"roleArn":null,"stsEndpoint":null}
+
+  # Configurations for adjusting the default filter settings. Set to null if you
+  # do not wish to use the default filter.
+  default_filter_configuration = {"bufferSize":"32k","enabled":true,"k8sLoggingExclude":"On","k8sLoggingParser":"On","keepLog":"On","kubeURL":"https://kubernetes.default.svc.cluster.local:443","match":"kube.*","mergeLog":"On","mergeLogKey":"data"}
+
+  # Configurations for adjusting the default input settings. Set to null if you
+  # do not wish to use the default filter.
+  default_input_configuration = {"db":"/var/log/flb_kube.db","dockerMode":"On","enabled":true,"memBufLimit":"5MB","parser":"docker","path":"/var/log/containers/*.log","refreshInterval":"10","skipLongLines":"On","tag":"kube.*"}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -165,10 +231,17 @@ module "eks_container_logs" {
   # destroyed before the resources in the list.
   dependencies = []
 
-  # Can be used to provide custom filtering of the log output. This string
-  # should be formatted according to Fluent Bit docs, as it will be injected
-  # directly into the fluent-bit.conf file.
+  # Can be used to provide additional kubernetes plugin configuration parameters
+  # for the default kubernetes filter that is pre-configured in the
+  # aws-for-fluent-bit Helm chart. This string should be formatted according to
+  # Fluent Bit docs, as it will append to the default kubernetes filter
+  # configuration.
   extra_filters = ""
+
+  # Can be used to append to existing input. This string should be formatted
+  # according to Fluent Bit docs, as it will be injected directly into the
+  # fluent-bit.conf file.
+  extra_inputs = ""
 
   # Can be used to fan out the log output to multiple additional clients beyond
   # the AWS ones. This string should be formatted according to Fluent Bit docs,
@@ -205,6 +278,13 @@ module "eks_container_logs" {
   # Configure tolerations rules to allow the Pod to schedule on nodes that have
   # been tainted. Each item in the list specifies a toleration rule.
   pod_tolerations = []
+
+  # Merge and mask sensitive values like apikeys or passwords that are part of
+  # the helm charts `values.yaml`. These sensitive values will show up in the
+  # final metadata as clear text unless passed in as K:V pairs that are injected
+  # into the `values.yaml`. Key should be the paramater path and value should be
+  # the value.
+  sensitive_values = {}
 
   # Optionally use a cri parser instead of the default Docker parser. This
   # should be used for EKS v1.24 and later.
@@ -232,7 +312,7 @@ module "eks_container_logs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.59.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.70.2"
 }
 
 inputs = {
@@ -257,6 +337,11 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # Can be used to add additional filter configuration blocks. This string
+  # should be formatted according to Fluent Bit docs, as it will be injected
+  # directly into the fluent-bit.conf file.
+  additional_filters = ""
+
   # Can be used to add more inputs. This string should be formatted according to
   # Fluent Bit docs, as it will be injected directly into the fluent-bit.conf
   # file.
@@ -269,7 +354,7 @@ inputs = {
   # The version of the aws-for-fluent-bit helm chart to deploy. Note that this
   # is different from the app/container version (use
   # var.aws_for_fluent_bit_version to control the app/container version).
-  aws_for_fluent_bit_chart_version = "0.1.23"
+  aws_for_fluent_bit_chart_version = "0.1.24"
 
   # The Container repository to use for looking up the aws-for-fluent-bit
   # Container image when deploying the pods. When null, uses the default
@@ -283,9 +368,24 @@ inputs = {
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
 
-  # Configurations for forwarding logs to CloudWatch Logs. Set to null if you do
-  # not wish to forward the logs to CloudWatch Logs.
-  cloudwatch_configuration = null
+  # Configurations for forwarding logs to CloudWatch Logs using the original
+  # plugin. Set to null if you do not wish to forward the logs to CloudWatch
+  # Logs using the older plugin. This is disabled by default in fluent-bit.
+  cloudwatch_configuration = {"autoCreateGroup":null,"credentialsEndpoint":null,"enabled":null,"endpoint":null,"extraOutputs":null,"logFormat":null,"logKey":null,"logRetentionDays":null,"logStreamName":null,"log_group_name":null,"log_stream_prefix":null,"match":null,"region":null,"roleArn":null}
+
+  # Configurations for forwarding logs to CloudWatch Logs using a higher
+  # performance plugin. Set to null if you do not wish to forward the logs to
+  # CloudWatch Logs using this plugin. This plugin is enabled by default in
+  # fluent-bit.
+  cloudwatch_logs_configuration = {"autoCreateGroup":null,"autoRetryRequests":null,"enabled":true,"endpoint":null,"externalId":null,"extraOutputs":null,"logFormat":null,"logGroupName":null,"logGroupTemplate":null,"logKey":null,"logRetentionDays":null,"logStreamName":null,"logStreamPrefix":null,"logStreamTemplate":null,"match":null,"metricDimensions":null,"metricNamespace":null,"region":null,"roleArn":null,"stsEndpoint":null}
+
+  # Configurations for adjusting the default filter settings. Set to null if you
+  # do not wish to use the default filter.
+  default_filter_configuration = {"bufferSize":"32k","enabled":true,"k8sLoggingExclude":"On","k8sLoggingParser":"On","keepLog":"On","kubeURL":"https://kubernetes.default.svc.cluster.local:443","match":"kube.*","mergeLog":"On","mergeLogKey":"data"}
+
+  # Configurations for adjusting the default input settings. Set to null if you
+  # do not wish to use the default filter.
+  default_input_configuration = {"db":"/var/log/flb_kube.db","dockerMode":"On","enabled":true,"memBufLimit":"5MB","parser":"docker","path":"/var/log/containers/*.log","refreshInterval":"10","skipLongLines":"On","tag":"kube.*"}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -295,10 +395,17 @@ inputs = {
   # destroyed before the resources in the list.
   dependencies = []
 
-  # Can be used to provide custom filtering of the log output. This string
-  # should be formatted according to Fluent Bit docs, as it will be injected
-  # directly into the fluent-bit.conf file.
+  # Can be used to provide additional kubernetes plugin configuration parameters
+  # for the default kubernetes filter that is pre-configured in the
+  # aws-for-fluent-bit Helm chart. This string should be formatted according to
+  # Fluent Bit docs, as it will append to the default kubernetes filter
+  # configuration.
   extra_filters = ""
+
+  # Can be used to append to existing input. This string should be formatted
+  # according to Fluent Bit docs, as it will be injected directly into the
+  # fluent-bit.conf file.
+  extra_inputs = ""
 
   # Can be used to fan out the log output to multiple additional clients beyond
   # the AWS ones. This string should be formatted according to Fluent Bit docs,
@@ -336,6 +443,13 @@ inputs = {
   # been tainted. Each item in the list specifies a toleration rule.
   pod_tolerations = []
 
+  # Merge and mask sensitive values like apikeys or passwords that are part of
+  # the helm charts `values.yaml`. These sensitive values will show up in the
+  # final metadata as clear text unless passed in as K:V pairs that are injected
+  # into the `values.yaml`. Key should be the paramater path and value should be
+  # the value.
+  sensitive_values = {}
+
   # Optionally use a cri parser instead of the default Docker parser. This
   # should be used for EKS v1.24 and later.
   use_cri_parser_conf = true
@@ -359,11 +473,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-container-logs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-container-logs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-container-logs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-container-logs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-container-logs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b3d4876599928937f9a2b6cade6bfd2b"
+  "hash": "2e0d452c72494c20a0298969752a532d"
 }
 ##DOCS-SOURCER-END -->

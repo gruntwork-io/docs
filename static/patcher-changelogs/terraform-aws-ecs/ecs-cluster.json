@@ -1,6 +1,15 @@
 {
   "module": "ecs-cluster",
   "releases": {
+    "v0.35.10": {
+      "contains_changes": true
+    },
+    "v0.35.9": {
+      "contains_changes": false
+    },
+    "v0.35.8": {
+      "contains_changes": true
+    },
     "v0.35.7": {
       "contains_changes": false
     },

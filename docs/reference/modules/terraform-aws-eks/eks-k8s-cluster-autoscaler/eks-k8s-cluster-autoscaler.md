@@ -9,21 +9,26 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.59.1" lastModifiedVersion="0.59.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.70.2" lastModifiedVersion="0.70.2"/>
 
 # K8S Cluster Autoscaler Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-cluster-autoscaler" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-k8s-cluster-autoscaler" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.59.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.70.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module installs a [Cluster Autoscaler](https://github.com/kubernetes/autoscaler/tree/b6d53e8/cluster-autoscaler)
 to automatically scale up and down the nodes in a cluster in response to resource utilization.
 
 This module is responsible for manipulating each Auto Scaling Group (ASG) that was created by the [EKS cluster
-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-cluster-workers) module. By default, the ASG is configured to allow zero-downtime
+workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-cluster-workers) module. By default, the ASG is configured to allow zero-downtime
 deployments but is not configured to scale automatically. You must launch an [EKS control
-plane](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-cluster-control-plane) with worker nodes for this module to function.
+plane](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-cluster-control-plane) with worker nodes for this module to function.
+
+## IAM Policy Considerations
+
+There are two primary methods of granting permissions to the cluster autoscaler to allow scaling activities: Tag Based Policies and Resource Based Policies.
+The Resource Based method restricts the cluster autoscaler IAM Role Policy to the specific ASG ARNs to esnure only ASGs used within the EKS cluster are allowed to be modified by the cluster autoscaler. The Resource Based policy is enabled by setting the variable `cluster_autoscaler_absolute_arns` to `true` (this is the default setting). There have been issues with this at scale due to IAM Policy size limitations. At scale, the recommended approach is to use a Tag Based Policy instead. A Tag Based Policy is more dynamic as it will permit the cluster autoscaler to modify ASGs of the EKS cluster IF they have the tag `k8s.io/cluster-autoscaler/<cluster name>` present. This keeps the IAM Policy size minimal and it supports a dynamic environment by discovering ASGs based on the well-known cluster autoscaler tag being present. To enable the Tag Based Policy, set the variable `cluster_autoscaler_absolute_arns` to `false`.
 
 ## Important Considerations
 
@@ -57,7 +62,7 @@ variables.
 
 module "eks_k_8_s_cluster_autoscaler" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler?ref=v0.59.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler?ref=v0.70.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -108,13 +113,22 @@ module "eks_k_8_s_cluster_autoscaler" {
   # Which docker repository to use to install the cluster autoscaler. Check the
   # following link for valid repositories to use
   # https://github.com/kubernetes/autoscaler/releases
-  cluster_autoscaler_repository = "us.gcr.io/k8s-artifacts-prod/autoscaling/cluster-autoscaler"
+  cluster_autoscaler_repository = "registry.k8s.io/autoscaling/cluster-autoscaler"
+
+  # ARN of IAM Role to use for the Cluster Autoscaler. Only used when
+  # var.create_cluster_autoscaler_role is false.
+  cluster_autoscaler_role_arn = null
 
   # Which version of the cluster autoscaler to install.
-  cluster_autoscaler_version = "v1.26.2"
+  cluster_autoscaler_version = "v1.30.0"
 
   # Map of extra arguments to pass to the container.
   container_extra_args = {}
+
+  # When set to true, create a new dedicated IAM Role for the cluster
+  # autoscaler. When set to true, var.iam_role_for_service_accounts_config is
+  # required.
+  create_cluster_autoscaler_role = true
 
   # When set to true, create a dedicated Fargate execution role for the cluster
   # autoscaler. When false, you must provide an existing fargate execution role
@@ -187,6 +201,9 @@ module "eks_k_8_s_cluster_autoscaler" {
   # which ASG to scale when additional resource capacity is needed.
   scaling_strategy = "least-waste"
 
+  # The name of the service account to create for the cluster autoscaler.
+  service_account_name = "cluster-autoscaler-aws-cluster-autoscaler"
+
   # A list of the subnets into which the EKS Cluster's administrative pods will
   # be launched. These should usually be all private subnets and include one in
   # each AWS Availability Zone. Required when var.create_fargate_profile is
@@ -208,7 +225,7 @@ module "eks_k_8_s_cluster_autoscaler" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler?ref=v0.59.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler?ref=v0.70.2"
 }
 
 inputs = {
@@ -262,13 +279,22 @@ inputs = {
   # Which docker repository to use to install the cluster autoscaler. Check the
   # following link for valid repositories to use
   # https://github.com/kubernetes/autoscaler/releases
-  cluster_autoscaler_repository = "us.gcr.io/k8s-artifacts-prod/autoscaling/cluster-autoscaler"
+  cluster_autoscaler_repository = "registry.k8s.io/autoscaling/cluster-autoscaler"
+
+  # ARN of IAM Role to use for the Cluster Autoscaler. Only used when
+  # var.create_cluster_autoscaler_role is false.
+  cluster_autoscaler_role_arn = null
 
   # Which version of the cluster autoscaler to install.
-  cluster_autoscaler_version = "v1.26.2"
+  cluster_autoscaler_version = "v1.30.0"
 
   # Map of extra arguments to pass to the container.
   container_extra_args = {}
+
+  # When set to true, create a new dedicated IAM Role for the cluster
+  # autoscaler. When set to true, var.iam_role_for_service_accounts_config is
+  # required.
+  create_cluster_autoscaler_role = true
 
   # When set to true, create a dedicated Fargate execution role for the cluster
   # autoscaler. When false, you must provide an existing fargate execution role
@@ -341,6 +367,9 @@ inputs = {
   # which ASG to scale when additional resource capacity is needed.
   scaling_strategy = "least-waste"
 
+  # The name of the service account to create for the cluster autoscaler.
+  service_account_name = "cluster-autoscaler-aws-cluster-autoscaler"
+
   # A list of the subnets into which the EKS Cluster's administrative pods will
   # be launched. These should usually be all private subnets and include one in
   # each AWS Availability Zone. Required when var.create_fargate_profile is
@@ -359,11 +388,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-cluster-autoscaler/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-cluster-autoscaler/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.59.1/modules/eks-k8s-cluster-autoscaler/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-k8s-cluster-autoscaler/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-k8s-cluster-autoscaler/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-k8s-cluster-autoscaler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a7c19ce85f12c5dca4b4b50e87d979bb"
+  "hash": "ccc0591ec9254d98f60b6581cb3d4a4d"
 }
 ##DOCS-SOURCER-END -->

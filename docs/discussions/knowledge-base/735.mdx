@@ -1,0 +1,27 @@
+---
+hide_table_of_contents: true
+hide_title: true
+custom_edit_url: null
+---
+
+import CenterLayout from "/src/components/CenterLayout"
+import GitHub from "/src/components/GitHub"
+
+<head>
+  <link rel="canonical" href="https://github.com/gruntwork-io/knowledge-base/discussions/735" />
+</head>
+
+<CenterLayout>
+<span className="searchCategory">Knowledge Base</span>
+<h1>Terragrunt configuration for GovCloud</h1>
+<GitHub discussion={{"id":"D_kwDOF8slf84AUJ3f","number":735,"author":{"login":"pras111gw"},"title":"Terragrunt configuration for GovCloud","body":"\nBy default, AWS CLI, Terraform, and Terragrunt rely on the AWS_REGION configuration to discover AWS service endpoints[1]. However, when dealing with government agencies in the US and Canada or using GovCloud, it is necessary to communicate over FIPS endpoints[2].\r\n\r\nTerraform provides a guide on using custom endpoints[3] that can be followed to configure Terragrunt. To do this, open the root `terragrunt.hcl` file and locate the AWS provider section. In this section, you need to add custom endpoints specific to your region.\r\n\r\nHere's an example configuration for the AWS provider section in `terragrunt.hcl`:\r\n \r\n```\r\nprovider \"aws\" {\r\n\r\n  endpoints {\r\n      acm = \"https://acm-fips.us-east-1.amazonaws.com\"\r\n      acmpca = \"https://acm-pca-fips.us-east-1.amazonaws.com\"\r\n      ... (fips endpoints for other services)\r\n  }\r\n```\r\n\r\nBy adding these custom endpoints, terragrunt/terraform will override the standard endpoints for the specified region and utilize the custom endpoints defined above.\r\n\r\n[1] https://docs.aws.amazon.com/general/latest/gr/rande.html\r\n[2] https://aws.amazon.com/compliance/fips/#FIPS_Endpoints_by_Service\r\n[3] https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/custom-service-endpoints\n\n---\n\n<ins datetime=\"2023-06-10T01:45:54Z\">\n  <p><a href=\"https://support.gruntwork.io/hc/requests/110249\">Tracked in ticket #110249</a></p>\n</ins>\n","bodyHTML":"<p dir=\"auto\">By default, AWS CLI, Terraform, and Terragrunt rely on the AWS_REGION configuration to discover AWS service endpoints[1]. However, when dealing with government agencies in the US and Canada or using GovCloud, it is necessary to communicate over FIPS endpoints[2].</p>\n<p dir=\"auto\">Terraform provides a guide on using custom endpoints[3] that can be followed to configure Terragrunt. To do this, open the root <code class=\"notranslate\">terragrunt.hcl</code> file and locate the AWS provider section. In this section, you need to add custom endpoints specific to your region.</p>\n<p dir=\"auto\">Here's an example configuration for the AWS provider section in <code class=\"notranslate\">terragrunt.hcl</code>:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"provider &quot;aws&quot; {\n\n  endpoints {\n      acm = &quot;https://acm-fips.us-east-1.amazonaws.com&quot;\n      acmpca = &quot;https://acm-pca-fips.us-east-1.amazonaws.com&quot;\n      ... (fips endpoints for other services)\n  }\"><pre class=\"notranslate\"><code class=\"notranslate\">provider \"aws\" {\n\n  endpoints {\n      acm = \"https://acm-fips.us-east-1.amazonaws.com\"\n      acmpca = \"https://acm-pca-fips.us-east-1.amazonaws.com\"\n      ... (fips endpoints for other services)\n  }\n</code></pre></div>\n<p dir=\"auto\">By adding these custom endpoints, terragrunt/terraform will override the standard endpoints for the specified region and utilize the custom endpoints defined above.</p>\n<p dir=\"auto\">[1] <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html\" rel=\"nofollow\">https://docs.aws.amazon.com/general/latest/gr/rande.html</a><br>\n[2] <a href=\"https://aws.amazon.com/compliance/fips/#FIPS_Endpoints_by_Service\" rel=\"nofollow\">https://aws.amazon.com/compliance/fips/#FIPS_Endpoints_by_Service</a><br>\n[3] <a href=\"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/custom-service-endpoints\" rel=\"nofollow\">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/custom-service-endpoints</a></p>\n<hr>\n<ins datetime=\"2023-06-10T01:45:54Z\">\n  <p dir=\"auto\"><a href=\"https://support.gruntwork.io/hc/requests/110249\" rel=\"nofollow\">Tracked in ticket #110249</a></p>\n</ins>","answer":{"body":"KB page with answer added","bodyHTML":"<p dir=\"auto\">KB page with answer added</p>"}}} />
+
+</CenterLayout>
+  
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "github-discussions",
+  "hash": "2fa5dc5bcf66b7ac01a8810c99998c3c"
+}
+##DOCS-SOURCER-END -->

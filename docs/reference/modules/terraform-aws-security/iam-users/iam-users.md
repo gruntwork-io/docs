@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.4" lastModifiedVersion="0.65.10"/>
+<VersionBadge repoTitle="Security Modules" version="0.74.2" lastModifiedVersion="0.74.2"/>
 
 # IAM Users
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-users" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/iam-users" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.74.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This is a Terraform module you can use to create and manage
 [IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) as code.
@@ -139,7 +139,7 @@ Under the hood, this module uses the [`aws_iam_user` resource](https://registry.
 
 module "iam_users" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-users?ref=v0.68.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-users?ref=v0.74.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -177,6 +177,11 @@ module "iam_users" {
   # destroyed.
   force_destroy = false
 
+  # ARN or Id of the AWS KMS key to be used to encrypt the secret values in the
+  # versions stored in this secret. If you don't specify this value, then
+  # Secrets Manager defaults to using the AWS account's default KMS key
+  kms_key_id = null
+
   # The length for the generated AWS Web Console password. Only used for users
   # with create_login_profile set to true.
   password_length = 20
@@ -200,7 +205,7 @@ module "iam_users" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-users?ref=v0.68.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-users?ref=v0.74.2"
 }
 
 inputs = {
@@ -240,6 +245,11 @@ inputs = {
   # with non-Terraform-managed access keys and login profile will fail to be
   # destroyed.
   force_destroy = false
+
+  # ARN or Id of the AWS KMS key to be used to encrypt the secret values in the
+  # versions stored in this secret. If you don't specify this value, then
+  # Secrets Manager defaults to using the AWS account's default KMS key
+  kms_key_id = null
 
   # The length for the generated AWS Web Console password. Only used for users
   # with create_login_profile set to true.
@@ -440,6 +450,15 @@ When destroying this user, destroy even if it has non-Terraform-managed IAM acce
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN or Id of the AWS KMS key to be used to encrypt the secret values in the versions stored in this secret. If you don't specify this value, then Secrets Manager defaults to using the AWS account's default KMS key
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="password_length" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -508,11 +527,11 @@ A map of usernames to that user's AWS SSH Security Credential ID
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-users/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-users/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.4/modules/iam-users/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/iam-users/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/iam-users/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/iam-users/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c05070da13aac421bfae1f1d981bcc4c"
+  "hash": "67a9f0c8ca7d4899032fce2cbb5a3903"
 }
 ##DOCS-SOURCER-END -->
