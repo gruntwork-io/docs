@@ -31,11 +31,6 @@ const sidebar = [
         label: "Gruntwork Pipelines",
         type: "category",
         collapsed: true,
-        link: {
-          type: "generated-index",
-          title: "Pipelines reference",
-          slug: "2.0/reference/pipelines",
-        },
         items: [
           {
             label: "Overview",
@@ -43,12 +38,12 @@ const sidebar = [
             id: "2.0/reference/pipelines/index",
           },
           {
-            label: "Configurations",
+            label: "Configurations (YAML)",
             type: "doc",
             id: "2.0/reference/pipelines/configurations",
           },
           {
-            label: "Configurations as Code (Beta)",
+            label: "Configurations as Code (HCL - Beta)",
             type: "doc",
             id: "2.0/reference/pipelines/configurations-as-code",
           },
