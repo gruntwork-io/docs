@@ -4,7 +4,7 @@ The Gruntwork Reference Architecture has three deployment phases.
 
 ### Configuration
 
-Configuration of the Gruntwork Reference Architecture is primarily [your responsibility](../../intro/overview/what-you-provide).
+Configuration of the Gruntwork Reference Architecture is primarily your responsibility.
 
 - We deliver a templated `infrastructure-live-${YOUR_COMPANY_NAME}` repository to you in our GitHub organization
 - You access the repo in GitHub via invitation in the [Gruntwork Dev Portal](https://app.gruntwork.io)
@@ -15,7 +15,7 @@ Configuration of the Gruntwork Reference Architecture is primarily [your respons
 
 ### Deployment
 
-The deployment phase is primarily [our responsibility](../../intro/overview/what-we-provide.md#gruntwork-reference-architecture).
+The deployment phase is primarily our responsibility..
 
 - We monitor the deployment and fix any errors that occur as needed
 - In some cases, we may need to communicate with you to resolve issues (e.g. AWS quota problems)
@@ -25,7 +25,7 @@ The deployment phase is primarily [our responsibility](../../intro/overview/what
 
 ### Adoption
 
-The adoption phase is primarily [your responsibility](../../intro/overview/what-you-provide).
+The adoption phase is primarily your responsibility.
 
 - You complete “last mile” configuration following our handoff docs, including final Pipelines integrations with your CI/CD of choice
 - You migrate the `infrastructure-live-${YOUR_COMPANY_NAME}` repo to your own Version Control System or Github Organization

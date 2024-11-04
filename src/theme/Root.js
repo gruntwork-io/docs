@@ -31,6 +31,7 @@ const publicGruntworkRepoNames = [
   "infrastructure-as-code-training",
   "intro-to-terraform",
   "kafka-health-check",
+  "boilerplate",
   "knowledge-base",
   "kubergrunt",
   "microframework",

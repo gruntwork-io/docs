@@ -1,4 +1,4 @@
-import React from "react"
+import React, { ReactNode } from "react"
 import clsx from "clsx"
 import styles from "./Card.module.css"
 
@@ -13,6 +13,7 @@ export type CardProps = {
   appearance?: "float" | "flush" | "invisible"
   padding?: number | string
   className?: string
+  children?: ReactNode
 }
 
 export const Card: React.FunctionComponent<CardProps> = ({
