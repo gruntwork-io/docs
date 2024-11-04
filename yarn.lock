@@ -8992,7 +8992,7 @@ lightningcss-linux-arm64-musl@1.28.1:
   resolved "https://registry.yarnpkg.com/lightningcss-linux-arm64-musl/-/lightningcss-linux-arm64-musl-1.28.1.tgz#9d2561d8a5ecfb3f1f18651da0acc592e837ea3a"
   integrity sha512-dnMHeXEmCUzHHZjaDpQBYuBKcN9nPC3nPFKl70bcj5Bkn5EmkcgEqm5p035LKOgvAwk1XwLpQCML6pXmCwz0NQ==
 
-lightningcss-linux-x64-gnu@1.28.1:
+lightningcss-linux-x64-gnu@1.28.1, lightningcss-linux-x64-gnu@^1.28.1:
   version "1.28.1"
   resolved "https://registry.yarnpkg.com/lightningcss-linux-x64-gnu/-/lightningcss-linux-x64-gnu-1.28.1.tgz#91d0a41d6dd40d8965cb6c1fbd4d40e6b3460384"
   integrity sha512-7vWDISaMUn+oo2TwRdf2hl/BLdPxvywv9JKEqNZB/0K7bXwV4XE9wN/C2sAp1gGuh6QBA8lpjF4JIPt3HNlCHA==

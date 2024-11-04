@@ -38,6 +38,7 @@
     "config": "^3.3.6",
     "env-cmd": "^10.1.0",
     "file-loader": "^6.2.0",
+    "lightningcss-linux-x64-gnu": "^1.28.1",
     "path": "^0.12.7",
     "plugin-image-zoom": "ataft/plugin-image-zoom",
     "posthog-docusaurus": "^1.0.3",
