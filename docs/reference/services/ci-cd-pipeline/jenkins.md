@@ -379,6 +379,12 @@ module "jenkins" {
   # Enter the name of the Jenkins server
   name = "jenkins"
 
+  # The name of the root volume for Jenkins. Example: /dev/sda1. This name
+  # should be the same name used by the AMI's root device. By default this
+  # module will use the volume name from an existing AMI, according to the
+  # configuration on module ec2-baseline.
+  root_block_device_name = null
+
   # The type of volume to use for the root disk for Jenkins. Must be one of:
   # standard, gp2, io1, sc1, or st1.
   root_block_device_volume_type = "gp2"
@@ -386,7 +392,10 @@ module "jenkins" {
   # The amount of disk space, in GB, to allocate for the root volume of this
   # server. Note that all of Jenkins' data is stored on a separate EBS Volume
   # (see var.jenkins_volume_size), so this root volume is primarily used for the
-  # OS, temp folders, apps, etc.
+  # OS, temp folders, apps, etc. Please note that the variable
+  # root_block_device_name must match the root device name, otherwise this
+  # module will create another volume with this size instead of modifying the
+  # root volume.
   root_volume_size = 100
 
   # Set to 'true' to allow the server group role to assume itself. See
@@ -736,6 +745,12 @@ inputs = {
   # Enter the name of the Jenkins server
   name = "jenkins"
 
+  # The name of the root volume for Jenkins. Example: /dev/sda1. This name
+  # should be the same name used by the AMI's root device. By default this
+  # module will use the volume name from an existing AMI, according to the
+  # configuration on module ec2-baseline.
+  root_block_device_name = null
+
   # The type of volume to use for the root disk for Jenkins. Must be one of:
   # standard, gp2, io1, sc1, or st1.
   root_block_device_volume_type = "gp2"
@@ -743,7 +758,10 @@ inputs = {
   # The amount of disk space, in GB, to allocate for the root volume of this
   # server. Note that all of Jenkins' data is stored on a separate EBS Volume
   # (see var.jenkins_volume_size), so this root volume is primarily used for the
-  # OS, temp folders, apps, etc.
+  # OS, temp folders, apps, etc. Please note that the variable
+  # root_block_device_name must match the root device name, otherwise this
+  # module will create another volume with this size instead of modifying the
+  # root volume.
   root_volume_size = 100
 
   # Set to 'true' to allow the server group role to assume itself. See
@@ -1410,6 +1428,15 @@ Enter the name of the Jenkins server
 <HclListItemDefaultValue defaultValue="&quot;jenkins&quot;"/>
 </HclListItem>
 
+<HclListItem name="root_block_device_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the root volume for Jenkins. Example: /dev/sda1. This name should be the same name used by the AMI's root device. By default this module will use the volume name from an existing AMI, according to the configuration on module ec2-baseline.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="root_block_device_volume_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1422,7 +1449,7 @@ The type of volume to use for the root disk for Jenkins. Must be one of: standar
 <HclListItem name="root_volume_size" requirement="optional" type="number">
 <HclListItemDescription>
 
-The amount of disk space, in GB, to allocate for the root volume of this server. Note that all of Jenkins' data is stored on a separate EBS Volume (see <a href="#jenkins_volume_size"><code>jenkins_volume_size</code></a>), so this root volume is primarily used for the OS, temp folders, apps, etc.
+The amount of disk space, in GB, to allocate for the root volume of this server. Note that all of Jenkins' data is stored on a separate EBS Volume (see <a href="#jenkins_volume_size"><code>jenkins_volume_size</code></a>), so this root volume is primarily used for the OS, temp folders, apps, etc. Please note that the variable root_block_device_name must match the root device name, otherwise this module will create another volume with this size instead of modifying the root volume.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="100"/>
@@ -1650,6 +1677,6 @@ The ID of the Security Group attached to the Jenkins EC2 Instance
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/mgmt/jenkins/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "489a445071ac722181067df88ad365ce"
+  "hash": "8e7abe7f54c73da241145a7c672aca0b"
 }
 ##DOCS-SOURCER-END -->

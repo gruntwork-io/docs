@@ -26,7 +26,7 @@ If you still need documentation for the previous version of Pipelines, you can f
 
 ## How Do I Migrate to the New Version?
 
-Follow the steps outlined in the [migration guide](../../pipelines/upgrading/upgrading-from-infrastructure-pipelines.md) to migrate to the new version of Pipelines.
+Follow the steps outlined in the [migration guide](../../2.0/docs/pipelines/previous-versions/upgrading-from-infrastructure-pipelines.md) to migrate to the new version of Pipelines.
 
 ## Why Was This Deprecation Necessary?
 
@@ -104,7 +104,7 @@ Customers now have two new capabilities to help them stay up to date with the la
      uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines-root.yml@v1
    ```
 
-More documentation on upgrading to the latest version of Pipelines can be found [here](../../pipelines/maintain/updating.md).
+More documentation on upgrading to the latest version of Pipelines can be found [here](../../2.0/docs/pipelines/guides/updating-pipelines.md).
 
 ### Flexible
 
@@ -113,7 +113,7 @@ Customers are also free to customize their Pipelines configurations more easily,
 In addition, the underlying actions that make up the Pipelines configuration are also public, so customers can inject their own logic in between the steps taken by Pipelines to customize workflows to their specific use cases, without losing the ability to pull in upstream updates to those actions.
 
 :::tip
-If you intend on leveraging this functionality, make sure to read the documentation on [extending Pipelines](../../pipelines/maintain/extending.md) to understand how to structure your custom workflows.
+If you intend on leveraging this functionality, make sure to read the documentation on [extending Pipelines](../../2.0/docs/pipelines/guides/extending-pipelines.md) to understand how to structure your custom workflows.
 :::
 
 ### Secure

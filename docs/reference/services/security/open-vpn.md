@@ -364,6 +364,12 @@ module "openvpn_server" {
   # with 'openvpn-requests-'.
   revocation_queue_name = "queue"
 
+  # The name of the root volume for OpenVPN. Example: /dev/sda1. This name
+  # should be the same name used by the AMI's root device. If left null, by
+  # default this module will use the volume name from an existing AMI, according
+  # to the configuration on module ec2-baseline.
+  root_block_device_name = null
+
   # The size of the OpenVPN EC2 instance root volume, in GB.
   root_volume_size = 8
 
@@ -705,6 +711,12 @@ inputs = {
   # revocation requests. Note that the queue name will be automatically prefixed
   # with 'openvpn-requests-'.
   revocation_queue_name = "queue"
+
+  # The name of the root volume for OpenVPN. Example: /dev/sda1. This name
+  # should be the same name used by the AMI's root device. If left null, by
+  # default this module will use the volume name from an existing AMI, according
+  # to the configuration on module ec2-baseline.
+  root_block_device_name = null
 
   # The size of the OpenVPN EC2 instance root volume, in GB.
   root_volume_size = 8
@@ -1311,6 +1323,15 @@ The name of the sqs queue that will be used to receive certification revocation 
 <HclListItemDefaultValue defaultValue="&quot;queue&quot;"/>
 </HclListItem>
 
+<HclListItem name="root_block_device_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the root volume for OpenVPN. Example: /dev/sda1. This name should be the same name used by the AMI's root device. If left null, by default this module will use the volume name from an existing AMI, according to the configuration on module ec2-baseline.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="root_volume_size" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1545,6 +1566,6 @@ The security group ID of the OpenVPN server.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/mgmt/openvpn-server/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "21852e8f44ca6818d3fb696f2faf9519"
+  "hash": "f7e8ee194114a11ac9370e37f8754051"
 }
 ##DOCS-SOURCER-END -->

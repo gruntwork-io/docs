@@ -2,6 +2,7 @@ const sidebar = [
   {
     label: "CIS Benchmark Compliance Guide",
     type: "category",
+    collapsed: true,
     link: {
       type: "doc",
       id: "guides/build-it-yourself/achieve-compliance/index",
