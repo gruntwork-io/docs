@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.115.4" lastModifiedVersion="0.114.0"/>
+<VersionBadge version="0.116.0" lastModifiedVersion="0.116.0"/>
 
 # Amazon EKS
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-cluster" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -116,7 +116,7 @@ To add and manage additional worker groups, refer to the [eks-workers module](/r
 
 module "eks_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.115.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.116.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -137,6 +137,16 @@ module "eks_cluster" {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # The authentication mode for the cluster. Valid values are CONFIG_MAP, API or
+  # API_AND_CONFIG_MAP.
+  access_config_authentication_mode = "CONFIG_MAP"
+
+  # Map of EKS Access Entries to be created for the cluster.
+  access_entries = {}
+
+  # Map of EKS Access Entry Policy Associations to be created for the cluster.
+  access_entry_poilcy_associations = {}
 
   # A list of additional security group IDs to attach to the control plane.
   additional_security_groups_for_control_plane = []
@@ -304,6 +314,10 @@ module "eks_cluster" {
   # Namespace to deploy the aws-auth-merger into. The app will watch for
   # ConfigMaps in this Namespace to merge into the aws-auth ConfigMap.
   aws_auth_merger_namespace = "aws-auth-merger"
+
+  # Whether or not to bootstrap an access entry with cluster admin permissions
+  # for the cluster creator.
+  bootstrap_cluster_creator_admin_permissions = true
 
   # Cloud init scripts to run on the EKS worker nodes when it is booting. See
   # the part blocks in
@@ -848,7 +862,7 @@ module "eks_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.115.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.116.0"
 }
 
 inputs = {
@@ -872,6 +886,16 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # The authentication mode for the cluster. Valid values are CONFIG_MAP, API or
+  # API_AND_CONFIG_MAP.
+  access_config_authentication_mode = "CONFIG_MAP"
+
+  # Map of EKS Access Entries to be created for the cluster.
+  access_entries = {}
+
+  # Map of EKS Access Entry Policy Associations to be created for the cluster.
+  access_entry_poilcy_associations = {}
 
   # A list of additional security group IDs to attach to the control plane.
   additional_security_groups_for_control_plane = []
@@ -1039,6 +1063,10 @@ inputs = {
   # Namespace to deploy the aws-auth-merger into. The app will watch for
   # ConfigMaps in this Namespace to merge into the aws-auth ConfigMap.
   aws_auth_merger_namespace = "aws-auth-merger"
+
+  # Whether or not to bootstrap an access entry with cluster admin permissions
+  # for the cluster creator.
+  bootstrap_cluster_creator_admin_permissions = true
 
   # Cloud init scripts to run on the EKS worker nodes when it is booting. See
   # the part blocks in
@@ -1620,6 +1648,47 @@ ID of the VPC where the EKS resources will be deployed.
 
 ### Optional
 
+<HclListItem name="access_config_authentication_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+The authentication mode for the cluster. Valid values are CONFIG_MAP, API or API_AND_CONFIG_MAP.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;CONFIG_MAP&quot;"/>
+</HclListItem>
+
+<HclListItem name="access_entries" requirement="optional" type="any">
+<HclListItemDescription>
+
+Map of EKS Access Entries to be created for the cluster.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="access_entry_poilcy_associations" requirement="optional" type="any">
+<HclListItemDescription>
+
+Map of EKS Access Entry Policy Associations to be created for the cluster.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="additional_security_groups_for_control_plane" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -2115,6 +2184,15 @@ Namespace to deploy the aws-auth-merger into. The app will watch for ConfigMaps 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;aws-auth-merger&quot;"/>
+</HclListItem>
+
+<HclListItem name="bootstrap_cluster_creator_admin_permissions" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to bootstrap an access entry with cluster admin permissions for the cluster creator.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="cloud_init_parts" requirement="optional" type="map(object(…))">
@@ -3721,11 +3799,11 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/eks-cluster/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/eks-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/eks-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/services/eks-cluster/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/services/eks-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.0/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b8e2460705240f93e1bb7c34cd4ea9f3"
+  "hash": "b544e5c1631e79e7809d68719dfaf076"
 }
 ##DOCS-SOURCER-END -->
