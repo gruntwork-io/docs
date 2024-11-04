@@ -16,6 +16,7 @@ import CardGroup from "/src/components/CardGroup"
 
 <CardGroup cols={1} gap="1rem" stacked equalHeightRows={false} commonCardProps={{padding: "1.25rem"}}>
 
+<Card title="Update to 2024-10" href="/guides/stay-up-to-date/releases/2024-10" />
 <Card title="Update to 2024-09" href="/guides/stay-up-to-date/releases/2024-09" />
 <Card title="Update to 2024-08" href="/guides/stay-up-to-date/releases/2024-08" />
 <Card title="Update to 2024-07" href="/guides/stay-up-to-date/releases/2024-07" />
@@ -109,9 +110,6 @@ href="/guides/stay-up-to-date/cis/cis-1.5.0"
 </span>
 
 </Grid>
-
-
-##DOCS-SOURCER-END -->
 
 
 <!-- ##DOCS-SOURCER-START
