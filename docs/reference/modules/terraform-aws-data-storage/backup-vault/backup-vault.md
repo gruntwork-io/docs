@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.28.1" lastModifiedVersion="0.27.2"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.38.1" lastModifiedVersion="0.38.1"/>
 
 # Backup Vault Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/backup-vault" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/backup-vault" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.38.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches a [Backup Vault](https://docs.aws.amazon.com/aws-backup/latest/devguide/vaults.html) that you can use to store, organize and, optionally, preserve your AWS Backup recovery points against deletion.
 
@@ -96,7 +96,7 @@ then you will end up with many potentially large recovery points that you cannot
 
 module "backup_vault" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-vault?ref=v0.28.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-vault?ref=v0.38.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -121,6 +121,10 @@ module "backup_vault" {
   # plan for the given vault
   default_min_retention_days = 7
 
+  # The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a
+  # custom CMK
+  sns_topic_encryption_kms_key_id = null
+
 }
 
 
@@ -136,7 +140,7 @@ module "backup_vault" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-vault?ref=v0.28.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-vault?ref=v0.38.1"
 }
 
 inputs = {
@@ -163,6 +167,10 @@ inputs = {
   # The minimum number of retention days that can be configured via a backup
   # plan for the given vault
   default_min_retention_days = 7
+
+  # The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a
+  # custom CMK
+  sns_topic_encryption_kms_key_id = null
 
 }
 
@@ -219,6 +227,15 @@ The minimum number of retention days that can be configured via a backup plan fo
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="7"/>
+</HclListItem>
+
+<HclListItem name="sns_topic_encryption_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 </TabItem>
@@ -287,11 +304,11 @@ A map of tags assigned to the vault resources, including those inherited from th
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/backup-vault/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/backup-vault/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/backup-vault/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/backup-vault/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/backup-vault/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/backup-vault/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "87deea3913a05b7ee04da9c78311b7f1"
+  "hash": "d5f9d22b961ea6179a56864310e0c5a3"
 }
 ##DOCS-SOURCER-END -->

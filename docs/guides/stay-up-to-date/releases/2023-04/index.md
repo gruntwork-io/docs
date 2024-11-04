@@ -998,17 +998,21 @@ The new signature for Docker Compose is `docker compose &lt;command&gt;` (Not th
 ### [v0.104.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.104.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/27/2023 | Modules affected: data-stores, mgmt | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.104.0">Release notes</a></small>
+  <small>Published: 4/27/2023 | Modules affected: data-stores/aurora, data-stores/backup-plan, data-stores/backup-vault, data-stores/lambda-cleanup-snapshots | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.104.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   
 
-- chore(deps): update terraform github.com/gruntwork-io/terraform-aws-data-storage to v0.26.0
-- chore: Update find-all-tests-to-run to work
-- Update for-production examples for architecture catalog 
-- chore: Update Tailscale README
+- Update `terraform-aws-data-storage` to v0.26.0
+  - Upgrade the AWS provider version to 4.22.0
+  - Convert Security Group Rules for Aurora to use `for_each`
+  - Added support for custom final snapshot for Aurora
+  - Added boundary policy in creation of enhancement monitoring IAM role for RDS
+- Fixed the `find-all-tests-to-run` script
+- Updated the for-production examples for architecture catalog 
+- Updated Tailscale README
 
 
 </div>
@@ -1326,6 +1330,6 @@ The new signature for Docker Compose is `docker compose &lt;command&gt;` (Not th
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "b0ab974770913288a3204048f83170e5"
+  "hash": "c1dd4076f6a9378655e2e3811c3d8a15"
 }
 ##DOCS-SOURCER-END -->

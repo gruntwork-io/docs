@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Module Server" version="0.15.5" lastModifiedVersion="0.15.5"/>
+<VersionBadge repoTitle="Module Server" version="0.16.1" lastModifiedVersion="0.16.1"/>
 
 # Single Server Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.5/modules/single-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/modules/single-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.15.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.16.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy a single server--that is, a single EC2 instance (e.g. a bastion host, Jenkins
 server) rather than an Auto Scaling Group or ECS Cluster--along with the all the resources it typically needs:
@@ -40,6 +40,10 @@ including:
 In some cases, it's desirable to have the ability to assign your own externally managed security groups. To do this,
 set the `additional_security_group_ids` variable with the desired security group id(s). This list of security groups
 will be combined with the default security group.
+
+Note: if you set `default_network_interface_id` to override the default network interface, AWS does not allow attaching
+any security groups to the EC2 instance, so you will need to attach any and all security groups you need to the network
+interface you pass in.
 
 ## What if I just want to add custom security group rules to the default security group?
 
@@ -101,7 +105,7 @@ resource "aws_iam_policy_attachment" "attachment" {
 
 module "single_server" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.15.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.16.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -121,7 +125,9 @@ module "single_server" {
   # by this module.
   name = <string>
 
-  # The id of the subnet where this server should be deployed.
+  # The id of the subnet where this server should be deployed. Required unless
+  # default_network_interface_id is set, in which case subnet_id should be set
+  # to null.
   subnet_id = <string>
 
   # The id of the VPC where this server should be deployed.
@@ -132,10 +138,12 @@ module "single_server" {
   # ----------------------------------------------------------------------------------------------------
 
   # A list of optional additional security group ids to assign to the server.
+  # Note: this variable is NOT used if default_network_interface_id is set.
   additional_security_group_ids = []
 
   # A boolean that specifies whether or not to add a security group rule that
-  # allows all outbound traffic from this server.
+  # allows all outbound traffic from this server. Works if
+  # custom_egress_rules_cidr_blocks is not specified.
   allow_all_outbound_traffic = true
 
   # A list of IP address ranges in CIDR format from which rdp access will be
@@ -143,13 +151,23 @@ module "single_server" {
   # will be blocked.
   allow_rdp_from_cidr_list = []
 
+  # A list of IPv6 address ranges in CIDR format from which rdp access will be
+  # permitted. Attempts to access the bastion host from all other IP addresses
+  # will be blocked.
+  allow_rdp_from_ipv6_cidr_list = []
+
   # The IDs of security groups from which rdp connections will be allowed.
   allow_rdp_from_security_group_ids = []
 
   # A list of IP address ranges in CIDR format from which SSH access will be
   # permitted. Attempts to access the server from all other IP addresses will be
   # blocked.
-  allow_ssh_from_cidr_list = ["0.0.0.0/0"]
+  allow_ssh_from_cidr_list = []
+
+  # A list of IPv6 address ranges in CIDR format from which SSH access will be
+  # permitted. Attempts to access the server from all other IP addresses will be
+  # blocked.
+  allow_ssh_from_ipv6_cidr_list = []
 
   # The IDs of security groups from which SSH connections will be allowed.
   allow_ssh_from_security_group_ids = []
@@ -184,9 +202,22 @@ module "single_server" {
   # https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html.
   create_instance_profile = true
 
+  # Whether to create a security group for the instance. If set to false, you
+  # will have to provide security group with 'var.additional_security_group_ids.
+  create_security_group = true
+
+  # Custom egress rules with the CIDR Blocks destination. If we use this, the
+  # security group rule that allows all outbound traffic won't be created.
+  custom_egress_rules_cidr_blocks = {}
+
   # ID of a dedicated host that the instance will be assigned to. Use when an
   # instance is to be launched on a specific dedicated host.
   dedicated_host_id = null
+
+  # The ID of a network interface to use to override the default network
+  # interface for this EC2 instance, attached at eth0 (device index 0). If set,
+  # subnet_id must be set to null.
+  default_network_interface_id = null
 
   # If true, enables EC2 Instance Termination Protection.
   disable_api_termination = false
@@ -259,14 +290,14 @@ module "single_server" {
   # Whether or not the metadata service requires session tokens, also referred
   # to as Instance Metadata Service Version 2 (IMDSv2). Valid values include
   # optional or required. Defaults to optional.
-  metadata_http_tokens = "optional"
+  metadata_http_tokens = "required"
 
   # Enables or disables access to instance tags from the instance metadata
   # service. Valid values include enabled or disabled. Defaults to disabled.
   metadata_tags = "disabled"
 
   # If true, the launched EC2 instance will have detailed monitoring enabled.
-  monitoring = false
+  monitoring = true
 
   # Private IP address to associate with the instance in a VPC
   private_ip = null
@@ -287,6 +318,12 @@ module "single_server" {
   # terminated.
   root_volume_delete_on_termination = true
 
+  # If set to true, the root volume will be encrypted. Default is set to false
+  root_volume_encrypted = false
+
+  # The IOPS to allocate for the root volume.
+  root_volume_iops = null
+
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
 
@@ -298,7 +335,7 @@ module "single_server" {
 
   # A list of secondary private IPv4 addresses to assign to the instance's
   # primary network interface (eth0) in a VPC
-  secondary_private_ips = []
+  secondary_private_ips = null
 
   # The name for the bastion host's security group. If set to an empty string,
   # will use var.name.
@@ -353,7 +390,7 @@ module "single_server" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.15.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.16.1"
 }
 
 inputs = {
@@ -376,7 +413,9 @@ inputs = {
   # by this module.
   name = <string>
 
-  # The id of the subnet where this server should be deployed.
+  # The id of the subnet where this server should be deployed. Required unless
+  # default_network_interface_id is set, in which case subnet_id should be set
+  # to null.
   subnet_id = <string>
 
   # The id of the VPC where this server should be deployed.
@@ -387,10 +426,12 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # A list of optional additional security group ids to assign to the server.
+  # Note: this variable is NOT used if default_network_interface_id is set.
   additional_security_group_ids = []
 
   # A boolean that specifies whether or not to add a security group rule that
-  # allows all outbound traffic from this server.
+  # allows all outbound traffic from this server. Works if
+  # custom_egress_rules_cidr_blocks is not specified.
   allow_all_outbound_traffic = true
 
   # A list of IP address ranges in CIDR format from which rdp access will be
@@ -398,13 +439,23 @@ inputs = {
   # will be blocked.
   allow_rdp_from_cidr_list = []
 
+  # A list of IPv6 address ranges in CIDR format from which rdp access will be
+  # permitted. Attempts to access the bastion host from all other IP addresses
+  # will be blocked.
+  allow_rdp_from_ipv6_cidr_list = []
+
   # The IDs of security groups from which rdp connections will be allowed.
   allow_rdp_from_security_group_ids = []
 
   # A list of IP address ranges in CIDR format from which SSH access will be
   # permitted. Attempts to access the server from all other IP addresses will be
   # blocked.
-  allow_ssh_from_cidr_list = ["0.0.0.0/0"]
+  allow_ssh_from_cidr_list = []
+
+  # A list of IPv6 address ranges in CIDR format from which SSH access will be
+  # permitted. Attempts to access the server from all other IP addresses will be
+  # blocked.
+  allow_ssh_from_ipv6_cidr_list = []
 
   # The IDs of security groups from which SSH connections will be allowed.
   allow_ssh_from_security_group_ids = []
@@ -439,9 +490,22 @@ inputs = {
   # https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html.
   create_instance_profile = true
 
+  # Whether to create a security group for the instance. If set to false, you
+  # will have to provide security group with 'var.additional_security_group_ids.
+  create_security_group = true
+
+  # Custom egress rules with the CIDR Blocks destination. If we use this, the
+  # security group rule that allows all outbound traffic won't be created.
+  custom_egress_rules_cidr_blocks = {}
+
   # ID of a dedicated host that the instance will be assigned to. Use when an
   # instance is to be launched on a specific dedicated host.
   dedicated_host_id = null
+
+  # The ID of a network interface to use to override the default network
+  # interface for this EC2 instance, attached at eth0 (device index 0). If set,
+  # subnet_id must be set to null.
+  default_network_interface_id = null
 
   # If true, enables EC2 Instance Termination Protection.
   disable_api_termination = false
@@ -514,14 +578,14 @@ inputs = {
   # Whether or not the metadata service requires session tokens, also referred
   # to as Instance Metadata Service Version 2 (IMDSv2). Valid values include
   # optional or required. Defaults to optional.
-  metadata_http_tokens = "optional"
+  metadata_http_tokens = "required"
 
   # Enables or disables access to instance tags from the instance metadata
   # service. Valid values include enabled or disabled. Defaults to disabled.
   metadata_tags = "disabled"
 
   # If true, the launched EC2 instance will have detailed monitoring enabled.
-  monitoring = false
+  monitoring = true
 
   # Private IP address to associate with the instance in a VPC
   private_ip = null
@@ -542,6 +606,12 @@ inputs = {
   # terminated.
   root_volume_delete_on_termination = true
 
+  # If set to true, the root volume will be encrypted. Default is set to false
+  root_volume_encrypted = false
+
+  # The IOPS to allocate for the root volume.
+  root_volume_iops = null
+
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
 
@@ -553,7 +623,7 @@ inputs = {
 
   # A list of secondary private IPv4 addresses to assign to the instance's
   # primary network interface (eth0) in a VPC
-  secondary_private_ips = []
+  secondary_private_ips = null
 
   # The name for the bastion host's security group. If set to an empty string,
   # will use var.name.
@@ -646,7 +716,7 @@ The name of the server. This will be used to namespace all resources created by 
 <HclListItem name="subnet_id" requirement="required" type="string">
 <HclListItemDescription>
 
-The id of the subnet where this server should be deployed.
+The id of the subnet where this server should be deployed. Required unless default_network_interface_id is set, in which case subnet_id should be set to null.
 
 </HclListItemDescription>
 </HclListItem>
@@ -664,7 +734,7 @@ The id of the VPC where this server should be deployed.
 <HclListItem name="additional_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-A list of optional additional security group ids to assign to the server.
+A list of optional additional security group ids to assign to the server. Note: this variable is NOT used if default_network_interface_id is set.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -673,7 +743,7 @@ A list of optional additional security group ids to assign to the server.
 <HclListItem name="allow_all_outbound_traffic" requirement="optional" type="bool">
 <HclListItemDescription>
 
-A boolean that specifies whether or not to add a security group rule that allows all outbound traffic from this server.
+A boolean that specifies whether or not to add a security group rule that allows all outbound traffic from this server. Works if custom_egress_rules_cidr_blocks is not specified.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -683,6 +753,15 @@ A boolean that specifies whether or not to add a security group rule that allows
 <HclListItemDescription>
 
 A list of IP address ranges in CIDR format from which rdp access will be permitted. Attempts to access the bastion host from all other IP addresses will be blocked.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_rdp_from_ipv6_cidr_list" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IPv6 address ranges in CIDR format from which rdp access will be permitted. Attempts to access the bastion host from all other IP addresses will be blocked.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -703,9 +782,16 @@ The IDs of security groups from which rdp connections will be allowed.
 A list of IP address ranges in CIDR format from which SSH access will be permitted. Attempts to access the server from all other IP addresses will be blocked.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[
-  &quot;0.0.0.0/0&quot;
-]"/>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_ssh_from_ipv6_cidr_list" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IPv6 address ranges in CIDR format from which SSH access will be permitted. Attempts to access the server from all other IP addresses will be blocked.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="allow_ssh_from_security_group_ids" requirement="optional" type="list(string)">
@@ -770,10 +856,71 @@ When true, this module will create an instance profile to pass the IAM role, eit
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="create_security_group" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to create a security group for the instance. If set to false, you will have to provide security group with '<a href="#additional_security_group_ids"><code>additional_security_group_ids</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="custom_egress_rules_cidr_blocks" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+Custom egress rules with the CIDR Blocks destination. If we use this, the security group rule that allows all outbound traffic won't be created.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    description = string
+    cidr_blocks = list(string)
+    from_port   = number
+    to_port     = number
+    protocol    = string
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   An example:
+   custom_egress_rules_cidr_blocks = {
+     db_instance = {
+       description = "Connect to the DB instance"
+       cidr_blocks = ["10.0.0.0/16"]
+       from_port   = 5432
+       to_port     = 5432
+       protocol    = "tcp"
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 <HclListItem name="dedicated_host_id" requirement="optional" type="string">
 <HclListItemDescription>
 
 ID of a dedicated host that the instance will be assigned to. Use when an instance is to be launched on a specific dedicated host.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="default_network_interface_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of a network interface to use to override the default network interface for this EC2 instance, attached at eth0 (device index 0). If set, subnet_id must be set to null.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -920,7 +1067,7 @@ Desired HTTP PUT response hop limit for instance metadata requests. The larger t
 Whether or not the metadata service requires session tokens, also referred to as Instance Metadata Service Version 2 (IMDSv2). Valid values include optional or required. Defaults to optional.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;optional&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;required&quot;"/>
 </HclListItem>
 
 <HclListItem name="metadata_tags" requirement="optional" type="string">
@@ -938,7 +1085,7 @@ Enables or disables access to instance tags from the instance metadata service. 
 If true, the launched EC2 instance will have detailed monitoring enabled.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="private_ip" requirement="optional" type="string">
@@ -977,6 +1124,24 @@ If set to true, the root volume will be deleted when the Instance is terminated.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="root_volume_encrypted" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, the root volume will be encrypted. Default is set to false
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="root_volume_iops" requirement="optional" type="number">
+<HclListItemDescription>
+
+The IOPS to allocate for the root volume.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="root_volume_size" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1010,7 +1175,7 @@ The root volume type. Must be one of: standard, gp2, io1.
 A list of secondary private IPv4 addresses to assign to the instance's primary network interface (eth0) in a VPC
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="security_group_name" requirement="optional" type="string">
@@ -1137,11 +1302,11 @@ When used in combination with user_data or user_data_base64, a user_data change 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.5/modules/single-server/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.5/modules/single-server/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.5/modules/single-server/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/modules/single-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/modules/single-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ebed0519bb006504cab46bc6b7fb7d12"
+  "hash": "059aff6c29fc1efcd7feb763c2f5bbba"
 }
 ##DOCS-SOURCER-END -->

@@ -1,6 +1,21 @@
 {
   "module": "security/cleanup-expired-certs",
   "releases": {
+    "v0.48.0": {
+      "contains_changes": true
+    },
+    "v0.47.9": {
+      "contains_changes": true
+    },
+    "v0.47.8": {
+      "contains_changes": false
+    },
+    "v0.47.7": {
+      "contains_changes": false
+    },
+    "v0.47.6": {
+      "contains_changes": false
+    },
     "v0.47.5": {
       "contains_changes": false
     },

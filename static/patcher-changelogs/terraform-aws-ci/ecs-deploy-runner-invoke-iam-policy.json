@@ -1,6 +1,36 @@
 {
   "module": "ecs-deploy-runner-invoke-iam-policy",
   "releases": {
+    "v0.52.13": {
+      "contains_changes": true
+    },
+    "v0.52.12": {
+      "contains_changes": false
+    },
+    "v0.52.11": {
+      "contains_changes": false
+    },
+    "v0.52.10": {
+      "contains_changes": false
+    },
+    "v0.52.9": {
+      "contains_changes": false
+    },
+    "v0.52.8": {
+      "contains_changes": false
+    },
+    "v0.52.7": {
+      "contains_changes": false
+    },
+    "v0.52.6": {
+      "contains_changes": false
+    },
+    "v0.52.5": {
+      "contains_changes": false
+    },
+    "v0.52.4": {
+      "contains_changes": false
+    },
     "v0.52.3": {
       "contains_changes": true
     },

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Open VPN Package Infrastructure Package" version="0.26.3" lastModifiedVersion="0.26.3"/>
+<VersionBadge repoTitle="Open VPN Package Infrastructure Package" version="0.27.9" lastModifiedVersion="0.27.8"/>
 
 # OpenVPN Server Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/openvpn-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.9/modules/openvpn-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.26.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.27.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy an OpenVPN server in an auto-scaling group (size 1) for fault tolerance --along with the all the resources it typically needs:
 
@@ -83,7 +83,7 @@ resource "aws_iam_policy_attachment" "attachment" {
 
 ## What if I want to enable MFA?
 
-The scripts [init-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/init-openvpn) and [install-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/install-openvpn) support setting up the
+The scripts [init-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.9/modules/init-openvpn) and [install-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.9/modules/install-openvpn) support setting up the
 [duo_openvpn](https://github.com/duosecurity/duo_openvpn) plugin for 2FA authentication. To enable the duo plugin, you
 need to:
 
@@ -96,7 +96,7 @@ need to:
     `--duo-skey`, and `--duo-host` to configure the integration key, secret key, and API hostname respectively. You can
     obtain these by following [the Duo setup instructions for OpenVPN](https://duo.com/docs/openvpn).
 
-See the [packer-duo](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/examples/packer-duo) and [openvpn-host-duo](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/examples/openvpn-host-duo) examples for an
+See the [packer-duo](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.9/modules/examples/packer-duo) and [openvpn-host-duo](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.9/modules/examples/openvpn-host-duo) examples for an
 example configuration to deploy the OpenVPN server with Duo enabled.
 
 Once the plugin is setup, all authentication for the client will result in a password prompt. To authenticate, you pass
@@ -117,7 +117,7 @@ exactly match the duo username.
 
 module "openvpn_server" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-openvpn.git//modules/openvpn-server?ref=v0.26.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-openvpn.git//modules/openvpn-server?ref=v0.27.9"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -146,6 +146,11 @@ module "openvpn_server" {
   # The Amazon Resource Name (ARN) of the KMS Key that will be used to
   # encrypt/decrypt backup files.
   kms_key_arn = <string>
+
+  # The name of the sqs queue that will be used to receive certification list
+  # requests. Note that the queue name will be automatically prefixed with
+  # 'openvpn-lists-'.
+  list_queue_name = <string>
 
   # The name of the server. This will be used to namespace all resources created
   # by this module.
@@ -215,8 +220,8 @@ module "openvpn_server" {
   # var.enable_backup_bucket_server_access_logging is true.
   backup_bucket_server_access_logging_prefix = null
 
-  # The name of the device to mount.
-  block_device_name = "/dev/xvdcz"
+  # The name of the root device to mount.
+  block_device_name = "/dev/sda1"
 
   # When true, create default IAM Groups that you can use to manage permissions
   # for accessing the SQS queue for requesting and revoking OpenVPN
@@ -254,7 +259,7 @@ module "openvpn_server" {
 
   # The ARNs of external AWS accounts where your IAM users are defined. If not
   # empty, this module will create IAM roles that users in those accounts will
-  # be able to assume to get access to the request/revocation SQS queues.
+  # be able to assume to get access to the request/revocation/list SQS queues.
   external_account_arns = []
 
   # The length of time, in seconds, for which Amazon SQS can reuse a data key to
@@ -287,6 +292,9 @@ module "openvpn_server" {
   # If set to true, the root volume will be deleted when the Instance is
   # terminated.
   root_volume_delete_on_termination = true
+
+  # Set to true to encrypt the root block device.
+  root_volume_encrypted = false
 
   # The amount of provisioned IOPS. This is only valid for volume_type of io1,
   # and must be specified if using that type.
@@ -352,7 +360,7 @@ module "openvpn_server" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-openvpn.git//modules/openvpn-server?ref=v0.26.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-openvpn.git//modules/openvpn-server?ref=v0.27.9"
 }
 
 inputs = {
@@ -384,6 +392,11 @@ inputs = {
   # The Amazon Resource Name (ARN) of the KMS Key that will be used to
   # encrypt/decrypt backup files.
   kms_key_arn = <string>
+
+  # The name of the sqs queue that will be used to receive certification list
+  # requests. Note that the queue name will be automatically prefixed with
+  # 'openvpn-lists-'.
+  list_queue_name = <string>
 
   # The name of the server. This will be used to namespace all resources created
   # by this module.
@@ -453,8 +466,8 @@ inputs = {
   # var.enable_backup_bucket_server_access_logging is true.
   backup_bucket_server_access_logging_prefix = null
 
-  # The name of the device to mount.
-  block_device_name = "/dev/xvdcz"
+  # The name of the root device to mount.
+  block_device_name = "/dev/sda1"
 
   # When true, create default IAM Groups that you can use to manage permissions
   # for accessing the SQS queue for requesting and revoking OpenVPN
@@ -492,7 +505,7 @@ inputs = {
 
   # The ARNs of external AWS accounts where your IAM users are defined. If not
   # empty, this module will create IAM roles that users in those accounts will
-  # be able to assume to get access to the request/revocation SQS queues.
+  # be able to assume to get access to the request/revocation/list SQS queues.
   external_account_arns = []
 
   # The length of time, in seconds, for which Amazon SQS can reuse a data key to
@@ -525,6 +538,9 @@ inputs = {
   # If set to true, the root volume will be deleted when the Instance is
   # terminated.
   root_volume_delete_on_termination = true
+
+  # Set to true to encrypt the root block device.
+  root_volume_encrypted = false
 
   # The amount of provisioned IOPS. This is only valid for volume_type of io1,
   # and must be specified if using that type.
@@ -645,6 +661,14 @@ The name of a Key Pair that can be used to SSH to this instance. Leave blank if 
 <HclListItemDescription>
 
 The Amazon Resource Name (ARN) of the KMS Key that will be used to encrypt/decrypt backup files.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="list_queue_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the sqs queue that will be used to receive certification list requests. Note that the queue name will be automatically prefixed with 'openvpn-lists-'.
 
 </HclListItemDescription>
 </HclListItem>
@@ -777,10 +801,10 @@ When set, stream S3 server access logs to the prefix in an S3 bucket denoted by 
 <HclListItem name="block_device_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name of the device to mount.
+The name of the root device to mount.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;/dev/xvdcz&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;/dev/sda1&quot;"/>
 </HclListItem>
 
 <HclListItem name="create_iam_groups" requirement="optional" type="bool">
@@ -840,7 +864,7 @@ Set this variable to true to enable the Instance Metadata Service (IMDS) endpoin
 <HclListItem name="external_account_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-The ARNs of external AWS accounts where your IAM users are defined. If not empty, this module will create IAM roles that users in those accounts will be able to assume to get access to the request/revocation SQS queues.
+The ARNs of external AWS accounts where your IAM users are defined. If not empty, this module will create IAM roles that users in those accounts will be able to assume to get access to the request/revocation/list SQS queues.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -916,6 +940,15 @@ If set to true, the root volume will be deleted when the Instance is terminated.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="root_volume_encrypted" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to encrypt the root block device.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="root_volume_iops" requirement="optional" type="number">
@@ -1011,6 +1044,12 @@ The base64-encoded User Data script to run on the server when it is booting. Thi
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
+<HclListItem name="allow_certificate_lists_for_external_accounts_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="allow_certificate_lists_for_external_accounts_iam_role_id">
+</HclListItem>
+
 <HclListItem name="allow_certificate_requests_for_external_accounts_iam_role_arn">
 </HclListItem>
 
@@ -1027,6 +1066,9 @@ The base64-encoded User Data script to run on the server when it is booting. Thi
 </HclListItem>
 
 <HclListItem name="backup_bucket_name">
+</HclListItem>
+
+<HclListItem name="client_list_queue">
 </HclListItem>
 
 <HclListItem name="client_request_queue">
@@ -1063,11 +1105,11 @@ The base64-encoded User Data script to run on the server when it is booting. Thi
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/openvpn-server/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/openvpn-server/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.26.3/modules/openvpn-server/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.9/modules/openvpn-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.9/modules/openvpn-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.9/modules/openvpn-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4ac7de1cd46a5b0e7d33bd21dc21b208"
+  "hash": "88dacafb31f85ae93df96c728b10f1de"
 }
 ##DOCS-SOURCER-END -->

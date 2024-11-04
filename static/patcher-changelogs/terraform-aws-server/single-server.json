@@ -1,6 +1,9 @@
 {
   "module": "single-server",
   "releases": {
+    "v0.15.6": {
+      "contains_changes": true
+    },
     "v0.15.5": {
       "contains_changes": true
     },

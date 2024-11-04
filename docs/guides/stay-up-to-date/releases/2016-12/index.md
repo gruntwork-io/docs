@@ -15,6 +15,7 @@ Here are the repos that were updated:
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
+- [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-server](#terraform-aws-server)
 
 
@@ -206,6 +207,47 @@ Here are the repos that were updated:
 
   - BREAKING CHANGE: The `elb-access-logs` module has renamed variables and outputs. It is now been replaced by the `load-balancer-access-logs`.
 - NEW MODULE: The `load-balancer-access-logs` module replaces the `elb-access-logs` module and now officially supports both the Application Load Balancer (ALB) and Classic Load Balancer (ELB). It adds documentation for adding both the ALB and ELB, and the option to add archiving to the logs after a certain number of days.
+
+
+</div>
+
+
+
+## terraform-aws-security
+
+
+### [v0.4.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 12/17/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  This release updates the `cloudtrail` module to support archiving of logs. 
+
+Previously, you could either store logs in S3 (for $0.023 per GB) or delete them. Now, you can choose to archive [CloudTrail](https://aws.amazon.com/cloudtrail/) logs to AWS Glacier after a certain number of days, where you&apos;ll pay just $0.004 per GB.
+- ENHANCEMENT: The `cloudtrail` module now exposes a new var, `num_days_after_which_archive_log_data`. If set to `0`, archiving is disabled. Otherwise, log files are automatically archived after the specified number of days.
+
+This change is fully backwards-compatible in terms of the vars and outputs, but it makes use of features new to Terraform v0.8 such as conditionals, and therefore requires that you upgrade to Terraform v0.8.1  or higher before using. For that reason we have indicated in the version release that this is a &quot;breaking&quot; change.
+
+
+</div>
+
+
+### [v0.3.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.3.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 12/13/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.3.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  This release adds two new features to the `iam-groups` module:
+- ENHANCEMENT: `iam-groups` now exposes the Terraform variable `should_require_mfa`. If true, an IAM User must use multi-factor authentication (MFA) to access any AWS services, with the exception of a very limited set of permissions the IAM User needs to initialize her MFA Device and reset her password.
+- ENHANCEMENT: `iam-groups` now adds the IAM Group `developers` by default (though it&apos;s still optional). Some teams will add all IAM Users to the `full-access` IAM Group. But for those teams that wish to create an IAM User whose permissions go beyond `read-only` but below `full-access`, the `developers` IAM Group offers such an option. 
+  
+  You can customize which set of AWS Services IAM Users in `developers` will receive full access to through the `iam_group_developers_permitted_services` Terraform variable. In addition, the `developers` IAM Group grants IAM Users access to a personal S3 Bucket.
 
 
 </div>

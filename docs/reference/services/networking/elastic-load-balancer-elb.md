@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.12" lastModifiedVersion="0.103.0"/>
+<VersionBadge version="0.115.4" lastModifiedVersion="0.110.3"/>
 
 # Application Load Balancer
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/networking/alb" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/networking/alb" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Falb" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -62,7 +62,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -70,7 +70,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -89,7 +89,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "alb" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/alb?ref=v0.104.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/alb?ref=v0.115.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -169,13 +169,15 @@ module "alb" {
   # the tag name and the value is the tag value.
   custom_tags = {}
 
+  # Define the default action if a request to the load balancer does not match
+  # any of your listener rules. Currently only 'fixed-response' and 'redirect'
+  # are supported.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener#default_action
+  default_action = {"fixed-response":{"content_type":"text/plain","message_body":null,"status_code":404}}
+
   # If a request to the load balancer does not match any of your listener rules,
   # the default action will return a fixed response with this body.
   default_action_body = null
-
-  # If a request to the load balancer does not match any of your listener rules,
-  # the default action will return a fixed response with this content type.
-  default_action_content_type = "text/plain"
 
   # If a request to the load balancer does not match any of your listener rules,
   # the default action will return a fixed response with this status code.
@@ -243,6 +245,10 @@ module "alb" {
   # be idle before the ALB closes the TCP connection.
   idle_timeout = 60
 
+  # The type of IP addresses used by the subnets for your load balancer. The
+  # possible values are ipv4 and dualstack.
+  ip_address_type = null
+
   # If true, create a new S3 bucket for access logs with the name in
   # var.access_logs_s3_bucket_name. If false, assume the S3 bucket for access
   # logs with the name in  var.access_logs_s3_bucket_name already exists, and
@@ -275,7 +281,7 @@ module "alb" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/alb?ref=v0.104.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/alb?ref=v0.115.4"
 }
 
 inputs = {
@@ -358,13 +364,15 @@ inputs = {
   # the tag name and the value is the tag value.
   custom_tags = {}
 
+  # Define the default action if a request to the load balancer does not match
+  # any of your listener rules. Currently only 'fixed-response' and 'redirect'
+  # are supported.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener#default_action
+  default_action = {"fixed-response":{"content_type":"text/plain","message_body":null,"status_code":404}}
+
   # If a request to the load balancer does not match any of your listener rules,
   # the default action will return a fixed response with this body.
   default_action_body = null
-
-  # If a request to the load balancer does not match any of your listener rules,
-  # the default action will return a fixed response with this content type.
-  default_action_content_type = "text/plain"
 
   # If a request to the load balancer does not match any of your listener rules,
   # the default action will return a fixed response with this status code.
@@ -431,6 +439,10 @@ inputs = {
   # The time in seconds that the client TCP connection to the ALB is allowed to
   # be idle before the ALB closes the TCP connection.
   idle_timeout = 60
+
+  # The type of IP addresses used by the subnets for your load balancer. The
+  # possible values are ipv4 and dualstack.
+  ip_address_type = null
 
   # If true, create a new S3 bucket for access logs with the name in
   # var.access_logs_s3_bucket_name. If false, assume the S3 bucket for access
@@ -631,6 +643,34 @@ A map of custom tags to apply to the ALB and its Security Group. The key is the 
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="default_action" requirement="optional" type="map(any)">
+<HclListItemDescription>
+
+Define the default action if a request to the load balancer does not match any of your listener rules. Currently only 'fixed-response' and 'redirect' are supported. https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener#default_action
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  fixed-response = {
+    content_type = "text/plain",
+    message_body = null,
+    status_code = 404
+  }
+}
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
 <HclListItem name="default_action_body" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -638,15 +678,6 @@ If a request to the load balancer does not match any of your listener rules, the
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="default_action_content_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-If a request to the load balancer does not match any of your listener rules, the default action will return a fixed response with this content type.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;text/plain&quot;"/>
 </HclListItem>
 
 <HclListItem name="default_action_status_code" requirement="optional" type="number">
@@ -802,6 +833,15 @@ The time in seconds that the client TCP connection to the ALB is allowed to be i
 <HclListItemDefaultValue defaultValue="60"/>
 </HclListItem>
 
+<HclListItem name="ip_address_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of IP addresses used by the subnets for your load balancer. The possible values are ipv4 and dualstack.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="should_create_access_logs_bucket" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -918,11 +958,11 @@ The AWS-managed DNS name assigned to the ALB.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/networking/alb/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/networking/alb/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/networking/alb/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/networking/alb/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/networking/alb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/networking/alb/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d0235c331d495fc174cfc5e8d8b93515"
+  "hash": "26bdf07e381cc43316682a8e73ed4173"
 }
 ##DOCS-SOURCER-END -->

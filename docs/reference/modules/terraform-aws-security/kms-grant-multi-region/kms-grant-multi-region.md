@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.4" lastModifiedVersion="0.66.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.74.2" lastModifiedVersion="0.74.0"/>
 
 # AWS KMS Grants
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/kms-grant-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/kms-grant-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.66.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.74.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This repo contains a Module for creating and managing [KMS grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html) for managing permissions to use CMKs.
 
@@ -31,21 +31,21 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What is KMS?](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/kms-master-key/README.md#what-is-kms)
+*   [What is KMS?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/kms-master-key/README.md#what-is-kms)
 
-*   [What is a Customer Master Key?](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/kms-master-key/README.md#what-is-a-customer-master-key)
+*   [What is a Customer Master Key?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/kms-master-key/README.md#what-is-a-customer-master-key)
 
 *   [KMS documentation](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html): Amazon’s docs for KMS that cover core concepts such as various key types, how to encrypt and decrypt, deletion of keys, and automatic key rotation.
 
-*   [How to use a multi-region module](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/codegen/core-concepts.md#how-to-use-a-multi-region-module)
+*   [How to use a multi-region module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/codegen/core-concepts.md#how-to-use-a-multi-region-module)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -53,13 +53,13 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this out for experimenting and learning, check out the following resources:
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples folder](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ## Manage
 
-*   [What is the difference between KMS Grants and Key Policies?](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/kms-grant-multi-region/core-concepts.md#what-is-the-difference-between-kms-grants-and-key-policies)
+*   [What is the difference between KMS Grants and Key Policies?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/kms-grant-multi-region/core-concepts.md#what-is-the-difference-between-kms-grants-and-key-policies)
 
-*   [How do I use KMS Grants to share encrypted AMIs across accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/kms-grant-multi-region/core-concepts.md#how-do-i-use-kms-grants-to-share-encrypted-amis-across-accounts)
+*   [How do I use KMS Grants to share encrypted AMIs across accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/kms-grant-multi-region/core-concepts.md#how-do-i-use-kms-grants-to-share-encrypted-amis-across-accounts)
 
 ## Sample Usage
 
@@ -74,7 +74,7 @@ If you just want to try this out for experimenting and learning, check out the f
 
 module "kms_grant_multi_region" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-grant-multi-region?ref=v0.68.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-grant-multi-region?ref=v0.74.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -127,7 +127,7 @@ module "kms_grant_multi_region" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-grant-multi-region?ref=v0.68.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-grant-multi-region?ref=v0.74.2"
 }
 
 inputs = {
@@ -180,11 +180,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/kms-grant-multi-region/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/kms-grant-multi-region/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/kms-grant-multi-region/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/kms-grant-multi-region/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/kms-grant-multi-region/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/kms-grant-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c86d391e0ec7c362b833d35ed01c1a56"
+  "hash": "232ba2bfe973fc8bd269cddade71872b"
 }
 ##DOCS-SOURCER-END -->

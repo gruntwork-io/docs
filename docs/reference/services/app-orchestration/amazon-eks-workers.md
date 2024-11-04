@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.12" lastModifiedVersion="0.100.0"/>
+<VersionBadge version="0.115.4" lastModifiedVersion="0.115.0"/>
 
 # Amazon EKS Workers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/eks-workers" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/eks-workers" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-workers" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -59,7 +59,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo. If you are a subscriber and don’t have
-access to this repo, email <support@gruntwork.io>.
+access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ### Core concepts
 
@@ -68,9 +68,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -97,10 +97,10 @@ If you want to deploy this repo in production, check out the following resources
 ## Manage
 
 For information on registering the worker IAM role to the EKS control plane, refer to the
-[IAM Roles and Kubernetes API Access](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/eks-workers/core-concepts.md#iam-roles-and-kubernetes-api-access) section of the documentation.
+[IAM Roles and Kubernetes API Access](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/eks-workers/core-concepts.md#iam-roles-and-kubernetes-api-access) section of the documentation.
 
 For information on how to perform a blue-green deployment of the worker pools, refer to the
-[How do I perform a blue green release to roll out new versions of the module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/eks-workers/core-concepts.md#how-do-i-perform-a-blue-green-release-to-roll-out-new-versions-of-the-module)
+[How do I perform a blue green release to roll out new versions of the module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/eks-workers/core-concepts.md#how-do-i-perform-a-blue-green-release-to-roll-out-new-versions-of-the-module)
 section of the documentation.
 
 For information on how to manage your EKS cluster, including how to deploy Pods on Fargate, how to associate IAM roles
@@ -121,7 +121,7 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 
 module "eks_workers" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/eks-workers?ref=v0.104.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v0.115.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -179,6 +179,12 @@ module "eks_workers" {
   # groups.
   allow_inbound_ssh_from_security_groups = []
 
+  # Where to get the AMI from. Can be 'auto', 'launch_template', or
+  # 'eks_nodegroup'. WARNING there are limitation on what the value is, check
+  # the documentation for more information
+  # https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#mng-ami-id-conditions
+  ami_source = "auto"
+
   # Custom name for the IAM role for the Self-managed workers. When null, a
   # default name based on worker_name_prefix will be used. One of
   # asg_custom_iam_role_name and asg_iam_role_arn is required (must be non-null)
@@ -192,6 +198,10 @@ module "eks_workers" {
   # Default value for the http_put_response_hop_limit field of
   # autoscaling_group_configurations.
   asg_default_http_put_response_hop_limit = null
+
+  # Default value for the instance_maintenance_policy field of
+  # autoscaling_group_configurations.
+  asg_default_instance_maintenance_policy = null
 
   # Default value for the asg_instance_root_volume_encryption field of
   # autoscaling_group_configurations. Any map entry that does not specify
@@ -630,7 +640,7 @@ module "eks_workers" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/eks-workers?ref=v0.104.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v0.115.4"
 }
 
 inputs = {
@@ -691,6 +701,12 @@ inputs = {
   # groups.
   allow_inbound_ssh_from_security_groups = []
 
+  # Where to get the AMI from. Can be 'auto', 'launch_template', or
+  # 'eks_nodegroup'. WARNING there are limitation on what the value is, check
+  # the documentation for more information
+  # https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#mng-ami-id-conditions
+  ami_source = "auto"
+
   # Custom name for the IAM role for the Self-managed workers. When null, a
   # default name based on worker_name_prefix will be used. One of
   # asg_custom_iam_role_name and asg_iam_role_arn is required (must be non-null)
@@ -704,6 +720,10 @@ inputs = {
   # Default value for the http_put_response_hop_limit field of
   # autoscaling_group_configurations.
   asg_default_http_put_response_hop_limit = null
+
+  # Default value for the instance_maintenance_policy field of
+  # autoscaling_group_configurations.
+  asg_default_instance_maintenance_policy = null
 
   # Default value for the asg_instance_root_volume_encryption field of
   # autoscaling_group_configurations. Any map entry that does not specify
@@ -1148,7 +1168,7 @@ inputs = {
 <HclListItem name="autoscaling_group_configurations" requirement="required" type="any">
 <HclListItemDescription>
 
-Configure one or more self-managed Auto Scaling Groups (ASGs) to manage the EC2 instances in this cluster. Set to empty object ({}) if you do not wish to configure self-managed ASGs.
+Configure one or more self-managed Auto Scaling Groups (ASGs) to manage the EC2 instances in this cluster. Set to empty object (&#123;&#125;) if you do not wish to configure self-managed ASGs.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1230,6 +1250,10 @@ Any types represent complex values of variable type. For details, please consult
                                                Per-ASG cloud init scripts to run at boot time on the node.  See var.cloud_init_parts for accepted keys.
    - http_put_response_hop_limit     number  : (Defaults to value from var.asg_default_http_put_response_hop_limit) The
                                                desired HTTP PUT response hop limit for instance metadata requests.
+   - instance_maintenance_policy     object(Health_Percentage)
+      Structure of Health_Percentage object:
+      - min_healthy_percentage  number  : Min healthy percentage forthe  intance maintenance policy
+      - max_healthy_percentage  number  : Max healthy percentage for the intance maintenance policy
   
    Structure of Tag object:
    - key                  string  : The key for the tag to apply to the instance.
@@ -1321,7 +1345,7 @@ The name of the EKS cluster. The cluster must exist/already be deployed.
 <HclListItem name="managed_node_group_configurations" requirement="required" type="any">
 <HclListItemDescription>
 
-Configure one or more Node Groups to manage the EC2 instances in this cluster. Set to empty object ({}) if you do not wish to configure managed node groups.
+Configure one or more Node Groups to manage the EC2 instances in this cluster. Set to empty object (&#123;&#125;) if you do not wish to configure managed node groups.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1477,6 +1501,15 @@ The list of security group IDs to allow inbound SSH access to the worker groups.
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="ami_source" requirement="optional" type="string">
+<HclListItemDescription>
+
+Where to get the AMI from. Can be 'auto', 'launch_template', or 'eks_nodegroup'. WARNING there are limitation on what the value is, check the documentation for more information https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#mng-ami-id-conditions
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;auto&quot;"/>
+</HclListItem>
+
 <HclListItem name="asg_custom_iam_role_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1501,6 +1534,25 @@ Default value for enable_detailed_monitoring field of autoscaling_group_configur
 Default value for the http_put_response_hop_limit field of autoscaling_group_configurations.
 
 </HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="asg_default_instance_maintenance_policy" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Default value for the instance_maintenance_policy field of autoscaling_group_configurations.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    min_healthy_percentage = number
+    max_healthy_percentage = number
+  })
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -2659,11 +2711,11 @@ The list of names of the ASGs that were deployed to act as EKS workers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/eks-workers/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/eks-workers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/eks-workers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/eks-workers/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/eks-workers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f3c3010b7bbfa8d43db7743a94dc1b32"
+  "hash": "314916c1bf7b65cbbde73dbed0450f64"
 }
 ##DOCS-SOURCER-END -->

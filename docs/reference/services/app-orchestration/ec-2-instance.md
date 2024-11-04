@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.12" lastModifiedVersion="0.104.12"/>
+<VersionBadge version="0.115.4" lastModifiedVersion="0.110.4"/>
 
 # EC2 Instance
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ec2-instance" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/ec2-instance" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fec2-instance" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -58,9 +58,9 @@ If you’ve never used the Service Catalog before, make sure to read
 
 ### Core concepts
 
-*   [How do I update my instance?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ec2-instance/core-concepts.md#how-do-i-update-my-instance)
-*   [How do I use User Data?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ec2-instance/core-concepts.md#how-do-i-use-user-data)
-*   [How do I mount an EBS volume?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ec2-instance/core-concepts.md#how-do-i-mount-an-ebs-volume)
+*   [How do I update my instance?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/ec2-instance/core-concepts.md#how-do-i-update-my-instance)
+*   [How do I use User Data?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/ec2-instance/core-concepts.md#how-do-i-use-user-data)
+*   [How do I mount an EBS volume?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/ec2-instance/core-concepts.md#how-do-i-mount-an-ebs-volume)
 
 ### The EC2 Instance AMI
 
@@ -85,7 +85,7 @@ This template configures the AMI to:
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-learning-and-testing): The `examples/for-learning-and-testing`
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-learning-and-testing): The `examples/for-learning-and-testing`
     folder contains standalone sample code optimized for learning, experimenting, and testing (but not direct
     production usage).
 
@@ -93,7 +93,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog, configure CI / CD for your apps and
@@ -113,7 +113,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "ec_2_instance" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ec2-instance?ref=v0.104.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ec2-instance?ref=v0.115.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -176,7 +176,7 @@ module "ec_2_instance" {
   # The domain name to use to look up the Route 53 hosted zone. Will be a subset
   # of fully_qualified_domain_name: e.g., my-company.com. Only one of
   # route53_lookup_domain_name or route53_zone_id should be used.
-  route53_lookup_domain_name = <INPUT REQUIRED>
+  route53_lookup_domain_name = <string>
 
   # The ID of the hosted zone to use. Allows specifying the hosted zone directly
   # instead of looking it up via domain name. Only one of
@@ -184,7 +184,8 @@ module "ec_2_instance" {
   route53_zone_id = <string>
 
   # The ID of the subnet in which to deploy the EC2 instance. Must be a subnet
-  # in var.vpc_id.
+  # in var.vpc_id. Required unless default_network_interface_id is set, in which
+  # case subnet_id should be set to null.
   subnet_id = <string>
 
   # The ID of the VPC in which to deploy the EC2 instance.
@@ -195,12 +196,24 @@ module "ec_2_instance" {
   # ----------------------------------------------------------------------------------------------------
 
   # A list of optional additional security group ids to assign to the EC2
-  # instance.
+  # instance. Note: this variable is NOT used if default_network_interface_id is
+  # set.
   additional_security_group_ids = []
 
   # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
   # disk space usage) should send notifications.
   alarms_sns_topic_arn = []
+
+  # A boolean that specifies whether or not to add a security group rule that
+  # allows all outbound traffic from this server.
+  allow_all_outbound_traffic = true
+
+  # Accept inbound traffic on these port ranges from the specified IPv6 CIDR
+  # blocks
+  allow_port_from_ipv6_cidr_blocks = {}
+
+  # Accept inbound SSH from these IPv6 CIDR blocks
+  allow_ssh_from_ipv6_cidr_blocks = []
 
   # Determines if an Elastic IP (EIP) will be created for this instance.
   attach_eip = true
@@ -249,6 +262,11 @@ module "ec_2_instance" {
   # https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html.
   create_instance_profile = true
 
+  # The ID of a network interface to use to override the default network
+  # interface for this EC2 instance, attached at eth0 (device index 0). If set,
+  # subnet_id must be set to null.
+  default_network_interface_id = null
+
   # The default OS user for the EC2 instance AMI. For AWS Ubuntu AMIs, which is
   # what the Packer template in ec2-instance.json uses, the default OS user is
   # 'ubuntu'.
@@ -259,6 +277,9 @@ module "ec_2_instance" {
 
   # If true, the launched EC2 Instance will be EBS-optimized.
   ebs_optimized = true
+
+  # If true, the launched EC2 instance will have detailed monitoring enabled.
+  ec2_detailed_monitoring = false
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -375,6 +396,9 @@ module "ec_2_instance" {
   # terminated.
   root_volume_delete_on_termination = true
 
+  # If set to true, the root volume will be encrypted. Default is set to false
+  root_volume_encrypted = false
+
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
 
@@ -383,7 +407,7 @@ module "ec_2_instance" {
 
   # A list of secondary private IPv4 addresses to assign to the instance's
   # primary network interface (eth0) in a VPC
-  secondary_private_ips = []
+  secondary_private_ips = null
 
   # When true, precreate the CloudWatch Log Group to use for log aggregation
   # from the EC2 instances. This is useful if you wish to customize the
@@ -431,7 +455,7 @@ module "ec_2_instance" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ec2-instance?ref=v0.104.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ec2-instance?ref=v0.115.4"
 }
 
 inputs = {
@@ -497,7 +521,7 @@ inputs = {
   # The domain name to use to look up the Route 53 hosted zone. Will be a subset
   # of fully_qualified_domain_name: e.g., my-company.com. Only one of
   # route53_lookup_domain_name or route53_zone_id should be used.
-  route53_lookup_domain_name = <INPUT REQUIRED>
+  route53_lookup_domain_name = <string>
 
   # The ID of the hosted zone to use. Allows specifying the hosted zone directly
   # instead of looking it up via domain name. Only one of
@@ -505,7 +529,8 @@ inputs = {
   route53_zone_id = <string>
 
   # The ID of the subnet in which to deploy the EC2 instance. Must be a subnet
-  # in var.vpc_id.
+  # in var.vpc_id. Required unless default_network_interface_id is set, in which
+  # case subnet_id should be set to null.
   subnet_id = <string>
 
   # The ID of the VPC in which to deploy the EC2 instance.
@@ -516,12 +541,24 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # A list of optional additional security group ids to assign to the EC2
-  # instance.
+  # instance. Note: this variable is NOT used if default_network_interface_id is
+  # set.
   additional_security_group_ids = []
 
   # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
   # disk space usage) should send notifications.
   alarms_sns_topic_arn = []
+
+  # A boolean that specifies whether or not to add a security group rule that
+  # allows all outbound traffic from this server.
+  allow_all_outbound_traffic = true
+
+  # Accept inbound traffic on these port ranges from the specified IPv6 CIDR
+  # blocks
+  allow_port_from_ipv6_cidr_blocks = {}
+
+  # Accept inbound SSH from these IPv6 CIDR blocks
+  allow_ssh_from_ipv6_cidr_blocks = []
 
   # Determines if an Elastic IP (EIP) will be created for this instance.
   attach_eip = true
@@ -570,6 +607,11 @@ inputs = {
   # https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html.
   create_instance_profile = true
 
+  # The ID of a network interface to use to override the default network
+  # interface for this EC2 instance, attached at eth0 (device index 0). If set,
+  # subnet_id must be set to null.
+  default_network_interface_id = null
+
   # The default OS user for the EC2 instance AMI. For AWS Ubuntu AMIs, which is
   # what the Packer template in ec2-instance.json uses, the default OS user is
   # 'ubuntu'.
@@ -580,6 +622,9 @@ inputs = {
 
   # If true, the launched EC2 Instance will be EBS-optimized.
   ebs_optimized = true
+
+  # If true, the launched EC2 instance will have detailed monitoring enabled.
+  ec2_detailed_monitoring = false
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -696,6 +741,9 @@ inputs = {
   # terminated.
   root_volume_delete_on_termination = true
 
+  # If set to true, the root volume will be encrypted. Default is set to false
+  root_volume_encrypted = false
+
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
 
@@ -704,7 +752,7 @@ inputs = {
 
   # A list of secondary private IPv4 addresses to assign to the instance's
   # primary network interface (eth0) in a VPC
-  secondary_private_ips = []
+  secondary_private_ips = null
 
   # When true, precreate the CloudWatch Log Group to use for log aggregation
   # from the EC2 instances. This is useful if you wish to customize the
@@ -898,7 +946,7 @@ The name of the EC2 instance and the other resources created by these templates
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="route53_lookup_domain_name" requirement="required">
+<HclListItem name="route53_lookup_domain_name" requirement="required" type="string">
 <HclListItemDescription>
 
 The domain name to use to look up the Route 53 hosted zone. Will be a subset of fully_qualified_domain_name: e.g., my-company.com. Only one of route53_lookup_domain_name or route53_zone_id should be used.
@@ -917,7 +965,7 @@ The ID of the hosted zone to use. Allows specifying the hosted zone directly ins
 <HclListItem name="subnet_id" requirement="required" type="string">
 <HclListItemDescription>
 
-The ID of the subnet in which to deploy the EC2 instance. Must be a subnet in <a href="#vpc_id"><code>vpc_id</code></a>.
+The ID of the subnet in which to deploy the EC2 instance. Must be a subnet in <a href="#vpc_id"><code>vpc_id</code></a>. Required unless default_network_interface_id is set, in which case subnet_id should be set to null.
 
 </HclListItemDescription>
 </HclListItem>
@@ -935,7 +983,7 @@ The ID of the VPC in which to deploy the EC2 instance.
 <HclListItem name="additional_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-A list of optional additional security group ids to assign to the EC2 instance.
+A list of optional additional security group ids to assign to the EC2 instance. Note: this variable is NOT used if default_network_interface_id is set.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -945,6 +993,45 @@ A list of optional additional security group ids to assign to the EC2 instance.
 <HclListItemDescription>
 
 The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_all_outbound_traffic" requirement="optional" type="bool">
+<HclListItemDescription>
+
+A boolean that specifies whether or not to add a security group rule that allows all outbound traffic from this server.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="allow_port_from_ipv6_cidr_blocks" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+Accept inbound traffic on these port ranges from the specified IPv6 CIDR blocks
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    from_port        = number
+    to_port          = number
+    protocol         = string
+    ipv6_cidr_blocks = list(string)
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="allow_ssh_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Accept inbound SSH from these IPv6 CIDR blocks
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -1042,6 +1129,15 @@ When true, this module will create an instance profile to pass the IAM role, eit
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="default_network_interface_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of a network interface to use to override the default network interface for this EC2 instance, attached at eth0 (device index 0). If set, subnet_id must be set to null.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="default_user" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1067,6 +1163,15 @@ If true, the launched EC2 Instance will be EBS-optimized.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="ec2_detailed_monitoring" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, the launched EC2 instance will have detailed monitoring enabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
@@ -1285,6 +1390,15 @@ If set to true, the root volume will be deleted when the Instance is terminated.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="root_volume_encrypted" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, the root volume will be encrypted. Default is set to false
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="root_volume_size" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1309,7 +1423,7 @@ The root volume type. Must be one of: standard, gp2, io1.
 A list of secondary private IPv4 addresses to assign to the instance's primary network interface (eth0) in a VPC
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
@@ -1456,11 +1570,11 @@ The input parameters for the EBS volumes.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ec2-instance/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ec2-instance/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/services/ec2-instance/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/ec2-instance/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/ec2-instance/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/ec2-instance/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3757e91e8aa7cd713bc368d12b07cbda"
+  "hash": "c9b27aee47a5f85ac2898e9d97a75143"
 }
 ##DOCS-SOURCER-END -->

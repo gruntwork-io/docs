@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.52.4" lastModifiedVersion="0.51.0"/>
+<VersionBadge repoTitle="CI Modules" version="0.58.0" lastModifiedVersion="0.53.0"/>
 
 # Kubernetes CircleCI Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.4/modules/kubernetes-circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/kubernetes-circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.51.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.53.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module contains helper scripts that can setup Kubernetes tools for use in a CircleCI job, including:
 
@@ -99,11 +99,11 @@ job:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.4/modules/kubernetes-circleci-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.4/modules/kubernetes-circleci-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.52.4/modules/kubernetes-circleci-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/kubernetes-circleci-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/kubernetes-circleci-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/kubernetes-circleci-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1f82d8a1f5233f7938359f62a6321ee4"
+  "hash": "1120f6b30c3676541f723bbd08bfd676"
 }
 ##DOCS-SOURCER-END -->

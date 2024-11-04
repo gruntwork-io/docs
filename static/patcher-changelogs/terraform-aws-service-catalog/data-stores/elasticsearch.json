@@ -1,6 +1,30 @@
 {
   "module": "data-stores/elasticsearch",
   "releases": {
+    "v0.105.0": {
+      "contains_changes": true
+    },
+    "v0.104.19": {
+      "contains_changes": false
+    },
+    "v0.104.18": {
+      "contains_changes": false
+    },
+    "v0.104.17": {
+      "contains_changes": false
+    },
+    "v0.104.16": {
+      "contains_changes": false
+    },
+    "v0.104.15": {
+      "contains_changes": false
+    },
+    "v0.104.14": {
+      "contains_changes": false
+    },
+    "v0.104.13": {
+      "contains_changes": false
+    },
     "v0.104.12": {
       "contains_changes": false
     },

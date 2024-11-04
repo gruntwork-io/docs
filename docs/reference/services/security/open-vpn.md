@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.104.12" lastModifiedVersion="0.98.0"/>
+<VersionBadge version="0.115.4" lastModifiedVersion="0.107.5"/>
 
 # OpenVPN Server
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/mgmt/openvpn-server" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/mgmt/openvpn-server" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fopenvpn-server" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -74,7 +74,7 @@ documentation in the [package-openvpn](https://github.com/gruntwork-io/terraform
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -82,7 +82,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog, configure CI / CD for your apps and
@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "openvpn_server" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/openvpn-server?ref=v0.104.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/openvpn-server?ref=v0.115.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -114,14 +114,14 @@ module "openvpn_server" {
   allow_vpn_from_cidr_list = <list(string)>
 
   # The AMI to run on the OpenVPN Server. This should be built from the Packer
-  # template under openvpn-server.json. One of var.ami or var.ami_filters is
-  # required. Set to null if looking up the ami with filters.
+  # template under openvpn-server-ubuntu.pkr.hcl. One of var.ami or
+  # var.ami_filters is required. Set to null if looking up the ami with filters.
   ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with
   # the OpenVPN server. You can build the AMI using the Packer template
-  # openvpn-server.json. Only used if var.ami is null. One of var.ami or
-  # var.ami_filters is required. Set to null if passing the ami ID directly.
+  # openvpn-server-ubuntu.pkr.hcl. Only used if var.ami is null. One of var.ami
+  # or var.ami_filters is required. Set to null if passing the ami ID directly.
   ami_filters = <object(
     owners = list(string)
     filters = list(object(
@@ -222,8 +222,8 @@ module "openvpn_server" {
   create_route53_entry = false
 
   # The default OS user for the OpenVPN AMI. For AWS Ubuntu AMIs, which is what
-  # the Packer template in openvpn-server.json uses, the default OS user is
-  # 'ubuntu'.
+  # the Packer template in openvpn-server-ubuntu.pkr.hcl uses, the default OS
+  # user is 'ubuntu'.
   default_user = "ubuntu"
 
   # The domain name to use for the OpenVPN server. Only used if
@@ -342,6 +342,11 @@ module "openvpn_server" {
   # cmk_administrator_iam_arns, cmk_user_iam_arns, cmk_external_user_iam_arns,
   # allow_manage_key_permissions.
   kms_key_arn = null
+
+  # The name of the sqs queue that will be used to receive certification list
+  # requests. Note that the queue name will be automatically prefixed with
+  # 'openvpn-lists-'.
+  list_queue_name = "queue"
 
   # The name of the OpenVPN Server and the other resources created by these
   # templates
@@ -442,7 +447,7 @@ module "openvpn_server" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/openvpn-server?ref=v0.104.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/openvpn-server?ref=v0.115.4"
 }
 
 inputs = {
@@ -457,14 +462,14 @@ inputs = {
   allow_vpn_from_cidr_list = <list(string)>
 
   # The AMI to run on the OpenVPN Server. This should be built from the Packer
-  # template under openvpn-server.json. One of var.ami or var.ami_filters is
-  # required. Set to null if looking up the ami with filters.
+  # template under openvpn-server-ubuntu.pkr.hcl. One of var.ami or
+  # var.ami_filters is required. Set to null if looking up the ami with filters.
   ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with
   # the OpenVPN server. You can build the AMI using the Packer template
-  # openvpn-server.json. Only used if var.ami is null. One of var.ami or
-  # var.ami_filters is required. Set to null if passing the ami ID directly.
+  # openvpn-server-ubuntu.pkr.hcl. Only used if var.ami is null. One of var.ami
+  # or var.ami_filters is required. Set to null if passing the ami ID directly.
   ami_filters = <object(
     owners = list(string)
     filters = list(object(
@@ -565,8 +570,8 @@ inputs = {
   create_route53_entry = false
 
   # The default OS user for the OpenVPN AMI. For AWS Ubuntu AMIs, which is what
-  # the Packer template in openvpn-server.json uses, the default OS user is
-  # 'ubuntu'.
+  # the Packer template in openvpn-server-ubuntu.pkr.hcl uses, the default OS
+  # user is 'ubuntu'.
   default_user = "ubuntu"
 
   # The domain name to use for the OpenVPN server. Only used if
@@ -685,6 +690,11 @@ inputs = {
   # cmk_administrator_iam_arns, cmk_user_iam_arns, cmk_external_user_iam_arns,
   # allow_manage_key_permissions.
   kms_key_arn = null
+
+  # The name of the sqs queue that will be used to receive certification list
+  # requests. Note that the queue name will be automatically prefixed with
+  # 'openvpn-lists-'.
+  list_queue_name = "queue"
 
   # The name of the OpenVPN Server and the other resources created by these
   # templates
@@ -799,7 +809,7 @@ A list of IP address ranges in CIDR format from which VPN access will be permitt
 <HclListItem name="ami" requirement="required" type="string">
 <HclListItemDescription>
 
-The AMI to run on the OpenVPN Server. This should be built from the Packer template under openvpn-server.json. One of <a href="#ami"><code>ami</code></a> or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if looking up the ami with filters.
+The AMI to run on the OpenVPN Server. This should be built from the Packer template under openvpn-server-ubuntu.pkr.hcl. One of <a href="#ami"><code>ami</code></a> or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if looking up the ami with filters.
 
 </HclListItemDescription>
 </HclListItem>
@@ -807,7 +817,7 @@ The AMI to run on the OpenVPN Server. This should be built from the Packer templ
 <HclListItem name="ami_filters" requirement="required" type="object(…)">
 <HclListItemDescription>
 
-Properties on the AMI that can be used to lookup a prebuilt AMI for use with the OpenVPN server. You can build the AMI using the Packer template openvpn-server.json. Only used if <a href="#ami"><code>ami</code></a> is null. One of <a href="#ami"><code>ami</code></a> or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly.
+Properties on the AMI that can be used to lookup a prebuilt AMI for use with the OpenVPN server. You can build the AMI using the Packer template openvpn-server-ubuntu.pkr.hcl. Only used if <a href="#ami"><code>ami</code></a> is null. One of <a href="#ami"><code>ami</code></a> or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1046,7 +1056,7 @@ Set to true to add <a href="#domain_name"><code>domain_name</code></a> as a Rout
 <HclListItem name="default_user" requirement="optional" type="string">
 <HclListItemDescription>
 
-The default OS user for the OpenVPN AMI. For AWS Ubuntu AMIs, which is what the Packer template in openvpn-server.json uses, the default OS user is 'ubuntu'.
+The default OS user for the OpenVPN AMI. For AWS Ubuntu AMIs, which is what the Packer template in openvpn-server-ubuntu.pkr.hcl uses, the default OS user is 'ubuntu'.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;ubuntu&quot;"/>
@@ -1266,6 +1276,15 @@ The Amazon Resource Name (ARN) of an existing KMS customer master key (CMK) that
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="list_queue_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the sqs queue that will be used to receive certification list requests. Note that the queue name will be automatically prefixed with 'openvpn-lists-'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;queue&quot;"/>
 </HclListItem>
 
 <HclListItem name="name" requirement="optional" type="string">
@@ -1542,9 +1561,9 @@ The security group ID of the OpenVPN server.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/mgmt/openvpn-server/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/mgmt/openvpn-server/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.12/modules/mgmt/openvpn-server/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/mgmt/openvpn-server/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/mgmt/openvpn-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/mgmt/openvpn-server/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
   "hash": "f7e8ee194114a11ac9370e37f8754051"

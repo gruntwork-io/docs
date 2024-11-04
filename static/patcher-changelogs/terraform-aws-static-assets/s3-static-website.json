@@ -1,6 +1,9 @@
 {
   "module": "s3-static-website",
   "releases": {
+    "v0.17.2": {
+      "contains_changes": true
+    },
     "v0.17.1": {
       "contains_changes": true
     },

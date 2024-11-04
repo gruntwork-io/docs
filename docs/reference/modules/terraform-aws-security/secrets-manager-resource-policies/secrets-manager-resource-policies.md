@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.68.4" lastModifiedVersion="0.67.3"/>
+<VersionBadge repoTitle="Security Modules" version="0.74.2" lastModifiedVersion="0.69.2"/>
 
 # Resource-based policies for Secrets Manager secrets
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/secrets-manager-resource-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/secrets-manager-resource-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.69.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module manages [resource-based policies on AWS Secrets Manager secrets](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html).
 
@@ -42,7 +42,7 @@ Note also that you should only manage the policy for any given secret one time. 
 
 module "secrets_manager_resource_policies" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/secrets-manager-resource-policies?ref=v0.68.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/secrets-manager-resource-policies?ref=v0.74.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -71,7 +71,7 @@ module "secrets_manager_resource_policies" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/secrets-manager-resource-policies?ref=v0.68.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/secrets-manager-resource-policies?ref=v0.74.2"
 }
 
 inputs = {
@@ -100,11 +100,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/secrets-manager-resource-policies/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/secrets-manager-resource-policies/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/pete%2F778%2Fbucket-ownership/modules/secrets-manager-resource-policies/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/secrets-manager-resource-policies/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/secrets-manager-resource-policies/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/secrets-manager-resource-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "16de79f6b136812992cdeda5d122f2e7"
+  "hash": "9c4489d88c4dddeebd3ec02232f083ba"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="0.12.1" lastModifiedVersion="0.11.0"/>
+<VersionBadge repoTitle="AWS Messaging" version="0.12.5" lastModifiedVersion="0.12.4"/>
 
 # Simple Queuing Service (SQS) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/sqs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.11.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.12.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy an SQS queue along with policies for the topic.
 
@@ -101,7 +101,7 @@ including:
 
 module "sqs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v0.12.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v0.12.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -237,7 +237,7 @@ module "sqs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v0.12.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v0.12.5"
 }
 
 inputs = {
@@ -636,11 +636,11 @@ The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.1/modules/sqs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/sqs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/sqs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/sqs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bbfaf31676b6679d5c17011906e2127d"
+  "hash": "3a4a3ae63517324f372dd650b87d9a00"
 }
 ##DOCS-SOURCER-END -->

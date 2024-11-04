@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.8" lastModifiedVersion="0.35.5"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.38.3" lastModifiedVersion="0.38.1"/>
 
 # ECS Daemon Service Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.8/modules/ecs-daemon-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-daemon-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.35.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.38.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an [ECS Daemon Service](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html)
 that you can use to deploy exactly one task on each active container instance that meets all of the task placement constraints
@@ -33,7 +33,7 @@ environment variables to set, and so on. To actually run an ECS Task, you define
 
 ## How do you create an ECS cluster?
 
-To use ECS, you first deploy one or more EC2 Instances into a "cluster". See the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.8/modules/ecs-cluster)
+To use ECS, you first deploy one or more EC2 Instances into a "cluster". See the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-cluster)
 for how to create a cluster.
 
 ## How do you add additional IAM policies?
@@ -82,7 +82,7 @@ EOF
 
 module "ecs_daemon_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.35.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.38.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -121,14 +121,6 @@ module "ecs_daemon_service" {
   # Prefix for name of iam role and policy that allows cloudwatch and ecr access
   custom_task_execution_name_prefix = null
 
-  # Set the logging level of the deployment check script. You can set this to
-  # `error`, `warn`, or `info`, in increasing verbosity.
-  deployment_check_loglevel = "info"
-
-  # Seconds to wait before timing out each check for verifying ECS service
-  # deployment. See ecs_deploy_check_binaries for more details.
-  deployment_check_timeout_seconds = 600
-
   # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
   deployment_controller = null
 
@@ -145,12 +137,6 @@ module "ecs_daemon_service" {
   # values are host and task.
   ecs_task_definition_pid_mode = "task"
 
-  # Whether or not to enable the ECS deployment check binary to make terraform
-  # wait for the task to be deployed. See ecs_deploy_check_binaries for more
-  # details. You must install the companion binary before the check can be used.
-  # Refer to the README for more details.
-  enable_ecs_deployment_check = true
-
   # The launch type on which to run your service. The valid values are EC2 and
   # FARGATE. Defaults to EC2
   launch_type = "EC2"
@@ -163,6 +149,11 @@ module "ecs_daemon_service" {
   # task definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to
   # SERVICE. If set to null, no tags are created for tasks.
   propagate_tags = "SERVICE"
+
+  # Use this variable to adjust the default timeout of 20m for create and update
+  # operations the the ECS service. Adjusting the value can be particularly
+  # useful when using 'wait_for_steady_state'.
+  service_create_update_timeout = "20m"
 
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
@@ -190,7 +181,7 @@ module "ecs_daemon_service" {
   # If true, Terraform will wait for the service to reach a steady state—as in,
   # the ECS tasks you wanted are actually deployed—before 'apply' is considered
   # complete.
-  wait_for_steady_state = false
+  wait_for_steady_state = true
 
 }
 
@@ -207,7 +198,7 @@ module "ecs_daemon_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.35.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.38.3"
 }
 
 inputs = {
@@ -249,14 +240,6 @@ inputs = {
   # Prefix for name of iam role and policy that allows cloudwatch and ecr access
   custom_task_execution_name_prefix = null
 
-  # Set the logging level of the deployment check script. You can set this to
-  # `error`, `warn`, or `info`, in increasing verbosity.
-  deployment_check_loglevel = "info"
-
-  # Seconds to wait before timing out each check for verifying ECS service
-  # deployment. See ecs_deploy_check_binaries for more details.
-  deployment_check_timeout_seconds = 600
-
   # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
   deployment_controller = null
 
@@ -273,12 +256,6 @@ inputs = {
   # values are host and task.
   ecs_task_definition_pid_mode = "task"
 
-  # Whether or not to enable the ECS deployment check binary to make terraform
-  # wait for the task to be deployed. See ecs_deploy_check_binaries for more
-  # details. You must install the companion binary before the check can be used.
-  # Refer to the README for more details.
-  enable_ecs_deployment_check = true
-
   # The launch type on which to run your service. The valid values are EC2 and
   # FARGATE. Defaults to EC2
   launch_type = "EC2"
@@ -291,6 +268,11 @@ inputs = {
   # task definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to
   # SERVICE. If set to null, no tags are created for tasks.
   propagate_tags = "SERVICE"
+
+  # Use this variable to adjust the default timeout of 20m for create and update
+  # operations the the ECS service. Adjusting the value can be particularly
+  # useful when using 'wait_for_steady_state'.
+  service_create_update_timeout = "20m"
 
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
@@ -318,7 +300,7 @@ inputs = {
   # If true, Terraform will wait for the service to reach a steady state—as in,
   # the ECS tasks you wanted are actually deployed—before 'apply' is considered
   # complete.
-  wait_for_steady_state = false
+  wait_for_steady_state = true
 
 }
 
@@ -400,24 +382,6 @@ Prefix for name of iam role and policy that allows cloudwatch and ecr access
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="deployment_check_loglevel" requirement="optional" type="string">
-<HclListItemDescription>
-
-Set the logging level of the deployment check script. You can set this to `error`, `warn`, or `info`, in increasing verbosity.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;info&quot;"/>
-</HclListItem>
-
-<HclListItem name="deployment_check_timeout_seconds" requirement="optional" type="number">
-<HclListItemDescription>
-
-Seconds to wait before timing out each check for verifying ECS service deployment. See ecs_deploy_check_binaries for more details.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="600"/>
-</HclListItem>
-
 <HclListItem name="deployment_controller" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -454,15 +418,6 @@ The process namespace to use for the containers in the task. The valid values ar
 <HclListItemDefaultValue defaultValue="&quot;task&quot;"/>
 </HclListItem>
 
-<HclListItem name="enable_ecs_deployment_check" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to enable the ECS deployment check binary to make terraform wait for the task to be deployed. See ecs_deploy_check_binaries for more details. You must install the companion binary before the check can be used. Refer to the README for more details.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="launch_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -487,6 +442,15 @@ Whether tags should be propogated to the tasks from the service or from the task
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;SERVICE&quot;"/>
+</HclListItem>
+
+<HclListItem name="service_create_update_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Use this variable to adjust the default timeout of 20m for create and update operations the the ECS service. Adjusting the value can be particularly useful when using 'wait_for_steady_state'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;20m&quot;"/>
 </HclListItem>
 
 <HclListItem name="service_tags" requirement="optional" type="map(string)">
@@ -572,7 +536,7 @@ Any types represent complex values of variable type. For details, please consult
 If true, Terraform will wait for the service to reach a steady state—as in, the ECS tasks you wanted are actually deployed—before 'apply' is considered complete.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 </TabItem>
@@ -603,11 +567,11 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.8/modules/ecs-daemon-service/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.8/modules/ecs-daemon-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.8/modules/ecs-daemon-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-daemon-service/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-daemon-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-daemon-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "92b0ae07a9edf75e72fcb1f91c6d8f2b"
+  "hash": "b3be7f105cd2d7c1b5b815e3ad662ccf"
 }
 ##DOCS-SOURCER-END -->

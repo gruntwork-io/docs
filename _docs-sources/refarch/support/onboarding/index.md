@@ -1,3 +1,0 @@
-# Onboarding sessions
-
-HAXXOR IPSUM

@@ -16,21 +16,21 @@ import CardGroup from "/src/components/CardGroup"
 
 <CardGroup cols={1} gap="1rem" stacked equalHeightRows={false} commonCardProps={{padding: "1.25rem"}}>
 
-<Card title="Update to 2023-05" href="/guides/stay-up-to-date/releases/2023-05" />
-<Card title="Update to 2023-04" href="/guides/stay-up-to-date/releases/2023-04" />
-<Card title="Update to 2023-03" href="/guides/stay-up-to-date/releases/2023-03" />
-<Card title="Update to 2023-02" href="/guides/stay-up-to-date/releases/2023-02" />
-<Card title="Update to 2023-01" href="/guides/stay-up-to-date/releases/2023-01" />
-<Card title="Update to 2022-12" href="/guides/stay-up-to-date/releases/2022-12" />
-<Card title="Update to 2022-11" href="/guides/stay-up-to-date/releases/2022-11" />
-<Card title="Update to 2022-10" href="/guides/stay-up-to-date/releases/2022-10" />
-<Card title="Update to 2022-09" href="/guides/stay-up-to-date/releases/2022-09" />
-<Card title="Update to 2022-08" href="/guides/stay-up-to-date/releases/2022-08" />
-<Card title="Update to 2022-07" href="/guides/stay-up-to-date/releases/2022-07" />
-<Card title="Update to 2022-06" href="/guides/stay-up-to-date/releases/2022-06" />
-<Card title="Update to 2022-05" href="/guides/stay-up-to-date/releases/2022-05" />
-<Card title="Update to 2022-04" href="/guides/stay-up-to-date/releases/2022-04" />
-<Card title="Update to 2022-03" href="/guides/stay-up-to-date/releases/2022-03" />
+<Card title="Update to 2024-09" href="/guides/stay-up-to-date/releases/2024-09" />
+<Card title="Update to 2024-08" href="/guides/stay-up-to-date/releases/2024-08" />
+<Card title="Update to 2024-07" href="/guides/stay-up-to-date/releases/2024-07" />
+<Card title="Update to 2024-06" href="/guides/stay-up-to-date/releases/2024-06" />
+<Card title="Update to 2024-05" href="/guides/stay-up-to-date/releases/2024-05" />
+<Card title="Update to 2024-04" href="/guides/stay-up-to-date/releases/2024-04" />
+<Card title="Update to 2024-03" href="/guides/stay-up-to-date/releases/2024-03" />
+<Card title="Update to 2024-02" href="/guides/stay-up-to-date/releases/2024-02" />
+<Card title="Update to 2024-01" href="/guides/stay-up-to-date/releases/2024-01" />
+<Card title="Update to 2023-12" href="/guides/stay-up-to-date/releases/2023-12" />
+<Card title="Update to 2023-11" href="/guides/stay-up-to-date/releases/2023-11" />
+<Card title="Update to 2023-10" href="/guides/stay-up-to-date/releases/2023-10" />
+<Card title="Update to 2023-09" href="/guides/stay-up-to-date/releases/2023-09" />
+<Card title="Update to 2023-08" href="/guides/stay-up-to-date/releases/2023-08" />
+<Card title="Update to 2023-07" href="/guides/stay-up-to-date/releases/2023-07" />
 <Card title="See older releases" href="/guides/stay-up-to-date/releases" />
 
 </CardGroup>
@@ -114,6 +114,6 @@ href="/guides/stay-up-to-date/cis/cis-1.5.0"
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "3fa2edea88fe3cc62d7be31ef4069fe5"
+  "hash": "e77106b267e902108918ea5e2d48a0aa"
 }
 ##DOCS-SOURCER-END -->

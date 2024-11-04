@@ -1,6 +1,15 @@
 {
   "module": "ntp",
   "releases": {
+    "v0.69.0": {
+      "contains_changes": false
+    },
+    "v0.68.6": {
+      "contains_changes": false
+    },
+    "v0.68.5": {
+      "contains_changes": false
+    },
     "v0.68.4": {
       "contains_changes": false
     },

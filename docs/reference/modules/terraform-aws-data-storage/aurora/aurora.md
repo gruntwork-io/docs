@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.28.1" lastModifiedVersion="0.28.1"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.38.1" lastModifiedVersion="0.36.0"/>
 
 # Aurora Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.28.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.36.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Aurora, a MySQL and PostgreSQL compatible relational database built for the cloud.
 
@@ -59,7 +59,7 @@ Cluster](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Managing.h
 ## How do you configure this module?
 
 This module allows you to configure a number of parameters, such as backup windows, maintenance window, port number,
-and encryption. For a list of all available variables and their descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/aurora/variables.tf).
+and encryption. For a list of all available variables and their descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/aurora/variables.tf).
 
 ## How do you create a cross-region read replica cluster?
 
@@ -77,7 +77,7 @@ module "replica" {
 }
 ```
 
-See the example [here](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/examples/aurora-with-cross-region-replica) for more details.
+See the example [here](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/examples/aurora-with-cross-region-replica) for more details.
 
 ## How do you destroy a cross-region read replica?
 
@@ -137,7 +137,7 @@ see [Limitations of Aurora Serverless](https://docs.aws.amazon.com/AmazonRDS/lat
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.28.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.38.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -459,6 +459,12 @@ module "aurora" {
   # snapshots. Uses the default aws/rds key in KMS.
   storage_encrypted = true
 
+  # Specifies the storage type to be associated with the DB cluster. For Aurora
+  # DB clusters, storage_type modifications can be done in-place. For Multi-AZ
+  # DB Clusters, the iops argument must also be set. Valid values are:
+  # aurora-iopt1 (Aurora DB Clusters); io1 (Multi-AZ DB Clusters).
+  storage_type = null
+
   # Timeout for DB updating
   updating_timeout = "120m"
 
@@ -477,7 +483,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.28.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.38.1"
 }
 
 inputs = {
@@ -801,6 +807,12 @@ inputs = {
   # underlying storage for the DB, its automated backups, Read Replicas, and
   # snapshots. Uses the default aws/rds key in KMS.
   storage_encrypted = true
+
+  # Specifies the storage type to be associated with the DB cluster. For Aurora
+  # DB clusters, storage_type modifications can be done in-place. For Multi-AZ
+  # DB Clusters, the iops argument must also be set. Valid values are:
+  # aurora-iopt1 (Aurora DB Clusters); io1 (Multi-AZ DB Clusters).
+  storage_type = null
 
   # Timeout for DB updating
   updating_timeout = "120m"
@@ -1423,6 +1435,15 @@ Specifies whether the DB cluster uses encryption for data at rest in the underly
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="storage_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Specifies the storage type to be associated with the DB cluster. For Aurora DB clusters, storage_type modifications can be done in-place. For Multi-AZ DB Clusters, the iops argument must also be set. Valid values are: aurora-iopt1 (Aurora DB Clusters); io1 (Multi-AZ DB Clusters).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="updating_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1447,6 +1468,9 @@ Timeout for DB updating
 <HclListItem name="cluster_instances_maintenance_window">
 </HclListItem>
 
+<HclListItem name="cluster_master_password_secret_arn">
+</HclListItem>
+
 <HclListItem name="cluster_resource_id">
 </HclListItem>
 
@@ -1462,10 +1486,16 @@ Timeout for DB updating
 <HclListItem name="port">
 </HclListItem>
 
+<HclListItem name="read_replica_instance_ids">
+</HclListItem>
+
 <HclListItem name="reader_endpoint">
 </HclListItem>
 
 <HclListItem name="security_group_id">
+</HclListItem>
+
+<HclListItem name="write_replica_instance_ids">
 </HclListItem>
 
 </TabItem>
@@ -1475,11 +1505,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/aurora/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.28.1/modules/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/aurora/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5c313a5f98ce50cc6d52a4d2d8b47702"
+  "hash": "91dd688ce36ad456d7be4573cc250c8f"
 }
 ##DOCS-SOURCER-END -->

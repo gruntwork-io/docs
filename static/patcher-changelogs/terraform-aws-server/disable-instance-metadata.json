@@ -1,6 +1,9 @@
 {
   "module": "disable-instance-metadata",
   "releases": {
+    "v0.15.6": {
+      "contains_changes": false
+    },
     "v0.15.5": {
       "contains_changes": false
     },
