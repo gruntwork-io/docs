@@ -33,6 +33,19 @@ export const HclListItemDescription: React.FunctionComponent = ({
   return <div className={styles.description}>{children}</div>
 }
 
+
+
+export const HclListItemExample: React.FunctionComponent = ({
+  children,
+}) => {
+  return <div className={styles.description} style={{ marginTop: '10px' }}>
+    <details>
+      <summary>Example</summary>
+      {children}
+    </details>
+  </div>
+}
+
 export const HclGeneralListItem: React.FunctionComponent<PropsWithChildren<{ title: string }>> = ({
   title,
   children,

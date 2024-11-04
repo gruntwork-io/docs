@@ -36,6 +36,11 @@ Terragrunt is a thin wrapper that provides extra tools for keeping your Terrafor
 Terratest is a Go library that provides patterns and helper functions for testing infrastructure, with 1st-class support for Terraform, Packer, Docker, Kubernetes, AWS, GCP, and more.
 </Card>
 <Card
+  title="Boilerplate"
+  href="https://github.com/gruntwork-io/boilerplate">
+Boilerplate is a tool for generating files and folders ("boilerplate") from a set of templates.
+</Card>
+<Card
 title="Repo Copier"
 href="https://github.com/gruntwork-io/repo-copier"
 tags={["enterprise"]}>

@@ -22,7 +22,7 @@ Gruntwork Pipelines requires using two machine users; one with the ability to op
 We’ll refer to this user as `ci-user` and `ci-read-only-user`, but you may name them anything you like. These users **must**:
 
 1. Both be members of your GitHub Organization
-1. Both be members of your team in **Gruntwork**’s GitHub Organization (See [instructions on inviting a user to your team](https://docs.gruntwork.io/developer-portal/invite-team#inviting-team-members) and [linking the user’s GitHub ID to Gruntwork](https://docs.gruntwork.io/developer-portal/link-github-id))
+2. Both be members of your team in **Gruntwork**’s GitHub Organization (See [instructions on inviting a user to your team](/2.0/docs/overview/getting-started/invite-team) and [linking the user’s GitHub ID to Gruntwork](/2.0/docs/overview/getting-started/link-github-id))
 
 ## Storing secrets
 
@@ -111,7 +111,7 @@ Ensure both of these machine users are members of your team in **Gruntwork**’s
 
 :::info
 
-The recommended path for storing secrets in GitHub Actions is with Organization level secrets, however not all GitHub plans support repository specific Organization secrets. If this is the case for your GitHub organization, you should use Repository level secrets.
+The recommended path for storing secrets in GitHub Actions is with [Organization-level secrets](https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-secrets-for-your-repository-and-organization-for-github-codespaces#adding-secrets-for-an-organization), however not all GitHub plans support Organization secrets that can be used with specific repositories. If this is the case for your GitHub organization, you should use [Repository-level secrets](https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-secrets-for-your-repository-and-organization-for-github-codespaces#adding-secrets-for-a-repository).
 
 :::
 

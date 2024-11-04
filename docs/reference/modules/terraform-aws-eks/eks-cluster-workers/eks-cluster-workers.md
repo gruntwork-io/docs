@@ -850,13 +850,13 @@ Any types represent complex values of variable type. For details, please consult
 
    Each configuration must be keyed by a unique string that will be used as a suffix for the ASG name. The values
    support the following attributes:
-  
+
    REQUIRED (must be provided for every entry):
    - subnet_ids  list(string)  : A list of the subnets into which the EKS Cluster's worker nodes will be launched.
                                  These should usually be all private subnets and include one in each AWS Availability
                                  Zone. NOTE: If using a cluster autoscaler, each ASG may only belong to a single
                                  availability zone.
-  
+
    OPTIONAL (defaults to value of corresponding module input):
    - min_size            number             : (Defaults to value from var.asg_default_min_size) The minimum number of
                                               EC2 Instances representing workers launchable for this EKS Cluster.
@@ -911,19 +911,19 @@ Any types represent complex values of variable type. For details, please consult
                                                When using a multi_instances_policy the maximum price per unit hour that the user is willing to pay for the Spot instances.
    - http_put_response_hop_limit     number  : (Defaults to value from var.asg_default_http_put_response_hop_limit) The
                                                desired HTTP PUT response hop limit for instance metadata requests.
-  
+
    - instance_maintenance_policy     object(Health_Percentage)
-  
+
    Structure of Health_Percentage object:
    - min_healthy_percentage  number  : Min healthy percentage forthe  intance maintenance policy
    - max_healthy_percentage  number  : Max healthy percentage for the intance maintenance policy
-  
+
    Structure of Tag object:
    - key                  string  : The key for the tag to apply to the instance.
    - value                string  : The value for the tag to apply to the instance.
    - propagate_at_launch  bool    : Whether or not the tags should be propagated to the instance at launch time.
-  
-  
+
+
    Example:
    autoscaling_group_configurations = {
      "asg1" = {
@@ -934,7 +934,7 @@ Any types represent complex values of variable type. For details, please consult
        max_size          = 3
        asg_instance_type = "t3.large"
        subnet_ids        = [data.terraform_remote_state.vpc.outputs.private_app_subnet_ids[1]]
-  
+
        tags = [{
          key                 = "size"
          value               = "large"

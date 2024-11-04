@@ -212,7 +212,7 @@ Any types represent complex values of variable type. For details, please consult
 
 ```hcl
 
-   EKS add-on advanced configuration via configuration_values must follow the configuration schema for the deployed version of the add-on. 
+   EKS add-on advanced configuration via configuration_values must follow the configuration schema for the deployed version of the add-on.
    See the following AWS Blog for more details on advanced configuration of EKS add-ons: https://aws.amazon.com/blogs/containers/amazon-eks-add-ons-advanced-configuration/
    Example:
    {
