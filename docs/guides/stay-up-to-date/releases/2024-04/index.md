@@ -13,6 +13,7 @@ Here are the repos that were updated:
 - [boilerplate](#boilerplate)
 - [patcher-cli](#patcher-cli)
 - [pipelines-cli](#pipelines-cli)
+- [pipelines-workflows](#pipelines-workflows)
 - [terraform-aws-architecture-catalog](#terraform-aws-architecture-catalog)
 - [terraform-aws-asg](#terraform-aws-asg)
 - [terraform-aws-cache](#terraform-aws-cache)
@@ -195,6 +196,91 @@ This release includes the following improvements:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   Release duplicated from https://github.com/gruntwork-io/pipelines/releases/tag/v0.6.3
+
+</div>
+
+
+
+## pipelines-workflows
+
+
+### [v0.0.5](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v0.0.5)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 4/30/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v0.0.5">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Version dump dependencies by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-workflows/pull/3
+* chore(deps): bump gruntwork-io/pipelines-provision-account-action from 0.0.3 to 0.0.4 by @dependabot in https://github.com/gruntwork-io/pipelines-workflows/pull/4
+* AWS Execute Improvement by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-workflows/pull/5
+
+* @dependabot made their first contribution in https://github.com/gruntwork-io/pipelines-workflows/pull/4
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v0.0.4...v0.0.5
+
+</div>
+
+
+### [v0.0.4](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v0.0.4)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 4/26/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v0.0.4">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Bump versions of downstream actions
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v0.0.3...v0.0.4
+
+</div>
+
+
+### [v0.0.3](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v0.0.3)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 4/26/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v0.0.3">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * bump version of pipelines-aws-execute 
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v0.0.2...v0.0.3
+
+</div>
+
+
+### [v0.0.2](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v0.0.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 4/26/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v0.0.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Move pipelines CLI version into the workflow by @ZachGoldberg in https://github.com/gruntwork-io/pipelines-workflows/pull/1
+* chore: Updating README.md by @yhakbar in https://github.com/gruntwork-io/pipelines-workflows/pull/2
+
+* @ZachGoldberg made their first contribution in https://github.com/gruntwork-io/pipelines-workflows/pull/1
+* @yhakbar made their first contribution in https://github.com/gruntwork-io/pipelines-workflows/pull/2
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v0.0.1...v0.0.2
+
+</div>
+
+
+### [v0.0.1](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v0.0.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 4/26/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v0.0.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  **Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/commits/v0.0.1
 
 </div>
 
@@ -1547,6 +1633,6 @@ Default EKS version is 1.29 with this release! Please see the links below for fu
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "7780b1bc4b45aae60c5eb32b6a6347ac"
+  "hash": "b44ec71f293d81bc47600053ec5ef6ab"
 }
 ##DOCS-SOURCER-END -->
