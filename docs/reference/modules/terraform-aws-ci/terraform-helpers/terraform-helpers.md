@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.58.0" lastModifiedVersion="0.52.4"/>
+<VersionBadge repoTitle="CI Modules" version="0.59.1" lastModifiedVersion="0.52.4"/>
 
 # Terraform Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/terraform-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.1/modules/terraform-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -38,7 +38,7 @@ You can install these scripts using the [Gruntwork Installer](https://github.com
 gruntwork-install --module-name "terraform-helpers" --repo "https://github.com/gruntwork-io/terraform-aws-ci" --tag "0.0.1"
 ```
 
-Note that `terraform-update-variable` depends on the [git-helpers module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/git-helpers) being installed!
+Note that `terraform-update-variable` depends on the [git-helpers module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.1/modules/git-helpers) being installed!
 
 See the examples in the next section for how to use them.
 
@@ -313,9 +313,9 @@ live/us-east-1/non-prod
 Each of these were detected as terraform modules (because they contain `.tf` files), and were marked as changed because
 one of the underlying `.tf` or `.tfvars` files have changed. Specifically:
 
-*   `modules/mysql` &lt;= `modules/mysql/outputs.tf`
-*   `live/us-east-1/prod` &lt;= `live/us-east-1/prod/main.tf` and `live/us-east-1/prod/outputs.tf`
-*   `live/us-east-1/non-prod` &lt;= `live/us-east-1/non-prod/terraform.tfvars`
+*   `modules/mysql` <= `modules/mysql/outputs.tf`
+*   `live/us-east-1/prod` <= `live/us-east-1/prod/main.tf` and `live/us-east-1/prod/outputs.tf`
+*   `live/us-east-1/non-prod` <= `live/us-east-1/non-prod/terraform.tfvars`
 
 ### Deleted folders
 
@@ -341,11 +341,11 @@ and `apply` actions so that Terraform/Terragrunt can run. If you wish to impleme
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/terraform-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/terraform-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/terraform-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.1/modules/terraform-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.1/modules/terraform-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.1/modules/terraform-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5d4a7fd03e0da6265e3d7350568cd876"
+  "hash": "f5b4ec7c8c889fc6e12c1e78f375e83c"
 }
 ##DOCS-SOURCER-END -->
