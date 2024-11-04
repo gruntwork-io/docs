@@ -21,3 +21,8 @@ Core pipelines functionally generally requires only a small amount of configurat
 ## Other Configuration
 
 Beyond authentication the main configuration options pertain to customizing Terragrunt execution - for example toggling experimental terragrunt features or configuring when/if to execute a `run` or a `run-all`.  A full list of configuration is available in these reference pages for both configuration systems.
+
+## Next Steps
+
+* Review the [YAML Configurations](./configurations.md) Reference
+* Review the (Beta) [Configurations as Code](./configurations-as-code.md) Reference
