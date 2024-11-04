@@ -42,7 +42,7 @@ export const HomeContent = () => {
                 icon="/img/icons/learn.svg"
               >
                 Learn how Gruntwork's Devops Foundations can help you deploy a world class
-                infrastructure.
+                infrastructure.Test
               </Card>
               <Card
                 title="Create your Gruntwork Account"
