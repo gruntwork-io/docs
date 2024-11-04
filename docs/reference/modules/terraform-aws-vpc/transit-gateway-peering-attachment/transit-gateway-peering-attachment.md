@@ -9,17 +9,17 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.15" lastModifiedVersion="0.26.8"/>
+<VersionBadge repoTitle="VPC Modules" version="0.26.26" lastModifiedVersion="0.26.8"/>
 
 # Transit Gateway Peering Attachment Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/transit-gateway-peering-attachment" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/transit-gateway-peering-attachment" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates transit gateway peering resources for the `requester` side of the connection to another transit gateway. The transit gateway can be in this account or in another account. Transit gateway peering is a one-to-one relationship between two transit gateways. If you need to peer multiple transit gateways, you will need to create multiple transit gateway peering attachments.
 
-See [VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules//_docs/vpc-core-concepts.md) for more information on the core networking components and topologies.
+See [VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules//_docs/vpc-core-concepts.md) for more information on the core networking components and topologies.
 
 ## What is a Transit Gateway Peering Attachment?
 
@@ -27,7 +27,7 @@ A transit gateway peering attachment is a way to connect two transit gateways to
 
 ## Usage
 
-For usage examples, check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/examples/transit-gateway-peering-attachment/).
+For usage examples, check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/examples/transit-gateway-peering-attachment/).
 
 <!-- BEGIN_TF_DOCS -->
 
@@ -86,7 +86,7 @@ No modules.
 
 module "transit_gateway_peering_attachment" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-peering-attachment?ref=v0.26.15"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-peering-attachment?ref=v0.26.26"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -135,7 +135,7 @@ module "transit_gateway_peering_attachment" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-peering-attachment?ref=v0.26.15"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-peering-attachment?ref=v0.26.26"
 }
 
 inputs = {
@@ -261,11 +261,11 @@ Transit Gateway Peering Attachment identifier
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/transit-gateway-peering-attachment/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/transit-gateway-peering-attachment/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/transit-gateway-peering-attachment/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/transit-gateway-peering-attachment/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/transit-gateway-peering-attachment/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/transit-gateway-peering-attachment/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fe0e380132f4d81094f1b4d89a1497b1"
+  "hash": "cf5c90fe9c51bf8664b7166be6f0f9fc"
 }
 ##DOCS-SOURCER-END -->

@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.65.2" lastModifiedVersion="0.55.2"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.70.2" lastModifiedVersion="0.55.2"/>
 
 # EKS Scripts Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-scripts" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-scripts" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.55.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -31,7 +31,7 @@ gruntwork-install --module-name "eks-scripts" --repo "https://github.com/gruntwo
 ```
 
 For an example, see the [Packer](https://www.packer.io/) template under
-[examples/eks-cluster-with-supporting-services/packer/build.json](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/examples/eks-cluster-with-supporting-services/packer/build.json).
+[examples/eks-cluster-with-supporting-services/packer/build.json](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/examples/eks-cluster-with-supporting-services/packer/build.json).
 
 ## Using the map-ec2-tags-to-node-labels helper
 
@@ -96,7 +96,7 @@ and you specified `ec2.gruntwork.io/` as your tag prefix (`map-ec2-tags-to-node-
 
 In order for the script to be able to successfully retrieve the tags for EC2 instance, the instances need to be
 associated with an IAM profile that grants it access to retrieve the EC2 tags on the instance. If you launch the workers
-using the [eks-cluster-workers module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-cluster-workers), this is automatically attached to the worker IAM role.
+using the [eks-cluster-workers module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-cluster-workers), this is automatically attached to the worker IAM role.
 
 ### map_ec2\_tags_to_node_labels.py symlink
 
@@ -108,11 +108,11 @@ tests.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-scripts/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-scripts/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-scripts/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-scripts/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-scripts/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-scripts/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "681e9b2d938c1d7d1f08dfbfb8d4ce84"
+  "hash": "badda28eca0fea91d91b720390fb6811"
 }
 ##DOCS-SOURCER-END -->

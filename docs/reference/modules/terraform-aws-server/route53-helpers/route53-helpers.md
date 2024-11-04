@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Module Server" version="0.15.13" lastModifiedVersion="0.13.4"/>
+<VersionBadge repoTitle="Module Server" version="0.16.1" lastModifiedVersion="0.13.4"/>
 
 # Route 53 Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.13/modules/route53-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/modules/route53-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.13.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -23,7 +23,7 @@ The helpers are:
 *   `add-dns-a-record`: A script that can be run on an EC2 instance to add a DNS A record pointing to the instance's IP
     address.
 
-Check out the [route53-helpers example](https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.13/examples/route53-helpers) for how to use these scripts with Terraform.
+Check out the [route53-helpers example](https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/examples/route53-helpers) for how to use these scripts with Terraform.
 
 ## Installing the helpers
 
@@ -69,17 +69,17 @@ Here is an example of an IAM policy your EC2 instance needs attached to its IAM 
 }
 ```
 
-Check out the [route53-helpers example](https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.13/examples/route53-helpers) to see what this looks like in action.
+Check out the [route53-helpers example](https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/examples/route53-helpers) to see what this looks like in action.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.13/modules/route53-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.13/modules/route53-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.13/modules/route53-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/modules/route53-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/modules/route53-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/modules/route53-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5ae52c16188d97934d6b70c7664e0bed"
+  "hash": "a72ff74aa7fe364c00b0bdc92da87451"
 }
 ##DOCS-SOURCER-END -->

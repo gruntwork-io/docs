@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="0.29.20" lastModifiedVersion="0.29.16"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="0.29.26" lastModifiedVersion="0.29.24"/>
 
 # Load Balancer Listener Rules
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.20/modules/lb-listener-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.26/modules/lb-listener-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.16" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.24" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module provides a simpler, more declarative interface for creating
 [Load Balancer Listener Rules](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html)
@@ -95,7 +95,7 @@ Note that in most cases, your path definitions should be mutually exclusive and 
 
 module "lb_listener_rules" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v0.29.20"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v0.29.26"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -127,6 +127,11 @@ module "lb_listener_rules" {
   # more target groups. See comments below for information about the parameters.
   forward_rules = {}
 
+  # Whether or not to ignore changes to the target groups in the listener
+  # forwarding rule. Can be used with AWS CodeDeploy to allow changes to target
+  # group mapping outside of Terraform.
+  ignore_changes_to_target_groups = false
+
   # Listener rules for a redirect action. See comments below for information
   # about the parameters.
   redirect_rules = {}
@@ -146,7 +151,7 @@ module "lb_listener_rules" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v0.29.20"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v0.29.26"
 }
 
 inputs = {
@@ -180,6 +185,11 @@ inputs = {
   # Listener rules for a forward action that distributes requests among one or
   # more target groups. See comments below for information about the parameters.
   forward_rules = {}
+
+  # Whether or not to ignore changes to the target groups in the listener
+  # forwarding rule. Can be used with AWS CodeDeploy to allow changes to target
+  # group mapping outside of Terraform.
+  ignore_changes_to_target_groups = false
 
   # Listener rules for a redirect action. See comments below for information
   # about the parameters.
@@ -601,6 +611,15 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="ignore_changes_to_target_groups" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to ignore changes to the target groups in the listener forwarding rule. Can be used with AWS CodeDeploy to allow changes to target group mapping outside of Terraform.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="redirect_rules" requirement="optional" type="map(any)">
 <HclListItemDescription>
 
@@ -793,6 +812,14 @@ The ARNs of the rules of type forward. The key is the same key of the rule from 
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="lb_listener_rule_forward_with_ignore_target_groups_arns">
+<HclListItemDescription>
+
+The ARNs of the rules of type forward. The key is the same key of the rule from the `forward_rules` variable.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="lb_listener_rule_redirect_arns">
 <HclListItemDescription>
 
@@ -808,11 +835,11 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.20/modules/lb-listener-rules/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.20/modules/lb-listener-rules/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.20/modules/lb-listener-rules/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.26/modules/lb-listener-rules/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.26/modules/lb-listener-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.26/modules/lb-listener-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bd08564b033502dde3f2721df8583efe"
+  "hash": "54e2a7c53375d57c3cc3c180a1f06682"
 }
 ##DOCS-SOURCER-END -->

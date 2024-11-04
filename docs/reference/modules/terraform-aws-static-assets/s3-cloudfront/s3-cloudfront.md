@@ -9,25 +9,25 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Static Assets Modules" version="0.18.0" lastModifiedVersion="0.18.0"/>
+<VersionBadge repoTitle="Static Assets Modules" version="0.18.5" lastModifiedVersion="0.18.5"/>
 
 # S3 CloudFront Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.0/modules/s3-cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.5/modules/s3-cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.18.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.18.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module deploys a [CloudFront](https://aws.amazon.com/cloudfront/) distribution as a Content Distribution Network
 (CDN) in front of an [S3 bucket](https://aws.amazon.com/s3/). This reduces latency for your users, by caching your
 static content in servers around the world. It also allows you to use SSL with the static content in an S3 bucket.
 
-See the [s3-static-website module](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.0/modules/s3-static-website) for how to deploy static content in an S3 bucket.
+See the [s3-static-website module](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.5/modules/s3-static-website) for how to deploy static content in an S3 bucket.
 
 ## Quick Start
 
-*   See the [cloudfront-s3-public](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.0/examples/cloudfront-s3-public) and
-    [cloudfront-s3-private](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.0/examples/cloudfront-s3-private) examples for working sample code.
-*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.0/modules/s3-cloudfront/vars.tf) for all parameters you can set for this module.
+*   See the [cloudfront-s3-public](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.5/examples/cloudfront-s3-public) and
+    [cloudfront-s3-private](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.5/examples/cloudfront-s3-private) examples for working sample code.
+*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.5/modules/s3-cloudfront/vars.tf) for all parameters you can set for this module.
 
 ## Public vs private S3 buckets
 
@@ -130,7 +130,7 @@ most use cases, but is not particularly flexible. In particular, the limitations
 *   Only one default cache behavior is supported
     ([cache behaviors](https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#cache-behavior-arguments)
     is an inline block). You can control the default cache settings using a number of parameters, including
-    `cached_methods`, `default_ttl`, `min_ttl`, `max_ttl`, and many others (see [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.0/modules/s3-cloudfront/vars.tf) for the full list).
+    `cached_methods`, `default_ttl`, `min_ttl`, `max_ttl`, and many others (see [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.5/modules/s3-cloudfront/vars.tf) for the full list).
 
 *   Only two error responses are supported
     ([error responses](https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#custom-error-response-arguments)
@@ -162,7 +162,7 @@ into your own codebase, using it as a guide, and adding the tweaks you need.
 
 module "s_3_cloudfront" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-cloudfront?ref=v0.18.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-cloudfront?ref=v0.18.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -253,6 +253,14 @@ module "s_3_cloudfront" {
   # TLSv1.1, and TLSv1.2.
   bucket_origin_config_ssl_protocols = ["TLSv1.2"]
 
+  # Set a custom origin_id to be used. If not set, the default bucket_name will
+  # be used. Defaults to null (not set).
+  bucket_origin_id = null
+
+  # Set a custom target_origin_id to be used. If not set, the default
+  # bucket_name will be used. Defaults to null (not set).
+  bucket_target_origin_id = null
+
   # The website endpoint for this S3 bucket. This value should be of the format
   # <BUCKET_NAME>.s3-website-<AWS_REGION>.amazonaws.com. Only used if
   # var.s3_bucket_is_public_website is true.
@@ -273,6 +281,10 @@ module "s_3_cloudfront" {
   # The key is the tag name and the value is the tag value.
   custom_tags = {}
 
+  # Unique identifier of the cache policy that is attached to the default cache
+  # behavior. If this var is enabled, forwarded_values will not be set.
+  default_cache_policy_id = null
+
   # A list of existing CloudFront functions to associate with the default cached
   # behavior. CloudFront functions are lightweight alternatives to Lambda for
   # high-scale, latency sensitive CDN customizations
@@ -284,6 +296,11 @@ module "s_3_cloudfront" {
   # https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#lambda_function_association
   # for available options).
   default_lambda_associations = []
+
+  # Unique identifier of the origin request policy that is attached to the
+  # behavior. This variable can be passed only if a default_cache_policy_id is
+  # specified as well.
+  default_origin_request_policy_id = null
 
   # Option to disable cloudfront log delivery to s3.  This is required in
   # regions where cloudfront cannot deliver logs to s3, see
@@ -462,7 +479,7 @@ module "s_3_cloudfront" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-cloudfront?ref=v0.18.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-cloudfront?ref=v0.18.5"
 }
 
 inputs = {
@@ -556,6 +573,14 @@ inputs = {
   # TLSv1.1, and TLSv1.2.
   bucket_origin_config_ssl_protocols = ["TLSv1.2"]
 
+  # Set a custom origin_id to be used. If not set, the default bucket_name will
+  # be used. Defaults to null (not set).
+  bucket_origin_id = null
+
+  # Set a custom target_origin_id to be used. If not set, the default
+  # bucket_name will be used. Defaults to null (not set).
+  bucket_target_origin_id = null
+
   # The website endpoint for this S3 bucket. This value should be of the format
   # <BUCKET_NAME>.s3-website-<AWS_REGION>.amazonaws.com. Only used if
   # var.s3_bucket_is_public_website is true.
@@ -576,6 +601,10 @@ inputs = {
   # The key is the tag name and the value is the tag value.
   custom_tags = {}
 
+  # Unique identifier of the cache policy that is attached to the default cache
+  # behavior. If this var is enabled, forwarded_values will not be set.
+  default_cache_policy_id = null
+
   # A list of existing CloudFront functions to associate with the default cached
   # behavior. CloudFront functions are lightweight alternatives to Lambda for
   # high-scale, latency sensitive CDN customizations
@@ -587,6 +616,11 @@ inputs = {
   # https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#lambda_function_association
   # for available options).
   default_lambda_associations = []
+
+  # Unique identifier of the origin request policy that is attached to the
+  # behavior. This variable can be passed only if a default_cache_policy_id is
+  # specified as well.
+  default_origin_request_policy_id = null
 
   # Option to disable cloudfront log delivery to s3.  This is required in
   # regions where cloudfront cannot deliver logs to s3, see
@@ -986,6 +1020,24 @@ The SSL/TLS protocols that you want CloudFront to use when communicating with th
 ]"/>
 </HclListItem>
 
+<HclListItem name="bucket_origin_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+Set a custom origin_id to be used. If not set, the default bucket_name will be used. Defaults to null (not set).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="bucket_target_origin_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+Set a custom target_origin_id to be used. If not set, the default bucket_name will be used. Defaults to null (not set).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="bucket_website_endpoint" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1040,6 +1092,15 @@ A map of custom tags to apply to the S3 bucket and Cloudfront Distribution. The 
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="default_cache_policy_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+Unique identifier of the cache policy that is attached to the default cache behavior. If this var is enabled, forwarded_values will not be set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="default_function_associations" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
@@ -1077,6 +1138,15 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="default_origin_request_policy_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+Unique identifier of the origin request policy that is attached to the behavior. This variable can be passed only if a default_cache_policy_id is specified as well.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="disable_logging" requirement="optional" type="bool">
@@ -1448,11 +1518,11 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.0/modules/s3-cloudfront/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.0/modules/s3-cloudfront/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.0/modules/s3-cloudfront/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.5/modules/s3-cloudfront/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.5/modules/s3-cloudfront/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.18.5/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2eb4b4f9b10497ef759a0454c864e693"
+  "hash": "9d7555170ded4cb7b44af3d149473226"
 }
 ##DOCS-SOURCER-END -->

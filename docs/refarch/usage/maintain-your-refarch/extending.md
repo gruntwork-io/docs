@@ -16,11 +16,11 @@ Gruntwork provides a [_catalog_ of services](/library/reference/) that can be ad
 
 ## Composing your own services
 
-If Gruntwork doesn't already have the service you are looking you may be able to use our [modules](../../../library/overview/modules) and combine them into your own bespoke new services to accelerate your development of the functionality you need.
+If Gruntwork doesn't already have the service you are looking you may be able to use our [modules](../../../2.0/docs/library/concepts/modules) and combine them into your own bespoke new services to accelerate your development of the functionality you need.
 
 ## Build your own modules
 
-If Gruntwork doesn't have existing modules for the AWS services that you are trying to deploy, you can always [create and deploy your own modules](/library/getting-started/deploying-a-module), compose them into your on bespoke services and add them to your Reference Architecture.
+If Gruntwork doesn't have existing modules for the AWS services that you are trying to deploy, you can always [create and deploy your own modules](../../../2.0/docs/library/tutorials/deploying-your-first-gruntwork-module.md), compose them into your on bespoke services and add them to your Reference Architecture.
 
 
 <!-- ##DOCS-SOURCER-START

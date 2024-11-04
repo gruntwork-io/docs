@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.32" lastModifiedVersion="0.31.4"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.38.1" lastModifiedVersion="0.38.1"/>
 
 # RDS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.31.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.38.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Relational Database Service (RDS) cluster that can run MySQL, Postgres, MariaDB, Oracle,
 or SQL Server. The cluster is managed by AWS and automatically handles standby failover, read replicas, backups,
@@ -38,16 +38,6 @@ the [What is Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/
 *   Based on the above, make sure you've written your app to gracefully handle database downtime.
 *   An RDS instance that runs out of disk space will stop working, so be sure to monitor and set an alert on the
     FreeStorageSpace CloudWatch Metric. Consider monitoring other RDS CloudWatch Metrics as well.
-
-## Minor version upgrades
-
-RDS supports automatically installing minor version upgrades: e.g., automatically updating a MySQL database from 5.7.10
-to 5.7.11. To enable this functionality:
-
-1.  Set the `auto_minor_version_upgrade` parameter to `true`.
-2.  Set the `engine_version` parameter to `MAJOR.MINOR` and omit the `PATCH`: e.g., use 5.7 instead of 5.7.11. If you
-    include the `PATCH` number, you'll get state drift each time the minor version is updated. See the [`engine_version`
-    parameter docs](https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version) for details.
 
 ## How do you scale this database?
 
@@ -82,6 +72,38 @@ or if you run `terraform output`.
 Note that the database is likely behind a Bastion Host, so you may need to first connect to the Bastion Host (or use SSH
 Tunneling) before you can connect to the database.
 
+## Deployment
+
+Before making any deployment for the RDS database, start by backing up the database and taking a snapshot of the infrastructure state. Review the release notes for any breaking changes and new features. Update the infrastructure code by modifying the Terraform configurations and testing them in a non-production environment. Conduct post-upgrade testing to ensure application functionality and performance, while monitoring the database health. Communicate the potential downtime to relevant stakeholders and involve them in the process.
+
+### Minor version upgrades
+
+RDS supports automatically installing minor version upgrades. For example, it can automatically update a MySQL database from version 5.7.10 to 5.7.11. To enable this functionality, follow these steps:
+
+1.  Set the `auto_minor_version_upgrade` parameter to `true`.
+2.  Set the `engine_version` parameter to `MAJOR.MINOR` and omit the `PATCH` number.
+
+### Major Version Upgrade
+
+RDS supports automatically installing major version upgrades. To enable this functionality, follow these steps:
+
+1.  Set the `allow_major_version_upgrade` parameter to `true`.
+2.  Set the `engine_version` parameter to `MAJOR.MINOR` and omit the `PATCH` number.
+
+**Note**: consider temporarily setting parameter and option group variables to engine defaults during the major version upgrade process. This step is important to prevent upgrade failures that might occur due to custom configurations not being compatible with the new version. By reverting these configurations to default settings temporarily, you minimize the risk of incompatibility issues during the upgrade process. After the upgrade is successfully completed, these configurations can be reverted back to their custom values, ensuring that your database operates with the desired settings while being compatible with the upgraded version.
+
+**Note**: A minimal downtime is expected during a major version upgrade. Make sure to communicate the potential downtime to relevant stakeholders in advance.
+
+### Blue/Green Deployment for Low-Downtime Updates
+
+By default, RDS updates DB Instances in-place, which can cause service interruptions. Low-downtime updates minimize interruptions by using an RDS Blue/Green deployment. To enable this, set the `enable_blue_green_update` variable to `true`.
+
+Note that low-downtime updates are only supported for MySQL, MariaDB, and Postgresql, and backups must be enabled. When using terraform, the Blue/Green Deployment won't finish until the Green instances become the new instance and the Blue instance is deleted. Therefore, Blue/Green Deployment cannot be used for scenarios outside of terraform's resource update, such as manual testing of the Green deployment or reverting back to the Blue deployment.
+
+### Standby Deployment
+
+Set `multi_az=true`. When setting up a multi-AZ (Availability Zone) RDS deployment in AWS, both the primary and standby RDS instances are created in different Availability Zones for high availability. However, this doesn't mean they will have different endpoints. Both instances will have the same DNS endpoint, and AWS's internal infrastructure will handle the failover process transparently for you. AWS RDS provides automatic failover support for DB instances using Multi-AZ deployments for the supported database engines. Failover is automatically handled by RDS without any manual intervention.
+
 ## Sample Usage
 
 <Tabs>
@@ -95,7 +117,7 @@ Tunneling) before you can connect to the database.
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.32"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.38.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -172,6 +194,11 @@ module "rds" {
   # will never automatically applied.
   allow_major_version_upgrade = true
 
+  # A list of CIDR-formatted IP address ranges that the database is allowed to
+  # send traffit to. Should typically be the CIDR blocks of the private app
+  # subnet in this VPC plus the private subnet in the mgmt VPC.
+  allow_outbound_connections_to_cidr_blocks = []
+
   # The availability zones within which it should be possible to spin up
   # replicas
   allowed_replica_zones = []
@@ -234,6 +261,10 @@ module "rds" {
   # Timeout for DB creating
   creating_timeout = "40m"
 
+  # The instance profile associated with the underlying Amazon EC2 instance of
+  # an RDS Custom DB instance.
+  custom_iam_instance_profile = null
+
   # Configure a custom parameter group for the RDS DB. This will create a new
   # parameter group with the given parameters. When null, the database will be
   # launched with the default parameter group.
@@ -262,6 +293,12 @@ module "rds" {
   # false.
   deletion_protection = false
 
+  # Enable blue/green deployment to minimize down time due to changes made to
+  # the RDS Instance. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments-overview.html
+  # for more detailed information.
+  enable_blue_green_update = false
+
   # List of log types to enable for exporting to CloudWatch logs. If omitted, no
   # logs will be exported. Valid values (depending on engine): alert, audit,
   # error, general, listener, slowquery, trace, postgresql (PostgreSQL) and
@@ -282,7 +319,8 @@ module "rds" {
 
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used
   # if var.storage_encrypted is true. If you leave this blank, the default RDS
-  # KMS key for the account will be used.
+  # KMS key for the account will be used. This variable needs to be set to an
+  # AWS KMS CMK if provisioning a custom RDS instance.
   kms_key_arn = null
 
   # The license model to use for this DB. Check the docs for your RDS DB for
@@ -394,6 +432,10 @@ module "rds" {
   # Only set this to true if you want the database open to the internet.
   publicly_accessible = false
 
+  # Redefine replica instance type, if you want to define a different RDS
+  # instance type for replica.
+  read_replica_instance_type = null
+
   # The amount of provisioned IOPS for read replicas. If null, the replica will
   # use the same value as the primary, which is set in var.iops.
   read_replica_iops = null
@@ -455,7 +497,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.32"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.38.1"
 }
 
 inputs = {
@@ -535,6 +577,11 @@ inputs = {
   # will never automatically applied.
   allow_major_version_upgrade = true
 
+  # A list of CIDR-formatted IP address ranges that the database is allowed to
+  # send traffit to. Should typically be the CIDR blocks of the private app
+  # subnet in this VPC plus the private subnet in the mgmt VPC.
+  allow_outbound_connections_to_cidr_blocks = []
+
   # The availability zones within which it should be possible to spin up
   # replicas
   allowed_replica_zones = []
@@ -597,6 +644,10 @@ inputs = {
   # Timeout for DB creating
   creating_timeout = "40m"
 
+  # The instance profile associated with the underlying Amazon EC2 instance of
+  # an RDS Custom DB instance.
+  custom_iam_instance_profile = null
+
   # Configure a custom parameter group for the RDS DB. This will create a new
   # parameter group with the given parameters. When null, the database will be
   # launched with the default parameter group.
@@ -625,6 +676,12 @@ inputs = {
   # false.
   deletion_protection = false
 
+  # Enable blue/green deployment to minimize down time due to changes made to
+  # the RDS Instance. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments-overview.html
+  # for more detailed information.
+  enable_blue_green_update = false
+
   # List of log types to enable for exporting to CloudWatch logs. If omitted, no
   # logs will be exported. Valid values (depending on engine): alert, audit,
   # error, general, listener, slowquery, trace, postgresql (PostgreSQL) and
@@ -645,7 +702,8 @@ inputs = {
 
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used
   # if var.storage_encrypted is true. If you leave this blank, the default RDS
-  # KMS key for the account will be used.
+  # KMS key for the account will be used. This variable needs to be set to an
+  # AWS KMS CMK if provisioning a custom RDS instance.
   kms_key_arn = null
 
   # The license model to use for this DB. Check the docs for your RDS DB for
@@ -756,6 +814,10 @@ inputs = {
   # WARNING: - In nearly all cases a database should NOT be publicly accessible.
   # Only set this to true if you want the database open to the internet.
   publicly_accessible = false
+
+  # Redefine replica instance type, if you want to define a different RDS
+  # instance type for replica.
+  read_replica_instance_type = null
 
   # The amount of provisioned IOPS for read replicas. If null, the replica will
   # use the same value as the primary, which is set in var.iops.
@@ -951,6 +1013,15 @@ Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be perm
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="allow_outbound_connections_to_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of CIDR-formatted IP address ranges that the database is allowed to send traffit to. Should typically be the CIDR blocks of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="allowed_replica_zones" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1075,6 +1146,15 @@ Timeout for DB creating
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;40m&quot;"/>
+</HclListItem>
+
+<HclListItem name="custom_iam_instance_profile" requirement="optional" type="string">
+<HclListItemDescription>
+
+The instance profile associated with the underlying Amazon EC2 instance of an RDS Custom DB instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="custom_parameter_group" requirement="optional" type="object(…)">
@@ -1227,6 +1307,15 @@ The database can't be deleted when this value is set to true. The default is fal
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="enable_blue_green_update" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable blue/green deployment to minimize down time due to changes made to the RDS Instance. See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments-overview.html for more detailed information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="enabled_cloudwatch_logs_exports" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1266,7 +1355,7 @@ The amount of provisioned IOPS for the primary instance. Setting this implies a 
 <HclListItem name="kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-The ARN of a KMS key that should be used to encrypt data on disk. Only used if <a href="#storage_encrypted"><code>storage_encrypted</code></a> is true. If you leave this blank, the default RDS KMS key for the account will be used.
+The ARN of a KMS key that should be used to encrypt data on disk. Only used if <a href="#storage_encrypted"><code>storage_encrypted</code></a> is true. If you leave this blank, the default RDS KMS key for the account will be used. This variable needs to be set to an AWS KMS CMK if provisioning a custom RDS instance.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1479,6 +1568,15 @@ WARNING: - In nearly all cases a database should NOT be publicly accessible. Onl
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="read_replica_instance_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Redefine replica instance type, if you want to define a different RDS instance type for replica.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="read_replica_iops" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1589,6 +1687,9 @@ Timeout for DB updating
 <HclListItem name="db_name">
 </HclListItem>
 
+<HclListItem name="master_password_secret_arn">
+</HclListItem>
+
 <HclListItem name="name">
 </HclListItem>
 
@@ -1619,6 +1720,9 @@ Timeout for DB updating
 <HclListItem name="read_replica_ids">
 </HclListItem>
 
+<HclListItem name="resource_id">
+</HclListItem>
+
 <HclListItem name="security_group_id">
 </HclListItem>
 
@@ -1629,11 +1733,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/rds/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/rds/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e764f9b91f70c4a0fd3fd6f0e80c7718"
+  "hash": "2096e9117641e6be8e4e23ef2f2a79fa"
 }
 ##DOCS-SOURCER-END -->

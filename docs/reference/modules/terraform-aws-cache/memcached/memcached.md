@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="0.22.1" lastModifiedVersion="0.22.1"/>
+<VersionBadge repoTitle="Cache Modules" version="0.22.8" lastModifiedVersion="0.22.4"/>
 
 # Memcached Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.1/modules/memcached" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.8/modules/memcached" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.22.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.22.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an ElastiCache cluster that runs [Memcached](https://memcached.org/).
 
@@ -47,7 +47,7 @@ For more info, see [Scaling Memcached](http://docs.aws.amazon.com/AmazonElastiCa
 
 module "memcached" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/memcached?ref=v0.22.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/memcached?ref=v0.22.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -97,6 +97,9 @@ module "memcached" {
   # than 1.
   az_mode = "single-az"
 
+  # Enable Encryption in-transit, can only be set on cluster creation.
+  enable_transport_encryption = false
+
   # Specifies the weekly time range for when maintenance on the cache cluster is
   # performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi
   # (24H Clock UTC). The minimum maintenance window is a 60 minute period.
@@ -134,7 +137,7 @@ module "memcached" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/memcached?ref=v0.22.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/memcached?ref=v0.22.8"
 }
 
 inputs = {
@@ -186,6 +189,9 @@ inputs = {
   # cross-az. If you want to choose cross-az, num_cache_nodes must be greater
   # than 1.
   az_mode = "single-az"
+
+  # Enable Encryption in-transit, can only be set on cluster creation.
+  enable_transport_encryption = false
 
   # Specifies the weekly time range for when maintenance on the cache cluster is
   # performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi
@@ -304,6 +310,15 @@ Specifies whether the nodes in this Memcached node group are created in a single
 <HclListItemDefaultValue defaultValue="&quot;single-az&quot;"/>
 </HclListItem>
 
+<HclListItem name="enable_transport_encryption" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable Encryption in-transit, can only be set on cluster creation.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="maintenance_window" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -386,11 +401,11 @@ A set of tags to set for the ElastiCache Replication Group.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.1/modules/memcached/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.1/modules/memcached/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.1/modules/memcached/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.8/modules/memcached/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.8/modules/memcached/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.8/modules/memcached/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b49083fbb5e9fe0b74915b38654b3b41"
+  "hash": "ef83a4f32ed9083a75e6a3206e80155f"
 }
 ##DOCS-SOURCER-END -->

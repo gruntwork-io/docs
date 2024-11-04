@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.107.12" lastModifiedVersion="0.107.6"/>
+<VersionBadge version="0.115.4" lastModifiedVersion="0.113.0"/>
 
 # Amazon ECS Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/services/ecs-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/ecs-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fecs-service" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -53,7 +53,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-ecs](https://github.com/gruntwork-io/terraform-aws-ecs) repo. If you are a subscriber and don’t have
-access to this repo, email <support@gruntwork.io>.
+access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ### Core concepts
 
@@ -63,10 +63,10 @@ more, see the documentation in the
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal
     submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/test): Automated tests for the modules and examples.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -74,14 +74,14 @@ more, see the documentation in the
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and testing (but not direct production usage).
 
 ### Production deployment
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -105,7 +105,7 @@ For information on how to manage your ECS service, see the documentation in the
 
 module "ecs_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-service?ref=v0.107.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-service?ref=v0.115.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -114,16 +114,6 @@ module "ecs_service" {
   # List of container definitions to use for the ECS task. Each entry
   # corresponds to a different ECS container definition.
   container_definitions = <any>
-
-  # A map of all the listeners on the load balancer. The keys should be the port
-  # numbers and the values should be the ARN of the listener for that port.
-  default_listener_arns = <map(string)>
-
-  # The default port numbers on the load balancer to attach listener rules to.
-  # You can override this default on a rule-by-rule basis by setting the
-  # listener_ports parameter in each rule. The port numbers specified in this
-  # variable and the listener_ports parameter must exist in var.listener_arns.
-  default_listener_ports = <list(string)>
 
   # The ARN of the cluster to which the ecs service should be deployed.
   ecs_cluster_arn = <string>
@@ -239,6 +229,16 @@ module "ecs_service" {
   # CloudWatch and ECR.
   custom_task_execution_iam_role_name_prefix = null
 
+  # A map of all the listeners on the load balancer. The keys should be the port
+  # numbers and the values should be the ARN of the listener for that port.
+  default_listener_arns = {}
+
+  # The default port numbers on the load balancer to attach listener rules to.
+  # You can override this default on a rule-by-rule basis by setting the
+  # listener_ports parameter in each rule. The port numbers specified in this
+  # variable and the listener_ports parameter must exist in var.listener_arns.
+  default_listener_ports = []
+
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
   # resources in this module will now depend on the resources backing the values
@@ -246,14 +246,6 @@ module "ecs_service" {
   # resources in this module, and the resources in this module need to be
   # destroyed before the resources in the list.
   dependencies = []
-
-  # Set the logging level of the deployment check script. You can set this to
-  # `error`, `warn`, or `info`, in increasing verbosity.
-  deployment_check_loglevel = "info"
-
-  # Seconds to wait before timing out each check for verifying ECS service
-  # deployment. See ecs_deploy_check_binaries for more details.
-  deployment_check_timeout_seconds = 600
 
   # Set to 'true' to prevent the task from attempting to continuously redeploy
   # after a failed health check.
@@ -263,6 +255,12 @@ module "ecs_service" {
   # deployment. deploy_circuit_breaker_enabled must also be true to enable this
   # behavior.
   deployment_circuit_breaker_rollback = false
+
+  # CloudWatch alarms which triggers deployment rollback if failure.
+  deployment_cloudwatch_alarms = null
+
+  # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
+  deployment_controller = null
 
   # The upper limit, as a percentage of var.desired_number_of_tasks, of the
   # number of running tasks that can be running in a service during a
@@ -322,12 +320,6 @@ module "ecs_service" {
 
   # Set to true to enable Cloudwatch alarms on the ecs service instances
   enable_cloudwatch_alarms = true
-
-  # Whether or not to enable the ECS deployment check binary to make terraform
-  # wait for the task to be deployed. See ecs_deploy_check_binaries for more
-  # details. You must install the companion binary before the check can be used.
-  # Refer to the README for more details.
-  enable_ecs_deployment_check = true
 
   # Specifies whether to enable Amazon ECS Exec for the tasks within the
   # service.
@@ -417,6 +409,11 @@ module "ecs_service" {
   # of the statement.
   iam_policy = null
 
+  # Whether or not to ignore changes to the target groups in the listener
+  # forwarding rule. Can be used with AWS CodeDeploy to allow changes to target
+  # group mapping outside of Terraform.
+  ignore_changes_to_target_groups = false
+
   # The launch type of the ECS service. Must be one of EC2 or FARGATE. When
   # using FARGATE, you must set the network mode to awsvpc and configure it.
   # When using EC2, you can configure the placement strategy using the variables
@@ -432,6 +429,10 @@ module "ecs_service" {
   # A map of tags to apply to the elb target group. Each item in this list
   # should be a map with the parameters key and value.
   lb_target_group_tags = {}
+
+  # Listener rules list required first to be provisioned before creation of ECS
+  # cluster.
+  listener_rule_ids = []
 
   # The maximum number of instances of the ECS Service to run. Auto scaling will
   # never scale out above this number.
@@ -470,6 +471,10 @@ module "ecs_service" {
   # The type of constraint to apply for container instance placement. The only
   # valid values at this time are memberOf and distinctInstance.
   placement_constraint_type = "memberOf"
+
+  # The platform version on which to run your service. Only applicable for
+  # launch_type set to FARGATE. Defaults to LATEST.
+  platform_version = null
 
   # Whether tags should be propogated to the tasks from the service or from the
   # task definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to
@@ -525,9 +530,6 @@ module "ecs_service" {
   # its own AWS provider to ensure resources are created in us-east-1.
   route53_health_check_provider_shared_credentials_file = null
 
-  # Define runtime platform options
-  runtime_platform = null
-
   # A list of ARNs of Secrets Manager secrets that the task should have
   # permissions to read. The IAM role for the task will be granted
   # `secretsmanager:GetSecretValue` for each secret in the list. The ARN can be
@@ -550,6 +552,11 @@ module "ecs_service" {
 
   # The ARN of the kms key associated with secrets manager
   secrets_manager_kms_key_arn = null
+
+  # Use this variable to adjust the default timeout of 20m for create and update
+  # operations the the ECS service. Adjusting the value can be particularly
+  # useful when using 'wait_for_steady_state'.
+  service_create_update_timeout = "20m"
 
   # The name of the aws_security_group that gets created if var.network_mode is
   # awsvpc and custom rules are specified for the ECS Fargate worker via
@@ -598,6 +605,11 @@ module "ecs_service" {
   # https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-block-arguments,
   # but not including the name parameter.
   volumes = {}
+
+  # If true, Terraform will wait for the service to reach a steady state — as
+  # in, the ECS tasks you wanted are actually deployed — before 'apply' is
+  # considered complete.
+  wait_for_steady_state = true
 
 }
 
@@ -614,7 +626,7 @@ module "ecs_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-service?ref=v0.107.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ecs-service?ref=v0.115.4"
 }
 
 inputs = {
@@ -626,16 +638,6 @@ inputs = {
   # List of container definitions to use for the ECS task. Each entry
   # corresponds to a different ECS container definition.
   container_definitions = <any>
-
-  # A map of all the listeners on the load balancer. The keys should be the port
-  # numbers and the values should be the ARN of the listener for that port.
-  default_listener_arns = <map(string)>
-
-  # The default port numbers on the load balancer to attach listener rules to.
-  # You can override this default on a rule-by-rule basis by setting the
-  # listener_ports parameter in each rule. The port numbers specified in this
-  # variable and the listener_ports parameter must exist in var.listener_arns.
-  default_listener_ports = <list(string)>
 
   # The ARN of the cluster to which the ecs service should be deployed.
   ecs_cluster_arn = <string>
@@ -751,6 +753,16 @@ inputs = {
   # CloudWatch and ECR.
   custom_task_execution_iam_role_name_prefix = null
 
+  # A map of all the listeners on the load balancer. The keys should be the port
+  # numbers and the values should be the ARN of the listener for that port.
+  default_listener_arns = {}
+
+  # The default port numbers on the load balancer to attach listener rules to.
+  # You can override this default on a rule-by-rule basis by setting the
+  # listener_ports parameter in each rule. The port numbers specified in this
+  # variable and the listener_ports parameter must exist in var.listener_arns.
+  default_listener_ports = []
+
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
   # resources in this module will now depend on the resources backing the values
@@ -758,14 +770,6 @@ inputs = {
   # resources in this module, and the resources in this module need to be
   # destroyed before the resources in the list.
   dependencies = []
-
-  # Set the logging level of the deployment check script. You can set this to
-  # `error`, `warn`, or `info`, in increasing verbosity.
-  deployment_check_loglevel = "info"
-
-  # Seconds to wait before timing out each check for verifying ECS service
-  # deployment. See ecs_deploy_check_binaries for more details.
-  deployment_check_timeout_seconds = 600
 
   # Set to 'true' to prevent the task from attempting to continuously redeploy
   # after a failed health check.
@@ -775,6 +779,12 @@ inputs = {
   # deployment. deploy_circuit_breaker_enabled must also be true to enable this
   # behavior.
   deployment_circuit_breaker_rollback = false
+
+  # CloudWatch alarms which triggers deployment rollback if failure.
+  deployment_cloudwatch_alarms = null
+
+  # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
+  deployment_controller = null
 
   # The upper limit, as a percentage of var.desired_number_of_tasks, of the
   # number of running tasks that can be running in a service during a
@@ -834,12 +844,6 @@ inputs = {
 
   # Set to true to enable Cloudwatch alarms on the ecs service instances
   enable_cloudwatch_alarms = true
-
-  # Whether or not to enable the ECS deployment check binary to make terraform
-  # wait for the task to be deployed. See ecs_deploy_check_binaries for more
-  # details. You must install the companion binary before the check can be used.
-  # Refer to the README for more details.
-  enable_ecs_deployment_check = true
 
   # Specifies whether to enable Amazon ECS Exec for the tasks within the
   # service.
@@ -929,6 +933,11 @@ inputs = {
   # of the statement.
   iam_policy = null
 
+  # Whether or not to ignore changes to the target groups in the listener
+  # forwarding rule. Can be used with AWS CodeDeploy to allow changes to target
+  # group mapping outside of Terraform.
+  ignore_changes_to_target_groups = false
+
   # The launch type of the ECS service. Must be one of EC2 or FARGATE. When
   # using FARGATE, you must set the network mode to awsvpc and configure it.
   # When using EC2, you can configure the placement strategy using the variables
@@ -944,6 +953,10 @@ inputs = {
   # A map of tags to apply to the elb target group. Each item in this list
   # should be a map with the parameters key and value.
   lb_target_group_tags = {}
+
+  # Listener rules list required first to be provisioned before creation of ECS
+  # cluster.
+  listener_rule_ids = []
 
   # The maximum number of instances of the ECS Service to run. Auto scaling will
   # never scale out above this number.
@@ -982,6 +995,10 @@ inputs = {
   # The type of constraint to apply for container instance placement. The only
   # valid values at this time are memberOf and distinctInstance.
   placement_constraint_type = "memberOf"
+
+  # The platform version on which to run your service. Only applicable for
+  # launch_type set to FARGATE. Defaults to LATEST.
+  platform_version = null
 
   # Whether tags should be propogated to the tasks from the service or from the
   # task definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to
@@ -1037,9 +1054,6 @@ inputs = {
   # its own AWS provider to ensure resources are created in us-east-1.
   route53_health_check_provider_shared_credentials_file = null
 
-  # Define runtime platform options
-  runtime_platform = null
-
   # A list of ARNs of Secrets Manager secrets that the task should have
   # permissions to read. The IAM role for the task will be granted
   # `secretsmanager:GetSecretValue` for each secret in the list. The ARN can be
@@ -1062,6 +1076,11 @@ inputs = {
 
   # The ARN of the kms key associated with secrets manager
   secrets_manager_kms_key_arn = null
+
+  # Use this variable to adjust the default timeout of 20m for create and update
+  # operations the the ECS service. Adjusting the value can be particularly
+  # useful when using 'wait_for_steady_state'.
+  service_create_update_timeout = "20m"
 
   # The name of the aws_security_group that gets created if var.network_mode is
   # awsvpc and custom rules are specified for the ECS Fargate worker via
@@ -1110,6 +1129,11 @@ inputs = {
   # https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-block-arguments,
   # but not including the name parameter.
   volumes = {}
+
+  # If true, Terraform will wait for the service to reach a steady state — as
+  # in, the ECS tasks you wanted are actually deployed — before 'apply' is
+  # considered complete.
+  wait_for_steady_state = true
 
 }
 
@@ -1170,22 +1194,6 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="default_listener_arns" requirement="required" type="map(string)">
-<HclListItemDescription>
-
-A map of all the listeners on the load balancer. The keys should be the port numbers and the values should be the ARN of the listener for that port.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="default_listener_ports" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-The default port numbers on the load balancer to attach listener rules to. You can override this default on a rule-by-rule basis by setting the listener_ports parameter in each rule. The port numbers specified in this variable and the listener_ports parameter must exist in <a href="#listener_arns"><code>listener_arns</code></a>.
-
-</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="ecs_cluster_arn" requirement="required" type="string">
@@ -1481,6 +1489,24 @@ Prefix for name of task execution IAM role and policy that grants access to Clou
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="default_listener_arns" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of all the listeners on the load balancer. The keys should be the port numbers and the values should be the ARN of the listener for that port.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="default_listener_ports" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The default port numbers on the load balancer to attach listener rules to. You can override this default on a rule-by-rule basis by setting the listener_ports parameter in each rule. The port numbers specified in this variable and the listener_ports parameter must exist in <a href="#listener_arns"><code>listener_arns</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="dependencies" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1488,24 +1514,6 @@ Create a dependency between the resources in this module to the interpolated val
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="deployment_check_loglevel" requirement="optional" type="string">
-<HclListItemDescription>
-
-Set the logging level of the deployment check script. You can set this to `error`, `warn`, or `info`, in increasing verbosity.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;info&quot;"/>
-</HclListItem>
-
-<HclListItem name="deployment_check_timeout_seconds" requirement="optional" type="number">
-<HclListItemDescription>
-
-Seconds to wait before timing out each check for verifying ECS service deployment. See ecs_deploy_check_binaries for more details.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="600"/>
 </HclListItem>
 
 <HclListItem name="deployment_circuit_breaker_enabled" requirement="optional" type="bool">
@@ -1524,6 +1532,35 @@ Set to 'true' to also automatically roll back to the last successful deployment.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="deployment_cloudwatch_alarms" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+CloudWatch alarms which triggers deployment rollback if failure.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    cloudwatch_alarms = list(string)
+    enable            = bool
+    rollback          = bool
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="deployment_controller" requirement="optional" type="string">
+<HclListItemDescription>
+
+Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="deployment_maximum_percent" requirement="optional" type="number">
@@ -1665,7 +1702,7 @@ The ID of the VPC in which to create the target group. Only used if <a href="#el
 <HclListItem name="elb_target_groups" requirement="optional" type="any">
 <HclListItemDescription>
 
-Configurations for ELB target groups for ALBs and NLBs that should be associated with the ECS Tasks. Each entry corresponds to a separate target group. Set to the empty object ({}) if you are not using an ALB or NLB.
+Configurations for ELB target groups for ALBs and NLBs that should be associated with the ECS Tasks. Each entry corresponds to a separate target group. Set to the empty object (&#123;&#125;) if you are not using an ALB or NLB.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1696,15 +1733,6 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItemDescription>
 
 Set to true to enable Cloudwatch alarms on the ecs service instances
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_ecs_deployment_check" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to enable the ECS deployment check binary to make terraform wait for the task to be deployed. See ecs_deploy_check_binaries for more details. You must install the companion binary before the check can be used. Refer to the README for more details.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -2154,6 +2182,15 @@ map(object({
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="ignore_changes_to_target_groups" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to ignore changes to the target groups in the listener forwarding rule. Can be used with AWS CodeDeploy to allow changes to target group mapping outside of Terraform.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="launch_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2179,6 +2216,15 @@ A map of tags to apply to the elb target group. Each item in this list should be
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="listener_rule_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Listener rules list required first to be provisioned before creation of ECS cluster.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="max_number_of_tasks" requirement="optional" type="number">
@@ -2360,6 +2406,15 @@ The type of constraint to apply for container instance placement. The only valid
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;memberOf&quot;"/>
+</HclListItem>
+
+<HclListItem name="platform_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+The platform version on which to run your service. Only applicable for launch_type set to FARGATE. Defaults to LATEST.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="propagate_tags" requirement="optional" type="string">
@@ -2578,25 +2633,6 @@ The optional path to a credentials file used in the us-east-1 provider block def
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="runtime_platform" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Define runtime platform options
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    operating_system_family = string
-    cpu_architecture        = string
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="secrets_access" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -2622,6 +2658,15 @@ The ARN of the kms key associated with secrets manager
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="service_create_update_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Use this variable to adjust the default timeout of 20m for create and update operations the the ECS service. Adjusting the value can be particularly useful when using 'wait_for_steady_state'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;20m&quot;"/>
 </HclListItem>
 
 <HclListItem name="service_security_group_name" requirement="optional" type="string">
@@ -2744,6 +2789,15 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="wait_for_steady_state" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, Terraform will wait for the service to reach a steady state — as in, the ECS tasks you wanted are actually deployed — before 'apply' is considered complete.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 </TabItem>
@@ -2916,11 +2970,11 @@ The names of the ECS service's load balancer's target groups
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/services/ecs-service/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/services/ecs-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/services/ecs-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/ecs-service/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/ecs-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a0ef00cd080d5cfd9f627cf929ddc513"
+  "hash": "04fff7be00e1a60d21714b6753b4d1c3"
 }
 ##DOCS-SOURCER-END -->

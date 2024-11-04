@@ -1,0 +1,27 @@
+---
+hide_table_of_contents: true
+hide_title: true
+custom_edit_url: null
+---
+
+import CenterLayout from "/src/components/CenterLayout"
+import GitHub from "/src/components/GitHub"
+
+<head>
+  <link rel="canonical" href="https://github.com/gruntwork-io/knowledge-base/discussions/810" />
+</head>
+
+<CenterLayout>
+<span className="searchCategory">Knowledge Base</span>
+<h1>Shared &quot;Cache&quot; of Terraform Providers</h1>
+<GitHub discussion={{"id":"D_kwDOF8slf84AYfLX","number":810,"author":{"login":"dhoffman-vertex"},"title":"Shared \"Cache\" of Terraform Providers","body":"\nGreetings!\r\n\r\nI am trying to accomplish something, that I know must be possible and I am just missing it in the documentation.\r\n\r\nI am trying to make it so that I can have a shared cache of Terraform Providers that is used by ALL modules within my Terragrunt Project.\r\n\r\nI have over 475 modules (all AWS based), and it doesn't seem sane to me that I would need to download the AWS provider 475 times, when once should be all that is required.  I have tried using the terragrunt-cache mechanism, but as noted I then have to limit parrallelism to 1.\r\n\r\nIs there a better way?\n\n---\n\n<ins datetime=\"2024-03-25T14:46:44Z\">\n  <p><a href=\"https://support.gruntwork.io/hc/requests/110845\">Tracked in ticket #110845</a></p>\n</ins>\n","bodyHTML":"<p dir=\"auto\">Greetings!</p>\n<p dir=\"auto\">I am trying to accomplish something, that I know must be possible and I am just missing it in the documentation.</p>\n<p dir=\"auto\">I am trying to make it so that I can have a shared cache of Terraform Providers that is used by ALL modules within my Terragrunt Project.</p>\n<p dir=\"auto\">I have over 475 modules (all AWS based), and it doesn't seem sane to me that I would need to download the AWS provider 475 times, when once should be all that is required.  I have tried using the terragrunt-cache mechanism, but as noted I then have to limit parrallelism to 1.</p>\n<p dir=\"auto\">Is there a better way?</p>\n<hr>\n<ins datetime=\"2024-03-25T14:46:44Z\">\n  <p dir=\"auto\"><a href=\"https://support.gruntwork.io/hc/requests/110845\" rel=\"nofollow\">Tracked in ticket #110845</a></p>\n</ins>","answer":{"body":"Hey @dhoffman-vertex !\r\n\r\nThere is a long, in-depth discussion about this topic [here](https://github.com/gruntwork-io/terragrunt/issues/2920).\r\n\r\nThe TLDR is that you can use [standard provider plugin caching](https://developer.hashicorp.com/terraform/cli/config/config-file#provider-plugin-cache), but you can experience errors when running multiple Terragrunt operations concurrently while using it, as Terraform has no locking mechanism that makes it safe to access from multiple concurrent sources.\r\n\r\nThe simplest way to mitigate that drawback is to init with a parallelism of 1, then run the operation you want without limiting parallelism. That will populate the shared provider cache in a sequential fashion, then the plan, apply, etc can be run in parallel.","bodyHTML":"<p dir=\"auto\">Hey <a class=\"user-mention notranslate\" data-hovercard-type=\"user\" data-hovercard-url=\"/users/dhoffman-vertex/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/dhoffman-vertex\">@dhoffman-vertex</a> !</p>\n<p dir=\"auto\">There is a long, in-depth discussion about this topic <a href=\"https://github.com/gruntwork-io/terragrunt/issues/2920\" data-hovercard-type=\"issue\" data-hovercard-url=\"/gruntwork-io/terragrunt/issues/2920/hovercard\">here</a>.</p>\n<p dir=\"auto\">The TLDR is that you can use <a href=\"https://developer.hashicorp.com/terraform/cli/config/config-file#provider-plugin-cache\" rel=\"nofollow\">standard provider plugin caching</a>, but you can experience errors when running multiple Terragrunt operations concurrently while using it, as Terraform has no locking mechanism that makes it safe to access from multiple concurrent sources.</p>\n<p dir=\"auto\">The simplest way to mitigate that drawback is to init with a parallelism of 1, then run the operation you want without limiting parallelism. That will populate the shared provider cache in a sequential fashion, then the plan, apply, etc can be run in parallel.</p>"}}} />
+
+</CenterLayout>
+  
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "github-discussions",
+  "hash": "6773adb1cda3b2ffd70a61f30684aabd"
+}
+##DOCS-SOURCER-END -->

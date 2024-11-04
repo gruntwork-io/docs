@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.107.12" lastModifiedVersion="0.107.12"/>
+<VersionBadge version="0.115.4" lastModifiedVersion="0.115.4"/>
 
 # VPC
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fvpc" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -56,7 +56,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-vpc](https://github.com/gruntwork-io/terraform-aws-vpc) repo. If you don’t have access to this repo,
-email <support@gruntwork.io>.
+email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ### Core concepts
 
@@ -65,9 +65,9 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -105,7 +105,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "vpc" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.107.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.115.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -159,32 +159,65 @@ module "vpc" {
   # if the subnets are associated with a custom NACL later.
   associate_default_nacl_to_subnets = true
 
+  # List of excluded Availability Zone IDs.
+  availability_zone_exclude_ids = []
+
   # Specific Availability Zones in which subnets SHOULD NOT be created. Useful
   # for when features / support is missing from a given AZ.
   availability_zone_exclude_names = []
+
+  # List of specific Availability Zone IDs to use. If null (default), all
+  # availability zones in the configured AWS region will be used.
+  availability_zone_ids = null
+
+  # Allows to filter list of Availability Zones based on their current state.
+  # Can be either "available", "information", "impaired" or "unavailable". By
+  # default the list includes a complete set of Availability Zones to which the
+  # underlying AWS account has access, regardless of their state.
+  availability_zone_state = null
 
   # DEPRECATED. The AWS Region where this VPC will exist. This variable is no
   # longer used and only kept around for backwards compatibility. We now
   # automatically fetch the region using a data source.
   aws_region = ""
 
-  # The CIDR block to use for the blackhole route. Defaults to: `10.0.0.0/8`.
-  # Only used if var.create_blackhole_route is true.
-  blackhole_cidr_block = "10.0.0.0/8"
+  # The base number to append to initial nacl rule number for the first transit
+  # rule in private and persistence rules created. All transit rules will be
+  # inserted after this number. This base number provides a safeguard to ensure
+  # that the transit rules do not overwrite any existing NACL rules in private
+  # and persistence subnets.
+  base_transit_nacl_rule_number = 1000
 
-  # A list of names of subnets that should have a blackhole route to the
-  # destination VPC CIDR block. This is useful when you want to prevent traffic
-  # from being routed to the destination VPC. Valid values: public, private-app,
-  # private-persistence, transit. Only used if var.create_blackhole_route is
-  # true.
-  blackhole_route_table_names = ["private-app","private-persistence"]
+  # A map of tags to apply to the Blackhole ENI. The key is the tag name and the
+  # value is the tag value. Note that the tag 'Name' is automatically added by
+  # this module but may be optionally overwritten by this variable.
+  blackhole_network_interface_custom_tags = {}
 
-  # Whether or not to create a blackhole route to the destination VPC CIDR
-  # block. To specify which route tables have this blackhole route, use
-  # var.blackhole_route_table_names. This is useful when you want to prevent
-  # traffic from being routed to the destination VPC. If you set this to true,
-  # you must also set var.create_transit_subnets to true.
-  create_blackhole_route = false
+  # The description of the Blackhole ENI.
+  blackhole_network_interface_description = "Blackhole ENI - DO NOT ATTACH TO INSTANCES"
+
+  # The host number in the IP address of the Blackhole ENI. You would only use
+  # this if you want the blackhole ENI to always have the same host number
+  # within your subnet's CIDR range: e.g., it's always x.x.x.4. For IPv4, this
+  # is the fourth octet in the IP address. For IPv6, this is the sixth hextet in
+  # the IP address.
+  blackhole_network_interface_host_num = null
+
+  # The name of the Blackhole ENI.
+  blackhole_network_interface_name = "Blackhole ENI - DO NOT ATTACH TO INSTANCES"
+
+  # A map of objects defining which blackhole routes to create. The key should
+  # be the name of a subnet tier: one of public, private-app,
+  # private-persistence, or transit. The value should be an object that
+  # specifies the CIDR blocks or the names of other subnet tiers (from the same
+  # list of public, private-app, private-persistence, transit) to blackhole.
+  blackhole_routes = {}
+
+  # If set to true, this module will create a default route table route to the
+  # Internet Gateway. If set to false, this module will NOT create a default
+  # route table route to the Internet Gateway. This is useful if you have
+  # subnets which utilize the default route table. Defaults to true.
+  create_default_route_table_route = true
 
   # Whether or not to create DNS forwarders from the Mgmt VPC to the App VPC to
   # resolve private Route 53 endpoints. This is most useful when you want to
@@ -241,11 +274,20 @@ module "vpc" {
   # Connect, etc).
   create_public_subnets = true
 
+  # If set to false, this module will NOT create the NACLs for the transit
+  # subnet tier.
+  create_transit_subnet_nacls = false
+
   # If set to false, this module will NOT create the transit subnet tier.
   create_transit_subnets = false
 
   # Create VPC endpoints for S3 and DynamoDB.
   create_vpc_endpoints = true
+
+  # The list of EIPs (allocation ids) to use for the NAT gateways. Their number
+  # has to match the one given in 'num_nat_gateways'. Must be set if
+  # var.use_custom_nat_eips us true.
+  custom_nat_eips = []
 
   # A map of tags to apply to the VPC, Subnets, Route Tables, Internet Gateway,
   # default security group, and default NACLs. The key is the tag name and the
@@ -290,6 +332,12 @@ module "vpc" {
   # 'DESTINATION_VPC_NAME-from-ORIGIN_VPC_NAME-in'.
   destination_vpc_resolver_name = null
 
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  dynamodb_endpoint_policy = null
+
   # The names of EKS clusters that will be deployed into the VPC, if
   # var.tag_for_use_with_eks is true.
   eks_cluster_names = []
@@ -297,8 +345,20 @@ module "vpc" {
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = true
 
+  # (Optional) A boolean flag to enable/disable DNS hostnames in the VPC.
+  # Defaults true.
+  enable_dns_hostnames = true
+
+  # (Optional) A boolean flag to enable/disable DNS support in the VPC. Defaults
+  # true.
+  enable_dns_support = true
+
   # (Optional) Enables IPv6 resources for the VPC. Defaults to false.
   enable_ipv6 = false
+
+  # (Optional) A boolean flag to enable/disable network address usage metrics in
+  # the VPC. Defaults false.
+  enable_network_address_usage_metrics = false
 
   # (Optional) A boolean flag to enable/disable a private NAT gateway. If this
   # is set to true, it will disable public NAT gateways. Private NAT gateways
@@ -449,6 +509,17 @@ module "vpc" {
   # here will override tags defined as custom_tags in case of conflict.
   nat_gateway_custom_tags = {}
 
+  # The host number in the IP address of the NAT Gateway. You would only use
+  # this if you want the NAT Gateway to always have the same host number within
+  # your subnet's CIDR range: e.g., it's always x.x.x.4. For IPv4, this is the
+  # fourth octet in the IP address.
+  nat_private_ip_host_num = null
+
+  # (Optional) The number of secondary private IP addresses to assign to each
+  # NAT gateway. These IP addresses are used for source NAT (SNAT) for the
+  # instances in the private subnets. Defaults to 0.
+  nat_secondary_private_ip_address_count = 0
+
   # How many AWS Availability Zones (AZs) to use. One subnet of each type
   # (public, private app) will be created in each AZ. Note that this must be
   # less than or equal to the total number of AZs in a region. A value of null
@@ -456,6 +527,14 @@ module "vpc" {
   # 5 AZs, subnets will be created in just 3 AZs instead of all 5. Defaults to
   # all AZs in a region.
   num_availability_zones = null
+
+  # If set to true, create one route table shared amongst all the public
+  # subnets; if set to false, create a separate route table per public subnet.
+  # Historically, we created one route table for all the public subnets, as they
+  # all routed through the Internet Gateway anyway, but in certain use cases
+  # (e.g., for use with Network Firewall), you may want to have separate route
+  # tables for each public subnet.
+  one_route_table_public_subnets = true
 
   # The CIDR block of the origin VPC.
   origin_vpc_cidr_block = null
@@ -498,6 +577,10 @@ module "vpc" {
   # times the value of private_subnet_spacing.
   persistence_subnet_spacing = null
 
+  # Set to false to prevent the private app subnet from allowing traffic from
+  # the transit subnet. Only used if create_transit_subnet_nacls is set to true.
+  private_app_allow_inbound_from_transit_network = true
+
   # A map of unique names to client IP CIDR block and inbound ports that should
   # be exposed in the private app subnet tier nACLs. This is useful when
   # exposing your service on a privileged port with an NLB, where the address
@@ -527,6 +610,11 @@ module "vpc" {
   # defined here will override tags defined as custom_tags in case of conflict.
   private_app_subnet_custom_tags = {}
 
+  # Set to false to prevent the private persistence subnet from allowing traffic
+  # from the transit subnet. Only used if create_transit_subnet_nacls is set to
+  # true.
+  private_persistence_allow_inbound_from_transit_network = true
+
   # A map of tags to apply to the private-persistence route tables(s), on top of
   # the custom_tags. The key is the tag name and the value is the tag value.
   # Note that tags defined here will override tags defined as custom_tags in
@@ -545,6 +633,10 @@ module "vpc" {
   # conflict.
   private_persistence_subnet_custom_tags = {}
 
+  # The name of the private persistence subnet tier. This is used to tag the
+  # subnet and its resources.
+  private_persistence_subnet_name = "private-persistence"
+
   # A list of Virtual Private Gateways that will propagate routes to private
   # subnets. All routes from VPN connections that use Virtual Private Gateways
   # listed here will appear in route tables of private subnets. If left empty,
@@ -556,6 +648,10 @@ module "vpc" {
   # you may hit errors.  See cidrsubnet interpolation in terraform config for
   # more information.
   private_subnet_bits = 5
+
+  # The name of the private subnet tier. This is used to tag the subnet and its
+  # resources.
+  private_subnet_name = "private-app"
 
   # The amount of spacing between private app subnets. Defaults to
   # subnet_spacing in vpc-app module if not set.
@@ -590,6 +686,42 @@ module "vpc" {
   # here will override tags defined as custom_tags in case of conflict.
   public_subnet_custom_tags = {}
 
+  # (Optional) A map listing the specific IPv6 CIDR blocks desired for each
+  # public subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is
+  # the number of Availability Zones. If left blank, we will compute a
+  # reasonable CIDR block for each subnet.
+  public_subnet_ipv6_cidr_blocks = {}
+
+  # The name of the public subnet tier. This is used to tag the subnet and its
+  # resources.
+  public_subnet_name = "public"
+
+  # The timeout for the creation of the Route Tables. It defines how long to
+  # wait for a route table to be created before considering the operation
+  # failed. Ref:
+  # https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_table_creation_timeout = "5m"
+
+  # The timeout for the deletion of the Route Tables. It defines how long to
+  # wait for a route table to be deleted before considering the operation
+  # failed. Ref:
+  # https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_table_deletion_timeout = "5m"
+
+  # The timeout for the update of the Route Tables. It defines how long to wait
+  # for a route table to be updated before considering the operation failed.
+  # Ref: https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_table_update_timeout = "2m"
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  s3_endpoint_policy = null
+
+  # A list of secondary CIDR blocks to associate with the VPC.
+  secondary_cidr_blocks = []
+
   # A map of tags to apply to the default Security Group, on top of the
   # custom_tags. The key is the tag name and the value is the tag value. Note
   # that tags defined here will override tags defined as custom_tags in case of
@@ -613,6 +745,12 @@ module "vpc" {
   # no routes will be propagated.
   transit_propagating_vgws = []
 
+  # A map of tags to apply to the transit route table(s), on top of the
+  # custom_tags. The key is the tag name and the value is the tag value. Note
+  # that tags defined here will override tags defined as custom_tags in case of
+  # conflict.
+  transit_route_table_custom_tags = {}
+
   # Takes the CIDR prefix and adds these many bits to it for calculating subnet
   # ranges.  MAKE SURE if you change this you also change the CIDR spacing or
   # you may hit errors.  See cidrsubnet interpolation in terraform config for
@@ -629,6 +767,17 @@ module "vpc" {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   transit_subnet_custom_tags = {}
+
+  # The name of the transit subnet tier. This is used to tag the subnet and its
+  # resources.
+  transit_subnet_name = "transit"
+
+  # The amount of spacing between the transit subnets.
+  transit_subnet_spacing = null
+
+  # Set to true to use existing EIPs, passed in via var.custom_nat_eips, for the
+  # NAT gateway(s), instead of creating new ones.
+  use_custom_nat_eips = false
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -658,7 +807,7 @@ module "vpc" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.107.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.115.4"
 }
 
 inputs = {
@@ -715,32 +864,65 @@ inputs = {
   # if the subnets are associated with a custom NACL later.
   associate_default_nacl_to_subnets = true
 
+  # List of excluded Availability Zone IDs.
+  availability_zone_exclude_ids = []
+
   # Specific Availability Zones in which subnets SHOULD NOT be created. Useful
   # for when features / support is missing from a given AZ.
   availability_zone_exclude_names = []
+
+  # List of specific Availability Zone IDs to use. If null (default), all
+  # availability zones in the configured AWS region will be used.
+  availability_zone_ids = null
+
+  # Allows to filter list of Availability Zones based on their current state.
+  # Can be either "available", "information", "impaired" or "unavailable". By
+  # default the list includes a complete set of Availability Zones to which the
+  # underlying AWS account has access, regardless of their state.
+  availability_zone_state = null
 
   # DEPRECATED. The AWS Region where this VPC will exist. This variable is no
   # longer used and only kept around for backwards compatibility. We now
   # automatically fetch the region using a data source.
   aws_region = ""
 
-  # The CIDR block to use for the blackhole route. Defaults to: `10.0.0.0/8`.
-  # Only used if var.create_blackhole_route is true.
-  blackhole_cidr_block = "10.0.0.0/8"
+  # The base number to append to initial nacl rule number for the first transit
+  # rule in private and persistence rules created. All transit rules will be
+  # inserted after this number. This base number provides a safeguard to ensure
+  # that the transit rules do not overwrite any existing NACL rules in private
+  # and persistence subnets.
+  base_transit_nacl_rule_number = 1000
 
-  # A list of names of subnets that should have a blackhole route to the
-  # destination VPC CIDR block. This is useful when you want to prevent traffic
-  # from being routed to the destination VPC. Valid values: public, private-app,
-  # private-persistence, transit. Only used if var.create_blackhole_route is
-  # true.
-  blackhole_route_table_names = ["private-app","private-persistence"]
+  # A map of tags to apply to the Blackhole ENI. The key is the tag name and the
+  # value is the tag value. Note that the tag 'Name' is automatically added by
+  # this module but may be optionally overwritten by this variable.
+  blackhole_network_interface_custom_tags = {}
 
-  # Whether or not to create a blackhole route to the destination VPC CIDR
-  # block. To specify which route tables have this blackhole route, use
-  # var.blackhole_route_table_names. This is useful when you want to prevent
-  # traffic from being routed to the destination VPC. If you set this to true,
-  # you must also set var.create_transit_subnets to true.
-  create_blackhole_route = false
+  # The description of the Blackhole ENI.
+  blackhole_network_interface_description = "Blackhole ENI - DO NOT ATTACH TO INSTANCES"
+
+  # The host number in the IP address of the Blackhole ENI. You would only use
+  # this if you want the blackhole ENI to always have the same host number
+  # within your subnet's CIDR range: e.g., it's always x.x.x.4. For IPv4, this
+  # is the fourth octet in the IP address. For IPv6, this is the sixth hextet in
+  # the IP address.
+  blackhole_network_interface_host_num = null
+
+  # The name of the Blackhole ENI.
+  blackhole_network_interface_name = "Blackhole ENI - DO NOT ATTACH TO INSTANCES"
+
+  # A map of objects defining which blackhole routes to create. The key should
+  # be the name of a subnet tier: one of public, private-app,
+  # private-persistence, or transit. The value should be an object that
+  # specifies the CIDR blocks or the names of other subnet tiers (from the same
+  # list of public, private-app, private-persistence, transit) to blackhole.
+  blackhole_routes = {}
+
+  # If set to true, this module will create a default route table route to the
+  # Internet Gateway. If set to false, this module will NOT create a default
+  # route table route to the Internet Gateway. This is useful if you have
+  # subnets which utilize the default route table. Defaults to true.
+  create_default_route_table_route = true
 
   # Whether or not to create DNS forwarders from the Mgmt VPC to the App VPC to
   # resolve private Route 53 endpoints. This is most useful when you want to
@@ -797,11 +979,20 @@ inputs = {
   # Connect, etc).
   create_public_subnets = true
 
+  # If set to false, this module will NOT create the NACLs for the transit
+  # subnet tier.
+  create_transit_subnet_nacls = false
+
   # If set to false, this module will NOT create the transit subnet tier.
   create_transit_subnets = false
 
   # Create VPC endpoints for S3 and DynamoDB.
   create_vpc_endpoints = true
+
+  # The list of EIPs (allocation ids) to use for the NAT gateways. Their number
+  # has to match the one given in 'num_nat_gateways'. Must be set if
+  # var.use_custom_nat_eips us true.
+  custom_nat_eips = []
 
   # A map of tags to apply to the VPC, Subnets, Route Tables, Internet Gateway,
   # default security group, and default NACLs. The key is the tag name and the
@@ -846,6 +1037,12 @@ inputs = {
   # 'DESTINATION_VPC_NAME-from-ORIGIN_VPC_NAME-in'.
   destination_vpc_resolver_name = null
 
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  dynamodb_endpoint_policy = null
+
   # The names of EKS clusters that will be deployed into the VPC, if
   # var.tag_for_use_with_eks is true.
   eks_cluster_names = []
@@ -853,8 +1050,20 @@ inputs = {
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = true
 
+  # (Optional) A boolean flag to enable/disable DNS hostnames in the VPC.
+  # Defaults true.
+  enable_dns_hostnames = true
+
+  # (Optional) A boolean flag to enable/disable DNS support in the VPC. Defaults
+  # true.
+  enable_dns_support = true
+
   # (Optional) Enables IPv6 resources for the VPC. Defaults to false.
   enable_ipv6 = false
+
+  # (Optional) A boolean flag to enable/disable network address usage metrics in
+  # the VPC. Defaults false.
+  enable_network_address_usage_metrics = false
 
   # (Optional) A boolean flag to enable/disable a private NAT gateway. If this
   # is set to true, it will disable public NAT gateways. Private NAT gateways
@@ -1005,6 +1214,17 @@ inputs = {
   # here will override tags defined as custom_tags in case of conflict.
   nat_gateway_custom_tags = {}
 
+  # The host number in the IP address of the NAT Gateway. You would only use
+  # this if you want the NAT Gateway to always have the same host number within
+  # your subnet's CIDR range: e.g., it's always x.x.x.4. For IPv4, this is the
+  # fourth octet in the IP address.
+  nat_private_ip_host_num = null
+
+  # (Optional) The number of secondary private IP addresses to assign to each
+  # NAT gateway. These IP addresses are used for source NAT (SNAT) for the
+  # instances in the private subnets. Defaults to 0.
+  nat_secondary_private_ip_address_count = 0
+
   # How many AWS Availability Zones (AZs) to use. One subnet of each type
   # (public, private app) will be created in each AZ. Note that this must be
   # less than or equal to the total number of AZs in a region. A value of null
@@ -1012,6 +1232,14 @@ inputs = {
   # 5 AZs, subnets will be created in just 3 AZs instead of all 5. Defaults to
   # all AZs in a region.
   num_availability_zones = null
+
+  # If set to true, create one route table shared amongst all the public
+  # subnets; if set to false, create a separate route table per public subnet.
+  # Historically, we created one route table for all the public subnets, as they
+  # all routed through the Internet Gateway anyway, but in certain use cases
+  # (e.g., for use with Network Firewall), you may want to have separate route
+  # tables for each public subnet.
+  one_route_table_public_subnets = true
 
   # The CIDR block of the origin VPC.
   origin_vpc_cidr_block = null
@@ -1054,6 +1282,10 @@ inputs = {
   # times the value of private_subnet_spacing.
   persistence_subnet_spacing = null
 
+  # Set to false to prevent the private app subnet from allowing traffic from
+  # the transit subnet. Only used if create_transit_subnet_nacls is set to true.
+  private_app_allow_inbound_from_transit_network = true
+
   # A map of unique names to client IP CIDR block and inbound ports that should
   # be exposed in the private app subnet tier nACLs. This is useful when
   # exposing your service on a privileged port with an NLB, where the address
@@ -1083,6 +1315,11 @@ inputs = {
   # defined here will override tags defined as custom_tags in case of conflict.
   private_app_subnet_custom_tags = {}
 
+  # Set to false to prevent the private persistence subnet from allowing traffic
+  # from the transit subnet. Only used if create_transit_subnet_nacls is set to
+  # true.
+  private_persistence_allow_inbound_from_transit_network = true
+
   # A map of tags to apply to the private-persistence route tables(s), on top of
   # the custom_tags. The key is the tag name and the value is the tag value.
   # Note that tags defined here will override tags defined as custom_tags in
@@ -1101,6 +1338,10 @@ inputs = {
   # conflict.
   private_persistence_subnet_custom_tags = {}
 
+  # The name of the private persistence subnet tier. This is used to tag the
+  # subnet and its resources.
+  private_persistence_subnet_name = "private-persistence"
+
   # A list of Virtual Private Gateways that will propagate routes to private
   # subnets. All routes from VPN connections that use Virtual Private Gateways
   # listed here will appear in route tables of private subnets. If left empty,
@@ -1112,6 +1353,10 @@ inputs = {
   # you may hit errors.  See cidrsubnet interpolation in terraform config for
   # more information.
   private_subnet_bits = 5
+
+  # The name of the private subnet tier. This is used to tag the subnet and its
+  # resources.
+  private_subnet_name = "private-app"
 
   # The amount of spacing between private app subnets. Defaults to
   # subnet_spacing in vpc-app module if not set.
@@ -1146,6 +1391,42 @@ inputs = {
   # here will override tags defined as custom_tags in case of conflict.
   public_subnet_custom_tags = {}
 
+  # (Optional) A map listing the specific IPv6 CIDR blocks desired for each
+  # public subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is
+  # the number of Availability Zones. If left blank, we will compute a
+  # reasonable CIDR block for each subnet.
+  public_subnet_ipv6_cidr_blocks = {}
+
+  # The name of the public subnet tier. This is used to tag the subnet and its
+  # resources.
+  public_subnet_name = "public"
+
+  # The timeout for the creation of the Route Tables. It defines how long to
+  # wait for a route table to be created before considering the operation
+  # failed. Ref:
+  # https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_table_creation_timeout = "5m"
+
+  # The timeout for the deletion of the Route Tables. It defines how long to
+  # wait for a route table to be deleted before considering the operation
+  # failed. Ref:
+  # https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_table_deletion_timeout = "5m"
+
+  # The timeout for the update of the Route Tables. It defines how long to wait
+  # for a route table to be updated before considering the operation failed.
+  # Ref: https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_table_update_timeout = "2m"
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  s3_endpoint_policy = null
+
+  # A list of secondary CIDR blocks to associate with the VPC.
+  secondary_cidr_blocks = []
+
   # A map of tags to apply to the default Security Group, on top of the
   # custom_tags. The key is the tag name and the value is the tag value. Note
   # that tags defined here will override tags defined as custom_tags in case of
@@ -1169,6 +1450,12 @@ inputs = {
   # no routes will be propagated.
   transit_propagating_vgws = []
 
+  # A map of tags to apply to the transit route table(s), on top of the
+  # custom_tags. The key is the tag name and the value is the tag value. Note
+  # that tags defined here will override tags defined as custom_tags in case of
+  # conflict.
+  transit_route_table_custom_tags = {}
+
   # Takes the CIDR prefix and adds these many bits to it for calculating subnet
   # ranges.  MAKE SURE if you change this you also change the CIDR spacing or
   # you may hit errors.  See cidrsubnet interpolation in terraform config for
@@ -1185,6 +1472,17 @@ inputs = {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   transit_subnet_custom_tags = {}
+
+  # The name of the transit subnet tier. This is used to tag the subnet and its
+  # resources.
+  transit_subnet_name = "transit"
+
+  # The amount of spacing between the transit subnets.
+  transit_subnet_spacing = null
+
+  # Set to true to use existing EIPs, passed in via var.custom_nat_eips, for the
+  # NAT gateway(s), instead of creating new ones.
+  use_custom_nat_eips = false
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -1297,6 +1595,15 @@ If true, will associate the default NACL to the public, private, and persistence
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="availability_zone_exclude_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of excluded Availability Zone IDs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="availability_zone_exclude_names" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1304,6 +1611,24 @@ Specific Availability Zones in which subnets SHOULD NOT be created. Useful for w
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="availability_zone_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of specific Availability Zone IDs to use. If null (default), all availability zones in the configured AWS region will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="availability_zone_state" requirement="optional" type="string">
+<HclListItemDescription>
+
+Allows to filter list of Availability Zones based on their current state. Can be either 'available', 'information', 'impaired' or 'unavailable'. By default the list includes a complete set of Availability Zones to which the underlying AWS account has access, regardless of their state.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="aws_region" requirement="optional" type="string">
@@ -1315,40 +1640,77 @@ DEPRECATED. The AWS Region where this VPC will exist. This variable is no longer
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
-<HclListItem name="blackhole_cidr_block" requirement="optional" type="string">
+<HclListItem name="base_transit_nacl_rule_number" requirement="optional" type="number">
 <HclListItemDescription>
 
-The CIDR block to use for the blackhole route. Defaults to: `10.0.0.0/8`. Only used if <a href="#create_blackhole_route"><code>create_blackhole_route</code></a> is true.
+The base number to append to initial nacl rule number for the first transit rule in private and persistence rules created. All transit rules will be inserted after this number. This base number provides a safeguard to ensure that the transit rules do not overwrite any existing NACL rules in private and persistence subnets.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;10.0.0.0/8&quot;"/>
+<HclListItemDefaultValue defaultValue="1000"/>
 </HclListItem>
 
-<HclListItem name="blackhole_route_table_names" requirement="optional" type="list(string)">
+<HclListItem name="blackhole_network_interface_custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
-A list of names of subnets that should have a blackhole route to the destination VPC CIDR block. This is useful when you want to prevent traffic from being routed to the destination VPC. Valid values: public, private-app, private-persistence, transit. Only used if <a href="#create_blackhole_route"><code>create_blackhole_route</code></a> is true.
+A map of tags to apply to the Blackhole ENI. The key is the tag name and the value is the tag value. Note that the tag 'Name' is automatically added by this module but may be optionally overwritten by this variable.
 
 </HclListItemDescription>
-<HclListItemDefaultValue>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="blackhole_network_interface_description" requirement="optional" type="string">
+<HclListItemDescription>
+
+The description of the Blackhole ENI.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;Blackhole ENI - DO NOT ATTACH TO INSTANCES&quot;"/>
+</HclListItem>
+
+<HclListItem name="blackhole_network_interface_host_num" requirement="optional" type="number">
+<HclListItemDescription>
+
+The host number in the IP address of the Blackhole ENI. You would only use this if you want the blackhole ENI to always have the same host number within your subnet's CIDR range: e.g., it's always x.x.x.4. For IPv4, this is the fourth octet in the IP address. For IPv6, this is the sixth hextet in the IP address.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="blackhole_network_interface_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the Blackhole ENI.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;Blackhole ENI - DO NOT ATTACH TO INSTANCES&quot;"/>
+</HclListItem>
+
+<HclListItem name="blackhole_routes" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+A map of objects defining which blackhole routes to create. The key should be the name of a subnet tier: one of public, private-app, private-persistence, or transit. The value should be an object that specifies the CIDR blocks or the names of other subnet tiers (from the same list of public, private-app, private-persistence, transit) to blackhole.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
 ```hcl
-[
-  "private-app",
-  "private-persistence"
-]
+map(object({
+    destination_cidr_blocks  = list(string)
+    destination_subnet_names = list(string)
+  }))
 ```
 
-</HclListItemDefaultValue>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="create_blackhole_route" requirement="optional" type="bool">
+<HclListItem name="create_default_route_table_route" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Whether or not to create a blackhole route to the destination VPC CIDR block. To specify which route tables have this blackhole route, use <a href="#blackhole_route_table_names"><code>blackhole_route_table_names</code></a>. This is useful when you want to prevent traffic from being routed to the destination VPC. If you set this to true, you must also set <a href="#create_transit_subnets"><code>create_transit_subnets</code></a> to true.
+If set to true, this module will create a default route table route to the Internet Gateway. If set to false, this module will NOT create a default route table route to the Internet Gateway. This is useful if you have subnets which utilize the default route table. Defaults to true.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="create_dns_forwarder" requirement="optional" type="bool">
@@ -1450,6 +1812,15 @@ If set to false, this module will NOT create the public subnet tier. This is use
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="create_transit_subnet_nacls" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to false, this module will NOT create the NACLs for the transit subnet tier.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="create_transit_subnets" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1466,6 +1837,15 @@ Create VPC endpoints for S3 and DynamoDB.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="custom_nat_eips" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The list of EIPs (allocation ids) to use for the NAT gateways. Their number has to match the one given in 'num_nat_gateways'. Must be set if <a href="#use_custom_nat_eips"><code>use_custom_nat_eips</code></a> us true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="custom_tags" requirement="optional" type="map(string)">
@@ -1611,6 +1991,15 @@ Name to set for the destination VPC resolver (inbound from origin VPC to destina
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="dynamodb_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="eks_cluster_names" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1629,10 +2018,37 @@ If set to false, the default security groups will NOT be created.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="enable_dns_hostnames" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) A boolean flag to enable/disable DNS hostnames in the VPC. Defaults true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_dns_support" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) A boolean flag to enable/disable DNS support in the VPC. Defaults true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="enable_ipv6" requirement="optional" type="bool">
 <HclListItemDescription>
 
 (Optional) Enables IPv6 resources for the VPC. Defaults to false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_network_address_usage_metrics" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) A boolean flag to enable/disable network address usage metrics in the VPC. Defaults false.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -2045,6 +2461,24 @@ A map of tags to apply to the NAT gateways, on top of the custom_tags. The key i
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="nat_private_ip_host_num" requirement="optional" type="number">
+<HclListItemDescription>
+
+The host number in the IP address of the NAT Gateway. You would only use this if you want the NAT Gateway to always have the same host number within your subnet's CIDR range: e.g., it's always x.x.x.4. For IPv4, this is the fourth octet in the IP address.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="nat_secondary_private_ip_address_count" requirement="optional" type="number">
+<HclListItemDescription>
+
+(Optional) The number of secondary private IP addresses to assign to each NAT gateway. These IP addresses are used for source NAT (SNAT) for the instances in the private subnets. Defaults to 0.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
 <HclListItem name="num_availability_zones" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2052,6 +2486,15 @@ How many AWS Availability Zones (AZs) to use. One subnet of each type (public, p
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="one_route_table_public_subnets" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, create one route table shared amongst all the public subnets; if set to false, create a separate route table per public subnet. Historically, we created one route table for all the public subnets, as they all routed through the Internet Gateway anyway, but in certain use cases (e.g., for use with Network Firewall), you may want to have separate route tables for each public subnet.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="origin_vpc_cidr_block" requirement="optional" type="string">
@@ -2133,6 +2576,15 @@ The amount of spacing between the private persistence subnets. Default: 2 times 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="private_app_allow_inbound_from_transit_network" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false to prevent the private app subnet from allowing traffic from the transit subnet. Only used if create_transit_subnet_nacls is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="private_app_allow_inbound_ports_from_cidr" requirement="optional" type="map">
@@ -2268,6 +2720,15 @@ A map of tags to apply to the private-app Subnet, on top of the custom_tags. The
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="private_persistence_allow_inbound_from_transit_network" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false to prevent the private persistence subnet from allowing traffic from the transit subnet. Only used if create_transit_subnet_nacls is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="private_persistence_route_table_custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -2295,6 +2756,15 @@ A map of tags to apply to the private-persistence Subnet, on top of the custom_t
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="private_persistence_subnet_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the private persistence subnet tier. This is used to tag the subnet and its resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;private-persistence&quot;"/>
+</HclListItem>
+
 <HclListItem name="private_propagating_vgws" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -2311,6 +2781,15 @@ Takes the CIDR prefix and adds these many bits to it for calculating subnet rang
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="5"/>
+</HclListItem>
+
+<HclListItem name="private_subnet_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the private subnet tier. This is used to tag the subnet and its resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;private-app&quot;"/>
 </HclListItem>
 
 <HclListItem name="private_subnet_spacing" requirement="optional" type="number">
@@ -2367,6 +2846,69 @@ A map of tags to apply to the public Subnet, on top of the custom_tags. The key 
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="public_subnet_ipv6_cidr_blocks" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+(Optional) A map listing the specific IPv6 CIDR blocks desired for each public subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="public_subnet_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the public subnet tier. This is used to tag the subnet and its resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;public&quot;"/>
+</HclListItem>
+
+<HclListItem name="route_table_creation_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+The timeout for the creation of the Route Tables. It defines how long to wait for a route table to be created before considering the operation failed. Ref: https://www.terraform.io/language/resources/syntax#operation-timeouts
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;5m&quot;"/>
+</HclListItem>
+
+<HclListItem name="route_table_deletion_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+The timeout for the deletion of the Route Tables. It defines how long to wait for a route table to be deleted before considering the operation failed. Ref: https://www.terraform.io/language/resources/syntax#operation-timeouts
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;5m&quot;"/>
+</HclListItem>
+
+<HclListItem name="route_table_update_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+The timeout for the update of the Route Tables. It defines how long to wait for a route table to be updated before considering the operation failed. Ref: https://www.terraform.io/language/resources/syntax#operation-timeouts
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;2m&quot;"/>
+</HclListItem>
+
+<HclListItem name="s3_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="secondary_cidr_blocks" requirement="optional" type="set(string)">
+<HclListItemDescription>
+
+A list of secondary CIDR blocks to associate with the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="security_group_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -2412,6 +2954,15 @@ A list of Virtual Private Gateways that will propagate routes to transit subnets
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="transit_route_table_custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the transit route table(s), on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="transit_subnet_bits" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2437,6 +2988,33 @@ A map of tags to apply to the transit Subnet, on top of the custom_tags. The key
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="transit_subnet_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the transit subnet tier. This is used to tag the subnet and its resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;transit&quot;"/>
+</HclListItem>
+
+<HclListItem name="transit_subnet_spacing" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of spacing between the transit subnets.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="use_custom_nat_eips" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to use existing EIPs, passed in via <a href="#custom_nat_eips"><code>custom_nat_eips</code></a>, for the NAT gateway(s), instead of creating new ones.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
@@ -2476,6 +3054,14 @@ The ID of the ENI used as a 'blackhole' destination for routing. Only available 
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="default_route_table_id">
+<HclListItemDescription>
+
+The ID of the default routing table.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="default_security_group_id">
 <HclListItemDescription>
 
@@ -2485,12 +3071,33 @@ The ID of the default security group of this VPC.
 </HclListItem>
 
 <HclListItem name="dynamodb_vpc_endpoint_id">
+<HclListItemDescription>
+
+ID of the DynamoDB VPC endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="internet_gateway_id">
+<HclListItemDescription>
+
+ID of the Internet Gateway.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="ipv6_cidr_block">
 <HclListItemDescription>
 
 The IPv6 CIDR block associated with the VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="nat_gateway_ids">
+<HclListItemDescription>
+
+ID of the NAT Gateways
 
 </HclListItemDescription>
 </HclListItem>
@@ -2515,6 +3122,14 @@ A list of public IPs from the NAT Gateway
 <HclListItemDescription>
 
 The number of availability zones of the VPC
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="private_app_subnet_arns">
+<HclListItemDescription>
+
+List of private app subnet ARNs.
 
 </HclListItemDescription>
 </HclListItem>
@@ -2559,10 +3174,26 @@ The ID of the private subnet's ACL
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="private_nat_gateway_ids">
+<HclListItemDescription>
+
+ID of the private NAT Gateways
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="private_persistence_route_table_ids">
 <HclListItemDescription>
 
 A list of IDs of the private persistence subnet routing table.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="private_persistence_subnet_arns">
+<HclListItemDescription>
+
+List of private persistence subnet ARNs.
 
 </HclListItemDescription>
 </HclListItem>
@@ -2603,6 +3234,14 @@ A map of all private-persistence subnets, with the subnet name as key, and all `
 <HclListItemDescription>
 
 The ID of the private persistence subnet's ACL
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="public_subnet_arns">
+<HclListItemDescription>
+
+List of public subnet ARNs.
 
 </HclListItemDescription>
 </HclListItem>
@@ -2656,6 +3295,27 @@ The ID of the public subnet's ACL
 </HclListItem>
 
 <HclListItem name="s3_vpc_endpoint_id">
+<HclListItemDescription>
+
+ID of the S3 VPC endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="secondary_cidr_block_ids">
+<HclListItemDescription>
+
+Map of the secondary CIDR block associations with the VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="transit_subnet_arns">
+<HclListItemDescription>
+
+List of transit subnet ARNs.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="transit_subnet_cidr_blocks">
@@ -2686,6 +3346,14 @@ A list of IDs of the transit subnet routing table.
 <HclListItemDescription>
 
 A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet` properties as the value.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="transit_subnets_network_acl_id">
+<HclListItemDescription>
+
+The ID of the transit subnet's ACL
 
 </HclListItemDescription>
 </HclListItem>
@@ -2729,11 +3397,11 @@ Indicates whether or not the VPC has finished creating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/networking/vpc/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/networking/vpc/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/networking/vpc/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/networking/vpc/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/networking/vpc/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "4e39ca79a9877fa518324b9a060e279b"
+  "hash": "dfaca6ba5142c157403a52901167c869"
 }
 ##DOCS-SOURCER-END -->

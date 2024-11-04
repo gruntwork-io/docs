@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.15" lastModifiedVersion="0.26.15"/>
+<VersionBadge repoTitle="VPC Modules" version="0.26.26" lastModifiedVersion="0.26.25"/>
 
 # IPv6
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.15" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.25" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 ## What's a VPC?
 
@@ -57,7 +57,7 @@ To summarize:
 *   In a given subnet tier, there are usually three subnets, one for each Availability Zone.
 *   Therefore, if we created a single VPC in the `us-west-2` region, which has Availability Zones `us-west-2a`,`us-west-2b`,
     and `us-west-2c`, each subnet tier would have three subnets (one per Availability Zone) for a total of twelve subnets in all.
-*   The only way to reach this VPC is from the public internet via a publicly exposed sevice, a service such as SSM, a transit
+*   The only way to reach this VPC is from the public internet via a publicly exposed service, a service such as SSM, a transit
     gateway, VPC peering, or a VPN connection.
 *   Philosophically, everything in a VPC should be isolated from all resources in any other VPC. In particular, we want
     to ensure that our stage environment is completely independent from prod. This architecture helps to reinforce that.
@@ -73,7 +73,7 @@ nearly all use-cases, and is consistent with many examples and existing document
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
 
 ## IPv6 Design
 
@@ -111,7 +111,7 @@ module "vpc_app_ipv6_example" {
 
 module "vpc_app" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.15"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.26"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -185,6 +185,12 @@ module "vpc_app" {
   # longer used and only kept around for backwards compatibility. We now
   # automatically fetch the region using a data source.
   aws_region = ""
+
+  # If set to true, this module will create a default route table route to the
+  # Internet Gateway. If set to false, this module will NOT create a default
+  # route table route to the Internet Gateway. This is useful if you have
+  # subnets which utilize the default route table. Defaults to true.
+  create_default_route_table_route = true
 
   # If the VPC will create an Internet Gateway. There are use cases when the VPC
   # is desired to not be routable from the internet, and hence, they should not
@@ -345,6 +351,12 @@ module "vpc_app" {
   # here will override tags defined as custom_tags in case of conflict.
   nat_gateway_custom_tags = {}
 
+  # The host number in the IP address of the NAT Gateway. You would only use
+  # this if you want the NAT Gateway to always have the same host number within
+  # your subnet's CIDR range: e.g., it's always x.x.x.4. For IPv4, this is the
+  # fourth octet in the IP address.
+  nat_private_ip_host_num = null
+
   # (Optional) The number of secondary private IP addresses to assign to each
   # NAT gateway. These IP addresses are used for source NAT (SNAT) for the
   # instances in the private subnets. Defaults to 0.
@@ -417,6 +429,10 @@ module "vpc_app" {
   # conflict.
   private_persistence_subnet_custom_tags = {}
 
+  # The name of the private persistence subnet tier. This is used to tag the
+  # subnet and its resources.
+  private_persistence_subnet_name = "private-persistence"
+
   # A list of Virtual Private Gateways that will propagate routes to private
   # subnets. All routes from VPN connections that use Virtual Private Gateways
   # listed here will appear in route tables of private subnets. If left empty,
@@ -428,6 +444,10 @@ module "vpc_app" {
   # you may hit errors.  See cidrsubnet interpolation in terraform config for
   # more information.
   private_subnet_bits = 5
+
+  # The name of the private subnet tier. This is used to tag the subnet and its
+  # resources.
+  private_subnet_name = "private-app"
 
   # The amount of spacing between private app subnets.
   private_subnet_spacing = null
@@ -467,6 +487,10 @@ module "vpc_app" {
   # reasonable CIDR block for each subnet.
   public_subnet_ipv6_cidr_blocks = {}
 
+  # The name of the public subnet tier. This is used to tag the subnet and its
+  # resources.
+  public_subnet_name = "public"
+
   # The timeout for the creation of the Route Tables. It defines how long to
   # wait for a route table to be created before considering the operation
   # failed. Ref:
@@ -489,6 +513,9 @@ module "vpc_app" {
   # but no other types of resources. If not specified, all resources will be
   # allowed to call this endpoint.
   s3_endpoint_policy = null
+
+  # A list of secondary CIDR blocks to associate with the VPC.
+  secondary_cidr_blocks = []
 
   # A map of tags to apply to the default Security Group, on top of the
   # custom_tags. The key is the tag name and the value is the tag value. Note
@@ -532,6 +559,10 @@ module "vpc_app" {
   # here will override tags defined as custom_tags in case of conflict.
   transit_subnet_custom_tags = {}
 
+  # The name of the transit subnet tier. This is used to tag the subnet and its
+  # resources.
+  transit_subnet_name = "transit"
+
   # The amount of spacing between the transit subnets.
   transit_subnet_spacing = null
 
@@ -560,7 +591,7 @@ module "vpc_app" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.15"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.26.26"
 }
 
 inputs = {
@@ -638,6 +669,12 @@ inputs = {
   # automatically fetch the region using a data source.
   aws_region = ""
 
+  # If set to true, this module will create a default route table route to the
+  # Internet Gateway. If set to false, this module will NOT create a default
+  # route table route to the Internet Gateway. This is useful if you have
+  # subnets which utilize the default route table. Defaults to true.
+  create_default_route_table_route = true
+
   # If the VPC will create an Internet Gateway. There are use cases when the VPC
   # is desired to not be routable from the internet, and hence, they should not
   # have an Internet Gateway. For example, when it is desired that public
@@ -797,6 +834,12 @@ inputs = {
   # here will override tags defined as custom_tags in case of conflict.
   nat_gateway_custom_tags = {}
 
+  # The host number in the IP address of the NAT Gateway. You would only use
+  # this if you want the NAT Gateway to always have the same host number within
+  # your subnet's CIDR range: e.g., it's always x.x.x.4. For IPv4, this is the
+  # fourth octet in the IP address.
+  nat_private_ip_host_num = null
+
   # (Optional) The number of secondary private IP addresses to assign to each
   # NAT gateway. These IP addresses are used for source NAT (SNAT) for the
   # instances in the private subnets. Defaults to 0.
@@ -869,6 +912,10 @@ inputs = {
   # conflict.
   private_persistence_subnet_custom_tags = {}
 
+  # The name of the private persistence subnet tier. This is used to tag the
+  # subnet and its resources.
+  private_persistence_subnet_name = "private-persistence"
+
   # A list of Virtual Private Gateways that will propagate routes to private
   # subnets. All routes from VPN connections that use Virtual Private Gateways
   # listed here will appear in route tables of private subnets. If left empty,
@@ -880,6 +927,10 @@ inputs = {
   # you may hit errors.  See cidrsubnet interpolation in terraform config for
   # more information.
   private_subnet_bits = 5
+
+  # The name of the private subnet tier. This is used to tag the subnet and its
+  # resources.
+  private_subnet_name = "private-app"
 
   # The amount of spacing between private app subnets.
   private_subnet_spacing = null
@@ -919,6 +970,10 @@ inputs = {
   # reasonable CIDR block for each subnet.
   public_subnet_ipv6_cidr_blocks = {}
 
+  # The name of the public subnet tier. This is used to tag the subnet and its
+  # resources.
+  public_subnet_name = "public"
+
   # The timeout for the creation of the Route Tables. It defines how long to
   # wait for a route table to be created before considering the operation
   # failed. Ref:
@@ -941,6 +996,9 @@ inputs = {
   # but no other types of resources. If not specified, all resources will be
   # allowed to call this endpoint.
   s3_endpoint_policy = null
+
+  # A list of secondary CIDR blocks to associate with the VPC.
+  secondary_cidr_blocks = []
 
   # A map of tags to apply to the default Security Group, on top of the
   # custom_tags. The key is the tag name and the value is the tag value. Note
@@ -983,6 +1041,10 @@ inputs = {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   transit_subnet_custom_tags = {}
+
+  # The name of the transit subnet tier. This is used to tag the subnet and its
+  # resources.
+  transit_subnet_name = "transit"
 
   # The amount of spacing between the transit subnets.
   transit_subnet_spacing = null
@@ -1138,6 +1200,15 @@ DEPRECATED. The AWS Region where this VPC will exist. This variable is no longer
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="create_default_route_table_route" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, this module will create a default route table route to the Internet Gateway. If set to false, this module will NOT create a default route table route to the Internet Gateway. This is useful if you have subnets which utilize the default route table. Defaults to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="create_igw" requirement="optional" type="bool">
@@ -1365,7 +1436,7 @@ IAM policy to restrict what resources can call this endpoint. For example, you c
 <HclListItem name="enable_default_security_group" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If set to false, the default security groups will NOT be created. This variable is a workaround to a terraform limitation where overriding <a href="#default_security_group_ingress_rules"><code>default_security_group_ingress_rules</code></a> = {} and <a href="#default_security_group_egress_rules"><code>default_security_group_egress_rules</code></a> = {} does not remove the rules. More information at: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#removing-aws_default_security_group-from-your-configuration
+If set to false, the default security groups will NOT be created. This variable is a workaround to a terraform limitation where overriding <a href="#default_security_group_ingress_rules"><code>default_security_group_ingress_rules</code></a> = &#123;&#125; and <a href="#default_security_group_egress_rules"><code>default_security_group_egress_rules</code></a> = &#123;&#125; does not remove the rules. More information at: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#removing-aws_default_security_group-from-your-configuration
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -1544,6 +1615,15 @@ A map of tags to apply to the NAT gateways, on top of the custom_tags. The key i
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="nat_private_ip_host_num" requirement="optional" type="number">
+<HclListItemDescription>
+
+The host number in the IP address of the NAT Gateway. You would only use this if you want the NAT Gateway to always have the same host number within your subnet's CIDR range: e.g., it's always x.x.x.4. For IPv4, this is the fourth octet in the IP address.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="nat_secondary_private_ip_address_count" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1652,6 +1732,15 @@ A map of tags to apply to the private-persistence Subnet, on top of the custom_t
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="private_persistence_subnet_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the private persistence subnet tier. This is used to tag the subnet and its resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;private-persistence&quot;"/>
+</HclListItem>
+
 <HclListItem name="private_propagating_vgws" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1668,6 +1757,15 @@ Takes the CIDR prefix and adds these many bits to it for calculating subnet rang
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="5"/>
+</HclListItem>
+
+<HclListItem name="private_subnet_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the private subnet tier. This is used to tag the subnet and its resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;private-app&quot;"/>
 </HclListItem>
 
 <HclListItem name="private_subnet_spacing" requirement="optional" type="number">
@@ -1733,6 +1831,15 @@ A map of tags to apply to the public Subnet, on top of the custom_tags. The key 
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="public_subnet_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the public subnet tier. This is used to tag the subnet and its resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;public&quot;"/>
+</HclListItem>
+
 <HclListItem name="route_table_creation_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1767,6 +1874,15 @@ IAM policy to restrict what resources can call this endpoint. For example, you c
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="secondary_cidr_blocks" requirement="optional" type="set(string)">
+<HclListItemDescription>
+
+A list of secondary CIDR blocks to associate with the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="security_group_tags" requirement="optional" type="map(string)">
@@ -1839,6 +1955,15 @@ A map of tags to apply to the transit Subnet, on top of the custom_tags. The key
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="transit_subnet_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the transit subnet tier. This is used to tag the subnet and its resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;transit&quot;"/>
 </HclListItem>
 
 <HclListItem name="transit_subnet_spacing" requirement="optional" type="number">
@@ -1930,6 +2055,14 @@ A map of all private-app subnets, with the subnet ID as the key, and all `aws-su
 </HclListItem>
 
 <HclListItem name="private_persistence_subnet_arn">
+<HclListItemDescription>
+
+DEPRECATED. Use `private_persistence_subnet_arns` instead.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="private_persistence_subnet_arns">
 </HclListItem>
 
 <HclListItem name="private_persistence_subnet_cidr_blocks">
@@ -1981,6 +2114,14 @@ A map of all public subnets, with the subnet ID as the key, and all `aws-subnet`
 <HclListItem name="s3_vpc_endpoint_id">
 </HclListItem>
 
+<HclListItem name="secondary_cidr_block_ids">
+<HclListItemDescription>
+
+Map of the secondary CIDR block associations with the VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="transit_subnet_arns">
 </HclListItem>
 
@@ -2020,11 +2161,11 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-app/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-app/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-app/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-app/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-app/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "328fa9a00ff56966391ce0f8539f684e"
+  "hash": "b0d33732b5f822e2cd20f930218de9ca"
 }
 ##DOCS-SOURCER-END -->

@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.107.12" lastModifiedVersion="0.95.1"/>
+<VersionBadge version="0.115.4" lastModifiedVersion="0.112.17"/>
 
 # Amazon ECR Repositories
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/ecr-repos" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/ecr-repos" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fecr-repos" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -37,6 +37,7 @@ Repositories that can be used for storing and distributing container images.
 *   Store private Docker images for use in any Docker Orchestration system (e.g., Kubernetes, ECS, etc)
 *   Share repositories across accounts
 *   Fine grained access control
+*   Default deny ECR permissions
 *   Automatically scan Docker images for security vulnerabilities
 
 ## Learn
@@ -59,7 +60,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -67,7 +68,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -86,7 +87,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "ecr_repos" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/ecr-repos?ref=v0.107.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/ecr-repos?ref=v0.115.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -136,6 +137,20 @@ module "ecr_repos" {
   # Add lifecycle policy to ECR repo.
   default_lifecycle_policy_rules = []
 
+  # Whether or not to enable strict deny rules on repo, including deny on change
+  # repo policy. Can be overridden on a per repo basis by the strict_deny_rules
+  # property in the repositories map.
+  default_strict_deny_rules_enabled = false
+
+  # The default list of users or roles that should be able to perform functions
+  # on these ECR repos. All other users and roles are to be forbidden. 
+  # Formatted as 21 letters or numbers: AROAXXXXXXXXXXXXXXXXX or
+  # AIDAXXXXXXXXXXXXXXXXX -
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids.
+  # Can be overridden on a per repo basis by the
+  # users_or_roles_to_allow_deny_all_else property in the repositories map.
+  default_users_or_roles_to_allow_deny_all_else = []
+
   # A map of tags (where the key and value correspond to tag keys and values)
   # that should be assigned to all ECR repositories.
   global_tags = {}
@@ -158,7 +173,7 @@ module "ecr_repos" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/ecr-repos?ref=v0.107.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/ecr-repos?ref=v0.115.4"
 }
 
 inputs = {
@@ -210,6 +225,20 @@ inputs = {
 
   # Add lifecycle policy to ECR repo.
   default_lifecycle_policy_rules = []
+
+  # Whether or not to enable strict deny rules on repo, including deny on change
+  # repo policy. Can be overridden on a per repo basis by the strict_deny_rules
+  # property in the repositories map.
+  default_strict_deny_rules_enabled = false
+
+  # The default list of users or roles that should be able to perform functions
+  # on these ECR repos. All other users and roles are to be forbidden. 
+  # Formatted as 21 letters or numbers: AROAXXXXXXXXXXXXXXXXX or
+  # AIDAXXXXXXXXXXXXXXXXX -
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids.
+  # Can be overridden on a per repo basis by the
+  # users_or_roles_to_allow_deny_all_else property in the repositories map.
+  default_users_or_roles_to_allow_deny_all_else = []
 
   # A map of tags (where the key and value correspond to tag keys and values)
   # that should be assigned to all ECR repositories.
@@ -268,6 +297,13 @@ Any types represent complex values of variable type. For details, please consult
                                                                         access to create lambda functions with
                                                                         container images in the repo. If omitted, use
                                                                         var.default_external_account_ids_with_lambda_access.
+   - users_or_roles_to_allow_deny_all_else   list(string)             : List of users or roles that should be able to
+                                                                        access to perform functions on this ECR repo. All
+                                                                        other users and roles are to be forbidden. If ommitted, 
+                                                                        use var.default_users_or_roles_to_allow_deny_all_else
+   - strict_deny_rules_enabled               bool                     : Whether or not to enable strict deny rules on repo,
+                                                                        including deny on change repo policy. If ommitted,
+                                                                        use var.default_strict_deny_rules_enabled
    - enable_automatic_image_scanning         bool                     : Whether or not to enable image scanning. If
                                                                         omitted use var.default_automatic_image_scanning.
    - encryption_config                       object[EncryptionConfig] : Whether or not to enable encryption at rest for
@@ -402,6 +438,24 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="default_strict_deny_rules_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to enable strict deny rules on repo, including deny on change repo policy. Can be overridden on a per repo basis by the strict_deny_rules property in the repositories map.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="default_users_or_roles_to_allow_deny_all_else" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The default list of users or roles that should be able to perform functions on these ECR repos. All other users and roles are to be forbidden.  Formatted as 21 letters or numbers: AROAXXXXXXXXXXXXXXXXX or AIDAXXXXXXXXXXXXXXXXX - https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids. Can be overridden on a per repo basis by the users_or_roles_to_allow_deny_all_else property in the repositories map.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="global_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -422,6 +476,22 @@ List of regions (e.g., us-east-1) to replicate the ECR repository to.
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<HclListItem name="ecr_deny_access_policies">
+<HclListItemDescription>
+
+A list of ECR actions to be denied.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ecr_deny_access_policies_strict">
+<HclListItemDescription>
+
+A list of ECR actions to be denied (strict).
+
+</HclListItemDescription>
+</HclListItem>
 
 <HclListItem name="ecr_read_policy_actions">
 <HclListItemDescription>
@@ -462,11 +532,11 @@ A list of IAM policy actions necessary for ECR write access.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/ecr-repos/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/ecr-repos/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/ecr-repos/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/ecr-repos/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/ecr-repos/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/ecr-repos/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "7002ff0ba840236a395bf91040b1aef5"
+  "hash": "6dcc1ac3cd6e131db3666f7e32d9a560"
 }
 ##DOCS-SOURCER-END -->

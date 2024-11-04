@@ -9,15 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.16" lastModifiedVersion="0.21.15"/>
+<VersionBadge repoTitle="AWS Lambda" version="0.24.0" lastModifiedVersion="0.22.0"/>
 
 # Log group for Lambda Edge
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.16/modules/lambda-edge-log-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/lambda-edge-log-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.15" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.22.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module creates a Cloudwatch log group to receive Lambda Edge function logs in one single AWS Region. This module is meant to be used as a building block for the [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.16/modules/lambda-edge-multi-region-log-groups).
+This module creates a Cloudwatch log group to receive Lambda Edge function logs in one single AWS Region. This module is meant to be used as a building block for the [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/lambda-edge-multi-region-log-groups).
 
 ## Why are the resources in this module not created within the Lambda Edge Module?
 
@@ -28,7 +28,7 @@ region that have [Regional Edge Caches](https://aws.amazon.com/blogs/networking-
 Unfortunately, it is not possible to use a `for_each` on provider blocks and there are multiple issues related to
 using nested providers. That means that, currently, the only way to create multi-regional modules is by code generating each
 block and passing down the providers. A full example of creating the providers and using this module can be found at the
-[lambda-edge example](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.16/examples/lambda-edge).
+[lambda-edge example](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/examples/lambda-edge).
 
 ## Which regions have regional edge caches?
 
@@ -81,7 +81,7 @@ More information:
 
 module "lambda_edge_log_group" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-log-group?ref=v0.21.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-log-group?ref=v0.24.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -133,6 +133,11 @@ module "lambda_edge_log_group" {
   # group to use.
   should_create_cloudwatch_log_group = true
 
+  # (Optional) Set to true if you do not wish the log group to be deleted at
+  # destroy time, and instead just remove the log group from the Terraform
+  # state. Defaults to `false`.
+  skip_destroy = false
+
 }
 
 
@@ -148,7 +153,7 @@ module "lambda_edge_log_group" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-log-group?ref=v0.21.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-log-group?ref=v0.24.0"
 }
 
 inputs = {
@@ -202,6 +207,11 @@ inputs = {
   # KMS encryption. When false, AWS Lambda will automatically create a basic log
   # group to use.
   should_create_cloudwatch_log_group = true
+
+  # (Optional) Set to true if you do not wish the log group to be deleted at
+  # destroy time, and instead just remove the log group from the Terraform
+  # state. Defaults to `false`.
+  skip_destroy = false
 
 }
 
@@ -303,6 +313,15 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="skip_destroy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) Set to true if you do not wish the log group to be deleted at destroy time, and instead just remove the log group from the Terraform state. Defaults to `false`.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -316,11 +335,11 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.16/modules/lambda-edge-log-group/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.16/modules/lambda-edge-log-group/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.16/modules/lambda-edge-log-group/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/lambda-edge-log-group/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/lambda-edge-log-group/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/lambda-edge-log-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dd5424e906bf140fdc32cceba00cc12c"
+  "hash": "1ff49c97b05b10d4e7204a49fb12d671"
 }
 ##DOCS-SOURCER-END -->

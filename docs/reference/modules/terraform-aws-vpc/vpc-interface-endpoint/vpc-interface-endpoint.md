@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.15" lastModifiedVersion="0.26.8"/>
+<VersionBadge repoTitle="VPC Modules" version="0.26.26" lastModifiedVersion="0.26.23"/>
 
 # Interface VPC Endpoint
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-interface-endpoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-interface-endpoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.23" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 By default, if code running within your VPCs makes API calls to AWS (e.g., to fetch data from S3 or trigger a Lambda function), those API calls leave the VPC, and are routed via the public Internet. This Terraform Module launches VPC endpoints that allow code running within your VPCs to privately connect to AWS services and APIs without the traffic leaving the VPC and without going over the public Internet. Although all API calls to AWS are encrypted with TLS, VPC endpoints give you one extra layer of security by keeping your API calls within the AWS network.
 
@@ -193,7 +193,7 @@ Not specifying a rule allows all traffic.
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules//_docs/vpc-core-concepts.md) like subnets and NAT Gateways.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules//_docs/vpc-core-concepts.md) like subnets and NAT Gateways.
 
 ## Sample Usage
 
@@ -208,7 +208,7 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 
 module "vpc_interface_endpoint" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.26.15"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.26.26"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -1344,6 +1344,9 @@ module "vpc_interface_endpoint" {
   # Set to true if you want to provision a CloudWatch Monitoring within the VPC
   enable_vpc_cloudwatch_monitoring_endpoint = false
 
+  # Set to true if you want to provision a VPC lattice endpoint within the VPC.
+  enable_vpc_lattice_endpoint = false
+
   # Set to true if you want to provision a Workspaces Endpoint within the VPC
   enable_workspaces_endpoint = false
 
@@ -1988,6 +1991,29 @@ module "vpc_interface_endpoint" {
   # you can add an IAM policy that allows EC2 instances to talk to this endpoint
   # but no other types of resources. If not specified, all resources will be
   # allowed to call this endpoint.
+  vpc_lattice_endpoint_policy = null
+
+  # Set to false if you don't want to associate a private hosted zone with the
+  # specified VPC for the VPC lattice endpoint.
+  vpc_lattice_endpoint_private_dns_enabled = true
+
+  # The ID of one or more security groups to associate with the network
+  # interface for the VPC lattice endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
+  vpc_lattice_endpoint_security_group_ids = []
+
+  # The IDs of subnets in which to create a network interface for the VPC
+  # lattice endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
+  vpc_lattice_endpoint_subnet_ids = []
+
+  # Tags for the VPC lattice endpoint
+  vpc_lattice_endpoint_tags = {}
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   workspaces_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
@@ -2023,7 +2049,7 @@ module "vpc_interface_endpoint" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.26.15"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.26.26"
 }
 
 inputs = {
@@ -3162,6 +3188,9 @@ inputs = {
   # Set to true if you want to provision a CloudWatch Monitoring within the VPC
   enable_vpc_cloudwatch_monitoring_endpoint = false
 
+  # Set to true if you want to provision a VPC lattice endpoint within the VPC.
+  enable_vpc_lattice_endpoint = false
+
   # Set to true if you want to provision a Workspaces Endpoint within the VPC
   enable_workspaces_endpoint = false
 
@@ -3801,6 +3830,29 @@ inputs = {
 
   # Tags for the Transfer Server endpoint
   transferserver_endpoint_tags = {}
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  vpc_lattice_endpoint_policy = null
+
+  # Set to false if you don't want to associate a private hosted zone with the
+  # specified VPC for the VPC lattice endpoint.
+  vpc_lattice_endpoint_private_dns_enabled = true
+
+  # The ID of one or more security groups to associate with the network
+  # interface for the VPC lattice endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
+  vpc_lattice_endpoint_security_group_ids = []
+
+  # The IDs of subnets in which to create a network interface for the VPC
+  # lattice endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
+  vpc_lattice_endpoint_subnet_ids = []
+
+  # Tags for the VPC lattice endpoint
+  vpc_lattice_endpoint_tags = {}
 
   # IAM policy to restrict what resources can call this endpoint. For example,
   # you can add an IAM policy that allows EC2 instances to talk to this endpoint
@@ -6157,6 +6209,15 @@ Set to true if you want to provision a CloudWatch Monitoring within the VPC
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="enable_vpc_lattice_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a VPC lattice endpoint within the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="enable_workspaces_endpoint" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -7372,6 +7433,51 @@ Tags for the Transfer Server endpoint
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="vpc_lattice_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="vpc_lattice_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the VPC lattice endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="vpc_lattice_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the VPC lattice endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="vpc_lattice_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the VPC lattice endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="vpc_lattice_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the VPC lattice endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="workspaces_endpoint_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -8331,11 +8437,11 @@ If you have private dns enabled, then your streaming calls would automatically g
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-interface-endpoint/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-interface-endpoint/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-interface-endpoint/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-interface-endpoint/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-interface-endpoint/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-interface-endpoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ed72a55e8e9ce72ac770cb3a81253f1c"
+  "hash": "04cffa4b26e9f37a1c6faf2100a3c65d"
 }
 ##DOCS-SOURCER-END -->

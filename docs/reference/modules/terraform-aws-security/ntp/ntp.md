@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.69.3" lastModifiedVersion="0.68.1"/>
+<VersionBadge repoTitle="Security Modules" version="0.74.2" lastModifiedVersion="0.74.2"/>
 
 # NTP Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/ntp" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/ntp" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.74.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module installs and configures [Chrony](https://chrony.tuxfamily.org/) on a Linux server. This helps prevent clock drift on the
 server; if the clock drifts too far, you'll get all sorts of strange errors, such as AWS API calls failing due to
@@ -24,8 +24,8 @@ invalid timestamps.
 This script currently works on:
 
 *   Ubuntu
-*   Amazon Linux and Amazon Linux 2 (currently a no-op, since Amazon Linux already has NTP installed & configured)
-*   CentOS
+*   Amazon Linux 2 (currently a no-op, since Amazon Linux already has NTP installed & configured)
+*   CentOS Stream 9
 
 ## Why does a module called NTP install something other than NTP?
 
@@ -35,11 +35,11 @@ Originally, Amazon recommended installing `ntpd` to prevent clock drift. Today, 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/ntp/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/ntp/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/ntp/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/ntp/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/ntp/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/ntp/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4e99231b96790c4fca434a4dfaf28f22"
+  "hash": "96e11f07adce015b74d88940bce872e6"
 }
 ##DOCS-SOURCER-END -->

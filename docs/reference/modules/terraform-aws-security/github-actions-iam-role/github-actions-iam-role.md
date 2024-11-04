@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.69.3" lastModifiedVersion="0.69.3"/>
+<VersionBadge repoTitle="Security Modules" version="0.74.2" lastModifiedVersion="0.73.0"/>
 
 # IAM Role for GitHub Actions
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/github-actions-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/github-actions-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.69.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.73.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform module can be used to create Assume Role policies and IAM Roles such that they can be used with
 GitHub Actions. This requires you to provision an IAM OpenID Connect Provider for GitHub Actions in your account. By
@@ -58,6 +58,8 @@ module "iam_role" {
   permitted_full_access_services = ["ec2"]
 }
 ```
+
+## Security Considerations
 
 The above example will configure the IAM role `example-iam-role` such that it is available to be assumed by GitHub
 Actions if it is run from the `main` branch of the `gruntwork-io/terraform-aws-security` repository. The IAM role would then
@@ -105,7 +107,7 @@ module "assume_role_policy" {
   github_actions_openid_connect_provider_url = aws_iam_openid_connect_provider.github_actions.url
 
   allowed_sources = {
-    "gruntwork-io/terraform-aws-security"              = ["main", "dev"]
+    "gruntwork-io/terraform-aws-security"        = ["main", "dev"]
     "gruntwork-io/terraform-aws-service-catalog" = ["main"]
   }
 
@@ -132,19 +134,19 @@ To use the created IAM role in your GitHub Actions Workflow, you need to configu
     and then requests an access token from AWS. For more information, see the [AWS
     documentation](https://github.com/aws-actions/configure-aws-credentials).
 
-    ```
-    - name: configure aws credentials
-      uses: aws-actions/configure-aws-credentials@master
-      with:
-        role-to-assume: IAM_ROLE_ARN_OUTPUT_OF_MODULE
-        role-session-name: ANY_CUSTOM_SESSION_NAME
-        aws-region: DEFAULT_REGION_TO_USE
-    ```
+```yaml
+       - name: configure aws credentials
+         uses: aws-actions/configure-aws-credentials@master
+         with:
+           role-to-assume: IAM_ROLE_ARN_OUTPUT_OF_MODULE
+           role-session-name: ANY_CUSTOM_SESSION_NAME
+           aws-region: DEFAULT_REGION_TO_USE
+```
 
 With these two settings, your GitHub Action should now be able to assume the IAM role you created in this module. The
 following is a full GitHub Action Workflow example that lists EC2 instances on every push:
 
-```
+```yaml
 # Sample workflow to access AWS resources when workflow is tied to branch
 name: AWS example workflow
 on:
@@ -182,7 +184,7 @@ jobs:
 
 module "github_actions_iam_role" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.69.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.74.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -267,7 +269,7 @@ module "github_actions_iam_role" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.69.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.74.2"
 }
 
 inputs = {
@@ -585,11 +587,11 @@ The name of the IAM role.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/github-actions-iam-role/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/github-actions-iam-role/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/github-actions-iam-role/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/github-actions-iam-role/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/github-actions-iam-role/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/github-actions-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5bc0e561cc4cf106dc68647af434477f"
+  "hash": "924ec5d44bd11009e29cf1534553fb2b"
 }
 ##DOCS-SOURCER-END -->

@@ -7,7 +7,7 @@
   },
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "docusaurus start --port 3000 & onchange -i '_docs-sources/**/*(*.md|*.mdx|*.json)' -- yarn regenerate:local",
+    "start": "NODE_OPTIONS=--max-old-space-size=10248 docusaurus start --port 3000",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -17,17 +17,20 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
     "regenerate": "env-cmd --silent docs-sourcer",
-    "regenerate:local": "yarn regenerate --plugins local-copier",
+    "run-docs-sourcer": "docs-sourcer -p service-catalog-api -p module-catalog-api",
     "sidebar": "scripts/generate-sidebar.js",
     "test": "jest"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.4.1",
-    "@docusaurus/preset-classic": "^2.4.1",
-    "@docusaurus/theme-common": "^2.4.1",
-    "@mdx-js/react": "^1.6.21",
+    "@docusaurus/core": "^3.5.2",
+    "@docusaurus/plugin-client-redirects": "^3.5.2",
+    "@docusaurus/preset-classic": "^3.5.2",
+    "@docusaurus/theme-common": "^3.5.2",
+    "@docusaurus/theme-mermaid": "^3.5.2",
+    "@mdx-js/react": "^3.0.1",
     "@svgr/webpack": "^5.5.0",
     "@types/jest": "^27.4.0",
+    "algoliasearch": "^5.12.0",
     "buffer": "^6.0.3",
     "clsx": "^1.1.1",
     "config": "^3.3.6",
@@ -36,28 +39,30 @@
     "path": "^0.12.7",
     "plugin-image-zoom": "ataft/plugin-image-zoom",
     "posthog-docusaurus": "^1.0.3",
-    "prism-react-renderer": "^1.2.1",
+    "prism-react-renderer": "^2.1.0",
     "raw-loader": "^4.0.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.1",
     "react-modal": "^3.14.4",
     "react-select": "^5.7.3",
     "ts-jest": "^27.1.3",
+    "unist-util-visit": "^5.0.0",
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^2.4.1",
-    "@tsconfig/docusaurus": "^1.0.4",
+    "@docusaurus/module-type-aliases": "^3.5.2",
+    "@docusaurus/tsconfig": "3.5.2",
+    "@docusaurus/types": "^3.5.2",
     "jest": "^27.4.7",
     "onchange": "^7.1.0",
     "ts-node": "^10.7.0",
     "tsconfig-paths": "^3.14.1",
-    "typescript": "^4.3.5",
+    "typescript": "^5.2.2",
     "yargs": "^17.4.0"
   },
   "optionalDependencies": {
-    "docs-sourcer": "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.26",
-    "ts-commons": "gruntwork-io/ts-commons#v4.0.0"
+    "docs-sourcer": "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.31",
+    "ts-commons": "gruntwork-io/ts-commons#5.3.1"
   },
   "browserslist": {
     "production": [

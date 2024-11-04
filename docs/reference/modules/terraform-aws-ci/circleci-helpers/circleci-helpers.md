@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.53.0" lastModifiedVersion="0.53.0"/>
+<VersionBadge repoTitle="CI Modules" version="0.58.0" lastModifiedVersion="0.57.2"/>
 
 # CircleCI Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.0/modules/circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.53.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.57.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module contains helper scripts specially for CircleCI jobs, including:
 
@@ -67,11 +67,11 @@ dependencies:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.0/modules/circleci-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.0/modules/circleci-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.0/modules/circleci-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/circleci-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/circleci-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/circleci-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "886f1c3eecc0aabcff0b8c3e443b75d2"
+  "hash": "8aec04eeebdfbb677e05ec32448aa001"
 }
 ##DOCS-SOURCER-END -->

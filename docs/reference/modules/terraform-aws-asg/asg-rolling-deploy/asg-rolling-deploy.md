@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.11" lastModifiedVersion="0.21.11"/>
+<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.16" lastModifiedVersion="0.21.15"/>
 
 # Auto Scaling Group with Rolling Deployment Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.11/modules/asg-rolling-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.16/modules/asg-rolling-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.11" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.15" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an Auto Scaling Group (ASG) that can do a zero-downtime rolling deployment. That means
 every time you update your app (e.g. publish a new AMI), all you have to do is run `terraform apply` and the new
@@ -56,7 +56,7 @@ update your launch templates (e.g. by specifying a new AMI to deploy), Terraform
 Note that if all we did was use `create_before_destroy`, on each redeploy, our ASG would reset to its hard-coded
 `desired_capacity`, losing the capacity changes from auto scaling policies. We solve this problem by using an
 [external data source](https://www.terraform.io/docs/providers/external/data_source.html) that runs the Python script
-[get-desired-capacity.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.11/modules/asg-rolling-deploy/describe-autoscaling-group/get-desired-capacity.py) to fetch the latest value of the
+[get-desired-capacity.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.16/modules/asg-rolling-deploy/describe-autoscaling-group/get-desired-capacity.py) to fetch the latest value of the
 `desired_capacity` parameter:
 
 *   If the script finds a value from an already-existing ASG, we use it, to ensure that the changes form auto scaling
@@ -77,7 +77,7 @@ Note that if all we did was use `create_before_destroy`, on each redeploy, our A
 
 module "asg_rolling_deploy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v0.21.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v0.21.16"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -115,6 +115,35 @@ module "asg_rolling_deploy" {
   # Override the auto-generated ASG name with this value.
   asg_name = ""
 
+  # Defines the action the Auto Scaling group should take when the lifecycle
+  # hook timeout elapses or if an unexpected failure occurs. The value for this
+  # parameter can be either CONTINUE or ABANDON. The default value for this
+  # parameter is ABANDON.
+  autoscaling_lifecycle_hook_default_result = null
+
+  # Defines the amount of time, in seconds, that can elapse before the lifecycle
+  # hook times out. When the lifecycle hook times out, Auto Scaling performs the
+  # action defined in the DefaultResult parameter
+  autoscaling_lifecycle_hook_heartbeat_timeout = null
+
+  # Required if enable_autoscaling_lifecycle_hook is enabled. Instance state to
+  # which you want to attach the lifecycle hook. For a list of lifecycle hook
+  # types, see
+  # https://docs.aws.amazon.com/cli/latest/reference/autoscaling/describe-lifecycle-hook-types.html#examples
+  autoscaling_lifecycle_lifecycle_transition = null
+
+  # Contains additional information that you want to include any time Auto
+  # Scaling sends a message to the notification target.
+  autoscaling_lifecycle_notification_metadata = []
+
+  # ARN of the notification target that Auto Scaling will use to notify you when
+  # an instance is in the transition state for the lifecycle hook.
+  autoscaling_lifecycle_notification_target_arn = null
+
+  # ARN of the IAM role that allows the Auto Scaling group to publish to the
+  # specified notification target.
+  autoscaling_lifecycle_role_arn = null
+
   # A list of custom tags to apply to the EC2 Instances in this ASG. Each item
   # in this list should be a map with the parameters key, value, and
   # propagate_at_launch.
@@ -122,6 +151,12 @@ module "asg_rolling_deploy" {
 
   # Timeout value for deletion operations on autoscale groups.
   deletion_timeout = "10m"
+
+  # Toggles if the autoscaling_lifecycle_hook will be enabled or not. If
+  # enabled, the aws_autoscaling_lifecycle_hook resource will be created and
+  # attached to the ALB. Make sure you set all autoscaling_lifecycle_* variables
+  # to desired values if enabled.
+  enable_autoscaling_lifecycle_hook = false
 
   # A list of metrics the ASG should enable for monitoring all instances in a
   # group. The allowed values are GroupMinSize, GroupMaxSize,
@@ -188,7 +223,7 @@ module "asg_rolling_deploy" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v0.21.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v0.21.16"
 }
 
 inputs = {
@@ -229,6 +264,35 @@ inputs = {
   # Override the auto-generated ASG name with this value.
   asg_name = ""
 
+  # Defines the action the Auto Scaling group should take when the lifecycle
+  # hook timeout elapses or if an unexpected failure occurs. The value for this
+  # parameter can be either CONTINUE or ABANDON. The default value for this
+  # parameter is ABANDON.
+  autoscaling_lifecycle_hook_default_result = null
+
+  # Defines the amount of time, in seconds, that can elapse before the lifecycle
+  # hook times out. When the lifecycle hook times out, Auto Scaling performs the
+  # action defined in the DefaultResult parameter
+  autoscaling_lifecycle_hook_heartbeat_timeout = null
+
+  # Required if enable_autoscaling_lifecycle_hook is enabled. Instance state to
+  # which you want to attach the lifecycle hook. For a list of lifecycle hook
+  # types, see
+  # https://docs.aws.amazon.com/cli/latest/reference/autoscaling/describe-lifecycle-hook-types.html#examples
+  autoscaling_lifecycle_lifecycle_transition = null
+
+  # Contains additional information that you want to include any time Auto
+  # Scaling sends a message to the notification target.
+  autoscaling_lifecycle_notification_metadata = []
+
+  # ARN of the notification target that Auto Scaling will use to notify you when
+  # an instance is in the transition state for the lifecycle hook.
+  autoscaling_lifecycle_notification_target_arn = null
+
+  # ARN of the IAM role that allows the Auto Scaling group to publish to the
+  # specified notification target.
+  autoscaling_lifecycle_role_arn = null
+
   # A list of custom tags to apply to the EC2 Instances in this ASG. Each item
   # in this list should be a map with the parameters key, value, and
   # propagate_at_launch.
@@ -236,6 +300,12 @@ inputs = {
 
   # Timeout value for deletion operations on autoscale groups.
   deletion_timeout = "10m"
+
+  # Toggles if the autoscaling_lifecycle_hook will be enabled or not. If
+  # enabled, the aws_autoscaling_lifecycle_hook resource will be created and
+  # attached to the ALB. Make sure you set all autoscaling_lifecycle_* variables
+  # to desired values if enabled.
+  enable_autoscaling_lifecycle_hook = false
 
   # A list of metrics the ASG should enable for monitoring all instances in a
   # group. The allowed values are GroupMinSize, GroupMaxSize,
@@ -367,6 +437,67 @@ Override the auto-generated ASG name with this value.
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
+<HclListItem name="autoscaling_lifecycle_hook_default_result" requirement="optional" type="string">
+<HclListItemDescription>
+
+Defines the action the Auto Scaling group should take when the lifecycle hook timeout elapses or if an unexpected failure occurs. The value for this parameter can be either CONTINUE or ABANDON. The default value for this parameter is ABANDON.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="autoscaling_lifecycle_hook_heartbeat_timeout" requirement="optional" type="number">
+<HclListItemDescription>
+
+Defines the amount of time, in seconds, that can elapse before the lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in the DefaultResult parameter
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="autoscaling_lifecycle_lifecycle_transition" requirement="optional" type="string">
+<HclListItemDescription>
+
+Required if enable_autoscaling_lifecycle_hook is enabled. Instance state to which you want to attach the lifecycle hook. For a list of lifecycle hook types, see https://docs.aws.amazon.com/cli/latest/reference/autoscaling/describe-lifecycle-hook-types.html#examples
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="autoscaling_lifecycle_notification_metadata" requirement="optional" type="any">
+<HclListItemDescription>
+
+Contains additional information that you want to include any time Auto Scaling sends a message to the notification target.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="autoscaling_lifecycle_notification_target_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of the notification target that Auto Scaling will use to notify you when an instance is in the transition state for the lifecycle hook.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="autoscaling_lifecycle_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of the IAM role that allows the Auto Scaling group to publish to the specified notification target.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="custom_tags" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
@@ -417,6 +548,15 @@ Timeout value for deletion operations on autoscale groups.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;10m&quot;"/>
+</HclListItem>
+
+<HclListItem name="enable_autoscaling_lifecycle_hook" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Toggles if the autoscaling_lifecycle_hook will be enabled or not. If enabled, the aws_autoscaling_lifecycle_hook resource will be created and attached to the ALB. Make sure you set all autoscaling_lifecycle_* variables to desired values if enabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="enabled_metrics" requirement="optional" type="list(string)">
@@ -549,11 +689,11 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.11/modules/asg-rolling-deploy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.11/modules/asg-rolling-deploy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.11/modules/asg-rolling-deploy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.16/modules/asg-rolling-deploy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.16/modules/asg-rolling-deploy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.16/modules/asg-rolling-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "762cc85190ce05cf7fd5bcb5cee95b52"
+  "hash": "aceec614c2e162a7fdf8ba99fb0ad986"
 }
 ##DOCS-SOURCER-END -->

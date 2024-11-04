@@ -4,10 +4,13 @@ The rest of this guide will cover how to identify and extract the common configu
 in your Reference Architecture. These steps can be used to refactor any component that is deployed in multiple
 accounts or environments in your Reference Architecture.
 
-- [Step 1: Identify the component](#step-identify-the-component)
-- [Step 2: Identify common configurations](#step-identify-common-configurations)
-- [Step 3: Extract common configurations](#step-extract-common-configurations)
-- [Step 4: Update child configurations](#step-1-update-child-configurations)
+- [Refactoring common configurations for a component](#refactoring-common-configurations-for-a-component)
+  - [Step 1: Identify the component](#step-1-identify-the-component)
+  - [Step 2: Identify common configurations](#step-2-identify-common-configurations)
+    - [Using `diff` to identify raw differences](#using-diff-to-identify-raw-differences)
+    - [Using JSON rendering to identify semantic differences](#using-json-rendering-to-identify-semantic-differences)
+  - [Step 3: Extract common configurations](#step-3-extract-common-configurations)
+  - [Step 4: Update child configurations](#step-4-update-child-configurations)
 
 ## Step 1: Identify the component
 
@@ -89,9 +92,13 @@ identified as different across environments.
 There are a couple ways to go about this depending on how complex the underlying configuration files are, and how much
 customization has been made since the deployment of the Reference Architecture.
 
-- [Using `diff` to identify raw differences](#using-diff-to-identify-raw-differences)
-
-- [Using JSON rendering to identify semantic differences](#using-json-rendering-to-identify-semantic-differences)
+- [Refactoring common configurations for a component](#refactoring-common-configurations-for-a-component)
+  - [Step 1: Identify the component](#step-1-identify-the-component)
+  - [Step 2: Identify common configurations](#step-2-identify-common-configurations)
+    - [Using `diff` to identify raw differences](#using-diff-to-identify-raw-differences)
+    - [Using JSON rendering to identify semantic differences](#using-json-rendering-to-identify-semantic-differences)
+  - [Step 3: Extract common configurations](#step-3-extract-common-configurations)
+  - [Step 4: Update child configurations](#step-4-update-child-configurations)
 
 ### Using `diff` to identify raw differences
 
@@ -148,7 +155,7 @@ first diff represents a difference in the `Title` attribute of the movie object 
     - "Peter Sellers"
     + "Mike Myers"
     @ ["Movies",102]
-    + {"Title":"Austin Powers","Actors":{"Austin Powers":"Mike Myers"}}
+    + \{"Title":"Austin Powers","Actors":\{"Austin Powers":"Mike Myers"\}\}
 
 Like with `diff`, cross off any blocks, attributes, and input keys from the initial list that are different based
 on the output, except for `locals`. In the `jd` output, this would be the first element in each `@` entry, or the second
@@ -279,6 +286,6 @@ moved to the common component configuration.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "3b740cb5844fe232f5ac8126887b90d6"
+  "hash": "9df724247b43d94d4d9a0241e8513b6b"
 }
 ##DOCS-SOURCER-END -->

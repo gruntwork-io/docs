@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.107.12" lastModifiedVersion="0.107.7"/>
+<VersionBadge version="0.115.4" lastModifiedVersion="0.115.3"/>
 
 # Amazon Relational Database Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Frds" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -69,7 +69,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -77,12 +77,12 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
-*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
+*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
 
 
 ## Sample Usage
@@ -103,7 +103,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.107.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.115.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -174,6 +174,10 @@ module "rds" {
   # for more details.
   auto_minor_version_upgrade = true
 
+  # The description of the aws_db_security_group that is created. Defaults to
+  # 'Security group for the var.name DB' if not specified
+  aws_db_security_group_description = null
+
   # The name of the aws_db_security_group that is created. Defaults to var.name
   # if not specified.
   aws_db_security_group_name = null
@@ -199,6 +203,10 @@ module "rds" {
   # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup
   # runs.
   backup_window = "06:00-07:00"
+
+  # The Certificate Authority (CA) certificates bundle to use on the RDS
+  # instance.
+  ca_cert_identifier = null
 
   # A list of IAM ARNs for users who should be given administrator access to
   # this CMK (e.g. arn:aws:iam::<aws-account-id>:user/<iam-user-arn>). If this
@@ -409,6 +417,10 @@ module "rds" {
   # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
   # there may even be a downtime during maintenance windows.
   maintenance_window = "sun:07:00-sun:08:00"
+
+  # Set to true to allow RDS to manage the master user password in Secrets
+  # Manager. Cannot be set if password is provided.
+  manage_master_user_password = null
 
   # The value to use for the master password of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
@@ -557,7 +569,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.107.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.115.4"
 }
 
 inputs = {
@@ -631,6 +643,10 @@ inputs = {
   # for more details.
   auto_minor_version_upgrade = true
 
+  # The description of the aws_db_security_group that is created. Defaults to
+  # 'Security group for the var.name DB' if not specified
+  aws_db_security_group_description = null
+
   # The name of the aws_db_security_group that is created. Defaults to var.name
   # if not specified.
   aws_db_security_group_name = null
@@ -656,6 +672,10 @@ inputs = {
   # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup
   # runs.
   backup_window = "06:00-07:00"
+
+  # The Certificate Authority (CA) certificates bundle to use on the RDS
+  # instance.
+  ca_cert_identifier = null
 
   # A list of IAM ARNs for users who should be given administrator access to
   # this CMK (e.g. arn:aws:iam::<aws-account-id>:user/<iam-user-arn>). If this
@@ -866,6 +886,10 @@ inputs = {
   # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
   # there may even be a downtime during maintenance windows.
   maintenance_window = "sun:07:00-sun:08:00"
+
+  # Set to true to allow RDS to manage the master user password in Secrets
+  # Manager. Cannot be set if password is provided.
+  manage_master_user_password = null
 
   # The value to use for the master password of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
@@ -1117,6 +1141,15 @@ Indicates that minor engine upgrades will be applied automatically to the DB ins
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="aws_db_security_group_description" requirement="optional" type="string">
+<HclListItemDescription>
+
+The description of the aws_db_security_group that is created. Defaults to 'Security group for the <a href="#name"><code>name</code></a> DB' if not specified
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="aws_db_security_group_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1172,6 +1205,15 @@ The daily time range during which automated backups are created (e.g. 04:00-09:0
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;06:00-07:00&quot;"/>
+</HclListItem>
+
+<HclListItem name="ca_cert_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Certificate Authority (CA) certificates bundle to use on the RDS instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="cmk_administrator_iam_arns" requirement="optional" type="list(string)">
@@ -1285,6 +1327,9 @@ object({
     # Name of the parameter group to create
     name = string
 
+    # Description of the parameter group to create
+    description = string
+
     # The family of the DB parameter group.
     family = string
 
@@ -1305,6 +1350,16 @@ object({
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 <HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     Description of the parameter group to create
+
+```
+</details>
+
 <details>
 
 
@@ -1933,6 +1988,15 @@ The weekly day and time range during which system maintenance can occur (e.g. we
 <HclListItemDefaultValue defaultValue="&quot;sun:07:00-sun:08:00&quot;"/>
 </HclListItem>
 
+<HclListItem name="manage_master_user_password" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to allow RDS to manage the master user password in Secrets Manager. Cannot be set if password is provided.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="master_password" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2199,6 +2263,14 @@ The name of the empty database created on this RDS DB instance.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="master_password_secret_arn">
+<HclListItemDescription>
+
+The ARN of master user secret. Only available when `manage_master_user_password` is set to true
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="metric_widget_rds_cpu_usage">
 <HclListItemDescription>
 
@@ -2342,11 +2414,11 @@ The ID of the Security Group that controls access to the RDS DB instance.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/rds/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/rds/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "23bfbfef30489733f2e95d03df5d6028"
+  "hash": "e316e921b38ab6cdd9997bbe34f538ab"
 }
 ##DOCS-SOURCER-END -->

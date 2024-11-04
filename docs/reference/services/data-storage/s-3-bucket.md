@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.107.12" lastModifiedVersion="0.104.2"/>
+<VersionBadge version="0.115.4" lastModifiedVersion="0.104.2"/>
 
 # S3 Bucket
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/s3-bucket" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/s3-bucket" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fs3-bucket" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -59,7 +59,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -67,7 +67,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -88,7 +88,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "s_3_bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/s3-bucket?ref=v0.107.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/s3-bucket?ref=v0.115.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -105,6 +105,11 @@ module "s_3_bucket" {
   # The S3 bucket where access logs for this bucket should be stored. Set to
   # null to disable access logging.
   access_logging_bucket = null
+
+  # Whether or not to use a pre-existing bucket for access logging. If set to
+  # false, a new bucket will be created. If set to true, an existing bucket
+  # specified in access_logging_bucket will be used.
+  access_logging_bucket_already_exists = false
 
   # The lifecycle rules for the access logs bucket. See var.lifecycle_rules for
   # details.
@@ -314,7 +319,7 @@ module "s_3_bucket" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/s3-bucket?ref=v0.107.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/s3-bucket?ref=v0.115.4"
 }
 
 inputs = {
@@ -334,6 +339,11 @@ inputs = {
   # The S3 bucket where access logs for this bucket should be stored. Set to
   # null to disable access logging.
   access_logging_bucket = null
+
+  # Whether or not to use a pre-existing bucket for access logging. If set to
+  # false, a new bucket will be created. If set to true, an existing bucket
+  # specified in access_logging_bucket will be used.
+  access_logging_bucket_already_exists = false
 
   # The lifecycle rules for the access logs bucket. See var.lifecycle_rules for
   # details.
@@ -563,6 +573,15 @@ The S3 bucket where access logs for this bucket should be stored. Set to null to
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="access_logging_bucket_already_exists" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to use a pre-existing bucket for access logging. If set to false, a new bucket will be created. If set to true, an existing bucket specified in access_logging_bucket will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="access_logging_bucket_lifecycle_rules" requirement="optional" type="any">
@@ -1216,11 +1235,11 @@ The name of the replica S3 bucket.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/s3-bucket/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/s3-bucket/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/data-stores/s3-bucket/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/s3-bucket/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/s3-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/data-stores/s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "fd3a0e4316520843308aa39e5f2bafe4"
+  "hash": "12841d195ddfa07b396ed83411b28b6b"
 }
 ##DOCS-SOURCER-END -->

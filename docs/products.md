@@ -21,7 +21,8 @@ A collection of reusable code that enables you to deploy and manage infrastructu
 <Card
   title="Reference Architecture"
   href="/refarch/whats-this/what-is-a-reference-architecture">
-An end-to-end tech stack built using best practices on top of our Infrastructure as Code Library, deployed into your AWS accounts.</Card>
+An end-to-end tech stack built using best practices on top of our Infrastructure as Code Library, deployed into your AWS accounts.
+</Card>
 <Card
   title="Pipelines"
   href="/pipelines/overview">
@@ -41,6 +42,6 @@ Gain access to all resources included in your Gruntwork subscription.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "5f318316b19601c06bc28cafd73d8f5b"
+  "hash": "3bbe852b160e129b54c8e1a7bd67b2a7"
 }
 ##DOCS-SOURCER-END -->

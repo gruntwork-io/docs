@@ -9,23 +9,23 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.65.2" lastModifiedVersion="0.64.3"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.70.2" lastModifiedVersion="0.67.9"/>
 
 # EKS Cluster Managed Workers Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-cluster-managed-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-cluster-managed-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.64.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.67.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-**This module provisions [EKS Managed Node Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html), as opposed to self managed ASGs. See the [eks-cluster-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-cluster-workers) module for a module to provision self managed worker groups.**
+**This module provisions [EKS Managed Node Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html), as opposed to self managed ASGs. See the [eks-cluster-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-cluster-workers) module for a module to provision self managed worker groups.**
 
 This Terraform module launches worker nodes using [EKS Managed Node
 Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html) that you can use to run Kubernetes
 Pods and Deployments.
 
 This module is responsible for the EKS Worker Nodes in [the EKS cluster
-topology](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-cluster-control-plane/README.md#what-is-an-eks-cluster). You must launch a control plane in order
-for the worker nodes to function. See the [eks-cluster-control-plane module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-cluster-control-plane) for
+topology](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-cluster-control-plane/README.md#what-is-an-eks-cluster). You must launch a control plane in order
+for the worker nodes to function. See the [eks-cluster-control-plane module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-cluster-control-plane) for
 managing an EKS control plane.
 
 ## Differences with self managed workers
@@ -61,7 +61,7 @@ Here is a list of additional tradeoffs to consider between the two flavors:
 
 This module will not automatically scale in response to resource usage by default, the
 `autoscaling_group_configurations.*.max_size` option is only used to give room for new instances during rolling updates.
-To enable auto-scaling in response to resource utilization, deploy the [Kubernetes Cluster Autoscaler module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-k8s-cluster-autoscaler).
+To enable auto-scaling in response to resource utilization, deploy the [Kubernetes Cluster Autoscaler module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-k8s-cluster-autoscaler).
 
 Note that the cluster autoscaler supports ASGs that manage nodes in a single availability zone or ASGs that manage nodes in multiple availability zones. However, there is a caveat:
 
@@ -159,7 +159,7 @@ The following are the steps you can take to perform a blue-green release for thi
 
 module "eks_cluster_managed_workers" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-managed-workers?ref=v0.65.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-managed-workers?ref=v0.70.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -181,6 +181,12 @@ module "eks_cluster_managed_workers" {
   # var.cluster_instance_keypair_name is set. Set to null to allow access from
   # all locations.
   allow_ssh_from_security_groups = []
+
+  # Where to get the AMI from. Can be 'auto', 'launch_template', or
+  # 'eks_nodegroup'. WARNING there are limitation on what the value is, check
+  # the documentation for more information
+  # https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#mng-ami-id-conditions
+  ami_source = "auto"
 
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
@@ -316,7 +322,7 @@ module "eks_cluster_managed_workers" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-managed-workers?ref=v0.65.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-managed-workers?ref=v0.70.2"
 }
 
 inputs = {
@@ -341,6 +347,12 @@ inputs = {
   # var.cluster_instance_keypair_name is set. Set to null to allow access from
   # all locations.
   allow_ssh_from_security_groups = []
+
+  # Where to get the AMI from. Can be 'auto', 'launch_template', or
+  # 'eks_nodegroup'. WARNING there are limitation on what the value is, check
+  # the documentation for more information
+  # https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#mng-ami-id-conditions
+  ami_source = "auto"
 
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
@@ -612,6 +624,15 @@ List of Security Group IDs to allow SSH access from. Only used if <a href="#clus
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ami_source" requirement="optional" type="string">
+<HclListItemDescription>
+
+Where to get the AMI from. Can be 'auto', 'launch_template', or 'eks_nodegroup'. WARNING there are limitation on what the value is, check the documentation for more information https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#mng-ami-id-conditions
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;auto&quot;"/>
 </HclListItem>
 
 <HclListItem name="aws_partition" requirement="optional" type="string">
@@ -936,11 +957,11 @@ Map of Node Group names to ARNs of the created EKS Node Groups
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-cluster-managed-workers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-cluster-managed-workers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-cluster-managed-workers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-cluster-managed-workers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-cluster-managed-workers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-cluster-managed-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "393fa38e01d3da9522031865325bab70"
+  "hash": "3698e999b8f83adf5870663b9021b3fa"
 }
 ##DOCS-SOURCER-END -->

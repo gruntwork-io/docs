@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.65.2" lastModifiedVersion="0.64.3"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.70.2" lastModifiedVersion="0.69.2"/>
 
 # ALB Ingress Controller Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-alb-ingress-controller" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-alb-ingress-controller" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.64.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.69.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module installs and configures the [AWS ALB Ingress
 Controller](https://github.com/kubernetes-sigs/aws-alb-ingress-controller) on an EKS cluster, so that you can configure
@@ -110,7 +110,7 @@ correctly.
 
 You can use the `alb.ingress.kubernetes.io/subnets` annotation on `Ingress` resources to specify which subnets the controller should configure the ALB for.
 
-You can also omit the `alb.ingress.kubernetes.io/subnets` annotation, and the controller will [automatically discover subnets](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/controller/config/#subnet-auto-discovery) based on their tags. This method should work "out of the box", so long as you are using the [`eks-vpc-tags`](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-vpc-tags) module to tag your VPC subnets.
+You can also omit the `alb.ingress.kubernetes.io/subnets` annotation, and the controller will [automatically discover subnets](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/controller/config/#subnet-auto-discovery) based on their tags. This method should work "out of the box", so long as you are using the [`eks-vpc-tags`](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-vpc-tags) module to tag your VPC subnets.
 
 ### Security Groups
 
@@ -125,7 +125,7 @@ nodes.
 ### IAM permissions
 
 The container deployed in this module requires IAM permissions to manage ALB resources. See [the
-eks-alb-ingress-controller-iam-policy module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-alb-ingress-controller-iam-policy) for more information.
+eks-alb-ingress-controller-iam-policy module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-alb-ingress-controller-iam-policy) for more information.
 
 ## Using the Ingress Controller
 
@@ -200,7 +200,7 @@ nature of the controller in provisioning the ALBs.
 The AWS ALB Ingress Controller has first class support for
 [external-dns](https://github.com/kubernetes-incubator/external-dns), a third party tool that configures external DNS
 providers with domains to route to `Services` and `Ingresses` in Kubernetes. See our [eks-k8s-external-dns
-module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-k8s-external-dns) for more information on how to setup the tool.
+module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-k8s-external-dns) for more information on how to setup the tool.
 
 ## How do I deploy the Pods to Fargate?
 
@@ -234,7 +234,7 @@ instances under the hood, and thus the ALB can not be configured to route by ins
 
 module "eks_alb_ingress_controller" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller?ref=v0.65.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller?ref=v0.70.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -268,6 +268,11 @@ module "eks_alb_ingress_controller" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # ARN of IAM Role to assume to create and control ALB's. This is useful if
+  # your VPC is shared from another account and needs to be created somewhere
+  # else.
+  alb_iam_role_arn = null
+
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
 
@@ -283,6 +288,9 @@ module "eks_alb_ingress_controller" {
   # For example, if you already have an execution profile for the kube-system
   # Namespace, you do not need another one.
   create_fargate_profile = false
+
+  # Tags to apply to all AWS resources managed by this controller
+  default_tags = {}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -361,7 +369,7 @@ module "eks_alb_ingress_controller" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller?ref=v0.65.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller?ref=v0.70.2"
 }
 
 inputs = {
@@ -398,6 +406,11 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # ARN of IAM Role to assume to create and control ALB's. This is useful if
+  # your VPC is shared from another account and needs to be created somewhere
+  # else.
+  alb_iam_role_arn = null
+
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
 
@@ -413,6 +426,9 @@ inputs = {
   # For example, if you already have an execution profile for the kube-system
   # Namespace, you do not need another one.
   create_fargate_profile = false
+
+  # Tags to apply to all AWS resources managed by this controller
+  default_tags = {}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -488,11 +504,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-alb-ingress-controller/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-alb-ingress-controller/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.65.2/modules/eks-alb-ingress-controller/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-alb-ingress-controller/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-alb-ingress-controller/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.70.2/modules/eks-alb-ingress-controller/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1a8d3bd10084c0ba7222172e159276aa"
+  "hash": "d8e09e51f61e2fd7b8248c53c6c41f0b"
 }
 ##DOCS-SOURCER-END -->

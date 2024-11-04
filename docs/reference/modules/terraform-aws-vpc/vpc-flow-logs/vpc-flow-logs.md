@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.15" lastModifiedVersion="0.26.12"/>
+<VersionBadge repoTitle="VPC Modules" version="0.26.26" lastModifiedVersion="0.26.25"/>
 
 # VPC Flow Logs Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-flow-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-flow-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.12" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.25" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates a [VPC flow log](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html). The flow log will capture IP traffic information for a given VPC, subnet, or [Elastic Network Interface (ENI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html). Flow logs can be configured to capture all traffic, only traffic that is accepted, or only traffic that is rejected. The logs can be published to [Amazon CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html) or an S3 bucket.
 
@@ -86,7 +86,7 @@ TODO: Publish flow logs to an S3 bucket or CloudWatch Logs group in another acco
 
 module "vpc_flow_logs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-flow-logs?ref=v0.26.15"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-flow-logs?ref=v0.26.26"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -236,7 +236,7 @@ module "vpc_flow_logs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-flow-logs?ref=v0.26.15"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-flow-logs?ref=v0.26.26"
 }
 
 inputs = {
@@ -801,11 +801,11 @@ The name of the S3 bucket where flow logs are published.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-flow-logs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-flow-logs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-flow-logs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-flow-logs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-flow-logs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-flow-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d4217566f7e9485943a75cefffa9c62e"
+  "hash": "f7ac9e45881fca9fea7dec37e3c0c324"
 }
 ##DOCS-SOURCER-END -->

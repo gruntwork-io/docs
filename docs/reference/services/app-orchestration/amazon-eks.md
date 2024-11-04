@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.107.12" lastModifiedVersion="0.107.1"/>
+<VersionBadge version="0.115.4" lastModifiedVersion="0.114.0"/>
 
 # Amazon EKS
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-cluster" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -59,7 +59,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo. If you are a subscriber and don’t have
-access to this repo, email <support@gruntwork.io>.
+access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ### Core concepts
 
@@ -68,9 +68,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -116,7 +116,7 @@ To add and manage additional worker groups, refer to the [eks-workers module](/r
 
 module "eks_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.107.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.115.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -557,13 +557,13 @@ module "eks_cluster" {
   # The URL from which to download Kubergrunt if it's not installed already. Use
   # to specify a version of kubergrunt that is compatible with your specified
   # kubernetes version. Ex.
-  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.3/kubergrunt_<platform>'
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.3/kubergrunt_<platform>"
+  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt_<platform>'
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt_<platform>"
 
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.26"
+  kubernetes_version = "1.30"
 
   # Configure one or more Node Groups to manage the EC2 instances in this
   # cluster. Set to empty object ({}) if you do not wish to configure managed
@@ -701,6 +701,26 @@ module "eks_cluster" {
   # The tenancy of this server. Must be one of: default, dedicated, or host.
   tenancy = "default"
 
+  # When set to true, the sync-core-components command will skip updating
+  # coredns. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
+  upgrade_cluster_script_skip_coredns = false
+
+  # When set to true, the sync-core-components command will skip updating
+  # kube-proxy. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
+  upgrade_cluster_script_skip_kube_proxy = false
+
+  # When set to true, the sync-core-components command will skip updating
+  # aws-vpc-cni. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
+  upgrade_cluster_script_skip_vpc_cni = false
+
+  # When set to true, the sync-core-components command will wait until the new
+  # versions are rolled out in the cluster. This variable is ignored if
+  # `use_kubergrunt_sync_components` is false.
+  upgrade_cluster_script_wait_for_rollout = true
+
   # If this variable is set to true, then use an exec-based plugin to
   # authenticate and fetch tokens for EKS. This is useful because EKS clusters
   # use short-lived authentication tokens that can expire in the middle of an
@@ -828,7 +848,7 @@ module "eks_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.107.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.115.4"
 }
 
 inputs = {
@@ -1272,13 +1292,13 @@ inputs = {
   # The URL from which to download Kubergrunt if it's not installed already. Use
   # to specify a version of kubergrunt that is compatible with your specified
   # kubernetes version. Ex.
-  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.3/kubergrunt_<platform>'
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.3/kubergrunt_<platform>"
+  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt_<platform>'
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt_<platform>"
 
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.26"
+  kubernetes_version = "1.30"
 
   # Configure one or more Node Groups to manage the EC2 instances in this
   # cluster. Set to empty object ({}) if you do not wish to configure managed
@@ -1415,6 +1435,26 @@ inputs = {
 
   # The tenancy of this server. Must be one of: default, dedicated, or host.
   tenancy = "default"
+
+  # When set to true, the sync-core-components command will skip updating
+  # coredns. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
+  upgrade_cluster_script_skip_coredns = false
+
+  # When set to true, the sync-core-components command will skip updating
+  # kube-proxy. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
+  upgrade_cluster_script_skip_kube_proxy = false
+
+  # When set to true, the sync-core-components command will skip updating
+  # aws-vpc-cni. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
+  upgrade_cluster_script_skip_vpc_cni = false
+
+  # When set to true, the sync-core-components command will wait until the new
+  # versions are rolled out in the cluster. This variable is ignored if
+  # `use_kubergrunt_sync_components` is false.
+  upgrade_cluster_script_wait_for_rollout = true
 
   # If this variable is set to true, then use an exec-based plugin to
   # authenticate and fetch tokens for EKS. This is useful because EKS clusters
@@ -2516,11 +2556,11 @@ Any types represent complex values of variable type. For details, please consult
    See the following AWS Blog for more details on advanced configuration of EKS add-ons: https://aws.amazon.com/blogs/containers/amazon-eks-add-ons-advanced-configuration/
    Example:
    {
-     addon_version        = "v1.14.0-eksbuild.1"
-     configuration_values = {}
-     preserve                 = false
-     resolve_conflicts        = "NONE"
-     service_account_role_arn = "arn:aws:iam::123456789012:role/role-name"
+     addon_version               = "v1.14.0-eksbuild.1"
+     configuration_values        = {}
+     preserve                    = false
+     resolve_conflicts_on_create = "OVERWRITE"
+     service_account_role_arn    = "arn:aws:iam::123456789012:role/role-name"
    }
 
 ```
@@ -2604,9 +2644,9 @@ Any types represent complex values of variable type. For details, please consult
        coredns    = {}
        kube-proxy = {}
        vpc-cni    = {
-         addon_version            = "1.10.1-eksbuild.1"
-         resolve_conflicts        = "NONE"
-         service_account_role_arn = "arn:aws:iam::123456789012:role/role-name"
+         addon_version               = "1.10.1-eksbuild.1"
+         resolve_conflicts_on_create = "OVERWRITE"
+         service_account_role_arn    = "arn:aws:iam::123456789012:role/role-name"
        }
      }
 
@@ -2961,10 +3001,10 @@ map(list(string))
 <HclListItem name="kubergrunt_download_url" requirement="optional" type="string">
 <HclListItemDescription>
 
-The URL from which to download Kubergrunt if it's not installed already. Use to specify a version of kubergrunt that is compatible with your specified kubernetes version. Ex. 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.3/kubergrunt_&lt;platform>'
+The URL from which to download Kubergrunt if it's not installed already. Use to specify a version of kubergrunt that is compatible with your specified kubernetes version. Ex. 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt_&lt;platform>'
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.3/kubergrunt_<platform>&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt_<platform>&quot;"/>
 </HclListItem>
 
 <HclListItem name="kubernetes_version" requirement="optional" type="string">
@@ -2973,13 +3013,13 @@ The URL from which to download Kubergrunt if it's not installed already. Use to 
 Version of Kubernetes to use. Refer to EKS docs for list of available versions (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.26&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;1.30&quot;"/>
 </HclListItem>
 
 <HclListItem name="managed_node_group_configurations" requirement="optional" type="any">
 <HclListItemDescription>
 
-Configure one or more Node Groups to manage the EC2 instances in this cluster. Set to empty object ({}) if you do not wish to configure managed node groups.
+Configure one or more Node Groups to manage the EC2 instances in this cluster. Set to empty object (&#123;&#125;) if you do not wish to configure managed node groups.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -3346,6 +3386,42 @@ The tenancy of this server. Must be one of: default, dedicated, or host.
 <HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
 </HclListItem>
 
+<HclListItem name="upgrade_cluster_script_skip_coredns" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the sync-core-components command will skip updating coredns. This variable is ignored if `use_kubergrunt_sync_components` is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="upgrade_cluster_script_skip_kube_proxy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the sync-core-components command will skip updating kube-proxy. This variable is ignored if `use_kubergrunt_sync_components` is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="upgrade_cluster_script_skip_vpc_cni" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the sync-core-components command will skip updating aws-vpc-cni. This variable is ignored if `use_kubergrunt_sync_components` is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="upgrade_cluster_script_wait_for_rollout" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the sync-core-components command will wait until the new versions are rolled out in the cluster. This variable is ignored if `use_kubergrunt_sync_components` is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="use_exec_plugin_for_auth" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -3645,11 +3721,11 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/services/eks-cluster/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/services/eks-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/services/eks-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/eks-cluster/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/eks-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "903b894fb281e17b22e22131b347b0a7"
+  "hash": "b8e2460705240f93e1bb7c34cd4ea9f3"
 }
 ##DOCS-SOURCER-END -->

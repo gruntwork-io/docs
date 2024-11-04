@@ -9,17 +9,17 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.13" lastModifiedVersion="0.35.12"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.38.3" lastModifiedVersion="0.38.2"/>
 
 # ECS Cluster Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.13/modules/ecs-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.35.12" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.38.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches an [EC2 Container Service
 Cluster](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_clusters.html) that you can use to run
-Docker containers and services (see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.13/modules/ecs-service/README.adoc)).
+Docker containers and services (see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/README.adoc)).
 
 **WARNING: Launch Configurations:** [Launch configurations](https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-configurations.html) are being phased out in favor of [Launch Templates](https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-templates.html). Before upgrading to the latest release please be sure to test and plan any changes to infrastructure that may be impacted. Launch templates are being introduced in [PR #371](https://github.com/gruntwork-io/terraform-aws-ecs/pull/371)
 
@@ -32,7 +32,7 @@ ECS and register itself as part of the right cluster.
 
 ## How do you run Docker containers on the cluster?
 
-See the [service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.13/modules/ecs-service/README.adoc).
+See the [service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/README.adoc).
 
 ## How do you add additional security group rules?
 
@@ -97,13 +97,18 @@ currently no way in ECS to manage IAM policies on a per-Docker-container basis.
 
 ## How do you make changes to the EC2 Instances in the cluster?
 
-To deploy an update to an ECS Service, see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.13/modules/ecs-service). To deploy an update to the
+To deploy an update to an ECS Service, see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service). To deploy an update to the
 EC2 Instances in your ECS cluster, such as a new AMI, read on.
 
 Terraform and AWS do not provide a way to automatically roll out a change to the Instances in an ECS Cluster. Due to
 Terraform limitations (see [here for a discussion](https://github.com/gruntwork-io/terraform-aws-ecs/pull/29)), there is
-currently no way to implement this purely in Terraform code. Therefore, we've created a script called
-`roll-out-ecs-cluster-update.py` that can do a zero-downtime roll out for you.
+currently no way to implement this purely in Terraform code. Therefore, we've created scripts called
+`roll-out-ecs-cluster-update.py` and `asg-instance-refresh.py` that can do a zero-downtime roll out for you.
+
+Since introducing the `roll-out-ecs-cluster-update.py`, AWS has released further capabilities, such
+as [ECS managed instance draining](https://aws.amazon.com/about-aws/whats-new/2024/01/amazon-ecs-managed-instance-draining/)
+and [instance refresh](https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-overview.html), so we
+added another script `asg-instance-refresh`, that initiates and monitoris instance refresh using the AWS APIs.
 
 ### How to use the roll-out-ecs-cluster-update.py script
 
@@ -122,8 +127,8 @@ To deploy a change such as rolling out a new AMI to all ECS Instances:
     python3 roll-out-ecs-cluster-update.py --asg-name ASG_NAME --cluster-name CLUSTER_NAME --aws-region AWS_REGION
     ```
 
-    If you have your output variables configured as shown in [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.13/examples/docker-service-with-elb/outputs.tf)
-    of the [docker-service-with-elb example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.13/examples/docker-service-with-elb), you can use the `terraform output`
+    If you have your output variables configured as shown in [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/examples/docker-service-with-elb/outputs.tf)
+    of the [docker-service-with-elb example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/examples/docker-service-with-elb), you can use the `terraform output`
     command to fill in most of the arguments automatically:
 
     ```
@@ -162,6 +167,29 @@ The `roll-out-ecs-cluster-update.py` script does the following:
 2.  Put all the old ECS Instances in DRAINING state so all ECS Tasks are migrated to the new Instances.
 3.  Wait for all ECS Tasks to migrate to the new Instances.
 4.  Detach the now drained instances from the Auto Scaling Group, decrementing the desired capacity back to the original value.
+
+### How to use the asg-instance-refresh.py script
+
+First, make sure you have the latest version of the [AWS Python SDK (boto3)](https://github.com/boto/boto3) installed
+(e.g. `pip3 install boto3`).
+
+To deploy a change such as rolling out a new AMI to all ECS Instances:
+
+1.  Run the script:
+
+    ```
+    python3 asg-instance-refresh.py --asg-name ASG_NAME --aws-region AWS_REGION
+    ```
+
+    If you have your output variables configured as shown in [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/examples/docker-service-with-elb/outputs.tf)
+    of the [docker-service-with-elb example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/examples/docker-service-with-elb), you can use the `terraform output`
+    command to fill in most of the arguments automatically:
+
+    ```
+    python3 asg-instance-refresh.py \
+      --asg-name $(terragrunt output -no-color asg_name) \
+      --aws-region $(terragrunt output -no-color aws_region)
+    ```
 
 ## How do you configure cluster autoscaling?
 
@@ -207,7 +235,7 @@ enable Capacity Providers on an existing ECS cluster that did not have Capacity 
 instances to ensure all the instances get associated with the new Capacity Provider.
 
 To rotate the instances, you can run the
-[roll-out-ecs-cluster-update.py](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.13/modules/ecs-cluster/roll-out-ecs-cluster-update.py)
+[roll-out-ecs-cluster-update.py](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-cluster/roll-out-ecs-cluster-update.py)
 script in the `terraform-aws-ecs` module. Refer to the
 [documentation](#how-do-you-make-changes-to-the-ec2-instances-in-the-cluster)
 for more information on the script.
@@ -225,7 +253,7 @@ for more information on the script.
 
 module "ecs_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v0.35.13"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v0.38.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -278,6 +306,10 @@ module "ecs_cluster" {
   # The IDs of security groups from which to allow incoming SSH requests to the
   # ECS instances.
   allow_ssh_from_security_group_ids = []
+
+  # Enables or disables a graceful shutdown of instances without disturbing
+  # workloads.
+  autoscaling_managed_draining = true
 
   # Protect EC2 instances running ECS tasks from being terminated due to scale
   # in (spot instances do not support lifecycle modifications)
@@ -440,6 +472,15 @@ module "ecs_cluster" {
   # The desired HTTP PUT response hop limit for instance metadata requests.
   http_put_response_hop_limit = null
 
+  # Override default parameters for Instance Refresh. See
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group#preferences
+  # for available options
+  instance_refresh_preferences = {}
+
+  # Strategy to use for instance refresh. If not specified then instance_refresh
+  # is disabled
+  instance_refresh_strategy = null
+
   # Maximum amount of time, in seconds, that an instance can be in service,
   # values must be either equal to 0 or between 86400 and 31536000 seconds.
   max_instance_lifetime = null
@@ -489,7 +530,7 @@ module "ecs_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v0.35.13"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v0.38.3"
 }
 
 inputs = {
@@ -546,6 +587,10 @@ inputs = {
   # ECS instances.
   allow_ssh_from_security_group_ids = []
 
+  # Enables or disables a graceful shutdown of instances without disturbing
+  # workloads.
+  autoscaling_managed_draining = true
+
   # Protect EC2 instances running ECS tasks from being terminated due to scale
   # in (spot instances do not support lifecycle modifications)
   autoscaling_termination_protection = false
@@ -706,6 +751,15 @@ inputs = {
 
   # The desired HTTP PUT response hop limit for instance metadata requests.
   http_put_response_hop_limit = null
+
+  # Override default parameters for Instance Refresh. See
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group#preferences
+  # for available options
+  instance_refresh_preferences = {}
+
+  # Strategy to use for instance refresh. If not specified then instance_refresh
+  # is disabled
+  instance_refresh_strategy = null
 
   # Maximum amount of time, in seconds, that an instance can be in service,
   # values must be either equal to 0 or between 86400 and 31536000 seconds.
@@ -850,6 +904,15 @@ The IDs of security groups from which to allow incoming SSH requests to the ECS 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="autoscaling_managed_draining" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enables or disables a graceful shutdown of instances without disturbing workloads.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="autoscaling_termination_protection" requirement="optional" type="bool">
@@ -1239,6 +1302,31 @@ The desired HTTP PUT response hop limit for instance metadata requests.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="instance_refresh_preferences" requirement="optional" type="map(any)">
+<HclListItemDescription>
+
+Override default parameters for Instance Refresh. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group#preferences for available options
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="instance_refresh_strategy" requirement="optional" type="string">
+<HclListItemDescription>
+
+Strategy to use for instance refresh. If not specified then instance_refresh is disabled
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="max_instance_lifetime" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1341,11 +1429,11 @@ Set this variable to true to enable the use of Instance Metadata Service Version
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.13/modules/ecs-cluster/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.13/modules/ecs-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.13/modules/ecs-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-cluster/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f08867d94077ffb76261132861659e63"
+  "hash": "d8fcdea67e68a0c749f6376f28f4711a"
 }
 ##DOCS-SOURCER-END -->

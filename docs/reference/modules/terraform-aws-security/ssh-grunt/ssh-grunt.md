@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.69.3" lastModifiedVersion="0.69.1"/>
+<VersionBadge repoTitle="Security Modules" version="0.74.2" lastModifiedVersion="0.74.2"/>
 
 # SSH Grunt
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/ssh-grunt" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/ssh-grunt" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.69.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.74.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can configure a Linux server to manage SSH access to the server via an Identity Provider (IdP). Via AWS [Identity and Access Management (IAM)](https://aws.amazon.com/iam/), developers in certain IAM Groups will be able to SSH to your servers using their IAM user name and the SSH key they uploaded to their IAM user account.
 
@@ -47,29 +47,35 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [How to install ssh-grunt on your servers](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/ssh-grunt/core-concepts.md#install-ssh-grunt-on-your-servers)
+*   [How to install ssh-grunt on your servers](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/ssh-grunt/core-concepts.md#install-ssh-grunt-on-your-servers)
 
-*   [How SSH Grunt works](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/ssh-grunt/core-concepts.md#how-it-works)
+*   [How SSH Grunt works](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/ssh-grunt/core-concepts.md#how-it-works)
 
-*   [Core Security Concepts](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/README.adoc#core-concepts)
+*   [Core Security Concepts](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/README.adoc#core-concepts)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/test): Automated tests for the modules and examples.
 
 ## Deploy
+
+### Compatibility
+
+This module is known to work on **CentOS 7**, **Ubuntu**, **Amazon Linux 2**, and **Amazon Linux 2023**
+
+**Amazon Linux 1 Compatibility**: [Amazon Linux 1 reached EOL on December 31, 2023](https://aws.amazon.com/blogs/aws/update-on-amazon-linux-ami-end-of-life/) and is therefore no longer supported in this module.
 
 ### Non-production deployment (quick start for learning)
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [ssh-grunt examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/examples/ssh-grunt): The `examples/ssh-grunt` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [ssh-grunt examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/examples/ssh-grunt): The `examples/ssh-grunt` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
-*   [Packer template](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/examples/ssh-grunt/packer/ssh-grunt-iam.json)
+*   [Packer template](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/examples/ssh-grunt/packer/ssh-grunt-iam.json)
 
 ### Production deployment
 
@@ -85,19 +91,19 @@ If you want to deploy this module in production, check out the following resourc
 
 ### Day-to-day operations
 
-*   [How to manage SSH keys](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/ssh-grunt/core-concepts.md#upload-public-ssh-keys)
+*   [How to manage SSH keys](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/ssh-grunt/core-concepts.md#upload-public-ssh-keys)
 
-*   [IAM permissions required for ssh-grunt to work](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/ssh-grunt/core-concepts.md#set-up-iam-permissions)
+*   [IAM permissions required for ssh-grunt to work](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/ssh-grunt/core-concepts.md#set-up-iam-permissions)
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/ssh-grunt/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/ssh-grunt/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/ssh-grunt/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/ssh-grunt/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/ssh-grunt/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/ssh-grunt/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bdbf77319132260846006d94dfa5f9b1"
+  "hash": "1a664beb5f1efd818d8ff86a48b46f44"
 }
 ##DOCS-SOURCER-END -->

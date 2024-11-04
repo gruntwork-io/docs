@@ -9,15 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.69.3" lastModifiedVersion="0.69.2"/>
+<VersionBadge repoTitle="Security Modules" version="0.74.2" lastModifiedVersion="0.74.1"/>
 
 # AWS Config Multi Region Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/aws-config-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/aws-config-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.69.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.74.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module wraps the [aws-config core module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/aws-config/README.md) to configure [AWS Config](https://aws.amazon.com/config/) in all enabled regions for the AWS Account, and optionally can aggregate AWS Config across multiple accounts.
+This module wraps the [aws-config core module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/aws-config/README.md) to configure [AWS Config](https://aws.amazon.com/config/) in all enabled regions for the AWS Account, and optionally can aggregate AWS Config across multiple accounts.
 
 ![multi account multi region aws config](/img/reference/modules/terraform-aws-security/aws-config-multi-region/multi-account-multi-region-aws-config.png)
 
@@ -45,25 +45,25 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   Learn more about AWS Config in the [aws-config core module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/aws-config/README.adoc).
+*   Learn more about AWS Config in the [aws-config core module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/aws-config/README.adoc).
 
-*   [How to use a multi-region module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/codegen/core-concepts.md#how-to-use-a-multi-region-module)
+*   [How to use a multi-region module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/codegen/core-concepts.md#how-to-use-a-multi-region-module)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [codegen](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/codegen): Code generation utilities that help generate modules in this repo.
+*   [codegen](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/codegen): Code generation utilities that help generate modules in this repo.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/test): Automated tests for the modules and examples.
 
 ## Deploy
 
 *   [How to configure a production-grade AWS account structure](https://gruntwork.io/guides/foundations/how-to-configure-production-grade-aws-account-structure/)
 
-*   [How does Config work with multiple AWS accounts and multiple regions?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/aws-config-multi-region/core-concepts.md#how-does-config-work-with-multiple-aws-accounts-and-multiple-regions)
+*   [How does Config work with multiple AWS accounts and multiple regions?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/aws-config-multi-region/core-concepts.md#how-does-config-work-with-multiple-aws-accounts-and-multiple-regions)
 
 ## Sample Usage
 
@@ -78,7 +78,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 module "aws_config_multi_region" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-multi-region?ref=v0.69.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-multi-region?ref=v0.74.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -287,6 +287,68 @@ module "aws_config_multi_region" {
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
 
+  # Map of recording group configurations.
+  #
+  # See the official AWS provider documentation for futher context
+  #   https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_recorder#recording_group-configuration-block
+  #
+  # Each configuration can have the following parameters:
+  #
+  # all_supported bool (required):
+  #   Whether to records configuration changes for every supported type of regional resource.
+  #
+  # include_global_resource_types bool (required):
+  #   Whether to records configuration changes for every supported type of global resource.
+  #
+  # resource_types list(string) (required):
+  #   List of resource types to record configuration changes for.
+  #   Requires that all_supported is false and a recording_strategy of "INCLUSION_BY_RESOURCE_TYPES"
+  #
+  # recording_strategy object({}) (required):
+  #   use_only list(string):
+  #     The recording stratgy to use which can be one of:
+  #     - "ALL_SUPPORTED_RESOURCE_TYPES"
+  #     - "EXCLUSION_BY_RESOURCE_TYPES"
+  #     - "INCLUSION_BY_RESOURCE_TYPES"
+  #
+  # exclusion_by_resource_types object({}) (optional):
+  #   resource_types list(string):
+  #     A list of resource types to exclude from recording.
+  #     Requires that all_supported is false and a recording_strategy of "EXCLUSION_BY_RESOURCE_TYPES"
+  #
+  recording_groups = {"default_group":{"all_supported":true,"include_global_resource_types":true,"recording_strategy":{"use_only":"ALL_SUPPORTED_RESOURCE_TYPES"},"resource_types":[]}}
+
+  # The mode for AWS Config to record configuration changes.
+  # recording_frequency:
+  # The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
+  # - CONTINUOUS
+  # - DAILY
+  # You can also override the recording frequency for specific resource types.
+  # recording_mode_override:
+  #   description:
+  #     A description for the override.
+  #   recording_frequency:
+  #     The frequency with which AWS Config records configuration changes for the specified resource types.
+  #     - CONTINUOUS
+  #     - DAILY
+  #   resource_types:
+  #     A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
+  #
+  # See the following for more information:
+  # https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
+  # /*
+  # recording_mode = {
+  #   recording_frequency = "DAILY"
+  #   recording_mode_override = {
+  #     description         = "Override for specific resource types"
+  #     recording_frequency = "CONTINUOUS"
+  #     resource_types      = ["AWS::EC2::Instance"]
+  #   }
+  # }
+  # */
+  #
+  recording_mode = null
+
   # Set to true to enable replication for this bucket. You can set the role to
   # use for replication using the replication_role parameter and the rules for
   # replication using the replication_rules parameter.
@@ -374,7 +436,7 @@ module "aws_config_multi_region" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-multi-region?ref=v0.69.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-multi-region?ref=v0.74.2"
 }
 
 inputs = {
@@ -585,6 +647,68 @@ inputs = {
   # KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
+
+  # Map of recording group configurations.
+  #
+  # See the official AWS provider documentation for futher context
+  #   https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_recorder#recording_group-configuration-block
+  #
+  # Each configuration can have the following parameters:
+  #
+  # all_supported bool (required):
+  #   Whether to records configuration changes for every supported type of regional resource.
+  #
+  # include_global_resource_types bool (required):
+  #   Whether to records configuration changes for every supported type of global resource.
+  #
+  # resource_types list(string) (required):
+  #   List of resource types to record configuration changes for.
+  #   Requires that all_supported is false and a recording_strategy of "INCLUSION_BY_RESOURCE_TYPES"
+  #
+  # recording_strategy object({}) (required):
+  #   use_only list(string):
+  #     The recording stratgy to use which can be one of:
+  #     - "ALL_SUPPORTED_RESOURCE_TYPES"
+  #     - "EXCLUSION_BY_RESOURCE_TYPES"
+  #     - "INCLUSION_BY_RESOURCE_TYPES"
+  #
+  # exclusion_by_resource_types object({}) (optional):
+  #   resource_types list(string):
+  #     A list of resource types to exclude from recording.
+  #     Requires that all_supported is false and a recording_strategy of "EXCLUSION_BY_RESOURCE_TYPES"
+  #
+  recording_groups = {"default_group":{"all_supported":true,"include_global_resource_types":true,"recording_strategy":{"use_only":"ALL_SUPPORTED_RESOURCE_TYPES"},"resource_types":[]}}
+
+  # The mode for AWS Config to record configuration changes.
+  # recording_frequency:
+  # The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
+  # - CONTINUOUS
+  # - DAILY
+  # You can also override the recording frequency for specific resource types.
+  # recording_mode_override:
+  #   description:
+  #     A description for the override.
+  #   recording_frequency:
+  #     The frequency with which AWS Config records configuration changes for the specified resource types.
+  #     - CONTINUOUS
+  #     - DAILY
+  #   resource_types:
+  #     A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
+  #
+  # See the following for more information:
+  # https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
+  # /*
+  # recording_mode = {
+  #   recording_frequency = "DAILY"
+  #   recording_mode_override = {
+  #     description         = "Override for specific resource types"
+  #     recording_frequency = "CONTINUOUS"
+  #     resource_types      = ["AWS::EC2::Instance"]
+  #   }
+  # }
+  # */
+  #
+  recording_mode = null
 
   # Set to true to enable replication for this bucket. You can set the role to
   # use for replication using the replication_role parameter and the rules for
@@ -1120,6 +1244,126 @@ KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS stor
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="recording_groups" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+Map of recording group configurations.
+
+See the official AWS provider documentation for futher context
+  https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_recorder#recording_group-configuration-block
+
+Each configuration can have the following parameters:
+
+all_supported bool (required):
+  Whether to records configuration changes for every supported type of regional resource.
+
+include_global_resource_types bool (required):
+  Whether to records configuration changes for every supported type of global resource.
+
+resource_types list(string) (required):
+  List of resource types to record configuration changes for.
+  Requires that all_supported is false and a recording_strategy of 'INCLUSION_BY_RESOURCE_TYPES'
+
+recording_strategy object({}) (required):
+  use_only list(string):
+    The recording stratgy to use which can be one of:
+    - 'ALL_SUPPORTED_RESOURCE_TYPES'
+    - 'EXCLUSION_BY_RESOURCE_TYPES'
+    - 'INCLUSION_BY_RESOURCE_TYPES'
+
+exclusion_by_resource_types object({}) (optional):
+  resource_types list(string):
+    A list of resource types to exclude from recording.
+    Requires that all_supported is false and a recording_strategy of 'EXCLUSION_BY_RESOURCE_TYPES'
+
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    all_supported                 = bool
+    include_global_resource_types = bool
+    resource_types                = list(string)
+    recording_strategy = object({
+      use_only = string
+    })
+    exclusion_by_resource_types = optional(object({
+      resource_types = list(string)
+    }))
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  default_group = {
+    all_supported = true,
+    include_global_resource_types = true,
+    recording_strategy = {
+      use_only = "ALL_SUPPORTED_RESOURCE_TYPES"
+    },
+    resource_types = []
+  }
+}
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="recording_mode" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+The mode for AWS Config to record configuration changes.
+recording_frequency:
+The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
+- CONTINUOUS
+- DAILY
+You can also override the recording frequency for specific resource types.
+recording_mode_override:
+  description:
+    A description for the override.
+  recording_frequency:
+    The frequency with which AWS Config records configuration changes for the specified resource types.
+    - CONTINUOUS
+    - DAILY
+  resource_types:
+    A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
+
+See the following for more information:
+https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
+```
+recording_mode = {
+  recording_frequency = 'DAILY'
+  recording_mode_override = {
+    description         = 'Override for specific resource types'
+    recording_frequency = 'CONTINUOUS'
+    resource_types      = ['AWS::EC2::Instance']
+  }
+}
+```
+
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    recording_frequency = string
+    recording_mode_override = optional(object({
+      description         = string
+      recording_frequency = string
+      resource_types      = list(string)
+    }))
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="replication_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1311,11 +1555,11 @@ The ARNs of the SNS Topic used by the config notifications.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/aws-config-multi-region/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/aws-config-multi-region/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.69.3/modules/aws-config-multi-region/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/aws-config-multi-region/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/aws-config-multi-region/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.2/modules/aws-config-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e57d0d641a88dfeff76483af9b3daaab"
+  "hash": "cb01f7ff92777be153798d7efaf9c380"
 }
 ##DOCS-SOURCER-END -->

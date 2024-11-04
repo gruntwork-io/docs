@@ -4,7 +4,7 @@ import Admonition from "@theme/Admonition"
 export const OpenTofuNotice = () => {
     return (
         <Admonition type="tip" title="OpenTofu Support">
-            <p>Gruntwork Library will support OpenTofu when it becomes available. To learn more, see the official <a href="https://opentofu.org/">OpenTofu website</a> and <a href="https://github.com/opentofu/opentofu/blob/main/WEEKLY_UPDATES.md">project status</a>.</p>
+            <p>Gruntwork Library activley supports OpenTofu. If you encounter any issues using the library with OpenTofu please reach out to support@gruntwork.io.</p>
         </Admonition>
     )
 }

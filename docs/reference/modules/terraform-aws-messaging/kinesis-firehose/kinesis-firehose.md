@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="0.12.4" lastModifiedVersion="0.12.4"/>
+<VersionBadge repoTitle="AWS Messaging" version="0.12.5" lastModifiedVersion="0.12.4"/>
 
 # Kinesis Firehose Delivery Stream Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.4/modules/kinesis-firehose" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/kinesis-firehose" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.12.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -39,7 +39,7 @@ stream.
 
 module "kinesis_firehose" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis-firehose?ref=v0.12.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis-firehose?ref=v0.12.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -69,7 +69,7 @@ module "kinesis_firehose" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis-firehose?ref=v0.12.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis-firehose?ref=v0.12.5"
 }
 
 inputs = {
@@ -155,11 +155,11 @@ Name of the Kinesis Firehose delivery stream.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.4/modules/kinesis-firehose/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.4/modules/kinesis-firehose/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.4/modules/kinesis-firehose/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/kinesis-firehose/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/kinesis-firehose/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/kinesis-firehose/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d03b9c983fc92367b9f8044f4a8de527"
+  "hash": "234a6837df98457258a75b3cc8da6092"
 }
 ##DOCS-SOURCER-END -->

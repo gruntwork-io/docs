@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="0.22.1" lastModifiedVersion="0.22.1"/>
+<VersionBadge repoTitle="Cache Modules" version="0.22.8" lastModifiedVersion="0.22.8"/>
 
 # ElasticCache Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.1/modules/elastic-cache" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.8/modules/elastic-cache" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.22.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.22.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an ElastiCache cluster, which manages either a Memcached cluster, a single-node Redis instance.
 
@@ -47,7 +47,7 @@ For more info, see [Scaling Memcached](http://docs.aws.amazon.com/AmazonElastiCa
 
 module "elastic_cache" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v0.22.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v0.22.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -97,12 +97,28 @@ module "elastic_cache" {
   # during the next maintenance window.
   apply_immediately = false
 
+  # Specifies whether minor version engine upgrades will be applied
+  # automatically to the underlying Cache Cluster instances during the
+  # maintenance window. Only supported for engine type 'redis' and if the engine
+  # version is 6 or higher
+  auto_minor_version_upgrade = true
+
   # Specifies whether the nodes in this Memcached node group are created in a
   # single Availability Zone or created across multiple Availability Zones in
   # the cluster's region. Valid values for this parameter are single-az or
   # cross-az. If you want to choose cross-az, num_cache_nodes must be greater
   # than 1.
   az_mode = "single-az"
+
+  # Enable encryption in-transit. Supported only with Memcached versions 1.6.12
+  # and later, running in a VPC. Also only settable on cluster creation.
+  enable_transport_encryption = false
+
+  # Specifies the destination and format of Redis Engine Log. See the
+  # documentation on Amazon ElastiCache. See Log Delivery Configuration below
+  # for more details. You can find more information here
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+  engine_log_delivery_configuration = null
 
   # Specifies the weekly time range for when maintenance on the cache cluster is
   # performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi
@@ -119,6 +135,12 @@ module "elastic_cache" {
 
   # A set of tags to set for the Security Group created as part of this module.
   security_group_tags = {}
+
+  # Specifies the destination and format of Redis SLOWLOG. See the documentation
+  # on Amazon ElastiCache. See Log Delivery Configuration below for more
+  # details. You can find more information here
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+  slow_log_delivery_configuration = null
 
   # A set of tags to set for the ElastiCache Cluster.
   tags = {}
@@ -138,7 +160,7 @@ module "elastic_cache" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v0.22.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v0.22.8"
 }
 
 inputs = {
@@ -191,12 +213,28 @@ inputs = {
   # during the next maintenance window.
   apply_immediately = false
 
+  # Specifies whether minor version engine upgrades will be applied
+  # automatically to the underlying Cache Cluster instances during the
+  # maintenance window. Only supported for engine type 'redis' and if the engine
+  # version is 6 or higher
+  auto_minor_version_upgrade = true
+
   # Specifies whether the nodes in this Memcached node group are created in a
   # single Availability Zone or created across multiple Availability Zones in
   # the cluster's region. Valid values for this parameter are single-az or
   # cross-az. If you want to choose cross-az, num_cache_nodes must be greater
   # than 1.
   az_mode = "single-az"
+
+  # Enable encryption in-transit. Supported only with Memcached versions 1.6.12
+  # and later, running in a VPC. Also only settable on cluster creation.
+  enable_transport_encryption = false
+
+  # Specifies the destination and format of Redis Engine Log. See the
+  # documentation on Amazon ElastiCache. See Log Delivery Configuration below
+  # for more details. You can find more information here
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+  engine_log_delivery_configuration = null
 
   # Specifies the weekly time range for when maintenance on the cache cluster is
   # performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi
@@ -213,6 +251,12 @@ inputs = {
 
   # A set of tags to set for the Security Group created as part of this module.
   security_group_tags = {}
+
+  # Specifies the destination and format of Redis SLOWLOG. See the documentation
+  # on Amazon ElastiCache. See Log Delivery Configuration below for more
+  # details. You can find more information here
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+  slow_log_delivery_configuration = null
 
   # A set of tags to set for the ElastiCache Cluster.
   tags = {}
@@ -319,6 +363,15 @@ Specifies whether any database modifications are applied immediately, or during 
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="auto_minor_version_upgrade" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether minor version engine upgrades will be applied automatically to the underlying Cache Cluster instances during the maintenance window. Only supported for engine type 'redis' and if the engine version is 6 or higher
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="az_mode" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -326,6 +379,35 @@ Specifies whether the nodes in this Memcached node group are created in a single
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;single-az&quot;"/>
+</HclListItem>
+
+<HclListItem name="enable_transport_encryption" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable encryption in-transit. Supported only with Memcached versions 1.6.12 and later, running in a VPC. Also only settable on cluster creation.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="engine_log_delivery_configuration" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Specifies the destination and format of Redis Engine Log. See the documentation on Amazon ElastiCache. See Log Delivery Configuration below for more details. You can find more information here https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    destination      = string
+    destination_type = string
+    log_format       = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="maintenance_window" requirement="optional" type="string">
@@ -362,6 +444,26 @@ A set of tags to set for the Security Group created as part of this module.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="slow_log_delivery_configuration" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Specifies the destination and format of Redis SLOWLOG. See the documentation on Amazon ElastiCache. See Log Delivery Configuration below for more details. You can find more information here https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    destination      = string
+    destination_type = string
+    log_format       = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="tags" requirement="optional" type="map(string)">
@@ -404,11 +506,11 @@ A set of tags to set for the ElastiCache Cluster.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.1/modules/elastic-cache/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.1/modules/elastic-cache/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.1/modules/elastic-cache/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.8/modules/elastic-cache/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.8/modules/elastic-cache/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.8/modules/elastic-cache/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4dc3ab160c4800a814d5376d065f6513"
+  "hash": "d0d4bdf1a1c0d9d2a19e4d9a082990ab"
 }
 ##DOCS-SOURCER-END -->

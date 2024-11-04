@@ -9,17 +9,17 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.15" lastModifiedVersion="0.26.8"/>
+<VersionBadge repoTitle="VPC Modules" version="0.26.26" lastModifiedVersion="0.26.22"/>
 
 # VPC-App Network ACLs Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-app-network-acls" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-app-network-acls" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.22" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module adds a default set of [Network
 ACLs](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html) to a VPC created using the
-[vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-app) module. The ACLs enforce the following security settings (based on [A Reference VPC
+[vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-app) module. The ACLs enforce the following security settings (based on [A Reference VPC
 Architecture](https://www.whaletech.co/2014/10/02/reference-vpc-architecture.html)):
 
 *   **Public subnet**: Allow all requests.
@@ -27,6 +27,7 @@ Architecture](https://www.whaletech.co/2014/10/02/reference-vpc-architecture.htm
     Allow all outbound TCP requests plus return traffic from any IP for those TCP requests on [ephemeral
     ports](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html#VPC_ACLs_Ephemeral_Ports).
 *   **Private persistence subnet**: Allow all requests to/from the private app subnets and the Mgmt VPC.
+*   **Transit subnet**: Allow all requests. AWS recommends you [should allow all traffic to pass through it](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-nacls.html#nacl-best-practices).
 
 ## What's a VPC?
 
@@ -92,7 +93,7 @@ module "network_acls" {
 
 module "vpc_app_network_acls" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app-network-acls?ref=v0.26.15"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app-network-acls?ref=v0.26.26"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -137,6 +138,14 @@ module "vpc_app_network_acls" {
   # VPC CIDR block defined in var.mgmt_vpc_cidr_block.
   allow_access_from_mgmt_vpc = false
 
+  # The base number to append to var.initial_nacl_rule_number for the first
+  # transit rule in private and persistence rules created by this module. All
+  # transit rules will be inserted after this number. This base number provides
+  # a safeguard to ensure that the transit rules do not overwrite any existing
+  # NACL rules in private and persistence subnets. Note that the transit subnet
+  # ACL rules start normally with var.initial_nacl_rule_number.
+  base_transit_nacl_rule_number = 1000
+
   # If set to false, this module will NOT create the NACLs for the private app
   # subnet tier.
   create_private_app_subnet_nacls = true
@@ -154,6 +163,10 @@ module "vpc_app_network_acls" {
   # to use the 'count' parameter on modules. By using this parameter, you can
   # optionally create or not create the resources within this module.
   create_resources = true
+
+  # If set to false, this module will NOT create the NACLs for the transit
+  # subnet tier.
+  create_transit_subnet_nacls = false
 
   # A map of tags to apply to the Network ACLs created by this module. The key
   # is the tag name and the value is the tag value. Note that the tag 'Name' is
@@ -176,6 +189,10 @@ module "vpc_app_network_acls" {
   # CIDR block. Only used if var.allow_access_from_mgmt_vpc is set to true.
   mgmt_vpc_cidr_block = null
 
+  # Set to false to prevent the private app subnet from allowing traffic from
+  # the transit subnet. Only used if create_transit_subnet_nacls is set to true.
+  private_app_allow_inbound_from_transit_network = true
+
   # A map of unique names to client IP CIDR block and inbound ports that should
   # be exposed in the private app subnet tier nACLs. This is useful when
   # exposing your service on a privileged port with an NLB, where the address
@@ -187,6 +204,19 @@ module "vpc_app_network_acls" {
   # allowing your VPC specific outbound communication to defined CIDR
   # blocks(known networks)
   private_app_allow_outbound_ports_to_destination_cidr = {}
+
+  # Set to false to prevent the private persistence subnet from allowing traffic
+  # from the transit subnet. Only used if create_transit_subnet_nacls is set to
+  # true.
+  private_persistence_allow_inbound_from_transit_network = true
+
+  # A list of CIDR blocks used by the transit subnets in the VPC. Required if
+  # create_transit_subnet_nacls is set to true.
+  transit_subnet_cidr_blocks = []
+
+  # A list of IDs of the transit subnets in the VPC. Required if
+  # create_transit_subnet_nacls is set to true.
+  transit_subnet_ids = []
 
   # Use this variable to ensure the Network ACL does not get created until the
   # VPC is ready. This can help to work around a Terraform or AWS issue where
@@ -211,7 +241,7 @@ module "vpc_app_network_acls" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app-network-acls?ref=v0.26.15"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app-network-acls?ref=v0.26.26"
 }
 
 inputs = {
@@ -259,6 +289,14 @@ inputs = {
   # VPC CIDR block defined in var.mgmt_vpc_cidr_block.
   allow_access_from_mgmt_vpc = false
 
+  # The base number to append to var.initial_nacl_rule_number for the first
+  # transit rule in private and persistence rules created by this module. All
+  # transit rules will be inserted after this number. This base number provides
+  # a safeguard to ensure that the transit rules do not overwrite any existing
+  # NACL rules in private and persistence subnets. Note that the transit subnet
+  # ACL rules start normally with var.initial_nacl_rule_number.
+  base_transit_nacl_rule_number = 1000
+
   # If set to false, this module will NOT create the NACLs for the private app
   # subnet tier.
   create_private_app_subnet_nacls = true
@@ -276,6 +314,10 @@ inputs = {
   # to use the 'count' parameter on modules. By using this parameter, you can
   # optionally create or not create the resources within this module.
   create_resources = true
+
+  # If set to false, this module will NOT create the NACLs for the transit
+  # subnet tier.
+  create_transit_subnet_nacls = false
 
   # A map of tags to apply to the Network ACLs created by this module. The key
   # is the tag name and the value is the tag value. Note that the tag 'Name' is
@@ -298,6 +340,10 @@ inputs = {
   # CIDR block. Only used if var.allow_access_from_mgmt_vpc is set to true.
   mgmt_vpc_cidr_block = null
 
+  # Set to false to prevent the private app subnet from allowing traffic from
+  # the transit subnet. Only used if create_transit_subnet_nacls is set to true.
+  private_app_allow_inbound_from_transit_network = true
+
   # A map of unique names to client IP CIDR block and inbound ports that should
   # be exposed in the private app subnet tier nACLs. This is useful when
   # exposing your service on a privileged port with an NLB, where the address
@@ -309,6 +355,19 @@ inputs = {
   # allowing your VPC specific outbound communication to defined CIDR
   # blocks(known networks)
   private_app_allow_outbound_ports_to_destination_cidr = {}
+
+  # Set to false to prevent the private persistence subnet from allowing traffic
+  # from the transit subnet. Only used if create_transit_subnet_nacls is set to
+  # true.
+  private_persistence_allow_inbound_from_transit_network = true
+
+  # A list of CIDR blocks used by the transit subnets in the VPC. Required if
+  # create_transit_subnet_nacls is set to true.
+  transit_subnet_cidr_blocks = []
+
+  # A list of IDs of the transit subnets in the VPC. Required if
+  # create_transit_subnet_nacls is set to true.
+  transit_subnet_ids = []
 
   # Use this variable to ensure the Network ACL does not get created until the
   # VPC is ready. This can help to work around a Terraform or AWS issue where
@@ -419,6 +478,15 @@ If set to true, the network ACLs will allow incoming requests from the Mgmt VPC 
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="base_transit_nacl_rule_number" requirement="optional" type="number">
+<HclListItemDescription>
+
+The base number to append to <a href="#initial_nacl_rule_number"><code>initial_nacl_rule_number</code></a> for the first transit rule in private and persistence rules created by this module. All transit rules will be inserted after this number. This base number provides a safeguard to ensure that the transit rules do not overwrite any existing NACL rules in private and persistence subnets. Note that the transit subnet ACL rules start normally with <a href="#initial_nacl_rule_number"><code>initial_nacl_rule_number</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="1000"/>
+</HclListItem>
+
 <HclListItem name="create_private_app_subnet_nacls" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -455,6 +523,15 @@ If you set this variable to false, this module will not create any resources. Th
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="create_transit_subnet_nacls" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to false, this module will NOT create the NACLs for the transit subnet tier.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -489,6 +566,15 @@ The CIDR block of the Mgmt VPC. All subnets will allow connections from this CID
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="private_app_allow_inbound_from_transit_network" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false to prevent the private app subnet from allowing traffic from the transit subnet. Only used if create_transit_subnet_nacls is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="private_app_allow_inbound_ports_from_cidr" requirement="optional" type="map">
@@ -597,6 +683,33 @@ A map of unique names to destination IP CIDR block and outbound ports that shoul
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="private_persistence_allow_inbound_from_transit_network" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false to prevent the private persistence subnet from allowing traffic from the transit subnet. Only used if create_transit_subnet_nacls is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="transit_subnet_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of CIDR blocks used by the transit subnets in the VPC. Required if create_transit_subnet_nacls is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="transit_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IDs of the transit subnets in the VPC. Required if create_transit_subnet_nacls is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="vpc_ready" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -618,6 +731,9 @@ Use this variable to ensure the Network ACL does not get created until the VPC i
 <HclListItem name="public_subnets_network_acl_id">
 </HclListItem>
 
+<HclListItem name="transit_subnets_network_acl_id">
+</HclListItem>
+
 </TabItem>
 </Tabs>
 
@@ -625,11 +741,11 @@ Use this variable to ensure the Network ACL does not get created until the VPC i
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-app-network-acls/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-app-network-acls/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.15/modules/vpc-app-network-acls/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-app-network-acls/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-app-network-acls/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-app-network-acls/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "55380f70498b5d47f016270e74582811"
+  "hash": "32613140371ba3e7bf352409af8938d0"
 }
 ##DOCS-SOURCER-END -->

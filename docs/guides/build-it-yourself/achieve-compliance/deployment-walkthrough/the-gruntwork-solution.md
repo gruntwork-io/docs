@@ -54,9 +54,6 @@ times the default settings are good enough.
 You can use this approach on each AWS account. In many cases, you’ll only need compliance for production accounts, but the
 same methodology can be applied to pre-production accounts as well.
 
-If you need to brush up on how the IaC Library works, read the
-our [Introduction to Gruntwork](/intro/overview/intro-to-gruntwork) section.
-
 
 <!-- ##DOCS-SOURCER-START
 {

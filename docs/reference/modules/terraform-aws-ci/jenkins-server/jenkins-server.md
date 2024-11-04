@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.53.0" lastModifiedVersion="0.52.17"/>
+<VersionBadge repoTitle="CI Modules" version="0.58.0" lastModifiedVersion="0.58.0"/>
 
 # Jenkins server
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.0/modules/jenkins-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/jenkins-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.17" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.58.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to deploy [Jenkins CI server](https://jenkins.io) in AWS. It creates the following resources:
 
@@ -29,17 +29,17 @@ to run an ASG for Jenkins that can correctly reattach an EBS volume.
 
 ## Example code
 
-*   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.0/examples/jenkins) for working sample code.
-*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.0/modules/jenkins-server/vars.tf) for all parameters you can configure on this module.
+*   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/examples/jenkins) for working sample code.
+*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/jenkins-server/vars.tf) for all parameters you can configure on this module.
 
 ## Jenkins AMI
 
-See the [install-jenkins module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.0/modules/install-jenkins) for a way to create an AMI with Jenkins installed and a
+See the [install-jenkins module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/install-jenkins) for a way to create an AMI with Jenkins installed and a
 script you can run in User Data to start Jenkins while the server is booting.
 
 ## Backing up Jenkins
 
-See the [ec2-backup module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.0/modules/ec2-backup) for an automatic way to take scheduled backups of Jenkins and its EBS
+See the [ec2-backup module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/ec2-backup) for an automatic way to take scheduled backups of Jenkins and its EBS
 volume.
 
 ## IAM permissions
@@ -112,7 +112,7 @@ data "aws_iam_policy_document" "example" {
 
 module "jenkins_server" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.53.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.58.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -320,11 +320,26 @@ module "jenkins_server" {
   # this to DEBUG when troubleshooting Jenkins redeploys.
   script_log_level = "INFO"
 
+  # Set to 'true' to allow the server group role to assume itself. See
+  # https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/
+  server_iam_role_allow_self_assume = false
+
+  # Maximum session duration (in seconds) that you want to set for the server
+  # group role. This setting can have a value from 1 hour to 12 hours. Default
+  # is 1 hour (3600s).
+  server_iam_role_max_session_duration = 3600
+
   # If set to true, skip the health check, and start a rolling deployment of
   # Jenkins without waiting for it to initially be in a healthy state. This is
   # primarily useful if the server group is in a broken state and you want to
   # force a deployment anyway.
   skip_health_check = false
+
+  # If set to true, skip the rolling deployment, and destroy all the servers
+  # immediately. You should typically NOT enable this in prod, as it will cause
+  # downtime! The main use case for this flag is to make testing and cleanup
+  # easier. It can also be handy in case the rolling deployment code has a bug.
+  skip_rolling_deploy = false
 
   # The aws predefined policy for alb. A List of policies can be found here:
   # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies
@@ -370,7 +385,7 @@ module "jenkins_server" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.53.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.58.0"
 }
 
 inputs = {
@@ -581,11 +596,26 @@ inputs = {
   # this to DEBUG when troubleshooting Jenkins redeploys.
   script_log_level = "INFO"
 
+  # Set to 'true' to allow the server group role to assume itself. See
+  # https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/
+  server_iam_role_allow_self_assume = false
+
+  # Maximum session duration (in seconds) that you want to set for the server
+  # group role. This setting can have a value from 1 hour to 12 hours. Default
+  # is 1 hour (3600s).
+  server_iam_role_max_session_duration = 3600
+
   # If set to true, skip the health check, and start a rolling deployment of
   # Jenkins without waiting for it to initially be in a healthy state. This is
   # primarily useful if the server group is in a broken state and you want to
   # force a deployment anyway.
   skip_health_check = false
+
+  # If set to true, skip the rolling deployment, and destroy all the servers
+  # immediately. You should typically NOT enable this in prod, as it will cause
+  # downtime! The main use case for this flag is to make testing and cleanup
+  # easier. It can also be handy in case the rolling deployment code has a bug.
+  skip_rolling_deploy = false
 
   # The aws predefined policy for alb. A List of policies can be found here:
   # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies
@@ -1078,10 +1108,37 @@ The log level to use with the rolling deploy script. It can be useful to set thi
 <HclListItemDefaultValue defaultValue="&quot;INFO&quot;"/>
 </HclListItem>
 
+<HclListItem name="server_iam_role_allow_self_assume" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to 'true' to allow the server group role to assume itself. See https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="server_iam_role_max_session_duration" requirement="optional" type="number">
+<HclListItemDescription>
+
+Maximum session duration (in seconds) that you want to set for the server group role. This setting can have a value from 1 hour to 12 hours. Default is 1 hour (3600s).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="3600"/>
+</HclListItem>
+
 <HclListItem name="skip_health_check" requirement="optional" type="bool">
 <HclListItemDescription>
 
 If set to true, skip the health check, and start a rolling deployment of Jenkins without waiting for it to initially be in a healthy state. This is primarily useful if the server group is in a broken state and you want to force a deployment anyway.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="skip_rolling_deploy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, skip the rolling deployment, and destroy all the servers immediately. You should typically NOT enable this in prod, as it will cause downtime! The main use case for this flag is to make testing and cleanup easier. It can also be handy in case the rolling deployment code has a bug.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -1196,11 +1253,11 @@ A maximum duration to wait for each server to be healthy before timing out (e.g.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.0/modules/jenkins-server/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.0/modules/jenkins-server/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.53.0/modules/jenkins-server/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/jenkins-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/jenkins-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.58.0/modules/jenkins-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "df386ba21ad6ce4db9c2fc3257b70ea1"
+  "hash": "8f60b23dd04d2445f5c9ddde1f8b9e94"
 }
 ##DOCS-SOURCER-END -->

@@ -734,7 +734,10 @@ This module attempts to match the output variables API of `vpc-app` exactly.
 
 - Feature vpc private nat gateway 351
 
-
+NOTE: We have since discovered that this release should have been classified as a breaking change:
+- The `vpc-app` module introduces the `precondition` syntax, which was [added in Terraform v1.2.0](https://developer.hashicorp.com/terraform/language/expressions/custom-conditions#preconditions-and-postconditions)
+- The `required_versions` should have been updated to require Terraform 1.2.0 or later.
+ 
 
 </div>
 
@@ -764,6 +767,6 @@ This module attempts to match the output variables API of `vpc-app` exactly.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "5238601e7d40ef3a9834f7558118bb7b"
+  "hash": "2185c14ae9bc297c4ed4e0fb578c0982"
 }
 ##DOCS-SOURCER-END -->

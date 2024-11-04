@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.107.12" lastModifiedVersion="0.105.0"/>
+<VersionBadge version="0.115.4" lastModifiedVersion="0.105.0"/>
 
 # Management VPC
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/networking/vpc-mgmt" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/networking/vpc-mgmt" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fvpc-mgmt" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -56,7 +56,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 Under the hood, this is all implemented using Terraform modules from the Gruntwork
 [terraform-aws-vpc](https://github.com/gruntwork-io/terraform-aws-vpc) repo. If you are a subscriber and don’t have
-access to this repo, email <support@gruntwork.io>.
+access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ### Core concepts
 
@@ -65,9 +65,9 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/examples/for-production): The `examples/for-production` folder contains sample code
     optimized or direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -105,7 +105,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "vpc_mgmt" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc-mgmt?ref=v0.107.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc-mgmt?ref=v0.115.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -212,6 +212,12 @@ module "vpc_mgmt" {
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#ingress-block.
   default_security_group_ingress_rules = {"AllowAllFromSelf":{"from_port":0,"protocol":"-1","self":true,"to_port":0}}
 
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  dynamodb_endpoint_policy = null
+
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = false
 
@@ -290,6 +296,12 @@ module "vpc_mgmt" {
   # here will override tags defined as custom_tags in case of conflict.
   public_subnet_custom_tags = {}
 
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  s3_endpoint_policy = null
+
   # The amount of spacing between the different subnet types
   subnet_spacing = 8
 
@@ -315,7 +327,7 @@ module "vpc_mgmt" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc-mgmt?ref=v0.107.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc-mgmt?ref=v0.115.4"
 }
 
 inputs = {
@@ -425,6 +437,12 @@ inputs = {
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#ingress-block.
   default_security_group_ingress_rules = {"AllowAllFromSelf":{"from_port":0,"protocol":"-1","self":true,"to_port":0}}
 
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  dynamodb_endpoint_policy = null
+
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = false
 
@@ -502,6 +520,12 @@ inputs = {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   public_subnet_custom_tags = {}
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  s3_endpoint_policy = null
 
   # The amount of spacing between the different subnet types
   subnet_spacing = 8
@@ -771,6 +795,15 @@ Any types represent complex values of variable type. For details, please consult
 </HclListItemDefaultValue>
 </HclListItem>
 
+<HclListItem name="dynamodb_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="enable_default_security_group" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -904,6 +937,15 @@ A map of tags to apply to the public Subnet, on top of the custom_tags. The key 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="s3_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="subnet_spacing" requirement="optional" type="number">
@@ -1046,11 +1088,11 @@ Indicates whether or not the VPC has finished creating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/networking/vpc-mgmt/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/networking/vpc-mgmt/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.107.12/modules/networking/vpc-mgmt/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/networking/vpc-mgmt/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/networking/vpc-mgmt/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.115.4/modules/networking/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "daa85a099fcefef5322a870c97e91867"
+  "hash": "deac17e3fb1ba8da4afa3062f5e3ff2c"
 }
 ##DOCS-SOURCER-END -->

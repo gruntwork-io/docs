@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.32" lastModifiedVersion="0.31.4"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.38.1" lastModifiedVersion="0.36.0"/>
 
 # EFS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/efs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/efs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.31.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.36.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Elastic File System (EFS) file system that provides NFSv4-compatible storage that can be used with other AWS services, such as EC2 instances.
 
@@ -45,13 +45,13 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [efs module variables](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/efs/variables.tf): Configuration variables available for the EFS module. At minimum, you should configure the `allow_connections_from_cidr_blocks` and `allow_connections_from_security_groups` values to only allow access from your private VPC(s). You may also want to enable `storage_encrypted` to encrypt data at-rest.
+*   [efs module variables](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/efs/variables.tf): Configuration variables available for the EFS module. At minimum, you should configure the `allow_connections_from_cidr_blocks` and `allow_connections_from_security_groups` values to only allow access from your private VPC(s). You may also want to enable `storage_encrypted` to encrypt data at-rest.
 
 ## Manage
 
@@ -74,7 +74,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "efs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/efs?ref=v0.32"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/efs?ref=v0.38.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -144,6 +144,9 @@ module "efs" {
   # https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes
   performance_mode = "generalPurpose"
 
+  # Indicates whether replication overwrite protection is enabled
+  protection_replication_overwrite = false
+
   # The throughput, measured in MiB/s, that you want to provision for the file
   # system. Only applicable with "throughput_mode" set to "provisioned".
   provisioned_throughput_in_mibps = null
@@ -155,6 +158,14 @@ module "efs" {
   # "provisioned". When using "provisioned", also set
   # "provisioned_throughput_in_mibps".
   throughput_mode = "bursting"
+
+  # If specified, files will be transitioned to the archive storage class after
+  # the designated time. Requires `var.transition_to_ia`, `elastic` in
+  # `var.throughput_mode` and `generalPurpose` in  `performance_mode`. Valid
+  # values: AFTER_1_DAY, AFTER_7_DAYS, AFTER_14_DAYS, AFTER_30_DAYS,
+  # AFTER_60_DAYS, AFTER_90_DAYS, AFTER_180_DAYS, AFTER_270_DAYS, or
+  # AFTER_365_DAYS.
+  transition_to_archive = null
 
   # If specified, files will be transitioned to the IA storage class after the
   # designated time. Valid values: AFTER_7_DAYS, AFTER_14_DAYS, AFTER_30_DAYS,
@@ -176,7 +187,7 @@ module "efs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/efs?ref=v0.32"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/efs?ref=v0.38.1"
 }
 
 inputs = {
@@ -249,6 +260,9 @@ inputs = {
   # https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes
   performance_mode = "generalPurpose"
 
+  # Indicates whether replication overwrite protection is enabled
+  protection_replication_overwrite = false
+
   # The throughput, measured in MiB/s, that you want to provision for the file
   # system. Only applicable with "throughput_mode" set to "provisioned".
   provisioned_throughput_in_mibps = null
@@ -260,6 +274,14 @@ inputs = {
   # "provisioned". When using "provisioned", also set
   # "provisioned_throughput_in_mibps".
   throughput_mode = "bursting"
+
+  # If specified, files will be transitioned to the archive storage class after
+  # the designated time. Requires `var.transition_to_ia`, `elastic` in
+  # `var.throughput_mode` and `generalPurpose` in  `performance_mode`. Valid
+  # values: AFTER_1_DAY, AFTER_7_DAYS, AFTER_14_DAYS, AFTER_30_DAYS,
+  # AFTER_60_DAYS, AFTER_90_DAYS, AFTER_180_DAYS, AFTER_270_DAYS, or
+  # AFTER_365_DAYS.
+  transition_to_archive = null
 
   # If specified, files will be transitioned to the IA storage class after the
   # designated time. Valid values: AFTER_7_DAYS, AFTER_14_DAYS, AFTER_30_DAYS,
@@ -453,6 +475,15 @@ The file system performance mode. Can be either 'generalPurpose' or 'maxIO'. For
 <HclListItemDefaultValue defaultValue="&quot;generalPurpose&quot;"/>
 </HclListItem>
 
+<HclListItem name="protection_replication_overwrite" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Indicates whether replication overwrite protection is enabled
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="provisioned_throughput_in_mibps" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -478,6 +509,15 @@ Throughput mode for the file system. Valid values: 'bursting', 'provisioned'. Wh
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;bursting&quot;"/>
+</HclListItem>
+
+<HclListItem name="transition_to_archive" requirement="optional" type="string">
+<HclListItemDescription>
+
+If specified, files will be transitioned to the archive storage class after the designated time. Requires `<a href="#transition_to_ia"><code>transition_to_ia</code></a>`, `elastic` in `<a href="#throughput_mode"><code>throughput_mode</code></a>` and `generalPurpose` in  `performance_mode`. Valid values: AFTER_1_DAY, AFTER_7_DAYS, AFTER_14_DAYS, AFTER_30_DAYS, AFTER_60_DAYS, AFTER_90_DAYS, AFTER_180_DAYS, AFTER_270_DAYS, or AFTER_365_DAYS.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="transition_to_ia" requirement="optional" type="string">
@@ -547,11 +587,11 @@ The IDs of the security groups created for the file system.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/efs/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/efs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/efs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/efs/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/efs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/efs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "daa1ae5fa01648125fb8e5d342f096cb"
+  "hash": "c8e4c45d870a06947079a325e010ae37"
 }
 ##DOCS-SOURCER-END -->

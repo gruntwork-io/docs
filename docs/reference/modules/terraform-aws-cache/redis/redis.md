@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="0.22.1" lastModifiedVersion="0.22.1"/>
+<VersionBadge repoTitle="Cache Modules" version="0.22.8" lastModifiedVersion="0.22.8"/>
 
 # Redis Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.1/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.8/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.22.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.22.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an ElastiCache cluster that runs [Redis](http://redis.io/).
 
@@ -67,11 +67,11 @@ here: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Replication.Re
 
 There are different types of modes you can deploy ElasticCache Redis:
 
-| Mode                 | Description                                     | Configuration                                                                     |
-|----------------------|-------------------------------------------------|-----------------------------------------------------------------------------------|
-| **Cluster Enabled**  | - supports sharding <br/> - supports replication | - `enable_single_instance_mode = false` <br/> - `cluster_mode:num_node_groups > 1` |
-| **Cluster Disabled** | - no replication <br/> - supports sharding       | - `enable_single_instance_mode = false` <br/> - `cluster_mode:num_node_groups = 1` |
-| **Single Instance**  | - no replication <br/> - no sharding             | - `enable_single_instance_mode = true`                                            |
+| Mode                 | Description                                      | Configuration                                                                                                                                                                           |
+|----------------------|--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Cluster Enabled**  | - supports sharding <br/> - supports replication | - `enable_single_instance_mode = false` <br/> - `cluster_mode:num_node_groups > 1`                                                                                                      |
+| **Cluster Disabled** | - no replication <br/> - supports sharding       | - `enable_single_instance_mode = false` <br/> - `cluster_mode:num_node_groups = 1` <br/> <br/> **Note**: do not include `.cluster.on` suffix if you are setting `parameter_group_name`. |
+| **Single Instance**  | - no replication <br/> - no sharding             | - `enable_single_instance_mode = true`                                                                                                                                                  |
 
 #### How to Enable Cluster Mode with Single Sharding
 
@@ -84,7 +84,7 @@ here: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/ParameterGroup
 #### Choosing Cluster Mode vs. Single Instance
 
 You can use `var.enable_single_instance_mode=true` to deploy a single node Redis instance. Refer
-to [examples/redis_single_instance](https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.1/examples/redis_single_instance) as an example.
+to [examples/redis_single_instance](https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.8/examples/redis_single_instance) as an example.
 
 Here are some of the points you may consider while choosing which mode to run:
 
@@ -243,7 +243,7 @@ ElastiCache for Redis supports the following types of automatic scaling dimensio
 
 module "redis" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.22.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.22.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -290,6 +290,12 @@ module "redis" {
   # alphanumeric characters or symbols (excluding @, <double-quotes>, and /)
   auth_token = null
 
+  # Specifies whether minor version engine upgrades will be applied
+  # automatically to the underlying Cache Cluster instances during the
+  # maintenance window. Only supported for engine type 'redis' and if the engine
+  # version is 6 or higher
+  auto_minor_version_upgrade = true
+
   # Scalable dimension of the scalable target. Supported dimensions are:
   # [elasticache:replication-group:NodeGroups,elasticache:replication-group:Replicas].
   # Documentation can be found in the ScalableDimension parameter at:
@@ -310,6 +316,9 @@ module "redis" {
   # Target value of the auto_scale trigger metric
   auto_scale_trigger_metric_target_value = null
 
+  # Configuration variables for an ElastiCache Parameter Group.
+  aws_elasticache_parameter_group_config = null
+
   # The description of the aws_elasticache_security_group that is created.
   # Defaults to 'Security group for the var.name ElastiCache cluster' if not
   # specified.
@@ -325,6 +334,10 @@ module "redis" {
   # The name of the aws_elasticache_subnet_group that is created. Defaults to
   # var.name-subnet-group if not specified.
   aws_elasticache_subnet_group_name = null
+
+  # Whether to create the ElastiCache user group or not. If not then it will
+  # asume the group pointed by `user_group_id` already exists
+  create_user_group = true
 
   # The name of the new 'default' user_id, in the event is different from
   # 'default'.
@@ -357,6 +370,12 @@ module "redis" {
   # Whether to enable encryption in transit.
   enable_transit_encryption = true
 
+  # Specifies the destination and format of Redis Engine Log. See the
+  # documentation on Amazon ElastiCache. See Log Delivery Configuration below
+  # for more details. You can find more information here
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+  engine_log_delivery_configuration = null
+
   # The KMS key ARN used to encrypt data at rest. Can be specified only if
   # at_rest_encryption_enabled = true.
   kms_key_id = null
@@ -385,8 +404,8 @@ module "redis" {
   # (e.g. 6379).
   port = 6379
 
-  # Version number of redis to use (e.g. 5.0.5). Set to 6.x to use redis 6.
-  redis_version = "5.0.5"
+  # Version number of redis to use (e.g. 5.0.6). Set to 6.x to use redis 6.
+  redis_version = "5.0.6"
 
   #  Number of replica nodes in each node group. Changing this number will
   # trigger a resizing operation before other settings modifications. Valid
@@ -400,6 +419,12 @@ module "redis" {
 
   # A set of tags to set for the Security Group created as part of this module.
   security_group_tags = {}
+
+  # Specifies the destination and format of Redis SLOWLOG. See the documentation
+  # on Amazon ElastiCache. See Log Delivery Configuration below for more
+  # details. You can find more information here
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+  slow_log_delivery_configuration = null
 
   # The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon
   # S3. You can use this parameter to restore from an externally created
@@ -454,7 +479,7 @@ module "redis" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.22.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.22.8"
 }
 
 inputs = {
@@ -504,6 +529,12 @@ inputs = {
   # alphanumeric characters or symbols (excluding @, <double-quotes>, and /)
   auth_token = null
 
+  # Specifies whether minor version engine upgrades will be applied
+  # automatically to the underlying Cache Cluster instances during the
+  # maintenance window. Only supported for engine type 'redis' and if the engine
+  # version is 6 or higher
+  auto_minor_version_upgrade = true
+
   # Scalable dimension of the scalable target. Supported dimensions are:
   # [elasticache:replication-group:NodeGroups,elasticache:replication-group:Replicas].
   # Documentation can be found in the ScalableDimension parameter at:
@@ -524,6 +555,9 @@ inputs = {
   # Target value of the auto_scale trigger metric
   auto_scale_trigger_metric_target_value = null
 
+  # Configuration variables for an ElastiCache Parameter Group.
+  aws_elasticache_parameter_group_config = null
+
   # The description of the aws_elasticache_security_group that is created.
   # Defaults to 'Security group for the var.name ElastiCache cluster' if not
   # specified.
@@ -539,6 +573,10 @@ inputs = {
   # The name of the aws_elasticache_subnet_group that is created. Defaults to
   # var.name-subnet-group if not specified.
   aws_elasticache_subnet_group_name = null
+
+  # Whether to create the ElastiCache user group or not. If not then it will
+  # asume the group pointed by `user_group_id` already exists
+  create_user_group = true
 
   # The name of the new 'default' user_id, in the event is different from
   # 'default'.
@@ -571,6 +609,12 @@ inputs = {
   # Whether to enable encryption in transit.
   enable_transit_encryption = true
 
+  # Specifies the destination and format of Redis Engine Log. See the
+  # documentation on Amazon ElastiCache. See Log Delivery Configuration below
+  # for more details. You can find more information here
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+  engine_log_delivery_configuration = null
+
   # The KMS key ARN used to encrypt data at rest. Can be specified only if
   # at_rest_encryption_enabled = true.
   kms_key_id = null
@@ -599,8 +643,8 @@ inputs = {
   # (e.g. 6379).
   port = 6379
 
-  # Version number of redis to use (e.g. 5.0.5). Set to 6.x to use redis 6.
-  redis_version = "5.0.5"
+  # Version number of redis to use (e.g. 5.0.6). Set to 6.x to use redis 6.
+  redis_version = "5.0.6"
 
   #  Number of replica nodes in each node group. Changing this number will
   # trigger a resizing operation before other settings modifications. Valid
@@ -614,6 +658,12 @@ inputs = {
 
   # A set of tags to set for the Security Group created as part of this module.
   security_group_tags = {}
+
+  # Specifies the destination and format of Redis SLOWLOG. See the documentation
+  # on Amazon ElastiCache. See Log Delivery Configuration below for more
+  # details. You can find more information here
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+  slow_log_delivery_configuration = null
 
   # The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon
   # S3. You can use this parameter to restore from an externally created
@@ -750,6 +800,15 @@ The password used to access a password protected server. Can be specified only i
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="auto_minor_version_upgrade" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether minor version engine upgrades will be applied automatically to the underlying Cache Cluster instances during the maintenance window. Only supported for engine type 'redis' and if the engine version is 6 or higher
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="auto_scale_dimension" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -795,6 +854,27 @@ Target value of the auto_scale trigger metric
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="aws_elasticache_parameter_group_config" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Configuration variables for an ElastiCache Parameter Group.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    name        = string
+    family      = string
+    description = string
+    parameters  = list(map(string))
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="aws_elasticache_security_group_description" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -829,6 +909,15 @@ The name of the aws_elasticache_subnet_group that is created. Defaults to <a hre
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="create_user_group" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to create the ElastiCache user group or not. If not then it will asume the group pointed by `user_group_id` already exists
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="default_user_id" requirement="optional" type="string">
@@ -892,6 +981,26 @@ Whether to enable encryption in transit.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="engine_log_delivery_configuration" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Specifies the destination and format of Redis Engine Log. See the documentation on Amazon ElastiCache. See Log Delivery Configuration below for more details. You can find more information here https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    destination      = string
+    destination_type = string
+    log_format       = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="kms_key_id" requirement="optional" type="string">
@@ -963,10 +1072,10 @@ The port number on which each of the cache nodes will accept connections (e.g. 6
 <HclListItem name="redis_version" requirement="optional" type="string">
 <HclListItemDescription>
 
-Version number of redis to use (e.g. 5.0.5). Set to 6.x to use redis 6.
+Version number of redis to use (e.g. 5.0.6). Set to 6.x to use redis 6.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;5.0.5&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;5.0.6&quot;"/>
 </HclListItem>
 
 <HclListItem name="replicas_per_node_group" requirement="optional" type="number">
@@ -994,6 +1103,26 @@ A set of tags to set for the Security Group created as part of this module.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="slow_log_delivery_configuration" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Specifies the destination and format of Redis SLOWLOG. See the documentation on Amazon ElastiCache. See Log Delivery Configuration below for more details. You can find more information here https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    destination      = string
+    destination_type = string
+    log_format       = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="snapshot_arn" requirement="optional" type="string">
@@ -1121,11 +1250,11 @@ This is a list of user IDs  that should be added to the group defined in the 'us
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.1/modules/redis/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.1/modules/redis/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.1/modules/redis/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.8/modules/redis/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.8/modules/redis/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.22.8/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "25c681ba55344ceef38f22b13ef6c75c"
+  "hash": "5e013d7dce5e4cfd0a42771a5de719ce"
 }
 ##DOCS-SOURCER-END -->

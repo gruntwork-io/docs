@@ -4,7 +4,6 @@
 This documentation pertains to an old version of Gruntwork Pipelines which used the ECS Deploy Runner. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
 :::
 
-
 Gruntwork Pipelines is a framework that enables you to use your preferred CI tool to
 securely run an end-to-end pipeline for infrastructure code ([Terraform](https://www.terraform.io/)) and
 app code ([Docker](https://www.docker.com/) or [Packer](https://www.packer.io/)). Rather than replace your existing CI/CD provider, Gruntwork Pipelines is designed to enhance the security
@@ -18,12 +17,9 @@ infrastructure related permissions reside safely within your own AWS account. Th
 high value AWS secrets.
 
 
-
-
-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "84a7960e422521ec93f0dfa0eeec1c50"
+  "hash": "bc5145c93f72617664cc0a3cc1a575e2"
 }
 ##DOCS-SOURCER-END -->

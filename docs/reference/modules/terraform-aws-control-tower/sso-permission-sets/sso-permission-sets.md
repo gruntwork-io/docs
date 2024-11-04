@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="0.3.0" />
+<VersionBadge repoTitle="Control Tower" version="0.8.1" />
 
 # SSO Permission Sets
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.3.0/modules/aws-sso/sso-permission-sets" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.1/modules/aws-sso/sso-permission-sets" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=sso-permission-sets" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -21,10 +21,8 @@ This module contains [Terraform](https://www.terraform.io) code to provision and
 
 ## Features
 
-*   Define and provision multiple Permission Sets.
-*   Assign Permission Sets directly to AWS Identity Store Groups so that they are immediately available to access your AWS
-    Accounts.
-*   Assign managed and inline IAM Policies to the Permission Sets.
+*   Define and provision a Permission Set
+*   Assign managed and inline IAM Policies to the Permission Set.
 
 ## Learn
 
@@ -43,49 +41,45 @@ Refer to the [official
 documentation](https://docs.aws.amazon.com/singlesignon/latest/userguide/permissionsetsconcept.html) for more
 information on Permission Sets.
 
-### How do I provision a Permission Set to an Account?
-
-You can use this module to provision a Permission Set to an Account or multiple AWS Accounts. To provision the
-Permission Set, it must be assigned to an AWS Account and a Group. This combination grants access to the AWS Account to
-the Group with the given Permission Set.
-
-You can specify the Account and Group pair in the `accounts` sub property of the Permission Set configuration passed to
-the `permission_sets` input variable to provision the Permission Set to the given AWS Account.
+### How do I create a permission set?
 
 For example:
 
 ```hcl
-module "sso_permission_sets" {
-  # ... other args omitted for brevity ...
+module "sso_permission_set" {
+  source = "git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets"
 
-  permission_sets = {
-    TFFullAccess = {
-      # ... other args omitted for brevity ...
+  name          = "GWFullAccess"
+  description   = "Provides full (administrator) access to accounts"
+  inline_policy = <<EOP
+{
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "NotAction": [
+                "organizations:*",
+                "account:*"
+            ],
+            "Resource": "*"
+        }
+    ],
+    "Version": "2012-10-17"
+}
+EOP
+}
 
-      managed_policy_names     = ["AdministratorAccess"]
-      accounts = [
-        {
-          id         = "000000000000" # AWS Account ID
-          group_name = "FullAccess"   # Name of the group in AWS SSO Identity Store
-          group_id   = null
-        },
-        {
-          id         = "1234567891234"                         # AWS Account ID
-          group_name = null
-          group_id   = "fffaaaaa-0000-1111-2222-1111ccccbbbb"  # ID of the group in AWS SSO Identity Store
-        },
-      ]
-    }
-  }
 ```
 
-In the example above, the `TFFullAccess` Permission Set is assigned the `AdministratorAccess` managed IAM policy, and
-provisioned to the AWS Account with ID `000000000000` for the SSO Identity Store group with the name `FullAccess`. It is
-also provisioned to the AWS Account with ID `1234567891234` for the SSO Identity Store group with the ID
-`fffaaaaa-0000-1111-2222-1111ccccbbbb`.
+In the example above, the `GWFullAccess` Permission Set is assigned a custom inline IAM policy.
 
 Once provisioned, users in the AWS Identity Store that are assigned to the specified group will automatically be granted
 access to the AWS Account with the IAM permissions defined on the Permission Set.
+
+### How do I provision a Permission Set to an Account?
+
+Permission sets are normally bound to groups using your IDP.
+
+For an example of a manual binding see the [sso-groups module](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.1/modules/aws-sso/sso-groups).
 
 ## Sample Usage
 
@@ -100,7 +94,7 @@ access to the AWS Account with the IAM permissions defined on the Permission Set
 
 module "sso_permission_sets" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets?ref=v0.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets?ref=v0.8.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -145,7 +139,7 @@ module "sso_permission_sets" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets?ref=v0.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets?ref=v0.8.1"
 }
 
 inputs = {
@@ -275,11 +269,11 @@ The name of the permission set that was created.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.3.0/modules/sso-permission-sets/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.3.0/modules/sso-permission-sets/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.3.0/modules/sso-permission-sets/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.1/modules/sso-permission-sets/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.1/modules/sso-permission-sets/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.1/modules/sso-permission-sets/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c14f8d31043cca6d8e8606ede3fa2cd5"
+  "hash": "c34446a457daf139013064c4538cff6a"
 }
 ##DOCS-SOURCER-END -->

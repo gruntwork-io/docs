@@ -9,15 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.32" lastModifiedVersion="0.32"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.38.1" lastModifiedVersion="0.36.0"/>
 
 # DMS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/dms" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/dms" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.32" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.36.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module creates an Amazon Database Migration Service (DMS) that makes it possible to migrate data from one source database to another target database. You can use this module to migrate your data into the AWS Cloud or between combinations of cloud and on-premises setups. Currently, this module only support MySQL and MariaDB engine as source and target database. Additional support for more database engine will be added in the future.
+This module creates an Amazon Database Migration Service (DMS) that makes it possible to migrate data from one source database to another target database. You can use this module to migrate your data into the AWS Cloud or between combinations of cloud and on-premise setups. Currently, this module only support MySQL, MariaDB, and Aurora MySQL engines as source and target databases. Additional support for more database engines will be added in the future.
 
 ## Sample Usage
 
@@ -32,7 +32,7 @@ This module creates an Amazon Database Migration Service (DMS) that makes it pos
 
 module "dms" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/dms?ref=v0.32"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/dms?ref=v0.38.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -244,7 +244,7 @@ module "dms" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/dms?ref=v0.32"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/dms?ref=v0.38.1"
 }
 
 inputs = {
@@ -945,11 +945,11 @@ A map of maps containing the replication tasks created and their full output of 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/dms/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/dms/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.32/modules/dms/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/dms/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/dms/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.38.1/modules/dms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ea7381d2ede6304af6dd000a984a4c65"
+  "hash": "f78d7fccf6f774485d4f3813b3b97614"
 }
 ##DOCS-SOURCER-END -->

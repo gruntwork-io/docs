@@ -29,14 +29,14 @@ The output of the diff will contain messages similar to these:
     Terraform will perform the following actions:
 
     # module.rds.module.rds_alarms.aws_cloudwatch_metric_alarm.rds_disk_space_available[0] will be updated in-place
-    ~ resource "aws_cloudwatch_metric_alarm" "rds_disk_space_available" {
+    ~ resource "aws_cloudwatch_metric_alarm" "rds_disk_space_available" \{
         ...
-        }
+        \}
 
     # module.rds.module.rds_alarms.aws_cloudwatch_metric_alarm.rds_high_cpu_utilization[0] will be updated in-place
-    ~ resource "aws_cloudwatch_metric_alarm" "rds_high_cpu_utilization" {
+    ~ resource "aws_cloudwatch_metric_alarm" "rds_high_cpu_utilization" \{
         ...
-        }
+        \}
 
     ...
 
@@ -58,27 +58,27 @@ The output `plan` will contain messages similar to these:
 
     # module.database.aws_db_instance.primary[0] will be destroyed
     # (because aws_db_instance.primary is not in configuration)
-    - resource "aws_db_instance" "primary" {
+    - resource "aws_db_instance" "primary" \{
         ...
-        }
+        \}
 
     # module.database.aws_db_subnet_group.db[0] will be destroyed
     # (because aws_db_subnet_group.db is not in configuration)
-    - resource "aws_db_subnet_group" "db" {
+    - resource "aws_db_subnet_group" "db" \{
         ...
-        }
+        \}
 
     ...
 
     # module.rds.module.database.aws_db_instance.primary[0] will be created
-    + resource "aws_db_instance" "primary" {
+    + resource "aws_db_instance" "primary" \{
         ...
-        }
+        \}
 
     # module.rds.module.database.aws_db_subnet_group.db[0] will be created
-    + resource "aws_db_subnet_group" "db" {
+    + resource "aws_db_subnet_group" "db" \{
         ...
-        }
+        \}
 
     ...
 
@@ -119,6 +119,6 @@ and confirm that your infrastructure is now CIS AWS Foundations Benchmark v1.5.0
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "9e04dae37862a686590bcfe5c62940d2"
+  "hash": "e3b698dabedbe106b7af11907dcd0951"
 }
 ##DOCS-SOURCER-END -->
