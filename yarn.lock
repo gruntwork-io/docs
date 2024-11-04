@@ -3091,7 +3091,7 @@
   resolved "https://registry.yarnpkg.com/@swc/core-linux-arm64-musl/-/core-linux-arm64-musl-1.8.0.tgz#651647747f820f4667ad926c965b396bb82122fa"
   integrity sha512-2CdPTEKxx2hJIj/B0fn8L8k2coo/FDS95smzXyi2bov5FcrP6Ohboq8roFBYgj38fkHusXjY8qt+cCH7yXWAdg==
 
-"@swc/core-linux-x64-gnu@1.8.0":
+"@swc/core-linux-x64-gnu@1.8.0", "@swc/core-linux-x64-gnu@^1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@swc/core-linux-x64-gnu/-/core-linux-x64-gnu-1.8.0.tgz#745a3113bc48ee867631a77bb239ec598a2fc8f2"
   integrity sha512-14StQBifCs/AMsySdU95OmwNJr9LOVqo6rcTFt2b7XaWpe/AyeuMJFxcndLgUewksJHpfepzCTwNdbcYmuNo6A==
@@ -3165,7 +3165,7 @@
   resolved "https://registry.yarnpkg.com/@swc/html-linux-arm64-musl/-/html-linux-arm64-musl-1.8.0.tgz#1c262c38d129655fd90234ca15447837ab58253f"
   integrity sha512-MVdXyF4QZtVM2RpoSbpKTyn4NHYQmmoj+hbIgqEnce+UH/+lly/xyqtObOcZ05a/UKOx93lL9e8zY48tSRNAsg==
 
-"@swc/html-linux-x64-gnu@1.8.0":
+"@swc/html-linux-x64-gnu@1.8.0", "@swc/html-linux-x64-gnu@^1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@swc/html-linux-x64-gnu/-/html-linux-x64-gnu-1.8.0.tgz#c9a95048b1b58f141fa124d1d3c65954556304ed"
   integrity sha512-+RhgpJSqLDBySQClmPb1esdHvylyNPmUDZSCbxW2UB2X1PyJk+a6u9c6T4bacpGj+kSYxWJTpm8NUMP5O8TJlQ==
