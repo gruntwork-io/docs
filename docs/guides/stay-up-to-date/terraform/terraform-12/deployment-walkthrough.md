@@ -22,10 +22,10 @@ gotchas that the upgrade tool occasionally misses.
 
 Here is the rough process:
 
-1. [Install and setup Terraform 0.12](#install-and-setup-terraform-12)
-1. [Upgrade each module for 0.12 compatibility](#upgrade-each-module-for-1compatibility)
+1. [Install and setup Terraform 0.12](#install-and-setup-terraform-012)
+1. [Upgrade each module for 0.12 compatibility](#upgrade-each-module-for-012-compatibility)
 
-### <a id="install-and-setup-terraform-0-12"></a>Install and setup Terraform 0.12
+### Install and setup Terraform 0.12
 
 To use Terraform 0.12, you will need to have the binary available on your machine. However, you don't want to blindly
 replace your existing `terraform` binary to the newer version, because that would mean you wouldn't be able to use the
@@ -104,7 +104,7 @@ terraform version
 
 You can find the available binaries for each terraform version [here](https://releases.hashicorp.com/terraform/).
 
-### <a name="upgrade-each-module-for-0-12-compatibility"></a>Upgrade each module for 0.12 compatibility
+### Upgrade each module for 0.12 compatibility
 
 To upgrade each of your modules to HCL2 syntax, you can run the `terraform 0.12upgrade` command using version 0.12.x of
 the `terraform` binary. You will need to do the following for each of your Terraform modules (e.g in your
@@ -172,14 +172,14 @@ terragrunt `terraform.tfvars` files to the new syntax.
 
 Here is the rough process:
 
-1. [Install and setup Terragrunt 0.19](#install-and-setup-terragrunt-19)
-1. [Migrate terraform.tfvars to terragrunt.hcl](#migrate-terraform-tfvars-to-terragrunt-hcl)
+1. [Install and setup Terragrunt 0.19](#install-and-setup-terragrunt-019)
+1. [Migrate terraform.tfvars to terragrunt.hcl](#migrate-terraformtfvars-to-terragrunthcl)
 1. [Switch common tfvars files to use yaml](#switch-common-tfvars-files-to-use-yaml)
 
-### <a name="install-and-setup-terragrunt-0-19"></a>Install and setup Terragrunt 0.19
+### Install and setup Terragrunt 0.19
 
 You will also need to setup the Terragrunt 0.19 binary in a [similar fashion to setting up Terraform
-0.12](#install-and-setup-terraform-0-12). You can use the same instructions available for managing Terraform 0.12 as for
+0.12](#install-and-setup-terraform-012). You can use the same instructions available for managing Terraform 0.12 as for
 managing Terragrunt 0.19.
 
 - [Using homebrew to manage multiple terragrunt versions](#using-homebrew-to-manage-multiple-terraform-versions)
@@ -219,7 +219,7 @@ versions](#manually-managing-multiple-terraform-versions) to manage multiple ver
 You can find the available binaries for each terragrunt version
 [here](https://github.com/gruntwork-io/terragrunt/releases).
 
-### <a name="migrate-terraform-tfvars-to-terragrunt-hcl"></a>Migrate terraform.tfvars to terragrunt.hcl
+### Migrate terraform.tfvars to terragrunt.hcl
 
 Once you have terragrunt 0.19 available on your machine, you will need to migrate your `terraform.tfvars` files to
 `terragrunt.hcl` files before you can start to use the new version. You will need to follow the steps outlined in the
@@ -233,7 +233,7 @@ environment to test the changes you are making to that module (e.g
 [`infrastructure-live/dev/us-east-1/dev/vpc`](https://github.com/gruntwork-io/infrastructure-live-multi-account-acme/tree/dd6dce7f737f8c1bd32466b69e905b2bdd25db80/dev/us-east-1/dev/vpc)).
 The rough process should be:
 
-1. Upgrade the module to TF12 syntax following the steps [listed above](#upgrade-each-module-for-1compatibility).
+1. Upgrade the module to TF12 syntax following the steps [listed above](#upgrade-each-module-for-012-compatibility).
 1. Update the live config for a pre-prod environment that deploys the module.
 1. Run `terragrunt plan` to verify the changes. Use `--terragrunt-source` so you can point to the updated module (see
    the docs on [working locally](https://github.com/gruntwork-io/terragrunt#working-locally)). Carefully review to make
@@ -257,7 +257,7 @@ module before promoting the changes. Depending on your infrastructure setup, you
 - Delaying promotion allows you to minimize disruption from environments being in a mixed version state, that might
   prevent you from addressing issues in downstream modules.
 
-### <a name="switch-common-tfvars-files-to-use-yaml"></a>Switch common tfvars files to use yaml
+### Switch common tfvars files to use yaml
 
 Terragrunt supports ingesting common `tfvars` files to pass global variables to your terraform modules through the use
 of [`required_var_files` and `optional_var_files` in the

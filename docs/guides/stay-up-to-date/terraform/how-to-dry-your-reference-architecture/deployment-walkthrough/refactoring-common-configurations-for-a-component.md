@@ -39,7 +39,7 @@ Example inventory:
   - `logs/us-west-2/mgmt/ecs-deploy-runner`
   - `security/us-west-2/mgmt/ecs-deploy-runner`
 
-As mentioned in the [Background](../core-concepts.md#background), the changes will be isolated to Terragrunt configuration files (syntactic changes vs
+As mentioned in the [Background](../core-concepts.md), the changes will be isolated to Terragrunt configuration files (syntactic changes vs
 semantic changes) and there will be no need to roll out the changes using `terraform`. Given that, the order in which
 the components are updated does not matter. You can update the components in whatever order you would like.
 
