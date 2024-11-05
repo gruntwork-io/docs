@@ -12,7 +12,7 @@ Here are the repos that were updated:
 
 - [gruntkms](#gruntkms)
 - [gruntwork](#gruntwork)
-- [package-k8s](#package-k-8-s)
+- [package-k8s](#package-k8s)
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)

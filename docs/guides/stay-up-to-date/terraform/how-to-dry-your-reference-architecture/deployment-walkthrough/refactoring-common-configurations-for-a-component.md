@@ -4,13 +4,9 @@ The rest of this guide will cover how to identify and extract the common configu
 in your Reference Architecture. These steps can be used to refactor any component that is deployed in multiple
 accounts or environments in your Reference Architecture.
 
-- [Refactoring common configurations for a component](#refactoring-common-configurations-for-a-component)
-  - [Step 1: Identify the component](#step-1-identify-the-component)
-  - [Step 2: Identify common configurations](#step-2-identify-common-configurations)
-    - [Using `diff` to identify raw differences](#using-diff-to-identify-raw-differences)
-    - [Using JSON rendering to identify semantic differences](#using-json-rendering-to-identify-semantic-differences)
-  - [Step 3: Extract common configurations](#step-3-extract-common-configurations)
-  - [Step 4: Update child configurations](#step-4-update-child-configurations)
+import TOCInline from '@theme/TOCInline';
+
+<TOCInline toc={toc} />
 
 ## Step 1: Identify the component
 
@@ -91,14 +87,6 @@ identified as different across environments.
 
 There are a couple ways to go about this depending on how complex the underlying configuration files are, and how much
 customization has been made since the deployment of the Reference Architecture.
-
-- [Refactoring common configurations for a component](#refactoring-common-configurations-for-a-component)
-  - [Step 1: Identify the component](#step-1-identify-the-component)
-  - [Step 2: Identify common configurations](#step-2-identify-common-configurations)
-    - [Using `diff` to identify raw differences](#using-diff-to-identify-raw-differences)
-    - [Using JSON rendering to identify semantic differences](#using-json-rendering-to-identify-semantic-differences)
-  - [Step 3: Extract common configurations](#step-3-extract-common-configurations)
-  - [Step 4: Update child configurations](#step-4-update-child-configurations)
 
 ### Using `diff` to identify raw differences
 
