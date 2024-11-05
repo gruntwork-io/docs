@@ -87,7 +87,7 @@ const config = {
         docs: {
           routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: "https://github.com/gruntwork-io/docs/edit/master/",
+          editUrl: "https://github.com/gruntwork-io/docs/edit/main/",
           exclude: [
             "guides/build-it-yourself/landing-zone/**",
             "guides/build-it-yourself/vpc/**",
