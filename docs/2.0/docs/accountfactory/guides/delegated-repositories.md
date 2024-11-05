@@ -11,9 +11,7 @@ When using Account Factory to request new account(s) you can chose to Delegate M
 
 Specific permissions for IaC changes are controlled via IAM roles in your `infrastructure-live-access-control` repository, allowing your infrastructure team to act as a central authority for permissions.
 
-## Steps
-
-### 1. Update Account Factory Settings
+### Step 1 - Update Account Factory Settings
 
 Account Factory options are located in `.gruntwork/config.yml`. See a full description of all account factory options in the [configuration reference](/2.0/reference/accountfactory/configurations).
 
@@ -34,7 +32,7 @@ GitHub Collaborators is a list of teams to automatically grant access to the new
 
 <PersistentCheckbox id="vending-delegated-repositories-1" label="Settings Up To Date" />
 
-### 2. Requesting the Account
+### Step 2 - Requesting the Account
 
 In a web browser open the file `.github/workflows/account-factory-inputs.html` from your `infrastructure-live-root` repository. This webpage is used to craft the initial account request payload that we will pass to the account factory workflow.
 
@@ -52,7 +50,7 @@ Press Generate and copy the resulting JSON. This is the payload we will pass int
 
 <PersistentCheckbox id="vending-delegated-repositories-2" label="Payload Created" />
 
-### 3. Run the Account Factory Workflow
+### Step 3 - Run the Account Factory Workflow
 
 Navigate to the Actions tab in your `infrastructure-live-root` repository and select the Account Factory workflow in the left hand pane.
 
@@ -62,7 +60,7 @@ Select Run Workflow on the right, and paste the JSON payload into the input. Run
 
 <PersistentCheckbox id="vending-delegated-repositories-3" label="Account Factory Workflow Run" />
 
-### 4. Merge the Request PR
+### Step 4 - Merge the Request PR
 
 The result of the Account Factory Workflow run will be a new Pull Request, adding a new YAML file in the `_new-account-requests` directory.
 
@@ -74,7 +72,7 @@ You can view the workflow run on the main branch. Provisioning the account(s) ca
 
 <PersistentCheckbox id="vending-delegated-repositories-4" label="Account Request PR Merged and Account Provisioned" />
 
-### 5. Merge the Baseline PR
+### Step 5 - Merge the Baseline PR
 
 The new Baseline PR contains required infrastructure for your delegated repository to plan and apply infrastructure changes in AWS, as well as account baselines and account specific infrastructure such as a VPC if configured.
 
@@ -100,7 +98,7 @@ Until the Access Control Pull Request has been merged, the workflows in your new
 
 <PersistentCheckbox id="vending-delegated-repositories-5" label="Account Baselined and Repository Created" />
 
-### 6. Merge the Access Control PR
+### Step 6 - Merge the Access Control PR
 
 Follow the link to the Access Control Pull Request and review the infrastructure changes in the PR. There are two new roles, `delegated-pipelines-apply-role` and `delegated-pipelines-plan-role` that grant permissions specifically for the new repository.
 
@@ -114,7 +112,7 @@ Merge the PR and allow Pipelines to apply the terragrunt changes to create the r
 
 <PersistentCheckbox id="vending-delegated-repositories-6" label="Access Control PR Merged and Roles Created" />
 
-### 7. Merge the Delegated Repository Bootstrap PR
+### Step 7 - Merge the Delegated Repository Bootstrap PR
 
 Once the Access Control PR has been merged and applied, navigate to the delegated repository and review the Bootstrap PR.
 
@@ -124,7 +122,7 @@ Merge this pull request and your delegated repository is read to use.
 
 <PersistentCheckbox id="vending-delegated-repositories-7" label="Merge the Delegated Repository Bootstrap PR" />
 
-### 8. Start adding new infrastructure
+### Step 8 - Start adding new infrastructure
 
 To summarize, at this point you will have:
 - Provisioned a new AWS account(s)
