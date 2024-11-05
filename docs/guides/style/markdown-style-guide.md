@@ -800,7 +800,7 @@ at the end of the file) where readers can find them in context.
 
 Please prefer standard Markdown syntax wherever possible and avoid HTML hacks.
 If you can't seem to accomplish what you want, reconsider whether you really
-need it. Except for [big tables](#prefer-lists-to-tables), Markdown meets almost
+need it. Except for [big tables](#consider-lists-for-complex-content), Markdown meets almost
 all needs already.
 
 Every bit of HTML or Javascript hacking reduces the readability and portability.
