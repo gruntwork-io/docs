@@ -21,7 +21,7 @@ v0.7.0, v0.8.0, and v0.9.0 to get the full list of backward incompatible updates
 The following table provides a summary of all the relevant Gruntwork AWS modules and the respective versions that are
 compatible with CIS AWS v1.4.0:
 
-<a id="compatibility-table" class="snap-top"></a>
+##### Compatibility Table
 
 <table id="compatibility-table">
   <colgroup>

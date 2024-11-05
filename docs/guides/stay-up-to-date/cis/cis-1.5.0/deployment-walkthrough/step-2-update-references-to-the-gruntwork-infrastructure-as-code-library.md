@@ -12,7 +12,7 @@ versions of the Gruntwork library to pick up the changes necessary for your infr
 The following table provides a summary of all the relevant Gruntwork AWS modules and the respective versions that are
 compatible with CIS AWS v1.5.0:
 
-<a id="compatibility-table" class="snap-top"></a>
+##### Compatibility Table
 
 <table id="compatibility-table">
   <colgroup>
