@@ -11,7 +11,7 @@ The Running Apps component is focused on:
 - **IaC Modules.** Running Apps includes access to several IaC modules relating to EKS, ECS, and individual Lambda functions.
 - **Tooling.** We make use of Kubernetes ecosystem tooling like Karpenter and Argo, in addition to our own tooling to improve the UX for ECS and Lambda.
 - **Setup.** Our modules include documentation on how to configure an EKS or ECS cluster.
-- **Updates.** Gruntwork publishes regular updates to EKS, ECS, and Lambda modules, and you can use [Patcher](/patcher/overview/) to automatically update to the latest version of these modules.
+- **Updates.** Gruntwork publishes regular updates to EKS, ECS, and Lambda modules, and you can use [Patcher](/2.0/docs/patcher/concepts/index) to automatically update to the latest version of these modules.
 
 ## Available approaches
 
