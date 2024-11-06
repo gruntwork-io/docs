@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="1.0.1" lastModifiedVersion="1.0.0"/>
+<VersionBadge repoTitle="AWS Lambda" version="1.0.2" lastModifiedVersion="1.0.2"/>
 
 # Lambda@Edge Function Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.1/modules/lambda-edge" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/lambda-edge" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v1.0.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v1.0.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy and manage an [AWS Lambda@Edge](https://aws.amazon.com/lambda/edge/) function.
 Lambda@Edge gives you a way to run code on-demand in AWS Edge locations without having to manage servers.
@@ -65,7 +65,7 @@ resource "aws_lambda_permission" "with_sns" {
 
 Lambda@Edge stores CloudWatch Logs in the AWS Regions closest to the location where the function receives traffic and is
 executed. That means a log group must be created in every region that have [Regional Edge Caches](https://aws.amazon.com/blogs/networking-and-content-delivery/aggregating-lambdaedge-logs/).
-Instructions on how to do this can be found at the   [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.1/modules/lambda-edge-multi-region-log-groups). To see which regions are receiving traffic, you can find graphs of metrics for the
+Instructions on how to do this can be found at the   [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/lambda-edge-multi-region-log-groups). To see which regions are receiving traffic, you can find graphs of metrics for the
 function on the CloudFront console and choose your region there.
 
 ## How to trigger this Lambda function from Cloudfront
@@ -94,7 +94,7 @@ triggers:
 
 module "lambda_edge" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v1.0.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v1.0.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -172,6 +172,11 @@ module "lambda_edge" {
   # lambdas can be the target of a CloudFront event trigger.
   enable_versioning = true
 
+  # A map of environment variables to pass to the Lambda function. AWS will
+  # automatically encrypt these with KMS and decrypt them when running the
+  # function.
+  environment_variables = null
+
   # A custom KMS key to use to encrypt and decrypt Lambda function environment
   # variables. Leave it blank to use the default KMS key provided in your AWS
   # account.
@@ -186,6 +191,12 @@ module "lambda_edge" {
   # respective providers still need to be passed to the lambda-edge module. The
   # default is set to all regions that have a Regional Edge Cache.
   log_regions = ["us-east-1","us-east-2","us-west-1","us-west-2","ap-south-1","ap-northeast-2","ap-southeast-1","ap-southeast-2","ap-northeast-1","eu-central-1","eu-west-1","eu-west-2","sa-east-1"]
+
+  # Advanced logging settings. Format can either be the default Text option or
+  # JSON. JSON allows for different log levels to be selected, not setting those
+  # attributes will use the AWS defaults. More information available at:
+  # https://docs.aws.amazon.com/lambda/latest/dg/monitoring-cloudwatchlogs-advanced.html
+  logging_config = null
 
   # The amount of reserved concurrent executions for this lambda function or -1
   # if unreserved.
@@ -275,7 +286,7 @@ module "lambda_edge" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v1.0.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v1.0.2"
 }
 
 inputs = {
@@ -356,6 +367,11 @@ inputs = {
   # lambdas can be the target of a CloudFront event trigger.
   enable_versioning = true
 
+  # A map of environment variables to pass to the Lambda function. AWS will
+  # automatically encrypt these with KMS and decrypt them when running the
+  # function.
+  environment_variables = null
+
   # A custom KMS key to use to encrypt and decrypt Lambda function environment
   # variables. Leave it blank to use the default KMS key provided in your AWS
   # account.
@@ -370,6 +386,12 @@ inputs = {
   # respective providers still need to be passed to the lambda-edge module. The
   # default is set to all regions that have a Regional Edge Cache.
   log_regions = ["us-east-1","us-east-2","us-west-1","us-west-2","ap-south-1","ap-northeast-2","ap-southeast-1","ap-southeast-2","ap-northeast-1","eu-central-1","eu-west-1","eu-west-2","sa-east-1"]
+
+  # Advanced logging settings. Format can either be the default Text option or
+  # JSON. JSON allows for different log levels to be selected, not setting those
+  # attributes will use the AWS defaults. More information available at:
+  # https://docs.aws.amazon.com/lambda/latest/dg/monitoring-cloudwatchlogs-advanced.html
+  logging_config = null
 
   # The amount of reserved concurrent executions for this lambda function or -1
   # if unreserved.
@@ -586,6 +608,15 @@ Set to true to enable versioning for this Lambda function. This allows you to us
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="environment_variables" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of environment variables to pass to the Lambda function. AWS will automatically encrypt these with KMS and decrypt them when running the function.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -651,6 +682,26 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="logging_config" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Advanced logging settings. Format can either be the default Text option or JSON. JSON allows for different log levels to be selected, not setting those attributes will use the AWS defaults. More information available at: https://docs.aws.amazon.com/lambda/latest/dg/monitoring-cloudwatchlogs-advanced.html
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    log_format            = optional(string, "Text")
+    application_log_level = optional(string)
+    system_log_level      = optional(string)
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="reserved_concurrent_executions" requirement="optional" type="number">
@@ -818,11 +869,11 @@ Name of the (optionally) created CloudWatch log groups for the lambda function.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.1/modules/lambda-edge/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.1/modules/lambda-edge/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.1/modules/lambda-edge/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/lambda-edge/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/lambda-edge/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/lambda-edge/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "61a18c2a46697196adcab784775a7d76"
+  "hash": "be5ce8cd0da451c654be1065c85e4cb7"
 }
 ##DOCS-SOURCER-END -->

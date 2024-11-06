@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="1.0.1" lastModifiedVersion="0.21.16"/>
+<VersionBadge repoTitle="AWS Lambda" version="1.0.2" lastModifiedVersion="0.21.16"/>
 
 # Keep Warm Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.1/modules/keep-warm" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/keep-warm" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.16" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -60,7 +60,7 @@ level](#concurrency) for your functions.
 
 module "keep_warm" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/keep-warm?ref=v1.0.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/keep-warm?ref=v1.0.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -133,7 +133,7 @@ module "keep_warm" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/keep-warm?ref=v1.0.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/keep-warm?ref=v1.0.2"
 }
 
 inputs = {
@@ -340,11 +340,11 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.1/modules/keep-warm/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.1/modules/keep-warm/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.1/modules/keep-warm/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/keep-warm/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/keep-warm/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/keep-warm/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "27cccde4e8bab83585b83c07b65432f8"
+  "hash": "cd8d7a744e71aeb216c5d294a775efe5"
 }
 ##DOCS-SOURCER-END -->
