@@ -64,7 +64,7 @@
   },
   "optionalDependencies": {
     "docs-sourcer": "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.32",
-    "ts-commons": "gruntwork-io/ts-commons#5.3.1"
+    "ts-commons": "gruntwork-io/ts-commons#v5.3.1"
   },
   "browserslist": {
     "production": [
