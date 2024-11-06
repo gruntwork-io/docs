@@ -346,6 +346,6 @@ and `apply` actions so that Terraform/Terragrunt can run. If you wish to impleme
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.1/modules/terraform-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f5b4ec7c8c889fc6e12c1e78f375e83c"
+  "hash": "304ba14d9a65ce18b35dc952ac3b04a0"
 }
 ##DOCS-SOURCER-END -->
