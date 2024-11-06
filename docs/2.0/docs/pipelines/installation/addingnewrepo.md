@@ -44,3 +44,8 @@ The Bootstrap workflow creates an empty infrastructure-modules repository that w
 ## Complete Instructions In The Bootstrap Pull Requests
 
 Each of your repositories will now contain a Bootstrap Pull Request. Follow the instructions in the Pull Requests to complete setup of your IaC repositories.
+
+:::info
+
+These bootstrapping pull requests include some stock configuration, such as a `mise.toml` file which specifies versions of OpenTofu and Terragrunt to use.  Please make sure you review these files and update the configuration to match your organization's requirements.
+:::
