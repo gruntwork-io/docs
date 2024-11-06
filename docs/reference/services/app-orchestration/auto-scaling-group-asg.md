@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.116.1" lastModifiedVersion="0.115.2"/>
+<VersionBadge version="0.117.0" lastModifiedVersion="0.115.2"/>
 
 # Auto Scaling Group
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/services/asg-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/services/asg-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fasg-service" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -55,7 +55,7 @@ access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 *   [ASG Documentation](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html):
     Amazon’s docs for ASG that cover core concepts such as launch templates and auto scaling groups.
-*   [User Data](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/services/asg-service/core-concepts.md)
+*   [User Data](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/services/asg-service/core-concepts.md)
 
 ## Deploy
 
@@ -63,7 +63,7 @@ access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -71,7 +71,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -90,7 +90,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "asg_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/asg-service?ref=v0.116.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/asg-service?ref=v0.117.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -474,7 +474,7 @@ module "asg_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/asg-service?ref=v0.116.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/asg-service?ref=v0.117.0"
 }
 
 inputs = {
@@ -1307,11 +1307,11 @@ Any types represent complex values of variable type. For details, please consult
     {
       "health-path" = {
         priority     = 130
-
+  
         content_type = "text/plain"
         message_body = "HEALTHY"
         status_code  = "200"
-
+  
       Conditions:
       You need to provide *at least ONE* per set of rules. It should contain one of the following:
         host_headers         = ["foo.com", "www.foo.com"]
@@ -1340,11 +1340,11 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map supports the following attributes:
-
+  
    REQUIRED
    - content_type [string]: The content type. Valid values are `text/plain`, `text/css`, `text/html`, `application/javascript`
                             and `application/json`.
-
+  
    OPTIONAL (defaults to value of corresponding module input):
    - priority      [number]       : A value between 1 and 50000. Leaving it unset will automatically set the rule with the next
                                    available priority after currently existing highest rule. This value must be unique for each
@@ -1352,12 +1352,12 @@ Any types represent complex values of variable type. For details, please consult
    - listener_arns [list(string)]: A list of listener ARNs to override `var.listener_arns`
    - message_body  [string]      : The message body.
    - status_code   [string]      : The HTTP response code. Valid values are `2XX`, `4XX`, or `5XX`.
-
+  
    Wildcard characters:
    * - matches 0 or more characters
    ? - matches exactly 1 character
    To search for a literal '*' or '?' character in a query string, escape the character with a backslash (\).
-
+  
    Conditions (need to specify at least one):
    - path_patterns        [list(string)]     : A list of paths to match (note that "/foo" is different than "/foo/").
                                               Comparison is case sensitive. Wildcard characters supported: * and ?.
@@ -1405,7 +1405,7 @@ Any types represent complex values of variable type. For details, please consult
     {
       "foo" = {
         priority = 120
-
+  
         host_headers         = ["www.foo.com", "*.foo.com"]
         path_patterns        = ["/foo/*"]
         source_ips           = ["127.0.0.1/32"]
@@ -1432,7 +1432,7 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map supports the following attributes:
-
+  
    OPTIONAL (defaults to value of corresponding module input):
    - priority          [number]                    : A value between 1 and 50000. Leaving it unset will automatically set
                                                     the rule with the next available priority after currently existing highest
@@ -1752,12 +1752,12 @@ Any types represent complex values of variable type. For details, please consult
         priority = 120
         port     = 443
         protocol = "HTTPS"
-
+  
         status_code = "HTTP_301"
         host  = "gruntwork.in"
         path  = "/signup"
         query = "foo"
-
+  
       Conditions:
         host_headers         = ["foo.com", "www.foo.com"]
         path_patterns        = ["/health"]
@@ -1785,14 +1785,14 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map supports the following attributes:
-
+  
    OPTIONAL (defaults to value of corresponding module input):
    - priority       [number]: A value between 1 and 50000. Leaving it unset will automatically set the rule with the next
                            available priority after currently existing highest rule. This value must be unique for each
                            listener.
    - listener_arns [list(string)]: A list of listener ARNs to override `var.listener_arns`
    - status_code   [string]: The HTTP redirect code. The redirect is either permanent `HTTP_301` or temporary `HTTP_302`.
-
+  
    The URI consists of the following components: `protocol://hostname:port/path?query`. You must modify at least one of
    the following components to avoid a redirect loop: protocol, hostname, port, or path. Any components that you do not
    modify retain their original values.
@@ -1801,12 +1801,12 @@ Any types represent complex values of variable type. For details, please consult
    - port        [string]: The port. Specify a value from 1 to 65525.
    - protocol    [string]: The protocol. Valid values are `HTTP` and `HTTPS`. You cannot redirect HTTPS to HTTP.
    - query       [string]: The query params. Do not include the leading "?".
-
+  
    Wildcard characters:
    * - matches 0 or more characters
    ? - matches exactly 1 character
    To search for a literal '*' or '?' character in a query string, escape the character with a backslash (\).
-
+  
    Conditions (need to specify at least one):
    - path_patterns        [list(string)]     : A list of paths to match (note that "/foo" is different than "/foo/").
                                               Comparison is case sensitive. Wildcard characters supported: * and ?.
@@ -1926,10 +1926,10 @@ Any types represent complex values of variable type. For details, please consult
 ```hcl
 
    Each entry in the map supports the following attributes:
-
+  
    REQUIRED:
    - server_port        number      : The port of the endpoint to be checked (e.g. 80).
-
+  
    OPTIONAL (defaults to value of corresponding module input):
    - target_group_name                   string      : A unique name to use for the corresponding target group. If
                                                        omitted, defaults to "SERVICE_NAME-ENTRY_KEY" where SERVICE_NAME
@@ -1949,7 +1949,7 @@ Any types represent complex values of variable type. For details, please consult
                                                        or fail for the health check to declare your site up or
                                                        down. Defaults to 2.
    - r53_health_check_request_interval   number      : The number of seconds between health checks. Defaults to 30.
-
+  
    - enable_lb_health_check  bool   : Set to false if you want to disable Target Group health's check.
                                       Defaults to true.
    - lb_healthy_threshold    number : The number of consecutive health checks *successes* required before
@@ -2130,11 +2130,11 @@ The ID of the Security Group that belongs to the ASG.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/services/asg-service/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/services/asg-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/services/asg-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/services/asg-service/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/services/asg-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/services/asg-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2a77be3ac1c2876f68877cd2575374a9"
+  "hash": "76ea280e920a2aa3086233e9ee72cfdb"
 }
 ##DOCS-SOURCER-END -->

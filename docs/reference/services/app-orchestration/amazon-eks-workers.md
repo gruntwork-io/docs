@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.116.1" lastModifiedVersion="0.115.0"/>
+<VersionBadge version="0.117.0" lastModifiedVersion="0.115.0"/>
 
 # Amazon EKS Workers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/services/eks-workers" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/services/eks-workers" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-workers" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -97,10 +97,10 @@ If you want to deploy this repo in production, check out the following resources
 ## Manage
 
 For information on registering the worker IAM role to the EKS control plane, refer to the
-[IAM Roles and Kubernetes API Access](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/services/eks-workers/core-concepts.md#iam-roles-and-kubernetes-api-access) section of the documentation.
+[IAM Roles and Kubernetes API Access](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/services/eks-workers/core-concepts.md#iam-roles-and-kubernetes-api-access) section of the documentation.
 
 For information on how to perform a blue-green deployment of the worker pools, refer to the
-[How do I perform a blue green release to roll out new versions of the module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/services/eks-workers/core-concepts.md#how-do-i-perform-a-blue-green-release-to-roll-out-new-versions-of-the-module)
+[How do I perform a blue green release to roll out new versions of the module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/services/eks-workers/core-concepts.md#how-do-i-perform-a-blue-green-release-to-roll-out-new-versions-of-the-module)
 section of the documentation.
 
 For information on how to manage your EKS cluster, including how to deploy Pods on Fargate, how to associate IAM roles
@@ -121,7 +121,7 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 
 module "eks_workers" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v0.116.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v0.117.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -640,7 +640,7 @@ module "eks_workers" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v0.116.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v0.117.0"
 }
 
 inputs = {
@@ -1186,13 +1186,13 @@ Any types represent complex values of variable type. For details, please consult
 
    Each configuration must be keyed by a unique string that will be used as a suffix for the ASG name. The values
    support the following attributes:
-
+  
    REQUIRED (must be provided for every entry):
    - subnet_ids  list(string)  : A list of the subnets into which the EKS Cluster's worker nodes will be launched.
                                  These should usually be all private subnets and include one in each AWS Availability
                                  Zone. NOTE: If using a cluster autoscaler, each ASG may only belong to a single
                                  availability zone.
-
+  
    OPTIONAL (defaults to value of corresponding module input):
    - min_size            number             : (Defaults to value from var.asg_default_min_size) The minimum number of
                                               EC2 Instances representing workers launchable for this EKS Cluster.
@@ -1254,13 +1254,13 @@ Any types represent complex values of variable type. For details, please consult
       Structure of Health_Percentage object:
       - min_healthy_percentage  number  : Min healthy percentage forthe  intance maintenance policy
       - max_healthy_percentage  number  : Max healthy percentage for the intance maintenance policy
-
+  
    Structure of Tag object:
    - key                  string  : The key for the tag to apply to the instance.
    - value                string  : The value for the tag to apply to the instance.
    - propagate_at_launch  bool    : Whether or not the tags should be propagated to the instance at launch time.
-
-
+  
+  
    Example:
    autoscaling_group_configurations = {
      "asg1" = {
@@ -1271,7 +1271,7 @@ Any types represent complex values of variable type. For details, please consult
        max_size          = 3
        asg_instance_type = "t2.large"
        subnet_ids        = [data.terraform_remote_state.vpc.outputs.private_app_subnet_ids[1]]
-
+  
        tags = [{
          key                 = "size"
          value               = "large"
@@ -1363,8 +1363,8 @@ Any types represent complex values of variable type. For details, please consult
 
    Each configuration must be keyed by a unique string that will be used as a suffix for the node group name. The
    values support the following attributes:
-
-
+  
+  
    OPTIONAL (defaults to value of corresponding module input):
    - subnet_ids          list(string)       : (Defaults to value from var.node_group_default_subnet_ids) A list of the
                                               subnets into which the EKS Cluster's managed nodes will be launched.
@@ -1433,12 +1433,12 @@ Any types represent complex values of variable type. For details, please consult
                                               passed through directly to the bootstrap script.
    - cloud_init_parts    map(string)        : (Defaults to value from var.cloud_init_parts)
                                               Per-ASG cloud init scripts to run at boot time on the node.  See var.cloud_init_parts for accepted keys.
-
+  
    Structure of LaunchTemplate object:
    - name     string  : The Name of the Launch Template to use. One of ID or Name should be provided.
    - id       string  : The ID of the Launch Template to use. One of ID or Name should be provided.
    - version  string  : The version of the Launch Template to use.
-
+  
    Example:
    managed_node_group_configurations = {
      ngroup1 = {
@@ -2711,11 +2711,11 @@ The list of names of the ASGs that were deployed to act as EKS workers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/services/eks-workers/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/services/eks-workers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/services/eks-workers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/services/eks-workers/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/services/eks-workers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "679487d39cc0aa3ed2a9fcf2965353b8"
+  "hash": "82d0827c4a9f2a374ad5240c348cb58f"
 }
 ##DOCS-SOURCER-END -->

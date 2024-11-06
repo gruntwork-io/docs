@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.116.1" lastModifiedVersion="0.111.4"/>
+<VersionBadge version="0.117.0" lastModifiedVersion="0.111.4"/>
 
 # Jenkins CI Server
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/mgmt/jenkins" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/mgmt/jenkins" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fjenkins" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,7 +68,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -76,7 +76,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -98,7 +98,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "jenkins" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/jenkins?ref=v0.116.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/jenkins?ref=v0.117.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -379,12 +379,6 @@ module "jenkins" {
   # Enter the name of the Jenkins server
   name = "jenkins"
 
-  # The name of the root volume for Jenkins. Example: /dev/sda1. This name
-  # should be the same name used by the AMI's root device. By default this
-  # module will use the volume name from an existing AMI, according to the
-  # configuration on module ec2-baseline.
-  root_block_device_name = null
-
   # The type of volume to use for the root disk for Jenkins. Must be one of:
   # standard, gp2, io1, sc1, or st1.
   root_block_device_volume_type = "gp2"
@@ -392,10 +386,7 @@ module "jenkins" {
   # The amount of disk space, in GB, to allocate for the root volume of this
   # server. Note that all of Jenkins' data is stored on a separate EBS Volume
   # (see var.jenkins_volume_size), so this root volume is primarily used for the
-  # OS, temp folders, apps, etc. Please note that the variable
-  # root_block_device_name must match the root device name, otherwise this
-  # module will create another volume with this size instead of modifying the
-  # root volume.
+  # OS, temp folders, apps, etc.
   root_volume_size = 100
 
   # Set to 'true' to allow the server group role to assume itself. See
@@ -461,7 +452,7 @@ module "jenkins" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/jenkins?ref=v0.116.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/jenkins?ref=v0.117.0"
 }
 
 inputs = {
@@ -745,12 +736,6 @@ inputs = {
   # Enter the name of the Jenkins server
   name = "jenkins"
 
-  # The name of the root volume for Jenkins. Example: /dev/sda1. This name
-  # should be the same name used by the AMI's root device. By default this
-  # module will use the volume name from an existing AMI, according to the
-  # configuration on module ec2-baseline.
-  root_block_device_name = null
-
   # The type of volume to use for the root disk for Jenkins. Must be one of:
   # standard, gp2, io1, sc1, or st1.
   root_block_device_volume_type = "gp2"
@@ -758,10 +743,7 @@ inputs = {
   # The amount of disk space, in GB, to allocate for the root volume of this
   # server. Note that all of Jenkins' data is stored on a separate EBS Volume
   # (see var.jenkins_volume_size), so this root volume is primarily used for the
-  # OS, temp folders, apps, etc. Please note that the variable
-  # root_block_device_name must match the root device name, otherwise this
-  # module will create another volume with this size instead of modifying the
-  # root volume.
+  # OS, temp folders, apps, etc.
   root_volume_size = 100
 
   # Set to 'true' to allow the server group role to assume itself. See
@@ -1428,15 +1410,6 @@ Enter the name of the Jenkins server
 <HclListItemDefaultValue defaultValue="&quot;jenkins&quot;"/>
 </HclListItem>
 
-<HclListItem name="root_block_device_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the root volume for Jenkins. Example: /dev/sda1. This name should be the same name used by the AMI's root device. By default this module will use the volume name from an existing AMI, according to the configuration on module ec2-baseline.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="root_block_device_volume_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1449,7 +1422,7 @@ The type of volume to use for the root disk for Jenkins. Must be one of: standar
 <HclListItem name="root_volume_size" requirement="optional" type="number">
 <HclListItemDescription>
 
-The amount of disk space, in GB, to allocate for the root volume of this server. Note that all of Jenkins' data is stored on a separate EBS Volume (see <a href="#jenkins_volume_size"><code>jenkins_volume_size</code></a>), so this root volume is primarily used for the OS, temp folders, apps, etc. Please note that the variable root_block_device_name must match the root device name, otherwise this module will create another volume with this size instead of modifying the root volume.
+The amount of disk space, in GB, to allocate for the root volume of this server. Note that all of Jenkins' data is stored on a separate EBS Volume (see <a href="#jenkins_volume_size"><code>jenkins_volume_size</code></a>), so this root volume is primarily used for the OS, temp folders, apps, etc.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="100"/>
@@ -1672,11 +1645,11 @@ The ID of the Security Group attached to the Jenkins EC2 Instance
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/mgmt/jenkins/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/mgmt/jenkins/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/mgmt/jenkins/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/mgmt/jenkins/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/mgmt/jenkins/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/mgmt/jenkins/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b492c2dc9b3a4f783ab57f782ebad8e4"
+  "hash": "1fa9fa16251ee19f6669a157ecee0125"
 }
 ##DOCS-SOURCER-END -->
