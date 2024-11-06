@@ -66,7 +66,7 @@
     "webpack-cli": "^5.1.4",
     "yargs": "^17.4.0"
   },
-  "optionalDependencies": {
+  "unusedOptionalDependencies": {
     "docs-sourcer": "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.32",
     "ts-commons": "gruntwork-io/ts-commons#5.3.1"
   },
