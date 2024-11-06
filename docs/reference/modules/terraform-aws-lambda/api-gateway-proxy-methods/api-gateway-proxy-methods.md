@@ -9,20 +9,20 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.24.0" lastModifiedVersion="0.22.0"/>
+<VersionBadge repoTitle="AWS Lambda" version="1.0.2" lastModifiedVersion="0.22.0"/>
 
 # API Gateway Lambda Function Proxy Methods Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/api-gateway-proxy-methods" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/api-gateway-proxy-methods" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.22.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module must be used in conjunction with [the api-gateway-proxy module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/api-gateway-proxy) to configure an API
+This module must be used in conjunction with [the api-gateway-proxy module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/api-gateway-proxy) to configure an API
 Gateway REST API to route all requests from a root path to a lambda function.
 
-Refer to [the module docs](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/api-gateway-proxy/README.md) for the `api-gateway-proxy` module for more details on how to
+Refer to [the module docs](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/api-gateway-proxy/README.md) for the `api-gateway-proxy` module for more details on how to
 use this module. Specifically, see the section [Can I expose additional lambda functions in a decentralized
-manner?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/api-gateway-proxy/core-concepts.md#can-i-expose-additional-lambda-functions-in-a-decentralized-manner)
+manner?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/api-gateway-proxy/core-concepts.md#can-i-expose-additional-lambda-functions-in-a-decentralized-manner)
 
 ## Sample Usage
 
@@ -37,7 +37,7 @@ manner?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modul
 
 module "api_gateway_proxy_methods" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy-methods?ref=v0.24.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy-methods?ref=v1.0.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -85,7 +85,7 @@ module "api_gateway_proxy_methods" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy-methods?ref=v0.24.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy-methods?ref=v1.0.2"
 }
 
 inputs = {
@@ -293,11 +293,11 @@ ID of the API Gateway method for the root proxy (only created if path_prefix is 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/api-gateway-proxy-methods/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/api-gateway-proxy-methods/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/api-gateway-proxy-methods/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/api-gateway-proxy-methods/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/api-gateway-proxy-methods/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/api-gateway-proxy-methods/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b757d1b2f7aa41b046526490cd9308ed"
+  "hash": "91a96c737167e7bd864c7dda75b6422b"
 }
 ##DOCS-SOURCER-END -->

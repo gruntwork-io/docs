@@ -540,7 +540,7 @@ html[data-theme="dark"] .customizable-value {
 /* Style the checkmark/indicator */
 .persistent-checkbox .checkmark:after {
   left: 7px; /* Adjusted left position */
-  top: 4px;  /* Adjusted top position */
+  top: 2.5px;  /* Adjusted top position */
   width: 5px;
   height: 10px;
   border: solid white;

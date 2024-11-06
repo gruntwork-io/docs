@@ -48,8 +48,21 @@ const redirectPlugin = [
 // @ts-ignore - types don't understand the plugin config
 plugins.push(redirectPlugin)
 
+/** @type {import('@docusaurus/types').FasterConfig} */
+const fasterConfig = {
+  rspackBundler: true,
+  swcHtmlMinimizer: true,
+  lightningCssMinimizer: true,
+  swcJsLoader: true,
+  swcJsMinimizer: true,
+  mdxCrossCompilerCache: true,
+};
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
+  future: {
+    experimental_faster: fasterConfig,
+  },
   title: "Gruntwork Docs",
   tagline: "Learn how to deploy and manage your entire infrastructure as code.",
   url: siteUrl,
@@ -74,7 +87,7 @@ const config = {
         docs: {
           routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: "https://github.com/gruntwork-io/docs/edit/master/",
+          editUrl: "https://github.com/gruntwork-io/docs/edit/main/",
           exclude: [
             "guides/build-it-yourself/landing-zone/**",
             "guides/build-it-yourself/vpc/**",

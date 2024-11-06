@@ -23,21 +23,23 @@ export const Course: React.FunctionComponent<CourseProps> = ({
   authorImg,
   videos,
   duration,
+  videoLabel='micro videos'
 }) => {
   return (
     <Card title={title} icon={icon} href={href}>
       <p>{description}</p>
       <p className={styles.author}>
-        <img src={authorImg} className="no-zoom" />
+        {authorImg ? (<img src={authorImg} className="no-zoom" />) : ''}
         <span>{author}</span>
       </p>
       <p>
+        {videos ? (
         <span className={clsx(styles.videos, styles.metadata)}>
-          {videos} micro videos
-        </span>
-        <span className={clsx(styles.duration, styles.metadata)}>
+          {videos} {videoLabel}
+        </span>) : ''}
+        {duration ? (<span className={clsx(styles.duration, styles.metadata)}>
           {duration} minutes
-        </span>
+        </span>) : ''}
       </p>
     </Card>
   )

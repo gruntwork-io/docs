@@ -10,13 +10,13 @@ If you're creating new pipelines repositories using the latest version of Pipeli
 
 If you want to upgrade an older repository to add Drift Detection perform the following steps:
 
-### Step 1
+### Step 1 - Ensure the GitHub App is Installed
 
 Ensure you are using the [GitHub App](/2.0/docs/pipelines/installation/viagithubapp) in this repository. Drift Detection requires permissions from the GitHub App and is not available via machine user tokens.
 
 <PersistentCheckbox id="install-drift-1" label="GitHub App In Use" />
 
-### Step 2
+### Step 2 - Setup the Workflow file
 
 Create a new workflow file in your repository at `.github/workflows/pipelines-drift-detection.yml`
 
@@ -55,6 +55,6 @@ Commit the changes to the repository. If you are using [branch protection](/2.0/
 
 <PersistentCheckbox id="install-drift-2" label="Workflow File Created" />
 
-### Step 3
+### Step 3 - Run your first drift detection job
 
 Follow the instructions at [Running Drift Detection](/2.0/docs/pipelines/guides/running-drift-detection) to start using the new workflow.

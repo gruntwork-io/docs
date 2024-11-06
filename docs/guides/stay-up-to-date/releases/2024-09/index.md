@@ -11,7 +11,10 @@ documentation](/library/stay-up-to-date/updating).
 Here are the repos that were updated:
 
 - [boilerplate](#boilerplate)
+- [pipelines-actions](#pipelines-actions)
 - [pipelines-cli](#pipelines-cli)
+- [pipelines-credentials](#pipelines-credentials)
+- [pipelines-workflows](#pipelines-workflows)
 - [terraform-aws-cache](#terraform-aws-cache)
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-control-tower](#terraform-aws-control-tower)
@@ -48,161 +51,53 @@ Here are the repos that were updated:
 
 
 
-## pipelines-cli
+## pipelines-actions
 
 
-### [v0.29.0-rc9](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc9)
+### [v1.12.1](https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.12.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/23/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc9">Release notes</a></small>
+  <small>Published: 9/27/2024 | <a href="https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.12.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  Internal use only
+  * fix: Avoid Newer Terragrunt Logging for Now by @yhakbar in https://github.com/gruntwork-io/pipelines-actions/pull/75
 
 
-</div>
-
-
-### [v0.29.0-rc8](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc8)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/23/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc8">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-actions/compare/v1.12.0...v1.12.1
 
 </div>
 
 
-### [v0.29.0-rc7](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc7)
+### [v1.12.0](https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.12.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/23/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc7">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.29.0-rc6](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc6)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/23/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc6">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.29.0-rc5](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc5)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/11/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc5">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.29.0-rc4](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc4)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/9/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc4">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.29.0-rc3](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc3)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/5/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc3">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.29.0-rc14](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc14)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/27/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc14">Release notes</a></small>
+  <small>Published: 9/11/2024 | <a href="https://github.com/gruntwork-io/pipelines-actions/releases/tag/v1.12.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   
+This release has no customer-facing changes.  v1.12.0 incorporates new files and prework in preparation for the launch of a few new major features in upcoming releases.  
 
 
-</div>
+
+* DEV-408 Add get job url action by @Resonance1584 in https://github.com/gruntwork-io/pipelines-actions/pull/55
+* Add drift detection determine units by @Resonance1584 in https://github.com/gruntwork-io/pipelines-actions/pull/65
+* Fix unit sorting. Use jq to construct array by @Resonance1584 in https://github.com/gruntwork-io/pipelines-actions/pull/67
+* Add determine drift action by @Resonance1584 in https://github.com/gruntwork-io/pipelines-actions/pull/66
+* Add consolidate jobs action by @Resonance1584 in https://github.com/gruntwork-io/pipelines-actions/pull/68
+* Fix quotes in job summary by @Resonance1584 in https://github.com/gruntwork-io/pipelines-actions/pull/70
 
 
-### [v0.29.0-rc13](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc13)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/24/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc13">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-actions/compare/v1.11.0...v1.12.0
 
 </div>
 
 
-### [v0.29.0-rc12](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc12)
 
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/24/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc12">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.29.0-rc10](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc10)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/24/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.29.0-rc10">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
+## pipelines-cli
 
 
 ### [v0.28.3](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.3)
@@ -222,76 +117,6 @@ Here are the repos that were updated:
 </div>
 
 
-### [v0.28.3-rc5](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.3-rc5)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/10/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.3-rc5">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.28.3-rc4](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.3-rc4)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/10/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.3-rc4">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.28.3-rc3](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.3-rc3)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/10/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.3-rc3">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.28.3-rc2](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.3-rc2)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/10/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.3-rc2">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
-### [v0.28.3-rc1](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.3-rc1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/10/2024 | <a href="https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.3-rc1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Internal use only
-
-
-</div>
-
-
 ### [v0.28.2](https://github.com/gruntwork-io/pipelines-cli/releases/tag/v0.28.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -305,6 +130,56 @@ Here are the repos that were updated:
 
 **Full Changelog**: https://github.com/gruntwork-io/pipelines/compare/v0.28.1...v0.28.2
 
+
+</div>
+
+
+
+## pipelines-credentials
+
+
+### [v1](https://github.com/gruntwork-io/pipelines-credentials/releases/tag/v1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 9/27/2024 | <a href="https://github.com/gruntwork-io/pipelines-credentials/releases/tag/v1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  This release tracks the latest in v1.y.z releases.
+
+</div>
+
+
+### [v1.0.0](https://github.com/gruntwork-io/pipelines-credentials/releases/tag/v1.0.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 9/27/2024 | <a href="https://github.com/gruntwork-io/pipelines-credentials/releases/tag/v1.0.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  Initial release 🎉 
+
+</div>
+
+
+
+## pipelines-workflows
+
+
+### [v2.6.1](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.6.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 9/27/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v2.6.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * fix: Pin `pipelines-actions` to `v.12.1` by @yhakbar in https://github.com/gruntwork-io/pipelines-workflows/pull/87
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v2...v2.6.1
 
 </div>
 
@@ -777,7 +652,7 @@ This introduces a change in how tags are managed for AWS Accounts. Now, any tag 
 Default version of EKS is `1.30` with this release! Please see the links below for full details of the EKS `1.30` release including new features and any API changes.
 - [Kubernetes 1.30 Release Announcement](https://kubernetes.io/blog/2024/04/17/kubernetes-v1-30-release/)
 - [Kubernetes 1.30 Release Notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.30.md)
-
+- **NOTE** The AWS EKS AMI requires the AWS CLI V2 now due to an [upstream change](https://github.com/awslabs/amazon-eks-ami/pull/1930). Before upgrading please make ensure that all self-managed workers have new AMI&apos;s built with the [latest packer template](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/services/eks-workers/eks-node-al2.pkr.hcl) or make sure that any custom AMI&apos;s being used are using the AWS CLI V2 for the EKS worker nodes. This should only apply for clusters that are using a custom AMI and not the AWS EKS Optimized AMI provided by AWS.  
 
 
 
@@ -896,6 +771,6 @@ Default version of EKS is `1.30` with this release! Please see the links below f
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "cadfe560f6ea09734f0dc9baf5d8dcd2"
+  "hash": "5525ad0b573ab56f5b56ffe147485021"
 }
 ##DOCS-SOURCER-END -->

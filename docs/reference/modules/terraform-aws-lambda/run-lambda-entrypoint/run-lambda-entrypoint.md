@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.24.0" lastModifiedVersion="0.20.3"/>
+<VersionBadge repoTitle="AWS Lambda" version="1.0.2" lastModifiedVersion="0.20.3"/>
 
 <!-- Frontmatter
 type: service
@@ -22,7 +22,7 @@ license: gruntwork
 built-with: go
 -->
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/run-lambda-entrypoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/run-lambda-entrypoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.20.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -34,7 +34,7 @@ to the lambda runtime. This entrypoint will pull the provided secrets manager en
 secrets manager entry to environment variables that are injected into the lambda runtime.
 
 This module only includes an entrypoint CLI. If you are looking for a module to deploy container based Lambda functions,
-refer to the [lambda](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/lambda) module.
+refer to the [lambda](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/lambda) module.
 
 ## Motivation
 
@@ -78,7 +78,7 @@ If you’ve never used the Gruntwork Modules before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/lambda-docker](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/examples/lambda-docker): This example contains a sample `Dockerfile` that uses this
+*   [examples/lambda-docker](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/examples/lambda-docker): This example contains a sample `Dockerfile` that uses this
     entrypoint to expose secrets to a python based Lambda function.
 
 ## Manage
@@ -133,7 +133,7 @@ To support this use case, the `run-lambda-entrypoint` CLI includes the ability t
 is not running in a Lambda environment. When `run-lambda-entrypoint` is invoked with the arg `--rie-path`, it will wrap
 the provided entrypoint script with the RIE when running in local mode.
 
-Refer to the [secret-reflector-go](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/examples/lambda-docker/secret-reflector-go) example for an example of how to set
+Refer to the [secret-reflector-go](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/examples/lambda-docker/secret-reflector-go) example for an example of how to set
 this up with a Go based Lambda function.
 
 ### How do I pass in Secrets Manager ARNs for environment variable lookup?
@@ -184,11 +184,11 @@ will assume it is the name of a Secrets Manager entry in the same region as the 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/run-lambda-entrypoint/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/run-lambda-entrypoint/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/run-lambda-entrypoint/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/run-lambda-entrypoint/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/run-lambda-entrypoint/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/run-lambda-entrypoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a8560d78dffdafe5346e6e4c844d716d"
+  "hash": "369fbd8f4d80925d00c01c7c32431349"
 }
 ##DOCS-SOURCER-END -->

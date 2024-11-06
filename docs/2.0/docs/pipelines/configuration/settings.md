@@ -1,10 +1,12 @@
 # Pipelines Configuration
 
-This page is under construction.  In the mean time, checkout the [Pipelines Configuration Reference Page](/docs/2.0/reference/pipelines/configurations.md) for a list of all available configuration options.
+[Full Pipelines Configuration Reference](/docs/2.0/reference/pipelines/configurations.md)
+
+import PipelinesConfig from '/docs/2.0/reference/pipelines/language_auth_partial.mdx'
+
+<PipelinesConfig />
 
 
-<!--
-e.g. TF vs Tofu, deploy branch name etc.
-This is different from reference content because we can also add a few extra paragraphs explaining things, not just a raw list
+## Terraform & OpenTofu
 
--->
+You can customize whether to invoke Terraform or OpenTofu in your Pipeline via the [tf-binary](/2.0/reference/pipelines/configurations#tf-binary) configuration. The version of the `tf-binary` and Terragrunt are configured via [mise.toml](/2.0/reference/pipelines/configurations#example-mise-configuration) inside your repository

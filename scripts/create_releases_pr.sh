@@ -75,7 +75,7 @@ function push_branch() {
 function create_pull_request() {
   local -r release_date=$1
 
-  gh pr create --base master \
+  gh pr create --base main \
   -t "Update Gruntwork Releases as of $release_date" \
   --body "Update Gruntwork releases as of $release_date"
 }

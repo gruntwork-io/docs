@@ -1,6 +1,7 @@
 ---
 hide_table_of_contents: true
 hide_title: true
+title: Training
 ---
 
 import CenterLayout from "/src/components/CenterLayout"
@@ -11,46 +12,48 @@ import Grid from "/src/components/Grid"
 
 # Learn DevOps from the experts
 
-At Gruntwork, we’ve created a library of video training courses that teach a variety of DevOps topics, such as infrastructure as code, Terraform, Docker, Packer, AWS, security, and more. Each course consists of a series of “micro-videos” of 1–10 minutes each that you can watch your at own pace as often as you like.
-
-:::note
-
-Courses are offered through Teachable. Access is included with every Gruntwork subscription. If you haven’t already done so, [sign in to the Gruntwork Developer Portal](https://app.gruntwork.io) to activate your Teachable account and access course content.
-
-:::
+Gruntwork has partnered with KodeKloud to deliver premier hands-on training for our customers.  Every Gruntwork subscription comes with a negotiated number of licenses to access the KodeKloud platform and our Devops, Infrastructure and tooling courses.
 
 ## Available Courses
 
 <Grid cols={2} gap="2rem">
   <Course
-    title="A Crash Course on Terraform"
+    title="Terragrunt for Beginners"
     icon="/img/courses/terraform.svg"
-    href="https://training.gruntwork.io/courses/terraform/lectures/3429337"
-    description="Learn how to manage infrastructure as code using Terraform through a series of live coding exercises."
-    author="Josh Padnick & Yoriyasu Yano"
-    authorImg="/img/courses/authors/josh-yori.png"
-    videos={30}
-    duration={92}
+    href="https://learn.kodekloud.com/user/courses/terragrunt-for-beginners"
+    description="Master Terragrunt and streamline your Terraform workflows—scaling multi-environment management with the DRY principle through practical, hands-on labs."
+    author="Stefan Matić"
+    authorImg="/img/courses/authors/stefanmatic.png"
+    videos={12}
+    duration={275}
+    videoLabel={'modules'}
   />
   <Course
-    title="A Crash Course on Docker + Packer"
-    icon="/img/courses/docker%2Bpacker.svg"
-    href="https://training.gruntwork.io/courses/a-crash-course-on-docker-packer/lectures/4247382"
-    description="Learn how to package your code into immutable images that run exactly the same way in all environments."
-    author="Yevgeniy Brikman"
-    authorImg="/img/courses/authors/yevgeniy-brikman.jpg"
-    videos={40}
-    duration={95}
+    title="OpenTofu: A Beginners Guide"
+    icon="/img/courses/opentofu-icon.svg"
+    href="https://learn.kodekloud.com/user/courses/opentofu-a-beginners-guide-to-a-terraform-fork-including-migration-from-terraform"
+    description="Master Infrastructure as Code from scratch with our OpenTofu course—no experience needed! Begin with basics and advance to cutting-edge practices, all through hands-on, browser-based labs."
+    author="Stefan Matić"
+    authorImg="/img/courses/authors/stefanmatic.png"
+    videos={13}
+    videoLabel={'modules'}
+    duration={400}
   />
   <Course
-    title="Infrastructure Module Cookbook"
-    icon="/img/courses/terraform.svg"
-    href="https://training.gruntwork.io/courses/infrastructure-module-cookbook/lectures/9081297"
-    description="A guide to building reusable, production-grade, battle-tested infrastructure code."
-    author="Yevgeniy Brikman"
-    authorImg="/img/courses/authors/yevgeniy-brikman.jpg"
-    videos={8}
-    duration={141}
+    title="Learn By Doing: AWS Workshop with Terraform"
+    icon="/img/courses/amazon_aws-icon.svg"
+    href="https://learn.kodekloud.com/user/courses/learn-by-doing-aws-workshop-with-terraform"
+    description="This hands-on course will provide you with practical experience and actionable insights for deploying and managing AWS infrastructure using Terraform"
+    author="Vijin Palazhi"
+    authorImg="/img/courses/authors/vijin.png"
+    videos={9}
+    videoLabel={'lessons'}
+  />
+  <Course
+    title="And Many More!"
+    href="https://learn.kodekloud.com/user/courses"
+    description="KodeKloud has hundreds of relevant courses, search the full directory"
+    icon={"/img/courses/kodekloud.svg"}
   />
 </Grid>
 

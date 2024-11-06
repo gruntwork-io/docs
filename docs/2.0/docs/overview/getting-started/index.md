@@ -11,11 +11,11 @@ Setup your Gruntwork account and invite your team mates to gain access to Gruntw
 
 <PersistentCheckbox id="install-df-1" label="Gruntwork Account Ready" />
 
-### Step 2: [Set Up Landing Zone](/2.0/docs/pipelines/installation/prerequisites/awslandingzone)
+### Step 2: [Set Up a Landing Zone](/2.0/docs/pipelines/installation/prerequisites/awslandingzone)
 
-AWS Landing Zone provices a best practice multi-account setup ready to use with DevOps Foundations.
+Gruntwork's AWS Landing Zone walkthrough provides a best practice multi-account setup ready to use with DevOps Foundations.
 
-<PersistentCheckbox id="install-df-2" label="AWS Accounts Ready" />
+<PersistentCheckbox id="install-df-2" label="AWS Landing Zone Ready" />
 
 ### Step 3: [Configure Pipelines Authentication](/2.0/docs/pipelines/installation/authoverview)
 

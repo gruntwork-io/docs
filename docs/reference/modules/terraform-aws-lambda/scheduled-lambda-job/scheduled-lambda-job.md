@@ -9,22 +9,22 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.24.0" lastModifiedVersion="0.21.15"/>
+<VersionBadge repoTitle="AWS Lambda" version="1.0.2" lastModifiedVersion="0.21.15"/>
 
 # Scheduled Lambda Job Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/scheduled-lambda-job" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/scheduled-lambda-job" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.15" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to run an [AWS Lambda](https://aws.amazon.com/lambda/) function (such as one created with the
-[lambda module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/lambda)) on a scheduled basis. This is useful for periodic background jobs, such as taking a
+[lambda module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/lambda)) on a scheduled basis. This is useful for periodic background jobs, such as taking a
 daily snapshot of your servers.
 
 ## Background info
 
 For more information on AWS Lambda, how it works, and how to configure your functions, check out the [lambda module
-documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/lambda).
+documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/lambda).
 
 ## Sample Usage
 
@@ -39,7 +39,7 @@ documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0
 
 module "scheduled_lambda_job" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/scheduled-lambda-job?ref=v0.24.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/scheduled-lambda-job?ref=v1.0.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -90,7 +90,7 @@ module "scheduled_lambda_job" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/scheduled-lambda-job?ref=v0.24.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/scheduled-lambda-job?ref=v1.0.2"
 }
 
 inputs = {
@@ -235,11 +235,11 @@ Cloudwatch Event Rule schedule expression
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/scheduled-lambda-job/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/scheduled-lambda-job/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.24.0/modules/scheduled-lambda-job/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/scheduled-lambda-job/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/scheduled-lambda-job/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/scheduled-lambda-job/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a46830b99b35f3345324a638c472db02"
+  "hash": "ce9b9111b6e4c23da99386e59534f3e3"
 }
 ##DOCS-SOURCER-END -->

@@ -198,7 +198,9 @@ workflows:
     # Make sure this pipeline doesn't run when a schedule is triggered
     when:
       not:
-        equal: [scheduled_pipeline, << pipeline.trigger_source >>]
+        or:
+          - equal: [scheduled_pipeline, << pipeline.trigger_source >>]
+          - equal: [ api, << pipeline.trigger_source >> ]
     jobs:
       - validate-build:
           filters:
@@ -208,7 +210,9 @@ workflows:
     # Make sure this pipeline doesn't run when a schedule is triggered
     when:
       not:
-        equal: [scheduled_pipeline, << pipeline.trigger_source >>]
+        or:
+          - equal: [scheduled_pipeline, << pipeline.trigger_source >>]
+          - equal: [ api, << pipeline.trigger_source >> ]
     jobs:
       - validate-build:
           filters:
@@ -228,7 +232,9 @@ workflows:
     # Make sure this pipeline doesn't run when a schedule is triggered
     when:
       not:
-        equal: [scheduled_pipeline, << pipeline.trigger_source >>]
+        or:
+          - equal: [scheduled_pipeline, << pipeline.trigger_source >>]
+          - equal: [ api, << pipeline.trigger_source >> ]
     jobs:
       - validate-build:
           filters:
@@ -262,6 +268,14 @@ workflows:
         # Configured to run on the first day of every month. Triggers can be attributed to a specific entity, like a user. If the Job getting triggered needs restricted permissions,
         # like context or environment variables, the entity that triggers the job must have the required permissions.
         - equal: ["monthly", << pipeline.schedule.name >>]
+    jobs:
+      - create-releases-pr:
+          context:
+            - SLACK__WEBHOOK__team-platform
+            - GITHUB__PAT__gruntwork-ci
+  create_releases_pull_request_api:
+    when:
+      equal: [ api, << pipeline.trigger_source >> ]
     jobs:
       - create-releases-pr:
           context:
