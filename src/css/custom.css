@@ -276,17 +276,6 @@ li.theme-doc-sidebar-item-category-level-1
   background: var(--ifm-menu-link-sublist-icon) 50% / 1.25rem 1.25rem;
 }
 
-html[data-theme="light"] .menu__link--sublist:not(.menu__link--active),
-html[data-theme="light"]
-  .menu__list-item-collapsible
-  a:not(.menu__link--active) {
-  color: #33376d;
-}
-
-html[data-theme="light"] .menu__link--sublist-caret {
-  color: #33376d;
-}
-
 .hidden {
   display: none;
 }
