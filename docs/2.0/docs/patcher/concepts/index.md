@@ -1,6 +1,6 @@
 # What is Gruntwork Patcher?
 
-Gruntwork Patcher helps you automatically keep your infrastructure code ([Terraform](https://www.terraform.io/) and [Terragrunt](https://terragrunt.gruntwork.io/)) up to date, including patching your code to make it work with backward incompatible module releases.
+Gruntwork Patcher helps you automatically keep your infrastructure code ([Terragrunt](https://terragrunt.gruntwork.io/) and [OpenTofu](https://opentofu.org/)) up to date, including patching your code to make it work with backward incompatible module releases.
 
 Without Patcher, the manual process of discovering updates and determining if they can be safely applied can take hours of an engineer's time for each module dependency.
 
