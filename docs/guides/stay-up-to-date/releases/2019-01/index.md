@@ -10,7 +10,7 @@ documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
-- [package-k8s](#package-k8s)
+- [package-k8s](#package-k-8-s)
 - [terraform-aws-asg](#terraform-aws-asg)
 - [terraform-aws-cache](#terraform-aws-cache)
 - [terraform-aws-ci](#terraform-aws-ci)
