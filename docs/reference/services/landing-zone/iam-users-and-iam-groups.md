@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.116.1" lastModifiedVersion="0.98.0"/>
+<VersionBadge version="0.117.0" lastModifiedVersion="0.98.0"/>
 
 # IAM Users and IAM Groups
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/landingzone/iam-users-and-groups" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/landingzone/iam-users-and-groups" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Fiam-users-and-groups" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -74,9 +74,9 @@ If you’ve never used the Service Catalog before, make sure to read
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -84,7 +84,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/examples/for-learning-and-testing/landingzone): The
+*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/examples/for-learning-and-testing/landingzone): The
     `examples/for-learning-and-testing/landingzone` folder contains standalone sample code optimized for learning,
     experimenting, and testing (but not direct production usage).
 
@@ -92,7 +92,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -113,7 +113,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "iam_users_and_groups" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/iam-users-and-groups?ref=v0.116.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/iam-users-and-groups?ref=v0.117.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -240,7 +240,7 @@ module "iam_users_and_groups" {
   max_session_duration_human_users = 43200
 
   # The maximum allowable session duration, in seconds, for the credentials you
-  # get when assuming the IAM roles created by this module. This variable
+  # get when assuming the IAM roles created by this module. This variable 
   # applies to all IAM roles created by this module that are intended for
   # machine users, such as allow-auto-deploy-from-other-accounts. For IAM roles
   # that are intended for human users, such as
@@ -264,7 +264,7 @@ module "iam_users_and_groups" {
   # billing features only. (true or false)
   should_create_iam_group_billing = false
 
-  # Should we create the IAM Group for access to all external AWS accounts?
+  # Should we create the IAM Group for access to all external AWS accounts? 
   should_create_iam_group_cross_account_access_all = true
 
   # Should we create the IAM Group for developers? The permissions of that group
@@ -334,7 +334,7 @@ module "iam_users_and_groups" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/iam-users-and-groups?ref=v0.116.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/iam-users-and-groups?ref=v0.117.0"
 }
 
 inputs = {
@@ -464,7 +464,7 @@ inputs = {
   max_session_duration_human_users = 43200
 
   # The maximum allowable session duration, in seconds, for the credentials you
-  # get when assuming the IAM roles created by this module. This variable
+  # get when assuming the IAM roles created by this module. This variable 
   # applies to all IAM roles created by this module that are intended for
   # machine users, such as allow-auto-deploy-from-other-accounts. For IAM roles
   # that are intended for human users, such as
@@ -488,7 +488,7 @@ inputs = {
   # billing features only. (true or false)
   should_create_iam_group_billing = false
 
-  # Should we create the IAM Group for access to all external AWS accounts?
+  # Should we create the IAM Group for access to all external AWS accounts? 
   should_create_iam_group_cross_account_access_all = true
 
   # Should we create the IAM Group for developers? The permissions of that group
@@ -867,7 +867,7 @@ Should we create the IAM Group for billing? Allows read-write access to billing 
 <HclListItem name="should_create_iam_group_cross_account_access_all" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Should we create the IAM Group for access to all external AWS accounts?
+Should we create the IAM Group for access to all external AWS accounts? 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -978,7 +978,7 @@ Any types represent complex values of variable type. For details, please consult
      alice = {
        groups = ["user-self-mgmt", "developers", "ssh-sudo-users"]
      }
-
+  
      bob = {
        path   = "/"
        groups = ["user-self-mgmt", "ops", "admins"]
@@ -986,7 +986,7 @@ Any types represent complex values of variable type. For details, please consult
          foo = "bar"
        }
      }
-
+  
      carol = {
        groups               = ["user-self-mgmt", "developers", "ssh-users"]
        pgp_key              = "keybase:carol_on_keybase"
@@ -1137,11 +1137,11 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/landingzone/iam-users-and-groups/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/landingzone/iam-users-and-groups/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.116.1/modules/landingzone/iam-users-and-groups/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/landingzone/iam-users-and-groups/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/landingzone/iam-users-and-groups/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/landingzone/iam-users-and-groups/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "23269f691df5f0b77cb55f2e2bc009bd"
+  "hash": "85e92b6071fe202127fcbce7ac1c3ae6"
 }
 ##DOCS-SOURCER-END -->
