@@ -1,5 +1,4 @@
-
-const libraryReference = require('./library-reference');
+const libraryReference = require("./library-reference")
 
 const sidebar = [
   {
@@ -21,9 +20,8 @@ const sidebar = [
         type: "category",
         collapsed: true,
         link: {
-          type: "generated-index",
-          title: "Library reference",
-          slug: "2.0/reference/library/index",
+          type: "doc",
+          id: "library/reference/index",
         },
         items: libraryReference,
       },
