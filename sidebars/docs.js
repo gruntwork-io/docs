@@ -415,6 +415,11 @@ const sidebar = [
             collapsed: true,
             items: [
               {
+                label: "Vending Delegated Repositories",
+                type: "doc",
+                id: "2.0/docs/accountfactory/guides/delegated-repositories",
+              },
+              {
                 label: "Adding Collaborators to Delegated Repositories",
                 type: "doc",
                 id: "2.0/docs/accountfactory/guides/collaborators",
