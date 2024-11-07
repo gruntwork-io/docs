@@ -264,12 +264,9 @@ module "alb" {
 
   # The AWS predefined TLS/SSL policy for the ALB. A List of policies can be
   # found here:
-  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies.
-  # AWS recommends ELBSecurityPolicy-2016-08 policy for general use but this
-  # policy includes TLSv1.0 which is rapidly being phased out.
-  # ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't include
-  # TLSv1.0.
-  ssl_policy = "ELBSecurityPolicy-2016-08"
+  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/describe-ssl-policies.html.
+  # AWS recommends ELBSecurityPolicy-TLS13-1-2-2021-06 policy for general use.
+  ssl_policy = "ELBSecurityPolicy-TLS13-1-2-2021-06"
 
 }
 
@@ -464,12 +461,9 @@ inputs = {
 
   # The AWS predefined TLS/SSL policy for the ALB. A List of policies can be
   # found here:
-  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies.
-  # AWS recommends ELBSecurityPolicy-2016-08 policy for general use but this
-  # policy includes TLSv1.0 which is rapidly being phased out.
-  # ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't include
-  # TLSv1.0.
-  ssl_policy = "ELBSecurityPolicy-2016-08"
+  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/describe-ssl-policies.html.
+  # AWS recommends ELBSecurityPolicy-TLS13-1-2-2021-06 policy for general use.
+  ssl_policy = "ELBSecurityPolicy-TLS13-1-2-2021-06"
 
 }
 
@@ -899,10 +893,10 @@ If true, create a new S3 bucket for access logs with the name in <a href="#acces
 <HclListItem name="ssl_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
-The AWS predefined TLS/SSL policy for the ALB. A List of policies can be found here: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies. AWS recommends ELBSecurityPolicy-2016-08 policy for general use but this policy includes TLSv1.0 which is rapidly being phased out. ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't include TLSv1.0.
+The AWS predefined TLS/SSL policy for the ALB. A List of policies can be found here: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/describe-ssl-policies.html. AWS recommends ELBSecurityPolicy-TLS13-1-2-2021-06 policy for general use.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;ELBSecurityPolicy-2016-08&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;ELBSecurityPolicy-TLS13-1-2-2021-06&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -1008,6 +1002,6 @@ The AWS-managed DNS name assigned to the ALB.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.117.0/modules/networking/alb/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "258960722cab62342428ed08a1b27b65"
+  "hash": "8dcd97375728007aca1b85cf0c2bd42a"
 }
 ##DOCS-SOURCER-END -->
