@@ -32,7 +32,7 @@ In addition to static analysis, we also use the [Steampipe](https://github.com/t
 
 Generally, the best documentation is that which is written by a person and accurately conveys not only the technical details of a module, but also the intent behind the module. However, it is also useful to have automated documentation generation to ensure that the documentation is always up to date.
 
-To achieve that goal, some custom tooling is used to automatically generate documentation for modules in the library in the context of the manually written documentation to express intent. You can see this documentation by navigating to the [Library Reference](/2.0/reference/library/index)
+To achieve that goal, some custom tooling is used to automatically generate documentation for modules in the library in the context of the manually written documentation to express intent. You can see this documentation by navigating to the [Library Reference](/library/reference)
 
 ## Quality Checks We Don't Use
 
