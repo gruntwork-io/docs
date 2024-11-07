@@ -389,6 +389,11 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/accountfactory/guides/collaborators",
       },
+      {
+        label: "Adding IAM Permissions To Delegated Repositories",
+        type: "doc",
+        id: "2.0/docs/accountfactory/guides/iam-roles",
+      },
     ],
   },
   {
