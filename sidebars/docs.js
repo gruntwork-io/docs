@@ -25,7 +25,7 @@ const updateGuideSidebars = require("./update-guides.js")
 const sidebar = [
   {
     type: "html",
-    value: "Gruntwork Documentation",
+    value: "Welcome to Gruntwork",
     className: "sidebar-header emoji-rocket",
   },
   {
@@ -34,70 +34,55 @@ const sidebar = [
     className: 'hidden',
   },
   {
-    label: "Overview",
+    label: "Devops Foundations",
+    type: "doc",
+    id: "2.0/docs/overview/concepts/devopsfoundations",
+  },
+  {
+    label: "Infrastructure Live",
+    type: "doc",
+    id: "2.0/docs/overview/concepts/infrastructure-live",
+  },
+  {
+    label: "Labels and Tags",
+    type: "doc",
+    id: "2.0/docs/overview/concepts/labels-tags",
+  },
+  {
+    label: "Support",
+    type: "doc",
+    id: "support",
+  },
+  {
+    value: "Getting Started",
+    type: "html",
+    className: "sidebar-header emoji-rocket",
+  },
+  {
+    label: "Setup Checklist",
+    type: "doc",
+    id: "2.0/docs/overview/getting-started/index",
+  },
+  {
+    label: "Activating your Gruntwork Account",
+    type: "doc",
+    id: "2.0/docs/overview/getting-started/create-account",
+  },
+  {
+    label: "Inviting Team Members",
+    type: "doc",
+    id: "2.0/docs/overview/getting-started/invite-team",
+  },
+  {
+    label: "Linking GitHub to Gruntwork",
+    type: "doc",
+    id: "2.0/docs/overview/getting-started/link-github-id",
+  },
+  complianceSidebar,
+  {
+    label: "Staying up to Date Guides",
     type: "category",
-    collapsed: false,
-    items: [
-      {
-        label: "Concepts",
-        type: "category",
-        collapsed: false,
-        items: [
-          {
-            label: "Devops Foundations",
-            type: "doc",
-            id: "2.0/docs/overview/concepts/devopsfoundations",
-          },
-          {
-            label: "Recommended Folder Structure: Infrastructure Live",
-            type: "doc",
-            id: "2.0/docs/overview/concepts/infrastructure-live",
-          },
-          {
-            label: "Labels and Tags",
-            type: "doc",
-            id: "2.0/docs/overview/concepts/labels-tags",
-          },
-        ],
-      },
-      {
-        label: "Getting Started",
-        type: "category",
-        collapsed: false,
-        link: {
-          type: "doc",
-          id: "2.0/docs/overview/getting-started/index",
-        },
-        items: [
-          {
-            label: "Activating your Gruntwork Account",
-            type: "doc",
-            id: "2.0/docs/overview/getting-started/create-account",
-          },
-          {
-            label: "Inviting Team Members",
-            type: "doc",
-            id: "2.0/docs/overview/getting-started/invite-team",
-          },
-          {
-            label: "Linking GitHub to Gruntwork",
-            type: "doc",
-            id: "2.0/docs/overview/getting-started/link-github-id",
-          }
-        ],
-      },
-      complianceSidebar,
-      {
-        label: "Staying up to Date Guides",
-        type: "category",
-        items: updateGuideSidebars,
-      },
-      {
-        label: "Support",
-        type: "doc",
-        id: "support",
-      },
-    ],
+    items: updateGuideSidebars,
   },
   {
     type: "html",
@@ -109,8 +94,8 @@ const sidebar = [
     type: "category",
     collapsed: true,
     link: {
-        type: "doc",
-         id: "2.0/docs/pipelines/concepts/overview"
+      type: "doc",
+      id: "2.0/docs/pipelines/concepts/overview"
     },
     items: [
       {
@@ -136,8 +121,8 @@ const sidebar = [
     collapsed: true,
     link: {
       type: "doc",
-       id: "2.0/docs/pipelines/architecture/index"
-  },
+      id: "2.0/docs/pipelines/architecture/index"
+    },
     items: [
       {
         label: "Components",
@@ -172,8 +157,8 @@ const sidebar = [
     collapsed: true,
     link: {
       type: "doc",
-       id: "2.0/docs/pipelines/installation/overview"
-  },
+      id: "2.0/docs/pipelines/installation/overview"
+    },
     items: [
       {
         label: "Prerequisites",
@@ -347,7 +332,7 @@ const sidebar = [
     collapsed: true,
     link: {
       type: "doc",
-       id: "2.0/docs/accountfactory/architecture/index"
+      id: "2.0/docs/accountfactory/architecture/index"
     },
     items: [
       {
@@ -418,8 +403,8 @@ const sidebar = [
     collapsed: true,
     link: {
       type: "doc",
-       id: "2.0/docs/patcher/concepts/index"
-  },
+      id: "2.0/docs/patcher/concepts/index"
+    },
     items: [
       {
         label: "Patches",
@@ -567,7 +552,7 @@ const sidebar = [
     link: {
       type: "doc",
       id: "2.0/docs/library/architecture/overview",
-  },
+    },
     items: [
       {
         label: "OpenTofu & Terraform Compatibility",
