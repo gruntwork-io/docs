@@ -37,14 +37,14 @@ For usage examples, check out the [examples folder](https://github.com/gruntwork
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement_aws) | >= 4.5.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | &gt;= 1.0.0 |
+| <a name="requirement_aws"></a> [aws](#requirement_aws) | &gt;= 4.5.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider_aws) | >= 4.5.0 |
+| <a name="provider_aws"></a> [aws](#provider_aws) | &gt;= 4.5.0 |
 
 ## Modules
 
@@ -334,6 +334,6 @@ EC2 Transit Gateway Attachment identifier.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/transit-gateway-attachment/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a2ab177d2df79bb2c4c80141e3e74d9d"
+  "hash": "986f588f6cda58d3bb3fc18a7a1b8276"
 }
 ##DOCS-SOURCER-END -->

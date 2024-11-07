@@ -75,14 +75,14 @@ What follows are the steps required to configure Transit Gateway resources withi
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement_aws) | >= 4.5.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | &gt;= 1.0.0 |
+| <a name="requirement_aws"></a> [aws](#requirement_aws) | &gt;= 4.5.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider_aws) | >= 4.5.0 |
+| <a name="provider_aws"></a> [aws](#provider_aws) | &gt;= 4.5.0 |
 
 ## Modules
 
@@ -431,6 +431,6 @@ Identifier of the Transit Gateway's default propagation route table.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/transit-gateway/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6f74a9d6347df9d2541689859c572b68"
+  "hash": "c8870e393cd0ede1e5795f3d01b1f1ff"
 }
 ##DOCS-SOURCER-END -->

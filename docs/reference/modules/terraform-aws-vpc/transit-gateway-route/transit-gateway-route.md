@@ -38,14 +38,14 @@ For usage examples, check out the [examples folder](https://github.com/gruntwork
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement_aws) | >= 4.5.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | &gt;= 1.0.0 |
+| <a name="requirement_aws"></a> [aws](#requirement_aws) | &gt;= 4.5.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider_aws) | >= 4.5.0 |
+| <a name="provider_aws"></a> [aws](#provider_aws) | &gt;= 4.5.0 |
 
 ## Modules
 
@@ -232,6 +232,6 @@ Map of ids of the transit gateway routes.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/transit-gateway-route/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8b5fcdc63df68a9648a322457232f125"
+  "hash": "3506606acaa3ff2ee1afab1a89f7e49b"
 }
 ##DOCS-SOURCER-END -->

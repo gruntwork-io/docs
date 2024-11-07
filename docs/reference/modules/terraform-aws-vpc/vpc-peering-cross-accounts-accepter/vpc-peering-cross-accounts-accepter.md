@@ -23,7 +23,7 @@ This module manages the accepter's side of the VPC Peering Connection between tw
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.0.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | &gt;= 1.0.0 |
 
 ## Providers
 
@@ -302,6 +302,6 @@ Peering connection ID.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/vpc-peering-cross-accounts-accepter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "454f3934812de80d4389e10d38c13851"
+  "hash": "9ad89bcdf60bbf51179cd8faa1482b74"
 }
 ##DOCS-SOURCER-END -->

@@ -44,14 +44,14 @@ Routes can be either dynamic or static. Dynamic routes are learned by the route 
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement_aws) | >= 4.5.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | &gt;= 1.0.0 |
+| <a name="requirement_aws"></a> [aws](#requirement_aws) | &gt;= 4.5.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider_aws) | >= 4.5.0 |
+| <a name="provider_aws"></a> [aws](#provider_aws) | &gt;= 4.5.0 |
 
 ## Modules
 
@@ -453,6 +453,6 @@ A map of states of the route resources.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.26/modules/route/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f2636f81067d87d1ccae7bab89fa7b7e"
+  "hash": "87bc2caadfac585878374dfff5f9ab43"
 }
 ##DOCS-SOURCER-END -->
