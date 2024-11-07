@@ -28,7 +28,7 @@ const sidebar = [
     type: "category",
     link: {
       type: "doc",
-      id: 'index',
+      id: "index",
     },
     collapsible: false,
     items: [
@@ -83,7 +83,7 @@ const sidebar = [
                 label: "Linking GitHub to Gruntwork",
                 type: "doc",
                 id: "2.0/docs/overview/getting-started/link-github-id",
-              }
+              },
             ],
           },
           complianceSidebar,
@@ -702,7 +702,7 @@ const sidebar = [
             label: "Module Reference",
             type: "link",
             className: "external-link",
-            href: "/2.0/reference/library/index",
+            href: "/library/reference",
           },
         ],
       },
