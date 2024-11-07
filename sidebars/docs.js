@@ -409,18 +409,18 @@ const sidebar = [
               },
             ],
           },
-          // {
-          //   label: "Guides",
-          //   type: "category",
-          //   collapsed: true,
-          //   items: [
-          //     {
-          //       label: "Customizing something",
-          //       type: "doc",
-          //       id: "2.0/docs/accountfactory/guides/index",
-          //     },
-          //   ],
-          // },
+          {
+            label: "Guides",
+            type: "category",
+            collapsed: true,
+            items: [
+              {
+                label: "Adding Collaborators to Delegated Repositories",
+                type: "doc",
+                id: "2.0/docs/accountfactory/guides/collaborators",
+              },
+            ],
+          },
           {
             label: "Configuration Reference",
             type: "link",
