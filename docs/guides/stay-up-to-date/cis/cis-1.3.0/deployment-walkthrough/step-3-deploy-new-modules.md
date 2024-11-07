@@ -11,7 +11,7 @@ accidentally to a resource such as AWS Elastic Load Balancer (ELB), which can da
 achieve this recommendation, check out the [example](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/v0.10.0/examples/cleanup-expired-certs/terraform) of the ready-made `cleanup-expired-certs` module.
 
 For the code examples of deploying this module, see the
-[relevant section](../../../../build-it-yourself/achieve-compliance/production-grade-design/identity-and-access-management.md#cleanup-expired-ssl-tls-certificates)
+[relevant section](../../../../build-it-yourself/achieve-compliance/production-grade-design/identity-and-access-management.md#cleanup-expired-ssltls-certificates)
 of our "How to achieve compliance with the CIS AWS Foundations Benchmark" guide.
 
 ## 2. Deploy IAM Access Analyzer module (recommendation 1.21)
