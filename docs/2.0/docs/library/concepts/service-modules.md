@@ -36,7 +36,7 @@ The service catalog features over 25 service modules spanning three major use ca
 2. Running applications
 3. Storing data
 
-To browse the service catalog, see the [Library Reference](/2.0/reference/library/index) and look for "Service Catalog" in the sidebar. You can also visit the [terraform-aws-service-catalog git repo](https://github.com/gruntwork-io/terraform-aws-service-catalog).
+To browse the service catalog, see the [Library Reference](/library/reference) and look for "Service Catalog" in the sidebar. You can also visit the [terraform-aws-service-catalog git repo](https://github.com/gruntwork-io/terraform-aws-service-catalog).
 
 ## How service modules are updated
 

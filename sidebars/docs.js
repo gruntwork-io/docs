@@ -379,20 +379,40 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/accountfactory/tutorials/remove-account",
       },
+    ]
+  },
+  {
+    label: "Tutorials",
+    type: "category",
+    collapsed: true,
+    items: [
+      {
+        label: "Vending a new AWS Account",
+        type: "doc",
+        id: "2.0/docs/accountfactory/tutorials/vend-aws-account",
+      },
+      {
+        label: "Modify an AWS Account",
+        type: "doc",
+        id: "2.0/docs/accountfactory/tutorials/modify-account",
+      },
+      {
+        label: "Remove an AWS Account",
+        type: "doc",
+        id: "2.0/docs/accountfactory/tutorials/remove-account",
+      },
+      {
+        label: "Vending Delegated Repositories",
+        type: "doc",
+        id: "2.0/docs/accountfactory/guides/delegated-repositories",
+      },
+      {
+        label: "Adding Collaborators to Delegated Repositories",
+        type: "doc",
+        id: "2.0/docs/accountfactory/guides/collaborators",
+      },
     ],
   },
-  // {
-  //   label: "Guides",
-  //   type: "category",
-  //   collapsed: true,
-  //   items: [
-  //     {
-  //       label: "Customizing something",
-  //       type: "doc",
-  //       id: "2.0/docs/accountfactory/guides/index",
-  //     },
-  //   ],
-  // },
   {
     label: "Configuration Reference",
     type: "link",

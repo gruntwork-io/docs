@@ -1,11 +1,11 @@
 # What is Gruntwork Pipelines?
 
-**Gruntwork Pipelines is designed to enable your organization to deploy infrastructure changes to cloud environments with control and confidence.**
+**Gruntwork Pipelines is designed to enable your organization to deploy infrastructure changes to cloud environments simply, with control and confidence.**
 
 Having worked with hundreds of organizations to help them improve DevOps, we've discovered two truths about making changes to infrastructure:
 
 1. Teams want to control exactly how infrastructure change gets rolled out
-2. Deploying infrastructure changes is scary!
+2. Deploying infrastructure changes can be scary!
 
 To address your need for _control_, we've designed Gruntwork Pipelines to use [configuration as code](../../../reference/pipelines/configurations-as-code.md), where you use HCL (a popular alternative to JSON and YAML) to set configuration values that apply to your entire git repo, to just one environment, or to a single deployable unit of infrastructure. For example, you can specify a unique AWS authentication strategy for each deployable unit of infrastructure, one per environment, or a single strategy for the entire git repo.
 
@@ -21,9 +21,17 @@ Gruntwork is the creator and maintainer of [Terragrunt](https://terragrunt.grunt
 
 We also make updates directly to Terragrunt to support the functionality we want to see in Gruntwork Pipelines.
 
+## Reduces the complexity of CI/CD
+
+One of the things we've discovered over the years helping customers automate their infrastructure management is that it can be _very_ costly and time-consuming to build and maintain a CI/CD pipeline that can efficiently handle the complexity of infrastructure changes. Customers typically don't want to trigger an update to _all_ of their infrastructure whenever _any_ component changes, and they typically want to have related changes coordinated and rolled out correctly.
+
+A driving design goal of Gruntwork Pipelines is to allow for a minimal setup experience, followed by a very intuitive model for driving infrastructure updates. Most customers can get Pipelines configured in less than an hour, then drive all of their infrastructure changes directly via pull requests to Infrastructure as Code. Most of the time, you do not need to think about how Grutnwork Pipelines works, or how it makes decisions about what to do. You simply update your Infrastructure as Code to reflect the desired state of your infrastructure, have the pull request reviewed and merged, then Gruntwork Pipelines takes care of the rest.
+
 ## Runs directly in GitHub Actions
 
-Gruntwork Pipelines runs directly in GitHub Actions, and uses a pull request-centric workflow. This means that all information about a proposed infrastructure change is added as comments to the applicable pull request, and that you apply the infrastructure change by interacting with the pull request.
+Gruntwork Pipelines runs directly in your GitHub Actions workflows, and uses a pull request-centric workflow. This means that all information about a proposed infrastructure change is added as comments to the applicable pull request, and that you apply the infrastructure change by interacting with the pull request.
+
+This also means that Gruntwork Pipelines does not depend on Gruntwork servers to perform any `terragrunt` operations. You are fully in control over the execution of your infrastructure automation, and can customize the behavior of Gruntwork Pipelines to suit your organization's needs.
 
 Gruntwork does not need access to your secrets or state files, as these remain in GitHub Actions. At the same time, we continually push new features and updates to Gruntwork Pipelines so that your user experience, security posture, and feature set continues to improve with no effort on your part.
 
@@ -41,10 +49,10 @@ Infra-changes can involve updates to OpenTofu/Terraform or Terragrunt code, or a
 
 Sometimes users create a pull request that changes more than one file at a time. And sometimes a change to a single file affects how multiple other files will be "applied" to your live cloud account. For example, many users of Terragrunt use a pattern known as "envcommon" as a way to specify a default set of values for modules.
 
-When more than one infra-change is made at a time, we call this an _infrastructure-change set._
+When more than one infra-change is made at a time, we call this an _infrastructure-change set_.
 
 ### Pipelines actions
 
-When a user proposes to make an infra-change by opening a pull request, we want to take some kind of "action" in response to that proposed-change. For example, we may want to run a `terragrunt plan` and estimate the cost of applying this Terragrunt plan. We call these _pipelines actions._
+When a user proposes to make an infra-change by opening a pull request, we want to take some kind of "action" in response to that proposed-change. For example, we may want to run a `terragrunt plan` and estimate the cost of applying this Terragrunt plan. We call these _pipelines actions_.
 
 Gruntwork is responsible for adding support for a growing library of Pipelines Actions and we will continue to add more over time.

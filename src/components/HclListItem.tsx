@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from "react"
 import styles from "./HclListItem.module.css"
+import useBrokenLinks from '@docusaurus/useBrokenLinks';
 
 interface HclListItemProps {
   name: string
@@ -10,6 +11,7 @@ interface HclListItemProps {
 export const HclListItem: React.FunctionComponent<
   PropsWithChildren<HclListItemProps>
 > = ({ name, requirement, type, children }) => {
+  useBrokenLinks().collectAnchor(name);
   return (
     <div className={styles.container}>
       <div>
