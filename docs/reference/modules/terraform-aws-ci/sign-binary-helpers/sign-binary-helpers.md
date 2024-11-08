@@ -91,7 +91,7 @@ Required environment variables for signing MacOS binaries:
 Required environment variables for notarizing the MacOS binaries:
 
 *   `MACOS_AC_LOGIN` - The Apple account's email. The account should be enrolled to the Apple Developer Program.
-*   `MACOS_AC_PASSWORD` - You have to create an app-specific password at the [Apple ID](http://appleid.apple.com/account/manage) portal. Under the `Security` area -> `Generate Password...` and that will give you the password you can use for the notarization. This is necessary because Apple needs a different password for third-party apps.
+*   `MACOS_AC_PASSWORD` - You have to create an app-specific password at the [Apple ID](http://appleid.apple.com/account/manage) portal. Under the `Security` area -&gt; `Generate Password...` and that will give you the password you can use for the notarization. This is necessary because Apple needs a different password for third-party apps.
 
 Required script options:
 
@@ -155,6 +155,6 @@ References:
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.1/modules/sign-binary-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8133abe30e1491c41e9a082b8b431f9b"
+  "hash": "bee7c73c97f8a42e2db2e1b5d39ceb91"
 }
 ##DOCS-SOURCER-END -->
