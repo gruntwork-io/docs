@@ -39,14 +39,27 @@ const sidebar = [
     id: "2.0/docs/overview/concepts/devopsfoundations",
   },
   {
-    label: "Infrastructure Live",
-    type: "doc",
-    id: "2.0/docs/overview/concepts/infrastructure-live",
+    type: "category",
+    label: "IaC Best Practices",
+    collapsed: true,
+    items: [
+      {
+        label: "Infrastructure Live",
+        type: "doc",
+        id: "2.0/docs/overview/concepts/infrastructure-live",
+      },
+      {
+        label: "Labels and Tags",
+        type: "doc",
+        id: "2.0/docs/overview/concepts/labels-tags",
+      },
+    ]
   },
+  complianceSidebar,
   {
-    label: "Labels and Tags",
-    type: "doc",
-    id: "2.0/docs/overview/concepts/labels-tags",
+    label: "Staying up to Date Guides",
+    type: "category",
+    items: updateGuideSidebars,
   },
   {
     label: "Support",
@@ -77,12 +90,6 @@ const sidebar = [
     label: "Linking GitHub to Gruntwork",
     type: "doc",
     id: "2.0/docs/overview/getting-started/link-github-id",
-  },
-  complianceSidebar,
-  {
-    label: "Staying up to Date Guides",
-    type: "category",
-    items: updateGuideSidebars,
   },
   {
     type: "html",
