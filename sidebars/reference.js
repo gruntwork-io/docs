@@ -2,10 +2,6 @@ const libraryReference = require("./library-reference")
 
 const sidebar = [
   {
-    // label: "Developer Reference",
-    // type: "category",
-    // link: { type: 'generated-index', title: "Gruntwork Developer Reference", slug: "2.0/reference" },
-    // collapsible: false,
     label: "Developer Reference",
     type: "category",
     link: {

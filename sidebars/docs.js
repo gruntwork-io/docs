@@ -379,28 +379,6 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/accountfactory/tutorials/remove-account",
       },
-    ]
-  },
-  {
-    label: "Tutorials",
-    type: "category",
-    collapsed: true,
-    items: [
-      {
-        label: "Vending a new AWS Account",
-        type: "doc",
-        id: "2.0/docs/accountfactory/tutorials/vend-aws-account",
-      },
-      {
-        label: "Modify an AWS Account",
-        type: "doc",
-        id: "2.0/docs/accountfactory/tutorials/modify-account",
-      },
-      {
-        label: "Remove an AWS Account",
-        type: "doc",
-        id: "2.0/docs/accountfactory/tutorials/remove-account",
-      },
       {
         label: "Vending Delegated Repositories",
         type: "doc",
@@ -673,9 +651,8 @@ const sidebar = [
     label: "Module Reference",
     type: "link",
     className: "external-link",
-    href: "/2.0/reference/library/index",
+    href: "/library/reference",
   },
-
   {
     label: "Legacy Products",
     type: "category",
