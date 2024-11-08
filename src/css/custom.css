@@ -228,10 +228,6 @@ html[data-theme="dark"] aside {
   padding-bottom: 0.5rem;
 }
 
-.menu__list-item-collapsible a {
-  font-weight: 600;
-}
-
 /* Special styles for top level guide titles. This selects a top-level
    category which uses the category-index pattern (is selectable) and
    is either the only or last of exactly two items in the sidebar
@@ -280,11 +276,26 @@ li.theme-doc-sidebar-item-category-level-1
   background: var(--ifm-menu-link-sublist-icon) 50% / 1.25rem 1.25rem;
 }
 
-html[data-theme="light"] .menu__link--sublist:not(.menu__link--active),
-html[data-theme="light"]
-  .menu__list-item-collapsible
-  a:not(.menu__link--active) {
-  color: #33376d;
+.hidden {
+  display: none;
+}
+
+.sidebar-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 1.5rem;
+}
+
+.emoji-rocket::before {
+  /* margin-right: 0.15em;
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 13px;
+  margin-left: -0.2em;
+  background-image: url('data:image/svg+xml,%3Csvg%20class%3D%22w-6%20h-6%20text-gray-800%20dark%3Atext-white%22%20aria-hidden%3D%22true%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22currentColor%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M20.337%203.664c.213.212.354.486.404.782.294%201.711.657%205.195-.906%206.76-1.77%201.768-8.485%205.517-10.611%206.683a.987.987%200%200%201-1.176-.173l-.882-.88-.877-.884a.988.988%200%200%201-.173-1.177c1.165-2.126%204.913-8.841%206.682-10.611%201.562-1.563%205.046-1.198%206.757-.904.296.05.57.191.782.404ZM5.407%207.576l4-.341-2.69%204.48-2.857-.334a.996.996%200%200%201-.565-1.694l2.112-2.111Zm11.357%207.02-.34%204-2.111%202.113a.996.996%200%200%201-1.69-.565l-.422-2.807%204.563-2.74Zm.84-6.21a1.99%201.99%200%201%201-3.98%200%201.99%201.99%200%200%201%203.98%200Z%22%20clip-rule%3D%22evenodd%22%2F%3E%0A%3C%2Fsvg%3E%0A');
+  background-size: contain;
+  background-repeat: no-repeat; */
 }
 
 /* TOC */
@@ -429,8 +440,8 @@ html[data-theme="dark"] .link-button:hover {
   height: 13.5px;
   margin-left: 0.3rem;
   background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"%3E%3Cpath fill="%23606770" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"%3E%3C/path%3E%3C/svg%3E');
-  background-size: contain; /* Add this line */
-  background-repeat: no-repeat; /* Add this line too */
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
  html[data-theme="dark"] .external-link a::after {

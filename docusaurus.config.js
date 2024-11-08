@@ -287,6 +287,11 @@ const config = {
         ],
         copyright: `© 2020 – ${new Date().getFullYear()} Gruntwork, Inc.`,
       },
+      docs: {
+        sidebar: {
+          autoCollapseCategories: true
+        },
+      },
       colorMode: {
         defaultMode: "light",
         disableSwitch: false,

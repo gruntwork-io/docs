@@ -1,10 +1,6 @@
 # Setting up DevOps Foundations & Components
 import PersistentCheckbox from '/src/components/PersistentCheckbox';
 
-The [Gruntwork Developer Portal](https://app.gruntwork.io) provides access to all resources included in your Gruntwork subscription. Activating your account will grant access to the Gruntwork IaC Library and our DevOps training courses. Admins can also manage their team and invite additional members.
-
-Now that your GitHub Organization and Accounts are linked you can start working with DevOps Foundations.
-
 ### Step 1: [Activate Your Gruntwork Account](/2.0/docs/overview/getting-started/create-account)
 
 Setup your Gruntwork account and invite your team mates to gain access to Gruntwork resources.
