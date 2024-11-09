@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.27" lastModifiedVersion="0.26.8"/>
+<VersionBadge repoTitle="VPC Modules" version="0.27.0" lastModifiedVersion="0.27.0"/>
 
 # Network ACL Outbound Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.27/modules/network-acl-outbound" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.27.0/modules/network-acl-outbound" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.27.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches is a simple helper for adding outbound rules to a [Network
 ACL](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html). Network ACLs can be a bit tricky to work with
@@ -24,7 +24,7 @@ because they are stateless, which means that opening an outbound port is often n
 which the remote services can use to respond. This can be very easy to forget, so this module adds not only the
 outbound to an ACL, but also the ephemeral inbound ports for return traffic.
 
-See the [network-acl-inbound](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.27/modules/network-acl-inbound) module for the analogous version of this module, but for opening
+See the [network-acl-inbound](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.27.0/modules/network-acl-inbound) module for the analogous version of this module, but for opening
 inbound ports.
 
 ## What's a Network ACL?
@@ -47,7 +47,7 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 
 module "network_acl_outbound" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-outbound?ref=v0.26.27"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-outbound?ref=v0.27.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -134,7 +134,7 @@ module "network_acl_outbound" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-outbound?ref=v0.26.27"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-outbound?ref=v0.27.0"
 }
 
 inputs = {
@@ -221,11 +221,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.27/modules/network-acl-outbound/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.27/modules/network-acl-outbound/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.27/modules/network-acl-outbound/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.27.0/modules/network-acl-outbound/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.27.0/modules/network-acl-outbound/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.27.0/modules/network-acl-outbound/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c3b24934f19edd5b86a81901833950b5"
+  "hash": "77d51b2e23fdb34ae8632e9b6b9af49f"
 }
 ##DOCS-SOURCER-END -->

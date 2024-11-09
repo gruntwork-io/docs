@@ -9,19 +9,19 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.27" lastModifiedVersion="0.26.8"/>
+<VersionBadge repoTitle="VPC Modules" version="0.27.0" lastModifiedVersion="0.27.0"/>
 
 # Transit Gateway Attachment Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.27/modules/transit-gateway-attachment" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.27.0/modules/transit-gateway-attachment" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.27.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates a transit gateway attachment resource. A transit gateway attachment, attaches the transit gateway to a VPC. This module can be used to attach a transit gateway to multiple VPCs. Attaching a transit gateway to one or more VPCs creates a HUB and spoke routing topology, allowing traffic from one VPC to reach other VPCs or from a VPC to reach on-premises networks.
 
 The module accepts a map of VPCs for attachment to the transit gateway. See the examples below for the structure of the map.
 
-See [VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.27/modules//_docs/vpc-core-concepts.md) for more information on the core networking components and topologies.
+See [VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.27.0/modules//_docs/vpc-core-concepts.md) for more information on the core networking components and topologies.
 
 ## What is a Transit Gateway Attachment?
 
@@ -29,7 +29,7 @@ A transit gateway attachment is a way to connect a transit gateway (virtual rout
 
 ## Usage
 
-For usage examples, check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.27/examples/transit-gateway-attachment/).
+For usage examples, check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.27.0/examples/transit-gateway-attachment/).
 
 <!-- BEGIN_TF_DOCS -->
 
@@ -90,7 +90,7 @@ No modules.
 
 module "transit_gateway_attachment" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-attachment?ref=v0.26.27"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-attachment?ref=v0.27.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -100,13 +100,14 @@ module "transit_gateway_attachment" {
   transit_gateway_id = <string>
 
   # A map of vpcs with their name and the subnet ids that the transit gateway
-  # will attach to. The subnet IDs configured here are the attachment point for
-  # the transit gateway. I.E. The transit gateway will have an IP on these
-  # subnets.
+  # will attach to with optional creation of routing tables. See variable
+  # definition for details
   vpcs = <map(object(
     vpc_id     = string
     vpc_name   = string
     subnet_ids = list(string)
+    appliance_mode_support = optional(string, "disable")
+    route_table = optional(string)
   ))>
 
   # ----------------------------------------------------------------------------------------------------
@@ -132,6 +133,10 @@ module "transit_gateway_attachment" {
   # Amazon pool of IPv6 addresses is assigned to the Elastic Network Interface
   # (ENI) for a VPC attachment. The default is false.
   enable_ipv6_support = false
+
+  # Whether the VPC attachment should propagate routes with the Transit Gateway
+  # propagation non-default route tables. The default is false.
+  enable_tgw_route_propagation = false
 
   # Whether the VPC attachment should be associated with the Transit Gateway
   # association default route table. The default is true.
@@ -156,7 +161,7 @@ module "transit_gateway_attachment" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-attachment?ref=v0.26.27"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-attachment?ref=v0.27.0"
 }
 
 inputs = {
@@ -169,13 +174,14 @@ inputs = {
   transit_gateway_id = <string>
 
   # A map of vpcs with their name and the subnet ids that the transit gateway
-  # will attach to. The subnet IDs configured here are the attachment point for
-  # the transit gateway. I.E. The transit gateway will have an IP on these
-  # subnets.
+  # will attach to with optional creation of routing tables. See variable
+  # definition for details
   vpcs = <map(object(
     vpc_id     = string
     vpc_name   = string
     subnet_ids = list(string)
+    appliance_mode_support = optional(string, "disable")
+    route_table = optional(string)
   ))>
 
   # ----------------------------------------------------------------------------------------------------
@@ -201,6 +207,10 @@ inputs = {
   # Amazon pool of IPv6 addresses is assigned to the Elastic Network Interface
   # (ENI) for a VPC attachment. The default is false.
   enable_ipv6_support = false
+
+  # Whether the VPC attachment should propagate routes with the Transit Gateway
+  # propagation non-default route tables. The default is false.
+  enable_tgw_route_propagation = false
 
   # Whether the VPC attachment should be associated with the Transit Gateway
   # association default route table. The default is true.
@@ -239,7 +249,7 @@ EC2 Transit Gateway identifier
 <HclListItem name="vpcs" requirement="required" type="map(object(…))">
 <HclListItemDescription>
 
-A map of vpcs with their name and the subnet ids that the transit gateway will attach to. The subnet IDs configured here are the attachment point for the transit gateway. I.E. The transit gateway will have an IP on these subnets.
+A map of vpcs with their name and the subnet ids that the transit gateway will attach to with optional creation of routing tables. See variable definition for details
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -249,10 +259,43 @@ map(object({
     vpc_id     = string
     vpc_name   = string
     subnet_ids = list(string)
+
+    # Whether Appliance Mode support is enabled.  If enabled, a traffic flow between a source and destination
+    # uses the same Availability Zone for the VPC attachment for the lifetime of that flow.
+    # Valid values: enable, disable. Default value: disable.
+    appliance_mode_support = optional(string, "disable")
+
+    # Creates and associates a route table with the transit gateway attachment. Default value: null
+    route_table = optional(string)
+
   }))
 ```
 
 </HclListItemTypeDetails>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     Whether Appliance Mode support is enabled.  If enabled, a traffic flow between a source and destination
+     uses the same Availability Zone for the VPC attachment for the lifetime of that flow.
+     Valid values: enable, disable. Default value: disable.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     Creates and associates a route table with the transit gateway attachment. Default value: null
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 ### Optional
@@ -293,6 +336,15 @@ Whether IPv6 support is enabled. If enabled, a private IPv6 address from the Ama
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="enable_tgw_route_propagation" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether the VPC attachment should propagate routes with the Transit Gateway propagation non-default route tables. The default is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="enable_transit_gateway_default_route_table_association" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -322,6 +374,14 @@ EC2 Transit Gateway Attachment identifier.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="tgw_route_tables">
+<HclListItemDescription>
+
+The IDs of the Transit Gateway Route Tables.
+
+</HclListItemDescription>
+</HclListItem>
+
 </TabItem>
 </Tabs>
 
@@ -329,11 +389,11 @@ EC2 Transit Gateway Attachment identifier.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.27/modules/transit-gateway-attachment/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.27/modules/transit-gateway-attachment/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.27/modules/transit-gateway-attachment/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.27.0/modules/transit-gateway-attachment/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.27.0/modules/transit-gateway-attachment/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.27.0/modules/transit-gateway-attachment/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a4cc2fc6c5ff8e6bc910278a3eb2247b"
+  "hash": "6d7aa05d88e7786cf53015cf656a2a55"
 }
 ##DOCS-SOURCER-END -->
