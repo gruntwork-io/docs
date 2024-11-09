@@ -50,11 +50,11 @@ Pipelines can handle two main types of infrastructure-change events:
 1. Adding/changing/deleting Terragrunt files
 2. Creating new AWS accounts
 
-For the first type of infrastructure change (add/change/delete Terragrunt files) Pipelines authenticates to the specific AWS account where the affected resources live. For the second type of change (creating new AWS accounts), Pipelines uses the Gruntwork Landing Zone Management Account.
+For the first type of infrastructure change (add/change/delete Terragrunt files) Pipelines authenticates to the specific AWS account where the affected resources live. For the second type of change (creating new AWS accounts), Pipelines uses the Management Account.
 
-#### Gruntwork Landing Zone Management Account
+#### Management Account
 
-Gruntwork Landing Zone is built on top of AWS Control Tower, and AWS Control Tower requires that you create new AWS accounts using the [Control Tower Management AWS Account](https://docs.aws.amazon.com/controltower/latest/userguide/how-control-tower-works.html#what-is-mgmt).
+Gruntwork's Account Factory is built on top of AWS Control Tower, and AWS Control Tower requires that you create new AWS accounts using the [Control Tower Management AWS Account](https://docs.aws.amazon.com/controltower/latest/userguide/how-control-tower-works.html#what-is-mgmt).
 
 When new AWS account requests are approved and the AWS account is created, Pipelines will create a Pull Request that contains an account baseline. Since Pipelines does not yet have access to the AWS account, the baseline will be applied by authenticating to the Management Account.
 
