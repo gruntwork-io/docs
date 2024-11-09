@@ -166,7 +166,7 @@ export const redirects = [
         from: "/foundations/landing-zone"
     },
     {
-        to: "/2.0/docs/accountfactory/tutorials/vend-aws-account",
+        to: "/2.0/docs/accountfactory/guides/vend-aws-account",
         from: "/foundations/landing-zone/add-aws-account"
     },
     {
@@ -356,5 +356,9 @@ export const redirects = [
     {
         from: '/intro/overview/what-we-provide',
         to: '/2.0/docs/overview/concepts/devopsfoundations'
+    },
+    {
+      from: '/2.0/docs/accountfactory/tutorials/vend-aws-account',
+      to:   '/2.0/docs/accountfactory/guides/vend-aws-account'
     },
 ]

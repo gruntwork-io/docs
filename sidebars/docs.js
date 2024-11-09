@@ -367,7 +367,7 @@ const sidebar = [
       {
         label: "Vending a new AWS Account",
         type: "doc",
-        id: "2.0/docs/accountfactory/tutorials/vend-aws-account",
+        id: "2.0/docs/accountfactory/guides/vend-aws-account",
       },
       {
         label: "Modify an AWS Account",
