@@ -7,7 +7,7 @@ The Landing Zone component is focused on creating an initial best-practice AWS m
 
 ## Extending AWS Control Tower
 
-Gruntwork Landing Zone builds on AWS Control Tower to add important new functionality.
+Gruntwork's suggested Landing Zone / Account Factory builds on AWS Control Tower to add important new functionality.
 
 ### What is AWS Control Tower?
 
@@ -15,7 +15,7 @@ AWS Control Tower helps you set up and govern AWS accounts, and gives you a cent
 
 ### Additional functionality
 
-Gruntwork Landing Zone directly addresses these limitations by extending Control Tower with the following functionality:
+Gruntwork's Account Factory directly addresses these limitations by extending Control Tower with the following functionality:
 
 1. Configure and customize new AWS accounts using Terraform/OpenTofu
 1. Via the Gruntwork Account Factory:
@@ -27,7 +27,7 @@ Gruntwork Landing Zone directly addresses these limitations by extending Control
 
 ## Prerequisites
 
-The first step to using Gruntwork Landing Zone is to use AWS Control Tower to create a new multi-account setup, which requires that you meet the following prerequisites:
+The first step to using Gruntwork Account Factory is to use AWS Control Tower to create a new multi-account setup, which requires that you meet the following prerequisites:
 1. A [new AWS Account](https://portal.aws.amazon.com/billing/signup) and a user with administrator permissions. (We recommend using an IAM user with admin permissions rather than the root user)
 
    :::info
@@ -242,7 +242,7 @@ Control Tower Creation will take around an hour to complete
 ## Post Setup Configuration
 
 Now that Control Tower is enabled in your root account, there are a few configuration changes that need to be made to
-prepare for Gruntwork Landing Zone.
+prepare for Gruntwork Account Factory.
 
 1. [Turn off the default VPC created for new accounts](https://docs.aws.amazon.com/controltower/latest/userguide/configure-without-vpc.html#create-without-vpc). Gruntwork VPCs will be created for each account using terraform.
 
