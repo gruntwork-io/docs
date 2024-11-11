@@ -48,7 +48,7 @@ When generating pull requests in CI, the workflow generally involves first invok
 
 Patcher [report](/2.0/reference/patcher/#report) accepts a `--include-dirs` argument. When passed, this will cause `patcher report` to only output updates matching the glob pattern specified. This allows the developer to in essence limit the resulting PR to only a single environment. By invoking `patcher report` multiple times with different `--include-dirs` arguments, the developer can in effect create different PR worklfows for each environment.
 
-Patcher `report` outputs in JSON which can be manipulated or iterated over to achieve desired behaviors.
+Patcher `report` outputs in JSON which can be inspected or iterated over to achieve desired behaviors.
 
 ### Patcher Update
 
@@ -62,13 +62,15 @@ To implement a full-consolidation workflow, do not pass either `--include-dirs` 
 To implement a no-consolidation workflow, follow the below pseudo-code
 ```
 For each $environment (identified as a glob pattern of folders)
-  run patcher report --include-dirs=$environmen
+  run patcher report --include-dirs=$environment
   for each $target in the output of patcher report
     run patcher update --target=$target
 ```
 
 ### Dependency-Only Consolidation
-To implement a dependency-only consolidation workflow, run patcher `update` without any `--include-dirs` arguments.  This will create a single report output.  The output is a
+To implement a dependency-only consolidation workflow, run patcher `update` without any `--include-dirs` arguments.  This will create a single report output JSON file for all updates. Iterate over the targets in that JSON file and run patcher `update` once per identified target.
 
 ### Environment-Only Consolidation
+To implement a environment-only consolidation workflow, run patcher `update` for each environment....
+
 ### (Environment x Dependency) Consolidation
