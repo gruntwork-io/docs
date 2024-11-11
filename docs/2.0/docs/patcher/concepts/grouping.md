@@ -1,0 +1,14 @@
+# Update Grouping
+
+When working with enterprise IaC repositories you'll often find that you tend to reuse modules many times across a single repository.  This creates a scenario where when a dependent module releases a new version, you are prompted with updating your reference to that dependency many times.  This is in contrast to the traditional dependency update scenario for application codebases in e.g. a Java or NodeJS codebase, where a single dependency update may result in a change in a single change in a gradle.build or package.json file. In those environments, a pull request to bump a version would likely be only a few lines of code, and the build with those updates would progress through CI to reach higher environments in sequence.  In IaC, you often have those environments repeated within a codebase, and references to those dependencies in many places. Patcher thus has a choice - when a dependency releases a new version, how to divide the diff of applying those updates into pull requests.
+
+The naive option is to simply make one pull request per dependency update found within a repository. At scale, this quickly becomes unmanageable. Patcher does support this behavior, but it also includes the ability to create PRs to address all of those changes in a single PR, to create a single PR per environment (e.g. update everything in de), to create a PR per dependency update (e.g. update every instance of dependency XYZ), or to make a PR per dependency update per environment (update dependency XYZ in dev).
+
+## Terminology
+* `unit` A unit refers to a folder containing a `terragrunt.hcl` file, and thus a single corresponding OpenTofu state file.  A unit may specify one or multiple modules as `dependencies`.
+* `dependency` (or `target`) A dependency is an OpenTofu module that is referenced by `ref` (usually a full source code path AND a version number) inside your `unit`.  Patcher understands the semantics of semantic versioning on dependency `ref`s.
+* `environment` is a logical grouping of infrastructure to represent your application environments, such as `dev` or `prod`.  An environment usually contains multiple `units` and thus many `dependencies`.  Generally IaC environments are similar to each other, and represented as a folder structure in your repository.
+
+    :::info
+    As of November 2024 Patcher's understanding of environments is limited to groupings of folders matched with glob patterns.  E.g. `dev` is all folders matching `dev-*`.  Pipelines has a sophisticated HCL configuration syntax that allows for much more powerful definitions of environments.  It is planned that Patcher will be able to leverage this method of defining environments in the future. Let us know if this expanded definitional capability is important to your use case.
+    :::
