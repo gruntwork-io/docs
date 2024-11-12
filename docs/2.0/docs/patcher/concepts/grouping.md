@@ -1,4 +1,4 @@
-# Update Grouping
+# Update Grouping & Patch Strategy
 
 ## Overview
 When working with enterprise IaC repositories you'll often find that you tend to reuse modules many times across a single repository.  This creates a scenario where when a dependent module releases a new version, you are prompted with updating your reference to that dependency many times.  This is in contrast to the traditional dependency update scenario for application codebases in e.g. a Java or NodeJS codebase, where a single dependency update may result in a change in a single change in a gradle.build or package.json file. In those environments, a pull request to bump a version would likely be only a few lines of code, and the build with those updates would progress through CI to reach higher environments in sequence.  In IaC, you often have those environments repeated within a codebase, and references to those dependencies in many places. Patcher thus has a choice - when a dependency releases a new version, how to divide the diff of applying those updates into pull requests.
@@ -29,13 +29,13 @@ In this example, assuming all 3 dependencies have newer versions available, the 
 2. **No-Consolidation**: Seven pull requests, one for each unit
 3. **Dependency-Only Consolidation**: Three pull requests, one for each dependency, with the PRs for `dependency1` and `dependency2` updating both `dev` and `prod`.
 4. **Environment-Only Consolidation**: Two pull requests, one for `dev` and one for `prod`.
-5. **(Environment x Dependency) Consolidation**: Five pull requests - two for `dev` and three for `prod`.
+5. **(Environment x Dependency) Consolidation**: Five pull requests, two for `dev` and three for `prod`.
 
 ## Terminology
 * `unit` A unit refers to a folder containing a `terragrunt.hcl` file, and thus a single corresponding OpenTofu state file.  A unit may specify one or multiple modules as `dependencies`.
 * `dependency` (or `target`) A dependency is an OpenTofu module that is referenced by `ref` (usually a full source code path AND a version number) inside your `unit`.  Patcher understands the semantics of semantic versioning on dependency `ref`s.
 * `environment` is a logical grouping of infrastructure to represent your application environments, such as `dev` or `prod`.  An environment usually contains multiple `units` and thus many `dependencies`.  Generally IaC environments are similar to each other, and represented as a folder structure in your repository.
-* `update` is the the act of changing a single instance of a dependency to reference a newer version.
+* `update` is the the act of changing a single instance of a dependency to reference a newer version and to accommodate any breaking changes.
     :::info
     As of November 2024 Patcher's understanding of environments is limited to groupings of folders matched with glob patterns.  E.g. `dev` is all folders matching `dev-*`, `prod` is all folders matching `prod-*`.  Pipelines has a sophisticated HCL configuration syntax that allows for much more powerful definitions of environments.  It is planned that Patcher will be able to leverage this method of defining environments in the future. Let us know if this expanded definitional capability is important to your use case.
     :::
@@ -68,7 +68,15 @@ For each $environment (identified as a glob pattern of folders)
 ```
 
 ### Dependency-Only Consolidation
-To implement a dependency-only consolidation workflow, run patcher `update` without any `--include-dirs` arguments.  This will create a single report output JSON file for all updates. Iterate over the targets in that JSON file and run patcher `update` once per identified target.
+To implement a dependency-only consolidation workflow, run patcher `update` without any `--include-dirs` arguments.  This will create a single report output JSON file for all updates. Iterate over the targets in that JSON file and run patcher `update` once per identified target.  Said another way, follow the below pseudocode:
+
+To implement a dependency-only workflow, follow the below pseudo-code
+```
+run patcher report without an include-dirs argument
+for each $target in the output of patcher report
+    run patcher update --target=$target
+```
+
 
 ### Environment-Only Consolidation
 To implement a environment-only consolidation workflow, run patcher `update` for each environment....

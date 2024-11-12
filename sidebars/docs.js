@@ -427,7 +427,7 @@ const sidebar = [
         id: "2.0/docs/patcher/concepts/patches",
       },
       {
-        label: "Update Grouping / PR Strategy",
+        label: "Update Grouping & PR Strategy",
         type: "doc",
         id: "2.0/docs/patcher/concepts/grouping",
       },
