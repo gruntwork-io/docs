@@ -1,4 +1,4 @@
-# Update Grouping & Patch Strategy
+# Update Grouping & Pull Request Strategy
 
 ## Overview
 When working with enterprise IaC repositories you'll often find that you tend to reuse modules many times across a single repository.  This creates a scenario where when a dependent module releases a new version, you are prompted with updating your reference to that dependency many times.  This is in contrast to the traditional dependency update scenario for application codebases in e.g. a Java or NodeJS codebase, where a single dependency update may result in a change in a single change in a gradle.build or package.json file. In those environments, a pull request to bump a version would likely be only a few lines of code, and the build with those updates would progress through CI to reach higher environments in sequence.  In IaC, you often have those environments repeated within a codebase, and references to those dependencies in many places. Patcher thus has a choice - when a dependency releases a new version, how to divide the diff of applying those updates into pull requests.
@@ -58,19 +58,31 @@ Patcher [update](/2.0/reference/patcher/#update) accepts a `--target` argument. 
 
 ### Full-Consolidation
 To implement a full-consolidation workflow, do not pass either `--include-dirs` or `--target` parameters to patcher `report` and `update`.  The output of patcher `report` will include all updates that are available, and the effect of patcher `update` will be to create a single PR that includes all targets (dependencies) across all folders.
-### No-Consolidation
-To implement a no-consolidation workflow, follow the below pseudo-code
+
+**Pseudocode:**
 ```
-For each $environment (identified as a glob pattern of folders)
-  run patcher report --include-dirs=$environment
-  for each $target in the output of patcher report
-    run patcher update --target=$target
+run patcher report
+run patcher update
+```
+
+
+### No-Consolidation
+
+Patcher `report` has two types of outputs, a `plan` and a `spec`.  Generally we use the `spec` file as its simpler and contains the information needed for most workflows.  To achieve a no-consolidation workflow, however, we need the full `plan`.
+
+**Pseudocode:**
+```
+run patcher report --output-plan plan.json
+for each dependency in plan.json
+    for each usage of the dependency:
+        cd to the directory of the usage, e.g. (dirname usage.source.file)
+        run patcher update --target $dependency.org/$dependency.repo/$dependency.module
 ```
 
 ### Dependency-Only Consolidation
-To implement a dependency-only consolidation workflow, run patcher `update` without any `--include-dirs` arguments.  This will create a single report output JSON file for all updates. Iterate over the targets in that JSON file and run patcher `update` once per identified target.  Said another way, follow the below pseudocode:
+To implement a dependency-only consolidation workflow, run patcher `update` without any `--include-dirs` arguments.  This will create a single report output JSON file for all updates. Iterate over the targets in that JSON file and run patcher `update` once per identified target.
 
-To implement a dependency-only workflow, follow the below pseudo-code
+**Pseudocode:**
 ```
 run patcher report without an include-dirs argument
 for each $target in the output of patcher report
@@ -79,6 +91,25 @@ for each $target in the output of patcher report
 
 
 ### Environment-Only Consolidation
-To implement a environment-only consolidation workflow, run patcher `update` for each environment....
+To implement a environment-only consolidation workflow you need to iterate over each of your environments, passing in the environment to `--include-dirs` to `report` and then pass the complete output from report to a single `update` command.
+
+**Pseudocode:**
+```
+for each $environment
+    run patcher report -include-dirs=$environment
+    run patcher update without any target argument
+```
 
 ### (Environment x Dependency) Consolidation
+To implement a environment x dependency consolidation workflow you will need to iterate over each of your environments, passing in the environment to `--include-dirs` to `report` and then iterating over each target in the report output and passing `--target` to `update`.
+
+**Pseudocode:**
+```
+for each $environment (identified as a glob pattern of folders)
+  run patcher report --include-dirs=$environment
+  for each $target in the output of patcher report
+    run patcher update --target=$target
+```
+
+
+**Pseudocode:**
