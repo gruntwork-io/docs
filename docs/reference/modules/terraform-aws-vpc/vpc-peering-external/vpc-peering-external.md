@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.26.27" lastModifiedVersion="0.26.8"/>
+<VersionBadge repoTitle="VPC Modules" version="0.27.0" lastModifiedVersion="0.27.0"/>
 
 # VPC Peering For External VPCs Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.27/modules/vpc-peering-external" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.27.0/modules/vpc-peering-external" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.27.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates route table entries for a [VPC Peering
 Connection](http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide/Welcome.html) between one of your internal VPCs (e.g.
@@ -87,7 +87,7 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 
 module "vpc_peering_external" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-external?ref=v0.26.27"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-external?ref=v0.27.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -202,7 +202,7 @@ module "vpc_peering_external" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-external?ref=v0.26.27"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-external?ref=v0.27.0"
 }
 
 inputs = {
@@ -317,11 +317,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.27/modules/vpc-peering-external/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.27/modules/vpc-peering-external/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.26.27/modules/vpc-peering-external/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.27.0/modules/vpc-peering-external/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.27.0/modules/vpc-peering-external/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.27.0/modules/vpc-peering-external/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c2786c268a6b27e2a26402efcac7848f"
+  "hash": "0bcf37e0a9aaff553a2cec8fbdca7f2e"
 }
 ##DOCS-SOURCER-END -->

@@ -8,7 +8,7 @@ Pipelines can intelligently figure out which AWS account to authenticate to base
 
 To perform the actions that Pipelines detects, each AWS account needs to assume an AWS IAM Role using [OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services). To explain OIDC at a high level, AWS considers GitHub an "identity provider," trusts GitHub's request for a temporary IAM Role, and then issues AWS credentials that are valid for the duration of a GitHub Action workflow.
 
-Every time you create a new AWS account, you need to update the AWS OIDC configuration to create an IAM role for this account and allow it to be assumed by GitHub. When you use [Gruntwork Account Factory](../../accountfactory/architecture/index.md), this role is automatically created when [adding a new AWS account](../../accountfactory/tutorials/vend-aws-account.md).
+Every time you create a new AWS account, you need to update the AWS OIDC configuration to create an IAM role for this account and allow it to be assumed by GitHub. When you use [Gruntwork Account Factory](../../accountfactory/architecture/index.md), this role is automatically created when [adding a new AWS account](/2.0/docs/accountfactory/guides/vend-aws-account).
 
 ### How Pipelines knows what AWS account to authenticate to
 
@@ -50,11 +50,11 @@ Pipelines can handle two main types of infrastructure-change events:
 1. Adding/changing/deleting Terragrunt files
 2. Creating new AWS accounts
 
-For the first type of infrastructure change (add/change/delete Terragrunt files) Pipelines authenticates to the specific AWS account where the affected resources live. For the second type of change (creating new AWS accounts), Pipelines uses the Gruntwork Landing Zone Management Account.
+For the first type of infrastructure change (add/change/delete Terragrunt files) Pipelines authenticates to the specific AWS account where the affected resources live. For the second type of change (creating new AWS accounts), Pipelines uses the Management Account.
 
-#### Gruntwork Landing Zone Management Account
+#### Management Account
 
-Gruntwork Landing Zone is built on top of AWS Control Tower, and AWS Control Tower requires that you create new AWS accounts using the [Control Tower Management AWS Account](https://docs.aws.amazon.com/controltower/latest/userguide/how-control-tower-works.html#what-is-mgmt).
+Gruntwork's Account Factory is built on top of AWS Control Tower, and AWS Control Tower requires that you create new AWS accounts using the [Control Tower Management AWS Account](https://docs.aws.amazon.com/controltower/latest/userguide/how-control-tower-works.html#what-is-mgmt).
 
 When new AWS account requests are approved and the AWS account is created, Pipelines will create a Pull Request that contains an account baseline. Since Pipelines does not yet have access to the AWS account, the baseline will be applied by authenticating to the Management Account.
 
@@ -68,6 +68,6 @@ The AWS IAM Role for the management account must have permissions to provision n
 
 #### Child Accounts
 
-Each child account (e.g., `dev`, `stage`, `prod,` etc.) contains an AWS IAM role that Pipelines can assume from GitHub Actions using OIDC. This role is automatically provisioned as a part of the [account baseline process](../../accountfactory/tutorials/vend-aws-account.md). Once this role is in place in the child account, users may submit Pull Requests to add/modify/delete resources in the child account.
+Each child account (e.g., `dev`, `stage`, `prod,` etc.) contains an AWS IAM role that Pipelines can assume from GitHub Actions using OIDC. This role is automatically provisioned as a part of the [account baseline process](/2.0/docs/accountfactory/guides/vend-aws-account). Once this role is in place in the child account, users may submit Pull Requests to add/modify/delete resources in the child account.
 
 When a Pull Request is created or synchronized, or a push to the `main` branch occurs, Pipelines will detect the changes, map them to the new account, assume the role in the child account, then run a `terragrunt plan` or `terragrunt apply` job (plan for PRs, apply for pushes to main).
