@@ -31,7 +31,7 @@ const sidebar = [
   {
     type: "doc",
     id: "index",
-    className: 'hidden',
+    className: "hidden",
   },
   {
     label: "Devops Foundations",
@@ -53,7 +53,7 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/overview/concepts/labels-tags",
       },
-    ]
+    ],
   },
   complianceSidebar,
   {
@@ -102,7 +102,7 @@ const sidebar = [
     collapsed: true,
     link: {
       type: "doc",
-      id: "2.0/docs/pipelines/concepts/overview"
+      id: "2.0/docs/pipelines/concepts/overview",
     },
     items: [
       {
@@ -128,7 +128,7 @@ const sidebar = [
     collapsed: true,
     link: {
       type: "doc",
-      id: "2.0/docs/pipelines/architecture/index"
+      id: "2.0/docs/pipelines/architecture/index",
     },
     items: [
       {
@@ -164,7 +164,7 @@ const sidebar = [
     collapsed: true,
     link: {
       type: "doc",
-      id: "2.0/docs/pipelines/installation/overview"
+      id: "2.0/docs/pipelines/installation/overview",
     },
     items: [
       {
@@ -215,6 +215,11 @@ const sidebar = [
             label: "Adding Pipelines to an Existing Repository",
             type: "doc",
             id: "2.0/docs/pipelines/installation/addingexistingrepo",
+          },
+          {
+            label: "Adding Pipelines to an Existing Repository(YAML config)",
+            type: "doc",
+            id: "2.0/docs/pipelines/installation/addingexistingrepo-yaml",
           },
           {
             label: "Adding Branch Protection to a Repository",
@@ -331,7 +336,7 @@ const sidebar = [
   {
     label: "Concepts",
     type: "doc",
-    id: "2.0/docs/accountfactory/concepts/index"
+    id: "2.0/docs/accountfactory/concepts/index",
   },
   {
     label: "Architecture",
@@ -339,7 +344,7 @@ const sidebar = [
     collapsed: true,
     link: {
       type: "doc",
-      id: "2.0/docs/accountfactory/architecture/index"
+      id: "2.0/docs/accountfactory/architecture/index",
     },
     items: [
       {
@@ -408,7 +413,7 @@ const sidebar = [
     collapsed: true,
     link: {
       type: "doc",
-      id: "2.0/docs/patcher/concepts/index"
+      id: "2.0/docs/patcher/concepts/index",
     },
     items: [
       {
@@ -672,7 +677,6 @@ const sidebar = [
     type: "doc",
     id: "courses",
   },
-
 ]
 
 module.exports = sidebar
