@@ -57,7 +57,7 @@ Patcher [update](/2.0/reference/patcher/#update) accepts a `--target` argument. 
 ## Implementation Walkthrough
 
 ### Full-Consolidation
-To implement a full-consolidation workflow, do not pass either `--include-dirs` or `--target` parameters to patcher `report` and `update`.  The output of patcher `report` will include all updates that are available, and the effect of patcher `update` will be to create a single PR that includes all targets (dependencies) across all folders.
+To implement a full-consolidation workflow, do not pass either `--include-dirs` or `--target` arguments to patcher `report` and `update`.  The output of patcher `report` will include all updates that are available, and the effect of patcher `update` will be to create a single PR that includes all targets (dependencies) across all folders.
 
 **Pseudocode:**
 ```
