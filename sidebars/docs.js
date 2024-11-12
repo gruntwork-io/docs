@@ -53,6 +53,11 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/overview/concepts/labels-tags",
       },
+      {
+        label: 'IaC Platform Choice',
+        type: 'doc',
+        id: '2.0/docs/overview/concepts/iac-platform',
+      }
     ]
   },
   complianceSidebar,
