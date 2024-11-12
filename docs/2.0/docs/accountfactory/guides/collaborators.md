@@ -20,7 +20,7 @@ Teams must exist within your GitHub Organization where Account Factory is runnin
 
 To find a Team Name navigate to your Organization, and select the Teams tab. The Team Name is the unique identifier for each team.
 
-![Screenshot of Team Settings showing Team Name](/img/account-factory/team-name.png)
+![Screenshot of Team Settings showing Team Name](/img/accountfactory/team-name.png)
 
 In the above screenshot the Team Name is `platform-team`.
 

@@ -299,6 +299,11 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/pipelines/guides/running-drift-detection",
       },
+      {
+        label: "Passing Additional Environment Variables to Terragrunt",
+        type: "doc",
+        id: "2.0/docs/pipelines/guides/terragrunt-env-vars",
+      },
     ],
   },
   {
@@ -372,7 +377,7 @@ const sidebar = [
       {
         label: "Vending a new AWS Account",
         type: "doc",
-        id: "2.0/docs/accountfactory/tutorials/vend-aws-account",
+        id: "2.0/docs/accountfactory/guides/vend-aws-account",
       },
       {
         label: "Modify an AWS Account",
@@ -393,6 +398,11 @@ const sidebar = [
         label: "Adding Collaborators to Delegated Repositories",
         type: "doc",
         id: "2.0/docs/accountfactory/guides/collaborators",
+      },
+      {
+        label: "Adding IAM Permissions To Delegated Repositories",
+        type: "doc",
+        id: "2.0/docs/accountfactory/guides/iam-roles",
       },
     ],
   },
