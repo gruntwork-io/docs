@@ -9,15 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.74.4" lastModifiedVersion="0.44.10"/>
+<VersionBadge repoTitle="Security Modules" version="0.74.5" lastModifiedVersion="0.44.10"/>
 
 # SSH Grunt SELinux Policy
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.4/modules/ssh-grunt-selinux-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/ssh-grunt-selinux-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.44.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module installs a SELinux Local Policy Module that is necessary to make [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.4/modules/ssh-grunt) work on
+This module installs a SELinux Local Policy Module that is necessary to make [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/ssh-grunt) work on
 systems with SELinux, such as CentOS.
 
 The reason we need a policy is that `ssh-grunt` uses is executed on each attempted SSH login by the
@@ -84,11 +84,11 @@ $ sudo semodule -i ssh-grunt.pp
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.4/modules/ssh-grunt-selinux-policy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.4/modules/ssh-grunt-selinux-policy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.4/modules/ssh-grunt-selinux-policy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/ssh-grunt-selinux-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/ssh-grunt-selinux-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/ssh-grunt-selinux-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ce9df443fe577fcf87e53e7d8c505ef2"
+  "hash": "db8b68c1f0de792f522dfb7feb42aa11"
 }
 ##DOCS-SOURCER-END -->
