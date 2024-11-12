@@ -33,7 +33,7 @@ In this example, assuming all 3 dependencies have newer versions available, the 
 
 ## Terminology
 * `unit` A unit refers to a folder containing a `terragrunt.hcl` file, and thus a single corresponding OpenTofu state file.  A unit may specify one or multiple modules as `dependencies`.
-* `dependency` (or `target`) A dependency is an OpenTofu module that is referenced by `ref` (usually a full source code path AND a version number) inside your `unit`.  Patcher understands the semantics of semantic versioning on dependency `ref`s.
+* `dependency` (also referred to as `target`) A dependency is an OpenTofu module that is referenced by `ref` (usually a full source code path AND a version number) inside your `unit`.  Patcher understands the semantics of semantic versioning on dependency `ref`s.
 * `environment` is a logical grouping of infrastructure to represent your application environments, such as `dev` or `prod`.  An environment usually contains multiple `units` and thus many `dependencies`.  Generally IaC environments are similar to each other, and represented as a folder structure in your repository.
 * `update` is the the act of changing a single instance of a dependency to reference a newer version and to accommodate any breaking changes.
     :::info
