@@ -12,7 +12,7 @@ The Pipeline will be configured using [Pipelines YAML Configuration](/2.0/refere
 - A [terragrunt](https://terragrunt.gruntwork.io/) repository with the [Gruntwork recommended folder structure](/2.0/docs/overview/concepts/infrastructure-live/#suggested-folder-hierarchy) that you would like to manage with Pipelines.
 - An active Gruntwork Subscription with access to Pipelines. You can verify you have access by choosing the "View team in GitHub" button in your [Gruntwork Developer Portal's account page](https://app.gruntwork.io/account) if you are an admin of the organization. The link will take you to the GitHub team UI and then you can search for "pipelines" in the repositories tab to see if you have access.
 - AWS credentials with permissions to create resources in the AWS account where you would like to deploy Pipelines. This is necessary to create OIDC IAM roles for Pipelines to use to auto deploy infrastructure.
-- Authentication enabled for Pipelines in the repository. This is necessary to allow Pipelines to fetch repository code and deploy infrastructure. See Authentication instructions in the [Authenticating Gruntwork Pipelines](2.0/docs/pipelines/installation/authoverview) documentation.
+- Authentication enabled for Pipelines in the repository. This is necessary to allow Pipelines to fetch repository code and deploy infrastructure. See Authentication instructions in the [Authenticating Gruntwork Pipelines](/2.0/docs/pipelines/installation/authoverview) documentation.
 
 ## Setting up the Repository
 
@@ -34,7 +34,7 @@ $$AWS_ACCOUNT_NAME$$:
 
 #### Mise Configuration
 
-Create a `.mise.toml` [mise](https://github.com/jdx/mise) file at the root of your repository with the example content [here](2.0/reference/pipelines/configurations#example-mise-configuration).
+Create a `.mise.toml` [mise](https://github.com/jdx/mise) file at the root of your repository with the example content [here](/2.0/reference/pipelines/configurations#example-mise-configuration).
 
 #### Pipelines YAML Configuration
 
@@ -109,3 +109,13 @@ jobs:
         env:
           RESULT: ${{ needs.GruntworkPipelines.result }}
 ```
+
+### Step 4 - Pipelines OIDC Roles
+
+TODO
+
+
+### Step 5 - Pipelines Authentication
+
+
+
