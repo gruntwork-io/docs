@@ -22,12 +22,12 @@
     "test": "jest"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.6.0",
-    "@docusaurus/faster": "^3.6.0",
-    "@docusaurus/plugin-client-redirects": "^3.6.0",
-    "@docusaurus/preset-classic": "^3.6.0",
-    "@docusaurus/theme-common": "^3.6.0",
-    "@docusaurus/theme-mermaid": "^3.6.0",
+    "@docusaurus/core": "^3.6.1",
+    "@docusaurus/faster": "^3.6.1",
+    "@docusaurus/plugin-client-redirects": "^3.6.1",
+    "@docusaurus/preset-classic": "^3.6.1",
+    "@docusaurus/theme-common": "^3.6.1",
+    "@docusaurus/theme-mermaid": "^3.6.1",
     "@mdx-js/react": "^3.0.1",
     "@svgr/webpack": "^5.5.0",
     "@types/jest": "^27.4.0",
@@ -51,9 +51,9 @@
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.6.0",
-    "@docusaurus/tsconfig": "3.6.0",
-    "@docusaurus/types": "^3.6.0",
+    "@docusaurus/module-type-aliases": "^3.6.1",
+    "@docusaurus/tsconfig": "^3.6.1",
+    "@docusaurus/types": "^3.6.1",
     "jest": "^27.4.7",
     "onchange": "^7.1.0",
     "ts-node": "^10.7.0",
