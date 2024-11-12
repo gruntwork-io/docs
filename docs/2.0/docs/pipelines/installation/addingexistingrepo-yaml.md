@@ -747,5 +747,5 @@ Follow the instructions in [Authenticating via GitHub App](/2.0/docs/pipelines/i
 
 ## Next Steps
 
-You have successfully completed the installation for Gruntwork Pipelines in your existing repository. Follow [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deployingfirstinfrastructure) tutorial to test the installation and deploy your first infrastructure using Gruntwork Pipelines.
+You have successfully completed the installation for Gruntwork Pipelines in your existing repository. Follow [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change) tutorial to test the installation and deploy your first infrastructure using Gruntwork Pipelines.
 
