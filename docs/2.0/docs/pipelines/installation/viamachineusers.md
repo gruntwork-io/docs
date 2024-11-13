@@ -1,4 +1,10 @@
+---
+# Display h2 to h4 headings
+toc_min_heading_level: 2
+toc_max_heading_level: 4
+---
 # Setting up Pipelines via GitHub Machine Users
+import PersistentCheckbox from '/src/components/PersistentCheckbox';
 
 Of the [two ways](./authoverview.md) of installing Pipelines, we strongly encourage users to use [GitHub App](./viagithubapp.md) to install pipelines. However, if you're unable to use the app, or if you wish to setup machine users as a [fallback](http://localhost:3000/2.0/docs/pipelines/installation/viagithubapp#fallback) then you can use this guide to setup authentication for pipeline via access tokens and machine users.
 
@@ -147,15 +153,22 @@ Make sure you are aware of trade-offs in security for convenience when making de
 
 The `ci-user` orchestrates workflows, can open pull requests from automated code generation, and leave comments on pull requests. This user should have two GitHub Fine Grained [Personal Access Tokens (PATs)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens) with the following permissions.
 
-#### Invite the `ci-user` to your repository
+**Invite the `ci-user` to your repository**
 
 Invite the `ci-user` to your `infrastructure-live-root` and `infrastructure-live-access-control` repositories with write access.
 
-#### Create the appropriate tokens for the `ci-user`
+<PersistentCheckbox id="via-machine-users-1" label="ci-user created" />
+
+**Create the appropriate tokens for the `ci-user`**
 
 Create the following access tokens in the `ci-user`'s GitHub account:
 
-1. `INFRA_ROOT_WRITE_TOKEN`. This is a [fine-grained GitHub Personal Access Token](#fine-grained) and will be used to grant GitHub Actions access to clone your `infrastructure-live-root` repository, open PRs, and create/update comments.
+<PersistentCheckbox id="via-machine-users-2" label="INFRA_ROOT_WRITE_TOKEN created under ci-user" />
+<PersistentCheckbox id="via-machine-users-3" label="ORG_REPO_ADMIN_TOKEN created under ci-user" />
+
+
+#### INFRA_ROOT_WRITE_TOKEN
+`INFRA_ROOT_WRITE_TOKEN`. This is a [fine-grained GitHub Personal Access Token](#fine-grained) and will be used to grant GitHub Actions access to clone your `infrastructure-live-root` repository, open PRs, and create/update comments.
 
    This token **must** have the following permissions to your **`infrastructure-live-root`** repo **in your GitHub Organization**:
 
@@ -174,29 +187,29 @@ Create the following access tokens in the `ci-user`'s GitHub account:
 
      If you are not an Enterprise customer, or don't want Pipelines to perform those specific behaviors, you can chose to not grant the corresponding permissions.
 
-     ### Content read & write access
+     <h3>Content read & write access</h3>
 
      This is required to clone `infrastructure-live-root` and push changes to it. The `infrastructure-live-root` repository updates itself in automated processes during account vending, and baselining. Without this permission, the pull request opened by the GitHub Actions workflow would not trigger the necessary automation to support account vending.
 
-     ### Issues read & write access
+     <h3>Issues read & write access</h3>
 
      This is required to open issues. Pipelines will open issues when necessary to signal that manual intervention is required.
 
-     ### Metadata read access
+     <h3>Metadata read access</h3>
 
      This is required to read the repository metadata. This is added onto the token by default by GitHub when selecting the `repo` scope.
 
-     ### Pull requests read & write access
+     <h3>Pull requests read & write access</h3>
 
      This is required to open pull requests. Pipelines opens pull requests to automate the process of introducing new Infrastructure as Code changes to drive infrastructure updates.
 
-     ### Workflows read & write access
+     <h3>Workflows read & write access</h3>
 
      This is required to update GitHub Action workflow files. When vending delegated repositories for Enterprise customers, Pipelines will create new repositories, including content in the `.github/workflows` directory. Without this permission, Pipelines would not be able to provision repositories with this content.
 
    </details>
-
-2. `ORG_REPO_ADMIN_TOKEN`. This is a [fine-grained GitHub Personal Access Token](#fine-grained) that will be used to initially bootstrap repositories vended as part of DevOps Foundations.
+#### ORG_REPO_ADMIN_TOKEN
+`ORG_REPO_ADMIN_TOKEN`. This is a [fine-grained GitHub Personal Access Token](#fine-grained) that will be used to initially bootstrap repositories vended as part of DevOps Foundations.
 
    In addition, Enterprise customers will have it used during account vending to create new delegated `infrastructure-live` repositories in their GitHub Organization when vending AWS accounts with the `isDelegated` value selected.
 
@@ -225,27 +238,27 @@ Create the following access tokens in the `ci-user`'s GitHub account:
 
      If you are not an Enterprise customer, or don't want Pipelines to perform those specific behaviors, you can chose to not grant the corresponding permissions.
 
-     ### Administration read & write access
+     <h3>Administration read & write access</h3>
 
      This is required to create new repositories. Pipelines will create new repositories when vending delegated repositories for Enterprise customers. Without this permission, Pipelines would not be able to provision repositories.
 
-     ### Contents read & write access
+     <h3>Contents read & write access</h3>
 
      This is required to read and write repository contents. This token is used for bootstrapping repositories by all customers, and to populate delegated respoitories for Enterprise customers.
 
-     ### Metadata read access
+     <h3>Metadata read access</h3>
 
      This is required to read the repository metadata. This is added onto the token by default by GitHub when selecting the `repo` scope.
 
-     ### Pull requests read & write access
+     <h3>Pull requests read & write access</h3>
 
      This is required to open pull requests. When vending delegated repositories for Enterprise customers, Pipelines will open pull requests to automate the process of introducing new Infrastructure as Code changes to drive infrastructure updates.
 
-     ### Workflows read & write access
+     <h3>Workflows read & write access</h3>
 
      This is required to update GitHub Action workflow files. When vending delegated repositories for Enterprise customers, Pipelines will create new repositories, including content in the `.github/workflows` directory. Without this permission, Pipelines would not be able to provision repositories with this content.
 
-     ### Members read & write access
+     <h3>Members read & write access</h3>
 
      This is required to update GitHub organization team members. When vending delegated repositories for Enterprise customers, Pipelines will add team members to a team that has access to a delegated repository. Without this permission, Pipelines would not be able to provision repositories that are accessible to the correct team members.
 
@@ -257,15 +270,18 @@ This user is created to download private software within GitHub Actions Workflow
 
 The `ci-read-only-user` should have a single classic [Personal Access Token (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with read permissions. Classic PATs have coarse granularity, we recommend putting this user in a GitHub team that only has READ access to `infrastructure-live-root` and any relevant module repositories in your own GitHub Organization. By adding this user to the Gruntwork Developer portal, they will automatically gain access to the Gruntwork Library.
 
-#### Invite the `ci-read-only-user` to your repository
+**Invite the `ci-read-only-user` to your repository**
 
 Invite `ci-user-read-only` to your `infrastructure-live-root` repository with read access.
 
-#### Create the appropriate tokens for the `ci-read-only-user`
+**Create the appropriate tokens for the `ci-read-only-user`**
 
 Create the following token for the `ci-read-only-user`:
+<PersistentCheckbox id="via-machine-users-4" label="PIPELINES_READ_TOKEN created under ci-read-only-user" />
 
-1. `PIPELINES_READ_TOKEN`. This [Classic Personal Access Token](#classic-tokens) will be used to manage access to private software during GitHub Action runs.
+
+#### PIPELINES_READ_TOKEN
+`PIPELINES_READ_TOKEN`. This [Classic Personal Access Token](#classic-tokens) will be used to manage access to private software during GitHub Action runs.
 
 This token **must** have `repo` scopes.
 
