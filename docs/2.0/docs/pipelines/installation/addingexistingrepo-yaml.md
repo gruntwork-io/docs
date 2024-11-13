@@ -721,7 +721,7 @@ include "envcommon" {
 
 #### Create the OIDC resources
 
-Using the necessary AWS credentials, run the following commands to deploy the infrastructure for the OIDC resources we created in the previous steps. Repeat this step for each account you would like to manage with Pipelines.
+Make sure you have administrator access to your account available, then run the following commands to deploy the infrastructure for the OIDC resources we created in the previous steps. Repeat this step for each account you would like to manage with Pipelines.
 
 
   ```bash
