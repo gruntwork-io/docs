@@ -35,6 +35,6 @@ Each new account has a set of IAM policies that determine the scope of changes P
 
 ## Delegated Repositories
 
-Delegated repositories provide additional control over your infrastructure by expanding on the above architecture. When vending delegated repositories new account security baselines are still tracked in your `infrastructure-live-root` repository, however other infrastructure is tracked in a new repository specific to this account(s). New IAM roles are added to your `infrastructure-live-access-control` repository that control the allowed infrastructure changes that can take place via Pipelines in the delegated repository.
+Delegated repositories provide additional control over your infrastructure by expanding on the above architecture. When vending delegated repositories new account security baselines are still tracked in your `infrastructure-live-root` repository, however other infrastructure is tracked in a new repository specific to this account(s). New IAM roles are added to your `infrastructure-live-access-control` repository that are inherited by pipelines when deploying infrastructure in the delegated repositories, allowing the central platform team to control what changes can be implemented via Pipelines in the delegated repository.
 
 ![Delegated Architecture Overview Diagram](/img/accountfactory/delegated-architecture.png)
