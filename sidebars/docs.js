@@ -217,7 +217,7 @@ const sidebar = [
             id: "2.0/docs/pipelines/installation/addingexistingrepo",
           },
           {
-            label: "Adding Pipelines to an Existing Repository(YAML config)",
+            label: "Adding Pipelines to an Existing Repository (YAML config)",
             type: "doc",
             id: "2.0/docs/pipelines/installation/addingexistingrepo-yaml",
           },
