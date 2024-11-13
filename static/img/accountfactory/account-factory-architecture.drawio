@@ -303,7 +303,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="fzLWQLIl82AEHUw5nBBU-74" value="Additional Infrastructure" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="fzLWQLIl82AEHUw5nBBU-74" value="&lt;span data-slate-node=&quot;text&quot;&gt;&lt;span class=&quot;components_baseText__dAnYV&quot; data-slate-leaf=&quot;true&quot;&gt;&lt;span data-slate-string=&quot;true&quot;&gt;Team Infrastructure&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="830" y="1240.4499999999998" width="120" height="48.83" as="geometry" />
         </mxCell>
         <mxCell id="fzLWQLIl82AEHUw5nBBU-77" value="Account Directory" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="1">
