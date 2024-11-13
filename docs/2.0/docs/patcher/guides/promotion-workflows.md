@@ -15,6 +15,10 @@ Patcher was built specifically for infrastructure as code and has a first-class 
 
 (Coming soon a sequence diagram here demonstrating the promotion workflow process)
 
+:::info
+This document outlines setting up a Patcher promotion workflow using the [environment-only](/2.0/docs/patcher/concepts/grouping#environment-only-consolidation) update grouping strategy. The GitHub Actions code herein could be tweaked to achieve the other strategies.
+:::
+
 # Patcher Promotion Workflow Architecture
 
 ## Environments
