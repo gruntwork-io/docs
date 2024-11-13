@@ -1,3 +1,9 @@
+---
+# Display h2 to h4 headings
+toc_min_heading_level: 2
+toc_max_heading_level: 4
+---
+
 import { HclListItem, HclListItemExample, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '/src/components/HclListItem.tsx';
 
 # Pipelines Configurations
@@ -14,7 +20,7 @@ If you do introduce any HCL configurations into your `.gruntwork` directory or i
 
 Pipelines behavior is primarily configured via a yaml file at `.gruntwork/config.yml` in your repository. Pipelines also reads [.mise.toml](/docs/2.0/docs/pipelines/previous-versions/upgrading-from-infrastructure-pipelines.md#adding-misetoml) at the root of the repository to determine what version of OpenTofu/Terraform and Terragrunt to use.
 
-### Example Mise Configuration
+#### Example Mise Configuration
 `./.mise.toml`
 ```
 [tools]
@@ -23,16 +29,16 @@ terragrunt = "0.67.16"
 awscli = "latest"
 ```
 
-# Pipelines Configuration Options
+## Pipelines Configuration Options
 
 
 Configurations for `./.gruntwork/config.yml`:
 
-## `pipelines` Options
+### `pipelines` Options
 
 The below options are all nested under the `pipelines` key in the `config.yml` file.
 
-### consolidate-added-or-changed
+#### consolidate-added-or-changed
 
 <HclListItem name="consolidate-added-or-changed" requirement="optional" type="boolean">
 <HclListItemDescription>
@@ -49,7 +55,7 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
-### consolidate-deleted
+#### consolidate-deleted
 
 <HclListItem name="consolidate-deleted" requirement="optional" type="boolean">
 <HclListItemDescription>
@@ -67,7 +73,7 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
-### deploy-branch-name
+#### deploy-branch-name
 
 <HclListItem name="deploy-branch-name" requirement="required" type="string">
 <HclListItemDescription>
@@ -83,7 +89,7 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
-### enable-terragrunt-provider-cache
+#### enable-terragrunt-provider-cache
 
 <HclListItem name="enable-terragrunt-provider-cache" requirement="optional" type="boolean">
 <HclListItemDescription>
@@ -100,7 +106,7 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
-### env
+#### env
 
 <HclListItem name="env" requirement="optional" type="sequence(mapping)">
 <HclListItemDescription>
@@ -120,7 +126,7 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
-### is-access-control-repo
+#### is-access-control-repo
 
 <HclListItem name="is-access-control-repo" requirement="optional" type="boolean">
 <HclListItemDescription>
@@ -136,7 +142,7 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
-### is-delegated-repo
+#### is-delegated-repo
 
 <HclListItem name="is-delegated-repo" requirement="optional" type="boolean">
 <HclListItemDescription>
@@ -152,7 +158,7 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
-### session-duration
+#### session-duration
 
 <HclListItem name="session-duration" requirement="optional" type="number">
 <HclListItemDescription>
@@ -169,7 +175,7 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
-### tf-binary
+#### tf-binary
 
 <HclListItem name="tf-binary" requirement="optional" type="string">
 <HclListItemDescription>
@@ -186,9 +192,9 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
-# Deprecated Configuration Options
+## Deprecated Configuration Options
 
-### cli-version
+#### cli-version
 
 <HclListItem name="cli-version" requirement="deprecated" type="string">
 <HclListItemDescription>
@@ -196,7 +202,7 @@ Pipelines CLI version - no longer used as this is determined by the pipelines wo
 </HclListItemDescription>
 </HclListItem>
 
-### repo-allow-list
+#### repo-allow-list
 
 <HclListItem name="repo-allow-list" requirement="required(deprecated)" type="array[string]">
 <HclListItemDescription>
@@ -212,7 +218,7 @@ repo-allow-list:
 </HclListItemExample>
 </HclListItem>
 
-### terraform-version
+#### terraform-version
 
 <HclListItem name="terraform-version" requirement="deprecated" type="string">
 <HclListItemDescription>
@@ -220,7 +226,7 @@ Terraform version to use for plans and applies. Will be used if mise configurati
 </HclListItemDescription>
 </HclListItem>
 
-### terragrunt-version
+#### terragrunt-version
 
 <HclListItem name="terragrunt-version" requirement="deprecated" type="string">
 <HclListItemDescription>
@@ -228,7 +234,7 @@ Terragrunt version to use for plans and applies. Will be used if mise configurat
 </HclListItemDescription>
 </HclListItem>
 
-### tofu-version
+#### tofu-version
 
 <HclListItem name="tofu-version" requirement="deprecated" type="string">
 <HclListItemDescription>

@@ -1,4 +1,4 @@
-# Adding Pipelines to an existing repository
+# Adding Pipelines to an existing repository with Configuration as Code
 
 
 :::info
