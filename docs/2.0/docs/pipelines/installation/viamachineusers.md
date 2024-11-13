@@ -16,53 +16,8 @@ This guide will take approximately 30 minutes to complete.
 
 :::
 
-## Repository Access
-
-Gruntwork recommends that you grant permissions to GitHub repositories by defining three [GitHub Teams](https://docs.github.com/en/organizations/organizing-members-into-teams/about-teams), which should map to three separate personas in your organization. Each team and its permissions are designed to apply the [_principle of least privilege_](https://en.wikipedia.org/wiki/Principle_of_least_privilege) to each individual (or machine user) in your organization for them to be able to perform changes to your infrastructure.
-
-- The `infrastructure-administrators` team is for engineers who likely work on the IaC codebase daily, but _do_ have administrative AWS permissions.
-- The `infrastructure-collaborators` team is for engineers who work on the IaC codebase daily but _do not_ have administrative permissions in AWS.
-- The `ci-code-read-only` team is meant for engineers and a single machine user who can read relevant `infrastructure-live` and `infrastructure-modules` (a repository where you can define custom Terraform modules for your organization) repositories.
-
-:::tip
-This is only a recommendation, however. You must assess the needs of your organization and ensure that access is set up in a way that is secure and appropriate for your organization.
-:::
-
-#### Infrastructure Administrators
-
-These are the engineers who should be well versed in AWS best practices and knowledgeable about IAC. They will have the ability to approve and merge changes to the `infrastructure-live-root` and the `infrastructure-live-access-control` repository, and as such, have permissions to vend new AWS accounts.
-
-#### Infrastructure Collaborators
-
-These are the engineers who work on the IaC codebase daily but do not have administrative permissions in AWS. They will optionally have the ability to propose changes to the `infrastructure-live-root` and the `infrastructure-live-access-control` repository, but will not have the ability to vend new AWS accounts.
-
-If you are an organization that does not require that collaborators have the ability to propose changes to critical infrastructure in `infrastructure-live-root`, you should not provide the team write access to the `infrastructure-live-root` repository. They will still be able to use the permissions granted via `infrastructure-live-access-control` to make updates to workloads in a separate repository.
-
-e.g. If you have a team that is responsible for managing a service running in ECS, you can have a central platform team provision the relevant ECS cluster, service, etc within the `infrastructure-live-root` repository, then grant a separate `example-ecs-service` repository the ability to push newly built images to ECR and update the ECS service task definition via the `infrastructure-live-access-control` repository.
-
-If you are an organization that does not require that collaborators have the ability to propose changes to access control in `infrastructure-live-access-control`, you should not provide the team write access to the `infrastructure-live-access-control` repository. They will still be able to use the permissions granted via `infrastructure-live-access-control` to make updates to workloads in a separate repository.
-
-e.g. If you have that same team mentioned above find that they need the ability to upload new assets to an S3 bucket as part of their deployment procedure for their service, they can submit a ticket to a central platform team to update the `infrastructure-live-access-control` repository to grant them the necessary permissions to upload assets to S3 within their workflows.
-
-:::tip
-While it does require a certain degree of trust to grant limited access to allow engineers to propose updates to these repositories, it is important to remember the trade-off between the risk granting too much access and the risk of [security fatigue](https://www.nist.gov/news-events/news/2016/10/security-fatigue-can-cause-computer-users-feel-hopeless-and-act-recklessly).
-
-Ensure that you have processes in place that make sense for your organization.
-:::
-
-
-
-import Tabs from "@theme/Tabs"
-import TabItem from "@theme/TabItem"
-
-:::info Gruntwork.io GitHub App
-This documentation assumes you are using static machine users to have Pipelines authenticate to GitHub.
-
-The Gruntwork.io GitHub App is the preferred way to authenticate with GitHub, and is recommended for most users. For more information, click [here](./viagithubapp.md).
-:::
-
-
-## Storing Secrets
+## Background
+### Guidance on Storing Secrets
 
 During this setup, you will need to generate and securely store three GitHub tokens for two GitHub users. You will need a temporary location for these sensitive values between generating them and storing them in GitHub Actions. Do so according to your company's recommended security best practices (e.g., do not store them in Slack, a sticky note, etc., during this exercise.)
 
@@ -78,14 +33,14 @@ Gruntwork recommends that you use a password manager like [1Password](https://1p
 If you are screen sharing when generating these tokens, **hide or pause your screen** before selecting the `Generate token` button to prevent the token from being exposed.
 :::
 
-## Generating Tokens
+### GitHub Token Types
 
 GitHub has two types of tokens that can be generated:
 
 1. Classic tokens
 2. Fine-grained tokens
 
-### Classic Tokens
+#### Classic Tokens
 
 Classic tokens have coarse granularity and for the most part grant similar access to the user that generated them.
 
@@ -97,7 +52,7 @@ In Pipelines, the `ci-read-only-user` will need a Classic token because it needs
 The `PIPELINES_READ_TOKEN` token must be created as a **Classic token**.
 :::
 
-### Fine-grained
+#### Fine-grained
 
 Fine-grained tokens have more granular permissions, and are generally recommended over Classic tokens when they are applicable.
 
@@ -128,6 +83,11 @@ More information can be found on that [here](https://docs.github.com/en/organiza
 
 ![Pending requests](/img/pipelines/security/pending_requests.png)
 
+
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
+
 ## Creating machine users
 
 The recommended setup for Pipelines uses two machine users; one with the ability to open pull requests and run workflows on your behalf and another that can only has read access to repositories in GitHub. Restrictive permissions are then granted to each user, granting them requisite permissions to accomplish their tasks. This means that in order to actually run a pipeline job, both users may be involved at separate stages.
@@ -157,12 +117,14 @@ The `ci-user` orchestrates workflows, can open pull requests from automated code
 
 Invite the `ci-user` to your `infrastructure-live-root` and `infrastructure-live-access-control` repositories with write access.
 
+**Checklist:**
 <PersistentCheckbox id="via-machine-users-1" label="ci-user created" />
 
 **Create the appropriate tokens for the `ci-user`**
 
 Create the following access tokens in the `ci-user`'s GitHub account:
 
+**Checklist:**
 <PersistentCheckbox id="via-machine-users-2" label="INFRA_ROOT_WRITE_TOKEN created under ci-user" />
 <PersistentCheckbox id="via-machine-users-3" label="ORG_REPO_ADMIN_TOKEN created under ci-user" />
 
@@ -274,9 +236,14 @@ The `ci-read-only-user` should have a single classic [Personal Access Token (PAT
 
 Invite `ci-user-read-only` to your `infrastructure-live-root` repository with read access.
 
+**Checklist:**
+<PersistentCheckbox id="via-machine-users-4" label="ci-read-only-user invited to infrastructure-live-root" />
+
 **Create the appropriate tokens for the `ci-read-only-user`**
 
-Create the following token for the `ci-read-only-user`:
+Create the following token for the `ci-read-only-user`
+
+**Checklist:**
 <PersistentCheckbox id="via-machine-users-4" label="PIPELINES_READ_TOKEN created under ci-read-only-user" />
 
 
@@ -293,7 +260,10 @@ The expiration of this token is up to you and the security posture of your organ
 
 Ensure both of these machine users are members of your team in **Gruntwork**’s GitHub Organization (See [instructions on inviting a user to your team](https://docs.gruntwork.io/developer-portal/invite-team#inviting-team-members) and [linking the user’s GitHub ID to Gruntwork](https://docs.gruntwork.io/developer-portal/link-github-id))
 
-### Configure secrets for GitHub Actions
+**Checklist:**
+<PersistentCheckbox id="via-machine-users-4" label="Machine users invited to Gruntwork organization" />
+
+## Configure secrets for GitHub Actions
 
 :::info
 
@@ -309,7 +279,11 @@ Since this guide implements secrets that are scoped to specific repositories, an
 
 <Tabs groupId="github-actions-secrets">
 <TabItem value="Organization Secrets" label="Organization Secrets" default>
-
+**Checklist:**
+<PersistentCheckbox id="via-machine-users-5a" label="PIPELINES_READ_TOKEN added to organization secrets" />
+<PersistentCheckbox id="via-machine-users-5b" label="INFRA_ROOT_WRITE_TOKEN added to organization secrets" />
+<PersistentCheckbox id="via-machine-users-5c" label="ORG_REPO_ADMIN_TOKEN added to organization secrets" />
+<hr />
 1. Navigate to your top level GitHub Organization and select the **Settings** tab.
 
 2. From the navigation bar on the left side, select **Secrets and variables** then select **Actions**.
@@ -363,7 +337,13 @@ For additional information on creating and using Github Actions Organization sec
 
 </TabItem>
 <TabItem value="Repository Secrets" label="Repository Secrets">
-
+**Checklist:**
+<PersistentCheckbox id="via-machine-users-6a" label="PIPELINES_READ_TOKEN added to infrastructure-live-root" />
+<PersistentCheckbox id="via-machine-users-6b" label="INFRA_ROOT_WRITE_TOKEN added to infrastructure-live-root" />
+<PersistentCheckbox id="via-machine-users-6c" label="ORG_REPO_ADMIN_TOKEN added to infrastructure-live-root" />
+<PersistentCheckbox id="via-machine-users-6d" label="PIPELINES_READ_TOKEN added to infrastructure-live-access-control" />
+<PersistentCheckbox id="via-machine-users-6e" label="ORG_REPO_ADMIN_TOKEN added to infrastructure-live-access-control" />
+<hr />
 Gruntwork Pipelines reads these secrets from GitHub Actions secrets created in the repo. For steps on how to create repository Actions secrets, refer to [creating secrets for a repository](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository).
 
 ### infrastructure-live-root
