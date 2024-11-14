@@ -415,7 +415,7 @@ const sidebar = [
     label: "Configuration Reference",
     type: "link",
     className: "external-link",
-    href: "/2.0/reference/accountfactory",
+    href: "/2.0/reference/accountfactory/configurations",
   },
   {
     value: "Patcher",
