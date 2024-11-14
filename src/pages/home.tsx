@@ -17,7 +17,8 @@ export const HomeContent = () => {
         </div>
         <section className={styles.features}>
           <div className="container">
-            <CardGroup>
+            <h2>Getting Started</h2>
+            <CardGroup cols={3}>
               <Card
                 title="Lean About DevOps Foundations"
                 href="/2.0/docs/overview/concepts/devopsfoundations"
@@ -41,18 +42,11 @@ export const HomeContent = () => {
               >
                 Find a specific module in the Gruntwork Library
               </Card>
-              <Card
-                title="Get Support"
-                href="/support"
-                icon="/img/support/question-icon.svg"
-              >
-                Need Help? We're here to assist when you get stuck.
-              </Card>
             </CardGroup>
           </div>
           <div className="container" style={{ margin: "6rem auto" }}>
             <h2>Gruntwork's Products</h2>
-            <CardGroup commonCardProps={{ appearance: "invisible" }}>
+            <CardGroup cols={4} commonCardProps={{ appearance: "invisible" }}>
               <Card title="Pipelines" href="/2.0/docs/pipelines/concepts/overview">
                 A framework for running secure deployments for infrastructure
                 code and application code.
