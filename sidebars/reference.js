@@ -6,7 +6,7 @@ const sidebar = [
     type: "category",
     link: {
       type: "generated-index",
-      title: "Gruntwork How-To Guides",
+      title: "Gruntwork Reference",
       slug: "2.0/reference",
     },
     collapsible: false,
