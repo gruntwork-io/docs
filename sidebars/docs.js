@@ -54,11 +54,11 @@ const sidebar = [
         id: "2.0/docs/overview/concepts/labels-tags",
       },
       {
-        label: 'IaC Platform Choice',
-        type: 'doc',
-        id: '2.0/docs/overview/concepts/iac-platform',
-      }
-    ]
+        label: "IaC Platform Choice",
+        type: "doc",
+        id: "2.0/docs/overview/concepts/iac-platform",
+      },
+    ],
   },
   complianceSidebar,
   {
@@ -222,11 +222,6 @@ const sidebar = [
             id: "2.0/docs/pipelines/installation/addingexistingrepo",
           },
           {
-            label: "Adding Pipelines to an Existing Repository (YAML config)",
-            type: "doc",
-            id: "2.0/docs/pipelines/installation/addingexistingrepo-yaml",
-          },
-          {
             label: "Adding Branch Protection to a Repository",
             type: "doc",
             id: "2.0/docs/pipelines/installation/branch-protection",
@@ -242,6 +237,11 @@ const sidebar = [
             label: "Settings",
             type: "doc",
             id: "2.0/docs/pipelines/configuration/settings",
+          },
+          {
+            label: "Configuration as Code",
+            type: "doc",
+            id: "2.0/docs/pipelines/configuration/config-as-code",
           },
           {
             label: "Setting up Drift Detection",

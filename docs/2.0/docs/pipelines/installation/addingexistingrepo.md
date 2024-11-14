@@ -1,31 +1,71 @@
-# Adding Pipelines to an existing repository with Configuration as Code
+import CustomizableValue from '/src/components/CustomizableValue';
 
+# Adding Pipelines to an existing repository
 
-:::info
-In July 2024 Gruntwork released a new configuration paradigm for Pipelines referred to as ["Pipelines Configuration as Code."](/2.0/reference/pipelines/configurations-as-code).  This new system allows developers to use pipelines with arbitrary folder layouts inside their IaC repositories. Prior to this system, pipelines required using a specific folder layout in order to map folders in source control to AWS Accounts for authentication. As of Q4 2024 this new configuration system does not yet support Gruntwork Account Factory, and so if you're using both Pipelines and Account factory we strongly advise you to start with a [new repository](/2.0/docs/pipelines/installation/addingnewrepo).
-:::
-
-## Pipelines Configuration as Code
-
-Pipelines relies on configurations written in [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl) to drive dynamic behavior. These configurations are primarily used by Pipelines to determine how to interact with cloud environments within the context of the Infrastructure As Code (IaC) within a code repository.
-
-At a high level, Pipelines will read these configurations by parsing all files that end with `.hcl` within a directory named `.gruntwork` or a single file named `gruntwork.hcl`. In typical usage, the configurations that are global to the git repository will be defined within the `.gruntwork` directory at the root of the repository, and configurations that are specific to a particular `terragrunt.hcl` file (a "unit") will be located in the same directory as the `terragrunt.hcl` file.
+This guide will walk you through the process of installing Gruntwork Pipelines in an existing repository that does not yet have Gruntwork Pipelines installed. This is useful for Gruntwork customers who have existing repositories that they would like to manage with Pipelines.
 
 :::info
-We recommend reading our [concepts page](../concepts/hcl-config-language.md) on the HCL language to ensure you're up to date on the specifics of HCL before diving into pipelines configuration
+
+This process is supported via a new configuration paradigm for Pipelines referred to as ["Pipelines Configuration as Code"](/2.0/reference/pipelines/configurations-as-code) released in July 2024. This new system allows developers to use Gruntwork Pipelines with arbitrary folder layouts inside their IaC repositories. Prior to this system, pipelines required using a specific folder layout in order to map folders in source control to AWS Accounts for authentication. **As of Q4 2024 this new configuration system does not yet support [Gruntwork Account Factory](https://docs.gruntwork.io/2.0/docs/accountfactory/concepts/)** so if you need both Pipelines and Account factory we strongly advise you to start with a [new repository](/2.0/docs/pipelines/installation/addingnewrepo) or contact [Gruntwork support](/support) for assistance.
 :::
 
-## Installation Process
+## Prerequisites
 
-The steps below are a high level description of the steps to install pipelines in an existing repository with an arbitrary folder structure of IaC.  The content in the rest of this document goes into detail on how to apply the configurations to match how your IaC is structured.
+- An active Gruntwork Subscription with access to Pipelines. You can verify you have access by choosing the "View team in GitHub" button in your [Gruntwork Developer Portal's account page](https://app.gruntwork.io/account) if you are an admin of the organization. The link will take you to the GitHub team UI and then you can search for "pipelines" in the repositories tab to verify you have access.
+- AWS credentials with permissions to create resources in the AWS account where you would like to deploy Pipelines. This is necessary to create OpenID Connect(OIDC) Provider and AWS Identity and Access Management(IAM) roles for Pipelines to use to auto deploy infrastructure.
 
-<ol>
-<li>Identify where your account authentication information is stored. This is typically in a file named `accounts.yml` in the root of your repository, although you can also store the file in another location or inline the configuration in an [aws block](#aws-blocks) in your pipelines configuration.</li>
-<li>Create a file called `.gruntwork/gruntwork.hcl` in the root of your repository</li>
-<li>Apply the [basic configurations below](#basic-configuration) to your `gruntwork.hcl` file</li>
-<li>Augment the `gruntwork.hcl` file with additional configurations as needed to match your IaC structure</li>
-<li>Install the pipelines workflow files</li>
-</ol>
+## Setting up the Repository
+
+### Accounts info
+
+Create the following files and directories in your repository:
+
+1. An `accounts.yml` file at the root of your repository with the content below. Update the <CustomizableValue id="AWS_ACCOUNT_NAME" />, <CustomizableValue id="AWS_ACCOUNT_ID" />, and <CustomizableValue id="AWS_ACCOUNT_EMAIL" /> with the appropriate values for the account you are deploying to. Add as many accounts as you need to manage with Pipelines.
+
+    ```yaml title="accounts.yml"
+    # required: Name of an account
+    $$AWS_ACCOUNT_NAME$$:
+      # required: The AWS account ID
+      id: "$$AWS_ACCOUNT_ID$$"
+      # required: The email address of the account owner
+      email: "$$AWS_ACCOUNT_EMAIL$$"
+    ```
+
+1. An `account.hcl` file within the account directory with the content below. Update the <CustomizableValue id="AWS_S3_STATE_BUCKET_PATTERN" /> by specifying the exact bucket name or pattern that matches. This file will be used as shared configuration across terragrunt units in the account. Repeat this step for each account you would like to manage with Pipelines.
+
+    ```hcl title="$$AWS_ACCOUNT_NAME$$/account.hcl"
+    locals {
+      account_name         = "$$AWS_ACCOUNT_NAME$$"
+      # Name or pattern of the state bucket for this account. Usable in all terragrunt units in this $$AWS_SECURITY$$ account.
+      state_bucket_pattern = lower("$$AWS_S3_STATE_BUCKET_PATTERN$$")
+    }
+    ```
+
+### Pipelines Configurations
+
+Create a file called `.gruntwork/gruntwork.hcl` in the root of your repository with the [unit configuration](/2.0/docs/pipelines/configuration/config-as-code#unit-configurations) below. This file will be used to configure Pipelines for your repository. Update the <CustomizableValue id="AWS_ACCOUNT_ID" /> with the appropriate values for the account you are deploying to.
+
+```hcl title=".gruntwork/gruntwork.hcl"
+# Configurations applicable to entire repository
+repository {
+  deploy_branch_name = "main"
+}
+
+# Configurations applicable to each account
+unit {
+  authentication {
+    aws_oidc {
+      account_id         = "$$AWS_ACCOUNT_ID$$"
+      plan_iam_role_arn  = "arn:aws:iam::$$AWS_ACCOUNT_ID$$:pipelines-plan-role"
+      apply_iam_role_arn = "arn:aws:iam::$$AWS_ACCOUNT_ID$$:pipelines-apply-role"
+    }
+  }
+}
+```
+
+The IAM roles referenced in the unit configuration above will be created later in [Pipeline OpenID Connect(OIDC) Provider and Roles](#pipelines-openid-connectoidc-provider-and-roles) section.
+
+You may add new unit configurations for each additional account or consider an [environment configuration](/2.0/docs/pipelines/configuration/config-as-code#environment-configurations).
 
 ## Installing the Pipelines workflow files
 
@@ -35,312 +75,351 @@ Pipelines is implemented as a GitHub [reusable workflow](https://docs.github.com
 * The contents of the file should be sourced from our template [here](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/blob/main/templates/devops-foundations-infrastructure-live-root/.github/workflows/pipelines.yml)
 * NOTE: As of writing this in October 2024 the above template points to a [boilerplate](https://github.com/gruntwork-io/boilerplate) template; the file is meant to be rendered by boilerplate into a usable file.  Please reach out to your Gruntwork solutions architect for assistance if you need help rendering the template.
 
-## Basic Configuration
+### Step 3 - Pipelines GitHub Actions(GHA) workflow file
 
-The minimum configurations required for Pipelines to operate correctly will vary depending on context. For the most common usage, Pipelines will need to be able to determine how to authenticate with a cloud provider in order to run Terragrunt commands. If it is not able to do so in a context where it is required, Pipelines will throw an error.
+Create a file named `.github/workflows/pipelines.yml` in the root of your repository with the following content:
 
-The following is an example of a minimal configuration for a single Terragrunt unit that tells Pipelines how to authenticate with AWS using OIDC:
+<details>
+<summary>Pipelines GHA workflow file</summary>
 
-```hcl
-# gruntwork.hcl
-unit {
-  authentication {
-    aws_oidc {
-      account_id         = "an-aws-account-id"
-      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role-to-assume-for-plans"
-      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role-to-assume-for-applies"
+```yaml title=".github/workflows/pipelines.yml"
+######################################################################################################################
+# INFRASTRUCTURE CI/CD CONFIGURATION
+#
+# This configures GitHub Actions to implement a CI/CD pipeline for infrastructure code.
+#
+# The following pipeline is implemented in this configuration:
+#
+# - For any commit on any branch, detect all the terragrunt modules that changed between the `HEAD` of the branch and
+#  `main` and run `terragrunt plan` on each of those modules.
+# - For commits to `main`: Run `terragrunt apply` on each of the updated modules.
+#
+######################################################################################################################
+
+name: Pipelines
+run-name: "[GWP]: ${{ github.event.commits[0].message || github.event.pull_request.title || 'No commit message' }}"
+on:
+  push:
+    branches:
+      - $$DEPLOY_BRANCH_NAME$$
+    paths-ignore:
+      # Workflow does not run only if ALL filepaths match the pattern. See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-excluding-paths
+      - ".github/**"
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+# Permissions to assume roles and create pull requests
+permissions:
+  id-token: write
+
+jobs:
+  GruntworkPipelines:
+    # https://github.com/gruntwork-io/pipelines-workflows/blob/v3/.github/workflows/pipelines.yml
+    uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines.yml@v3
+    secrets:
+      PIPELINES_READ_TOKEN: ${{ secrets.PIPELINES_READ_TOKEN }}
+
+  PipelinesPassed:
+    needs: GruntworkPipelines
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "::debug::RESULT: $RESULT"
+          if [[ $RESULT = "success" ]]; then
+            echo "GruntworkPipelines completed successfully!"
+          else
+            echo "GruntworkPipelines failed!"
+            exit 1
+          fi
+        env:
+          RESULT: ${{ needs.GruntworkPipelines.result }}
+```
+
+</details>
+
+### Pipelines OpenID Connect(OIDC) Provider and Roles
+
+We will create the infrastructure as code for the OIDC roles that Pipelines will use to deploy infrastructure. Pipelines will use two roles; one to perform a plan and another to perform an apply to maintain the principle of least privilege. This step in the process will require the AWS credentials with the necessary permissions to create the OIDC resources that Pipelines will be able to automatically assume to deploy infrastructure after we have completed the setup.
+
+
+#### Create the terragrunt units
+
+Within the "*<CustomizableValue id="AWS_ACCOUNT_NAME" />/_global*" folder, create the terragrunt unit files below. Repeat this step for each account you would like to manage with Pipelines.
+
+
+<details>
+<summary>OIDC Provider</summary>
+
+```hcl title="$$AWS_ACCOUNT_NAME$$/_global/github-actions-openid-connect-provider/terragrunt.hcl"
+terraform {
+  source = "git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-openid-connect-provider?ref=v0.74.5"
+}
+
+# Include the root `terragrunt.hcl` configuration, which has settings common across all environments & components.
+include "root" {
+  path = find_in_parent_folders()
+}
+
+inputs = {
+  allowed_organizations = [
+    "oredavids",
+  ]
+}
+```
+
+</details>
+
+<details>
+<summary>Pipelines Plan</summary>
+
+```hcl title="$$AWS_ACCOUNT_NAME$$/_global/pipelines-plan-role/terragrunt.hcl"
+terraform {
+  source = "git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.74.5"
+}
+
+# Include the root `terragrunt.hcl` configuration, which has settings common across all environments & components.
+include "root" {
+  path = find_in_parent_folders()
+}
+
+# The OIDC IAM roles for GitHub actions require a provisioned IAM OpenID Connect Provider for each account.
+# The underlying module used in envcommon can create the OIDC provider. Since we have multiple OIDC roles, we use a
+# dedicated module and all roles depend on its output
+dependency "github-actions-openid-connect-provider" {
+  config_path = "../github-actions-openid-connect-provider"
+
+  # Configure mock outputs for the `validate` command that are returned when there are no outputs available (e.g the
+  # module hasn't been applied yet.
+  mock_outputs_allowed_terraform_commands = ["validate", "plan"]
+  mock_outputs_merge_strategy_with_state  = "shallow"
+  mock_outputs = {
+    arn = "known_after_apply"
+    url = "token.actions.githubusercontent.com"
+  }
+}
+
+locals {
+  # Automatically load account-level variables
+  account_vars         = read_terragrunt_config(find_in_parent_folders("account.hcl"))
+  state_bucket_pattern = local.account_vars.locals.state_bucket_pattern
+}
+
+inputs = {
+  github_actions_openid_connect_provider_arn = dependency.github-actions-openid-connect-provider.outputs.arn
+  github_actions_openid_connect_provider_url = dependency.github-actions-openid-connect-provider.outputs.url
+
+  allowed_sources_condition_operator = "StringLike"
+
+  allowed_sources = {
+    "oredavids/infrastructure-live" : ["*"]
+  }
+
+  custom_iam_policy_name = "pipelines-plan-oidc-policy"
+  iam_role_name          = "pipelines-plan"
+
+  # Policy based on these docs:
+  # https://terragrunt.gruntwork.io/docs/features/aws-auth/#aws-iam-policies
+  iam_policy = {
+    # State permissions
+    "DynamoDBLocksTableAccess" = {
+      effect = "Allow"
+      actions = [
+        "dynamodb:PutItem",
+        "dynamodb:GetItem",
+        "dynamodb:DescribeTable",
+        "dynamodb:DeleteItem",
+        "dynamodb:CreateTable",
+      ]
+      resources = ["arn:aws:dynamodb:*:*:table/terraform-locks"]
+    }
+    "S3StateBucketAccess" = {
+      effect = "Allow"
+      actions = [
+        "s3:ListBucket",
+        "s3:GetBucketVersioning",
+        "s3:GetBucketAcl",
+        "s3:GetBucketLogging",
+        "s3:CreateBucket",
+        "s3:PutBucketPublicAccessBlock",
+        "s3:PutBucketTagging",
+        "s3:PutBucketPolicy",
+        "s3:PutBucketVersioning",
+        "s3:PutEncryptionConfiguration",
+        "s3:PutBucketAcl",
+        "s3:PutBucketLogging",
+        "s3:GetEncryptionConfiguration",
+        "s3:GetBucketPolicy",
+        "s3:GetBucketPublicAccessBlock",
+        "s3:PutLifecycleConfiguration",
+        "s3:PutBucketOwnershipControls",
+      ]
+      resources = [
+        "arn:aws:s3:::${local.state_bucket_pattern}",
+      ]
+    }
+    "S3StateBucketObjectAccess" = {
+      effect = "Allow"
+      actions = [
+        "s3:PutObject",
+        "s3:GetObject"
+      ]
+      resources = [
+        "arn:aws:s3:::${local.state_bucket_pattern}/*",
+      ]
     }
   }
 }
 ```
 
-Placing this configuration in a `gruntwork.hcl` file in the same directory as a `terragrunt.hcl` file will cause Pipelines to assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when running Terragrunt plan commands, using [OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) to authenticate to AWS and assume that role.
+</details>
 
-In most circumstances, the same role would be assumed by multiple Terragrunt units of configuration within a repository (e.g. all units within a given directory configure resources for the same AWS account). In this situation, it would be more convenient to set the AWS authentication at the environment level by declaring an `enivronment` block in one of the `.hcl` files in the `.gruntwork` directory at the root of the repository, and declaring the AWS authentication configuration there.
+<details>
+<summary>Pipelines Apply</summary>
 
-e.g.
+```hcl title="$$AWS_ACCOUNT_NAME$$/_global/pipelines-apply-role/terragrunt.hcl"
+terraform {
+  source = "git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.74.5"
+}
 
-```hcl
-# .gruntwork/environments.hcl
-environment "an_environment" {
-  filter {
-    paths = ["an-environment/*"]
+# Include the root `terragrunt.hcl` configuration, which has settings common across all environments & components.
+include "root" {
+  path = find_in_parent_folders()
+}
+
+# The OIDC IAM roles for GitHub actions require a provisioned IAM OpenID Connect Provider for each account.
+# The underlying module used in envcommon can create the OIDC provider. Since we have multiple OIDC roles, we use a
+# dedicated module and all roles depend on its output
+dependency "github-actions-openid-connect-provider" {
+  config_path = "../github-actions-openid-connect-provider"
+
+  # Configure mock outputs for the `validate` command that are returned when there are no outputs available (e.g the
+  # module hasn't been applied yet.
+  mock_outputs_allowed_terraform_commands = ["validate", "plan"]
+  mock_outputs_merge_strategy_with_state  = "shallow"
+  mock_outputs = {
+    arn = "known_after_apply"
+    url = "token.actions.githubusercontent.com"
+  }
+}
+
+locals {
+  # Automatically load account-level variables
+  account_vars         = read_terragrunt_config(find_in_parent_folders("account.hcl"))
+  state_bucket_pattern = local.account_vars.locals.state_bucket_pattern
+}
+
+inputs = {
+  github_actions_openid_connect_provider_arn = dependency.github-actions-openid-connect-provider.outputs.arn
+  github_actions_openid_connect_provider_url = dependency.github-actions-openid-connect-provider.outputs.url
+
+  allowed_sources = {
+    "oredavids/infrastructure-live" : ["main"]
   }
 
-  authentication {
-    aws_oidc {
-      account_id         = "an-aws-account-id"
-      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role-to-assume-for-plans"
-      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role-to-assume-for-applies"
+  # Policy for OIDC role assumed from GitHub in the "oredavids/infrastructure-live" repo
+  custom_iam_policy_name = "pipelines-apply-oidc-policy"
+  iam_role_name          = "pipelines-apply"
+
+  # Policy based on these docs:
+  # https://terragrunt.gruntwork.io/docs/features/aws-auth/#aws-iam-policies
+  iam_policy = {
+    # State permissions
+    "DynamoDBLocksTableAccess" = {
+      effect = "Allow"
+      actions = [
+        "dynamodb:PutItem",
+        "dynamodb:GetItem",
+        "dynamodb:DescribeTable",
+        "dynamodb:DeleteItem",
+        "dynamodb:CreateTable",
+      ]
+      resources = ["arn:aws:dynamodb:*:*:table/terraform-locks"]
+    }
+    "S3StateBucketAccess" = {
+      effect = "Allow"
+      actions = [
+        "s3:ListBucket",
+        "s3:GetBucketVersioning",
+        "s3:GetBucketAcl",
+        "s3:GetBucketLogging",
+        "s3:CreateBucket",
+        "s3:PutBucketPublicAccessBlock",
+        "s3:PutBucketTagging",
+        "s3:PutBucketPolicy",
+        "s3:PutBucketVersioning",
+        "s3:PutEncryptionConfiguration",
+        "s3:PutBucketAcl",
+        "s3:PutBucketLogging",
+        "s3:GetEncryptionConfiguration",
+        "s3:GetBucketPolicy",
+        "s3:GetBucketPublicAccessBlock",
+        "s3:PutLifecycleConfiguration",
+        "s3:PutBucketOwnershipControls",
+      ]
+      resources = [
+        "arn:aws:s3:::${local.state_bucket_pattern}",
+      ]
+    }
+    "S3StateBucketObjectAccess" = {
+      effect = "Allow"
+      actions = [
+        "s3:PutObject",
+        "s3:GetObject"
+      ]
+      resources = [
+        "arn:aws:s3:::${local.state_bucket_pattern}/*",
+      ]
     }
   }
 }
 ```
 
-In this example, all the units located within the `an-environment` directory sibling to the `.gruntwork` directory will assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when running Terragrunt plan commands by Pipelines.
+</details>
 
-A typical approach to building Pipelines configurations is to first define minimal configurations that address the most common use-cases, and then to refactor and generalize those configurations as needed to reduce repetition.
-
-More details on how these configurations are defined will be detailed below.
-
-## Configuration Hierarchy
-
-Pipelines configurations are designed to be organized into a hierarchy. This hierarchy reflects the specificity of configurations, with configurations more specific to a single unit of IaC taking precedence over configurations that are more general when they are in conflict.
-
-The hierarchy of configurations is as follows:
-
-### Repository Configurations
-
-These are the most general configurations that are applicable to the entire repository, regardless of working directory context. They are always defined in [global configurations](#global-configurations) via [repository blocks](#repository-blocks).
-
-These configurations are the most general and will always be overridden by more specific configurations when they are in conflict.
-
-### Environment Configurations
-
-These are configurations that are applicable to a specific environment within a repository. They are only ever applicable to units that match a specific [filter](#filter-blocks). They are always defined in [global configurations](#global-configurations) via [environment blocks](#environment-blocks).
-
-These configurations are more specific than repository configurations, and as such override repository configurations when they are in conflict within the context of a matched filter.
-
-### Unit Configurations
-
-These are configurations that are applicable to a single unit of IaC within a repository. They are always defined in [local configurations](#local-configurations) via [unit blocks](#unit-blocks).
-
-These configurations are the most specific and will always override other configurations when they are in conflict.
-
-## Global Configurations
-
-Any configurations located within a `.gruntwork` directory either in the current working directory, or a parent directory of the current working directory are referred to as global configurations. These configurations are typically applicable within a wide range of contexts within a repository, and are the primary mechanism for configuring Pipelines.
-
-Pipelines will attempt to find exactly one directory named `.gruntwork` when it is attempting to discover configurations. It will not continue to search for configurations in parent directories once it finds a `.gruntwork` directory.
-
-Note that you will frequently see filenames for configurations within the `.gruntwork` directory that are named after the configuration block that they define. This is a common pattern, but not a requirement. Any `.hcl` file found within a `.gruntwork` directory will be parsed by Pipelines as one global configuration.
-
-### Environment Blocks
-
-[Full Reference for Environment Blocks](/2.0/reference/pipelines/configurations-as-code#environment)
-
-Environment blocks are used to define configurations that are applicable to a specific environment within a repository.
-
-The label applied to an environment block is the name of the environment. This is a user-defined label for the environment, and must be globally unique.
-
-e.g.
-
-```hcl
-# .gruntwork/environments.hcl
-environment "an_environment" {
-  filter {
-    paths = ["an-environment/*"]
-  }
-
-  authentication {
-    aws_oidc {
-      account_id         = "an-aws-account-id"
-      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role-to-assume-for-plans"
-      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role-to-assume-for-applies"
-    }
-  }
-}
-```
-
-In this example, the `an_environment` environment is defined to match all units located within the `an-environment` directory sibling to the `.gruntwork` directory. All units that match this filter will assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when running Terragrunt plan commands by Pipelines.
-
-Environment blocks should reference other configuration blocks rather than continuously redefining configurations when possible.
-
-As such, you will typically see environment blocks that look more like the following:
-
-```hcl
-# .gruntwork/environments.hcl
-environment "an_environment" {
-  filter {
-    paths = ["an-environment/*"]
-  }
-
-  authentication {
-    aws_oidc {
-      account_id         = aws.accounts.all.an_account.id
-      plan_iam_role_arn  = "arn:aws:iam::${aws.accounts.all.an_account.id}:role-to-assume-for-plans"
-      apply_iam_role_arn = "arn:aws:iam::${aws.accounts.all.an_account.id}:role-to-assume-for-applies"
-    }
-  }
-}
-
-aws {
-  accounts "all" {
-    path = "aws/accounts.yml"
-  }
-}
-```
-
-:::caution
-Every unit must be uniquely matched by the filters of a single environment block. If a unit is matched by multiple environment blocks, Pipelines will throw an error.
-:::
-
-### AWS Blocks
-
-[Full Reference for AWS Blocks](/2.0/reference/pipelines/configurations-as-code#aws)
-
-AWS blocks are configurations used by `aws-oidc` [authentication](#authentication-blocks) blocks to have commonly re-used AWS configurations codified and referenced by multiple authentication blocks.
-
-There can only be one `aws` block defined within [global configurations](#global-configurations).
-
-Nested within the `aws` block are `accounts` blocks that define the configurations for collections of AWS accounts.
-
-The label applied to an `accounts` block is the name of the Accounts block. This is a user-defined label for the collection of AWS accounts defined by the block, and must be unique within the context of the `aws` block.
-
-e.g.
-
-```hcl
-# .gruntwork/aws.hcl
-aws {
-  accounts "all" {
-    path = "aws/accounts.yml"
-  }
-}
-```
-
-In this example, the `all` AWS accounts block is defined within an `aws` block in a file named `aws.hcl` within the `.gruntwork` directory.
-
-The `all` Accounts block references an external file located at `aws/accounts.yml` via the `path` attribute that contains the definitions of AWS accounts in YAML format.
-
-DevOps Foundations customers may be familiar with the `accounts.yml` file as a file that is used by Account Factory to define the configurations of AWS accounts. Pipelines uses the same schema for the `accounts.yml` file as Account Factory. Consequently, the `accounts.yml` file that is used by Account Factory can be used by the `accounts` block without modification.
-
-The expected schema for the `accounts.yml` file is as follows:
-
-```yaml
-# required: Name of an account
-an_account:
-  # required: The AWS account ID
-  id: "an-aws-account-id"
-  # optional: The email address of the account owner
-  owner_email: "an-email-address"
-  # optional: Whether or not a VPC has been created in the account. Default is false.
-  vpc_created: true
-```
-
-Note that multiple AWS Accounts blocks can be defined, pointing to different `accounts.yml` files. This allows for the segmentation of AWS accounts into different YAML files for organizational purposes.
-
-:::info
-The decision to leverage YAML files instead of HCL files for defining the configurations for AWS accounts was an intentional decision to increase the portability of these configurations for usage outside of Pipelines. Tools like [Terragrunt](https://github.com/gruntwork-io/terragrunt/) and [yq](https://github.com/mikefarah/yq) can be used to leverage these files, as they are more portable than HCL files.
-:::
-
-### Repository Blocks
-
-[Full Reference for Repository Blocks](/2.0/reference/pipelines/configurations-as-code#repository)
-
-Repository blocks are used to define configurations that are applicable to the entire repository.
-
-e.g.
-
-```hcl
-repository {
-  deploy_branch_name = "main"
-}
-```
-
-In this example, the `deploy_branch_name` attribute is set to `main`, which means that Pipelines will deploy infrastructure changes when the `main` branch is updated.
-
-  :::info
-
-  Job consolidation is the mechanism whereby Pipelines will take multiple jobs (e.g. `ModuleAdded`, `ModuleChanged`) and consolidate them into a single job (e.g. `ModulesAddedOrChanged`) when running Terragrunt commands.
-
-  This is a useful optimization that Pipelines can perform, as it divides the CI/CD costs of running Terragrunt in CI by the number of jobs that are consolidated. In addition, this results in more accurate runs, as it allows Terragrunt to leverage the Directed Acyclic Graph (DAG) to order updates.
-
-  e.g. Instead of running the following jobs:
-  A. `ModuleAdded`
-  B. `ModuleChanged`
-
-  Where `ModuleChanged` depends on `ModuleAdded`, Pipelines will consolidate these jobs into a single job:
-  C. `ModulesAddedOrChanged`
-
-  Because the underlying implementation of a `ModulesAddedOrChanged` uses the `run-all` Terragrunt command, it will use the DAG to ensure that the `ModuleAdded` job runs before the `ModuleChanged` job.
-
-  :::
-
-  :::tip
-
-  In very rare circumstances, you may want to disable this in order to maximize the resources allocated to your CI/CD run. This is not generally recommended, but can be a useful workaround if the runner you are using is exhausting allocated resources.
-
-  :::
-
-## Local Configurations
-
-The configurations found within a directory that contains a `terragrunt.hcl` file are referred to as local configurations. These configurations are typically used to define configurations that are specific to a single unit of IaC within a repository.
-
-They must be specified within a single file named `gruntwork.hcl` in the same directory as the `terragrunt.hcl` file.
-
-Local configurations can be used both to define the complete configurations required for Pipelines to operate within the context of a single unit, or to override global configurations that are defined in the `.gruntwork` directory.
-
-### Unit Blocks
-
-[Full Reference for Unit Blocks](/2.0/reference/pipelines/configurations-as-code#unit)
-
-Unit blocks are used to define configurations that are applicable to a single unit of IaC within a repository.
-
-e.g.
-
-```hcl
-unit {
-  authentication {
-    aws_oidc {
-      account_id         = "an-aws-account-id"
-      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role-to-assume-for-plans"
-      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role-to-assume-for-applies"
-    }
-  }
-}
-```
-
-In this example, the `unit` block is defined to assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when running Terragrunt plan commands by Pipelines.
-
-## Configuration Components
-
-Some configurations are only relevant within the context of other configurations. These configurations are referred to as configuration components. Some configuration components are required for other configurations to be valid, while others can be used to reduce repetition in configurations.
-
-### Filter Blocks
-
-[Full Reference for Filter Blocks](/2.0/reference/pipelines/configurations-as-code#filter)
-
-Filter blocks are components used by [environment](#environment-blocks) blocks to determine where certain configurations are applicable.
-
-e.g.
-
-```hcl
-filter {
-  paths = ["a-folder/*"]
-}
-```
-
-All configuration blocks that contain a `filter` block will only be applied to units that match the filter.
-
-
-### Authentication Blocks
-
-[Full Reference for Authentication Blocks](/2.0/reference/pipelines/configurations-as-code#authentication)
-
-Authentication blocks are components used by [environment](#environment-blocks) and [unit](#unit-blocks) blocks to determine how Pipelines will authenticate with cloud platforms when running Terragrunt commands.
-
-:::note
-Authentication blocks wrap other, more specific authentication blocks that are used to authenticate with specific cloud platforms. When Pipelines encounters an `authentication` block, it will attempt to authenticate with all cloud platforms defined within the block.
-
-At this time, the only supported block that can be nested within the `authentication` block is `aws_oidc`.
-:::
 
 :::tip
-Authentication blocks can be defined at both the environment and unit levels. When defined at the environment level, they will be applied to all units that match the filter of the environment.
 
-When defined at the unit level, they will only be applied to the unit that contains the block. Unit-level authentication blocks will override environment-level authentication blocks when they are in conflict.
+The permissions in the above files are examples and should be updated based on the type of infrastructure contained in the repository. The permissions should be updated to allow the OIDC roles to perform the necessary actions to deploy your infrastructure.
+
 :::
 
-e.g.
 
-```hcl
-authentication {
-  aws_oidc {
-    account_id     = "an-aws-account-id"
-    plan_iam_role  = "arn:aws:iam::an-aws-account-id:role-to-assume-for-plans"
-    apply_iam_role = "arn:aws:iam::an-aws-account-id:role-to-assume-for-applies"
-  }
-}
-```
+#### Create the OIDC resources
 
-In this example, Pipelines will use OIDC to authenticate with AWS and assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when running Terragrunt plan commands.
+Using the necessary AWS credentials, run the following commands to deploy the infrastructure for the terragrunt units we created in the previous step. Repeat this step for each account you would like to manage with Pipelines.
+
+    ```bash
+    cd $$AWS_ACCOUNT_NAME$$/_global
+    terragrunt run-all plan
+    ```
+
+Review the plan output and if it looks good, apply the changes.
+
+
+  ```bash
+  terragrunt run-all apply
+  ```
+
+:::tip
+
+If you encounter issues with the plan or apply steps due to existence of other resources already in the *_global* folder, you can run plan/apply for the terragrunt units individually starting with the `github-actions-openid-connect-provider` unit because the other units depend on it.
+
+:::
+
+#### Commit and push the changes
+
+Create a branch, and commit all your changes with a **`[skip ci]`** text included in the commit message to avoid triggering the Pipelines workflow. Push the changes to the repository, create a Pull Request, and merge the changes to the <CustomizableValue id="DEPLOY_BRANCH_NAME" /> branch you specified in the `.github/workflows/pipelines.yml` file.
+
+
+## Enable GitHub Authentication for Pipelines
+
+Follow the instructions in [Authenticating via GitHub App](/2.0/docs/pipelines/installation/viagithubapp) to enable GitHub authentication for Pipelines in your repository using the Gruntwork.io GitHub App. This is the recommended way to authenticate Pipelines with GitHub in your repository but you may also [Authenticate via Machine Users](/2.0/docs/pipelines/installation/viamachineusers) if you prefer.
+
+## Next Steps
+
+You have successfully completed the installation for Gruntwork Pipelines in your existing repository. Follow [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change) tutorial to test the installation and deploy your first infrastructure using Gruntwork Pipelines.
+
