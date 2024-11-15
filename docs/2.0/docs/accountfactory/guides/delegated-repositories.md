@@ -2,7 +2,7 @@
 import PersistentCheckbox from '/src/components/PersistentCheckbox';
 
 :::note
-Delegated Repositories are only available to DevOps Foundations Enterprise customers.
+Vending Delegated Repositories by Account Factory is only available to DevOps Foundations Enterprise customers.
 :::
 
 ## Introduction
@@ -64,7 +64,7 @@ Select Run Workflow on the right, and paste the JSON payload into the input. Run
 
 The result of the Account Factory Workflow run will be a new Pull Request, adding a new YAML file in the `_new-account-requests` directory.
 
-If everything looks as expected you can merge the pull request. Once the commit is on your main branch Pipelines will begin running a `terragrunt apply` that will create the new account in AWS. 
+If everything looks as expected you can merge the pull request. Once the commit is on your main branch Pipelines will begin running a `terragrunt apply` that will create the new account in AWS.
 
 You can view the workflow run on the main branch. Provisioning the account(s) can take around 10 minutes to complete. Once the account has been created another Pull Request will be created in the `infrastructure-live-root` repository to baseline the new account.
 
