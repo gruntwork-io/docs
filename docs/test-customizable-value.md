@@ -6,3 +6,7 @@ import CodeBlock from '@theme/CodeBlock';
 ```bash
     mkdir -p $$test$$/<region>/$$test$$/foo
 ```
+
+```hcl
+"${$$test$$}"
+```

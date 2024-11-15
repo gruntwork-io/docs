@@ -309,6 +309,11 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/pipelines/guides/terragrunt-env-vars",
       },
+      {
+        label: "Setup a Delegated Repository",
+        type: "doc",
+        id: "2.0/docs/pipelines/guides/setup-delegated-repo",
+      },
     ],
   },
   {
@@ -415,7 +420,7 @@ const sidebar = [
     label: "Configuration Reference",
     type: "link",
     className: "external-link",
-    href: "/2.0/reference/accountfactory",
+    href: "/2.0/reference/accountfactory/configurations",
   },
   {
     value: "Patcher",
