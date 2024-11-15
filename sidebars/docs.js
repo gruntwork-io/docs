@@ -309,6 +309,11 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/pipelines/guides/terragrunt-env-vars",
       },
+      {
+        label: "Setup a Delegated Repository",
+        type: "doc",
+        id: "2.0/docs/pipelines/guides/setup-delegated-repo",
+      },
     ],
   },
   {
