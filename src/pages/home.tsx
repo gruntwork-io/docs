@@ -15,8 +15,7 @@ export const HomeContent = () => {
           <p>Gruntwork provides a comprehensive library of pre-built modules, tools, and frameworks
             designed to accelerate the implementation of robust and scalable infrastructure solutions.</p>
         </div>
-        <section className={styles.features}>
-          <div className="container">
+          <div>
             <h2>Getting Started</h2>
             <CardGroup cols={3}>
               <Card
@@ -44,7 +43,7 @@ export const HomeContent = () => {
               </Card>
             </CardGroup>
           </div>
-          <div className="container" style={{ margin: "6rem auto" }}>
+          <div style={{ margin: "6rem auto" }}>
             <h2>Gruntwork's Products</h2>
             <CardGroup cols={4} commonCardProps={{ appearance: "invisible" }}>
               <Card title="Pipelines" href="/2.0/docs/pipelines/concepts/overview">
@@ -65,7 +64,7 @@ export const HomeContent = () => {
               </Card>
             </CardGroup>
           </div>
-          <div className="container" style={{ margin: "6rem auto" }}>
+          <div style={{ margin: "6rem auto" }}>
             <h2>Gruntwork's Open Source Tools</h2>
             <CardGroup commonCardProps={{ appearance: "invisible" }}>
               <Card title="Terragrunt" href="https://terragrunt.gruntwork.io">
@@ -87,7 +86,6 @@ export const HomeContent = () => {
               </Card>
             </CardGroup>
           </div>
-        </section>
       </main>
        </>
       );
