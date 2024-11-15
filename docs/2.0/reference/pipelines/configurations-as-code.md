@@ -288,6 +288,14 @@ The AWS account ID that Pipelines will authenticate with.  See more [below](#acc
 
 The path to the `accounts.yml` file that contains the definition of AWS accounts.
 
+:::note
+The value used for the `path` attribute is relative to the directory containing the .gruntwork directory.
+
+e.g. If the `accounts.yml` file is located at the root of the repository, and the configuration containing the `aws` block is located in `.gruntwork/aws.hcl`, then the value of the `path` attribute would be `../accounts.yml`.
+
+This is to make it convenient to tuck the `accounts.yml` file away somewhere in the `.gruntwork` directory if you like.
+:::
+
 </HclListItemDescription>
 </HclListItem>
 
