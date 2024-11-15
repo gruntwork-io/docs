@@ -45,7 +45,7 @@ This repository will be where you manage the IAM access that your delegated repo
 
 ## Step 3 - Provision the delegated role
 
-To provision a role that can be assumed by the delegated repository, you will want to add it with the `infrastructure-live-access-control` repository.
+To provision a role that can be assumed by the delegated repository, you will want to add it to the `infrastructure-live-access-control` repository.
 
 :::tip
 Typically, CI roles created for Pipelines are created in pairs, one for the `plan` stage and one for the `apply` stage. This is because the `plan` stage should have more limited permissions than the `apply` stage, as plans typically only need read-only access.
