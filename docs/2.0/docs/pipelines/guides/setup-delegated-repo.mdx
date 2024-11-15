@@ -1,0 +1,214 @@
+import CustomizableValue from '/src/components/CustomizableValue'
+
+# Setup a Delegated Repository
+
+:::note
+[Automatic vending of delegated repositories by Account Factory](../../accountfactory/guides/delegated-repositories.md) is an Enterprise-only feature.
+
+If you are an Enterprise customer, Account Factory will automatically provision delegated repositories for you, and you may not need to follow the steps in this guide. The steps in this guide are for customers who are looking to manually set up delegated repositories, or for customers who are looking to understand how the process works from the perspective of Pipelines.
+:::
+
+## Introduction
+
+Infrastructure management delegation is a first-class concept in DevOps Foundations. To learn more about delegated repositories, click [here](../../accountfactory/architecture/#delegated-repositories).
+
+Reasons you might want to delegate management of infrastructure includes:
+
+- A different team is autonomously working on parts of infrastructure relevant to a specific account.
+- A GitHub Actions workflow in a repository needs to be able to make limited changes to infrastructure in a specific account.
+
+  e.g. A repository has application code relevant to a container image that needs to be built and pushed to AWS ECR before it can be used in a Kubernetes cluster via a new deployment.
+
+The following guide assumes that you have already gone through [Pipelines Setup & Installation](../installation/prerequisites/awslandingzone.md).
+
+## Step 1 - Ensure the delegated account is set up
+
+Ensure that the account you want to delegate management for is set up. This includes the following:
+
+1. The account is created in AWS.
+2. An OIDC provider is set up in the account.
+3. The account has the following roles provisioned:
+  - `infrastructure-live-access-control-plan`
+  - `infrastructure-live-access-control-apply`
+
+If the account was provisioned normally using Account Factory, these roles should already be set up.
+
+If you want more information about exactly how this works, read [GitHub OIDC docs](https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services).
+
+## Step 2 - Ensure that the `infrastructure-live-access-control` repository is provisioned.
+
+The [infrastructure-live-access-control](../architecture/security-controls.md#infrastructure-access-control) repository is an optionally provisioned part of DevOps Foundations, and it's the recommended way of delegating access to infrastructure.
+
+If you don't have this repository set up, you can follow the steps in the [infrastructure-live-root-template](https://github.com/gruntwork-io/infrastructure-live-root-template) to provision it.
+
+This repository will be where you manage the IAM access that your delegated repository will have.
+
+## Step 3 - Provision the delegated role
+
+To provision a role that can be assumed by the delegated repository, you will want to add it to the `infrastructure-live-access-control` repository.
+
+:::tip
+Typically, CI roles created for Pipelines are created in pairs, one for the `plan` stage and one for the `apply` stage. This is because the `plan` stage should have more limited permissions than the `apply` stage, as plans typically only need read-only access.
+
+If you are creating a role to do something like push a container image to ECR on push to the repository, you may only need a single role.
+:::
+
+Use Terragrunt Scaffold to create the new role in your `infrastructure-live-access-control` repository.
+
+```bash
+# Assuming your `infrastructure-live-access-control` repository is named exactly that,
+# and the account you want to provision your new role in is called `acme`.
+mkdir acme/_global/ecr-push-role
+cd acme/_global/ecr-push-role
+terragrunt scaffold 'git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.73.2'
+```
+
+This will give you a placeholder `terragrunt.hcl` file for a new role in your repository that you can customize to your needs.
+
+Alternatively, you can copy and paste the following:
+
+:::note
+Note the value of `allowed_sources`, which should be the organization, name, and ref of the repository you are delegating to.
+
+If you would like to make it so that all refs in a repository can assume this role, you can use `["*"]` as the value on the right hand side.
+:::
+
+```hcl
+terraform {
+  source = "git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.73.2"
+}
+
+# Include the root `terragrunt.hcl` configuration, which has settings common across all environments & components.
+include "root" {
+  path = find_in_parent_folders()
+}
+
+# Include the component configuration, which has settings that are common for the component across all environments
+include "envcommon" {
+  path           = "${dirname(find_in_parent_folders("common.hcl"))}/_envcommon/landingzone/delegated-pipelines-plan-role.hcl"
+  merge_strategy = "deep"
+}
+
+inputs = {
+  github_actions_openid_connect_provider_arn = "arn:aws:iam::${get_aws_account_id()}:oidc-provider/token.actions.githubusercontent.com"
+  github_actions_openid_connect_provider_url = "https://token.actions.githubusercontent.com"
+
+  # ----------------------------------------------------------------------------------------------------------------
+  # This is the map of repositories to refs that are allowed to assume this role.
+  #
+  # Note that for a plan role, typically the only additional permissions that are required are read permissions that
+  # grant Terragrunt permission to read the existing state in provisioned infrastructure, such that a plan of proposed
+  # updates can be generated.
+  #
+  # Also note that all refs are allowed to assume this role, as the plan role is typically assumed in refs used
+  # as sources for pull requests. Assign permissions keeping this in mind.
+  #
+  # Read more on least privilege below.
+  # ----------------------------------------------------------------------------------------------------------------
+
+  allowed_sources = {
+    "$$ORGANIZATION$$/$$REPO$$" : ["$$REF$$"]
+  }
+
+  # ----------------------------------------------------------------------------------------------------------------
+  # Least privilege is an important best practice, but can be a very difficult practice to engage in.
+  #
+  # The `envcommon` include above provides the minimal permissions required to interact with TF state, however
+  # any further permissions are up to the user to define as needed for a given workflow.
+  #
+  # These permissions are meant to be continuously refined in a process of iteratively granting additional permissions
+  # as needed to have workflows updated in CI correctly, and then removing excess permissions through continuous review.
+  #
+  # A common pattern used to refine permissions is to run a pipeline with a best guess at the permissions required, or
+  # no permissions at all, and then review acccess denied errors and add the necessary permissions to have the pipeline
+  # run successfully.
+  #
+  # As workload patterns become more commonplace, this repo will serve as a reference for the permissions required to
+  # run similar workloads going forward.
+  # ----------------------------------------------------------------------------------------------------------------
+
+  iam_policy = {
+    # Role workload permissions go here
+  }
+}
+```
+
+Note the `envcommon` include, which includes the common minimal configurations recommended for delegated roles in DevOps Foundations.
+
+You will likely need to expand the `iam_policy` block to include the permissions required for your specific workflow.
+
+For example, if you would like permissions to push to ECR, you might add the following:
+
+```hcl
+iam_policy = {
+    "ECRPushPermissions" = {
+        effect = "Allow"
+        actions = [
+            "ecr:CompleteLayerUpload",
+            "ecr:UploadLayerPart",
+            "ecr:InitiateLayerUpload",
+            "ecr:BatchCheckLayerAvailability",
+            "ecr:PutImage",
+            "ecr:BatchGetImage"
+        ]
+        resources = "arn:aws:ecr:region:${$$ACCOUNT_ID$$}:repository/$$REPOSITORY_NAME$$"
+    },
+    "ECRAuthorizationToken" = {
+        effect = "Allow",
+        actions = ["ecr:GetAuthorizationToken"]
+        resources = ["*"]
+    }
+}
+```
+
+## Step 4 - Apply the role
+
+Once you have customized the role to your needs, you can apply it by creating a pull request in the `infrastructure-live-access-control` repository.
+
+```bash
+git add .
+git commit -m "feat: Add ECR push role for acme account"
+git push
+gh pr create --base main --title "feat: Add ECR push role for acme account" --body "This PR adds the ECR push role for the acme account."
+```
+
+Inspect the pull request, verify the plan, then merge the pull request to get it applied.
+
+## Step 5 - Set up the delegated repository
+
+Depending on what the repository needs to do in CI, your GitHub Actions workflow may be as simple as a file like the following placed in `.github/workflows/ci.yml`:
+
+```yaml
+name: CI
+on: [push]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:ecr:$$REGION$$:$$ACCOUNT_ID$$:repository/$$REPOSITORY_NAME$$
+        role-session-name: acme-ecr-push
+        aws-region: $$AWS_REGION$$
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+
+    - name: Build, tag, and push docker image to Amazon ECR
+      env:
+        REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        REPOSITORY: $$IMAGE_NAME$$
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+        docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+```
+
