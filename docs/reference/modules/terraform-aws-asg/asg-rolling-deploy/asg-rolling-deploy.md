@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.16" lastModifiedVersion="0.21.15"/>
+<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.17" lastModifiedVersion="0.21.17"/>
 
 # Auto Scaling Group with Rolling Deployment Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.16/modules/asg-rolling-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.17/modules/asg-rolling-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.15" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.17" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an Auto Scaling Group (ASG) that can do a zero-downtime rolling deployment. That means
 every time you update your app (e.g. publish a new AMI), all you have to do is run `terraform apply` and the new
@@ -56,7 +56,7 @@ update your launch templates (e.g. by specifying a new AMI to deploy), Terraform
 Note that if all we did was use `create_before_destroy`, on each redeploy, our ASG would reset to its hard-coded
 `desired_capacity`, losing the capacity changes from auto scaling policies. We solve this problem by using an
 [external data source](https://www.terraform.io/docs/providers/external/data_source.html) that runs the Python script
-[get-desired-capacity.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.16/modules/asg-rolling-deploy/describe-autoscaling-group/get-desired-capacity.py) to fetch the latest value of the
+[get-desired-capacity.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.17/modules/asg-rolling-deploy/describe-autoscaling-group/get-desired-capacity.py) to fetch the latest value of the
 `desired_capacity` parameter:
 
 *   If the script finds a value from an already-existing ASG, we use it, to ensure that the changes form auto scaling
@@ -77,7 +77,7 @@ Note that if all we did was use `create_before_destroy`, on each redeploy, our A
 
 module "asg_rolling_deploy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v0.21.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v0.21.17"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -114,6 +114,11 @@ module "asg_rolling_deploy" {
 
   # Override the auto-generated ASG name with this value.
   asg_name = ""
+
+  # Capacity Rebalancing helps you maintain workload availability by proactively
+  # augmenting your fleet with a new Spot Instance before a running instance is
+  # interrupted by Amazon EC2
+  autoscaling_capacity_rebalance = false
 
   # Defines the action the Auto Scaling group should take when the lifecycle
   # hook timeout elapses or if an unexpected failure occurs. The value for this
@@ -180,6 +185,9 @@ module "asg_rolling_deploy" {
   # Wait for this number of EC2 Instances to show up healthy in the load
   # balancer on creation.
   min_elb_capacity = 0
+
+  # Define policy using spot and on-demand instances.
+  mixed_instance_policy = null
 
   # The key for the tag that will be used to associate a unique identifier with
   # this ASG. This identifier will persist between redeploys of the ASG, even
@@ -223,7 +231,7 @@ module "asg_rolling_deploy" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v0.21.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v0.21.17"
 }
 
 inputs = {
@@ -263,6 +271,11 @@ inputs = {
 
   # Override the auto-generated ASG name with this value.
   asg_name = ""
+
+  # Capacity Rebalancing helps you maintain workload availability by proactively
+  # augmenting your fleet with a new Spot Instance before a running instance is
+  # interrupted by Amazon EC2
+  autoscaling_capacity_rebalance = false
 
   # Defines the action the Auto Scaling group should take when the lifecycle
   # hook timeout elapses or if an unexpected failure occurs. The value for this
@@ -329,6 +342,9 @@ inputs = {
   # Wait for this number of EC2 Instances to show up healthy in the load
   # balancer on creation.
   min_elb_capacity = 0
+
+  # Define policy using spot and on-demand instances.
+  mixed_instance_policy = null
 
   # The key for the tag that will be used to associate a unique identifier with
   # this ASG. This identifier will persist between redeploys of the ASG, even
@@ -435,6 +451,15 @@ Override the auto-generated ASG name with this value.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="autoscaling_capacity_rebalance" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Capacity Rebalancing helps you maintain workload availability by proactively augmenting your fleet with a new Spot Instance before a running instance is interrupted by Amazon EC2
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="autoscaling_lifecycle_hook_default_result" requirement="optional" type="string">
@@ -625,6 +650,22 @@ Wait for this number of EC2 Instances to show up healthy in the load balancer on
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
+<HclListItem name="mixed_instance_policy" requirement="optional" type="any">
+<HclListItemDescription>
+
+Define policy using spot and on-demand instances.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="tag_asg_id_key" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -689,11 +730,11 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.16/modules/asg-rolling-deploy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.16/modules/asg-rolling-deploy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.16/modules/asg-rolling-deploy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.17/modules/asg-rolling-deploy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.17/modules/asg-rolling-deploy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.17/modules/asg-rolling-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "aceec614c2e162a7fdf8ba99fb0ad986"
+  "hash": "7d4591c405cef8f09e1637479654cb1b"
 }
 ##DOCS-SOURCER-END -->
