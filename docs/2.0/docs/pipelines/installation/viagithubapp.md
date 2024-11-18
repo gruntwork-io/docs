@@ -35,7 +35,17 @@ As of 2024/09/10, the Gruntwork.io GitHub App requests the following permissions
 
   Gruntwork.io requests all of these permissions because it requires them for different operations. Unfortunately, the way GitHub apps work prevents us from requesting permissions on a more granular basis. Know that the GitHub App Service will scope down its permissions whenever possible to the minimum required for the operation at hand.
 
-  The level of granularity available to customers when configuring the GitHub App installation is to either install the app on a per-repository basis or on an entire organization. Our recommendation is to install the app on the organization as a whole, as this will allow Gruntwork.io to do all it's meant to do. You should use your best judgement when deciding on this, however. If you are unsure, reach out to Gruntwork Support for guidance.
+  The level of granularity available to customers when configuring the GitHub App installation is to either install the app on a per-repository basis or on an entire organization. Our recommendation is to install the app on the organization as a whole, as this will allow Gruntwork.io to do all it's meant to do. You should use your best judgement when deciding on this, however.
+
+  For most day-to-day operations, you should be able to get away with only having the app installed on your `infrastructure-live-root` repository. The exceptions to this are the following:
+
+  1. You are using the app to vend new repositories during initial bootstrap. This is the case for any customer bootstrapping optional repositories during initial setup.
+  2. You are using the app to vend new repositories via Account Factory. This is the case for DevOps Foundations Enterprise customers using Account Factory delegated repository vending.
+  3. You are using the app to manage access to repositories. This is the case for DevOps Foundations Enterprise customers using team management configurations for Account Factory delegated repositories.
+
+  Note that the configurations for the app do not have to be static either. You can choose to install the app on an organization-wide basis for initial setup, then have it installed on a per-repository basis for day-to-day operations. Just bear in mind that you will need to make sure you test that your usage of the app is still working as expected when you make changes to the installation configuration.
+
+  If you are unsure how to proceed here, reach out to Gruntwork Support for guidance.
 
   <h3>Read access to Actions</h3>
 
