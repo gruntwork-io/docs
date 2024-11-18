@@ -1,13 +1,11 @@
 # Patcher Report
 
-Patcher supports **non-interactive mode** for `patcher report`.
-
-In non-interactive mode, Patcher outputs a list of module dependencies in JSON format.
+Patcher `report` outputs a list of module dependencies in JSON format.
 
 ## Non-Interactive Mode
 Example usage:
 ```
-patcher report --non-interactive prod
+patcher report prod
 ```
 
 The report command outpust a list of module dependencies in JSON format to `stdout`, for example:
