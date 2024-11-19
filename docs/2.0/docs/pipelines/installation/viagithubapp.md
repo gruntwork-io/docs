@@ -35,11 +35,11 @@ As of 2024/09/10, the Gruntwork.io GitHub App requests the following permissions
 
   Gruntwork.io requests all of these permissions because it requires them for different operations. Unfortunately, the way GitHub apps work prevents us from requesting permissions on a more granular basis. Know that the GitHub App Service will scope down its permissions whenever possible to the minimum required for the operation at hand.
 
-  The level of granularity available to customers when configuring the GitHub App installation is to either install the app on a per-repository basis or on an entire organization. Our recommendation is to install the app on the organization as a whole, as this will allow Gruntwork.io to do all it's meant to do. You should use your best judgement when deciding on this, however.
+  The level of granularity available to customers when configuring the GitHub App installation is to either install the app on a per-repository basis or on an entire organization. Our general recommendation is to only install the app where necessary (potentially only on a subset of repositories), but this does require a greater understanding of the permissions required for each operation. You may encounter more permissions errors if you choose to install the app on a per-repository basis.
 
   For most day-to-day operations, you should be able to get away with only having the app installed on your `infrastructure-live-root` repository. The exceptions to this are the following:
 
-  1. You are using the app to vend new repositories during initial bootstrap. This is the case for any customer bootstrapping optional repositories during initial setup.
+  1. You are using the app to create extra repositories during initial bootstrap. By default, the [infrastructure-live-root-template](https://github.com/gruntwork-io/infrastructure-live-root-template) repository is used to vend a single repository (the `infrastructure-live-root` repository), but the workflow for bootstrapping it can also be used to create additional optional repositories (`infrastructure-live-access-control` and `infrastructure-modules`).
   2. You are using the app to vend new repositories via Account Factory. This is the case for DevOps Foundations Enterprise customers using Account Factory delegated repository vending.
   3. You are using the app to manage access to repositories. This is the case for DevOps Foundations Enterprise customers using team management configurations for Account Factory delegated repositories.
 
