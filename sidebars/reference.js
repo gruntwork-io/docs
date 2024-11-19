@@ -9,7 +9,7 @@ const sidebar = [
   {
     type: "doc",
     id: "2.0/reference/index",
-    className: "hidden",
+    label: "Introduction",
   },
   {
     type: "html",
@@ -54,7 +54,7 @@ const sidebar = [
     className: "sidebar-header",
   },
   {
-    label: "Overview",
+    label: "Patcher CLI",
     type: "doc",
     id: "2.0/reference/patcher/index",
   },
