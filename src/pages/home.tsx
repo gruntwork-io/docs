@@ -1,47 +1,29 @@
 import React from "react"
-import clsx from "clsx"
 import Layout from "@theme/Layout"
-import Link from "@docusaurus/Link"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import styles from "./index.module.css"
 import Card from "../components/Card"
 import CardGroup from "../components/CardGroup"
 
-function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext()
-  return (
-    <header className={clsx("hero hero--primary", styles.heroBanner)}>
-      <div className="container">
-        <h1 className="hero__title hideOnMobile">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/2.0/docs/overview/getting-started/"
-          >
-            Get Started
-          </Link>
-        </div>
-      </div>
-    </header>
-  )
-}
-
 export const HomeContent = () => {
   const { siteConfig } = useDocusaurusContext()
   return (
     <>
-    <HomepageHeader />
+    <h1>Gruntwork Docs</h1>
     <main>
-        <section className={styles.features}>
-          <div className="container">
-            <CardGroup>
+        <div>
+          <p>Gruntwork provides a comprehensive library of pre-built modules, tools, and frameworks
+            designed to accelerate the implementation of robust and scalable infrastructure solutions.</p>
+        </div>
+          <div>
+            <h2>Getting Started</h2>
+            <CardGroup cols={3}>
               <Card
-                title="What is Gruntwork?"
+                title="Lean About DevOps Foundations"
                 href="/2.0/docs/overview/concepts/devopsfoundations"
                 icon="/img/icons/learn.svg"
               >
-                Learn how Gruntwork's Devops Foundations can help you deploy a world class
+                Learn how Gruntwork's DevOps Foundations can help you deploy a world class
                 infrastructure.
               </Card>
               <Card
@@ -53,33 +35,37 @@ export const HomeContent = () => {
                 your teammates.
               </Card>
               <Card
-                title="Library Reference"
+                title="Browse the Library Reference"
                 href="/library/reference"
                 icon="/img/icons/refarch.svg"
               >
-                Find a specific module in the Gruntowrk Library
+                Find a specific module in the Gruntwork Library
               </Card>
             </CardGroup>
           </div>
-          <div className="container" style={{ margin: "6rem auto" }}>
-            <h2>Products</h2>
-            <CardGroup commonCardProps={{ appearance: "invisible" }}>
-              <Card title="Gruntwork Library" href="/2.0/docs/library/concepts/overview">
-                A collection of reusable code that enables you to deploy and
-                manage infrastructure quickly and reliably.
-              </Card>
-              <Card title="Gruntwork Pipelines" href="/2.0/docs/pipelines/concepts/overview">
+          <div style={{ margin: "6rem auto" }}>
+            <h2>Gruntwork's Products</h2>
+            <CardGroup cols={4} commonCardProps={{ appearance: "invisible" }}>
+              <Card title="Pipelines" href="/2.0/docs/pipelines/concepts/overview">
                 A framework for running secure deployments for infrastructure
                 code and application code.
               </Card>
-              <Card title="Gruntwork Patcher" href="/2.0/docs/patcher/concepts/">
+              <Card title="Account Factory" href="/2.0/docs/account-factory/concepts/overview">
+                A tool for creating and managing AWS accounts with a focus on
+                security and compliance.
+              </Card>
+              <Card title="Patcher" href="/2.0/docs/patcher/concepts/">
                 Keep your infrastructure up to date, with support for automatic
                 updates and patches for any breaking changes.
               </Card>
+              <Card title="Library" href="/2.0/docs/library/concepts/overview">
+                A collection of reusable code that enables you to deploy and
+                manage infrastructure quickly and reliably.
+              </Card>
             </CardGroup>
           </div>
-          <div className="container" style={{ margin: "6rem auto" }}>
-            <h2>Learn New Tools</h2>
+          <div style={{ margin: "6rem auto" }}>
+            <h2>Gruntwork's Open Source Tools</h2>
             <CardGroup commonCardProps={{ appearance: "invisible" }}>
               <Card title="Terragrunt" href="https://terragrunt.gruntwork.io">
                 Terragrunt is a thin wrapper that provides extra tools for
@@ -100,7 +86,6 @@ export const HomeContent = () => {
               </Card>
             </CardGroup>
           </div>
-        </section>
       </main>
        </>
       );
