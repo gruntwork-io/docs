@@ -11,4 +11,4 @@ Beyond authentication the main configuration options pertain to customizing Terr
 ## Next Steps
 
 * Review the [YAML Configurations](./configurations.md) Reference
-* Review the (Beta) [Configurations as Code](./configurations-as-code.md) Reference
+* Review the (Beta) [Configurations as Code](./configurations-as-code/api.md) Reference

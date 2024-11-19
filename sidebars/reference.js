@@ -2,72 +2,71 @@ const libraryReference = require("./library-reference")
 
 const sidebar = [
   {
-    label: "Developer Reference",
+    type: "html",
+    value: "Developer Reference",
+    className: "sidebar-header",
+  },
+  {
+    type: "doc",
+    id: "2.0/reference/index",
+    className: "hidden",
+  },
+  {
+    type: "html",
+    value: "Gruntwork Library",
+    className: "sidebar-header",
+  },
+  ...libraryReference,
+  {
+    type: "html",
+    value: "Gruntwork Pipelines",
+    className: "sidebar-header",
+  },
+  {
+    label: "Overview",
+    type: "doc",
+    id: "2.0/reference/pipelines/index",
+  },
+  {
+    label: "Configurations (YAML)",
+    type: "doc",
+    id: "2.0/reference/pipelines/configurations",
+  },
+  {
+    label: "Configurations as Code (HCL - Beta)",
     type: "category",
-    link: {
-      type: "generated-index",
-      title: "Gruntwork How-To Guides",
-      slug: "2.0/reference",
-    },
-    collapsible: false,
     items: [
       {
-        label: "Gruntwork Library",
-        type: "category",
-        collapsed: true,
-        link: {
-          type: "doc",
-          id: "library/reference/index",
-        },
-        items: libraryReference,
+        type: "doc",
+        label: "Concepts",
+        id: "2.0/reference/pipelines/configurations-as-code/index",
       },
       {
-        label: "Gruntwork Pipelines",
-        type: "category",
-        collapsed: true,
-        items: [
-          {
-            label: "Overview",
-            type: "doc",
-            id: "2.0/reference/pipelines/index",
-          },
-          {
-            label: "Configurations (YAML)",
-            type: "doc",
-            id: "2.0/reference/pipelines/configurations",
-          },
-          {
-            label: "Configurations as Code (HCL - Beta)",
-            type: "doc",
-            id: "2.0/reference/pipelines/configurations-as-code",
-          },
-        ],
-      },
-      {
-        label: "Gruntwork Patcher",
-        type: "category",
-        collapsed: true,
-        items: [
-          {
-            label: "Overview",
-            type: "doc",
-            id: "2.0/reference/patcher/index",
-          },
-        ],
-      },
-      {
-        label: "Account Factory",
-        type: "category",
-        collapsed: true,
-        items: [
-          {
-            label: "Configurations",
-            type: "doc",
-            id: "2.0/reference/accountfactory/configurations",
-          },
-        ],
+        type: "doc",
+        label: "Reference",
+        id: "2.0/reference/pipelines/configurations-as-code/api",
       },
     ],
+  },
+  {
+    value: "Gruntwork Patcher",
+    type: "html",
+    className: "sidebar-header",
+  },
+  {
+    label: "Overview",
+    type: "doc",
+    id: "2.0/reference/patcher/index",
+  },
+  {
+    type: "html",
+    value: "Account Factory",
+    className: "sidebar-header",
+  },
+  {
+    label: "Configurations",
+    type: "doc",
+    id: "2.0/reference/accountfactory/configurations",
   },
 ]
 

@@ -6,7 +6,7 @@ This guide will walk you through the process of installing Gruntwork Pipelines i
 
 :::info
 
-This process is supported via a new configuration paradigm for Pipelines referred to as ["Pipelines Configuration as Code"](/2.0/reference/pipelines/configurations-as-code) released in July 2024. This new system allows developers to use Gruntwork Pipelines with arbitrary folder layouts inside their IaC repositories. Prior to this system, pipelines required using a specific folder layout in order to map folders in source control to AWS Accounts for authentication. **As of Q4 2024 this new configuration system does not yet support [Gruntwork Account Factory](https://docs.gruntwork.io/2.0/docs/accountfactory/concepts/)** so if you need both Pipelines and Account factory we strongly advise you to start with a [new repository](/2.0/docs/pipelines/installation/addingnewrepo) or contact [Gruntwork support](/support) for assistance.
+This process is supported via a new configuration paradigm for Pipelines referred to as ["Pipelines Configuration as Code"](/2.0/reference/pipelines/configurations-as-code) released in July 2024. This new system allows developers to use Gruntwork Pipelines with arbitrary folder layouts inside their IaC repositories. Prior to this system, pipelines required using a specific folder layout in order to map folders in source control to AWS Accounts for authentication. **As of Q4 2024 this new configuration system does not yet support [Gruntwork Account Factory](https://docs.gruntwork.io/2.0/docs/accountfactory/concepts/)** so if you need both Pipelines and Account factory we strongly advise you to [start with a new repository](/2.0/docs/pipelines/installation/addingnewrepo) or contact [Gruntwork support](/support) for assistance.
 :::
 
 ## Prerequisites
@@ -70,7 +70,7 @@ environment "$$ENVIRONMENT_NAME$$" {
 
 The IAM roles referenced in the unit configuration above will be created later in [Pipeline OpenID Connect(OIDC) Provider and Roles](#pipelines-openid-connectoidc-provider-and-roles) section.
 
-You may add new [environment configurations](/2.0/docs/pipelines/configuration/config-as-code#environment-configurations) for each additional environment or consider using [unit configuration](/2.0/docs/pipelines/configuration/config-as-code#unit-configurations) for specific terragrunt units in your repository that do not fit into an environment configuration.
+You may add new [environment configurations](/2.0/reference/pipelines/configurations-as-code#environment-configurations) for each additional environment or consider using [unit configuration](/2.0/reference/pipelines/configurations-as-code#unit-configurations) for specific terragrunt units in your repository that do not fit into an environment configuration.
 
 ### Pipelines GitHub Actions(GHA) workflow
 

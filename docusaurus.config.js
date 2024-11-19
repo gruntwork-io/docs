@@ -2,14 +2,14 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 const path = require("path")
 
-const {themes} = require('prism-react-renderer');
-const lightCodeTheme = themes.github;
-const darkCodeTheme = themes.dracula;
+const { themes } = require("prism-react-renderer")
+const lightCodeTheme = themes.github
+const darkCodeTheme = themes.dracula
 
 const cfg = require("config")
 
 const captionsPlugin = require("./src/plugins/captions.mjs")
-const { redirects } = require("./src/redirects.js");
+const { redirects } = require("./src/redirects.js")
 
 const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined
 
@@ -39,10 +39,10 @@ if (enablePosthog) {
 }
 
 const redirectPlugin = [
-  '@docusaurus/plugin-client-redirects',
-      {
-        redirects,
-      }
+  "@docusaurus/plugin-client-redirects",
+  {
+    redirects,
+  },
 ]
 
 // @ts-ignore - types don't understand the plugin config
@@ -56,7 +56,7 @@ const fasterConfig = {
   swcJsLoader: true,
   swcJsMinimizer: true,
   mdxCrossCompilerCache: true,
-};
+}
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -137,7 +137,7 @@ const config = {
           {
             type: "doc",
             label: "Reference",
-            docId: "2.0/reference",
+            docId: "2.0/reference/index",
           },
           {
             type: "doc",
@@ -289,7 +289,7 @@ const config = {
       },
       docs: {
         sidebar: {
-          autoCollapseCategories: true
+          autoCollapseCategories: true,
         },
       },
       colorMode: {

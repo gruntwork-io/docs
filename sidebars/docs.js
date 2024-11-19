@@ -239,11 +239,6 @@ const sidebar = [
             id: "2.0/docs/pipelines/configuration/settings",
           },
           {
-            label: "Configuration as Code",
-            type: "doc",
-            id: "2.0/docs/pipelines/configuration/config-as-code",
-          },
-          {
             label: "Setting up Drift Detection",
             type: "doc",
             id: "2.0/docs/pipelines/configuration/driftdetection",

@@ -1,24 +1,13 @@
-# Pipelines Configuration as Code
+# Pipelines Configurations as Code
 
 Pipelines relies on configurations written in [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl) to drive dynamic behavior. These configurations are primarily used by Pipelines to determine how to interact with cloud environments within the context of the Infrastructure As Code (IaC) within a code repository.
 
 At a high level, Pipelines will read these configurations by parsing all files that end with `.hcl` within a directory named `.gruntwork` or a single file named `gruntwork.hcl`. In typical usage, the configurations that are global to the git repository will be defined within the `.gruntwork` directory at the root of the repository, and configurations that are specific to a particular `terragrunt.hcl` file (a "unit") will be located in the same directory as the `terragrunt.hcl` file.
 
 :::info
-We recommend reading our [concepts page](../concepts/hcl-config-language.md) on the HCL language to ensure you're up to date on the specifics of HCL before diving into pipelines configuration
+We recommend reading our [concepts page](/2.0/docs/pipelines/concepts/hcl-config-language) on the HCL language to ensure you're up to date on the specifics of HCL before diving into pipelines configuration
 :::
 
-## Installation Process
-
-The steps below are a high level description of the steps to install pipelines in an existing repository with an arbitrary folder structure of IaC. The content in the rest of this document goes into detail on how to apply the configurations to match how your IaC is structured.
-
-<ol>
-<li>Identify where your account authentication information is stored. This is typically in a file named `accounts.yml` in the root of your repository, although you can also store the file in another location or inline the configuration in an [aws block](#aws-blocks) in your pipelines configuration.</li>
-<li>Create a file called `.gruntwork/gruntwork.hcl` in the root of your repository</li>
-<li>Apply the [basic configurations below](#basic-configuration) to your `gruntwork.hcl` file</li>
-<li>Augment the `gruntwork.hcl` file with additional configurations as needed to match your IaC structure</li>
-<li>Install the pipelines workflow files</li>
-</ol>
 
 ## Basic Configuration
 
@@ -32,8 +21,8 @@ unit {
   authentication {
     aws_oidc {
       account_id         = "an-aws-account-id"
-      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role-to-assume-for-plans"
-      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role-to-assume-for-applies"
+      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role/role-to-assume-for-plans"
+      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role/role-to-assume-for-applies"
     }
   }
 }
@@ -55,8 +44,8 @@ environment "an_environment" {
   authentication {
     aws_oidc {
       account_id         = "an-aws-account-id"
-      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role-to-assume-for-plans"
-      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role-to-assume-for-applies"
+      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role/role-to-assume-for-plans"
+      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role/role-to-assume-for-applies"
     }
   }
 }
@@ -64,31 +53,31 @@ environment "an_environment" {
 
 In this example, all the units located within the `an-environment` directory sibling to the `.gruntwork` directory will assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when running Terragrunt plan commands by Pipelines.
 
-A typical approach to building Pipelines configurations is to first define minimal configurations that address the most common use-cases, and then to refactor and generalize those configurations as needed to reduce repetition.
+A typical approach to building Pipelines configurations is to first define minimal configurations that address the most common use-cases, and then to refactor and generalize those configurations as needed to reduce repetition. You may follow the guide for [adding existing repositories](/2.0/docs/pipelines/installation/addingexistingrepo) to get started with Pipelines configurations as code.
 
-More details on how these configurations are defined will be detailed below.
+Details on how each configuration are works is detailed below.
 
 ## Configuration Hierarchy
 
-Pipelines configurations are designed to be organized into a hierarchy. This hierarchy reflects the specificity of configurations, with configurations more specific to a single unit of IaC taking precedence over configurations that are more general when they are in conflict.
+These configurations are designed to be organized into a hierarchy. This hierarchy reflects the specificity of configurations, with configurations more specific to a single unit of IaC taking precedence over configurations that are more general when they are in conflict.
 
 The hierarchy of configurations is as follows:
 
 ### Repository Configurations
 
-These are the most general configurations that are applicable to the entire repository, regardless of working directory context. They are always defined in [global configurations](#global-configurations) via the [repository block](#repository-block).
+These are the most general configurations that are applicable to the entire repository, regardless of working directory context. They are always defined in [global configurations](#global-configurations) via the [repository block](#repository-blocks).
 
 These configurations are the most general and will always be overridden by more specific configurations when they are in conflict.
 
 ### Environment Configurations
 
-These are configurations that are applicable to a specific environment within a repository. They are only ever applicable to units that match a specific [filter](#filter-block). They are always defined in [global configurations](#global-configurations) via [environment blocks](#environment-block).
+These are configurations that are applicable to a specific environment within a repository. They are only ever applicable to units that match a specific [filter](#filter-blocks). They are always defined in [global configurations](#global-configurations) via [environment blocks](#environment-blocks).
 
 These configurations are more specific than repository configurations, and as such override repository configurations when they are in conflict within the context of a matched filter.
 
 ### Unit Configurations
 
-These are configurations that are applicable to a single unit of IaC within a repository. They are always defined in [local configurations](#local-configurations) via the [unit block](#unit-block).
+These are configurations that are applicable to a single unit of IaC within a repository. They are always defined in [local configurations](#local-configurations) via [unit blocks](#unit-blocks).
 
 These configurations are the most specific and will always override other configurations when they are in conflict.
 
@@ -102,7 +91,7 @@ Note that you will frequently see filenames for configurations within the `.grun
 
 ### Environment Blocks
 
-[Full Reference for Environment Blocks](/2.0/reference/pipelines/configurations-as-code#environment)
+[Full Reference for Environment Blocks](/2.0/reference/pipelines/configurations-as-code/api#environment-block)
 
 Environment blocks are used to define configurations that are applicable to a specific environment within a repository.
 
@@ -120,8 +109,8 @@ environment "an_environment" {
   authentication {
     aws_oidc {
       account_id         = "an-aws-account-id"
-      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role-to-assume-for-plans"
-      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role-to-assume-for-applies"
+      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role/role-to-assume-for-plans"
+      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role/role-to-assume-for-applies"
     }
   }
 }
@@ -143,8 +132,8 @@ environment "an_environment" {
   authentication {
     aws_oidc {
       account_id         = aws.accounts.all.an_account.id
-      plan_iam_role_arn  = "arn:aws:iam::${aws.accounts.all.an_account.id}:role-to-assume-for-plans"
-      apply_iam_role_arn = "arn:aws:iam::${aws.accounts.all.an_account.id}:role-to-assume-for-applies"
+      plan_iam_role_arn  = "arn:aws:iam::${aws.accounts.all.an_account.id}:role/role-to-assume-for-plans"
+      apply_iam_role_arn = "arn:aws:iam::${aws.accounts.all.an_account.id}:role/role-to-assume-for-applies"
     }
   }
 }
@@ -162,9 +151,9 @@ Every unit must be uniquely matched by the filters of a single environment block
 
 ### AWS Blocks
 
-[Full Reference for AWS Blocks](/2.0/reference/pipelines/configurations-as-code#aws)
+[Full Reference for AWS Blocks](/2.0/reference/pipelines/configurations-as-code/api#aws-block)
 
-AWS blocks are configurations used by `aws-oidc` [authentication](#authentication-block) blocks to have commonly re-used AWS configurations codified and referenced by multiple authentication blocks.
+AWS blocks are configurations used by `aws-oidc` [authentication](#authentication-blocks) blocks to have commonly re-used AWS configurations codified and referenced by multiple authentication blocks.
 
 There can only be one `aws` block defined within [global configurations](#global-configurations).
 
@@ -210,7 +199,7 @@ The decision to leverage YAML files instead of HCL files for defining the config
 
 ### Repository Blocks
 
-[Full Reference for Repository Blocks](/2.0/reference/pipelines/configurations-as-code#repository)
+[Full Reference for Repository Blocks](/2.0/reference/pipelines/configurations-as-code/api#repository-block)
 
 Repository blocks are used to define configurations that are applicable to the entire repository.
 
@@ -257,7 +246,7 @@ Local configurations can be used both to define the complete configurations requ
 
 ### Unit Blocks
 
-[Full Reference for Unit Blocks](/2.0/reference/pipelines/configurations-as-code#unit)
+[Full Reference for Unit Blocks](/2.0/reference/pipelines/configurations-as-code/api#unit-block)
 
 Unit blocks are used to define configurations that are applicable to a single unit of IaC within a repository.
 
@@ -268,8 +257,8 @@ unit {
   authentication {
     aws_oidc {
       account_id         = "an-aws-account-id"
-      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role-to-assume-for-plans"
-      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role-to-assume-for-applies"
+      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role/role-to-assume-for-plans"
+      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role/role-to-assume-for-applies"
     }
   }
 }
@@ -283,7 +272,7 @@ Some configurations are only relevant within the context of other configurations
 
 ### Filter Blocks
 
-[Full Reference for Filter Blocks](/2.0/reference/pipelines/configurations-as-code#filter)
+[Full Reference for Filter Blocks](/2.0/reference/pipelines/configurations-as-code/api#filter-block)
 
 Filter blocks are components used by [environment](#environment-blocks) blocks to determine where certain configurations are applicable.
 
@@ -300,7 +289,7 @@ All configuration blocks that contain a `filter` block will only be applied to u
 
 ### Authentication Blocks
 
-[Full Reference for Authentication Blocks](/2.0/reference/pipelines/configurations-as-code#authentication)
+[Full Reference for Authentication Blocks](/2.0/reference/pipelines/configurations-as-code/api#authentication-block)
 
 Authentication blocks are components used by [environment](#environment-blocks) and [unit](#unit-blocks) blocks to determine how Pipelines will authenticate with cloud platforms when running Terragrunt commands.
 
@@ -322,8 +311,8 @@ e.g.
 authentication {
   aws_oidc {
     account_id     = "an-aws-account-id"
-    plan_iam_role  = "arn:aws:iam::an-aws-account-id:role-to-assume-for-plans"
-    apply_iam_role = "arn:aws:iam::an-aws-account-id:role-to-assume-for-applies"
+    plan_iam_role  = "arn:aws:iam::an-aws-account-id:role/role-to-assume-for-plans"
+    apply_iam_role = "arn:aws:iam::an-aws-account-id:role/role-to-assume-for-applies"
   }
 }
 ```
