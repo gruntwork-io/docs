@@ -12,7 +12,7 @@ This process is supported via a new configuration paradigm for Pipelines referre
 ## Prerequisites
 
 - An active Gruntwork Subscription with access to Pipelines. You can verify you have access by choosing the "View team in GitHub" button in your [Gruntwork Developer Portal's account page](https://app.gruntwork.io/account) if you are an admin of the organization. The link will take you to the GitHub team UI and then you can search for "pipelines" in the repositories tab to verify you have access.
-- AWS credentials with permissions to create resources in the AWS account where you would like to deploy Pipelines. This is necessary to create OpenID Connect(OIDC) Provider and AWS Identity and Access Management(IAM) roles for Pipelines to use to auto deploy infrastructure.
+- AWS credentials with permissions to create resources in the AWS account where you would like to deploy Pipelines. This is necessary to create an OpenID Connect(OIDC) Provider and AWS Identity and Access Management(IAM) roles for Pipelines to use when deploying infrastructure.
 
 ## Setting up the Repository
 
