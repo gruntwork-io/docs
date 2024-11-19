@@ -138,6 +138,10 @@ module "vpc_app_network_acls" {
   # VPC CIDR block defined in var.mgmt_vpc_cidr_block.
   allow_access_from_mgmt_vpc = false
 
+  # Should NACL for the private persistence subnet be allowed outbound access to
+  # the internet?
+  allow_private_persistence_internet_access = false
+
   # The base number to append to var.initial_nacl_rule_number for the first
   # transit rule in private and persistence rules created by this module. All
   # transit rules will be inserted after this number. This base number provides
@@ -288,6 +292,10 @@ inputs = {
   # If set to true, the network ACLs will allow incoming requests from the Mgmt
   # VPC CIDR block defined in var.mgmt_vpc_cidr_block.
   allow_access_from_mgmt_vpc = false
+
+  # Should NACL for the private persistence subnet be allowed outbound access to
+  # the internet?
+  allow_private_persistence_internet_access = false
 
   # The base number to append to var.initial_nacl_rule_number for the first
   # transit rule in private and persistence rules created by this module. All
@@ -473,6 +481,15 @@ The name of the VPC (e.g. stage, prod)
 <HclListItemDescription>
 
 If set to true, the network ACLs will allow incoming requests from the Mgmt VPC CIDR block defined in <a href="#mgmt_vpc_cidr_block"><code>mgmt_vpc_cidr_block</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="allow_private_persistence_internet_access" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Should NACL for the private persistence subnet be allowed outbound access to the internet?
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -746,6 +763,6 @@ Use this variable to ensure the Network ACL does not get created until the VPC i
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.27.0/modules/vpc-app-network-acls/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "18926bb274fa78aae16cf1c9b2beb4f1"
+  "hash": "016b5dc7ecebb60560d1bf007378f8ee"
 }
 ##DOCS-SOURCER-END -->
