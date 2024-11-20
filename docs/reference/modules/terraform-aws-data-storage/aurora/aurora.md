@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.39.0" lastModifiedVersion="0.36.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.40.0" lastModifiedVersion="0.40.0"/>
 
 # Aurora Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.39.0/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.36.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Aurora, a MySQL and PostgreSQL compatible relational database built for the cloud.
 
@@ -59,7 +59,7 @@ Cluster](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Managing.h
 ## How do you configure this module?
 
 This module allows you to configure a number of parameters, such as backup windows, maintenance window, port number,
-and encryption. For a list of all available variables and their descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.39.0/modules/aurora/variables.tf).
+and encryption. For a list of all available variables and their descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/aurora/variables.tf).
 
 ## How do you create a cross-region read replica cluster?
 
@@ -77,7 +77,7 @@ module "replica" {
 }
 ```
 
-See the example [here](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.39.0/examples/aurora-with-cross-region-replica) for more details.
+See the example [here](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/examples/aurora-with-cross-region-replica) for more details.
 
 ## How do you destroy a cross-region read replica?
 
@@ -137,7 +137,7 @@ see [Limitations of Aurora Serverless](https://docs.aws.amazon.com/AmazonRDS/lat
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.39.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.40.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -386,6 +386,21 @@ module "aurora" {
   # the VPC, which is much more secure.
   publicly_accessible = false
 
+  # Whether to enable read replica auto scaling
+  read_replica_scaling_enabled = false
+
+  # Max capacity of the read replica.
+  read_replica_scaling_max_capacity = null
+
+  # The predefine metric type that determine the scaling operation.
+  read_replica_scaling_metric_type = "RDSReaderAverageCPUUtilization"
+
+  # The predefine metric value that determine the scaling operation.
+  read_replica_scaling_metric_value = null
+
+  # Min capacity of the read replica.
+  read_replica_scaling_min_capacity = null
+
   # ARN of a source DB cluster or DB instance if this DB cluster is to be
   # created as a Read Replica.
   replication_source_identifier = null
@@ -483,7 +498,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.39.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.40.0"
 }
 
 inputs = {
@@ -734,6 +749,21 @@ inputs = {
   # default is false, which means the database is only accessible from within
   # the VPC, which is much more secure.
   publicly_accessible = false
+
+  # Whether to enable read replica auto scaling
+  read_replica_scaling_enabled = false
+
+  # Max capacity of the read replica.
+  read_replica_scaling_max_capacity = null
+
+  # The predefine metric type that determine the scaling operation.
+  read_replica_scaling_metric_type = "RDSReaderAverageCPUUtilization"
+
+  # The predefine metric value that determine the scaling operation.
+  read_replica_scaling_metric_value = null
+
+  # Min capacity of the read replica.
+  read_replica_scaling_min_capacity = null
 
   # ARN of a source DB cluster or DB instance if this DB cluster is to be
   # created as a Read Replica.
@@ -1300,6 +1330,51 @@ If you wish to make your database accessible from the public Internet, set this 
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="read_replica_scaling_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to enable read replica auto scaling
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="read_replica_scaling_max_capacity" requirement="optional" type="number">
+<HclListItemDescription>
+
+Max capacity of the read replica.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="read_replica_scaling_metric_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The predefine metric type that determine the scaling operation.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;RDSReaderAverageCPUUtilization&quot;"/>
+</HclListItem>
+
+<HclListItem name="read_replica_scaling_metric_value" requirement="optional" type="number">
+<HclListItemDescription>
+
+The predefine metric value that determine the scaling operation.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="read_replica_scaling_min_capacity" requirement="optional" type="number">
+<HclListItemDescription>
+
+Min capacity of the read replica.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="replication_source_identifier" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1505,11 +1580,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.39.0/modules/aurora/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.39.0/modules/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.39.0/modules/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/aurora/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "79dc6429b0b5f0c3c05091f4ca3f415c"
+  "hash": "a4c814f0d4c6363c477602ce968144a1"
 }
 ##DOCS-SOURCER-END -->
