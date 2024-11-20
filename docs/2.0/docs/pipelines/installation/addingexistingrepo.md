@@ -395,7 +395,7 @@ Repeat this step for each environment you would like to manage with Pipelines.
 
 #### Create the OIDC resources
 
-Using the necessary AWS credentials, run the following commands to deploy the infrastructure for the terragrunt units we created in the previous step. Repeat this step for each account you would like to manage with Pipelines.
+Using your personal AWS access, run the following commands to deploy the infrastructure for the Terragrunt units we created in the previous step. Repeat this step for each account you would like to manage with Pipelines.
 
     ```bash
     cd $$PATH_TO_ENVIRONMENT$$/_global
