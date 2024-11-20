@@ -387,7 +387,7 @@ inputs = {
 
 The permissions in the above files are examples and should be updated based on the type of infrastructure contained in the repository so that Pipelines can perform the necessary actions to deploy your infrastructure.
 
-Also note that the IAM permissions above do not include permissions to update itself for security reasons.
+Also note that the IAM permissions above do not include permissions to update the role itself for security reasons.
 
 :::
 
