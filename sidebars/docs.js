@@ -345,20 +345,8 @@ const sidebar = [
   },
   {
     label: "Concepts",
-    type: "category",
-    collapsed: true,
-    items: [
-      {
-        label: "Overview",
-        type: "doc",
-        id: "2.0/docs/accountfactory/concepts/index",
-      },
-      {
-        label: "Delegated Repositories",
-        type: "doc",
-        id: "2.0/docs/pipelines/concepts/delegated-repositories",
-      },
-    ]
+    type: "doc",
+    id: "2.0/docs/accountfactory/concepts/index",
   },
   {
     label: "Architecture",
