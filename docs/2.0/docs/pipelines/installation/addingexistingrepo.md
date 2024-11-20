@@ -44,7 +44,6 @@ repository {
   deploy_branch_name = "$$DEPLOY_BRANCH_NAME$$"
 }
 
-# Configurations used authentication blocks https://docs.gruntwork.io/2.0/docs/pipelines/installation/addingexistingrepo#aws-blocks
 aws {
   accounts "all" {
     // Reading the accounts.yml file from the root of the repository
