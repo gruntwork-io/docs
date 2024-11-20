@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.59.1" lastModifiedVersion="0.57.0"/>
+<VersionBadge repoTitle="CI Modules" version="0.59.2" lastModifiedVersion="0.57.0"/>
 
 # Binary signing Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.1/modules/sign-binary-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.2/modules/sign-binary-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.57.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -91,7 +91,7 @@ Required environment variables for signing MacOS binaries:
 Required environment variables for notarizing the MacOS binaries:
 
 *   `MACOS_AC_LOGIN` - The Apple account's email. The account should be enrolled to the Apple Developer Program.
-*   `MACOS_AC_PASSWORD` - You have to create an app-specific password at the [Apple ID](http://appleid.apple.com/account/manage) portal. Under the `Security` area -> `Generate Password...` and that will give you the password you can use for the notarization. This is necessary because Apple needs a different password for third-party apps.
+*   `MACOS_AC_PASSWORD` - You have to create an app-specific password at the [Apple ID](http://appleid.apple.com/account/manage) portal. Under the `Security` area -&gt; `Generate Password...` and that will give you the password you can use for the notarization. This is necessary because Apple needs a different password for third-party apps.
 
 Required script options:
 
@@ -150,11 +150,11 @@ References:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.1/modules/sign-binary-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.1/modules/sign-binary-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.1/modules/sign-binary-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.2/modules/sign-binary-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.2/modules/sign-binary-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.2/modules/sign-binary-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8133abe30e1491c41e9a082b8b431f9b"
+  "hash": "95db25ab0d34d92edb5e9ce32d704b2f"
 }
 ##DOCS-SOURCER-END -->
