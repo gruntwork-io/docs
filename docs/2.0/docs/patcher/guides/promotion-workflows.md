@@ -1,46 +1,20 @@
 # Using Patcher Promotion Workflows
 :::info
-
 As of this writing in July 2024 Gruntwork only officially supports Patcher Promotion Workflows using GitHub Actions. Other CI systems will come in future releases.
-
 :::
-
-# Introduction
-
-Before you promote an infrastructure change to production its natural to want to validate that change in a lower environment. We call this general process of moving changes between environments a promotion workflow.
-
-Patcher was built with promotion workflows in mind, and this document aims to outline how to integrate that flow with GitHub Actions. Specifically, Patcher is able to detect an infrastructure change and then facilitate incorporating that change across environments (e.g. dev, stage, prod). The idea is to create a series of pull requests for your code that each include the relevant changes for a particular environment which can then be reviewed and tested. Once approved the act of merging a given pull request with "dispatch" a patcher workflow which will generate an analogous pull request on the next environment in the chain. This continues until the end of the chain at which point the final pull request is merged and no further dispatching occurs.
-
-Patcher was built specifically for infrastructure as code and has a first-class understanding of versioning in Terraform/OpenTofu/Terragrunt. As a result, even if your infrastructure has differences between environments, Patcher is still able to identify out of date modules and apply updates in a sane way through a promotion workflow.
-
-(Coming soon a sequence diagram here demonstrating the promotion workflow process)
 
 :::info
-This document outlines setting up a Patcher promotion workflow using the [environment-only](/2.0/docs/patcher/concepts/grouping#environment-only-consolidation) update grouping strategy. The GitHub Actions code herein could be tweaked to achieve the other strategies.
+Related Content:
+* [Concepts - Patcher Workflows](../concepts/promotion-workflows.md)
+* [Architecture - Overview](../architecture/index.md)
 :::
 
-# Patcher Promotion Workflow Architecture
+## Prerequisites
 
-## Environments
-
-Patcher allows teams to define environments as a grouping of folders using glob patterns. Patcher commands (on the CLI and in GitHub Actions) accept commands to match those folders, such as the argument to `patcher-action` -- `include_dirs: "{*prod*}/**"` which would match all folders with "prod" in the name. A given environment can include 1 or many (without limit) folders. Patcher will scan the entire group of folders at once for potential updates and changes.
-
-There is no limit on how many environments you can have, or other limit on the naming structure for those environments.
-
-In the future it is planned to model environments using a configuration based system (to be shared with Gruntwork Pipelines) which will allow for even more flexibility in your folder structure.
-
-## Dependencies
-
-A `dependency` in Patcher workflows is a reference to code that is versioned and in use by your codebase, generally a Terraform or Tofu module that exists in a git repo using a specific git tag for versioning. For example, if you are using `gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v0.8.0` as a terraform source module, then your dependency would be `gruntwork-io/terraform-aws-messaging/sqs`.
-
-Patcher generally models promotion workflows around the idea of grouping changes together per-dependency. Patcher would then identify all usages of `gruntwork-io/terraform-aws-messaging/sqs` within a given environment and create a single pull request to update to the next appropriate version.
-
-# Prerequisites
-
-## Infrastructure As Code
+### Infrastructure As Code
 In order to leverage Patcher Promotion Workflows your codebase must be using infrastructure specified as code using Terraform, OpenTofu and/or Terragrunt.
 
-## Environments as Folder Structures
+### Environments as Folder Structures
 
 In order to support multiple environments (such as dev, stage and prod) your code must represent those environments with a consistent folder structure that can be grouped via glob pattern matching, e.g.:
 ```sh
@@ -51,13 +25,13 @@ dev-account1  dev-account2  prod-account1  prod-account2  stage-account1  stage-
 Then you would define your dev environments as `dev-*`, stage as `stage-*` and prod as `prod-*` and so fourth.
 
 
-# Implementation & Setup Example
+## Implementation & Setup Example
 
 The Patcher Promotion Workflow process consists of a series of GitHub Actions workflow files.  Each environment is modeled as an individual workflow.  The process begins with the lowest stage (usually something like `dev`) which scans the entire `dev` environment for all dependencies which may require updates.  It will then generate one pull request per dependency that updates that dependency exclusively in the `dev` environment.  As each of those pull requests is approved and merged, they then general new pull requests for the subsequent stage (triggered via `repository dispatch` events).  This process continues until the last stage at which point no further PRs are opened and all stages have been updated.
 
 The easiest way to get started is likely by copying and tweaking the example files below.  For the purposes of this example we'll set up a promotion workflow that promotes through `dev`, `stage` and finally `prod`, though of course feel free to tweak these to match the environment patterns you use.
 
-## Setting up the initial dev promotion step
+### Setting up the initial dev promotion step
 
 The initial GitHub Actions Workflow file, which for this example lets call `update-dev.yml`, contains several key points:
 
@@ -161,7 +135,7 @@ jobs:
           pull_request_branch: "${{ env.PR_BRANCH_PREFIX }}${{ matrix.dependency.ID }}"
 ```
 
-## Setting up the stage step
+### Setting up the stage step
 
 This workflow file, `update-stage.yml` is nearly identical to `update-dev.yml`.
 
@@ -251,7 +225,7 @@ jobs:
           pull_request_branch: "${{ env.PR_BRANCH_PREFIX }}${{ matrix.dependency.ID }}"
 ```
 
-## Setting up the prod stage
+### Setting up the prod stage
 
 This workflow file, `update-prod.yml` is nearly identical to `update-stage.yml`.
 
