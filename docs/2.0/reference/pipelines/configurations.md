@@ -162,7 +162,7 @@ pipelines:
 
 <HclListItem name="session-duration" requirement="optional" type="number">
 <HclListItemDescription>
-Duration in seconds for each session terragrunt assumes in AWS during plans and applies.
+Duration in seconds for each session Terragrunt assumes in AWS during plans and applies.
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="3600"/>
 <HclListItemExample>
