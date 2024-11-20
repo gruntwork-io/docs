@@ -54,11 +54,11 @@ const sidebar = [
         id: "2.0/docs/overview/concepts/labels-tags",
       },
       {
-        label: 'IaC Platform Choice',
-        type: 'doc',
-        id: '2.0/docs/overview/concepts/iac-platform',
-      }
-    ]
+        label: "IaC Platform Choice",
+        type: "doc",
+        id: "2.0/docs/overview/concepts/iac-platform",
+      },
+    ],
   },
   complianceSidebar,
   {
@@ -220,11 +220,6 @@ const sidebar = [
             label: "Adding Pipelines to an Existing Repository",
             type: "doc",
             id: "2.0/docs/pipelines/installation/addingexistingrepo",
-          },
-          {
-            label: "Adding Pipelines to an Existing Repository (YAML config)",
-            type: "doc",
-            id: "2.0/docs/pipelines/installation/addingexistingrepo-yaml",
           },
           {
             label: "Adding Branch Protection to a Repository",

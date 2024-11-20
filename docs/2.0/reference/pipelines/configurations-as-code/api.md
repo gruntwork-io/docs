@@ -2,11 +2,10 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import { HclListItem, HclListItemExample, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '/src/components/HclListItem.tsx';
-//import { ModuleUsage } from "/src/components/ModuleUsage";
 
 ## Block Reference
 
-For a more comprehensive walkthrough of how blocks work please see the Pipelines Configurations as Code [documentation](/2.0/docs/pipelines/installation/addingexistingrepo).
+For a more comprehensive walkthrough of how blocks work please see the Pipelines Configurations as Code [concepts](/2.0/reference/pipelines/configurations-as-code).
 
 
 ### `environment` block
@@ -120,21 +119,18 @@ The ceiling of retention days that can be configured via a backup plan for the g
 
 <HclListItem name="aws" type="block">
 <HclListItemDescription>
-<p>
+
 AWS blocks are configurations used by aws-oidc authentication blocks to have commonly re-used AWS configurations codified and referenced by multiple authentication blocks.
-</p><p>
+<br/>
 There can only be one aws block defined within global configurations.
-</p><p>
+<br/>
 Nested within the aws block are accounts blocks that define the configurations for collections of AWS accounts.
-</p><p>
+<br/>
 The label applied to an accounts block is the name of the Accounts block. This is a user-defined label for the collection of AWS accounts defined by the block, and must be unique within the context of the aws block.
-</p>
-<p>
-For more information on importing accounts from `accounts.yml` [click here](/2.0/docs/pipelines/installation/addingexistingrepo#aws-blocks)
-</p>
-<p>
+<br/>
+For more information on importing accounts from `accounts.yml` [click here](/2.0/reference/pipelines/configurations-as-code#aws-blocks)
+<br/>
 See more [below](#aws-block-attributes).
-</p>
 </HclListItemDescription>
 <HclListItemExample>
 ```hcl
@@ -152,12 +148,9 @@ aws {
 
 <HclListItem name="accounts" requirement="optional" type="labeled block">
 <HclListItemDescription>
-
-<p>Accounts blocks define the configurations for collections of AWS accounts.</p>
-<br />
-<p>
+Accounts blocks define the configurations for collections of AWS accounts.
+<br/>
 The label applied to an accounts block is the name of the Accounts block. This is a user-defined label for the collection of AWS accounts defined by the block, and must be unique within the context of the aws block.
-</p>
 </HclListItemDescription>
 </HclListItem>
 

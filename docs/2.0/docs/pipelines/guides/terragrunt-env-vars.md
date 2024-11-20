@@ -6,7 +6,7 @@ When Pipelines detects changes to IaC in your infrastructure repositories it wil
 
 You can inspect the specific command in different scenarios by viewing the logs for a Pipelines workflow run.
 
-In some cases you may find that you need to pass additional options to terragrunt to meet your specific needs. All cli options for Terragrunt also have a corresponding Environment Variable that if populated will change Terragunt behavior.
+In some cases you may find that you need to pass additional options to terragrunt to meet your specific needs. All cli options for Terragrunt also have a corresponding Environment Variable that if populated will change Terragrunt behavior.
 
 See the full list of available options <span class="external-link"><a href="https://terragrunt.gruntwork.io/docs/reference/cli-options/#cli-options">in the Terragrunt documentation</a></span>.
 
