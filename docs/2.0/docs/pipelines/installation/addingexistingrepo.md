@@ -71,7 +71,7 @@ The IAM roles referenced in the unit configuration above will be created later i
 
 You may add new [environment configurations](/2.0/reference/pipelines/configurations-as-code#environment-configurations) for each additional environment or consider using [unit configuration](/2.0/reference/pipelines/configurations-as-code#unit-configurations) for specific terragrunt units in your repository that do not fit into an environment configuration.
 
-### Pipelines GitHub Actions(GHA) workflow
+### Pipelines GitHub Actions (GHA) workflow
 
 Pipelines is implemented as a GitHub [reusable workflow](https://docs.github.com/en/actions/sharing-automations/reusing-workflows#creating-a-reusable-workflow). This means that the code to implement Pipelines and all of its features lives in an external repository (generally you'll point to [ours](https://github.com/gruntwork-io/pipelines-workflows/)) and the code in your repository simply makes a reference.
 
