@@ -67,7 +67,7 @@ environment "$$ENVIRONMENT_NAME$$" {
 }
 ```
 
-The IAM roles referenced in the unit configuration above will be created later in [Pipeline OpenID Connect(OIDC) Provider and Roles](#pipelines-openid-connectoidc-provider-and-roles) section.
+The IAM roles referenced in the unit configuration above will be created later in [Pipelines OpenID Connect (OIDC) Provider and Roles](#pipelines-openid-connectoidc-provider-and-roles) section.
 
 You may add new [environment configurations](/2.0/reference/pipelines/configurations-as-code#environment-configurations) for each additional environment or consider using [unit configuration](/2.0/reference/pipelines/configurations-as-code#unit-configurations) for specific terragrunt units in your repository that do not fit into an environment configuration.
 
