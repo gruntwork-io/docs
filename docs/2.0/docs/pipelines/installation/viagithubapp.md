@@ -40,7 +40,7 @@ As of 2024/09/10, the Gruntwork.io GitHub App requests the following permissions
   * For non-enterprise customers, allow the app for `infrastructure-live-root` repository and (optionally) `infrastructure-live-access-control` and `infrastructure-modules`.
   * For enterprise customers, allow the app to have access to the entire organization.
 
-The reasoning for this is that if you are using Account Factory to create delegated repositories then you'll need to either allow the app to have access to the entire organization or manually intervene and update the apps configuration on every new account vend.
+The reasoning for requiring entire-organization access for enterprise customers is that if you are using Account Factory to create delegated repositories then Account Factory will be creating, and then immediately modifying, new repositories in automated flows, which means it needs access to new repos as soon as they are created which is only possible with entire organization permission.
 
 
   If you are unsure how to proceed here, reach out to Gruntwork Support for guidance.
