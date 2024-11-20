@@ -142,7 +142,15 @@ jobs:
 
 ### Pipelines OpenID Connect (OIDC) Provider and Roles
 
-We will create the infrastructure as code for the [OIDC](https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) roles that Pipelines will use to deploy infrastructure. Two roles are required; one to perform a plan and another to perform an apply to maintain the principle of least privilege. This step in the process will require the AWS credentials with the necessary permissions to create the OIDC resources that Pipelines will be able to automatically assume to deploy infrastructure after we have completed the setup.
+We will create the Infrastructure as Code (IaC) for the [OIDC](https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) roles that Pipelines will use to deploy infrastructure.
+
+Two roles are required:
+- One for plans (`pipelines-plan`)
+- Another for applies (`pipelines-apply`)
+
+Using two roles like this helps to maintain the principle of least privilege, as the `pipelines-plan` role will be used during pull request open/update and needs largely read-only permissions, and the `pipelines-apply` role will be used during pull request merge, and needs read/write permissions. Note that the two will also have different IAM trust policies. The `apply` role will only trust the deploy branch, while the `plan` role will trust all branches.
+
+This step in the process will require that you have the AWS access with necessary permissions to create the necessary AWS IAM resources for Pipelines to assume when deploying infrastructure.
 
 
 #### Create the terragrunt units
