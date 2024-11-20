@@ -35,7 +35,15 @@ As of 2024/09/10, the Gruntwork.io GitHub App requests the following permissions
 
   Gruntwork.io requests all of these permissions because it requires them for different operations. Unfortunately, the way GitHub apps work prevents us from requesting permissions on a more granular basis. Know that the GitHub App Service will scope down its permissions whenever possible to the minimum required for the operation at hand.
 
-  The level of granularity available to customers when configuring the GitHub App installation is to either install the app on a per-repository basis or on an entire organization. Our recommendation is to install the app on the organization as a whole, as this will allow Gruntwork.io to do all it's meant to do. You should use your best judgement when deciding on this, however. If you are unsure, reach out to Gruntwork Support for guidance.
+  The level of granularity available to customers when configuring the GitHub App installation is to either install the app on a per-repository basis or on an entire organization. Our recommendation is as follows:
+
+  * For non-enterprise customers, allow the app for `infrastructure-live-root` repository and (if in-use) `infrastructure-live-access-control` and `infrastructure-modules`.
+  * For enterprise customers, allow the app to have access to the entire organization.
+
+The reasoning for requiring entire-organization access for enterprise customers is that if you are using Account Factory to create delegated repositories then Account Factory will be creating, and then immediately modifying, new repositories in automated flows, which means it needs access to new repos as soon as they are created which is only possible with entire organization permission.
+
+
+  If you are unsure how to proceed here, reach out to Gruntwork Support for guidance.
 
   <h3>Read access to Actions</h3>
 
