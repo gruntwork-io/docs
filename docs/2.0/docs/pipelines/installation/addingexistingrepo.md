@@ -140,7 +140,7 @@ jobs:
 
 </details>
 
-### Pipelines OpenID Connect(OIDC) Provider and Roles
+### Pipelines OpenID Connect (OIDC) Provider and Roles
 
 We will create the infrastructure as code for the [OIDC](https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) roles that Pipelines will use to deploy infrastructure. Two roles are required; one to perform a plan and another to perform an apply to maintain the principle of least privilege. This step in the process will require the AWS credentials with the necessary permissions to create the OIDC resources that Pipelines will be able to automatically assume to deploy infrastructure after we have completed the setup.
 
