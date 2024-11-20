@@ -35,15 +35,13 @@ As of 2024/09/10, the Gruntwork.io GitHub App requests the following permissions
 
   Gruntwork.io requests all of these permissions because it requires them for different operations. Unfortunately, the way GitHub apps work prevents us from requesting permissions on a more granular basis. Know that the GitHub App Service will scope down its permissions whenever possible to the minimum required for the operation at hand.
 
-  The level of granularity available to customers when configuring the GitHub App installation is to either install the app on a per-repository basis or on an entire organization. Our general recommendation is to only install the app where necessary (potentially only on a subset of repositories), but this does require a greater understanding of the permissions required for each operation. You may encounter more permissions errors if you choose to install the app on a per-repository basis.
+  The level of granularity available to customers when configuring the GitHub App installation is to either install the app on a per-repository basis or on an entire organization. Our recommendation is as follows:
 
-  For most day-to-day operations, you should be able to get away with only having the app installed on your `infrastructure-live-root` repository. The exceptions to this are the following:
+  * For non-enterprise customers, allow the app for `infrastructure-live-root` repository and (optionally) `infrastructure-live-access-control` and `infrastructure-modules`.
+  * For enterprise customers, allow the app to have access to the entire organization.
 
-  1. You are using the app to create extra repositories during initial bootstrap. By default, the [infrastructure-live-root-template](https://github.com/gruntwork-io/infrastructure-live-root-template) repository is used to vend a single repository (the `infrastructure-live-root` repository), but the workflow for bootstrapping it can also be used to create additional optional repositories (`infrastructure-live-access-control` and `infrastructure-modules`).
-  2. You are using the app to vend new repositories via Account Factory. This is the case for DevOps Foundations Enterprise customers using Account Factory delegated repository vending.
-  3. You are using the app to manage access to repositories. This is the case for DevOps Foundations Enterprise customers using team management configurations for Account Factory delegated repositories.
+The reasoning for requiring entire-organization access for enterprise customers is that if you are using Account Factory to create delegated repositories then Account Factory will be creating, and then immediately modifying, new repositories in automated flows, which means it needs access to new repos as soon as they are created which is only possible with entire organization permission.
 
-  Note that the configurations for the app do not have to be static either. You can choose to install the app on an organization-wide basis for initial setup, then have it installed on a per-repository basis for day-to-day operations. Just bear in mind that you will need to make sure you test that your usage of the app is still working as expected when you make changes to the installation configuration.
 
   If you are unsure how to proceed here, reach out to Gruntwork Support for guidance.
 
