@@ -73,7 +73,7 @@ You may add new [environment configurations](/2.0/reference/pipelines/configurat
 
 ### Pipelines GitHub Actions (GHA) workflow
 
-Pipelines is implemented as a GitHub [reusable workflow](https://docs.github.com/en/actions/sharing-automations/reusing-workflows#creating-a-reusable-workflow). This means that the code to implement Pipelines and all of its features lives in an external repository (generally you'll point to [ours](https://github.com/gruntwork-io/pipelines-workflows/)) and the code in your repository simply makes a reference.
+Pipelines is implemented as a GitHub [reusable workflow](https://docs.github.com/en/actions/sharing-automations/reusing-workflows#creating-a-reusable-workflow). This means that the code to implement Pipelines and all of its features lives in an external repository (generally you'll point to [ours](https://github.com/gruntwork-io/pipelines-workflows/)) and the code in your repository simply references it.
 
 
 Create a file named `.github/workflows/pipelines.yml` in the root of your repository with the content below:
