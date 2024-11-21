@@ -49,10 +49,15 @@ references:
       name: build
       command: yarn && yarn build
 
+  spellcheck_docs:
+    run:
+      name: spellcheck
+      command: yarn && yarn spellcheck
+
   test_docs: &test_docs
     run:
       name: test
-      command: yarn && yarn test && yarn spellcheck
+      command: yarn && yarn test
 
   deploy_to_staging: &deploy-to-staging
     run:
@@ -144,6 +149,7 @@ jobs:
     steps:
       - checkout
       - *build_docs
+      - *spellcheck_docs
       - *test_docs
     # The resource_class feature allows configuring CPU and RAM resources for each job. Different resource classes are
     # available for different executors. https://circleci.com/docs/2.0/configuration-reference/#resourceclass
