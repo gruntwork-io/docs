@@ -30,7 +30,7 @@ Running Pipelines Drift Detection too frequently can easily eat through your Git
 
 ## Resolving Drift
 
-Drift can be resolved by either applying the commited IaC from your repository, or modifying modules until they reflect the infrastructure state in the cloud.
+Drift can be resolved by either applying the committed IaC from your repository, or modifying modules until they reflect the infrastructure state in the cloud.
 
 ### Merging The Pull Request
 

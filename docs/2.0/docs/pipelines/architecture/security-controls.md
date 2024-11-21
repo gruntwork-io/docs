@@ -144,7 +144,7 @@ The read-only plan role for delegated repositories.
 
 The `infrastructure-live-access-control` repository is vended ready to provision these roles with the configuration baked in.
 
-Enterprise customers will see pull requests opened automatically in the `infrastructure-live-access-control` repository to vend these roles for every new account vended as a delegated account. Given that delegated accounts have their own repositories that are separate from the main `infrastructure-live-root` and `infrastructure-live-access-control` repositories, these roles are used to ensure that the delegated repositories have adqueate access to the infrastructure they need to manage.
+Enterprise customers will see pull requests opened automatically in the `infrastructure-live-access-control` repository to vend these roles for every new account vended as a delegated account. Given that delegated accounts have their own repositories that are separate from the main `infrastructure-live-root` and `infrastructure-live-access-control` repositories, these roles are used to ensure that the delegated repositories have adequate access to the infrastructure they need to manage.
 
 :::note
 
@@ -160,7 +160,7 @@ The read/write apply role for delegated repositories.
 
 The `infrastructure-live-access-control` repository is vended ready to provision these roles with the configuration baked in.
 
-Enterprise customers will see pull requests opened automatically in the `infrastructure-live-access-control` repository to vend these roles for every new account vended as a delegated account. Given that delegated accounts have their own repositories that are separate from the main `infrastructure-live-root` and `infrastructure-live-access-control` repositories, these roles are used to ensure that the delegated repositories have adqueate access to the infrastructure they need to manage.
+Enterprise customers will see pull requests opened automatically in the `infrastructure-live-access-control` repository to vend these roles for every new account vended as a delegated account. Given that delegated accounts have their own repositories that are separate from the main `infrastructure-live-root` and `infrastructure-live-access-control` repositories, these roles are used to ensure that the delegated repositories have adequate access to the infrastructure they need to manage.
 
 :::note
 

@@ -25,7 +25,7 @@ After scanning for dependencies, Patcher will show you the 'Modules View'.
 
 If all the dependencies are fully up to date, then Patcher shows a tick in the "Up to date" column.
 
-![Patcher update screenshot showing dependendency that is fully up to date](/img/guides/stay-up-to-date/patcher/patcher-update-overview-futd.png)
+![Patcher update screenshot showing dependency that is fully up to date](/img/guides/stay-up-to-date/patcher/patcher-update-overview-futd.png)
 
 If Patcher can update one or more usages of a module to a newer version, then Patcher offers two options:
 
@@ -35,7 +35,7 @@ If Patcher can update one or more usages of a module to a newer version, then Pa
 
 ![Patcher update screenshot showing dependency that can be updated](/img/guides/stay-up-to-date/patcher/patcher-update-overview-update-available.png)
 
-Pressing `ENTER` will update all the usages of that module to either the highest version before the next closest breaking change or the latest version of the dependecy, whichever is encountered first.
+Pressing `ENTER` will update all the usages of that module to either the highest version before the next closest breaking change or the latest version of the dependency, whichever is encountered first.
 
 Pressing `b` will update all the usages of that module to either the next closest breaking change or the latest version of the dependency, whichever is encountered first.
 
@@ -92,7 +92,7 @@ patcher update --non-interactive --skip-container-runtime prod
 
 Using the [next breaking update strategy](/2.0/docs/patcher/concepts/update-strategies#next-breaking-update-strategy), if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the version with the breaking change and stop. Otherwise, it will update the dependencies the latest version of that module.
 
-If Patcher updates a dependency to a breaking version, a `README-TO-COMPLETE-UPDATE.md` is written into the folder containing the dependendency. The `README-TO-COMPLETE-UPDATE.md` file contains a release note extract for each dependency in that folder that was updated to a breaking change.
+If Patcher updates a dependency to a breaking version, a `README-TO-COMPLETE-UPDATE.md` is written into the folder containing the dependency. The `README-TO-COMPLETE-UPDATE.md` file contains a release note extract for each dependency in that folder that was updated to a breaking change.
 
 Example usage:
 ```
@@ -112,7 +112,7 @@ And in `infrastructure-live/dev` there is a dependency on `terraform-aws-vpc/vpc
 
 ![Screenshot of third party module dependency with updates available](/img/guides/stay-up-to-date/patcher/patcher-update-overview-3p-update-available.png)
 
-Patcher can update this dependency to the latest version but because there is a breaking version in between, Patcher updates to `5.0.0` and writes a `README-TO-COMPLETE-UPDATE.md` file into the folder containing the dependendency.
+Patcher can update this dependency to the latest version but because there is a breaking version in between, Patcher updates to `5.0.0` and writes a `README-TO-COMPLETE-UPDATE.md` file into the folder containing the dependency.
 
 ![Screenshot of third party module dependency usages with updates available](/img/guides/stay-up-to-date/patcher/patcher-update-usages-3p-update-available.png)
 
@@ -137,6 +137,6 @@ Here are the release notes for version v5.0.0:
 * Bump Terraform AWS Provider version to 5.0 ([#941](https://github.com/terraform-aws-modules/terraform-aws-vpc/issues/941)) ([2517eb9](https://github.com/terraform-aws-modules/terraform-aws-vpc/commit/2517eb98a39500897feecd27178994055ee2eb5e))
 ```
 
-Running Patcher again will complete the update to `5.1.1`, the `README-TO-COMPLETE-UPDATE.md` file should be read, actioned and deleted first.
+Running Patcher again will complete the update to `5.1.1`, the `README-TO-COMPLETE-UPDATE.md` file should be read, followed and deleted first.
 
 ![Screenshot of third party module dependency full up to date](/img/guides/stay-up-to-date/patcher/patcher-report-overview-3p-futd.png)

@@ -4,7 +4,7 @@
 
 The Account Factory Workflow in your `infrastructure-live-root` repository can be used to vend new AWS accounts. It takes a single input consisting of a JSON payload that you can generate from the `account-factory-inputs.html` web page.
 
-We use a JSON payload to support more vending opitions, as GitHub Workflows are limited to only 10 inputs.
+We use a JSON payload to support more vending options, as GitHub Workflows are limited to only 10 inputs.
 
 :::note
 This guide pertains only to non-delegated repositories. Enterprise customers are also able to [use Account Factory to create new Delegated Repositories](/2.0/docs/accountfactory/guides/delegated-repositories).
