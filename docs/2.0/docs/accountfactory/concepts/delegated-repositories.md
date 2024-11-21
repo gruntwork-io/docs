@@ -8,7 +8,6 @@ As enterprises scale their usage of IaC across more teams there often arises a n
 
 1. A single `infrastructure-live-root` repository, ideally governed by the core platform team. This repository includes IaC for security and shared infrastructure including core-account creation, central logging/auditing and networking controls (e.g. GuardDuty, SecurityHub, Macie, Transit Gateway etc.).
 1. Many _delegated_ repositories, often named using the pattern `infrastructure-live-$TEAM_NAME`, where individual teams can manage their own IaC. These repositories are created by the core platform team using the Account Factory and, via `infrastructure-live-access-control` are granted limited permissions to manage their own infrastructure.
-git
 Using this pattern core platform teams have the ability to:
 * Centrally manage core compliance and security infrastructure
 * Centrally manage which teams have permission to deploy what kind of infrastructure, allowing their team to enforce compliance with architecture-board approved plans
