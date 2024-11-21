@@ -144,7 +144,6 @@ The main differences are
 * The `include_dirs` now targets the `stage` environment instead of `dev`
 * The `PR_BRANCH_PREFIX` and `pull_request_title` reference the `stage` env instead of `dev`
 
-pourly spelt word
 
 ```yml
 name: Update Stage Dependencies
