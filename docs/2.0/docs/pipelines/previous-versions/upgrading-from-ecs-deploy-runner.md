@@ -15,7 +15,7 @@ To accomplish this task, we'll be using ECS Deploy Runner to deploy Pipelines, t
 ECS Deploy Runner was designed as a highly secure approach to CI/CD for infrastructure. With Pipelines, we adapted the security principles built into ECS Deploy Runner to embrace modern CI system functionality, leaning heavily on GitHub Actions native functionality to create a more streamlined setup experience, and better overall UX. The major changes in Pipelines include:
 
 - **Easier setup.** There are no resources to deploy in AWS (other than granting an OIDC token), and setting up Pipelines amounts to configuring a few GitHub Actions workflows.
-- **Pull-request centric UX.** Pipelines organizes the user experience around the pull request, adding rich indicationg of everything that occurred directly in the pull request comments.
+- **Pull-request centric UX.** Pipelines organizes the user experience around the pull request, adding rich indicating of everything that occurred directly in the pull request comments.
 - **Streamlined updates.** Pipelines has been designed to make getting the latest version published by Gruntwork an easy experience.
 
 ## Prerequisites

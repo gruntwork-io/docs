@@ -11,7 +11,7 @@ Extending Gruntwork Pipelines involves managing code in three different source c
 * `pipelines-actions` - This is where the bulk of the business logic for pipelines lives
 * `pipelines-actions-customization` - This is where a customer's custom logic primarily lives.
 
-The intention is that customers will never have to touch code that is frequently modified by Gruntwork, namely `pipelines-actions`.  Instead customers will update code references inside `pipelines-workflows` to point to custom code in another repository, so the only surface area for merge conflict/code maintaince is a scant few lines of reference change in `pipelines-workflows`.
+The intention is that customers will never have to touch code that is frequently modified by Gruntwork, namely `pipelines-actions`.  Instead customers will update code references inside `pipelines-workflows` to point to custom code in another repository, so the only surface area for merge conflict/code maintenance is a scant few lines of reference change in `pipelines-workflows`.
 
 <img alt="Diagram of Gruntwork Pipelines Repositories" className="img_node_modules-@docusaurus-theme-classic-lib-theme-MDXComponents-Img-styles-module medium-zoom-image" src="/img/pipelines/pipelines_customization_code_locations.svg" />
 

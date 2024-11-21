@@ -34,7 +34,7 @@ The options are `pull`, `triage`, `push`, `maintain`, `admin`, or a custom repos
 
 To add a team to new delegated repositories add a new item to the collaborators block in your account factory configuration.
 
-All collaborators in each account type will be added to new repositories of that type when the repository is createde. If you want to add a team to vended repositories of different types you will need to add them in multiple places.
+All collaborators in each account type will be added to new repositories of that type when the repository is created. If you want to add a team to vended repositories of different types you will need to add them in multiple places.
 
 A common scenario is to create a team for administration that is granted access everywhere, and individual teams for each delegated repository.
 

@@ -64,6 +64,6 @@ See the full description of the `iam_policy` input [in the library reference](/r
 
 To add IAM roles to all delegated repositories you can modify the base roles in `_envcommon/landingzone/delegated-pipelines-plan-role.hcl` and `_envcommon/landingzone/delegated-pipelines-apply-role.hcl`.
 
-These HCL files also contain a `iam_policy` block which is already populated with the necesary policies for terragrunt to store state and perform barebones plans and applies.
+These HCL files also contain a `iam_policy` block which is already populated with the necessary policies for terragrunt to store state and perform bare-bones plans and applies.
 
 You can expand this block by adding new policy descriptions, and they will be granted to all delegated repositories.

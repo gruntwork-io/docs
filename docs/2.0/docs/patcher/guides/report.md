@@ -8,7 +8,7 @@ Example usage:
 patcher report prod
 ```
 
-The report command outpust a list of module dependencies in JSON format to `stdout`, for example:
+The report command outputs a list of module dependencies in JSON format to `stdout`, for example:
 ```json
 [
    "gruntwork-io/terraform-aws-monitoring/logs/load-balancer-access-logs",
