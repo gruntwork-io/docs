@@ -1,6 +1,6 @@
 # Using Patcher Promotion Workflows
 :::info
-As of this writing in July 2024 Gruntwork only officially supports Patcher Promotion Workflows using GitHub Actions. Other CI systems will come in future releases.
+As of July 2024 Gruntwork officially supports Patcher Promotion Workflows using GitHub Actions. Other CI systems will come in future releases.
 :::
 
 :::info
@@ -12,43 +12,45 @@ Related Content:
 ## Prerequisites
 
 ### Infrastructure As Code
-In order to leverage Patcher Promotion Workflows your codebase must be using infrastructure specified as code using Terraform, OpenTofu and/or Terragrunt.
+To leverage Patcher Promotion Workflows, your codebase must use infrastructure as code with Terraform, OpenTofu and/or Terragrunt.
 
 ### Environments as Folder Structures
 
-In order to support multiple environments (such as dev, stage and prod) your code must represent those environments with a consistent folder structure that can be grouped via glob pattern matching, e.g.:
+To support multiple environments (such as dev, stage and prod), your code must represent those environments with a consistent folder structure that can be grouped via glob pattern matching, e.g.:
 ```sh
 ls
 dev-account1  dev-account2  prod-account1  prod-account2  stage-account1  stage-account2
 ```
 
-Then you would define your dev environments as `dev-*`, stage as `stage-*` and prod as `prod-*` and so fourth.
+Then you would define your environments as `dev-*`, stage as `stage-*` and prod as `prod-*`.
 
 
 ## Implementation & Setup Example
 
-The Patcher Promotion Workflow process consists of a series of GitHub Actions workflow files.  Each environment is modeled as an individual workflow.  The process begins with the lowest stage (usually something like `dev`) which scans the entire `dev` environment for all dependencies which may require updates.  It will then generate one pull request per dependency that updates that dependency exclusively in the `dev` environment.  As each of those pull requests is approved and merged, they then general new pull requests for the subsequent stage (triggered via `repository dispatch` events).  This process continues until the last stage at which point no further PRs are opened and all stages have been updated.
+The Patcher Promotion Workflow process consists of a series of GitHub Actions workflow files.  Each environment is modeled as an individual workflow.  The process begins with the lowest environment (usually something like `dev`). It scans the entire `dev` environment for all dependencies which may require updates.  It then generates one pull request per dependency. That PR updates that dependency in just the `dev` environment.  
 
-The easiest way to get started is likely by copying and tweaking the example files below.  For the purposes of this example we'll set up a promotion workflow that promotes through `dev`, `stage` and finally `prod`, though of course feel free to tweak these to match the environment patterns you use.
+As each of those pull requests is approved and merged, that approval triggers new pull requests for the subsequent environment (triggered via `repository dispatch` events).  This process continues until the last environment at which point no further PRs are opened and all environments have been updated.
+
+For a quick start, copy and tweak the example files below to match your environment names.  Here, we set up a promotion workflow across `dev`, `stage` and finally `prod`.
 
 ### Setting up the initial dev promotion step
 
-The initial GitHub Actions Workflow file, which for this example lets call `update-dev.yml`, contains several key points:
+The initial GitHub Actions Workflow file, in this example `update-dev.yml`, contains several key points:
 
 * We set up the job to run on a schedule, to be a pull request target, a workflow dispatch and a repository dispatch.
-    * The schedule is of course optional but recommended
+    * The schedule is optional but recommended
     * The workflow dispatch is a recommended testing mechanism
     * The pull request target is required to trigger certain jobs
 * The `trigger-next-env` Job
-    * This job is run only on pull request merge, and it sends a dispatch to the next stage. Specifically it fires an event called `dev_updates_merged` which the next job will listen for.
-    * This job also includes metadata, specifically a `dependency` (which is derived from the git branch name), to indicate to the subsequent job which dependency to run for.
+    * This job is run only on pull request merge, and it sends a dispatch to the next stage. It fires an event called `dev_updates_merged`, which the next job will listen for.
+    * It also includes metadata, specifically a `dependency` (which is derived from the git branch name), to inform the subsequent job which dependency to run for.
 * The `patcher-report` Job
     * This job runs patcher report to generate a list of updates for a specific environment (defined based on the `include_dirs` argument)
-    * Note this job uses a secret, `PIPELINES_READ_TOKEN`, which needs to have access to your Gruntwork account to access the Patcher binary.  See more on machine user tokens [here](/2.0/docs/pipelines/installation/viamachineusers).
+    * Note this job uses a secret, `PIPELINES_READ_TOKEN`, which needs access to your Gruntwork account to access the Patcher binary.  See more on machine user tokens [here](/2.0/docs/pipelines/installation/viamachineusers).
 * The `update-env` Job
     * This job takes the spec output from the report, puts it into a file, then calls patcher update.
     * Patcher update reads the spec file, checks out the code, makes a commit and then pushes a pull request
-    * Note it is critically important for the correct functioning of the pull request workflow that the `pull_request_branch` be defined as `$PREFIX$DEPENDENCYID`. We strip out the prefix to identify the dependency ID in the `trigger-next-env` Job.
+    * It is critically important for the pull request workflow that the `pull_request_branch` be defined as `$PREFIX$DEPENDENCYID`. We strip out the prefix to identify the dependency ID in the `trigger-next-env` Job.
 
 ```yml
 name: Update Dev Dependencies
