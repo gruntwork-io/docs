@@ -8,12 +8,11 @@ Gruntwork uses a four-layer system for describing infrastructure --
 
 **Resource-Level IaC** (Mid-Level): OpenTofu provides wrappers around cloud provider APIs and represents objects in those APIs as [resources](https://opentofu.org/docs/language/resources/).  Using OpenTofu you can to define individual infrastructure resources (e.g., servers, networks, databases) in code. This improves consistency and enables version control, but managing complex deployments and establishing consistency and governance can still be challenging as everytime you deploy infrastructure you have to re-specify each resource and all its arguments.
 
-**Module-Level IaC** (High-Level): Modules encapsulate multiple resources into reusable building blocks. For example, a module could define a web server with a load balancer, database, and security groups. Modules increase efficiency, reduce complexity, and promote best practices. Modules provide the opportunity for core teams to codify best practices and business requirements.
+[**Module-Level IaC**](http://localhost:3000/2.0/docs/library/concepts/modules) (High-Level): Modules encapsulate multiple resources into reusable building blocks. For example, a module could define a web server with a load balancer, database, and security groups. Modules increase efficiency, reduce complexity, and promote best practices. Modules provide the opportunity for core teams to codify best practices and business requirements.
 
-**Service-Level IaC** (Highest-Level):  At this level, you compose modules to create complete, deployable architectures, such as a multi-tier application or a data pipeline. This allows a platform team to even further codify architectures, opinions, compliance and security structures that are reusable across the enterprise.
+[**Service-Level IaC**](http://localhost:3000/2.0/docs/library/concepts/service-modules) (Highest-Level):  At this level, you compose modules to create complete, deployable architectures, such as a multi-tier application or a data pipeline. This allows a platform team to even further codify architectures, opinions, compliance and security structures that are reusable across the enterprise.
 
-
-TODO: DIAGRAM HERE
+<img alt="Diagram showing IaC Module Hierarchy" className="img_node_modules-@docusaurus-theme-classic-lib-theme-MDXComponents-Img-styles-module medium-zoom-image" src="/img/iac/module_types.svg" />
 
 ## Benefits of IaC Modules
 * **Increased Efficiency:** Modules eliminate the need to write repetitive code, accelerating infrastructure deployments.
