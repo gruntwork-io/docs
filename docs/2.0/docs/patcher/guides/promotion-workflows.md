@@ -49,7 +49,7 @@ The initial GitHub Actions Workflow file, which for this example lets call `upda
     * This job takes the spec output from the report, puts it into a file, then calls patcher update.
     * Patcher update reads the spec file, checks out the code, makes a commit and then pushes a pull request
     * Note it is critically important for the correct functioning of the pull request workflow that the `pull_request_branch` be defined as `$PREFIX$DEPENDENCYID`. We strip out the prefix to identify the dependency ID in the `trigger-next-env` Job.
-
+<!-- spell-checker: disable -->
 ```yml
 name: Update Dev Dependencies
 on:
@@ -134,7 +134,7 @@ jobs:
           pull_request_title: "[Patcher] [dev] Update ${{ matrix.dependency.ID }}"
           pull_request_branch: "${{ env.PR_BRANCH_PREFIX }}${{ matrix.dependency.ID }}"
 ```
-
+<!-- spell-checker: enable -->
 ### Setting up the stage step
 
 This workflow file, `update-stage.yml` is nearly identical to `update-dev.yml`.

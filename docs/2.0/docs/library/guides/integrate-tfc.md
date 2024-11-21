@@ -226,12 +226,14 @@ than an individual user account.
 
 Now you’ll add the token to your [`~/.terraformrc` file](https://www.terraform.io/docs/commands/cli-config.html) in a `credentials` block.
 
+<!-- spell-checker: disable -->
 ```hcl
  For TFE, substitute the custom hostname for your TFE host
 credentials "app.terraform.io" {
   token = "xxxxxxyyyyyyyyyzzzzzzzzzzzz"
 }
 ```
+<!-- spell-checker: enable -->
 
 ### Generating the backend
 
@@ -358,7 +360,7 @@ the `name` variable is specified. Most modules will need more configuration.
 With all the pieces in place, you can run `terragrunt init` to initialize the workspace, if it isn’t already there, and then `terragrunt apply`, and watch as Terragrunt invokes Terraform, which executes the `plan` and `apply` stages on TFC, pausing in between to allow confirmation. Note that when running a `terragrunt apply-all`, Terragrunt adds the `-auto-approve` flag to Terraform to skip interactive approval. This means that with `apply-all`, there will be no confirmation step.
 
 First, we run `terragrunt init`. Terragrunt generates the backend configuration, the `tfvars` file, and connects to the remote. Irrelevant details have been omitted from the output.
-
+<!-- spell-checker: disable -->
 ```bash
 $ terragrunt init
 [terragrunt] 2020/05/15 14:36:54 Reading Terragrunt config file at <redacted>/infrastructure-live/dev/us-east-1/sqs/terragrunt.hcl
@@ -438,7 +440,7 @@ queue_arn = arn:aws:sqs:us-east-1:0123456789012:example-name
 queue_name = example-name
 queue_url = https://sqs.us-east-1.amazonaws.com/0123456789012/example-name
 ```
-
+<!-- spell-checker: enable -->
 TFC runs a plan first, waits for confirmation, and then runs apply. The confirmation can be entered either on the command line or in the UI. Once complete, the results are visible in the TFC UI:
 
 ![Viewing the Terragrunt command results in the TFC UI](/img/guides/working-with-code/tfc/tfc-terragrunt-results.png)
@@ -451,5 +453,3 @@ Using the combination of features above, you can effectively use Terragrunt with
 Terragrunt can generate backend blocks and `tfvars` files. Commands like `terragrunt apply-all` will operate in the same
 way as they do without TFC/TFE, calling each module dependency in order, and allowing for passing outputs between
 modules. Workspaces must be created in advance so that you can set up credentials for access to the cloud.
-
-Happy Terragrunting!
