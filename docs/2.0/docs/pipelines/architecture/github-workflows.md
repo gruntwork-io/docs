@@ -10,7 +10,7 @@ jobs:
 
 ## Workflow Versioning
 
-Gruntwork uses [Semantic Versioning](https://semver.org/) for `pipelines-workflows` releases. We create new git tags to track new releases of the workflows following the `v.MAJOR.MINOR.PATCH` format. We also publish a major tag e.g. `v.MAJOR` that we update to referecene the lastest release within that version. For example when we publish a patch from `v3.0.1` to `v3.0.2` we will update the `v3` tag to reference the newer version.
+Gruntwork uses [Semantic Versioning](https://semver.org/) for `pipelines-workflows` releases. We create new git tags to track new releases of the workflows following the `v.MAJOR.MINOR.PATCH` format. We also publish a major tag e.g. `v.MAJOR` that we update to reference the latest release within that version. For example when we publish a patch from `v3.0.1` to `v3.0.2` we will update the `v3` tag to reference the newer version.
 
 When calling a workflow the final part of the `uses` clause contains the version reference. E.g. `pipelines-root.yml@v3`. We recommend using the major version e.g. `v3` within your workflows to receive the latest fixes and performance improvements, but you are also able to pin to a specific tag.
 
@@ -45,7 +45,7 @@ In your repositories you will have the following set of workflows:
 - `pipelines-unlock.yml` - Uses the Gruntwork `pipelines-unlock.yml` unlock workflow.
 - `pipelines.yml` - Uses `pipelines.yml`.
 
-#### infrastructure-live-delegated ([Vended Delgated Repositories](/2.0/docs/accountfactory/guides/delegated-repositories))
+#### infrastructure-live-delegated ([Vended Delegated Repositories](/2.0/docs/accountfactory/guides/delegated-repositories))
 
 - `pipelines-drift-detection.yml` - Uses the Gruntwork `pipelines-drift-detection.yml` drift detection workflow.
 - `pipelines-unlock.yml` - Uses the Gruntwork `pipelines-unlock.yml` unlock workflow.
