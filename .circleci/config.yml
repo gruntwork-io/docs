@@ -52,7 +52,7 @@ references:
   test_docs: &test_docs
     run:
       name: test
-      command: yarn && yarn test
+      command: yarn && yarn test && yarn spellcheck
 
   deploy_to_staging: &deploy-to-staging
     run:
