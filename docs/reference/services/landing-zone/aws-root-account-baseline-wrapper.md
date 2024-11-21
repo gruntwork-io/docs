@@ -256,6 +256,11 @@ module "account_baseline_root" {
   # IAM role
   aws_config_iam_role_permissions_boundary = null
 
+  # Map of child accounts to create. Identical in structure to child_accounts
+  # but useful if you have too many accounts to manage in an input var. Merged
+  # with var.child_accounts
+  child_accounts_yaml = null
+
   # Additional IAM policies to apply to cloudtrail S3 bucket. You can use this
   # to grant read/write access beyond what is provided to Cloudtrail. This
   # should be a map, where each key is a unique statement ID (SID), and each
@@ -1116,6 +1121,11 @@ inputs = {
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role
   aws_config_iam_role_permissions_boundary = null
+
+  # Map of child accounts to create. Identical in structure to child_accounts
+  # but useful if you have too many accounts to manage in an input var. Merged
+  # with var.child_accounts
+  child_accounts_yaml = null
 
   # Additional IAM policies to apply to cloudtrail S3 bucket. You can use this
   # to grant read/write access beyond what is provided to Cloudtrail. This
@@ -2211,6 +2221,15 @@ A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group for do
 <HclListItemDescription>
 
 The ARN of the policy that is used to set the permissions boundary for the IAM role
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="child_accounts_yaml" requirement="optional" type="string">
+<HclListItemDescription>
+
+Map of child accounts to create. Identical in structure to child_accounts but useful if you have too many accounts to manage in an input <a href="#"><code></code></a> Merged with <a href="#child_accounts"><code>child_accounts</code></a>
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -4400,6 +4419,6 @@ A map of user name to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/landingzone/account-baseline-root/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "eebd2318bca48e2a610249f8834e2a0b"
+  "hash": "e521d65494ff9110debb4665ba9010ba"
 }
 ##DOCS-SOURCER-END -->
