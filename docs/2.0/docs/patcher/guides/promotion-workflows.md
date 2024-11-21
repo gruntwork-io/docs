@@ -49,9 +49,9 @@ The initial GitHub Actions Workflow file, in this example `update-dev.yml`, cont
     * Note this job uses a secret, `PIPELINES_READ_TOKEN`, which needs access to your Gruntwork account to access the Patcher binary.  See more on machine user tokens [here](/2.0/docs/pipelines/installation/viamachineusers).
 * The `update-env` Job
     * This job takes the spec output from the report, puts it into a file, then calls patcher update.
-    * Patcher update reads the spec file, checks out the code, makes a commit and then pushes a pull request
+    * Patcher update reads the spec file, checks out the code, makes a commit and then pushes a pull request    
     * It is critically important for the pull request workflow that the `pull_request_branch` be defined as `$PREFIX$DEPENDENCYID`. We strip out the prefix to identify the dependency ID in the `trigger-next-env` Job.
-
+<!-- spell-checker: disable -->
 ```yml
 name: Update Dev Dependencies
 on:
@@ -136,7 +136,7 @@ jobs:
           pull_request_title: "[Patcher] [dev] Update ${{ matrix.dependency.ID }}"
           pull_request_branch: "${{ env.PR_BRANCH_PREFIX }}${{ matrix.dependency.ID }}"
 ```
-
+<!-- spell-checker: enable -->
 ### Setting up the stage step
 
 This workflow file, `update-stage.yml` is nearly identical to `update-dev.yml`.
@@ -145,6 +145,7 @@ The main differences are
 * The `repository_dispatch` event type is now `dev_updates_merged`
 * The `include_dirs` now targets the `stage` environment instead of `dev`
 * The `PR_BRANCH_PREFIX` and `pull_request_title` reference the `stage` env instead of `dev`
+
 
 ```yml
 name: Update Stage Dependencies

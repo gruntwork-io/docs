@@ -323,7 +323,7 @@ def lambda_handler(event, context):
 ### Install dependencies
 
 Next, initialize the go module and install terratest as a dependency.
-
+<!-- spell-checker: disable -->
 ```bash
 cd gw_module_guide/test
 go mod init github.com/<YOUR GITHUB USERNAME>/gw_module_guide
@@ -332,11 +332,11 @@ go get github.com/stretchr/testify/assert
 go get github.com/aws/aws-sdk-go/aws
 go mod tidy
 ```
-
+<!-- spell-checker: enable -->
 ### Write the test
 
 Next, we’ll write the test. Specify a single test called `TestLambdaCreated` that provisions an AWS Lambda function, confirms it is created, then destroys the Lambda function. We’ll use some of the built-in functionality in `Terratest` to generate random values and set variables that will be passed into Terraform.
-
+<!-- spell-checker: disable -->
 ```go title=gw_module_guide/test/lambda_test.go
 package test
 
@@ -401,6 +401,7 @@ func TestLambdaCreated(t *testing.T) {
     assert.Equal(t, lambdaName, awsSDK.StringValue(function.Configuration.FunctionName))
 }
 ```
+<!-- spell-checker: enable -->
 
 In this test, we first generate data so that the test run creates resources with unique names. Next, we create the Terraform `options`, which indicate the folder in which the Terraform module we want to test is located and sets the values that will be passed in for variables. Then, we set up a `terraform destroy` operation, which will always run regardless of the test status. Then, we run `terraform init` and `terraform apply` to create the resources. Finally, we validate that the name of the AWS Lambda function that was created matches the expected name.
 

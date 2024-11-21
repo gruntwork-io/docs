@@ -56,7 +56,14 @@ Using the \$\$ID\$\$ syntax inside a code block
 ```md
 This is inside a code block, $$BUCKET_NAME$$
 ```
-
+# Spell Check
+The codebase (in `docs/2.0/`) is spell checked via CI using `cspell`.  We have a custom dictionary in `./custom-dictionary.txt`.  You can test spelling locally with `yarn spellcheck` (your IDE likely also automatically does this).  Feel free to add new terms to the dictionary that are bespoke to Gruntwork.  You can [disable spell check](https://cspell.org/configuration/document-settings/) for a block using the following pattern:
+```
+<!-- spell-checker: disable -->
+MY POURLEY SPELLED WURDS
+<!-- spell-checker: enable -->
+Content that is once again spell checked.
+```
 
 # Automated Pull Request Flows
 There are two main categories of the Automated PRs that get opened in the Docs repostory:

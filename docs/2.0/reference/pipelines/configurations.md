@@ -120,7 +120,7 @@ pipelines:
     - name: TERRAGRUNT_PARALLELISM
       value: 10
     - name: CUSTOM_ENVVAR
-      value: somedata
+      value: SOME_DATA
 ```
 
 </HclListItemExample>
