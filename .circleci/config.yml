@@ -49,7 +49,7 @@ references:
       name: build
       command: yarn && yarn build
 
-  spellcheck_docs:
+  spellcheck_docs: &spellcheck_docs
     run:
       name: spellcheck
       command: yarn && yarn spellcheck
