@@ -120,7 +120,7 @@ inputs = {
   # as needed to have workflows updated in CI correctly, and then removing excess permissions through continuous review.
   #
   # A common pattern used to refine permissions is to run a pipeline with a best guess at the permissions required, or
-  # no permissions at all, and then review acccess denied errors and add the necessary permissions to have the pipeline
+  # no permissions at all, and then review access denied errors and add the necessary permissions to have the pipeline
   # run successfully.
   #
   # As workload patterns become more commonplace, this repo will serve as a reference for the permissions required to
@@ -211,4 +211,3 @@ jobs:
         docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 ```
-

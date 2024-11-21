@@ -46,7 +46,7 @@ When generating pull requests in CI, the workflow generally involves first invok
 
 ### Patcher Report
 
-Patcher [report](/2.0/reference/patcher/#report) accepts a `--include-dirs` argument. When passed, this will cause `patcher report` to only output updates matching the glob pattern specified. This allows the developer to in essence limit the resulting PR to only a single environment. By invoking `patcher report` multiple times with different `--include-dirs` arguments, the developer can in effect create different PR worklfows for each environment.
+Patcher [report](/2.0/reference/patcher/#report) accepts a `--include-dirs` argument. When passed, this will cause `patcher report` to only output updates matching the glob pattern specified. This allows the developer to in essence limit the resulting PR to only a single environment. By invoking `patcher report` multiple times with different `--include-dirs` arguments, the developer can in effect create different PR workflows for each environment.
 
 Patcher `report` outputs in JSON which can be inspected or iterated over to achieve desired behaviors.
 

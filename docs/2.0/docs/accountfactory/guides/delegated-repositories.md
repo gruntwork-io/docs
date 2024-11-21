@@ -19,12 +19,12 @@ The following options are particularly relevant for delegated repositories and y
 
 #### Catalog Repositories
 
-Catalog Repositories are what your developer teams will use when running `terragrunt catalog` within their delegated repository. This defaults to your `infrastructure-modules` reposistory but you can customize this list and the values will be vended into the newly createed repository.
+Catalog Repositories are what your developer teams will use when running `terragrunt catalog` within their delegated repository. This defaults to your `infrastructure-modules` repository but you can customize this list and the values will be vended into the newly created repository.
 
 [catalog-repositories](/2.0/reference/accountfactory/configurations#catalog-repositories)
 
 
-#### GitHub Collaboratoes
+#### GitHub Collaborators
 
 GitHub Collaborators is a list of teams to automatically grant access to the new repository. This is optional to use as you can also manually set up access controls, but we do recommend configuring some teams and permissions to smooth out the vending process.
 
@@ -128,7 +128,7 @@ To summarize, at this point you will have:
 - Provisioned a new AWS account(s)
 - Applied baselines for the new account(s)
 - Created a new repository to manage infrastructure changes in this account(s)
-- Configured new IAM roles to manage permissions in the delgated repository
+- Configured new IAM roles to manage permissions in the delegated repository
 - Bootstrapped the repository ready to add new infrastructure
 
 You can now start adding new infrastructure to the delegated repository.

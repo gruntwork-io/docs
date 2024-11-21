@@ -145,7 +145,7 @@ Create the following access tokens in the `ci-user`'s GitHub account:
    <details>
      <summary>Why does this token need these permissions?</summary>
 
-     What follows is a breakdown of the permissions required by the `INFRA_ROOT_WRITE_TOKEN` token, as per our testing, incrementally introducing more permissions to achieve the minimal set of permissions required to support Pipelines. Note that some permissions are specific to certain behavior, and some are only used by Enterpise customers.
+     What follows is a breakdown of the permissions required by the `INFRA_ROOT_WRITE_TOKEN` token, as per our testing, incrementally introducing more permissions to achieve the minimal set of permissions required to support Pipelines. Note that some permissions are specific to certain behavior, and some are only used by Enterprise customers.
 
      If you are not an Enterprise customer, or don't want Pipelines to perform those specific behaviors, you can chose to not grant the corresponding permissions.
 
@@ -196,7 +196,7 @@ Create the following access tokens in the `ci-user`'s GitHub account:
    <details>
      <summary>Why does this token need these permissions?</summary>
 
-     What follows is a breakdown of the permissions required by the `ORG_REPO_ADMIN_TOKEN` token, as per our testing, incrementally introducing more permissions to achieve the minimal set of permissions required to support Pipelines. Note that some permissions are specific to certain behavior, and some are only used by Enterpise customers.
+     What follows is a breakdown of the permissions required by the `ORG_REPO_ADMIN_TOKEN` token, as per our testing, incrementally introducing more permissions to achieve the minimal set of permissions required to support Pipelines. Note that some permissions are specific to certain behavior, and some are only used by Enterprise customers.
 
      If you are not an Enterprise customer, or don't want Pipelines to perform those specific behaviors, you can chose to not grant the corresponding permissions.
 
@@ -206,7 +206,7 @@ Create the following access tokens in the `ci-user`'s GitHub account:
 
      <h3>Contents read & write access</h3>
 
-     This is required to read and write repository contents. This token is used for bootstrapping repositories by all customers, and to populate delegated respoitories for Enterprise customers.
+     This is required to read and write repository contents. This token is used for bootstrapping repositories by all customers, and to populate delegated repositories for Enterprise customers.
 
      <h3>Metadata read access</h3>
 

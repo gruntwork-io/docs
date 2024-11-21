@@ -30,6 +30,6 @@ pipelines:
       value: true
 ```
 
-On the next workflow run you can inspect the workflow logs and look for an env: block on the action executing Terragrunt. If everything is configured correctly you will see your addtional Environment Variable has been passed through to the action.
+On the next workflow run you can inspect the workflow logs and look for an env: block on the action executing Terragrunt. If everything is configured correctly you will see your additional Environment Variable has been passed through to the action.
 
-![Screenshot of addtional Environment Variable](/img/pipelines/guides/custom-env-var.png)
+![Screenshot of additional Environment Variable](/img/pipelines/guides/custom-env-var.png)

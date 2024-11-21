@@ -54,7 +54,7 @@ to include the following:
 As a Gruntwork customer you will have *read* access to Gruntwork repositories.  This means you will not be able to push a branch directly
 to our repositories.  Instead, to open a pull request you should:
 
-* Fork our repositories into a repository in an organiztion you have write access to
+* Fork our repositories into a repository in an organization you have write access to
 * Push a branch to your repository
 * Open a PR in our repository with the base as our main/master branch, and the "compare" branch being the branch in your repository.
 
