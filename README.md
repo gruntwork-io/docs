@@ -62,7 +62,7 @@ The codebase (in `docs/2.0/`) is spell checked via CI using `cspell`.  We have a
 <!-- spell-checker: disable -->
 MY POURLEY SPELLED WURDS
 <!-- spell-checker: enable -->
-Content this is once again spell checked.
+Content that is once again spell checked.
 ```
 
 # Automated Pull Request Flows
