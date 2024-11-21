@@ -78,9 +78,9 @@ It also doesn't have to be the only access control repository in your organizati
 
   While the permissions for this workflow are largely read-only when proposing access control changes, the workflow also has the ability to make changes to relevant access control infrastructure when the changes are merged.
 
-## `infrastructure-modules`
+## `infrastructure-catalog`
 
-The `infrastructure-modules` repository is used to store OpenTofu/Terraform modules that your organization has authored and intends to use within your organization. It's provisioned when the "Bootstrap the infrastructure-modules repository" checkbox is checked when running the Bootstrap workflow in the `infrastructure-live-root` repository.
+The `infrastructure-catalog` repository is used to store OpenTofu/Terraform modules that your organization has authored and intends to use within your organization. It's provisioned when the "Bootstrap the infrastructure-catalog repository" checkbox is checked when running the Bootstrap workflow in the `infrastructure-live-root` repository.
 
 This repository is optional, but is recommended for all customers. It's where you'll store reusable infrastructure code that can be shared across your organization.
 
@@ -88,7 +88,7 @@ A common pattern used by customers is to leverage the Gruntwork IaC library when
 
 :::tip
 
-The `infrastructure-modules` repository does not have to be named "infrastructure-modules". You can customize the name during the bootstrap process. It is highly recommended that the repository is named something similar to `infrastructure-modules` to make it clear what it is when reading Gruntwork documentation, however.
+The `infrastructure-catalog` repository does not have to be named "infrastructure-catalog". You can customize the name during the bootstrap process. It is highly recommended that the repository is named something similar to `infrastructure-catalog` to make it clear what it is when reading Gruntwork documentation, however.
 
 It also doesn't have to be the only modules repository in your organization. You can have multiple modules repositories if you have a complex organization structure that requires it. Make sure to evaluate the trade-offs of having multiple modules repositories before doing so. It can be advantageous to have one repository for all modules to make it easier to find and share modules across your organization. However, it can also be advantageous to have multiple repositories if you have different teams that need to manage their own modules, or want to have different modules available to different teams within your organization.
 
@@ -96,7 +96,7 @@ It also doesn't have to be the only modules repository in your organization. You
 
 ### Workflows
 
-- **Tests** - This workflow will be used by the `infrastructure-modules` repository to run tests on the modules in the repository. This workflow is typically run on every push to ensure that the modules are functioning as expected by provisioning them in real environments, running [Terratests](https://github.com/gruntwork-io/terratest) against them, then tearing them down.
+- **Tests** - This workflow will be used by the `infrastructure-catalog` repository to run tests on the modules in the repository. This workflow is typically run on every push to ensure that the modules are functioning as expected by provisioning them in real environments, running [Terratests](https://github.com/gruntwork-io/terratest) against them, then tearing them down.
 
   The configurations for this workflow are configured out of the box to run tests on the examples written in the repository.
 
@@ -132,4 +132,4 @@ If users opt-in to delegating access control to the `infrastructure-live-access-
 
 If users opt-in to delegating infrastructure management to the `infrastructure-live-delegated` repositories, they can provision the relevant `pipelines-delegated` roles in AWS accounts where they want to delegate infrastructure management using the `infrastructure-live-access-control` repository, then manage infrastructure using those roles in the `infrastructure-live-delegated` repositories.
 
-If users opt-in to creating and managing modules centrally, they can create and manage modules in the `infrastructure-modules` repository. This repository can be used by any repository in the organization to share reusable, vetted modules.
+If users opt-in to creating and managing modules centrally, they can create and manage modules in the `infrastructure-catalog` repository. This repository can be used by any repository in the organization to share reusable, vetted modules.

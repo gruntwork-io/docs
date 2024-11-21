@@ -243,7 +243,7 @@ pipelines:
 
 <HclListItem name="infra-modules-repo-name" requirement="required" type="string">
 <HclListItemDescription>
-Name of the infrastructure-modules repository
+Name of the infrastructure-catalog (previously referred to as infrastructure-modules) repository
 </HclListItemDescription>
 <HclListItemExample>
 
@@ -259,7 +259,7 @@ pipelines:
 
 <HclListItem name="infra-modules-release-version" requirement="required" type="string">
 <HclListItemDescription>
-Version of the infrastructure-modules modules used in templates
+Version of the infrastructure-catalog (previously referred to as infrastructure-modules) modules used in templates
 </HclListItemDescription>
 <HclListItemExample>
 
@@ -402,7 +402,7 @@ The full path to a tags.yml file for centrally managed tags, e.g. acme/repo/cont
 
 ```yaml
 pipelines:
-  catalog-tags-location: acmecorp/infrastructure-modules/contents/common_tags.yml
+  catalog-tags-location: acmecorp/infrastructure-catalog/contents/common_tags.yml
 ```
 
 </HclListItemExample>
@@ -479,7 +479,7 @@ pipelines:
   account-vending:
     sdlc:
       catalog-repositories:
-        - "github.com/acmecorp/infrastructure-modules//."
+        - "github.com/acmecorp/infrastructure-catalog//."
 ```
 
 </HclListItemExample>
@@ -522,6 +522,6 @@ Name of the architecture catalog - will be used if [arch-catalog-repo-url](#arch
 
 <HclListItem name="infra-modules-version" requirement="deprecated" type="string">
 <HclListItemDescription>
-Version of infrastructure-modules - will be used if [infra-modules-release-version](#infra-modules-release-version) is not present but should be removed in favor of `infra-modules-release-version`.
+Version of infrastructure-catalog (previously referred to as infrastructure-modules) - will be used if [infra-modules-release-version](#infra-modules-release-version) is not present but should be removed in favor of `infra-modules-release-version`.
 </HclListItemDescription>
 </HclListItem>

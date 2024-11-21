@@ -19,7 +19,7 @@ The following options are particularly relevant for delegated repositories and y
 
 #### Catalog Repositories
 
-Catalog Repositories are what your developer teams will use when running `terragrunt catalog` within their delegated repository. This defaults to your `infrastructure-modules` repository but you can customize this list and the values will be vended into the newly created repository.
+Catalog Repositories are what your developer teams will use when running `terragrunt catalog` within their delegated repository. This defaults to your `infrastructure-catalog` repository but you can customize this list and the values will be vended into the newly created repository.
 
 [catalog-repositories](/2.0/reference/accountfactory/configurations#catalog-repositories)
 

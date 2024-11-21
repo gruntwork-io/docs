@@ -54,6 +54,11 @@ const sidebar = [
         id: "2.0/docs/overview/concepts/labels-tags",
       },
       {
+        label: "Developer Self-Service",
+        type: "doc",
+        id: "2.0/docs/overview/concepts/developer-self-service",
+      },
+      {
         label: "IaC Platform Choice",
         type: "doc",
         id: "2.0/docs/overview/concepts/iac-platform",

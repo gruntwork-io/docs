@@ -37,7 +37,7 @@ As of 2024/09/10, the Gruntwork.io GitHub App requests the following permissions
 
   The level of granularity available to customers when configuring the GitHub App installation is to either install the app on a per-repository basis or on an entire organization. Our recommendation is as follows:
 
-  * For non-enterprise customers, allow the app for `infrastructure-live-root` repository and (if in-use) `infrastructure-live-access-control` and `infrastructure-modules`.
+  * For non-enterprise customers, allow the app for `infrastructure-live-root` repository and (if in-use) `infrastructure-live-access-control` and `infrastructure-catalog`.
   * For enterprise customers, allow the app to have access to the entire organization.
 
 The reasoning for requiring entire-organization access for enterprise customers is that if you are using Account Factory to create delegated repositories then Account Factory will be creating, and then immediately modifying, new repositories in automated flows, which means it needs access to new repos as soon as they are created which is only possible with entire organization permission.
