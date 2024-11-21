@@ -1,8 +1,8 @@
-# Passing Additional Environment Variables to Terragrunt
+# Leveraging advanced Terragrunt Features
 
 ## Introduction
 
-When Pipelines detects changes to IaC in your infrastructure repositories it will invoke `terragrunt` with a specific set of command line arguments for the detected change. For example for a change to a single unit in a pull request pipelines will chdir into the unit directory and invoke `terragrunt plan --terragrunt-non-interactive`.
+When Pipelines detects changes to IaC in your infrastructure repositories it will invoke `terragrunt` with a specific set of command line arguments for the detected change. For example for a change to a single unit in a pull request pipelines will `chdir` into the unit directory and invoke `terragrunt plan --terragrunt-non-interactive`.
 
 You can inspect the specific command in different scenarios by viewing the logs for a Pipelines workflow run.
 

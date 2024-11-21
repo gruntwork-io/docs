@@ -300,7 +300,7 @@ const sidebar = [
         id: "2.0/docs/pipelines/guides/running-drift-detection",
       },
       {
-        label: "Passing Additional Environment Variables to Terragrunt",
+        label: "Leveraging advanced Terragrunt Features",
         type: "doc",
         id: "2.0/docs/pipelines/guides/terragrunt-env-vars",
       },
