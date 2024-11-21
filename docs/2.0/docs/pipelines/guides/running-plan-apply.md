@@ -1,6 +1,6 @@
 # Running Plan/Apply with Pipelines
 
-When changes are made to your committed IaC, Pipelines detects these infrastructure changes and runs Terragrunt Plan/Apply on your units. Changes that occur in commits that are included in Pull Requests targetting your [Deploy Branch](/2.0/reference/pipelines/configurations-as-code/api#deploy_branch_name) (e.g. `main` or `master`) will trigger Terragrunt **Plan**. Changes in commits _on_ your [Deploy Branch](/2.0/reference/pipelines/configurations-as-code/api#deploy_branch_name) will trigger a Terragrunt **Apply**.
+When changes are made to your committed IaC, Pipelines detects these infrastructure changes and runs Terragrunt Plan/Apply on your units. Changes that occur in commits that are included in Pull Requests targeting your [Deploy Branch](/2.0/reference/pipelines/configurations-as-code/api#deploy_branch_name) (e.g. `main` or `master`) will trigger Terragrunt **Plan**. Changes in commits _on_ your [Deploy Branch](/2.0/reference/pipelines/configurations-as-code/api#deploy_branch_name) will trigger a Terragrunt **Apply**.
 
 The recommended workflow when working with Pipelines is to create a new Pull Request with the desired changes, then review the output of Terragrunt Plan to confirm that the resulting infrastructure changes are expected. We recommend enforcing [Branch Protection](/2.0/docs/pipelines/installation/branch-protection/#recommended-settings) and especially the [Require branches to be up to date](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-status-checks-before-merging) status check on your repository as this will restrict the PR from being merged if the Plan may be out of date.
 
@@ -40,3 +40,7 @@ on:
     paths-ignore:
       - "local-testing/**"
 ```
+
+## Destroying Infrastructure
+
+To **Destroy** infrastructure create a commit deleting the Terragrunt unit. Pipelines will detect the deletion and trigger Terragrunt to run a `plan -destroy` on pull requests or `destroy` on your Deploy Branch. Pipelines automatically checks out the previous committed version of the infrastructure so that Terragrunt can run in the (now deleted) directory.
