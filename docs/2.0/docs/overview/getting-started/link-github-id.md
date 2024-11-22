@@ -26,7 +26,7 @@ Once you’ve linked your account, the notice on the home page will disappear an
 
 ## Next Steps
 
-Now that you've completed setting up your Gruntwork account, return to the [DevOps Foundations Getting Started Checklist](./index.md) to continue setting up your DevOps Foundations.
+Now that you've completed setting up your Gruntwork account, return to the [DevOps Foundations Getting Started Checklist](/2.0/docs/overview/getting-started/index.md) to continue setting up your DevOps Foundations.
 
 ## Related Knowledge Base Discussions
 

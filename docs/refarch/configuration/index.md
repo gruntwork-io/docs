@@ -35,7 +35,7 @@ There is a bootstrap script in your `infrastructure-live` repository that will a
 ### Data
 `Data` refers to values, such as an AWS account ID, your desired domain name, etc, which may be the output of an action.
 
-The gruntwork CLI includes a [wizard](./run-the-wizard.md) that automates all of the steps to get the required data from you. We strongly recommended using the wizard for the majority of users.
+The gruntwork CLI includes a [wizard](/refarch/configuration/run-the-wizard.md) that automates all of the steps to get the required data from you. We strongly recommended using the wizard for the majority of users.
 
 :::info Manual Configuration
 If you are required to manually provision AWS accounts, domain names, or otherwise, the Gruntwork CLI has utilities to [manually bootstrap](https://github.com/gruntwork-io/gruntwork#bootstrap-manually) the required resources. This approach is only recommended for advanced users after consulting with Gruntwork. After all data has been generated manually, you will need to fill out the `reference-architecture-form.yml` manually.

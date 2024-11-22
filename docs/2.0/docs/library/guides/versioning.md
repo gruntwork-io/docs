@@ -119,4 +119,4 @@ inputs = {
 </TabItem>
 </Tabs>
 
-Once you start using versioned modules, it’s important to keep the modules up to date. Refer to the [Updating Modules](./updating-modules) guide to learn more.
+Once you start using versioned modules, it’s important to keep the modules up to date. Refer to the [Updating Modules](/2.0/docs/library/guides/updating-modules) guide to learn more.
