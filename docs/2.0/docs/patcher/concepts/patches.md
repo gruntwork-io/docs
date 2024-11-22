@@ -4,7 +4,7 @@ A Patch is a set of instructions executed by Patcher that do code transformation
 This strategy is especially useful as a way to automate adoption of a breaking change with infrastructure as code, such as Terragrunt, OpenTofu, or Terraform.
 This instruction sheet is delivered by means of a `yaml` file in a specific format:
 
-```yaml
+```yaml title=".patcher/patches/v1.0.0/mypatch/patch.yaml"
 name: "<name-of-patch>"
 description: "<description for patch>"
 author: <your-name-here> <<your-email-address-here>>
