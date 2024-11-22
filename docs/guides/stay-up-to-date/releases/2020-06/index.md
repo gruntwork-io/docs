@@ -99,7 +99,7 @@ This upgrade moves you to Kubernetes 1.16, the Gruntwork `terraform-aws-eks` mod
 **NOTE: You must fully roll out the changes at each bullet point prior to moving on to the next step, unless stated otherwise.**
 
 1. Update your EKS cluster to run Kubernetes version 1.14 ([instructions](https://github.com/gruntwork-io/terraform-aws-eks/blob/master/modules/eks-cluster-control-plane/README.md#how-do-i-upgrade-the-kubernetes-version-of-the-cluster)). Note that you must update the module versions to upgrade beyond 1.14, so if you want to upgrade to 1.15 and 1.16, wait until the end of the guide.
-1. Upgrade Gruntwork IaC Library modules `eks-cluster-control-plane` and `eks-cluster-workers` in the `eks-cluster` service module to version `v0.9.8` ([instructions](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/blob/master/services/eks-cluster/migration_guides/upgrading_from_0_8_to_0_9.md)).
+1. Upgrade Gruntwork library modules `eks-cluster-control-plane` and `eks-cluster-workers` in the `eks-cluster` service module to version `v0.9.8` ([instructions](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/blob/master/services/eks-cluster/migration_guides/upgrading_from_0_8_to_0_9.md)).
 1. Update `eks-clusters` service module ([instructions](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/blob/master/services/eks-cluster/migration_guides/upgrading_from_0_9_to_0_20.md)).
 1. At this point, you can repeat the steps in step (1) to upgrade the Kubernetes version to 1.15 and 1.16.
 1. Upgrade `k8s-service` service module to use Helm v3 ([instructions](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/blob/master/services/k8s-service/migration_guides/upgrading_to_helm3.md)). **This must be rolled out to ALL your services before you can move on to the next step.**
@@ -144,7 +144,7 @@ Updates in this version:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 The variable `aws_region` was removed from the module, it&apos;s value will be retrieved from the region on the provider. When updating to this new version, make sure to remove the `aws_region` parameter to the module.
 
 
@@ -159,7 +159,7 @@ The variable `aws_region` was removed from the module, it&apos;s value will be r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - You can now configure the `asg-rolling-deploy` module to NOT use ELB health checks during a deploy by setting the `use_elb_health_checks` variable to `false`. This is useful for testing connectivity before health check endpoints are available.
 
@@ -180,7 +180,7 @@ The variable `aws_region` was removed from the module, it&apos;s value will be r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Updated the `memcached` module to support passing an empty list of allowed CIDR blocks.
 
@@ -202,7 +202,7 @@ The variable `aws_region` was removed from the module, it&apos;s value will be r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `terraform-update-variable` now supports commiting updates to a separate branch. Note that as part of this change, the `--skip-git` option has been updated to take in the value as opposed to being a bare option. If you were using the `--skip-git` flag previously, you will now need to pass in `--skip-git true`.
 
@@ -219,7 +219,7 @@ The variable `aws_region` was removed from the module, it&apos;s value will be r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added ecs_task_iam_role_arn as output on ecs-deploy-runner module
 
@@ -240,7 +240,7 @@ The variable `aws_region` was removed from the module, it&apos;s value will be r
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 - `rds` **[BREAKING CHANGES]**
 - `aurora` **[BREAKING CHANGES]**
 
@@ -354,7 +354,7 @@ No changes. Infrastructure is up-to-date.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Improved the Aurora documentation and added a dedicated Aurora Serverless example. This release also adds support for specifying a `scaling_configuration_timeout_action` when using the `aurora` module in `serverless` mode.
 
@@ -373,7 +373,7 @@ No changes. Infrastructure is up-to-date.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `efs` module can now create EFS access points and corresponding IAM policies for you. Use the `efs_access_points` input variable to specify what access points you want and configure the user settings, root directory, read-only access, and read-write access for each one.
 
@@ -390,10 +390,10 @@ No changes. Infrastructure is up-to-date.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `rds` module now supports cross-region replication! You can enable it by setting the `replicate_source_db` input variable to the ARN of a primary DB that should be replicated. See [rds-mysql-with-cross-region-replica](https://github.com/gruntwork-io/module-data-storage/tree/master/examples/rds-mysql-with-cross-region-replica) for a working example.
-- Added `primary_address` and `read_replica_addresses` outputs to the `rds` module.
+- Added `primary_address` and `read_replica_addresses` outputs to the `rds` module. 
 - Added docs on [how to avoid state drift when using auto minor version upgrades](https://github.com/gruntwork-io/module-data-storage/blob/master/modules/rds/core-concepts.md#minor-version-upgrades) with the `rds` module.
 
 
@@ -412,7 +412,7 @@ No changes. Infrastructure is up-to-date.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Fix issue where restoring from snapshot wasn&apos;t setting `master_password`
 
@@ -433,7 +433,7 @@ No changes. Infrastructure is up-to-date.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `ecs-service` module now allows you to mount EFS Volumes in your ECS Tasks (including Fargate tasks) using the new `efs_volumes` input variable. See also the [efs module](https://github.com/gruntwork-io/module-data-storage/tree/master/modules/efs) for creating EFS volumes.
 
@@ -450,7 +450,7 @@ No changes. Infrastructure is up-to-date.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `ecs-cluster` module now attaches the `ecs:UpdateContainerInstancesState` permission to the ECS Cluster&apos;s IAM role. This is required for automated ECS instance draining (e.g., when receiving a spot instance termination notice).
 
@@ -467,7 +467,7 @@ No changes. Infrastructure is up-to-date.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Add new module output `ecs_instance_iam_role_id` which contains the ID of the `aws_iam_role` mapped to ecs instances.
 
@@ -487,7 +487,7 @@ No changes. Infrastructure is up-to-date.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 You can now bind different containers and ports to each target group created for the ECS service. This can be used to expose multiple containers or ports to existing ALBs or NLBs.
 
@@ -508,7 +508,7 @@ You can now bind different containers and ports to each target group created for
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 `eks-k8s-external-dns` is now using a more up to date Helm chart to deploy `external-dns`. Additionally, you can now configure the logging format between `text` and `json`.
 
@@ -527,7 +527,7 @@ You can now bind different containers and ports to each target group created for
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The control plane Python PEX binaries now support long path names on Windows. Previously the scripts were causing errors when attempting to unpack the dependent libraries.
 
@@ -543,7 +543,7 @@ The control plane Python PEX binaries now support long path names on Windows. Pr
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The cluster upgrade script now supports updating to Kubernetes version 1.16. The `eks-cloudwatch-container-logs` is also now compatible with Kubernetes version 1.16.
 
@@ -563,7 +563,7 @@ The cluster upgrade script now supports updating to Kubernetes version 1.16. The
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The `lambda` and `lambda-edge` modules now support configuring the dead letter queue for subscribing to errors from the functions.
 
@@ -584,7 +584,7 @@ The `lambda` and `lambda-edge` modules now support configuring the dead letter q
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 The `sqs` module can now be turned off by setting `create_resources = true`. When this option is passed in, the module will disable all the resources, effectively simulating a conditional.
 
@@ -602,7 +602,7 @@ The `sqs` module can now be turned off by setting `create_resources = true`. Whe
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `sns` module will now allow display names to be up to 100 characters.
 
@@ -623,7 +623,7 @@ The `sqs` module can now be turned off by setting `create_resources = true`. Whe
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 As [outlined in the AWS docs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/create-kms-key-policy-for-cloudtrail.html#create-kms-key-policy-for-cloudtrail-encrypt), the key policy in the security account should allow trail/* so that all trails in external accounts can use the key for encryption (but not decryption). Without this, running the account baseline in a sub account results in InsufficientEncryptionPolicyException.
 
@@ -641,7 +641,7 @@ As [outlined in the AWS docs](https://docs.aws.amazon.com/awscloudtrail/latest/u
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `iam-users` module can now associate a public SSH key with each IAM user using the `ssh_public_key` parameter.
 
@@ -658,7 +658,7 @@ As [outlined in the AWS docs](https://docs.aws.amazon.com/awscloudtrail/latest/u
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This minor release includes a number of documentation changes and renamed files.
 
@@ -684,7 +684,7 @@ This minor release includes a number of documentation changes and renamed files.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - Added `iam_role_name` and `iam_role_arn` outputs to the `single-server` module.
 - Updated the repo README to the new format.
@@ -706,7 +706,7 @@ This minor release includes a number of documentation changes and renamed files.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 This release adds the ability to create `tags` with the modules mentioned above.
 
@@ -724,7 +724,7 @@ This release adds the ability to create `tags` with the modules mentioned above.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-
+  
 
 - The `vpc-interface-endpoint` module now supports endpoints for SSM, SSM Messages, and EC2 Messages.
 
