@@ -6,7 +6,7 @@ Gruntwork uses a four-layer system for describing infrastructure --
 
 **Direct Infrastructure** (Lowest-Level): This is your actual deployed infrastructure, such as servers, networks, and databases.
 
-**Resource-Level IaC** (Mid-Level): OpenTofu provides wrappers around cloud provider APIs and represents objects in those APIs as [resources](https://opentofu.org/docs/language/resources/).  Using OpenTofu you can define individual infrastructure resources (e.g., servers, networks, databases) in code. This improves consistency and enables version control, but managing complex deployments and establishing consistency and governance can still be challenging as every time you deploy infrastructure you have to re-specify each resource and all its arguments.
+**Resource-Level IaC** (Mid-Level): OpenTofu provides wrappers around cloud provider APIs and represents objects in those APIs as [resources](https://opentofu.org/docs/language/resources/).  Using OpenTofu you can define individual infrastructure resources (e.g., servers, networks, databases) in code. This improves consistency and enables version control, but managing complex deployments and establishing consistency and governance can still be challenging given that every time you deploy infrastructure you have to re-specify each resource and all its arguments.
 
 [**Module-Level IaC**](http://localhost:3000/2.0/docs/library/concepts/modules) (High-Level): Modules encapsulate multiple resources into reusable building blocks. For example, a module could define a web server with a load balancer, database, and security groups. Modules increase efficiency, reduce complexity, and promote best practices. Modules provide the opportunity for core teams to codify best practices and business requirements.
 
