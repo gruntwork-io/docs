@@ -23,11 +23,11 @@ This portion of the guide focuses on building Docker images for application repo
 <Tabs groupId="deployment-type">
 <TabItem value="RefArch" label="RefArch" default>
 
-If you’ve deployed Pipelines as a part of your Reference Architecture, we recommend following the guide on [how to deploy your apps into the Reference Architecture](../../refarch/usage/maintain-your-refarch//deploying-your-apps.md) to learn how to define a module for your application.
+If you’ve deployed Pipelines as a part of your Reference Architecture, we recommend following the guide on [how to deploy your apps into the Reference Architecture](/refarch/usage/maintain-your-refarch/deploying-your-apps.md) to learn how to define a module for your application.
 
 To allow Pipelines jobs to be started by events in your repository, open `shared/<your region>/mgmt/ecs-deploy-runner/terragrunt.hcl` and update `docker_image_builder_config.allowed_repos` to include the HTTPS Git URL of the application repo for which you would like to deploy Docker images.
 
-Since pipelines [cannot update itself](./updating.md), you must run `terragrunt plan` and `terragrunt apply` manually to deploy the change from your local machine. Run `terragrunt plan` to inspect the changes that will be made to your pipeline. Once the changes have been reviewed, run `terragrunt apply` to deploy the changes.
+Since pipelines [cannot update itself](/ecs-deploy-runner/maintain/updating.md), you must run `terragrunt plan` and `terragrunt apply` manually to deploy the change from your local machine. Run `terragrunt plan` to inspect the changes that will be made to your pipeline. Once the changes have been reviewed, run `terragrunt apply` to deploy the changes.
 
 </TabItem>
 <TabItem value="Standalone" label="Standalone">
@@ -36,7 +36,7 @@ If you’ve deployed Pipelines as a standalone framework using the `ecs-deploy-r
 
 Once the `ecs-deploy-runner` module block is located, update the `allowed_repos` list in the `docker_image_builder_config` variable to include the HTTPS Git URL of the application repo for which you would like to deploy Docker images.
 
-Refer to the [Variable Reference](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#reference) section for the service in the Library Reference for full configuration details.
+Refer to the [Variable Reference](/reference/services/ci-cd-pipeline/ecs-deploy-runner#reference) section for the service in the Library Reference for full configuration details.
 
 Run `terraform plan` to inspect the changes that will be made to your pipeline. Once the changes have been reviewed, run `terraform apply` to deploy the changes. To deploy the application to ECS or EKS you will need to deploy a task definition (ECS) or Deployment (EKS) that references the newly built image.
 </TabItem>
@@ -126,7 +126,7 @@ aws-vault exec <your-prod> -- terragrunt apply --terragrunt-source-update -auto-
 
 If you’ve deployed Pipelines as a standalone framework using the `ecs-deploy-runner` service in the Service Catalog, you will need to locate the file in which you’ve defined a module block sourcing the `ecs-deploy-runner` service.
 
-Modify the AWS IAM policy document being passed into the `iam_policy` variable for the [`terraform_applier_config`](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_applier_config) and the [`terraform_planner_config`](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_planner_config) variables. Refer to the [variable reference](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#reference) section for the service in the Library Reference for the full set of configuration details for this service.
+Modify the AWS IAM policy document being passed into the `iam_policy` variable for the [`terraform_applier_config`](/reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_applier_config) and the [`terraform_planner_config`](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_planner_config) variables. Refer to the [variable reference](/reference/services/ci-cd-pipeline/ecs-deploy-runner#reference) section for the service in the Library Reference for the full set of configuration details for this service.
 
 After you are done updating the IAM policy documents, run `terraform plan` then review the changes that will be made. Finally, run `terraform apply` to apply the changes.
 </TabItem>
@@ -138,7 +138,7 @@ The `deploy-runner` Docker image for Pipelines only allows scripts within a sing
 
 By default, the `deploy-runner` ships with three scripts — one to build HashiCorp Packer images, one to run `terraform plan` and `terraform apply`, and one to automatically update the value of a variable in a Terraform tfvars or Terragrunt HCL file.
 
-If you need to run a custom script in the `deploy-runner`, you must fork the image code, add an additional line to copy your script into directory designated by the `trigger_directory` argument. Then, you will need to rebuild the Docker image, push to ECR, then update your Pipelines deployment following the steps in [Updating your Pipeline](./updating.md).
+If you need to run a custom script in the `deploy-runner`, you must fork the image code, add an additional line to copy your script into directory designated by the `trigger_directory` argument. Then, you will need to rebuild the Docker image, push to ECR, then update your Pipelines deployment following the steps in [Updating your Pipeline](/ecs-deploy-runner/maintain/updating.md).
 
 
 <!-- ##DOCS-SOURCER-START

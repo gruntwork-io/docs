@@ -22,7 +22,7 @@ The new version of Pipelines is designed to make your life easier, but it's not 
 
 However, please note that we will no longer be actively maintaining the architecture that uses the `infrastructure-pipelines` repository, and new features will only be added to the new version of Pipelines.
 
-If you still need documentation for the previous version of Pipelines, you can find it [here](./index.md).
+If you still need documentation for the previous version of Pipelines, you can find it [here](/infrastructure-pipelines/overview/index.md).
 
 ## How Do I Migrate to the New Version?
 
