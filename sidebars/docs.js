@@ -58,6 +58,11 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/overview/concepts/iac-platform",
       },
+      {
+        label: "Prebuilt IaC Modules",
+        type: "doc",
+        id: "2.0/docs/overview/concepts/iac-modules",
+      },
     ],
   },
   complianceSidebar,
