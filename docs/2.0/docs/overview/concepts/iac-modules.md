@@ -20,7 +20,7 @@ Gruntwork uses a four-layer system for describing infrastructure --
 * **Improved Collaboration:** Modules promote code reuse and shared understanding across teams.
 * **Enhanced Compliance:** Modules can incorporate security and compliance best practices, ensuring your infrastructure adheres to standards.
 * **Simplified Documentation:** Modules serve as self-documenting building blocks, clearly defining infrastructure components and their relationships. Modules also regularly ship with separate documentation and examples to further explain, justify and demonstrate their use.
-* **Faster Recovery:** Modules stores in version control enable rapid redeployment of infrastructure from code, allowing you to quickly find and revert any mistakes from Click-ops, manual changes or other bad deployments.
+* **Faster Recovery:** Modules stored in version control enable rapid redeployment of infrastructure from code, allowing you to quickly find and revert any mistakes from Click-ops, manual changes or other bad deployments.
 * **Faster Scaling:** Modules allow you to scale infrastructure quickly by reusing existing building blocks to redeploy copies or in new regions/shared-fate-zones or data-centers.
 
 ## IaC Modules and Documentation
