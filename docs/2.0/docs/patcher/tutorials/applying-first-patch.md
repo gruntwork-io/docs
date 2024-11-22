@@ -152,7 +152,7 @@ Navigate to `https://github.com/YOUR_ORG/YOUR_REPO/actions/workflows/patcher.yml
 
 ![Click on "Run workflow" to manually trigger patcher](/img/patcher/tutorials/patcher_gh_update_action_button.png)
 
-At this point the action will begin.  After a few seconds you should see a new action run, and when it's complete a new pull request will be open in your repository including the updated code.
+At this point the action will begin.  After a few seconds you should see a new action run, and when it's complete a new pull request will be opened in your repository containing the updated code.
 
 ![The workflow completed successfully](/img/patcher/tutorials/patcher_gh_update_action_complete.png)
 
