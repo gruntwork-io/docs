@@ -16,7 +16,7 @@ When you set up a new DevOps component, you also have access to guidance from Gr
 
 There are several DevOps components available today:
 
-* [Infrastructure-Live](./infrastructure-live.md): An opinionated structure for IaC repositories that includes a set of best practices for how to structure your OpenTofu code to keep things DRY at enterprise scale.
+* [Infrastructure-Live](/2.0/docs/overview/concepts/infrastructure-live.md): An opinionated structure for IaC repositories that includes a set of best practices for how to structure your OpenTofu code to keep things DRY at enterprise scale.
 * [Pipelines](/2.0/docs/pipelines/concepts/overview.md): A complete CI/CD pipeline for infrastructure code, a set of best practices for how to structure your OpenTofu code, and a set of scripts for managing the pipeline.
 * [Account Factory](/2.0/docs/accountfactory/concepts/): A set of automated workflows to provision new AWS accounts and apply compliance, security and infrastructure baselines to enforce business rules across many accounts.
 * [Patcher](/2.0/docs/patcher/concepts/): Identify out of date modules across your repositories and create pull requests that both updates versions and automatically refactors code to get through breaking changes without developer intervention.

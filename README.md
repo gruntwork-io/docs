@@ -41,6 +41,10 @@ yarn build && yarn serve
 This will create and serve a production build. This can be used to verify the
 expected behaviors in a production environment and view the Google analytics.
 
+# Linking to other pages
+
+We only allow absolute links to other internal docs pages, e.g. `(modules)[/2.0/docs/library/concepts/modules]`.  This is to ensure that links work when the site is deployed to s3 which always appends a trailing slash.
+
 # Customizable Values
 
 It's often useful to present the user with the ability to edit a variable inline to documentation.  For example, you're about to present a block of code that references an S3 bucket name.  Rather than put in a fixed placeholder like <BUCKET_NAME> which the user has to manually edit, you can use our CustomizableValue component.  This component will render as a clickable text field which, when clicked, switches to an input. Any inputted characters will be auto-propegated to all other instances of the component that share the same ID.  You can use this component both as a React component and inline to MDX code blocks.  We have swizzled the CodeBlock components to make this possible.
@@ -56,7 +60,14 @@ Using the \$\$ID\$\$ syntax inside a code block
 ```md
 This is inside a code block, $$BUCKET_NAME$$
 ```
-
+# Spell Check
+The codebase (in `docs/2.0/`) is spell checked via CI using `cspell`.  We have a custom dictionary in `./custom-dictionary.txt`.  You can test spelling locally with `yarn spellcheck` (your IDE likely also automatically does this).  Feel free to add new terms to the dictionary that are bespoke to Gruntwork.  You can [disable spell check](https://cspell.org/configuration/document-settings/) for a block using the following pattern:
+```
+<!-- spell-checker: disable -->
+MY POURLEY SPELLED WURDS
+<!-- spell-checker: enable -->
+Content that is once again spell checked.
+```
 
 # Automated Pull Request Flows
 There are two main categories of the Automated PRs that get opened in the Docs repostory:

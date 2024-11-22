@@ -63,6 +63,11 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/overview/concepts/iac-platform",
       },
+      {
+        label: "Prebuilt IaC Modules",
+        type: "doc",
+        id: "2.0/docs/overview/concepts/iac-modules",
+      },
     ],
   },
   complianceSidebar,
@@ -160,6 +165,11 @@ const sidebar = [
         label: "Audit Logs",
         type: "doc",
         id: "2.0/docs/pipelines/architecture/audit-logs",
+      },
+      {
+        label: "GitHub Workflows",
+        type: "doc",
+        id: "2.0/docs/pipelines/architecture/github-workflows",
       },
       {
         label: "Usage Data",
@@ -350,8 +360,20 @@ const sidebar = [
   },
   {
     label: "Concepts",
-    type: "doc",
-    id: "2.0/docs/accountfactory/concepts/index",
+    type: "category",
+    collapsed: true,
+    items: [
+      {
+        label: "Overview",
+        type: "doc",
+        id: "2.0/docs/accountfactory/concepts/index",
+      },
+      {
+        label: "Delegated Repositories",
+        type: "doc",
+        id: "2.0/docs/accountfactory/concepts/delegated-repositories",
+      },
+    ]
   },
   {
     label: "Architecture",
@@ -524,7 +546,7 @@ const sidebar = [
     href: "/2.0/reference/patcher",
   },
   {
-    value: "Library",
+    value: "IaC Library",
     type: "html",
     className: "sidebar-header",
   },

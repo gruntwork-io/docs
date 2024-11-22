@@ -8,11 +8,11 @@ Pipelines can intelligently figure out which AWS account to authenticate to base
 
 To perform the actions that Pipelines detects, each AWS account needs to assume an AWS IAM Role using [OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services). To explain OIDC at a high level, AWS considers GitHub an "identity provider," trusts GitHub's request for a temporary IAM Role, and then issues AWS credentials that are valid for the duration of a GitHub Action workflow.
 
-Every time you create a new AWS account, you need to update the AWS OIDC configuration to create an IAM role for this account and allow it to be assumed by GitHub. When you use [Gruntwork Account Factory](../../accountfactory/architecture/index.md), this role is automatically created when [adding a new AWS account](/2.0/docs/accountfactory/guides/vend-aws-account).
+Every time you create a new AWS account, you need to update the AWS OIDC configuration to create an IAM role for this account and allow it to be assumed by GitHub. When you use [Gruntwork Account Factory](/2.0/docs/accountfactory/architecture), this role is automatically created when [adding a new AWS account](/2.0/docs/accountfactory/guides/vend-aws-account).
 
 ### How Pipelines knows what AWS account to authenticate to
 
-Pipelines assumes that each top level directory in your `infrastructure-live` repository maps to a single AWS account, excluding the directory used for [module defaults](../../library/concepts/module-defaults.md). Each account-mapped directory must have an entry in the `/accounts.yml` file with a key matching the directory name and containing key/value pairs for the AWS account ID and the account's root user email address.
+Pipelines assumes that each top level directory in your `infrastructure-live` repository maps to a single AWS account, excluding the directory used for [module defaults](/2.0/docs/library/concepts/module-defaults). Each account-mapped directory must have an entry in the `/accounts.yml` file with a key matching the directory name and containing key/value pairs for the AWS account ID and the account's root user email address.
 
 For example, the following entry in `accounts.yml` would be mapped to a directory called `my-cool-account` in your `infrastructure-live` repository.
 

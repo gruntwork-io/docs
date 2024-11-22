@@ -28,7 +28,7 @@ touch gw_service_guide/serverless-api/outputs.tf
 
 ### Define the service
 
-Next, define the module blocks for the AWS Lambda function and HTTP API Gateway. For the Lambda, we will use the [Lambda function module](../../../../reference/modules/terraform-aws-lambda/lambda/), for the HTTP API Gateway we will use the [HTTP API Gateway module](../../../../reference/modules/terraform-aws-lambda/lambda-http-api-gateway/).
+Next, define the module blocks for the AWS Lambda function and HTTP API Gateway. For the Lambda, we will use the [Lambda function module](/reference/modules/terraform-aws-lambda/lambda/), for the HTTP API Gateway we will use the [HTTP API Gateway module](/reference/modules/terraform-aws-lambda/lambda-http-api-gateway/).
 
 To keep the configuration simple for this guide, we define a single route — `ANY /{proxy+}`. This tells the API Gateway to send any requests matching the path `/*` to the Lambda. This is an effective approach if you are using an API framework in the Lambda function code that can handle request routing. We will also set some defaults for the Lambda to not run in a VPC, have a maximum run time of 30 seconds, and 128MB of memory.
 

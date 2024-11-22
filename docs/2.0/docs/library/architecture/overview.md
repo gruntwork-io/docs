@@ -44,7 +44,7 @@ The code in the `terraform-aws-service-catalog` repo is organized into three pri
 
 <OpenTofuNotice />
 
-Gruntwork Library has been created using the following tools:
+Gruntwork IaC Library has been created using the following tools:
 
 1. [Terraform](https://www.terraform.io/). The Library contains nearly 300 Terraform modules that cover a range of common use cases in AWS. All library modules can be used with vanilla [Terraform](https://www.terraform.io/), [Terragrunt](https://terragrunt.gruntwork.io/), or third-party Terraform pipeline tools such as [Terraform Cloud](https://www.hashicorp.com/blog/announcing-terraform-cloud/) and [Terraform Enterprise](https://www.terraform.io/docs/enterprise/index.html).
 

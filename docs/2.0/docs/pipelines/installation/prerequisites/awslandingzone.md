@@ -23,7 +23,7 @@ Gruntwork's Account Factory directly addresses these limitations by extending Co
    2. (Via Gruntwork Account Factory) Request new AWS accounts using a simple YAML file, GitHub Actions, or any system that can trigger a GitHub Action (e.g. ServiceNow)
    3. Review and customize all new AWS account requests using GitHub Pull Request functionality
    4. Define a customized account baseline unique to your organization
-   5. Enable AWS account baselines to stay up to date automatically using [Patcher](../../../patcher/patcher.md)
+   5. Enable AWS account baselines to stay up to date automatically using [Patcher](/2.0/docs/patcher/concepts/)
 
 ## Prerequisites
 
@@ -280,5 +280,5 @@ Control Tower is now configured! Next you should consider:
 
 - [Configuring IAM Identity Center](https://docs.aws.amazon.com/singlesignon/latest/userguide/get-started-choose-identity-source.html) for Access Control.
 - [Configuring any controls or SCPs](https://docs.aws.amazon.com/controltower/latest/userguide/controls.html) your organization requires.
-- [Set up Gruntwork Pipelines](../viagithubapp.md)
-- [Set up Gruntwork Account Factory](../../../accountfactory/installation/index.md)
+- [Set up Gruntwork Pipelines](/2.0/docs/pipelines/installation/viagithubapp)
+- [Set up Gruntwork Account Factory](/2.0/docs/accountfactory/installation)

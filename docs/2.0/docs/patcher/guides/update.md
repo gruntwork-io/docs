@@ -77,7 +77,7 @@ Non-interactive mode supports both the `next-safe` and `next-breaking` update st
 
 ### Next Safe (Default)
 
-Using the [next safe update strategy](../concepts/update-strategies/#next-safe-update-strategy-default), if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the highest version **before** that breaking change. Otherwise, it will update the dependencies the latest version of that module.
+Using the [next safe update strategy](/2.0/docs/patcher/concepts/update-strategies/#next-safe-update-strategy-default), if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the highest version **before** that breaking change. Otherwise, it will update the dependencies the latest version of that module.
 
 Example usage:
 ```

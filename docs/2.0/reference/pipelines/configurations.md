@@ -9,7 +9,7 @@ import { HclListItem, HclListItemExample, HclListItemDescription, HclListItemTyp
 # Pipelines Configurations
 
 :::note
-Pipelines configurations are currently undergoing a transition from YAML configurations to new HCL [Configurations as Code](./configurations-as-code/index.md). These new configurations will offer a richer configuration experience, but are not yet required for use. YAML configurations will continue to work as expected for the time being.
+Pipelines configurations are currently undergoing a transition from YAML configurations to new HCL [Configurations as Code](/2.0/reference/pipelines/configurations-as-code/index.md). These new configurations will offer a richer configuration experience, but are not yet required for use. YAML configurations will continue to work as expected for the time being.
 
 YAML configurations are read by Pipelines when HCL configurations are not present, and the Pipelines binary falls back to interpreting YAML configurations as if they were defined in the HCL configuration system in this scenario.
 
@@ -120,7 +120,7 @@ pipelines:
     - name: TERRAGRUNT_PARALLELISM
       value: 10
     - name: CUSTOM_ENVVAR
-      value: somedata
+      value: SOME_DATA
 ```
 
 </HclListItemExample>

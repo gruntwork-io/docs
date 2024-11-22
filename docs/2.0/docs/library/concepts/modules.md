@@ -10,13 +10,13 @@ Let’s look at an example module. The [rds module](/reference/modules/terraform
 
 The module deploys a key element of an overall RDS deployment, but it's not a _complete_ RDS deployment. That's because the `rds` module does not include backup policies using AWS Backup (for disaster recovery), or RDS Proxy (to pool database connections), or CloudWatch alarms (to alert you when something goes wrong). These missing pieces are best thought of as building block modules themselves. Gruntwork has modules for `backup-plan`, `backup-vault`, and `rds-proxy` that can all be used in combination with the `rds` module.
 
-To see how Gruntwork gives you an off-the-shelf overall deployment with all the elements included, see [Service Modules](./service-modules).
+To see how Gruntwork gives you an off-the-shelf overall deployment with all the elements included, see [Service Modules](/2.0/docs/library/concepts/service-modules).
 
 ## Modules are optimized for control
 
 A module is designed to be small, narrow in scope, and highly reusable, like a building block. Modules give you _control_, but they may not give you _convenience_. You can use the building block modules for all kinds of use cases (high control), but if you want to deploy a complete piece of infrastructure, you still have to do the work of assembling the right modules (low convenience).
 
-To learn how you can optimize for convenience, see [Service Modules](./service-modules).
+To learn how you can optimize for convenience, see [Service Modules](/2.0/docs/library/concepts/service-modules).
 
 To learn more about the overall thought process behind building block modules versus service modules, see [Introducing: The Gruntwork Module, Service, and Architecture Catalogs](https://blog.gruntwork.io/introducing-the-gruntwork-module-service-and-architecture-catalogs-eb3a21b99f70).
 
@@ -26,7 +26,7 @@ Building block modules are fairly generic by design, so you won't typically depl
 
 For example, one module might deploy the control plane for Kubernetes and a separate module could deploy worker nodes; you may need to combine both modules together to deploy a Kubernetes cluster.
 
-We recommend our [Service Catalog](./service-modules) for common use cases, but our full module catalog is available if you have a more complex use case.
+We recommend our [Service Catalog](/2.0/docs/library/concepts/service-modules) for common use cases, but our full module catalog is available if you have a more complex use case.
 
 ## Where to find the building block modules
 

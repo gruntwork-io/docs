@@ -8,7 +8,7 @@ In order to take advantage of the Terraform 1.x, you need to update your
 references to the Gruntwork Infrastructure as Code Library to use a compatible
 version. We (Gruntwork) have gone through all our modules in the library to test
 and update the code to be compatible with Terraform 1.x. As a customer, you need
-to update to the proper versions of the Gruntwork library to pick up the
+to update to the proper versions of the Gruntwork IaC Library to pick up the
 fixes/changes that we made to be compatible. Refer to [Updating Modules](/2.0/docs/library/guides/updating-modules)
 for instructions on how to update the versions in your code.
 

@@ -31,7 +31,7 @@ As an example, if Acme Co was running an application named `coolapp` on AWS EC2 
 
 ### Adding labels
 
-The simplest way to create a label is using a `locals` block and combining the recommended attributes into a single attribute. For example, if you were creating an AWS S3 bucket using a Gruntwork module you could set up the following locals block. If you are using the [module defaults pattern](../../library/concepts/module-defaults.md), placing the name logic in the default module will ensure that all consumers of the module will use the same naming scheme automatically by default.
+The simplest way to create a label is using a `locals` block and combining the recommended attributes into a single attribute. For example, if you were creating an AWS S3 bucket using a Gruntwork module you could set up the following locals block. If you are using the [module defaults pattern](/2.0/docs/library/concepts/module-defaults), placing the name logic in the default module will ensure that all consumers of the module will use the same naming scheme automatically by default.
 
 ```hcl
 terraform {

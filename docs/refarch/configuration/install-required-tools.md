@@ -15,7 +15,7 @@ In addition to installing dependencies, the bootstrap script will:
 - Ensure you have sufficient GitHub access to access and clone private Gruntwork repositories
 - Download the Gruntwork installer
 - Install the Gruntwork command line interface (CLI) which contains the Reference Architecture configuration wizard
-- [Run the Gruntwork wizard](./run-the-wizard) to assist you in completing your Reference Architecture configuration steps (see docs for [required permissions](./run-the-wizard.md#required-permissions))
+- [Run the Gruntwork wizard](/refarch/configuration/run-the-wizard) to assist you in completing your Reference Architecture configuration steps (see docs for [required permissions](/refarch/configuration/run-the-wizard.md#required-permissions))
 
 ## Install manually
 

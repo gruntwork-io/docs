@@ -6,7 +6,7 @@ toc_max_heading_level: 4
 # Setting up Pipelines via GitHub Machine Users
 import PersistentCheckbox from '/src/components/PersistentCheckbox';
 
-Of the [two ways](./authoverview.md) of installing Pipelines, we strongly encourage users to use [GitHub App](./viagithubapp.md) to install pipelines. However, if you're unable to use the app, or if you wish to setup machine users as a [fallback](http://localhost:3000/2.0/docs/pipelines/installation/viagithubapp#fallback) then you can use this guide to setup authentication for pipeline via access tokens and machine users.
+Of the [two ways](/2.0/docs/pipelines/installation/authoverview.md) of installing Pipelines, we strongly encourage users to use [GitHub App](/2.0/docs/pipelines/installation/viagithubapp.md) to install pipelines. However, if you're unable to use the app, or if you wish to setup machine users as a [fallback](http://localhost:3000/2.0/docs/pipelines/installation/viagithubapp#fallback) then you can use this guide to setup authentication for pipeline via access tokens and machine users.
 
 When using GitHub tokens Gruntwork recommends using CI users in Gruntwork Pipelines, separate from human users in your organization. Using a CI user ensures that a workflow won't break due to an employee leaving your company. Further, using CI users allow you to apply granular permissions that may normally be too restrictive for a normal employee to do their daily work.
 
@@ -228,9 +228,10 @@ Create the following access tokens in the `ci-user`'s GitHub account:
 
 ### ci-read-only-user
 
-This user is created to download private software within GitHub Actions Workflows. The `ci-read-only-user` is used to access Gruntwork Library modules, your own `infrastructure-catalog` repository, any other custom module repositories that are private and the Pipelines CLI itself.
+This user is created to download private software within GitHub Actions Workflows. The `ci-read-only-user` is used to access Gruntwork IaC Library modules, your own `infrastructure-modules` repository, any other custom module repositories that are private and the Pipelines CLI itself.
 
-The `ci-read-only-user` should have a single classic [Personal Access Token (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with read permissions. Classic PATs have coarse granularity, we recommend putting this user in a GitHub team that only has READ access to `infrastructure-live-root` and any relevant module repositories in your own GitHub Organization. By adding this user to the Gruntwork Developer portal, they will automatically gain access to the Gruntwork Library.
+
+The `ci-read-only-user` should have a single classic [Personal Access Token (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with read permissions. Classic PATs have coarse granularity, we recommend putting this user in a GitHub team that only has READ access to `infrastructure-live-root` and any relevant module repositories in your own GitHub Organization. By adding this user to the Gruntwork Developer portal, they will automatically gain access to the Gruntwork IaC Library.
 
 **Invite the `ci-read-only-user` to your repository**
 
