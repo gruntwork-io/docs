@@ -19,7 +19,7 @@ In this tutorial we will walk you through the following steps:
 * Creating a new [infrastructure Unit](https://terragrunt.gruntwork.io/docs/getting-started/terminology/#unit) referencing a sample OpenTofu module, intentionally specifying an outdated version
 * Pushing that unit up to your remote repository in GitHub
 * Triggering patcher to detect the out of date unit and apply the patch
-* Reviewing the pull request created by Patcher and merging the changes.
+* Reviewing the pull request created by Patcher and merging the changes
 
 ### The `patcher-test` Module
 
