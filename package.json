@@ -20,7 +20,7 @@
     "regenerate": "env-cmd --silent docs-sourcer",
     "run-docs-sourcer": "docs-sourcer -p service-catalog-api -p module-catalog-api",
     "sidebar": "scripts/generate-sidebar.js",
-    "relative-link-check": "! grep -Fr '(./' docs/2.0/",
+    "relative-link-check": "! grep -Fr '(./' docs/",
     "test": "jest"
   },
   "dependencies": {
