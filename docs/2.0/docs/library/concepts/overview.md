@@ -1,14 +1,14 @@
 import OpenTofuNotice from "/src/components/OpenTofuNotice"
 
-# Gruntwork Library
+# Gruntwork IaC Library
 
-Gruntwork Library (formerly known as the "Gruntwork IaC Library") is a collection of reusable Infrastructure as Code (IaC) modules that enables you to deploy and manage infrastructure quickly and reliably.
+Gruntwork IaC Library is a collection of reusable Infrastructure as Code (IaC) modules that enables you to deploy and manage infrastructure quickly and reliably.
 
 It promotes code reusability, modularity, and consistency in infrastructure deployments. Essentially, we’ve taken the thousands of hours we spent building infrastructure on AWS and condensed all that experience and code into pre-built modules you can deploy into your own infrastructure.
 
 ## Two types of modules
 
-Gruntwork Library contains two types of modules:
+Gruntwork IaC Library contains two types of modules:
 
 ### "Building block" modules
 

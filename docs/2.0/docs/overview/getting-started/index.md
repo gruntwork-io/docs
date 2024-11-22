@@ -31,4 +31,4 @@ As part of your Pipelines installation, you will now have Gruntwork Account Fact
 
 ### Step 6: Start Using DevOps Foundations
 
-Thats it! You're ready to [build with Gruntwork Library](/2.0/docs/library/tutorials/deploying-your-first-gruntwork-module) automatically [plan and apply IaC changes with Pipelines](/2.0/docs/pipelines/guides/running-plan-apply), [vend new AWS Accounts with Account Factory](/2.0/docs/accountfactory/guides/vend-aws-account), and [keep your infrastructure up to date with Patcher](/2.0/docs/patcher/concepts/).
+Thats it! You're ready to [build with Gruntwork IaC Library](/2.0/docs/library/tutorials/deploying-your-first-gruntwork-module) automatically [plan and apply IaC changes with Pipelines](/2.0/docs/pipelines/guides/running-plan-apply), [vend new AWS Accounts with Account Factory](/2.0/docs/accountfactory/guides/vend-aws-account), and [keep your infrastructure up to date with Patcher](/2.0/docs/patcher/concepts/).

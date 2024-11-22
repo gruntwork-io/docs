@@ -541,7 +541,7 @@ const sidebar = [
     href: "/2.0/reference/patcher",
   },
   {
-    value: "Library",
+    value: "IaC Library",
     type: "html",
     className: "sidebar-header",
   },

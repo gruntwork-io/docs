@@ -4,7 +4,7 @@
 
 This section will cover how to use Gruntwork in conjunction with two popular HashiCorp products: [Terraform Cloud (TFC)](https://www.terraform.io/docs/cloud/index.html) and [Terraform Enterprise (TFE)](https://www.terraform.io/docs/enterprise/index.html). Although the open source edition of Terraform is quite powerful and flexible as a standalone project, many organizations turn to TFC/TFE for the CLI/UI integration, approval-based workflow capabilities, Sentinel policy framework, and more. At its core, Terraform Enterprise is basically Terraform Cloud repackaged for a self-hosted environment. We’ll use "TFC" as short hand for both Terraform Cloud and Enterprise throughout this guide.
 
-In our guide on [Customizing Modules](/2.0/docs/library/tutorials/customizing-modules) we describe how to use Gruntwork with two VCS repositories: `infrastructure-modules`, containing your Terraform code that wraps the modules from Gruntwork Library, and `infrastructure-live`, containing Terragrunt configurations that enable you to manage Terraform easily across multiple accounts and environments. When using Gruntwork with TFC, you have two choices regarding these repositories:
+In our guide on [Customizing Modules](/2.0/docs/library/tutorials/customizing-modules) we describe how to use Gruntwork with two VCS repositories: `infrastructure-modules`, containing your OpenTofu/Terraform code that wraps the modules from Gruntwork IaC Library, and `infrastructure-live`, containing Terragrunt configurations that enable you to manage Terraform easily across multiple accounts and environments. When using Gruntwork with TFC, you have two choices regarding these repositories:
 
 <div className="dlist">
 
@@ -159,9 +159,9 @@ commit to a file in the working directory that you set up when configuring works
 
 ![TFC run results](/img/guides/working-with-code/tfc/tfc-run.png)
 
-### Final thoughts on integrating TFC with the Gruntwork library
+### Final thoughts on integrating TFC with the Gruntwork IaC Library
 
-It’s easy to use TFC with the Gruntwork library. When using the `infrastructure-modules` approach outlined in this
+It’s easy to use TFC with the Gruntwork IaC Library. When using the `infrastructure-modules` approach outlined in this
 guide, all of your Terraform wrapper modules will be in one place. You can configure one workspace per module, and you
 can link modules together with the [`remote_state`
 data source](https://www.terraform.io/docs/providers/terraform/d/remote_state.html). Note that you’ll need to set up the AWS credentials and SSH key within each workspace.

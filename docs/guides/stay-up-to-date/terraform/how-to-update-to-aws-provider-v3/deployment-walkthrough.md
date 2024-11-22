@@ -5,7 +5,7 @@
 In order to take advantage of the Terraform AWS provider version 3, you need to update your references to the Gruntwork
 Infrastructure as Code Library to use a compatible version. We (Gruntwork) have gone through all our modules in the
 library to test and update the code to be compatible with AWS provider version 3. As a customer, you need to update to
-the proper versions of the Gruntwork library to pick up the fixes/changes that were made to be compatible. Be sure to
+the proper versions of the Gruntwork IaC Library to pick up the fixes/changes that were made to be compatible. Be sure to
 read the release notes to know what changes need to be made to update to that version.
 
 Refer to our ["Updating to new versions"](/library/stay-up-to-date/updating) guide
