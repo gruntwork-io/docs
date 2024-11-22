@@ -2,7 +2,7 @@
 
 ## Defining module defaults
 
-Now that you have an understanding of [what module defaults are](../concepts/module-defaults.md), you can develop your own defaults module.
+Now that you have an understanding of [what module defaults are](/2.0/docs/library/concepts/module-defaults), you can develop your own defaults module.
 
 All of your defaults modules should be placed in a directory named `_module_defaults`. Beyond that, it is up to you as a developer to determine how to structure the code. Gruntwork recommends structuring your module defaults directory by creating directories for each resource category (e.g., storage, networking) then using a name for the Terragrunt file that represents the resource(s) it will create.
 
@@ -37,7 +37,7 @@ locals {
 
 Finally, you can define inputs. This is where the module defaults pattern really starts to demonstrate value by keeping your code DRY.
 
-In the example block below, we’ve set default values for the `vpc_name` and `num_nat_gateways` variables. A quick inspection of the [`vpc-app`](../../../../../reference/modules/terraform-aws-vpc/vpc-app/) module shows us that we’re only missing one additional required variable — `cidr_block`. This means that consumers of our defaults module only need to specify a value for one input variable, a 66% reduction! You could even expand this example to always use the same CIDR block, allowing consumers to override it should they require a different block.
+In the example block below, we’ve set default values for the `vpc_name` and `num_nat_gateways` variables. A quick inspection of the [`vpc-app`](/reference/modules/terraform-aws-vpc/vpc-app/) module shows us that we’re only missing one additional required variable — `cidr_block`. This means that consumers of our defaults module only need to specify a value for one input variable, a 66% reduction! You could even expand this example to always use the same CIDR block, allowing consumers to override it should they require a different block.
 
 
 ```hcl title=_module_defaults/networking/vpc-app.hcl
@@ -58,7 +58,7 @@ Now that you know how to develop an defaults module, let’s dive in to how you 
 
 ### Infrastructure units
 
-An infrastructure unit is the Gruntwork term for the deployment of an infrastructure as code module in a single environment. For example, deploying the [`vpc-app`](../../../../reference/modules/terraform-aws-vpc/vpc-app/) module in your development AWS account is a single infrastructure unit.
+An infrastructure unit is the Gruntwork term for the deployment of an infrastructure as code module in a single environment. For example, deploying the [`vpc-app`](/reference/modules/terraform-aws-vpc/vpc-app/) module in your development AWS account is a single infrastructure unit.
 
 In this section, we’ll walk through the approach we employ at Gruntwork for leveraging defaults modules as infrastructure units. When you purchase a DevOps Foundation, the generated repository containing your infrastructure as code is automatically laid out to use this approach.
 
