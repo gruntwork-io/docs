@@ -3,14 +3,14 @@ import CustomizableValue from '/src/components/CustomizableValue'
 # Setup a Delegated Repository
 
 :::note
-[Automatic vending of delegated repositories by Account Factory](../../accountfactory/guides/delegated-repositories.md) is an Enterprise-only feature.
+[Automatic vending of delegated repositories by Account Factory](/2.0/docs/accountfactory/guides/delegated-repositories.md) is an Enterprise-only feature.
 
 If you are an Enterprise customer, Account Factory will automatically provision delegated repositories for you, and you may not need to follow the steps in this guide. The steps in this guide are for customers who are looking to manually set up delegated repositories, or for customers who are looking to understand how the process works from the perspective of Pipelines.
 :::
 
 ## Introduction
 
-Infrastructure management delegation is a first-class concept in DevOps Foundations. To learn more about delegated repositories, click [here](../../accountfactory/architecture/#delegated-repositories).
+Infrastructure management delegation is a first-class concept in DevOps Foundations. To learn more about delegated repositories, click [here](/2.0/docs/accountfactory/architecture/#delegated-repositories).
 
 Reasons you might want to delegate management of infrastructure includes:
 
@@ -19,7 +19,7 @@ Reasons you might want to delegate management of infrastructure includes:
 
   e.g. A repository has application code relevant to a container image that needs to be built and pushed to AWS ECR before it can be used in a Kubernetes cluster via a new deployment.
 
-The following guide assumes that you have already gone through [Pipelines Setup & Installation](../installation/prerequisites/awslandingzone.md).
+The following guide assumes that you have already gone through [Pipelines Setup & Installation](/2.0/docs/pipelines/installation/prerequisites/awslandingzone.md).
 
 ## Step 1 - Ensure the delegated account is set up
 
@@ -37,7 +37,7 @@ If you want more information about exactly how this works, read [GitHub OIDC doc
 
 ## Step 2 - Ensure that the `infrastructure-live-access-control` repository is provisioned.
 
-The [infrastructure-live-access-control](../architecture/security-controls.md#infrastructure-access-control) repository is an optionally provisioned part of DevOps Foundations, and it's the recommended way of delegating access to infrastructure.
+The [infrastructure-live-access-control](/2.0/docs/pipelines/architecture/security-controls.md#infrastructure-access-control) repository is an optionally provisioned part of DevOps Foundations, and it's the recommended way of delegating access to infrastructure.
 
 If you don't have this repository set up, you can follow the steps in the [infrastructure-live-root-template](https://github.com/gruntwork-io/infrastructure-live-root-template) to provision it.
 

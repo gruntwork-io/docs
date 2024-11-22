@@ -95,7 +95,7 @@ data source](https://www.terraform.io/docs/providers/terraform/d/remote_state.ht
 another workspace. In this manner, you can link multiple workspaces together to
 build an end-to-end infrastructure.
 
-In our guide on [using Gruntwork modules](../tutorials/customizing-modules.md), we discuss the wrapper module
+In our guide on [using Gruntwork modules](/2.0/docs/library/tutorials/customizing-modules), we discuss the wrapper module
 pattern in which multiple Terraform modules are contained in a hierarchy of directories located under
 `infrastructure-modules/modules`. Using such a hierarchy, each workspace will use the same `infrastructure-modules` repository, but pointed at different subdirectories within the repository.
 
