@@ -30,9 +30,8 @@ While IaC code itself serves as a form of documentation, it's crucial to supplem
 * **Module Documentation:** Create dedicated documentation for each module, including:
   * Purpose and functionality
   * Input variables and outputs
-* Dependencies on other modules
-* Usage examples
-* Design decisions and rationale
+* **Usage examples:** Provide examples of how to use the module in different scenarios with reasonable input variables.
+* **Design decisions and rationale:** Often there's more than one way to architect a solution to a problem, justify why this approach was taken and the tradeoffs it optimizes for.
 
 ## IaC Modules and Disaster Recovery
 IaC modules significantly improve disaster recovery capabilities:
