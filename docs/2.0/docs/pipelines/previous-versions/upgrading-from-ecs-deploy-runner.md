@@ -62,7 +62,7 @@ Once the Pipelines repository is bootstrapped successfully, you can delete the `
 
 ## GitHub CI Machine Users and Secrets Setup
 
-Pipelines utilizes two machine users, one for read-only and another elevated operations. Follow this [guide](../../../../infrastructure-pipelines/security/machine-users) to create them and and set up the correct access tokens in each of the repositories.
+Pipelines utilizes two machine users, one for read-only and another elevated operations. Follow this [guide](/infrastructure-pipelines/security/machine-users) to create them and and set up the correct access tokens in each of the repositories.
 
 ## Create AWS IAM roles for Pipelines
 
