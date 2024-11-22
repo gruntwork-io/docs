@@ -72,7 +72,9 @@ From here hit `enter` and patcher will apply the update:
 
 ![Patcher Update completion notice](/img/patcher/tutorials/patcher_update_complete.png)
 
+<!-- spell-checker: disable -->
 You can now inspect the filesystem and see the results of the patch.  In this case it resulted in changing the version of `patcher-test` from `v0.10.3` to `v0.10.5` and added a new required argument `sampleinput` to the unit. This change can now be committed and pushed to your repository.
+<!-- spell-checker: enable -->
 
 ![Patcher Update completion notice](/img/patcher/tutorials/patcher_update_results.png)
 
@@ -108,7 +110,7 @@ Now navigate to your repository in GitHub and create a new pull request for the 
 In a real world use case, you are unlikely to create a new unit that immediately is out of date, and instead Patcher would on a schedule and detect updates to modules some time after they have been merged.  For the purpose of this tutorial, however, we're intentionally merging an out of date module to main so we can trigger Patcher to update it immediately.
 :::
 
-Once the code has been merged to main, we can now directly trigger Patcher to scan for updateable modules.
+Once the code has been merged to main, we can now directly trigger Patcher to scan for out of date modules.
 
 <details>
 <summary>If you don't already have Patcher installed in your repository, you can add the following GitHub Actions workflow:</summary>
