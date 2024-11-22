@@ -186,4 +186,4 @@ Although your release will succeed with or without a patch, downstream consumers
 
 In theory, you may write whatever command execution steps you want to perform patch steps. 
 For example, there are many cases where validating tool versions are required, or using `sed` to find and replace certain values. 
-However, we _strongly_ recommend using `terrapatch`, a Gruntwork tool that surgically updates Terraform/OpenTofu HCL files.  
+However, we _strongly_ recommend using [terrapatch](https://github.com/gruntwork-io/terrapatch), a Gruntwork tool that surgically updates Terraform/OpenTofu HCL files.  
