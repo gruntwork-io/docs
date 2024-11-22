@@ -11,7 +11,7 @@ The IaC Foundations component is focused on:
 - **IaC Modules.** No IaC modules are needed for this component.
 - **Tooling.** We recommend Terragrunt to effectively use Terraform/OpenTofu at scale.
 - **Setup.** We grant you access to a sophisticated git repo template that includes customization options and generates your repo code.
-- **Updates.** We publish ongoing updates to IaC foundational patterns and will write [patches](../../patcher/patcher.md) if applicable to adopt those changes.
+- **Updates.** We publish ongoing updates to IaC foundational patterns and will write [patches](/2.0/docs/patcher/concepts/patches) if applicable to adopt those changes.
 
 ## IaC foundations considerations
 
