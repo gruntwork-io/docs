@@ -104,13 +104,13 @@ $ git push -u origin patcher-test-update
 
 ```
 
-Now navigate to your repository in GitHub and create a new pull request for the `patcher-test-update` branch.  In order for Patcher to identify this unit as needing an update, it first has to be merged to main, so go ahead and merge the pull request.
+Now navigate to your repository in GitHub and create a new pull request for the `patcher-test-update` branch.  In order for Patcher to identify this unit as needing an update, it first has to be merged to <CustomizableValue id='main' />, so go ahead and merge the pull request.
 
 :::info
-In a real world use case, you are unlikely to create a new unit that immediately is out of date, and instead Patcher would on a schedule and detect updates to modules some time after they have been merged.  For the purpose of this tutorial, however, we're intentionally merging an out of date module to main so we can trigger Patcher to update it immediately.
+In a real world use case, you are unlikely to create a new unit that immediately is out of date, and instead Patcher would on a schedule and detect updates to modules some time after they have been merged.  For the purpose of this tutorial, however, we're intentionally merging an out of date module to <CustomizableValue id='main' /> so we can trigger Patcher to update it immediately.
 :::
 
-Once the code has been merged to main, we can now directly trigger Patcher to scan for out of date modules.
+Once the code has been merged to <CustomizableValue id='main' />, we can now directly trigger Patcher to scan for out of date modules.
 
 <details>
 <summary>If you don't already have Patcher installed in your repository, you can add the following GitHub Actions workflow:</summary>
@@ -124,7 +124,7 @@ on:
     types:
       - closed
     branches:
-      - main
+      - $$main$$
   workflow_dispatch:
 
 permissions:
@@ -138,7 +138,8 @@ jobs:
 
       - uses: gruntwork-io/patcher-action@v2
         with:
-          github_token: ${{ secrets.PATCHER_GRUNTWORK_READ_TOKEN }}
+          # If you're not sure what token to use here, reach out to Gruntwork support for guidance.
+          github_token: ${{ secrets.GRUNTWORK_TOKEN }}
           pull_request_branch: patcher/update-dependencies
           pull_request_title: "Patcher: Update dependencies"
           spec_file: ""
