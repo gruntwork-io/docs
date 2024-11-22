@@ -11,7 +11,7 @@ In this tutorial we will walk you through the following steps:
 
 **Using Patcher Locally**:
 * Creating a new [infrastructure Unit](https://terragrunt.gruntwork.io/docs/getting-started/terminology/#unit) referencing a sample OpenTofu module, intentionally specifying an outdated version
-* Running patcher against that module and understanding the outputs / options Patcher provides.
+* Running patcher against that module and understanding the outputs / options Patcher provides
 * Instructing patcher to apply the patch
 * Creating a commit incorporating the patch
 
