@@ -5,8 +5,8 @@ As of July 2024 Gruntwork officially supports Patcher Promotion Workflows using 
 
 :::info
 Related Content:
-* [Concepts - Patcher Workflows](../concepts/promotion-workflows.md)
-* [Architecture - Overview](../architecture/index.md)
+* [Concepts - Patcher Workflows](/2.0/docs/patcher/concepts/promotion-workflows)
+* [Architecture - Overview](/2.0/docs/patcher/architecture)
 :::
 
 ## Prerequisites
@@ -27,7 +27,7 @@ Then you would define your environments as `dev-*`, stage as `stage-*` and prod 
 
 ## Implementation & Setup Example
 
-The Patcher Promotion Workflow process consists of a series of GitHub Actions workflow files.  Each environment is modeled as an individual workflow.  The process begins with the lowest environment (usually something like `dev`). It scans the entire `dev` environment for all dependencies which may require updates.  It then generates one pull request per dependency. That PR updates that dependency in just the `dev` environment.  
+The Patcher Promotion Workflow process consists of a series of GitHub Actions workflow files.  Each environment is modeled as an individual workflow.  The process begins with the lowest environment (usually something like `dev`). It scans the entire `dev` environment for all dependencies which may require updates.  It then generates one pull request per dependency. That PR updates that dependency in just the `dev` environment.
 
 As each of those pull requests is approved and merged, that approval triggers new pull requests for the subsequent environment (triggered via `repository dispatch` events).  This process continues until the last environment at which point no further PRs are opened and all environments have been updated.
 
@@ -49,7 +49,7 @@ The initial GitHub Actions Workflow file, in this example `update-dev.yml`, cont
     * Note this job uses a secret, `PIPELINES_READ_TOKEN`, which needs access to your Gruntwork account to access the Patcher binary.  See more on machine user tokens [here](/2.0/docs/pipelines/installation/viamachineusers).
 * The `update-env` Job
     * This job takes the spec output from the report, puts it into a file, then calls patcher update.
-    * Patcher update reads the spec file, checks out the code, makes a commit and then pushes a pull request    
+    * Patcher update reads the spec file, checks out the code, makes a commit and then pushes a pull request
     * It is critically important for the pull request workflow that the `pull_request_branch` be defined as `$PREFIX$DEPENDENCYID`. We strip out the prefix to identify the dependency ID in the `trigger-next-env` Job.
 <!-- spell-checker: disable -->
 ```yml

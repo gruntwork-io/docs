@@ -9,13 +9,13 @@ credentials whenever possible. This is done to minimize the risk of long lived s
 easier to rotate secrets when necessary.
 
 The only long lived credentials that you are required to create, rotate and maintain to use Pipelines are the
-credentials used to authenticate as your [GitHub Machine users](../installation/viamachineusers.md). We are constantly looking for ways
+credentials used to authenticate as your [GitHub Machine users](/2.0/docs/pipelines/installation/viamachineusers). We are constantly looking for ways
 to improve the security posture of Pipelines, and are actively working on ways to reduce even this minimal requirement.
 
 ## Authenticating With GitHub
 
 To authenticate with GitHub, Pipelines uses either a GitHub App or Machine User [Personal Access Tokens (PATs)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) (depending on how you installed Pipelines) to authenticate and interact with the GitHub API. You can
-learn more about how these tokens are created and managed in the [Machine Users](../installation/viamachineusers.md) documentation.
+learn more about how these tokens are created and managed in the [Machine Users](/2.0/docs/pipelines/installation/viamachineusers) documentation.
 
 ## Authenticating With AWS
 

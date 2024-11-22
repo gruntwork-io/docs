@@ -54,6 +54,11 @@ references:
       name: spellcheck
       command: yarn && yarn spellcheck
 
+  no_relative_links: &no_relative_links
+    run:
+      name: ensure_no_relative_links
+      command: yarn && yarn relative-link-check
+
   test_docs: &test_docs
     run:
       name: test
@@ -150,6 +155,7 @@ jobs:
       - checkout
       - *build_docs
       - *spellcheck_docs
+      - *no_relative_links
       - *test_docs
     # The resource_class feature allows configuring CPU and RAM resources for each job. Different resource classes are
     # available for different executors. https://circleci.com/docs/2.0/configuration-reference/#resourceclass
