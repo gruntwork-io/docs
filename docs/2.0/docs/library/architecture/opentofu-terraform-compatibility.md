@@ -1,6 +1,6 @@
 # Compatibility with OpenTofu and Terraform
 
-All code in Gruntwork Library is compatible with:
+All code in Gruntwork IaC Library is compatible with:
 
 - All versions of [OpenTofu](https://opentofu.org/)
 - HashiCorp Terraform versions v1.5.7 and below
@@ -17,7 +17,7 @@ This is the last version of HashiCorp Terraform that is licensed under the MPLv2
 
 Going forward, we recommend that all Gruntwork customers adopt [OpenTofu](https://opentofu.org/) as a "drop-in" replacement for HashiCorp Terraform. We will be developing against OpenTofu releases, testing for compatibility with OpenTofu, and offering full support for any issues you experience with our modules and OpenTofu.
 
-## As a user of Gruntwork Library, do I need to change anything?
+## As a user of Gruntwork IaC Library, do I need to change anything?
 
 No. You can continue using any version of HashiCorp Terraform up to and including v1.5.7.
 
