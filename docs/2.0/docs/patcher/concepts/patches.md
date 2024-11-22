@@ -179,7 +179,7 @@ More details on the available options included in `patcher update` can be found 
 
 Module authors periodically need to introduce breaking changes in their modules, causing a downstream, potentially painful, experience for module consumers. 
 With patches, module authors include a patch YAML file that automatically updates consuming code to incorporate the breaking changes associated with the updated module code.
-Doing so allows module consumers to use patches to enable their modules consumers to automatically update consuming code to adopt breaking change.
+Doing so allows module consumers to use patches to enable their modules consumers to automatically update consuming code to adopt breaking changes.
 
 In a Patcher ecosystem, the resolution to such a change is written once, in a patch, and distributed to all consumers. 
 Although your release will succeed with or without a patch, downstream consumers of your breaking change will praise you thoroughly for your advance work. 
