@@ -27,9 +27,9 @@ In this tutorial we'll use the `patcher-test` module from the `gruntwork-io/terr
 
 ## Applying a patch using Patcher locally
 
-Choose a folder named: <CustomizableValue id="FOLDER" /> in your repository where we'll add a new infrastructure unit.  In that folder create a file called `terragrunt.hcl` with the following content:
+Choose a directory named: <CustomizableValue id="DIRECTORY" /> in your repository where we'll add a new infrastructure unit.  In that folder create a file called `terragrunt.hcl` with the following content:
 l
-```hcl title="$$FOLDER$$/terragrunt.hcl"
+```hcl title="$$DIRECTORY$$/terragrunt.hcl"
 
 terraform {
   source = "git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/patcher-test?ref=v0.10.3"
@@ -40,3 +40,13 @@ include "root" {
   path = find_in_parent_folders()
 }
 ```
+
+Now we'll run `patcher update`.  This can be run from the root of the repository, where it will scan every unit in all subfolders, or directly inside the <CustomizableValue id="DIRECTORY" /> directory.
+
+```bash
+
+$ cd $$DIRECTORY$$
+$ patcher update
+```
+
+<img src="/img/patcher/tutorials/patcher_update_preview.png" />
