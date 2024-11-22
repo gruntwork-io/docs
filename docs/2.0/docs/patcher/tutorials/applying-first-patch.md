@@ -23,7 +23,7 @@ In this tutorial we will walk you through the following steps:
 
 ### The `patcher-test` Module
 
-In this tutorial we'll use the `patcher-test` module from the `gruntwork-io/terraform-aws-utilities` repository. This module has a version `v0.10.3` that we'll intentionally specify as outdated in our infrastructure unit, and have patcher update to v0.10.4 which includes a demonstration breaking change.
+In this tutorial we'll use the `patcher-test` module from the [gruntwork-io/terraform-aws-utilities](https://github.com/gruntwork-io/terraform-aws-utilities) repository. This module has a version `v0.10.3` that we'll intentionally specify as outdated in our infrastructure unit, and have patcher update to v0.10.4 which includes a breaking change for demonstration.
 
 ## Applying a patch using Patcher locally
 
