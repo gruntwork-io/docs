@@ -45,7 +45,7 @@ $ patcher generate "Sample Breaking Change"
 
 This command adds a templated patch to your repo with the path `.patcher/patches/sample-breaking-change/patch.yaml`:
 
-```yaml
+```yaml title=".patcher/patches/sample-breaking-change/patch.yaml"
 name: "Sample Breaking Change"
 description: <REPLACE_ME>
 author: <REPLACE_ME>
