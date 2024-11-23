@@ -25,17 +25,21 @@ steps:
 
 [Check out an example of a patch in the CIS Service Catalog.](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/c3d5ede211fc3230a7d493ceea43622b337ee88a/.patcher/patches/v0.96.4/switch-to-cis-rds-module/patch.yaml)
 
+## Module consumers and module authors
+
+Patcher is built around the idea of two specific personas:
+
+- **Module authors.** Module authors write OpenTofu/Terraform modules, or make updates to those modules.
+- **Module consumers.** Module consumers make use of an OpenTofu/Terraform module that was created by a module author, typically in Terragrunt units (`terragrunt.hcl` files) or directly in OpenTofu/Terraform code that calls a module.
+
 ## For Module Consumers
 
-As an OpenTofu/Terraform module consumer, modules are imported to launch infrastructure by writing Terragrunt units (`terragrunt.hcl` files) or OpenTofu/Terraform code that calls a module.
-
-It is best practice to reference a specific version of an OpenTofu/Terraform module. 
+When module consumers reference an OpenTofu/Terraform module, it is a best practice to reference a specific version of the OpenTofu/Terraform module. 
 Over time, module authors release new versions of the module, and the code that consumes those modules slowly gets out of date. 
-In some cases, the latest update of the underlying modules requires a breaking change to the consuming code, meaning the version can't just be bumped. 
-The consuming code needs to be edited to make use of the new version. 
-In this instance, using a patch with Patcher comes in handy.
+In some cases, the latest update of the underlying modules requires a breaking change to the consuming code, meaning the version can't just be bumped; the code needs to be edited. 
+This is when using a patch with Patcher comes in handy.
 
-Patches can be consumed with either a "push" strategy, when Patcher proactively opens a pull request with the latest update, or a "pull" strategy, when a repo is manually scanned to look at the current state of your infrastructure using the Patcher CLI tool.
+Patches can be consumed with either a "push" strategy, where Patcher proactively opens a pull request with the latest update, or a "pull" strategy, where a repo is manually scanned to look at the current state of your infrastructure using the Patcher CLI tool.
 
 Regardless of methodology, the concept remains the same. 
 Patcher will suggest changes to your codebase in order to keep your infrastructure up to date, however you see fit. 
