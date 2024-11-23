@@ -32,6 +32,18 @@ Patcher is built around the idea of two specific personas:
 - **Module authors.** Module authors write OpenTofu/Terraform modules, or make updates to those modules.
 - **Module consumers.** Module consumers make use of an OpenTofu/Terraform module that was created by a module author, typically in Terragrunt units (`terragrunt.hcl` files) or directly in OpenTofu/Terraform code that calls a module.
 
+## For Module Authors
+
+Module authors periodically need to introduce breaking changes in their modules, causing a downstream, potentially painful, experience for module consumers.
+With patches, module authors include a patch YAML file that automatically updates consuming code to incorporate the breaking changes associated with the updated module code. For example, when module consumers "execute" a patch and their code will automatically be updated to add a variable, rename a variable, update a provider reference, or incorporate some other transformation specified by the module author.
+This allows module consumers to automatically update consuming code to adopt breaking changes.
+
+In a Patcher ecosystem, the module author spends a small amount of extra time to author a patch, but now all module consumers can automatically update their code to consume the latest breaking change.
+
+In theory, you may write whatever command execution steps you want to perform patch steps.
+For example, there are many cases where validating tool versions are required, or using `sed` to find and replace certain values.
+However, we _strongly_ recommend using [`terrapatch`](https://github.com/gruntwork-io/terrapatch), a Gruntwork tool that surgically updates Terraform/OpenTofu HCL files.
+
 ## For Module Consumers
 
 When module consumers reference an OpenTofu/Terraform module, it is a best practice to reference a specific version of the OpenTofu/Terraform module.
@@ -90,15 +102,3 @@ $ patcher update --update-strategy next-safe --non-interactive --publish --pr-br
 
 More details on the available options included in `patcher update` can be found in the [reference section](/2.0/reference/patcher/index.md#update).
 
-## For Module Authors
-
-Module authors periodically need to introduce breaking changes in their modules, causing a downstream, potentially painful, experience for module consumers.
-With patches, module authors include a patch YAML file that automatically updates consuming code to incorporate the breaking changes associated with the updated module code.
-Doing so allows module consumers to use patches to enable their modules consumers to automatically update consuming code to adopt breaking changes.
-
-In a Patcher ecosystem, the resolution to such a change is written once, in a patch, and distributed to all consumers.
-Although your release will succeed with or without a patch, downstream consumers of your breaking change will praise you thoroughly for your advance work.
-
-In theory, you may write whatever command execution steps you want to perform patch steps.
-For example, there are many cases where validating tool versions are required, or using `sed` to find and replace certain values.
-However, we _strongly_ recommend using [`terrapatch`](https://github.com/gruntwork-io/terrapatch), a Gruntwork tool that surgically updates Terraform/OpenTofu HCL files.
