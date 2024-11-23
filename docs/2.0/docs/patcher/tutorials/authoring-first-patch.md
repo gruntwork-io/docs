@@ -142,5 +142,5 @@ Other users of Patcher will receive the updates the next time they run `patcher 
 :::info
 Using `patcher` to test patches is not supported at this time. 
 The best strategy at this moment is to test steps manually and locally. 
-Future updates to patcher will include additional mechanisms to make testing easier.
+Future updates to patcher will include additional mechanisms to make testing new patches easier.
 :::
