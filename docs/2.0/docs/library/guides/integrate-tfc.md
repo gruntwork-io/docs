@@ -4,13 +4,14 @@
 
 This section will cover how to use Gruntwork in conjunction with two popular HashiCorp products: [Terraform Cloud (TFC)](https://www.terraform.io/docs/cloud/index.html) and [Terraform Enterprise (TFE)](https://www.terraform.io/docs/enterprise/index.html). Although the open source edition of Terraform is quite powerful and flexible as a standalone project, many organizations turn to TFC/TFE for the CLI/UI integration, approval-based workflow capabilities, Sentinel policy framework, and more. At its core, Terraform Enterprise is basically Terraform Cloud repackaged for a self-hosted environment. We’ll use "TFC" as short hand for both Terraform Cloud and Enterprise throughout this guide.
 
+
 In our guide on [Customizing Modules](/2.0/docs/library/tutorials/customizing-modules) we describe how to use Gruntwork with two VCS repositories: `infrastructure-modules`, containing your OpenTofu/Terraform code that wraps the modules from Gruntwork IaC Library, and `infrastructure-live`, containing Terragrunt configurations that enable you to manage Terraform easily across multiple accounts and environments. When using Gruntwork with TFC, you have two choices regarding these repositories:
 
 <div className="dlist">
 
 #### Use TFC without Terragrunt
 
-Using this approach, Terraform modules are still defined in an `infrastructure-modules` repository as discussed above.
+Using this approach, Terraform modules are still defined in an `infrastructure-catalog` repository as discussed above.
 Each module has a dedicated [TFC workspace](https://www.terraform.io/docs/state/workspaces.html). You create the
 workspace in advance, and then you can run the Terraform modules either from the `terraform` CLI or from the TFC UI.
 In essence, TFC replaces Terragrunt and `infrastructure-live`. You’ll be able to use the full TFC feature set, but you
@@ -19,8 +20,8 @@ args, etc DRY, and adding support for applying changes across multiple modules /
 
 #### Use TFC with Terragrunt
 
-Alternatively, you can use both `infrastructure-modules` and `infrastructure-live` repositories as described above,
-storing the wrapper modules in `infrastructure-modules`, and using `infrastructure-live` and Terragrunt for
+Alternatively, you can use both `infrastructure-catalog` and `infrastructure-live` repositories as described above,
+storing the wrapper modules in `infrastructure-catalog`, and using `infrastructure-live` and Terragrunt for
 deployments. In this approach, TFC is used as a [remote backend](https://www.terraform.io/docs/backends/types/remote.html)
 for Terraform. You use Terragrunt to run deployments from the CLI, which in turn invokes Terraform on the TFC backend.
 The TFC UI is used for audit and tracking capabilities, but not for executing Terraform runs.
@@ -97,7 +98,7 @@ build an end-to-end infrastructure.
 
 In our guide on [using Gruntwork modules](/2.0/docs/library/tutorials/customizing-modules), we discuss the wrapper module
 pattern in which multiple Terraform modules are contained in a hierarchy of directories located under
-`infrastructure-modules/modules`. Using such a hierarchy, each workspace will use the same `infrastructure-modules` repository, but pointed at different subdirectories within the repository.
+`infrastructure-catalog/modules`. Using such a hierarchy, each workspace will use the same `infrastructure-catalog` repository, but pointed at different subdirectories within the repository.
 
 :::note
 
@@ -111,7 +112,7 @@ We’ll demonstrate how to set up a workspace for a simple SQS module. To get st
 
 ### Connect to a version control provider
 
-Connect the workspace to the version control system of your choice. For example, GitHub, GitLab, or Bitbucket. This allows TFC to access your `infrastructure-modules` repository. Once your VCS is connected, select your `infrastructure-modules` repository from the list of repositories presented.
+Connect the workspace to the version control system of your choice. For example, GitHub, GitLab, or Bitbucket. This allows TFC to access your `infrastructure-catalog` repository. Once your VCS is connected, select your `infrastructure-catalog` repository from the list of repositories presented.
 
 ![Connect a workspace to a VCS](/img/guides/working-with-code/tfc/tfc-create-workspace.png)
 
@@ -150,7 +151,7 @@ With all the configuration complete, it’s time to kick off the plan and apply.
 commit to a file in the working directory that you set up when configuring workspace settings (in our case, in
 `/modules/networking/sqs`), or by manually triggering the run using the _Queue plan_ button in the TFC UI. The run will:
 
-- Clone your `infrastructure-modules` repository using the VCS connection
+- Clone your `infrastructure-catalog` repository using the VCS connection
 - Download the AWS provider and set credentials using the environment variables
 - Download the Gruntwork SQS module using the SSH key
 - Run a `terraform plan`
@@ -162,6 +163,7 @@ commit to a file in the working directory that you set up when configuring works
 ### Final thoughts on integrating TFC with the Gruntwork IaC Library
 
 It’s easy to use TFC with the Gruntwork IaC Library. When using the `infrastructure-modules` approach outlined in this
+
 guide, all of your Terraform wrapper modules will be in one place. You can configure one workspace per module, and you
 can link modules together with the [`remote_state`
 data source](https://www.terraform.io/docs/providers/terraform/d/remote_state.html). Note that you’ll need to set up the AWS credentials and SSH key within each workspace.

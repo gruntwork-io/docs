@@ -15,7 +15,7 @@ To set up IaC Foundations, we use a pre-configured git repository template that 
 
 This template creates an infrastructure-live-root repository with a bootstrap workflow that can be run to create scaffolding for a best practices Terragrunt configuration, including patterns for module defaults, global variables, and account baselines. It also configures Gruntwork Pipelines, which is easy to remove if you don't want it.
 
-The workflow also optionally creates and scaffolds your `infrastructure-live-access-control` and `infrastructure-modules` repositories.
+The workflow also optionally creates and scaffolds your `infrastructure-live-access-control` and `infrastructure-catalog` repositories.
 
 Navigate to the template repository and select **Use this template** -> **Create a new Repository**. This will initiate repository creation. You should select your org as the owner, add a description if you like, make sure you are creating a **private** repo, and click **Create repository**.
 
@@ -31,7 +31,7 @@ Return to your `infrastructure-live-root` repository and follow the instructions
 
 ## Run The Workflow
 
-Follow the instructions in your `infrastructure-live-root` to run the Bootstrap workflow. Gruntwork is available to assist with questions around other patterns as they arise. When running the workflow you can select options to create `infrastructure-live-access-control` and `infrastructure-modules` repositories. These will be created in your GitHub organization using values defined in the workflow file.
+Follow the instructions in your `infrastructure-live-root` to run the Bootstrap workflow. Gruntwork is available to assist with questions around other patterns as they arise. When running the workflow you can select options to create `infrastructure-live-access-control` and `infrastructure-catalog` repositories. These will be created in your GitHub organization using values defined in the workflow file.
 
 ### Infrastructure Live Access Control
 
@@ -39,7 +39,7 @@ This repository is only necessary for Enterprise customers, but is recommended f
 
 ### Infrastructure Modules
 
-The Bootstrap workflow creates an empty infrastructure-modules repository that will be used to store Terraform/OpenTofu modules that your organization has authored and intends to use within your organization. When running the Bootstrap workflow in your `infrastructure-live-root` account, select the option to "Bootstrap the infrastructure-modules repository".
+The Bootstrap workflow creates an empty infrastructure-catalog repository that will be used to store Terraform/OpenTofu modules that your organization has authored and intends to use within your organization. When running the Bootstrap workflow in your `infrastructure-live-root` account, select the option to "Bootstrap the infrastructure-catalog repository".
 
 ## Complete Instructions In The Bootstrap Pull Requests
 

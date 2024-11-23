@@ -9,7 +9,7 @@ In some instances, you may need to extend a Gruntwork module, set default values
 
 For example, if you were creating a wrapper module for an AWS Lambda function, your repository would have a file structure like the following:
 ```
-infrastructure-modules
+infrastructure-catalog
     └ lambda
         └ main.tf
         └ outputs.tf
