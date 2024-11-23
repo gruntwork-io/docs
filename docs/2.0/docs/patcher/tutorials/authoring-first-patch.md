@@ -138,3 +138,9 @@ Once the fields are filled out, the new entry to the `config.yaml` file will loo
 
 Include all changes to `config.yaml`, the new `patch.yaml` file, and the changes to the terraform module in one single release (typically, this is one single PR also, but that's not a requirement).
 Other users of Patcher will receive the updates the next time they run `patcher update`, and benefit from the work done here. 
+
+:::info
+Using `patcher` to test patches is not supported at this time. 
+The best strategy at this moment is to test steps manually and locally. 
+Future updates to patcher will include additional mechanisms to make testing easier.
+:::
