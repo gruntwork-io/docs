@@ -21,7 +21,7 @@ In this tutorial we'll use the `patcher-test` module from the `gruntwork-io/terr
 ## Identifying the Breaking Change and its Remediation Steps
 
 Let's say you want to add a new required variable to the `patcher-test` module. 
-This type of change definitely counts as a breaking change, because if consumers of your module don't update their attributes to include the new variable, the upgrade to their infrastructure will fail. 
+This type of change definitely counts as a breaking change, because if consumers of your module don't update their attributes to include the new variable, then OpenTofu will fail to plan/apply the infrastructure going forward. 
 
 <!-- spell-checker: disable -->
 Add the new `sampleinput` variable to `variables.tf`:
@@ -35,7 +35,7 @@ variable "sampleinput" {
 ```
 <!-- spell-checker: enable -->
 
-## Running `patcher generate` to Template the Patch
+## Running `patcher generate` to template the patch
 
 Then, run `patcher generate` in the root of the git repo to generate the patch template, given the title of the patch:
 
