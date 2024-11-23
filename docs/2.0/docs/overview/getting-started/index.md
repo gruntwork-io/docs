@@ -3,7 +3,7 @@ import PersistentCheckbox from '/src/components/PersistentCheckbox';
 
 ### Step 1: [Activate Your Gruntwork Account](/2.0/docs/overview/getting-started/create-account)
 
-Setup your Gruntwork account and invite your team mates to gain access to Gruntwork resources.
+Set up your Gruntwork account and invite your teammates to gain access to Gruntwork resources.
 
 <PersistentCheckbox id="install-df-1" label="Gruntwork Account Ready" />
 
@@ -19,11 +19,11 @@ Gruntwork's AWS Landing Zone walkthrough provides a best practice multi-account 
 
 ### Step 4: [Create New Pipelines Repositories](/2.0/docs/pipelines/installation/addingnewrepo)
 
-Or alternatively [Add Pipelines To An Existing Repository](/2.0/docs/pipelines/installation/addingexistingrepo)
+Or alternatively [Add Pipelines To An Existing Repository](/2.0/docs/pipelines/installation/addingexistingrepo).
 
 <PersistentCheckbox id="install-df-4" label="Pipelines Repositories Ready" />
 
-### Step 5: [Configure Account Factory](/2.0/reference/accountfactory/configurations)
+### Step 5: [Configure Account Factory](/2.0/reference/accountfactory/configurations).
 
 As part of your Pipelines installation, you will now have Gruntwork Account Factory
 
@@ -31,4 +31,4 @@ As part of your Pipelines installation, you will now have Gruntwork Account Fact
 
 ### Step 6: Start Using DevOps Foundations
 
-Thats it! You're ready to [build with Gruntwork IaC Library](/2.0/docs/library/tutorials/deploying-your-first-gruntwork-module) automatically [plan and apply IaC changes with Pipelines](/2.0/docs/pipelines/guides/running-plan-apply), [vend new AWS Accounts with Account Factory](/2.0/docs/accountfactory/guides/vend-aws-account), and [keep your infrastructure up to date with Patcher](/2.0/docs/patcher/concepts/).
+That's it! You're ready to [build with Gruntwork IaC Library](/2.0/docs/library/tutorials/deploying-your-first-gruntwork-module) automatically [plan and apply IaC changes with Pipelines](/2.0/docs/pipelines/guides/running-plan-apply), [vend new AWS Accounts with Account Factory](/2.0/docs/accountfactory/guides/vend-aws-account), and [keep your infrastructure up to date with Patcher](/2.0/docs/patcher/concepts/).
