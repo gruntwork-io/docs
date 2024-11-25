@@ -113,7 +113,11 @@ html[data-theme="dark"] .icon {
   display: inline-block;
   margin-right: 1.5rem;
   margin-top: -1rem !important;
-  color: #5849a6;
+  color: #49b8d0;
+}
+
+html[data-theme="dark"] .card .num {
+  color: #87e0e1;
 }
 
 /* TAGS */
@@ -127,19 +131,20 @@ ul.tags li {
   list-style: none;
   display: inline-block;
   border-radius: 4px;
-  background-color: #e7f0f5;
+  background-color: #c5dde4;
   padding: 0 0.5rem;
   margin-right: 0.5em;
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 0.05em;
   font-weight: 600;
-  color: #333;
+  color: #15192d;
 }
 
 html[data-theme="dark"] ul.tags li {
-  background-color: #666;
-  color: black;
+  background-color: #87e0e1;
+  opacity: 0.4;
+  color: #0d0622;
 }
 
 /* LINKS & HOVER */

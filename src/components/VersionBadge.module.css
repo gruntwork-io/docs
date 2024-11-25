@@ -8,7 +8,8 @@
 }
 
 html[data-theme="dark"] .versionBadge {
-  background-color: #666;
+  background-color: #fff;
+  opacity: 0.2;
   color: black;
 }
 

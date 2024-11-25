@@ -4,7 +4,7 @@ const path = require("path")
 
 const { themes } = require("prism-react-renderer")
 const lightCodeTheme = themes.github
-const darkCodeTheme = themes.dracula
+const darkCodeTheme = themes.nightOwl
 
 const cfg = require("config")
 
