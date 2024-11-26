@@ -79,6 +79,118 @@ const config = {
       ? algoliaConfig.libraryIndexName
       : undefined,
   },
+  headTags: [
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preload",
+        href: "https://gruntwork.io/_next/static/media/66f30814ff6d7cdf-s.p.woff2", // Geist Mono
+        as: "font",
+        type: "font/woff2",
+        crossorigin: "anonymous",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preload",
+        href: "https://gruntwork.io/_next/static/media/97ff73edc14fdb02-s.p.woff2", // General Sans Italic
+        as: "font",
+        type: "font/woff2",
+        crossorigin: "anonymous",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preload",
+        href: "https://gruntwork.io/_next/static/media/a34f9d1faa5f3315-s.p.woff2", // General Sans Bold
+        as: "font",
+        type: "font/woff2",
+        crossorigin: "anonymous",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preload",
+        href: "https://gruntwork.io/_next/static/media/d9532b38a05b0008-s.p.woff2", // General Sans Normal
+        as: "font",
+        type: "font/woff2",
+        crossorigin: "anonymous",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preload",
+        href: "https://gruntwork.io/_next/static/media/55c55f0601d81cf3-s.woff2", // Inter
+        as: "font",
+        type: "font/woff2",
+        crossorigin: "anonymous",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preload",
+        href: "https://gruntwork.io/_next/static/media/26a46d62cd723877-s.woff2", // Inter
+        as: "font",
+        type: "font/woff2",
+        crossorigin: "anonymous",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preload",
+        href: "https://gruntwork.io/_next/static/media/97e0cb1ae144a2a9-s.woff2", // Inter
+        as: "font",
+        type: "font/woff2",
+        crossorigin: "anonymous",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preload",
+        href: "https://gruntwork.io/_next/static/media/581909926a08bbc8-s.woff2", // Inter
+        as: "font",
+        type: "font/woff2",
+        crossorigin: "anonymous",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preload",
+        href: "https://gruntwork.io/_next/static/media/df0a9ae256c0569c-s.woff2", // Inter
+        as: "font",
+        type: "font/woff2",
+        crossorigin: "anonymous",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preload",
+        href: "https://gruntwork.io/_next/static/media/6d93bde91c0c2823-s.woff2", // Inter
+        as: "font",
+        type: "font/woff2",
+        crossorigin: "anonymous",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preload",
+        href: "https://gruntwork.io/_next/static/media/a34f9d1faa5f3315-s.p.woff2", // Inter
+        as: "font",
+        type: "font/woff2",
+        crossorigin: "anonymous",
+      },
+    },
+  ],
   presets: [
     [
       "@docusaurus/preset-classic",
