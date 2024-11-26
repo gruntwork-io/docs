@@ -57,7 +57,7 @@
 
 html[data-theme="dark"] {
   --ifm-menu-color-background-hover: rgba(255, 255, 255, 0.05);
-  --ifm-menu-color-background-active: rgba(255, 255, 255, 0.05);
+  --ifm-menu-color-background-active: rgba(255, 255, 255, 0.1);
   --ifm-heading-color: white;
 
   --ifm-color-primary: #87e0e1;
@@ -288,6 +288,12 @@ li.theme-doc-sidebar-item-category-level-1
 .menu__link,
 .menu__caret {
   padding-right: calc(var(--ifm-menu-link-padding-horizontal) / 3);
+}
+
+div:not(.menu__list-item-collapsible--active)
+  > .menu__link--sublist.menu__link--active {
+  color: var(--ifm-menu-color);
+  background-color: none;
 }
 
 .menu__link:after,
