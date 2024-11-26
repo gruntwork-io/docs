@@ -19,7 +19,7 @@ export const HomeContent = () => {
             <h2>Getting Started</h2>
             <CardGroup cols={3}>
               <Card
-                title="Lean About DevOps Foundations"
+                title="Learn About DevOps Foundations"
                 href="/2.0/docs/overview/concepts/devopsfoundations"
                 icon="/img/icons/learn.svg"
               >
