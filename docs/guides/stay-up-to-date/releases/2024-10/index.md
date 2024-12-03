@@ -25,6 +25,7 @@ Here are the repos that were updated:
 - [terraform-aws-eks](#terraform-aws-eks)
 - [terraform-aws-lambda](#terraform-aws-lambda)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
+- [terraform-aws-monitoring](#terraform-aws-monitoring)
 - [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-service-catalog](#terraform-aws-service-catalog)
 - [terraform-aws-vpc](#terraform-aws-vpc)
@@ -410,6 +411,27 @@ note: there was a bug in v0.9.4, it wouldn&apos;t build. this should fix it!
 </div>
 
 
+### [v3.1.0](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v3.1.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/31/2024 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v3.1.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Pipelines CLI v0.31.0 by @Resonance1584 in https://github.com/gruntwork-io/pipelines-workflows/pull/93
+
+If your `terragrunt.hcl` files use `include &#x7B;&#x7D;` blocks to bring in data from other HCL files, pipelines will now detect if those hcl files are changed and trigger a HCL Changed event which will run a `run-all plan` with `--terragrunt-modules-that-include` argument pointed to the changed HCL file. This is currently limited to only work with the `include` block, we plan to address other methods of nesting configuration such as `read_terragrunt_config` in a later release.
+
+- Bootstrap will now correctly detect missing configuration values in `.gruntwork/config.yml`. Previously empty values would be passed through which caused issues with templating new accounts.
+- AWS credentials are now cached which significantly reduces the number of calls made to AWS APIs during a run-all
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v3...v3.1.0
+
+</div>
+
+
 ### [v3.0.5](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v3.0.5)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -756,6 +778,25 @@ jobs:
 ## terraform-aws-ci
 
 
+### [v0.59.1](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.59.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/31/2024 | Modules affected: ecs-deploy-runner | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.59.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Introduce `additional_apk_adds` build argument to enable specifying extra packages downstream without the need for a derived image
+- Bump `github.com/gruntwork-io/terratest` from 0.47.0 to 0.47.2 in /test
+
+
+
+
+</div>
+
+
 ### [v0.59.0](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.59.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -958,6 +999,29 @@ This PR does NOT introduce any changes that are not backwards compatible or requ
 
 
 
+## terraform-aws-monitoring
+
+
+### [v0.36.26](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.36.26)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/31/2024 | Modules affected: agents | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.36.26">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Fix precommit
+- Bumps jqgo due to CVE
+
+
+
+
+</div>
+
+
+
 ## terraform-aws-security
 
 
@@ -1011,8 +1075,9 @@ This PR does NOT introduce any changes that are not backwards compatible or requ
 
 - Add route53 alias default to null since it&apos;s optional
 - Expose SNS topic name variable for CloudTrail
-- Add Support for EKS Access Entries 
-     - **NOTE**: this is a breaking change due to new AWS Provider minimum version requirements. Please see the Migration Guide below for details.
+- **NOTE**: The changes below have a typo in the variable name `access_entry_poilcy_associations`. If upgrading to use EKS Access Entry support, please skip this version and use the next version [v0.117.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.117.0) which has the typo fix included in the release.
+    - Add Support for EKS Access Entries 
+        - **NOTE**: this is a breaking change due to new AWS Provider minimum version requirements. Please see the Migration Guide below for details.
 
 
 
@@ -1132,6 +1197,6 @@ This PR does NOT introduce any changes that are not backwards compatible or requ
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "c820d6445e3817826a67b5e3d586b062"
+  "hash": "4a43e39504866868041cfe8e50f8fd86"
 }
 ##DOCS-SOURCER-END -->
