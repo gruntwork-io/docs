@@ -79,17 +79,17 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-root-to-root-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-root-to-root-account">
             Apply the <code>account-baseline-root</code> baseline to the root
             account
           </a>
-          ,{" "}
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
+
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
             Apply the <code>account-baseline-security</code> to the security
             account
           </a>
-          ,{" "}
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
+
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
             Apply the <code>account-baseline-app</code> to the logs account
           </a>
         </p>
