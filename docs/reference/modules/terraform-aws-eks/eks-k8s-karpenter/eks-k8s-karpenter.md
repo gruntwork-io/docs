@@ -145,7 +145,7 @@ module "eks_k_8_s_karpenter" {
   karpenter_chart_repository_password = null
 
   # Optionally provide a Username for HTTP basic authentication against the
-  # Karpenter Chart repository.
+  # Karpenter Chart repository. 
   karpenter_chart_repository_username = null
 
   # Whether or not to install CRDs with the Karpenter Helm Chart. This should be
@@ -317,7 +317,7 @@ inputs = {
   karpenter_chart_repository_password = null
 
   # Optionally provide a Username for HTTP basic authentication against the
-  # Karpenter Chart repository.
+  # Karpenter Chart repository. 
   karpenter_chart_repository_username = null
 
   # Whether or not to install CRDs with the Karpenter Helm Chart. This should be
@@ -567,7 +567,7 @@ Optionally provide a Password for HTTP basic authentication against the Karpente
 <HclListItem name="karpenter_chart_repository_username" requirement="optional" type="string">
 <HclListItemDescription>
 
-Optionally provide a Username for HTTP basic authentication against the Karpenter Chart repository.
+Optionally provide a Username for HTTP basic authentication against the Karpenter Chart repository. 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>

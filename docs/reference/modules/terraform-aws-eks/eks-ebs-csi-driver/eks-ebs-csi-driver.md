@@ -17,7 +17,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.69.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This Terraform module installs the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to an EKS cluster as an EKS Managed AddOn. The EBS CSI Driver manages the lifecycle of EBS Volumes when used as Kubernetes Volumes. The EBS CSI Driver is enabled by default in EKS clusters >= `1.23`, but not installed. The EBS CSI Driver was installed by default on earlier versions of EKS. This module will create all of the required resources to run the EBS CSI Driver and can be configured as needed without the bounds of the EBS CSI Driver as a Managed AddOn. See the [official documentation](https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html) for more details.
+This Terraform module installs the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to an EKS cluster as an EKS Managed AddOn. The EBS CSI Driver manages the lifecycle of EBS Volumes when used as Kubernetes Volumes. The EBS CSI Driver is enabled by default in EKS clusters &gt;= `1.23`, but not installed. The EBS CSI Driver was installed by default on earlier versions of EKS. This module will create all of the required resources to run the EBS CSI Driver and can be configured as needed without the bounds of the EBS CSI Driver as a Managed AddOn. See the [official documentation](https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html) for more details.
 
 This module is exposed directly on the [eks-cluster-control](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-cluster-control-plane/) module as with the other available EKS AddOns, but this module can also be used independently by toggling the `enable_ebs_csi_driver` to `false` (`false` by default on the `eks-control-plane` module) on the `eks-control-plane` module and instead declaring this module elsewhere within the codebase.
 
@@ -212,7 +212,7 @@ Any types represent complex values of variable type. For details, please consult
 
 ```hcl
 
-   EKS add-on advanced configuration via configuration_values must follow the configuration schema for the deployed version of the add-on.
+   EKS add-on advanced configuration via configuration_values must follow the configuration schema for the deployed version of the add-on. 
    See the following AWS Blog for more details on advanced configuration of EKS add-ons: https://aws.amazon.com/blogs/containers/amazon-eks-add-ons-advanced-configuration/
    Example:
    {
@@ -338,6 +338,6 @@ The latest available version of the EBS CSI AddOn.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-ebs-csi-driver/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9241cbd5d0fa42ba30e5cef4c2f5aee8"
+  "hash": "6c5463f97a8a2fb61eb3969acb4cf340"
 }
 ##DOCS-SOURCER-END -->
