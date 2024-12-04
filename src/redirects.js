@@ -362,10 +362,6 @@ export const redirects = [
       to:   '/2.0/docs/accountfactory/guides/vend-aws-account'
     },
     {
-        from: '/guides/',
-        to: '/'
-    },
-    {
         from: '/guides/index',
         to: '/'
     }
