@@ -28,7 +28,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./production-grade-design/identity-and-access-management#answer-security-questions-and-complete-contact-details">
+          <a href="/guides/build-it-yourself/achieve-compliance/production-grade-design/identity-and-access-management#answer-security-questions-and-complete-contact-details">
             Answer security questions and complete contact details
           </a>
         </p>
@@ -45,7 +45,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./production-grade-design/identity-and-access-management#answer-security-questions-and-complete-contact-details">
+          <a href="/guides/build-it-yourself/achieve-compliance/production-grade-design/identity-and-access-management#answer-security-questions-and-complete-contact-details">
             Answer security questions and complete contact details
           </a>
         </p>
@@ -62,7 +62,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./production-grade-design/identity-and-access-management#answer-security-questions-and-complete-contact-details">
+          <a href="/guides/build-it-yourself/achieve-compliance/production-grade-design/identity-and-access-management#answer-security-questions-and-complete-contact-details">
             Answer security questions and complete contact details
           </a>
         </p>
@@ -108,7 +108,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./production-grade-design/identity-and-access-management#enable-mfa-for-the-root-account">Enable MFA for the root account</a>
+          <a href="/guides/build-it-yourself/achieve-compliance/production-grade-design/identity-and-access-management#enable-mfa-for-the-root-account">Enable MFA for the root account</a>
         </p>
       </td>
       <td className="tableblock halign-left valign-top">
@@ -121,7 +121,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./production-grade-design/identity-and-access-management#enable-mfa-for-the-root-account">Enable MFA for the root account</a>
+          <a href="/guides/build-it-yourself/achieve-compliance/production-grade-design/identity-and-access-management#enable-mfa-for-the-root-account">Enable MFA for the root account</a>
         </p>
       </td>
       <td className="tableblock halign-left valign-top">
@@ -136,7 +136,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./production-grade-design/identity-and-access-management#manual-steps">Manual steps</a>
+          <a href="/guides/build-it-yourself/achieve-compliance/production-grade-design/identity-and-access-management#manual-steps">Manual steps</a>
         </p>
       </td>
       <td className="tableblock halign-left valign-top">
@@ -151,7 +151,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
             Apply the <code>account-baseline-security</code> to the security
             account
           </a>
@@ -170,7 +170,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./production-grade-design/identity-and-access-management#configure-authentication">Configure authentication</a>
+          <a href="/guides/build-it-yourself/achieve-compliance/production-grade-design/identity-and-access-management#configure-authentication">Configure authentication</a>
         </p>
       </td>
       <td className="tableblock halign-left valign-top">
@@ -183,7 +183,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
             Apply the <code>account-baseline-security</code> to the security
             account
           </a>
@@ -201,17 +201,17 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-root-to-root-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-root-to-root-account">
             Apply the <code>account-baseline-root</code> baseline to the root
             account
           </a>
           ,{" "}
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
             Apply the <code>account-baseline-security</code> to the security
             account
           </a>
           ,{" "}
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
             Apply the <code>account-baseline-app</code> to the logs account
           </a>
         </p>
@@ -229,17 +229,17 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-root-to-root-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-root-to-root-account">
             Apply the <code>account-baseline-root</code> baseline to the root
             account
           </a>
           ,{" "}
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
             Apply the <code>account-baseline-security</code> to the security
             account
           </a>
           ,{" "}
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
             Apply the <code>account-baseline-app</code> to the logs account
           </a>
         </p>
@@ -257,17 +257,17 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-root-to-root-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-root-to-root-account">
             Apply the <code>account-baseline-root</code> baseline to the root
             account
           </a>
           ,{" "}
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
             Apply the <code>account-baseline-security</code> to the security
             account
           </a>
           ,{" "}
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
             Apply the <code>account-baseline-app</code> to the logs account
           </a>
         </p>
@@ -285,7 +285,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
             Apply the <code>account-baseline-security</code> to the security
             account
           </a>
@@ -304,7 +304,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
             Apply the <code>account-baseline-security</code> to the security
             account
           </a>
@@ -323,7 +323,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
             Apply the <code>account-baseline-security</code> to the security
             account
           </a>
@@ -342,7 +342,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/use-iam-roles-for-ec2-instances">Use IAM roles for EC2 instances</a>
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/use-iam-roles-for-ec2-instances">Use IAM roles for EC2 instances</a>
         </p>
       </td>
       <td className="tableblock halign-left valign-top">
@@ -357,7 +357,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./production-grade-design/identity-and-access-management#cleanup-expired-ssltls-certificates">
+          <a href="/guides/build-it-yourself/achieve-compliance/production-grade-design/identity-and-access-management#cleanup-expired-ssltls-certificates">
             Cleanup Expired SSL/TLS certificates
           </a>
         </p>
@@ -375,7 +375,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./production-grade-design/identity-and-access-management#iam-access-analyzer">IAM Access Analyzer</a>
+          <a href="/guides/build-it-yourself/achieve-compliance/production-grade-design/identity-and-access-management#iam-access-analyzer">IAM Access Analyzer</a>
         </p>
       </td>
       <td className="tableblock halign-left valign-top">
@@ -390,17 +390,17 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-root-to-root-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-root-to-root-account">
             Apply the <code>account-baseline-root</code> baseline to the root
             account
           </a>
           ,{" "}
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
             Apply the <code>account-baseline-security</code> to the security
             account
           </a>
           ,{" "}
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
             Apply the <code>account-baseline-app</code> to the logs account
           </a>
         </p>
@@ -419,7 +419,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/maintain-compliance-by-following-storage-best-practices#s3-buckets">S3 Buckets</a>
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/maintain-compliance-by-following-storage-best-practices#s3-buckets">S3 Buckets</a>
         </p>
       </td>
       <td className="tableblock halign-left valign-top">
@@ -434,7 +434,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/maintain-compliance-by-following-storage-best-practices#s3-buckets">S3 Buckets</a>
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/maintain-compliance-by-following-storage-best-practices#s3-buckets">S3 Buckets</a>
         </p>
       </td>
       <td className="tableblock halign-left valign-top">
@@ -450,17 +450,17 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-root-to-root-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-root-to-root-account">
             Apply the <code>account-baseline-root</code> baseline to the root
             account
           </a>
           ,{" "}
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
             Apply the <code>account-baseline-security</code> to the security
             account
           </a>
           ,{" "}
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
             Apply the <code>account-baseline-app</code> to the logs account
           </a>
         </p>
@@ -478,7 +478,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/maintain-compliance-by-following-storage-best-practices#s3-buckets">S3 Buckets</a>
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/maintain-compliance-by-following-storage-best-practices#s3-buckets">S3 Buckets</a>
         </p>
       </td>
       <td className="tableblock halign-left valign-top">
@@ -493,7 +493,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./production-grade-design/storage#configure-ebs-encryption">Configure EBS Encryption</a>
+          <a href="/guides/build-it-yourself/achieve-compliance/production-grade-design/storage#configure-ebs-encryption">Configure EBS Encryption</a>
         </p>
       </td>
       <td className="tableblock halign-left valign-top">
@@ -508,7 +508,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./production-grade-design/storage#configure-rds-encryption">Configure RDS Encryption</a>
+          <a href="/guides/build-it-yourself/achieve-compliance/production-grade-design/storage#configure-rds-encryption">Configure RDS Encryption</a>
         </p>
       </td>
       <td className="tableblock halign-left valign-top">
@@ -523,7 +523,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
             Apply the <code>account-baseline-app</code> to the logs account
           </a>
         </p>
@@ -541,7 +541,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-security-to-security-account">
             Apply the <code>account-baseline-security</code> to the security
             account
           </a>
@@ -560,7 +560,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
             Apply the <code>account-baseline-app</code> to the logs account
           </a>
         </p>
@@ -578,7 +578,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
             Apply the <code>account-baseline-app</code> to the logs account
           </a>
         </p>
@@ -596,7 +596,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/enable-key-rotation-for-kms-keys">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/enable-key-rotation-for-kms-keys">
             Enable key rotation for KMS keys
           </a>
         </p>
@@ -611,7 +611,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/create-vpc-flow-logs">Create VPC flow logs</a>
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/create-vpc-flow-logs">Create VPC flow logs</a>
         </p>
       </td>
       <td className="tableblock halign-left valign-top">
@@ -627,7 +627,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/deploy-landing-zone-solution/apply-account-baseline-app-to-logs-account">
             Apply the <code>account-baseline-app</code> to the logs account
           </a>
         </p>
@@ -645,7 +645,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/create-vpc-flow-logs#maintaining-compliance-by-following-monitoring-best-practices">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/create-vpc-flow-logs#maintaining-compliance-by-following-monitoring-best-practices">
             Maintaining compliance by following Monitoring best practices
           </a>
         </p>
@@ -663,7 +663,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/create-vpc-flow-logs#maintaining-compliance-by-following-networking-best-practices">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/create-vpc-flow-logs#maintaining-compliance-by-following-networking-best-practices">
             Maintaining compliance by following Networking best practices
           </a>
         </p>
@@ -681,7 +681,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/create-vpc-flow-logs#maintaining-compliance-by-following-networking-best-practices">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/create-vpc-flow-logs#maintaining-compliance-by-following-networking-best-practices">
             Maintaining compliance by following Networking best practices
           </a>
         </p>
@@ -699,7 +699,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/create-vpc-flow-logs#maintaining-compliance-by-following-networking-best-practices">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/create-vpc-flow-logs#maintaining-compliance-by-following-networking-best-practices">
             Maintaining compliance by following Networking best practices
           </a>
         </p>
@@ -717,7 +717,7 @@ sections above.
       </td>
       <td className="tableblock halign-left valign-top">
         <p className="tableblock">
-          <a href="./deployment-walkthrough/create-vpc-flow-logs#maintaining-compliance-by-following-networking-best-practices">
+          <a href="/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/create-vpc-flow-logs#maintaining-compliance-by-following-networking-best-practices">
             Maintaining compliance by following Networking best practices
           </a>
         </p>
