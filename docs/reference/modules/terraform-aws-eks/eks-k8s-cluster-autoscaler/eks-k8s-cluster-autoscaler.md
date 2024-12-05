@@ -9,21 +9,21 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.72.0" lastModifiedVersion="0.70.2"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.72.1" lastModifiedVersion="0.72.1"/>
 
 # K8S Cluster Autoscaler Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-k8s-cluster-autoscaler" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-cluster-autoscaler" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.70.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.72.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module installs a [Cluster Autoscaler](https://github.com/kubernetes/autoscaler/tree/b6d53e8/cluster-autoscaler)
 to automatically scale up and down the nodes in a cluster in response to resource utilization.
 
 This module is responsible for manipulating each Auto Scaling Group (ASG) that was created by the [EKS cluster
-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-cluster-workers) module. By default, the ASG is configured to allow zero-downtime
+workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-cluster-workers) module. By default, the ASG is configured to allow zero-downtime
 deployments but is not configured to scale automatically. You must launch an [EKS control
-plane](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-cluster-control-plane) with worker nodes for this module to function.
+plane](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-cluster-control-plane) with worker nodes for this module to function.
 
 ## IAM Policy Considerations
 
@@ -62,7 +62,7 @@ variables.
 
 module "eks_k_8_s_cluster_autoscaler" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler?ref=v0.72.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler?ref=v0.72.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -91,9 +91,25 @@ module "eks_k_8_s_cluster_autoscaler" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # A map of custom tags to apply to the Autoscaler Fargate Profile IAM Role if
+  # enabled. The key is the tag name and the value is the tag value.
+  autoscaler_fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the Autoscaler Fargate Profile if enabled.
+  # The key is the tag name and the value is the tag value.
+  autoscaler_fargate_profile_tags = {}
+
+  # A map of custom tags to apply to the Autoscaler IAM Policies if enabled. The
+  # key is the tag name and the value is the tag value.
+  autoscaler_iam_policy_tags = {}
+
   # ARN of permissions boundary to apply to the autoscaler IAM role - the IAM
   # role created for the Autoscaler
   autoscaler_iam_role_permissions_boundary = null
+
+  # A map of custom tags to apply to the Autoscaler IAM Role if enabled. The key
+  # is the tag name and the value is the tag value.
+  autoscaler_iam_role_tags = {}
 
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
@@ -139,6 +155,9 @@ module "eks_k_8_s_cluster_autoscaler" {
   # When set to true, create a dedicated Fargate execution profile for the
   # cluster autoscaler.
   create_fargate_profile = false
+
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -225,7 +244,7 @@ module "eks_k_8_s_cluster_autoscaler" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler?ref=v0.72.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler?ref=v0.72.1"
 }
 
 inputs = {
@@ -257,9 +276,25 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # A map of custom tags to apply to the Autoscaler Fargate Profile IAM Role if
+  # enabled. The key is the tag name and the value is the tag value.
+  autoscaler_fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the Autoscaler Fargate Profile if enabled.
+  # The key is the tag name and the value is the tag value.
+  autoscaler_fargate_profile_tags = {}
+
+  # A map of custom tags to apply to the Autoscaler IAM Policies if enabled. The
+  # key is the tag name and the value is the tag value.
+  autoscaler_iam_policy_tags = {}
+
   # ARN of permissions boundary to apply to the autoscaler IAM role - the IAM
   # role created for the Autoscaler
   autoscaler_iam_role_permissions_boundary = null
+
+  # A map of custom tags to apply to the Autoscaler IAM Role if enabled. The key
+  # is the tag name and the value is the tag value.
+  autoscaler_iam_role_tags = {}
 
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
@@ -305,6 +340,9 @@ inputs = {
   # When set to true, create a dedicated Fargate execution profile for the
   # cluster autoscaler.
   create_fargate_profile = false
+
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -384,15 +422,14 @@ inputs = {
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-k8s-cluster-autoscaler/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-k8s-cluster-autoscaler/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-k8s-cluster-autoscaler/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-cluster-autoscaler/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-cluster-autoscaler/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-cluster-autoscaler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1a77247a0f49a10f1b7fcdef4b23cf02"
+  "hash": "e13fd6bc4a74f567cdc5f611d5d95f24"
 }
 ##DOCS-SOURCER-END -->
