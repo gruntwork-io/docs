@@ -479,7 +479,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

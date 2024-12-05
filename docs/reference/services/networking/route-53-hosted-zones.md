@@ -545,7 +545,6 @@ A map of domains to resource arns and hosted zones of the created Service Discov
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

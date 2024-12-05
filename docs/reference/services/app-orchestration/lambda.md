@@ -1420,7 +1420,6 @@ Latest published version of your Lambda Function
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

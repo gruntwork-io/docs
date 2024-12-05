@@ -2126,7 +2126,6 @@ The ID of the Security Group that belongs to the ASG.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

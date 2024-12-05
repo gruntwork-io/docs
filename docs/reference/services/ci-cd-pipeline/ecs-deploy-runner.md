@@ -2538,7 +2538,6 @@ Security Group ID of the ECS task
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

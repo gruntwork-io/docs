@@ -1481,7 +1481,6 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

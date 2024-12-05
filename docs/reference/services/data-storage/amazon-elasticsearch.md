@@ -1575,7 +1575,6 @@ Domain-specific endpoint for Kibana without https scheme.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

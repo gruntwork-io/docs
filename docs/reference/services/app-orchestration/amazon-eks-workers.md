@@ -318,6 +318,18 @@ module "eks_workers" {
   # your cluster.
   asg_use_resource_name_prefix = true
 
+  # A map of custom tags to apply to the EKS Worker IAM Policies. The key is the
+  # tag name and the value is the tag value.
+  asg_worker_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag
+  # name and the value is the tag value.
+  asg_worker_iam_role_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Instance Profile. The
+  # key is the tag name and the value is the tag value.
+  asg_worker_instance_profile_tags = {}
+
   # Adds additional tags to each ASG that allow a cluster autoscaler to
   # auto-discover them. Only used for self-managed workers.
   autoscaling_group_include_autoscaler_discovery_tags = true
@@ -382,6 +394,11 @@ module "eks_workers" {
   # Parameters for the worker memory usage widget to output for use in a
   # CloudWatch dashboard.
   dashboard_memory_usage_widget_parameters = {"height":6,"period":60,"width":8}
+
+  # A map of default tags to apply to all supported resources in this module.
+  # These tags will be merged with any other resource specific tags. The key is
+  # the tag name and the value is the tag value.
+  default_tags = {}
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -560,6 +577,10 @@ module "eks_workers" {
   # A map of tags to apply to the Security Group of the ASG for the managed node
   # group pool. The key is the tag name and the value is the tag value.
   node_group_security_group_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag
+  # name and the value is the tag value.
+  node_group_worker_iam_role_tags = {}
 
   # If you are using ssh-grunt, this is the name of the IAM group from which
   # users will be allowed to SSH to the EKS workers. To omit this variable, set
@@ -840,6 +861,18 @@ inputs = {
   # your cluster.
   asg_use_resource_name_prefix = true
 
+  # A map of custom tags to apply to the EKS Worker IAM Policies. The key is the
+  # tag name and the value is the tag value.
+  asg_worker_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag
+  # name and the value is the tag value.
+  asg_worker_iam_role_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Instance Profile. The
+  # key is the tag name and the value is the tag value.
+  asg_worker_instance_profile_tags = {}
+
   # Adds additional tags to each ASG that allow a cluster autoscaler to
   # auto-discover them. Only used for self-managed workers.
   autoscaling_group_include_autoscaler_discovery_tags = true
@@ -904,6 +937,11 @@ inputs = {
   # Parameters for the worker memory usage widget to output for use in a
   # CloudWatch dashboard.
   dashboard_memory_usage_widget_parameters = {"height":6,"period":60,"width":8}
+
+  # A map of default tags to apply to all supported resources in this module.
+  # These tags will be merged with any other resource specific tags. The key is
+  # the tag name and the value is the tag value.
+  default_tags = {}
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -1082,6 +1120,10 @@ inputs = {
   # A map of tags to apply to the Security Group of the ASG for the managed node
   # group pool. The key is the tag name and the value is the tag value.
   node_group_security_group_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag
+  # name and the value is the tag value.
+  node_group_worker_iam_role_tags = {}
 
   # If you are using ssh-grunt, this is the name of the IAM group from which
   # users will be allowed to SSH to the EKS workers. To omit this variable, set
@@ -1815,6 +1857,33 @@ When true, all the relevant resources for self managed workers will be set to us
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="asg_worker_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Policies. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="asg_worker_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="asg_worker_instance_profile_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Instance Profile. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="autoscaling_group_include_autoscaler_discovery_tags" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2149,6 +2218,15 @@ object({
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of default tags to apply to all supported resources in this module. These tags will be merged with any other resource specific tags. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
@@ -2491,6 +2569,15 @@ A map of tags to apply to the Security Group of the ASG for the managed node gro
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="node_group_worker_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="ssh_grunt_iam_group" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2707,7 +2794,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -2716,6 +2802,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "485fa87c38c21bfb7acf0d2e241a9a3e"
+  "hash": "3091c6bd94e6d77d68ab1ae1c014b995"
 }
 ##DOCS-SOURCER-END -->

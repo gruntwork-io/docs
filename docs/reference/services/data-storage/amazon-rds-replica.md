@@ -1665,7 +1665,6 @@ A list of IDs of the RDS DB instance's read replicas.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

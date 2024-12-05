@@ -323,7 +323,6 @@ The ARN of the SNS topic.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

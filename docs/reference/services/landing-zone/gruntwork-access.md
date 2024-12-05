@@ -292,7 +292,6 @@ The name of the IAM role
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

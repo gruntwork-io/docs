@@ -466,7 +466,6 @@ The configuration endpoint to allow host discovery.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

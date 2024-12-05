@@ -232,7 +232,6 @@ The name of the ECS cluster.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

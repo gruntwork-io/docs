@@ -168,6 +168,23 @@ module "eks_core_services" {
   # deployed.
   alb_ingress_controller_docker_image_tag = "v2.4.1"
 
+  # A map of custom tags to apply to the Controller Fargate Profile IAM
+  # Execution Role if enabled. The key is the tag name and the value is the tag
+  # value.
+  alb_ingress_controller_eks_fargate_profile_execution_role_tags = {}
+
+  # A map of custom tags to apply to the Controller Fargate Profile if enabled.
+  # The key is the tag name and the value is the tag value.
+  alb_ingress_controller_eks_fargate_profile_tags = {}
+
+  # A map of custom tags to apply to the Controller IAM Policies if enabled. The
+  # key is the tag name and the value is the tag value.
+  alb_ingress_controller_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the Controller IAM Role if enabled. The key
+  # is the tag name and the value is the tag value.
+  alb_ingress_controller_iam_role_tags = {}
+
   # Configure affinity rules for the ALB Ingress Controller Pod to control which
   # nodes to schedule on. Each item in the list should be a map with the keys
   # `key`, `values`, and `operator`, corresponding to the 3 properties of
@@ -199,6 +216,10 @@ module "eks_core_services" {
   # If true cluster autoscaler will never delete nodes with pods with local
   # storage, e.g. EmptyDir or HostPath
   autoscaler_skip_nodes_with_local_storage = true
+
+  # A map of custom tags to apply to the Agent IAM Role if enabled. The key is
+  # the tag name and the value is the tag value.
+  aws_cloudwatch_agent_iam_role_tags = {}
 
   # The Container repository to use for looking up the cloudwatch-agent
   # Container image when deploying the pods. When null, uses the default
@@ -237,6 +258,22 @@ module "eks_core_services" {
   # is different from the app/container version, which is sepecified with
   # var.cluster_autoscaler_version.
   cluster_autoscaler_chart_version = "9.21.0"
+
+  # A map of custom tags to apply to the Autoscaler Fargate Profile IAM Role if
+  # enabled. The key is the tag name and the value is the tag value.
+  cluster_autoscaler_fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the Autoscaler Fargate Profile if enabled.
+  # The key is the tag name and the value is the tag value.
+  cluster_autoscaler_fargate_profile_tags = {}
+
+  # A map of custom tags to apply to the Autoscaler IAM Policies if enabled. The
+  # key is the tag name and the value is the tag value.
+  cluster_autoscaler_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the Autoscaler IAM Role if enabled. The key
+  # is the tag name and the value is the tag value.
+  cluster_autoscaler_iam_role_tags = {}
 
   # Annotations to apply to the cluster autoscaler pod(s), as key value pairs.
   cluster_autoscaler_pod_annotations = {}
@@ -293,6 +330,9 @@ module "eks_core_services" {
   # required.
   create_cluster_autoscaler_role = true
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # Whether or not to enable the AWS LB Ingress controller.
   enable_alb_ingress_controller = true
 
@@ -337,6 +377,22 @@ module "eks_core_services" {
   # The version of the helm chart to use. Note that this is different from the
   # app/container version.
   external_dns_chart_version = "6.12.2"
+
+  # A map of custom tags to apply to the External DNS Fargate Profile IAM Role
+  # if enabled. The key is the tag name and the value is the tag value.
+  external_dns_fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the External DNS Fargate Profile if
+  # enabled. The key is the tag name and the value is the tag value.
+  external_dns_fargate_profile_tags = {}
+
+  # A map of custom tags to apply to the External DNS IAM Policies if enabled.
+  # The key is the tag name and the value is the tag value.
+  external_dns_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the External DNS IAM Role if enabled. The
+  # key is the tag name and the value is the tag value.
+  external_dns_iam_role_tags = {}
 
   # The registry to use for the external-dns image.
   external_dns_image_registry = null
@@ -407,6 +463,11 @@ module "eks_core_services" {
   # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configuration-file#config_output).
   fargate_fluent_bit_extra_parsers = ""
 
+  # A map of custom tags to apply to the IAM Policies created for the Fargate
+  # Execution IAM Role if enabled. The key is the tag name and the value is the
+  # tag value.
+  fargate_fluent_bit_iam_policy_tags = {}
+
   # Whether or not Kubernetes metadata is added to the log files
   fargate_fluent_bit_include_kubernetes_metadata = true
 
@@ -455,6 +516,14 @@ module "eks_core_services" {
   # according to Fluent Bit docs, as it will be injected directly into the
   # fluent-bit.conf file.
   fluent_bit_extra_parsers = ""
+
+  # A map of custom tags to apply to the IAM Policies created for the fluentbit
+  # IAM Role if enabled. The key is the tag name and the value is the tag value.
+  fluent_bit_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the fluentbit IAM Role if enabled. The key
+  # is the tag name and the value is the tag value.
+  fluent_bit_iam_role_tags = {}
 
   # The Container repository to use for looking up the aws-for-fluent-bit
   # Container image when deploying the pods. When null, uses the default
@@ -649,6 +718,23 @@ inputs = {
   # deployed.
   alb_ingress_controller_docker_image_tag = "v2.4.1"
 
+  # A map of custom tags to apply to the Controller Fargate Profile IAM
+  # Execution Role if enabled. The key is the tag name and the value is the tag
+  # value.
+  alb_ingress_controller_eks_fargate_profile_execution_role_tags = {}
+
+  # A map of custom tags to apply to the Controller Fargate Profile if enabled.
+  # The key is the tag name and the value is the tag value.
+  alb_ingress_controller_eks_fargate_profile_tags = {}
+
+  # A map of custom tags to apply to the Controller IAM Policies if enabled. The
+  # key is the tag name and the value is the tag value.
+  alb_ingress_controller_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the Controller IAM Role if enabled. The key
+  # is the tag name and the value is the tag value.
+  alb_ingress_controller_iam_role_tags = {}
+
   # Configure affinity rules for the ALB Ingress Controller Pod to control which
   # nodes to schedule on. Each item in the list should be a map with the keys
   # `key`, `values`, and `operator`, corresponding to the 3 properties of
@@ -680,6 +766,10 @@ inputs = {
   # If true cluster autoscaler will never delete nodes with pods with local
   # storage, e.g. EmptyDir or HostPath
   autoscaler_skip_nodes_with_local_storage = true
+
+  # A map of custom tags to apply to the Agent IAM Role if enabled. The key is
+  # the tag name and the value is the tag value.
+  aws_cloudwatch_agent_iam_role_tags = {}
 
   # The Container repository to use for looking up the cloudwatch-agent
   # Container image when deploying the pods. When null, uses the default
@@ -718,6 +808,22 @@ inputs = {
   # is different from the app/container version, which is sepecified with
   # var.cluster_autoscaler_version.
   cluster_autoscaler_chart_version = "9.21.0"
+
+  # A map of custom tags to apply to the Autoscaler Fargate Profile IAM Role if
+  # enabled. The key is the tag name and the value is the tag value.
+  cluster_autoscaler_fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the Autoscaler Fargate Profile if enabled.
+  # The key is the tag name and the value is the tag value.
+  cluster_autoscaler_fargate_profile_tags = {}
+
+  # A map of custom tags to apply to the Autoscaler IAM Policies if enabled. The
+  # key is the tag name and the value is the tag value.
+  cluster_autoscaler_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the Autoscaler IAM Role if enabled. The key
+  # is the tag name and the value is the tag value.
+  cluster_autoscaler_iam_role_tags = {}
 
   # Annotations to apply to the cluster autoscaler pod(s), as key value pairs.
   cluster_autoscaler_pod_annotations = {}
@@ -774,6 +880,9 @@ inputs = {
   # required.
   create_cluster_autoscaler_role = true
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # Whether or not to enable the AWS LB Ingress controller.
   enable_alb_ingress_controller = true
 
@@ -818,6 +927,22 @@ inputs = {
   # The version of the helm chart to use. Note that this is different from the
   # app/container version.
   external_dns_chart_version = "6.12.2"
+
+  # A map of custom tags to apply to the External DNS Fargate Profile IAM Role
+  # if enabled. The key is the tag name and the value is the tag value.
+  external_dns_fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the External DNS Fargate Profile if
+  # enabled. The key is the tag name and the value is the tag value.
+  external_dns_fargate_profile_tags = {}
+
+  # A map of custom tags to apply to the External DNS IAM Policies if enabled.
+  # The key is the tag name and the value is the tag value.
+  external_dns_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the External DNS IAM Role if enabled. The
+  # key is the tag name and the value is the tag value.
+  external_dns_iam_role_tags = {}
 
   # The registry to use for the external-dns image.
   external_dns_image_registry = null
@@ -888,6 +1013,11 @@ inputs = {
   # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configuration-file#config_output).
   fargate_fluent_bit_extra_parsers = ""
 
+  # A map of custom tags to apply to the IAM Policies created for the Fargate
+  # Execution IAM Role if enabled. The key is the tag name and the value is the
+  # tag value.
+  fargate_fluent_bit_iam_policy_tags = {}
+
   # Whether or not Kubernetes metadata is added to the log files
   fargate_fluent_bit_include_kubernetes_metadata = true
 
@@ -936,6 +1066,14 @@ inputs = {
   # according to Fluent Bit docs, as it will be injected directly into the
   # fluent-bit.conf file.
   fluent_bit_extra_parsers = ""
+
+  # A map of custom tags to apply to the IAM Policies created for the fluentbit
+  # IAM Role if enabled. The key is the tag name and the value is the tag value.
+  fluent_bit_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the fluentbit IAM Role if enabled. The key
+  # is the tag name and the value is the tag value.
+  fluent_bit_iam_role_tags = {}
 
   # The Container repository to use for looking up the aws-for-fluent-bit
   # Container image when deploying the pods. When null, uses the default
@@ -1175,6 +1313,42 @@ The tag of the aws-load-balancer-controller docker image that should be deployed
 <HclListItemDefaultValue defaultValue="&quot;v2.4.1&quot;"/>
 </HclListItem>
 
+<HclListItem name="alb_ingress_controller_eks_fargate_profile_execution_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Controller Fargate Profile IAM Execution Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_eks_fargate_profile_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Controller Fargate Profile if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Controller IAM Policies if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Controller IAM Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="alb_ingress_controller_pod_node_affinity" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
@@ -1314,6 +1488,15 @@ If true cluster autoscaler will never delete nodes with pods with local storage,
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="aws_cloudwatch_agent_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Agent IAM Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="aws_cloudwatch_agent_image_repository" requirement="optional" type="string">
@@ -1495,6 +1678,42 @@ The version of the cluster-autoscaler helm chart to deploy. Note that this is di
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;9.21.0&quot;"/>
+</HclListItem>
+
+<HclListItem name="cluster_autoscaler_fargate_profile_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Autoscaler Fargate Profile IAM Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="cluster_autoscaler_fargate_profile_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Autoscaler Fargate Profile if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="cluster_autoscaler_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Autoscaler IAM Policies if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="cluster_autoscaler_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Autoscaler IAM Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="cluster_autoscaler_pod_annotations" requirement="optional" type="map(string)">
@@ -1729,6 +1948,15 @@ When set to true, create a new dedicated IAM Role for the cluster autoscaler. Wh
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply to all AWS resources managed by this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="enable_alb_ingress_controller" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1826,6 +2054,42 @@ The version of the helm chart to use. Note that this is different from the app/c
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;6.12.2&quot;"/>
+</HclListItem>
+
+<HclListItem name="external_dns_fargate_profile_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the External DNS Fargate Profile IAM Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="external_dns_fargate_profile_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the External DNS Fargate Profile if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="external_dns_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the External DNS IAM Policies if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="external_dns_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the External DNS IAM Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="external_dns_image_registry" requirement="optional" type="string">
@@ -2071,6 +2335,15 @@ Additional parsers that fluent-bit should export logs to. This string should be 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="fargate_fluent_bit_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the IAM Policies created for the Fargate Execution IAM Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="fargate_fluent_bit_include_kubernetes_metadata" requirement="optional" type="bool">
@@ -2326,6 +2599,24 @@ Can be used to add additional log parsers. This string should be formatted accor
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="fluent_bit_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the IAM Policies created for the fluentbit IAM Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="fluent_bit_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the fluentbit IAM Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="fluent_bit_image_repository" requirement="optional" type="string">
@@ -2690,7 +2981,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -2699,6 +2989,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c5de6529b6a9e2b01848f151305f7dcc"
+  "hash": "789141f79bc2271388ccc9028717af81"
 }
 ##DOCS-SOURCER-END -->

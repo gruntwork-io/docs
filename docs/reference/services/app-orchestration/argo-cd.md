@@ -97,9 +97,20 @@ module "eks_argocd" {
   # Conditional flag to optionally create resources in this module.
   create_resources = true
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # The name of the EKS Cluster that Argo CD will be deployed to. Required if
   # deploying to Fargate.
   eks_cluster_name = ""
+
+  # A map of custom tags to apply to the Fargate Profile IAM Role if enabled.
+  # The key is the tag name and the value is the tag value.
+  fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the Fargate Profile if enabled. The key is
+  # the tag name and the value is the tag value.
+  fargate_profile_tags = {}
 
   # ARN of IAM Role to use as the Pod execution role for Fargate. Set to null
   # (default) to create a new one. Only used when var.create_fargate_profile is
@@ -186,9 +197,20 @@ inputs = {
   # Conditional flag to optionally create resources in this module.
   create_resources = true
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # The name of the EKS Cluster that Argo CD will be deployed to. Required if
   # deploying to Fargate.
   eks_cluster_name = ""
+
+  # A map of custom tags to apply to the Fargate Profile IAM Role if enabled.
+  # The key is the tag name and the value is the tag value.
+  fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the Fargate Profile if enabled. The key is
+  # the tag name and the value is the tag value.
+  fargate_profile_tags = {}
 
   # ARN of IAM Role to use as the Pod execution role for Fargate. Set to null
   # (default) to create a new one. Only used when var.create_fargate_profile is
@@ -351,6 +373,15 @@ Conditional flag to optionally create resources in this module.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply to all AWS resources managed by this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="eks_cluster_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -358,6 +389,24 @@ The name of the EKS Cluster that Argo CD will be deployed to. Required if deploy
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="fargate_profile_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Fargate Profile IAM Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="fargate_profile_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Fargate Profile if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="pod_execution_iam_role_arn" requirement="optional" type="string">
@@ -386,7 +435,6 @@ A list of the subnets into which the Argo CD pods will be launched. These should
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -395,6 +443,6 @@ A list of the subnets into which the Argo CD pods will be launched. These should
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/services/eks-argocd/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ff7c59faa43490b0e05217d71363da00"
+  "hash": "eefd751fbb1906e8aefd8cef14b09152"
 }
 ##DOCS-SOURCER-END -->

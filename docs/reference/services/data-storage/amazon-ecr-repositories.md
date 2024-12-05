@@ -528,7 +528,6 @@ A list of IAM policy actions necessary for ECR write access.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

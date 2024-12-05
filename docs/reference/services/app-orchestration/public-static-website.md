@@ -1070,7 +1070,6 @@ The ARN of the created S3 bucket associated with the website.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

@@ -3008,7 +3008,6 @@ The names of the ECS service's load balancer's target groups
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

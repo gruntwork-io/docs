@@ -424,7 +424,6 @@ The name of the rbac role that grants read only permissions on the namespace.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

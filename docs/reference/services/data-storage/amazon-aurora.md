@@ -2319,7 +2319,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

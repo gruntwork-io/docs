@@ -831,7 +831,6 @@ Security Group ID used for redis cluster.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
