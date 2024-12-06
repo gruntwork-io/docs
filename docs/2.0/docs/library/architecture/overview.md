@@ -1,53 +1,43 @@
-import OpenTofuNotice from "/src/components/OpenTofuNotice"
+Import OpenTofuNotice from "/src/components/OpenTofuNotice."
 
 # Overview
 
 ## How modules are structured
 
-The code in the module repos are organized into three primary folders:
+The code in the module repositories is organized into three primary folders:
 
-1. `modules`: The core implementation code. All of the modules that you will use and deploy are defined within. For example to ECS cluster module in the `terraform-aws-ecs` repo in `modules/ecs-cluster`.
+1. `modules`: This folder contains the core implementation code. All modules you use and deploy are defined here. For example, you can locate the ECS cluster module in the `terraform-aws-ecs` repository within `modules/ecs-cluster`.
 
-1. `examples`: Sample code that shows how to use the modules in the `modules` folder and allows you to try them out without having to write any code: `cd` into one of the folders, follow a few steps in the README (e.g. run `terraform apply`), and you’ll have a fully working module up and running. In other words, this is executable documentation.
+1. `examples`: This folder includes sample code demonstrating how to use the modules in the `modules` folder. These examples allow you to try the modules without writing code. Navigate to one of the example directories, follow the steps in the README (e.g., run `terraform apply`), and you will have a working module. These examples serve as executable documentation.
 
-1. `test`: Automated tests for the code in modules and examples.
+1. `test`: This folder contains automated tests for the code in both the `modules` and `examples` folders.
 
-We follow Hashicorp's [Standard Model Structure](https://developer.hashicorp.com/terraform/language/modules/develop/structure) for our files (`main.tf`, `variables.tf`, `outputs.tf`). In the `variables.tf` file we always put the required variables at the top of the file, followed by the optional variables. Although there are often a lot of ways to configure our modules, we set reasonable defaults and try to minimize the effort required to configure the modules to the most common use cases.
+The structure of these files follows HashiCorp's [Standard Module Structure](https://developer.hashicorp.com/terraform/language/modules/develop/structure), including `main.tf`, `variables.tf`, and `outputs.tf`. In the `variables.tf` file, required variables are listed first, followed by optional ones. Although many configurations are possible, the modules are designed with reasonable defaults to simplify setup for the most common use cases.
 
 ## How services are structured
 
-The code in the `terraform-aws-service-catalog` repo is organized into three primary folders:
+The `terraform-aws-service-catalog` repository organizes its code into three main folders:
 
-1. `modules`: The core implementation code of this repo. All the services that you will use and deploy are defined within, such as the EKS cluster service in modules/services/eks-cluster.
+1. `modules`: This folder contains the core implementation code for the services you use and deploy. For instance, the EKS cluster service resides in `modules/services/eks-cluster`.
 
-1. `examples`: Sample code that shows how to use the services in the modules folder and allows you to try the services out without having to write any code: you `cd` into one of the folders, follow a few steps in the README (e.g., run `terraform apply`), and you’ll have fully working infrastructure up and running. In other words, this is executable documentation. Note that the examples folder contains two sub-folders:
+1. `examples`: This folder provides a sample code demonstrating how to use the services in the `modules` folder. These examples enable you to deploy services without writing code. Navigate to a directory, follow the README instructions (e.g., run `terraform apply`), and you will have working infrastructure. This folder contains two sub-folders:
 
-    1. `for-learning-and-testing`: Example code that is optimized for learning, experimenting, and testing, but not
-      direct production usage. Most of these examples use Terraform directly to make it easy to fill in dependencies
-      that are convenient for testing, but not necessarily those you’d use in production: e.g., default VPCs or mock
-      database URLs.
+1. `for-learning-and-testing`: These examples are optimized for experimentation and testing but not for direct production use. They often rely on default VPCs or mock database URLs for convenience.
 
-    1. `for-production`: Example code optimized for direct usage in production. This is code from the [Gruntwork Reference
-      Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an end-to-end,
-      integrated tech stack on top of the Gruntwork Service Catalog. To keep the code DRY and manage dependencies
-      between modules, the code is deployed using [Terragrunt](https://terragrunt.gruntwork.io/). However, Terragrunt
-      is NOT required to use the Gruntwork Service Catalog: you can alternatively use vanilla Terraform or Terraform
-      Cloud / Enterprise, as described [here](https://docs.gruntwork.io/reference/services/intro/deploy-new-infrastructure#how-to-deploy-terraform-code-from-the-service-catalog).
+1. `for-production`: These examples are optimized for direct production use. They showcase how Gruntwork's Reference Architecture integrates a complete tech stack using the Gruntwork Service Catalog. To keep the code DRY and manage dependencies, you can deploy these examples using [Terragrunt](https://terragrunt.gruntwork.io/). Terragrunt is not required to use the Gruntwork Service Catalog; you can use vanilla Terraform or Terraform Cloud/Enterprise.
 
-    1. Not all modules have a `for-production` example, but you can still create a production-grade configuration by
-       using the template provided in this discussion question, [How do I use the modules in terraform-aws-service-catalog
-       if there is no example?](https://github.com/gruntwork-io/knowledge-base/discussions/360#discussioncomment-25705480).
+1. Not all modules include a `for-production` example. However, you can create a production-grade configuration using the template provided in [this discussion](https://github.com/gruntwork-io/knowledge-base/discussions/360#discussioncomment-25705480).
 
-1. `test`: Automated tests for the code in modules and examples.
+1. `test`: This folder includes automated tests for the code in the `modules` and `examples` folders.
 
 ## Tools used in Library
 
 <OpenTofuNotice />
 
-Gruntwork IaC Library has been created using the following tools:
+Gruntwork built its IaC Library using the following tools:
 
-1. [Terraform](https://www.terraform.io/). The Library contains nearly 300 Terraform modules that cover a range of common use cases in AWS. All library modules can be used with vanilla [Terraform](https://www.terraform.io/), [Terragrunt](https://terragrunt.gruntwork.io/), or third-party Terraform pipeline tools such as [Terraform Cloud](https://www.hashicorp.com/blog/announcing-terraform-cloud/) and [Terraform Enterprise](https://www.terraform.io/docs/enterprise/index.html).
+1. [Terraform](https://www.terraform.io/). The Library contains nearly 300 Terraform modules covering common AWS use cases. All modules are compatible with vanilla [Terraform](https://www.terraform.io/), [Terragrunt](https://terragrunt.gruntwork.io/), or third-party pipeline tools like [Terraform Cloud](https://www.hashicorp.com/blog/announcing-terraform-cloud/) and [Terraform Enterprise](https://www.terraform.io/docs/enterprise/index.html).
 
-1. [Packer](https://www.packer.io/). The Library defines _machine images_ (e.g., VM images) using Packer, where the main use case is building Amazon Machine Images (AMIs) that run on EC2 instances whose configuration is all defined in code. Once you’ve built an AMI, you can use Terraform to deploy it into AWS.
+1. [Packer](https://www.packer.io/). The Library includes definitions for _machine images_ (e.g., VM images) using Packer. A common use case is creating Amazon Machine Images (AMIs) for EC2 instances, where configuration is defined entirely in code. After building an AMI, you can deploy it using Terraform.
 
-1. [Terratest](https://terratest.gruntwork.io/). All modules are functionally validated with automated tests written using Terratest.
+1. [Terratest](https://terratest.gruntwork.io/). All modules undergo functional validation through automated tests written in Terratest.
