@@ -16,13 +16,13 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.118.1" lastModifiedVersion="0.114.0"/>
+<VersionBadge version="0.118.2" lastModifiedVersion="0.114.0"/>
 
 # Gruntwork GitOps "GruntOps"
 
 GitOps is an operational framework that is built around DevOps best practices for a standardized approach to managing the lifecycle of Kubernetes based deployments. GitOps provides a unified approach to the deployment and management of container workloads, with Git being the single source of truth for the state of the container infrastructure. GitOps is a very developer-centric workflow that works best when adopted by individuals and teams that follow a git based development lifecycle. The core principles of GitOps have been at the center of Gruntwork from the beginning!
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/services/eks-argocd" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/services/eks-argocd" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-argocd" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -40,7 +40,7 @@ GitOps is an operational framework that is built around DevOps best practices fo
 
 module "eks_argocd" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-argocd?ref=v0.118.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-argocd?ref=v0.118.2"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -97,9 +97,20 @@ module "eks_argocd" {
   # Conditional flag to optionally create resources in this module.
   create_resources = true
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # The name of the EKS Cluster that Argo CD will be deployed to. Required if
   # deploying to Fargate.
   eks_cluster_name = ""
+
+  # A map of custom tags to apply to the Fargate Profile IAM Role if enabled.
+  # The key is the tag name and the value is the tag value.
+  fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the Fargate Profile if enabled. The key is
+  # the tag name and the value is the tag value.
+  fargate_profile_tags = {}
 
   # ARN of IAM Role to use as the Pod execution role for Fargate. Set to null
   # (default) to create a new one. Only used when var.create_fargate_profile is
@@ -126,7 +137,7 @@ module "eks_argocd" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-argocd?ref=v0.118.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-argocd?ref=v0.118.2"
 }
 
 inputs = {
@@ -186,9 +197,20 @@ inputs = {
   # Conditional flag to optionally create resources in this module.
   create_resources = true
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # The name of the EKS Cluster that Argo CD will be deployed to. Required if
   # deploying to Fargate.
   eks_cluster_name = ""
+
+  # A map of custom tags to apply to the Fargate Profile IAM Role if enabled.
+  # The key is the tag name and the value is the tag value.
+  fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the Fargate Profile if enabled. The key is
+  # the tag name and the value is the tag value.
+  fargate_profile_tags = {}
 
   # ARN of IAM Role to use as the Pod execution role for Fargate. Set to null
   # (default) to create a new one. Only used when var.create_fargate_profile is
@@ -351,6 +373,15 @@ Conditional flag to optionally create resources in this module.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply to all AWS resources managed by this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="eks_cluster_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -358,6 +389,24 @@ The name of the EKS Cluster that Argo CD will be deployed to. Required if deploy
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="fargate_profile_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Fargate Profile IAM Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="fargate_profile_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Fargate Profile if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="pod_execution_iam_role_arn" requirement="optional" type="string">
@@ -386,15 +435,14 @@ A list of the subnets into which the Argo CD pods will be launched. These should
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/services/eks-argocd/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/services/eks-argocd/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/services/eks-argocd/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/services/eks-argocd/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/services/eks-argocd/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/services/eks-argocd/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ff7c59faa43490b0e05217d71363da00"
+  "hash": "5d0534dc63c4e2c88aca2da0a6d90408"
 }
 ##DOCS-SOURCER-END -->

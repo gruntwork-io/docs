@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.118.1" lastModifiedVersion="0.116.1"/>
+<VersionBadge version="0.118.2" lastModifiedVersion="0.118.2"/>
 
 # Amazon Relational Database Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Frds" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -69,7 +69,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -77,12 +77,12 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
-*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
+*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
 
 
 ## Sample Usage
@@ -103,7 +103,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.118.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.118.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -332,9 +332,22 @@ module "rds" {
   # Manager. See the description of db_config_secrets_manager_id.
   engine = null
 
+  # The number of datapoints in CloudWatch Metric statistic, which triggers the
+  # alarm. Setting this as null (the default) will make it equal to the
+  # evaluation period
+  high_cpu_utilization_datapoints_to_alarm = null
+
+  # The number of periods over which data is compared to the specified
+  # threshold.
+  high_cpu_utilization_evaluation_periods = 3
+
   # The period, in seconds, over which to measure the CPU utilization
   # percentage.
   high_cpu_utilization_period = 60
+
+  # The statistic to apply to the alarm's associated metric. [SampleCount,
+  # Average, Sum, Minimum, Maximum]
+  high_cpu_utilization_statistic = "Average"
 
   # Trigger an alarm if the DB instance has a CPU utilization percentage above
   # this threshold.
@@ -539,6 +552,22 @@ module "rds" {
   # SSD that needs iops independently), or 'io1' (provisioned IOPS SSD).
   storage_type = "gp2"
 
+  # The number of datapoints in CloudWatch Metric statistic, which triggers the
+  # alarm. Setting this as empty string (the default) will make it equal to the
+  # evaluation period
+  too_many_db_connections_datapoints_to_alarm = null
+
+  # The number of periods over which data is compared to the specified
+  # threshold.
+  too_many_db_connections_evaluation_periods = 3
+
+  # The period, in seconds, over which to measure the number of DB connections
+  too_many_db_connections_period = 60
+
+  # The statistic to apply to the alarm's associated metric. [SampleCount,
+  # Average, Sum, Minimum, Maximum]
+  too_many_db_connections_statistic = "Maximum"
+
   # Trigger an alarm if the number of connections to the DB instance goes above
   # this threshold.
   too_many_db_connections_threshold = null
@@ -569,7 +598,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.118.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.118.2"
 }
 
 inputs = {
@@ -801,9 +830,22 @@ inputs = {
   # Manager. See the description of db_config_secrets_manager_id.
   engine = null
 
+  # The number of datapoints in CloudWatch Metric statistic, which triggers the
+  # alarm. Setting this as null (the default) will make it equal to the
+  # evaluation period
+  high_cpu_utilization_datapoints_to_alarm = null
+
+  # The number of periods over which data is compared to the specified
+  # threshold.
+  high_cpu_utilization_evaluation_periods = 3
+
   # The period, in seconds, over which to measure the CPU utilization
   # percentage.
   high_cpu_utilization_period = 60
+
+  # The statistic to apply to the alarm's associated metric. [SampleCount,
+  # Average, Sum, Minimum, Maximum]
+  high_cpu_utilization_statistic = "Average"
 
   # Trigger an alarm if the DB instance has a CPU utilization percentage above
   # this threshold.
@@ -1007,6 +1049,22 @@ inputs = {
   # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
   # SSD that needs iops independently), or 'io1' (provisioned IOPS SSD).
   storage_type = "gp2"
+
+  # The number of datapoints in CloudWatch Metric statistic, which triggers the
+  # alarm. Setting this as empty string (the default) will make it equal to the
+  # evaluation period
+  too_many_db_connections_datapoints_to_alarm = null
+
+  # The number of periods over which data is compared to the specified
+  # threshold.
+  too_many_db_connections_evaluation_periods = 3
+
+  # The period, in seconds, over which to measure the number of DB connections
+  too_many_db_connections_period = 60
+
+  # The statistic to apply to the alarm's associated metric. [SampleCount,
+  # Average, Sum, Minimum, Maximum]
+  too_many_db_connections_statistic = "Maximum"
 
   # Trigger an alarm if the number of connections to the DB instance goes above
   # this threshold.
@@ -1784,6 +1842,24 @@ The DB engine to use (e.g. mysql). This can also be provided via AWS Secrets Man
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="high_cpu_utilization_datapoints_to_alarm" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of datapoints in CloudWatch Metric statistic, which triggers the alarm. Setting this as null (the default) will make it equal to the evaluation period
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="high_cpu_utilization_evaluation_periods" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of periods over which data is compared to the specified threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="3"/>
+</HclListItem>
+
 <HclListItem name="high_cpu_utilization_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1791,6 +1867,15 @@ The period, in seconds, over which to measure the CPU utilization percentage.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_cpu_utilization_statistic" requirement="optional" type="string">
+<HclListItemDescription>
+
+The statistic to apply to the alarm's associated metric. [SampleCount, Average, Sum, Minimum, Maximum]
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;Average&quot;"/>
 </HclListItem>
 
 <HclListItem name="high_cpu_utilization_threshold" requirement="optional" type="number">
@@ -2213,6 +2298,42 @@ The type of storage to use for the primary instance. Must be one of 'standard' (
 <HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
 </HclListItem>
 
+<HclListItem name="too_many_db_connections_datapoints_to_alarm" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of datapoints in CloudWatch Metric statistic, which triggers the alarm. Setting this as empty string (the default) will make it equal to the evaluation period
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="too_many_db_connections_evaluation_periods" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of periods over which data is compared to the specified threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="3"/>
+</HclListItem>
+
+<HclListItem name="too_many_db_connections_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the number of DB connections
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="too_many_db_connections_statistic" requirement="optional" type="string">
+<HclListItemDescription>
+
+The statistic to apply to the alarm's associated metric. [SampleCount, Average, Sum, Minimum, Maximum]
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;Maximum&quot;"/>
+</HclListItem>
+
 <HclListItem name="too_many_db_connections_threshold" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2410,15 +2531,14 @@ The ID of the Security Group that controls access to the RDS DB instance.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/data-stores/rds/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/data-stores/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/data-stores/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/data-stores/rds/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/data-stores/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b1d590c4958879530482c0185a974e7e"
+  "hash": "4226703dfc5e282a281973ddd1e28dc6"
 }
 ##DOCS-SOURCER-END -->
