@@ -1,29 +1,31 @@
+
+
 # About Network Topology
 
-The Network Topology component is focused on setting up the right best-practices network architecture for your organization.
+The Network Topology component focuses on implementing best-practices network architecture for your organization.
 
-Our standard network architecture includes:
+The standard network architecture includes:
 
 - The VPC itself
-- Subnets, which are isolated subdivisions within the VPC. There are 3 "tiers" of subnets: public, private app, and private persistence.
-- Route tables, which provide routing rules for the subnets.
-- Internet Gateways to route traffic to the public Internet from public subnets.
-- NATs to route traffic to the public Internet from private subnets.
-- VPC peering to a management VPC
-- DNS forwarding for a management VPC
-- Optionally, tags for an EKS cluster
+- Subnets, isolated subdivisions within the VPC, are organized into three "tiers": public, private app, and private persistence.
+- Route tables, which define routing rules for subnets.
+- Internet Gateways to manage traffic between public subnets and the Internet.
+- NATs to handle traffic between private subnets and the Internet.
+- VPC peering connections to a management VPC.
+- DNS forwarding for communication with a management VPC.
+- Optional tags for an EKS cluster.
 
 ## Out-of-the-box setup
 
-Gruntwork will generate the IaC code you need to set up our standard, recommended VPC configuration, as detailed in our [VPC service catalog module](/reference/services/networking/virtual-private-cloud-vpc).
+Gruntwork generates the IaC code required to implement the standard, recommended VPC configuration. Details are available in the [VPC service catalog module](/reference/services/networking/virtual-private-cloud-vpc).
 
 ## Extending the standard VPC
 
-You can extend this configuration by using the "building block" modules from the VPC topic in the Gruntwork IaC Library to further extend your VPC, adding functionality such as:
+You can expand the configuration using "building block" modules from the VPC topic in the Gruntwork IaC Library. These modules enable additional functionality such as:
 
 - [Enabling IPv6](/reference/modules/terraform-aws-vpc/vpc-app/#ipv6-design)
 - [Adding a Transit Gateway](/reference/modules/terraform-aws-vpc/transit-gateway/)
 - [Enabling DNS forwarding](/reference/modules/terraform-aws-vpc/vpc-dns-forwarder/)
 - [Setting up Tailscale](/reference/services/security/tailscale-subnet-router)
 
-This is done by directly working with the OpenTofu/Terraform modules from Gruntwork IaC Library to accomplish the particular configuration you need.
+To achieve the desired configuration, directly work with the OpenTofu/Terraform modules provided in the Gruntwork IaC Library.
