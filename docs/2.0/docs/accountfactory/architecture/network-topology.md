@@ -7,13 +7,13 @@ The Network Topology component focuses on implementing best-practices network ar
 The standard network architecture includes:
 
 - The VPC itself
-- Subnets, isolated subdivisions within the VPC, are organized into three "tiers": public, private app, and private persistence.
-- Route tables, which define routing rules for subnets.
-- Internet Gateways to manage traffic between public subnets and the Internet.
-- NATs to handle traffic between private subnets and the Internet.
-- VPC peering connections to a management VPC.
-- DNS forwarding for communication with a management VPC.
-- Optional tags for an EKS cluster.
+- Subnets, isolated subdivisions within the VPC, are organized into three "tiers": public, private app, and private persistence
+- Route tables, which define routing rules for subnets
+- Internet Gateways to manage traffic between public subnets and the Internet
+- NATs to handle traffic between private subnets and the Internet
+- VPC peering connections to a management VPC
+- DNS forwarding for communication with a management VPC
+- Optional tags for an EKS cluster
 
 ## Out-of-the-box setup
 
