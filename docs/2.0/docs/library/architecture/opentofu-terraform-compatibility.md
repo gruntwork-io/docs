@@ -1,24 +1,26 @@
+
+
 # Compatibility with OpenTofu and Terraform
 
-All code in Gruntwork IaC Library is compatible with:
+All code in the Gruntwork IaC Library is compatible with:
 
 - All versions of [OpenTofu](https://opentofu.org/)
-- HashiCorp Terraform versions v1.5.7 and below
+- HashiCorp Terraform versions up to and including v1.5.7.
 
-## Why the split?
+## Reason for the Split
 
-See our blog post [The Future of Terraform Must Be Open](https://blog.gruntwork.io/the-future-of-terraform-must-be-open-ab0b9ba65bca) for details.
+For additional context, refer to the blog post [The Future of Terraform Must Be Open](https://blog.gruntwork.io/the-future-of-terraform-must-be-open-ab0b9ba65bca).
 
-## What's special about HashiCorp Terraform v1.5.7?
+## What is notable about HashiCorp Terraform v1.5.7?
 
-This is the last version of HashiCorp Terraform that is licensed under the MPLv2 open source license. Any version of Terraform at or below v1.5.7 remains licensed under the MPLv2 license and will continue to work as it always has.
+Version 1.5.7 is the final release of HashiCorp Terraform, licensed under the MPLv2 open-source license. Versions up to and including v1.5.7 remain MPLv2 licensed and continue functioning as expected.
 
 ## What if I want to use a version of Terraform above v1.5.7?
 
-Going forward, we recommend that all Gruntwork customers adopt [OpenTofu](https://opentofu.org/) as a "drop-in" replacement for HashiCorp Terraform. We will be developing against OpenTofu releases, testing for compatibility with OpenTofu, and offering full support for any issues you experience with our modules and OpenTofu.
+Gruntwork advises all customers to adopt [OpenTofu](https://opentofu.org/) as a "drop-in" replacement for HashiCorp Terraform. Future development will prioritize OpenTofu releases. Gruntwork will ensure compatibility and provide full support for issues encountered with its modules and OpenTofu.
 
-## As a user of Gruntwork IaC Library, do I need to change anything?
+## As a user of the Gruntwork IaC Library, do I need to make changes?
 
-No. You can continue using any version of HashiCorp Terraform up to and including v1.5.7.
+No immediate changes are necessary. You can continue using any version of HashiCorp Terraform up to and including v1.5.7.
 
-When you wish to upgrade your Terraform binary, you should replace HashiCorp Terraform with [OpenTofu](https://opentofu.org/).
+When ready to upgrade your Terraform binary, replace HashiCorp Terraform with [OpenTofu](https://opentofu.org/).
