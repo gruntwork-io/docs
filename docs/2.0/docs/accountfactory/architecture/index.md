@@ -26,8 +26,8 @@ Pipelines ->> AWS Control Tower Module: Execute terragrunt to create account
 AWS Control Tower Module ->> Pipelines: Account Created
 Pipelines ->> Infra Live Repository: Add Account Infrastructure
 Infra Live Repository ->> Pipelines: Trigger Account Added
-Pipelines ->> Core Accounts: Execute terragrunt to baseline account\.
-
+Pipelines ->> Core Accounts: Execute terragrunt to baseline account
+```
 ## IAM Roles
 
 Each new account includes IAM policies that define the scope of changes Pipelines can make within AWS. Pipelines automatically assumes the appropriate roles for each account when changes are detected. Read about the [roles in full here](/2.0/docs/pipelines/architecture/security-controls#roles-provisioned-by-devops-foundations).
