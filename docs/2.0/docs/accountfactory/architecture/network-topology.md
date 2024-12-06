@@ -1,5 +1,3 @@
-
-
 # About Network Topology
 
 The Network Topology component focuses on implementing best-practices network architecture for your organization.
@@ -28,4 +26,4 @@ You can expand the configuration using "building block" modules from the VPC top
 - [Enabling DNS forwarding](/reference/modules/terraform-aws-vpc/vpc-dns-forwarder/)
 - [Setting up Tailscale](/reference/services/security/tailscale-subnet-router)
 
-To achieve the desired configuration, directly work with the OpenTofu/Terraform modules provided in the Gruntwork IaC Library.
+This is done by directly working with the OpenTofu/Terraform modules in the Gruntwork IaC Library.
