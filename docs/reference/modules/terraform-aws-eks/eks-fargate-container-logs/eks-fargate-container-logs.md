@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.72.0" lastModifiedVersion="0.64.3"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.72.1" lastModifiedVersion="0.72.1"/>
 
 # EKS Fargate Container Logs Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-fargate-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-fargate-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.64.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.72.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module supports collecting logs from Fargate Pods and shipping them to CloudWatch Logs, Elasticsearch, Kinesis
 Streams, or Kinesis Firehose.
@@ -25,7 +25,7 @@ Bit](https://fluentbit.io/) instance that runs on Fargate worker nodes. This all
 aggregation on Fargate Pods in EKS without setting up a side car container.
 
 **This module is for setting up log aggregation for EKS Fargate Pods. For other pods, take a look at the
-[eks-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-container-logs) module.**
+[eks-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-container-logs) module.**
 
 ## How does this work?
 
@@ -106,7 +106,7 @@ fields @timestamp, @message
 
 module "eks_fargate_container_logs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.72.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.72.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -138,6 +138,9 @@ module "eks_fargate_container_logs" {
   # Labels to associate with the aws-logging ConfigMap
   configmap_labels = {}
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # Can be used to provide custom filtering of the log output. This string
   # should be formatted according to Fluent Bit docs, as it will be injected
   # directly into the fluent-bit.conf file.
@@ -147,6 +150,11 @@ module "eks_fargate_container_logs" {
   # be formatted according to Fluent Bit docs, as it will be injected directly
   # into the fluent-bit.conf file.
   extra_parsers = ""
+
+  # A map of custom tags to apply to the IAM Policies created for the Fargate
+  # Execution IAM Role if enabled. The key is the tag name and the value is the
+  # tag value.
+  fargate_iam_policy_tags = {}
 
   # Configurations for forwarding logs to Kinesis Firehose. Set to null if you
   # do not wish to forward the logs to Firehose.
@@ -203,7 +211,7 @@ module "eks_fargate_container_logs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.72.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.72.1"
 }
 
 inputs = {
@@ -238,6 +246,9 @@ inputs = {
   # Labels to associate with the aws-logging ConfigMap
   configmap_labels = {}
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # Can be used to provide custom filtering of the log output. This string
   # should be formatted according to Fluent Bit docs, as it will be injected
   # directly into the fluent-bit.conf file.
@@ -247,6 +258,11 @@ inputs = {
   # be formatted according to Fluent Bit docs, as it will be injected directly
   # into the fluent-bit.conf file.
   extra_parsers = ""
+
+  # A map of custom tags to apply to the IAM Policies created for the Fargate
+  # Execution IAM Role if enabled. The key is the tag name and the value is the
+  # tag value.
+  fargate_iam_policy_tags = {}
 
   # Configurations for forwarding logs to Kinesis Firehose. Set to null if you
   # do not wish to forward the logs to Firehose.
@@ -466,6 +482,15 @@ Labels to associate with the aws-logging ConfigMap
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply to all AWS resources managed by this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="extra_filters" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -482,6 +507,15 @@ Can be used to provide custom parsers of the log output. This string should be f
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="fargate_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the IAM Policies created for the Fargate Execution IAM Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="firehose_configuration" requirement="optional" type="object(…)">
@@ -629,15 +663,14 @@ The ID of the Kubernetes ConfigMap containing the logging configuration. This ca
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-fargate-container-logs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-fargate-container-logs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-fargate-container-logs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-fargate-container-logs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-fargate-container-logs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-fargate-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "da2e17a1230a7cf21864e3696ca6c341"
+  "hash": "ae99a5e30b3a0eede5413795b4933176"
 }
 ##DOCS-SOURCER-END -->

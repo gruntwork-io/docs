@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.72.0" lastModifiedVersion="0.69.2"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.72.1" lastModifiedVersion="0.72.1"/>
 
 # ALB Ingress Controller Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-alb-ingress-controller" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-alb-ingress-controller" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.69.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.72.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module installs and configures the [AWS ALB Ingress
 Controller](https://github.com/kubernetes-sigs/aws-alb-ingress-controller) on an EKS cluster, so that you can configure
@@ -110,7 +110,7 @@ correctly.
 
 You can use the `alb.ingress.kubernetes.io/subnets` annotation on `Ingress` resources to specify which subnets the controller should configure the ALB for.
 
-You can also omit the `alb.ingress.kubernetes.io/subnets` annotation, and the controller will [automatically discover subnets](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/controller/config/#subnet-auto-discovery) based on their tags. This method should work "out of the box", so long as you are using the [`eks-vpc-tags`](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-vpc-tags) module to tag your VPC subnets.
+You can also omit the `alb.ingress.kubernetes.io/subnets` annotation, and the controller will [automatically discover subnets](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/controller/config/#subnet-auto-discovery) based on their tags. This method should work "out of the box", so long as you are using the [`eks-vpc-tags`](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-vpc-tags) module to tag your VPC subnets.
 
 ### Security Groups
 
@@ -125,7 +125,7 @@ nodes.
 ### IAM permissions
 
 The container deployed in this module requires IAM permissions to manage ALB resources. See [the
-eks-alb-ingress-controller-iam-policy module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-alb-ingress-controller-iam-policy) for more information.
+eks-alb-ingress-controller-iam-policy module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-alb-ingress-controller-iam-policy) for more information.
 
 ## Using the Ingress Controller
 
@@ -200,7 +200,7 @@ nature of the controller in provisioning the ALBs.
 The AWS ALB Ingress Controller has first class support for
 [external-dns](https://github.com/kubernetes-incubator/external-dns), a third party tool that configures external DNS
 providers with domains to route to `Services` and `Ingresses` in Kubernetes. See our [eks-k8s-external-dns
-module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-k8s-external-dns) for more information on how to setup the tool.
+module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-external-dns) for more information on how to setup the tool.
 
 ## How do I deploy the Pods to Fargate?
 
@@ -234,7 +234,7 @@ instances under the hood, and thus the ALB can not be configured to route by ins
 
 module "eks_alb_ingress_controller" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller?ref=v0.72.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller?ref=v0.72.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -279,9 +279,17 @@ module "eks_alb_ingress_controller" {
   # The version of the aws-load-balancer-controller helmchart to use.
   chart_version = "1.4.6"
 
+  # A map of custom tags to apply to the Controller IAM Policies if enabled. The
+  # key is the tag name and the value is the tag value.
+  controller_iam_policy_tags = {}
+
   # ARN of permissions boundary to apply to the controller IAM role - the IAM
   # role created for the Ingress Controller.
   controller_iam_role_permissions_boundary = null
+
+  # A map of custom tags to apply to the Controller IAM Role if enabled. The key
+  # is the tag name and the value is the tag value.
+  controller_iam_role_tags = {}
 
   # When set to true, create a dedicated Fargate execution profile for the alb
   # ingress controller. Note that this is not necessary to deploy to Fargate.
@@ -289,7 +297,7 @@ module "eks_alb_ingress_controller" {
   # Namespace, you do not need another one.
   create_fargate_profile = false
 
-  # Tags to apply to all AWS resources managed by this controller
+  # Tags to apply to all AWS resources managed by this module.
   default_tags = {}
 
   # Create a dependency between the resources in this module to the interpolated
@@ -315,6 +323,15 @@ module "eks_alb_ingress_controller" {
 
   # The tag of the docker image that should be deployed.
   docker_image_tag = "v2.4.5"
+
+  # A map of custom tags to apply to the Controller Fargate Profile IAM
+  # Execution Role if enabled. The key is the tag name and the value is the tag
+  # value.
+  eks_fargate_profile_execution_role_tags = {}
+
+  # A map of custom tags to apply to the Controller Fargate Profile if enabled.
+  # The key is the tag name and the value is the tag value.
+  eks_fargate_profile_tags = {}
 
   # Enables restricted Security Group rules for the load balancers managed by
   # the controller. When this is true, the load balancer will restrict the
@@ -369,7 +386,7 @@ module "eks_alb_ingress_controller" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller?ref=v0.72.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller?ref=v0.72.1"
 }
 
 inputs = {
@@ -417,9 +434,17 @@ inputs = {
   # The version of the aws-load-balancer-controller helmchart to use.
   chart_version = "1.4.6"
 
+  # A map of custom tags to apply to the Controller IAM Policies if enabled. The
+  # key is the tag name and the value is the tag value.
+  controller_iam_policy_tags = {}
+
   # ARN of permissions boundary to apply to the controller IAM role - the IAM
   # role created for the Ingress Controller.
   controller_iam_role_permissions_boundary = null
+
+  # A map of custom tags to apply to the Controller IAM Role if enabled. The key
+  # is the tag name and the value is the tag value.
+  controller_iam_role_tags = {}
 
   # When set to true, create a dedicated Fargate execution profile for the alb
   # ingress controller. Note that this is not necessary to deploy to Fargate.
@@ -427,7 +452,7 @@ inputs = {
   # Namespace, you do not need another one.
   create_fargate_profile = false
 
-  # Tags to apply to all AWS resources managed by this controller
+  # Tags to apply to all AWS resources managed by this module.
   default_tags = {}
 
   # Create a dependency between the resources in this module to the interpolated
@@ -453,6 +478,15 @@ inputs = {
 
   # The tag of the docker image that should be deployed.
   docker_image_tag = "v2.4.5"
+
+  # A map of custom tags to apply to the Controller Fargate Profile IAM
+  # Execution Role if enabled. The key is the tag name and the value is the tag
+  # value.
+  eks_fargate_profile_execution_role_tags = {}
+
+  # A map of custom tags to apply to the Controller Fargate Profile if enabled.
+  # The key is the tag name and the value is the tag value.
+  eks_fargate_profile_tags = {}
 
   # Enables restricted Security Group rules for the load balancers managed by
   # the controller. When this is true, the load balancer will restrict the
@@ -500,15 +534,14 @@ inputs = {
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-alb-ingress-controller/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-alb-ingress-controller/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-alb-ingress-controller/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-alb-ingress-controller/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-alb-ingress-controller/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-alb-ingress-controller/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "05638004856082bfa23942d32145fad7"
+  "hash": "2dbc39db52fba576886383fd83e86646"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.72.0" lastModifiedVersion="0.70.1"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.72.1" lastModifiedVersion="0.72.1"/>
 
 # EKS Container Logs Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.70.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.72.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module installs and configures
 [aws-for-fluent-bit](https://github.com/aws/aws-for-fluent-bit) on an EKS cluster, so that
@@ -25,7 +25,7 @@ Kinesis Firehose.
 This module uses the community helm chart, with a set of best practices inputs.
 
 **This module is for setting up log aggregation for EKS Pods on EC2 workers (self-managed or managed node groups). For
-Fargate pods, take a look at the [eks-fargate-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-fargate-container-logs) module.**
+Fargate pods, take a look at the [eks-fargate-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-fargate-container-logs) module.**
 
 ## How does this work?
 
@@ -151,7 +151,7 @@ fields @timestamp, @message
 
 module "eks_container_logs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.72.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.72.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -223,6 +223,9 @@ module "eks_container_logs" {
   # do not wish to use the default filter.
   default_input_configuration = {"db":"/var/log/flb_kube.db","dockerMode":"On","enabled":true,"memBufLimit":"5MB","parser":"docker","path":"/var/log/containers/*.log","refreshInterval":"10","skipLongLines":"On","tag":"kube.*"}
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
   # resources in this module will now depend on the resources backing the values
@@ -256,6 +259,14 @@ module "eks_container_logs" {
   # Configurations for forwarding logs to Kinesis Firehose. Set to null if you
   # do not wish to forward the logs to Firehose.
   firehose_configuration = null
+
+  # A map of custom tags to apply to the IAM Policies created for the fluentbit
+  # IAM Role if enabled. The key is the tag name and the value is the tag value.
+  fluent_bit_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the fluentbit IAM Role if enabled. The key
+  # is the tag name and the value is the tag value.
+  fluent_bit_iam_role_tags = {}
 
   # Used to name IAM roles for the service account. Recommended when
   # var.iam_role_for_service_accounts_config is configured.
@@ -312,7 +323,7 @@ module "eks_container_logs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.72.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.72.1"
 }
 
 inputs = {
@@ -387,6 +398,9 @@ inputs = {
   # do not wish to use the default filter.
   default_input_configuration = {"db":"/var/log/flb_kube.db","dockerMode":"On","enabled":true,"memBufLimit":"5MB","parser":"docker","path":"/var/log/containers/*.log","refreshInterval":"10","skipLongLines":"On","tag":"kube.*"}
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
   # resources in this module will now depend on the resources backing the values
@@ -420,6 +434,14 @@ inputs = {
   # Configurations for forwarding logs to Kinesis Firehose. Set to null if you
   # do not wish to forward the logs to Firehose.
   firehose_configuration = null
+
+  # A map of custom tags to apply to the IAM Policies created for the fluentbit
+  # IAM Role if enabled. The key is the tag name and the value is the tag value.
+  fluent_bit_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the fluentbit IAM Role if enabled. The key
+  # is the tag name and the value is the tag value.
+  fluent_bit_iam_role_tags = {}
 
   # Used to name IAM roles for the service account. Recommended when
   # var.iam_role_for_service_accounts_config is configured.
@@ -469,15 +491,14 @@ inputs = {
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-container-logs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-container-logs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-container-logs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-container-logs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-container-logs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "59787e2052522ea6956229938db6c11d"
+  "hash": "70f5cf63650f6991bd93066b8413e160"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.72.0" lastModifiedVersion="0.64.3"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.72.1" lastModifiedVersion="0.72.1"/>
 
 # EKS CloudWatch Agent Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-cloudwatch-agent" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-cloudwatch-agent" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.64.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.72.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module installs and configures
 [Amazon CloudWatch Agent](https://github.com/aws/amazon-cloudwatch-agent/) on an EKS cluster, so that
@@ -67,7 +67,7 @@ docs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContainerIn
 
 module "eks_cloudwatch_agent" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v0.72.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v0.72.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -92,6 +92,10 @@ module "eks_cloudwatch_agent" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # A map of custom tags to apply to the Agent IAM Role if enabled. The key is
+  # the tag name and the value is the tag value.
+  agent_iam_role_tags = {}
+
   # The Container repository to use for looking up the cloudwatch-agent
   # Container image when deploying the pods. When null, uses the default
   # repository set in the chart.
@@ -105,6 +109,9 @@ module "eks_cloudwatch_agent" {
   # this is different from the app/container version (use
   # var.aws_cloudwatch_agent_version to control the app/container version).
   aws_cloudwatch_metrics_chart_version = "0.0.7"
+
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -150,7 +157,7 @@ module "eks_cloudwatch_agent" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v0.72.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v0.72.1"
 }
 
 inputs = {
@@ -178,6 +185,10 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # A map of custom tags to apply to the Agent IAM Role if enabled. The key is
+  # the tag name and the value is the tag value.
+  agent_iam_role_tags = {}
+
   # The Container repository to use for looking up the cloudwatch-agent
   # Container image when deploying the pods. When null, uses the default
   # repository set in the chart.
@@ -191,6 +202,9 @@ inputs = {
   # this is different from the app/container version (use
   # var.aws_cloudwatch_agent_version to control the app/container version).
   aws_cloudwatch_metrics_chart_version = "0.0.7"
+
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -229,15 +243,14 @@ inputs = {
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-cloudwatch-agent/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-cloudwatch-agent/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-cloudwatch-agent/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-cloudwatch-agent/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-cloudwatch-agent/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-cloudwatch-agent/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8243c09199a33d5454459008670be96e"
+  "hash": "613171424796a82f12bb40801ec657c3"
 }
 ##DOCS-SOURCER-END -->

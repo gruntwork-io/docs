@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.72.0" lastModifiedVersion="0.64.3"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.72.1" lastModifiedVersion="0.72.1"/>
 
 # K8S External DNS IAM Policy Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-k8s-external-dns-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-external-dns-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.64.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.72.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module defines an [IAM
 policy](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/QuickStartEC2Instance.html#d0e22325) that
@@ -23,14 +23,14 @@ defines the minimal set of permissions necessary for the [external-dns
 application](https://github.com/kubernetes-incubator/external-dns). This policy can then be attached to EC2
 instances or IAM roles so that the app deployed has enough permissions to manage Route 53 Hosted Zones.
 
-See [the eks-k8s-external-dns module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-k8s-external-dns) for a module that deploys the external-dns
+See [the eks-k8s-external-dns module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-external-dns) for a module that deploys the external-dns
 application on to your EKS cluster.
 
 ## Attaching IAM policy to workers
 
 To allow the external-dns app to manage Route 53 Hosted Zones, it needs IAM permissions to use the AWS API to manage the
 zones. Currently, the way to grant Pods IAM privileges is to use the worker IAM profiles provisioned by [the
-eks-cluster-workers module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-cluster-workers/README.md#how-do-you-add-additional-iam-policies).
+eks-cluster-workers module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-cluster-workers/README.md#how-do-you-add-additional-iam-policies).
 
 The Terraform templates in this module create an IAM policy that has the required permissions. You then need to use an
 [aws_iam_policy_attachment](https://www.terraform.io/docs/providers/aws/r/iam_policy_attachment.html) to attach that
@@ -64,7 +64,7 @@ resource "aws_iam_role_policy_attachment" "attach_k8s_external_dns_iam_policy" {
 
 module "eks_k_8_s_external_dns_iam_policy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-external-dns-iam-policy?ref=v0.72.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-external-dns-iam-policy?ref=v0.72.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -88,6 +88,13 @@ module "eks_k_8_s_external_dns_iam_policy" {
   # optionally create or not create the resources within this module.
   create_resources = true
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
+  # A map of custom tags to apply to the External DNS IAM Policies if enabled.
+  # The key is the tag name and the value is the tag value.
+  external_dns_iam_policy_tags = {}
+
 }
 
 
@@ -103,7 +110,7 @@ module "eks_k_8_s_external_dns_iam_policy" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-external-dns-iam-policy?ref=v0.72.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-external-dns-iam-policy?ref=v0.72.1"
 }
 
 inputs = {
@@ -129,6 +136,13 @@ inputs = {
   # to use the 'count' parameter on modules. By using this parameter, you can
   # optionally create or not create the resources within this module.
   create_resources = true
+
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
+  # A map of custom tags to apply to the External DNS IAM Policies if enabled.
+  # The key is the tag name and the value is the tag value.
+  external_dns_iam_policy_tags = {}
 
 }
 
@@ -176,6 +190,24 @@ If you set this variable to false, this module will not create any resources. Th
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply to all AWS resources managed by this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="external_dns_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the External DNS IAM Policies if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -206,15 +238,14 @@ The name of the IAM policy created with the permissions for the external-dns Kub
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-k8s-external-dns-iam-policy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-k8s-external-dns-iam-policy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-k8s-external-dns-iam-policy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-external-dns-iam-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-external-dns-iam-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-external-dns-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3325caaadf45c51bb5106cd767d4bd9a"
+  "hash": "1f9590cc4c2b93a3c515b02b60caeb70"
 }
 ##DOCS-SOURCER-END -->
