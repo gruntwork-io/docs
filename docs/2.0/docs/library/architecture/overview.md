@@ -20,7 +20,7 @@ The `terraform-aws-service-catalog` repository organizes its code into three mai
 
 1. `modules`: This folder contains the core implementation code for the services you use and deploy. For instance, the EKS cluster service resides in `modules/services/eks-cluster`.
 
-1. `examples`: This folder provides a sample code demonstrating how to use the services in the `modules` folder. These examples enable you to deploy services without writing code. Navigate to a directory, follow the README instructions (e.g., run `terraform apply`), and you will have working infrastructure. This folder contains two sub-folders:
+1. `examples`: This folder provides sample code demonstrating how to use the services in the `modules` folder. These examples enable you to deploy services without writing code. Navigate to a directory, follow the README instructions (e.g., run `terraform apply`), and you'll have working infrastructure. This folder contains two sub-folders:
 
 1. `for-learning-and-testing`: These examples are optimized for experimentation and testing but not for direct production use. They often rely on default VPCs or mock database URLs for convenience.
 
@@ -40,4 +40,4 @@ Gruntwork built its IaC Library using the following tools:
 
 1. [Packer](https://www.packer.io/). The Library includes definitions for _machine images_ (e.g., VM images) using Packer. A common use case is creating Amazon Machine Images (AMIs) for EC2 instances, where configuration is defined entirely in code. After building an AMI, you can deploy it using Terraform.
 
-1. [Terratest](https://terratest.gruntwork.io/). All modules undergo functional validation through automated tests written in Terratest.
+1. [Terratest](https://terratest.gruntwork.io/). All modules are functionally validated with automated tests written in Terratest.
