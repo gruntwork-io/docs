@@ -1,6 +1,6 @@
 # Be Judicious With New Features
 
-New OpenTofu features can make module authoring more efficient but may also force consumers to adopt newer OpenTofu versions. This necessity can burden organizations that are unable to upgrade promptly.
+New OpenTofu features can streamline module authoring but may also require consumers to adopt newer OpenTofu versions. This requirement can pose challenges for organizations that cannot upgrade promptly.
 
 Modules in the Library often depend on each other. All dependent modules must be updated if a module update requires a newer OpenTofu version.
 
