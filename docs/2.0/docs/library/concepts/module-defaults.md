@@ -13,6 +13,6 @@ The module defaults pattern was previously known as the "envcommon" pattern, sto
 
 :::
 
-A helpful analogy is purchasing a car. The manufacturer offers a "base model" with several configurable options, such as interior upgrades, while ensuring the vehicle remains functional. Similarly, module defaults allow you to define a "base" resource, like an AWS RDS for a PostgreSQL instance. For example, consumers might receive a `db.t3.medium` instance with a `50 GB` general-purpose SSD as the default. Consumers can override variables for increased memory, CPU, or storage in production without altering other configurations.
+A helpful analogy is purchasing a car. The manufacturer offers a "base model" with several configurable options, such as interior upgrades, while ensuring the vehicle remains functional. Similarly, module defaults allow you to define a "base" resource, like an AWS RDS for a PostgreSQL instance. For example, consumers might receive a `db.t3.medium` instance with a `50GB` general-purpose SSD as the default. Consumers can override variables for increased memory, CPU, or storage in production without altering other configurations.
 
 With module defaults established, the next step is defining a "defaults module" to implement this pattern effectively.
