@@ -14,4 +14,4 @@ Older features are more likely to be compatible with existing consumer environme
 
 ### Impact on Module Consumers
 
-Requiring upgrades can sometimes be justified. For instance, the [moved](https://opentofu.org/docs/v1.6/language/modules/develop/refactoring/#moved-block-syntax) block enables seamless upgrades despite resource address changes. If upgrading provides more significant benefits than manual interventions, it may be worthwhile to require newer versions.
+Requiring upgrades can sometimes be justified. For instance, the [moved](https://opentofu.org/docs/v1.6/language/modules/develop/refactoring/#moved-block-syntax) block enables seamless upgrades despite resource address changes. If upgrading provides greater benefits than manual interventions, it may be worthwhile to require newer versions.
