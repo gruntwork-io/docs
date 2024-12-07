@@ -24,7 +24,7 @@ The `terraform-aws-service-catalog` repository organizes its code into three mai
 
 1. `for-learning-and-testing`: These examples are optimized for experimentation and testing but not for direct production use. They often rely on default VPCs or mock database URLs for convenience.
 
-1. `for-production`: These examples are optimized for direct production use. They showcase how Gruntwork's Reference Architecture integrates a complete tech stack using the Gruntwork Service Catalog. To keep the code DRY and manage dependencies, you can deploy these examples using [Terragrunt](https://terragrunt.gruntwork.io/). Terragrunt is not required to use the Gruntwork Service Catalog; you can use vanilla Terraform or Terraform Cloud/Enterprise.
+1. `for-production`: These examples are optimized for direct production use. They showcase how Gruntwork's Reference Architecture integrates a complete tech stack using the Gruntwork Service Catalog. To keep the code DRY and manage dependencies, you can deploy these examples using [Terragrunt](https://terragrunt.gruntwork.io/). Terragrunt is not required to use the Gruntwork Service Catalog; you can use vanilla Terraform or Terraform Cloud/Enterprise, as described [here](https://docs.gruntwork.io/reference/services/intro/deploy-new-infrastructure#how-to-deploy-terraform-code-from-the-service-catalog).
 
 1. Not all modules include a `for-production` example. However, you can create a production-grade configuration using the template provided in [this discussion](https://github.com/gruntwork-io/knowledge-base/discussions/360#discussioncomment-25705480).
 
