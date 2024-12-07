@@ -1,4 +1,4 @@
-import OpenTofuNotice from "/src/components/OpenTofuNotice."
+import OpenTofuNotice from "/src/components/OpenTofuNotice"
 
 # Overview
 
