@@ -520,8 +520,8 @@ Any types represent complex values of variable type. For details, please consult
 
    Each configuration must be keyed by a unique string that will be used as a suffix for the node group name. The
    values support the following attributes:
-
-
+  
+  
    OPTIONAL (defaults to value of corresponding module input):
    - subnet_ids          list(string)       : (Defaults to value from var.node_group_default_subnet_ids) A list of the
                                               subnets into which the EKS Cluster's managed nodes will be launched.
@@ -580,17 +580,17 @@ Any types represent complex values of variable type. For details, please consult
    - taints              list(map(string))  : (Defaults to value from var.node_group_default_taints) Custom Kubernetes
                                               taint to apply to the EC2 Instances in this node group. See below for
                                               structure of taints.
-
+  
    Structure of LaunchTemplate object:
    - name     string  : The Name of the Launch Template to use. One of ID or Name should be provided.
    - id       string  : The ID of the Launch Template to use. One of ID or Name should be provided.
    - version  string  : The version of the Launch Template to use.
-
+  
    Structure of Taints Object: [{},{}]
    - key     string  : The key of the taint. Maximum length of 63.
    - value   string  : The value of the taint. Maximum length of 63.
    - effect  string  : The effect of the taint. Valid values: NO_SCHEDULE, NO_EXECUTE, PREFER_NO_SCHEDULE.
-
+  
    Example:
    node_group_configurations = {
      ngroup1 = {
