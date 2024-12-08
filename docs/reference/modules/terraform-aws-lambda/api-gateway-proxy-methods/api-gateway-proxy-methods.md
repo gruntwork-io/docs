@@ -289,7 +289,6 @@ ID of the API Gateway method for the root proxy (only created if path_prefix is 
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

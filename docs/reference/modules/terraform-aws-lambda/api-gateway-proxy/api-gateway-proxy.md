@@ -768,7 +768,6 @@ The URL of the API Gateway that you can use to invoke it.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

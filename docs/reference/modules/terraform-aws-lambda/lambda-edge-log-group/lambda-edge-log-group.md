@@ -331,7 +331,6 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
