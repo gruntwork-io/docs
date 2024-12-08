@@ -1339,7 +1339,6 @@ Name of the (optionally) created CloudWatch log group for the lambda function.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

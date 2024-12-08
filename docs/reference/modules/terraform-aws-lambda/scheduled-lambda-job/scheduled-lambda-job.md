@@ -231,7 +231,6 @@ Cloudwatch Event Rule schedule expression
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

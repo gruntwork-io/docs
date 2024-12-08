@@ -313,7 +313,6 @@ Map of log group names per region
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

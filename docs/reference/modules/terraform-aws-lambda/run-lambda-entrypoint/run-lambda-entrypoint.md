@@ -180,7 +180,6 @@ SECRETS_MANAGER_ARN => LAMBDA_ENV_SECRETS_MANAGER_ARN_P0_RDS => LAMBDA_ENV_SECRE
 Note that the passed in ARN can also reference a Secrets Manager name. If the value is not an ARN, the entrypoint CLI
 will assume it is the name of a Secrets Manager entry in the same region as the Lambda function.
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [

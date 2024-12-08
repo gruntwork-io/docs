@@ -725,7 +725,6 @@ A map from the route keys to the IDs of the corresponding API Gateway V2 Route r
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
