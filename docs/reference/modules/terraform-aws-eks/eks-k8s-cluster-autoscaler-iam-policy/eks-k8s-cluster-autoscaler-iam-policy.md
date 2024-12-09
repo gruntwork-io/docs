@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.72.0" lastModifiedVersion="0.70.2"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.72.1" lastModifiedVersion="0.72.1"/>
 
 # K8S Cluster Autoscaler IAM Policy Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-k8s-cluster-autoscaler-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-cluster-autoscaler-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.70.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.72.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module defines an [IAM
 policy](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/QuickStartEC2Instance.html#d0e22325) that
@@ -24,14 +24,14 @@ Autoscaler](https://github.com/kubernetes/autoscaler/blob/b6d53e8/cluster-autosc
 attached to the EC2 instance profile of the worker nodes in a Kubernetes cluster which will allow the autoscaler to
 manage scaling up and down EC2 instances in targeted Auto Scaling Groups in response to resource utilization.
 
-See [the eks-k8s-cluster-autoscaler module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-k8s-cluster-autoscaler) for a module that deploys the Cluster
+See [the eks-k8s-cluster-autoscaler module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-cluster-autoscaler) for a module that deploys the Cluster
 Autoscaler to your EKS cluster.
 
 ## Attaching IAM policy to workers
 
 To allow the Cluster Autoscaler to manage Auto Scaling Groups, it needs IAM permissions to monitor and adjust them.
 Currently, the way to grant Pods IAM privileges is to use the worker IAM profiles provisioned by [the
-eks-cluster-workers module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-cluster-workers/README.md#how-do-you-add-additional-iam-policies).
+eks-cluster-workers module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-cluster-workers/README.md#how-do-you-add-additional-iam-policies).
 
 The Terraform templates in this module create an IAM policy that has the required permissions. You then need to use an
 [aws_iam_policy_attachment](https://www.terraform.io/docs/providers/aws/r/iam_policy_attachment.html) to attach that
@@ -66,7 +66,7 @@ resource "aws_iam_role_policy_attachment" "attach_k8s_cluster_autoscaler_iam_pol
 
 module "eks_k_8_s_cluster_autoscaler_iam_policy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler-iam-policy?ref=v0.72.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler-iam-policy?ref=v0.72.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -112,7 +112,7 @@ module "eks_k_8_s_cluster_autoscaler_iam_policy" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler-iam-policy?ref=v0.72.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler-iam-policy?ref=v0.72.1"
 }
 
 inputs = {
@@ -231,15 +231,14 @@ The name of the IAM policy created with the permissions for the Kubernetes clust
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-k8s-cluster-autoscaler-iam-policy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-k8s-cluster-autoscaler-iam-policy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.0/modules/eks-k8s-cluster-autoscaler-iam-policy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-cluster-autoscaler-iam-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-cluster-autoscaler-iam-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-cluster-autoscaler-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b895d8d7df78f1e727deab496fc7a8cf"
+  "hash": "07feb65d1935afc12e4a0870bc54fe42"
 }
 ##DOCS-SOURCER-END -->
