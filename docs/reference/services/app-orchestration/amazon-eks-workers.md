@@ -2802,6 +2802,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "928a68016fce5ba1fd4a069702d575b4"
+  "hash": "e942d372f2f98758502c1c5c06ce3d03"
 }
 ##DOCS-SOURCER-END -->

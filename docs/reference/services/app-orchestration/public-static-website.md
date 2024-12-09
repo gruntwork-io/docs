@@ -1078,6 +1078,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/services/public-static-website/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "bbe6a508d89cf8040b9f29d2571f0e54"
+  "hash": "f4a090e7f03aacb93295f6e14c5a9509"
 }
 ##DOCS-SOURCER-END -->

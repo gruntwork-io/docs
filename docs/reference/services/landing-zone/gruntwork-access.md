@@ -300,6 +300,6 @@ The name of the IAM role
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/landingzone/gruntwork-access/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c4be4ee101089c4bbf50037d73a36908"
+  "hash": "ff73545a869acf92437ac43566cd12eb"
 }
 ##DOCS-SOURCER-END -->

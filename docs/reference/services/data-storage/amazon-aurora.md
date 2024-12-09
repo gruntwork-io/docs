@@ -2327,6 +2327,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c2742d6c59977e2fe863345b282fb93a"
+  "hash": "be24ad09d912840fbde8fc24fb9ab83d"
 }
 ##DOCS-SOURCER-END -->

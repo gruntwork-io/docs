@@ -857,6 +857,6 @@ The name of the Karpenter Node IAM Role.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/services/eks-karpenter/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f7289b7c34e1c1195e3bf8e02d091060"
+  "hash": "44c9b1cd81984debc9d5af7d640f7944"
 }
 ##DOCS-SOURCER-END -->

@@ -1673,6 +1673,6 @@ A list of IDs of the RDS DB instance's read replicas.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/data-stores/rds-replica/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f9d4b52c740e4dfc3cdfe9080f869973"
+  "hash": "aa51c4c739c5d9f0a8f541046dcb3cff"
 }
 ##DOCS-SOURCER-END -->

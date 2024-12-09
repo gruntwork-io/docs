@@ -2539,6 +2539,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "4226703dfc5e282a281973ddd1e28dc6"
+  "hash": "f11c9a8a2c3f6908efcd13f2e2a97d34"
 }
 ##DOCS-SOURCER-END -->

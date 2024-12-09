@@ -4049,6 +4049,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "cdade3234312b0d14f133ac5d5eb4aeb"
+  "hash": "4facb107e05e18ec50c210daf0b9751d"
 }
 ##DOCS-SOURCER-END -->

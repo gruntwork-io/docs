@@ -839,6 +839,6 @@ Security Group ID used for redis cluster.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/data-stores/redis/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b5cae3d53b3588986c44c9a0b9ac06a2"
+  "hash": "a5addd6bcd693856d866bd0ebacda45f"
 }
 ##DOCS-SOURCER-END -->

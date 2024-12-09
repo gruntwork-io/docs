@@ -1081,6 +1081,6 @@ The fully qualified name of the bastion host.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/mgmt/bastion-host/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ea95a920dffa8e42705e5f93334428ff"
+  "hash": "dc078aeab9a226707c3e03bb8058d7db"
 }
 ##DOCS-SOURCER-END -->

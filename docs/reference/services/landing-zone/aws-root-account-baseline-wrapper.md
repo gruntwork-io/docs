@@ -4399,6 +4399,6 @@ A map of user name to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/landingzone/account-baseline-root/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "98d457c7c81ee4c83ce780743dfc0241"
+  "hash": "b8be4a649f8041faf56d875838111869"
 }
 ##DOCS-SOURCER-END -->

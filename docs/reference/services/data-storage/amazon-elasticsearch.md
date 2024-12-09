@@ -1583,6 +1583,6 @@ Domain-specific endpoint for Kibana without https scheme.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/data-stores/elasticsearch/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "8e88db8b1b17eef9d7f0cfd3c98325d4"
+  "hash": "8500ac539b1426fb4e143678fcf5c3ea"
 }
 ##DOCS-SOURCER-END -->

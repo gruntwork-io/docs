@@ -2989,6 +2989,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3447b5dfccad67b7dd0635801a834b2a"
+  "hash": "5a9ee32e041c8d604a13def42a175103"
 }
 ##DOCS-SOURCER-END -->

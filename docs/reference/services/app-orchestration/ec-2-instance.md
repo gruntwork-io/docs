@@ -1574,6 +1574,6 @@ The input parameters for the EBS volumes.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/services/ec2-instance/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c68dfb0037cbb0dbb496d5f0f2bf796c"
+  "hash": "10b60542ec5e3f5ee1457ceca6552ac4"
 }
 ##DOCS-SOURCER-END -->
