@@ -6180,9 +6180,9 @@ dns-packet@^5.2.2:
   dependencies:
     "@leichtgewicht/ip-codec" "^2.0.1"
 
-"docs-sourcer@git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.35":
+"docs-sourcer@git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.36":
   version "0.0.1"
-  resolved "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#02933d85da3521a87f93bd9ffb8b1cc570b3fced"
+  resolved "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#ab2f7e13f2d2ce770d6a76ea99fa36b2a04edd4e"
   dependencies:
     "@octokit/auth-app" "^3.6.1"
     "@octokit/plugin-retry" "^3.0.9"
@@ -9536,7 +9536,7 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==
 
-medium-zoom@^1.0.4:
+medium-zoom@^1.0.8:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/medium-zoom/-/medium-zoom-1.1.0.tgz#6efb6bbda861a02064ee71a2617a8dc4381ecc71"
   integrity sha512-ewyDsp7k4InCUp3jRmwHBRFGyjBimKps/AJLjRSox+2q/2H4p/PNpQf+pwONWlJiOudkBXtbdmVbFjqyybfTmQ==
