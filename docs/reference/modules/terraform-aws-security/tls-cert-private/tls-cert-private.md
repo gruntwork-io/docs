@@ -173,7 +173,6 @@ the domain name (because it's private) or reaching the service to validate an HT
 While Let's Encrypt is not the ideal solution for the intent of this module, it's well-suited to automatically generating
 TLS certificates for any public services.
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -182,6 +181,6 @@ TLS certificates for any public services.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/tls-cert-private/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bf69342e1bb5be6bf0606a503680e6dd"
+  "hash": "b79d3261de22a2195e88e26d4ebf5e1b"
 }
 ##DOCS-SOURCER-END -->

@@ -96,7 +96,6 @@ inputs = {
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -105,6 +104,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/secrets-manager-resource-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "805333f80aa739940ce3034dd336af86"
+  "hash": "886ce676b20af3df6230746c1783abce"
 }
 ##DOCS-SOURCER-END -->

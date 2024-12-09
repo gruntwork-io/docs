@@ -176,7 +176,6 @@ inputs = {
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -185,6 +184,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/kms-grant-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9fbc2bda55fbe38348d8745134bf5d2a"
+  "hash": "060a69267a601356a820be89040e78ae"
 }
 ##DOCS-SOURCER-END -->

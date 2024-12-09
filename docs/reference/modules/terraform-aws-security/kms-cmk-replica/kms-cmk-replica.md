@@ -369,7 +369,6 @@ A map of CMK name to CMK ID.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -378,6 +377,6 @@ A map of CMK name to CMK ID.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/kms-cmk-replica/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "401e90f2cd86f034e3253d9bcd22886c"
+  "hash": "dc58df5208693660687399a6805593d0"
 }
 ##DOCS-SOURCER-END -->

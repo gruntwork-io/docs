@@ -89,7 +89,6 @@ inputs = {
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -98,6 +97,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/ssm-healthchecks-iam-permissions/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "128f0c32365a91ddcc816852d65f3f3a"
+  "hash": "016f0af01f58817ab3ee9596367af155"
 }
 ##DOCS-SOURCER-END -->

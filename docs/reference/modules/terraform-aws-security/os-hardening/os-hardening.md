@@ -266,7 +266,6 @@ needed additional space to build a new AMI was not unreasonable.
 *   Per the [Packer docs for the amazon-chroot builder](https://www.packer.io/docs/builders/amazon-chroot.html), your
     provisioning scripts must not leave any processes running or Packer will be unable to unmount the filesystem.
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -275,6 +274,6 @@ needed additional space to build a new AMI was not unreasonable.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/os-hardening/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d461195dd7f5e4915d0854b18e5f0d16"
+  "hash": "de1709a97c5bf6096977c7f8554a944c"
 }
 ##DOCS-SOURCER-END -->

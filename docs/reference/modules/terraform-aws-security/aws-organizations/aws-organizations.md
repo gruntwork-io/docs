@@ -420,7 +420,6 @@ Identifier of the root of this organization.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -429,6 +428,6 @@ Identifier of the root of this organization.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/aws-organizations/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a9fbafaaacd8eb613189ffd61a1acae8"
+  "hash": "6484e59903e770fa2fd5758747450e6d"
 }
 ##DOCS-SOURCER-END -->

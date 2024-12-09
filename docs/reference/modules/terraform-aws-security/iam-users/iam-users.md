@@ -523,7 +523,6 @@ A map of usernames to that user's AWS SSH Security Credential ID
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -532,6 +531,6 @@ A map of usernames to that user's AWS SSH Security Credential ID
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/iam-users/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7d34b4d3554c992ace0030df33ba7cf5"
+  "hash": "37a3f136978ae4606e3aac40a51c1f20"
 }
 ##DOCS-SOURCER-END -->

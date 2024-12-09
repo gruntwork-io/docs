@@ -950,7 +950,6 @@ Should we create the IAM Group for user self-management? Allows users to manage 
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -959,6 +958,6 @@ Should we create the IAM Group for user self-management? Allows users to manage 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/iam-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "17a8079dce514aee2420881699116445"
+  "hash": "85f18c5e7b25792ccd46735b5db5c8f7"
 }
 ##DOCS-SOURCER-END -->

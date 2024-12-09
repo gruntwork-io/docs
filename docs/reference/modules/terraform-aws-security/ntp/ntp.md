@@ -31,7 +31,6 @@ This script currently works on:
 
 Originally, Amazon recommended installing `ntpd` to prevent clock drift. Today, Amazon [recommends Chrony](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html). In addition, Chrony is a newer, more robust implementation of the network time protocol (NTP). Chrony is strongly preferred to ntpd, however there are still minor [differences between ntpd and chronyd](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-configuring_ntp_using_the_chrony_suite#sect-differences_between_ntpd_and_chronyd).
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -40,6 +39,6 @@ Originally, Amazon recommended installing `ntpd` to prevent clock drift. Today, 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/ntp/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fad6c50571f200eb93f18c258036dc19"
+  "hash": "1b8d299a01f986ec13c76b5fff823343"
 }
 ##DOCS-SOURCER-END -->

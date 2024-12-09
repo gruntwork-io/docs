@@ -24,7 +24,6 @@ via SSH. This module currently supports Ubuntu, Amazon Linux 2, and CentOS (usin
 The module also optionally creates CloudWatch Metrics to track the number of Banned and Unbanned IP Addresses per AWS
 Instance.
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -33,6 +32,6 @@ Instance.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/fail2ban/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "148817eddfde84d55b55f78e5513b608"
+  "hash": "accc183211cebd3faf2c961a79daf211"
 }
 ##DOCS-SOURCER-END -->

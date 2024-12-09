@@ -215,7 +215,6 @@ A map from region to the ARN of the KMS key used for default EBS encryption for 
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -224,6 +223,6 @@ A map from region to the ARN of the KMS key used for default EBS encryption for 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/ebs-encryption-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "eb4a30e4a86a3fe7c58df9bd0ab33275"
+  "hash": "e121b53a4950648f36e7529115b537ab"
 }
 ##DOCS-SOURCER-END -->

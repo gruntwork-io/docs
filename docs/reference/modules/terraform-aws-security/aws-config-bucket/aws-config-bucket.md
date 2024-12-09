@@ -493,7 +493,6 @@ The name of the S3 bucket used by AWS Config to store configuration items.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -502,6 +501,6 @@ The name of the S3 bucket used by AWS Config to store configuration items.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/aws-config-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b7c7140a3ed562e0ee31708481be6c1d"
+  "hash": "dcc8a9590407ac8b2a93c17bd9d8b358"
 }
 ##DOCS-SOURCER-END -->

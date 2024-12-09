@@ -1083,7 +1083,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1092,6 +1091,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/cross-account-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "01744f0b2f60cb4b9ec66380c0912a7a"
+  "hash": "ea96cb227456587ce8ac52d2e18a3de0"
 }
 ##DOCS-SOURCER-END -->
