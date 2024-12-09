@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.118.1" lastModifiedVersion="0.117.0"/>
+<VersionBadge version="0.118.2" lastModifiedVersion="0.117.0"/>
 
 # Amazon EKS
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-cluster" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -116,7 +116,7 @@ To add and manage additional worker groups, refer to the [eks-workers module](/r
 
 module "eks_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.118.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.118.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -291,6 +291,22 @@ module "eks_cluster" {
   # your cluster.
   asg_use_resource_name_prefix = true
 
+  # A map of custom tags to apply to the EKS Worker IAM Policies. The key is the
+  # tag name and the value is the tag value.
+  asg_worker_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag
+  # name and the value is the tag value.
+  asg_worker_iam_role_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Instance Profile. The
+  # key is the tag name and the value is the tag value.
+  asg_worker_instance_profile_tags = {}
+
+  # A map of custom tags to apply to the Fargate Profile if enabled. The key is
+  # the tag name and the value is the tag value.
+  auth_merger_eks_fargate_profile_tags = {}
+
   # Configure one or more Auto Scaling Groups (ASGs) to manage the EC2 instances
   # in this cluster. If any of the values are not provided, the specified
   # default variable will be used to lookup a default value.
@@ -396,6 +412,10 @@ module "eks_cluster" {
   # CLUSTER_NAME-fargate-role.
   custom_default_fargate_iam_role_name = null
 
+  # A map of custom tags to apply to the EKS add-ons. The key is the tag name
+  # and the value is the tag value.
+  custom_tags_eks_addons = {}
+
   # A map of unique identifiers to egress security group rules to attach to the
   # worker groups.
   custom_worker_egress_security_group_rules = {}
@@ -416,12 +436,26 @@ module "eks_cluster" {
   # CloudWatch dashboard.
   dashboard_memory_usage_widget_parameters = {"height":6,"period":60,"width":8}
 
+  # A map of default tags to apply to all supported resources in this module.
+  # These tags will be merged with any other resource specific tags. The key is
+  # the tag name and the value is the tag value.
+  default_tags = {}
+
   # Configuraiton object for the EBS CSI Driver EKS AddOn
   ebs_csi_driver_addon_config = {}
 
   # A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the
   # tag name and the value is the tag value.
   ebs_csi_driver_addon_tags = {}
+
+  # A map of custom tags to apply to the IAM Policies created for the EBS CSI
+  # Driver IAM Role if enabled. The key is the tag name and the value is the tag
+  # value.
+  ebs_csi_driver_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the EBS CSI Driver IAM Role if enabled. The
+  # key is the tag name and the value is the tag value.
+  ebs_csi_driver_iam_role_tags = {}
 
   # If using KMS encryption of EBS volumes, provide the KMS Key ARN to be used
   # for a policy attachment.
@@ -438,6 +472,18 @@ module "eks_cluster" {
   # add-on properties.
   eks_addons = {}
 
+  # A map of custom tags to apply to the EKS Cluster Cluster Creator Access
+  # Entry. The key is the tag name and the value is the tag value.
+  eks_cluster_creator_access_entry_tags = {}
+
+  # A map of custom tags to apply to the EKS Cluster IAM Role. The key is the
+  # tag name and the value is the tag value.
+  eks_cluster_iam_role_tags = {}
+
+  # A map of custom tags to apply to the EKS Cluster OIDC Provider. The key is
+  # the tag name and the value is the tag value.
+  eks_cluster_oidc_tags = {}
+
   # A map of custom tags to apply to the Security Group for the EKS Cluster
   # Control Plane. The key is the tag name and the value is the tag value.
   eks_cluster_security_group_tags = {}
@@ -445,6 +491,16 @@ module "eks_cluster" {
   # A map of custom tags to apply to the EKS Cluster Control Plane. The key is
   # the tag name and the value is the tag value.
   eks_cluster_tags = {}
+
+  # A map of custom tags to apply to the Control Plane Services Fargate Profile
+  # IAM Role for this EKS Cluster if enabled. The key is the tag name and the
+  # value is the tag value.
+  eks_fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the Control Plane Services Fargate Profile
+  # for this EKS Cluster if enabled. The key is the tag name and the value is
+  # the tag value.
+  eks_fargate_profile_tags = {}
 
   # If set to true, installs the aws-auth-merger to manage the aws-auth
   # configuration. When true, requires setting the var.aws_auth_merger_image
@@ -666,6 +722,10 @@ module "eks_cluster" {
   # A map of tags to apply to the Security Group of the ASG for the managed node
   # group pool. The key is the tag name and the value is the tag value.
   node_group_security_group_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag
+  # name and the value is the tag value.
+  node_group_worker_iam_role_tags = {}
 
   # Number of subnets provided in the var.control_plane_vpc_subnet_ids variable.
   # When null (default), this is computed dynamically from the list. This is
@@ -862,7 +922,7 @@ module "eks_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.118.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.118.2"
 }
 
 inputs = {
@@ -1040,6 +1100,22 @@ inputs = {
   # your cluster.
   asg_use_resource_name_prefix = true
 
+  # A map of custom tags to apply to the EKS Worker IAM Policies. The key is the
+  # tag name and the value is the tag value.
+  asg_worker_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag
+  # name and the value is the tag value.
+  asg_worker_iam_role_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Instance Profile. The
+  # key is the tag name and the value is the tag value.
+  asg_worker_instance_profile_tags = {}
+
+  # A map of custom tags to apply to the Fargate Profile if enabled. The key is
+  # the tag name and the value is the tag value.
+  auth_merger_eks_fargate_profile_tags = {}
+
   # Configure one or more Auto Scaling Groups (ASGs) to manage the EC2 instances
   # in this cluster. If any of the values are not provided, the specified
   # default variable will be used to lookup a default value.
@@ -1145,6 +1221,10 @@ inputs = {
   # CLUSTER_NAME-fargate-role.
   custom_default_fargate_iam_role_name = null
 
+  # A map of custom tags to apply to the EKS add-ons. The key is the tag name
+  # and the value is the tag value.
+  custom_tags_eks_addons = {}
+
   # A map of unique identifiers to egress security group rules to attach to the
   # worker groups.
   custom_worker_egress_security_group_rules = {}
@@ -1165,12 +1245,26 @@ inputs = {
   # CloudWatch dashboard.
   dashboard_memory_usage_widget_parameters = {"height":6,"period":60,"width":8}
 
+  # A map of default tags to apply to all supported resources in this module.
+  # These tags will be merged with any other resource specific tags. The key is
+  # the tag name and the value is the tag value.
+  default_tags = {}
+
   # Configuraiton object for the EBS CSI Driver EKS AddOn
   ebs_csi_driver_addon_config = {}
 
   # A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the
   # tag name and the value is the tag value.
   ebs_csi_driver_addon_tags = {}
+
+  # A map of custom tags to apply to the IAM Policies created for the EBS CSI
+  # Driver IAM Role if enabled. The key is the tag name and the value is the tag
+  # value.
+  ebs_csi_driver_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the EBS CSI Driver IAM Role if enabled. The
+  # key is the tag name and the value is the tag value.
+  ebs_csi_driver_iam_role_tags = {}
 
   # If using KMS encryption of EBS volumes, provide the KMS Key ARN to be used
   # for a policy attachment.
@@ -1187,6 +1281,18 @@ inputs = {
   # add-on properties.
   eks_addons = {}
 
+  # A map of custom tags to apply to the EKS Cluster Cluster Creator Access
+  # Entry. The key is the tag name and the value is the tag value.
+  eks_cluster_creator_access_entry_tags = {}
+
+  # A map of custom tags to apply to the EKS Cluster IAM Role. The key is the
+  # tag name and the value is the tag value.
+  eks_cluster_iam_role_tags = {}
+
+  # A map of custom tags to apply to the EKS Cluster OIDC Provider. The key is
+  # the tag name and the value is the tag value.
+  eks_cluster_oidc_tags = {}
+
   # A map of custom tags to apply to the Security Group for the EKS Cluster
   # Control Plane. The key is the tag name and the value is the tag value.
   eks_cluster_security_group_tags = {}
@@ -1194,6 +1300,16 @@ inputs = {
   # A map of custom tags to apply to the EKS Cluster Control Plane. The key is
   # the tag name and the value is the tag value.
   eks_cluster_tags = {}
+
+  # A map of custom tags to apply to the Control Plane Services Fargate Profile
+  # IAM Role for this EKS Cluster if enabled. The key is the tag name and the
+  # value is the tag value.
+  eks_fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the Control Plane Services Fargate Profile
+  # for this EKS Cluster if enabled. The key is the tag name and the value is
+  # the tag value.
+  eks_fargate_profile_tags = {}
 
   # If set to true, installs the aws-auth-merger to manage the aws-auth
   # configuration. When true, requires setting the var.aws_auth_merger_image
@@ -1415,6 +1531,10 @@ inputs = {
   # A map of tags to apply to the Security Group of the ASG for the managed node
   # group pool. The key is the tag name and the value is the tag value.
   node_group_security_group_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag
+  # name and the value is the tag value.
+  node_group_worker_iam_role_tags = {}
 
   # Number of subnets provided in the var.control_plane_vpc_subnet_ids variable.
   # When null (default), this is computed dynamically from the list. This is
@@ -2020,6 +2140,42 @@ When true, all the relevant resources for self managed workers will be set to us
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="asg_worker_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Policies. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="asg_worker_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="asg_worker_instance_profile_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Instance Profile. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="auth_merger_eks_fargate_profile_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Fargate Profile if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="autoscaling_group_configurations" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -2395,6 +2551,15 @@ The name to use for the default Fargate execution IAM role that is created when 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="custom_tags_eks_addons" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS add-ons. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="custom_worker_egress_security_group_rules" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
@@ -2610,6 +2775,15 @@ object({
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of default tags to apply to all supported resources in this module. These tags will be merged with any other resource specific tags. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="ebs_csi_driver_addon_config" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -2669,6 +2843,24 @@ A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the tag na
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the IAM Policies created for the EBS CSI Driver IAM Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EBS CSI Driver IAM Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="ebs_csi_driver_kms_key_arn" requirement="optional" type="string">
@@ -2734,6 +2926,33 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="eks_cluster_creator_access_entry_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Cluster Cluster Creator Access Entry. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="eks_cluster_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Cluster IAM Role. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="eks_cluster_oidc_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Cluster OIDC Provider. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="eks_cluster_security_group_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -2780,6 +2999,24 @@ A map of custom tags to apply to the EKS Cluster Control Plane. The key is the t
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="eks_fargate_profile_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Control Plane Services Fargate Profile IAM Role for this EKS Cluster if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="eks_fargate_profile_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Control Plane Services Fargate Profile for this EKS Cluster if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="enable_aws_auth_merger" requirement="optional" type="bool">
@@ -3392,6 +3629,15 @@ A map of tags to apply to the Security Group of the ASG for the managed node gro
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="node_group_worker_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="num_control_plane_vpc_subnet_ids" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -3795,15 +4041,14 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/services/eks-cluster/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/services/eks-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/services/eks-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/services/eks-cluster/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/services/eks-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.2/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e759e9cbc8fa52149c338069a31364d7"
+  "hash": "4facb107e05e18ec50c210daf0b9751d"
 }
 ##DOCS-SOURCER-END -->
