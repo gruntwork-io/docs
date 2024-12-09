@@ -1,48 +1,45 @@
 # Modules
 
-Modules are reusable "infrastructure building blocks" that describe how to deploy and manage a specific piece of infrastructure, such as a VPC, ECS cluster, or Auto Scaling Group.
+Modules are reusable "infrastructure building blocks" describing how to deploy and manage specific pieces of infrastructure, such as a VPC, ECS cluster, or Auto Scaling Group.
 
-Most modules are written in Terraform and define several AWS resources.
+Most modules are written in Terraform and define multiple AWS resources.
 
 ## Example
 
-Let’s look at an example module. The [rds module](/reference/modules/terraform-aws-data-storage/rds) is a Terraform module that creates an RDS database, the IAM roles needed to operate that database, optional read replicas, database subnet groups, and the relevant security groups.
+Consider the [rds module](/reference/modules/terraform-aws-data-storage/rds). This Terraform module creates an RDS database, the IAM roles required to operate it, optional read replicas, database subnet groups, and relevant security groups.
 
-The module deploys a key element of an overall RDS deployment, but it's not a _complete_ RDS deployment. That's because the `rds` module does not include backup policies using AWS Backup (for disaster recovery), or RDS Proxy (to pool database connections), or CloudWatch alarms (to alert you when something goes wrong). These missing pieces are best thought of as building block modules themselves. Gruntwork has modules for `backup-plan`, `backup-vault`, and `rds-proxy` that can all be used in combination with the `rds` module.
+While the module addresses key elements of an RDS deployment, it does not provide a _complete_ solution. It excludes features like backup policies using AWS Backup, RDS Proxy for connection pooling, and CloudWatch alarms for monitoring. These missing elements are available as separate building block modules, such as `backup-plan`, `backup-vault`, and `rds-proxy`, which you can use alongside the `rds` module.
 
-To see how Gruntwork gives you an off-the-shelf overall deployment with all the elements included, see [Service Modules](/2.0/docs/library/concepts/service-modules).
+To explore complete solutions combining building blocks, refer to [Service Modules](/2.0/docs/library/concepts/service-modules).
 
 ## Modules are optimized for control
 
-A module is designed to be small, narrow in scope, and highly reusable, like a building block. Modules give you _control_, but they may not give you _convenience_. You can use the building block modules for all kinds of use cases (high control), but if you want to deploy a complete piece of infrastructure, you still have to do the work of assembling the right modules (low convenience).
+Modules are designed to be small, narrow in scope, and highly reusable. They prioritize _control_ over _convenience_, making them suitable for diverse use cases. Deploying a complete infrastructure solution often requires assembling multiple modules.
 
-To learn how you can optimize for convenience, see [Service Modules](/2.0/docs/library/concepts/service-modules).
+Consider [Service Modules](/2.0/docs/library/concepts/service-modules) for greater convenience.
 
-To learn more about the overall thought process behind building block modules versus service modules, see [Introducing: The Gruntwork Module, Service, and Architecture Catalogs](https://blog.gruntwork.io/introducing-the-gruntwork-module-service-and-architecture-catalogs-eb3a21b99f70).
+For insights on building block versus service modules, see [Introducing: The Gruntwork Module, Service, and Architecture Catalogs](https://blog.gruntwork.io/introducing-the-gruntwork-module-service-and-architecture-catalogs-eb3a21b99f70).
 
 ## When to use a building block module
 
-Building block modules are fairly generic by design, so you won't typically deploy a single building block module directly. Instead, you write code that combines the building block modules you need for a specific use case.
+Building block modules are typically generic. Instead of deploying a single module, users write code combining multiple modules for specific use cases. For instance, one module might deploy Kubernetes control planes while another deploys worker nodes. A Kubernetes cluster requires both modules.
 
-For example, one module might deploy the control plane for Kubernetes and a separate module could deploy worker nodes; you may need to combine both modules together to deploy a Kubernetes cluster.
-
-We recommend our [Service Catalog](/2.0/docs/library/concepts/service-modules) for common use cases, but our full module catalog is available if you have a more complex use case.
+We recommend using the [Service Catalog](/2.0/docs/library/concepts/service-modules) for everyday use cases, with the entire module catalog available for more complex needs.
 
 ## Where to find the building block modules
 
-The module catalog features over 250 "building block" modules spanning three major use cases:
+The module catalog features over 250 building block modules spanning three primary use cases:
 
 1. AWS foundations
 2. Running applications
 3. Storing data
 
-Each of these use cases covers one or more Subject Matter Expert (SME) topics such as AWS account management, VPC/Networking, EKS, ECS, and RDS. SME topics are a first-class concept within Gruntwork, but do not have much visibility in the product itself at this time.
+Each use case includes one or more Subject Matter Expert (SME) topics, such as AWS account management, VPC/Networking, EKS, ECS, and RDS. While SME topics are a first-class concept within Gruntwork, they need more visibility in the product.
 
-To browse the module catalog, see the [Library Reference](/library/reference) and look for "Module Catalog" on the sidebar. You can also visit the list of [private Gruntwork GitHub repos](https://github.com/orgs/gruntwork-io/repositories?q=&type=private&language=&sort=).
-
+To browse the module catalog, see the [Library Reference](/library/reference) or visit the [private Gruntwork GitHub repos](https://github.com/orgs/gruntwork-io/repositories?q=&type=private&language=&sort=).
 
 ## How modules are updated
 
-Gruntwork brings together AWS and Terraform experts around the world who track updates from AWS, Terraform, and the DevOps community at large, along with requests from the Gruntwork customer community. We translate the most important of these updates into new features, new optimizations, and ultimately new releases.
+Gruntwork employs AWS and Terraform experts who monitor updates from AWS, Terraform, and the broader DevOps community. Feedback from the Gruntwork customer community also informs updates. They incorporate the most significant updates into new features and releases.
 
-Refer to [Gruntwork releases](/guides/stay-up-to-date/#gruntwork-releases) for a comprehensive listing of all the updates.
+Refer to [Gruntwork releases](/guides/stay-up-to-date/#gruntwork-releases) for a comprehensive listing of updates.
