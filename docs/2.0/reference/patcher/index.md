@@ -5,10 +5,8 @@
 | Option Name | Description | 
 |---|---|
 | `--loglevel value` | The log level to output information at. Available values: Default: `info`. |
-| `--non-interactive` | Run in non-interactive mode. Won't prompt the user for input. Useful for scripts, automation, CI/CD. Default: `false`. |
 | `--container-image value` | Use the specified container image for applying patches. Ignored if `--skip-container-runtime` is used. |
 | `--skip-container-runtime` | Skip using a container runtime for applying patches and perform all operations directly on the host. Default: `false`. |
-| `--no-color` | Disable terminal colors. Only works with the non-interactive flag. Default: `false` |
 | `--dry-run` | Run in dry run mode. Will not bump any versions or apply any patches. Default: `false` |
 | `--help`, `-h` | Show help text for the given command. |
 
@@ -111,6 +109,8 @@ $ patcher update ./
 
 | Option Name | Description | 
 |---|---|
+| `--non-interactive` | Run in non-interactive mode. Won't prompt the user for input. Useful for scripts, automation, CI/CD. Default: `false`. |
+| `--no-color` | Disable terminal colors. Only works with the non-interactive flag. Default: `false` |
 | `--update-strategy value` | The update strategy to use in non-interactive mode. Must be one of: [`next-safe`, `next-breaking`]. Default: `next-safe`. |
 | `--plan-file value` | Path to the JSON file containing the resolved upgrade plan.
 | `--spec-file value` | Path to the JSON file containing the upgrade spec. |
