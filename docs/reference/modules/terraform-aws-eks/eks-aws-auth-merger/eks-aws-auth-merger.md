@@ -134,6 +134,9 @@ module "eks_aws_auth_merger" {
   # optionally create or not create the resources within this module.
   create_resources = true
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # Key value pairs of strings to apply as annotations on the Deployment.
   deployment_annotations = {}
 
@@ -142,6 +145,10 @@ module "eks_aws_auth_merger" {
 
   # Name to apply to the Deployment for the aws-auth-merger app.
   deployment_name = "aws-auth-merger"
+
+  # A map of custom tags to apply to the Fargate Profile if enabled. The key is
+  # the tag name and the value is the tag value.
+  eks_fargate_profile_tags = {}
 
   # Configuration options for the Fargate Profile. Only used if
   # create_fargate_profile is set to true.
@@ -252,6 +259,9 @@ inputs = {
   # optionally create or not create the resources within this module.
   create_resources = true
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # Key value pairs of strings to apply as annotations on the Deployment.
   deployment_annotations = {}
 
@@ -260,6 +270,10 @@ inputs = {
 
   # Name to apply to the Deployment for the aws-auth-merger app.
   deployment_name = "aws-auth-merger"
+
+  # A map of custom tags to apply to the Fargate Profile if enabled. The key is
+  # the tag name and the value is the tag value.
+  eks_fargate_profile_tags = {}
 
   # Configuration options for the Fargate Profile. Only used if
   # create_fargate_profile is set to true.
@@ -403,6 +417,15 @@ If you set this variable to false, this module will not create any resources. Th
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply to all AWS resources managed by this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="deployment_annotations" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -428,6 +451,15 @@ Name to apply to the Deployment for the aws-auth-merger app.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;aws-auth-merger&quot;"/>
+</HclListItem>
+
+<HclListItem name="eks_fargate_profile_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Fargate Profile if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="fargate_profile" requirement="optional" type="object(…)">
@@ -631,6 +663,6 @@ The name of the namespace that is used. If create_namespace is true, this output
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-aws-auth-merger/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "44b3c744c92d932aea95469409d1a3ce"
+  "hash": "975729fcb0ab1a8a7aec21ce5fbc57b6"
 }
 ##DOCS-SOURCER-END -->

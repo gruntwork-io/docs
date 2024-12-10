@@ -81,11 +81,18 @@ module "eks_k_8_s_cluster_autoscaler_iam_policy" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # A map of custom tags to apply to the Autoscaler IAM Policies if enabled. The
+  # key is the tag name and the value is the tag value.
+  autoscaler_iam_policy_tags = {}
+
   # If you set this variable to false, this module will not create any
   # resources. This is used as a workaround because Terraform does not allow you
   # to use the 'count' parameter on modules. By using this parameter, you can
   # optionally create or not create the resources within this module.
   create_resources = true
+
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
 
   # ARNs of the EKS Managed Node Groups to grant access to. If this is not
   # specified the policy will match based on tags only (specifically, the tag
@@ -130,11 +137,18 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # A map of custom tags to apply to the Autoscaler IAM Policies if enabled. The
+  # key is the tag name and the value is the tag value.
+  autoscaler_iam_policy_tags = {}
+
   # If you set this variable to false, this module will not create any
   # resources. This is used as a workaround because Terraform does not allow you
   # to use the 'count' parameter on modules. By using this parameter, you can
   # optionally create or not create the resources within this module.
   create_resources = true
+
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
 
   # ARNs of the EKS Managed Node Groups to grant access to. If this is not
   # specified the policy will match based on tags only (specifically, the tag
@@ -174,6 +188,15 @@ A name that uniquely identified in which context this module is being invoked. T
 
 ### Optional
 
+<HclListItem name="autoscaler_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Autoscaler IAM Policies if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="create_resources" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -181,6 +204,15 @@ If you set this variable to false, this module will not create any resources. Th
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply to all AWS resources managed by this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="eks_managed_node_group_arns" requirement="optional" type="list(string)">
@@ -239,6 +271,6 @@ The name of the IAM policy created with the permissions for the Kubernetes clust
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-cluster-autoscaler-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "07feb65d1935afc12e4a0870bc54fe42"
+  "hash": "cd6fbf9cb420f529c1c3d923068123f1"
 }
 ##DOCS-SOURCER-END -->

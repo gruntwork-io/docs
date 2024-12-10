@@ -411,11 +411,28 @@ module "eks_cluster_workers" {
   # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
+  # A map of default tags to apply to all supported resources in this module.
+  # These tags will be merged with any other resource specific tags. The key is
+  # the tag name and the value is the tag value.
+  default_tags = {}
+
   # Security group ID of the EKS Control Plane nodes to enhance to allow access
   # to the control plane from the workers. Only used if
   # `use_cluster_security_group` is `false`. Set to null to use the first
   # security group assigned to the cluster.
   eks_control_plane_security_group_id = null
+
+  # A map of custom tags to apply to the EKS Worker IAM Policies. The key is the
+  # tag name and the value is the tag value.
+  eks_worker_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag
+  # name and the value is the tag value.
+  eks_worker_iam_role_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Instance Profile. The
+  # key is the tag name and the value is the tag value.
+  eks_worker_instance_profile_tags = {}
 
   # When true, the Instance Metadata Service will expose the tags of the
   # instance.
@@ -699,11 +716,28 @@ inputs = {
   # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
+  # A map of default tags to apply to all supported resources in this module.
+  # These tags will be merged with any other resource specific tags. The key is
+  # the tag name and the value is the tag value.
+  default_tags = {}
+
   # Security group ID of the EKS Control Plane nodes to enhance to allow access
   # to the control plane from the workers. Only used if
   # `use_cluster_security_group` is `false`. Set to null to use the first
   # security group assigned to the cluster.
   eks_control_plane_security_group_id = null
+
+  # A map of custom tags to apply to the EKS Worker IAM Policies. The key is the
+  # tag name and the value is the tag value.
+  eks_worker_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag
+  # name and the value is the tag value.
+  eks_worker_iam_role_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Instance Profile. The
+  # key is the tag name and the value is the tag value.
+  eks_worker_instance_profile_tags = {}
 
   # When true, the Instance Metadata Service will expose the tags of the
   # instance.
@@ -1306,6 +1340,15 @@ A map of custom tags to apply to the Security Group for this EKS Cluster. The ke
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of default tags to apply to all supported resources in this module. These tags will be merged with any other resource specific tags. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="eks_control_plane_security_group_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1313,6 +1356,33 @@ Security group ID of the EKS Control Plane nodes to enhance to allow access to t
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="eks_worker_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Policies. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="eks_worker_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="eks_worker_instance_profile_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Instance Profile. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="enable_instance_metadata_tags" requirement="optional" type="bool">
@@ -1557,6 +1627,6 @@ AWS ID of the security group created for the EKS worker nodes.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-cluster-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0b7aa66efe30e2fe57d91fbd773dfeff"
+  "hash": "bdc57bdaf0d30ed1c76bff8470d7913f"
 }
 ##DOCS-SOURCER-END -->

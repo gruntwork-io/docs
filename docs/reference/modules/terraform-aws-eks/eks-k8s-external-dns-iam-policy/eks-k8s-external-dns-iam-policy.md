@@ -88,6 +88,13 @@ module "eks_k_8_s_external_dns_iam_policy" {
   # optionally create or not create the resources within this module.
   create_resources = true
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
+  # A map of custom tags to apply to the External DNS IAM Policies if enabled.
+  # The key is the tag name and the value is the tag value.
+  external_dns_iam_policy_tags = {}
+
 }
 
 
@@ -129,6 +136,13 @@ inputs = {
   # to use the 'count' parameter on modules. By using this parameter, you can
   # optionally create or not create the resources within this module.
   create_resources = true
+
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
+  # A map of custom tags to apply to the External DNS IAM Policies if enabled.
+  # The key is the tag name and the value is the tag value.
+  external_dns_iam_policy_tags = {}
 
 }
 
@@ -176,6 +190,24 @@ If you set this variable to false, this module will not create any resources. Th
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply to all AWS resources managed by this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="external_dns_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the External DNS IAM Policies if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -214,6 +246,6 @@ The name of the IAM policy created with the permissions for the external-dns Kub
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-external-dns-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "356392ffe8db660c0b74d4043222f079"
+  "hash": "b427fe303e6644351513bb37869b360e"
 }
 ##DOCS-SOURCER-END -->

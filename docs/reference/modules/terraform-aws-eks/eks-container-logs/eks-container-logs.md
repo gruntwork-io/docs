@@ -223,6 +223,9 @@ module "eks_container_logs" {
   # do not wish to use the default filter.
   default_input_configuration = {"db":"/var/log/flb_kube.db","dockerMode":"On","enabled":true,"memBufLimit":"5MB","parser":"docker","path":"/var/log/containers/*.log","refreshInterval":"10","skipLongLines":"On","tag":"kube.*"}
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
   # resources in this module will now depend on the resources backing the values
@@ -256,6 +259,14 @@ module "eks_container_logs" {
   # Configurations for forwarding logs to Kinesis Firehose. Set to null if you
   # do not wish to forward the logs to Firehose.
   firehose_configuration = null
+
+  # A map of custom tags to apply to the IAM Policies created for the fluentbit
+  # IAM Role if enabled. The key is the tag name and the value is the tag value.
+  fluent_bit_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the fluentbit IAM Role if enabled. The key
+  # is the tag name and the value is the tag value.
+  fluent_bit_iam_role_tags = {}
 
   # Used to name IAM roles for the service account. Recommended when
   # var.iam_role_for_service_accounts_config is configured.
@@ -387,6 +398,9 @@ inputs = {
   # do not wish to use the default filter.
   default_input_configuration = {"db":"/var/log/flb_kube.db","dockerMode":"On","enabled":true,"memBufLimit":"5MB","parser":"docker","path":"/var/log/containers/*.log","refreshInterval":"10","skipLongLines":"On","tag":"kube.*"}
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
   # resources in this module will now depend on the resources backing the values
@@ -420,6 +434,14 @@ inputs = {
   # Configurations for forwarding logs to Kinesis Firehose. Set to null if you
   # do not wish to forward the logs to Firehose.
   firehose_configuration = null
+
+  # A map of custom tags to apply to the IAM Policies created for the fluentbit
+  # IAM Role if enabled. The key is the tag name and the value is the tag value.
+  fluent_bit_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the fluentbit IAM Role if enabled. The key
+  # is the tag name and the value is the tag value.
+  fluent_bit_iam_role_tags = {}
 
   # Used to name IAM roles for the service account. Recommended when
   # var.iam_role_for_service_accounts_config is configured.
@@ -477,6 +499,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7b057251fa9c7422ce5afba6ba8d0d5d"
+  "hash": "5d3bbe3fd1e7044f2a152640fa46a715"
 }
 ##DOCS-SOURCER-END -->

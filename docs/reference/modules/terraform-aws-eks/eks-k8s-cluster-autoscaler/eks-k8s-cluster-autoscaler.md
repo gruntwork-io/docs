@@ -91,9 +91,25 @@ module "eks_k_8_s_cluster_autoscaler" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # A map of custom tags to apply to the Autoscaler Fargate Profile IAM Role if
+  # enabled. The key is the tag name and the value is the tag value.
+  autoscaler_fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the Autoscaler Fargate Profile if enabled.
+  # The key is the tag name and the value is the tag value.
+  autoscaler_fargate_profile_tags = {}
+
+  # A map of custom tags to apply to the Autoscaler IAM Policies if enabled. The
+  # key is the tag name and the value is the tag value.
+  autoscaler_iam_policy_tags = {}
+
   # ARN of permissions boundary to apply to the autoscaler IAM role - the IAM
   # role created for the Autoscaler
   autoscaler_iam_role_permissions_boundary = null
+
+  # A map of custom tags to apply to the Autoscaler IAM Role if enabled. The key
+  # is the tag name and the value is the tag value.
+  autoscaler_iam_role_tags = {}
 
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
@@ -139,6 +155,9 @@ module "eks_k_8_s_cluster_autoscaler" {
   # When set to true, create a dedicated Fargate execution profile for the
   # cluster autoscaler.
   create_fargate_profile = false
+
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -257,9 +276,25 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # A map of custom tags to apply to the Autoscaler Fargate Profile IAM Role if
+  # enabled. The key is the tag name and the value is the tag value.
+  autoscaler_fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the Autoscaler Fargate Profile if enabled.
+  # The key is the tag name and the value is the tag value.
+  autoscaler_fargate_profile_tags = {}
+
+  # A map of custom tags to apply to the Autoscaler IAM Policies if enabled. The
+  # key is the tag name and the value is the tag value.
+  autoscaler_iam_policy_tags = {}
+
   # ARN of permissions boundary to apply to the autoscaler IAM role - the IAM
   # role created for the Autoscaler
   autoscaler_iam_role_permissions_boundary = null
+
+  # A map of custom tags to apply to the Autoscaler IAM Role if enabled. The key
+  # is the tag name and the value is the tag value.
+  autoscaler_iam_role_tags = {}
 
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
@@ -305,6 +340,9 @@ inputs = {
   # When set to true, create a dedicated Fargate execution profile for the
   # cluster autoscaler.
   create_fargate_profile = false
+
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -392,6 +430,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-cluster-autoscaler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e948d7d4ba2d5c9f622354e5a900aac0"
+  "hash": "b2081f162d77cdb465066dac173dca05"
 }
 ##DOCS-SOURCER-END -->

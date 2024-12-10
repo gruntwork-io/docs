@@ -143,6 +143,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-cluster-workers-cross-access/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bee49a18cad7b29ee6de0e01b780a6b3"
+  "hash": "78c706fcd2b2a3a3e5f028481867b428"
 }
 ##DOCS-SOURCER-END -->

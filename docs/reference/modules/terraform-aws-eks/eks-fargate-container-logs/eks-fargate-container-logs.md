@@ -138,6 +138,9 @@ module "eks_fargate_container_logs" {
   # Labels to associate with the aws-logging ConfigMap
   configmap_labels = {}
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # Can be used to provide custom filtering of the log output. This string
   # should be formatted according to Fluent Bit docs, as it will be injected
   # directly into the fluent-bit.conf file.
@@ -147,6 +150,11 @@ module "eks_fargate_container_logs" {
   # be formatted according to Fluent Bit docs, as it will be injected directly
   # into the fluent-bit.conf file.
   extra_parsers = ""
+
+  # A map of custom tags to apply to the IAM Policies created for the Fargate
+  # Execution IAM Role if enabled. The key is the tag name and the value is the
+  # tag value.
+  fargate_iam_policy_tags = {}
 
   # Configurations for forwarding logs to Kinesis Firehose. Set to null if you
   # do not wish to forward the logs to Firehose.
@@ -238,6 +246,9 @@ inputs = {
   # Labels to associate with the aws-logging ConfigMap
   configmap_labels = {}
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # Can be used to provide custom filtering of the log output. This string
   # should be formatted according to Fluent Bit docs, as it will be injected
   # directly into the fluent-bit.conf file.
@@ -247,6 +258,11 @@ inputs = {
   # be formatted according to Fluent Bit docs, as it will be injected directly
   # into the fluent-bit.conf file.
   extra_parsers = ""
+
+  # A map of custom tags to apply to the IAM Policies created for the Fargate
+  # Execution IAM Role if enabled. The key is the tag name and the value is the
+  # tag value.
+  fargate_iam_policy_tags = {}
 
   # Configurations for forwarding logs to Kinesis Firehose. Set to null if you
   # do not wish to forward the logs to Firehose.
@@ -466,6 +482,15 @@ Labels to associate with the aws-logging ConfigMap
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply to all AWS resources managed by this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="extra_filters" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -482,6 +507,15 @@ Can be used to provide custom parsers of the log output. This string should be f
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="fargate_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the IAM Policies created for the Fargate Execution IAM Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="firehose_configuration" requirement="optional" type="object(…)">
@@ -637,6 +671,6 @@ The ID of the Kubernetes ConfigMap containing the logging configuration. This ca
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-fargate-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "559b61e1c6e9d0203e3bbcbf2b128aff"
+  "hash": "9033555bbc41a27ac2a4e53042cb8383"
 }
 ##DOCS-SOURCER-END -->

@@ -159,6 +159,9 @@ module "eks_k_8_s_external_dns" {
   # Namespace, you do not need another one.
   create_fargate_profile = false
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
   # resources in this module will now depend on the resources backing the values
@@ -188,6 +191,22 @@ module "eks_k_8_s_external_dns" {
   # The version of the helm chart to use. Note that this is different from the
   # app/container version.
   external_dns_chart_version = "6.12.2"
+
+  # A map of custom tags to apply to the External DNS Fargate Profile IAM Role
+  # if enabled. The key is the tag name and the value is the tag value.
+  external_dns_fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the External DNS Fargate Profile if
+  # enabled. The key is the tag name and the value is the tag value.
+  external_dns_fargate_profile_tags = {}
+
+  # A map of custom tags to apply to the External DNS IAM Policies if enabled.
+  # The key is the tag name and the value is the tag value.
+  external_dns_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the External DNS IAM Role if enabled. The
+  # key is the tag name and the value is the tag value.
+  external_dns_iam_role_tags = {}
 
   # The container image registry to pull the images from.
   image_registry = null
@@ -339,6 +358,9 @@ inputs = {
   # Namespace, you do not need another one.
   create_fargate_profile = false
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
   # resources in this module will now depend on the resources backing the values
@@ -368,6 +390,22 @@ inputs = {
   # The version of the helm chart to use. Note that this is different from the
   # app/container version.
   external_dns_chart_version = "6.12.2"
+
+  # A map of custom tags to apply to the External DNS Fargate Profile IAM Role
+  # if enabled. The key is the tag name and the value is the tag value.
+  external_dns_fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the External DNS Fargate Profile if
+  # enabled. The key is the tag name and the value is the tag value.
+  external_dns_fargate_profile_tags = {}
+
+  # A map of custom tags to apply to the External DNS IAM Policies if enabled.
+  # The key is the tag name and the value is the tag value.
+  external_dns_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the External DNS IAM Role if enabled. The
+  # key is the tag name and the value is the tag value.
+  external_dns_iam_role_tags = {}
 
   # The container image registry to pull the images from.
   image_registry = null
@@ -474,6 +512,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-external-dns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cfcd112cdd742ff9ce90fe64bb13bcfb"
+  "hash": "b9ba02b371b6a3e17ec238c8d574f0f1"
 }
 ##DOCS-SOURCER-END -->
