@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.74.5" lastModifiedVersion="0.74.2"/>
+<VersionBadge repoTitle="Security Modules" version="0.74.6" lastModifiedVersion="0.74.2"/>
 
 # Fail2Ban Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/fail2ban" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/fail2ban" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.74.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -24,15 +24,14 @@ via SSH. This module currently supports Ubuntu, Amazon Linux 2, and CentOS (usin
 The module also optionally creates CloudWatch Metrics to track the number of Banned and Unbanned IP Addresses per AWS
 Instance.
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/fail2ban/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/fail2ban/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/fail2ban/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/fail2ban/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/fail2ban/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/fail2ban/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "148817eddfde84d55b55f78e5513b608"
+  "hash": "ac3582dc1b3f931cf1eea1a4ba38f035"
 }
 ##DOCS-SOURCER-END -->
