@@ -1397,7 +1397,6 @@ Other modules can depend on this variable to ensure those modules only deploy af
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1406,6 +1405,6 @@ Other modules can depend on this variable to ensure those modules only deploy af
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.17/modules/server-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "aa3a4cfe7a0d169fd5ad2a2e614473f9"
+  "hash": "f557786cec08ab2643f051d943f473fc"
 }
 ##DOCS-SOURCER-END -->
