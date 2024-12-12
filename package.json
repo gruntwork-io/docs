@@ -37,6 +37,7 @@
     "buffer": "^6.0.3",
     "clsx": "^1.1.1",
     "config": "^3.3.6",
+    "docusaurus-plugin-hubspot": "^1.0.1",
     "env-cmd": "^10.1.0",
     "file-loader": "^6.2.0",
     "path": "^0.12.7",
