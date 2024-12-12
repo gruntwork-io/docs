@@ -4,7 +4,7 @@
 
 Account Factory builds upon Gruntwork's [AWS Control Tower Multi Account Factory](/reference/modules/terraform-aws-control-tower/control-tower-multi-account-factory/) and Pipelines to provide automated account creation, baselining, and managed IAM policies.
 
-In your `infrastructure-live-root` account, the `_new-account-requests` directory acts as an input for the Gruntwork Control Tower Module. This module runs within your management account and uses AWS Control Tower to provision new accounts.
+In your `infrastructure-live-root` repository, the `_new-account-requests` directory acts as input for the Gruntwork Control Tower Module. This module runs within your management account and uses AWS Control Tower to provision new accounts.
 
 Pipelines tracks each provisioned account as a new base directory containing Terragrunt units in your `infrastructure-live-root` repository.
 
