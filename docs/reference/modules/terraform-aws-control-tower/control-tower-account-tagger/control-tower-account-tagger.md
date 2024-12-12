@@ -140,7 +140,6 @@ inputs = {
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -149,6 +148,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.1/modules/control-tower-account-tagger/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "683ff138dee217cb06362c1f88b2cc17"
+  "hash": "cc6639492c5f416319137d30841b127b"
 }
 ##DOCS-SOURCER-END -->
