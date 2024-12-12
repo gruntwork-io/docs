@@ -856,7 +856,6 @@ A value that can be used to chain resources to depend on the website bucket bein
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -865,6 +864,6 @@ A value that can be used to chain resources to depend on the website bucket bein
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.19.0/modules/s3-static-website/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "64648650df518ac456417f0df557ea24"
+  "hash": "93e6595ff585affa971822f1fbe777ad"
 }
 ##DOCS-SOURCER-END -->

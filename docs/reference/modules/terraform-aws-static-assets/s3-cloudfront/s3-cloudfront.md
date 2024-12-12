@@ -1514,7 +1514,6 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1523,6 +1522,6 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.19.0/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "43357d9b336f3777753ffea674a8aa8d"
+  "hash": "7f20e02231cb26417eb074434046aec2"
 }
 ##DOCS-SOURCER-END -->
