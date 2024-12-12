@@ -17,7 +17,7 @@ Version 1.5.7 is the final release of HashiCorp Terraform, licensed under the MP
 
 ## What if I want to use a version of Terraform above v1.5.7?
 
-Gruntwork advises all customers to adopt [OpenTofu](https://opentofu.org/) as a "drop-in" replacement for HashiCorp Terraform. We will prioritize development of OpenTofu releases, test for compatibility, and provide full support for any issues related to our modules and OpenTofu.
+Gruntwork advises all customers to adopt [OpenTofu](https://opentofu.org/) as a "drop-in" replacement for HashiCorp Terraform. We will prioritize development with OpenTofu releases, test for compatibility, and provide full support for any issues related to our modules and OpenTofu.
 
 ## As a user of the Gruntwork IaC Library, do I need to make changes?
 
