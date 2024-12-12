@@ -48,6 +48,16 @@ const redirectPlugin = [
 // @ts-ignore - types don't understand the plugin config
 plugins.push(redirectPlugin)
 
+const segmentPlugin = ["@twilio-labs/docusaurus-plugin-segment",
+  {
+    writeKey: "tVYixAoRAiTy0O7hBkB2TH2hMWFm0IW4",
+    allowedInDev: false,
+  }
+];
+
+// @ts-ignore - types don't understand the plugin config
+plugins.push(segmentPlugin);
+
 /** @type {import('@docusaurus/types').FasterConfig} */
 const fasterConfig = {
   rspackBundler: true,
@@ -213,8 +223,8 @@ const config = {
         },
         googleTagManager: enableGoogleAnalytics
           ? {
-              containerId: googleAnalyticsConfig.trackingID,
-            }
+            containerId: googleAnalyticsConfig.trackingID,
+          }
           : undefined,
       },
     ],
@@ -424,20 +434,20 @@ const config = {
       },
       algolia: algoliaConfig
         ? {
-            appId: algoliaConfig.appId,
-            // Public API key: safe to commit, but still sourced from config
-            apiKey: algoliaConfig.apiKey,
-            indexName: algoliaConfig.indexName,
-            libraryIndexName: algoliaConfig.libraryIndexName,
-            contextualSearch: true,
-          }
+          appId: algoliaConfig.appId,
+          // Public API key: safe to commit, but still sourced from config
+          apiKey: algoliaConfig.apiKey,
+          indexName: algoliaConfig.indexName,
+          libraryIndexName: algoliaConfig.libraryIndexName,
+          contextualSearch: true,
+        }
         : undefined,
       zoomSelector: ".markdown :not(em) > img:not(.no-zoom)",
       posthog: enablePosthog
         ? {
-            apiKey: posthogConfig.apiKey,
-            appUrl: posthogConfig.appUrl,
-          }
+          apiKey: posthogConfig.apiKey,
+          appUrl: posthogConfig.appUrl,
+        }
         : undefined,
       metadata: [
         // https://docusaurus.io/docs/2.x/seo#global-metadata
