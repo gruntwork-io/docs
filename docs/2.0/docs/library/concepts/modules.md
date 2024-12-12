@@ -34,7 +34,6 @@ The module catalog features over 250 building block modules spanning three prima
 2. Running applications
 3. Storing data
 
-Each use case includes one or more Subject Matter Expert (SME) topics, such as AWS account management, VPC/Networking, EKS, ECS, and RDS. While SME topics are a first-class concept within Gruntwork, they need more visibility in the product.
 
 To browse the module catalog, see the [Library Reference](/library/reference) or visit the [private Gruntwork GitHub repos](https://github.com/orgs/gruntwork-io/repositories?q=&type=private&language=&sort=).
 
