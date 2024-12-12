@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.59.2" lastModifiedVersion="0.50.11"/>
+<VersionBadge repoTitle="CI Modules" version="0.59.3" lastModifiedVersion="0.50.11"/>
 
 # Check Url
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.2/modules/check-url" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.3/modules/check-url" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.11" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -77,15 +77,14 @@ version = 2.0.0
 Success! Got expected status code '200' and text '2.0.0' from URL http://www.my-company.com/version. 
 ```
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.2/modules/check-url/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.2/modules/check-url/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.2/modules/check-url/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.3/modules/check-url/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.3/modules/check-url/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.3/modules/check-url/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "47b1744eb84f8ba7b75a8354f3836fd5"
+  "hash": "4d8b3db886ef2f04603b8c4c34372832"
 }
 ##DOCS-SOURCER-END -->
