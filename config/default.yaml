@@ -1,5 +1,10 @@
 # This is the default config for all environments. Check out custom-environment-variables.yml for all possible settings.
 
+hubspot:
+  accountId: 8376079 # This is an account id you can get from tracker code itself. It's safe to check in.
+  async: True
+  defer: True
+
 algolia:
   appId: 7AWZHGNJE2
   apiKey: f799a6e9a302535bd92bbfab65fb6311 # This is a search only API key. It's safe to check in.

@@ -1,41 +1,48 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
-const path = require("path")
+const path = require("path");
 
-const { themes } = require("prism-react-renderer")
-const lightCodeTheme = themes.github
-const darkCodeTheme = themes.nightOwl
+const { themes } = require("prism-react-renderer");
+const lightCodeTheme = themes.github;
+const darkCodeTheme = themes.nightOwl;
 
-const cfg = require("config")
+const cfg = require("config");
 
-const captionsPlugin = require("./src/plugins/captions.mjs")
-const { redirects } = require("./src/redirects.js")
+const captionsPlugin = require("./src/plugins/captions.mjs");
+const { redirects } = require("./src/redirects.js");
 
-const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined
+const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined;
 
-const posthogConfig = cfg.has("posthog") ? cfg.get("posthog") : undefined
-const enablePosthog = posthogConfig && posthogConfig.apiKey
+const hubspotConfig = cfg.has("hubspot") ? cfg.get("hubspot") : undefined;
+const enableHubspot = hubspotConfig && hubspotConfig.accountId;
+
+const posthogConfig = cfg.has("posthog") ? cfg.get("posthog") : undefined;
+const enablePosthog = posthogConfig && posthogConfig.apiKey;
 
 const googleAnalyticsConfig = cfg.has("googleAnalytics")
   ? cfg.get("googleAnalytics")
-  : undefined
-const enableGoogleAnalytics =
-  googleAnalyticsConfig && googleAnalyticsConfig.trackingID
+  : undefined;
+const enableGoogleAnalytics = googleAnalyticsConfig &&
+  googleAnalyticsConfig.trackingID;
 
 const siteUrl = cfg.has("siteUrl")
   ? cfg.get("siteUrl")
   : process.env["NETLIFY"]
   ? process.env["DEPLOY_URL"]
-  : "http://localhost:3000"
+  : "http://localhost:3000";
 
 const buildVersion = cfg.has("app.buildVersion")
   ? cfg.get("app.buildVersion")
-  : "N/A"
+  : "N/A";
 
-const plugins = ["plugin-image-zoom"]
+const plugins = ["plugin-image-zoom"];
 
 if (enablePosthog) {
-  plugins.push("posthog-docusaurus")
+  plugins.push("posthog-docusaurus");
+}
+
+if (enableHubspot) {
+  plugins.push("docusaurus-plugin-hubspot");
 }
 
 const redirectPlugin = [
@@ -43,10 +50,10 @@ const redirectPlugin = [
   {
     redirects,
   },
-]
+];
 
 // @ts-ignore - types don't understand the plugin config
-plugins.push(redirectPlugin)
+plugins.push(redirectPlugin);
 
 /** @type {import('@docusaurus/types').FasterConfig} */
 const fasterConfig = {
@@ -56,7 +63,7 @@ const fasterConfig = {
   swcJsLoader: true,
   swcJsMinimizer: true,
   mdxCrossCompilerCache: true,
-}
+};
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -84,7 +91,8 @@ const config = {
       tagName: "link",
       attributes: {
         rel: "preload",
-        href: "https://gruntwork.io/_next/static/media/66f30814ff6d7cdf-s.p.woff2", // Geist Mono
+        href:
+          "https://gruntwork.io/_next/static/media/66f30814ff6d7cdf-s.p.woff2", // Geist Mono
         as: "font",
         type: "font/woff2",
         crossorigin: "anonymous",
@@ -94,7 +102,8 @@ const config = {
       tagName: "link",
       attributes: {
         rel: "preload",
-        href: "https://gruntwork.io/_next/static/media/97ff73edc14fdb02-s.p.woff2", // General Sans Italic
+        href:
+          "https://gruntwork.io/_next/static/media/97ff73edc14fdb02-s.p.woff2", // General Sans Italic
         as: "font",
         type: "font/woff2",
         crossorigin: "anonymous",
@@ -104,7 +113,8 @@ const config = {
       tagName: "link",
       attributes: {
         rel: "preload",
-        href: "https://gruntwork.io/_next/static/media/a34f9d1faa5f3315-s.p.woff2", // General Sans Bold
+        href:
+          "https://gruntwork.io/_next/static/media/a34f9d1faa5f3315-s.p.woff2", // General Sans Bold
         as: "font",
         type: "font/woff2",
         crossorigin: "anonymous",
@@ -114,7 +124,8 @@ const config = {
       tagName: "link",
       attributes: {
         rel: "preload",
-        href: "https://gruntwork.io/_next/static/media/d9532b38a05b0008-s.p.woff2", // General Sans Normal
+        href:
+          "https://gruntwork.io/_next/static/media/d9532b38a05b0008-s.p.woff2", // General Sans Normal
         as: "font",
         type: "font/woff2",
         crossorigin: "anonymous",
@@ -124,7 +135,8 @@ const config = {
       tagName: "link",
       attributes: {
         rel: "preload",
-        href: "https://gruntwork.io/_next/static/media/55c55f0601d81cf3-s.woff2", // Inter
+        href:
+          "https://gruntwork.io/_next/static/media/55c55f0601d81cf3-s.woff2", // Inter
         as: "font",
         type: "font/woff2",
         crossorigin: "anonymous",
@@ -134,7 +146,8 @@ const config = {
       tagName: "link",
       attributes: {
         rel: "preload",
-        href: "https://gruntwork.io/_next/static/media/26a46d62cd723877-s.woff2", // Inter
+        href:
+          "https://gruntwork.io/_next/static/media/26a46d62cd723877-s.woff2", // Inter
         as: "font",
         type: "font/woff2",
         crossorigin: "anonymous",
@@ -144,7 +157,8 @@ const config = {
       tagName: "link",
       attributes: {
         rel: "preload",
-        href: "https://gruntwork.io/_next/static/media/97e0cb1ae144a2a9-s.woff2", // Inter
+        href:
+          "https://gruntwork.io/_next/static/media/97e0cb1ae144a2a9-s.woff2", // Inter
         as: "font",
         type: "font/woff2",
         crossorigin: "anonymous",
@@ -154,7 +168,8 @@ const config = {
       tagName: "link",
       attributes: {
         rel: "preload",
-        href: "https://gruntwork.io/_next/static/media/581909926a08bbc8-s.woff2", // Inter
+        href:
+          "https://gruntwork.io/_next/static/media/581909926a08bbc8-s.woff2", // Inter
         as: "font",
         type: "font/woff2",
         crossorigin: "anonymous",
@@ -164,7 +179,8 @@ const config = {
       tagName: "link",
       attributes: {
         rel: "preload",
-        href: "https://gruntwork.io/_next/static/media/df0a9ae256c0569c-s.woff2", // Inter
+        href:
+          "https://gruntwork.io/_next/static/media/df0a9ae256c0569c-s.woff2", // Inter
         as: "font",
         type: "font/woff2",
         crossorigin: "anonymous",
@@ -174,7 +190,8 @@ const config = {
       tagName: "link",
       attributes: {
         rel: "preload",
-        href: "https://gruntwork.io/_next/static/media/6d93bde91c0c2823-s.woff2", // Inter
+        href:
+          "https://gruntwork.io/_next/static/media/6d93bde91c0c2823-s.woff2", // Inter
         as: "font",
         type: "font/woff2",
         crossorigin: "anonymous",
@@ -184,7 +201,8 @@ const config = {
       tagName: "link",
       attributes: {
         rel: "preload",
-        href: "https://gruntwork.io/_next/static/media/a34f9d1faa5f3315-s.p.woff2", // Inter
+        href:
+          "https://gruntwork.io/_next/static/media/a34f9d1faa5f3315-s.p.woff2", // Inter
         as: "font",
         type: "font/woff2",
         crossorigin: "anonymous",
@@ -213,8 +231,8 @@ const config = {
         },
         googleTagManager: enableGoogleAnalytics
           ? {
-              containerId: googleAnalyticsConfig.trackingID,
-            }
+            containerId: googleAnalyticsConfig.trackingID,
+          }
           : undefined,
       },
     ],
@@ -278,7 +296,8 @@ const config = {
             id: "more_dropdown",
             items: [
               {
-                href: "https://github.com/gruntwork-io/knowledge-base/discussions",
+                href:
+                  "https://github.com/gruntwork-io/knowledge-base/discussions",
                 label: "Knowledge Base",
               },
               {
@@ -322,11 +341,13 @@ const config = {
             items: [
               {
                 label: "Knowledge Base",
-                href: "https://github.com/gruntwork-io/knowledge-base/discussions",
+                href:
+                  "https://github.com/gruntwork-io/knowledge-base/discussions",
               },
               {
                 label: "Community Slack",
-                href: "https://gruntwork-community.slack.com/archives/CHH9Y3Z62",
+                href:
+                  "https://gruntwork-community.slack.com/archives/CHH9Y3Z62",
               },
               {
                 label: "GitHub",
@@ -424,21 +445,27 @@ const config = {
       },
       algolia: algoliaConfig
         ? {
-            appId: algoliaConfig.appId,
-            // Public API key: safe to commit, but still sourced from config
-            apiKey: algoliaConfig.apiKey,
-            indexName: algoliaConfig.indexName,
-            libraryIndexName: algoliaConfig.libraryIndexName,
-            contextualSearch: true,
-          }
+          appId: algoliaConfig.appId,
+          // Public API key: safe to commit, but still sourced from config
+          apiKey: algoliaConfig.apiKey,
+          indexName: algoliaConfig.indexName,
+          libraryIndexName: algoliaConfig.libraryIndexName,
+          contextualSearch: true,
+        }
         : undefined,
       zoomSelector: ".markdown :not(em) > img:not(.no-zoom)",
       posthog: enablePosthog
         ? {
-            apiKey: posthogConfig.apiKey,
-            appUrl: posthogConfig.appUrl,
-          }
+          apiKey: posthogConfig.apiKey,
+          appUrl: posthogConfig.appUrl,
+        }
         : undefined,
+      hubspot: enableHubspot
+        ? {
+          accountId: hubspotConfig.accountId,
+        }
+        : undefined,
+
       metadata: [
         // https://docusaurus.io/docs/2.x/seo#global-metadata
         // This would become <meta name="keywords" content="..."/> in the generated HTML
@@ -451,6 +478,6 @@ const config = {
         { name: "buildTime", content: new Date().toString() },
       ],
     }),
-}
+};
 
-module.exports = config
+module.exports = config;
