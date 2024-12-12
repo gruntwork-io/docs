@@ -20,13 +20,13 @@ After adding this infrastructure to the repository, Pipelines deploys the resour
 
 ```mermaid
 sequenceDiagram
-Account Factory Workflow ->> Infra Live Repository: Create account request file;
-Infra Live Repository ->> Pipelines: Trigger Account Requested;
-Pipelines ->> AWS Control Tower Module: Execute terragrunt to create account
-AWS Control Tower Module ->> Pipelines: Account Created
-Pipelines ->> Infra Live Repository: Add Account Infrastructure
-Infra Live Repository ->> Pipelines: Trigger Account Added
-Pipelines ->> Core Accounts: Execute terragrunt to baseline account
+  Account Factory Workflow ->> Infra Live Repository: Create account request file;
+  Infra Live Repository ->> Pipelines: Trigger Account Requested;
+  Pipelines ->> AWS Control Tower Module: Execute terragrunt to create account
+  AWS Control Tower Module ->> Pipelines: Account Created
+  Pipelines ->> Infra Live Repository: Add Account Infrastructure
+  Infra Live Repository ->> Pipelines: Trigger Account Added
+  Pipelines ->> Core Accounts: Execute terragrunt to baseline account
 ```
 ## IAM Roles
 
