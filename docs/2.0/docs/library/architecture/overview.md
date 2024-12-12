@@ -6,7 +6,7 @@ import OpenTofuNotice from "/src/components/OpenTofuNotice"
 
 The code in the module repositories is organized into three primary folders:
 
-1. `modules`: This folder contains the core implementation code. All modules you use and deploy are defined here. For example, you can locate the ECS cluster module in the `terraform-aws-ecs` repository within `modules/ecs-cluster`.
+1. `modules`: This folder contains the core implementation code. All modules you use and deploy are defined here. For example, you can locate the ECS cluster module in the `terraform-aws-ecs` repository within the `modules/ecs-cluster` folder.
 
 1. `examples`: This folder includes sample code demonstrating how to use the modules in the `modules` folder. These examples allow you to try the modules without writing code. Navigate to one of the example directories, follow the steps in the README (e.g., run `terraform apply`), and you will have a working module. These examples serve as executable documentation.
 
