@@ -55,7 +55,6 @@ aws cloudwatch list-tags-for-resource --resource-arn alarm_arn
 
 Tags associated with a metric alarm are not propagated with the alarm payload when the alarm is triggered.
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -64,6 +63,6 @@ Tags associated with a metric alarm are not propagated with the alarm payload wh
     "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/v0.36.26/modules/alarms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "73e5903c1685ccf25fa1572772410d9c"
+  "hash": "185bff57603ab3833e08b5257359da55"
 }
 ##DOCS-SOURCER-END -->
