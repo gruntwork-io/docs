@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.118.1" lastModifiedVersion="0.114.0"/>
+<VersionBadge version="0.118.3" lastModifiedVersion="0.114.0"/>
 
 # EKS Karpenter
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/services/eks-karpenter" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/services/eks-karpenter" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-karpenter" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -61,9 +61,9 @@ For detailed information on how Karpenter is deployed to EKS, see the documentat
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -71,7 +71,7 @@ For detailed information on how Karpenter is deployed to EKS, see the documentat
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -101,7 +101,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "eks_karpenter" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-karpenter?ref=v0.118.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-karpenter?ref=v0.118.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -143,6 +143,9 @@ module "eks_karpenter" {
   # Conditional flag to optionally create resources in this module.
   create_resources = true
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # Additional Helm chart values to pass to the Karpenter Helm chart. See the
   # official Karpenter Helm chart values file and documentation for available
   # configuration options.
@@ -172,6 +175,13 @@ module "eks_karpenter" {
   # set to false.
   karpenter_controller_existing_role_arn = null
 
+  # A map of custom tags to apply to the Karpenter Controller IAM Policies if
+  # enabled. The key is the tag name and the value is the tag value.
+  karpenter_controller_iam_policy_tags = {}
+
+  # Additional tags to add to the Karpenter Controller IAM Role.
+  karpenter_controller_iam_role_tags = {}
+
   # The Helm chart name for the Karpenter CRD chart.
   karpenter_crd_chart_name = "karpenter-crd"
 
@@ -191,6 +201,10 @@ module "eks_karpenter" {
   # Whether or not to create the Karpneter CRDs via the karpenter-crd Helm
   # chart. It is suggested to manage the Karpenter CRDs via this Helm chart.
   karpenter_crd_helm_create = true
+
+  # A map of custom tags to apply to the Karpenter Deprovisioning Queue IAM
+  # Policies if enabled. The key is the tag name and the value is the tag value.
+  karpenter_deprovisioning_queue_iam_policy_tags = {}
 
   # Additional tags to add to the Karpenter Deprovisioning Queue.
   karpenter_deprovisioning_queue_tags = {}
@@ -253,7 +267,7 @@ module "eks_karpenter" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-karpenter?ref=v0.118.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-karpenter?ref=v0.118.3"
 }
 
 inputs = {
@@ -298,6 +312,9 @@ inputs = {
   # Conditional flag to optionally create resources in this module.
   create_resources = true
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # Additional Helm chart values to pass to the Karpenter Helm chart. See the
   # official Karpenter Helm chart values file and documentation for available
   # configuration options.
@@ -327,6 +344,13 @@ inputs = {
   # set to false.
   karpenter_controller_existing_role_arn = null
 
+  # A map of custom tags to apply to the Karpenter Controller IAM Policies if
+  # enabled. The key is the tag name and the value is the tag value.
+  karpenter_controller_iam_policy_tags = {}
+
+  # Additional tags to add to the Karpenter Controller IAM Role.
+  karpenter_controller_iam_role_tags = {}
+
   # The Helm chart name for the Karpenter CRD chart.
   karpenter_crd_chart_name = "karpenter-crd"
 
@@ -346,6 +370,10 @@ inputs = {
   # Whether or not to create the Karpneter CRDs via the karpenter-crd Helm
   # chart. It is suggested to manage the Karpenter CRDs via this Helm chart.
   karpenter_crd_helm_create = true
+
+  # A map of custom tags to apply to the Karpenter Deprovisioning Queue IAM
+  # Policies if enabled. The key is the tag name and the value is the tag value.
+  karpenter_deprovisioning_queue_iam_policy_tags = {}
 
   # Additional tags to add to the Karpenter Deprovisioning Queue.
   karpenter_deprovisioning_queue_tags = {}
@@ -489,6 +517,15 @@ Conditional flag to optionally create resources in this module.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply to all AWS resources managed by this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="karpenter_chart_additional_values" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -568,6 +605,24 @@ Provide an existing IAM Role ARN to be used with the Karpenter Controller Servic
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="karpenter_controller_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Karpenter Controller IAM Policies if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="karpenter_controller_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Additional tags to add to the Karpenter Controller IAM Role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="karpenter_crd_chart_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -620,6 +675,15 @@ Whether or not to create the Karpneter CRDs via the karpenter-crd Helm chart. It
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="karpenter_deprovisioning_queue_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Karpenter Deprovisioning Queue IAM Policies if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="karpenter_deprovisioning_queue_tags" requirement="optional" type="map(string)">
@@ -785,15 +849,14 @@ The name of the Karpenter Node IAM Role.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/services/eks-karpenter/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/services/eks-karpenter/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.1/modules/services/eks-karpenter/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/services/eks-karpenter/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/services/eks-karpenter/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/services/eks-karpenter/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d5779156f95ad353040ae9309f13fa3c"
+  "hash": "bcb6f85c650f3ecc3e3d3536c4c802cf"
 }
 ##DOCS-SOURCER-END -->
