@@ -16,7 +16,7 @@ To explore complete solutions combining building blocks, refer to [Service Modul
 
 Modules are designed to be small, narrow in scope, and highly reusable. They prioritize _control_ over _convenience_, making them suitable for diverse use cases. Deploying a complete infrastructure solution often requires assembling multiple modules.
 
-Consider [Service Modules](/2.0/docs/library/concepts/service-modules) for greater convenience.
+Consider [Service Modules](/2.0/docs/library/concepts/service-modules) when optimizing for greater convenience.
 
 For insights on building block versus service modules, see [Introducing: The Gruntwork Module, Service, and Architecture Catalogs](https://blog.gruntwork.io/introducing-the-gruntwork-module-service-and-architecture-catalogs-eb3a21b99f70).
 
