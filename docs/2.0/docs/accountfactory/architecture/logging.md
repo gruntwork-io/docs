@@ -24,7 +24,7 @@ For more information about querying data in S3, see [querying in S3](#querying-i
 
 ## Data access
 
-Granting access to the audit logs requires security configurations in the originating account (e.g., the account in which the events are occurring) and the `logs` account. The originating account contains the CloudTrail trail itself, which should only be viewable by account administrators. The logs account contains the AWS S3 bucket that contains synchronized CloudTrail logs from all logs.
+Granting access to the audit logs requires security configurations in the originating account (e.g., the account in which the events are occurring) and the `logs` account. The originating account contains the CloudTrail trail itself, which should only be viewable by account administrators. The `logs` account contains the AWS S3 bucket that contains synchronized CloudTrail logs from all logs.
 
 ### CloudTrail access
 
