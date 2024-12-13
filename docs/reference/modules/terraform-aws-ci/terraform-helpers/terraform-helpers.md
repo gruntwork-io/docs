@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.59.2" lastModifiedVersion="0.52.4"/>
+<VersionBadge repoTitle="CI Modules" version="0.59.3" lastModifiedVersion="0.52.4"/>
 
 # Terraform Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.2/modules/terraform-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.3/modules/terraform-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -38,7 +38,7 @@ You can install these scripts using the [Gruntwork Installer](https://github.com
 gruntwork-install --module-name "terraform-helpers" --repo "https://github.com/gruntwork-io/terraform-aws-ci" --tag "0.0.1"
 ```
 
-Note that `terraform-update-variable` depends on the [git-helpers module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.2/modules/git-helpers) being installed!
+Note that `terraform-update-variable` depends on the [git-helpers module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.3/modules/git-helpers) being installed!
 
 See the examples in the next section for how to use them.
 
@@ -337,15 +337,14 @@ In your infrastructure pipelines, you should use `--exclude-deleted` to filter o
 and `apply` actions so that Terraform/Terragrunt can run. If you wish to implement destroy workflows, you can use the
 `--include-deleted-only` parameter to setup a separate pipeline for handling `destroy` actions.
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.2/modules/terraform-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.2/modules/terraform-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.2/modules/terraform-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.3/modules/terraform-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.3/modules/terraform-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.3/modules/terraform-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "184647a15901544da9ee0d942df9f9cc"
+  "hash": "5317fdf8cf3a736e8f36d32c8b91ec7f"
 }
 ##DOCS-SOURCER-END -->
