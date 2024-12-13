@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.17" lastModifiedVersion="0.21.11"/>
+<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.18" lastModifiedVersion="0.21.11"/>
 
 # Auto Scaling Group Module with Instance Refresh
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.17/modules/asg-instance-refresh" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.18/modules/asg-instance-refresh" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.11" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -89,7 +89,7 @@ The Terraform [instance_refresh](https://registry.terraform.io/providers/hashico
 
 module "asg_instance_refresh" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-instance-refresh?ref=v0.21.17"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-instance-refresh?ref=v0.21.18"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -220,7 +220,7 @@ module "asg_instance_refresh" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-instance-refresh?ref=v0.21.17"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-instance-refresh?ref=v0.21.18"
 }
 
 inputs = {
@@ -648,15 +648,14 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.17/modules/asg-instance-refresh/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.17/modules/asg-instance-refresh/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.17/modules/asg-instance-refresh/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.18/modules/asg-instance-refresh/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.18/modules/asg-instance-refresh/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.18/modules/asg-instance-refresh/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5d1422d1c632c9081b20d8d2f0767862"
+  "hash": "df804887bac200a500123beeb5d395a6"
 }
 ##DOCS-SOURCER-END -->
