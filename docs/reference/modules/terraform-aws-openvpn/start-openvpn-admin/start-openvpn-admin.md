@@ -20,7 +20,6 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 This module is used to setup system.d and to start the OpenVPN Admin to process new certificate requests and
 certificate revocation requests on the OpenVPN server
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -29,6 +28,6 @@ certificate revocation requests on the OpenVPN server
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.9/modules/start-openvpn-admin/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "98539a107a4148b9802e8b8fe16be6ea"
+  "hash": "e5d485317d26d0548640fd2d0903d92e"
 }
 ##DOCS-SOURCER-END -->

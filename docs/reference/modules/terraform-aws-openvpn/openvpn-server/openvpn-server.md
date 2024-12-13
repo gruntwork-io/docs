@@ -1101,7 +1101,6 @@ The base64-encoded User Data script to run on the server when it is booting. Thi
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1110,6 +1109,6 @@ The base64-encoded User Data script to run on the server when it is booting. Thi
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.9/modules/openvpn-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "88dacafb31f85ae93df96c728b10f1de"
+  "hash": "c7b4323e21f9d674b9ce25fce751329d"
 }
 ##DOCS-SOURCER-END -->
