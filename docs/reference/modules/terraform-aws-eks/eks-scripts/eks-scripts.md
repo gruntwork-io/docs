@@ -112,6 +112,6 @@ tests.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-scripts/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "502532a53a83e9682d4133328f3531d0"
+  "hash": "34d0b323612ff94515b5b4dd641c70c2"
 }
 ##DOCS-SOURCER-END -->

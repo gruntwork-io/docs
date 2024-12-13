@@ -279,17 +279,9 @@ module "eks_alb_ingress_controller" {
   # The version of the aws-load-balancer-controller helmchart to use.
   chart_version = "1.4.6"
 
-  # A map of custom tags to apply to the Controller IAM Policies if enabled. The
-  # key is the tag name and the value is the tag value.
-  controller_iam_policy_tags = {}
-
   # ARN of permissions boundary to apply to the controller IAM role - the IAM
   # role created for the Ingress Controller.
   controller_iam_role_permissions_boundary = null
-
-  # A map of custom tags to apply to the Controller IAM Role if enabled. The key
-  # is the tag name and the value is the tag value.
-  controller_iam_role_tags = {}
 
   # When set to true, create a dedicated Fargate execution profile for the alb
   # ingress controller. Note that this is not necessary to deploy to Fargate.
@@ -297,7 +289,7 @@ module "eks_alb_ingress_controller" {
   # Namespace, you do not need another one.
   create_fargate_profile = false
 
-  # Tags to apply to all AWS resources managed by this module.
+  # Tags to apply to all AWS resources managed by this controller
   default_tags = {}
 
   # Create a dependency between the resources in this module to the interpolated
@@ -323,15 +315,6 @@ module "eks_alb_ingress_controller" {
 
   # The tag of the docker image that should be deployed.
   docker_image_tag = "v2.4.5"
-
-  # A map of custom tags to apply to the Controller Fargate Profile IAM
-  # Execution Role if enabled. The key is the tag name and the value is the tag
-  # value.
-  eks_fargate_profile_execution_role_tags = {}
-
-  # A map of custom tags to apply to the Controller Fargate Profile if enabled.
-  # The key is the tag name and the value is the tag value.
-  eks_fargate_profile_tags = {}
 
   # Enables restricted Security Group rules for the load balancers managed by
   # the controller. When this is true, the load balancer will restrict the
@@ -434,17 +417,9 @@ inputs = {
   # The version of the aws-load-balancer-controller helmchart to use.
   chart_version = "1.4.6"
 
-  # A map of custom tags to apply to the Controller IAM Policies if enabled. The
-  # key is the tag name and the value is the tag value.
-  controller_iam_policy_tags = {}
-
   # ARN of permissions boundary to apply to the controller IAM role - the IAM
   # role created for the Ingress Controller.
   controller_iam_role_permissions_boundary = null
-
-  # A map of custom tags to apply to the Controller IAM Role if enabled. The key
-  # is the tag name and the value is the tag value.
-  controller_iam_role_tags = {}
 
   # When set to true, create a dedicated Fargate execution profile for the alb
   # ingress controller. Note that this is not necessary to deploy to Fargate.
@@ -452,7 +427,7 @@ inputs = {
   # Namespace, you do not need another one.
   create_fargate_profile = false
 
-  # Tags to apply to all AWS resources managed by this module.
+  # Tags to apply to all AWS resources managed by this controller
   default_tags = {}
 
   # Create a dependency between the resources in this module to the interpolated
@@ -478,15 +453,6 @@ inputs = {
 
   # The tag of the docker image that should be deployed.
   docker_image_tag = "v2.4.5"
-
-  # A map of custom tags to apply to the Controller Fargate Profile IAM
-  # Execution Role if enabled. The key is the tag name and the value is the tag
-  # value.
-  eks_fargate_profile_execution_role_tags = {}
-
-  # A map of custom tags to apply to the Controller Fargate Profile if enabled.
-  # The key is the tag name and the value is the tag value.
-  eks_fargate_profile_tags = {}
 
   # Enables restricted Security Group rules for the load balancers managed by
   # the controller. When this is true, the load balancer will restrict the
@@ -542,6 +508,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-alb-ingress-controller/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2dbc39db52fba576886383fd83e86646"
+  "hash": "accb85ab965b0265d3e1dad486481791"
 }
 ##DOCS-SOURCER-END -->

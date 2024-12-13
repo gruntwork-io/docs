@@ -573,6 +573,6 @@ The name of the ConfigMap created to store the mapping. This exists so that down
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-role-mapping/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d5fccaa9b8b8b2a9fb505e9511c59e0f"
+  "hash": "133f09e67f951655604a2a62c929a7d1"
 }
 ##DOCS-SOURCER-END -->

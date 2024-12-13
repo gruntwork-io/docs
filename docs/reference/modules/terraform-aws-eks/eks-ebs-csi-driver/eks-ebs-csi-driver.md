@@ -55,24 +55,12 @@ module "eks_ebs_csi_driver" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Tags to apply to all AWS resources managed by this module.
-  default_tags = {}
-
   # Configuraiton object for the EBS CSI Driver EKS AddOn
   ebs_csi_driver_addon_config = {}
 
   # A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the
   # tag name and the value is the tag value.
   ebs_csi_driver_addon_tags = {}
-
-  # A map of custom tags to apply to the IAM Policies created for the EBS CSI
-  # Driver IAM Role if enabled. The key is the tag name and the value is the tag
-  # value.
-  ebs_csi_driver_iam_policy_tags = {}
-
-  # A map of custom tags to apply to the EBS CSI Driver IAM Role if enabled. The
-  # key is the tag name and the value is the tag value.
-  ebs_csi_driver_iam_role_tags = {}
 
   # If using KMS encryption of EBS volumes, provide the KMS Key ARN to be used
   # for a policy attachment.
@@ -132,24 +120,12 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Tags to apply to all AWS resources managed by this module.
-  default_tags = {}
-
   # Configuraiton object for the EBS CSI Driver EKS AddOn
   ebs_csi_driver_addon_config = {}
 
   # A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the
   # tag name and the value is the tag value.
   ebs_csi_driver_addon_tags = {}
-
-  # A map of custom tags to apply to the IAM Policies created for the EBS CSI
-  # Driver IAM Role if enabled. The key is the tag name and the value is the tag
-  # value.
-  ebs_csi_driver_iam_policy_tags = {}
-
-  # A map of custom tags to apply to the EBS CSI Driver IAM Role if enabled. The
-  # key is the tag name and the value is the tag value.
-  ebs_csi_driver_iam_role_tags = {}
 
   # If using KMS encryption of EBS volumes, provide the KMS Key ARN to be used
   # for a policy attachment.
@@ -216,15 +192,6 @@ URL of the OpenID Connect Provider provisioned for the EKS cluster.
 
 ### Optional
 
-<HclListItem name="default_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags to apply to all AWS resources managed by this module.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
 <HclListItem name="ebs_csi_driver_addon_config" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -285,24 +252,6 @@ A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the tag na
 </details>
 
 </HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="ebs_csi_driver_iam_policy_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of custom tags to apply to the IAM Policies created for the EBS CSI Driver IAM Role if enabled. The key is the tag name and the value is the tag value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="ebs_csi_driver_iam_role_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of custom tags to apply to the EBS CSI Driver IAM Role if enabled. The key is the tag name and the value is the tag value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="ebs_csi_driver_kms_key_arn" requirement="optional" type="string">
@@ -388,6 +337,6 @@ The latest available version of the EBS CSI AddOn.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-ebs-csi-driver/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d31705b7347d181c24070cb69d57f035"
+  "hash": "1f586cdd6f7a210d0df6feea74ca723a"
 }
 ##DOCS-SOURCER-END -->

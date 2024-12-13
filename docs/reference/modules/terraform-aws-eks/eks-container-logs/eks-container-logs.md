@@ -183,22 +183,36 @@ module "eks_container_logs" {
   # file.
   additional_inputs = ""
 
+  # Can be used to add additional outputs with this value.
+  additional_outputs = ""
+
   # Configurations for forwarding logs to AWS managed Elasticsearch. Set to null
   # if you do not wish to forward the logs to ES.
   aws_elasticsearch_configuration = null
 
+  # The name of the aws-for-fluent-bit Helm chart to fetch from the repository.
+  # This should always be aws-for-fluent-bit unless fetching from a different
+  # repository.
+  aws_for_fluent_bit_chart_name = "aws-for-fluent-bit"
+
+  # The Kubernetes namespace to install the Helm chart to.
+  aws_for_fluent_bit_chart_namespace = "kube-system"
+
   # The version of the aws-for-fluent-bit helm chart to deploy. Note that this
   # is different from the app/container version (use
   # var.aws_for_fluent_bit_version to control the app/container version).
-  aws_for_fluent_bit_chart_version = "0.1.24"
+  aws_for_fluent_bit_chart_version = "0.1.34"
 
   # The Container repository to use for looking up the aws-for-fluent-bit
   # Container image when deploying the pods. When null, uses the default
   # repository set in the chart.
   aws_for_fluent_bit_image_repository = null
 
-  # Which version of aws-for-fluent-bit to install. When null, uses the default
-  # version set in the chart.
+  # The Helm Release Name to create when installing the chart to the cluster.
+  aws_for_fluent_bit_release_name = "aws-for-fluent-bit"
+
+  # Which version of aws-for-fluent-bit to install (corresponds to the image
+  # tag). When null, uses the default version set in the chart.
   aws_for_fluent_bit_version = null
 
   # The AWS partition used for default AWS Resources.
@@ -221,10 +235,7 @@ module "eks_container_logs" {
 
   # Configurations for adjusting the default input settings. Set to null if you
   # do not wish to use the default filter.
-  default_input_configuration = {"db":"/var/log/flb_kube.db","dockerMode":"On","enabled":true,"memBufLimit":"5MB","parser":"docker","path":"/var/log/containers/*.log","refreshInterval":"10","skipLongLines":"On","tag":"kube.*"}
-
-  # Tags to apply to all AWS resources managed by this module.
-  default_tags = {}
+  default_input_configuration = {"db":"/var/log/flb_kube.db","dockerMode":"On","enabled":true,"memBufLimit":"5MB","multilineParser":"docker, cri","parser":"docker","path":"/var/log/containers/*.log","refreshInterval":"10","skipLongLines":"On","tag":"kube.*"}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -256,17 +267,12 @@ module "eks_container_logs" {
   # fluent-bit.conf file.
   extra_parsers = ""
 
+  # Allow the service to be exposed for monitoring.
+  extra_service = ""
+
   # Configurations for forwarding logs to Kinesis Firehose. Set to null if you
   # do not wish to forward the logs to Firehose.
   firehose_configuration = null
-
-  # A map of custom tags to apply to the IAM Policies created for the fluentbit
-  # IAM Role if enabled. The key is the tag name and the value is the tag value.
-  fluent_bit_iam_policy_tags = {}
-
-  # A map of custom tags to apply to the fluentbit IAM Role if enabled. The key
-  # is the tag name and the value is the tag value.
-  fluent_bit_iam_role_tags = {}
 
   # Used to name IAM roles for the service account. Recommended when
   # var.iam_role_for_service_accounts_config is configured.
@@ -275,6 +281,10 @@ module "eks_container_logs" {
   # Configurations for forwarding logs to Kinesis stream. Set to null if you do
   # not wish to forward the logs to Kinesis.
   kinesis_configuration = null
+
+  kinesis_streams_configuration = null
+
+  opensearch_configuration = null
 
   # Configure affinity rules for the Pod to control which nodes to schedule on.
   # Each item in the list should be a map with the keys `key`, `values`, and
@@ -289,6 +299,11 @@ module "eks_container_logs" {
   # Configure tolerations rules to allow the Pod to schedule on nodes that have
   # been tainted. Each item in the list specifies a toleration rule.
   pod_tolerations = []
+
+  # Create a restricted pod security policy.
+  rbac_psp_enabled = false
+
+  s3_configuration = null
 
   # Merge and mask sensitive values like apikeys or passwords that are part of
   # the helm charts `values.yaml`. These sensitive values will show up in the
@@ -358,22 +373,36 @@ inputs = {
   # file.
   additional_inputs = ""
 
+  # Can be used to add additional outputs with this value.
+  additional_outputs = ""
+
   # Configurations for forwarding logs to AWS managed Elasticsearch. Set to null
   # if you do not wish to forward the logs to ES.
   aws_elasticsearch_configuration = null
 
+  # The name of the aws-for-fluent-bit Helm chart to fetch from the repository.
+  # This should always be aws-for-fluent-bit unless fetching from a different
+  # repository.
+  aws_for_fluent_bit_chart_name = "aws-for-fluent-bit"
+
+  # The Kubernetes namespace to install the Helm chart to.
+  aws_for_fluent_bit_chart_namespace = "kube-system"
+
   # The version of the aws-for-fluent-bit helm chart to deploy. Note that this
   # is different from the app/container version (use
   # var.aws_for_fluent_bit_version to control the app/container version).
-  aws_for_fluent_bit_chart_version = "0.1.24"
+  aws_for_fluent_bit_chart_version = "0.1.34"
 
   # The Container repository to use for looking up the aws-for-fluent-bit
   # Container image when deploying the pods. When null, uses the default
   # repository set in the chart.
   aws_for_fluent_bit_image_repository = null
 
-  # Which version of aws-for-fluent-bit to install. When null, uses the default
-  # version set in the chart.
+  # The Helm Release Name to create when installing the chart to the cluster.
+  aws_for_fluent_bit_release_name = "aws-for-fluent-bit"
+
+  # Which version of aws-for-fluent-bit to install (corresponds to the image
+  # tag). When null, uses the default version set in the chart.
   aws_for_fluent_bit_version = null
 
   # The AWS partition used for default AWS Resources.
@@ -396,10 +425,7 @@ inputs = {
 
   # Configurations for adjusting the default input settings. Set to null if you
   # do not wish to use the default filter.
-  default_input_configuration = {"db":"/var/log/flb_kube.db","dockerMode":"On","enabled":true,"memBufLimit":"5MB","parser":"docker","path":"/var/log/containers/*.log","refreshInterval":"10","skipLongLines":"On","tag":"kube.*"}
-
-  # Tags to apply to all AWS resources managed by this module.
-  default_tags = {}
+  default_input_configuration = {"db":"/var/log/flb_kube.db","dockerMode":"On","enabled":true,"memBufLimit":"5MB","multilineParser":"docker, cri","parser":"docker","path":"/var/log/containers/*.log","refreshInterval":"10","skipLongLines":"On","tag":"kube.*"}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -431,17 +457,12 @@ inputs = {
   # fluent-bit.conf file.
   extra_parsers = ""
 
+  # Allow the service to be exposed for monitoring.
+  extra_service = ""
+
   # Configurations for forwarding logs to Kinesis Firehose. Set to null if you
   # do not wish to forward the logs to Firehose.
   firehose_configuration = null
-
-  # A map of custom tags to apply to the IAM Policies created for the fluentbit
-  # IAM Role if enabled. The key is the tag name and the value is the tag value.
-  fluent_bit_iam_policy_tags = {}
-
-  # A map of custom tags to apply to the fluentbit IAM Role if enabled. The key
-  # is the tag name and the value is the tag value.
-  fluent_bit_iam_role_tags = {}
 
   # Used to name IAM roles for the service account. Recommended when
   # var.iam_role_for_service_accounts_config is configured.
@@ -450,6 +471,10 @@ inputs = {
   # Configurations for forwarding logs to Kinesis stream. Set to null if you do
   # not wish to forward the logs to Kinesis.
   kinesis_configuration = null
+
+  kinesis_streams_configuration = null
+
+  opensearch_configuration = null
 
   # Configure affinity rules for the Pod to control which nodes to schedule on.
   # Each item in the list should be a map with the keys `key`, `values`, and
@@ -464,6 +489,11 @@ inputs = {
   # Configure tolerations rules to allow the Pod to schedule on nodes that have
   # been tainted. Each item in the list specifies a toleration rule.
   pod_tolerations = []
+
+  # Create a restricted pod security policy.
+  rbac_psp_enabled = false
+
+  s3_configuration = null
 
   # Merge and mask sensitive values like apikeys or passwords that are part of
   # the helm charts `values.yaml`. These sensitive values will show up in the
@@ -499,6 +529,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "70f5cf63650f6991bd93066b8413e160"
+  "hash": "12f68ac050203f661399bd5132fa2eae"
 }
 ##DOCS-SOURCER-END -->
