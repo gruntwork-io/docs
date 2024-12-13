@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.74.5" lastModifiedVersion="0.74.5"/>
+<VersionBadge repoTitle="Security Modules" version="0.74.6" lastModifiedVersion="0.74.6"/>
 
 # Private S3 Bucket
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/private-s3-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/private-s3-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.74.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.74.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to create and manage an [Amazon S3](https://aws.amazon.com/s3/) bucket that enforces
 best practices for private access:
@@ -86,7 +86,7 @@ aws-vault exec --no-session root-prod -- ./mfa-delete.sh --account-id 2264865421
 
 module "private_s_3_bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.74.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.74.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -136,6 +136,10 @@ module "private_s_3_bucket" {
   # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html
   # for more info.
   bucket_ownership = "BucketOwnerEnforced"
+
+  # Provides an IAM policy in JSON format to apply to S3 bucket. See more:
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html
+  bucket_policy_from_file = null
 
   # The IAM policy to apply to this S3 bucket. You can use this to grant
   # read/write access. This should be a map, where each key is a unique
@@ -292,7 +296,7 @@ module "private_s_3_bucket" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.74.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.74.6"
 }
 
 inputs = {
@@ -345,6 +349,10 @@ inputs = {
   # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html
   # for more info.
   bucket_ownership = "BucketOwnerEnforced"
+
+  # Provides an IAM policy in JSON format to apply to S3 bucket. See more:
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html
+  bucket_policy_from_file = null
 
   # The IAM policy to apply to this S3 bucket. You can use this to grant
   # read/write access. This should be a map, where each key is a unique
@@ -574,6 +582,40 @@ Configure who will be the default owner of objects uploaded to this S3 bucket: m
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;BucketOwnerEnforced&quot;"/>
+</HclListItem>
+
+<HclListItem name="bucket_policy_from_file" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Provides an IAM policy in JSON format to apply to S3 bucket. See more: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    # Path to file
+    file_path = string
+
+    # Variables to substitute in the policy file
+    vars = map(string)
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     Variables to substitute in the policy file
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="bucket_policy_statements" requirement="optional" type="any">
@@ -1050,15 +1092,14 @@ The name of an IAM role that can be used to configure replication from various s
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/private-s3-bucket/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/private-s3-bucket/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/private-s3-bucket/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/private-s3-bucket/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/private-s3-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/private-s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0ce4a5f0658b14b03f2d0c7c512c02bc"
+  "hash": "ff2e42a2800de43b1b984df784ee5daf"
 }
 ##DOCS-SOURCER-END -->
