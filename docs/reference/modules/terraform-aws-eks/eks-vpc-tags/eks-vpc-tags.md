@@ -147,6 +147,6 @@ Tags for public subnets in the VPC to use for integration with EKS.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-vpc-tags/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d4c4db1fc78bbd93729b4989c399e14d"
+  "hash": "671084d55fe6c24b86428675a7eaf033"
 }
 ##DOCS-SOURCER-END -->
