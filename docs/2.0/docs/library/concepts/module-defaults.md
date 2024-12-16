@@ -1,6 +1,6 @@
 # Module Defaults
 
-Module defaults allow infrastructure as code developers to reference a terraform module, set locals, and set default (but mutable) variable values. This pattern helps keep Terragrunt architecture DRY, reducing the likelihood of errors when making changes across environments.
+Module defaults allow infrastructure as code developers to reference an OpenTofu/Terraform module, set locals, and set default (but mutable) variable values. This pattern helps keep Terragrunt architecture DRY, reducing the likelihood of errors when making changes across environments.
 
 This pattern benefits both module developers and consumers:
 
