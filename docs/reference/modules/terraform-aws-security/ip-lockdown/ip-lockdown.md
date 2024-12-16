@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.74.5" lastModifiedVersion="0.44.10"/>
+<VersionBadge repoTitle="Security Modules" version="0.74.6" lastModifiedVersion="0.44.10"/>
 
 # ip-lockdown Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/ip-lockdown" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/ip-lockdown" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.44.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -33,7 +33,7 @@ In the example below we restrict access to [ec2-instance-metadata endpoint](http
 
 Normally users make a `curl` call to get metadata like the AWS region or credentials associated with this EC2 Instance's IAM Role. Following the invocation of ip-lockdown, only users foo, bar, and root can query that data.
 
-The complete example of using terraform to deploy a generated AMI into your AWS account and automatically invoke `ip-lockdown` from the `User Data` is also available in the [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/examples/ip-lockdown/aws-example) folder.
+The complete example of using terraform to deploy a generated AMI into your AWS account and automatically invoke `ip-lockdown` from the `User Data` is also available in the [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/examples/ip-lockdown/aws-example) folder.
 
 #### Installation
 
@@ -58,15 +58,14 @@ gruntwork-install --module-name ip-lockdown --tag <MODULE_SECURITY_VERSION> --re
 |IP|IP address that will be locked down (outgoing access will be disabled) for all *but* the users specified in subequent `[<USER> ... ]]` arguments|Required|169.254.169.254|
 |USER|Space separated whitelist of users who will be allowed outgoing access to specified ip address|Optional|root (or any other OS user name)|
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/ip-lockdown/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/ip-lockdown/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/ip-lockdown/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/ip-lockdown/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/ip-lockdown/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/ip-lockdown/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "adfb108970705f151b836adb4c7a37b5"
+  "hash": "55a7cefa5e8afa1a191551e612fd61bd"
 }
 ##DOCS-SOURCER-END -->
