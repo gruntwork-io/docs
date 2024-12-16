@@ -2,11 +2,11 @@
 
 Modules are reusable "infrastructure building blocks" describing how to deploy and manage specific pieces of infrastructure, such as a VPC, ECS cluster, or Auto Scaling Group.
 
-Most modules are written in Terraform and define multiple AWS resources.
+Most modules are written in OpenTofu/Terraform and define multiple AWS resources.
 
 ## Example
 
-Consider the [rds module](/reference/modules/terraform-aws-data-storage/rds). This Terraform module creates an RDS database, the IAM roles required to operate it, optional read replicas, database subnet groups, and relevant security groups.
+Consider the [`rds` module](/reference/modules/terraform-aws-data-storage/rds). This OpenTofu/Terraform module creates an RDS database, the IAM roles required to operate it, optional read replicas, database subnet groups, and relevant security groups.
 
 While the module addresses key elements of an RDS deployment, it does not provide a _complete_ solution. It excludes features like backup policies using AWS Backup, RDS Proxy for connection pooling, and CloudWatch alarms for monitoring. These missing elements are available as separate building block modules, such as `backup-plan`, `backup-vault`, and `rds-proxy`, which you can use alongside the `rds` module.
 
@@ -35,10 +35,10 @@ The module catalog features over 250 building block modules spanning three prima
 3. Storing data
 
 
-To browse the module catalog, see the [Library Reference](/library/reference) or visit the [private Gruntwork GitHub repos](https://github.com/orgs/gruntwork-io/repositories?q=&type=private&language=&sort=).
+To browse the module catalog, see the [Library Reference](/library/reference) or peruse the [private Gruntwork GitHub repositories using your subscription](https://github.com/orgs/gruntwork-io/repositories?q=&type=private&language=&sort=).
 
 ## How modules are updated
 
-Gruntwork employs AWS and Terraform experts who monitor updates from AWS, Terraform, and the broader DevOps community. Feedback from the Gruntwork customer community also informs updates. They incorporate the most significant updates into new features and releases.
+Gruntwork employs AWS and OpenTofu/Terraform experts who monitor updates from AWS, OpenTofu, Terraform, and the broader DevOps community. Feedback from the Gruntwork customer community also informs updates. They incorporate the most significant updates into new features and releases.
 
 Refer to [Gruntwork releases](/guides/stay-up-to-date/#gruntwork-releases) for a comprehensive listing of updates.
