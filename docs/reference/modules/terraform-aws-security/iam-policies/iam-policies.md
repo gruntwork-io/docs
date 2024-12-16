@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.74.6" lastModifiedVersion="0.69.2"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.0" lastModifiedVersion="0.69.2"/>
 
 # A Best-Practices Set of IAM Policy Documents
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.0/modules/iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.69.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -25,7 +25,7 @@ Note that these documents are Terraform [data sources](https://www.terraform.io/
 so they don't create anything themselves and are not intended to be used on their own. The way to use them is to take
 the outputs from this module (which are all JSON IAM documents) and plug them into other Terraform resources, such
 as `aws_iam_policy`, `aws_iam_user_policy`, `aws_iam_group_policy`, and `aws_iam_role_policy`. See the
-[iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/iam-groups) and [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/cross-account-iam-roles) modules for examples.
+[iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.0/modules/iam-groups) and [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.0/modules/cross-account-iam-roles) modules for examples.
 
 If you're not familiar with IAM concepts, start with the [Background Information](#background-information) section as a
 way to familiarize yourself with the terminology.
@@ -82,7 +82,7 @@ This module creates the following IAM Policy documents:
     certain IAM roles in other AWS accounts (e.g. stage, prod). The documents that are created and which IAM roles they
     have access to is controlled by the variable `var.allow_access_from_other_account_arns`.
 
-*   **ssh_grunt_permissions**: provides the permissions [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/ssh-grunt) needs to validate SSH keys with
+*   **ssh_grunt_permissions**: provides the permissions [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.0/modules/ssh-grunt) needs to validate SSH keys with
     IAM.
 
 *   **auto_deploy_permissions**: provides the permissions in `var.auto_deploy_permissions` to do automated deployment.
@@ -263,7 +263,7 @@ Instead, use these Terraform resources so you don't have to worry about this pro
 
 module "iam_policies" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-policies?ref=v0.74.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-policies?ref=v0.75.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -350,7 +350,7 @@ module "iam_policies" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-policies?ref=v0.74.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-policies?ref=v0.75.0"
 }
 
 inputs = {
@@ -680,11 +680,11 @@ If set to true, all the Policies created by this module that are used as Trust P
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/iam-policies/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/iam-policies/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.6/modules/iam-policies/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.0/modules/iam-policies/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.0/modules/iam-policies/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.0/modules/iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "59079162ba8535bb422b42e9953257ae"
+  "hash": "9ba5ab1c0f39a3c97e5357dd8a9ae5cb"
 }
 ##DOCS-SOURCER-END -->
