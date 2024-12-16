@@ -4,7 +4,7 @@ The Network Topology component focuses on implementing best-practices network ar
 
 The standard network architecture includes:
 
-- The VPC itself
+- The Virtual Private Cloud (VPC) itself
 - Subnets, isolated subdivisions within the VPC, are organized into three "tiers": public, private app, and private persistence
 - Route tables, which define routing rules for subnets
 - Internet Gateways to manage traffic between public subnets and the Internet

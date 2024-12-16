@@ -1,12 +1,12 @@
 # Logging
 
-The Gruntwork Account Factory configures [AWS CloudTrail](https://aws.amazon.com/cloudtrail/) for all accounts in your [AWS Organization](https://aws.amazon.com/organizations/). CloudTrail helps you determine _who_ did _what_ and _when_ in each of your AWS accounts.
+Gruntwork Account Factory configures [AWS CloudTrail](https://aws.amazon.com/cloudtrail/) for all accounts in your [AWS Organization](https://aws.amazon.com/organizations/). CloudTrail helps you determine _who_ did _what_ and _when_ in each of your AWS accounts.
 
 ## Where you can find logs
 
 Gruntwork Account Factory automatically configures AWS CloudTrail to log all operations in your AWS accounts. By default, CloudTrail maintains your data for 90 days and is queryable using the AWS Console CloudTrail UI.
 
-Account Factory sets up CloudTrail to output all events from all of your AWS accounts to an S3 bucket in your `logs` AWS account with a default rule to expire objects after 1 year. After logs reach S3, you can set up an additional tool for [querying the logs](#querying-data).
+Account Factory sets up CloudTrail to forward all events from all of your AWS accounts to an S3 bucket in your `logs` AWS account with a default rule to expire objects after 1 year. After logs reach S3, you can set up an additional tool for [querying the logs](#querying-data).
 
 ### CloudTrail
 
