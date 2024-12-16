@@ -1,5 +1,3 @@
-
-
 # Compatibility with OpenTofu and Terraform
 
 All code in the Gruntwork IaC Library is compatible with:
