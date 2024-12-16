@@ -13,7 +13,7 @@ For additional context, refer to the blog post [The Future of Terraform Must Be 
 
 ## What's special about HashiCorp Terraform v1.5.7?
 
-Version 1.5.7 is the final release of HashiCorp Terraform, licensed under the MPLv2 open-source license. Versions up to and including v1.5.7 remain MPLv2 licensed and thus can continue to be used with Gruntwork.
+Version 1.5.7 is the final open source release of HashiCorp Terraform, licensed under the MPLv2 open-source license. Versions up to and including v1.5.7 remain MPLv2 licensed and thus can continue to be used with Gruntwork.
 
 ## What if I want to use a version of Terraform above v1.5.7?
 
