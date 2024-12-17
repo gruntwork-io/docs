@@ -1,35 +1,42 @@
-# Self-hosting the library
+# Self-hosting the Library
 
 :::caution
 
-Self-hosting Gruntwork IaC Library is only available with a Gruntwork Enterprise subscription.
+Self-hosting the Gruntwork IaC Library is only available with a Gruntwork Enterprise subscription.
 
 :::
 
-We recommend accessing Gruntwork IaC Library directly through our private repos hosted at https://github.com/gruntwork-io. However if your company requires that all Terraform modules are hosted internally, we offer a tool called [repo-copier](https://github.com/gruntwork-io/repo-copier) to support this use case.
+We recommend accessing the Gruntwork IaC Library directly through our private repositories hosted at https://github.com/gruntwork-io. However, if your organization requires hosting all Terraform modules internally, you can use Gruntwork's [repo-copier](https://github.com/gruntwork-io/repo-copier) to meet this requirement.
 
-## What is repo-copier?
+## What is Repo Copier?
 
-Repo Copier is a CLI tool that copies all the data in our private GitHub repos (including code, GitHub issues, GitHub pull requests, and releases) to a version control system operated by you, the customer. This gives you full access to Gruntwork IaC Library without having to use GitHub.com directly. To learn more, see https://github.com/gruntwork-io/repo-copier.
+Repo Copier is a command-line tool that copies all content from Gruntwork’s private GitHub repositories—including code, GitHub issues, pull requests, and releases—to a version control system you operate. It enables full access to the Gruntwork IaC Library without requiring direct use of GitHub.com. For more details, refer to https://github.com/gruntwork-io/repo-copier.
 
-## What version control systems are supported?
+## Supported Version Control Systems
 
-Repo-copier supports copying the Gruntwork repos to your own GitHub.com org, GitHub Enterprise, BitBucket Server, and GitLab.com. We may add support for additional systems in the future.
+Repo Copier supports the following version control systems:
 
-## Can I use Artifactory or Nexus?
+- Your own GitHub.com organization
+- GitHub Enterprise
+- BitBucket Server
+- GitLab.com
 
-Repo-copier only works with version control systems like GitHub, GitLab, and BitBucket Server. Version control systems include support for not only hosting code, but also issues, pull requests, release tags, and release assets.
+We may introduce support for additional systems in future releases.
 
-By contrast, artifact management tools like Artifactory or Nexus can store release assets and even support Terraform module registry functionality, however they don't capture all the metadata, such as issues and pull requests that engineers need to gain full value of the code and all the community activity around it.
+## Can I Use Artifactory or Nexus?
 
-## Can I just fork the repos myself?
+Repo Copier works exclusively with version control systems like GitHub, GitLab, and BitBucket Server. Version control systems not only host code but also include support for issues, pull requests, release tags, and release assets.
 
-You're welcome to do this, but it doesn't solve the full problem. A fully self-hosted solution must meet all the following requirements:
+In contrast, artifact management tools like Artifactory or Nexus can store release assets and provide Terraform module registry functionality. However, they do not capture the essential metadata—such as issues, pull requests, and community activity—that is critical for gaining the full value of the library.
 
-- As Gruntwork posts updates, those updates propagate to your hosted version automatically.
-- Your copy must include not only the code, but all the metadata, including issues, pull requests, release tags, and release assets.
-- All internal cross-references to github.com/gruntwork-io must be updated to point to the new hosting URL.
+## Can I Manually Fork the Repositories?
 
-## How do I contribute changes back to Gruntwork if I self-host?
+While you can manually fork the repositories, this approach does not fully address all self-hosting requirements. A complete self-hosted solution must satisfy the following criteria:
 
-Contribute your changes directly to our GitHub.com repos. Those changes will then propagate back to your locally hosted copy!
+- Updates posted by Gruntwork must propagate automatically to your internally hosted version.
+- Your copy must include the source code and all related metadata, such as issues, pull requests, release tags, and release assets.
+- All internal cross-references to `github.com/gruntwork-io` must be updated to point to your new hosting URL.
+
+## Contributing Changes Back to Gruntwork
+
+To contribute changes while self-hosting, submit your changes directly to Gruntwork’s repositories on GitHub.com. Once merged, those updates will propagate to your self-hosted version automatically.
