@@ -25,7 +25,6 @@ For information on why the module was removed, refer to the discussion in [PR
 \#62](https://github.com/gruntwork-io/terraform-aws-load-balancer/pull/62) and [PR
 \#65](https://github.com/gruntwork-io/terraform-aws-load-balancer/pull/65).
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -34,6 +33,6 @@ For information on why the module was removed, refer to the discussion in [PR
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.26/modules/nlb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e5e04da45d0ebf0fe95d2c11f1dbd3b1"
+  "hash": "e79db3f3f0d2d73def84f3508dabb545"
 }
 ##DOCS-SOURCER-END -->
