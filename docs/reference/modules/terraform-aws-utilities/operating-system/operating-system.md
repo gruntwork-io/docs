@@ -49,7 +49,6 @@ operating_system_name = "${module.os.name}"
 path_separator        = "${module.os.path_separator}"
 ```
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -58,6 +57,6 @@ path_separator        = "${module.os.path_separator}"
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/operating-system/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "73d8d2a5ad28cb4e20d7ab5817547104"
+  "hash": "b0957bf363b586e198f02c9444417fae"
 }
 ##DOCS-SOURCER-END -->
