@@ -7,7 +7,7 @@ Patcher allows teams to define environments as groupings of folders using glob p
 
 There are no restrictions on the number of environments or the naming structure you can use.
 
-In the future, you'll model environments using a configuration-based system shared with Gruntwork Pipelines. This enhancement will provide even greater flexibility for organizing folder structures.  
+In the future, you'll model environments using a configuration-based system integrated with Gruntwork Pipelines, offering greater flexibility in organizing folder structures.
 
 ### Dependencies
 
