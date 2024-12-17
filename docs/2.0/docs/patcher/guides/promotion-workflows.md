@@ -1,13 +1,9 @@
 # Using Patcher Promotion Workflows
-:::info
 As of July 2024, Gruntwork officially supports Patcher Promotion Workflows using GitHub Actions. Support for other CI systems will be introduced in future releases.  
-:::
 
-:::info  
 **Related Content**:  
 * [Concepts - Patcher Workflows](/2.0/docs/patcher/concepts/promotion-workflows)  
 * [Architecture - Overview](/2.0/docs/patcher/architecture)  
-:::  
 
 ## Prerequisites
 ### Infrastructure as Code  
