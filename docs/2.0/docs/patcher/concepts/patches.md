@@ -1,8 +1,8 @@
 # What is a Patcher Patch?
 
-A Patch is a set of instructions executed by Patcher that do code transformations.
-This strategy is especially useful as a way to automate adoption of a breaking change with infrastructure as code, such as Terragrunt, OpenTofu, or Terraform.
-This instruction sheet is delivered by means of a `yaml` file in a specific format:
+A Patch is a set of instructions Patcher executes to perform code transformations. This approach automates the adoption of breaking changes in infrastructure-as-code projects using tools like Terragrunt, OpenTofu, or Terraform. 
+
+These instructions are delivered through a `yaml` file in the following format:
 
 ```yaml title=".patcher/patches/v1.0.0/my-patch/patch.yaml"
 name: "<name-of-patch>"
@@ -14,7 +14,7 @@ dependencies:
   - name: terrapatch
     version: "0.1.0"
 
-# Steps necessary to resolve breaking change
+# Steps necessary to resolve breaking changes
 steps:
   - name: "<name-of-step>"
     run: <command-to-run>
@@ -22,83 +22,187 @@ steps:
     run: <second-command-to-run>
   # etc
 ```
+[View an example patch in the CIS Service Catalog.](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/c3d5ede211fc3230a7d493ceea43622b337ee88a/.patcher/patches/v0.96.4/switch-to-cis-rds-module/patch.yaml)
 
-[Check out an example of a patch in the CIS Service Catalog.](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/c3d5ede211fc3230a7d493ceea43622b337ee88a/.patcher/patches/v0.96.4/switch-to-cis-rds-module/patch.yaml)
+## Module Consumers and Module Authors
 
-## Module consumers and module authors
+Patcher is designed for two key personas:
 
-Patcher is built around the idea of two specific personas:
-
-- **Module authors.** Module authors write OpenTofu/Terraform modules, or make updates to those modules.
-- **Module consumers.** Module consumers make use of an OpenTofu/Terraform module that was created by a module author, typically in Terragrunt units (`terragrunt.hcl` files) or directly in OpenTofu/Terraform code that calls a module.
+- **Module Authors**: Write or update OpenTofu/Terraform modules.
+- **Module Consumers**: Use OpenTofu/Terraform modules created by module authors, typically referenced in Terragrunt units (`terragrunt.hcl` files) or directly in Terraform/OpenTofu code.
 
 ## For Module Authors
 
-Module authors periodically need to introduce breaking changes in their modules, causing a downstream, potentially painful, experience for module consumers.
-With patches, module authors include a patch YAML file that automatically updates consuming code to incorporate the breaking changes associated with the updated module code. For example, when module consumers "execute" a patch and their code will automatically be updated to add a variable, rename a variable, update a provider reference, or incorporate some other transformation specified by the module author.
-This allows module consumers to automatically update consuming code to adopt breaking changes.
+Module authors often need to introduce breaking changes in their modules, which can create a challenging experience for module consumers who must manually update their code. Patcher simplifies this process by allowing module authors to include a patch YAML file that automates these updates.
 
-In a Patcher ecosystem, the module author spends a small amount of extra time to author a patch, but now all module consumers can automatically update their code to consume the latest breaking change.
+When a module consumer executes a patch, their code is updated automatically to reflect changes such as adding or renaming variables, updating provider references, or applying other transformations defined in the patch. 
 
-In theory, you may write whatever command execution steps you want to perform patch steps.
-For example, there are many cases where validating tool versions are required, or using `sed` to find and replace certain values.
-However, we _strongly_ recommend using [`terrapatch`](https://github.com/gruntwork-io/terrapatch), a Gruntwork tool that surgically updates Terraform/OpenTofu HCL files.
+While module authors have the flexibility to write any command steps for patches—such as validating tool versions or using `sed` for find-and-replace operations—it is **strongly recommended** to use [`terrapatch`](https://github.com/gruntwork-io/terrapatch). Terrapatch is a Gruntwork tool that enables precise updates to Terraform/OpenTofu HCL files.
+
+By investing a small amount of additional time in authoring a patch, module authors enable all module consumers to seamlessly adopt breaking changes without manual intervention.
 
 ## For Module Consumers
 
-When module consumers reference an OpenTofu/Terraform module, it is a best practice to reference a specific version of the OpenTofu/Terraform module.
-Over time, module authors release new versions of the module, and the code that consumes those modules slowly gets out of date.
-In some cases, the latest update of the underlying modules requires a breaking change to the consuming code, meaning the version can't just be bumped; the code needs to be edited.
-This is when using a patch with Patcher comes in handy.
+Module consumers typically reference specific versions of OpenTofu/Terraform modules to maintain consistency. Over time, as new versions of modules are released, consumer code can become outdated. In cases where updates introduce breaking changes, the code must be edited to ensure compatibility—this is where Patcher proves valuable.
 
-### Two update strategies
+Patcher automates updates by applying patches that incorporate breaking changes, reducing the manual effort required to keep infrastructure code current.
 
-Patches can be consumed with either a "push" strategy, where Patcher proactively opens a pull request with the latest update, or a "pull" strategy, where a repo is manually scanned to look at the current state of your infrastructure using the Patcher CLI tool.
+### Two Update Strategies
 
-Regardless of methodology, the concept remains the same.
-Patcher will suggest changes to your codebase in order to keep your infrastructure up to date, however you see fit.
+Patches can be applied using one of two strategies:
+
+1. **Push Strategy**: Patcher proactively opens pull requests containing updates.
+2. **Pull Strategy**: Users manually run the Patcher CLI to scan their repository and apply updates.
+
+While the implementation details differ, the purpose remains the same: Patcher suggests changes to keep your infrastructure code up to date.
 
 ### Update Push Strategy
 
-In the "push" strategy, Patcher opens pull requests against your codebase on a schedule you set. You can further customize how those pull requests are grouped by environment, module version, or other parameters. Here is an example of such a pull request:
+In the push strategy, Patcher automatically opens pull requests on a schedule you define. Pull requests can be grouped by parameters such as environment or module version. For example:
 
 ![Patcher PR Example](/img/patcher/pr-example.png)
 
-You can implement the push strategy by using the [Patcher GitHub action workflow](https://github.com/gruntwork-io/patcher-action).
-
-The intention with this GitHub action is to leave the repo owner in full control of your upgrade cadence. Check out our guide on [promotion workflows](/2.0/docs/patcher/guides/promotion-workflows), so that updates can proceed from `dev` to `stage` to `prod` (or any other environment sequence) to mitigate risks around upgrades.
+To enable the push strategy, implement the [Patcher GitHub Action workflow](https://github.com/gruntwork-io/patcher-action). This action provides full control over your upgrade cadence. For safer updates, you can promote changes sequentially through environments like `dev`, `stage`, and `prod`. Refer to our guide on [promotion workflows](/2.0/docs/patcher/guides/promotion-workflows) for more details.
 
 ### Update Pull Strategy
 
-In the "pull" strategy, you the user choose to launch the Patcher CLI to scan the current state of your repo.
-
-The first step is to run `patcher update` within the repo in which updates are desired.
-When `patcher update` is run, the default mode is to click through the updates **interactively**.
-In this mode, available updates are found, and the details of those updates are presented to you:
-
-![Patcher Update Interactive Mode](/img/patcher/interactive-update.png)
-
-You can choose to run in `--non-interactive` mode, which will modify the codebase and present results about what the program did at the end.
-
-By default a pull request will _not_ be opened with the changes.
-However, the changes should be visible within the version control system. At that point, you may make a pull request or apply the changes using your IaC system.
-
-### Examples Running `patcher update`
-
-Here's the easiest way to run this command:
+In the pull strategy, users manually invoke the Patcher CLI to scan the repository and apply updates.
+To begin, run the following command in the target repository:
 
 ```bash
-$ cd <repo-root-directory>
-# Show what patches are available for everything in the current directory and all it's children
 $ patcher update ./
 ```
 
-If more fine-grain controls are desired, the following example (which includes advanced usage topics like [update strategies](/2.0/docs/patcher/concepts/update-strategies.md)) has those:
+By default, the CLI operates interactively, presenting details of available updates:
+![Patcher Update Interactive Mode](/img/patcher/interactive-update.png)
+Alternatively, use `--non-interactive` mode to apply updates automatically:
 
 ```bash
-# run 'update' non-interactively, only up to the next safe version, and publish a PR with the changes
+$ patcher update --non-interactive
+```
+By default, Patcher does not open a pull request. However, changes are visible in version control, allowing you to create pull requests or integrate changes using your IaC workflow
+
+### Examples Running `patcher update`
+Here is a basic example:
+
+```bash
+$ cd <repo-root-directory>
+# Show patches available for all directories
+$ patcher update ./
+```
+For advanced usage, including automated PR creation, run:
+```bash
 $ patcher update --update-strategy next-safe --non-interactive --publish --pr-branch grunty/update-via-patcher --pr-title "[Patcher] Update All Dependencies to Next Safe"
 ```
+For a complete list of options, refer to the [Patcher CLI Reference](/2.0/reference/patcher/index.md#update).
 
-More details on the available options included in `patcher update` can be found in the [reference section](/2.0/reference/patcher/index.md#update).
+# Update Grouping & Pull Request Strategy
+## Overview
+
+Enterprise IaC repositories often reuse modules extensively across a single repository. This creates a situation where updating a dependent module version can result in multiple references requiring updates throughout the codebase. Unlike application codebases in environments like Java or Node.js—where a single version bump may involve minimal changes in files such as 'gradle.build' or p'ackage.json'—IaC repositories frequently repeat environments and dependencies across folders.
+This repetition presents a challenge: when a dependency is updated, how should the changes be grouped into pull requests to balance efficiency and manageability?
+The simplest approach is to create one pull request per dependency update. However, this can become unmanageable at scale. Patcher supports this approach but also offers more flexible options for grouping updates. Pull requests can be consolidated based on the following strategies:
+
+- **Full-Consolidation**: A single pull request updates all dependencies across the repository.
+- **No-Consolidation**: A separate pull request is created for each individual update.
+- **Dependency-Only Consolidation**: A single pull request is created for each dependency, updating it across all environments.
+- **Environment-Only Consolidation**: A single pull request is created for each environment, updating all dependencies within that environment.
+- **(Environment x Dependency) Consolidation**: A single pull request is created for each dependency within each environment.
+
+## Grouping Examples  
+To demonstrate these strategies, consider the following example repository:
+```
+/dev/unit1/terragrunt.hcl -> dependency1@1.0.0
+/dev/unit2/terragrunt.hcl -> dependency1@1.0.0
+/dev/unit3/terragrunt.hcl -> dependency2@1.0.0
+/prod/unit1/terragrunt.hcl -> dependency1@1.0.0
+/prod/unit2/terragrunt.hcl -> dependency1@1.0.0
+/prod/unit3/terragrunt.hcl -> dependency2@1.0.0
+/prod/unit4/terragrunt.hcl -> dependency3@1.0.0
+```
+Assuming newer versions are available for all three dependencies, the strategies would result in:
+- **Full-Consolidation**: One pull request updating all seven units.
+- **No-Consolidation**: Seven separate pull requests, one per unit.
+- **Dependency-Only Consolidation**: Three pull requests—one for each dependency. For example, 'dependency1' would be updated across both 'dev' and 'prod'.
+- **Environment-Only Consolidation**: Two pull requests—one for all updates in 'dev' and one for all updates in 'prod'.
+- **(Environment x Dependency) Consolidation**: Five pull requests—two for updates in 'dev' and three for updates in 'prod'.
+
+## Terminology
+* 'unit': A folder containing a 'terragrunt.hcl' file, representing a single OpenTofu state file. A unit may reference one or more modules as dependencies.
+* 'dependency' (or 'target'): An OpenTofu module referenced using a 'ref' (typically a full source path and version) in a 'unit'. Patcher interprets semantic versioning for dependency updates.
+* 'environment': A logical grouping of infrastructure representing application stages, such as 'dev' or 'prod'. Environments are generally organized as folders in the repository and include multiple units and dependencies.
+* 'update': The action of modifying a dependency reference to use a newer version and accommodating any associated breaking changes.
+:::info
+As of November 2024, Patcher recognizes environments using folder groupings matched with glob patterns. For example, 'dev' may correspond to 'dev-*' folders and 'prod' to 'prod-*' folders. A more sophisticated environment definition using HCL syntax (similar to Pipelines) is planned for future releases. Let us know if this capability is important for your use case.
+::
+## Implementation Discussion
+In CI workflows, pull requests are typically generated by first running patcher report to identify updates, followed by 'patcher update' to apply those updates. Patcher does not include a single option to specify grouping strategies by name. Instead, grouping is implemented through combinations of 'report' and 'update' command flags.
+
+### Patcher Report
+The 'patcher report' command accepts the '--include-dirs' flag, which filters updates based on matching glob patterns. This allows developers to limit updates to specific environments. By running 'patcher report' multiple times with different '--include-dirs' values, you can create distinct workflows for each environment.
+
+The patcher report output is JSON-formatted and can be inspected or iterated over for further customization.
+
+### Patcher Update
+The 'patcher update' command accepts a '--target' flag, which specifies one or more dependencies to update. By running 'patcher update' with different '--target' values, you can control which dependencies are included in each pull request.
+
+## Implementation Walkthrough
+
+### Full-Consolidation
+For full consolidation, omit the '--include-dirs' and '--target' arguments. This approach generates a single pull request containing all updates.
+
+**Pseudocode:**
+```
+run patcher report
+run patcher update
+```
+### No-Consolidation
+To create one pull request per update, use the 'plan' output of 'patcher report' and iterate over each dependency and its instances.
+
+**Pseudocode:**
+```bash
+run patcher report --output-plan plan.json
+for each dependency in plan.json
+    for each usage of the dependency:
+        cd $(dirname usage.source.file)
+        run patcher update --target $dependency.org/$dependency.repo/$dependency.module
+```
+
+### Dependency-Only Consolidation
+To group by dependency, run 'patcher update' for each target without filtering environments.
+
+**Pseudocode:**
+```
+run patcher report
+for each $target in output
+    run patcher update --target=$target
+```
+
+
+### Environment-Only Consolidation
+To group updates by environment, use '--include-dirs' to filter by environment and run 'patcher update' without specifying targets.
+
+**Pseudocode:**
+```
+for each $environment
+    run patcher report -include-dirs=$environment
+    run patcher update 
+```
+
+### (Environment x Dependency) Consolidation
+To create pull requests for each dependency within specific environments, combine '--include-dirs' with '--target'.
+
+**Pseudocode:**
+```
+for each $environment e.g., glob patterns like dev-* or prod-*)
+  run patcher report --include-dirs=$environment
+  for each $target output 
+    run patcher update --target=$target
+```
+
+
+**Pseudocode:** 
+
+
+
 
