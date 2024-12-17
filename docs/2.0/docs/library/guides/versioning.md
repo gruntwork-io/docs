@@ -3,25 +3,26 @@ import TabItem from '@theme/TabItem';
 
 # Using Versioned Modules
 
-Gruntwork versions the IaC library using [Semantic Versioning](https://semver.org/) (SemVer). Since much of the Gruntwork IaC Library is still pre-1.0.0, most of the Gruntwork IaC Library uses 0.MINOR.PATCH version numbers. With 0.MINOR.PATCH, the rules are a bit different, where we increment the:
+Gruntwork versions the Infrastructure as Code (IaC) Library using [Semantic Versioning](https://semver.org/) (SemVer). Since much of the Gruntwork IaC Library remains pre-1.0.0, most version numbers follow the format `0.MINOR.PATCH`. For `0.MINOR.PATCH`, the versioning rules are as follows:
 
-- MINOR version when we make backward incompatible API changes, and
-- PATCH version when we add backward compatible functionality or bug fixes
+- The **MINOR** version is incremented when we introduce backward incompatible API changes.
+- The **PATCH** version is incremented when we add backward compatible functionality or bug fixes.
 
-For modules that have submodules (e.g., terraform-aws-server/modules/single-server), not every release contains changes to every module. While using the latest available version is recommended, the version that most recently contains changes for a module can be found in each submodule’s reference in the [Library Reference](/library/reference).
+For modules that include submodules (e.g., `terraform-aws-server/modules/single-server`), not every release will contain changes for all submodules. While we recommend using the latest version, you can identify the most recent version with modifications to a specific submodule in the [Library Reference](/library/reference).
 
 ![Submodules show the last version in which they were modified](/img/iac/stay-up-to-date/versioning/module_release_tag_versions.png)
 
-We release new module versions using GitHub releases, refer to the release notes in the GitHub repository release page for a list of changes and migration guides (when necessary).
+We release new module versions through GitHub releases. Refer to the release notes in the corresponding GitHub repository’s release page for a detailed list of changes, including migration guides when applicable.
 
 ## Example: Reference a version
 
 <Tabs groupId="tool-choice">
 <TabItem value="Terraform" label="Terraform" default>
+  
+The Git tag created by a release can be referenced in the `source` argument of a module block when sourcing from a Git URL.
 
-The git tag created by the release can then be referenced in the source argument for a module block sourcing from a git URL.
+For example, the module block below references version `0.15.4` of the `single-server` submodule within the `terraform-aws-server` module:
 
-For example, below is a module block referencing version `0.15.4` of the `single-server` submodule from the `terraform-aws-server` module.
 ```hcl
 module "my_instance" {
   source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.15.4"
@@ -40,9 +41,9 @@ module "my_instance" {
 </TabItem>
 <TabItem value="Terragrunt" label="Terragrunt">
 
-The git tag created by the release can then be referenced in the `source` argument for the `terraform` block in a `terragrunt.hcl` file.
+The Git tag created by a release can be referenced in the `source` argument of the `terraform` block within a `terragrunt.hcl` file.
 
-For example, below is a module block referencing version `0.15.4` of the `single-server` submodule from the `terraform-aws-server` module.
+For example, the following module block references version `0.15.4` of the `single-server` submodule from the `terraform-aws-server` module:
 
 ```hcl
 terraform {
@@ -73,11 +74,12 @@ inputs = {
 </TabItem>
 <TabItem value="Terragrunt with _envcommon" label="_envcommon (Terragrunt)">
 
-When following the `_envcommon` pattern, there are two places that reference the git tag created by the release.
+When following the `_envcommon` pattern, there are two places where the Git tag created by a release is referenced.
 
-First, locate the file in which you are referencing the module in your `_envcommon` directory. Then, reference the git tag in the `source` argument for the `terraform` block in the file.
+First, identify the file in the `_envcommon` directory where the module is being referenced. Then, specify the Git tag in the `source` argument of the `terraform` block within that file.
 
-For example, if you were referencing the `single-server` module, your file path might look like the following:
+For example, if you are referencing the `single-server` module, the file path might look like this:
+
 ```hcl title=_envcommon/services/single_ec2_instance.hcl
 terraform {
   source = "${local.source_base_url}?ref=v0.15.4"
@@ -88,7 +90,9 @@ locals {
 }
 ```
 
-Then, reference the git tag in the `source` argument for the `terraform` block in the `terragrunt.hcl` environment and region specific files that reference the file in the `_envcommon` directory. For example, if you were using this module to create a single EC2 instance in your development environment in the us-west-2 region of AWS, your file path would be `/dev/us-west-2/services/single_ec2_instance/terragrunt.hcl`.
+Next, specify the Git tag in the `source` argument for the `terraform` block within the `terragrunt.hcl` files that are specific to an environment and region, which reference the file in the `_envcommon` directory.
+For example, if you are using this module to create a single EC2 instance in your development environment in the `us-west-2` AWS region, the file path would look like this:
+`/dev/us-west-2/services/single_ec2_instance/terragrunt.hcl`
 
 ```hcl title=/dev/us-west-2/services/single_ec2_instance/terragrunt.hcl
 terraform {
