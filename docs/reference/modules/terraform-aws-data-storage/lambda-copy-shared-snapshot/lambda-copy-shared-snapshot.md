@@ -390,7 +390,6 @@ Namespace all Lambda scheduling resources created by this module with this name.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -399,6 +398,6 @@ Namespace all Lambda scheduling resources created by this module with this name.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/lambda-copy-shared-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "85c11f504d809da20cfe4727366d6606"
+  "hash": "a648306200e7909292c58748e08f59c5"
 }
 ##DOCS-SOURCER-END -->

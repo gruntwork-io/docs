@@ -289,7 +289,6 @@ Namespace of snapshots that will be cleaned up by this module. If specified then
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -298,6 +297,6 @@ Namespace of snapshots that will be cleaned up by this module. If specified then
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/lambda-cleanup-snapshots/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dd813376ce675a965b462835d0700406"
+  "hash": "6e26a23a09f8e753bf584b4c98692007"
 }
 ##DOCS-SOURCER-END -->

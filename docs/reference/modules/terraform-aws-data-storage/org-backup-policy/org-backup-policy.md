@@ -731,7 +731,6 @@ ID of the backup policies
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -740,6 +739,6 @@ ID of the backup policies
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/org-backup-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4c47083779db7a0ba2b6e524e3b7bfbe"
+  "hash": "9cb0438235927a02da43c85e329f7ca9"
 }
 ##DOCS-SOURCER-END -->

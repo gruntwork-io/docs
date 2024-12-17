@@ -980,7 +980,6 @@ Timeout for DB updating
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -989,6 +988,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/rds-replicas/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2507194d9fbd9cae4cd3a7a882b1125a"
+  "hash": "6bcab19ea101013a77d82f4e1e6a2d0f"
 }
 ##DOCS-SOURCER-END -->

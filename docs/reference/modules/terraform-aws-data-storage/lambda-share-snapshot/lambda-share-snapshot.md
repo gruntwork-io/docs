@@ -194,7 +194,6 @@ The amount of time, in seconds, between retries.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -203,6 +202,6 @@ The amount of time, in seconds, between retries.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/lambda-share-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bf8ec35f417344428e58902de860bf6c"
+  "hash": "a137975cbe5386764f15cc9bfcfdea8f"
 }
 ##DOCS-SOURCER-END -->

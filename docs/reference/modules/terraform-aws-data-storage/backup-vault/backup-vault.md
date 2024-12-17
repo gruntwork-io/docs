@@ -300,7 +300,6 @@ A map of tags assigned to the vault resources, including those inherited from th
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -309,6 +308,6 @@ A map of tags assigned to the vault resources, including those inherited from th
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/backup-vault/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0e27154a166c0ebc2bcef2f7b70c4aba"
+  "hash": "fee6cee818fa4c5819fc3dd3f687f068"
 }
 ##DOCS-SOURCER-END -->

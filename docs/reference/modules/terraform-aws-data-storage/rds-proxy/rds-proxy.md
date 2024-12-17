@@ -419,7 +419,6 @@ The number of seconds that a connection to the proxy can be inactive before the 
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -428,6 +427,6 @@ The number of seconds that a connection to the proxy can be inactive before the 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/rds-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "318f04f9ea7d64f7525a1febce4aac9e"
+  "hash": "209292ff3cef0af6da930ce41cf863c1"
 }
 ##DOCS-SOURCER-END -->

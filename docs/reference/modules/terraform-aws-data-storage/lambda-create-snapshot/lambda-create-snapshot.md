@@ -459,7 +459,6 @@ Namespace all snapshots created by this module's jobs with this suffix. If not s
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -468,6 +467,6 @@ Namespace all snapshots created by this module's jobs with this suffix. If not s
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/lambda-create-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ffe27019f6cfe5c5a015d7ab219837c3"
+  "hash": "19e397bd4af6eec604dec671d1493010"
 }
 ##DOCS-SOURCER-END -->

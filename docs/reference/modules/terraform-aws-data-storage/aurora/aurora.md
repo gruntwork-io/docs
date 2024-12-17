@@ -1576,7 +1576,6 @@ Timeout for DB updating
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1585,6 +1584,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a4c814f0d4c6363c477602ce968144a1"
+  "hash": "21dc4a0f275547da4e97cfd342e21990"
 }
 ##DOCS-SOURCER-END -->
