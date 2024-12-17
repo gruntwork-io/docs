@@ -2,18 +2,19 @@
 
 ## Installation
 
-To install Patcher, download the appropriate package for your system from the [releases](https://github.com/gruntwork-io/patcher-cli/releases) page.
+To install Patcher, download the appropriate package for your system from the [releases](https://github.com/gruntwork-io/patcher-cli/releases) page.  
 
-### For MacOS and Linux users
+### For MacOS and Linux users  
 
-Patcher runs as a single binary called `patcher`. Make sure it's available within your `PATH`.
+Patcher runs as a single binary called `patcher`. Make sure it's available within your system's `PATH`.
 
-1. After downloading Patcher, move it to your desired destination directory. If you're using MacOS, you will have to unzip the package. For other operating systems, the artifact you download is the executable itself.
-2. If necessary, rename the binary to `patcher`.
+1. After downloading Patcher, move it to your desired destination directory.  
+2. On macOS, unzip the downloaded package. For other operating systems, the downloaded artifact is the executable itself.  
+3. If needed, rename the binary to `patcher`. 
 ```bash
 mv patcher_linux_amd64 patcher
 ```
-3. Move `patcher` to a location available in your `PATH`. In the example below, we move to `/usr-local/bin`.
+4. Move `patcher` to a location available in your `PATH`. In the example below, we move to `/usr-local/bin`.
 ```bash
 $ echo $PATH
 /opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Apple/usr/bin:/Users/grunty/bin:/Users/grunty/go/bin
@@ -33,27 +34,28 @@ export GITHUB_OAUTH_TOKEN="<YOUR_GITHUB_PAT>"
 
 ### Docker
 
-Starting in `0.4.1`, the Patcher update command applies patches using a Docker sandbox by default and will pull the latest version of the [`gruntwork/patcher_bash_env`](https://hub.docker.com/r/gruntwork/patcher_bash_env) image.
+Starting in version `0.4.1`, the Patcher `update` command applies patches using a Docker sandbox by default and pulls the latest version of the [`gruntwork/patcher_bash_env`](https://hub.docker.com/r/gruntwork/patcher_bash_env) image.
 
-To run the Patcher update command locally without Docker or in a CI pipeline you should add the `--skip-container-runtime` flag.
+To run the Patcher `update` command locally without Docker or in a CI pipeline, use the `--skip-container-runtime` flag.
 
 ## Running Patcher
 
-Patcher should be run in a local Terraform or Terragrunt Git repo. It will analyze _all_ modules that belong to the current folder including its children. Patcher supports `source` values only from GitHub.
+Patcher must be run in a local Terraform or Terragrunt Git repository. It analyzes **all** modules in the current folder, including child folders. Patcher supports `source` values only from GitHub.
 
-If you purchased and deployed our [Reference Architecture](https://gruntwork.io/reference-architecture/) and have your deployment organized in an `infrastructure-live` repository, we recommend running Patcher inside each environment folder, e.g. `infrastructure-live/dev`.
+If you have purchased and deployed the [Reference Architecture](https://gruntwork.io/reference-architecture/) and your deployment is organized in an `infrastructure-live` repository, we recommend running Patcher within each environment folder, such as `infrastructure-live/dev`.
+
 
 ### Patcher Report
 
-The patcher [report command](/2.0/docs/patcher/guides/report) is a read-only version of Patcher that shows the changelog per module and its usages.
+The `patcher report` command is a read-only operation that displays the changelog for each module and its usages. Learn more in the [report command guide](/2.0/docs/patcher/guides/report).
 
 ### Patcher Update
 
-The patcher [update command](/2.0/docs/patcher/guides/update) allows you to update some or all of the module dependencies in the current folder and any child folders.
+The `patcher update` command updates some or all module dependencies in the current folder and any child folders. Learn more in the [update command guide](/2.0/docs/patcher/guides/update).
 
 ## Debugging
 
-All logs are stored in the folder `~/.patcher/logs`. To also send `debug` logs, run Patcher with the `--loglevel debug` flag.
+Patcher logs are stored in the `~/.patcher/logs` directory. To include `debug` logs, run Patcher with the `--loglevel debug` flag.  
 
 ```
 patcher report --loglevel debug
