@@ -1,66 +1,53 @@
 # Contributing to Gruntwork IaC Library
 
-Contributions to Gruntwork IaC Library are welcome and appreciated! In fact, Gruntwork receives over 1,000 customer [pull requests](https://help.github.com/articles/about-pull-requests/) per year.
+Contributions to the Gruntwork IaC Library are encouraged and highly valued. Gruntwork receives over 1,000 customer [pull requests](https://help.github.com/articles/about-pull-requests/) annually.
 
-You can contribute to the library in several ways:
+You can contribute in the following ways:
 
-- Update an existing "building block" module or service module
-- Contribute a new module
-- Document a bug
+- Update an existing "building block" module or service module.
+- Contribute to a new module.
+- Report a bug.
 
-## Start by filing a GitHub issue
+## Start by Filing a GitHub Issue
 
-If you're thinking of adding a new feature, before starting any work, we recommend filing a GitHub issue in the appropriate repo. This is your chance to ask
-questions and get feedback from the maintainers and the community before you sink a lot of time into writing (possibly
-the wrong) code. If there is anything you’re unsure about, just ask!
+Before starting work on a new feature, file a GitHub issue in the relevant repository. Doing so allows you to ask questions and gather feedback from maintainers and the community before committing significant time to writing code. Feel free to ask if you are unsure about any aspect of your contribution.
 
-If you're submitting a simple change such as a new variable or new output value, it may be worth opening a pull request directly, as described below.
+For minor changes, such as adding a new variable or output value, you may proceed directly to creating a pull request, as outlined below.
 
-## Proceed to a pull request
+## Proceed to a Pull Request
 
-If it makes sense to open a pull request, follow these guidelines:
+If opening a pull request is appropriate, adhere to the following steps:
 
-### Update the documentation first
+### Update the Documentation First
 
-We recommend updating the documentation _before_ updating any code (see
-[Readme Driven Development](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html)). This ensures the
-documentation stays up to date and allows you to think through the problem at a high level before you get lost in the
-weeds of coding.
+Update the documentation **before** modifying any code. This step follows the principle of [Readme Driven Development](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html). Documenting the change first ensures the documentation remains current and allows you to conceptualize the solution at a high level before diving into implementation.
 
-### Update the tests
+### Update the Tests
 
-We also recommend updating the automated tests _before_ updating any code (see
-[Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development)). That means you add or update a test
-case, verify that it’s failing with a clear error message, and then make the code changes to get that test to pass.
-This ensures the tests stay up to date and verify all the functionality in the repo, including whatever new
-functionality you’re adding in your contribution. The `test` folder in every repo will have documentation on how to run
-the tests locally.
+Add or update automated tests **before** changing the code, following the practice of [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development). Begin by creating or updating test cases, ensuring they fail with clear error messages. Then, modify the code to make the test pass. This approach keeps the tests up to date and validates existing and new functionality. Refer to the `test` folder in the repository for instructions on running tests locally.
 
-### Update the code
+### Update the Code
 
-At this point, you can make your code changes and use your new test case to verify that everything is working.
+With tests in place, implement your code changes. Use the new test cases to confirm that the changes work as intended.
 
-### Create a pull request
+### Create a Pull Request
 
-[Create a pull request](https://help.github.com/articles/creating-a-pull-request/) with your changes. Please make sure
-to include the following:
+[Create a pull request](https://help.github.com/articles/creating-a-pull-request/) with your changes. Make sure to include the following information:
 
-1.  A description of the change, including a link to your GitHub issue.
-2.  Any notes on backwards incompatibility.
-3.
+1. A description of the change, including a link to the corresponding GitHub issue.
+2. Notes regarding any backward incompatibility.
+3. Any other relevant details.
 
-#### How to create a pull request on a Gruntwork repository
+#### How to Create a Pull Request on a Gruntwork Repository
 
-As a Gruntwork customer you will have *read* access to Gruntwork repositories.  This means you will not be able to push a branch directly
-to our repositories.  Instead, to open a pull request you should:
+As a Gruntwork customer, you will have **read** access to Gruntwork repositories. Therefore, you cannot push branches directly to Gruntwork repositories. Instead, follow these steps:
 
-* Fork our repositories into a repository in an organization you have write access to
-* Push a branch to your repository
-* Open a PR in our repository with the base as our main/master branch, and the "compare" branch being the branch in your repository.
+1. Fork the Gruntwork repository into a repository within an organization where you have write access.
+2. Push your branch to your forked repository.
+3. Open a pull request against the Gruntwork repository. Set the base branch to Gruntwork’s `main` or `master` branch, and compare the branch to the branch in your forked repository.
 
-For more information about this flow see [GitHub's documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
+For additional details, refer to [GitHub’s documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
 
-### Merge and release
+### Merge and Release
 
-The maintainers for the repo will review your code and provide feedback. If everything looks good, they will merge the
-code and release a new version.
+Gruntwork maintainers will review your contribution and provide feedback as necessary. Once approved, they will merge the changes and release a new version.
