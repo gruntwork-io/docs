@@ -139,7 +139,6 @@ Sample input for the module
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -148,6 +147,6 @@ Sample input for the module
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/patcher-test/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "73bcacdccd79760b69a20c1dfd334ceb"
+  "hash": "9a0534465890054082bff371442eb814"
 }
 ##DOCS-SOURCER-END -->

@@ -304,7 +304,6 @@ This output is populated when the pex script successfully runs to completion. As
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -313,6 +312,6 @@ This output is populated when the pex script successfully runs to completion. As
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/run-pex-as-resource/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bd7e60890c4e471c741528e3dfe07681"
+  "hash": "96c54a8450b7765609708caca39c9a49"
 }
 ##DOCS-SOURCER-END -->
