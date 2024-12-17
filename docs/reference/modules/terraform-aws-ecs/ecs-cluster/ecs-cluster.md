@@ -421,6 +421,10 @@ module "ecs_cluster" {
   # Value is the maximum bid price for the instance on the EC2 Spot Market.
   cluster_instance_spot_price = null
 
+  # The list of EC2-instance-type overrides allowed for each of the ECS
+  # Cluster's EC2 Instances
+  cluster_instance_type_overrides = null
+
   # The User Data script to run on each of the ECS Cluster's EC2 Instances on
   # their first boot.
   cluster_instance_user_data = null
@@ -700,6 +704,10 @@ inputs = {
 
   # Value is the maximum bid price for the instance on the EC2 Spot Market.
   cluster_instance_spot_price = null
+
+  # The list of EC2-instance-type overrides allowed for each of the ECS
+  # Cluster's EC2 Instances
+  cluster_instance_type_overrides = null
 
   # The User Data script to run on each of the ECS Cluster's EC2 Instances on
   # their first boot.
@@ -1185,6 +1193,25 @@ Value is the maximum bid price for the instance on the EC2 Spot Market.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="cluster_instance_type_overrides" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+The list of EC2-instance-type overrides allowed for each of the ECS Cluster's EC2 Instances
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    type   = string
+    weight = number
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="cluster_instance_user_data" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1425,7 +1452,6 @@ Set this variable to true to enable the use of Instance Metadata Service Version
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1434,6 +1460,6 @@ Set this variable to true to enable the use of Instance Metadata Service Version
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d8fcdea67e68a0c749f6376f28f4711a"
+  "hash": "fb6efd02dce7a556c3997672df841b10"
 }
 ##DOCS-SOURCER-END -->

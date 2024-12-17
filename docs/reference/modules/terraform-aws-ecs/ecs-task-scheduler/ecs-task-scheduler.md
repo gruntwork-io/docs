@@ -543,7 +543,6 @@ The scheduling expression to use (rate or cron - see README for usage examples).
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -552,6 +551,6 @@ The scheduling expression to use (rate or cron - see README for usage examples).
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-task-scheduler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "45238d43176c97d862510cbf77e64d1a"
+  "hash": "9486301ccef65358bf6902b5a7854a14"
 }
 ##DOCS-SOURCER-END -->
