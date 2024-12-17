@@ -1,6 +1,6 @@
 # Update Strategies
 
-Patcher supports two update strategies: **next safe** and **next breaking**. These strategies dictate how Patcher behaves when it encounters a breaking change that cannot be automatically patched.
+Patcher supports two update strategies: **next safe** and **next breaking**. These strategies dictate how Patcher behaves when encountering a breaking change that cannot be automatically patched.
 
 For example, the Gruntwork `terraform-aws-security/custom-iam-entity` module has two recent breaking changes: `0.62.0` and `0.65.0`.
 
