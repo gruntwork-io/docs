@@ -106,13 +106,9 @@ The [Gruntwork Terms of Service](https://gruntwork.io/terms/) allow you to fork 
 
 We recommend using code directly from the `gruntwork-io` GitHub organization whenever possible to avoid the [increased overhead of managing a fork](#drawbacks-to-forking). If your organization bans all external sources, follow the instructions below.
 
-:::
-
 :::note
 
 The definition of an _Authorized User_ in the Gruntwork Terms of Service does NOT change if you fork the code. For example, if you create internal forks and provide access to 50 users, the Gruntwork License requires payment for 50 Authorized Users.
-
-:::
 
 :::danger
 
