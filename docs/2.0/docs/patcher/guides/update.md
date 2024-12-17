@@ -1,83 +1,79 @@
 # Patcher Update
 
-:::info
+Starting in `0.4.1`, Patcher applies patches using a Docker sandbox by default and pulls the latest version of the [`gruntwork/patcher_bash_env`](https://hub.docker.com/r/gruntwork/patcher_bash_env) image.  
 
-Starting in `0.4.1`, Patcher applies patches using a Docker sandbox by default and will pull the latest version of the [`gruntwork/patcher_bash_env`](https://hub.docker.com/r/gruntwork/patcher_bash_env) image.
+To run Patcher locally without Docker or in a CI pipeline, use the `--skip-container-runtime` flag.  
 
-To run Patcher locally without Docker or in a CI pipeline you should add the `--skip-container-runtime` flag.
+The `patcher update` command updates some or all module dependencies in the current folder and any child folders.  
 
-:::
-
-The Patcher update command allows you to update some or all of the module dependencies in the current folder and any child folders.
-
-Patcher supports two modes: **interactive mode** and **non-interactive mode**.
+Patcher supports two modes: **interactive mode** and **non-interactive mode**.  
 
 ## Interactive Mode
 
-In interactive mode, the update command lets you selectively update dependencies one module at time.
+In interactive mode, the `patcher update` command allows you to selectively update dependencies one module at a time.  
 
 Example usage:
 ```
 patcher update prod
 ```
 
-After scanning for dependencies, Patcher will show you the 'Modules View'.
+After scanning for dependencies, Patcher displays the 'Modules View'.  
 
-If all the dependencies are fully up to date, then Patcher shows a tick in the "Up to date" column.
+- If all dependencies are up to date, Patcher displays a checkmark in the **"Up to date"** column.  
 
-![Patcher update screenshot showing dependency that is fully up to date](/img/guides/stay-up-to-date/patcher/patcher-update-overview-futd.png)
+![Patcher update screenshot showing dependency that is fully up to date](/img/guides/stay-up-to-date/patcher/patcher-update-overview-futd.png)  
 
-If Patcher can update one or more usages of a module to a newer version, then Patcher offers two options:
+- If Patcher detects updates, it offers two options:  
+ 
+    * Press `ENTER` to update all usages to the **next safe version**.  
+    * Press `b` to update all usages to the **next version**, including breaking changes.  
 
-* "Hit «ENTER» to update all usages to the next safe version."
+![Patcher update screenshot showing dependency that can be updated](/img/guides/stay-up-to-date/patcher/patcher-update-overview-update-available.png)  
 
-* "Hit «b» to update all usages to the next version, even if it's a breaking change."
+- Pressing `ENTER` updates to the highest version **before** the next breaking change or to the latest version, whichever comes first.  
+- Pressing `b` updates to the next breaking change or the latest version, whichever comes first.  
 
-![Patcher update screenshot showing dependency that can be updated](/img/guides/stay-up-to-date/patcher/patcher-update-overview-update-available.png)
-
-Pressing `ENTER` will update all the usages of that module to either the highest version before the next closest breaking change or the latest version of the dependency, whichever is encountered first.
-
-Pressing `b` will update all the usages of that module to either the next closest breaking change or the latest version of the dependency, whichever is encountered first.
-
-After updating the "Up to date" column is changed to show "Updated". This indicates that at least one of the dependencies on that module have been updated.
+After updating, the **"Up to date"** column changes to **"Updated"**, indicating that at least one dependency has been updated.  
 
 ![Patcher update screenshot showing dependency that has been updated](/img/guides/stay-up-to-date/patcher/patcher-update-overview-updated.png)
 
-When you quit Patcher, it writes the details of all the updates to stdout in YAML format, for example:
+When you exit Patcher, it writes the update details to `stdout` in YAML format:  
 
-![Patcher update screenshot showing YAML output](/img/guides/stay-up-to-date/patcher/patcher-update-yaml-output.png)
+![Patcher update screenshot showing YAML output](/img/guides/stay-up-to-date/patcher/patcher-update-yaml-output.png)  
 
-### Navigation commands
+### Navigation Commands  
 
-1. While in the modules view, press `u` to see the usages. It shows all places where module is being used:
+1. While in the modules view, press `u` to display the usages. This shows all locations where the module is being used:  
 
-![Patcher usages screenshot showing module with multiple usages](/img/guides/stay-up-to-date/patcher/patcher-update-usages-update-available.png)
+![Patcher usages screenshot showing module with multiple usages](/img/guides/stay-up-to-date/patcher/patcher-update-usages-update-available.png)  
 
-2. While in the modules view, press `v` to see the changelogs from a module. Press `o` to open the page in the browser.
+2. While in the modules view, press `v` to view the changelogs for a module. Press `o` to open the changelog page in your browser.  
 
-![Patcher changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-update-changelog.png)
+![Patcher changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-update-changelog.png)  
 
-Some modules including third party modules may not have a CHANGELOGS.md file. In this case, press `o` to open the releases page for that repository.
+If a module, including third-party modules, does not have a `CHANGELOG.md` file, press `o` to open the repository's releases page.  
 
-![Patcher no changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-update-no-changelog.png)
+![Patcher no changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-update-no-changelog.png)  
+
 
 ## Non-Interactive Mode
 
-:::caution
+:::caution  
 
-Starting in `0.4.1`, Patcher applies patches using a Docker sandbox by default.
+Starting in `0.4.1`, Patcher applies patches using a Docker sandbox by default.  
 
-To run Patcher in a CI pipeline you should add the `--skip-container-runtime` flag.
+To run Patcher in a CI pipeline, add the `--skip-container-runtime` flag.  
 
-:::
+:::  
 
-In non-interactive mode, Patcher updates all module dependencies in the current folder (and child folders) according to the specified update strategy.
+In non-interactive mode, Patcher updates all module dependencies in the current folder (and child folders) based on the specified update strategy.  
 
-Non-interactive mode supports both the `next-safe` and `next-breaking` update strategies.
+Non-interactive mode supports the `next-safe` and `next-breaking` update strategies.  
 
-### Next Safe (Default)
+### Next Safe (Default)  
 
-Using the [next safe update strategy](/2.0/docs/patcher/concepts/update-strategies/#next-safe-update-strategy-default), if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the highest version **before** that breaking change. Otherwise, it will update the dependencies the latest version of that module.
+Using the [next safe update strategy](/2.0/docs/patcher/concepts/update-strategies/#next-safe-update-strategy-default), Patcher updates dependencies to the highest version **before** the next breaking change. If no breaking changes are found, it updates to the latest version of the module.  
+
 
 Example usage:
 ```
@@ -88,49 +84,47 @@ Or just
 patcher update --non-interactive --skip-container-runtime prod
 ```
 
-### Next Breaking
+### Next Breaking  
 
-Using the [next breaking update strategy](/2.0/docs/patcher/concepts/update-strategies#next-breaking-update-strategy), if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the version with the breaking change and stop. Otherwise, it will update the dependencies the latest version of that module.
+With the [next breaking update strategy](/2.0/docs/patcher/concepts/update-strategies#next-breaking-update-strategy), Patcher updates dependencies to the version containing the breaking change and then stops. If no breaking changes are encountered, it updates to the latest version of the module.  
 
-If Patcher updates a dependency to a breaking version, a `README-TO-COMPLETE-UPDATE.md` is written into the folder containing the dependency. The `README-TO-COMPLETE-UPDATE.md` file contains a release note extract for each dependency in that folder that was updated to a breaking change.
+If Patcher updates a dependency to a breaking version, it generates a `README-TO-COMPLETE-UPDATE.md` file in the folder containing the dependency. This file includes a release note extract for each dependency in that folder that was updated to a breaking change.  
 
 Example usage:
 ```
 patcher update --non-interactive --skip-container-runtime --update-strategy next-breaking prod
 ```
 
-## Support for Third Party Modules
+## Support for Third-Party Modules  
 
-Patcher provides first class support for third party modules in both interactive mode and non-interactive mode, this includes your own modules.
+Patcher provides full support for third-party modules in both interactive and non-interactive modes, including your own custom modules.  
 
-Starting in `0.4.3`, Patcher provides first class support for updating third party modules. The updates to third party modules are based on the semver version.
+Starting in `0.4.3`, Patcher updates third-party modules based on semantic versioning (semver).  
 
-For example, the [terraform-aws-modules/terraform-aws-vpc](https://github.com/terraform-aws-modules/terraform-aws-vpc) module has three recent change: `5.0.0`, `5.1.0` and `5.1.1`.
+For example, the [terraform-aws-modules/terraform-aws-vpc](https://github.com/terraform-aws-modules/terraform-aws-vpc) module has three recent versions: `5.0.0`, `5.1.0`, and `5.1.1`.  
 
-And in `infrastructure-live/dev` there is a dependency on `terraform-aws-vpc/vpc`:
-- `dev/us-east-1/prod/dev/terragrunt.hcl` currently uses `4.0.0`
+In the `infrastructure-live/dev` environment, there is a dependency on `terraform-aws-vpc/vpc`:  
+- `dev/us-east-1/prod/dev/terragrunt.hcl` currently uses version `4.0.0`.  
 
-![Screenshot of third party module dependency with updates available](/img/guides/stay-up-to-date/patcher/patcher-update-overview-3p-update-available.png)
+![Screenshot of third party module dependency with updates available](/img/guides/stay-up-to-date/patcher/patcher-update-overview-3p-update-available.png)  
 
-Patcher can update this dependency to the latest version but because there is a breaking version in between, Patcher updates to `5.0.0` and writes a `README-TO-COMPLETE-UPDATE.md` file into the folder containing the dependency.
+Patcher updates this dependency to `5.0.0` because it is the next version containing a breaking change. It also generates a `README-TO-COMPLETE-UPDATE.md` file in the folder containing the dependency.  
 
-![Screenshot of third party module dependency usages with updates available](/img/guides/stay-up-to-date/patcher/patcher-update-usages-3p-update-available.png)
+![Screenshot of third party module dependency usages with updates available](/img/guides/stay-up-to-date/patcher/patcher-update-usages-3p-update-available.png)  
 
-The `README-TO-COMPLETE-UPDATE.md` file contains the [release note](https://github.com/terraform-aws-modules/terraform-aws-vpc/releases/tag/v5.0.0).
-
+The `README-TO-COMPLETE-UPDATE.md` file includes the [release notes](https://github.com/terraform-aws-modules/terraform-aws-vpc/rele
 ```md
 # vpc-endpoints v4.0.0 -> v5.0.0 (2023.08.15 13:39:56)
 
-Updated dependency vpc-endpoints in dev/us-east-1/dev/vpc/terragrunt.hcl to version v5.0.0, which contains breaking changes. You MUST follow the instructions in the release notes to complete this update safely: https://github.com/terraform-aws-modules/terraform-aws-vpc/releases/tag/v5.0.0
+Updated dependency `vpc-endpoints` in `dev/us-east-1/dev/vpc/terragrunt.hcl` to version `v5.0.0`, which includes breaking changes. You MUST follow the instructions in the release notes to complete this update safely: https://github.com/terraform-aws-modules/terraform-aws-vpc/releases/tag/v5.0.0  
 
-Here are the release notes for version v5.0.0:
+Here are the release notes for version `v5.0.0`:  
 
-## [5.0.0](https://github.com/terraform-aws-modules/terraform-aws-vpc/compare/v4.0.2...v5.0.0) (2023-05-30)
+## [5.0.0](https://github.com/terraform-aws-modules/terraform-aws-vpc/compare/v4.0.2...v5.0.0) (2023-05-30)  
 
+### ⚠ BREAKING CHANGES  
 
-### ⚠ BREAKING CHANGES
-
-* Bump Terraform AWS Provider version to 5.0 (#941)
+* Bump Terraform AWS Provider version to 5.0 (#941)  
 
 ### Features
 
