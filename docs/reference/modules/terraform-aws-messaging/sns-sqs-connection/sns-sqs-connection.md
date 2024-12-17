@@ -162,7 +162,6 @@ The queue URL for the Simple Queue Service (SQS).
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -171,6 +170,6 @@ The queue URL for the Simple Queue Service (SQS).
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/sns-sqs-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bd186105dc1c64fe64daa7578c5a44f0"
+  "hash": "60234a1df294b7ba174dde46eb0e8caa"
 }
 ##DOCS-SOURCER-END -->
