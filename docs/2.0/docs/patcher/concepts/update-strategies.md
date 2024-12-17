@@ -1,26 +1,29 @@
 # Update Strategies
 
-Patcher supports two update strategies: **next safe** and **next breaking**. These update strategies determine how Patcher will behave if it encounters a breaking change that it cannot patch.
+Patcher supports two update strategies: **next safe** and **next breaking**. These strategies dictate how Patcher behaves when it encounters a breaking change that cannot be automatically patched.
 
 For example, the Gruntwork `terraform-aws-security/custom-iam-entity` module has two recent breaking changes: `0.62.0` and `0.65.0`.
 
-And in `infrastructure-live/dev` there are 2 dependencies on `terraform-aws-security/custom-iam-entity`:
-- `_global/ops-admin-role/terragrunt.hcl` currently uses `0.65.6`
-- `_global/website-ci-cd-access/terragrunt.hcl` currently use `0.61.0`
+In the `infrastructure-live/dev` environment, there are two dependencies on the `terraform-aws-security/custom-iam-entity` module:  
+- `_global/ops-admin-role/terragrunt.hcl` currently uses version `0.65.6`.  
+- `_global/website-ci-cd-access/terragrunt.hcl` currently uses version `0.61.0`.  
 
 ## "Next Safe" Update Strategy (Default)
 
-The **next safe** strategy will update a dependency to either the highest version **before the next closest breaking change** or the latest version of the dependency, whichever is encountered first.
+The **next safe** strategy updates a dependency to either the highest version **before the next closest breaking change** or the latest version of the dependency, whichever occurs first.
 
-So if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the highest version before that breaking change and stop. Otherwise, if no breaking changes are encountered it will update the dependencies the latest version of that module.
+If Patcher encounters a breaking change that cannot be automatically patched, it stops at the highest version before that breaking change. If no breaking changes are detected, it updates the dependency to the latest available version.
 
 For example, for the dependencies on `terraform-aws-security/custom-iam-entity` in `infrastructure-live/dev`:
-- `_global/ops-admin-role/terragrunt.hcl` will be updated from `0.65.6` to `0.68.2`, the latest version
-  - There are no breaking changes between `0.65.6` and `0.68.2`
-- `_global/website-ci-cd-access/terragrunt.hcl` will be updated from `0.61.0` to `0.61.1`, the highest version before `0.62.0`
-  - `0.62.0` is the next highest version that contains a breaking change which requires manual intervention
 
-This is an example of the YAML that Patcher writes to `stdout` describing these updates:
+- `_global/ops-admin-role/terragrunt.hcl` is updated from `0.65.6` to `0.68.2`, the latest version.  
+  - There are no breaking changes between `0.65.6` and `0.68.2`.  
+
+- `_global/website-ci-cd-access/terragrunt.hcl` is updated from `0.61.0` to `0.61.1`, the highest version before `0.62.0`.  
+  - Version `0.62.0` introduces a breaking change that requires manual intervention.  
+
+
+This is an example of the YAML that Patcher outputs to `stdout` to describe these updates:  
 
 ```yaml
   successful_updates:
@@ -41,22 +44,21 @@ This is an example of the YAML that Patcher writes to `stdout` describing these 
         release_notes_url: https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.62.0
 ```
 
-## "Next Breaking" Update Strategy
+## "Next Breaking" Update Strategy  
 
-The **next breaking** strategy will update a dependency to either the next closest breaking change or the latest version of the dependency, whichever is encountered first.
+The **next breaking** strategy updates a dependency to either the next closest breaking change or the latest version of the dependency, whichever occurs first.  
 
-So if Patcher encounters a breaking change that it cannot patch then it will update the dependencies to the version with the breaking change and stop. Otherwise, if no breaking changes are encountered, it will update the dependencies to the latest version of that module.
+If Patcher encounters a breaking change that cannot be automatically patched, it updates the dependency to the version containing the breaking change and stops. If no breaking changes are found, it updates the dependency to the latest available version.  
 
-This may result in an update that requires manual intervention. If so, Patcher will provide additional information to help you understand what needs to be done.
-
-Patcher does this by writing a `README-TO-COMPLETE-UPDATE.md` into the folder containing the dependency. If more than one dependency in a folder has been updated to a breaking version, then the `README-TO-COMPLETE-UPDATE.md` file will contain a release note extract for each breaking change in that folder.
+This strategy may result in updates that require manual intervention. In such cases, Patcher provides additional guidance by writing a `README-TO-COMPLETE-UPDATE.md` file into the folder containing the dependency. If multiple dependencies in a folder are updated to breaking versions, the `README-TO-COMPLETE-UPDATE.md` file will include release note extracts for each breaking change.
 
 For example, for the dependencies on `terraform-aws-security/custom-iam-entity` in `infrastructure-live/dev`:
-- `_global/ops-admin-role/terragrunt.hcl` will be updated from `0.65.6` to `0.68.2`, the latest version
-  - There are no breaking changes between `0.65.6` and `0.68.2`
-- `_global/website-ci-cd-access/terragrunt.hcl` will be updated from `0.61.0` to `0.62.0`, the next highest version with a breaking change that requires manual intervention.
 
-If any of the dependencies were updated to a breaking version, then the YAML that Patcher writes to `stdout` describing these updates will include a `manual_steps_you_must_follow` section listing the generated `README-TO-COMPLETE-UPDATE.md` files, for example:
+- `_global/ops-admin-role/terragrunt.hcl` is updated from `0.65.6` to `0.68.2`, the latest version.  
+  - There are no breaking changes between `0.65.6` and `0.68.2`.  
+- `_global/website-ci-cd-access/terragrunt.hcl` is updated from `0.61.0` to `0.62.0`, the next version containing a breaking change that requires manual intervention.  
+
+If any dependencies are updated to a breaking version, the YAML output that Patcher writes to `stdout` will include a `manual_steps_you_must_follow` section listing the generated `README-TO-COMPLETE-UPDATE.md` files. For example:  
 
 ```yaml
   successful_updates:
@@ -82,16 +84,12 @@ If any of the dependencies were updated to a breaking version, then the YAML tha
 This is the `README-TO-COMPLETE-UPDATE.md` written into `dev/_global/website-ci-cd-access`:
 
 ```markdown
-# custom-iam-entity v0.61.0 -> v0.62.0 (2023.06.05 12:26:30)
+# custom-iam-entity v0.61.0 -> v0.62.0 (2023.06.05 12:26:30)Updated dependency `custom-iam-entity` in `~/infrastructure-live/dev/_global/website-ci-cd-access/terragrunt.hcl` to version `v0.62.0`, which contains breaking changes. You **must** follow the instructions in the release notes to complete this update safely: https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.62.0
 
-Updated dependency custom-iam-entity in ~/infrastructure-live/dev/_global/website-ci-cd-access/terragrunt.hcl to version v0.62.0, which contains breaking changes. You MUST follow the instructions in the release notes to complete this update safely: https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.62.0
+Here are the release notes for version `v0.62.0`:
 
-Here are the release notes for version v0.62.0:
-
-
-## Description
-**Terraform 1.1 upgrade**: We have verified that this repo is compatible with Terraform `1.1.x`!
-  - From this release onward, we will only be running tests with Terraform `1.1.x` against this repo, so we recommend updating to `1.1.x` soon!
-  - We have also updated the minimum required version of Terraform to `1.0.0`. While our repos might continue to be compatible with pre-1.0.0 version of Terraform, we are no longer making any guarantees of that.
-  - Once all Gruntwork repos have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
-```
+## Description  
+**Terraform 1.1 Upgrade**: We have verified that this repository is compatible with Terraform `1.1.x`!  
+- From this release onward, we will only run tests with Terraform `1.1.x` against this repository, so we recommend updating to `1.1.x` soon.  
+- The minimum required version of Terraform has been updated to `1.0.0`. While earlier versions of Terraform may still work, we no longer guarantee compatibility with pre-1.0.0 versions.  
+- Once all Gruntwork repositories have been upgraded to work with `1.1.x`, we will publish a migration guide with a version compatibility table and announce it via the Gruntwork Newsletter.  
