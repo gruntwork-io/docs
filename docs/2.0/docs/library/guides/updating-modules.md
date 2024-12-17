@@ -74,59 +74,10 @@ inputs = {
 After making the change, run `terragrunt plan`, review the output to confirm it matches your expectations, then execute `terragrunt apply`.
 
 </TabItem>
-<TabItem value="Terragrunt with _envcommon" label="_envcommon (Terragrunt)">
 
-When following the `_envcommon` pattern, there are two locations where the git tag created by the release must be updated — the `.hcl` file that references the module in the `_envcommon` directory and the environment and region-specific references to the `_envcommon` file.
-
-Below is an example using the `_envcommon` pattern to reference version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module. To update to version `0.15.4`, modify the value to the right of `ref=` in the `source` attribute. Since the version number indicates a backwards-compati
-
-```hcl title=_envcommon/services/single_ec2_instance.hcl
-terraform {
-  # Old
-  # source = "${local.source_base_url}?ref=v0.15.3"
-  # New
-  source = "${local.source_base_url}?ref=v0.15.4"
-}
-
-locals {
-  source_base_url = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server"
-}
-```
-
-```hcl title=/<your-environment>/<your-region>/services/single_ec2_instance/terragrunt.hcl
-terraform {
-  # Old
-  # source = "${include.envcommon.locals.source_base_url}?ref=v0.15.3"
-  # New
-  source = "${include.envcommon.locals.source_base_url}?ref=v0.15.4"
-}
-
-include "root" {
-  path = find_in_parent_folders()
-}
-
-include "envcommon" {
-  path = "${dirname(find_in_parent_folders())}/_envcommon/services/single_ec2_instance.hcl"
-  merge_strategy = "deep"
-  expose = true
-}
-
-inputs = {
-  name = "my_instance"
-  ami = "ami-99999999999999999"
-  instance_type = "t2.medium"
-  keypair_name = ""
-  vpc_id = "vpc-1234567890123456"
-  subnet_id = "subnet-23456789012345678"
-  attach_eip = false
-}
-```
-
-After making the change, run `terragrunt plan`, review the output to confirm it matches your expectations, then execute `terragrunt apply`.
-
-</TabItem>
 </Tabs>
 
 ## Patcher
 
-Manually tracking all references to modules and services can be complex and error-prone. To address this challenge, Gruntwork developed [Patcher](/2.0/docs/patcher/concepts/). Patcher identifies the version of a module currently in use, the latest available version, and provides the associated changelog, streamlining the update process.
+Keeping track of all references to modules and services is complex and prone to errors. To simplify this process, Gruntwork developed [Patcher](/2.0/docs/patcher/concepts/). Patcher displays the version of a module currently in use, the latest available version, and the corresponding changelog, enabling efficient and accurate updates.
+
