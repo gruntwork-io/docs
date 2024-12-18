@@ -2,9 +2,9 @@
 
 # Modifying an AWS Account
 
-Over time you will need to run various operations on your AWS accounts such as requesting new accounts, creating new accounts, renaming accounts, etc. With the Gruntwork Account Factory, some AWS account management operations should only be done using IaC, some can only be done using ClickOps, and some can be done using either.
+Managing AWS accounts often involves operations such as requesting new accounts, creating accounts, or renaming them. The Gruntwork Account Factory defines account management tasks that must be handled exclusively through Infrastructure as Code (IaC), others that are limited to ClickOps in the AWS Console, and some that support both methods.
 
-In this page, we review which mode (IaC or ClickOps) to use for each AWS account operation. _When operations may be performed using either mode, we strongly recommend using IaC._
+This page provides guidance on which mode (IaC or ClickOps) is appropriate for various AWS account operations. When both options are available, we strongly recommended IaC for consistency, auditability, and reduced manual error.
 
 ## Prerequisites
 
@@ -14,7 +14,7 @@ This page applies to users who are:
 
 ## When to use IaC vs. ClickOps
 
-Below you'll find a table with common AWS account operations and the Gruntwork recommendation for if the operation should be done using IaC or in the AWS Console. When both options are available, using IaC is strongly recommended. You can explore more documentation for each operation by clicking on the operation name in the table.
+The table below highlights common AWS account operations and provides recommendations on whether to perform them using IaC or the AWS Console. Again, when both approaches are supported, we strongly recommend IaC. For detailed information on each operation, click the operation name in the table.
 
 - ✅ means that the operation should or can only be done using the given mode.
 - ❌ means that the operation should not or cannot be done using the given mode.
@@ -35,11 +35,20 @@ Below you'll find a table with common AWS account operations and the Gruntwork r
 
 ### Updating the Account via the new AWS account request file
 
-You may update some attributes of an AWS Account by modifying the account request file in `_new_account_requests`. See below for steps to update each attribute.
+You can update specific attributes of an AWS account by modifying the corresponding account request file in the `_new_account_requests` directory. Follow the steps below to update specific attributes:
 
-Start by creating a new branch that will contain your changes.
+#### Steps to Update
 
-1. Update the name of the OU by modifying the `organizational_unit_name` key
-1. Updating the account admin user by modifying the `sso_user_first_name`, `sso_user_last_name`, and `sso_user_email` keys to the new users first name, last name, and email.
+1. Begin by creating a new branch to contain your changes.
+2. Update the desired attributes:
+   - To change the Organizational Unit (OU) name, modify the value of the `organizational_unit_name` key.
+   - To update the account admin user, adjust the `sso_user_first_name`, `sso_user_last_name`, and `sso_user_email` keys with the new user's first name, last name, and email.
+     
+#### Applying the Updates
 
-After you have made your modifications, push your branch and create a pull request. Gruntwork Pipelines will detect the account changes and run a `plan` operation. Review the output of the `plan` to confirm the output is as expected. Once confirmed, merge the PR to apply the changes.
+After completing your modifications:
+1. Push the branch containing your changes and create a pull request.
+2. Gruntwork Pipelines automatically detects updates and executes a `plan` operation.
+3. Review the output of the `plan` to ensure the changes are accurate and meet expectations.
+4. Once the changes are validated, merge the pull request to apply the updates.
+
