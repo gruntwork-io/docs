@@ -9,7 +9,7 @@ We recommend reviewing our [concepts page](/2.0/docs/pipelines/concepts/hcl-conf
 :::
 
 
-## Basic Configuration
+## Basic configuration
 
 The minimum configuration required for Pipelines to function depends on the specific context. In most scenarios, Pipelines must determine how to authenticate with a cloud provider to execute Terragrunt commands. If authentication is not configured where required, Pipelines will generate an error.
 
@@ -58,7 +58,7 @@ A common strategy for creating Pipelines configurations is to start with minimal
 
 Details regarding the functionality of each configuration type are outlined below.
 
-## Configuration Hierarchy
+## Configuration hierarchy
 
 Pipelines configurations are structured into a hierarchy to manage specificity. Configurations that are more specific to an individual unit of IaC will take precedence over more general configurations in cases of conflict.
 
@@ -89,7 +89,7 @@ When searching for configurations, Pipelines will identify a single `.gruntwork`
 
 It is common to see configuration filenames within the `.gruntwork` directory that correspond to the block names they define. However, this naming convention is not mandatory. Pipelines will parse any `.hcl` file within the `.gruntwork` directory as a global configuration.
 
-### Environment Blocks
+### Environment blocks
 
 [Full Reference for Environment Blocks](/2.0/reference/pipelines/configurations-as-code/api#environment-block)
 
@@ -149,7 +149,7 @@ aws {
 Each unit must match the filters of a single environment block exclusively. If a unit matches filters from multiple environment blocks, Pipelines will generate an error.
 :::
 
-### AWS Blocks
+### AWS blocks
 
 [Full Reference for AWS Blocks](/2.0/reference/pipelines/configurations-as-code/api#aws-block)
 
@@ -237,7 +237,7 @@ In rare cases, you might disable job consolidation to allocate maximum resources
 
   :::
 
-## Local Configurations
+## Local configurations
 
 Configurations located in the same directory as a `terragrunt.hcl` file are referred to as local configurations. These are generally used to define settings specific to a single unit of Infrastructure as Code (IaC) within a repository.
 
@@ -247,7 +247,7 @@ These configurations can serve two purposes:
 1. Define all the settings necessary for Pipelines to operate within the scope of a single unit.
 2. Override global configurations defined in the `.gruntwork` directory, tailoring them to the unit's specific needs.
    
-### Unit Blocks
+### Unit blocks
 
 [Full Reference for Unit Blocks](/2.0/reference/pipelines/configurations-as-code/api#unit-block)
 
@@ -290,7 +290,7 @@ filter {
 All configuration blocks containing a `filter` block will apply only to units that match the specified filter.
 
 
-### Authentication Blocks
+### Authentication blocks
 
 [Full Reference for Authentication Blocks](/2.0/reference/pipelines/configurations-as-code/api#authentication-block)
 
