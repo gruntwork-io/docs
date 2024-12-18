@@ -200,7 +200,5 @@ You should receive `{"message": "Hello from Gruntwork!"}` as a response.
 
 ## What’s next
 
-Now that you've defined your own service, consider how you would make this module available to others in your organization. At Gruntwork, we share services using a GitHub repository called `terraform-aws-service-catalog`. For more information, refer to the [Library Reference](/library/reference). 
-
-Next, try adding tests to this service using [Terratest](https://terratest.gruntwork.io) to ensure resources are created successfully as changes are made to the service. Finally, think about what additional resources you might include in this module. For example, you could add authentication via AWS Cognito to the HTTP API Gateway or a DynamoDB table to store data.
+Now that you've defined your own service, consider how you would make this module available to others in your organization. At Gruntwork, we share services using a GitHub repository called `terraform-aws-service-catalog`. For more information, refer to the [Library Reference](/library/reference). Next, try adding tests to this service using [Terratest](https://terratest.gruntwork.io) to ensure resources are created successfully as changes are made to the service. Finally, think about what additional resources you might include in this module. For example, you could add authentication via AWS Cognito to the HTTP API Gateway or a DynamoDB table to store data.
 
