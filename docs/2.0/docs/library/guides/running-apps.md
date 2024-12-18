@@ -13,9 +13,11 @@ The Running Apps component focuses on:
 - **Updates.** Gruntwork regularly publishes updates to EKS, ECS, and Lambda modules. You can use [Patcher](/2.0/docs/patcher/concepts/) to automate updates to the latest versions of these modules.
 
 ## Available approaches
+
 Running Apps supports workloads on EKS, ECS, and individual Lambda functions. You can adopt one or more of these approaches; however, we recommend minimizing your operational surface area where possible.
 
 ### EKS
+
 The standard EKS setup uses IaC to provide:
 - A [best-practices EKS cluster configuration](https://docs.gruntwork.io/reference/services/app-orchestration/amazon-eks).
 - Support for [self-managed or managed worker nodes](https://docs.gruntwork.io/reference/services/app-orchestration/amazon-eks-workers).
@@ -25,6 +27,7 @@ The standard EKS setup uses IaC to provide:
 - An opinionated GitOps workflow ("GruntOps") leveraging ArgoCD.
 
 ### ECS
+
 The standard ECS setup uses IaC to deliver:
 - A [best-practices ECS cluster configuration](https://docs.gruntwork.io/reference/services/app-orchestration/amazon-ecs-cluster).
 - Optional support for [ECS Fargate](https://docs.gruntwork.io/reference/services/app-orchestration/amazon-ecs-fargate-cluster).
@@ -32,6 +35,7 @@ The standard ECS setup uses IaC to deliver:
 - ECS service discovery, load balancer integration, canary deployments, and additional features.
 
 ### Lambda
+
 Gruntwork supports deploying and invoking Lambda functions for various use cases, including:
 - [General-purpose Lambda functions](https://docs.gruntwork.io/reference/modules/terraform-aws-lambda/lambda/).
 - [Lambda functions behind an API Gateway](https://docs.gruntwork.io/reference/modules/terraform-aws-lambda/lambda-http-api-gateway/).
@@ -41,6 +45,7 @@ Gruntwork supports deploying and invoking Lambda functions for various use cases
 To manage complex serverless applications, we recommend using the [Serverless Framework](https://www.serverless.com/), available separately through Serverless, Inc.
 
 ### Missing functionality
+
 If the functionality you need is not currently supported, you have the following options:
 - [Submit a pull request](http://localhost:3000/library/usage/contributing) to contribute the functionality.
 - Extend the functionality on your own.
