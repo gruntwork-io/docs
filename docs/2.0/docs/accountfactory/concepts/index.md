@@ -1,28 +1,29 @@
 # Gruntwork Account Factory
 
-Gruntwork Account Factory allows you to vend new AWS accounts with best practice account baselines.
+Gruntwork Account Factory provides a streamlined approach to o creating AWS accounts with pre-configured best practice baselines.
 
-For enterprise customers, new accounts can be created with their own delegated Infrastructure as Code repositories automatically when vending accounts. This allows a central platform team to automate the process by which new AWS accounts are created, and delegation of select infrastructure management to particular teams.
+Enterprise customers benefit from the creation of dedicated Infrastructure as Code repositories for new accounts as part of the vending process.. Central platform teams can automate AWS account creation and efficiently delegate infrastructure management responsibilities to individual teams, ensuring scalability and autonomy.
 
-This allows developer teams to self-service deploy their own infrastructure within the bounds of IAM roles controlled in a dedicated access control repository, allowing for a combination of least privilege access to AWS resources and self-service infrastructure deployment.
+This approach empowers developer teams to self-service deploy infrastructure within the confines of IAM roles managed in a centralized access control repository. The result is a combination of least privilege access to AWS resources and flexible, self-service infrastructure deployment
 
-Gruntwork Account Factory is built on top of Gruntwork Pipelines. New account requests are tracked in git as IaC, triggering Terragrunt plans and applies to provision and baseline the new account. This allows the provisioning of new AWS accounts to be proposed and reviewed in the same way as any other infrastructure change, via pull requests.
+Gruntwork Account Factory is built on the foundation of Gruntwork Pipelines. Account creation requests are tracked in Git as Infrastructure as Code (IaC), triggering Terragrunt plans and applies to provision and baseline the accounts. By following this approach, account provisioning adheres to the same review process as other infrastructure changes, leveraging pull requests for collaboration and validation.
 
 ## Account baselines
 
-When provisioning new accounts, Gruntwork Account Factory doesn't just provision new AWS accounts, but also provisions a set of customizable baseline resources within those AWS accounts that make them ready to use for production workloads immediately.
+Gruntwork Account Factory does more than create AWS accounts—it also provisions a set of customizable baseline resources to prepare accounts for immediate use in production workloads.
 
-These baselines include things like:
+These baselines include:
 
-1. Best practice security settings for services like [GuardDuty](https://aws.amazon.com/guardduty/), [SecurityHub](https://aws.amazon.com/security-hub/) and [Macie](https://aws.amazon.com/macie/).
-2. Best practice networking configurations for [AWS VPCs](https://aws.amazon.com/vpc/).
-3. Best practice IAM roles for least privilege access to manage AWS resources in CI/CD via [GitHub OIDC](https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services).
+1. Security configurations for services such as [GuardDuty](https://aws.amazon.com/guardduty/), [SecurityHub](https://aws.amazon.com/security-hub/), and [Macie](https://aws.amazon.com/macie/), following best practices.
+2. Networking configurations aligned with best practices for [AWS VPCs](https://aws.amazon.com/vpc/).
+3. IAM roles designed for least privilege access, enabling CI/CD pipelines to manage AWS resources using [GitHub OIDC](https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services).
+
 
 ## White glove support
 
-Enterprise customers can expect white glove support in customizing their account baselines and vending process to meet their specific requirements. This includes:
+Enterprise customers benefit from tailored white glove support to customize account baselines and the vending process according to their needs. This support includes:
 
-1. Customizing the security configurations of the account baseline, and support in validating CIS compliance on day one.
-2. Customizing the networking configurations of the account baseline, and support for [AWS Transit Gateway](https://aws.amazon.com/transit-gateway/) configurations, including setup of network inspection appliances, like [AWS Network Firewall](https://aws.amazon.com/network-firewall/).
-3. Customizing the access control for delegated infrastructure management repositories, automatically granting particular teams access to manage their Infrastructure as Code for newly vended accounts.
+1. Adjusting security configurations within the account baseline and ensuring compliance with frameworks like CIS from the outset.
+2. Modifying networking configurations in the account baseline, including support for [AWS Transit Gateway](https://aws.amazon.com/transit-gateway/) setups and integration of network inspection appliances like [AWS Network Firewall](https://aws.amazon.com/network-firewall/).
+3. Customizing access control for delegated infrastructure management repositories, automatically assigning specific teams the necessary permissions to manage IaC for newly created accounts.
 
