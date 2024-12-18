@@ -21,7 +21,7 @@ infrastructure-catalog
 
 :::note
 
-Ensure you include all desired variables from the underlying module in your wrapper module. This establishes the interface for consumers of the module.
+Be sure to include all desired variables from the underlying module in your wrapper module. This establishes the interface for consumers of the module.
 
 In `main.tf`, configure the module block to reference the Gruntwork module, set any default values, and pass through variable values.
 
@@ -137,8 +137,8 @@ For enterprise users, Gruntwork offers the [Repo Copier](https://github.com/grun
 
 Using forked code is similar to the process outlined in [Deploying your first Gruntwork Module](/2.0/docs/library/tutorials/deploying-your-first-gruntwork-module), with the following adjustments:
 
-1. Update the `source` URLs in your Terraform modules to point to your private Git repositories instead of the `gruntwork-io` GitHub organization.
-2. Update the `--repo` parameter of `gruntwork-install` to use your private Git repositories instead of the `gruntwork-io` GitHub organization.
+1. Update the `source` URLs in your Terraform modules to point to your private Git repositories instead of the `gruntwork-io` GitHub org.
+2. Update the `--repo` parameter of `gruntwork-install` to use your private Git repositories instead of the `gruntwork-io` GitHub org.
 
 ### Drawbacks to forking
 
