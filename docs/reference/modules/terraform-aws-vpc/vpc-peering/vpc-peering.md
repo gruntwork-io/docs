@@ -221,7 +221,6 @@ inputs = {
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -230,6 +229,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.0/modules/vpc-peering/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5fe322b1a4e0f048eff3e46b9e37346e"
+  "hash": "862e8c4aaccba3bd7e367f01f34a8ca3"
 }
 ##DOCS-SOURCER-END -->

@@ -2398,7 +2398,6 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -2407,6 +2406,6 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.0/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "42b7c8e16d6adea13bcad365cfaf9e95"
+  "hash": "2aa4bb94210ed56f842f17af177c29d2"
 }
 ##DOCS-SOURCER-END -->

@@ -223,7 +223,6 @@ Map of ids of the transit gateway routes.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -232,6 +231,6 @@ Map of ids of the transit gateway routes.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.0/modules/transit-gateway-route/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e7290ec4932c44a577cede7f1267c632"
+  "hash": "7a7d5f9e283b78b519b706b867c18748"
 }
 ##DOCS-SOURCER-END -->

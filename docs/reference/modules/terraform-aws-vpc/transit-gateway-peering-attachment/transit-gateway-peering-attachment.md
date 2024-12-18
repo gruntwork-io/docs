@@ -257,7 +257,6 @@ Transit Gateway Peering Attachment identifier
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -266,6 +265,6 @@ Transit Gateway Peering Attachment identifier
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.0/modules/transit-gateway-peering-attachment/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e76aa00a60a07887b3367412972f934f"
+  "hash": "96d1633db2293af493ac7c6878f88291"
 }
 ##DOCS-SOURCER-END -->

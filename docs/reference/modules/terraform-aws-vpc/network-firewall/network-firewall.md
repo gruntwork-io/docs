@@ -957,7 +957,6 @@ A map of AZs to Network Firewall Endpoint IDs used for routing establishment pur
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -966,6 +965,6 @@ A map of AZs to Network Firewall Endpoint IDs used for routing establishment pur
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.0/modules/network-firewall/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "82a38173e9ca4465a3ceacfd8c1a7b21"
+  "hash": "216c02194f6389c4c0fbea1ef39110c4"
 }
 ##DOCS-SOURCER-END -->

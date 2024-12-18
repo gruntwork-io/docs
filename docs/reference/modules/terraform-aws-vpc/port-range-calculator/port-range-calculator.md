@@ -174,7 +174,6 @@ Map of port ranges to the ranges to allow. This is provided as a convenience out
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -183,6 +182,6 @@ Map of port ranges to the ranges to allow. This is provided as a convenience out
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.0/modules/port-range-calculator/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1c5b8707774b818f66a7541d68a6c7ec"
+  "hash": "83dc01cdf849115d052d6230e3d16b54"
 }
 ##DOCS-SOURCER-END -->

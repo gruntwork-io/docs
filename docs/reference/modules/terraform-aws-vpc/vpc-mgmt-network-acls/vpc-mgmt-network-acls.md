@@ -341,7 +341,6 @@ The number to use for the first rule that is created by this module. All rules i
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -350,6 +349,6 @@ The number to use for the first rule that is created by this module. All rules i
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.0/modules/vpc-mgmt-network-acls/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6a57992de2006340a3b3a5f54c0aaceb"
+  "hash": "d70c5d78d82d83f40b7844614fbcd4df"
 }
 ##DOCS-SOURCER-END -->

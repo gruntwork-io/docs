@@ -217,7 +217,6 @@ inputs = {
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -226,6 +225,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.0/modules/network-acl-inbound/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "33a4230083d894600ca0d97aaab485f1"
+  "hash": "9059040da4498560464dd9ba705ad558"
 }
 ##DOCS-SOURCER-END -->

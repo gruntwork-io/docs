@@ -176,7 +176,6 @@ inputs = {
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -185,6 +184,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.0/modules/vpc-dns-forwarder-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9bc7a61496778daeb0d4ecb438ff14bb"
+  "hash": "3c13e338d191a72e0444e4d9303a4447"
 }
 ##DOCS-SOURCER-END -->
