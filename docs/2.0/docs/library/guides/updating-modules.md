@@ -14,7 +14,7 @@ We recommend updating module versions in your development environment first, fol
 ### Terraform
 <TabItem value="Terraform" label="Terraform" default>
 
-Below is a Terragrunt configuration referencing version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
+Below is a Terraform configuration referencing version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
 
 To update to version `0.15.4`, change the value to the right of `ref=` in the `source` attribute. Since the version number indicates a backwards-compatible update, no additional changes should be required.
 
@@ -41,6 +41,10 @@ After making the change, run `terraform plan`, review the output to confirm it m
 
 ### Terragrunt
 <TabItem value="Terragrunt" label="Terragrunt">
+
+Below is a Terragrunt configuration referencing version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
+
+To update to version `0.15.4`, change the value to the right of `ref=` in the `source` attribute. Since the version number indicates a backwards-compatible update, no additional changes should be required.
 
 ```hcl
 terraform {
