@@ -2,60 +2,60 @@
 
 ## Introduction
 
-This guide explains how to integrate Gruntwork's Infrastructure as Code (IaC) Library with HashiCorp's [Terraform Cloud (TFC)](https://www.terraform.io/docs/cloud/index.html) and [Terraform Enterprise (TFE)](https://www.terraform.io/docs/enterprise/index.html). While Terraform Open Source is robust and flexible, many organizations use TFC/TFE for CLI/UI integration, approval workflows, Sentinel policies, and auditing. Terraform Enterprise is a self-hosted version of Terraform Cloud. For simplicity, this guide will refer to both as "TFC."
+This section will cover how to use Gruntwork in conjunction with two popular HashiCorp products: [Terraform Cloud (TFC)](https://www.terraform.io/docs/cloud/index.html) and [Terraform Enterprise (TFE)](https://www.terraform.io/docs/enterprise/index.html). Although the open source edition of Terraform is quite powerful and flexible as a standalone project, many organizations turn to TFC/TFE for the CLI/UI integration, approval-based workflow capabilities, Sentinel policy framework, and more. At its core, Terraform Enterprise is basically Terraform Cloud repackaged for a self-hosted environment. We’ll use "TFC" as short hand for both Terraform Cloud and Enterprise throughout this guide.
 
 
-In our guide on [Customizing Modules](/2.0/docs/library/tutorials/customizing-modules), we explained the use of two repositories:
-- `infrastructure-modules`: Contains Terraform or OpenTofu code wrapping Gruntwork's IaC Library modules.
-- `infrastructure-live`: Contains Terragrunt configurations for managing Terraform across accounts and environments.
+In our guide on [Customizing Modules](/2.0/docs/library/tutorials/customizing-modules) we describe how to use Gruntwork with two VCS repositories: `infrastructure-modules`, containing your OpenTofu/Terraform code that wraps the modules from Gruntwork IaC Library, and `infrastructure-live`, containing Terragrunt configurations that enable you to manage Terraform easily across multiple accounts and environments. When using Gruntwork with TFC, you have two choices regarding these repositories:
 
 <div className="dlist">
 
 #### Use TFC without Terragrunt
 
-In this approach:
-- Modules reside in the `infrastructure-modules` repository.
-- Each module corresponds to a dedicated [TFC workspace](https://www.terraform.io/docs/state/workspaces.html).
-- Terraform runs are triggered via the TFC UI or CLI.
-- TFC essentially replaces Terragrunt and the `infrastructure-live` repository.
-
-While this method provides access to TFC's feature set, it does not leverage Terragrunt's capabilities to reduce redundancy (DRY), manage CLI arguments, or apply changes across multiple modules/environments
+Using this approach, Terraform modules are still defined in an `infrastructure-catalog` repository as discussed above.
+Each module has a dedicated [TFC workspace](https://www.terraform.io/docs/state/workspaces.html). You create the
+workspace in advance, and then you can run the Terraform modules either from the `terraform` CLI or from the TFC UI.
+In essence, TFC replaces Terragrunt and `infrastructure-live`. You’ll be able to use the full TFC feature set, but you
+won’t be able to take advantage of the benefits provided by Terragrunt, such as keeping your code and variables, CLI
+args, etc DRY, and adding support for applying changes across multiple modules / environments.
 
 #### Use TFC with Terragrunt
 
-In this approach:
-- Wrapper modules remain in the `infrastructure-modules` repository.
-- Terragrunt configurations in `infrastructure-live` manage deployments.
-- TFC is used as a [remote backend](https://www.terraform.io/docs/backends/types/remote.html) for Terraform.
-- Terraform runs are triggered via the Terragrunt CLI, while TFC tracks and audits execution.
-
-This method combines TFC's audit and state management with Terragrunt's workflow optimizations.
+Alternatively, you can use both `infrastructure-catalog` and `infrastructure-live` repositories as described above,
+storing the wrapper modules in `infrastructure-catalog`, and using `infrastructure-live` and Terragrunt for
+deployments. In this approach, TFC is used as a [remote backend](https://www.terraform.io/docs/backends/types/remote.html)
+for Terraform. You use Terragrunt to run deployments from the CLI, which in turn invokes Terraform on the TFC backend.
+The TFC UI is used for audit and tracking capabilities, but not for executing Terraform runs.
 
 </div>
+
+We cover each approach below, but first, you’ll need to complete a few one time set up steps.
 
 ## One time set up
 
 :::caution
 
-If using TFE, first refer to [HashiCorp's installation guide](https://www.terraform.io/docs/enterprise/before-installing/index.html). Adjust any references to `app.terraform.io` to point to your TFE host. 
+If you’re using TFE, you’ll need to follow [HashiCorp’s Enterprise installation instructions](https://www.terraform.io/docs/enterprise/before-installing/index.html) first. Most of the details below still apply to TFE, but you should adjust any URLs, such as `app.terraform.io`, to use your TFE installation instead.
 
 :::
 
 ### Create an account
 
-Sign up for a free account at [Terraform Cloud](https://app.terraform.io/signup/account).  
+The first step is to establish an account. Visit [the Terraform Cloud sign up page](https://app.terraform.io/signup/account) to create a free account.
 
 ![Sign up for a Terraform Cloud account](/img/guides/working-with-code/tfc/tfc-sign-up.png)
 
 ### Create an organization
 
-After verifying your email, create a new organization. Use lowercase letters and avoid whitespace, optionally using `-` or `_` for readability.
+Once the account is established, you’ll verify your email address. It’s safe to skip the initial set up instructions.
+After doing so, you’ll be presented with the option to create a new organization. We suggest using lowercase
+organization names, optionally with `-` or `_` characters, but without whitespace.
 
 ![Create an organization in TFC](/img/guides/working-with-code/tfc/tfc-create-organization.png)
 
 ### Set up an SSH key
 
-When using Gruntwork modules, the `source` attribute in a module block retrieves modules from a Gruntwork code repository. For instance, to create an SQS queue using the SQS module from [`package-messaging`](https://github.com/gruntwork-io/package-messaging), you might define the following module block:
+When you’re using Gruntwork modules, you use the source attribute on a module block to read a module from a Gruntwork
+code repository. As a simple example, if you wanted to create an SQS queue using the SQS module from [`package-messaging`](https://github.com/gruntwork-io/package-messaging), you might create something like the following:
 
 ```hcl
 provider "aws" {
@@ -68,117 +68,144 @@ module "sns" {
 }
 ```
 
-The `git::git@github.com:gruntwork-io` portion of the `source` attribute specifies that the module is accessed over SSH. Therefore, TFC requires access to Gruntwork code repositories via SSH.
+The `git::git@github.com:gruntwork-io` portion of the `source` attribute indicates that this module is accessed over SSH. Thus, TFC will need access to the Gruntwork code repositories via SSH.
 
-To configure this access, follow these steps:
+To set up this access, take the following steps:
 
-1. If you do not already have one, create a machine user with access to Gruntwork. A machine user is an account used solely for automation purposes, not for individual users. In this case, the "machine" refers to the TFC executor. Create a new GitHub user account and provide the machine user’s username and email address to [support@gruntwork.io](mailto:support@gruntwork.io). We will grant the required access to our repositories.
+1.  First, if you don’t have one already, you’ll need a machine user that has access to Gruntwork. A machine user is an
+    account that is only used for automation, and is not used by humans. In this case, the "machine" in question is the TFC
+    executor. Create a new Github user, and send the machine user’s username and email address to [support@gruntwork.io](mailto:support@gruntwork.io). We’ll make sure the user has access to our repositories.
 
-2. Generate an SSH key pair and attach the public key to the GitHub machine user account. For step-by-step guidance, refer to [GitHub's SSH setup documentation](https://help.github.com/en/enterprise/2.19/user/github/authenticating-to-github/connecting-to-github-with-ssh).
+2.  Next, generate an SSH key pair, and add the public key to the new GitHub machine user. GitHub has [easy-to-follow instructions](https://help.github.com/en/enterprise/2.19/user/github/authenticating-to-github/connecting-to-github-with-ssh).
 
-3. Add the private SSH key to TFC under the SSH Keys section within your TFC organization settings. For clarity, label the key appropriately, such as _Gruntwork access_. TFC will use this key to clone Gruntwork repositories.
+3.  Now, add the private SSH key to TFC. You’ll find the option under SSH Keys in the TFC organization settings. We called ours _Gruntwork access_. TFC will use this key to clone Gruntwork code repositories.
 
 ![Configuring an SSH key for the TFC organization](/img/guides/working-with-code/tfc/tfc_ssh_key.png)
 
-Once the SSH key is configured, the one-time setup is complete.
+With the SSH key in place, the one time set up is complete.
 
 ## Using TFC without Terragrunt
 
-This section explains using TFC to deploy infrastructure by leveraging Gruntwork’s Terraform modules. Use this method to execute Terraform operations from your local CLI or directly through the TFC UI.
+This section will demonstrate how to use TFC to deploy your infrastructure, leveraging Gruntwork’s Terraform modules to do the heavy lifting. With this method, you can run Terraform from your local CLI or from the TFC UI.
 
-[Workspaces](https://www.terraform.io/docs/state/workspaces.html) in TFC store the state associated with Terraform-managed infrastructure. The state is centralized within TFC. To connect outputs from one workspace as inputs to another, you can use the [`remote_state` data source](https://www.terraform.io/docs/providers/terraform/d/remote_state.html). Using this method, you can link multiple workspaces to build a complete, end-to-end infrastructure.
+[Workspaces](https://www.terraform.io/docs/state/workspaces.html) store the state
+associated with the infrastructure that is managed by Terraform. The state is
+stored in TFC. You can use the
+[`remote_state`
+data source](https://www.terraform.io/docs/providers/terraform/d/remote_state.html) to use the outputs of one workspace as the variable inputs for
+another workspace. In this manner, you can link multiple workspaces together to
+build an end-to-end infrastructure.
 
-In the [using Gruntwork modules](/2.0/docs/library/tutorials/customizing-modules) guide, we introduce the wrapper module pattern, where multiple Terraform modules are organized in a directory hierarchy under `infrastructure-catalog/modules`. Following this pattern, each TFC workspace references the same `infrastructure-catalog` repository but points to specific subdirectories corresponding to different modules.
+In our guide on [using Gruntwork modules](/2.0/docs/library/tutorials/customizing-modules), we discuss the wrapper module
+pattern in which multiple Terraform modules are contained in a hierarchy of directories located under
+`infrastructure-catalog/modules`. Using such a hierarchy, each workspace will use the same `infrastructure-catalog` repository, but pointed at different subdirectories within the repository.
 
 :::note
 
-**Gruntwork modules must be hosted in your own repository** by wrapping or copying them to enable their use with the Terraform registry. This requirement exists because TFC creates a webhook in the repository, necessitating admin-level access. Customers must host the modules themselves because we cannot provide admin access to Gruntwork repositories. 
+**You must host Gruntwork modules _in your own repo_ (by wrapping our modules or copying them) in order to use them with the Terraform registry.** This is because TFC needs to create an webhook in that repo which requires admin access, and we cannot grant customers admin access to Gruntwork’s repos. We’re in touch with HashiCorp regarding this limitation, and have requested that they remove the admin requirement.
 
-Enterprise customers may consider using our `repo-copier` tool, which creates a complete, self-hosted clone of the Gruntwork IaC library within your version control system, eliminating the need to wrap modules manually.
+Enterprise customers may inquire about our `repo-copier` tool, which can provide a complete clone of the Gruntwork IaC library in your own VCS system without the need to create wrapper modules.
 
 :::
 
-The following steps demonstrate setting up a workspace for a simple SQS module. Begin by creating a new workspace and connecting it to your VCS provider.
-### Connect to a Version Control Provider
+We’ll demonstrate how to set up a workspace for a simple SQS module. To get started, create a new workspace and connect in to your VCS provider.
 
-Connect the workspace to your preferred version control system, such as GitHub, GitLab, or Bitbucket, as it allows TFC to access your `infrastructure-catalog` repository. Once you integrate with a VCS, select the `infrastructure-catalog` repository from the list of available repositories.
+### Connect to a version control provider
+
+Connect the workspace to the version control system of your choice. For example, GitHub, GitLab, or Bitbucket. This allows TFC to access your `infrastructure-catalog` repository. Once your VCS is connected, select your `infrastructure-catalog` repository from the list of repositories presented.
 
 ![Connect a workspace to a VCS](/img/guides/working-with-code/tfc/tfc-create-workspace.png)
 
-### Configure the Workspace Settings
+### Configure the workspace settings
 
-Next, assign a name to the workspace and configure additional settings. Adhere to [Terraform’s workspace naming guidelines](https://www.terraform.io/docs/cloud/workspaces/naming.html) to ensure a consistent and scalable naming convention. In this example, the workspace name is `sqs-example-dev-us-east-1`.
+In this step, you’ll choose a name and configure additional settings relating to the workspace. Be sure to
+[follow the workspace naming guidelines](https://www.terraform.io/docs/cloud/workspaces/naming.html) to ensure a
+consistent yet flexible naming convention. For this example, we’ll choose `sqs-example-dev-us-east-1`.
 
-Additionally, specify the location of the module within your repository. Under the _Advanced options_ section, locate the _Terraform Working Directory_ field and input the path to the module. TFC will apply this same value to _Automatic Run Triggering_, ensuring that Terraform runs are only triggered when changes occur in the module directory. The path is `/modules/networking/sqs` for this example.
+We also need to inform TFC where to find the correct module. Under the
+_Advanced options_, locate the _Terraform Working Directory_ field, and enter
+the path to the module. TFC will automatically enter the same value for
+_Automatic Run Triggering_ to ensure that Terraform runs for this workspace
+only occur when changes are detected to the module path. For our SQS example,
+we enter the value `/modules/networking/sqs`.
 
 ![Configure workspace settings](/img/guides/working-with-code/tfc/tfc-workspace-settings.png)
 
-### Use the SSH Key
+### Use the SSH key
 
-As part of the one-time setup process described earlier, you configured an SSH key to access Gruntwork modules. In the workspace settings, select the SSH key you previously added.
+In the one time set up steps described above, you created an SSH key. You’ll now need to choose this SSH key in the workspace settings.
 
 ![Choose the private SSH key](/img/guides/working-with-code/tfc/tfc-workspace-ssh.png)
 
-### Configure Credentials and Variables
+### Configure credentials and variables
 
-To enable the Terraform AWS provider used by the SQS module to interact with the AWS API, configure the standard `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables in the workspace. Mark the _Sensitive_ checkbox to ensure these values remain secure and write-only.
+The Terraform AWS provider used by the SQS module will need credentials to communicate with the AWS API. You can set this up using the standard `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables in the workspace. When setting the variables, be sure to mark the _Sensitive_ checkbox so that the variables are write only.
 
 ![Configure AWS API credentials as environment variables in the workspace](/img/guides/working-with-code/tfc/tfc-env-vars.png)
 
-Additionally, you can define values for any Terraform variables the module requires. In this example, the SQS module requires no input variables.
+You can also enter values for any Terraform variables for the module. For our simple SQS module we don’t define any variables.
 
-### Queue and Apply the Configuration
+### Queue and apply the configuration
 
-With all configurations complete, you can initiate the plan and apply process. You have two options to trigger the run:
+With all the configuration complete, it’s time to kick off the plan and apply. You can trigger the run by making a
+commit to a file in the working directory that you set up when configuring workspace settings (in our case, in
+`/modules/networking/sqs`), or by manually triggering the run using the _Queue plan_ button in the TFC UI. The run will:
 
-1. Make a commit to a file within the working directory specified during workspace setup (e.g., `/modules/networking/sqs`).
-2. Manually trigger the run using the _Queue plan_ button in the Terraform Cloud (TFC) UI.
-
-When the run begins, the following sequence will occur:
-
-- Clone your `infrastructure-catalog` repository using the configured VCS connection.
-- Download the AWS provider and set credentials using the environment variables.
-- Access the Gruntwork SQS module via SSH using the provided SSH key.
-- Execute a `terraform plan` to generate an execution plan.
-- Pause for confirmation in the UI or CLI.
-- Upon confirmation, execute a `terraform apply` to provision the resources.
+- Clone your `infrastructure-catalog` repository using the VCS connection
+- Download the AWS provider and set credentials using the environment variables
+- Download the Gruntwork SQS module using the SSH key
+- Run a `terraform plan`
+- Wait for confirmation
+- Once confirmed, run a `terraform apply`
 
 ![TFC run results](/img/guides/working-with-code/tfc/tfc-run.png)
 
-### Final Thoughts on Integrating TFC with the Gruntwork IaC Library
+### Final thoughts on integrating TFC with the Gruntwork IaC Library
 
-Integrating Terraform Cloud (TFC) with the Gruntwork IaC Library is straightforward. All Terraform wrapper modules can be centrally managed within a single repository by leveraging the' infrastructure-modules' approach described in this guide. You can then configure a dedicated workspace for each module and connect them using the [`remote_state` data source](https://www.terraform.io/docs/providers/terraform/d/remote_state.html) to build a comprehensive infrastructure.
+It’s easy to use TFC with the Gruntwork IaC Library. When using the `infrastructure-modules` approach outlined in this
 
-This pattern works seamlessly with any of Gruntwork’s Terraform modules, including complex modules like [`terraform-aws-eks`](https://github.com/gruntwork-io/terraform-aws-eks). For modules requiring external dependencies—such as [`kubergrunt`](https://github.com/gruntwork-io/kubergrunt)—Gruntwork employs the [`executable-dependency`](https://github.com/gruntwork-io/package-terraform-utilities/tree/master/modules/executable-dependency) module to dynamically install the required tools within the TFC executor at runtime.
+guide, all of your Terraform wrapper modules will be in one place. You can configure one workspace per module, and you
+can link modules together with the [`remote_state`
+data source](https://www.terraform.io/docs/providers/terraform/d/remote_state.html). Note that you’ll need to set up the AWS credentials and SSH key within each workspace.
 
-Gruntwork may offer modules through a private Terraform registry in the future, further simplifying workflows by eliminating the SSH key requirement.
+You can use this pattern for any of Gruntwork’s Terraform modules. This even works for modules like
+[`terraform-aws-eks`](https://github.com/gruntwork-io/terraform-aws-eks) which need to download external dependencies (like
+[`kubergrunt`](https://github.com/gruntwork-io/kubergrunt)). Those modules use the special
+[`executable-dependency`](https://github.com/gruntwork-io/package-terraform-utilities/tree/master/modules/executable-dependency)
+module to install the external dependency within the executor (the TFC node, in this case) at run time. In the future,
+Gruntwork may offer modules through a private Terraform registry to remove the SSH key requirement, further simplifying
+the process.
 
-Once you configure your workspace, you can trigger Terraform, which runs directly through the TFC UI or from the command line using the `terraform` CLI. To execute runs via the CLI, follow the [CLI-driven Run Workflow](https://www.terraform.io/docs/cloud/run/cli.html) instructions provided by HashiCorp.
-
+Once the workspace is set up, you can trigger runs through the UI or from the `terraform` CLI. To use the CLI, follow [the CLI-driven Run Workflow](https://www.terraform.io/docs/cloud/run/cli.html) instructions.
 
 ## Using TFC with Terragrunt
 
-The Terraform Cloud (TFC) UI only runs Terraform commands, while Terragrunt operates as a wrapper around Terraform. This means the TFC UI cannot directly trigger Terragrunt. However, you can configure Terraform to execute remote operations, such as `plan` and `apply`, within TFC while using Terragrunt to organize your code and maintain DRY configurations. When set up correctly, running `terragrunt apply` locally (or from a CI server) will invoke `terraform apply` within TFC rather than executing Terraform locally.
+The TFC UI runs only Terraform commands. Terragrunt expects you to run it, and it, in turn, will run Terraform.
+Therefore, it currently is not possible to use the TFC UI to trigger Terragrunt. However, you can set up Terraform to run
+remote operations such as plan and apply. That is, you use Terragrunt to organize your code and keep it DRY, and you can
+configure it so that when you run `terragrunt apply` on your computer (or on a CI server), it runs `terraform apply` in
+TFC rather than on your local system.
 
-### Key Considerations
+You’ll still need workspaces, as described in the sections above on using TFC without Terragrunt. You can create the
+workspace automatically or re-use a workspace that already exists, including variables and env vars already set in it,
+such as your AWS access keys, so you don’t need to have those locally. You’ll also be able to see the apply output in
+the web UI (but not trigger it from the web UI) and see the history of all apply calls in the web UI.
 
-- Workspaces are still required, as explained in the "Using TFC without Terragrunt" section. You can create workspaces dynamically or reuse them if they already exist, including any associated variables and environment configurations such as AWS credentials.
-- While you cannot trigger runs directly from the TFC UI, the output of `apply` operations will be visible in the UI, along with the history of past runs.
+The steps involved to set all this up include:
 
-### Steps to Set Up Terragrunt with TFC
+- Obtain an API token to permit Terraform to use TFC
+- Generate a `backend.tf` file to configure Terraform to point at TFC as a remote backend
+- Set up workspaces for each module managed by Terragrunt
+- Set input variables
 
-1. **Obtain an API token** to enable Terraform to interact with TFC.
-2. **Generate a `backend.tf` file** to configure Terraform to use TFC as a remote backend.
-3. **Set up workspaces** for each module managed by Terragrunt.
-4. **Define input variables** for your modules.
+Before digging in, we’ll review an example Terragrunt configuration.
 
----
+### Setting up
 
-### Setting Up
+For this example, we’ll once again deploy an SQS queue from [Gruntwork `package-messaging` repository](https://github.com/gruntwork-io/package-messaging:).
 
-For demonstration purposes, we will deploy an SQS queue using the SQS module from the [Gruntwork `package-messaging` repository](https://github.com/gruntwork-io/package-messaging).
+Consider the following directory structure for an `infrastructure-live` repository:
 
-Below is an example directory structure for an `infrastructure-live` repository:
     .
     ├── dev
     │   ├── account.hcl
@@ -189,25 +216,17 @@ Below is an example directory structure for an `infrastructure-live` repository:
     ├── common.hcl
     └── terragrunt.hcl
 
-This structure contains:
-
-- A single environment (`dev`).
-- A single module (`sqs`) deployed to the `us-east-1` AWS region.
-- Shared configuration files (`account.hcl`, `region.hcl`, and `common.hcl`) that provide reusable values.
-
-You can easily extend this foundational setup to support additional environments, regions, or modules.
- 
+For simplicity, the example shows a single environment, `dev`, the `sqs` module, but this pattern could be expanded to more environments and regions as needed.
 
 ### Obtain an API token
 
-Terraform requires an API token to communicate with Terraform Cloud (TFC) as a backend. To generate a token, navigate to the user settings in TFC and select the **Tokens** section. If you are running Terragrunt on a CI system, the token should be associated with a machine user account rather than an individual user account to ensure consistent access.
+Terraform needs an API token to communicate with TFC as a backend. To obtain a token, open the user settings, and click
+on _Tokens_. If you’re running Terragrunt on a CI system, this token should be associated with a machine user rather
+than an individual user account.
 
 ![Creating a TFC API token](/img/guides/working-with-code/tfc/tfc-token.png)
 
-Once TFC generates a token, add it to your local Terraform configuration file (`~/.terraformrc`) within a `credentials` block. Doing so will enable Terraform to authenticate with TFC when running remote operations.
-
-**Example `~/.terraformrc` configuration:**
-
+Now you’ll add the token to your [`~/.terraformrc` file](https://www.terraform.io/docs/commands/cli-config.html) in a `credentials` block.
 
 <!-- spell-checker: disable -->
 ```hcl
@@ -220,17 +239,21 @@ credentials "app.terraform.io" {
 
 ### Generating the backend
 
-A' backend' block is required to configure Terragrunt to use Terraform Cloud (TFC) as a remote executor. The backend specifies where Terraform stores state and determines how to handle an execution. Using the Terragrunt [`generate` block](https://terragrunt.gruntwork.io/docs/reference/config-blocks-and-attributes/#generate:), you can dynamically create the backend configuration, eliminating the need to include it in each module.
+For Terragrunt to use TFC as a remote executor, you’ll need a `backend` block. The backend is what determines where
+Terraform reads state and how execution is handled. The Terragrunt
+[`generate` block](https://terragrunt.gruntwork.io/docs/reference/config-blocks-and-attributes/#generate:) can generate
+the backend block dynamically so you don’t need to include one in each module.
 
-Terraform [workspaces](https://www.terraform.io/docs/state/workspaces.html) manage state for a specific backend. In the Terragrunt configuration structure described earlier, each module (e.g., `sqs`) must use a unique workspace, and the workspace name is specified in the `backend` block. You must identify all necessary components of the naming convention to define these workspaces.
+Terraform [workspaces](https://www.terraform.io/docs/state/workspaces.html) store the state associated with a given
+backend. In the Terragrunt configuration hierarchy defined above, each module (just `sqs` in this case) uses a separate workspace and must have its own name in the `backend` block. Therefore, we’ll need to gather all the component parts of our chosen workspace naming convention to use when setting up the backend.
 
-Following [HashiCorp's recommendations](https://www.terraform.io/docs/cloud/workspaces/naming.html), consider the following naming elements:
+Following [the advice from HashiCorp](https://www.terraform.io/docs/cloud/workspaces/naming.html), we’ll need:
 
-- Component name (e.g., _sqs_)
-- Environment name (e.g., _dev_)
-- Region (e.g., _us-east-1_)
+- The name of the component, such as _sqs_
+- The name of the environment, such as _dev_
+- The region, such as _us-east-1_
 
-The code snippet below demonstrates how to assemble these naming elements and generate the backend configuration:
+The snippet below shows one technique for gathering the requisite information and generating the backend:
 
 **infrastructure-live/terragrunt.hcl**
 
@@ -260,47 +283,41 @@ EOF
 }
 ```
 
-This code highlights several key features of Terragrunt:
+This code shows off a few features of Terragrunt:
 
-- **Dynamic Backend Configuration**: The `generate` block creates a file named `backend.tf`, which is placed alongside the other `*.tf` files for the module being processed by Terragrunt. This approach dynamically adds a `backend` configuration to the module without requiring manual intervention.
+- The `generate` block creates a file called `backend.tf` that will be created alongside the other `*.tf` files for the module that Terragrunt is operating on. This effectively adds a dynamically generated `backend` configuration to the module.
 
-- **Terragrunt Built-in Functions**: Terragrunt includes a robust set of [built-in functions](https://terragrunt.gruntwork.io/docs/reference/built-in-functions/) like `find_in_parent_folders()`, `read_terragrunt_config()`, and `get_terragrunt_dir()`. These functions allow you to extract values dynamically, simplifying backend configuration.
+- Terragrunt has a set of [built-in functions](https://terragrunt.gruntwork.io/docs/reference/built-in-functions/), like `find_in_parent_folders()`, `read_terragrunt_config()`, and `get_terragrunt_dir()`. These functions are used to obtain values need to configure the backend.
 
-- **Native Terraform Functions**: Terragrunt seamlessly integrates with [Terraform's native functions](https://www.terraform.io/docs/configuration/functions.html). In this example, the configuration uses [`split()`](https://www.terraform.io/docs/configuration/functions/split.html) and [`reverse()`](https://www.terraform.io/docs/configuration/functions/reverse.html) to parse the directory structure and extract the leaf directory name (e.g., `sqs`) for use as the workspace suffix.
+- Terragrunt can also use all of the [native Terraform functions](https://www.terraform.io/docs/configuration/functions.html). In the configuration above, we’re using [`split()`](https://www.terraform.io/docs/configuration/functions/split.html) and [`reverse()`](https://www.terraform.io/docs/configuration/functions/reverse.html) to obtain the leaf directory name (such as `sqs`) that is used as the workspace suffix.
 
-- **Reusability Across Modules**: By defining this configuration at the root of the Terragrunt hierarchy, it can be reused across multiple modules, minimizing code duplication. This structure enhances maintainability and scalability.
+This configuration is at the root of the Terragrunt configuration tree so that it can be reused across each module, reducing code duplication. Note the use of `get_terragrunt_dir()` to obtain the workspace name. This function retrieves the current Terragrunt directory. If you run `terragrunt apply` from the `sqs` module, the value returned by `get_terragrunt_dir()` will be the fully qualified filesystem path to the sqs subdirectory. Although the function is in the root `terragrunt.hcl`, it runs in the context of the directory where `terragrunt` is invoked.
 
-- **Contextual Execution**: The `get_terragrunt_dir()` function dynamically retrieves the current Terragrunt directory. For instance, if you execute `terragrunt apply` from the `sqs` module, the function resolves to the fully qualified filesystem path of the `sqs` subdirectory. Although the function is defined in the root `terragrunt.hcl`, it adapts to the context in which `terragrunt` is invoked, ensuring flexibility and accuracy.
+### Creating a workspace and setting provider credentials
 
-### Creating a Workspace and Setting Provider Credentials
+By default, if you configure the remote backend for a workspace that doesn’t yet exist, TFC will automatically create one when you run `terraform init`. This is known as [implicit workspace creation](https://www.terraform.io/docs/cloud/run/cli.html#implicit-workspace-creation). Once the workspace exists, your Terraform code will need API credentials to interface with the cloud provider.
 
-Terraform Cloud (TFC) will automatically create the workspace during `terraform init` when configuring a remote backend for a workspace that doesn't yet exist. This process is called [implicit workspace creation](https://www.terraform.io/docs/cloud/run/cli.html#implicit-workspace-creation). After TFC creates this workspace, your Terraform code will require API credentials to interact with the cloud provider.
+There are a few ways to set these credentials:
 
-You have the following options for setting up these credentials:
+1.  Create all the workspaces manually in advance, and set the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in each workspace, as described in [Configure credentials and variables](#configure-credentials-and-variables).
 
-1. **Manual Workspace Creation and Credential Configuration**:  
-   Create all required workspaces manually in advance. Then, set the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables for each workspace. Detailed steps are in [Configure credentials and variables](#configure-credentials-and-variables).
+2.  Create all the workspaces manually by running `terragrunt init`, and still set up the environment variables as previously mentioned.
 
-2. **Manual Workspace Creation via Terragrunt**:  
-   Manually create the workspaces by running `terragrunt init`. Afterward, the environment variables are set up as described above.
+3.  To set this up programmatically, you can use the [`tfe_workspace`](https://www.terraform.io/docs/providers/tfe/r/workspace.html) and [`tfe_variable`](https://www.terraform.io/docs/providers/tfe/r/variable.html) resources to configure the workspaces with Terraform.
 
-3. **Programmatic Workspace and Credential Setup**:  
-   Use the [`tfe_workspace`](https://www.terraform.io/docs/providers/tfe/r/workspace.html) and [`tfe_variable`](https://www.terraform.io/docs/providers/tfe/r/variable.html) resources to programmatically configure the workspaces and set their credentials using Terraform itself. We highly recommended this approach for automation and consistency.
+In all cases, you’ll need to ensure that your workspaces stay in sync with your Terragrunt configuration. Each time you add a new module in Terragrunt, you’ll need a corresponding workspace. Furthermore, if you rotate your AWS API keys, you’ll need to update them within each workspace. For that reason, the final option above is recommended.
 
-Regardless of which method you choose, keeping your workspaces aligned with your Terragrunt configuration is critical. For every new module added to Terragrunt, you need to create a corresponding workspace. If you rotate your AWS API keys, ensure they are updated in each workspace. A programmatic approach is recommended, as it reduces manual effort and lowers the risk of configuration drift.
+### Setting variables
 
-
-### Setting Variables
-
-In standard Terragrunt usage, variables are passed to Terraform through the [`inputs`](https://terragrunt.gruntwork.io/docs/reference/config-blocks-and-attributes/#inputs) attribute. Variables defined in `inputs` are typically passed to Terraform using [the environment variable mechanism](https://www.terraform.io/docs/configuration/variables.html#environment-variables:). However, Terraform Cloud (TFC) does not support this approach. Instead, you can create a `*.auto.tfvars` file to provide the required inputs.
+In typical Terragrunt usage, variables are passed to Terraform using the [`inputs`](https://terragrunt.gruntwork.io/docs/reference/config-blocks-and-attributes/#inputs) attribute. Anything defined in the inputs will be passed to Terraform using [the environment variable mechanism](https://www.terraform.io/docs/configuration/variables.html#environment-variables:). However, this mechanism is not supported by TFC. Instead, you can generate a `*.auto.tfvars` file containing the inputs.
 
 :::caution
 
-The `terragrunt.auto.tfvars` file generated during this process will reside on local disk. Depending on your setup, this file might contain sensitive information. To protect such data, ensure the file is not committed to version control. Add `*.auto.tfvars` to your `.gitignore` file to prevent accidental commits.
+The generated `terragrunt.auto.tfvars` file will be present on local disk. Depending upon your configuration, this file may contain sensitive data. Do not commit this file to version control. We recommend adding the `*.auto.tfvars` to `.gitignore`.
 
 :::
 
-Below is an example of generating a `terragrunt.auto.tfvars` file.
+The following code shows how to generate a `terragrunt.auto.tfvars` file.
 
 **infrastructure-live/dev/us-east-1/sqs/terragrunt.hcl**
 
@@ -327,24 +344,24 @@ EOF
 }
 ```
 
-The configuration is composed of several key sections:
+The configuration has a few sections:
 
-1.  The `terraform` block at the top references the Gruntwork `sqs` module from the [`package-messaging`](https://github.com/gruntwork-io/package-messaging/) repository.
+1.  The `terraform` block at the top uses the Gruntwork `sqs` module from [`package-messaging`](https://github.com/gruntwork-io/package-messaging/).
 
-2.  The `include` block integrates the configuration from parent directories, including the remote `backend` block defined in the root `terragrunt.hcl` file.
+2.  The `include` block includes the configuration from the parent directories. This is how the remote `backend` block from the root `terragrunt.hcl` is included.
 
-3.  The `locals` block retrieves values from the `common.hcl` file located at the root of the hierarchy, making those values accessible for local reference within the configuration.
+3.  The `locals` block reads the values from `common.hcl` in the root of the hierarchy, making them available for local reference.
 
-4.  Lastly, the `generate` block creates a `terragrunt.auto.tfvars` file. This file, like the dynamically generated `backend.tf` file, is placed alongside the other `*.tf` files fetched by Terragrunt from the `sqs` module. It ensures that the necessary inputs are available for Terraform Cloud (TFC) to read during the execution of `terraform` commands in the remote executor.
+4.  Finally, the `generate` block creates a file called `terragrunt.auto.tfvars`. Like the `backend.tf` file, this file will be generated alongside the rest of the `*.tf` files that Terragrunt downloads from the `sqs` module, making those inputs available for TFC to read when running `terraform` commands in the remote executor.
 
-Including all required inputs for the module in the generated `tfvars` file is essential. In the example provided, only the `name` variable is included. Most modules, however, will require additional configuration inputs.
+Any of the inputs needed by the module must be included in the generated `tfvars` file. In the configuration above, only
+the `name` variable is specified. Most modules will need more configuration.
 
 ### Running Terragrunt
 
-Once all configurations are in place, you can run `terragrunt init` to initialize the workspace (if it does not already exist) and then `terragrunt apply` to deploy the infrastructure. Terragrunt acts as a wrapper, invoking Terraform to perform the `plan` and `apply` stages on Terraform Cloud (TFC). During this process, the workflow will pause for confirmation between stages. However, if you run `terragrunt apply-all`, Terragrunt adds the `-auto-approve` flag, bypassing interactive approval and skipping the confirmation step.
+With all the pieces in place, you can run `terragrunt init` to initialize the workspace, if it isn’t already there, and then `terragrunt apply`, and watch as Terragrunt invokes Terraform, which executes the `plan` and `apply` stages on TFC, pausing in between to allow confirmation. Note that when running a `terragrunt apply-all`, Terragrunt adds the `-auto-approve` flag to Terraform to skip interactive approval. This means that with `apply-all`, there will be no confirmation step.
 
-To begin, execute `terragrunt init`. This command generates the necessary backend configuration and `tfvars` file, establishing a connection to the remote backend. Below is an example output, with irrelevant details omitted for brevity.
-
+First, we run `terragrunt init`. Terragrunt generates the backend configuration, the `tfvars` file, and connects to the remote. Irrelevant details have been omitted from the output.
 <!-- spell-checker: disable -->
 ```bash
 $ terragrunt init
@@ -357,12 +374,14 @@ $ terragrunt init
 Initializing the backend...
 Backend configuration changed!
 
-Terraform has detected that the configuration specified for the backend has changed. Terraform will now check for existing state in the backends.
+Terraform has detected that the configuration specified for the backend
+has changed. Terraform will now check for existing state in the backends.
 
-Successfully configured the backend "remote"! Terraform will automatically use this backend unless the backend configuration changes.
-
+Successfully configured the backend "remote"! Terraform will automatically
+use this backend unless the backend configuration changes.
 ```
-Now, proceed with running terragrunt apply` to execute the changes. This command triggers Terragrunt to invoke Terraform, which will carry out the plan and apply stages within Terraform Cloud (TFC), ensuring infrastructure changes are applied as specified.
+
+Next, we run `terragrunt apply`:
 
 ```bash
 $ terragrunt apply
@@ -424,7 +443,7 @@ queue_name = example-name
 queue_url = https://sqs.us-east-1.amazonaws.com/0123456789012/example-name
 ```
 <!-- spell-checker: enable -->
-TFC runs a plan first, waits for confirmation, and then runs apply. You can enter the confirmation either on the command line or in the UI. Once complete, the results are visible in the TFC UI:
+TFC runs a plan first, waits for confirmation, and then runs apply. The confirmation can be entered either on the command line or in the UI. Once complete, the results are visible in the TFC UI:
 
 ![Viewing the Terragrunt command results in the TFC UI](/img/guides/working-with-code/tfc/tfc-terragrunt-results.png)
 
@@ -432,7 +451,7 @@ Other commands, such as `destroy`, work in the same way.
 
 ### Summarizing Terragrunt and TFC/TFE compatibility
 
-By leveraging the features outlined above, you can effectively use Terragrunt with Terraform Cloud (TFC) or Terraform Enterprise (TFE) as a remote backend. Terragrunt enables dynamic generation of backend blocks and `tfvars` files, simplifying configuration management. Commands like `terragrunt apply-all` operate similarly to non-TFC/TFE workflows by processing module dependencies in sequence and enabling the smooth transfer of outputs between modules. Terragrunt takes this approach to ensure efficient and consistent infrastructure management across environments. 
-
-To make this setup work, pre-create workspaces and configure them with the necessary credentials for cloud access. Use this setup to seamlessly integrate Terragrunt with TFC/TFE, simplifying infrastructure management and preserving flexibility.
-
+Using the combination of features above, you can effectively use Terragrunt with TFC or TFE as a remote backend.
+Terragrunt can generate backend blocks and `tfvars` files. Commands like `terragrunt apply-all` will operate in the same
+way as they do without TFC/TFE, calling each module dependency in order, and allowing for passing outputs between
+modules. Workspaces must be created in advance so that you can set up credentials for access to the cloud.
