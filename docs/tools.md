@@ -11,40 +11,45 @@ import CenterLayout from "/src/components/CenterLayout"
 
 # Gruntwork Tools
 
-Gruntwork provides a suite of CLI tools to make working with Gruntwork and its IaC library modules easier.
+Gruntwork offers a suite of CLI tools to make working with Gruntwork and its IaC library modules easier.
 
 <CardGroup cols={2}>
 
-<Card
+<<Card
   title="Gruntwork CLI"
   href="https://github.com/gruntwork-io/gruntwork">
 The Gruntwork CLI will help you set up your Reference Architecture including creating AWS accounts, registering domain names, and setting up VCS tokens in AWS Secrets Manager.
 </Card>
+
 <Card
   title="Gruntwork Installer"
   href="https://github.com/gruntwork-io/gruntwork-installer">
 The Gruntwork Installer provides conveniences for downloading and installing Gruntwork modules.
 </Card>
+
 <Card
   title="Terragrunt"
   href="https://terragrunt.gruntwork.io">
-Terragrunt is a thin wrapper that provides extra tools for keeping your Terraform configurations DRY, working with multiple modules, and managing remote state.
+Terragrunt is a lightweight wrapper for Terraform that provides tools to keep configurations DRY, manage multiple modules, and handle remote state efficiently.
 </Card>
+
 <Card
   title="Terratest"
   href="https://terratest.gruntwork.io">
-Terratest is a Go library that provides patterns and helper functions for testing infrastructure, with 1st-class support for Terraform, Packer, Docker, Kubernetes, AWS, GCP, and more.
+Terratest is a Go library offering patterns and helper functions for testing infrastructure, with first-class support for Terraform, Packer, Docker, Kubernetes, AWS, and GCP. 
 </Card>
+
 <Card
   title="Boilerplate"
-  href="https://github.com/gruntwork-io/boilerplate">
-Boilerplate is a tool for generating files and folders ("boilerplate") from a set of templates.
+  href="https://github.com/gruntwork-io/boilerplate"> 
+Boilerplate is a tool for generating files and directories ("boilerplate") from predefined templates, ensuring consistency across projects.
 </Card>
+
 <Card
-title="Repo Copier"
-href="https://github.com/gruntwork-io/repo-copier"
-tags={["enterprise"]}>
-Repo Copier is a CLI tool to copy repository data (including code, issues, PRs, releases, etc) from Gruntwork's GitHub organization to a customer's version control system.
+  title="Repo Copier"
+  href="https://github.com/gruntwork-io/repo-copier"
+  tag="enterprise"> 
+Repo Copier is a CLI tool that enables customers to replicate repository data, including code, issues, pull requests, and releases, from Gruntwork's GitHub organization to their own version control systems.
 </Card>
 
 </CardGroup>
