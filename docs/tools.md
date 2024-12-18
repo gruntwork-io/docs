@@ -15,7 +15,7 @@ Gruntwork offers a suite of CLI tools to make working with Gruntwork and its IaC
 
 <CardGroup cols={2}>
 
-<<Card
+<Card
   title="Gruntwork CLI"
   href="https://github.com/gruntwork-io/gruntwork">
 The Gruntwork CLI will help you set up your Reference Architecture including creating AWS accounts, registering domain names, and setting up VCS tokens in AWS Secrets Manager.
