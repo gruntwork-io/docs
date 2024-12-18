@@ -430,8 +430,9 @@ TFC runs a plan first, waits for confirmation, and then runs apply. You can ente
 
 Other commands, such as `destroy`, work in the same way.
 
-### Summarizing Terragrunt and TFC/TFE compatibility### Summarizing Terragrunt and TFC/TFE compatibility
+### Summarizing Terragrunt and TFC/TFE compatibility
 
 By leveraging the features outlined above, you can effectively use Terragrunt with Terraform Cloud (TFC) or Terraform Enterprise (TFE) as a remote backend. Terragrunt enables dynamic generation of backend blocks and `tfvars` files, simplifying configuration management. Commands like `terragrunt apply-all` operate similarly to non-TFC/TFE workflows by processing module dependencies in sequence and enabling the smooth transfer of outputs between modules. Terragrunt takes this approach to ensure efficient and consistent infrastructure management across environments. 
+
 To make this setup work, pre-create workspaces and configure them with the necessary credentials for cloud access. Use this setup to seamlessly integrate Terragrunt with TFC/TFE, simplifying infrastructure management and preserving flexibility.
 
