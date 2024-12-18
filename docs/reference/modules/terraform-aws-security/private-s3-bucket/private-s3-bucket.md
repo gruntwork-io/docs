@@ -137,10 +137,6 @@ module "private_s_3_bucket" {
   # for more info.
   bucket_ownership = "BucketOwnerEnforced"
 
-  # Provides an IAM policy in JSON format to apply to S3 bucket. See more:
-  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html
-  bucket_policy_from_file = null
-
   # The IAM policy to apply to this S3 bucket. You can use this to grant
   # read/write access. This should be a map, where each key is a unique
   # statement ID (SID), and each value is an object that contains the parameters
@@ -349,10 +345,6 @@ inputs = {
   # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html
   # for more info.
   bucket_ownership = "BucketOwnerEnforced"
-
-  # Provides an IAM policy in JSON format to apply to S3 bucket. See more:
-  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html
-  bucket_policy_from_file = null
 
   # The IAM policy to apply to this S3 bucket. You can use this to grant
   # read/write access. This should be a map, where each key is a unique
@@ -582,40 +574,6 @@ Configure who will be the default owner of objects uploaded to this S3 bucket: m
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;BucketOwnerEnforced&quot;"/>
-</HclListItem>
-
-<HclListItem name="bucket_policy_from_file" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Provides an IAM policy in JSON format to apply to S3 bucket. See more: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    # Path to file
-    file_path = string
-
-    # Variables to substitute in the policy file
-    vars = map(string)
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     Variables to substitute in the policy file
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="bucket_policy_statements" requirement="optional" type="any">
@@ -1100,6 +1058,6 @@ The name of an IAM role that can be used to configure replication from various s
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.0/modules/private-s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "990e0d2ba3e04a99b6784fc8b8aa76ed"
+  "hash": "1b1abda0bebc0f51ed3fa7afefe08309"
 }
 ##DOCS-SOURCER-END -->
