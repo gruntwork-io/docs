@@ -1,8 +1,8 @@
-# Customizing Modules
+# Customizing modules
 
 We strive to keep the Infrastructure as Code Library flexible and generic enough to address common use cases. However, there may be scenarios where you need to customize a module to meet a specific requirement or comply with a company policy restricting pulling code from external sources. In these cases, you can fork the code to your organization or submit a pull request to add the desired functionality.
 
-## Creating a Wrapper Module
+## Creating a wrapper module
 
 Suppose you need to extend a Gruntwork module, set default variable values, or control which variables and outputs are exposed. In that case, we recommend creating a wrapper module in your Git repositories.
 
