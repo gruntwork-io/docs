@@ -115,7 +115,7 @@ Additionally, specify the location of the module within your repository. Under t
 
 ### Use the SSH Key
 
-As part of the one-time setup process described earlier, you configured an SSH key for accessing Gruntwork modules. In the workspace settings, select the SSH key you previously added.
+As part of the one-time setup process described earlier, you configured an SSH key to access Gruntwork modules. In the workspace settings, select the SSH key you previously added.
 
 ![Choose the private SSH key](/img/guides/working-with-code/tfc/tfc-workspace-ssh.png)
 
@@ -153,12 +153,12 @@ This pattern works seamlessly with any of Gruntwork’s Terraform modules, inclu
 
 Gruntwork may offer modules through a private Terraform registry in the future, further simplifying workflows by eliminating the SSH key requirement.
 
-Once you configure your workspace, you can trigger Terraform runs directly through the TFC UI or from the command line using the `terraform` CLI. To execute runs via the CLI, follow the [CLI-driven Run Workflow](https://www.terraform.io/docs/cloud/run/cli.html) instructions provided by HashiCorp.
+Once you configure your workspace, you can trigger Terraform, which runs directly through the TFC UI or from the command line using the `terraform` CLI. To execute runs via the CLI, follow the [CLI-driven Run Workflow](https://www.terraform.io/docs/cloud/run/cli.html) instructions provided by HashiCorp.
 
 
 ## Using TFC with Terragrunt
 
-The Terraform Cloud (TFC) UI only runs Terraform commands, while Terragrunt operates as a wrapper around Terraform. This means the TFC UI cannot directly trigger Terragrunt. However, you can configure Terraform to execute remote operations, such as `plan` and `apply`, within TFC while using Terragrunt to organize your code and maintain DRY configurations. When set up correctly, running `terragrunt apply` locally (or from a CI server) will invoke `terraform apply` within TFC, rather than executing Terraform locally.
+The Terraform Cloud (TFC) UI only runs Terraform commands, while Terragrunt operates as a wrapper around Terraform. This means the TFC UI cannot directly trigger Terragrunt. However, you can configure Terraform to execute remote operations, such as `plan` and `apply`, within TFC while using Terragrunt to organize your code and maintain DRY configurations. When set up correctly, running `terragrunt apply` locally (or from a CI server) will invoke `terraform apply` within TFC rather than executing Terraform locally.
 
 ### Key Considerations
 
@@ -282,7 +282,7 @@ You have the following options for setting up these credentials:
    Create all required workspaces manually in advance. Then, set the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables for each workspace. Detailed steps are in [Configure credentials and variables](#configure-credentials-and-variables).
 
 2. **Manual Workspace Creation via Terragrunt**:  
-   Manually create the workspaces by running `terragrunt init`. Afterward, set up the environment variables as described above.
+   Manually create the workspaces by running `terragrunt init`. Afterward, the environment variables are set up as described above.
 
 3. **Programmatic Workspace and Credential Setup**:  
    Use the [`tfe_workspace`](https://www.terraform.io/docs/providers/tfe/r/workspace.html) and [`tfe_variable`](https://www.terraform.io/docs/providers/tfe/r/variable.html) resources to programmatically configure the workspaces and set their credentials using Terraform itself. We highly recommended this approach for automation and consistency.
@@ -432,5 +432,6 @@ Other commands, such as `destroy`, work in the same way.
 
 ### Summarizing Terragrunt and TFC/TFE compatibility### Summarizing Terragrunt and TFC/TFE compatibility
 
-By leveraging the features outlined above, you can effectively use Terragrunt with Terraform Cloud (TFC) or Terraform Enterprise (TFE) as a remote backend. Terragrunt enables dynamic generation of backend blocks and `tfvars` files, simplifying configuration management. Commands such as `terragrunt apply-all` function similarly to non-TFC/TFE workflows, processing module dependencies in sequence and facilitating the transfer of outputs between modules. Ensuring that workspaces are pre-created to configure the credentials for cloud access is essential. Use this setup to seamlessly integrate Terragrunt with TFC/TFE, simplifying infrastructure management and preserving flexibility.
+By leveraging the features outlined above, you can effectively use Terragrunt with Terraform Cloud (TFC) or Terraform Enterprise (TFE) as a remote backend. Terragrunt enables dynamic generation of backend blocks and `tfvars` files, simplifying configuration management. Commands like `terragrunt apply-all` operate similarly to non-TFC/TFE workflows by processing module dependencies in sequence and enabling the smooth transfer of outputs between modules. Terragrunt takes this approach to ensure efficient and consistent infrastructure management across environments. 
+To make this setup work, pre-create workspaces and configure them with the necessary credentials for cloud access. Use this setup to seamlessly integrate Terragrunt with TFC/TFE, simplifying infrastructure management and preserving flexibility.
 
