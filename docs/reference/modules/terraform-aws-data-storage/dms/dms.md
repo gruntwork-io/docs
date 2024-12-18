@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.40.0" lastModifiedVersion="0.36.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.40.1" lastModifiedVersion="0.36.0"/>
 
 # DMS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/dms" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.1/modules/dms" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.36.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -32,7 +32,7 @@ This module creates an Amazon Database Migration Service (DMS) that makes it pos
 
 module "dms" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/dms?ref=v0.40.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/dms?ref=v0.40.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -244,7 +244,7 @@ module "dms" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/dms?ref=v0.40.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/dms?ref=v0.40.1"
 }
 
 inputs = {
@@ -941,15 +941,14 @@ A map of maps containing the replication tasks created and their full output of 
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/dms/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/dms/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/dms/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.1/modules/dms/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.1/modules/dms/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.1/modules/dms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0c342deadd787da73db6667342c39ae5"
+  "hash": "2a1d0a22935256bc1ee8b806c8ae03f7"
 }
 ##DOCS-SOURCER-END -->
