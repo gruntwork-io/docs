@@ -5,7 +5,7 @@ There are two primary methods for managing the provider used in OpenTofu/Terrafo
 1. Specifying required provider versions.
 2. Committing the `.terraform.lock.hcl` file to version control.
    
-## Required Provider Versions
+## Required provider versions
 
 It is advisable to follow the [OpenTofu recommendations](https://opentofu.org/docs/language/providers/requirements/#best-practices-for-provider-versions) rfor specifying minimum provider versions for any providers used in modules developed as part of the library.
 
