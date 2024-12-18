@@ -1,4 +1,4 @@
-]# Overview
+# Overview
 
 import PipelinesConfig from './language_auth_partial.mdx'
 
