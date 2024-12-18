@@ -4,7 +4,7 @@
 
 Account Factory builds upon Gruntwork's [AWS Control Tower Multi Account Factory](/reference/modules/terraform-aws-control-tower/control-tower-multi-account-factory/) and Pipelines to provide automated account creation, baselining, and managed IAM policies.
 
-In your `infrastructure-live-root` repository, the `_new-account-requests` directory acts as input for the Gruntwork Control Tower Module. This module runs within your management account and uses AWS Control Tower to provision new accounts and manage existing ones.
+In your `infrastructure-live-root` repository, the `_new-account-requests` directory acts as input for the Gruntwork Control Tower Module. The module, functioning within your management account, employs AWS Control Tower to efficiently provision new accounts and manage existing ones.
 
 Pipelines tracks each provisioned account as a new base directory containing Terragrunt units in your `infrastructure-live-root` repository.
 
@@ -14,9 +14,9 @@ Pipelines tracks each provisioned account as a new base directory containing Ter
 
 Account Vending starts when the Account Factory Workflow generates a Pull Request against `infrastructure-live-root`, adding a file to the `_new-account-requests` directory. Pipelines detects these new account requests and runs terragrunt plan/apply commands on the `control-tower-multi-account-factory` unit in the management account.
 
-After creating the account(s), Pipelines provisions resources, including IaC-controlled OIDC authenticated roles, which Pipelines can later use to deploy infrastructure changes within the account, and IAM policies that define the scope of changes Pipelines can deploy.
+After creating the account(s), Pipelines provisions resources such as IaC-controlled OIDC-authenticated roles. TThese roles, combined with IAM policies that define the scope of permissible changes, allow Pipelines to deploy infrastructure updates within the account.
 
-After adding this infrastructure to the repository, Pipelines deploys the resources into the AWS account and runs account baselines in the logs, security, and shared accounts to complete the provisioning process.
+Once this infrastructure is added to the repository, Pipelines deploys the resources into the AWS account and runs account baselines in the logs, security, and shared accounts to complete the provisioning process.
 
 ```mermaid
 sequenceDiagram
