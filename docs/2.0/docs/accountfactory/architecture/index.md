@@ -30,10 +30,13 @@ sequenceDiagram
 ```
 ## IAM Roles
 
-Each new account includes IAM policies that define the scope of changes Pipelines can make within AWS. Pipelines automatically assumes the appropriate roles for each account when changes are detected. Read about the [roles in full here](/2.0/docs/pipelines/architecture/security-controls#roles-provisioned-by-devops-foundations).
+Newly created accounts include IAM policies that define the scope of changes Pipelines is authorized to perform within AWS. Pipelines automatically assumes the necessary roles for each account when it detects changes. Detailed information about the provisioned roles can be found [here](/2.0/docs/pipelines/architecture/security-controls#roles-provisioned-by-devops-foundations).
 
 ## Delegated Repositories
 
-Delegated repositories expand the architecture of your infrastructure estate management and provide additional access control for your infrastructure. When vending delegated repositories, Pipelines continues tracking new account security baselines in your `infrastructure-live-root` repository, while other infrastructure is tracked in a new repository specific to the account(s). Pipelines inherits new IAM roles from your `infrastructure-live-access-control` repository when deploying infrastructure in delegated repositories. This setup allows the central platform team to control what changes individual teams can make via Pipelines in the delegated repository.
+Delegated repositories enhance the architecture of infrastructure management by introducing additional layers of access control. When delegated repositories are created, Pipelines continues to monitor new account security baselines within the `infrastructure-live-root` repository, while other infrastructure resources are managed in a new repository specific to the delegated account(s). Pipelines inherits updated IAM roles from the `infrastructure-live-access-control` repository to deploy infrastructure in these delegated repositories. This setup enables the central platform team to define and restrict the scope of changes individual teams can make via Pipelines in delegated repositories.
+
+![Delegated Architecture Overview Diagram](/img/accountfactory/delegated-architecture.png)
+
 
 ![Delegated Architecture Overview Diagram](/img/accountfactory/delegated-architecture.png)
