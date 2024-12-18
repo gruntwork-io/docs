@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="0.29.26" lastModifiedVersion="0.29.26"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="0.30.0" lastModifiedVersion="0.30.0"/>
 
 # Application Load Balancer (ALB) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.26/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.30.0/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.26" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.30.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an [Application Load Balancer](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)
 that you can use as a load balancer for any [ALB Target Group](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html).
@@ -191,7 +191,7 @@ There are two ways for you to override this behavior:
 
 module "alb" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.26"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.30.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -334,7 +334,7 @@ module "alb" {
   # Define the default action for HTTP listeners. Use this to override the
   # default_action variable for HTTP listeners. This is particularly useful if
   # you for example want to redirect all HTTP traffic to HTTPS.
-  http_default_action = null
+  http_default_action = {}
 
   # A list of ports for which an HTTP Listener should be created on the ALB.
   # Tip: When you define Listener Rules for these Listeners, be sure that, for
@@ -412,7 +412,7 @@ module "alb" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.26"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.30.0"
 }
 
 inputs = {
@@ -558,7 +558,7 @@ inputs = {
   # Define the default action for HTTP listeners. Use this to override the
   # default_action variable for HTTP listeners. This is particularly useful if
   # you for example want to redirect all HTTP traffic to HTTPS.
-  http_default_action = null
+  http_default_action = {}
 
   # A list of ports for which an HTTP Listener should be created on the ALB.
   # Tip: When you define Listener Rules for these Listeners, be sure that, for
@@ -798,7 +798,7 @@ A map of custom tags to apply to the ALB and its Security Group. The key is the 
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="default_action" requirement="optional" type="any">
+<HclListItem name="default_action" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Define the default action if a request to the load balancer does not match any of your listener rules. https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener#default_action
@@ -807,7 +807,44 @@ Define the default action if a request to the load balancer does not match any o
 <HclListItemTypeDetails>
 
 ```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+object({
+    forward = optional(object({
+      target_groups = list(object({
+        arn    = string
+        weight = optional(number)
+      }))
+      stickiness = optional(object({
+        duration = optional(number)
+        enabled  = optional(bool)
+      }))
+    }))
+    redirect = optional(object({
+      host        = optional(string)
+      path        = optional(string)
+      port        = optional(string)
+      protocol    = optional(string)
+      query       = optional(string)
+      status_code = string
+    }))
+    fixed-response = optional(object({
+      content_type = string
+      message_body = optional(string)
+      status_code  = number
+    }))
+    authenticate-cognito = optional(object({
+      user_pool_arn       = string
+      user_pool_client_id = string
+      user_pool_domain    = string
+    }))
+    authenticate-oidc = optional(object({
+      authorization_endpoint = string
+      client_id              = string
+      client_secret          = string
+      issuer                 = string
+      token_endpoint         = string
+      user_info_endpoint     = string
+    }))
+  })
 ```
 
 </HclListItemTypeDetails>
@@ -907,7 +944,7 @@ Indicates whether the X-Forwarded-For header should preserve the source port tha
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="http_default_action" requirement="optional" type="map(any)">
+<HclListItem name="http_default_action" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Define the default action for HTTP listeners. Use this to override the default_action variable for HTTP listeners. This is particularly useful if you for example want to redirect all HTTP traffic to HTTPS.
@@ -916,11 +953,48 @@ Define the default action for HTTP listeners. Use this to override the default_a
 <HclListItemTypeDetails>
 
 ```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+object({
+    forward = optional(object({
+      target_groups = list(object({
+        arn    = string
+        weight = optional(number)
+      }))
+      stickiness = optional(object({
+        duration = optional(number)
+        enabled  = optional(bool)
+      }))
+    }))
+    redirect = optional(object({
+      host        = optional(string)
+      path        = optional(string)
+      port        = optional(string)
+      protocol    = optional(string)
+      query       = optional(string)
+      status_code = string
+    }))
+    fixed-response = optional(object({
+      content_type = string
+      message_body = optional(string)
+      status_code  = number
+    }))
+    authenticate-cognito = optional(object({
+      user_pool_arn       = string
+      user_pool_client_id = string
+      user_pool_domain    = string
+    }))
+    authenticate-oidc = optional(object({
+      authorization_endpoint = string
+      client_id              = string
+      client_secret          = string
+      issuer                 = string
+      token_endpoint         = string
+      user_info_endpoint     = string
+    }))
+  })
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="{}"/>
 <HclGeneralListItem title="More Details">
 <details>
 
@@ -963,6 +1037,44 @@ A list of the ports for which an HTTPS Listener should be created on the ALB. Ea
 list(object({
     port            = number
     tls_domain_name = string
+    default_action = optional(object({
+      forward = optional(object({
+        target_groups = list(object({
+          arn    = string
+          weight = optional(number)
+        }))
+        stickiness = optional(object({
+          duration = optional(number)
+          enabled  = optional(bool)
+        }))
+      }))
+      redirect = optional(object({
+        host        = optional(string)
+        path        = optional(string)
+        port        = optional(string)
+        protocol    = optional(string)
+        query       = optional(string)
+        status_code = string
+      }))
+      fixed-response = optional(object({
+        content_type = string
+        message_body = optional(string)
+        status_code  = number
+      }))
+      authenticate-cognito = optional(object({
+        user_pool_arn       = string
+        user_pool_client_id = string
+        user_pool_domain    = string
+      }))
+      authenticate-oidc = optional(object({
+        authorization_endpoint = string
+        client_id              = string
+        client_secret          = string
+        issuer                 = string
+        token_endpoint         = string
+        user_info_endpoint     = string
+      }))
+    }))
   }))
 ```
 
@@ -1008,6 +1120,44 @@ A list of the ports for which an HTTPS Listener should be created on the ALB. Ea
 list(object({
     port    = number
     tls_arn = string
+    default_action = optional(object({
+      forward = optional(object({
+        target_groups = list(object({
+          arn    = string
+          weight = optional(number)
+        }))
+        stickiness = optional(object({
+          duration = optional(number)
+          enabled  = optional(bool)
+        }))
+      }))
+      redirect = optional(object({
+        host        = optional(string)
+        path        = optional(string)
+        port        = optional(string)
+        protocol    = optional(string)
+        query       = optional(string)
+        status_code = string
+      }))
+      fixed-response = optional(object({
+        content_type = string
+        message_body = optional(string)
+        status_code  = number
+      }))
+      authenticate-cognito = optional(object({
+        user_pool_arn       = string
+        user_pool_client_id = string
+        user_pool_domain    = string
+      }))
+      authenticate-oidc = optional(object({
+        authorization_endpoint = string
+        client_id              = string
+        client_secret          = string
+        issuer                 = string
+        token_endpoint         = string
+        user_info_endpoint     = string
+      }))
+    }))
   }))
 ```
 
@@ -1163,15 +1313,14 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.26/modules/alb/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.26/modules/alb/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.29.26/modules/alb/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.30.0/modules/alb/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.30.0/modules/alb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.30.0/modules/alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d87b9015a947cdf119124cdd26c3bd91"
+  "hash": "50ae6231e41628d137320f64c6e917d3"
 }
 ##DOCS-SOURCER-END -->
