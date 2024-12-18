@@ -725,7 +725,6 @@ A map from the route keys to the IDs of the corresponding API Gateway V2 Route r
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -734,6 +733,6 @@ A map from the route keys to the IDs of the corresponding API Gateway V2 Route r
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/lambda-http-api-gateway/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a8128bbccb6df86a6023483546dd05c3"
+  "hash": "a55fed2be027e41a4ff62728237fae35"
 }
 ##DOCS-SOURCER-END -->
