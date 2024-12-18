@@ -7,7 +7,7 @@ There are two primary methods for managing the provider used in OpenTofu/Terrafo
    
 ## Required provider versions
 
-It is advisable to follow the [OpenTofu recommendations](https://opentofu.org/docs/language/providers/requirements/#best-practices-for-provider-versions) rfor specifying minimum provider versions for any providers used in modules developed as part of the library.
+It is advisable to follow the [OpenTofu recommendations](https://opentofu.org/docs/language/providers/requirements/#best-practices-for-provider-versions) for specifying minimum provider versions for any providers used in modules developed as part of the library.
 
 This practice ensures that the features leveraged in authored modules are supported by the provider versions installed by end users. 
 
