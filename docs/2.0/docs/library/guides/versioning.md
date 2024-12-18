@@ -1,7 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Using Versioned Modules
+# Using versioned modules
 
 Gruntwork versions the Infrastructure as Code (IaC) Library using [Semantic Versioning](https://semver.org/) (SemVer). Since much of the Gruntwork IaC Library remains pre-1.0.0, most version numbers follow the format `0.MINOR.PATCH`. For `0.MINOR.PATCH`, the versioning rules are as follows:
 
@@ -19,7 +19,7 @@ We release new module versions through GitHub releases. Refer to the release not
 <Tabs groupId="tool-choice">
 <TabItem value="Terraform" label="Terraform" default>
   
-The Git tag created by a release can be referenced in the `source` argument of a module block when sourcing from a Git URL.
+The git tag created by a release can be referenced in the `source` argument of a module block when sourcing from a Git URL.
 
 For example, the module block below references version `0.15.4` of the `single-server` submodule within the `terraform-aws-server` module:
 
@@ -41,7 +41,7 @@ module "my_instance" {
 </TabItem>
 <TabItem value="Terragrunt" label="Terragrunt">
 
-The Git tag created by a release can be referenced in the `source` argument of the `terraform` block within a `terragrunt.hcl` file.
+The git tag created by a release can be referenced in the `source` argument of the `terraform` block within a `terragrunt.hcl` file.
 
 For example, the following module block references version `0.15.4` of the `single-server` submodule from the `terraform-aws-server` module:
 
@@ -74,9 +74,9 @@ inputs = {
 </TabItem>
 <TabItem value="Terragrunt with _envcommon" label="_envcommon (Terragrunt)">
 
-When following the `_envcommon` pattern, there are two places where the Git tag created by a release is referenced.
+When following the `_envcommon` pattern, there are two places where the git tag created by a release is referenced.
 
-First, identify the file in the `_envcommon` directory where the module is being referenced. Then, specify the Git tag in the `source` argument of the `terraform` block within that file.
+First, identify the file in the `_envcommon` directory where the module is being referenced. Then, specify the git tag in the `source` argument of the `terraform` block within that file.
 
 For example, if you are referencing the `single-server` module, the file path might look like this:
 
