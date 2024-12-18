@@ -157,7 +157,7 @@ module "eks_k_8_s_karpenter" {
   karpenter_chart_skip_crds = false
 
   # The version of the Karpenter Helm chart.
-  karpenter_chart_version = "v0.32.7"
+  karpenter_chart_version = "v0.37.5"
 
   # Provide an existing IAM Role ARN to be used with the Karpenter Controller
   # Service Account. This is required if `create_karpenter_controller_irsa` is
@@ -343,7 +343,7 @@ inputs = {
   karpenter_chart_skip_crds = false
 
   # The version of the Karpenter Helm chart.
-  karpenter_chart_version = "v0.32.7"
+  karpenter_chart_version = "v0.37.5"
 
   # Provide an existing IAM Role ARN to be used with the Karpenter Controller
   # Service Account. This is required if `create_karpenter_controller_irsa` is
@@ -625,7 +625,7 @@ Whether or not to install CRDs with the Karpenter Helm Chart. This should be set
 The version of the Karpenter Helm chart.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v0.32.7&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v0.37.5&quot;"/>
 </HclListItem>
 
 <HclListItem name="karpenter_controller_existing_role_arn" requirement="optional" type="string">
@@ -907,6 +907,6 @@ The name of the Karpenter Node IAM Role.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.2/modules/eks-k8s-karpenter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "183d5c83ac61c24bccd95cb806245a19"
+  "hash": "b387af650112756f75a722de109abcfb"
 }
 ##DOCS-SOURCER-END -->
