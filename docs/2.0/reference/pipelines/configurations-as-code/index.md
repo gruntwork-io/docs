@@ -1,19 +1,19 @@
 # Pipelines Configurations as Code
 
-Pipelines relies on configurations written in [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl) to drive dynamic behavior. These configurations are primarily used by Pipelines to determine how to interact with cloud environments within the context of the Infrastructure As Code (IaC) within a code repository.
+Pipelines employs configurations written in [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl) to enable dynamic behavior. These configurations guide Pipelines in managing interactions with cloud environments within Infrastructure as Code (IaC) stored in a repository.
 
-At a high level, Pipelines will read these configurations by parsing all files that end with `.hcl` within a directory named `.gruntwork` or a single file named `gruntwork.hcl`. In typical usage, the configurations that are global to the git repository will be defined within the `.gruntwork` directory at the root of the repository, and configurations that are specific to a particular `terragrunt.hcl` file (a "unit") will be located in the same directory as the `terragrunt.hcl` file.
+Pipelines processes these configurations at a high level by parsing all files ending with `.hcl` located in a `.gruntwork` directory or a single file named `gruntwork.hcl`. Typically, global configurations relevant to the entire repository are placed in the `.gruntwork` directory at the root, while configurations specific to a particular `terragrunt.hcl` file (referred to as a "unit") reside in the same directory as the corresponding `terragrunt.hcl` file.
 
 :::info
-We recommend reading our [concepts page](/2.0/docs/pipelines/concepts/hcl-config-language) on the HCL language to ensure you're up to date on the specifics of HCL before diving into pipelines configuration
+We recommend reviewing our [concepts page](/2.0/docs/pipelines/concepts/hcl-config-language) on the HCL language to ensure familiarity with its features before configuring Pipelines.
 :::
 
 
 ## Basic Configuration
 
-The minimum configurations required for Pipelines to operate correctly will vary depending on context. For the most common usage, Pipelines will need to be able to determine how to authenticate with a cloud provider in order to run Terragrunt commands. If it is not able to do so in a context where it is required, Pipelines will throw an error.
+The minimum configuration required for Pipelines to function depends on the specific context. In most scenarios, Pipelines must determine how to authenticate with a cloud provider to execute Terragrunt commands. If authentication is not configured where required, Pipelines will generate an error.
 
-The following is an example of a minimal configuration for a single Terragrunt unit that tells Pipelines how to authenticate with AWS using OIDC:
+Below is an example of a minimal configuration for a single Terragrunt unit, demonstrating how to enable Pipelines to authenticate with AWS using OIDC:
 
 ```hcl
 # gruntwork.hcl
@@ -28,9 +28,10 @@ unit {
 }
 ```
 
-Placing this configuration in a `gruntwork.hcl` file in the same directory as a `terragrunt.hcl` file will cause Pipelines to assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when running Terragrunt plan commands, using [OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) to authenticate to AWS and assume that role.
+Placing this configuration in a `gruntwork.hcl` file within the same directory as a `terragrunt.hcl` file directs Pipelines to assume the `role-to-assume-for-plans` role in the AWS account with the ID `an-aws-account-id` when executing Terragrunt plan commands. The authentication process leverages [OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) to securely connect to AWS and assume the specified role.
 
-In most circumstances, the same role would be assumed by multiple Terragrunt units of configuration within a repository (e.g. all units within a given directory configure resources for the same AWS account). In this situation, it would be more convenient to set the AWS authentication at the environment level by declaring an `environment` block in one of the `.hcl` files in the `.gruntwork` directory at the root of the repository, and declaring the AWS authentication configuration there.
+
+Multiple Terragrunt units within a repository will assume the same AWS role. For instance, all units within a specific directory may provision resources for the same AWS account. Configuring AWS authentication at the environment level is more efficient in these cases. You can do this by defining an `environment` block within one of the `.hcl` files in the `.gruntwork` directory at the repository root and specifying the AWS authentication configuration.
 
 e.g.
 
@@ -51,51 +52,50 @@ environment "an_environment" {
 }
 ```
 
-In this example, all the units located within the `an-environment` directory sibling to the `.gruntwork` directory will assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when running Terragrunt plan commands by Pipelines.
+In this example, all units located within the `an-environment` directory, which is a sibling to the `.gruntwork` directory, will assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when Pipelines runs Terragrunt plan commands.
 
-A typical approach to building Pipelines configurations is to first define minimal configurations that address the most common use-cases, and then to refactor and generalize those configurations as needed to reduce repetition. You may follow the guide for [adding existing repositories](/2.0/docs/pipelines/installation/addingexistingrepo) to get started with Pipelines configurations as code.
+A common strategy for creating Pipelines configurations is to start with minimal setups that address the most frequent use cases. As the repository evolves, these configurations can be refactored and generalized to reduce repetition and improve maintainability. To get started with Pipelines configurations as code, check out the guide on [adding existing repositories](/2.0/docs/pipelines/installation/addingexistingrepo).
 
-Details on how each configuration are works is detailed below.
+Details regarding the functionality of each configuration type are outlined below.
 
 ## Configuration Hierarchy
 
-These configurations are designed to be organized into a hierarchy. This hierarchy reflects the specificity of configurations, with configurations more specific to a single unit of IaC taking precedence over configurations that are more general when they are in conflict.
+Pipelines configurations are structured into a hierarchy to manage specificity. Configurations that are more specific to an individual unit of IaC will take precedence over more general configurations in cases of conflict.
 
-The hierarchy of configurations is as follows:
 
-### Repository Configurations
+The configuration hierarchy is as follows:
 
-These are the most general configurations that are applicable to the entire repository, regardless of working directory context. They are always defined in [global configurations](#global-configurations) via the [repository block](#repository-blocks).
+### Repository configurations
 
-These configurations are the most general and will always be overridden by more specific configurations when they are in conflict.
+Repository configurations are overridden by more specific configurations, such as environment or unit configurations, in cases of conflict.
+These configurations are the most general and apply to the entire repository, regardless of the working directory context. They are defined in [global configurations](#global-configurations) using the [repository block](#repository-blocks). 
 
-### Environment Configurations
+### Environment configurations
 
-These are configurations that are applicable to a specific environment within a repository. They are only ever applicable to units that match a specific [filter](#filter-blocks). They are always defined in [global configurations](#global-configurations) via [environment blocks](#environment-blocks).
+Environment configurations apply to specific environments within a repository. These are relevant only to units that match a specified [filter](#filter-blocks). They are defined in [global configurations](#global-configurations) using [environment blocks](#environment-blocks). 
+These configurations are more specific than repository configurations and override them in contexts matching the defined filter.
 
-These configurations are more specific than repository configurations, and as such override repository configurations when they are in conflict within the context of a matched filter.
+### Unit configurations
 
-### Unit Configurations
+Unit configurations apply to individual units of IaC within a repository. These are defined in [local configurations](#local-configurations) using [unit blocks](#unit-blocks). 
 
-These are configurations that are applicable to a single unit of IaC within a repository. They are always defined in [local configurations](#local-configurations) via [unit blocks](#unit-blocks).
+These configurations are the most specific and take precedence over repository and environment configurations in cases of conflict.
 
-These configurations are the most specific and will always override other configurations when they are in conflict.
+## Global configurations
 
-## Global Configurations
+Configurations within a `.gruntwork` directory, in the current working directory or a parent directory, are referred to as global configurations. These configurations typically have broader applicability within the repository and serve as the primary mechanism for setting up Pipelines.
 
-Any configurations located within a `.gruntwork` directory either in the current working directory, or a parent directory of the current working directory are referred to as global configurations. These configurations are typically applicable within a wide range of contexts within a repository, and are the primary mechanism for configuring Pipelines.
+When searching for configurations, Pipelines will identify a single `.gruntwork` directory and will not search further up the directory structure once it locates one.
 
-Pipelines will attempt to find exactly one directory named `.gruntwork` when it is attempting to discover configurations. It will not continue to search for configurations in parent directories once it finds a `.gruntwork` directory.
-
-Note that you will frequently see filenames for configurations within the `.gruntwork` directory that are named after the configuration block that they define. This is a common pattern, but not a requirement. Any `.hcl` file found within a `.gruntwork` directory will be parsed by Pipelines as one global configuration.
+It is common to see configuration filenames within the `.gruntwork` directory that correspond to the block names they define. However, this naming convention is not mandatory. Pipelines will parse any `.hcl` file within the `.gruntwork` directory as a global configuration.
 
 ### Environment Blocks
 
 [Full Reference for Environment Blocks](/2.0/reference/pipelines/configurations-as-code/api#environment-block)
 
-Environment blocks are used to define configurations that are applicable to a specific environment within a repository.
+Environment blocks define configurations that apply to a specific environment within a repository.
 
-The label applied to an environment block is the name of the environment. This is a user-defined label for the environment, and must be globally unique.
+The label assigned to an environment block serves as the name of the environment. This label is user-defined and must be globally unique across the repository.
 
 e.g.
 
@@ -116,11 +116,11 @@ environment "an_environment" {
 }
 ```
 
-In this example, the `an_environment` environment is defined to match all units located within the `an-environment` directory sibling to the `.gruntwork` directory. All units that match this filter will assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when running Terragrunt plan commands by Pipelines.
+In this example, the `an_environment` environment is configured to match all units located within the `an-environment` directory adjacent to the `.gruntwork` directory. Units matching this filter will assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when Pipelines executes Terragrunt plan commands.
 
-Environment blocks should reference other configuration blocks rather than continuously redefining configurations when possible.
+To maintain clarity and reduce redundancy, environment blocks should reference other configuration blocks rather than redefining configurations repeatedly.
 
-As such, you will typically see environment blocks that look more like the following:
+For this reason, environment blocks often resemble the following:
 
 ```hcl
 # .gruntwork/environments.hcl
@@ -146,20 +146,20 @@ aws {
 ```
 
 :::caution
-Every unit must be uniquely matched by the filters of a single environment block. If a unit is matched by multiple environment blocks, Pipelines will throw an error.
+Each unit must match the filters of a single environment block exclusively. If a unit matches filters from multiple environment blocks, Pipelines will generate an error.
 :::
 
 ### AWS Blocks
 
 [Full Reference for AWS Blocks](/2.0/reference/pipelines/configurations-as-code/api#aws-block)
 
-AWS blocks are configurations used by `aws-oidc` [authentication](#authentication-blocks) blocks to have commonly re-used AWS configurations codified and referenced by multiple authentication blocks.
+AWS blocks enable the codification and reuse of standard AWS configurations, which can be referenced by multiple `aws-oidc` [authentication](#authentication-blocks) blocks. These blocks streamline the management of shared AWS settings.
 
-There can only be one `aws` block defined within [global configurations](#global-configurations).
+Only one `aws` block can be defined within [global configurations](#global-configurations).
 
-Nested within the `aws` block are `accounts` blocks that define the configurations for collections of AWS accounts.
+Within the `aws` block, `accounts` blocks specify configurations for collections of AWS accounts. 
 
-The label applied to an `accounts` block is the name of the Accounts block. This is a user-defined label for the collection of AWS accounts defined by the block, and must be unique within the context of the `aws` block.
+The label assigned to an `accounts` block serves as its unique identifier. This label is user-defined and must be distinct within the scope of the enclosing `aws` block.
 
 e.g.
 
@@ -172,13 +172,13 @@ aws {
 }
 ```
 
-In this example, the `all` AWS accounts block is defined within an `aws` block in a file named `aws.hcl` within the `.gruntwork` directory.
+In this example, the `all` AWS accounts block is specified within an `aws` block located in a file named `aws.hcl` within the `.gruntwork` directory.
 
-The `all` Accounts block references an external file located at `aws/accounts.yml` via the `path` attribute that contains the definitions of AWS accounts in YAML format.
+The `all` accounts block uses the `path` attribute to reference an external file, `aws/accounts.yml`, which contains AWS account definitions in YAML format.
 
-DevOps Foundations customers may be familiar with the `accounts.yml` file as a file that is used by Account Factory to define the configurations of AWS accounts. Pipelines uses the same schema for the `accounts.yml` file as Account Factory. Consequently, the `accounts.yml` file that is used by Account Factory can be used by the `accounts` block without modification.
+Customers familiar with DevOps Foundations may recognize the `accounts.yml` file as a configuration file used by Account Factory to define AWS account settings. Pipelines leverages the same schema for the `accounts.yml` file as Account Factory. As a result, the `accounts.yml` file from Account Factory can be directly utilized within the `accounts` block without requiring modifications.
 
-The expected schema for the `accounts.yml` file is as follows:
+The `accounts.yml` file must adhere to the following schema:
 
 ```yaml
 # required: Name of an account
@@ -191,17 +191,17 @@ an_account:
   vpc_created: true
 ```
 
-Note that multiple AWS Accounts blocks can be defined, pointing to different `accounts.yml` files. This allows for the segmentation of AWS accounts into different YAML files for organizational purposes.
+It is possible to define multiple AWS accounts blocks, each pointing to distinct `accounts.yml` files. This approach enables the segmentation of AWS accounts into separate YAML files, which can aid in maintaining organizational clarity.
 
 :::info
-The decision to leverage YAML files instead of HCL files for defining the configurations for AWS accounts was an intentional decision to increase the portability of these configurations for usage outside of Pipelines. Tools like [Terragrunt](https://github.com/gruntwork-io/terragrunt/) and [yq](https://github.com/mikefarah/yq) can be used to leverage these files, as they are more portable than HCL files.
+Using YAML files instead of HCL files for defining AWS account configurations was a deliberate decision to enhance the portability of these configurations for use beyond Pipelines. Tools such as [Terragrunt](https://github.com/gruntwork-io/terragrunt/) and [yq](https://github.com/mikefarah/yq) can leverage these files effectively due to their portability compared to HCL files.
 :::
 
 ### Repository Blocks
 
 [Full Reference for Repository Blocks](/2.0/reference/pipelines/configurations-as-code/api#repository-block)
 
-Repository blocks are used to define configurations that are applicable to the entire repository.
+Repository blocks serve to define configurations that apply universally across the entire repository.
 
 e.g.
 
@@ -211,44 +211,47 @@ repository {
 }
 ```
 
-In this example, the `deploy_branch_name` attribute is set to `main`, which means that Pipelines will deploy infrastructure changes when the `main` branch is updated.
+In this example, the `deploy_branch_name` attribute is configured as `main`, meaning Pipelines will deploy infrastructure changes whenever updates occur on the `main` branch.
 
   :::info
 
-  Job consolidation is the mechanism whereby Pipelines will take multiple jobs (e.g. `ModuleAdded`, `ModuleChanged`) and consolidate them into a single job (e.g. `ModulesAddedOrChanged`) when running Terragrunt commands.
+Job consolidation is a process by which Pipelines merges multiple related jobs (e.g., `ModuleAdded`, `ModuleChanged`) into a single job (e.g., `ModulesAddedOrChanged`) when executing Terragrunt commands. 
 
-  This is a useful optimization that Pipelines can perform, as it divides the CI/CD costs of running Terragrunt in CI by the number of jobs that are consolidated. In addition, this results in more accurate runs, as it allows Terragrunt to leverage the Directed Acyclic Graph (DAG) to order updates.
+This optimization significantly reduces CI/CD costs by consolidating Terragrunt execution into fewer jobs, spreading the operational expenses more efficiently. Additionally, it enhances accuracy by allowing Terragrunt to leverage a Directed Acyclic Graph (DAG) for proper sequencing of updates.
 
-  e.g. Instead of running the following jobs:
+For example:
+- Instead of running the following independent jobs:
   A. `ModuleAdded`
-  B. `ModuleChanged`
+  B. `ModuleChanged` (which depends on `ModuleAdded`)
 
-  Where `ModuleChanged` depends on `ModuleAdded`, Pipelines will consolidate these jobs into a single job:
-  C. `ModulesAddedOrChanged`
+- Pipelines consolidates them into a single job:
+  C. `ModulesAddedOrChanged`  
 
-  Because the underlying implementation of a `ModulesAddedOrChanged` uses the `run-all` Terragrunt command, it will use the DAG to ensure that the `ModuleAdded` job runs before the `ModuleChanged` job.
+Since `ModulesAddedOrChanged` uses the `run-all` Terragrunt command, it respects the DAG to ensure that the `ModuleAdded` operation is completed before the `ModuleChanged` operation.
 
   :::
 
   :::tip
 
-  In very rare circumstances, you may want to disable this in order to maximize the resources allocated to your CI/CD run. This is not generally recommended, but can be a useful workaround if the runner you are using is exhausting allocated resources.
+In rare cases, you might disable job consolidation to allocate maximum resources to each CI/CD job. While this is not a general recommendation, it can be a helpful workaround if your runner is depleting its available resources during execution.
 
   :::
 
 ## Local Configurations
 
-The configurations found within a directory that contains a `terragrunt.hcl` file are referred to as local configurations. These configurations are typically used to define configurations that are specific to a single unit of IaC within a repository.
+Configurations located in the same directory as a `terragrunt.hcl` file are referred to as local configurations. These are generally used to define settings specific to a single unit of Infrastructure as Code (IaC) within a repository.
 
-They must be specified within a single file named `gruntwork.hcl` in the same directory as the `terragrunt.hcl` file.
+Local configurations must be defined in a single file named `gruntwork.hcl`, located in the same directory as the corresponding `terragrunt.hcl` file.
 
-Local configurations can be used both to define the complete configurations required for Pipelines to operate within the context of a single unit, or to override global configurations that are defined in the `.gruntwork` directory.
-
+These configurations can serve two purposes: 
+1. Define all the settings necessary for Pipelines to operate within the scope of a single unit.
+2. Override global configurations defined in the `.gruntwork` directory, tailoring them to the unit's specific needs.
+   
 ### Unit Blocks
 
 [Full Reference for Unit Blocks](/2.0/reference/pipelines/configurations-as-code/api#unit-block)
 
-Unit blocks are used to define configurations that are applicable to a single unit of IaC within a repository.
+Unit blocks are specifically designed to define configurations that apply to an individual unit of IaC within a repository.
 
 e.g.
 
@@ -264,17 +267,17 @@ unit {
 }
 ```
 
-In this example, the `unit` block is defined to assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when running Terragrunt plan commands by Pipelines.
+In this example, the `unit` block is configured to assume the `role-to-assume-for-plans` role in the AWS account identified by `an-aws-account-id` when Pipelines executes Terragrunt plan commands.
 
-## Configuration Components
+## Configuration components
 
-Some configurations are only relevant within the context of other configurations. These configurations are referred to as configuration components. Some configuration components are required for other configurations to be valid, while others can be used to reduce repetition in configurations.
+Specific configurations are relevant only when used in conjunction with others. These are referred to as configuration components. Some components are mandatory for the validity of specific configurations, while others serve to streamline and reduce redundancy in configuration files.
 
-### Filter Blocks
+### Filter blocks
 
 [Full Reference for Filter Blocks](/2.0/reference/pipelines/configurations-as-code/api#filter-block)
 
-Filter blocks are components used by [environment](#environment-blocks) blocks to determine where certain configurations are applicable.
+Filter blocks are a configuration component used by [environment](#environment-blocks) blocks to specify the conditions under which particular configurations apply.
 
 e.g.
 
@@ -284,25 +287,25 @@ filter {
 }
 ```
 
-All configuration blocks that contain a `filter` block will only be applied to units that match the filter.
+All configuration blocks containing a `filter` block will apply only to units that match the specified filter.
 
 
 ### Authentication Blocks
 
 [Full Reference for Authentication Blocks](/2.0/reference/pipelines/configurations-as-code/api#authentication-block)
 
-Authentication blocks are components used by [environment](#environment-blocks) and [unit](#unit-blocks) blocks to determine how Pipelines will authenticate with cloud platforms when running Terragrunt commands.
+Authentication blocks are configuration components used by [environment](#environment-blocks) and [unit](#unit-blocks) blocks to specify how Pipelines will authenticate with cloud platforms when executing Terragrunt commands.
 
 :::note
-Authentication blocks wrap other, more specific authentication blocks that are used to authenticate with specific cloud platforms. When Pipelines encounters an `authentication` block, it will attempt to authenticate with all cloud platforms defined within the block.
+Authentication blocks encapsulate more specific authentication configurations tailored to individual cloud platforms. When Pipelines processes an `authentication` block, it attempts to authenticate with all cloud platforms defined within it.
 
-At this time, the only supported block that can be nested within the `authentication` block is `aws_oidc`.
+Currently, the only supported block that can be nested within an `authentication` block is `aws_oidc`.
 :::
 
 :::tip
-Authentication blocks can be defined at both the environment and unit levels. When defined at the environment level, they will be applied to all units that match the filter of the environment.
+Authentication blocks can be declared at both the environment and unit levels. When declared at the environment level, they are applied to all units that match the associated filter.
 
-When defined at the unit level, they will only be applied to the unit that contains the block. Unit-level authentication blocks will override environment-level authentication blocks when they are in conflict.
+At the unit level, authentication blocks apply exclusively to the unit containing the block. In cases of conflict, unit-level authentication blocks will override environment-level configurations.
 :::
 
 e.g.
@@ -317,4 +320,4 @@ authentication {
 }
 ```
 
-In this example, Pipelines will use OIDC to authenticate with AWS and assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when running Terragrunt plan commands.
+In this example, Pipelines authenticates with AWS using OIDC and assumes the `role-to-assume-for-plans` role within the AWS account identified by `an-aws-account-id` when executing Terragrunt plan commands.
