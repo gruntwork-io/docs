@@ -336,7 +336,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -345,6 +344,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/keep-warm/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cd8d7a744e71aeb216c5d294a775efe5"
+  "hash": "562f9ad8ff2528a047e6dced71dd39ab"
 }
 ##DOCS-SOURCER-END -->
