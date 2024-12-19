@@ -289,7 +289,6 @@ ID of the API Gateway method for the root proxy (only created if path_prefix is 
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -298,6 +297,6 @@ ID of the API Gateway method for the root proxy (only created if path_prefix is 
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/api-gateway-proxy-methods/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "91a96c737167e7bd864c7dda75b6422b"
+  "hash": "e4e3b98daedcbb546a0ba6dbae02416c"
 }
 ##DOCS-SOURCER-END -->
