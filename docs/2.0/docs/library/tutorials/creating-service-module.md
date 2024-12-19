@@ -158,7 +158,7 @@ Now that you have created a service and a reference to it, you can run `plan` to
 
 ### Init
 
-Before running a `plan` or `apply`, you need to execute `terraform init`. This command performs a series of initialization steps to prepare the working directory for use with Terraform.
+Before running a `plan` or `apply`, you need to execute `terraform init`. This command performs a series of initialization steps to prepare the working directory for use with terraform.
 
 ```bash
 terraform init
@@ -166,7 +166,7 @@ terraform init
 
 ### Plan
 
-Terraform generates an execution plan using the `plan` action. The plan displays the resources that Terraform determines need to be created or modified.
+Terraform generates an execution plan using the `plan` action. The plan displays the resources that terraform determines need to be created or modified.
 
 ```bash
 terraform plan
@@ -178,7 +178,7 @@ In your plan output, you should expect to see 11 resources created, including an
 
 After running a `plan` and confirming that all expected resources will be provisioned, run an `apply` to create the resources.
 
-Terraform creates resources when using the `apply` action. Similar to the `plan` action, Terraform determines which resources need to be created or modified. You should expect the same resources to be created during `apply` as shown in the `plan` output.
+Terraform creates resources when using the `apply` action. Similar to the `plan` action, terraform determines which resources need to be created or modified. You should expect the same resources to be created during `apply` as shown in the `plan` output.
 
 
 ```bash
