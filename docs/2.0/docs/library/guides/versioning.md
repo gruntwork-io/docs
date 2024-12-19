@@ -1,7 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Using versioned modules
+# Using Versioned Modules
 
 Gruntwork versions the Infrastructure as Code (IaC) Library using [Semantic Versioning](https://semver.org/) (SemVer). Since much of the Gruntwork IaC Library remains pre-1.0.0, most version numbers follow the format `0.MINOR.PATCH`. For `0.MINOR.PATCH`, the versioning rules are as follows:
 
@@ -19,7 +19,7 @@ We release new module versions through GitHub releases. Refer to the release not
 <Tabs groupId="tool-choice">
 <TabItem value="Terraform" label="Terraform" default>
   
-The git tag created by a release can be referenced in the `source` argument of a module block when sourcing from a Git URL.
+The git tag created by a release can be referenced in the `source` argument of a module block when sourcing from a git URL.
 
 For example, the module block below references version `0.15.4` of the `single-server` submodule within the `terraform-aws-server` module:
 
@@ -90,8 +90,7 @@ locals {
 }
 ```
 
-Next, specify the Git tag in the `source` argument for the `terraform` block within the `terragrunt.hcl` files that are specific to an environment and region, which reference the file in the `_envcommon` directory.
-For example, if you are using this module to create a single EC2 instance in your development environment in the `us-west-2` AWS region, the file path would look like this:
+Next, specify the git tag in the `source` argument for the `terraform` block within the `terragrunt.hcl` files that are specific to an environment and region, which reference the file in the `_envcommon` directory. For example, if you are using this module to create a single EC2 instance in your development environment in the `us-west-2` AWS region, the file path would look like this:
 `/dev/us-west-2/services/single_ec2_instance/terragrunt.hcl`
 
 ```hcl title=/dev/us-west-2/services/single_ec2_instance/terragrunt.hcl
