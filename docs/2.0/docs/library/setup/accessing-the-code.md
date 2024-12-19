@@ -29,7 +29,7 @@ Gruntwork modules rely on SSH due to its widespread compatibility and minimal co
 
 The modules in the IaC Library reference each other via SSH. While you can initially reference a module using HTTPS, it may still pull in dependencies over SSH. As a result, exclusive use of HTTPS is not supported.
 
-### What if I can't Use SSH?  
+### What if I can't use SSH?  
 
 If you cannot use SSH—such as in cases where corporate network restrictions block outbound access to port 22—you won’t be able to access the GitHub-hosted version of the library. However, you can [self-host](/2.0/docs/library/guides/self-hosting) the library using [repo-copier](https://github.com/gruntwork-io/repo-copier) as an alternative.
 
