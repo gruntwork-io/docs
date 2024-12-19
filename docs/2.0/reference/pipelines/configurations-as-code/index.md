@@ -1,10 +1,11 @@
 # Pipelines Configurations as Code
 
-Pipelines employs configurations written in [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl) to enable dynamic behavior. These configurations guide Pipelines in managing interactions with cloud environments within Infrastructure as Code (IaC) stored in a repository.
+Pipelines uses configurations written in [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl) to enable dynamic behavior. These configurations direct Pipelines in managing interactions with cloud environments, using Infrastructure as Code (IaC) stored in a repository.
 
-Pipelines processes these configurations at a high level by parsing all files ending with `.hcl` located in a `.gruntwork` directory or a single file named `gruntwork.hcl`. Typically, global configurations relevant to the entire repository are placed in the `.gruntwork` directory at the root, while configurations specific to a particular `terragrunt.hcl` file (referred to as a "unit") reside in the same directory as the corresponding `terragrunt.hcl` file.
+To process configurations, Pipelines parses all `.hcl` files within a `.gruntwork` directory or a single file named `gruntwork.hcl`, ensuring streamlined and efficient interpretation of IaC settings. Typically, global configurations relevant to the entire repository are placed in the `.gruntwork` directory at the root, while configurations specific to a particular `terragrunt.hcl` file (referred to as a "unit") reside in the same directory as the corresponding `terragrunt.hcl` file.
 
 :::info
+
 We recommend reviewing our [concepts page](/2.0/docs/pipelines/concepts/hcl-config-language) on the HCL language to ensure familiarity with its features before configuring Pipelines.
 :::
 
@@ -239,9 +240,7 @@ In rare cases, you might disable job consolidation to allocate maximum resources
 
 ## Local configurations
 
-Configurations located in the same directory as a `terragrunt.hcl` file are referred to as local configurations. These are generally used to define settings specific to a single unit of Infrastructure as Code (IaC) within a repository.
-
-Local configurations must be defined in a single file named `gruntwork.hcl`, located in the same directory as the corresponding `terragrunt.hcl` file.
+Configurations must be specified within a single file named gruntwork.hcl, located in the same directory as the terragrunt.hcl file. These configurations are referred to as local configurations and are generally used to define settings specific to a single unit of Infrastructure as Code (IaC) within a repository. .
 
 These configurations can serve two purposes: 
 1. Define all the settings necessary for Pipelines to operate within the scope of a single unit.
