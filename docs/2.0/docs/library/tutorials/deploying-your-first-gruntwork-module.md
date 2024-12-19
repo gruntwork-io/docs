@@ -5,7 +5,7 @@ import TabItem from '@theme/TabItem';
 
 The Terraform modules in the Gruntwork Infrastructure as Code (IaC) Library allow you to customize the provider and backend settings to fit your requirements. This flexibility enables you to use Gruntwork modules alongside existing modules with minimal configuration duplication.
 
-In this guide, you will learn how to create an AWS Lambda function using a module from the Gruntwork IaC Library. You will also see how to organize your IaC code to support multiple deployments. The same steps apply when using a service, as you can reference both modules and services in module blocks.
+In this guide, you will learn how to create an AWS Lambda function using a module from the Gruntwork IaC Library. You’ll also learn how to structure your IaC code to support multiple deployments. The same steps apply when using a service, as you can reference both modules and services in module blocks.
 
 ## Prerequisites
 
@@ -18,14 +18,13 @@ In this guide, you will learn how to create an AWS Lambda function using a modu
 
 ## Create a module
 
-In this section, you will create a module to provision an AWS Lambda function using the [`terraform-aws-lambda`](/reference/modules/terraform-aws-lambda/lambda/) Gruntwork module. This module automatically creates the AWS IAM role and CloudWatch Log Group for the Lambda function. For more details about configuring the module, see the
+In this section, you will create a module to provision an AWS Lambda function using the [`terraform-aws-lambda`](/reference/modules/terraform-aws-lambda/lambda/) Gruntwork module. This module automatically creates the AWS IAM role and CloudWatch Log Group for the Lambda function. For more details about configuring the module, refer to the [Library Reference](/reference/modules/terraform-aws-lambda/lambda/#reference).
 
 ### Create the basic file structure
 
-First, create the basic file structure to include the module reference. In this guide, you will make a module named serverless-api, which references the terraform-aws-lambda module. The reference lets you define the module once and reuse it across multiple environments and regions.
+Start by setting up the basic file structure to include the module reference. In this guide, you’ll create a module named `serverless-api` that references the `terraform-aws-lambda` module. This setup allows you to define the module once and reuse it across multiple environments and regions.
 
-In this example, example is used as the environment name. The environment might be dev, staging, production, or another relevant name.
-For Terraform, create two paths — one to reference the terraform-aws-lambda module and another to reference the local module (also known as the "wrapper module").
+In this guide, we will use `example` as the name of the environment. In a real-world environment, this might be `dev`, `staging`, `production`, or any other name. 
 
 <Tabs groupId="tool-choice">
 <TabItem value="Terraform" label="Terraform" default>
@@ -47,7 +46,7 @@ touch gw_module_guide/example/<YOUR_REGION>/src/main.py
 </TabItem>
 <TabItem value="Terragrunt" label="Terragrunt" default>
 
-For Terragrunt, we recommend storing all reusable infrastructure modules in a directory called _envcommon. Create two paths — one to reference the terraform-aws-lambda module and another to reference the local module.
+For Terragrunt, we recommend storing all reusable infrastructure modules in a directory called  `_envcommon`. Create two paths — one to reference the `terraform-aws-lambda` module and another to reference the local module.
 
 ```bash
 mkdir -p gw_module_guide/_envcommon/serverless-api
@@ -66,12 +65,12 @@ touch gw_module_guide/example/<YOUR REGION>/example/serverless-api/src/main.py
 
 ### Create the reference to the Gruntwork module
 
-Next, create a reference to the Gruntwork module. Referencing modules in this way allows you to set default values for your organization. For example, the terraform-aws-lambda module exposes many variables, but in the module block below, we hardcode the value run_in_vpc to false. This ensures that anyone consuming this module will only create AWS Lambda functions that are not deployed in a VPC. For a complete list of configuration options for this module, see the [Library Reference](/reference/modules/terraform-aws-lambda/lambda/#reference).
+Next, we'll create a reference to the Gruntwork module. Referencing modules in this way allows you to set default values for your organization. For example, the `terraform-aws-lambda` module exposes many variables, but in the module block below, we hardcode the value `run_in_vpc` to false. This ensures that anyone consuming this module will only create AWS Lambda functions that are not deployed in a VPC. For a complete list of configuration options for this module, see the [Library Reference](/reference/modules/terraform-aws-lambda/lambda/#reference).
 
 <Tabs groupId="tool-choice">
 <TabItem value="Terraform" label="Terraform" default>
 
-Define a module block in gw_module_guide/serverless-api/lambda/main.tf using the [git url](https://developer.hashicorp.com/terraform/language/modules/sources#github) of the `terraform-aws-lambda` module for the `source` attribute.
+Define a module block in `gw_module_guide/serverless-api/lambda/main.tf` using the [git url](https://developer.hashicorp.com/terraform/language/modules/sources#github) of the `terraform-aws-lambda` module for the `source` attribute.
 
 ```hcl title=gw_module_guide/serverless-api/lambda/main.tf
 module "lambda" {
@@ -168,7 +167,7 @@ def lambda_handler(event, context):
 
 Create a module block that uses the path to the local module as the source attribute and provides values for the required attributes of the module.
 
-One benefit of this approach is the ability to increment the module version for specific environments and regions in a controlled manner. For example, if version v0.22.0 of the terraform-aws-lambda module is released, you can update only the example environment in the us-west-2 AWS region to verify the upgrade works as expected before rolling it out to other environments or regions.
+One benefit of this approach is the ability to increment the module version for specific environments and regions in a controlled manner. For example, if version v0.22.0 of the `terraform-aws-lambda` is released, you can update only the example environment in the us-west-2 AWS region to verify the upgrade works as expected before rolling it out to other environments or regions.
 
 ```hcl title=gw_module_guide/example/<YOUR_REGION>/example/serverless-api/terragrunt.hcl
 terraform {
@@ -203,7 +202,7 @@ inputs = {
 }
 ```
 
-Next, copy the following Python code, which will be used as the entry point for the AWS Lambda function.
+Copy the following Python code to use as the entry point for the AWS Lambda function.
 
 ```python title=gw_module_guide/example/<YOUR_REGION>/example/serverless-api/src/main.py
 def lambda_handler(event, context):
@@ -219,15 +218,11 @@ Next, run a plan to preview the resources that will be created, followed by an
 
 :::note
 
-For this guide, we will run terraform plan and terraform apply locally. When collaborating on infrastructure as code within a team or organization, we recommend running terraform plan and terraform apply in your CI system in response to pull request creation, synchronization, and merge events.
-
-We purpose-built [Pipelines](/2.0/docs/pipelines/concepts/overview) to support this workflow. Refer to the Pipelines documentation to learn more.
-
-:::
+For this guide, we’ll run `terraform plan` and `terraform apply`locally. When collaborating on infrastructure as code within a team or organization, we recommend running `terraform plan` and `terraform apply`  in your CI system in response to pull request creation, synchronization, and merge events. We purpose-built [Pipelines](/2.0/docs/pipelines/concepts/overview) to support this workflow. Refer to the Pipelines documentation to learn more.
 
 ### Init
 
-Before running a plan or apply, you must run init. This command performs a series of initialization steps to prepare the working directory for use with Terraform.
+Before running a `plan` or `apply`, you must run `init`. This command performs a series of initialization steps to prepare the working directory for use with Terraform.
 
 <Tabs groupId="tool-choice">
 <TabItem value="Terraform" label="Terraform" default>
@@ -248,12 +243,12 @@ terragrunt init
 
 ### Plan
 
-Now that you have created a module and a reference specific to a single environment and AWS region, you can run a plan to preview the infrastructure resources that the module will provision.
+Now that you have created a module and a reference specific to a single environment and AWS region, you can run a `plan` to preview the infrastructure resources that the module will provision.
 
 <Tabs groupId="tool-choice">
 <TabItem value="Terraform" label="Terraform" default>
 
-Terraform will generate an execution plan using the plan command. The plan output will display the resources that Terraform determines need to be created or modified.
+Terraform will generate an execution plan using the `plan` command. The plan output will display the resources that Terraform determines need to be created or modified.
 
 In the plan output, you should expect to see an AWS Lambda function, IAM role, and CloudWatch Log Group.
 ```bash
@@ -263,7 +258,7 @@ terraform plan
 </TabItem>
 <TabItem value="Terragrunt" label="Terragrunt" default>
 
-Terragrunt will generate an execution plan using the plan command. The plan output will display the resources that Terragrunt determines need to be created or modified.
+Terragrunt will generate an execution plan using the `plan` command. The plan output will display the resources that Terragrunt determines need to be created or modified.
 
 In the plan output, you should expect to see an AWS Lambda function, IAM role, IAM policy, IAM role policy attachment, and CloudWatch Log Group.
 ```bash
@@ -275,7 +270,7 @@ terragrunt plan
 
 ### Apply
 
-After running a plan and confirming that all expected resources are listed in the plan, run an apply to create the resources. Terraform will provision resources using the apply command. Like the plan command, Terraform will determine which resources must be created or modified. You should expect to see the same resources created when running apply as those displayed during plan.
+After running a `plan` and confirming that all expected resources are listed in the plan, run an `apply` to create the resources. Terraform will provision resources using the `apply` command. Like the `plan` command, Terraform will determine which resources must be created or modified. You should expect to see the same resources created when running apply as those displayed during plan.
 
 <Tabs groupId="tool-choice">
 <TabItem value="Terraform" label="Terraform" default>
@@ -291,11 +286,11 @@ terraform apply
 
 Now that you have a module defined, you can write a test to programmatically confirm that it creates the desired resources. This is particularly useful during module development to ensure changes do not break existing functionality.
 
-To simplify testing for infrastructure as code, Gruntwork developed [Terratest](https://terratest.gruntwork.io). Terratest allows you to write tests in [Go](https://go.dev) with built-in functionality to deploy, validate, and undeploy infrastructure. All Gruntwork modules are tested using Terratest as part of the software development lifecycle (SDLC).
+To simplify testing for infrastructure as code, Gruntwork developed [Terratest](https://terratest.gruntwork.io). Terratest allows you to write tests in [Go](https://go.dev) with built-in functionality to deploy, validate, and undeploy infrastructure. All Gruntwork modules are tested using `Terratest` as part of the software development lifecycle (SDLC).
 
 ### Create the basic file structure
 
-First, create the basic file structure required to write tests. We recommend organizing all tests in a test directory within your repository.
+First, create the basic file structure required to write tests. We recommend organizing all tests in a `test` directory within your repository.
 
 ```bash
 mkdir -p gw_module_guide/test
@@ -327,7 +322,7 @@ go mod tidy
 <!-- spell-checker: enable -->
 ### Write the test
 
-Next, write the test. Define a single test called TestLambdaCreated that provisions an AWS Lambda function, verifies its creation, and then destroys the Lambda function. We’ll use built-in functionality in Terratest to generate random values and set variables that will be passed into Terraform.
+Next, write the test. Define a single test called `TestLambdaCreated` that provisions an AWS Lambda function, verifies its creation, and then destroys the Lambda function. We’ll use built-in functionality in `Terratest` to generate random values and set variables that will be passed into Terraform.
 <!-- spell-checker: disable -->
 ```go title=gw_module_guide/test/lambda_test.go
 package test
@@ -395,7 +390,7 @@ func TestLambdaCreated(t *testing.T) {
 ```
 <!-- spell-checker: enable -->
 
-In this test, we first generate data to ensure that the test run creates resources with unique names. Next, we define the Terraform options, specifying the folder where the Terraform module resides and setting the values for the input variables. Then, we configure a terraform destroy operation, which will always run, regardless of the test status. We proceed by running terraform init and terraform apply to create the resources. Finally, we validate that the name of the AWS Lambda function created matches the expected name.
+In this test, we first generate data to ensure that the test run creates resources with unique names. Next, we define the Terraform `options`, specifying the folder where the Terraform module resides and setting the values for the input variables. Then, we configure a `terraform destroy` operation, which will always run, regardless of the test status. We proceed by running `terraform init` and `terraform apply` to create the resources. Finally, we validate that the name of the AWS Lambda function created matches the expected name.
 
 ### Run the test
 
