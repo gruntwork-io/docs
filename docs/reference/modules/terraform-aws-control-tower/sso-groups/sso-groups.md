@@ -207,7 +207,6 @@ ARN of the SSO Admin instance where the Permission Set should be provisioned. Th
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -216,6 +215,6 @@ ARN of the SSO Admin instance where the Permission Set should be provisioned. Th
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.1/modules/sso-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "61113a3b60b9d328f0372320c3a752be"
+  "hash": "0772aa9a40bd8344b033d4f5a1599e34"
 }
 ##DOCS-SOURCER-END -->
