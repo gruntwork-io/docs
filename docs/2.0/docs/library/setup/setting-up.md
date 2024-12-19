@@ -22,13 +22,12 @@ For a more in-depth guide, refer to our [Comprehensive Guide to Terraform](https
 
 ## Terragrunt  
 
-[Terragrunt](https://terragrunt.gruntwork.io) is a tool developed by Gruntwork that extends Terraform’s capabilities by helping you keep configurations DRY, manage multiple Terraform modules, and handle remote state more effectively. Terragrunt allows you to execute various Terraform commands simultaneously, centralize Terraform state configuration, and manage repeatable CLI arguments.  
+[Terragrunt](https://terragrunt.gruntwork.io), developed by Gruntwork, enhances Terraform’s functionality by helping you maintain DRY configurations, manage multiple Terraform modules, and streamline remote state handling. It enables simultaneous execution of Terraform commands, centralizes Terraform state configuration, and simplifies the management of repeatable CLI arguments.
 
-Because Terragrunt depends on Terraform, you can continue writing modules in the Terraform configuration language and reference those modules across different environments or applications.  
+Since Terragrunt relies on Terraform, you can continue using the Terraform configuration language to write modules and reference them across various environments or applications.  
 
 :::info  
 Terragrunt is not required to use the IaC library, but it provides many convenience features on top of Terraform.  
-:::  
 
 ### Installation  
 
@@ -36,6 +35,6 @@ Terragrunt is supported on Mac (x86 and Apple Silicon), Windows, and Linux. To i
 
 For managing multiple versions of Terragrunt, [mise](https://github.com/jdx/mise) supports the use of the [3rd party ASDF Terragrunt plugin](https://github.com/lotia/asdf-terragrunt).  
 
-### Learn More  
+### Learn more  
 
-To learn more about Terragrunt, refer to the [official documentation](https://terragrunt.gruntwork.io/docs/).  
+To learn more about Terragrunt, consult the [official documentation](https://terragrunt.gruntwork.io/docs/).  
