@@ -1,6 +1,6 @@
 # Customizing modules
 
-We strive to keep the Infrastructure as Code Library flexible and generic enough to address common use cases. However, there may be scenarios where you need to customize a module to meet a specific requirement or comply with a company policy restricting pulling code from external sources. In these cases, you can fork the code to your organization or submit a pull request to add the desired functionality.
+We strive to keep the Infrastructure as Code Library flexible and generic enough to address common use cases. However, there may be scenarios where you need to customize a module to meet specific requirements or adhere to company policies that restrict pulling code from external sources. In these cases, you can fork the code to your organization or submit a pull request to incorporate the needed functionality.
 
 ## Creating a wrapper module
 
@@ -41,7 +41,8 @@ module "lambda" {
 
 ### Variables
 
-Define the variables available to consumers of your module. You can choose to make certain variables optional. In this example, default values are set for the `time_out` and `memory_size` variables.
+Define the variables that consumers of your module can use. You can make certain variables optional by setting default values. In this example, default values are provided for the `time_out` and `memory_size` variables.
+
 
 ```hcl title=variables.tf
 variable "name" {
@@ -79,7 +80,8 @@ variable "memory_size" {
 
 ### Outputs
 
-Finally, define the outputs that will be available from your wrapper module. You can choose to expose all outputs from the Gruntwork module or a subset of them. In this example, we define two outputs — the Lambda function ARN and the invoke ARN.
+Finally, define the outputs that your wrapper module will provide. You can choose to expose all outputs from the Gruntwork module or limit them to a specific subset. In this example, two outputs are defined: the Lambda function ARN and the invoke ARN.
+
 
 
 ```hcl title=outputs.tf
