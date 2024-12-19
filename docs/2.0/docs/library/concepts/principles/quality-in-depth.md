@@ -4,7 +4,7 @@ Inspired by the concept of [Defense in Depth](https://en.wikipedia.org/wiki/Defe
 
 ## Quality checks we use
 
-These are the standard quality checks employed to maintain high-quality modules.
+These are the standard quality checks we employ to maintain high-quality modules.
 
 ### Automated testing
 
