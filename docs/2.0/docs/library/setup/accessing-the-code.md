@@ -31,7 +31,7 @@ The modules in the IaC Library reference each other via SSH. While you can initi
 
 ### What if I can't Use SSH?  
 
-If you are unable to use SSH, for example, due to corporate network restrictions that block outbound access to port 22, you will not be able to use the GitHub-hosted version of the library. However, we offer an option to [self-host](/2.0/docs/library/guides/self-hosting) the library using [repo-copier](https://github.com/gruntwork-io/repo-copier).  
+If you cannot use SSH—such as in cases where corporate network restrictions block outbound access to port 22—you won’t be able to access the GitHub-hosted version of the library. However, you can [self-host](/2.0/docs/library/guides/self-hosting) the library using [repo-copier](https://github.com/gruntwork-io/repo-copier) as an alternative.
 
 A self-hosted version of the library within your corporate network can typically accommodate most enterprise network restrictions.  
 
