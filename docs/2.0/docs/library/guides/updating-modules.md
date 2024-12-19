@@ -3,7 +3,7 @@ import TabItem from '@theme/TabItem';
 
 # Updating Versioned Modules
 
-To update a module or service, modify the tagged version in the `source` attribute of the module block. For backwards-compatible changes, this involves incrementing the version number. For backwards-incompatible changes, review the release notes in the module's GitHub repository release page for migration guidance.
+Updating a module or service requires changing the tagged version in the `source` attribute of the module block. For backwards-compatible changes, this involves incrementing the version number. For backwards-incompatible changes, review the release notes in the module's GitHub repository release page for migration guidance.
 
 We recommend updating module versions in your development environment first, followed by staging, and then production. This approach ensures the update and any necessary changes are fully tested and understood.
 
@@ -14,7 +14,7 @@ We recommend updating module versions in your development environment first, fol
 ### Terraform
 <TabItem value="Terraform" label="Terraform" default>
 
-Below is a Terraform configuration referencing version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
+Below is a terraform configuration referencing version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
 
 To update to version `0.15.4`, change the value to the right of `ref=` in the `source` attribute. Since the version number indicates a backwards-compatible update, no additional changes should be required.
 
@@ -42,7 +42,7 @@ After making the change, run `terraform plan`, review the output to confirm it m
 ### Terragrunt
 <TabItem value="Terragrunt" label="Terragrunt">
 
-Below is a Terragrunt configuration referencing version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
+Below is a terragrunt configuration referencing version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
 
 To update to version `0.15.4`, change the value to the right of `ref=` in the `source` attribute. Since the version number indicates a backwards-compatible update, no additional changes should be required.
 
@@ -79,14 +79,11 @@ After making the change, run `terragrunt plan`, review the output to confirm it 
 
 </TabItem>
 
-</Tabs>
-
 ### Terragrunt with _envcommon
 
 <TabItem value="Terragrunt with _envcommon" label="_envcommon (Terragrunt)">
 
 When using the `_envcommon` pattern, there are two locations where the git tag from the release is referenced: 
-
 1. The `.hcl` file in the `_envcommon` directory, which defines the shared module configuration.
 2. The environment- and region-specific `.hcl` files, which include the `_envcommon` file for consistency and reuse.
 
