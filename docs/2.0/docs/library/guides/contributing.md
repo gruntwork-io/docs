@@ -1,6 +1,7 @@
 # Contributing to Gruntwork IaC Library
 
-Contributions to the Gruntwork IaC Library are encouraged and highly valued. Gruntwork receives over 1,000 customer [pull requests](https://help.github.com/articles/about-pull-requests/) annually.
+Contributions to the Gruntwork IaC Library are encouraged and highly valued. <br>
+Gruntwork receives over 1,000 customer [pull requests](https://help.github.com/articles/about-pull-requests/) annually.
 
 You can contribute in the following ways:
 
@@ -10,9 +11,9 @@ You can contribute in the following ways:
 
 ## Start by filing a GitHub issue
 
-Before starting work on a new feature, file a GitHub issue in the relevant repository. Doing so allows you to ask questions and gather feedback from maintainers and the community before committing significant time to writing code. Feel free to ask if you are unsure about any aspect of your contribution.
+Before starting work on a new feature, file a GitHub issue in the relevant repository. Doing so gives you the an opportunity to clarify your approach, gather input from maintainers and the community, and address any questions before investing significant time in coding. If you’re uncertain about any part of your contribution, don’t hesitate to ask for guidance.
 
-For minor changes, such as adding a new variable or output value, you may proceed directly to creating a pull request, as outlined below.
+For minor updates, like adding a variable or output value, you may proceed directly to creating a pull request, as detailed below.
 
 ## Proceed to a pull request
 
@@ -40,7 +41,7 @@ With tests in place, implement your code changes. Use the new test cases to conf
 
 #### How to create a pull request on a Gruntwork repository
 
-As a Gruntwork customer, you will have **read** access to Gruntwork repositories. Therefore, you cannot push branches directly to Gruntwork repositories. Instead, follow these steps:
+As a Gruntwork customer, you are granted **read-only** access to Gruntwork repositories. This means you cannot push branches directly to these repositories. Instead, follow the steps below to open a pull request:
 
 1. Fork the Gruntwork repository into a repository within an organization where you have write access.
 2. Push your branch to your forked repository.
