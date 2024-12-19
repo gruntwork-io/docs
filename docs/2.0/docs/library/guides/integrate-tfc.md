@@ -36,7 +36,7 @@ This method combines TFC's audit and state management with Terragrunt's workflow
 
 ## One time set up
 
-:::caution
+::: caution
 
 If using TFE, first refer to [HashiCorp's installation guide](https://www.terraform.io/docs/enterprise/before-installing/index.html). Adjust any references to `app.terraform.io` to point to your TFE host. 
 
@@ -70,7 +70,7 @@ module "sns" {
 }
 ```
 
-The `git::git@github.com:gruntwork-io` portion of the `source` attribute indicates that this module is accessed over SSH. Thus, TFC will need access to the Gruntwork code repositories via SSH.
+The `git::git@github.com:gruntwork-io` portion of the `source` attribute indicates that this module is accessed over SSH. As a result, TFC will need access to the Gruntwork code repositories via SSH.
 
 To configure this access, follow these steps:
 
@@ -78,7 +78,7 @@ To configure this access, follow these steps:
 
 2. Generate an SSH key pair and attach the public key to the GitHub machine user account. For step-by-step guidance, refer to [GitHub's SSH setup documentation](https://help.github.com/en/enterprise/2.19/user/github/authenticating-to-github/connecting-to-github-with-ssh).
 
-3. Add the private SSH key to TFC under the SSH Keys section within your TFC organization settings. For clarity, label the key appropriately, such as _Gruntwork access_. TFC will use this key to clone Gruntwork repositories.
+3. Add the private SSH key to TFC under the SSH Keys section in the TFC organization settings. For clarity, label the key appropriately, such as _Gruntwork access_. TFC will use this key to clone Gruntwork repositories.
 
 ![Configuring an SSH key for the TFC organization](/img/guides/working-with-code/tfc/tfc_ssh_key.png)
 
@@ -88,7 +88,7 @@ Once the SSH key is configured, the one-time setup is complete.
 
 This section explains using TFC to deploy infrastructure by leveraging Gruntwork’s Terraform modules. Use this method to execute Terraform operations from your local CLI or directly through the TFC UI.
 
-[Workspaces](https://www.terraform.io/docs/state/workspaces.html) in TFC store the state associated with Terraform-managed infrastructure. The state is centralized within TFC. To connect outputs from one workspace as inputs to another, you can use the [`remote_state` data source](https://www.terraform.io/docs/providers/terraform/d/remote_state.html). Using this method, you can link multiple workspaces to build a complete, end-to-end infrastructure.
+[Workspaces](https://www.terraform.io/docs/state/workspaces.html) in TFC store the state associated with Terraform-managed infrastructure. The state is stored in TFC. Connect outputs from one workspace as inputs to another using the [`remote_state` data source](https://www.terraform.io/docs/providers/terraform/d/remote_state.html). This method allows you to link multiple workspaces to build a complete, end-to-end infrastructure.
 
 
 In the [using Gruntwork modules](/2.0/docs/library/tutorials/customizing-modules) guide, we introduce the wrapper module pattern, where multiple Terraform modules are organized in a directory hierarchy under `infrastructure-catalog/modules`. Following this pattern, each TFC workspace references the same `infrastructure-catalog` repository but points to specific subdirectories corresponding to different modules.
@@ -96,13 +96,12 @@ In the [using Gruntwork modules](/2.0/docs/library/tutorials/customizing-modules
 
 :::note
 
-**Gruntwork modules must be hosted in your own repository** by wrapping or copying them to enable their use with the Terraform registry. This requirement exists because TFC creates a webhook in the repository, necessitating admin-level access. Customers must host the modules themselves because we cannot provide admin access to Gruntwork repositories. 
+**Gruntwork modules must be hosted in your own repository** by wrapping or copying them to enable their use with the Terraform registry. We require this approach because TFC creates a webhook in the repository, which requires admin-level access. Since we cannot grant admin access to Gruntwork repositories, customers must host the modules in their own repositories.
 
-Enterprise customers may consider using our `repo-copier` tool, which creates a complete, self-hosted clone of the Gruntwork IaC library within your version control system, eliminating the need to wrap modules manually.
-
+Enterprise customers can use our `repo-copier` tool to simplify module management. The tool creates a complete, self-hosted clone of the Gruntwork IaC library in your version control system, eliminating the need to manually wrap modules.
 :::
 
-The following steps demonstrate setting up a workspace for a simple SQS module. Begin by creating a new workspace and connecting it to your VCS provider.
+Follow these steps to set up a workspace for a simple SQS module. Start by creating a new workspace and linking it to your version control system (VCS) provider.
 
 ### Connect to a version control provider
 
@@ -165,12 +164,12 @@ Once you configure your workspace, you can trigger Terraform, which runs directl
 
 The Terraform Cloud (TFC) UI only runs Terraform commands, while Terragrunt operates as a wrapper around Terraform. This means the TFC UI cannot directly trigger Terragrunt. However, you can configure Terraform to execute remote operations, such as `plan` and `apply`, within TFC while using Terragrunt to organize your code and maintain DRY configurations. When set up correctly, running `terragrunt apply` locally (or from a CI server) will invoke `terraform apply` within TFC rather than executing Terraform locally.
 
-### Key Considerations
+### Key considerations
 
 - Workspaces are still required, as explained in the "Using TFC without Terragrunt" section. You can create workspaces dynamically or reuse them if they already exist, including any associated variables and environment configurations such as AWS credentials.
 - While you cannot trigger runs directly from the TFC UI, the output of `apply` operations will be visible in the UI, along with the history of past runs.
 
-### Steps to Set Up Terragrunt with TFC
+### Steps to set up Terragrunt with TFC
 
 The steps involved to set all this up include:
 
