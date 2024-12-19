@@ -14,7 +14,7 @@ We rely on [Terratest](https://github.com/gruntwork-io/terratest), an open-sourc
 
 ### Pre-commit hooks
 
-Pre-commit hooks allow module authors to catch issues early in the development process. These hooks are enforced during CI runs to ensure compliance.
+Pre-commit hooks enable module authors to identify and address issues early in the development process. They are also enforced during CI runs to maintain compliance and consistency.
 
 For details on available hooks and repository-specific configurations, refer to the documentation in the [pre-commit repository](https://github.com/gruntwork-io/pre-commit?tab=readme-ov-file#pre-commit-hooks).
 
