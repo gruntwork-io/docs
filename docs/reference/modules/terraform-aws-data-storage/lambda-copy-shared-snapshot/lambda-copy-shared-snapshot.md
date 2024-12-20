@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.40.0" lastModifiedVersion="0.38.1"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.40.1" lastModifiedVersion="0.38.1"/>
 
 # Copy Snapshot Lambda Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/lambda-copy-shared-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.1/modules/lambda-copy-shared-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.38.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -108,7 +108,7 @@ account 222222222222. To be able to make a copy of that snapshot in account 2222
 ## Background info
 
 For more info on how to backup RDS snapshots to a separate AWS account, check out the [lambda-create-snapshot module
-documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/lambda-create-snapshot).
+documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.1/modules/lambda-create-snapshot).
 
 ## Sample Usage
 
@@ -123,7 +123,7 @@ documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v
 
 module "lambda_copy_shared_snapshot" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-copy-shared-snapshot?ref=v0.40.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-copy-shared-snapshot?ref=v0.40.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -199,7 +199,7 @@ module "lambda_copy_shared_snapshot" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-copy-shared-snapshot?ref=v0.40.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-copy-shared-snapshot?ref=v0.40.1"
 }
 
 inputs = {
@@ -390,15 +390,14 @@ Namespace all Lambda scheduling resources created by this module with this name.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/lambda-copy-shared-snapshot/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/lambda-copy-shared-snapshot/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/lambda-copy-shared-snapshot/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.1/modules/lambda-copy-shared-snapshot/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.1/modules/lambda-copy-shared-snapshot/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.1/modules/lambda-copy-shared-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "85c11f504d809da20cfe4727366d6606"
+  "hash": "db1438879ac9c79fe07b5c041cfa23bb"
 }
 ##DOCS-SOURCER-END -->
