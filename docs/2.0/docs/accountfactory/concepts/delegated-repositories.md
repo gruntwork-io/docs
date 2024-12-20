@@ -1,6 +1,7 @@
 # Delegated Repositories
 
-::: note Account Factory-created Delegated Repositories are only available to DevOps Foundations Enterprise customers.
+::: note 
+Account Factory-created Delegated Repositories are only available to DevOps Foundations Enterprise customers.
 :::
 
 As enterprises expand their use of Infrastructure as Code (IaC) across multiple teams, the need to enforce least-privilege access control to both IaC source code and its CI/CD processes becomes increasingly important. Gruntwork recommends leveraging multiple source code repositories to establish clear boundaries that enforce least-privilege access control. 
