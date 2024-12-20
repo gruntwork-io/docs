@@ -110,7 +110,7 @@ repository {
 <HclListItem name="filter" requirement="optional" type="block">
 <HclListItemDescription>
 
-The ceiling of retention days that can be configured via a backup plan for the given vault
+A list of path globs that the filter should match against. Paths are relative to the directory containing the .gruntwork directory.
 
 </HclListItemDescription>
 </HclListItem>
