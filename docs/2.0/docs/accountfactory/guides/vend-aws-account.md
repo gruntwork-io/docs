@@ -7,8 +7,11 @@ The Account Factory Workflow in the `infrastructure-live-root` repository create
 The JSON payload approach provides greater flexibility for account vending, overcoming the GitHub workflow restriction of a 10-input maximum.
 
 :::note
+
 This guide focuses on non-delegated repositories. Enterprise customers can also [use Account Factory to create new Delegated Repositories](/2.0/docs/accountfactory/guides/delegated-repositories).
+
 :::
+
 
 ### Step 1 - Download the file
 
@@ -20,13 +23,13 @@ Open the downloaded `account-factory-inputs.html` file in a web browser and popu
 
 Once all values are filled, click "Generate" and copy the resulting JSON output to your clipboard.
 
-### Step 3 - Run the Account Factory Workflow
+### Step 3 - Run the Account Factory workflow
 
 Access the Actions tab in your `infrastructure-live-root` repository on GitHub and select `Account factory` from the left-hand pane.
 
 Click "Run workflow" on the right, paste the generated JSON payload into the dropdown, and click the green "Run workflow" button to initiate the workflow.
 
-### Step 4 - Merge the Account Request PR
+### Step 4 - Merge the account request PR
 
 After the workflow is complete, a new Pull Request will be created in the `infrastructure-live-root` repository. This PR will add an account request to the `_new-account-requests` directory.
 
