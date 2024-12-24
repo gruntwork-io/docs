@@ -69,9 +69,9 @@ For accounts created in a separate delegated infrastructure repository:
  
 If an `infrastructure-access-control` repository is part of your setup:
 
-4. Remove the deleted account references from the accounts.yml file.
-5. Delete the folders for the removed accounts from the repository
-6. Create and merge a Pull Request with [skip ci] in the commit message
+1. Remove the deleted account references from the accounts.yml file.
+2. Delete the folders for the removed accounts from the repository
+3. Create and merge a Pull Request with [skip ci] in the commit message
 
 ##### (Optional) Destroy resources in account before closing
 
