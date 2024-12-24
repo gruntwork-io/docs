@@ -37,7 +37,9 @@ Assuming newer versions are available for all three dependencies, the strategies
 * 'update': The action of modifying a dependency reference to use a newer version and accommodating any associated breaking changes.
   
     :::info
+  
     As of November 2024, Patcher recognizes environments using folder groupings matched with glob patterns. For example, 'dev' may correspond to 'dev-*' folders and 'prod' to 'prod-*' folders. A more sophisticated environment definition using HCL syntax (similar to Pipelines) is planned for future releases. Let us know if this capability is important for your use case.
+  
     :::
 
 ## Implementation discussion
