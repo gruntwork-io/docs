@@ -8,7 +8,7 @@ In the `infrastructure-live/dev` environment, there are two dependencies on the 
 - `_global/ops-admin-role/terragrunt.hcl` currently uses version `0.65.6`.  
 - `_global/website-ci-cd-access/terragrunt.hcl` currently uses version `0.61.0`.  
 
-## `Next safe` update strategy (default)
+## "Next safe" update strategy (default)
 
 The **next safe** strategy updates a dependency to either the highest version **before the next closest breaking change** or the latest version of the dependency, whichever occurs first.
 
@@ -44,7 +44,7 @@ This is an example of the YAML that Patcher outputs to `stdout` to describe thes
         release_notes_url: https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.62.0
 ```
 
-## `Next breaking` update strategy  
+## "Next breaking" update strategy  
 
 The **next breaking** strategy updates a dependency to either the next closest breaking change or the latest version of the dependency, whichever occurs first.  
 
