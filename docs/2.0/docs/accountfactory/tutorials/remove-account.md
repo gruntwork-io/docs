@@ -13,7 +13,7 @@ We recommend a two-step process to close AWS accounts managed by DevOps Foundati
 1. [Cleanup Infrastructure Code](#1-cleanup-infrastructure-code) and modify OpenTofu/Terraform state for the Control Tower module.
 1. [Close Account with Clickops](#2-close-the-accounts-in-aws-organizations)
 
-We recommend using ClickOps to close accounts instead of Gruntwork Pipelines. While removing the account through Pipelines by deleting the account request file often works, the AWS Service Catalog used to interact with Control Tower is unreliable (see [issue](https://github.com/hashicorp/terraform-provider-aws/issues/31705)) and frequently generates errors that require multiple retries. This procedure addresses those reliability issues.
+We recommend using ClickOps to close accounts instead of Gruntwork Pipelines. Removing the account through Pipelines by deleting the account request file often fails due to the unreliable AWS Service Catalog used with Control Tower (see [issue](https://github.com/hashicorp/terraform-provider-aws/issues/31705)), which frequently requires multiple retries. This procedure addresses those reliability issues.
 
 
 ### 1. Clean up infrastructure code
