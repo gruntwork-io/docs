@@ -18,7 +18,7 @@ Example `config.json` file:
 }
 ```
 
-### Opting Out
+### Opting out
 
 You can opt out of sending telemetry data by setting the `PATCHER_TELEMETRY_OPT_OUT` environment variable to `true`.
 ```bash
