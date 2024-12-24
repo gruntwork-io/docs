@@ -36,15 +36,15 @@ The initial GitHub Actions workflow file, `update-dev.yml` in this example, high
         * **Workflow dispatch** is a recommended testing mechanism.  
         * The **pull request target** is required to trigger certain dependent jobs.  
 
-* **`trigger-next-env` Job**:  
+* **`trigger-next-env` job**:  
     * This job runs **only** when a pull request is merged. It sends a repository dispatch event (`dev_updates_merged`) to trigger the next environment’s workflow.  
     * It includes metadata, specifically a `dependency` (derived from the Git branch name), to inform the subsequent job which dependency to process.  
 
-* **`patcher-report` Job**:  
+* **`patcher-report` job**:  
     * This job runs `patcher report` to generate a list of updates for a specific environment, using the `include_dirs` argument to target that environment.  
     * It uses a secret, `PIPELINES_READ_TOKEN`, which must have access to your Gruntwork account to download the Patcher binary. For details on setting up machine user tokens, see [here](/2.0/docs/pipelines/installation/viamachineusers).  
 
-* **`update-env` Job**:  
+* **`update-env` job**:  
     * This job processes the `spec` output from the `patcher report` command, saves it to a file, and then runs `patcher update`.  
     * The `patcher update` command reads the `spec` file, checks out the repository code, commits the changes, and pushes a pull request.  
     * For the pull request workflow to function correctly, the `pull_request_branch` must follow the format `$PREFIX$DEPENDENCYID`. The `trigger-next-env` job strips out the prefix
