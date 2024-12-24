@@ -1,6 +1,6 @@
 # Telemetry
 
-Patcher leverages [sentry.io](https://sentry.io) for application performance monitoring and error tracking, enabling us to quickly identify bugs and enhance the platform's performance.
+Patcher uses [sentry.io](https://sentry.io) for application performance monitoring and error tracking, enabling us to quickly identify bugs and enhance the platform's performance.
 
 ### Anonymous UUID
 
