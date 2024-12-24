@@ -30,7 +30,7 @@ Permissions correspond to the <span class="external-link"><a href="https://docs.
 
 Available options include `pull`, `triage`, `push`, `maintain`, `admin`, or a custom repository role name if defined by your organization.
 
-## Adding Collaborators
+## Adding collaborators
 
 To add a team to new delegated repositories, include a new entry in the `collaborators` block of your Account Factory configuration.
 
