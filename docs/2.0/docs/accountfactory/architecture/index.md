@@ -10,7 +10,7 @@ Pipelines tracks each provisioned account as a new base directory containing Ter
 
 ![Architecture Overview Diagram](/img/accountfactory/architecture.png)
 
-## Account Vending
+## Account vending
 
 Account Vending starts by triggering the Account Factory Workflow which generates a Pull Request against `infrastructure-live-root`, adding a file to the `_new-account-requests` directory. Pipelines detects these new account requests and runs terragrunt plan/apply commands on the `control-tower-multi-account-factory` unit in the management account.
 
@@ -28,11 +28,11 @@ sequenceDiagram
   Infra Live Repository ->> Pipelines: Trigger Account Added
   Pipelines ->> Core Accounts: Execute terragrunt to baseline account
 ```
-## IAM Roles
+## IAM roles
 
 Newly created accounts include IAM policies that define the scope of changes Pipelines is authorized to perform within AWS. Pipelines automatically assumes the necessary roles for each account when it detects changes. Detailed information about the provisioned roles can be found [here](/2.0/docs/pipelines/architecture/security-controls#roles-provisioned-by-devops-foundations).
 
-## Delegated Repositories
+## Delegated repositories
 
 Delegated repositories enhance the architecture of infrastructure management by introducing additional layers of access control. When delegated repositories are created, Pipelines continues to monitor new account security baselines within the `infrastructure-live-root` repository, while other infrastructure resources are managed in a new repository specific to the delegated account(s). 
 
