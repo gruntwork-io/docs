@@ -11,20 +11,20 @@ When using Account Factory to request new account(s) you can chose to Delegate M
 
 Specific permissions for IaC changes are controlled via IAM roles in your `infrastructure-live-access-control` repository, allowing your infrastructure team to act as a central authority for permissions.
 
-### Step 1 - Update Account Factory Settings
+### Step 1 - Update Account Factory settings
 
 Account Factory options are located in `.gruntwork/config.yml`. See a full description of all account factory options in the [configuration reference](/2.0/reference/accountfactory/configurations).
 
 The following options are particularly relevant for delegated repositories and you may want to update them before creating the new account(s):
 
-#### Catalog Repositories
+#### Catalog repositories
 
 Catalog Repositories are what your developer teams will use when running `terragrunt catalog` within their delegated repository. This defaults to your `infrastructure-catalog` repository but you can customize this list and the values will be vended into the newly created repository.
 
 [catalog-repositories](/2.0/reference/accountfactory/configurations#catalog-repositories)
 
 
-#### GitHub Collaborators
+#### GitHub collaborators
 
 GitHub Collaborators is a list of teams to automatically grant access to the new repository. This is optional to use as you can also manually set up access controls, but we do recommend configuring some teams and permissions to smooth out the vending process.
 
@@ -32,7 +32,7 @@ GitHub Collaborators is a list of teams to automatically grant access to the new
 
 <PersistentCheckbox id="vending-delegated-repositories-1" label="Settings Up To Date" />
 
-### Step 2 - Requesting the Account
+### Step 2 - Requesting the account
 
 In a web browser open the file `.github/workflows/account-factory-inputs.html` from your `infrastructure-live-root` repository. This webpage is used to craft the initial account request payload that we will pass to the account factory workflow.
 
@@ -50,7 +50,7 @@ Press Generate and copy the resulting JSON. This is the payload we will pass int
 
 <PersistentCheckbox id="vending-delegated-repositories-2" label="Payload Created" />
 
-### Step 3 - Run the Account Factory Workflow
+### Step 3 - Run the Account Factory workflow
 
 Navigate to the Actions tab in your `infrastructure-live-root` repository and select the Account Factory workflow in the left hand pane.
 
@@ -112,7 +112,7 @@ Merge the PR and allow Pipelines to apply the terragrunt changes to create the r
 
 <PersistentCheckbox id="vending-delegated-repositories-6" label="Access Control PR Merged and Roles Created" />
 
-### Step 7 - Merge the Delegated Repository Bootstrap PR
+### Step 7 - Merge the delegated repository Bootstrap PR
 
 Once the Access Control PR has been merged and applied, navigate to the delegated repository and review the Bootstrap PR.
 
