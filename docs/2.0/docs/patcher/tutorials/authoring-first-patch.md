@@ -1,4 +1,4 @@
-# Authoring your first patch
+# Authoring your First Patch
 
 ## Prerequisites
 * Familiarity with Terraform or OpenTofu  
@@ -9,18 +9,18 @@
 
 In this tutorial, we will guide you through the following steps:  
 
-**Authoring a Patch**:
+**Authoring a patch**:
 * Identifying the breaking change and its remediation steps  
 * Running `patcher generate` to template the patch  
 * Completing the required patch fields  
 * Modifying `config.yaml`  
 
 
-### Test Module
+### Test module
 
 For this tutorial, we will use the `patcher-test` module from the `gruntwork-io/terraform-aws-utilities` repository. The module has a version `v0.10.3`, which we will intentionally mark as outdated in our infrastructure unit. We will then write a patch to upgrade the module for the `v0.10.4` release. You can view the full, real-world example [here](https://github.com/gruntwork-io/terraform-aws-utilities/pull/102/), but we will walk through the steps to recreate it below.  
 
-## Identifying the Breaking Change and its Remediation Steps
+## Identifying the breaking change and its remediation steps
 
 Suppose you need to add a new required variable to the `patcher-test` module.  
 This change qualifies as a breaking change because consumers of your module must update their configurations to include the new variable. Without this update, OpenTofu will fail when planning or applying the infrastructure.  
@@ -72,7 +72,7 @@ As the module maintainer, fill in the `<REPLACE_ME>` fields as needed:
 * `steps.name`: Add a short, descriptive label for each step.  
 * `steps.run`: Define the command to execute for that specific step.  
 
-## Filling out the Patch Fields
+## Filling out the patch fields
 
 Because this breaking change is straightforward, we can use [`terrapatch`](https://github.com/gruntwork-io/terrapatch) to perform the required step:  
 
