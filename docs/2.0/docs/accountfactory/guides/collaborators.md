@@ -34,7 +34,7 @@ Available options include `pull`, `triage`, `push`, `maintain`, `admin`, or a cu
 
 To add a team to new delegated repositories, include a new entry in the `collaborators` block of your Account Factory configuration.
 
-All collaborators specified for each account type will be added to the repositories of that type when they are created. If a team needs access to repositories of multiple types, you must add them in the configuration for each type.
+Collaborators for each account type are automatically added to the corresponding repositories when they are created. To give a team access to multiple repository types, add them to the configuration for each type.
 
 A common practice is to create an administrative team with access to all repositories, along with separate teams for each delegated repository.
 
