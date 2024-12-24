@@ -35,6 +35,7 @@ Assuming newer versions are available for all three dependencies, the strategies
 * 'dependency' (or 'target'): An OpenTofu module referenced using a 'ref' (typically a full source path and version) in a 'unit'. Patcher interprets semantic versioning for dependency updates.
 * 'environment': A logical grouping of infrastructure representing application stages, such as 'dev' or 'prod'. Environments are generally organized as folders in the repository and include multiple units and dependencies.
 * 'update': The action of modifying a dependency reference to use a newer version and accommodating any associated breaking changes.
+  
     :::info
     As of November 2024, Patcher recognizes environments using folder groupings matched with glob patterns. For example, 'dev' may correspond to 'dev-*' folders and 'prod' to 'prod-*' folders. A more sophisticated environment definition using HCL syntax (similar to Pipelines) is planned for future releases. Let us know if this capability is important for your use case.
     :::
