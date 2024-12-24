@@ -1,6 +1,6 @@
 # What is a Patcher Patch?
 
-A Patch is a set of instructions Patcher executes to perform code transformations. This approach automates the adoption of breaking changes in infrastructure-as-code projects using tools like Terragrunt, OpenTofu, or Terraform. 
+Patcher executes a patch as a set of instructions to automate code transformations. This approach automates the adoption of breaking changes in infrastructure-as-code projects using tools like Terragrunt, OpenTofu, or Terraform. 
 
 These instructions are delivered through a `yaml` file in the following format:
 
@@ -49,10 +49,10 @@ Patcher automates updates by applying patches that incorporate breaking changes,
 
 ### Two update strategies
 
-Patches can be applied using one of two strategies:
+Patcher offers two flexible strategies for applying updates:
 
-1. **Push strategy**: Patcher proactively opens pull requests containing updates.
-2. **Pull strategy**: Users manually run the Patcher CLI to scan their repository and apply updates.
+1. **Push strategy**: Patcher automatically opens pull requests containing updates, allowing consumers to review and merge changes as needed.
+2. **Pull strategy**: Users manually run the Patcher CLI to scan their repository, identify updates, and apply them directly.
 
 While the implementation details differ, the purpose remains the same: Patcher suggests changes to keep your infrastructure code up to date.
 
