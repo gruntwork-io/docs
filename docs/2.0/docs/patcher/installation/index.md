@@ -21,9 +21,9 @@ $ echo $PATH
 $ mv patcher /usr/local/bin
 ```
 
-## Before Running Patcher
+## Before running Patcher
 
-### GitHub Personal Access Token
+### GitHub personal access token
 
 To fetch information from GitHub, Patcher requires a [GitHub Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token), with the `repo` scope. Set the
 `GITHUB_OAUTH_TOKEN` environment variable to your GitHub Personal Access token:
@@ -45,11 +45,11 @@ Patcher must be run in a local Terraform or Terragrunt Git repository. It analyz
 If you have purchased and deployed the [Reference Architecture](https://gruntwork.io/reference-architecture/) and your deployment is organized in an `infrastructure-live` repository, we recommend running Patcher within each environment folder, such as `infrastructure-live/dev`.
 
 
-### Patcher Report
+### Patcher report
 
 The `patcher report` command is a read-only operation that displays the changelog for each module and its usages. Learn more in the [report command guide](/2.0/docs/patcher/guides/report).
 
-### Patcher Update
+### Patcher update
 
 The `patcher update` command updates some or all module dependencies in the current folder and any child folders. Learn more in the [update command guide](/2.0/docs/patcher/guides/update).
 
