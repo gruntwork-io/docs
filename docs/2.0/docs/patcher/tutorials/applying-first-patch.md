@@ -21,7 +21,7 @@ In this tutorial, we will walk through the following steps:
 * Trigger `patcher` to detect the outdated unit and apply the patch.  
 * Review the pull request created by `patcher` and merge the changes. 
 
-### The `patcher-test` Module
+### The `patcher-test` module
 In this tutorial we use the `patcher-test` module from the [gruntwork-io/terraform-aws-utilities](https://github.com/gruntwork-io/terraform-aws-utilities) repository. For demonstration purposes, we will specify version `v0.10.3` as outdated in our infrastructure unit and update it to `v0.10.4`, which includes a breaking change.  
 
 
@@ -78,7 +78,7 @@ You can now inspect the file system to verify the results of the patch. In this 
 
 ![Patcher Update completion notice](/img/patcher/tutorials/patcher_update_results.png)  
 
-## Applying a Patch Using Patcher via GitHub Actions  
+## Applying a patch Using Patcher via GitHub Actions  
 
 Choose a directory named: <CustomizableValue id="DIRECTORY" /> in your repository to add a new infrastructure unit. Create a file called `terragrunt.hcl` in that folder with the following content:   
  
