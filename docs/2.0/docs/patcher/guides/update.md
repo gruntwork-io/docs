@@ -1,4 +1,4 @@
-# Patcher Update
+# Patcher update
 
 Starting in `0.4.1`, Patcher applies patches using a Docker sandbox by default and pulls the latest version of the [`gruntwork/patcher_bash_env`](https://hub.docker.com/r/gruntwork/patcher_bash_env) image.  
 
@@ -8,7 +8,7 @@ The `patcher update` command updates some or all module dependencies in the curr
 
 Patcher supports two modes: **interactive mode** and **non-interactive mode**.  
 
-## Interactive Mode
+## Interactive mode
 
 In interactive mode, the `patcher update` command allows you to selectively update dependencies one module at a time.  
 
@@ -41,7 +41,7 @@ When you exit Patcher, it writes the update details to `stdout` in YAML format:
 
 ![Patcher update screenshot showing YAML output](/img/guides/stay-up-to-date/patcher/patcher-update-yaml-output.png)  
 
-### Navigation Commands  
+### Navigation commands  
 
 1. While in the modules view, press `u` to display the usages. This shows all locations where the module is being used:  
 
@@ -56,7 +56,7 @@ If a module, including third-party modules, does not have a `CHANGELOG.md` file,
 ![Patcher no changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-update-no-changelog.png)  
 
 
-## Non-Interactive Mode
+## Non-interactive mode
 
 :::caution  
 
@@ -70,7 +70,7 @@ In non-interactive mode, Patcher updates all module dependencies in the current 
 
 Non-interactive mode supports the `next-safe` and `next-breaking` update strategies.  
 
-### Next Safe (Default)  
+### Next safe (default)  
 
 Using the [next safe update strategy](/2.0/docs/patcher/concepts/update-strategies/#next-safe-update-strategy-default), Patcher updates dependencies to the highest version **before** the next breaking change. If no breaking changes are found, it updates to the latest version of the module.  
 
@@ -84,7 +84,7 @@ Or just
 patcher update --non-interactive --skip-container-runtime prod
 ```
 
-### Next Breaking  
+### Next breaking  
 
 With the [next breaking update strategy](/2.0/docs/patcher/concepts/update-strategies#next-breaking-update-strategy), Patcher updates dependencies to the version containing the breaking change and then stops. If no breaking changes are encountered, it updates to the latest version of the module.  
 
@@ -95,7 +95,7 @@ Example usage:
 patcher update --non-interactive --skip-container-runtime --update-strategy next-breaking prod
 ```
 
-## Support for Third-Party Modules  
+## Support for third-party modules  
 
 Patcher provides full support for third-party modules in both interactive and non-interactive modes, including your own custom modules.  
 
