@@ -1,9 +1,9 @@
 # Update Grouping & Pull Request Strategy
 
 ## Overview
-Enterprise IaC repositories often reuse modules extensively across a single repository. This creates a situation where updating a dependent module version can result in multiple references requiring updates throughout the codebase. Unlike application codebases in environments like Java or Node.js—where a single version bump may involve minimal changes in files such as 'gradle.build' or ‘package.json'—IaC repositories frequently repeat environments and dependencies across folders. This repetition presents a challenge: when a dependency is updated, how should the changes be grouped into pull requests to balance efficiency and manageability?
+Enterprise IaC repositories often reuse modules extensively across a single repository. As a result, updating a dependent module version can require changes in multiple references across the codebase.  Unlike application codebases in environments like Java or Node.js—where a single version bump typically involves updating centralized files such as 'gradle.build' or ‘package.json'—IaC repositories frequently repeat environments and dependencies across folders. This repetition raises a critical question: how should dependency updates be grouped into pull requests to maintain a balance between efficiency and manageability?
 
-The simplest approach is to create one pull request per dependency update. However, this can become unmanageable at scale. Patcher supports this approach but also offers more flexible options for grouping updates. Pull requests can be consolidated based on the following strategies:
+The simplest approach is to create one pull request for each dependency update. While simple, this method can quickly become overwhelming at scale. Patcher supports this approach but also offers more flexible options for grouping updates. Pull requests can be consolidated based on the following strategies:
  
 - **Full-consolidation**: A single pull request updates all dependencies across the repository.
 - **No-consolidation**: A separate pull request is created for each individual update.
