@@ -9,7 +9,7 @@ As of July 2024, Gruntwork officially supports Patcher Promotion Workflows using
 ### Infrastructure as Code  
 To use Patcher Promotion Workflows, your codebase must implement infrastructure as code using Terraform, OpenTofu, and/or Terragrunt.  
 
-### Environments as Folder Structures  
+### Environments as folder structures  
 To support multiple environments (such as `dev`, `stage`, and `prod`), your codebase must represent these environments with a consistent folder structure that can be grouped using glob pattern matching. For example:
 ```sh
 ls
@@ -18,7 +18,7 @@ dev-account1  dev-account2  prod-account1  prod-account2  stage-account1  stage-
 
 Then you would define your environments as `dev-*`, `stage-*`, and `prod-*`.  
 
-## Implementation & Setup Example  
+## Implementation & setup example  
 
 The Patcher Promotion Workflow process consists of a series of GitHub Actions workflow files, where each environment is represented as an individual workflow. The process begins with the lowest environment (typically `dev`). It scans the entire `dev` environment for dependencies that require updates and generates one pull request per dependency. Each pull request updates the dependency specifically in the `dev` environment.  
 
@@ -26,7 +26,7 @@ Once a pull request is approved and merged, it triggers pull requests for the su
 
 To get started quickly, copy and customize the example files below to match your environment names. In this example, the promotion workflow moves updates sequentially across `dev`, `stage`, and finally `prod`.  
 
-### Setting Up the Initial Dev Promotion Step  
+### Setting up the initial dev promotion step  
 
 The initial GitHub Actions workflow file, `update-dev.yml` in this example, highlights the following key components:  
 
@@ -135,7 +135,7 @@ jobs:
           pull_request_branch: "${{ env.PR_BRANCH_PREFIX }}${{ matrix.dependency.ID }}"
 ```
 <!-- spell-checker: enable -->
-### Setting Up the Stage Step  
+### Setting up the stage step  
 
 The `update-stage.yml` workflow file is nearly identical to `update-dev.yml`.  
 
@@ -225,7 +225,7 @@ jobs:
           pull_request_branch: "${{ env.PR_BRANCH_PREFIX }}${{ matrix.dependency.ID }}"
 ```
 
-### Setting Up the Prod Stage  
+### Setting up the prod stage  
 
 The `update-prod.yml` workflow file is nearly identical to `update-stage.yml`.  
 
