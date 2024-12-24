@@ -1,6 +1,6 @@
 # What is a Patcher Patch?
 
-Patcher executes a patch as a set of instructions to automate code transformations. This approach automates the adoption of breaking changes in infrastructure-as-code projects using tools like Terragrunt, OpenTofu, or Terraform. 
+A patch in Patcher is a set of instructions designed to automate code transformations. It enables the seamless adoption of breaking changes in infrastructure-as-code projects, streamlining updates for tools like Terragrunt, OpenTofu, and Terraform.
 
 These instructions are delivered through a `yaml` file in the following format:
 
