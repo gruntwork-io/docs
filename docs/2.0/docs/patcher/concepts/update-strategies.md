@@ -1,4 +1,4 @@
-# Update strategies
+# Update Strategies
 
 Patcher supports two update strategies: **next safe** and **next breaking**. These strategies dictate how Patcher behaves when encountering a breaking change that cannot be automatically patched.
 
