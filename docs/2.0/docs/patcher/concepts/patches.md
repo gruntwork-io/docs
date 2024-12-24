@@ -62,7 +62,9 @@ In the push strategy, Patcher automatically opens pull requests on a schedule yo
 
 ![Patcher PR Example](/img/patcher/pr-example.png)
 
-To enable the push strategy, implement the [Patcher GitHub Action workflow](https://github.com/gruntwork-io/patcher-action). This action provides full control over your upgrade cadence. For safer updates, you can promote changes sequentially through environments like `dev`, `stage`, and `prod`. Refer to our guide on [promotion workflows](/2.0/docs/patcher/guides/promotion-workflows) for more details.
+To enable the push strategy, implement the [Patcher GitHub Action workflow](https://github.com/gruntwork-io/patcher-action). This action provides full control over your upgrade cadence. For safer updates, you can promote changes sequentially through environments like `dev`, `stage`, and `prod`. 
+
+Refer to our guide on [promotion workflows](/2.0/docs/patcher/guides/promotion-workflows) for more details.
 
 ### Update pull strategy
 
