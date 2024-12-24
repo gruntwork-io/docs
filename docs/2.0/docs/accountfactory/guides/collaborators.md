@@ -6,41 +6,41 @@ Delegated Repositories are only available to DevOps Foundations Enterprise custo
 
 ## Introduction
 
-When vending new delegated repositories you can configure a list of GitHub collaborators and permissions that will be added to the new repository.
+When creating new delegated repositories, you can configure a list of GitHub collaborators and their permissions to be added to the repository.
 
 ## Understanding collaborator settings
 
-GitHub collaborators can be defined in [account-factory configuration](/2.0/reference/accountfactory/configurations#github-collaborators).
+GitHub collaborators are defined in the [account-factory configuration](/2.0/reference/accountfactory/configurations#github-collaborators).
 
-Each object in the sequence is a pair of **Team Name** and **Permission**.
+Each collaborator entry consists of a **Team Name** and a **Permission**.
 
-#### Team Name
+#### Team name
 
-Teams must exist within your GitHub Organization where Account Factory is running.
+Teams must exist within the GitHub organization where Account Factory is running.
 
-To find a Team Name navigate to your Organization, and select the Teams tab. The Team Name is the unique identifier for each team.
+To locate a Team Name, navigate to your GitHub organization and select the "Teams" tab. The Team Name is the unique identifier for each team.
 
 ![Screenshot of Team Settings showing Team Name](/img/accountfactory/team-name.png)
 
-In the above screenshot the Team Name is `platform-team`.
+In the example above, the Team Name is `platform-team`.
 
 #### Permission
 
-Permissions directly map to the <span class="external-link"><a href="https://docs.github.com/en/rest/teams/teams?apiVersion=2022-11-28#add-or-update-team-repository-permissions">GitHub Teams API</a></span>
+Permissions correspond to the <span class="external-link"><a href="https://docs.github.com/en/rest/teams/teams?apiVersion=2022-11-28#add-or-update-team-repository-permissions">GitHub Teams API</a></span>. 
 
-The options are `pull`, `triage`, `push`, `maintain`, `admin`, or a custom repository role name, if the your organization has defined any.
+Available options include `pull`, `triage`, `push`, `maintain`, `admin`, or a custom repository role name if defined by your organization.
 
-## Adding collaborators
+## Adding Collaborators
 
-To add a team to new delegated repositories add a new item to the collaborators block in your account factory configuration.
+To add a team to new delegated repositories, include a new entry in the `collaborators` block of your Account Factory configuration.
 
-All collaborators in each account type will be added to new repositories of that type when the repository is created. If you want to add a team to vended repositories of different types you will need to add them in multiple places.
+All collaborators specified for each account type will be added to the repositories of that type when they are created. If a team needs access to repositories of multiple types, you must add them in the configuration for each type.
 
-A common scenario is to create a team for administration that is granted access everywhere, and individual teams for each delegated repository.
+A common practice is to create an administrative team with access to all repositories, along with separate teams for each delegated repository.
 
-For example you might have the existing team `platform-admins`, and two account types `foo` and `bar`. For each account type you would then create a development team that should be granted push access to the repository `foo-devs` and `bar-devs`.
+For example, consider an organization with an administrative team called `platform-admins` and two account types, `foo` and `bar`. For each account type, you might create development teams with push access to their respective repositories, such as `foo-devs` and `bar-devs`.
 
-Your Account Factory configuration would look something like:
+The Account Factory configuration would look like this:
 
 ```yml title="./.gruntwork/config.yml"
 
@@ -62,6 +62,6 @@ pipelines:
 
 ## Updating existing repositories
 
-To update existing repositories you will need to manually make changes to the repository settings.
+To update existing repositories, you must manually modify the repository settings.
 
-See the <span class="external-link"><a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/managing-teams-and-people-with-access-to-your-repository">documentation on GitHub</a></span> for more information.
+Refer to the <span class="external-link"><a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/managing-teams-and-people-with-access-to-your-repository">GitHub documentation</a></span> for detailed instructions.
