@@ -30,7 +30,7 @@ To get started quickly, copy and customize the example files below to match your
 
 The initial GitHub Actions workflow file, `update-dev.yml` in this example, highlights the following key components:  
 
-* **Job Triggers**:  
+* **Job triggers**:  
     * The job is configured to run on a schedule, pull request targets, workflow dispatch, and repository dispatch events.  
         * A **schedule** is optional but recommended for regular updates.  
         * **Workflow dispatch** is a recommended testing mechanism.  
