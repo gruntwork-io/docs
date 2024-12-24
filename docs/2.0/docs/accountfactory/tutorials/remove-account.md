@@ -69,7 +69,7 @@ For accounts created in a separate delegated infrastructure repository:
  
 If an `infrastructure-access-control` repository is part of your setup:
 
-1. Remove the deleted account references from the accounts.yml file.
+1. Remove the deleted account references from the accounts.yml file
 2. Delete the folders for the removed accounts from the repository
 3. Create and merge a Pull Request with [skip ci] in the commit message
 
@@ -81,13 +81,13 @@ If necessary, destroy resources provisioned in the account before closing it:
 2. Remove the folders containing the resources to be destroyed
 3. Commit changes and create a Pull Request, which will trigger Gruntwork Pipelines to destroy the resources upon merging
 
-    :::danger
+:::danger
    
    Make sure you delete the correct resources and back up any data needed for future use.
 
    Do not delete the AWS IAM OIDC provider or IAM roles used by Pipelines in the account to ensure Pipelines can manage resources, including destroying them, before the account is fully closed.
    
-    :::
+  ::
 
 ### 2. Close the account(s) in AWS Organizations
 
