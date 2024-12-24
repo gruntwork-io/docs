@@ -86,7 +86,7 @@ $ patcher update --non-interactive
 ```
 By default, Patcher does not open a pull request. However, changes are visible in version control, allowing you to create pull requests or integrate changes using your IaC workflow
 
-### Examples running `Patcher update`
+### Examples running `patcher update`
 Here is a basic example:
 
 ```bash
