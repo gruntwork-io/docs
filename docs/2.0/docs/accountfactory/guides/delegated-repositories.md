@@ -7,26 +7,27 @@ Vending Delegated Repositories by Account Factory is only available to DevOps Fo
 
 ## Introduction
 
-When using Account Factory to request new account(s) you can chose to Delegate Management of the new accounts(s). This means that a new GitHub repository will be created for the account(s) allowing developer teams to provision their own infrastructure within their accounts.
+When using Account Factory to request new accounts, you can choose to delegate management of the new accounts. Delegating management creates a new GitHub repository for each account, allowing developer teams to manage their own infrastructure within their accounts.
 
-Specific permissions for IaC changes are controlled via IAM roles in your `infrastructure-live-access-control` repository, allowing your infrastructure team to act as a central authority for permissions.
+Specific permissions for IaC changes are managed via IAM roles in your `infrastructure-live-access-control` repository, enabling your infrastructure team to act as a central authority for permissions.
+
 
 ### Step 1 - Update Account Factory settings
 
-Account Factory options are located in `.gruntwork/config.yml`. See a full description of all account factory options in the [configuration reference](/2.0/reference/accountfactory/configurations).
+Account Factory options are defined in the `.gruntwork/config.yml` file. For a full description of all available options, refer to the [configuration reference](/2.0/reference/accountfactory/configurations).
 
-The following options are particularly relevant for delegated repositories and you may want to update them before creating the new account(s):
+The following options are especially relevant for delegated repositories and should be reviewed or updated before creating new accounts:
 
 #### Catalog repositories
 
-Catalog Repositories are what your developer teams will use when running `terragrunt catalog` within their delegated repository. This defaults to your `infrastructure-catalog` repository but you can customize this list and the values will be vended into the newly created repository.
+Catalog repositories are used by developer teams when running `terragrunt catalog` in their delegated repositories. By default, this points to your `infrastructure-catalog` repository, but you can customize the list. These values will be included in the newly created repositories.
 
 [catalog-repositories](/2.0/reference/accountfactory/configurations#catalog-repositories)
 
 
 #### GitHub collaborators
 
-GitHub Collaborators is a list of teams to automatically grant access to the new repository. This is optional to use as you can also manually set up access controls, but we do recommend configuring some teams and permissions to smooth out the vending process.
+GitHub collaborators define the list of teams granted automatic access to the new repository. This is optional, but we recommend configuring teams and permissions to streamline the account vending process.
 
 [github-collaborators](/2.0/reference/accountfactory/configurations#github-collaborators)
 
@@ -34,27 +35,27 @@ GitHub Collaborators is a list of teams to automatically grant access to the new
 
 ### Step 2 - Requesting the account
 
-In a web browser open the file `.github/workflows/account-factory-inputs.html` from your `infrastructure-live-root` repository. This webpage is used to craft the initial account request payload that we will pass to the account factory workflow.
+Open the `.github/workflows/account-factory-inputs.html` file in a web browser from your `infrastructure-live-root` repository. This page is used to generate the initial account request payload for the account factory workflow.
 
-The account name field will be used as the suffix for the GitHub name of the new repository.
+The account name field will be used as the suffix for the GitHub repository name.
 
 ![Screenshot of Account Name](/img/accountfactory/account-name.png)
 
-In the above example a new repository named `infra-live-new-account` will be created. It is important to use a unique name here that will not create a conflict with an existing repository in your GitHub Organization.
+In the above example, a new repository named `infra-live-new-account` will be created. Ensure the account name is unique to avoid conflicts with existing repositories in your GitHub organization.
 
-Fill out the form, and check the box "Delegate Management of Account(s)?"
+Fill out the form and check the "Delegate Management of Account(s)?" option.
 
 ![Screenshot of Delegate Management checkbox](/img/accountfactory/delegate-management.png)
 
-Press Generate and copy the resulting JSON. This is the payload we will pass into the Account Factory workflow.
+Click "Generate" and copy the resulting JSON payload. This payload will be passed to the Account Factory workflow.
 
 <PersistentCheckbox id="vending-delegated-repositories-2" label="Payload Created" />
 
 ### Step 3 - Run the Account Factory workflow
 
-Navigate to the Actions tab in your `infrastructure-live-root` repository and select the Account Factory workflow in the left hand pane.
+Go to the Actions tab in your `infrastructure-live-root` repository and select the Account Factory workflow from the left-hand pane.
 
-Select Run Workflow on the right, and paste the JSON payload into the input. Run the workflow.
+Click "Run Workflow," paste the JSON payload into the input field, and execute the workflow.
 
 ![Screenshot of Account Factory Workflow Dispatch](/img/accountfactory/run-workflow.png)
 
@@ -62,11 +63,11 @@ Select Run Workflow on the right, and paste the JSON payload into the input. Run
 
 ### Step 4 - Merge the Request PR
 
-The result of the Account Factory Workflow run will be a new Pull Request, adding a new YAML file in the `_new-account-requests` directory.
+The Account Factory workflow will generate a new Pull Request, adding a YAML file to the `_new-account-requests` directory.
 
-If everything looks as expected you can merge the pull request. Once the commit is on your main branch Pipelines will begin running a `terragrunt apply` that will create the new account in AWS.
+Review the Pull Request to ensure everything looks correct, then merge it. Once merged into the main branch, Pipelines will automatically run a `terragrunt apply` to create the new account in AWS.
 
-You can view the workflow run on the main branch. Provisioning the account(s) can take around 10 minutes to complete. Once the account has been created another Pull Request will be created in the `infrastructure-live-root` repository to baseline the new account.
+Provisioning typically takes around 10 minutes, but it may vary. Once complete, a new Pull Request will be created in the `infrastructure-live-root` repository to baseline the account.
 
 ![Screenshot of Apply Account Requested Workflow Summary](/img/accountfactory/apply-account-requested-summary.png)
 
@@ -74,41 +75,35 @@ You can view the workflow run on the main branch. Provisioning the account(s) ca
 
 ### Step 5 - Merge the Baseline PR
 
-The new Baseline PR contains required infrastructure for your delegated repository to plan and apply infrastructure changes in AWS, as well as account baselines and account specific infrastructure such as a VPC if configured.
+The Baseline PR includes essential infrastructure for the delegated repository to manage infrastructure changes in AWS, along with account-specific infrastructure like VPCs if configured.
 
-Inspect the baseline PR and merge it into your main branch to continue creating the account.
+Inspect the Baseline PR and merge it into the main branch. This triggers:
 
-This will kick off the following steps:
+- Terragrunt to apply core baselines (security, logs, shared) for the new account(s).
+- Baseline application for the new account(s), creating any requested infrastructure.
+- Pipelines to create the new repository for the account(s), including:
+  - Configuring collaborators from your settings.
+  - Enabling branch protection (may fail on free GitHub plans).
+  - Creating a Pull Request in the new repository with base IaC and Pipelines workflows.
+  - Creating a Pull Request in the `infrastructure-live-access-control` repository for IAM roles.
 
-- Terragrunt will run the core (security, logs, shared) account baselines for the new account(s)
-- Terragrunt will apply baselines for your new account(s) and create the new requested infrastructure.
-- Pipelines will create a new repository for your new account(s). As part of this step pipelines will also:
-    - Set collaborators in the new repository from your configuration
-    - Enable branch protection in the new repository. This step can fail if you are on a free (non paid) GitHub plan.
-
-- Pipelines will create a pull request in this new repository with the base IaC and Pipelines workflows for your new account(s).
-
-- Pipelines will create a pull request against your `infrastructure-live-access-control` repository containing IAM roles for your new repository.
-
-On completion the workflow run will show the following summary, linking to both of the new Pull Requests.
+Upon completion, the workflow run will display a summary linking to the new Pull Requests.
 
 ![Screenshot of Create Delegated Repository Workflow Summary](/img/accountfactory/create-repository-summary.png)
 
-Until the Access Control Pull Request has been merged, the workflows in your new repository will not be able to make infrastructure changes, so it is important to merge this pull request first.
+Merge the Access Control PR before running workflows in the new repository.
 
 <PersistentCheckbox id="vending-delegated-repositories-5" label="Account Baselined and Repository Created" />
 
 ### Step 6 - Merge the Access Control PR
 
-Follow the link to the Access Control Pull Request and review the infrastructure changes in the PR. There are two new roles, `delegated-pipelines-apply-role` and `delegated-pipelines-plan-role` that grant permissions specifically for the new repository.
+Review the Access Control Pull Request, which adds two new roles: `delegated-pipelines-apply-role` and `delegated-pipelines-plan-role`. These roles grant the minimum permissions required to bootstrap the new repository.
 
-These base roles contain the minimum permissions required to merge and apply the bootstrap PR in your new repository.
+To add additional permissions, modify the [iam_policy](/reference/modules/terraform-aws-security/github-actions-iam-role/#iam_policy) block in each role.
 
-You can add additional permissions by adding to the [iam_policy](/reference/modules/terraform-aws-security/github-actions-iam-role/#iam_policy) block in each role.
+Managing these roles through the `infrastructure-live-access-control` repository ensures your platform team retains control over changes in the delegated repository.
 
-Managing these roles via the `infrastructure-live-access-control` repository allows your platform team to maintain full control over the specific change types that can occur in the delegated repository.
-
-Merge the PR and allow Pipelines to apply the terragrunt changes to create the roles in AWS.
+Merge the PR and allow Pipelines to apply the Terragrunt changes, creating the roles in AWS.
 
 <PersistentCheckbox id="vending-delegated-repositories-6" label="Access Control PR Merged and Roles Created" />
 
@@ -116,19 +111,19 @@ Merge the PR and allow Pipelines to apply the terragrunt changes to create the r
 
 Once the Access Control PR has been merged and applied, navigate to the delegated repository and review the Bootstrap PR.
 
-This PR contains the necessary GitHub workflow files for Pipelines to run, as well as terragrunt configuration ready to start deploying new infrastructure.
+This PR contains the necessary GitHub workflow files for Pipelines and Terragrunt configurations to deploy new infrastructure.
 
-Merge this pull request and your delegated repository is read to use.
+Merge the PR, and the delegated repository will be ready for use.
 
 <PersistentCheckbox id="vending-delegated-repositories-7" label="Merge the Delegated Repository Bootstrap PR" />
 
 ### Step 8 - Start adding new infrastructure
 
-To summarize, at this point you will have:
-- Provisioned a new AWS account(s)
-- Applied baselines for the new account(s)
-- Created a new repository to manage infrastructure changes in this account(s)
-- Configured new IAM roles to manage permissions in the delegated repository
-- Bootstrapped the repository ready to add new infrastructure
+At this point, you will have:
+- Provisioned a new AWS account(s).
+- Applied baselines for the new account(s).
+- Created a new repository for managing infrastructure changes in the account(s).
+- Configured new IAM roles for permissions in the delegated repository.
+- Bootstrapped the repository for adding infrastructure.
 
-You can now start adding new infrastructure to the delegated repository.
+You can now begin adding new infrastructure to the delegated repository.
