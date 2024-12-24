@@ -1,8 +1,8 @@
 # Gruntwork Account Factory
 
-Gruntwork Account Factory provides a streamlined approach to o creating AWS accounts with pre-configured best practice baselines.
+Gruntwork Account Factory lets you create new AWS accounts with best-practice baselines.
 
-Enterprise customers benefit from the creation of dedicated Infrastructure as Code repositories for new accounts as part of the vending process.. Central platform teams can automate AWS account creation and efficiently delegate infrastructure management responsibilities to individual teams, ensuring scalability and autonomy.
+Enterprise customers get dedicated Infrastructure as Code repositories for new accounts during the vending process. Central platform teams can automate AWS account creation and delegate infrastructure management to individual teams for scalability and autonomy.
 
 This approach empowers developer teams to self-service deploy infrastructure within the confines of IAM roles managed in a centralized access control repository. The result is a combination of least privilege access to AWS resources and flexible, self-service infrastructure deployment
 
