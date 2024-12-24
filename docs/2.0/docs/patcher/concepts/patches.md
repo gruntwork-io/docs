@@ -31,7 +31,7 @@ Patcher is designed for two key personas:
 - **Module Authors**: Write or update OpenTofu/Terraform modules.
 - **Module Consumers**: Use OpenTofu/Terraform modules created by module authors, typically referenced in Terragrunt units (`terragrunt.hcl` files) or directly in Terraform/OpenTofu code.
 
-## For Module authors
+## For module authors
 
 Module authors often need to introduce breaking changes in their modules, which can create a challenging experience for module consumers who must manually update their code. Patcher simplifies this process by allowing module authors to include a patch YAML file that automates these updates.
 
@@ -51,8 +51,8 @@ Patcher automates updates by applying patches that incorporate breaking changes,
 
 Patches can be applied using one of two strategies:
 
-1. **Push Strategy**: Patcher proactively opens pull requests containing updates.
-2. **Pull Strategy**: Users manually run the Patcher CLI to scan their repository and apply updates.
+1. **Push strategy**: Patcher proactively opens pull requests containing updates.
+2. **Pull strategy**: Users manually run the Patcher CLI to scan their repository and apply updates.
 
 While the implementation details differ, the purpose remains the same: Patcher suggests changes to keep your infrastructure code up to date.
 
@@ -64,7 +64,7 @@ In the push strategy, Patcher automatically opens pull requests on a schedule yo
 
 To enable the push strategy, implement the [Patcher GitHub Action workflow](https://github.com/gruntwork-io/patcher-action). This action provides full control over your upgrade cadence. For safer updates, you can promote changes sequentially through environments like `dev`, `stage`, and `prod`. Refer to our guide on [promotion workflows](/2.0/docs/patcher/guides/promotion-workflows) for more details.
 
-### Update Pull Strategy
+### Update pull strategy
 
 In the pull strategy, users manually invoke the Patcher CLI to scan the repository and apply updates.
 To begin, run the following command in the target repository:
