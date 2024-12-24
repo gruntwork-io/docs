@@ -13,7 +13,7 @@ By default, Account Factory includes the following components:
 
 For detailed instructions on using these components, refer to the [Vending a New AWS Account Guide](/2.0/docs/accountfactory/guides/vend-aws-account).
 
-## Configuring Account Factory
+## Configuring account factory
 
 Account Factory is fully operational for vending new accounts without requiring any configuration changes. However, a [comprehensive reference for all configuration options is available here](/2.0/reference/accountfactory/configurations), allowing you to customize values and templates for generating Infrastructure as Code (IaC) for new accounts.
 
