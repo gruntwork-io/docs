@@ -24,14 +24,14 @@ steps:
 ```
 [View an example patch in the CIS Service Catalog.](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/c3d5ede211fc3230a7d493ceea43622b337ee88a/.patcher/patches/v0.96.4/switch-to-cis-rds-module/patch.yaml)
 
-## Module Consumers and Module Authors
+## Module consumers and module authors
 
 Patcher is designed for two key personas:
 
 - **Module Authors**: Write or update OpenTofu/Terraform modules.
 - **Module Consumers**: Use OpenTofu/Terraform modules created by module authors, typically referenced in Terragrunt units (`terragrunt.hcl` files) or directly in Terraform/OpenTofu code.
 
-## For Module Authors
+## For Module authors
 
 Module authors often need to introduce breaking changes in their modules, which can create a challenging experience for module consumers who must manually update their code. Patcher simplifies this process by allowing module authors to include a patch YAML file that automates these updates.
 
@@ -41,13 +41,13 @@ While module authors have the flexibility to write any command steps for patches
 
 By investing a small amount of additional time in authoring a patch, module authors enable all module consumers to seamlessly adopt breaking changes without manual intervention.
 
-## For Module Consumers
+## For module consumers
 
 Module consumers typically reference specific versions of OpenTofu/Terraform modules to maintain consistency. Over time, as new versions of modules are released, consumer code can become outdated. In cases where updates introduce breaking changes, the code must be edited to ensure compatibility—this is where Patcher proves valuable.
 
 Patcher automates updates by applying patches that incorporate breaking changes, reducing the manual effort required to keep infrastructure code current.
 
-### Two Update Strategies
+### Two update strategies
 
 Patches can be applied using one of two strategies:
 
@@ -56,7 +56,7 @@ Patches can be applied using one of two strategies:
 
 While the implementation details differ, the purpose remains the same: Patcher suggests changes to keep your infrastructure code up to date.
 
-### Update Push Strategy
+### Update push strategy
 
 In the push strategy, Patcher automatically opens pull requests on a schedule you define. Pull requests can be grouped by parameters such as environment or module version. For example:
 
@@ -82,7 +82,7 @@ $ patcher update --non-interactive
 ```
 By default, Patcher does not open a pull request. However, changes are visible in version control, allowing you to create pull requests or integrate changes using your IaC workflow
 
-### Examples Running `patcher update`
+### Examples running `patcher update`
 Here is a basic example:
 
 ```bash
