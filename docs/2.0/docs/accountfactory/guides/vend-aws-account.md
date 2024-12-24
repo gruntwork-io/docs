@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Account Factory Workflow in the `infrastructure-live-root` repository creates new AWS accounts. It requires a single input—a JSON payload—generated from the `account-factory-inputs.html` web page.
+The Account Factory Workflow in your `infrastructure-live-root` repository can be used to create new AWS accounts. It requires a single input—a JSON payload—generated from the `account-factory-inputs.html` web page.
 
 The JSON payload approach provides greater flexibility for account vending, overcoming the GitHub workflow restriction of a 10-input maximum.
 
