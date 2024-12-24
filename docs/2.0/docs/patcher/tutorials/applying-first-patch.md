@@ -78,7 +78,7 @@ You can now inspect the file system to verify the results of the patch. In this 
 
 ![Patcher Update completion notice](/img/patcher/tutorials/patcher_update_results.png)  
 
-## Applying a patch Using Patcher via GitHub Actions  
+## Applying a patch using Patcher via GitHub Actions  
 
 Choose a directory named: <CustomizableValue id="DIRECTORY" /> in your repository to add a new infrastructure unit. Create a file called `terragrunt.hcl` in that folder with the following content:   
  
