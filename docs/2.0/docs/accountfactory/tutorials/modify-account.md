@@ -2,24 +2,25 @@
 
 # Modifying an AWS Account
 
-Managing AWS accounts often involves operations such as requesting new accounts, creating accounts, or renaming them. The Gruntwork Account Factory defines account management tasks that must be handled exclusively through Infrastructure as Code (IaC), others that are limited to ClickOps in the AWS Console, and some that support both methods.
+Managing AWS accounts involves tasks such as requesting new accounts, creating accounts, or renaming them. The Gruntwork Account Factory specifies which account management tasks must be performed exclusively through Infrastructure as Code (IaC), which are restricted to ClickOps in the AWS Console, and which support both methods.
 
-This page provides guidance on which mode (IaC or ClickOps) is appropriate for various AWS account operations. When both options are available, we strongly recommended IaC for consistency, auditability, and reduced manual error.
+This page outlines the appropriate mode (IaC or ClickOps) for various AWS account operations. When both options are available, we strongly recommended IaC for consistency, auditability, and reduced manual error.
+
 
 ## Prerequisites
 
-This page applies to users who are:
-- Actively running Gruntwork Account Factory
-- Have access to an AWS user or IAM Role with administrative permissions to AWS Control Tower
+This page is intended for users who are:
+- Are actively running Gruntwork Account Factory
+- Have access to an AWS user or IAM role with administrative permissions for AWS Control Tower
 
 ## When to use IaC vs. ClickOps
 
-The table below highlights common AWS account operations and provides recommendations on whether to perform them using IaC or the AWS Console. Again, when both approaches are supported, we strongly recommend IaC. For detailed information on each operation, click the operation name in the table.
+The table below lists common AWS account operations and provides guidance on whether to perform them using IaC or the AWS Console. Again, when both methods are supported, we strongly recommend IaC. For detailed information on each operation, click the operation name in the table.
 
-- ✅ means that the operation should or can only be done using the given mode.
-- ❌ means that the operation should not or cannot be done using the given mode.
+- ✅ means that the operation is allowed or only possible in the specified mode.
+- ❌ means the operation is not allowed or possible in the specified mode.
 
-| Management Operation                                                                                                          | Terraform (IaC)  | AWS Console (ClickOps) |
+| Management operation                                                                                                          | Terraform (IaC)  | AWS Console (ClickOps) |
 |-------------------------------------------------------------------------------------------------------------------------------| ---------------- | ---------------------- |
 | [Create a new Organization Unit](https://docs.aws.amazon.com/controltower/latest/userguide/create-new-ou.html) (OU)           | ❌               | ✅                     |
 | [Request a new account](/2.0/docs/accountfactory/guides/vend-aws-account)                                                                                                         | ✅               | ❌                     |
@@ -33,22 +34,21 @@ The table below highlights common AWS account operations and provides recommenda
 | Granting additional users access to accounts in AWS IAM Identity Center                                                       | ✅ (recommended) | ✅ (discouraged)       |
 
 
-### Updating the Account via the new AWS account request file
+### Updating the account through the new AWS account request file
 
 You can update specific attributes of an AWS account by modifying the corresponding account request file in the `_new_account_requests` directory. Follow the steps below to update specific attributes:
 
-#### Steps to Update
+#### Steps to update
 
-1. Begin by creating a new branch to contain your changes.
+1. Create a new branch to contain your changes.
 2. Update the desired attributes:
    - To change the Organizational Unit (OU) name, modify the value of the `organizational_unit_name` key.
    - To update the account admin user, adjust the `sso_user_first_name`, `sso_user_last_name`, and `sso_user_email` keys with the new user's first name, last name, and email.
      
-#### Applying the Updates
+#### Applying the updates
 
 After completing your modifications:
-1. Push the branch containing your changes and create a pull request.
+1. Push the branch with your changes and open a pull request.
 2. Gruntwork Pipelines automatically detects updates and executes a `plan` operation.
-3. Review the output of the `plan` to ensure the changes are accurate and meet expectations.
-4. Once the changes are validated, merge the pull request to apply the updates.
-
+3. Review the `plan` output to confirm the changes are accurate and align with expectations.
+4. Once validated, merge the pull request to apply the updates.
