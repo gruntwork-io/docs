@@ -10,11 +10,11 @@ Delegated Repositories are only available to DevOps Foundations Enterprise custo
 
 When delegated repositories are created using Account Factory, they are granted a minimal set of AWS permissions for managing infrastructure. These permissions are controlled through IAM policies, which are tracked as Infrastructure as Code (IaC) in your `infrastructure-live-access-control` repository. During the account provisioning process, a pull request will be opened in the access control repository to add these policies.
 
-## Adding Permissions
+## Adding permissions
 
 You can add permissions to a role either during the repository creation process by modifying the Access Control Pull Request before merging it or by updating the policies in later updates.
 
-### Customizing a Specific Repository
+### Customizing a specific repository
  
 Each repository includes two sets of IAM policies in your `infrastructure-live-access-control` repository: one for `terragrunt plan` (read-only) and another for `terragrunt apply`.
 
