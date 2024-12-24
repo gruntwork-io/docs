@@ -2,7 +2,7 @@
 
 Patcher `report` generates a list of module dependencies in JSON format.  
 
-## Non-Interactive Mode
+## Non-interactive mode
 Example usage:
 ```
 patcher report prod
