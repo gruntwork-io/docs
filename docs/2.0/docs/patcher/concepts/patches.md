@@ -74,7 +74,9 @@ $ patcher update ./
 ```
 
 By default, the CLI operates interactively, presenting details of available updates:
-![Patcher Update Interactive Mode](/img/patcher/interactive-update.png)
+
+![Patcher Update Interactive Mode](/img/patcher/interactive-update.png).
+
 Alternatively, use `--non-interactive` mode to apply updates automatically:
 
 ```bash
