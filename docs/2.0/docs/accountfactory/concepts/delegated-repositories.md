@@ -10,10 +10,10 @@ As enterprises scale their usage of IaC across multiple teams, the need to enfor
 
 This approach involves a structured pattern that includes: 
 
--  **Centralized `infrastructure-live-root` Repository**  
+-  **Centralized `infrastructure-live-root` repository**  
    Governed by the core platform team, this repository contains IaC for essential security and shared infrastructure. Examples include account creation, central logging/auditing, and networking controls (e.g., GuardDuty, SecurityHub, Macie, Transit Gateway).
 
--  **Team-Specific Delegated Repositories**  
+-  **Team-specific delegated repositories**  
    Named using a convention such as `infrastructure-live-$TEAM_NAME`, these repositories enable individual teams to manage their own IaC. The core platform team creates delegated repositories through the Account Factory. The `infrastructure-live-access-control` system controls access to these repositories, granting teams permissions specific to their infrastructure responsibilities.
 
 By adopting this pattern, core platform teams can:
