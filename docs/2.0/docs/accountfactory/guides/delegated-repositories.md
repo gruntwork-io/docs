@@ -33,6 +33,7 @@ GitHub collaborators define the list of teams granted automatic access to the ne
 
 <PersistentCheckbox id="vending-delegated-repositories-1" label="Settings Up To Date" />
 
+
 ### Step 2 - Requesting the account
 
 Open the `.github/workflows/account-factory-inputs.html` file in a web browser from your `infrastructure-live-root` repository. This page is used to generate the initial account request payload for the account factory workflow.
