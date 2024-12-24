@@ -1,4 +1,4 @@
-# Applying your first patch
+# Applying your First Patch
 import CustomizableValue from '/src/components/CustomizableValue';
 
 ## Prerequisites
@@ -9,13 +9,13 @@ import CustomizableValue from '/src/components/CustomizableValue';
 
 In this tutorial, we will walk through the following steps:  
 
-**Using Patcher Locally**:
+**Using Patcher locally**:
 * Create a new [infrastructure Unit](https://terragrunt.gruntwork.io/docs/getting-started/terminology/#unit) that references a sample OpenTofu module, intentionally specifying an outdated version.  
 * Run `patcher` against the module and review the outputs and options provided.  
 * Instruct `patcher` to apply the patch.  
 * Commit the updated changes.  
 
-**Using Patcher as a GitHub Actions Workflow**:
+**Using Patcher as a GitHub Actions workflow**:
 * Create a new [infrastructure Unit](https://terragrunt.gruntwork.io/docs/getting-started/terminology/#unit) that references a sample OpenTofu module, intentionally specifying an outdated version.  
 * Push the unit to your remote GitHub repository.  
 * Trigger `patcher` to detect the outdated unit and apply the patch.  
