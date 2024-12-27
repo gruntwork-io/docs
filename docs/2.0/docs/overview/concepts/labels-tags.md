@@ -133,11 +133,11 @@ EOF
 }
 ```
 
-### Overriding Tags
+### Overriding tags
 
 Setting tags at the provider level is an effective way to apply consistent tags to all resources. However, there are scenarios where additional tags or overrides to default tag values may be required for specific resources. This section outlines the options for overriding tag values.
 
-#### Per Module
+#### Per module
 
 In some cases, you may need to override tags for a specific resource within a module. This can be achieved by defining the tags in the `provider` block and using the `tags` attribute directly on the resource. For instance, here’s an example of overriding the default tags for an `aws_vpc` resource:
 
