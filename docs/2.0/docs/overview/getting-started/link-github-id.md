@@ -29,7 +29,7 @@ Once your account is linked, the notice on the home page will disappear, and you
 
 Now that you’ve linked your GitHub account, return to the [DevOps Foundations Getting Started Checklist](/2.0/docs/overview/getting-started/index.md) to continue setting up your DevOps Foundations.
 
-## Related Knowledge Base Discussions
+## Related knowledge base discussions
 
 - [I have linked my GitHub Account but do not have code access](https://github.com/orgs/gruntwork-io/discussions/715)
 - [How can I change my GitHub account (unlink/link)?](https://github.com/orgs/gruntwork-io/discussions/713)
