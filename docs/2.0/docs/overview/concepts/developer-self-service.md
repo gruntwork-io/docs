@@ -40,9 +40,9 @@ After replacing the placeholders, commit the new unit and push it to a new Pull 
 
 Adopt a consistent versioning strategy, such as [semantic versioning](https://semver.org/), for all modules in the infrastructure catalog. This approach helps:
 
-- **Track Changes:** Maintain a clear history of updates and modifications.
-- **Enable Rollbacks:** Revert to previous versions if issues arise.
-- **Ensure Clarity:** Use semantic versioning (e.g., v1.2.3) to communicate the scope of changes (major, minor, patch).
+- **Track changes:** Maintain a clear history of updates and modifications.
+- **Enable rollbacks:** Revert to previous versions if issues arise.
+- **Ensure clarity:** Use semantic versioning (e.g., v1.2.3) to communicate the scope of changes (major, minor, patch).
 
 Leverage [Gruntwork Patcher](/2.0/docs/patcher/concepts/) to roll out breaking changes efficiently while minimizing disruptions.
 
@@ -50,28 +50,28 @@ Leverage [Gruntwork Patcher](/2.0/docs/patcher/concepts/) to roll out breaking c
 
 A centralized catalog facilitates consistent tagging and labeling across infrastructure components, enabling:
 
-- **Cost Tracking and Allocation:** Assign costs to specific teams or projects using tags.
-- **Access Control:** Manage and control resource access with tags.
+- **Cost tracking and allocation:** Assign costs to specific teams or projects using tags.
+- **Access control:** Manage and control resource access with tags.
 - **Automation:** Automate tasks such as provisioning, termination, and reporting based on tags.
-- **Monitoring and Alerting:** Group and filter resources for effective monitoring and alerting.
+- **Monitoring and alerting:** Group and filter resources for effective monitoring and alerting.
 
 ### Wrapper modules / services
 
 Use wrapper modules or services to simplify deployments and configurations. Wrappers can:
 
-- **Encapsulate Best Practices:** Integrate security, compliance, and operational standards into reusable modules.
-- **Reduce Boilerplate:** Eliminate repetitive code for developers.
-- **Standardize Deployments:** Ensure consistency and reduce errors across deployments.
-- **Abstract Complexity:** Hide infrastructure complexity, allowing developers to focus on application logic.
+- **Encapsulate best practices:** Integrate security, compliance, and operational standards into reusable modules.
+- **Reduce boilerplate:** Eliminate repetitive code for developers.
+- **Standardize deployments:** Ensure consistency and reduce errors across deployments.
+- **Abstract complexity:** Hide infrastructure complexity, allowing developers to focus on application logic.
 
 
-### Using Stacks to keep developer code DRY
+### Using stacks to keep developer code DRY
 
 Organize infrastructure into stacks to enhance reusability and maintainability. Terragrunt Stacks enable you to:
 
-- **Group Related Resources:** Manage interconnected units as a single entity.
-- **Reduce Code Duplication:** Avoid repeating code across environments or projects.
-- **Promote Modularity:** Break complex infrastructure into manageable components.
-- **Simplify Management:** Deploy, update, and destroy stacks with ease.
+- **Group related resources:** Manage interconnected units as a single entity.
+- **Reduce code duplication:** Avoid repeating code across environments or projects.
+- **Promote modularity:** Break complex infrastructure into manageable components.
+- **Simplify management:** Deploy, update, and destroy stacks with ease.
 
 
