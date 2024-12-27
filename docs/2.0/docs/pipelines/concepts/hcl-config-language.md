@@ -1,6 +1,7 @@
 # Primer on HCL Terminology
 
-HCL is an extensible configuration language developed by HashiCorp. See [this](https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md) for the full specification.
+HCL is an extensible configuration language created by HashiCorp. For the full specification, see [this document](https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md).
+
 
 Example:
 ```hcl
