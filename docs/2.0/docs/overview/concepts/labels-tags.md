@@ -222,11 +222,12 @@ locals {
     Name        = "example"
   }
 
-  # Load a tags.yml file in any Terragrunt folder, or fallback to {} if none is found
-  override_tags     = try(yamldecode(file("${get_terragrunt_dir()}/tags.yml")), {})
+# Load a tags.yml file from any Terragrunt folder, or use an empty map `{}` if no file is found
+override_tags = try(yamldecode(file("${get_terragrunt_dir()}/tags.yml")), {})
 
-  # The final tags to apply to all resources are a merge between the default tags and override tags
-  tags = merge(local.default_tags, local.override_tags)
+# Merge the default tags with the override tags to create the final set of tags applied to all resources
+tags = merge(local.default_tags, local.override_tags)
+
 }
 
 generate "provider" {
@@ -244,7 +245,7 @@ EOF
 
 This setup establishes default tags that apply to all modules while allowing each module to optionally include a `tags.yml` file to define tags for overriding the defaults.
 
-For instance, in `stage/networking/vpc`, you could have a `terragrunt.hcl` file configured as follows:
+For example, in `stage/networking/vpc`, you could have a `terragrunt.hcl` file configured as follows:
 
 ```hcl
 # Include the root terragrunt.hcl config
@@ -253,15 +254,17 @@ include "root" {
 }
 ```
 
-And also in `stage/networking/vpc`, you might have an overrides file called `tags.yml` that looks like this:
+Additionally, in `stage/networking/vpc`, you might include an overrides file named `tags.yml` with the following content:
 
 ```yaml
 Name: vpc-stage
 ```
 
-In `prod/networking/vpc/terragrunt.hcl`, you'd have the exact same contents as the stage one, but in `prod/networking/vpc/tags.yml`, you'd have:
+In `prod/networking/vpc/terragrunt.hcl`, the configuration would remain identical to the stage version. However, in `prod/networking/vpc/tags.yml`, you would specify:
+
 ```yaml
 Name: vpc-prod
 ```
 
-In other words, any of your Terragrunt modules can now include a `tags.yml` file to override the "default" config from the root `terragrunt.hcl`.
+In summary, any of your Terragrunt modules can include a `tags.yml` file to override the "default" configuration inherited from the root `terragrunt.hcl`.
+
