@@ -19,7 +19,7 @@ Before starting, make sure you have:
 - Permissions to create a pull request in the GitHub repository where Pipelines is installed.
 - An existing AWS resource created using Infrastructure as Code (IaC) and Pipelines that you want to destroy. If no resource exists, follow the steps in the [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change) tutorial to create one, which will then be destroyed in this tutorial.
 
-## Destroying with Pipelines
+## Destroying with pipelines
 
 In this section, we explains how to destroy an AWS resource using Pipelines and GitOps workflows. The example used is the S3 bucket created in the [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change) tutorial, but the process applies to any resource you wish to destroy.
 
@@ -34,7 +34,7 @@ In this section, we explains how to destroy an AWS resource using Pipelines and 
 
 2. Create a new branch, commit the changes, and push the branch to your GitHub repository.
 
-### Planning the Destruction
+### Planning the destruction
 
 Create a Pull Request (PR) for the branch you just pushed, targeting `main` (the default branch in your repository).
 
@@ -45,7 +45,7 @@ Gruntwork Pipelines, via GitHub Actions (GHA), will detect the removal of the in
 ![Pipelines Destroy Plan Comment](/img/pipelines/tutorial/pipelines-destroy-plan-comment.png)
 
 
-### Applying the Destruction
+### Applying the destruction
 
 If you are satisfied with the changes shown in the `plan` action, you can proceed to destroy the S3 bucket.
 
