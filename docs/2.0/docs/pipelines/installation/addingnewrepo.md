@@ -33,7 +33,7 @@ Return to your `infrastructure-live-root` repository and follow the `README` ins
 
 Follow the instructions in your `infrastructure-live-root` repository to execute the Bootstrap Workflow. Gruntwork support is available to address any questions that arise. During the workflow execution, you can choose to create the `infrastructure-live-access-control` and `infrastructure-catalog` repositories. These repositories will be created in your GitHub organization using values defined in the workflow configuration.
 
-### Infrastructure Live Access Control
+### Infrastructure live access control
 
 This repository is primarily for Enterprise customers but is recommended for all users. When running the Bootstrap Workflow in your `infrastructure-live-root` repository, select the option to "Bootstrap the infrastructure-access-control repository."
 
