@@ -162,7 +162,7 @@ iam_policy = {
 }
 ```
 
-## Step 4 - Apply the Role
+## Step 4 - Apply the role
 
 Once you’ve customized the role configuration, create a pull request in the `infrastructure-live-access-control` repository. Review and approval of the pull request will ensure the role is applied to the AWS account.
 
@@ -176,7 +176,7 @@ gh pr create --base main --title "feat: Add ECR push role for acme account" --bo
 
 Inspect the pull request thoroughly, review the associated plan output to confirm the role configuration aligns with your requirements, and merge the pull request to apply the changes.
 
-## Step 5 - Configure the Delegated Repository
+## Step 5 - Configure the delegated repository
 
 The configuration of the delegated repository depends on the specific tasks it needs to perform during CI/CD workflows. For basic setups, the GitHub Actions workflow can include a file like the following placed in `.github/workflows/ci.yml`:
 
