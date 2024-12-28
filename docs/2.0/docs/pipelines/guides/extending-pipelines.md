@@ -132,7 +132,7 @@ For example:
 
 At Gruntwork, we are committed to addressing real-world business needs with our documentation. If you require assistance in extending the Pipelines Workflow and are not comfortable following the steps outlined above, please reach out to us at [support@gruntwork.io](mailto:support@gruntwork.io).
 
-## Extending the GitHub Actions
+## Extending GitHub Actions
 
 Beyond extending the top-level workflow, you can also modify the underlying custom GitHub Actions that the workflow employs. This approach allows for precise customization of the behavior of individual Actions to meet your organization's specific requirements.
 
