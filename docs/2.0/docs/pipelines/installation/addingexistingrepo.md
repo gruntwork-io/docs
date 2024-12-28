@@ -1,6 +1,6 @@
 import CustomizableValue from '/src/components/CustomizableValue';
 
-# Adding Pipelines to an existing repository
+# Adding Pipelines to an Existing Repository
 
 This guide provides instructions for installing Gruntwork Pipelines in an existing repository that does not currently have Pipelines configured. It is designed for Gruntwork customers who wish to manage their existing repositories using Pipelines.
 
@@ -13,10 +13,10 @@ This process leverages a new configuration paradigm for Pipelines called ["Pipel
 
 ## Prerequisites
 
-- **Active Gruntwork Subscription**: Ensure your account includes access to Pipelines. Verify access by navigating to the "View team in GitHub" option in the [Gruntwork Developer Portal's account page](https://app.gruntwork.io/account) if you are an admin. From the GitHub team UI, search for "pipelines" under the repositories tab to confirm access.
-- **AWS Credentials**: You need credentials with permissions to create resources in the AWS account where Pipelines will be deployed. This includes creating an OpenID Connect (OIDC) Provider and AWS Identity and Access Management (IAM) roles for Pipelines to use when deploying infrastructure.
+- **Active Gruntwork subscription**: Ensure your account includes access to Pipelines. Verify access by navigating to the "View team in GitHub" option in the [Gruntwork Developer Portal's account page](https://app.gruntwork.io/account) if you are an admin. From the GitHub team UI, search for "pipelines" under the repositories tab to confirm access.
+- **AWS credentials**: You need credentials with permissions to create resources in the AWS account where Pipelines will be deployed. This includes creating an OpenID Connect (OIDC) Provider and AWS Identity and Access Management (IAM) roles for Pipelines to use when deploying infrastructure.
 
-## Setting Up the repository
+## Setting up the repository
 
 ### Account information
 
