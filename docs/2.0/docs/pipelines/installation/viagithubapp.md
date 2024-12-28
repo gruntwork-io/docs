@@ -93,7 +93,7 @@ If the app is unavailable, Pipelines can authenticate using [Machine users](/2.0
 
 The fallback ensures continuity but lacks advanced features offered by the app.
 
-## Initial Installation
+## Initial installation
 
 To install the Gruntwork.io GitHub App in your organization:
 
