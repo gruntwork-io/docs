@@ -52,7 +52,7 @@ Steps:
 For production use, configure a [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) for the `main` branch. At a minimum, enable **Require a pull request before merging** and require at least one reviewer.
 :::
 
-### Create temporary Bootstrap token
+### Create temporary bootstrap token
 
 Generate a classic Personal Access Token (PAT) with `repo` and `workflow` access using your GitHub account. Store this token as a secret named `CUSTOMER_BOOTSTRAP_ACCESS_TOKEN` in the `infrastructure-pipelines` repository.
 
@@ -60,11 +60,11 @@ Generate a classic Personal Access Token (PAT) with `repo` and `workflow` access
 
 Navigate to **Actions** in the newly created repository and run the **Infrastructure Pipelines Bootstrap** workflow. Provide the name of your `infrastructure-live` repository as input. This will create a pull request that you can merge.
 
-### Delete temporary Bootstrap token
+### Delete temporary bootstrap token
 
 Once the repository is successfully bootstrapped, delete the `CUSTOMER_BOOTSTRAP_ACCESS_TOKEN` secret.
 
-## Set up GitHub CI Machine Users and Secrets
+## Set up GitHub CI machine Users and secrets
 
 Pipelines uses two machine users: one for read-only operations and another for elevated privileges. Follow the [Machine Users Guide](/infrastructure-pipelines/security/machine-users) to set up these accounts and configure their access tokens in the appropriate repositories.
 
