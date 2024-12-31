@@ -240,6 +240,10 @@ module "aurora" {
   # instances
   cluster_instances_minutes_between_maintenance_windows = 180
 
+  # A map of tags to apply to the Aurora RDS Cluster. The key is the tag name
+  # and the value is the tag value.
+  cluster_tags = {}
+
   # Copy all the Aurora cluster tags to snapshots. Default is false.
   copy_tags_to_snapshot = false
 
@@ -315,6 +319,10 @@ module "aurora" {
   # accounts to database accounts is enabled. Disabled by default.
   iam_database_authentication_enabled = false
 
+  # A map of tags to apply to the Aurora RDS Instances. The key is the tag name
+  # and the value is the tag value.
+  instance_tags = {}
+
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used
   # if var.storage_encrypted is true. If you leave this null, the default RDS
   # KMS key for the account will be used.
@@ -385,6 +393,21 @@ module "aurora" {
   # default is false, which means the database is only accessible from within
   # the VPC, which is much more secure.
   publicly_accessible = false
+
+  # Whether to enable read replica auto scaling
+  read_replica_scaling_enabled = false
+
+  # Max capacity of the read replica.
+  read_replica_scaling_max_capacity = null
+
+  # The predefine metric type that determine the scaling operation.
+  read_replica_scaling_metric_type = "RDSReaderAverageCPUUtilization"
+
+  # The predefine metric value that determine the scaling operation.
+  read_replica_scaling_metric_value = null
+
+  # Min capacity of the read replica.
+  read_replica_scaling_min_capacity = null
 
   # ARN of a source DB cluster or DB instance if this DB cluster is to be
   # created as a Read Replica.
@@ -589,6 +612,10 @@ inputs = {
   # instances
   cluster_instances_minutes_between_maintenance_windows = 180
 
+  # A map of tags to apply to the Aurora RDS Cluster. The key is the tag name
+  # and the value is the tag value.
+  cluster_tags = {}
+
   # Copy all the Aurora cluster tags to snapshots. Default is false.
   copy_tags_to_snapshot = false
 
@@ -664,6 +691,10 @@ inputs = {
   # accounts to database accounts is enabled. Disabled by default.
   iam_database_authentication_enabled = false
 
+  # A map of tags to apply to the Aurora RDS Instances. The key is the tag name
+  # and the value is the tag value.
+  instance_tags = {}
+
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used
   # if var.storage_encrypted is true. If you leave this null, the default RDS
   # KMS key for the account will be used.
@@ -734,6 +765,21 @@ inputs = {
   # default is false, which means the database is only accessible from within
   # the VPC, which is much more secure.
   publicly_accessible = false
+
+  # Whether to enable read replica auto scaling
+  read_replica_scaling_enabled = false
+
+  # Max capacity of the read replica.
+  read_replica_scaling_max_capacity = null
+
+  # The predefine metric type that determine the scaling operation.
+  read_replica_scaling_metric_type = "RDSReaderAverageCPUUtilization"
+
+  # The predefine metric value that determine the scaling operation.
+  read_replica_scaling_metric_value = null
+
+  # Min capacity of the read replica.
+  read_replica_scaling_min_capacity = null
 
   # ARN of a source DB cluster or DB instance if this DB cluster is to be
   # created as a Read Replica.
@@ -1021,6 +1067,15 @@ Amount of time, in minutes, between maintenance windows of the cluster instances
 <HclListItemDefaultValue defaultValue="180"/>
 </HclListItem>
 
+<HclListItem name="cluster_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the Aurora RDS Cluster. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="copy_tags_to_snapshot" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1174,6 +1229,15 @@ Specifies whether mappings of AWS Identity and Access Management (IAM) accounts 
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="instance_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the Aurora RDS Instances. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1298,6 +1362,51 @@ If you wish to make your database accessible from the public Internet, set this 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="read_replica_scaling_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to enable read replica auto scaling
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="read_replica_scaling_max_capacity" requirement="optional" type="number">
+<HclListItemDescription>
+
+Max capacity of the read replica.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="read_replica_scaling_metric_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The predefine metric type that determine the scaling operation.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;RDSReaderAverageCPUUtilization&quot;"/>
+</HclListItem>
+
+<HclListItem name="read_replica_scaling_metric_value" requirement="optional" type="number">
+<HclListItemDescription>
+
+The predefine metric value that determine the scaling operation.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="read_replica_scaling_min_capacity" requirement="optional" type="number">
+<HclListItemDescription>
+
+Min capacity of the read replica.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="replication_source_identifier" requirement="optional" type="string">
@@ -1509,6 +1618,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.2/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7a8a566a3417ca7fc7784a9307a6a6c0"
+  "hash": "6d998376c9fc7ee1325c474a64bfad4f"
 }
 ##DOCS-SOURCER-END -->
