@@ -1013,7 +1013,7 @@ This PR does NOT introduce any changes that are not backwards compatible or requ
   
 
 - Fix precommit
-- Bumps jqgo due to CVE
+- agents/cloudwatch-agent: Bumps jqgo due to CVE
 
 
 
@@ -1191,12 +1191,9 @@ This PR does NOT introduce any changes that are not backwards compatible or requ
 
 </div>
 
-
-
-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "4a43e39504866868041cfe8e50f8fd86"
+  "hash": "f6d9c4326abd1de6f840b0a0d7489c50"
 }
 ##DOCS-SOURCER-END -->
