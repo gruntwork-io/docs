@@ -144,7 +144,6 @@ The largest number of records that Lambda will retrieve from your event source a
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -153,6 +152,6 @@ The largest number of records that Lambda will retrieve from your event source a
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/sqs-lambda-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "edee06a2e0c20ea785fbc7ade190b7d6"
+  "hash": "19316005582596139ffda3f0ed949f8c"
 }
 ##DOCS-SOURCER-END -->
