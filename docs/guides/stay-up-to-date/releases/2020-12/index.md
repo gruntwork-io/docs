@@ -940,12 +940,9 @@ The `vpc-flow-logs` module has been refactored to use the `private-s3-bucket` mo
 
 </div>
 
-
-
-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "ffa3d966ec5fd4a5ccedd546d10d8384"
+  "hash": "cd59b27ac77961e216d55d63cebbdb0a"
 }
 ##DOCS-SOURCER-END -->

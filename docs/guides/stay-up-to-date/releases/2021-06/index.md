@@ -1166,12 +1166,9 @@ Adds support for tags to the redis module.
 
 </div>
 
-
-
-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "79d4315213420d3e061acd5520fe604f"
+  "hash": "a866c4d243f0eeacc6cce1867c7bfab7"
 }
 ##DOCS-SOURCER-END -->

@@ -201,12 +201,9 @@ https://github.com/gruntwork-io/package-static-assets/pull/3: The `s3-cloudfront
 
 </div>
 
-
-
-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "6301936af182661c703453907ea648e8"
+  "hash": "5ea3562b990b7339841eee52cf2ded96"
 }
 ##DOCS-SOURCER-END -->

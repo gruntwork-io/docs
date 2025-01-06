@@ -1324,12 +1324,9 @@ The new signature for Docker Compose is `docker compose &lt;command&gt;` (Not th
 
 </div>
 
-
-
-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "c1dd4076f6a9378655e2e3811c3d8a15"
+  "hash": "267911595652a8f897b9b66a3ea666b9"
 }
 ##DOCS-SOURCER-END -->

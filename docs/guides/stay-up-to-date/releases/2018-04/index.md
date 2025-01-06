@@ -221,12 +221,9 @@ The main motivation for locking down EC2 metadata is as follows:
 
 </div>
 
-
-
-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "f9a498c617b5237c3ee0933010860c65"
+  "hash": "9047b53c50ab470755b96d9e9b6edcc5"
 }
 ##DOCS-SOURCER-END -->
