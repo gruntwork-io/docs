@@ -30,8 +30,6 @@ This service contains [Terraform](https://www.terraform.io) code to deploy your 
 [the k8-service Gruntwork Helm Chart](https://github.com/gruntwork-io/helm-kubernetes-services/) on to
 [Kubernetes](https://kubernetes.io/) following best practices.
 
-If you want to deploy third-party applications already packaged as Helm Charts, such as those available in [bitnami](https://bitnami.com/stacks/helm), see the [`helm-service`](/reference/services/app-orchestration/helm-service) module.
-
 ![Kubernetes Service architecture](/img/reference/services/app-orchestration/k8s-service-architecture.png)
 
 ## Features
@@ -199,9 +197,8 @@ module "k_8_s_service" {
 
   # Kubernetes ConfigMaps to be injected into the container as volume mounts.
   # Each entry in the map represents a ConfigMap to be mounted, with the key
-  # representing the name of the ConfigMap and the value as a map containing
-  # required mountPath (file path on the container to mount the ConfigMap to)
-  # and optional subPath (sub-path inside the referenced volume).
+  # representing the name of the ConfigMap and the value representing a file
+  # path on the container to mount the ConfigMap to.
   configmaps_as_volumes = {}
 
   # The protocol on which this service's Docker container accepts traffic. Must
@@ -212,10 +209,6 @@ module "k_8_s_service" {
   # The map that lets you define Kubernetes resources you want installed and
   # configured as part of the chart.
   custom_resources = {}
-
-  # A list of custom Deployment annotations, to add to the Helm chart. See:
-  # https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-  deployment_annotations = {}
 
   # The number of canary Pods to run on the Kubernetes cluster for this service.
   # If greater than 0, you must provide var.canary_image.
@@ -269,13 +262,10 @@ module "k_8_s_service" {
   force_destroy_ingress_access_logs = false
 
   # The version of the k8s-service helm chart to deploy.
-  helm_chart_version = "v0.2.18"
+  helm_chart_version = "v0.2.13"
 
-  # Configure the Horizontal Pod Autoscaler (HPA) information for the associated
-  # Deployment. HPA is disabled when this variable is set to null. Note that to
-  # use an HPA, you must have a corresponding service deployed to your cluster
-  # that exports the metrics (e.g., metrics-server
-  # https://github.com/kubernetes-sigs/metrics-server).
+  # Configure the Horizontal Pod Autoscaler information for the associated
+  # Deployment. HPA is disabled when this variable is set to null.
   horizontal_pod_autoscaler = null
 
   # An object defining the policy to attach to `iam_role_name` if the IAM role
@@ -400,10 +390,6 @@ module "k_8_s_service" {
   # values prior to using this variable.
   override_chart_inputs = {}
 
-  # A list of custom Pod annotations, to add to the Helm chart. See:
-  # https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-  pod_annotations = {}
-
   # Seconds to wait after Pod creation before liveness probe has any effect. Any
   # failures during this period are ignored.
   readiness_probe_grace_period_seconds = 15
@@ -438,9 +424,8 @@ module "k_8_s_service" {
 
   # Kubernetes Secrets to be injected into the container as volume mounts. Each
   # entry in the map represents a Secret to be mounted, with the key
-  # representing the name of the Secret and the value as a map containing
-  # required mountPath (file path on the container to mount the Secret to) and
-  # optional subPath (sub-path inside the referenced volume).
+  # representing the name of the Secret and the value representing a file path
+  # on the container to mount the Secret to.
   secrets_as_volumes = {}
 
   # When true, and service_account_name is not blank, lookup and assign an
@@ -453,10 +438,6 @@ module "k_8_s_service" {
   # namespace. Leave as an empty string if you do not wish to assign a Service
   # Account to the Pods.
   service_account_name = ""
-
-  # A list of custom Service annotations, to add to the Helm chart. See:
-  # https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-  service_annotations = {}
 
   # The port to expose on the Service. This is most useful when addressing the
   # Service internally to the cluster, as it is ignored when connecting from the
@@ -600,9 +581,8 @@ inputs = {
 
   # Kubernetes ConfigMaps to be injected into the container as volume mounts.
   # Each entry in the map represents a ConfigMap to be mounted, with the key
-  # representing the name of the ConfigMap and the value as a map containing
-  # required mountPath (file path on the container to mount the ConfigMap to)
-  # and optional subPath (sub-path inside the referenced volume).
+  # representing the name of the ConfigMap and the value representing a file
+  # path on the container to mount the ConfigMap to.
   configmaps_as_volumes = {}
 
   # The protocol on which this service's Docker container accepts traffic. Must
@@ -613,10 +593,6 @@ inputs = {
   # The map that lets you define Kubernetes resources you want installed and
   # configured as part of the chart.
   custom_resources = {}
-
-  # A list of custom Deployment annotations, to add to the Helm chart. See:
-  # https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-  deployment_annotations = {}
 
   # The number of canary Pods to run on the Kubernetes cluster for this service.
   # If greater than 0, you must provide var.canary_image.
@@ -670,13 +646,10 @@ inputs = {
   force_destroy_ingress_access_logs = false
 
   # The version of the k8s-service helm chart to deploy.
-  helm_chart_version = "v0.2.18"
+  helm_chart_version = "v0.2.13"
 
-  # Configure the Horizontal Pod Autoscaler (HPA) information for the associated
-  # Deployment. HPA is disabled when this variable is set to null. Note that to
-  # use an HPA, you must have a corresponding service deployed to your cluster
-  # that exports the metrics (e.g., metrics-server
-  # https://github.com/kubernetes-sigs/metrics-server).
+  # Configure the Horizontal Pod Autoscaler information for the associated
+  # Deployment. HPA is disabled when this variable is set to null.
   horizontal_pod_autoscaler = null
 
   # An object defining the policy to attach to `iam_role_name` if the IAM role
@@ -801,10 +774,6 @@ inputs = {
   # values prior to using this variable.
   override_chart_inputs = {}
 
-  # A list of custom Pod annotations, to add to the Helm chart. See:
-  # https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-  pod_annotations = {}
-
   # Seconds to wait after Pod creation before liveness probe has any effect. Any
   # failures during this period are ignored.
   readiness_probe_grace_period_seconds = 15
@@ -839,9 +808,8 @@ inputs = {
 
   # Kubernetes Secrets to be injected into the container as volume mounts. Each
   # entry in the map represents a Secret to be mounted, with the key
-  # representing the name of the Secret and the value as a map containing
-  # required mountPath (file path on the container to mount the Secret to) and
-  # optional subPath (sub-path inside the referenced volume).
+  # representing the name of the Secret and the value representing a file path
+  # on the container to mount the Secret to.
   secrets_as_volumes = {}
 
   # When true, and service_account_name is not blank, lookup and assign an
@@ -854,10 +822,6 @@ inputs = {
   # namespace. Leave as an empty string if you do not wish to assign a Service
   # Account to the Pods.
   service_account_name = ""
-
-  # A list of custom Service annotations, to add to the Helm chart. See:
-  # https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-  service_annotations = {}
 
   # The port to expose on the Service. This is most useful when addressing the
   # Service internally to the cluster, as it is ignored when connecting from the
@@ -1143,19 +1107,12 @@ map(map(string))
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="configmaps_as_volumes" requirement="optional" type="map(any)">
+<HclListItem name="configmaps_as_volumes" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
-Kubernetes ConfigMaps to be injected into the container as volume mounts. Each entry in the map represents a ConfigMap to be mounted, with the key representing the name of the ConfigMap and the value as a map containing required mountPath (file path on the container to mount the ConfigMap to) and optional subPath (sub-path inside the referenced volume).
+Kubernetes ConfigMaps to be injected into the container as volume mounts. Each entry in the map represents a ConfigMap to be mounted, with the key representing the name of the ConfigMap and the value representing a file path on the container to mount the ConfigMap to.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 <HclGeneralListItem title="Examples">
 <details>
@@ -1166,16 +1123,7 @@ Any types represent complex values of variable type. For details, please consult
 
    Example: This will mount the ConfigMap myconfig to the path /etc/myconfig
    {
-     myconfig = {
-       mount_path = "/etc/myconfig"
-     }
-   }
-   Example: This will mount the ConfigMap myconfig to the path /etc/nginx/nginx.conf
-   {
-     myconfig = {
-       mount_path = "/etc/nginx/nginx.conf"
-       sub_path = "nginx.conf"
-     }
+     myconfig = "/etc/myconfig"
    }
 
 ```
@@ -1218,29 +1166,6 @@ The map that lets you define Kubernetes resources you want installed and configu
      key: value
    EOF
      custom_secret = file("${path.module}/secret.yaml")
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="deployment_annotations" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A list of custom Deployment annotations, to add to the Helm chart. See: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   {
-     "prometheus.io/scrape" : "true"
    }
 
 ```
@@ -1355,13 +1280,13 @@ A boolean that indicates whether the access logs bucket should be destroyed, eve
 The version of the k8s-service helm chart to deploy.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v0.2.18&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v0.2.13&quot;"/>
 </HclListItem>
 
 <HclListItem name="horizontal_pod_autoscaler" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-Configure the Horizontal Pod Autoscaler (HPA) information for the associated Deployment. HPA is disabled when this variable is set to null. Note that to use an HPA, you must have a corresponding service deployed to your cluster that exports the metrics (e.g., metrics-server https://github.com/kubernetes-sigs/metrics-server).
+Configure the Horizontal Pod Autoscaler information for the associated Deployment. HPA is disabled when this variable is set to null.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1716,29 +1641,6 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="pod_annotations" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A list of custom Pod annotations, to add to the Helm chart. See: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   {
-     "prometheus.io/scrape" : "true"
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
 <HclListItem name="readiness_probe_grace_period_seconds" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1843,19 +1745,12 @@ map(map(string))
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="secrets_as_volumes" requirement="optional" type="map(any)">
+<HclListItem name="secrets_as_volumes" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
-Kubernetes Secrets to be injected into the container as volume mounts. Each entry in the map represents a Secret to be mounted, with the key representing the name of the Secret and the value as a map containing required mountPath (file path on the container to mount the Secret to) and optional subPath (sub-path inside the referenced volume).
+Kubernetes Secrets to be injected into the container as volume mounts. Each entry in the map represents a Secret to be mounted, with the key representing the name of the Secret and the value representing a file path on the container to mount the Secret to.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 <HclGeneralListItem title="Examples">
 <details>
@@ -1866,16 +1761,7 @@ Any types represent complex values of variable type. For details, please consult
 
    Example: This will mount the Secret mysecret to the path /etc/mysecret
    {
-     mysecret = {
-       mount_path = "/etc/mysecret"
-     }
-   }
-   Example: This will mount the Secret mysecret to the path /etc/nginx/nginx.conf
-   {
-     mysecret = {
-       mount_path = "/etc/nginx/nginx.conf"
-       sub_path = "nginx.conf"
-     }
+     mysecret = "/etc/mysecret"
    }
 
 ```
@@ -1900,29 +1786,6 @@ The name of a service account to create for use with the Pods. This service acco
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="service_annotations" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A list of custom Service annotations, to add to the Helm chart. See: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   {
-     "prometheus.io/scrape" : "true"
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="service_port" requirement="optional" type="number">
@@ -2050,6 +1913,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/modules/services/k8s-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5dcb8738c45ee25b505195e5c7be5053"
+  "hash": "678279a60b2c2ea193ae65cd7f9af008"
 }
 ##DOCS-SOURCER-END -->
