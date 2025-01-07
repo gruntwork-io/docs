@@ -310,15 +310,6 @@ Any types represent complex values of variable type. For details, please consult
                ttl     = 3600
                records = ["hello-world"]
              }
-             txt-test-docs = {
-               fqdn  = "docs.example.com"
-               type  = "A"
-               alias = {
-                 name                   = aws_elb.main.dns_name
-                 zone_id                = aws_elb.main.zone_id
-                 evaluate_target_health = true
-               }
-             }
            }
        }
    }
@@ -553,6 +544,6 @@ A map of domains to resource arns and hosted zones of the created Service Discov
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/modules/networking/route53/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "6e081d6a215dbb3d3d1cdb98b2d78b26"
+  "hash": "35e481675f7c6098e822cde8305630d1"
 }
 ##DOCS-SOURCER-END -->
