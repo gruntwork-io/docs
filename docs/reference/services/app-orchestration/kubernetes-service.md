@@ -377,6 +377,10 @@ module "k_8_s_service" {
   # the application container.
   liveness_probe_protocol = "HTTP"
 
+  # Limit the maximum number of revisions saved per release. Use 0 for no limit.
+  # Defaults to 0 (no limit).
+  max_history = 0
+
   # The minimum number of pods that should be available at any given point in
   # time. This is used to configure a PodDisruptionBudget for the service,
   # allowing you to achieve a graceful rollout. See
@@ -777,6 +781,10 @@ inputs = {
   # Protocol (HTTP or HTTPS) that the liveness probe should use to connect to
   # the application container.
   liveness_probe_protocol = "HTTP"
+
+  # Limit the maximum number of revisions saved per release. Use 0 for no limit.
+  # Defaults to 0 (no limit).
+  max_history = 0
 
   # The minimum number of pods that should be available at any given point in
   # time. This is used to configure a PodDisruptionBudget for the service,
@@ -1659,6 +1667,15 @@ Protocol (HTTP or HTTPS) that the liveness probe should use to connect to the ap
 <HclListItemDefaultValue defaultValue="&quot;HTTP&quot;"/>
 </HclListItem>
 
+<HclListItem name="max_history" requirement="optional" type="number">
+<HclListItemDescription>
+
+Limit the maximum number of revisions saved per release. Use 0 for no limit. Defaults to 0 (no limit).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
 <HclListItem name="min_number_of_pods_available" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2050,6 +2067,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/modules/services/k8s-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5dcb8738c45ee25b505195e5c7be5053"
+  "hash": "03e22515da02394f1445f96bbe302761"
 }
 ##DOCS-SOURCER-END -->
