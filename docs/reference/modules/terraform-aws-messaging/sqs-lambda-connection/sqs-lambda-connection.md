@@ -52,6 +52,15 @@ module "sqs_lambda_connection" {
   # source at the time of invocation. Defaults to 10 for SQS
   batch_size = 10
 
+  # The maximum amount of time to gather records before invoking the function,
+  # in seconds (between 0 and 300). Only available for stream sources (DynamoDB
+  # and Kinesis) and SQS standard queues.
+  maximum_batching_window_in_seconds = null
+
+  # Limits the number of concurrent instances that the Amazon SQS event source
+  # can invoke. Must be greater than or equal to 2.
+  maximum_concurrency = null
+
 }
 
 
@@ -89,6 +98,15 @@ inputs = {
   # The largest number of records that Lambda will retrieve from your event
   # source at the time of invocation. Defaults to 10 for SQS
   batch_size = 10
+
+  # The maximum amount of time to gather records before invoking the function,
+  # in seconds (between 0 and 300). Only available for stream sources (DynamoDB
+  # and Kinesis) and SQS standard queues.
+  maximum_batching_window_in_seconds = null
+
+  # Limits the number of concurrent instances that the Amazon SQS event source
+  # can invoke. Must be greater than or equal to 2.
+  maximum_concurrency = null
 
 }
 
@@ -135,6 +153,24 @@ The largest number of records that Lambda will retrieve from your event source a
 <HclListItemDefaultValue defaultValue="10"/>
 </HclListItem>
 
+<HclListItem name="maximum_batching_window_in_seconds" requirement="optional" type="number">
+<HclListItemDescription>
+
+The maximum amount of time to gather records before invoking the function, in seconds (between 0 and 300). Only available for stream sources (DynamoDB and Kinesis) and SQS standard queues.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="maximum_concurrency" requirement="optional" type="number">
+<HclListItemDescription>
+
+Limits the number of concurrent instances that the Amazon SQS event source can invoke. Must be greater than or equal to 2.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -144,7 +180,6 @@ The largest number of records that Lambda will retrieve from your event source a
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -153,6 +188,6 @@ The largest number of records that Lambda will retrieve from your event source a
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/sqs-lambda-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "edee06a2e0c20ea785fbc7ade190b7d6"
+  "hash": "1a8186449a8506dae2ea45253e60a0b3"
 }
 ##DOCS-SOURCER-END -->
