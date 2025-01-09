@@ -67,7 +67,7 @@ For additional guidance, see the Terragrunt documentation on [keeping your remot
 
 ### Global variables
 
-A variable hierarchy is typically used, with levels for global variables across accounts/environments, account-specific variables, region-specific variables, and category-specific variables. 
+A variable hierarchy is typically used with different levels for: global variables across accounts/environments, account-specific variables, region-specific variables, and category-specific variables. 
 
 A common approach involves:
 
