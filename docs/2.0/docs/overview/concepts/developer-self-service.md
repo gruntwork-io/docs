@@ -67,7 +67,7 @@ Use wrapper modules or services to simplify deployments and configurations. Wrap
 
 ### Using stacks to keep developer code DRY
 
-Organize infrastructure into stacks to enhance reusability and maintainability. Terragrunt Stacks enable you to:
+Organize infrastructure into [stacks](https://terragrunt.gruntwork.io/docs/features/stacks/) to enhance reusability and maintainability. Terragrunt Stacks enable you to:
 
 - **Group related resources:** Manage interconnected units as a single entity.
 - **Reduce code duplication:** Avoid repeating code across environments or projects.
