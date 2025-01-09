@@ -20,7 +20,7 @@ Gruntwork currently offers several DevOps components:
 * [Pipelines](/2.0/docs/pipelines/concepts/overview.md): A comprehensive CI/CD pipeline for infrastructure code, including guidelines for structuring OpenTofu code and scripts to manage pipeline operations.
 * [Account Factory](/2.0/docs/accountfactory/concepts/): Automated workflows for provisioning new AWS accounts, applying compliance and security baselines, and enforcing infrastructure business rules across multiple accounts.
 * [Patcher](/2.0/docs/patcher/concepts/): Tools for identifying outdated modules in repositories, creating pull requests to update versions, and automatically refactoring code to handle breaking changes without developer intervention.
-* [Library](/2.0/docs/library/concepts/overview): A robust collection of over 300,000 lines of Terraform code modules, providing foundational components such as VPCs, ECS clusters, and S3 buckets for building infrastructure.
+* [Library](/2.0/docs/library/concepts/overview): A robust collection of over 300,000 lines of OpenTofu/Terraform code modules, providing foundational components such as VPCs, ECS clusters, and S3 buckets for building infrastructure.
 
 <!-- * [Catalog]  -- see DEV-628 -->
 <!-- Placeholder for networking/transit gateway details -->
