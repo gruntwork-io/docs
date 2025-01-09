@@ -74,7 +74,7 @@ A common approach involves:
 1. Storing reusable variables at the appropriate level in the hierarchy in `.hcl` files, such as `account.hcl`, `region.hcl`, or `networking.hcl`.
 2. Using [`read_terragrunt_config`](https://terragrunt.gruntwork.io/docs/reference/built-in-functions/#read_terragrunt_config) and [`find_in_parent_folders`](https://terragrunt.gruntwork.io/docs/reference/built-in-functions/#find_in_parent_folders) functions to load variables from the appropriate location in the hierarchy.
 
-For further options, see [Keep your Terragrunt Architecture DRY](https://terragrunt.gruntwork.io/docs/features/keep-your-terragrunt-architecture-dry/).
+For further options, see [includes](https://terragrunt.gruntwork.io/docs/features/includes/).
 
 ### Module defaults
 
