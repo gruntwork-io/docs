@@ -45,7 +45,9 @@ Within each account directory, subfolders represent AWS regions, such as `us-eas
 
 ### Environments
 
-Inside each region folder, you organize resources into environments like `qa`, `stage`, or `prod`. Typically, each environment corresponds to a single AWS Virtual Private Cloud (VPC), providing isolation from other environments within the same account. A `_global` folder may also be included here to define resources shared across environments in the region, such as Route 53 A records, SNS topics, or ECR repositories.
+If you are deploying multiple environments for each region, you might organize units within regions into environments like `qa`, `stage`, or `prod`. Typically, each environment corresponds to a single AWS Virtual Private Cloud (VPC), providing isolation from other environments within the same account. A `_global` folder may also be included here to define resources shared across environments in the region, such as Route 53 A records, SNS topics, or ECR repositories.
+
+Note that many organizations chose to isolate different environments by AWS account, and thus don't have a need for this level of gruanularity.
 
 ### Categories
 
