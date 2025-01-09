@@ -1,4 +1,4 @@
-# Destroying infrastructure with Pipelines
+# Destroying Infrastructure with Pipelines
 
 import CustomizableValue from '/src/components/CustomizableValue';
 
