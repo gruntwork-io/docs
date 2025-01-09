@@ -5,7 +5,7 @@ One common question from customers is how to structure their Terragrunt code eff
 
 ## Separating modules from live infrastructure
 
-We recommend separating the _implementation_ of your Terraform modules from the _usage_ of those modules by placing them in separate repositories. The key benefit of this approach is the ability to version your modules independently and run different versions across environments. For instance, you might use `v1.0.0` of an EKS module in `prod` while testing `v2.0.0` in `stage`. This separation typically involves at least two repositories:
+We recommend separating the _implementation_ of your OpenTofu/Terraform modules from the _usage_ of those modules by placing them in separate repositories. The key benefit of this approach is the ability to version your modules independently and run different versions across environments. For instance, you might use `v1.0.0` of an EKS module in `prod` while testing `v2.0.0` in `stage`. This separation typically involves at least two repositories:
 
 - `modules`: This repository defines reusable modules. Each module acts as a "blueprint" that specifies a particular aspect of your infrastructure.
 - `live`: This repository defines the live infrastructure for each environment (e.g., stage, prod, mgmt). It represents the "houses" built from the "blueprints" in the `modules` repository.
