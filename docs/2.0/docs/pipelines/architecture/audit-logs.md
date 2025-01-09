@@ -1,75 +1,52 @@
-# Audit Logs
+# GitHub Workflows
 
-Gruntwork Pipelines provides an audit log that records which GitHub user performed specific operations in your AWS accounts as a result of a [Pipelines Action](/2.0/docs/pipelines/architecture/actions.md).
+Pipelines integrates with your repositories through GitHub Workflows, leveraging [Reusable Workflows](https://docs.github.com/en/actions/sharing-automations/reusing-workflows) from Gruntwork's [pip
 
-Accessing AWS environments from a CI/CD system often involves assuming temporary credentials using [OpenID Connect (OIDC)](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services). Shared credentials can make it difficult to maintain an accurate record of who performed specific actions in AWS accounts. Gruntwork Pipelines addresses this challenge by using [AWS CloudTrail](https://aws.amazon.com/cloudtrail/) with a naming convention that includes context from the triggering Pipelines Action in GitHub. This approach associates every API operation performed by Pipelines with a GitHub username and a specific pull request or branch, enabling your security team to efficiently investigate access-related issues and analyze individual user actions.
-
-## How it works
-
-Gruntwork Pipelines creates an audit log that tracks which user performed what action in which AWS account. It does this by setting the [AWS STS](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html) session name to include the initiating GitHub username, the Pipelines name, and the pull request or branch that triggered the action. Logging is handled through [AWS CloudTrail](https://aws.amazon.com/cloudtrail/), where session names appear in the `User name` field, making it easy to identify which user performed an action. For information on locating logs, see [where you can find logs](#where-you-can-find-logs) and [querying data](#querying-data).
-
-### What gets logged
-
-Logs are generated for all operations performed by Gruntwork Pipelines across every AWS account. These logs leverage [AWS STS](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html) session names to clearly label sessions with the GitHub username that requested the change and the associated pull request or branch.
-
-Each CloudTrail event linked to API calls from Pipelines [Actions](/2.0/docs/pipelines/architecture/actions.md) includes the session name in the `userIdentity` field. For example, if the GitHub user `SomeUserInYourOrg` initiated the 123rd pull request in your repository, the `userIdentity` field in a corresponding CloudTrail event would provide details such as the following.
-
-```json
-{
-    "eventVersion": "1.09",
-    "userIdentity": {
-        "type": "AssumedRole",
-        "principalId": "xxxxxxxxxxxxxxxxxxxxx:SomeUserInYourOrg-via-GWPipelines@PR-123",
-        "arn": "arn:aws:sts::123456789012:assumed-role/github/SomeUserInYourOrg-via-GWPipelines@PR-123",
-        "accountId": "123456789012",
-        "accessKeyId": "xxxxxxxxxxxx",
-        "sessionContext": {
-            "sessionIssuer": {
-                "type": "Role",
-                "principalId": "xxxxxxxxxxxxxxxxxxxxx",
-                "arn": "arn:aws:iam::123456789012:role/github",
-                "accountId": "123456789012",
-                "userName": "github"
-            },
-            "webIdFederationData": {
-                "federatedProvider": "arn:aws:iam::123456789012:oidc-provider/token.actions.githubusercontent.com",
-                "attributes": {}
-            },
-            "attributes": {
-                "creationDate": "2023-09-25T13:24:17Z",
-                "mfaAuthenticated": "false"
-            }
-        }
-    },
-    ... rest of the CloudTrail event here ...
-}
+```yml
+jobs:
+  GruntworkPipelines:
+    uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines-root.yml@v3
 ```
 
-Due to the 64-character limit for STS session names, the originating repository is not included in the session name. To identify the originating repository, you can search through repositories for commits matching the user and branch/PR-number combination or contact the GitHub user directly.
+## Workflow versioning
 
-By combining this data with a [query service](#querying-data), you can analyze the usage patterns of Gruntwork Pipelines in your AWS accounts using CloudTrail logs.
+Gruntwork follows [Semantic Versioning](https://semver.org/) for `pipelines-workflows` releases. New releases are tracked using git tags in the `v.MAJOR.MINOR.PATCH` format. A major tag, such as `v.MAJOR`, is also maintained and updated to point to the latest release within that major version. For example, when releasing a patch update from `v3.0.1` to `v3.0.2`, the `v3` tag will be updated to reference the newer version.
 
-### Who gets logged
+When referencing a workflow, the version is specified in the `uses` clause. For example: `pipelines-root.yml@v3`. It is recommended to use the major version, such as `v3`, in your workflows to receive the latest fixes and performance improvements. However, you can choose to pin to a specific version if needed.
 
-Pipelines employs a naming scheme that integrates the GitHub user who triggered the Pipelines [Action](/2.0/docs/pipelines/architecture/actions.md) along with the pull request or branch that initiated the action. The AWS STS session name is formatted as follows:  
-`<GitHubUserName>-via-GWPipelines@(PR-<PullRequestNumber>|<branch name>)`.
+## Modifying workflows
 
-#### For pull request events
-When Pipelines runs in response to a pull request event (opened, updated, or reopened), the session name includes the user who made the most recent commit on the branch and the pull request number assigned by GitHub. For instance:
-- If the user `SomeUserInYourOrg` created pull request number `123`, the session name would be:  
-  `SomeUserInYourOrg-via-GWPipelines@PR-123`.
+Changes made to workflows in your repositories only affect the specific repository where the modification occurs. For instance, customizing the `pipelines.yml` workflow in your `infrastructure-live-root` repository will not impact workflows in other repositories, such as delegated repositories.
 
-#### For merged pull requests
-When Pipelines runs after a pull request is merged, the session name reflects the user who performed the merge (e.g., clicked the `merge` button) and the deploy branch name (e.g., `main`). For example:
-- If the user `SomeUserInYourOrg` merged a pull request to the branch `main`, the session name would be:  
-  `SomeUserInYourOrg-via-GWPipelines@main`.
+If you [fork the Gruntwork Workflows](https://docs.gruntwork.io/2.0/docs/pipelines/guides/extending-pipelines#extend-the-github-actions-workflow), you can make changes that affect multiple repositories. Be sure to understand the dependencies between workflows in the `pipelines-workflows` repository and your repositories. The dependencies are detailed below.
 
-## Where you can find logs
+## Workflow dependencies
 
-Gruntwork Pipelines uses AWS CloudTrail to log all actions performed in your AWS accounts. Thanks to the naming scheme, actions initiated by Gruntwork Pipelines are clearly identified in CloudTrail.
+The `pipelines-workflows` repository includes the following reusable workflows:
 
-Accessing and querying CloudTrail data depends on your organization's specific policies and configurations. If you are a Gruntwork Account Factory customer, refer to the documentation on [logging](/2.0/docs/accountfactory/architecture/logging) for details on accessing and querying CloudTrail data.
+- `pipelines-drift-detection.yml` - Used for [Pipelines Drift Detection](/2.0/docs/pipelines/concepts/drift-detection) in all repositories with Drift Detection installed.
+- `pipelines-root.yml` - The core Pipelines workflow for the `infrastructure-live-root` repository, providing core plan/apply functionality and account vending.
+- `pipelines-unlock.yml` - Used to manually unlock state files in all repositories.
+- `pipelines.yml` - The core Pipelines workflow for `infrastructure-live-access-control` and delegated repositories, supporting plan/apply operations.
 
-## Querying data
+In your repositories, the following workflows are typically present:
 
-CloudTrail can be configured to automatically store events in an S3 bucket of your choice. When stored in S3 with proper configuration, access can be restricted to authorized users only. You can query stored data using services such as [Amazon Athena](https://aws.amazon.com/athena/) or forward the data to other logging systems for further analysis.
+#### infrastructure-live-root
+
+- `account-factory.yml` - A standalone workflow independent of `pipelines-workflows`.
+- `pipelines-drift-detection.yml` (Enterprise only) - Uses the Gruntwork `pipelines-drift-detection.yml` workflow.
+- `pipelines-unlock.yml` - Uses the Gruntwork `pipelines-unlock.yml` workflow.
+- `pipelines.yml` - Uses `pipelines-root.yml`.
+- 
+#### infrastructure-live-access-control
+
+- `pipelines-drift-detection.yml` (Enterprise only) - Uses the Gruntwork `pipelines-drift-detection.yml` workflow.
+- `pipelines-unlock.yml` - Uses the Gruntwork `pipelines-unlock.yml` workflow.
+- `pipelines.yml` - Uses `pipelines.yml`.
+
+#### infrastructure-live-delegated ([Vended Delegated Repositories](/2.0/docs/accountfactory/guides/delegated-repositories))
+
+- `pipelines-drift-detection.yml` - Uses the Gruntwork `pipelines-drift-detection.yml` workflow.
+- `pipelines-unlock.yml` - Uses the Gruntwork `pipelines-unlock.yml` workflow.
+- `pipelines.yml` - Uses `pipelines.yml`.
+
