@@ -61,7 +61,7 @@ When determining module sizes, avoid overly large modules, as they can be cumber
 
 ### State management
 
-Gruntwork advises managing state on a per-resource basis. For example, if you have an account named `dev`, within region `us-east-1`, an environment named `dev`, and a Terragrunt module for `networking/vpc` (path: `dev/us-east-1/dev/networking/vpc/terragrunt.hcl`), the corresponding remote state configuration would be `dev/us-east-1/dev/networking/vpc/terraform.tfstate`.
+Gruntwork advises managing state on a per-resource basis. For example, if you have an account named `dev`, within region `us-east-1`, an environment named `dev`, and a Terragrunt unit for `networking/vpc` (path: `dev/us-east-1/dev/networking/vpc/terragrunt.hcl`), the corresponding remote state configuration would be `dev/us-east-1/dev/networking/vpc/tofu.tfstate`.
 
 For additional guidance, see the Terragrunt documentation on [keeping your remote state configuration DRY](https://terragrunt.gruntwork.io/docs/features/keep-your-remote-state-configuration-dry/).
 
