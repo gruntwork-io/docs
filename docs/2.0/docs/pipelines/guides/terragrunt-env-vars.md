@@ -1,28 +1,27 @@
-# Leveraging advanced Terragrunt Features
+# Leveraging Advanced Terragrunt Features
 
 ## Introduction
 
-When Pipelines detects changes to IaC in your infrastructure repositories it will invoke `terragrunt` with a specific set of command line arguments for the detected change. For example for a change to a single unit in a pull request pipelines will `chdir` into the unit directory and invoke `terragrunt plan --terragrunt-non-interactive`.
+When Pipelines detects changes to Infrastructure as Code (IaC) in your repositories, it invokes `terragrunt` with a predefined set of command-line arguments for the detected changes. For instance, if a single unit is modified in a pull request, Pipelines will `chdir` into the unit's directory and execute `terragrunt plan --terragrunt-non-interactive`.
 
-You can inspect the specific command in different scenarios by viewing the logs for a Pipelines workflow run.
+You can view the specific commands used in different scenarios by examining the logs of a Pipelines workflow run.
 
-In some cases you may find that you need to pass additional options to terragrunt to meet your specific needs. All cli options for Terragrunt also have a corresponding Environment Variable that if populated will change Terragrunt behavior.
+In some situations, you may need to provide additional options to `terragrunt` to accommodate specific requirements. Most Terragrunt CLI options have corresponding environment variables that can be set to alter Terragrunt's behavior.
 
-See the full list of available options <span class="external-link"><a href="https://terragrunt.gruntwork.io/docs/reference/cli-options/#cli-options">in the Terragrunt documentation</a></span>.
+Refer to the complete list of available options in the [Terragrunt CLI documentation](https://terragrunt.gruntwork.io/docs/reference/cli-options/#cli-options).
 
-## Adding Environment Variables
+## Adding environment variables
 
 :::note
-For security reasons GitHub workflows do not automatically pass environment variables from the workflows in your repository into the included workflows in Gruntwork repositories, and you will need to add them to the Pipelines configuration file for them to propagate to Terragrunt executions.
+GitHub workflows do not automatically pass environment variables from your repository's workflows into those included from Gruntwork repositories. To propagate environment variables to Terragrunt executions, you must add them to the Pipelines configuration file.
 :::
 
-Pipelines can be configured to pass additional Environment Variables to Terragrunt via the [env configuration option](/2.0/reference/pipelines/configurations#env) in `.gruntwork/config.yml`.
+You can configure Pipelines to pass additional environment variables to Terragrunt using the [env configuration option](/2.0/reference/pipelines/configurations#env) in `.gruntwork/config.yml`.
 
-Each item in the env sequence corresponds to an Environment Variable name and value.
+Each entry in the `env` sequence represents an environment variable name and its value.
 
-For example you may want to add the flag `---terragrunt-strict-include` to your Pipelines Terragrunt runs. To do so you would set the environment variable `TERRAGRUNT_STRICT_INCLUDE` to `true` in your Pipelines configuration.
+For example, to enable the `--terragrunt-strict-include` flag in your Terragrunt runs, set the environment variable `TERRAGRUNT_STRICT_INCLUDE` to `true` in the Pipelines configuration file.
 
-E.g.
 ```yml title=".gruntwork/config.yml"
 pipelines:
     env:
@@ -30,6 +29,6 @@ pipelines:
       value: true
 ```
 
-On the next workflow run you can inspect the workflow logs and look for an env: block on the action executing Terragrunt. If everything is configured correctly you will see your additional Environment Variable has been passed through to the action.
+On the next workflow run, review the workflow logs and locate the `env:` block for the action that executes Terragrunt. If the configuration is correct, your additional environment variable will appear in the `env:` block, confirming it has been successfully passed to the action.
 
 ![Screenshot of additional Environment Variable](/img/pipelines/guides/custom-env-var.png)
