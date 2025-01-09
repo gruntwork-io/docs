@@ -10,7 +10,7 @@ Modern cloud infrastructure involves numerous components, spanning areas such as
 - A streamlined method for integrating components into your environment
 - Ongoing updates to ensure alignment with the latest best practices
 
-When setting up a new DevOps component, users also have access to guidance from Gruntwork subject matter experts. Their support ensures correct implementation within your environment and adaptability to meet evolving needs.
+When setting up a new DevOps component, customers also have access to guidance from Gruntwork subject matter experts. Their support ensures correct implementation within your environment and adaptability to meet evolving needs.
 
 ## Available components
 
@@ -29,6 +29,12 @@ All components are designed with a focus on Terragrunt, OpenTofu/Terraform, GitH
 
 ## Building your own components
 
-Gruntwork DevOps components provide a substantial foundation for modern cloud infrastructure but are not intended to cover every possible need. Users are encouraged to expand upon these components by integrating their own solutions to develop a comprehensive infrastructure.
+Gruntwork DevOps components provide a substantial foundation for modern cloud infrastructure but are not intended to cover every possible need. Customers are encouraged to expand upon these components by integrating their own solutions to develop a comprehensive infrastructure.
 
-Each component in DevOps Foundations is purposefully designed for extensibility and customization. Recognizing that many users are developers, Gruntwork empowers users to create tailored solutions that address their unique requirements, rather than rely solely on pre-built components. Collaboration is a key focus, and Gruntwork actively welcomes user feedback and contributions to continually refine and enhance its offerings.
+Each component in DevOps Foundations is purposefully designed for extensibility and customization. Recognizing that many customers are developers, Gruntwork empowers customers to create tailored solutions that address their unique requirements, rather than rely solely on pre-built components. Collaboration is a key focus, and Gruntwork actively welcomes customer feedback and contributions to continually refine and enhance its offerings.
+
+
+
+
+
+
