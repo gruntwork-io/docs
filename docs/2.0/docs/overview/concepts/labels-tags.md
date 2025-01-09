@@ -81,8 +81,8 @@ The following table outlines recommended tag keys along with descriptions of the
 | Environment      | `acmeco:Environment`| The environment where the resource is deployed. Useful for tracking spend across environments.         |
 | Application      | `acmeco:Application`| Identifies the application associated with the resource. Assists in cost tracking per application.     |
 | CostCenter       | `acmeco:CostCenter` | Monitors costs by cost center.                                                                         |
-| BusinessUnit     | `acmeco:BusinessUnit`| Tracks costs by business unit.                                                                         |
-| Workload Type    | `acmeco:WorkloadType`| Coarse-grained service type (e.g., compute, storage, databases).                                       |
+| BusinessUnit     | `acmeco:BusinessUnit`| Tracks costs by business unit.                                                                        |
+| Workload Type    | `acmeco:WorkloadType`| Coarse-grained service type (e.g., compute, storage, databases).                                      |
 
 ### Cost allocation tags
 
