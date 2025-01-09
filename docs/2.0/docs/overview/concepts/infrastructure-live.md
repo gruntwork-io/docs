@@ -51,7 +51,7 @@ Note that many organizations chose to isolate different environments by AWS acco
 
 ### Categories
 
-Within each environment, resources are grouped by category to maintain logical organization. Categories might include networking (e.g., VPCs), compute (e.g., EC2 instances), or services (e.g., EKS clusters). This categorization facilitates clarity and modularity when deploying infrastructure components.
+Within each environment (or region, if there's a one-to-one mapping of account to environment), resources are grouped by category to maintain logical organization. Categories might include networking (e.g., VPCs), compute (e.g., EC2 instances), or services (e.g., EKS clusters). This categorization facilitates clarity and modularity when deploying infrastructure components.
 
 ### Resources
 
