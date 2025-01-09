@@ -2,29 +2,29 @@
 
 import CustomizableValue from '/src/components/CustomizableValue';
 
-In this tutorial, we’ll walk you through the process of deploying an S3 bucket. This is useful both as a "hello world" for Gruntwork Pipelines and also as the first step to getting you ready for Gruntwork Pipelines usage in production.
+In this tutorial, we will guide you through deploying an S3 bucket. This serves as a "hello world" example for Gruntwork Pipelines and provides the foundation for using Gruntwork Pipelines in a production environment.
 
 ## What you'll get
 
-By the end, you’ll have:
+By the end of this tutorial, you will have:
 
-- An S3 Bucket deployed automatically by Gruntwork Pipelines
+- An S3 bucket deployed automatically using Gruntwork Pipelines.
 
 ## Prerequisites
 
-Before you begin, make sure you have:
+Before starting, ensure you have the following:
 
-- Pipelines installed in a GitHub repository. See [Setup & Installation](/2.0/docs/pipelines/installation/overview) for more information.
-- A sandbox or development AWS account that was set up during the Pipelines installation process
-- Permissions to create a pull request in the GitHub repository where Pipelines is installed
+- Pipelines installed in a GitHub repository. Refer to [Setup & Installation](/2.0/docs/pipelines/installation/overview) for more details.
+- Access to a sandbox or development AWS account configured during the Pipelines installation process.
+- Permissions to create a pull request in the GitHub repository where Pipelines is installed.
 
-## Running your first pipeline
+## Running Your first pipeline
 
-In this section, you’ll create a resource in your AWS account using Pipelines and GitOps workflows by defining a `terragrunt.hcl` file that creates an AWS S3 bucket in your AWS account, pushing your changes and creating a pull request (PR) to run a `plan` action, then merging the PR to run an `apply` action that creates the bucket.
+This section covers creating a resource in your AWS account using Pipelines and GitOps workflows. You will define a `terragrunt.hcl` file to create an AWS S3 bucket, push the changes, create a pull request (PR) to trigger a `plan` action, and merge the PR to run an `apply` action that creates the bucket.
 
 ### Adding a new S3 bucket
 
-1. Create the folder structure that will contain the new S3 bucket in your environment. Replace <CustomizableValue id="ACCOUNT_NAME" /> with the value for the account you are deploying to, and <CustomizableValue id="REGION" /> with the region you would like to deploy the S3 bucket in.
+1. Create the folder structure for the new S3 bucket in your environment. Replace `<CustomizableValue id="ACCOUNT_NAME" />` with the account name you are deploying to and `<CustomizableValue id="REGION" />` with the AWS region where the S3 bucket will be deployed.
 
     ```bash
     mkdir -p $$ACCOUNT_NAME$$/$$REGION$$/$$ACCOUNT_NAME$$/data-storage/s3
@@ -32,7 +32,7 @@ In this section, you’ll create a resource in your AWS account using Pipelines 
     touch $$ACCOUNT_NAME$$/$$REGION$$/$$ACCOUNT_NAME$$/data-storage/s3/terragrunt.hcl
     ```
 
-1. Add the following content to the `region.hcl` file created above
+2. Add the following content to the `region.hcl` file created earlier.
 
     ```hcl title="$$ACCOUNT_NAME$$/$$REGION$$/region.hcl"
     locals {
@@ -40,7 +40,7 @@ In this section, you’ll create a resource in your AWS account using Pipelines 
     }
     ```
 
-2. Add the terragrunt code below to the created `terragrunt.hcl` file to create an S3 bucket . Replace <CustomizableValue id='S3_BUCKET_NAME'/> with your desired bucket name. You may name the bucket whatever you like, just make sure it’s unique.
+2. Add the Terragrunt code below to the newly created `terragrunt.hcl` file to define the S3 bucket. Replace `<CustomizableValue id='S3_BUCKET_NAME'/>` with your desired bucket name. Ensure the bucket name is unique.
 
 
     ```hcl title="$$ACCOUNT_NAME$$/$$REGION$$/$$ACCOUNT_NAME$$/data-storage/s3/terragrunt.hcl"
@@ -63,36 +63,36 @@ In this section, you’ll create a resource in your AWS account using Pipelines 
 
 ### Planning the changes
 
-1. Create a new branch for your changes
-1. Commit the changes to your branch, then push your branch.
-1. Create a PR against `main`(the default branch in your repository). You may follow this GitHub tutorial to [create a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) using your preferred tool of choice.
+1. Create a new branch for your changes.
+2. Commit the changes to your branch and push it.
+3. Create a pull request (PR) against `main` (the default branch in your repository). Refer to this [GitHub tutorial](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) for instructions on creating a PR.
 
-After you create the PR, GitHub Actions (GHA) will automatically run the GHA workflow defined in `/.github/workflows/pipelines.yml` in the repository.
+After creating the PR, GitHub Actions (GHA) will automatically execute the workflow defined in `/.github/workflows/pipelines.yml` in your repository. 
 
-Once complete, Pipelines will add a comment to the PR with a summary of the `terragrunt plan` and a link to the GHA workflow logs.
+Once the workflow completes, Pipelines will post a comment on the PR summarizing the `terragrunt plan` output along with a link to the GHA workflow logs.
 
 ![Pipelines Plan Comment](/img/pipelines/tutorial/pipelines-plan-comment.png)
 
-Click the *View full logs* link see the full output of the Gruntwork pipelines run. You can find the *TerragruntExecute* step to view the full `terragrunt plan` that ran as a result of your changes.
+Click the *View full logs* link to see the complete output of the Gruntwork Pipelines run. Locate the *TerragruntExecute* step to review the full `terragrunt plan` generated by your changes.
 
 ![Pipelines Plan Logs](/img/pipelines/tutorial/pipelines-plan-logs.png)
 
 ### Applying the changes
 
-If you are satisfied with the `terragrunt plan` output then you are ready to merge your PR and create the S3 bucket.
+If you are satisfied with the `terragrunt plan` output, proceed to merge the PR to create the S3 bucket.
 
-Approve the PR and click the `Merge pull request` button to merge the pull request. On merge, Pipelines will automatically run an `apply` action to provision the S3 bucket.
+Approve the PR and click the `Merge pull request` button to complete the merge. Upon merging, Pipelines will automatically execute an `apply` action to provision the S3 bucket.
 
 ![Pipelines Apply Comment](/img/pipelines/tutorial/pipelines-apply-comment.png)
 
-To view the GHA workflow run associated with the merged PR in the progress state before the *Pipelines Apply* is completed and a comment is added to the PR:
+To monitor the GHA workflow run associated with the merged PR while it progresses through the *Pipelines Apply* stage:
 
-1. Navigate to the `main` branch on your repository
-1. Click on the Checks icon, beside the latest commit, at the top of the file explorer
-1. Click `details` next to the Pipelines workflow. This will take you to the `dispatch` job for Pipelines
+1. Navigate to the `main` branch of your repository.
+2. Click the Checks icon next to the latest commit at the top of the file explorer.
+3. Click `details` next to the Pipelines workflow to view the `dispatch` job logs.
 
 ![Find Pipelines Apply Logs](/img/pipelines/tutorial/find-pipelines-apply-logs.png)
 
-Congratulations! You've just used Gruntwork Pipelines and a GitOps workflow to provision resources in AWS. To verify the S3 bucket was created, navigate to the AWS Management Console and check the S3 service for the bucket you created.
+Congratulations! You have successfully used Gruntwork Pipelines and a GitOps workflow to provision an S3 bucket in AWS. To verify the bucket creation, visit the AWS Management Console and check the S3 service for the bucket.
 
-To clean up the resources created in this tutorial, follow instructions in the next tutorial [Destroying infrastructure with Pipelines](/2.0/docs/pipelines/tutorials/destroying-infrastructure#destroying-with-pipelines).
+To clean up the resources created during this tutorial, proceed to the next tutorial: [Destroying infrastructure with Pipelines](/2.0/docs/pipelines/tutorials/destroying-infrastructure#destroying-with-pipelines).
