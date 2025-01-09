@@ -2,7 +2,7 @@
  
 **Gruntwork DevOps Foundations provides a collection of _DevOps components_ that serve as foundational building blocks for constructing best-practice infrastructure.**
 
-Modern cloud infrastructure involves numerous components, spanning areas such as infrastructure pipelines, secrets management, FinOps, and application deployment. Establishing and managing each component independently requires a deep understanding of core infrastructure needs, the development of strategies to address them, the implementation of solutions, and ongoing maintenance. While this process is costly and prone to errors. Gruntwork’s DevOps components addresses these challenges by offering:
+Modern cloud infrastructure involves numerous components, spanning areas such as infrastructure pipelines, secrets management, FinOps, and application deployment. Establishing and managing each component independently requires a deep understanding of core infrastructure needs, the development of strategies to address them, the implementation of solutions, and ongoing maintenance. Gruntwork’s DevOps components addresses these challenges by offering:
 
 - Pre-defined strategic recommendations
 - A curated collection of Infrastructure-as-Code (IaC) modules with comprehensive documentation
