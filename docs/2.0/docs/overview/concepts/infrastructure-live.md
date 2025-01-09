@@ -15,7 +15,7 @@ The next section focuses on structuring the `live` infrastructure repository. St
 
 ## Live infrastructure repository
 
-To achieve an organized codebase optimized for comprehension, scalability, and development speed, Gruntwork recommends a structured approach that organizes Terragrunt modules by account, region, environment, and category.
+To achieve an organized codebase optimized for comprehension, scalability, and development speed, Gruntwork recommends a structured approach that organizes Terragrunt units by account, region, environment, and category.
 
 ### Suggested folder hierarchy
 
