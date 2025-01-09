@@ -1,6 +1,8 @@
 # IaC Platform Choice
 
-Gruntwork's platform is designed for teams adopting OpenTofu and Terragrunt. Our products are compatible with Hashicorp Terraform up to version `1.5.7` (the final open-source licensed version of Terraform). In some cases, we also provide support for other IaC platforms, including Kubernetes, Packer, Docker, and Pulumi.
+Gruntwork's platform is designed for teams adopting OpenTofu and Terragrunt. Our products are compatible with all versions of OpenTofu and Hashicorp Terraform up to version `1.5.7` (the final open-source licensed version of Terraform). In some cases, we also provide support for other IaC platforms, including Kubernetes, Packer, Docker, and Pulumi.
+
+Note that, at times, certain modules will use features only available in later versions of OpenTofu/Terraform, and in those circumstances, the module will pin a minimum version of OpenTofu/Terraform.
 
 ## Do I have to use Terragrunt?
 
