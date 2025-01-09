@@ -1,6 +1,7 @@
 # Primer on HCL Terminology
 
-HCL is an extensible configuration language developed by HashiCorp. See [this](https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md) for the full specification.
+HCL is an extensible configuration language created by HashiCorp. For the full specification, see [this document](https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md).
+
 
 Example:
 ```hcl
@@ -11,32 +12,32 @@ environment "an_environment" {
 }
 ```
 
-The main terminology you need to know to understand the documentation below includes:
+The key terminology to understand the documentation below includes:
 
 ### Blocks
 
-A block is a collection of nested configurations that are defined within curly braces `{}`, immediately after the identifier of the block.
+A block is a collection of nested configurations defined within curly braces `{}`, immediately following the block's identifier.
 
-A `filter` block is nested in the `environment` block in the example above.
+For example, a `filter` block is nested within the `environment` block in the example above.
 
-Blocks come in three variants: `bare`, `labeled` or `fully qualified`.
-<ul>
-<li>The filter block in the above example is `bare` - it has no additional qualification or labelling beyond the name `filter.</li>
+Blocks can be one of three types: `bare`, `labeled`, or `fully qualified`.
 
-<li>The environment block is a `labeled` block, and its label is `an_environment`.</li>
+- The `filter` block in the example is a `bare` block, as it lacks additional qualification or labeling beyond its name, `filter`.
 
-<li>Most terraform you've seen uses `fully qualified` blocks that have both a type and a label. For example, `resource "aws_instance" "my_instance" { ... }` - in this case the type is `aws_instance` and the label is `my_instance`.</li>
+- The `environment` block is a `labeled` block, with `an_environment` as its label.
 
-</ul>
+- Most Terraform configurations use `fully qualified` blocks, which include both a type and a label. For instance, `resource "aws_instance" "my_instance" { ... }` has a type of `aws_instance` and a label of `my_instance`.
+
 
 ### Attributes
 
-An attribute is a key-value pair separated by an `=` that is defined within a block.
+An attribute is a key-value pair separated by `=` and defined within a block.
 
-The `paths` attribute is defined within the `filter` block in the example above.
+For example, the `paths` attribute is defined within the `filter` block in the example above.
+
 
 ### Labels
 
-A label is one or more strings that are used to qualify a block.
+A label is one or more strings used to qualify a block.
 
-The `an_environment` label is used to qualify the `environment` block in the example above.
+For example, the `an_environment` label qualifies the `environment` block in the example above.
