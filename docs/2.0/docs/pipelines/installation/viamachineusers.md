@@ -6,7 +6,7 @@ toc_max_heading_level: 4
 # Setting up Pipelines via GitHub Machine Users
 import PersistentCheckbox from '/src/components/PersistentCheckbox';
 
-Of the [two methods](/2.0/docs/pipelines/installation/authoverview.md) for installing Pipelines, we strongly recommend using the [GitHub App](/2.0/docs/pipelines/installation/viagithubapp.md). However, if the GitHub App cannot be used or if machine users are required as a [fallback](http://localhost:3000/2.0/docs/pipelines/installation/viagithubapp#fallback), this guide outlines how to set up authentication for Pipelines using access tokens and machine users.
+Of the [two methods](/2.0/docs/pipelines/installation/authoverview.md) for installing Gruntwork Pipelines, we strongly recommend using the [GitHub App](/2.0/docs/pipelines/installation/viagithubapp.md). However, if the GitHub App cannot be used or if machine users are required as a [fallback](http://localhost:3000/2.0/docs/pipelines/installation/viagithubapp#fallback), this guide outlines how to set up authentication for Pipelines using access tokens and machine users.
 
 When using GitHub tokens, Gruntwork recommends setting up CI users specifically for Gruntwork Pipelines, separate from human users in your organization. This separation ensures workflows are not disrupted if an employee leaves the company and allows granular permissions to be applied, which may be too restrictive for day-to-day employee use.
 
