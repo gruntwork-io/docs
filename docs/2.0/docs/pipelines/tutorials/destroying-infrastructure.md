@@ -51,6 +51,6 @@ If you are satisfied with the changes shown in the `plan` action then you are re
 Approve and merge the PR to trigger an `apply` action that will destroy the resource in your AWS account.
 
 <!-- Add Image -->
-<!-- ![Pipelines Destroy Apply Comment](/img/pipelines/tutorial/pipelines-destroy-apply-comment.png) -->
+<!--  Pipelines Destroy Apply Comment](/img/pipelines/tutorial/pipelines-destroy-apply-comment.png) -->
 
 Congratulations! You have successfully destroyed an AWS resource using Gruntwork Pipelines and GitOps workflows. To verify the resource has been destroyed, check your AWS management console.
