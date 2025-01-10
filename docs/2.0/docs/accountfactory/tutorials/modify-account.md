@@ -1,5 +1,3 @@
-
-
 # Modifying an AWS Account
 
 Managing AWS accounts involves tasks such as requesting new accounts, creating accounts, or renaming them. The Gruntwork Account Factory specifies which account management tasks must be performed exclusively through Infrastructure as Code (IaC), which are restricted to ClickOps in the AWS Console, and which support both methods.
