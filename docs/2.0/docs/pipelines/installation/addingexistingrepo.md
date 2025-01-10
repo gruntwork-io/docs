@@ -20,7 +20,7 @@ This process leverages a new configuration paradigm for Pipelines called ["Pipel
 
 ### Account information
 
-Create an `accounts.yml` file in the root directory of your repository with the following content. Replace `<CustomizableValue id="AWS_ACCOUNT_NAME" />`, `<CustomizableValue id="AWS_ACCOUNT_ID" />`, and `<CustomizableValue id="AWS_ACCOUNT_EMAIL" />` with the appropriate values for the account you are deploying to. Add additional accounts as needed to manage them with Pipelines.
+Create an `accounts.yml` file in the root directory of your repository with the following content. Replace <CustomizableValue id="AWS_ACCOUNT_NAME" />, <CustomizableValue id="AWS_ACCOUNT_ID" />, and <CustomizableValue id="AWS_ACCOUNT_EMAIL" /> with the appropriate values for the account you are deploying to. Add additional accounts as needed to manage them with Pipelines.
 
     ```yaml title="accounts.yml"
     # required: Name of an account
