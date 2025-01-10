@@ -1,6 +1,6 @@
 # GitHub Workflows
 
-Pipelines integrates with your repositories through GitHub Workflows, leveraging [Reusable Workflows](https://docs.github.com/en/actions/sharing-automations/reusing-workflows) from Gruntwork's [pip
+Pipelines integrates with your repositories through GitHub Workflows, leveraging [Reusable Workflows](https://docs.github.com/en/actions/sharing-automations/reusing-workflows) from Gruntwork's [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository. The workflows in your repositories rely on Gruntwork workflows through the uses clause within a job. This is structured as follows:
 
 ```yml
 jobs:
