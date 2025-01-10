@@ -44,7 +44,6 @@ Gruntwork Pipelines, via GitHub Actions (GHA), will detect the removal of the in
 
 ![Pipelines Destroy Plan Comment](/img/pipelines/tutorial/pipelines-destroy-plan-comment.png)
 
-
 ### Applying the destruction
 
 If you are satisfied with the changes shown in the `plan` action, you can proceed to destroy the S3 bucket.
@@ -52,4 +51,4 @@ If you are satisfied with the changes shown in the `plan` action, you can procee
 Approve and merge the PR to trigger an `apply` action, which will destroy the resource in your AWS account.
 
 <!-- Add Image -->
-<!-- ![Pipelines Destroy Apply Comment](/img/pipelines/tutorial/pipelines-destro
+<!-- [Pipelines Destroy Apply Comment](/img/pipelines/tutorial/pipelines-destro
