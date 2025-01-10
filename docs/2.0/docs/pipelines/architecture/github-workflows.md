@@ -37,7 +37,6 @@ In your repositories, the following workflows are typically present:
 - `pipelines-drift-detection.yml` (Enterprise only) - Uses the Gruntwork `pipelines-drift-detection.yml` workflow.
 - `pipelines-unlock.yml` - Uses the Gruntwork `pipelines-unlock.yml` workflow.
 - `pipelines.yml` - Uses `pipelines-root.yml`.
-- 
 #### infrastructure-live-access-control
 
 - `pipelines-drift-detection.yml` (Enterprise only) - Uses the Gruntwork `pipelines-drift-detection.yml` workflow.
