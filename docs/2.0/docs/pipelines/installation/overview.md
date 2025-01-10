@@ -1,4 +1,4 @@
- # Pipelines Installation Overview
+# Pipelines Installation Overview
 
 Pipelines integrates multiple technologies to deliver a comprehensive CI/CD solution. This guide outlines the available installation methods and their respective use cases.
 
