@@ -37,7 +37,7 @@ Follow the instructions in your `infrastructure-live-root` repository to execute
 
 This repository is primarily for Enterprise customers but is recommended for all users. When running the Bootstrap Workflow in your `infrastructure-live-root` repository, select the option to "Bootstrap the infrastructure-access-control repository."
 
-### Infrastructure modules
+### Infrastructure catalog
 
 The Bootstrap Workflow also creates an empty `infrastructure-catalog` repository. This repository is used to store Terraform/OpenTofu modules authored by your organization for internal use. During the Bootstrap Workflow execution in your `infrastructure-live-root` repository, select the option to "Bootstrap the infrastructure-catalog repository."
 
