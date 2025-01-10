@@ -38,7 +38,7 @@ The change will take effect immediately. If the removed team member has already 
 
 The number of licenses available depends on your subscription level. You can view the total and remaining licenses at the top of the [Team](https://app.gruntwork.io/team) page. If you need to invite more team members than your current license limit allows, you can request additional licenses at a standard monthly rate. Contact sales@gruntwork.io to request more licenses.
 
-## Related knowledge base siscussions
+## Related knowledge base discussions
 
 - [Invitation to the Developer Portal not received](https://github.com/orgs/gruntwork-io/discussions/716)
 - [Trouble logging into the Portal with email](https://github.com/orgs/gruntwork-io/discussions/395)
