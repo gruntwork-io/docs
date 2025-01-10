@@ -29,7 +29,7 @@ The `infrastructure-live-root` repository can be renamed during the bootstrap pr
 
 ## `infrastructure-live-access-control`
 
-The `infrastructure-live-access-control` repository manages access control for your infrastructure and is provisioned during the bootstrap process in the `infrastructure-live-root` repository. While necessary for Enterprise customers, it is recommended for all users.
+The `infrastructure-live-access-control` repository manages access control for your infrastructure and is provisioned during the bootstrap process in the `infrastructure-live-root` repository. While only necessary for Enterprise customers, it is recommended for all users.
 
 This repository handles IAM roles, policies, and permissions for delegated infrastructure management. It allows application engineers to propose access control changes, while a central platform team reviews and approves them.
 
