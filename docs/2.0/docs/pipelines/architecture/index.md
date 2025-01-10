@@ -23,7 +23,7 @@ All other infrastructure managed with Gruntwork software ultimately depends on r
 
 :::tip
 
-The `infrastructure-live-root` repository can be renamed during the bootstrap process, but naming it similarly to `infrastructure-live-root` is recommended for clarity when using Gruntwork documentation. Multiple root repositories can be created if needed, but this increases complexity and operational overhead.
+The `infrastructure-live-root` repository can be renamed during the bootstrap process, but giving it a similar name to `infrastructure-live-root` is recommended for clarity when using Gruntwork documentation. Multiple root repositories can be created if needed, but this increases complexity and operational overhead.
 
 :::
 
