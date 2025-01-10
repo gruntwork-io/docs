@@ -35,10 +35,10 @@ Create an `accounts.yml` file in the root directory of your repository with the 
 
 Create a file named `.gruntwork/gruntwork.hcl` in the root directory of your repository with the following content. This file is used to configure Pipelines for your repository. Update the specified placeholders with the appropriate values:
 
-- `<CustomizableValue id="ENVIRONMENT_NAME" />`: Specify a name that represents the environment being deployed, such as `production`, `staging`, or `development`.
-- `<CustomizableValue id="PATH_TO_ENVIRONMENT" />`: Define the root-relative path to the folder containing the Terragrunt units for the environment. This may match the environment name if a directory in the repository root holds all the Terragrunt units for that environment.
-- `<CustomizableValue id="AWS_ACCOUNT_ID" />`: Enter the AWS Account ID associated with the deployment of Terragrunt units for the specified environment.
-- `<CustomizableValue id="DEPLOY_BRANCH_NAME" />`: Specify the branch name used for deployments, such as `main` or `master`. This branch will trigger the Pipelines apply workflow when changes are merged. Pull requests targeting this branch will trigger the Pipelines plan workflow.
+- <CustomizableValue id="ENVIRONMENT_NAME" />: Specify a name that represents the environment being deployed, such as `production`, `staging`, or `development`.
+- <CustomizableValue id="PATH_TO_ENVIRONMENT" />: Define the root-relative path to the folder containing the Terragrunt units for the environment. This may match the environment name if a directory in the repository root holds all the Terragrunt units for that environment.
+- <CustomizableValue id="AWS_ACCOUNT_ID" />: Enter the AWS Account ID associated with the deployment of Terragrunt units for the specified environment.
+- <CustomizableValue id="DEPLOY_BRANCH_NAME" />: Specify the branch name used for deployments, such as `main` or `master`. This branch will trigger the Pipelines apply workflow when changes are merged. Pull requests targeting this branch will trigger the Pipelines plan workflow.
 
 
 ```hcl title=".gruntwork/gruntwork.hcl"
@@ -158,9 +158,9 @@ This step requires AWS credentials with sufficient permissions to create the nec
 
 Within the *<CustomizableValue id="PATH_TO_ENVIRONMENT" />* directory, create the Terragrunt unit files as described below, updating the following values as needed:
 
-- `<CustomizableValue id="AWS_STATE_BUCKET_PATTERN" />`: Specify the state bucket name or pattern of the state bucket(s) to be used for the environment. The Pipeline roles must have permissions to access the state bucket for storing and retrieving state files.
-- `<CustomizableValue id="AWS_DYNAMO_DB_TABLE" />`: Specify the name of the DynamoDB table used for state locking.
-- `<CustomizableValue id="INFRASTRUCTURE_LIVE_REPO_NAME" />`: Provide the exact name of the repository where Pipelines is being configured.
+- <CustomizableValue id="AWS_STATE_BUCKET_PATTERN" />: Specify the state bucket name or pattern of the state bucket(s) to be used for the environment. The Pipeline roles must have permissions to access the state bucket for storing and retrieving state files.
+- <CustomizableValue id="AWS_DYNAMO_DB_TABLE" />: Specify the name of the DynamoDB table used for state locking.
+- <CustomizableValue id="INFRASTRUCTURE_LIVE_REPO_NAME" />: Provide the exact name of the repository where Pipelines is being configured.
 
 <details>
 <summary>OIDC Provider</summary>
@@ -424,7 +424,7 @@ If you encounter issues with the plan or apply steps due to the presence of othe
 
 #### Commit and push the changes
 
-Create a new branch and commit all changes, including **`[skip ci]`** in the commit message to prevent triggering the Pipelines workflow. Push the changes to the repository, create a Pull Request, and merge the changes into the `<CustomizableValue id="DEPLOY_BRANCH_NAME" />` branch specified in the `.github/workflows/pipelines.yml` file.
+Create a new branch and commit all changes, including **`[skip ci]`** in the commit message to prevent triggering the Pipelines workflow. Push the changes to the repository, create a Pull Request, and merge the changes into the <CustomizableValue id="DEPLOY_BRANCH_NAME" /> branch specified in the `.github/workflows/pipelines.yml` file.
 
 ## Enable GitHub authentication for pipelines
 
