@@ -10,9 +10,6 @@ By default, Gruntwork Pipelines runs a `plan` on every push to a PR and an `appl
 - **Require approvals**: Enable this to require at least one approval before merging. Optionally, configure more than one required approval.
 - **Require review from code owners**: Enable this for controlled reviews of specific code areas. For more details, see [GitHub Documentation](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners).
 - **Require status checks to pass before merging**: Enable this to ensure the `apply` does not run if the `plan` fails, or if organizational validation rules fail.
-  :::info
-    This setting ensures that no changes are applied without passing validations and status checks.
-  :::
 - **Require branches to be up to date before merging**: Enable this and select the `Pipelines` workflow as required.
   :::info
     This prevents running an inaccurate `apply` by ensuring the PR is up-to-date. However, it increases GitHub Actions minute usage. If disabled, another PR merged into `main` after the `plan` could lead to an inaccurate `apply`. Evaluate whether this tradeoff aligns with your organization's risk tolerance.
