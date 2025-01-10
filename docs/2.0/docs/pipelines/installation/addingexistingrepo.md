@@ -400,7 +400,7 @@ Additionally, note that the IAM permissions outlined above do not include permis
 
 Repeat this step for each environment you would like to manage with Pipelines.
 
-#### Create the OIDC Resources
+#### Create the OIDC resources
 
 Use your personal AWS access to execute the following commands to deploy the infrastructure for the Terragrunt units created in the previous step. Repeat this process for each account you plan to manage with Pipelines.
 
