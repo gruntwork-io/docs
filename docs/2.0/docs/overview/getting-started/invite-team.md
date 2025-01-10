@@ -26,7 +26,7 @@ The change will take effect immediately. Team members who have already accepted 
 
 ## Removing team members
 
-Remove team members to free up licenses when they no longer require access to Gruntwork resources. You can also revoke pending invitations using the same process. Once removed, the user will no longer be able to sign in to the Gruntwork Developer Portal or access resources such as the IaC Library or Teachable video training courses.
+Remove team members to free up licenses when they no longer require access to Gruntwork resources. You can also revoke pending invitations using the same process. Once removed, the user will no longer be able to sign in to the Gruntwork Developer Portal or access resources such as the IaC Library or Kodekloud video training courses.
 
 1. Locate the team member you wish to remove in the table.
 2. Hover over the row and click the red remove button on the right.
