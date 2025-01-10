@@ -120,7 +120,7 @@ Generate the following tokens in the `ci-user` GitHub account:
 
 
 #### INFRA_ROOT_WRITE_TOKEN
-This fine-grained token allows GitHub Actions to clone `infrastructure-live-root`, open pull requests, and update comments. Assign the following permissions to the `infrastructure-live-root` repository:
+This [fine-grained](#fine-grained) token allows GitHub Actions to clone `infrastructure-live-root`, open pull requests, and update comments. Assign the following permissions to the `INFRA_ROOT_WRITE_TOKEN` for the `infrastructure-live-root` repository:
 
 - Content: Read & write
 - Issues: Read & write
