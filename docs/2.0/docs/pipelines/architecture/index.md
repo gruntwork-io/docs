@@ -35,7 +35,7 @@ This repository handles IAM roles, policies, and permissions for delegated infra
 
 ### Workflows
 
-- **Pipelines:** Manages access control infrastructure in response to changes in the repository. The workflow is mostly read-only when proposing changes but can apply approved changes.
+- **Pipelines:** Provisions access control infrastructure in response to changes in the repository.
 
 :::info
 
