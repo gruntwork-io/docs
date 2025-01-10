@@ -16,7 +16,7 @@ Labels are used to consistently name resources across your AWS accounts. A stand
 
 Gruntwork advises adopting a labeling scheme that includes key attributes such as the organization name, environment, application name, workload-specific identifier, and AWS region. These attributes should be separated by hyphens for clarity. For example, `${organization}-${environment}-${application}-${identifier}-${region}`.
 
-To avoid exceeding AWS resource name length limits, use shorthand where appropriate. For instance, `gruntwork` can be abbreviated to `gw`, `production` to `prd`, and `us-west-2` to `uw2`.
+To avoid exceeding AWS resource name length limits, use shorthand where appropriate and easily understood. For instance, `gruntwork` can be abbreviated to `gw`, `production` to `prd`, and `us-west-2` to `uw2`.
 
 | Descriptor | Example | Rationale |
 | ---------- | ------- | -------- |
