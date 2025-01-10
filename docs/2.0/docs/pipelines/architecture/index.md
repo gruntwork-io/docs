@@ -46,7 +46,7 @@ Delegated infrastructure management allows developers to manage infrastructure i
 
 ## `infrastructure-catalog`
 
-The `infrastructure-catalog` repository stores OpenTofu/Terraform modules created for internal use. It is provisioned during the bootstrap process in the `infrastructure-live-root` repository.
+The `infrastructure-catalog` repository stores OpenTofu/Terraform modules created for internal use. It is optionally provisioned during the bootstrap process of the `infrastructure-live-root` repository.
 
 This repository is optional but recommended for managing reusable infrastructure code. Customers often combine Gruntwork modules with custom modules stored here to extend functionality.
 
