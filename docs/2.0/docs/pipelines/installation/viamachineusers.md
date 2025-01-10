@@ -103,7 +103,7 @@ Using a single machine user for all tokens poses security risks by granting broa
 ### ci-user
 The `ci-user` orchestrates workflows, opens pull requests, and comments on pull requests. This user requires two fine-grained GitHub [Personal Access Tokens (PATs)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens).
 
-**Invite ci-user to your repositories**
+**Invite `ci-user` to your repositories**
 
 Ensure `ci-user` has write access to `infrastructure-live-root` and `infrastructure-live-access-control`.
 
