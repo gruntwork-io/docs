@@ -222,12 +222,11 @@ locals {
     Name        = "example"
   }
 
-# Load a tags.yml file from any Terragrunt folder, or use an empty map `{}` if no file is found
-override_tags = try(yamldecode(file("${get_terragrunt_dir()}/tags.yml")), {})
-
-# Merge the default tags with the override tags to create the final set of tags applied to all resources
-tags = merge(local.default_tags, local.override_tags)
-
+  # Load a tags.yml file from any Terragrunt folder, or use an empty map `{}` if no file is found
+  override_tags = try(yamldecode(file("${get_terragrunt_dir()}/tags.yml")), {})
+  
+  # Merge the default tags with the override tags to create the final set of tags applied to all resources
+  tags = merge(local.default_tags, local.override_tags)
 }
 
 generate "provider" {
