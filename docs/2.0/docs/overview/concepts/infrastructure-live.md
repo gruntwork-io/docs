@@ -31,7 +31,7 @@ account
           └ resource
 ```
 
-A comprehensive example of this folder structure is available in our [`infrastructure-live` repository](https://github.com/gruntwork-io/terragrunt-infrastructure-live-example).
+A comprehensive example of this folder structure is available in our [example `infrastructure-live` repository](https://github.com/gruntwork-io/terragrunt-infrastructure-live-example).
 
 The following sections break down each level of the folder structure and explain their purpose.
 
