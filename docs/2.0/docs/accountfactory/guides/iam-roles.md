@@ -8,30 +8,30 @@ Delegated Repositories are only available to DevOps Foundations Enterprise custo
 
 ## Introduction
 
-When delegated repositories are vended from Account Factory they will be granted a minimal set of permissions in AWS to manage infrastructure. These permissions are controlled by IAM policies, tracked as IaC in your `infrastructure-live-access-control` repository. As part of the account provisioning process a pull request will be opened in the access control repository to add these policies.
+When delegated repositories are created using Account Factory, they are granted a minimal set of AWS permissions for managing infrastructure. These permissions are controlled through IAM policies, which are tracked as Infrastructure as Code (IaC) in your `infrastructure-live-access-control` repository. During the account provisioning process, a pull request will be opened in the access control repository to add these policies.
 
-## Adding Permissions
+## Adding permissions
 
-You can add permissions to a role when the repository is created by modifying the Access Control Pull Request before it is merged, or by updating the policies in later updates.
+You can add permissions to a role either during the repository creation process by modifying the Access Control Pull Request before merging it or by updating the policies in later updates.
 
-### Customizing a Specific Repository
+### Customizing a specific repository
+ 
+Each repository includes two sets of IAM policies in your `infrastructure-live-access-control` repository: one for `terragrunt plan` (read-only) and another for `terragrunt apply`.
 
-Each repository will have two sets of policies in your `infrastructure-live-access-control`, one used for `terragrunt plan` that should be read only, and another for `terragrunt apply`.
-
-To locate these policies, navigate to your `infrastructure-live-access-control` repository. The two terragrunt units for a given repository will be located in the following locations:
+To locate these policies, go to your `infrastructure-live-access-control` repository. The two Terragrunt units for a specific repository are located at the following paths:
 
 - Plan role: <CustomizableValue id="DELEGATED_REPOSITORY_NAME" />`/_global/delegated-pipelines-plan-role/terragrunt.hcl`
 
 - Apply role: <CustomizableValue id="DELEGATED_REPOSITORY_NAME" />`/_global/delegated-pipelines-apply-role/terragrunt.hcl`
 
-At the end of each terragrunt file you will find the following block
+At the end of each Terragrunt file, you will find the following block:
 
 ```hcl
 iam_policy = {
 }
 ```
 
-You can add additional policies granting permissions to this repository here. For example, to add read only ec2 permissions to the `plan` role you would add the following:
+You can add additional policies to grant permissions to the repository in this section. For example, to provide read-only EC2 permissions to the `plan` role, add the following:
 
 ```hcl
 iam_policy = {
@@ -60,10 +60,10 @@ iam_policy = {
 
 See the full description of the `iam_policy` input [in the library reference](/reference/modules/terraform-aws-security/github-actions-iam-role/#iam_policy).
 
-### Customizing All Delegated Repositories
+### Customizing all delegated repositories
+ 
+To add IAM roles to all delegated repositories, modify the base roles located in `_envcommon/landingzone/delegated-pipelines-plan-role.hcl` and `_envcommon/landingzone/delegated-pipelines-apply-role.hcl`.
 
-To add IAM roles to all delegated repositories you can modify the base roles in `_envcommon/landingzone/delegated-pipelines-plan-role.hcl` and `_envcommon/landingzone/delegated-pipelines-apply-role.hcl`.
+These HCL files include an `iam_policy` block, which is pre-populated with the necessary policies for Terragrunt to store state and perform basic plans and applies.
 
-These HCL files also contain a `iam_policy` block which is already populated with the necessary policies for terragrunt to store state and perform bare-bones plans and applies.
-
-You can expand this block by adding new policy descriptions, and they will be granted to all delegated repositories.
+You can extend this block by adding new policy descriptions, which will then apply to all delegated repositories.
