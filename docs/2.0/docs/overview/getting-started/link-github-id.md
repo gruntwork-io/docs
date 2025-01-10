@@ -14,7 +14,7 @@ Gruntwork provides all code included in your subscription through GitHub. To acc
 
 :::info
 
-Once your account is linked, the notice on the home page will disappear, and your GitHub ID will be recorded in your [Profile Settings](https://app.gruntwork.io/settings/profile). You will then have access to all private repositories included in your subscription. If you haven’t done so already, we strongly recommend [adding an SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) to your GitHub account. This is required to access the Gruntwork IaC library without entering a password in your Terraform code.
+Once your account is linked, the notice on the home page will disappear, and your GitHub ID will be recorded in your [Profile Settings](https://app.gruntwork.io/settings/profile). You will then have access to all private repositories included in your subscription. If you haven’t done so already, we strongly recommend [adding an SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) to your GitHub account. This is required to access the Gruntwork IaC library without entering a password in your OpenTofu/Terraform code.
 
 :::
 
