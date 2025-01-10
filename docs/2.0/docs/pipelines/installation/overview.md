@@ -4,7 +4,7 @@ Pipelines integrates multiple technologies to deliver a comprehensive CI/CD solu
 
 ## Installation as part of DevOps Foundations
 
-Customers using DevOps Foundations benefit from a guided setup process that includes the complete installation of Pipelines. This process is facilitated by a Gruntwork solutions engineer and includes the following steps:
+Customers using DevOps Foundations benefit from a guided setup process that includes the complete installation of Gruntwork Pipelines. This process is facilitated by a Gruntwork solutions engineer and includes the following steps:
 
 1. Creating a new `infrastructure-live-root` repository from the [`infrastructure-live-root-template`](https://github.com/gruntwork-io/infrastructure-live-root-template) template.
 2. Installing the [Gruntwork.io GitHub App](https://github.com/apps/gruntwork-io) on the `infrastructure-live-root` repository or across the entire organization. For detailed instructions, refer to [this guide](/2.0/docs/pipelines/installation/viagithubapp).
