@@ -7,7 +7,7 @@ Understanding the components and their structure will help you use Pipelines and
 
 ## `infrastructure-live-root`
 
-The `infrastructure-live-root` repository serves as the root of your infrastructure and is provisioned using the [infrastructure-live-root-template](https://github.com/gruntwork-io/infrastructure-live-root-template).
+The `infrastructure-live-root` repository serves as the root of your infrastructure and is provisioned using the [infrastructure-live-root-template](https://github.com/gruntwork-io/infrastructure-live-root-template) template repository.
 
 This repository is where you manage sensitive resources such as the Landing Zone and Organization services for AWS. Typically, access to this repository is restricted to a small group of trusted users.
 
