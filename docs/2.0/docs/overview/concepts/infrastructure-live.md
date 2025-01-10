@@ -11,7 +11,7 @@ We recommend separating the _implementation_ of your OpenTofu/Terraform modules 
 - `live`: This repository defines the live infrastructure for each environment (e.g., stage, prod, mgmt). It represents the "houses" built from the "blueprints" in the `modules` repository.
 
 
-The next section focuses on structuring the `live` infrastructure repository. Structuring the `modules` repository is beyond the scope of this document.
+The next section focuses on structuring the `live` infrastructure repository.
 
 ## Live infrastructure repository
 
