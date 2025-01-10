@@ -14,7 +14,7 @@ By completing these steps, you will have a GitHub repository configured to deplo
 
 ## Installation via manual setup
 
-For users not leveraging DevOps Foundations or needing Pipelines for a standalone repository with existing Terragrunt configurations, Pipelines can be installed as an independent GitHub Actions workflow.
+For users not leveraging DevOps Foundations or needing Gruntwork Pipelines for a standalone repository with existing Terragrunt configurations, Gruntwork Pipelines can be installed as an independent GitHub Actions workflow.
 
 To learn more about this process, consult the documentation for [Adding Pipelines to an Existing Repository](/2.0/docs/pipelines/installation/addingexistingrepo).
 
