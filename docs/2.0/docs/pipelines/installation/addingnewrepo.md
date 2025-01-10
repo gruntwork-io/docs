@@ -7,7 +7,7 @@ To configure Gruntwork Pipelines in a new repository, complete the following ste
 3. Update the Bootstrap Workflow to configure your AWS settings.
 4. Execute the Bootstrap Workflow in your `infrastructure-live-root` repository to generate pull requests and additional repositories.
 
-## Creating infrastructure live root
+## Creating the infrastructure-live-root repository
 
 Gruntwork provides a pre-configured git repository template that incorporates best practices while allowing for customization.
 
