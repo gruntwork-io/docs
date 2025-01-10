@@ -59,6 +59,8 @@ This repository is optional but recommended for managing reusable infrastructure
 
 While `infrastructure-catalog` can be renamed, keeping a consistent name is recommended for clarity in documentation. Multiple module repositories can be created if necessary, but consider the trade-offs between centralized and decentralized approaches.
 
+It can be advantageous to have one repository for all modules to make it easier to find and share modules across your organization. However, it can also be advantageous to have multiple repositories if you have different teams that need to manage their own modules, or want to have different modules available to different teams within your organization.
+
 :::
 
 ## `infrastructure-live-delegated`
