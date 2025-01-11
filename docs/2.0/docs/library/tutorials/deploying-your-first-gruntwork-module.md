@@ -3,9 +3,9 @@ import TabItem from '@theme/TabItem';
 
 # Deploying your first Gruntwork Module
 
-The Terraform modules in the Gruntwork Infrastructure as Code (IaC) Library allow you to customize the provider and backend settings to fit your requirements. This flexibility enables you to use Gruntwork modules alongside existing modules with minimal configuration duplication.
+The Terraform modules in the Gruntwork Infrastructure as Code (IaC) Library allow you to customize the `provider` and `backend` settings to fit your requirements. This flexibility enables you to use Gruntwork modules alongside existing modules with minimal configuration duplication.
 
-In this guide, you will learn how to create an AWS Lambda function using a module from the Gruntwork IaC Library. You’ll also learn how to structure your IaC code to support multiple deployments. The same steps apply when using a service, as you can reference both modules and services in module blocks.
+In this guide, you will learn how to create an AWS Lambda function using a module from the Gruntwork IaC Library. You’ll also learn how to structure your IaC code to support multiple deployments. The same steps apply when using a [service](/2.0/docs/library/concepts/service-modules), as you can reference both modules and services in module blocks.
 
 ## Prerequisites
 
