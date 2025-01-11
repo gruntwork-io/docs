@@ -1,31 +1,37 @@
-# Accessing the code
+# Accessing the Code  
 
-Gruntwork provides all code included in your subscription to the Infrastructure as Code (IaC) library through GitHub. To gain access to the IaC Library, you must first [create an account in the Developer Portal](/2.0/docs/overview/getting-started/create-account). Once you have an account, you must [link your GitHub ID](/2.0/docs/overview/getting-started/link-github-id) to your Developer Portal account to gain access to the IaC Library.
+Gruntwork provides access to all code included in your Infrastructure as Code (IaC) library subscription through GitHub. To access the IaC Library, first [create an account in the Developer Portal](/2.0/docs/overview/getting-started/create-account). fter setting up your account, [link your GitHub ID](/2.0/docs/overview/getting-started/link-github-id) to your Developer Portal account to gain access.  
 
-## Accessing Modules and Services in the IaC library
+## Accessing modules and services in the IaC Library  
 
-Once you have gained access to the Gruntwork IaC library, you can view the source code for our modules and services in [GitHub](https://github.com/orgs/gruntwork-io/repositories). For a full list of modules and services, check the [Library Reference](/library/reference).
+Once you can access the Gruntwork IaC library, you can view the source code for all modules and services in [GitHub](https://github.com/orgs/gruntwork-io/repositories). Refer to the [Library Reference](/library/reference) for a complete list of available modules and services.  
 
-In GitHub, each IaC repository is prefixed with `terraform-aws-` then a high level description of the modules it contains. For example, Amazon SNS, SQS, MSK, and Kinesis are located in the `terraform-aws-messaging` repository. In each repository, the modules are located in the `modules` directory. Example usage and tests are provided for each module in the `examples` and `tests` directories, respectively.
+In GitHub, each IaC repository adheres to a naming convention: it begins with the prefix `terraform-aws-`, followed by a description of the modules it contains. For example, Amazon SNS, SQS, MSK, and Kinesis modules reside in the `terraform-aws-messaging` repository. 
 
-## Accessing modules SSH vs. HTTPS
+Within each repository:  
+- Modules are located in the `modules` directory.  
+- Example usage and tests are provided in the `examples` and `tests` directories, respectively.  
 
-Gruntwork modules internally reference each other using the SSH.  For example:
+## Accessing modules: SSH vs. HTTPS  
 
+Gruntwork modules reference each other internally using SSH. For example:  
 ```hcl
 source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.58.0"
 ```
 
 (This is in contrast to using https, e.g. `source = "git::https://github.com/...`.)
 
-### Why use SSH?
+### Why use SSH?  
 
-The modules use SSH as, historically and still to a large extent to the present, SSH authentication is more universal and requires less configuration and logistics to "just work".
+Gruntwork modules rely on SSH due to its widespread compatibility and minimal configuration requirements, making it a reliable choice that works seamlessly across diverse systems.
 
-### Can I use HTTPS?
+### Can I use HTTPS?  
 
-Unfortunately, because the modules reference each other via SSH, even if you initially reference a module with HTTPS, it may then pull in other modules over SSH, so it is not possible to use HTTPS exclusively with the Library.
+The modules in the IaC Library reference each other via SSH. While you can initially reference a module using HTTPS, it may still pull in dependencies over SSH. As a result, exclusive use of HTTPS is not supported.
 
-### What if I can't use SSH?
+### What if I can't use SSH?  
 
-If you're unable to use SSH, for example because your corporate network blocks outbound access to port 22, you will be unable to use the public-internet github-hosted version of the library.  We do, however, offer an option to [self-host](/2.0/docs/library/guides/self-hosting) the library using [repo-copier](https://github.com/gruntwork-io/repo-copier). A self-hosted version of the library internal to your corporate network likely will satisfy most enterprise network restrictions.
+If you cannot use SSH—such as in cases where corporate network restrictions block outbound access to port 22—you won’t be able to access the GitHub-hosted version of the library. However, you can [self-host](/2.0/docs/library/guides/self-hosting) the library using [repo-copier](https://github.com/gruntwork-io/repo-copier) as an alternative.
+
+A self-hosted version of the library within your corporate network can typically accommodate most enterprise network restrictions.  
+
