@@ -1,4 +1,4 @@
-# Customizing modules
+# Customizing Modules
 
 We strive to keep the Infrastructure as Code Library flexible and generic enough to address common use cases. However, there may be scenarios where you need to customize a module to meet specific requirements or adhere to company policies that restrict pulling code from external sources. In these cases, you can fork the code to your organization or submit a pull request to incorporate the needed functionality.
 
