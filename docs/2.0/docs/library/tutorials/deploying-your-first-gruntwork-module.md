@@ -248,9 +248,9 @@ Now that you have created a module and a reference specific to a single environm
 <Tabs groupId="tool-choice">
 <TabItem value="Terraform" label="Terraform" default>
 
-Terraform will generate an execution plan using the `plan` command. The plan output will display the resources that Terraform determines need to be created or modified.
+**Terraform** will generate an execution plan using the `plan` command. The plan output will display the resources that Terraform determines need to be created or modified.
 
-In the plan output, you should expect to see an AWS Lambda function, IAM role, and CloudWatch Log Group.
+In the Terraform plan output, you should expect to see an AWS Lambda function, IAM role, and CloudWatch Log Group.
 ```bash
 terraform plan
 ```
@@ -258,9 +258,9 @@ terraform plan
 </TabItem>
 <TabItem value="Terragrunt" label="Terragrunt" default>
 
-Terragrunt will generate an execution plan using the `plan` command. The plan output will display the resources that Terragrunt determines need to be created or modified.
+**Terragrunt** will generate an execution plan using the `plan` command. The plan output will display the resources that Terragrunt determines need to be created or modified.
 
-In the plan output, you should expect to see an AWS Lambda function, IAM role, IAM policy, IAM role policy attachment, and CloudWatch Log Group.
+In the Terragrunt plan output, you should expect to see an AWS Lambda function, IAM role, IAM policy, IAM role policy attachment, and CloudWatch Log Group.
 ```bash
 terragrunt plan
 ```
