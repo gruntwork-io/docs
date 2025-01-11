@@ -1,35 +1,40 @@
-# Setting up your machine
+# Setting Up Your Machine  
 
-The Gruntwork IaC library requires that you have a few tools installed in order to leverage our pre-built modules and services. We recommend installing these tools locally so you can develop and deploy modules and services on your local machine.
+The Gruntwork IaC library requires installing a few tools to leverage our pre-built modules and services. We recommend installing these tools locally so you can develop and deploy modules and services directly from your machine.  
 
-## Terraform
+## Terraform  
 
-Terraform is an open source infrastructure provisioning tool that allows you to define and manage a wide variety of infrastructure (e.g., servers, load balancers, databases, network settings, and so on) as code across a wide variety of providers (e.g., AWS, GCP, Azure). Terraform defines cloud and on-premise resources in human-readable configuration language and offers a consistent workflow for provisioning and managing infrastructure.
+Terraform is an open-source infrastructure provisioning tool that allows you to define and manage a wide range of infrastructure (e.g., servers, load balancers, databases, network settings) as code across multiple providers (e.g., AWS, GCP, Azure). Terraform defines cloud and on-premise resources in a human-readable configuration language and provides a consistent workflow for provisioning and managing infrastructure.  
 
 Gruntwork’s IaC library is built using Terraform, so having Terraform installed is required.
 
-### Installation
-Terraform is supported on Mac (x86 and Apple Silicon), Windows, and Linux. To learn how to install for your specific OS, follow the guide to [install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli#install-cli) on the Hashicorp website.
+### Installation  
 
-If you need multiple versions of Terraform installed, [mise](https://github.com/jdx/mise) is a tool that can be used for managing and using multiple versions of Terraform.
+Terraform is supported on Mac (x86 and Apple Silicon), Windows, and Linux. For installation instructions specific to your operating system, refer to the official [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli#install-cli) guide on HashiCorp’s website.  
 
-### Learn more
-If you’re new to Terraform, we recommend starting with learning about Terraform’s [configuration language](https://developer.hashicorp.com/terraform/language) then familiarizing yourself with the basics of [provisioning infrastructure](https://developer.hashicorp.com/terraform/cli/run) using Terraform.
+If you need to manage multiple versions of Terraform, consider using [mise](https://github.com/jdx/mise), a tool that simplifies managing numerous versions of Terraform.  
 
-For a more in-depth guide, check out our [Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca) for a thorough introduction to the language.
+### Learn more  
 
-## Terragrunt
+If you’re new to Terraform, start by learning Terraform’s [configuration language](https://developer.hashicorp.com/terraform/language) and understanding the basics of [provisioning infrastructure](https://developer.hashicorp.com/terraform/cli/run).  
 
-[Terragrunt](https://terragrunt.gruntwork.io) is a tool developed by Gruntwork that provides extra tools for keeping your Terraform configurations DRY, working with multiple Terraform modules, and managing remote state. Terragrunt allows you to execute multiple Terraform commands at once, centrally manage your Terraform state configuration, and set repeatable CLI arguments. Since Terraform is a dependency of Terragrunt, you can continue to write modules for Terraform in the Terraform configuration language, then reference and re-use the modules in different environments or applications.
+For a more in-depth guide, refer to our [Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca) for a thorough introduction.  
 
-:::info
-Terragrunt is not a required tool to use the IaC library, but it does provide many convenience features on top of Terraform.
-:::
+## Terragrunt  
 
-### Installation
-Terragrunt is supported on Mac (x86 and Apple Silicon), Windows, and Linux. To install Terragrunt, follow the guide on how to [install Terragrunt](https://terragrunt.gruntwork.io/docs/getting-started/install/) on the Terragrunt website.
+[Terragrunt](https://terragrunt.gruntwork.io), developed by Gruntwork, enhances Terraform’s functionality by helping you maintain DRY configurations, manage multiple Terraform modules, and streamline remote state handling. It enables simultaneous execution of Terraform commands, centralizes Terraform state configuration, and simplifies the management of repeatable CLI arguments.
 
-If you need multiple versions of Terragrunt installed, [mise](https://github.com/jdx/mise) supports the use of the [3rd party ASDF Terragrunt plugin](https://github.com/lotia/asdf-terragrunt).
+Since Terragrunt relies on Terraform, you can continue using the Terraform configuration language to write modules and reference them across various environments or applications.  
 
-### Learn more
-To learn more about Terragrunt, check out the [official documentation](https://terragrunt.gruntwork.io/docs/).
+:::info  
+Terragrunt is not required to use the IaC library, but it provides many convenience features on top of Terraform.  
+
+### Installation  
+
+Terragrunt is supported on Mac (x86 and Apple Silicon), Windows, and Linux. To install Terragrunt, follow the official [Install Terragrunt](https://terragrunt.gruntwork.io/docs/getting-started/install/) guide on the Terragrunt website.  
+
+For managing multiple versions of Terragrunt, [mise](https://github.com/jdx/mise) supports the use of the [3rd party ASDF Terragrunt plugin](https://github.com/lotia/asdf-terragrunt).  
+
+### Learn more  
+
+To learn more about Terragrunt, consult the [official documentation](https://terragrunt.gruntwork.io/docs/).  
