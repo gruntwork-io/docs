@@ -4,7 +4,7 @@ We strive to keep the Infrastructure as Code Library flexible and generic enough
 
 ## Creating a wrapper module
 
-Suppose you need to extend a Gruntwork module, set default variable values, or control which variables and outputs are exposed. In that case, we recommend creating a wrapper module in your Git repositories.
+If you need to extend a Gruntwork module, set default variable values, or control which variables and outputs are exposed, we recommend creating a wrapper module in your Git repositories.
 
 For example, if you were creating a wrapper module for an AWS Lambda function, your repository structure might look like this:
 
