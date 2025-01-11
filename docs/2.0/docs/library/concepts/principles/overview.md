@@ -6,11 +6,11 @@ Developing and maintaining a comprehensive library of modules requires clearly d
 
 These principles serve as a framework for decision-making when multiple valid solutions are available for addressing a problem.
 
-## High-Level Principles
+## High-level principles
 
 The following high-level principles are intended to continuously improve the quality and reliability of the modules within this library.
 
-### If It Isn't Tested, It's Broken
+### If it isn't tested, it's broken
 
 The [Terratest](https://github.com/gruntwork-io/terratest) testing library was developed to provide an efficient and effective method for testing Infrastructure as Code (IaC) modules.  
 
