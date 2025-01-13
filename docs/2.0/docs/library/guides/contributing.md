@@ -1,6 +1,6 @@
 # Contributing to Gruntwork IaC Library
 
-Contributions to the Gruntwork IaC Library are encouraged and highly valued. <br>
+Contributions to the Gruntwork IaC Library are encouraged and highly valued. <br />
 Gruntwork receives over 1,000 customer [pull requests](https://help.github.com/articles/about-pull-requests/) annually.
 
 You can contribute in the following ways:
