@@ -37,7 +37,7 @@ locals {
 
 Finally, you can define inputs, where the module defaults pattern demonstrates its value by keeping your code DRY.
 
-In the example block below, we set default values for the `vpc_name` and `num_nat_gateways` variables. A quick inspection of the [`vpc-app`](/reference/modules/orm-aws-vpc/vpc-app/) module reveals that only one additional required variable — `cidr_block` — remains unspecified. As a result, consumers of the defaults module need to provide just one input variable, achieving a 66% reduction in required inputs. You can build on this example by setting a default CIDR block while giving consumers the option to override it with a different value if needed.
+In the example block below, we set default values for the `vpc_name` and `num_nat_gateways` variables. A quick inspection of the [`vpc-app`](/reference/modules/terraform-aws-vpc/vpc-app/) module reveals that only one additional required variable — `cidr_block` — remains unspecified. As a result, consumers of the defaults module need to provide just one input variable, achieving a 66% reduction in required inputs. You can build on this example by setting a default CIDR block while giving consumers the option to override it with a different value if needed.
 
 
 ```hcl title=_module_defaults/networking/vpc-app.hcl
