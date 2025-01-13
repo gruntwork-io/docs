@@ -11,7 +11,6 @@ We recommend updating module versions in your development environment first, fol
 
 <Tabs groupId="tool-choice">
   
-### Terraform
 <TabItem value="Terraform" label="Terraform" default>
 
 Below is a terraform configuration referencing version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
@@ -39,7 +38,6 @@ After making the change, run `terraform plan`, review the output to confirm it m
 
 </TabItem>
 
-### Terragrunt
 <TabItem value="Terragrunt" label="Terragrunt">
 
 Below is a terragrunt configuration referencing version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
@@ -79,7 +77,6 @@ After making the change, run `terragrunt plan`, review the output to confirm it 
 
 </TabItem>
 
-### Terragrunt with _envcommon
 
 <TabItem value="Terragrunt with _envcommon" label="_envcommon (Terragrunt)">
 
