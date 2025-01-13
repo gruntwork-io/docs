@@ -58,7 +58,7 @@ Now that you understand how to develop a defaults module, let’s explore how yo
 
 ### Infrastructure units
 
-An infrastructure unit is the Gruntwork term for deploying an infrastructure-as-code module in a single environment. For example, deploying the [`vpc-app`](/reference/modules/orm-aws-vpc/vpc-app/) module in your development AWS account constitutes a single infrastructure unit.  
+An infrastructure unit is the Gruntwork term for deploying an infrastructure-as-code module in a single environment. For example, deploying the [`vpc-app`](/reference/modules/terraform-aws-vpc/vpc-app/) module in your development AWS account constitutes a single infrastructure unit.  
 
 In this section, we’ll outline the approach Gruntwork uses for leveraging defaults modules as infrastructure units. When you purchase a DevOps Foundation, the generated repository containing your infrastructure-as-code is automatically configured to use this approach.  
 
