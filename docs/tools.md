@@ -30,7 +30,7 @@ The Gruntwork Installer provides conveniences for downloading and installing Gru
 <Card
   title="Terragrunt"
   href="https://terragrunt.gruntwork.io">
-Terragrunt is a lightweight wrapper for Terraform that provides tools to keep configurations DRY, manage multiple modules, and handle remote state efficiently.
+Terragrunt is a lightweight wrapper for OpenTofu/Terraform that provides tools to keep configurations DRY, manage multiple modules, and handle remote state efficiently.
 </Card>
 
 <Card
