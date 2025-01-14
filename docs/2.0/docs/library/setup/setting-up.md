@@ -14,7 +14,7 @@ Terraform is supported on Mac (x86 and Apple Silicon), Windows, and Linux. For i
 
 If you need to manage multiple versions of Terraform, consider using [mise](https://github.com/jdx/mise), a tool that simplifies managing numerous versions of Terraform.  
 
-### Learn more  
+### Learn more
 
 If you’re new to Terraform, start by learning Terraform’s [configuration language](https://developer.hashicorp.com/terraform/language) and understanding the basics of [provisioning infrastructure](https://developer.hashicorp.com/terraform/cli/run).
 
