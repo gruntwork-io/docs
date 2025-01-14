@@ -6,7 +6,7 @@ Modules within the library often have interdependencies. If a module update intr
 
 ## Guidelines for adopting new features
 
-Evaluate the following factors when determining whether to implement a new feature:
+Evaluate the following factors when determining whether to adopt a new feature:
 
 ### Feature stability and maturity
 
