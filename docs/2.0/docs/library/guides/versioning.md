@@ -18,7 +18,7 @@ We release new module versions through GitHub releases. Refer to the release not
 
 <Tabs groupId="tool-choice">
 <TabItem value="Terraform" label="Terraform" default>
-  
+
 The git tag created by a release can be referenced in the `source` argument of a module block when sourcing from a git URL.
 
 For example, the module block below references version `0.15.4` of the `single-server` submodule within the `terraform-aws-server` module:
