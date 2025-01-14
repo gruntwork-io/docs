@@ -48,7 +48,7 @@ Boilerplate is a tool for generating files and directories ("boilerplate") from 
 <Card
   title="Repo Copier"
   href="https://github.com/gruntwork-io/repo-copier"
-  tag="enterprise"> 
+tag={["enterprise"]}> 
 Repo Copier is a CLI tool that enables customers to replicate repository data, including code, issues, pull requests, and releases, from Gruntwork's GitHub organization to their own version control systems.
 </Card>
 
