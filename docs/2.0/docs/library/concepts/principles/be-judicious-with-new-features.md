@@ -10,7 +10,7 @@ Evaluate the following factors when determining whether to adopt a new feature:
 
 ### Feature stability and maturity
 
-Well-established features typically offer greater compatibility with existing environments. While incorporating newer features is not discouraged, prioritizing stable and widely adopted features helps maintain consistency and reliability.
+Well-established features typically offer greater compatibility with existing module-consumer environments. While incorporating newer features is not discouraged, prioritizing stable and widely adopted features helps maintain consistency and reliability.
 
 ### Impact on module users
 
