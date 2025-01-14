@@ -36,7 +36,7 @@ Terragrunt is a lightweight wrapper for OpenTofu/Terraform that provides tools t
 <Card
   title="Terratest"
   href="https://terratest.gruntwork.io">
-Terratest is a Go library offering patterns and helper functions for testing infrastructure, with first-class support for Terraform, Packer, Docker, Kubernetes, AWS, and GCP. 
+Terratest is a Go library offering patterns and helper functions for testing infrastructure, with first-class support for Terraform, Packer, Docker, Kubernetes, AWS, and GCP and more. 
 </Card>
 
 <Card
