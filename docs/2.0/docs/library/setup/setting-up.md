@@ -1,8 +1,8 @@
-# Setting Up Your Machine  
+# Setting Up Your Machine
 
 The Gruntwork IaC library requires installing a few tools to leverage our pre-built modules and services. We recommend installing these tools locally so you can develop and deploy modules and services directly from your machine.  
 
-## Terraform  
+## Terraform
 
 Terraform is an open-source infrastructure provisioning tool that allows you to define and manage a wide range of infrastructure (e.g., servers, load balancers, databases, network settings) as code across multiple providers (e.g., AWS, GCP, Azure). Terraform defines cloud and on-premise resources in a human-readable configuration language and provides a consistent workflow for provisioning and managing infrastructure.  
 
@@ -16,7 +16,7 @@ If you need to manage multiple versions of Terraform, consider using [mise](http
 
 ### Learn more  
 
-If you’re new to Terraform, start by learning Terraform’s [configuration language](https://developer.hashicorp.com/terraform/language) and understanding the basics of [provisioning infrastructure](https://developer.hashicorp.com/terraform/cli/run).  
+If you’re new to Terraform, start by learning Terraform’s [configuration language](https://developer.hashicorp.com/terraform/language) and understanding the basics of [provisioning infrastructure](https://developer.hashicorp.com/terraform/cli/run).
 
 For a more in-depth guide, refer to our [Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca) for a thorough introduction.  
 
