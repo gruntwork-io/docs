@@ -162,8 +162,8 @@ resource "aws_vpc" "example" {
 
 Any tags specified within a resource will override tags defined in `default_tags`. When you run `apply` on this configuration, the VPC will have two tags—one inherited from `default_tags` and another overridden by the `aws_vpc` resource:
 
-1. **Environment**: test  
-1. **Name**: example-vpc  
+1. **Environment**: test
+1. **Name**: example-vpc
 
 #### Per environment
 
