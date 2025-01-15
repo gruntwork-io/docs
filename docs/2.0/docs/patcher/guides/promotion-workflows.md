@@ -47,7 +47,7 @@ The initial GitHub Actions workflow file, `update-dev.yml` in this example, high
 * **`update-env` job**:  
     * This job processes the `spec` output from the `patcher report` command, saves it to a file, and then runs `patcher update`.  
     * The `patcher update` command reads the `spec` file, checks out the repository code, commits the changes, and pushes a pull request.  
-    * For the pull request workflow to function correctly, the `pull_request_branch` must follow the format `$PREFIX$DEPENDENCYID`. The `trigger-next-env` job strips out the prefix
+    * For the pull request workflow to function correctly, the `pull_request_branch` must follow the format `$PREFIX$DEPENDENCYID`. The `trigger-next-env` job strips out the prefix.
 
 <!-- spell-checker: disable -->
 ```yml
