@@ -13,9 +13,11 @@ By default, Gruntwork Pipelines runs a `plan` on every push to a PR and an `appl
 - Enable **Require branches to be up to date before merging** and select the `Pipelines` workflow as required.
 
   :::info
+  
     This prevents running an inaccurate `apply` by ensuring the PR is up-to-date. However, it increases GitHub Actions minute usage. If disabled, another PR merged into `main` after the `plan` could lead to an inaccurate `apply`. Evaluate whether this tradeoff aligns with your organization's risk tolerance.
     Example warning when PR is not up-to-date:
     ![Recommended Branch Protection Settings](/img/pipelines/pr-sync.png)
+  
   :::
 
 Below is an example of the recommended branch protection settings:
