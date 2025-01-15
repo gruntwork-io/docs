@@ -12,7 +12,7 @@ Pipelines tracks each provisioned account as a new base directory containing Ter
 
 ## Account vending
 
-Account Vending starts by triggering the Account Factory Workflow which generates a Pull Request against `infrastructure-live-root`, adding a file to the `_new-account-requests` directory. Pipelines detects these new account requests and runs terragrunt plan/apply commands on the `control-tower-multi-account-factory` unit in the management account.
+Account vending begins when the Account Factory Workflow creates a pull request in 'infrastructure-live-root', adding a file to the '_new-account-requests' directory. Pipelines detects these new account requests and runs terragrunt plan/apply commands on the `control-tower-multi-account-factory` unit in the management account.
 
 After creating the account(s), Pipelines provisions resources such as IaC-controlled OIDC-authenticated roles. TThese roles, combined with IAM policies that define the scope of permissible changes, allow Pipelines to deploy infrastructure updates within the account.
 
