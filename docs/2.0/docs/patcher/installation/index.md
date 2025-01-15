@@ -6,7 +6,7 @@ To install Patcher, download the appropriate package for your system from the [r
 
 ### For MacOS and Linux users  
 
-Patcher runs as a single binary called `patcher`. Make sure it's available within your system's `PATH`.
+Patcher runs as a single binary called `patcher`. Verify that the patcher binary is in your system's `PATH` to allow command-line access from any directory.
 
 1. After downloading Patcher, move it to your desired destination directory.  
 2. On macOS, unzip the downloaded package. For other operating systems, the downloaded artifact is the executable itself.  
@@ -14,7 +14,7 @@ Patcher runs as a single binary called `patcher`. Make sure it's available withi
 ```bash
 mv patcher_linux_amd64 patcher
 ```
-4. Move `patcher` to a location available in your `PATH`. In the example below, we move to `/usr-local/bin`.
+4. Move `patcher` to a directory included in your `PATH`. In the example below, we move it to `/usr-local/bin`.
 ```bash
 $ echo $PATH
 /opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Apple/usr/bin:/Users/grunty/bin:/Users/grunty/go/bin
@@ -40,7 +40,7 @@ To run the Patcher `update` command locally without Docker or in a CI pipeline, 
 
 ## Running Patcher
 
-Patcher must be run in a local Terraform or Terragrunt Git repository. It analyzes **all** modules in the current folder, including child folders. Patcher supports `source` values only from GitHub.
+Run Patcher within a local Git repository that uses Terraform or Terragrunt t0 analyze **all** modules in the current folder, including child folders. Patcher supports `source` values only from GitHub.
 
 If you have purchased and deployed the [Reference Architecture](https://gruntwork.io/reference-architecture/) and your deployment is organized in an `infrastructure-live` repository, we recommend running Patcher within each environment folder, such as `infrastructure-live/dev`.
 
