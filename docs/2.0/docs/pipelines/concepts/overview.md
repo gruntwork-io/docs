@@ -5,9 +5,9 @@
 After working with hundreds of organizations to improve DevOps processes, we’ve identified two key truths about managing infrastructure changes:
 
 1. Teams need control over how infrastructure changes are rolled out.
-2. Deploying infrastructure changes can feel risky.
+2. Deploying infrastructure changes often carries risks.
 
-To address the need for **control**, Gruntwork Pipelines uses [configuration as code](/2.0/reference/pipelines/configurations-as-code/api). With HCL (a popular alternative to JSON and YAML), you can define configuration values that apply to your entire git repository, a specific environment, or a single deployable infrastructure unit. For instance, you can specify unique AWS authentication strategies at different levels, from individual units to the entire repository.
+To address the need for **control**, Gruntwork Pipelines uses [configuration as code](/2.0/reference/pipelines/configurations-as-code/api). Using HCL (a widely adopted alternative to JSON and YAML), you can define configuration values for your entire Git repository, specific environments, or individual deployable infrastructure units. For instance, you can specify unique AWS authentication strategies at different levels, from individual units to the entire repository.
 
 To address the need for **assurance**, Gruntwork Pipelines provides a clear and user-friendly `terragrunt plan` experience. It also allows customization to include any additional steps your organization requires to build confidence in a deployment. Assurance remains a key focus for future updates.
 
@@ -19,7 +19,7 @@ Gruntwork Pipelines is built with first-class support for the full Terragrunt li
 - `terragrunt destroy`
 - `terragrunt run-all`
 
-We also actively contribute to Terragrunt to ensure it supports the functionality needed for Gruntwork Pipelines.
+Gruntwork actively contributes to Terragrunt, ensuring it supports features critical to Gruntwork Pipelines.
 
 ## Simplifies CI/CD Complexity
 
