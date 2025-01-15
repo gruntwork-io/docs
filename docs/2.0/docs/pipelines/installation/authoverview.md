@@ -8,7 +8,7 @@ Gruntwork Pipelines requires authentication with GitHub to perform various funct
   * Creating new repositories via Account Factory.
   * Updating repository settings, such as enforcing branch protection, via Account Factory.
 
-Gruntwork offers two mechanisms for authentication: a [GitHub App](/2.0/docs/pipelines/installation/viagithubapp.md) and a strategy involving CI Users (also known as [Machine Users](/2.0/docs/pipelines/installation/viamachineusers.md)) that rely on personal access tokens for Pipelines.
+Gruntwork provides two authentication methods: a [GitHub App](/2.0/docs/pipelines/installation/viagithubapp.md) and CI Users ([Machine Users](/2.0/docs/pipelines/installation/viamachineusers.md)) with personal access tokens for Pipelines.
 
 Both approaches support the core functionality of Pipelines. However, the GitHub App provides additional features and benefits, making it the recommended method. While Gruntwork strives to ensure feature parity between the two authentication mechanisms, certain advanced features are exclusive to the GitHub App, and this list is expected to grow over time.
 
