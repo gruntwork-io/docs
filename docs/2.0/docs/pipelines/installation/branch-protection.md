@@ -11,6 +11,7 @@ By default, Gruntwork Pipelines runs a `plan` on every push to a PR and an `appl
 - Enable **Require review from code owners** for controlled reviews of specific code areas. For more details, see [GitHub Documentation](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners).
 - Enable **Require status checks to pass before merging** to ensure the `apply` does not run if the `plan` fails, or if organizational validation rules fail.
 - Enable **Require branches to be up to date before merging** and select the `Pipelines` workflow as required.
+
   :::info
     This prevents running an inaccurate `apply` by ensuring the PR is up-to-date. However, it increases GitHub Actions minute usage. If disabled, another PR merged into `main` after the `plan` could lead to an inaccurate `apply`. Evaluate whether this tradeoff aligns with your organization's risk tolerance.
     Example warning when PR is not up-to-date:
