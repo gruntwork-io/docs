@@ -11,7 +11,7 @@ In this tutorial, we will walk through the following steps:
 
 **Using Patcher locally**:
 * Create a new [infrastructure Unit](https://terragrunt.gruntwork.io/docs/getting-started/terminology/#unit) that references a sample OpenTofu module, intentionally specifying an outdated version.  
-* Run `patcher` against the module and review the outputs and options provided.  
+* Run `patcher` against the module to detect outdated dependencies. Review the outputs and explore options for applying patches.
 * Instruct `patcher` to apply the patch.  
 * Commit the updated changes.  
 
