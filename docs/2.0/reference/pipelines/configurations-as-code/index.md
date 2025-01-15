@@ -2,7 +2,7 @@
 
 Pipelines uses configurations written in [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl) to enable dynamic behavior. These configurations direct Pipelines in managing interactions with cloud environments, using Infrastructure as Code (IaC) stored in a repository.
 
-To process configurations, Pipelines parses all `.hcl` files within a `.gruntwork` directory or a single file named `gruntwork.hcl`, ensuring streamlined and efficient interpretation of IaC settings. Typically, global configurations relevant to the entire repository are placed in the `.gruntwork` directory at the root, while configurations specific to a particular `terragrunt.hcl` file (referred to as a "unit") reside in the same directory as the corresponding `terragrunt.hcl` file.
+To process configurations, Pipelines parses all `.hcl` files within a `.gruntwork` directory or a single file named `gruntwork.hcl`. Typically, global configurations relevant to the entire repository are placed in the `.gruntwork` directory at the root, while configurations specific to a particular `terragrunt.hcl` file (referred to as a "unit") reside in the same directory as the corresponding `terragrunt.hcl` file.
 
 :::info
 
