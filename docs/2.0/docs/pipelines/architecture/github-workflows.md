@@ -12,7 +12,7 @@ jobs:
 
 Gruntwork follows [Semantic Versioning](https://semver.org/) for `pipelines-workflows` releases. New releases are tracked using git tags in the `v.MAJOR.MINOR.PATCH` format. A major tag, such as `v.MAJOR`, is also maintained and updated to point to the latest release within that major version. For example, when releasing a patch update from `v3.0.1` to `v3.0.2`, the `v3` tag will be updated to reference the newer version.
 
-When referencing a workflow, the version is specified in the `uses` clause. For example: `pipelines-root.yml@v3`. It is recommended to use the major version, such as `v3`, in your workflows to receive the latest fixes and performance improvements. However, you can choose to pin to a specific version if needed.
+When referencing a workflow, the version is specified in the `uses` clause. For example: `pipelines-root.yml@v3`. Using the major version, like v3, in your workflows ensures you receive the latest updates and performance enhancements.. However, you can choose to pin to a specific version if needed.
 
 ## Modifying workflows
 
