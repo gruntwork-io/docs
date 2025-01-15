@@ -8,4 +8,4 @@ import PipelinesConfig from '/docs/2.0/reference/pipelines/language_auth_partial
 
 ## Terraform & OpenTofu
 
-You can specify whether to invoke Terraform or OpenTofu in your Pipeline by configuring the [tf-binary](/2.0/reference/pipelines/configurations#tf-binary) setting. The versions of the `tf-binary` and Terragrunt are defined in the [mise.toml]
+You can specify whether to invoke Terraform or OpenTofu in your Pipeline by configuring the [tf-binary](/2.0/reference/pipelines/configurations#tf-binary) setting. Define the versions of `tf-binary` and Terragrunt in the [mise.toml] file within your repository.
