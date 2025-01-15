@@ -12,7 +12,7 @@ The upgrade process starts by deploying Pipelines through the ECS Deploy Runner 
 
 ECS Deploy Runner provided a secure approach to CI/CD for infrastructure. Pipelines builds on these principles, integrating with modern CI systems like GitHub Actions for improved usability and setup simplicity. Key improvements include:
 
-- **Simplified Setup:** Pipelines eliminates the need to deploy AWS resources (except for granting an OIDC token), requiring only GitHub Actions workflows for configuration.
+- **Simplified Setup:** Simplified Setup: Pipelines removes the need for deploying AWS resources (aside from setting up an OIDC token), relying solely on GitHub Actions workflows for setup.
 - **Pull Request-Centric UX:** Pipelines organizes its operations around pull requests, offering detailed feedback in pull request comments.
 - **Streamlined Updates:** Pipelines is designed for seamless updates, ensuring users can easily stay on the latest version.
 
@@ -29,7 +29,7 @@ Before starting, ensure you have the following:
 
 Pipelines employs a dual-repository approach, separating code (IaC) from deployment workflows. A dedicated repository, typically named `infrastructure-pipelines`, is used for deployment workflows and AWS account access, with strict access control. This repository leverages OpenID Connect (OIDC) for generating temporary session credentials, eliminating long-lived secrets.
 
-We strongly recommend naming this repository `infrastructure-pipelines`, as the default configuration assumes this naming convention.
+Name this repository `infrastructure-pipelines` to align with the default configuration and avoid additional setup adjustments.
 
 ### Initialize `infrastructure-pipelines` repository
 
