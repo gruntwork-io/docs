@@ -22,7 +22,7 @@ Gruntwork currently offers several DevOps components:
 * [Patcher](/2.0/docs/patcher/concepts/): Tools for identifying outdated modules in repositories, creating pull requests to update versions, and automatically refactoring code to handle breaking changes without developer intervention.
 * [Library](/2.0/docs/library/concepts/overview): A robust collection of over 300,000 lines of OpenTofu/Terraform code modules, providing foundational components such as VPCs, ECS clusters, and S3 buckets for building infrastructure.
 
-<!-- * [Catalog]  -- see DEV-628 -->
+<!-- * [Catalog] -- see DEV-628 -->
 <!-- Placeholder for networking/transit gateway details -->
 
 All components are designed with a focus on Terragrunt, OpenTofu/Terraform, GitHub, and AWS. Support for additional technologies may be introduced in the future.
