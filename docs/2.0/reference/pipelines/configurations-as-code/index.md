@@ -32,7 +32,7 @@ unit {
 Placing this configuration in a `gruntwork.hcl` file within the same directory as a `terragrunt.hcl` file directs Pipelines to assume the `role-to-assume-for-plans` role in the AWS account with the ID `an-aws-account-id` when executing Terragrunt plan commands. The authentication process leverages [OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) to securely connect to AWS and assume the specified role.
 
 
-Multiple Terragrunt units within a repository will assume the same AWS role. For instance, all units within a specific directory may provision resources for the same AWS account. Configuring AWS authentication at the environment level is more efficient in these cases. You can do this by defining an `environment` block within one of the `.hcl` files in the `.gruntwork` directory at the repository root and specifying the AWS authentication configuration.
+It is common for multiple Terragrunt units within a repository to assume the same AWS role. For instance, all units within a specific directory may provision resources for the same AWS account. Configuring AWS authentication at the environment level is more efficient in these cases. You can do this by defining an `environment` block within one of the `.hcl` files in the `.gruntwork` directory at the repository root and specifying the AWS authentication configuration.
 
 e.g.
 
