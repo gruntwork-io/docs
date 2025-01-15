@@ -10,7 +10,7 @@ In the `infrastructure-live/dev` environment, there are two dependencies on the 
 
 ## "Next safe" update strategy (default)
 
-The **next safe** strategy updates a dependency to either the highest version **before the next closest breaking change** or the latest version of the dependency, whichever occurs first.
+The **next safe** strategy updates a dependency to the latest version available that avoids introducing breaking changes. If no breaking changes exist, it updates to the latest version.
 
 If Patcher encounters a breaking change that cannot be automatically patched, it stops at the highest version before that breaking change. If no breaking changes are detected, it updates the dependency to the latest available version.
 
