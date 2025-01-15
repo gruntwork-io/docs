@@ -4,7 +4,7 @@ Team members with an admin role can manage team membership. The first admin will
 
 ## Inviting team members
 
-Invite team members to give them access to the portal and all resources included in your Gruntwork subscription.
+Invite team members to provide them access to the Gruntwork Developer Portal and all subscription resources.
 
 1. Navigate to the **[Team](https://app.gruntwork.io/team)** page of the Gruntwork Developer Portal.
 2. Click the **Invite** button. A new row will appear below the table of team members.
