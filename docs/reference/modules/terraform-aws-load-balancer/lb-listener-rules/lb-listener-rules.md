@@ -115,6 +115,9 @@ module "lb_listener_rules" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # A map of custom tags to apply to the listener rules.
+  custom_tags = {}
+
   # The ARN of the Target Group to which to route traffic. Required if using
   # forward rules.
   default_forward_target_group_arns = []
@@ -174,6 +177,9 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # A map of custom tags to apply to the listener rules.
+  custom_tags = {}
+
   # The ARN of the Target Group to which to route traffic. Required if using
   # forward rules.
   default_forward_target_group_arns = []
@@ -230,6 +236,15 @@ The default port numbers on the load balancer to attach listener rules to. You c
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the listener rules.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
 <HclListItem name="default_forward_target_group_arns" requirement="optional" type="list(map(…))">
 <HclListItemDescription>
@@ -839,6 +854,6 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.30.2/modules/lb-listener-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d59a3fde0f028217b51b99ea8b3cbc29"
+  "hash": "cd19315d1a36ae1e4e4704f5923cdf44"
 }
 ##DOCS-SOURCER-END -->
