@@ -12,7 +12,7 @@ It is recommended to start with manual runs, focusing on individual directories 
 
 You can manually initiate Pipelines Drift Detection by navigating to the Actions tab in your GitHub repository, selecting "Pipelines Drift Detection" from the left-hand menu, and then clicking "Run Workflow."
 
-By default, the workflow evaluates all units in your repository and creates a pull request on the branch `drift-detection`. To limit Drift Detection to specific units, specify a path filter. For instance, to target only the `management` directory, use the filter `./management/*` (note the leading `./`).
+By default, the workflow evaluates all units in your repository and generates a pull request on the `drift-detection`branch. To limit Drift Detection to specific units, specify a path filter. For instance, to target only the `management` directory, use the filter `./management/*` (note the leading `./`).
 
 ![Manual Dispatch](/img/pipelines/maintain/drift-detection-manual-dispatch.png)
 
