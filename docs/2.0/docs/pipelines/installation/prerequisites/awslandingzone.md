@@ -10,7 +10,7 @@ Gruntwork’s suggested Landing Zone and Account Factory extend AWS Control Towe
 
 ### What is AWS Control Tower?
 
-AWS Control Tower enables centralized governance and compliance for AWS accounts within an organization. However, it primarily operates as a Platform-as-a-Service (PaaS), relying on "ClickOps" for account creation and configuration. This approach contrasts with Infrastructure as Code (IaC) tools like Terraform, which emphasize codifying cloud resources. Customizing Control Tower and maintaining those customizations over time can also pose challenges.
+AWS Control Tower enables centralized governance and compliance for AWS accounts within an organization. However, it primarily operates as a Platform-as-a-Service (PaaS), relying on manual "ClickOps" processes for account creation and configuration. This approach contrasts with Infrastructure as Code (IaC) tools like Terraform, which emphasize codifying cloud resources. Customizing Control Tower and maintaining those customizations over time can also pose challenges.
 
 ### Additional functionality
 
