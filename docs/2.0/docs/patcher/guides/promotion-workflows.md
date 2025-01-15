@@ -7,9 +7,9 @@ As of July 2024, Gruntwork officially supports Patcher Promotion Workflows using
 
 ## Prerequisites
 ### Infrastructure as Code  
-To use Patcher Promotion Workflows, your codebase must implement infrastructure as code using Terraform, OpenTofu, and/or Terragrunt.  
+Before implementing Patcher Promotion Workflows, ensure your codebase is structured as infrastructure as code (IaC) using tools like Terraform, OpenTofu, or Terragrunt. This setup allows Patcher to automate updates across environments.
 
-### Environments as folder structures  
+### Organizing environments as folder structures  
 To support multiple environments (such as `dev`, `stage`, and `prod`), your codebase must represent these environments with a consistent folder structure that can be grouped using glob pattern matching. For example:
 ```sh
 ls
@@ -22,7 +22,7 @@ Then you would define your environments as `dev-*`, `stage-*`, and `prod-*`.
 
 The Patcher Promotion Workflow process consists of a series of GitHub Actions workflow files, where each environment is represented as an individual workflow. The process begins with the lowest environment (typically `dev`). It scans the entire `dev` environment for dependencies that require updates and generates one pull request per dependency. Each pull request updates the dependency specifically in the `dev` environment.  
 
-Once a pull request is approved and merged, it triggers pull requests for the subsequent environment using `repository dispatch` events. This process continues sequentially until the final environment (`prod`) is updated. At that point, no further pull requests are generated, and all environments are fully updated.  
+After a pull request is approved and merged in the dev environment, Patcher automatically triggers pull requests for the next environment (e.g., stage) via repository dispatch events. This step-by-step promotion continues until production is updated..  
 
 To get started quickly, copy and customize the example files below to match your environment names. In this example, the promotion workflow moves updates sequentially across `dev`, `stage`, and finally `prod`.  
 
@@ -47,7 +47,7 @@ The initial GitHub Actions workflow file, `update-dev.yml` in this example, high
 * **`update-env` job**:  
     * This job processes the `spec` output from the `patcher report` command, saves it to a file, and then runs `patcher update`.  
     * The `patcher update` command reads the `spec` file, checks out the repository code, commits the changes, and pushes a pull request.  
-    * For the pull request workflow to function correctly, the `pull_request_branch` must follow the format `$PREFIX$DEPENDENCYID`. The `trigger-next-env` job strips out the prefix
+    * For the pull request workflow to function correctly, the `pull_request_branch` must follow the format `$PREFIX$DEPENDENCYID`. This format allows the workflow to track and process updates accurately. The `trigger-next-env` job strips out the prefix
 
 <!-- spell-checker: disable -->
 ```yml
