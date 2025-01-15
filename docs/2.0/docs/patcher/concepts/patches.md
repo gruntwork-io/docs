@@ -1,8 +1,8 @@
 # What is a Patcher Patch?
 
-A Patch is a set of instructions executed by Patcher that do code transformations.
-This strategy is especially useful as a way to automate adoption of a breaking change with infrastructure as code, such as Terragrunt, OpenTofu, or Terraform.
-This instruction sheet is delivered by means of a `yaml` file in a specific format:
+A patch in Patcher is a set of instructions designed to automate code transformations. It enables the seamless adoption of breaking changes in infrastructure-as-code projects, streamlining updates for tools like Terragrunt, OpenTofu, and Terraform.
+
+These instructions are delivered through a `yaml` file in the following format:
 
 ```yaml title=".patcher/patches/v1.0.0/my-patch/patch.yaml"
 name: "<name-of-patch>"
@@ -14,7 +14,7 @@ dependencies:
   - name: terrapatch
     version: "0.1.0"
 
-# Steps necessary to resolve breaking change
+# Steps necessary to resolve breaking changes
 steps:
   - name: "<name-of-step>"
     run: <command-to-run>
@@ -22,83 +22,80 @@ steps:
     run: <second-command-to-run>
   # etc
 ```
-
-[Check out an example of a patch in the CIS Service Catalog.](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/c3d5ede211fc3230a7d493ceea43622b337ee88a/.patcher/patches/v0.96.4/switch-to-cis-rds-module/patch.yaml)
+[View an example patch in the CIS Service Catalog.](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/c3d5ede211fc3230a7d493ceea43622b337ee88a/.patcher/patches/v0.96.4/switch-to-cis-rds-module/patch.yaml)
 
 ## Module consumers and module authors
 
-Patcher is built around the idea of two specific personas:
+Patcher is designed for two key personas:
 
-- **Module authors.** Module authors write OpenTofu/Terraform modules, or make updates to those modules.
-- **Module consumers.** Module consumers make use of an OpenTofu/Terraform module that was created by a module author, typically in Terragrunt units (`terragrunt.hcl` files) or directly in OpenTofu/Terraform code that calls a module.
+- **Module authors**: Write or update OpenTofu/Terraform modules.
+- **Module consumers**: Use OpenTofu/Terraform modules created by module authors, typically referenced in Terragrunt units (`terragrunt.hcl` files) or directly in Terraform/OpenTofu code.
 
-## For Module Authors
+## For module authors
 
-Module authors periodically need to introduce breaking changes in their modules, causing a downstream, potentially painful, experience for module consumers.
-With patches, module authors include a patch YAML file that automatically updates consuming code to incorporate the breaking changes associated with the updated module code. For example, when module consumers "execute" a patch and their code will automatically be updated to add a variable, rename a variable, update a provider reference, or incorporate some other transformation specified by the module author.
-This allows module consumers to automatically update consuming code to adopt breaking changes.
+Module authors often need to introduce breaking changes in their modules, which can create a challenging experience for module consumers who must manually update their code. Patcher simplifies this process by allowing module authors to include a patch YAML file that automates these updates.
 
-In a Patcher ecosystem, the module author spends a small amount of extra time to author a patch, but now all module consumers can automatically update their code to consume the latest breaking change.
+When a module consumer executes a patch, their code is updated automatically to reflect changes such as adding or renaming variables, updating provider references, or applying other transformations defined in the patch. 
 
-In theory, you may write whatever command execution steps you want to perform patch steps.
-For example, there are many cases where validating tool versions are required, or using `sed` to find and replace certain values.
-However, we _strongly_ recommend using [`terrapatch`](https://github.com/gruntwork-io/terrapatch), a Gruntwork tool that surgically updates Terraform/OpenTofu HCL files.
+While module authors have the flexibility to write any command steps for patches—such as validating tool versions or using `sed` for find-and-replace operations—it is **strongly recommended** to use [`terrapatch`](https://github.com/gruntwork-io/terrapatch). Terrapatch is a Gruntwork tool that enables precise updates to Terraform/OpenTofu HCL files.
 
-## For Module Consumers
+By investing a small amount of additional time in authoring a patch, module authors enable all module consumers to seamlessly adopt breaking changes without manual intervention.
 
-When module consumers reference an OpenTofu/Terraform module, it is a best practice to reference a specific version of the OpenTofu/Terraform module.
-Over time, module authors release new versions of the module, and the code that consumes those modules slowly gets out of date.
-In some cases, the latest update of the underlying modules requires a breaking change to the consuming code, meaning the version can't just be bumped; the code needs to be edited.
-This is when using a patch with Patcher comes in handy.
+## For module consumers
+
+Module consumers typically reference specific versions of OpenTofu/Terraform modules to maintain consistency. Over time, as new versions of modules are released, consumer code can become outdated. In cases where updates introduce breaking changes, the code must be edited to ensure compatibility—this is where Patcher proves valuable.
+
+Patcher automates updates by applying patches that incorporate breaking changes, reducing the manual effort required to keep infrastructure code current.
 
 ### Two update strategies
 
-Patches can be consumed with either a "push" strategy, where Patcher proactively opens a pull request with the latest update, or a "pull" strategy, where a repo is manually scanned to look at the current state of your infrastructure using the Patcher CLI tool.
+Patcher offers two flexible strategies for applying updates:
 
-Regardless of methodology, the concept remains the same.
-Patcher will suggest changes to your codebase in order to keep your infrastructure up to date, however you see fit.
+1. **Push strategy**: Patcher automatically opens pull requests containing updates, allowing consumers to review and merge changes as needed.
+2. **Pull strategy**: Users manually run the Patcher CLI to scan their repository, identify updates, and apply them directly.
 
-### Update Push Strategy
+While the implementation details differ, the purpose remains the same: Patcher suggests changes to keep your infrastructure code up to date.
 
-In the "push" strategy, Patcher opens pull requests against your codebase on a schedule you set. You can further customize how those pull requests are grouped by environment, module version, or other parameters. Here is an example of such a pull request:
+### Update push strategy
+
+In the push strategy, Patcher automatically opens pull requests on a schedule you define. Pull requests can be grouped by parameters such as environment or module version. For example:
 
 ![Patcher PR Example](/img/patcher/pr-example.png)
 
-You can implement the push strategy by using the [Patcher GitHub action workflow](https://github.com/gruntwork-io/patcher-action).
+To enable the push strategy, implement the [Patcher GitHub Action workflow](https://github.com/gruntwork-io/patcher-action). This action provides full control over your upgrade cadence. For safer updates, you can promote changes sequentially through environments like `dev`, `stage`, and `prod`. 
 
-The intention with this GitHub action is to leave the repo owner in full control of your upgrade cadence. Check out our guide on [promotion workflows](/2.0/docs/patcher/guides/promotion-workflows), so that updates can proceed from `dev` to `stage` to `prod` (or any other environment sequence) to mitigate risks around upgrades.
+Refer to our guide on [promotion workflows](/2.0/docs/patcher/guides/promotion-workflows) for more details.
 
-### Update Pull Strategy
+### Update pull strategy
 
-In the "pull" strategy, you the user choose to launch the Patcher CLI to scan the current state of your repo.
-
-The first step is to run `patcher update` within the repo in which updates are desired.
-When `patcher update` is run, the default mode is to click through the updates **interactively**.
-In this mode, available updates are found, and the details of those updates are presented to you:
-
-![Patcher Update Interactive Mode](/img/patcher/interactive-update.png)
-
-You can choose to run in `--non-interactive` mode, which will modify the codebase and present results about what the program did at the end.
-
-By default a pull request will _not_ be opened with the changes.
-However, the changes should be visible within the version control system. At that point, you may make a pull request or apply the changes using your IaC system.
-
-### Examples Running `patcher update`
-
-Here's the easiest way to run this command:
+In the pull strategy, users manually invoke the Patcher CLI to scan the repository and apply updates.
+To begin, run the following command in the target repository:
 
 ```bash
-$ cd <repo-root-directory>
-# Show what patches are available for everything in the current directory and all it's children
 $ patcher update ./
 ```
 
-If more fine-grain controls are desired, the following example (which includes advanced usage topics like [update strategies](/2.0/docs/patcher/concepts/update-strategies.md)) has those:
+By default, the CLI operates interactively, presenting details of available updates:
+
+![Patcher Update Interactive Mode](/img/patcher/interactive-update.png).
+
+Alternatively, use `--non-interactive` mode to apply updates automatically:
 
 ```bash
-# run 'update' non-interactively, only up to the next safe version, and publish a PR with the changes
+$ patcher update --non-interactive
+```
+By default, Patcher does not open a pull request. However, changes are visible in version control, allowing you to create pull requests or integrate changes using your IaC workflow
+
+### Examples running `patcher update`
+Here is a basic example:
+
+```bash
+$ cd <repo-root-directory>
+# Show patches available for all directories
+$ patcher update ./
+```
+For advanced usage, including automated PR creation, run:
+```bash
 $ patcher update --update-strategy next-safe --non-interactive --publish --pr-branch grunty/update-via-patcher --pr-title "[Patcher] Update All Dependencies to Next Safe"
 ```
-
-More details on the available options included in `patcher update` can be found in the [reference section](/2.0/reference/patcher/index.md#update).
-
+For a complete list of options, refer to the [Patcher CLI Reference](/2.0/reference/patcher/index.md#update).
