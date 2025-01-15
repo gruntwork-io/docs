@@ -2,7 +2,7 @@
 
 import CustomizableValue from '/src/components/CustomizableValue';
 
-In this tutorial, we will guide you through deploying an S3 bucket. This serves as a "hello world" example for Gruntwork Pipelines and provides the foundation for using Gruntwork Pipelines in a production environment.
+In this tutorial, we will guide you through deploying an S3 bucket. This "hello world" example introduces Gruntwork Pipelines and lays the groundwork for using it in production environments.
 
 ## What you'll get
 
