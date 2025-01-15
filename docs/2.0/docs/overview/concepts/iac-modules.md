@@ -8,9 +8,9 @@ Gruntwork describes infrastructure using a four-layer system:
 
 **Resource-level IaC** (mid-level): OpenTofu provides a wrapper around cloud provider APIs, representing objects in those APIs as [resources](https://opentofu.org/docs/language/resources/). With OpenTofu, you can define individual infrastructure resources (e.g., servers, networks, databases) in code. While this improves consistency and enables version control, it can still be challenging to manage complex deployments and establish governance, as each resource and its arguments must be redefined for every deployment.
 
-[**Module-level IaC**](/2.0/docs/library/concepts/modules) (high-level):  Modules group multiple resources into reusable building blocks. For example, a module might define a web server with a load balancer, database, and security groups. Modules simplify infrastructure management, increase efficiency, and codify best practices and business requirements.
+[**Module-level IaC**](/2.0/docs/library/concepts/modules) (high-level): Modules group multiple resources into reusable building blocks. For example, a module might define a web server with a load balancer, database, and security groups. Modules simplify infrastructure management, increase efficiency, and codify best practices and business requirements.
 
-[**Service-Level IaC**](/2.0/docs/library/concepts/service-modules) (Highest-Level):  At this level, you combine modules to create complete deployable architectures, such as multi-tier applications or data pipelines. This enables platform teams to further codify architectures, compliance, security, and reusable structures across the organization.
+[**Service-Level IaC**](/2.0/docs/library/concepts/service-modules) (Highest-Level): At this level, you combine modules to create complete deployable architectures, such as multi-tier applications or data pipelines. This enables platform teams to further codify architectures, compliance, security, and reusable structures across the organization.
 
 <img alt="Diagram showing IaC Module Hierarchy" className="img_node_modules-@docusaurus-theme-classic-lib-theme-MDXComponents-Img-styles-module medium-zoom-image" src="/img/iac/module_types.svg" />
 
