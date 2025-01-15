@@ -10,7 +10,7 @@ Invite team members to provide them access to the Gruntwork Developer Portal and
 2. Click the **Invite** button. A new row will appear below the table of team members.
 3. Enter the email address of the person you wish to invite.
 4. Select the appropriate role for the team member. All members can access Gruntwork resources. Admins can additionally manage account information and team membership. (If you assign the wrong role, you can change it even after the invite has been sent.)
-5. Press `ENTER` or click the arrow at the right of the row.
+5. Press `ENTER` or click the arrow icon to send the invitation.
 
 This will send an invitation to the provided email address. To invite additional team members, repeat steps 3–5. If an error occurs, an error icon will appear at the right of the row, allowing you to edit the email and retry.
 
