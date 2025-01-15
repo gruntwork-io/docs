@@ -1,6 +1,6 @@
 # Components Architecture
 
-Pipelines consists of two main components: the orchestrator and the executor. The orchestrator determines which jobs need to be executed, while the executor performs those jobs and makes any required updates in AWS.
+Pipelines consists of two main components: the orchestrator and the executor. The orchestrator identifies necessary jobs, while the executor performs those tasks and updates AWS resources accordingly.
 
 ## Orchestrator
 
