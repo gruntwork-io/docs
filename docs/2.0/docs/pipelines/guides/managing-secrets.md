@@ -1,6 +1,6 @@
 # Secrets
 
-Continuous Integration systems often require access to sensitive resources, which necessitates the use of secrets such as API keys, passwords, or certificates. Pipelines is designed to minimize the use of long-lived secrets and instead leverages ephemeral credentials whenever possible. This approach reduces the risk of credential leaks and simplifies the process of rotating secrets when necessary.
+Continuous Integration systems often require access to sensitive resources, which necessitates the use of secrets such as API keys, passwords, or certificates. Pipelines is designed to minimize the use of long-lived secrets and instead leverages ephemeral credentials whenever possible. This approach reduces the risk of credential leaks and streamlines secret rotation.
 
 The only long-lived credentials you must create, rotate, and maintain for Pipelines are those used to authenticate GitHub Machine Users. For more details, refer to the [GitHub Machine Users documentation](/2.0/docs/pipelines/installation/viamachineusers). We are continuously working to enhance the security of Pipelines and aim to further reduce this requirement over time.
 
