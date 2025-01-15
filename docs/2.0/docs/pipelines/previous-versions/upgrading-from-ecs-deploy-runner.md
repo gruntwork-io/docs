@@ -6,7 +6,7 @@ This document is deprecated. It outlines the upgrade path from the ECS Deploy Ru
 
 This migration guide is intended for users of the ECS Deploy Runner (EDR) who wish to upgrade to the latest version of Gruntwork Pipelines. For this guide, the latest version of Gruntwork Pipelines is referred to as "Pipelines."
 
-The process involves deploying Pipelines using ECS Deploy Runner and subsequently using Pipelines to decommission ECS Deploy Runner.
+The upgrade process starts by deploying Pipelines through the ECS Deploy Runner and then using Pipelines to phase out the ECS Deploy Runner.
 
 ## What's new
 
