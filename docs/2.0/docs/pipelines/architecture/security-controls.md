@@ -8,7 +8,7 @@ Pipelines adheres to the principle of least privilege, granting only the necessa
 
 By default, the only repository required to interact with infrastructure using Pipelines in DevOps Foundations is the `infrastructure-live-root` repository. This repository contains infrastructure code for management, logs, security, and shared accounts. Access to this repository should be limited to a small, trusted group responsible for defining critical infrastructure, similar to the role of the `root` user in Unix systems.
 
-- The [AWS IAM role assumed via OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) when pull requests are opened or updated in this repository has a trust policy that restricts access to the repository itself and provides read-only permissions. This ensures infrastructure updates are reviewed before implementation.
+- The [AWS IAM role assumed via OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) when pull requests are opened or updated in this repository has a trust policy that restricts access to the repository itself and provides read-only permissions. This guarantees that all infrastructure updates are reviewed before deployment.
 - The AWS IAM role assumed via OIDC when pull requests are merged into the `main` branch has a trust policy limiting access to the repository’s `main` branch and granting write permissions. This allows changes to be applied to your AWS infrastructure. To prevent unauthorized changes, ensure that only trusted individuals have write access to the `main` branch and implement appropriate branch protections.
 
 ## Infrastructure access control
