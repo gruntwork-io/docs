@@ -2,7 +2,7 @@ import CustomizableValue from '/src/components/CustomizableValue';
 
 # Adding Gruntwork Pipelines to an existing repository
 
-This guide provides instructions for installing Gruntwork Pipelines in a repository with existing IaC. It is designed for Gruntwork customers who wish to manage their existing repositories using Gruntwork Pipelines.
+This guide provides instructions for installing Gruntwork Pipelines in a repository with existing IaC. This guide is for Gruntwork customers looking to integrate Pipelines into their existing repositories for streamlined infrastructure management.
 
 :::info
 
