@@ -39,7 +39,7 @@ If screen sharing while generating tokens, **pause or hide your screen** before 
 GitHub supports two types of tokens:
 
 1. Classic tokens
-   
+
 2. Fine-grained tokens
 
 #### Classic tokens
