@@ -2,9 +2,9 @@
 
 ## 1. Accept your invitation
 
-You’ll receive an email invitation from `grunty@gruntwork.io` prompting you to sign in and set up your account. Click the button in the invitation email.
+You’ll receive an email invitation from `grunty@gruntwork.io` prompting you to sign in and set up your account. Click the **Sign In** button in the invitation email.
 
-After reviewing the privacy policy and website terms, check the box to indicate your agreement. Proceed to accept your invitation using the email address to which the invitation was sent. If it's a Google email, click **Continue With Google**; otherwise, enter your name and click **Continue with Email**.
+Review the privacy policy and website terms, then check the box to agree. Proceed to accept your invitation using the email address to which the invitation was sent. If it's a Google email, click **Continue With Google**; otherwise, enter your name and click **Continue with Email**.
 
 :::note
 
