@@ -18,7 +18,7 @@ We recommend using ClickOps to close accounts instead of Gruntwork Pipelines. Re
 
 ### 1. Clean up infrastructure code
 
-Commit all recommended code changes to Git for each repository **at the end**, ensuring you include **[skip ci]** in the commit message to prevent Gruntwork Pipelines CI processes from triggering.
+After making all necessary code changes, commit them to Git with **[skip ci]** in the message to avoid triggering Gruntwork Pipelines CI workflows.
 
 
 #### Root/Central infrastructure repository
