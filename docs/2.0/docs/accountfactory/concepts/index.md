@@ -4,7 +4,7 @@ Gruntwork Account Factory lets you create new AWS accounts with best-practice ba
 
 Enterprise customers get dedicated Infrastructure as Code repositories for new accounts during the vending process. As a result, central platform teams can automate AWS account creation and delegate infrastructure management to individual teams for scalability and autonomy.
 
-This approach empowers developer teams to self-service deploy infrastructure within the confines of IAM roles managed in a centralized access control repository. The result is a combination of least privilege access to AWS resources and flexible, self-service infrastructure deployment
+This approach empowers developer teams to self-service deploy infrastructure within the confines of IAM roles managed in a centralized access control repository. This approach ensures least-privilege access to AWS resources while enabling flexible, self-service infrastructure deployment.
 
 Gruntwork Account Factory uses Gruntwork Pipelines as its foundation. Account creation requests are tracked in Git as Infrastructure as Code (IaC), triggering Terragrunt plans and applies to set up and baseline the accounts. By following this approach, account provisioning follows the same review and collaboration steps as other infrastructure changes, using pull requests for validation
 
