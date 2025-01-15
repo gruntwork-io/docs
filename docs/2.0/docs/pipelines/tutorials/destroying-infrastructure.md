@@ -2,7 +2,7 @@
 
 import CustomizableValue from '/src/components/CustomizableValue';
 
-In this tutorial, you will learn how to destroy infrastructure using Gruntwork Pipelines and GitOps workflows.
+This tutorial will help you learn how to destroy infrastructure using Gruntwork Pipelines and GitOps workflows.
 
 ## What you'll get
 
@@ -21,7 +21,7 @@ Before starting, make sure you have:
 
 ## Destroying with pipelines
 
-In this section, we explains how to destroy an AWS resource using Pipelines and GitOps workflows. The example used is the S3 bucket created in the [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change) tutorial, but the process applies to any resource you wish to destroy.
+This section explains how to destroy AWS resources using Pipelines and GitOps workflows. The example used is the S3 bucket created in the [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change) tutorial, but the process applies to any resource you wish to destroy.
 
 
 ### Delete the infrastructure code
