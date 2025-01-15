@@ -10,10 +10,10 @@
 In this tutorial, we will guide you through the following steps:  
 
 **Authoring a patch**:
-* Identifying the breaking change and its remediation steps  
+* Identifying breaking changes in your module update and defining clear steps to resolve them. 
 * Running `patcher generate` to template the patch  
 * Completing the required patch fields  
-* Modifying `config.yaml`  
+* Modifying `config.yaml` to include the necessary configuration changes for your patch.
 
 
 ### Test module
