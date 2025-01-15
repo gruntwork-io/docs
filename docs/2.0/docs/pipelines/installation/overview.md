@@ -10,7 +10,7 @@ Customers using DevOps Foundations benefit from a guided setup process that incl
 2. Installing the [Gruntwork.io GitHub App](https://github.com/apps/gruntwork-io) on the `infrastructure-live-root` repository or across the entire organization. For detailed instructions, refer to [this guide](/2.0/docs/pipelines/installation/viagithubapp).
 3. Running the `Infrastructure Live Root Bootstrap` workflow to customize the generated repository for infrastructure deployment.
 
-By completing these steps, you will have a GitHub repository configured to deploy infrastructure changes in a GitOps fashion, requiring no additional manual intervention.
+Completing these steps results in a GitHub repository fully configured for automated infrastructure deployments using GitOps workflows.
 
 ## Installation via manual setup
 
