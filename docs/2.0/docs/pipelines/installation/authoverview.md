@@ -19,7 +19,7 @@ Both approaches support the core functionality of Pipelines. However, the GitHub
 - Access to enhanced features and functionality.
 - Improved user experience during regular operations.
 - Reduced maintenance, as there is no need to install, maintain, or rotate powerful tokens.
-  
+
 **Advantages of Machine Users**:
 - Compatibility with on-premises GitHub Enterprise installations that cannot interact with third-party servers (e.g., Gruntwork's backend).
 - Provides a fallback solution to ensure Pipelines continue functioning in the unlikely event of an outage affecting the Gruntwork-hosted backend that powers the GitHub App.
