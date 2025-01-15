@@ -8,7 +8,7 @@ Pipelines automatically determines which AWS account to authenticate to based on
 
 To execute the actions detected by Pipelines, each AWS account must assume an AWS IAM Role using [OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services). At a high level, OIDC works as follows: AWS recognizes GitHub as an "identity provider," trusts GitHub’s request to assume a temporary IAM Role, and then issues AWS credentials valid for the duration of the GitHub Actions workflow.
 
-Whenever you create a new AWS account, you must update the AWS OIDC configuration to include an IAM Role for the account and permit it to be assumed by GitHub. When using the [Gruntwork Account Factory](/2.0/docs/accountfactory/architecture), this role is created automatically during the process of [adding a new AWS account](/2.0/docs/accountfactory/guides/vend-aws-account).
+When creating a new AWS account, update the AWS OIDC configuration to include an IAM role that GitHub can assume. When using the [Gruntwork Account Factory](/2.0/docs/accountfactory/architecture), this role is created automatically during the process of [adding a new AWS account](/2.0/docs/accountfactory/guides/vend-aws-account).
 
 ### How Pipelines knows what AWS account to authenticate to
 
