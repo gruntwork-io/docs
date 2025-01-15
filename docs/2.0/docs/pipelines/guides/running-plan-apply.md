@@ -6,7 +6,7 @@ The preferred workflow when working with Pipelines involves creating a new Pull 
 
 ## Running plan
 
-To trigger a **Plan**, create an infrastructure change, such as adding or modifying a `terragrunt.hcl` unit, on a new branch. Then, open a new Pull Request to merge this branch into your Deploy Branch. Once the Pull Request is open, Pipelines will add a comment to the PR containing the Plan output.
+To trigger a **Plan**, create an infrastructure change, such as adding or modifying a `terragrunt.hcl` unit, on a new branch. Then, open a new Pull Request to merge this branch into your Deploy Branch. After merging, Pipelines will comment on the pull request with the Apply output.
 
 ![Screenshot of Plan Comment](/img/pipelines/guides/plan-comment.png)
 
@@ -20,7 +20,7 @@ Pipelines will add a comment to the merged Pull Request containing the Apply out
 
 In certain scenarios, it may be necessary to skip Pipelines for specific commits. To do this, include one of the [workflow skip messages](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/skipping-workflow-runs), such as `[no ci]`, in the commit message.
 
-Alternatively, you can modify the `paths-ignore` filter in `.github/workflows/pipelines.yml` to exclude entire directories from triggering Pipelines.
+Alternatively, adjust the `paths-ignore` filter in `.github/workflows/pipelines.yml` to prevent specific directories from triggering Pipelines.
 
 For example, to exclude a directory named `local-testing`, update the workflow configuration as follows:
 
