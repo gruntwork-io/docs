@@ -17,7 +17,7 @@ For minor updates, like adding a variable or output value, you may proceed direc
 
 ## Proceed to a pull request
 
-If opening a pull request is appropriate, adhere to the following steps:
+If opening a pull request is appropriate, follow these guidelines:
 
 ### Update the documentation first
 
