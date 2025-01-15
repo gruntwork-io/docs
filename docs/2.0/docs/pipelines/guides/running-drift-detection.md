@@ -12,7 +12,7 @@ It is recommended to start with manual runs, focusing on individual directories 
 
 You can manually initiate Pipelines Drift Detection by navigating to the Actions tab in your GitHub repository, selecting "Pipelines Drift Detection" from the left-hand menu, and then clicking "Run Workflow."
 
-By default, the workflow evaluates all units in your repository and generates a pull request on the `drift-detection`branch. To limit Drift Detection to specific units, specify a path filter. For instance, to target only the `management` directory, use the filter `./management/*` (note the leading `./`).
+By default, the workflow evaluates all units in your repository and generates a pull request on the `drift-detection' branch. To limit Drift Detection to specific units, specify a path filter. For instance, to target only the `management` directory, use the filter `./management/*` (note the leading `./`).
 
 ![Manual Dispatch](/img/pipelines/maintain/drift-detection-manual-dispatch.png)
 
@@ -38,7 +38,7 @@ Merging the pull request triggers a `terragrunt apply` on the modules identified
 
 ### Updating units
 
-Alternatively, modify the drifted modules to align them with the desired state and commit the changes to the Drift Detection branch. Each change triggers a new `terragrunt plan` for the affected units, which you can review to ensure the drift is resolved.
+Alternatively, modify the drifted modules to align them with the desired state and commit the changes to the drift-detection branch. Each change triggers a new `terragrunt plan` for the affected units, which you can review to ensure the drift is resolved.
 
 When the pull request is merged, Pipelines will execute `terragrunt apply` on all drifted or modified units. If a unit no longer exhibits drift, the apply operation will result in no changes being made to the infrastructure.
 
