@@ -7,7 +7,7 @@ Vending Delegated Repositories by Account Factory is only available to DevOps Fo
 
 ## Introduction
 
-When using Account Factory to request new accounts, you can choose to delegate management of the new accounts. Delegating management creates a new GitHub repository for each account, allowing developer teams to manage their own infrastructure within their accounts.
+When using Account Factory to request new accounts, you can choose to delegate management of the new accounts. Delegating management automatically generates a dedicated GitHub repository for each account, empowering developer teams to manage their infrastructure independently.
 
 Specific permissions for IaC changes are managed via IAM roles in your `infrastructure-live-access-control` repository, enabling your infrastructure team to act as a central authority for permissions.
 
