@@ -4,9 +4,9 @@ Patcher uses [sentry.io](https://sentry.io) for application performance monitori
 
 ### Anonymous UUID
 
-When you first run Patcher, we generate an anonymous UUID for that installation.  
+When you first run Patcher, we generate an anonymous UUID for that installation. 
 
-This UUID is stored in `~/.patcher/config.json` and is sent with each execution of Patcher.  
+This UUID is stored in `~/.patcher/config.json` and is sent with each execution of Patcher. 
 
 Example `config.json` file:
 ```
