@@ -18,6 +18,7 @@ Refer to [Modules](/2.0/docs/library/concepts/modules) for additional details.
 
 ### Service modules
 
-Service modules combine "building block"  modules into opinionated, "off-the-shelf" solutions requiring minimal assembly. These modules typically address complete business use cases. For example, the `vpc` service module deploys a VPC, VPC Flow Logs, and Network ACLs. If the embedded configurations align with your needs, service modules provide a fast path to production-grade infrastructure.
+Service modules combine "building block" modules into opinionated, "off-the-shelf" solutions requiring minimal assembly. These modules typically address complete business use cases. For example, the `vpc` service module deploys a VPC, VPC Flow Logs, and Network ACLs. If the embedded configurations align with your needs, service modules provide a fast path to production-grade infrastructure.
 
 Refer to [Service Modules](/2.0/docs/library/concepts/service-modules) to learn more.
+
