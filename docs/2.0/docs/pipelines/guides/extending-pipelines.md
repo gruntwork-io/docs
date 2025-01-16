@@ -33,7 +33,7 @@ Avoid including sensitive information in forked repositories, especially if they
 
 Once you've created your version of `pipelines-workflows`, you're free to modify the code. If you plan to track upstream changes, Gruntwork designed pipelines-workflows to require minimal updates and offers ways to customize with little impact on Gruntwork-maintained code. This approach helps you merge upstream changes smoothly with minimal or no conflicts.
 
-The recommended approach is to extend `pipelines-workflows` by injecting [custom actions](#adding-custom-actions) at predefined entry points. This minimizes changes to Gruntwork-maintained files and establishes clear data contracts between workflows and custom actions, simplifying future updates.
+The recommended approach for customizing `pipelines-workflows` is to inject [custom actions](#adding-custom-actions) at predefined entry points. Gruntwork provides several entry points and sample actions to guide this process. This approach minimizes changes to Gruntwork-maintained files and establishes clear data contracts between workflows and custom actions, making future updates easier. Most changes occur within pipelines-actions, reducing the need for frequent workflow updates.
 
 ### Adding custom actions
 
