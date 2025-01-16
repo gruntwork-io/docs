@@ -8,13 +8,13 @@ Once you can access the Gruntwork IaC library, you can view the source code for 
 
 In GitHub, each IaC repository adheres to a naming convention: it begins with the prefix `terraform-aws-`, followed by a description of the modules it contains. For example, Amazon SNS, SQS, MSK, and Kinesis modules reside in the `terraform-aws-messaging` repository. 
 
-Within each repository:  
-- Modules are located in the `modules` directory.  
-- Example usage and tests are provided in the `examples` and `tests` directories, respectively.  
+Within each repository: 
+- Modules are located in the `modules` directory. 
+- Example usage and tests are provided in the `examples` and `tests` directories, respectively. 
 
 ## Accessing modules: SSH vs. HTTPS
 
-Gruntwork modules reference each other internally using SSH. For example:  
+Gruntwork modules reference each other internally using SSH. For example: 
 ```hcl
 source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.58.0"
 ```
@@ -29,9 +29,9 @@ Gruntwork modules rely on SSH due to its widespread compatibility and minimal co
 
 The modules in the IaC Library reference each other via SSH. While you can initially reference a module using HTTPS, it may still pull in dependencies over SSH. As a result, exclusive use of HTTPS is not supported.
 
-### What if I can't use SSH?  
+### What if I can't use SSH? 
 
 If you cannot use SSH—such as in cases where corporate network restrictions block outbound access to port 22—you won’t be able to access the GitHub-hosted version of the library. However, you can [self-host](/2.0/docs/library/guides/self-hosting) the library using [repo-copier](https://github.com/gruntwork-io/repo-copier) as an alternative.
 
-A self-hosted version of the library within your corporate network can typically accommodate most enterprise network restrictions.  
+A self-hosted version of the library within your corporate network can typically accommodate most enterprise network restrictions. 
 
