@@ -1,4 +1,4 @@
- # Installing Drift Detection
+# Installing Drift Detection
 
 import PersistentCheckbox from '/src/components/PersistentCheckbox';
 
