@@ -6,7 +6,7 @@ Account Factory is automatically added to [new Pipelines root repositories](/2.0
 
 Out of the box Account Factory has the following components:
 
-- 📋 An HTML form for generating workflow inputs:  `.github/workflows/account-factory-inputs.html`
+- 📋 An HTML form for generating workflow inputs: `.github/workflows/account-factory-inputs.html`
 
 - 🏭 A workflow for generating new requests: `.github/workflows/account-factory.yml`
 
