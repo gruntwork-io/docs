@@ -226,7 +226,7 @@ For example:
   B. `ModuleChanged` (which depends on `ModuleAdded`)
 
 - Pipelines consolidates them into a single job:
-  C. `ModulesAddedOrChanged`  
+  C. `ModulesAddedOrChanged`
 
 Since `ModulesAddedOrChanged` uses the `run-all` Terragrunt command, it respects the DAG to ensure that the `ModuleAdded` operation is completed before the `ModuleChanged` operation.
 
