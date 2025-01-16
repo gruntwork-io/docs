@@ -13,6 +13,8 @@ Extending Gruntwork Pipelines requires managing code across three distinct repos
 This structure ensures that customers rarely need to modify Gruntwork-managed repositories, such as `pipelines-actions`. Instead, customizations typically involve modifying code references in `pipelines-workflows` to point to customized repositories. This approach minimizes the likelihood of merge conflicts or maintenance issues.
 
 ## Extend the GitHub Actions workflow
+ 
+<img alt="Diagram of Gruntwork Pipelines Repositories" className="img_node_modules-@docusaurus-theme-classic-lib-theme-MDXComponents-Img-styles-module medium-zoom-image" src="/img/pipelines/pipelines_customization_code_locations.svg" />
 
 The Pipelines workflow is implemented as a [Reusable Workflow](https://docs.github.com/en/actions/using-workflows/reusing-workflows). This allows you to reference a specific pinned version in your `.github/workflows/pipelines.yml` file without hosting the workflow code yourself.
 
