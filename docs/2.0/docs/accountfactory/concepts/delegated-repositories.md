@@ -15,7 +15,7 @@ Using this pattern core platform teams have the ability to:
 * Enforce least-privilege access to IaC, restricting teams to have access only to IaC and deployment capability / role assumptions for resources that they are responsible for.
 
 ## Delegated Repository Creation
-Delegated repositories are optionally created by [Account Factory](/2.0/docs/accountfactory/concepts) during account creation.  A delegated account vend follows the following (automated) workflow:
+Delegated repositories are optionally created by [Account Factory](/2.0/docs/accountfactory/concepts) during account creation. A delegated account vend follows the following (automated) workflow:
 
 ```mermaid
 sequenceDiagram
