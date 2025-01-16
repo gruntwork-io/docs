@@ -1,5 +1,3 @@
-
-
 # Modifying an AWS Account
 
 Over time you will need to run various operations on your AWS accounts such as requesting new accounts, creating new accounts, renaming accounts, etc. With the Gruntwork Account Factory, some AWS account management operations should only be done using IaC, some can only be done using ClickOps, and some can be done using either.
