@@ -1,23 +1,27 @@
-# Creating your own Service Module
+# Creating your own Service Module 
 
-We offer a collection of [service modules](/2.0/docs/library/concepts/service-modules) that piece together individual [modules](/2.0/docs/library/concepts/modules) for specific use cases such as EKS clusters and VPCs with public and private subnets. While we strive to make our service catalog as a complete as possible, you may need to create your own service to suit a specific use case or need for your company.
+We offer a collection of [service modules](/2.0/docs/library/concepts/service-modules) that combine individual [modules](/2.0/docs/library/concepts/modules) to address specific use cases, such as provisioning EKS clusters or VPCs with public and private subnets. While we strive to make the service catalog as comprehensive as possible, you may need to create a custom service to meet a unique requirement for your company. 
 
-In this guide, you will learn how to create a service that provisions a simple API using the [AWS Lambda Function](/reference/modules/terraform-aws-lambda/lambda/) and [API Gateway](/reference/modules/terraform-aws-lambda/lambda-http-api-gateway/) modules from the Gruntwork Infrastructure as Code (IaC) Library.
+In this guide, you will learn how to create a service that provisions a simple API using the [AWS Lambda Function](/reference/modules/terraform-aws-lambda/lambda/) and [API Gateway](/reference/modules/terraform-aws-lambda/lambda-http-api-gateway/) modules from the Gruntwork Infrastructure as Code (IaC) Library. 
 
-## Prerequisites
+## Prerequisites 
 
-- An AWS account with permissions to create the necessary resources
-- An [AWS Identity and Access Management](https://aws.amazon.com/iam/) (IAM) user or role with permissions to create AWS IAM roles, Lambda functions, and API Gateways
-- [AWS Command Line Interface](https://aws.amazon.com/cli/) (AWS CLI) installed on your local machine
-- [Terraform](https://www.terraform.io) installed on your local machine
+- An AWS account with permissions to create the necessary resources 
+- An [AWS Identity and Access Management](https://aws.amazon.com/iam/) (IAM) user or role with permissions to create AWS IAM roles, Lambda functions, and API Gateways 
+- [AWS Command Line Interface](https://aws.amazon.com/cli/) (AWS CLI) installed on your local machine 
+- [Terraform](https://www.terraform.io) installed on your local machine 
 
-## Create the service
+## Create the service 
 
-In this section we’ll define a service that provisions an AWS Lambda Function and HTTP API Gateway, with a single proxy route on the API Gateway pointing to the Lambda. This service exposes a simple set of inputs for configuring the Lambda code configuration and name of the provisioned resources.
+In this section, we will define a service that provisions an AWS Lambda Function and an HTTP API Gateway. The API Gateway will include a single proxy route that forwards requests to the Lambda function. This service will expose a simple set of inputs for configuring the Lambda function’s code and naming the provisioned resources. 
 
-### Create the basic file structure
+### Create the basic file structure 
 
-First, create the basic file structure that will contain the service definition. We’ll create three files — `main.tf` which will contain the resource definitions, `variables.tf`, which specifies the possible inputs to the module, and `outputs.tf`, which specifies the values that can be used to pass references to attributes from the resources in the module.
+Start by creating the basic file structure to contain the service definition. You will need three files: 
+
+- `main.tf`: Contains the resource definitions. 
+- `variables.tf`: Specifies the possible inputs to the module. 
+- `outputs.tf`: Defines the outputs, which allow you to reference attributes from the resources created by the module. 
 
 ```bash
 mkdir -p gw_service_guide/serverless-api/
@@ -28,9 +32,14 @@ touch gw_service_guide/serverless-api/outputs.tf
 
 ### Define the service
 
-Next, define the module blocks for the AWS Lambda function and HTTP API Gateway. For the Lambda, we will use the [Lambda function module](/reference/modules/terraform-aws-lambda/lambda/), for the HTTP API Gateway we will use the [HTTP API Gateway module](/reference/modules/terraform-aws-lambda/lambda-http-api-gateway/).
+Next, define the module blocks for the AWS Lambda function and HTTP API Gateway. Use the [Lambda function module](/reference/modules/terraform-aws-lambda/lambda/) for the Lambda function, and the [HTTP API Gateway module](/reference/modules/terraform-aws-lambda/lambda-http-api-gateway/) for the HTTP API Gateway. 
 
-To keep the configuration simple for this guide, we define a single route — `ANY /{proxy+}`. This tells the API Gateway to send any requests matching the path `/*` to the Lambda. This is an effective approach if you are using an API framework in the Lambda function code that can handle request routing. We will also set some defaults for the Lambda to not run in a VPC, have a maximum run time of 30 seconds, and 128MB of memory.
+To simplify the configuration for this guide, we define a single route — `ANY /{proxy+}`. This configuration directs the API Gateway to forward all requests matching the path `/*` to the Lambda function. This approach is particularly effective when using an API framework within the Lambda function code to handle request routing. 
+
+We will also configure some sensible defaults for the Lambda function, including: 
+- Not running in a VPC 
+- A maximum execution time of 30 seconds 
+- 128MB of memory allocation 
 
 ```hcl title=gw_service_guide/serverless-api/main.tf
 module "lambda" {
@@ -58,7 +67,7 @@ module "api" {
 
 ### Specify the variables
 
-Now that you’ve defined the resources you want to create, you need to define the variables that you want to allow users to pass into the module. You can reference these values in the module using the var syntax, as visible in `gw_service_guide/serverless-api/main.tf`.
+Now that you’ve defined the resources to create, define the variables that users can pass into the module. These variables enable flexible configuration of the module. You can reference these values within the module using the `var` syntax, as shown in `gw_service_guide/serverless-api/main.tf`.
 
 ```hcl title=gw_service_guide/serverless-api/variables.tf
 variable "name" {
@@ -84,7 +93,7 @@ variable "lambda_handler" {
 
 ### Specify the outputs
 
-Next, define the outputs from the module. Outputs are convenient ways to pass values between modules when composing a service comprised of many modules. For this guide, we only want a single output — the URL for the API we are provisioning. You may want to define more outputs when developing a module for your company or team. Refer to the Library Reference for the [Lambda function module](/reference/modules/terraform-aws-lambda/lambda/#reference) and [HTTP API Gateway module](/reference/modules/terraform-aws-lambda/lambda-http-api-gateway/#reference) for a full list of outputs available.
+Next, define the outputs for the module. Outputs provide a convenient way to pass values between modules when building a service composed of multiple modules. For this guide, we will define a single output — the URL for the provisioned API. When developing a module for your company or team, you may need to include additional outputs. Refer to the Library Reference for the [Lambda function module](/reference/modules/terraform-aws-lambda/lambda/#reference) and the [HTTP API Gateway module](/reference/modules/terraform-aws-lambda/lambda-http-api-gateway/#reference) for a complete list of available outputs.
 
 ```hcl title=gw_service_guide/serverless-api/outputs.tf
 output "api_endpoint" {
@@ -95,13 +104,17 @@ output "api_endpoint" {
 
 ## Use the service
 
-Now that you have defined the service, you can reference the service to create the resources in AWS.
+Now that you have defined the service, you can reference it to provision the resources in AWS.
 
 ### Create the basic file structure
 
-First, create the files that will contain the reference to the service. Typically, you would create a module in one repository, then reference it in a different repository. For this tutorial, we’ll just create the reference in the top level directory for the sake of simplicity.
+Start by creating the files needed to reference the service. In a typical setup, the module would reside in one repository, while the reference would exist in a separate repository. For this tutorial, we will simplify the structure by creating the reference in the top-level directory.
 
-Create a file called `main.tf`, which will contain a reference to the module, a directory called `/src`, which will contain all source code for the Lambda function, and a file called `main.py`, which will contain the Lambda function code.
+Create the following:
+
+- A `main.tf` file to reference the module.
+- A `/src` directory to store the Lambda function's source code.
+- A `main.py` file inside the `/src` directory that contains the Lambda function code.
 
 ```bash
 touch gw_service_guide/main.tf
@@ -112,7 +125,7 @@ touch gw_service_guide/src/main.py
 
 ### Define the reference
 
-Define a module block in `gw_service_guide/main.tf` that references the relative location of the `serverless-api` service definition for the `source` attribute. In this guide, we are defining a Lambda function running Python 3.9, with the source path pointing to our `/src` directory, and the handler function `lambda_handler` defined in `gw_service_guide/src/main.py`.
+In `gw_service_guide/main.tf`, define a module block that references the relative path of the `serverless-api` service definition for the `source` attribute. In this example, the Lambda function is configured to use Python 3.9, with the source path pointing to the `/src` directory and the handler function set to `lambda_handler` in `gw_service_guide/src/main.py`.
 
 ```hcl title=gw_service_guide/main.tf
 module "serverless_api" {
@@ -129,7 +142,7 @@ output "api_endpoint" {
 }
 ```
 
-Next, write a Python function that returns a status code of 200 and a response body stating "Hello from Gruntwork!". The response format is required for API Gateway to successfully return the response, to learn more refer to the [Lambda function response format documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html#http-api-develop-integrations-lambda.response).
+Next, write a Python function that returns a status code of 200 and a response body stating "Hello from Gruntwork!". The response must adhere to the required format for API Gateway to successfully process and return the response. To learn more, refer to the [Lambda function response format documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html#http-api-develop-integrations-lambda.response).
 
 ```python title=gw_service_guide/src/main.py
 import json
@@ -141,11 +154,11 @@ def lambda_handler(event, context):
 
 ## Plan and apply the service
 
-Now that you have created a service and a reference to the service, you can run `plan` to see the infrastructure resources that will be provisioned by the module and `apply` to create the resources.
+Now that you have created a service and a reference to it, you can run `plan` to preview the infrastructure resources that will be provisioned by the module, and `apply` to create those resources.
 
 ### Init
 
-Before you can run a `plan` or `apply`, you need to run `terraform init`, which performs a series of initialization steps to prepare the working directory for use with Terraform.
+Before running a `plan` or `apply`, you need to execute `terraform init`. This command performs a series of initialization steps to prepare the working directory for use with terraform.
 
 ```bash
 terraform init
@@ -153,31 +166,30 @@ terraform init
 
 ### Plan
 
-Terraform will generate an execution plan using the `plan` action. The plan shows what resources Terraform determines need to be created or modified.
+Terraform generates an execution plan using the `plan` action. The plan displays the resources that terraform determines need to be created or modified.
 
 ```bash
 terraform plan
 ```
 
-In your plan output, you should expect to see 11 resources created, including an AWS Lambda function and permissions, AWS API Gateway, AWS IAM role and policy, and AWS Cloudwatch Log group.
+In your plan output, you should expect to see 11 resources created, including an AWS Lambda function and its permissions, AWS API Gateway, AWS IAM role and policy, and AWS CloudWatch Log group.
 
 ### Apply
 
-After running a `plan` and confirming that all expected resources show that they will be provisioned in the plan, run an `apply` to create the resources.
+After running a `plan` and confirming that all expected resources will be provisioned, run an `apply` to create the resources.
 
-
-Terraform will create resources when using the `apply` action. Like with the `plan` action, Terraform will determine which resources need to be created or modified. You should expect to see the same resources to be created when running `apply` that are shown when running `plan`.
+Terraform creates resources when using the `apply` action. Similar to the `plan` action, terraform determines which resources need to be created or modified. You should expect the same resources to be created during `apply` as shown in the `plan` output.
 
 
 ```bash
 terraform apply
 ```
 
-You should see `Apply complete! Resources: 11 added, 0 changed, 0 destroyed.` when the `apply` has completed successfully.
+You should see `Apply complete! Resources: 11 added, 0 changed, 0 destroyed.` when the `apply` process completes successfully.
 
 ## Curl the endpoint
 
-Finally, curl the endpoint to confirm the AWS API Gateway and Lambda function were created successfully. Use `terraform output` to get the URL for the API that was provisioned, then curl the endpoint.
+Finally, use `curl` to confirm that the AWS API Gateway and Lambda function were created successfully. Use the `terraform output` command to retrieve the URL for the API that was provisioned, then curl the endpoint.
 
 ```bash
 export API_ENDPOINT=$(terraform output -raw api_endpoint)
@@ -188,4 +200,5 @@ You should receive `{"message": "Hello from Gruntwork!"}` as a response.
 
 ## What’s next
 
-Now that you've defined your own service, consider how you would make this module available to others in your organization. At Gruntwork, we share services using a Github repository called `terraform-aws-service-catalog`, for more information refer to the [Library Reference](/library/reference). Further, try adding tests to this service using [Terratest](https://terratest.gruntwork.io) to ensure that resources are created successfully as changes are made to the service. Finally, consider what other resources you might add to this module. For example, adding authentication via AWS Cognito to the HTTP API Gateway or a DynamoDB table to store data.
+Now that you've defined your own service, consider how you would make this module available to others in your organization. At Gruntwork, we share services using a GitHub repository called `terraform-aws-service-catalog`. For more information, refer to the [Library Reference](/library/reference). Next, try adding tests to this service using [Terratest](https://terratest.gruntwork.io) to ensure resources are created successfully as changes are made to the service. Finally, think about what additional resources you might include in this module. For example, you could add authentication via AWS Cognito to the HTTP API Gateway or a DynamoDB table to store data.
+
