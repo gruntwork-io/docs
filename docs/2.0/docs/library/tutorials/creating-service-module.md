@@ -1,27 +1,27 @@
-# Creating your own Service Module  
+# Creating your own Service Module 
 
-We offer a collection of [service modules](/2.0/docs/library/concepts/service-modules) that combine individual [modules](/2.0/docs/library/concepts/modules) to address specific use cases, such as provisioning EKS clusters or VPCs with public and private subnets. While we strive to make the service catalog as comprehensive as possible, you may need to create a custom service to meet a unique requirement for your company.  
+We offer a collection of [service modules](/2.0/docs/library/concepts/service-modules) that combine individual [modules](/2.0/docs/library/concepts/modules) to address specific use cases, such as provisioning EKS clusters or VPCs with public and private subnets. While we strive to make the service catalog as comprehensive as possible, you may need to create a custom service to meet a unique requirement for your company. 
 
-In this guide, you will learn how to create a service that provisions a simple API using the [AWS Lambda Function](/reference/modules/terraform-aws-lambda/lambda/) and [API Gateway](/reference/modules/terraform-aws-lambda/lambda-http-api-gateway/) modules from the Gruntwork Infrastructure as Code (IaC) Library.  
+In this guide, you will learn how to create a service that provisions a simple API using the [AWS Lambda Function](/reference/modules/terraform-aws-lambda/lambda/) and [API Gateway](/reference/modules/terraform-aws-lambda/lambda-http-api-gateway/) modules from the Gruntwork Infrastructure as Code (IaC) Library. 
 
-## Prerequisites  
+## Prerequisites 
 
-- An AWS account with permissions to create the necessary resources  
-- An [AWS Identity and Access Management](https://aws.amazon.com/iam/) (IAM) user or role with permissions to create AWS IAM roles, Lambda functions, and API Gateways  
-- [AWS Command Line Interface](https://aws.amazon.com/cli/) (AWS CLI) installed on your local machine  
-- [Terraform](https://www.terraform.io) installed on your local machine  
+- An AWS account with permissions to create the necessary resources 
+- An [AWS Identity and Access Management](https://aws.amazon.com/iam/) (IAM) user or role with permissions to create AWS IAM roles, Lambda functions, and API Gateways 
+- [AWS Command Line Interface](https://aws.amazon.com/cli/) (AWS CLI) installed on your local machine 
+- [Terraform](https://www.terraform.io) installed on your local machine 
 
-## Create the service  
+## Create the service 
 
-In this section, we will define a service that provisions an AWS Lambda Function and an HTTP API Gateway. The API Gateway will include a single proxy route that forwards requests to the Lambda function. This service will expose a simple set of inputs for configuring the Lambda function’s code and naming the provisioned resources.  
+In this section, we will define a service that provisions an AWS Lambda Function and an HTTP API Gateway. The API Gateway will include a single proxy route that forwards requests to the Lambda function. This service will expose a simple set of inputs for configuring the Lambda function’s code and naming the provisioned resources. 
 
-### Create the basic file structure  
+### Create the basic file structure 
 
-Start by creating the basic file structure to contain the service definition. You will need three files:  
+Start by creating the basic file structure to contain the service definition. You will need three files: 
 
-- `main.tf`: Contains the resource definitions.  
-- `variables.tf`: Specifies the possible inputs to the module.  
-- `outputs.tf`: Defines the outputs, which allow you to reference attributes from the resources created by the module.  
+- `main.tf`: Contains the resource definitions. 
+- `variables.tf`: Specifies the possible inputs to the module. 
+- `outputs.tf`: Defines the outputs, which allow you to reference attributes from the resources created by the module. 
 
 ```bash
 mkdir -p gw_service_guide/serverless-api/
@@ -32,14 +32,14 @@ touch gw_service_guide/serverless-api/outputs.tf
 
 ### Define the service
 
-Next, define the module blocks for the AWS Lambda function and HTTP API Gateway. Use the [Lambda function module](/reference/modules/terraform-aws-lambda/lambda/) for the Lambda function, and the [HTTP API Gateway module](/reference/modules/terraform-aws-lambda/lambda-http-api-gateway/) for the HTTP API Gateway.  
+Next, define the module blocks for the AWS Lambda function and HTTP API Gateway. Use the [Lambda function module](/reference/modules/terraform-aws-lambda/lambda/) for the Lambda function, and the [HTTP API Gateway module](/reference/modules/terraform-aws-lambda/lambda-http-api-gateway/) for the HTTP API Gateway. 
 
-To simplify the configuration for this guide, we define a single route — `ANY /{proxy+}`. This configuration directs the API Gateway to forward all requests matching the path `/*` to the Lambda function. This approach is particularly effective when using an API framework within the Lambda function code to handle request routing.  
+To simplify the configuration for this guide, we define a single route — `ANY /{proxy+}`. This configuration directs the API Gateway to forward all requests matching the path `/*` to the Lambda function. This approach is particularly effective when using an API framework within the Lambda function code to handle request routing. 
 
-We will also configure some sensible defaults for the Lambda function, including:  
-- Not running in a VPC  
-- A maximum execution time of 30 seconds  
-- 128MB of memory allocation  
+We will also configure some sensible defaults for the Lambda function, including: 
+- Not running in a VPC 
+- A maximum execution time of 30 seconds 
+- 128MB of memory allocation 
 
 ```hcl title=gw_service_guide/serverless-api/main.tf
 module "lambda" {
