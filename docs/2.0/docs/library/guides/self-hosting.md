@@ -16,7 +16,7 @@ Repo Copier supports the following version control systems:
 - GitHub Enterprise
 - BitBucket Server
 - GitLab.com
-  
+
 We may introduce support for additional systems in future releases.
 
 ## Can I use Artifactory or Nexus?
@@ -25,7 +25,7 @@ Repo Copier works exclusively with version control systems like GitHub, GitLab, 
 In contrast, artifact management tools like Artifactory and Nexus are primarily used for storing release assets and offering Terraform module registry functionality. However, they lack essential metadata — such as issues, pull requests, and community activity — that are critical for gaining the full value of the library. 
 
 ## Can I manually fork the repositories?
-Manually forking the repositories is an option, but it does not fully meet all self-hosting requirements.  
+Manually forking the repositories is an option, but it does not fully meet all self-hosting requirements. 
 A complete self-hosted solution must satisfy the following criteria:
 
 - Updates posted by Gruntwork must propagate automatically to your internally hosted version.
@@ -33,4 +33,5 @@ A complete self-hosted solution must satisfy the following criteria:
 - All internal cross-references to `github.com/gruntwork-io` must be updated to point to your new hosting URL.
 
 ## Contributing changes back to Gruntwork
-To contribute changes while self-hosting, submit your updates directly to Gruntwork’s repositories on GitHub.com. Once your changes are merged, they will automatically sync with your self-hosted version.  
+To contribute changes while self-hosting, submit your updates directly to Gruntwork’s repositories on GitHub.com. Once your changes are merged, they will automatically sync with your self-hosted version. 
+
