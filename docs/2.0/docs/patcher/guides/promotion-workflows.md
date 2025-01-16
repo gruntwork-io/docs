@@ -1,52 +1,52 @@
 # Using Patcher Promotion Workflows
-As of July 2024, Gruntwork officially supports Patcher Promotion Workflows using GitHub Actions. Support for other CI systems will be introduced in future releases.  
+As of July 2024, Gruntwork officially supports Patcher Promotion Workflows using GitHub Actions. Support for other CI systems will be introduced in future releases. 
 
-**Related content**:  
-* [Concepts - Patcher Workflows](/2.0/docs/patcher/concepts/promotion-workflows)  
-* [Architecture - Overview](/2.0/docs/patcher/architecture)  
+**Related content**: 
+* [Concepts - Patcher Workflows](/2.0/docs/patcher/concepts/promotion-workflows) 
+* [Architecture - Overview](/2.0/docs/patcher/architecture) 
 
 ## Prerequisites
-### Infrastructure as Code  
+### Infrastructure as Code 
 Before implementing Patcher Promotion Workflows, ensure your codebase is structured as infrastructure as code (IaC) using tools like Terraform, OpenTofu, or Terragrunt. This setup allows Patcher to automate updates across environments.
 
-### Organizing environments as folder structures  
+### Organizing environments as folder structures 
 To support multiple environments (such as `dev`, `stage`, and `prod`), your codebase must represent these environments with a consistent folder structure that can be grouped using glob pattern matching. For example:
 ```sh
 ls
 dev-account1  dev-account2  prod-account1  prod-account2  stage-account1  stage-account2
 ```
 
-Then you would define your environments as `dev-*`, `stage-*`, and `prod-*`.  
+Then you would define your environments as `dev-*`, `stage-*`, and `prod-*`. 
 
-## Implementation & setup example  
+## Implementation & setup example 
 
-The Patcher Promotion Workflow process consists of a series of GitHub Actions workflow files, where each environment is represented as an individual workflow. The process begins with the lowest environment (typically `dev`). It scans the entire `dev` environment for dependencies that require updates and generates one pull request per dependency. Each pull request updates the dependency specifically in the `dev` environment.  
+The Patcher Promotion Workflow process consists of a series of GitHub Actions workflow files, where each environment is represented as an individual workflow. The process begins with the lowest environment (typically `dev`). It scans the entire `dev` environment for dependencies that require updates and generates one pull request per dependency. Each pull request updates the dependency specifically in the `dev` environment. 
 
-After a pull request is approved and merged in the dev environment, Patcher automatically triggers pull requests for the next environment (e.g., stage) via repository dispatch events. This step-by-step promotion continues until production is updated..  
+After a pull request is approved and merged in the dev environment, Patcher automatically triggers pull requests for the next environment (e.g., stage) via repository dispatch events. This step-by-step promotion continues until production is updated.
 
-To get started quickly, copy and customize the example files below to match your environment names. In this example, the promotion workflow moves updates sequentially across `dev`, `stage`, and finally `prod`.  
+To get started quickly, copy and customize the example files below to match your environment names. In this example, the promotion workflow moves updates sequentially across `dev`, `stage`, and finally `prod`. 
 
-### Setting up the initial dev promotion step  
+### Setting up the initial dev promotion step 
 
-The initial GitHub Actions workflow file, `update-dev.yml` in this example, highlights the following key components:  
+The initial GitHub Actions workflow file, `update-dev.yml` in this example, highlights the following key components: 
 
-* **Job triggers**:  
-    * The job is configured to run on a schedule, pull request targets, workflow dispatch, and repository dispatch events.  
-        * A **schedule** is optional but recommended for regular updates.  
-        * **Workflow dispatch** is a recommended testing mechanism.  
-        * The **pull request target** is required to trigger certain dependent jobs.  
+* **Job triggers**: 
+    * The job is configured to run on a schedule, pull request targets, workflow dispatch, and repository dispatch events. 
+        * A **schedule** is optional but recommended for regular updates. 
+        * **Workflow dispatch** is a recommended testing mechanism. 
+        * The **pull request target** is required to trigger certain dependent jobs. 
 
-* **`trigger-next-env` job**:  
-    * This job runs **only** when a pull request is merged. It sends a repository dispatch event (`dev_updates_merged`) to trigger the next environment’s workflow.  
-    * It includes metadata, specifically a `dependency` (derived from the Git branch name), to inform the subsequent job which dependency to process.  
+* **`trigger-next-env` job**: 
+    * This job runs **only** when a pull request is merged. It sends a repository dispatch event (`dev_updates_merged`) to trigger the next environment’s workflow. 
+    * It includes metadata, specifically a `dependency` (derived from the Git branch name), to inform the subsequent job which dependency to process. 
 
-* **`patcher-report` job**:  
-    * This job runs `patcher report` to generate a list of updates for a specific environment, using the `include_dirs` argument to target that environment.  
-    * It uses a secret, `PIPELINES_READ_TOKEN`, which must have access to your Gruntwork account to download the Patcher binary. For details on setting up machine user tokens, see [here](/2.0/docs/pipelines/installation/viamachineusers).  
+* **`patcher-report` job**: 
+    * This job runs `patcher report` to generate a list of updates for a specific environment, using the `include_dirs` argument to target that environment. 
+    * It uses a secret, `PIPELINES_READ_TOKEN`, which must have access to your Gruntwork account to download the Patcher binary. For details on setting up machine user tokens, see [here](/2.0/docs/pipelines/installation/viamachineusers). 
 
-* **`update-env` job**:  
-    * This job processes the `spec` output from the `patcher report` command, saves it to a file, and then runs `patcher update`.  
-    * The `patcher update` command reads the `spec` file, checks out the repository code, commits the changes, and pushes a pull request.  
+* **`update-env` job**: 
+    * This job processes the `spec` output from the `patcher report` command, saves it to a file, and then runs `patcher update`. 
+    * The `patcher update` command reads the `spec` file, checks out the repository code, commits the changes, and pushes a pull request. 
     * For the pull request workflow to function correctly, the `pull_request_branch` must follow the format `$PREFIX$DEPENDENCYID`. This format allows the workflow to track and process updates accurately. The `trigger-next-env` job strips out the prefix
 
 <!-- spell-checker: disable -->
@@ -135,14 +135,14 @@ jobs:
           pull_request_branch: "${{ env.PR_BRANCH_PREFIX }}${{ matrix.dependency.ID }}"
 ```
 <!-- spell-checker: enable -->
-### Setting up the stage step  
+### Setting up the stage step 
 
-The `update-stage.yml` workflow file is nearly identical to `update-dev.yml`.  
+The `update-stage.yml` workflow file is nearly identical to `update-dev.yml`. 
 
-The key differences are:  
-* The `repository_dispatch` event type is now `dev_updates_merged`.  
-* The `include_dirs` argument targets the `stage` environment instead of `dev`.  
-* The `PR_BRANCH_PREFIX` and `pull_request_title` reference the `stage` environment instead of `dev`.  
+The key differences are: 
+* The `repository_dispatch` event type is now `dev_updates_merged`. 
+* The `include_dirs` argument targets the `stage` environment instead of `dev`. 
+* The `PR_BRANCH_PREFIX` and `pull_request_title` reference the `stage` environment instead of `dev`. 
 
 ```yml
 name: Update Stage Dependencies
@@ -225,15 +225,15 @@ jobs:
           pull_request_branch: "${{ env.PR_BRANCH_PREFIX }}${{ matrix.dependency.ID }}"
 ```
 
-### Setting up the prod stage  
+### Setting up the prod stage 
 
-The `update-prod.yml` workflow file is nearly identical to `update-stage.yml`.  
+The `update-prod.yml` workflow file is nearly identical to `update-stage.yml`. 
 
-The key differences are:  
-* The `repository_dispatch` event type is now `stage_updates_merged`.  
-* The `include_dirs` argument targets the `prod` environment instead of `stage`.  
-* The `PR_BRANCH_PREFIX` and `pull_request_title` reference the `prod` environment instead of `stage`.  
-* Since this is the final environment in the chain, the `trigger-next-env` job is no longer needed.  
+The key differences are: 
+* The `repository_dispatch` event type is now `stage_updates_merged`. 
+* The `include_dirs` argument targets the `prod` environment instead of `stage`. 
+* The `PR_BRANCH_PREFIX` and `pull_request_title` reference the `prod` environment instead of `stage`. 
+* Since this is the final environment in the chain, the `trigger-next-env` job is no longer needed. 
 
 
 ```yml
