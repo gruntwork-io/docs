@@ -10,7 +10,7 @@ In this guide, you will learn how to create an AWS Lambda function using a modu
 ## Prerequisites
 
 - An AWS account with permissions to create required resources
-- An [AWS Identity and Access Management](https://aws.amazon.com/iam/) (IAM)  user or role with permissions to create AWS IAM roles, Lambda functions, and CloudWatch Log Groups
+- An [AWS Identity and Access Management](https://aws.amazon.com/iam/) (IAM) user or role with permissions to create AWS IAM roles, Lambda functions, and CloudWatch Log Groups
 - [AWS Command Line Interface](https://aws.amazon.com/cli/) (AWS CLI) installed on your local machine
 - [Terraform](https://www.terraform.io) installed on your local machine
 - (Optional) [Terragrunt](https://terragrunt.gruntwork.io) installed on your local machine
@@ -46,7 +46,7 @@ touch gw_module_guide/example/<YOUR_REGION>/src/main.py
 </TabItem>
 <TabItem value="Terragrunt" label="Terragrunt" default>
 
-For Terragrunt, we recommend storing all reusable infrastructure modules in a directory called  `_envcommon`. Create two paths — one to reference the `terraform-aws-lambda` module and another to reference the local module.
+For Terragrunt, we recommend storing all reusable infrastructure modules in a directory called `_envcommon`. Create two paths — one to reference the `terraform-aws-lambda` module and another to reference the local module.
 
 ```bash
 mkdir -p gw_module_guide/_envcommon/serverless-api
@@ -218,7 +218,7 @@ Next, run a plan to preview the resources that will be created, followed by an
 
 :::note
 
-For this guide, we’ll run `terraform plan` and `terraform apply`locally. When collaborating on infrastructure as code within a team or organization, we recommend running `terraform plan` and `terraform apply`  in your CI system in response to pull request creation, synchronization, and merge events. We purpose-built [Pipelines](/2.0/docs/pipelines/concepts/overview) to support this workflow. Refer to the Pipelines documentation to learn more.
+For this guide, we’ll run `terraform plan` and `terraform apply`locally. When collaborating on infrastructure as code within a team or organization, we recommend running `terraform plan` and `terraform apply` in your CI system in response to pull request creation, synchronization, and merge events. We purpose-built [Pipelines](/2.0/docs/pipelines/concepts/overview) to support this workflow. Refer to the Pipelines documentation to learn more.
 
 ### Init
 
