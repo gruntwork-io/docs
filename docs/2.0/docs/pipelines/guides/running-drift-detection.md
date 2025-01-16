@@ -2,42 +2,43 @@
 
 ## Detecting Drift
 
-Pipelines Drift Detection can be run on a manually or on a schedule.
+Pipelines Drift Detection can be executed manually or on a scheduled basis.
 
 :::note
-We recommend starting manually and running Drift Detection against each directory of your IaC before enabling scheduled Drift Detection on your entire repository. This allows you to fix any existing drift on a smaller set of units at a time.
+It is recommended to start with manual runs, focusing on individual directories of your IaC. This approach allows you to resolve drift incrementally before enabling scheduled Drift Detection for the entire repository.
 :::
 
 ### Running manually
 
-Pipelines Drift Detection can be run manually by navigating to Actions in your GitHub repository, selecting Pipelines Drift Detection from the left hand menu, and then selecting Run Workflow.
+You can manually initiate Pipelines Drift Detection by navigating to the Actions tab in your GitHub repository, selecting "Pipelines Drift Detection" from the left-hand menu, and then clicking "Run Workflow."
 
-By default the workflow will run on all units in your repository, and create a pull request on the branch `drift-detection`. You can specify a path filter to restrict Drift Detection to a subset of your units and customize the branch name. For example to to run Drift Detection only on IaC in the `management` directory, the filter should be `./management/*`. Note the leading `./`.
+By default, the workflow evaluates all units in your repository and generates a pull request on the `drift-detection` branch. To limit drift detection to specific units, specify a path filter. For instance, to target only the `management` directory, use the filter `./management/*` (note the leading `./`).
 
 ![Manual Dispatch](/img/pipelines/maintain/drift-detection-manual-dispatch.png)
 
 ### Running on a schedule
 
-To enable running on a schedule:
+To enable scheduled runs:
 
-1. Uncomment the schedule block containing `- cron: '15 12 * * 1'` in `.github/workflows/pipelines-drift-detection.yml`.
-1. Update the cron schedule to suit your desired frequency. The default schedule runs at 12:15UTC Monday. You can increase or decrease the frequency that the schedule runs using [crontab syntax](https://crontab.guru/#15_12_*_*_1).
-1. Each time Drift Detection runs and detects drift it will open a Pull Request in your repository. If there is an existing Drift Detection Pull Request that has not been merged it will be replaced.
+1. Uncomment the `schedule` block in `.github/workflows/pipelines-drift-detection.yml` that contains `- cron: '15 12 * * 1'`.
+2. Adjust the cron schedule to reflect your preferred frequency. The default configuration runs at 12:15 UTC every Monday. Use [crontab syntax](https://crontab.guru/#15_12_*_*_1) to customize the timing.
+3. Each Drift Detection run creates a pull request in your repository. If an existing Drift Detection pull request remains unmerged, it will be updated or replaced.
 
 :::caution
-Running Pipelines Drift Detection too frequently can easily eat through your GitHub Action minutes. We recommend starting with a low frequency and increasing only when you are comfortable with the usage.
+Running Drift Detection too frequently can consume a significant number of GitHub Action minutes. Begin with a lower frequency and adjust as needed based on your usage patterns.
 :::
 
 ## Resolving Drift
 
-Drift can be resolved by either applying the committed IaC from your repository, or modifying modules until they reflect the infrastructure state in the cloud.
+Drift can be addressed by either applying the current IaC configuration from your repository or modifying the modules to match the infrastructure state in the cloud.
 
-### Merging The Pull Request
+### Merging the pull request
 
-Merging the Pull Request will trigger a `terragrunt apply` on the drifted modules.
+Merging the pull request triggers a `terragrunt apply` on the modules identified as having drift.
 
-### Updating Units
+### Updating units
 
-You can make modifications to modules that have drifted and commit those changes to the Drift Detection branch. Each change to a terragrunt unit change will re-trigger `terragrunt plan` in those units on the Pull Request, and you can inspect the plan to ensure that the unit no longer has drift.
+Alternatively, modify the drifted modules to align them with the desired state and commit the changes to the drift-detection branch. Each change triggers a new `terragrunt plan` for the affected units, which you can review to ensure the drift is resolved.
 
-When the Pull Request is merged, Pipelines will run `terragrunt apply` on all the units that had drift detected **or** were modified in the Pull Request. If the unit no longer has drift the apply will be a no-op and no infrastructure changes will be made.
+When the pull request is merged, Pipelines will execute `terragrunt apply` on all drifted or modified units. If a unit no longer exhibits drift, the apply operation will result in no changes being made to the infrastructure.
+

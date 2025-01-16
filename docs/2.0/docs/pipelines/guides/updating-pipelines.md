@@ -1,8 +1,8 @@
 # Updating Your Pipeline
 
-Staying up to date with the latest in Gruntwork Pipelines is fairly simple. We release new versions of the Pipelines CLI, the associated GitHub Actions Workflows and the underlying custom GitHub Actions regularly to provide the optimal experience for managing infrastructure changes at scale.
+Keeping Gruntwork Pipelines updated is straightforward. Regular updates are released for the Pipelines CLI, associated GitHub Actions Workflows, and the custom GitHub Actions to ensure optimal performance and scalability for managing infrastructure changes.
 
-To pull in the latest changes across all three of these dimensions, you can simply edit the `pipelines.yml` file found under `.github/workflows` in any repository integrated with Gruntwork Pipelines in order to select the latest version of the Pipelines GitHub Actions Workflow:
+To apply the latest updates across these components, modify the `pipelines.yml` file located in the `.github/workflows` directory of any repository integrated with Gruntwork Pipelines. Update the file to reference the latest version of the Pipelines GitHub Actions Workflow:
 
 ```yml
 jobs:
@@ -10,8 +10,11 @@ jobs:
     uses: gruntwork-io-team/pipelines-workflows/.github/workflows/pipelines-root.yml@v0.0.5
 ```
 
-Due to our integration with [Dependabot](https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide), you can also automatically receive pull requests that suggest updates to the `pipelines.yml` file in your repository by leveraging a `.github/dependabot.yml` file. This will help you stay up to date with the latest changes in Gruntwork Pipelines. DevOps Foundations customers receive this configuration as part of their `infrastructure-live` repositories by default.
+Due to our integration with [Dependabot](https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide), you can automatically receive pull requests suggesting updates to the `pipelines.yml` file in your repository by including a `.github/dependabot.yml` file. This ensures your repository stays aligned with the latest changes in Gruntwork Pipelines. DevOps Foundations customers receive this configuration as part of their `infrastructure-live` repositories by default.
 
-## Updating Customized Workflows
+## Updating customized workflows
 
-Note that if you follow the instructions under [Extending Pipelines](/2.0/docs/pipelines/guides/extending-pipelines.md), you may have incurred greater burden in maintaining updates to your customized workflows. If you decide to fork the [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository to customize your workflows, you will need to manually update your workflows to include the latest changes from the upstream repository. This can be done by following the instructions in the [GitHub documentation](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork), as long as you have not made changes that conflict with the upstream repository.
+If you have customized workflows as outlined in [Extending Pipelines](/2.0/docs/pipelines/guides/extending-pipelines.md), maintaining updates to these workflows may require additional effort. For those who have forked the [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository to implement customizations, manual updates will be necessary to incorporate the latest changes from the upstream repository.
+
+To update your workflows, follow the instructions provided in the [GitHub documentation](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork). This process applies as long as there are no conflicts between your customizations and the upstream repository.
+
