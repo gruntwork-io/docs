@@ -120,40 +120,84 @@ Generate the following tokens in the `ci-user` GitHub account:
 
 
 #### INFRA_ROOT_WRITE_TOKEN
-This [fine-grained](#fine-grained) token allows GitHub Actions to clone `infrastructure-live-root`, open pull requests, and update comments. Assign the following permissions to the `INFRA_ROOT_WRITE_TOKEN` for the `infrastructure-live-root` repository:
 
-- Content: Read & write
-- Issues: Read & write
-- Metadata: Read
-- Pull requests: Read & write
-- Workflows: Read & write
+This [fine-grained](#fine-grained) Personal Access Token allows GitHub Actions to clone `infrastructure-live-root`, open pull requests, and update comments. Assign the following permissions to the `INFRA_ROOT_WRITE_TOKEN` for the `infrastructure-live-root` repository:
 
-![INFRA_ROOT_WRITE_TOKEN PAT Configuration](/img/pipelines/security/INFRA_ROOT_WRITE_TOKEN.png)
+- **Content:** Read & write access — Required to clone the repository and push changes.  
 
-<details>
+- **Issues:** Read & write access — Allows Pipelines to open issues when manual intervention is needed.  
+
+- **Metadata:** Read access — Grants access to repository metadata, essential for automation.  
+
+- **Pull requests:** Read & write access — Enables Pipelines to automate infrastructure changes through PRs.  
+
+- **Workflows:** Read & write access — Needed to update workflow files in `.github/workflows`.
+
 <summary>Permission breakdown</summary>
-Each permission is configured to support required pipeline operations, with additional details provided for Enterprise-specific use cases. If unnecessary for your workflows, consider omitting corresponding permissions.
+
+##### Content read & write access  
+Needed for cloning `infrastructure-live-root` and pushing automated changes. Without this, workflows can't trigger automation during account vending.
+
+##### Issues read & write access  
+Allows Pipelines to open issues that alert teams when manual action is required.
+
+##### Metadata read access  
+Grants visibility into repository metadata for better automation.
+
+##### Pull requests read & write access  
+Essential for creating pull requests to introduce infrastructure changes.
+
+##### Workflows read & write access  
+Required to update workflows when provisioning new repositories.
+
 </details>
+
 
 #### ORG_REPO_ADMIN_TOKEN
 
 This fine-grained token is used for initial setup and bootstrapping repositories. For Enterprise customers, it also provisions delegated repositories. Assign the following permissions to all accessible repositories:
 
-- Administration: Read & write
-- Content: Read & write
-- Metadata: Read
-- Pull requests: Read & write
-- Workflows: Read & write
+- **Administration:** Read & write access — Required to create and manage repositories.  
+
+- **Content:** Read & write access — Necessary for reading and writing repository files.  
+
+- **Metadata:** Read access — Grants access to repository metadata.  
+
+- **Pull requests:** Read & write access — Enables automation of infrastructure updates via PRs.  
+
+- **Workflows:** Read & write access — Required to manage workflow files.  
+
+- **Members:** Read & write access — Needed to manage team access for repositories.
+
+
+![ORG_REPO_ADMIN_TOKEN PAT Configuration](/img/pipelines/security/ORG_REPO_ADMIN_TOKEN.png)
 
 <details>
 <summary>Permission breakdown</summary>
-Permissions are incrementally tested to minimize access while enabling required functionality. Review and omit permissions based on your use case.
+
+##### Administration read & write access  
+Allows the creation of new repositories for delegated infrastructure management.
+
+##### Content read & write access  
+Used for bootstrapping repositories and populating them with necessary content.
+
+##### Metadata read access  
+Grants repository-level insights needed for automation.
+
+##### Pull requests read & write access  
+Automates infrastructure updates via pull requests.
+
+##### Workflows read & write access  
+Manages workflow files required for continuous integration and deployment.
+
+##### Members read & write access  
+Grants permission to manage GitHub teams and repository access for delegated repositories.
+
 </details>
 
 :::tip
-For non-Enterprise customers, delete this token after the setup process is complete.
+For non-Enterprise customers, delete this token after the setup process is complete to minimize security risks.
 :::
-
 ### ci-read-only-user
 
 The `ci-read-only-user` downloads private software and accesses Gruntwork IaC Library modules or private repositories during GitHub Actions runs. This user requires a single Classic token with read permissions. Add this user to a GitHub team with read access to relevant repositories, including `infrastructure-live-root`.
@@ -238,12 +282,12 @@ When adding new `infrastructure-live` repositories, update the secret permission
 
 After completing the bootstrap process, clean up the `ORG_REPO_ADMIN_TOKEN` token as follows:
 
-If you are **not an Enterprise customer**:
+For **Non-Enterprise customers**:
 
 - Delete the `ORG_REPO_ADMIN_TOKEN` Personal Access Token from the `ci-user`’s GitHub account.
 - Remove the `ORG_REPO_ADMIN_TOKEN` Organization secret from the GitHub Organization.
 
-For Enterprise customers:
+For **Enterprise customers**:
 
 - Remove the `infrastructure-live-access-control` repository from the Selected repositories dropdown in the `ORG_REPO_ADMIN_TOKEN` GitHub Actions secret. This repository only needed the token for the bootstrapping process.
 
