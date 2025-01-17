@@ -22,9 +22,10 @@ an [Amazon Kinesis Data Firehose](https://docs.aws.amazon.com/firehose/latest/de
 
 ## Destination to Amazon S3
 
-This module currently only supports a fully managed service for delivering real-time streaming data to Amazon S3. Use
-the `var.s3_bucket_arn` to specify the s3 destination path and the `var.kinesis_stream_arn` to specify the kinesis data
-stream.
+This module currently only supports a fully managed service for delivering real-time streaming data to Amazon S3 and
+also deployed lambda for data transformation. Use the `var.s3_bucket_arn` to specify the s3 destination path and
+the `var.kinesis_stream_arn` to specify the kinesis data stream, we also have a Map variable
+`var.processing_configurations` which provides a way to configure the attributes for data transformation.
 
 ## Sample Usage
 
@@ -53,6 +54,13 @@ module "kinesis_firehose" {
 
   # The ARN of the S3 bucket you want to export the data to.
   s3_bucket_arn = <string>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The processing configuration for the Kinesis Data Firehose.
+  extended_s3_processors = []
 
 }
 
@@ -86,6 +94,13 @@ inputs = {
 
   # The ARN of the S3 bucket you want to export the data to.
   s3_bucket_arn = <string>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The processing configuration for the Kinesis Data Firehose.
+  extended_s3_processors = []
 
 }
 
@@ -129,6 +144,30 @@ The ARN of the S3 bucket you want to export the data to.
 </HclListItemDescription>
 </HclListItem>
 
+### Optional
+
+<HclListItem name="extended_s3_processors" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+The processing configuration for the Kinesis Data Firehose.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    type = string
+    parameters = list(object({
+      parameter_name  = string
+      parameter_value = string
+    }))
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -148,9 +187,24 @@ Name of the Kinesis Firehose delivery stream.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="kinesis_firehose_role_arn">
+<HclListItemDescription>
+
+ARN of the role for Kinesis Firehose
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="kinesis_firehose_role_name">
+<HclListItemDescription>
+
+Name of the role for Kinesis Firehose
+
+</HclListItemDescription>
+</HclListItem>
+
 </TabItem>
 </Tabs>
-
 
 <!-- ##DOCS-SOURCER-START
 {
@@ -160,6 +214,6 @@ Name of the Kinesis Firehose delivery stream.
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/kinesis-firehose/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "234a6837df98457258a75b3cc8da6092"
+  "hash": "a2f38ee21ce1cb3ce84fcc898a8bb0c9"
 }
 ##DOCS-SOURCER-END -->

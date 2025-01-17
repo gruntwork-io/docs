@@ -165,6 +165,9 @@ module "sqs" {
   # value is set to the same value as `message_retention_seconds`.
   dlq_message_retention_seconds = null
 
+  # The JSON policy for the dead letter queue
+  dlq_policy = null
+
   # The time for which a ReceiveMessage call will wait for a dead letter queue
   # message to arrive (long polling) before returning. An integer from 0 to 20
   # (seconds). Setting this to 0 means the call will return immediately. The
@@ -207,6 +210,9 @@ module "sqs" {
   # The number of seconds Amazon SQS retains a message. Integer representing
   # seconds, from 60 (1 minute) to 1209600 (14 days).
   message_retention_seconds = 345600
+
+  # The JSON policy for the SQS queue
+  queue_policy = null
 
   # The time for which a ReceiveMessage call will wait for a message to arrive
   # (long polling) before returning. An integer from 0 to 20 (seconds). Setting
@@ -304,6 +310,9 @@ inputs = {
   # value is set to the same value as `message_retention_seconds`.
   dlq_message_retention_seconds = null
 
+  # The JSON policy for the dead letter queue
+  dlq_policy = null
+
   # The time for which a ReceiveMessage call will wait for a dead letter queue
   # message to arrive (long polling) before returning. An integer from 0 to 20
   # (seconds). Setting this to 0 means the call will return immediately. The
@@ -346,6 +355,9 @@ inputs = {
   # The number of seconds Amazon SQS retains a message. Integer representing
   # seconds, from 60 (1 minute) to 1209600 (14 days).
   message_retention_seconds = 345600
+
+  # The JSON policy for the SQS queue
+  queue_policy = null
 
   # The time for which a ReceiveMessage call will wait for a message to arrive
   # (long polling) before returning. An integer from 0 to 20 (seconds). Setting
@@ -500,6 +512,15 @@ The number of seconds Amazon dead letter SQS retains a message. Integer represen
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="dlq_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+The JSON policy for the dead letter queue
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="dlq_receive_wait_time_seconds" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -581,6 +602,15 @@ The number of seconds Amazon SQS retains a message. Integer representing seconds
 <HclListItemDefaultValue defaultValue="345600"/>
 </HclListItem>
 
+<HclListItem name="queue_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+The JSON policy for the SQS queue
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="receive_wait_time_seconds" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -632,7 +662,6 @@ The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -641,6 +670,6 @@ The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/sqs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3a4a3ae63517324f372dd650b87d9a00"
+  "hash": "4d70113bad47b985977c0163ba158d9e"
 }
 ##DOCS-SOURCER-END -->

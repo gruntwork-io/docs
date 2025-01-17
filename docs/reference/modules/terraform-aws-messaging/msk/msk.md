@@ -66,7 +66,7 @@ cluster:
     brokers and the total number of partitions.
 *   **number of brokers per cluster**: can be configured to any value between 1 and 15.
 *   **replication factor**: controls the # of other brokers to replicate the data for fault tolerance. It is recommended
-    to have a topic replication factor > 1.
+    to have a topic replication factor &gt; 1.
 *   **broker_type**: depending on the broker type, recommended number of partitions per broker and maximum storage
     throughput changes.
 
@@ -1103,7 +1103,6 @@ A comma separated list of one or more hostname:port pairs to use to connect to t
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1112,6 +1111,6 @@ A comma separated list of one or more hostname:port pairs to use to connect to t
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/msk/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bb1614f17077b96008d8b1d85aa9a03a"
+  "hash": "9923f207c61a1a95cfeafa4b56b4245a"
 }
 ##DOCS-SOURCER-END -->
