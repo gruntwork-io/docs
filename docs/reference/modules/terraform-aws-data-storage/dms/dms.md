@@ -48,16 +48,10 @@ module "dms" {
   # periods, and spaces.
   name = <string>
 
-  # Host name of the server.
-  source_endpoint_server_name = <string>
-
   # A list of subnet ids where the Replication Instance should be deployed. In
   # the standard Gruntwork VPC setup, these should be the private persistence
   # subnet ids. This is ignored if create_subnet_group=false.
   subnet_ids = <list(string)>
-
-  # Host name of the server.
-  target_endpoint_server_name = <string>
 
   # The migration type. Can be one of `full-load` | `cdc` | `full-load-and-cdc`.
   task_migration_type = <string>
@@ -162,12 +156,32 @@ module "dms" {
   #  Port used by the endpoint database.
   source_endpoint_port = null
 
+  # (Required if using non-s3 source) Host name of the server.
+  source_endpoint_server_name = null
+
   # SSL mode to use for the connection. Valid values are none, require,
   # verify-ca, verify-full
   source_endpoint_ssl_mode = "none"
 
   # User name to be used to login to the endpoint database.
   source_endpoint_username = null
+
+  # (Required if using s3) S3 bucket name.
+  source_s3_bucket_name = null
+
+  # (Required if using s3 for CDC; otherwise, Optional) Folder path of CDC
+  # files. If cdc_path is set, AWS DMS reads CDC files from this path and
+  # replicates the data changes to the target endpoint. Supported in AWS DMS
+  # versions 3.4.2 and later.
+  source_s3_cdc_path = null
+
+  # (Required if using s3) JSON document that describes how AWS DMS should
+  # interpret the data.
+  source_s3_external_table_definition = null
+
+  # ARN of the IAM role with permissions to the S3 Bucket. Default one will be
+  # created if not specified
+  source_s3_service_access_role_arn = null
 
   # The description of the aws_dms_replication_subnet_group that is created.
   # Defaults to 'Subnet group for the var.name DB' if not specified.
@@ -204,12 +218,30 @@ module "dms" {
   #  Port used by the endpoint database.
   target_endpoint_port = null
 
+  # (Required if using non-s3 target) Host name of the server.
+  target_endpoint_server_name = null
+
   # SSL mode to use for the connection. Valid values are none, require,
   # verify-ca, verify-full
   target_endpoint_ssl_mode = "none"
 
   # User name to be used to login to the endpoint database.
   target_endpoint_username = null
+
+  # (Required if using s3) S3 bucket name.
+  target_s3_bucket_name = null
+
+  # Folder path of CDC files. If cdc_path is set, AWS DMS reads CDC files from
+  # this path and replicates the data changes to the target endpoint. Supported
+  # in AWS DMS versions 3.4.2 and later.
+  target_s3_cdc_path = null
+
+  # JSON document that describes how AWS DMS should interpret the data.
+  target_s3_external_table_definition = null
+
+  # ARN of the IAM role with permissions to the S3 Bucket. Default one will be
+  # created if not specified
+  target_s3_service_access_role_arn = null
 
   # (Conflicts with task_cdc_start_time) Indicates when you want a change data
   # capture (CDC) operation to start. The value can be in date, checkpoint, or
@@ -263,16 +295,10 @@ inputs = {
   # periods, and spaces.
   name = <string>
 
-  # Host name of the server.
-  source_endpoint_server_name = <string>
-
   # A list of subnet ids where the Replication Instance should be deployed. In
   # the standard Gruntwork VPC setup, these should be the private persistence
   # subnet ids. This is ignored if create_subnet_group=false.
   subnet_ids = <list(string)>
-
-  # Host name of the server.
-  target_endpoint_server_name = <string>
 
   # The migration type. Can be one of `full-load` | `cdc` | `full-load-and-cdc`.
   task_migration_type = <string>
@@ -377,12 +403,32 @@ inputs = {
   #  Port used by the endpoint database.
   source_endpoint_port = null
 
+  # (Required if using non-s3 source) Host name of the server.
+  source_endpoint_server_name = null
+
   # SSL mode to use for the connection. Valid values are none, require,
   # verify-ca, verify-full
   source_endpoint_ssl_mode = "none"
 
   # User name to be used to login to the endpoint database.
   source_endpoint_username = null
+
+  # (Required if using s3) S3 bucket name.
+  source_s3_bucket_name = null
+
+  # (Required if using s3 for CDC; otherwise, Optional) Folder path of CDC
+  # files. If cdc_path is set, AWS DMS reads CDC files from this path and
+  # replicates the data changes to the target endpoint. Supported in AWS DMS
+  # versions 3.4.2 and later.
+  source_s3_cdc_path = null
+
+  # (Required if using s3) JSON document that describes how AWS DMS should
+  # interpret the data.
+  source_s3_external_table_definition = null
+
+  # ARN of the IAM role with permissions to the S3 Bucket. Default one will be
+  # created if not specified
+  source_s3_service_access_role_arn = null
 
   # The description of the aws_dms_replication_subnet_group that is created.
   # Defaults to 'Subnet group for the var.name DB' if not specified.
@@ -419,12 +465,30 @@ inputs = {
   #  Port used by the endpoint database.
   target_endpoint_port = null
 
+  # (Required if using non-s3 target) Host name of the server.
+  target_endpoint_server_name = null
+
   # SSL mode to use for the connection. Valid values are none, require,
   # verify-ca, verify-full
   target_endpoint_ssl_mode = "none"
 
   # User name to be used to login to the endpoint database.
   target_endpoint_username = null
+
+  # (Required if using s3) S3 bucket name.
+  target_s3_bucket_name = null
+
+  # Folder path of CDC files. If cdc_path is set, AWS DMS reads CDC files from
+  # this path and replicates the data changes to the target endpoint. Supported
+  # in AWS DMS versions 3.4.2 and later.
+  target_s3_cdc_path = null
+
+  # JSON document that describes how AWS DMS should interpret the data.
+  target_s3_external_table_definition = null
+
+  # ARN of the IAM role with permissions to the S3 Bucket. Default one will be
+  # created if not specified
+  target_s3_service_access_role_arn = null
 
   # (Conflicts with task_cdc_start_time) Indicates when you want a change data
   # capture (CDC) operation to start. The value can be in date, checkpoint, or
@@ -478,26 +542,10 @@ The name used to namespace all resources created by these templates, including t
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="source_endpoint_server_name" requirement="required" type="string">
-<HclListItemDescription>
-
-Host name of the server.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 A list of subnet ids where the Replication Instance should be deployed. In the standard Gruntwork VPC setup, these should be the private persistence subnet ids. This is ignored if create_subnet_group=false.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="target_endpoint_server_name" requirement="required" type="string">
-<HclListItemDescription>
-
-Host name of the server.
 
 </HclListItemDescription>
 </HclListItem>
@@ -735,6 +783,15 @@ Password to be used to login to the endpoint database.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="source_endpoint_server_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Required if using non-s3 source) Host name of the server.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="source_endpoint_ssl_mode" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -748,6 +805,42 @@ SSL mode to use for the connection. Valid values are none, require, verify-ca, v
 <HclListItemDescription>
 
 User name to be used to login to the endpoint database.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="source_s3_bucket_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Required if using s3) S3 bucket name.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="source_s3_cdc_path" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Required if using s3 for CDC; otherwise, Optional) Folder path of CDC files. If cdc_path is set, AWS DMS reads CDC files from this path and replicates the data changes to the target endpoint. Supported in AWS DMS versions 3.4.2 and later.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="source_s3_external_table_definition" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Required if using s3) JSON document that describes how AWS DMS should interpret the data.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="source_s3_service_access_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of the IAM role with permissions to the S3 Bucket. Default one will be created if not specified
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -825,6 +918,15 @@ Password to be used to login to the endpoint database.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="target_endpoint_server_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Required if using non-s3 target) Host name of the server.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="target_endpoint_ssl_mode" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -838,6 +940,42 @@ SSL mode to use for the connection. Valid values are none, require, verify-ca, v
 <HclListItemDescription>
 
 User name to be used to login to the endpoint database.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="target_s3_bucket_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Required if using s3) S3 bucket name.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="target_s3_cdc_path" requirement="optional" type="string">
+<HclListItemDescription>
+
+Folder path of CDC files. If cdc_path is set, AWS DMS reads CDC files from this path and replicates the data changes to the target endpoint. Supported in AWS DMS versions 3.4.2 and later.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="target_s3_external_table_definition" requirement="optional" type="string">
+<HclListItemDescription>
+
+JSON document that describes how AWS DMS should interpret the data.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="target_s3_service_access_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of the IAM role with permissions to the S3 Bucket. Default one will be created if not specified
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -949,6 +1087,6 @@ A map of maps containing the replication tasks created and their full output of 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.2/modules/dms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a6388230f2450d84ee9fff0f58da8434"
+  "hash": "67e1f0229df18eca4ac0224fc6e57b95"
 }
 ##DOCS-SOURCER-END -->

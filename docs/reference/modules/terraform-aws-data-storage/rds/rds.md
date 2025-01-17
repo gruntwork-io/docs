@@ -479,6 +479,13 @@ module "rds" {
   # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
   storage_type = "gp2"
 
+  # Time zone of the DB instance. timezone is currently only supported by
+  # Microsoft SQL Server. The timezone can only be set on creation. See MSSQL
+  # User Guide
+  # (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone)
+  # for more information.
+  timezone = null
+
   # Timeout for DB updating
   updating_timeout = "80m"
 
@@ -861,6 +868,13 @@ inputs = {
   # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
   # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
   storage_type = "gp2"
+
+  # Time zone of the DB instance. timezone is currently only supported by
+  # Microsoft SQL Server. The timezone can only be set on creation. See MSSQL
+  # User Guide
+  # (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone)
+  # for more information.
+  timezone = null
 
   # Timeout for DB updating
   updating_timeout = "80m"
@@ -1672,6 +1686,15 @@ The type of storage to use for the primary instance. Must be one of 'standard' (
 <HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
 </HclListItem>
 
+<HclListItem name="timezone" requirement="optional" type="string">
+<HclListItemDescription>
+
+Time zone of the DB instance. timezone is currently only supported by Microsoft SQL Server. The timezone can only be set on creation. See MSSQL User Guide (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone) for more information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="updating_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1737,6 +1760,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.2/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cf437c0db9f9e35487022117638952a8"
+  "hash": "1a416713da8ec8b7f5ef500bc50c49d4"
 }
 ##DOCS-SOURCER-END -->
