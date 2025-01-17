@@ -24,7 +24,6 @@ The PKI is the set of certificates used to verify the server and users' identiti
 normally lives on the OpenVPN server in the `/etc/openvpn-ca` and `/etc/openvpn` directories. If we didn't back these files
 up, we would have to reissue client certificates if the OpenVPN server ever needed to be rebuilt.
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -33,6 +32,6 @@ up, we would have to reissue client certificates if the OpenVPN server ever need
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.27.9/modules/backup-openvpn-pki/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "01ae879dadcc170b2e4248b32cf57f34"
+  "hash": "959b269984ddfde95210993ef7ccb6a6"
 }
 ##DOCS-SOURCER-END -->
