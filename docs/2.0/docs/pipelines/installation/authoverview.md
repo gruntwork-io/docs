@@ -1,25 +1,25 @@
 # Authenticating Gruntwork Pipelines
 
-Gruntwork Pipelines needs to authenticate with GitHub for various reasons, including:
-* Downloading Gruntwork code (e.g. the pipelines binary, Terraform modules, etc.) from the `gruntwork-io` GitHub organization.
-* Interacting with your repositories, e.g.:
-  * Creating pull requests
-  * Commenting on pull requests
-  * (via Account Factory) Creating new repositories
-  * (via Account Factory) Updating repository settings, e.g. enforcing branch protection
+Gruntwork Pipelines requires authentication with GitHub to perform various functions, including:
+* Downloading Gruntwork code, such as the Pipelines binary and Terraform modules, from the `gruntwork-io` GitHub organization.
+* Interacting with your repositories, such as:
+  * Creating pull requests.
+  * Commenting on pull requests.
+  * Creating new repositories via Account Factory.
+  * Updating repository settings, such as enforcing branch protection, via Account Factory.
 
-Gruntwork provides two mechanisms to achieve this authentication: a [GitHub App](/2.0/docs/pipelines/installation/viagithubapp.md) and a strategy of using CI Users (aka [Machine Users](/2.0/docs/pipelines/installation/viamachineusers.md)) for generating/installing personal access tokens for pipelines to use.
+Gruntwork provides two authentication methods: a [GitHub App](/2.0/docs/pipelines/installation/viagithubapp.md) and CI Users ([Machine Users](/2.0/docs/pipelines/installation/viamachineusers.md)) with personal access tokens for Pipelines.
 
-Broadly the two approaches achieve the same result and core pipelines functionality will work with either mechanism.  There are, however, some features and benefits only available with authenticating using the GitHub app and as such it is our recommended approach. As we roll out new features to pipelines we endeavor to ensure they are available to both authentication mechanisms. However, we do anticipate that the list of features that are GitHub App exclusive will grow over time.
+Both approaches support the core functionality of Pipelines. However, the GitHub App provides additional features and benefits, making it the recommended method. While Gruntwork strives to ensure feature parity between the two authentication mechanisms, certain advanced features are exclusive to the GitHub App, and this list is expected to grow over time.
 
-In summary:
+## Summary of authentication mechanisms
 
-**Reasons to use the GitHub App**:
-* _Dramatically_ streamlined setup
-* Access to more features and functionality
-* Improved day to day user experience
-* Less maintenance overhead (no need to install, maintain and rotate powerful tokens)
+**Advantages of the GitHub App**:
+- Simplified setup process.
+- Access to enhanced features and functionality.
+- Improved user experience during regular operations.
+- Reduced maintenance, as there is no need to install, maintain, or rotate powerful tokens.
 
-**Reasons to use Machine Users**
-* You need to work with GitHub on-prem Enterprise and your on-premise install doesn't allow interacting with third party servers (e.g. Gruntwork's backend)
-* You want a fallback solution to ensure that Pipelines can continue to function even if the Gruntwork-hosted backend that powers the GitHub App goes down
+**Advantages of Machine Users**:
+- Compatibility with on-premises GitHub Enterprise installations that cannot interact with third-party servers (e.g., Gruntwork's backend).
+- Provides a fallback solution to ensure Pipelines continue functioning in the unlikely event of an outage affecting the Gruntwork-hosted backend that powers the GitHub App.

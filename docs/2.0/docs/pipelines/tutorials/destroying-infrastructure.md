@@ -53,4 +53,5 @@ Approve and merge the PR to trigger an `apply` action that will destroy the reso
 <!-- Add Image -->
 <!-- ![Pipelines Destroy Apply Comment](/img/pipelines/tutorial/pipelines-destroy-apply-comment.png) -->
 
+
 Congratulations! You have successfully destroyed an AWS resource using Gruntwork Pipelines and GitOps workflows. To verify the resource has been destroyed, check your AWS management console.
