@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="0.8.1" />
+<VersionBadge repoTitle="Control Tower" version="0.8.2" />
 
 # Control Tower Landing Zone
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.1/modules/landingzone/control-tower-landing-zone" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.2/modules/landingzone/control-tower-landing-zone" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=control-tower-landing-zone" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -117,7 +117,7 @@ The goal of the import is to have a plan with no operations to be performed. If 
 
 module "control_tower_landing_zone" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-landing-zone?ref=v0.8.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-landing-zone?ref=v0.8.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -218,7 +218,7 @@ module "control_tower_landing_zone" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-landing-zone?ref=v0.8.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-landing-zone?ref=v0.8.2"
 }
 
 inputs = {
@@ -541,15 +541,14 @@ The amount of time allowed for the update operation to take before being conside
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.1/modules/control-tower-landing-zone/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.1/modules/control-tower-landing-zone/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.1/modules/control-tower-landing-zone/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.2/modules/control-tower-landing-zone/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.2/modules/control-tower-landing-zone/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.2/modules/control-tower-landing-zone/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "51f8229ca4c5cbf8a59d5492788144f8"
+  "hash": "630c672b4bb135897818b74bb5ee9230"
 }
 ##DOCS-SOURCER-END -->
