@@ -290,6 +290,13 @@ module "rds_replicas" {
   # This is ignored if create_subnet_group=false.
   subnet_ids = null
 
+  # Time zone of the DB instance. timezone is currently only supported by
+  # Microsoft SQL Server. The timezone can only be set on creation. See MSSQL
+  # User Guide
+  # (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone)
+  # for more information.
+  timezone = null
+
   # Timeout for DB updating
   updating_timeout = "80m"
 
@@ -523,6 +530,13 @@ inputs = {
   # Gruntwork VPC setup, these should be the private persistence subnet ids.
   # This is ignored if create_subnet_group=false.
   subnet_ids = null
+
+  # Time zone of the DB instance. timezone is currently only supported by
+  # Microsoft SQL Server. The timezone can only be set on creation. See MSSQL
+  # User Guide
+  # (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone)
+  # for more information.
+  timezone = null
 
   # Timeout for DB updating
   updating_timeout = "80m"
@@ -947,6 +961,15 @@ A list of subnet ids where the database should be deployed. In the standard Grun
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="timezone" requirement="optional" type="string">
+<HclListItemDescription>
+
+Time zone of the DB instance. timezone is currently only supported by Microsoft SQL Server. The timezone can only be set on creation. See MSSQL User Guide (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone) for more information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="updating_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -988,6 +1011,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.2/modules/rds-replicas/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d9886c4cdb5509b2626f5e0031b1fd44"
+  "hash": "1f8f4e993d4030078e2a50308ff274ad"
 }
 ##DOCS-SOURCER-END -->
