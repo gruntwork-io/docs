@@ -20,7 +20,6 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 **NOTE**: The `ecs-service-with-alb` module has been merged with `ecs-service` as of `v0.16.0`. Refer to the migration
 guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.16.0) for more info.
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -29,6 +28,6 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service-with-alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c3ee6102991cfac635aa4f9f396cc9dd"
+  "hash": "9672318ab18972cf6d7286acbaa2e6ed"
 }
 ##DOCS-SOURCER-END -->

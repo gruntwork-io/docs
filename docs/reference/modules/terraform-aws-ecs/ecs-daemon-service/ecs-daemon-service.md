@@ -563,7 +563,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -572,6 +571,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-daemon-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b3be7f105cd2d7c1b5b815e3ad662ccf"
+  "hash": "66afb8794fbd5a4826691bf36cb41ce7"
 }
 ##DOCS-SOURCER-END -->

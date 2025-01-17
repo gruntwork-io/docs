@@ -472,10 +472,19 @@ module "ecs_service" {
   # Define runtime platform options
   runtime_platform = null
 
+  # ECS Service Connect configuration for this service to discover and connect
+  # to services, and be discovered by, and connected from, other services within
+  # a namespace
+  service_connect_configuration = null
+
   # Use this variable to adjust the default timeout of 20m for create and update
   # operations the the ECS service. Adjusting the value can be particularly
   # useful when using 'wait_for_steady_state'.
   service_create_update_timeout = "20m"
+
+  # Use this variable to adjust the default timeout of 5m for delete operations
+  # the the ECS service.
+  service_delete_timeout = "5m"
 
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
@@ -887,10 +896,19 @@ inputs = {
   # Define runtime platform options
   runtime_platform = null
 
+  # ECS Service Connect configuration for this service to discover and connect
+  # to services, and be discovered by, and connected from, other services within
+  # a namespace
+  service_connect_configuration = null
+
   # Use this variable to adjust the default timeout of 20m for create and update
   # operations the the ECS service. Adjusting the value can be particularly
   # useful when using 'wait_for_steady_state'.
   service_create_update_timeout = "20m"
+
+  # Use this variable to adjust the default timeout of 5m for delete operations
+  # the the ECS service.
+  service_delete_timeout = "5m"
 
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
@@ -1755,6 +1773,64 @@ object({
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="service_connect_configuration" requirement="optional" type="any">
+<HclListItemDescription>
+
+ECS Service Connect configuration for this service to discover and connect to services, and be discovered by, and connected from, other services within a namespace
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   {
+     namespace = string                        : (Optional) Namespace name or ARN of the aws_service_discovery_http_namespace for use with Service Connect.
+     service = list({                          : (Optional) List of Service Connect service objects
+       client_alias = {                        : (Optional) Client aliases for this Service Connect service. You use these to assign names that can be used by client applications. The maximum number of client aliases that you can have in this list is 1. See below.
+         dns_name = string                     : (Optional) Name that you use in the applications of client tasks to connect to this service.
+         port = number                         : (Required) Listening port number for the Service Connect proxy. This port is available inside of all of the tasks within the same namespace.
+       }             
+       discovery_name = string                 : (Optional) Name of the new AWS Cloud Map service that Amazon ECS creates for this Amazon ECS service.
+       ingress_port_override= number           : (Optional) Port number for the Service Connect proxy to listen on.
+       port_name = string                      : (Required) Name of one of the portMappings from all the containers in the task definition of this Amazon ECS service.
+       timeout = {                             : (Optional) Configuration timeouts for Service Connect
+         idle_timeout_seconds = number         : (Optional) Amount of time in seconds a connection will stay active while idle. A value of 0 can be set to disable idleTimeout
+         per_request_timeout_seconds = number  : (Optional) Amount of time in seconds for the upstream to respond with a complete response per request. A value of 0 can be set to disable perRequestTimeout. Can only be set when appProtocol isn't TCP.
+       }
+       tls = {                                 : (Optional) Configuration for enabling Transport Layer Security (TLS)        
+         issuer_cert_authority = {             : (Required) Details of the certificate authority which will issue the certificate.
+            aws_pca_authority_arn = string     : (Required) ARN of the aws_acmpca_certificate_authority used to create the TLS Certificates.
+         }
+         kms_key = string                      : (Optional) KMS key used to encrypt the private key in Secrets Manager.
+         role_arn = string                     : (Optional) ARN of the IAM Role that's associated with the Service Connect TLS.          
+       }
+     })
+     log_configuration = {                     : (Optional)
+       log_driver = string                     : (Required) Log driver to use for the container.
+       options = map(string)                   : (Optional) Configuration options to send to the log driver.
+       secret_option = list({                  : (Optional) Secrets to pass to the log configuration.
+         name = string                         : (Required) Name of the secret.
+         value_from = string                   : (Required) Secret to expose to the container. The supported values are either the full ARN of the AWS Secrets Manager secret or the full ARN of the parameter in the SSM Parameter Store.
+       })
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 <HclListItem name="service_create_update_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1762,6 +1838,15 @@ Use this variable to adjust the default timeout of 20m for create and update ope
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;20m&quot;"/>
+</HclListItem>
+
+<HclListItem name="service_delete_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Use this variable to adjust the default timeout of 5m for delete operations the the ECS service.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;5m&quot;"/>
 </HclListItem>
 
 <HclListItem name="service_tags" requirement="optional" type="map(string)">
@@ -1967,7 +2052,6 @@ If true, Terraform will wait for the service to reach a steady state — as in, 
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1976,6 +2060,6 @@ If true, Terraform will wait for the service to reach a steady state — as in, 
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "90fc6d4e98c3e1849758820a2d2bbd6f"
+  "hash": "680254eba41d52eb934925ddb10bc051"
 }
 ##DOCS-SOURCER-END -->
