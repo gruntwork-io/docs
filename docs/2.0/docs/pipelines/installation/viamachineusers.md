@@ -133,6 +133,10 @@ This [fine-grained](#fine-grained) Personal Access Token allows GitHub Actions t
 
 - **Workflows:** Read & write access — Needed to update workflow files in `.github/workflows`.
 
+![INFRA_ROOT_WRITE_TOKEN PAT Configuration](/img/pipelines/security/INFRA_ROOT_WRITE_TOKEN.png)
+
+<details>
+
 <summary>Permission breakdown</summary>
 
 ##### Content read & write access  
