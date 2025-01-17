@@ -105,7 +105,11 @@ The `ci-user` orchestrates workflows, opens pull requests, and leaves comments o
 
 **Invite `ci-user` to your repositories**
 
-Ensure `ci-user` has write access to `infrastructure-live-root` and `infrastructure-live-access-control`.
+Ensure `ci-user` has write access to:
+
+- `infrastructure-live-root` 
+
+- `infrastructure-live-access-control`
 
 **Checklist:**
 <PersistentCheckbox id="via-machine-users-1" label="ci-user created" />
