@@ -193,7 +193,7 @@ This fine-grained token is used for initial setup and bootstrapping repositories
 ![ORG_REPO_ADMIN_TOKEN PAT Configuration](/img/pipelines/security/ORG_REPO_ADMIN_TOKEN.png)
 
 <details>
-<summary><Why does this token need these permissions?</summary>
+<summary>Why does this token need these permissions?</summary>
 
 The following is a breakdown of the permissions needed for the `ORG_REPO_ADMIN_TOKEN`, based on our testing. Permissions were gradually added to identify the minimal set necessary to support Pipelines. Some permissions apply to specific actions, while others are exclusive to Enterprise customers.
 
