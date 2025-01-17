@@ -8,7 +8,7 @@ import PersistentCheckbox from '/src/components/PersistentCheckbox';
 
 Of the [two methods](/2.0/docs/pipelines/installation/authoverview.md) for installing Gruntwork Pipelines, we strongly recommend using the [GitHub App](/2.0/docs/pipelines/installation/viagithubapp.md). However, if the GitHub App cannot be used or if machine users are required as a [fallback](http://localhost:3000/2.0/docs/pipelines/installation/viagithubapp#fallback), this guide outlines how to set up authentication for Pipelines using access tokens and machine users.
 
-When using GitHub tokens, Gruntwork recommends setting up CI users specifically for Gruntwork Pipelines, separate from human users in your organization. This separation ensures workflows are not disrupted if an employee leaves the company and allows for more precise permission management.
+When using GitHub tokens, Gruntwork recommends setting up CI users specifically for Gruntwork Pipelines, separate from human users in your organization. This separation ensures workflows are not disrupted if an employee leaves the company and allows for more precise permission management. Additionally, using CI users allow you to apply granular permissions that may normally be too restrictive for a normal employee to do their daily work.
 
 :::info
 
@@ -19,7 +19,7 @@ This guide will take approximately 30 minutes to complete.
 ## Background
 ### Guidance on storing secrets
 
-During this process, you will generate and securely store three GitHub tokens for two GitHub users. Use a temporary but secure location for these sensitive values between generating them and storing them in GitHub Actions. Follow your organization's security best practices and avoid insecure methods (e.g., Slack or sticky notes).
+During this process, you will generate and securely store three GitHub tokens for two GitHub users. Use a temporary but secure location for these sensitive values between generating them and storing them in GitHub Actions. Follow your organization's security best practices and avoid insecure methods (e.g., Slack or sticky notes) during this exercise. 
 
 :::note
 Organizations are required to rotate GitHub tokens and update all GitHub secrets referencing them.
@@ -30,7 +30,7 @@ Gruntwork recommends using a password manager such as [1Password](https://1passw
 :::
 
 :::caution
-If screen sharing while generating tokens, **pause or hide your screen** before selecting the Generate token button to prevent exposure.
+If screen sharing while generating tokens, **pause or hide your screen** before selecting the `Generate token` button to prevent exposure.
 :::
 
 
@@ -44,7 +44,11 @@ GitHub supports two types of tokens:
 
 #### Classic tokens
 
-Classic tokens provide coarse-grained permissions and generally match the access level of the user who created them. While they offer limited configurability, they are still suitable for specific use cases. For Pipelines, the `ci-read-only-user` requires a Classic token because it must access software across **multiple GitHub organizations**, a capability not available with fine-grained tokens.
+- Classic tokens provide coarse-grained permissions and generally match the access level of the user who created them.
+
+- The restrictions that can be applied to them are few, but they are still useful for some limited use cases.
+
+- For Pipelines, the `ci-read-only-user` requires a Classic token because it must access software across **multiple GitHub organizations**, a capability not available with fine-grained tokens.
 
 :::tip
 The `PIPELINES_READ_TOKEN` token must be created as a **Classic token**.
@@ -52,12 +56,15 @@ The `PIPELINES_READ_TOKEN` token must be created as a **Classic token**.
 
 #### Fine-grained tokens
 
-Fine-grained tokens offer more granular permissions and are recommended where applicable. However, they have the following limitations:
+Fine-grained tokens offer more granular permissions and are recommended where applicable. 
 
-1. A single **Resource owner** (e.g., the organization owning the token).
+However, fine-grained tokens have the following limitations:
 
-2. A maximum expiration of one year (Classic tokens can be set to never expire).
+1. They have a single **Resource owner** (e.g., the organization owning the token).
 
+2. They have a maximum expiration of one year (Classic tokens can be set to never expire).
+
+In Pipelines, the `ci-user` will need two fine-grained tokens because they allow for very limited access to specific repositories, with minimal permissions to them.
 
 :::tip 
 The `INFRA_ROOT_WRITE_TOKEN` and `ORG_REPO_ADMIN_TOKEN` must be created as **fine-grained tokens**.
@@ -70,8 +77,10 @@ Set the **Resource owner** to the GitHub organization associated with the reposi
 
 ![Resource owner](/img/pipelines/security/resource_owner.png)
 
-:::tip
-If your token status appears as **pending** after generation, it may require approval by an organization owner. Approve pending tokens via the organization's settings under **Pending requests**.
+:::tip 
+Tokens marked as **pending** after generation may require approval from an organization owner before they can be used.
+ 
+If you have the necessary permissions, you can approve your token by going to your organization's settings and selecting **Pending requests**.
 
 More information is available [here](https://docs.github.com/en/organizations/managing-programmatic-access-to-your-organization/managing-requests-for-personal-access-tokens-in-your-organization).
 
@@ -86,35 +95,40 @@ import TabItem from "@theme/TabItem"
 
 ## Creating machine users
 
-The recommended setup for Pipelines uses two machine users: one for opening pull requests and running workflows (`ci-user`) and another with read-only access to repositories (`ci-read-only-user`). Each user is assigned restrictive permissions based on their tasks. Both users must:
+The recommended setup for Pipelines uses two machine users: one for opening pull requests and running workflows (`ci-user`) and another with read-only access to repositories (`ci-read-only-user`). Each user is assigned restrictive permissions based on their tasks. As a result, both users may need to participate at different stages to successfully run a pipeline job.
+
+Both the `ci-user` and the u`ci-read-only-user` must:
 
 1. Be members of your GitHub Organization.
 
-2. Be added to your team in Gruntwork's GitHub Organization ([Invite team members](https://docs.gruntwork.io/developer-portal/invite-team#inviting-team-members) and [link GitHub ID](https://docs.gruntwork.io/developer-portal/link-github-id)).
+2.  Be added to your team in **Gruntwork**’s GitHub Organization (See [instructions on inviting a user to your team](https://docs.gruntwork.io/developer-portal/invite-team#inviting-team-members) and [linking the user’s GitHub ID to Gruntwork](https://docs.gruntwork.io/developer-portal/link-github-id)).
 
 :::tip
 We recommend creating two machine users for better access control, but you may adjust this setup to fit your organization’s needs. Ensure permissions are appropriate for their roles, and note that additional GitHub licenses may be required if at capacity.
+
+Note that additional licenses in your GitHub subscription might be required if you are at capacity.
 :::
 
 :::caution
-Using a single machine user for all tokens poses security risks by granting broad write access, violating the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege). Weigh security trade-offs carefully.
+Using a single machine user for all tokens introduces security vulnerabilities by providing broad write access to both the `ci-user` and `ci-read-only-user`. This approach violates the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege), which recommends granting only the minimum permissions necessary for each task. Weigh security trade-offs carefully.
 :::
 
 ### ci-user
-The `ci-user` orchestrates workflows, opens pull requests, and leaves comments on pull requests. This user requires two fine-grained GitHub [Personal Access Tokens (PATs)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens).
 
-**Invite `ci-user` to your repositories**
+The `ci-user` orchestrates workflows, opens pull requests, and leaves comments on pull requests. This user should have two fine-grained GitHub [Personal Access Tokens (PATs)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens) with the following permissions.
 
-Ensure `ci-user` has write access to:
+**Invite the `ci-user` to your repository**
 
-- `infrastructure-live-root` 
+Ensure the `ci-user` has write access to your:
 
-- `infrastructure-live-access-control`
+- `infrastructure-live-root` repository
+
+- `infrastructure-live-access-control` repository
 
 **Checklist:**
 <PersistentCheckbox id="via-machine-users-1" label="ci-user created" />
 
-**Create access tokens for ci-user**
+**Create access tokens for the `ci-user`**
 
 Generate the required tokens for the ci-user in their GitHub account.
 
@@ -125,7 +139,9 @@ Generate the required tokens for the ci-user in their GitHub account.
 
 #### INFRA_ROOT_WRITE_TOKEN
 
-This [fine-grained](#fine-grained) Personal Access Token allows GitHub Actions to clone `infrastructure-live-root`, open pull requests, and update comments. Assign the following permissions to the `INFRA_ROOT_WRITE_TOKEN` for the `infrastructure-live-root` repository:
+This [fine-grained](#fine-grained) Personal Access Token allows GitHub Actions to clone `infrastructure-live-root`, open pull requests, and update comments. 
+
+This token must have the following permissions to the `INFRA_ROOT_WRITE_TOKEN` for the `infrastructure-live-root` repository:
 
 - **Content:** Read & write access — Required to clone the repository and push changes.  
 
@@ -141,10 +157,14 @@ This [fine-grained](#fine-grained) Personal Access Token allows GitHub Actions t
 
 <details>
 
-<summary>Permission breakdown</summary>
+<summary>Why does this token need these permissions?</summary>
+
+Below is a detailed breakdown of the permissions needed for the `INFRA_ROOT_WRITE_TOKEN`, based on our testing. Permissions were gradually added to identify the minimal set required for Pipelines functionality. Some permissions are tied to specific actions, while others are exclusively used by Enterprise customers.
+
+If you are not an Enterprise customer or prefer Pipelines not to execute certain behaviors, you can opt not to grant the related permissions.
 
 ##### Content read & write access  
-Needed for cloning `infrastructure-live-root` and pushing automated changes. Without this, workflows can't trigger automation during account vending.
+Needed for cloning `infrastructure-live-root` and pushing automated changes. Without this permission, the pull request opened by the GitHub Actions workflow will not trigger automation during account vending.
 
 ##### Issues read & write access  
 Allows Pipelines to open issues that alert teams when manual action is required.
