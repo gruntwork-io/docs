@@ -3470,7 +3470,6 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -3479,6 +3478,6 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.1/modules/control-tower-security-account-baseline/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fb7e0fd3b57cbfaa12571fa0d784b216"
+  "hash": "34286510be1c7954431bd7408cc1932d"
 }
 ##DOCS-SOURCER-END -->

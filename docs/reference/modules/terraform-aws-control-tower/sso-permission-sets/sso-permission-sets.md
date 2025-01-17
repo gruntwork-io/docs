@@ -265,7 +265,6 @@ The name of the permission set that was created.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -274,6 +273,6 @@ The name of the permission set that was created.
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.1/modules/sso-permission-sets/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c34446a457daf139013064c4538cff6a"
+  "hash": "d0828d13e4c978aff7deb365ac831884"
 }
 ##DOCS-SOURCER-END -->
