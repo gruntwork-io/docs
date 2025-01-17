@@ -144,13 +144,9 @@ This [fine-grained](#fine-grained) Personal Access Token allows GitHub Actions t
 This token must have the following permissions to the `INFRA_ROOT_WRITE_TOKEN` for the `infrastructure-live-root` repository:
 
 - **Content:** Read & write access — Required to clone the repository and push changes.  
-
 - **Issues:** Read & write access — Allows Pipelines to open issues when manual intervention is needed.  
-
 - **Metadata:** Read access — Grants access to repository metadata, essential for automation.  
-
 - **Pull requests:** Read & write access — Enables Pipelines to automate infrastructure changes through PRs.  
-
 - **Workflows:** Read & write access — Needed to update workflow files in `.github/workflows`.
 
 ![INFRA_ROOT_WRITE_TOKEN PAT Configuration](/img/pipelines/security/INFRA_ROOT_WRITE_TOKEN.png)
@@ -180,28 +176,28 @@ Required to update workflows when provisioning new repositories.
 
 </details>
 
-
 #### ORG_REPO_ADMIN_TOKEN
 
 This fine-grained token is used for initial setup and bootstrapping repositories. For Enterprise customers, it also provisions delegated repositories. Assign the following permissions to all accessible repositories:
 
 - **Administration:** Read & write access — Required to create and manage repositories.  
-
 - **Content:** Read & write access — Necessary for reading and writing repository files.  
-
 - **Metadata:** Read access — Grants access to repository metadata.  
-
 - **Pull requests:** Read & write access — Enables automation of infrastructure updates via PRs.  
+- **Workflows:** Read & write access — Required to manage workflow files.
 
-- **Workflows:** Read & write access — Required to manage workflow files.  
+  In addition, the token **may** require the following permissions in your organization:
 
 - **Members:** Read & write access — Needed to manage team access for repositories.
-
 
 ![ORG_REPO_ADMIN_TOKEN PAT Configuration](/img/pipelines/security/ORG_REPO_ADMIN_TOKEN.png)
 
 <details>
-<summary>Permission breakdown</summary>
+<summary><Why does this token need these permissions?</summary>
+
+The following is a breakdown of the permissions needed for the `ORG_REPO_ADMIN_TOKEN`, based on our testing. Permissions were gradually added to identify the minimal set necessary to support Pipelines. Some permissions apply to specific actions, while others are exclusive to Enterprise customers.
+
+If you are not an Enterprise customer or prefer Pipelines not to carry out certain actions, you can choose to withhold the related permissions.
 
 ##### Administration read & write access  
 Allows the creation of new repositories for delegated infrastructure management.
@@ -228,9 +224,11 @@ For non-Enterprise customers, delete this token after the setup process is compl
 :::
 ### ci-read-only-user
 
-The `ci-read-only-user` downloads private software and accesses Gruntwork IaC Library modules or private repositories during GitHub Actions runs. This user requires a single Classic token with read permissions. Add this user to a GitHub team with read access to relevant repositories, including `infrastructure-live-root`.
+The `ci-read-only-user` is configured to download private software within GitHub Actions workflows. This user is responsible for accessing Gruntwork IaC Library modules, your infrastructure-modules repository, other private custom module repositories, and the Pipelines CLI.
 
-**Invite ci-read-only-user**
+This user should use a single classic Personal Access Token (PAT)(https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with read-only permissions. Since classic PATs offer broad access controls, it’s recommended to assign this user to a GitHub team with READ access limited to the `infrastructure-live-root` repository and any relevant module repositories within your GitHub Organization. Adding this user to the Gruntwork Developer Portal will automatically grant access to the Gruntwork IaC Library.
+
+**Invite ci-read-only-user to your repository**
 
 Grant read access to `infrastructure-live-root`.
 
@@ -239,7 +237,7 @@ Grant read access to `infrastructure-live-root`.
 
 **Create a token for ci-read-only-user**
 
-Generate the following token for `ci-read-only-user`:
+Generate the following token for the `ci-read-only-user`:
 
 **Checklist:**
 <PersistentCheckbox id="via-machine-users-4" label="PIPELINES_READ_TOKEN created under ci-read-only-user" />
@@ -248,26 +246,26 @@ Generate the following token for `ci-read-only-user`:
 
 #### PIPELINES_READ_TOKEN
 
-This Classic token allows access to private software during workflows. Assign the `repo` scope. Gruntwork recommends setting an expiration of 90 days to balance security and token rotation.
+This [Classic Personal Access Token](#classic-tokens) manages access to private software during GitHub Action runs. 
+
+This token must have `repo` scopes. Gruntwork recommends setting an expiration of 90 days to balance security and token rotation.
 
 ![PIPELINES_READ_TOKEN PAT Configuration](/img/pipelines/security/PIPELINES_READ_TOKEN.png)
 
-## Invite Machine Users to Gruntwork
+## Invite both machine users to Gruntwork
 
-Ensure both machine users are added to your Gruntwork GitHub Organization team ([Invite team members](https://docs.gruntwork.io/developer-portal/invite-team#inviting-team-members) and [link GitHub ID](https://docs.gruntwork.io/developer-portal/link-github-id)).
+Make sure both machine users are added to your team in Gruntwork’s GitHub Organization. Refer to the [instructions for inviting a user to your team](https://docs.gruntwork.io/developer-portal/invite-team#inviting-team-members) and [linking the user’s GitHub ID to Gruntwork](https://docs.gruntwork.io/developer-portal/link-github-id) for guidance.
 
 **Checklist:**
 <PersistentCheckbox id="via-machine-users-4" label="Machine users invited to Gruntwork organization" />
 
-## Configure GitHub Actions secrets
-
-Store secrets securely in GitHub Actions. Organization-level secrets are recommended where available. For plans that do not support organization-specific secrets, use repository-level secrets.
+## Configure secrets for GitHub Actions
 
 :::info
-When adding new `infrastructure-live` repositories, update the secret permissions as required.
+The preferred method for storing secrets in GitHub Actions is using Organization-level secrets. However, if your GitHub plan doesn’t support repository-specific Organization secrets, you should use Repository-level secrets instead.
 :::
 
-
+Since this guide uses secrets scoped to specific repositories, the token permissions must be updated whenever a new `infrastructure-live` repository is created.
 
 <Tabs groupId="github-actions-secrets">
 <TabItem value="Organization Secrets" label="Organization Secrets" default>
@@ -358,7 +356,7 @@ After completing the bootstrap process, clean up the `ORG_REPO_ADMIN_TOKEN` toke
 
 - Delete the `ORG_REPO_ADMIN_TOKEN` Repository secret from the `infrastructure-live-access-control` repository. This repository only required the token for bootstrapping.
 
-If you are **not an Enterprise customer**, also do the following:
+If you are **not an Enterprise customer**, you should also do the following:
 
 - Delete the `ORG_REPO_ADMIN_TOKEN` Personal Access Token from the `ci-user`’s GitHub account.
 - Remove the `ORG_REPO_ADMIN_TOKEN` Repository secret from the `infrastructure-live-root` repository.
