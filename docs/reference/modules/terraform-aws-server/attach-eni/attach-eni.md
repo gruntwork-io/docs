@@ -67,7 +67,6 @@ attach-eni --eni-with-same-tag Name
 
 This tells the script to try find and attach an ENI with the same `Name` tag as the current EC2 Instance.
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -76,6 +75,6 @@ This tells the script to try find and attach an ENI with the same `Name` tag as 
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/modules/attach-eni/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bcf6e0c7b1df440f5be775ff0b2d9771"
+  "hash": "47db98851fb7edc30527e533f2de52da"
 }
 ##DOCS-SOURCER-END -->
