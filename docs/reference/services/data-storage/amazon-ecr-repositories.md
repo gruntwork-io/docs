@@ -155,6 +155,12 @@ module "ecr_repos" {
   # that should be assigned to all ECR repositories.
   global_tags = {}
 
+  # values to filter on when replicating the ECR repository to other regions.
+  # See
+  # https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-settings-examples.html
+  # for example values.
+  replication_filters = []
+
   # List of regions (e.g., us-east-1) to replicate the ECR repository to.
   replication_regions = []
 
@@ -243,6 +249,12 @@ inputs = {
   # A map of tags (where the key and value correspond to tag keys and values)
   # that should be assigned to all ECR repositories.
   global_tags = {}
+
+  # values to filter on when replicating the ECR repository to other regions.
+  # See
+  # https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-settings-examples.html
+  # for example values.
+  replication_filters = []
 
   # List of regions (e.g., us-east-1) to replicate the ECR repository to.
   replication_regions = []
@@ -465,6 +477,25 @@ A map of tags (where the key and value correspond to tag keys and values) that s
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="replication_filters" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+values to filter on when replicating the ECR repository to other regions. See https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-settings-examples.html for example values.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    filter      = string
+    filter_type = string
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="replication_regions" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -536,6 +567,6 @@ A list of IAM policy actions necessary for ECR write access.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.8/modules/data-stores/ecr-repos/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1060058ee591500c40a7f2c53b7ef160"
+  "hash": "48a4c8fa6433868df9ee7f2e34288e7c"
 }
 ##DOCS-SOURCER-END -->
