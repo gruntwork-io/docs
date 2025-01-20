@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Module Server" version="0.16.1" lastModifiedVersion="0.16.1"/>
+<VersionBadge repoTitle="Module Server" version="0.16.2" lastModifiedVersion="0.16.1"/>
 
 # Single Server Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/modules/single-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.2/modules/single-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.16.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -105,7 +105,7 @@ resource "aws_iam_policy_attachment" "attachment" {
 
 module "single_server" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.16.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.16.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -390,7 +390,7 @@ module "single_server" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.16.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.16.2"
 }
 
 inputs = {
@@ -1298,15 +1298,14 @@ When used in combination with user_data or user_data_base64, a user_data change 
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/modules/single-server/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/modules/single-server/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/modules/single-server/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.2/modules/single-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.2/modules/single-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.2/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "059aff6c29fc1efcd7feb763c2f5bbba"
+  "hash": "bf1724f177b894c069dd41aa2bb902a2"
 }
 ##DOCS-SOURCER-END -->
