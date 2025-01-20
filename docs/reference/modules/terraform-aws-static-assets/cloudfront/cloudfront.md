@@ -9,20 +9,20 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Static Assets Modules" version="0.19.1" lastModifiedVersion="0.19.0"/>
+<VersionBadge repoTitle="Static Assets Modules" version="0.20.0" lastModifiedVersion="0.20.0"/>
 
 # CloudFront Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.19.1/modules/cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.0/modules/cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.19.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.20.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module deploys an [AWS CloudFront](https://aws.amazon.com/cloudfront/) distribution to serve content from S3 or custom origins. CloudFront is a Content Delivery Network (CDN) that caches your content at edge locations around the world to reduce latency and improve performance for your users.
 
 ## Quick Start
 
-*   See the [cloudfront-custom-origin](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.19.1/examples/cloudfront-custom-origin) example for working sample code.
-*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.19.1/modules/cloudfront/vars.tf) for all parameters you can set for this module.
+*   See the [cloudfront-custom-origin](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.0/examples/cloudfront-custom-origin) example for working sample code.
+*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.0/modules/cloudfront/vars.tf) for all parameters you can set for this module.
 
 ## Sample Usage
 
@@ -37,7 +37,7 @@ This module deploys an [AWS CloudFront](https://aws.amazon.com/cloudfront/) dist
 
 module "cloudfront" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v0.19.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v0.20.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -78,6 +78,7 @@ module "cloudfront" {
         )
       ))
     ))
+    existing_cache_policy_id = optional(string)
     field_level_encryption = optional(object(
       content_type_profile_config = object(
         forward_when_content_type_is_unknown = bool
@@ -100,6 +101,7 @@ module "cloudfront" {
         query_strings = optional(list(string))
       )
     ))
+    existing_origin_request_policy_id = optional(string)
     realtime_log_config = optional(object(
       sampling_rate = number
       fields = list(string)
@@ -157,6 +159,7 @@ module "cloudfront" {
         sampling_rate = number
       ))
     ))
+    existing_response_headers_policy_id = optional(string)
     lambda_function_association = optional(object(
       viewer-request  = optional(object( lambda_arn = string, include_body = optional(bool) ))
       origin-request  = optional(object( lambda_arn = string, include_body = optional(bool) ))
@@ -303,7 +306,7 @@ module "cloudfront" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v0.19.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v0.20.0"
 }
 
 inputs = {
@@ -347,6 +350,7 @@ inputs = {
         )
       ))
     ))
+    existing_cache_policy_id = optional(string)
     field_level_encryption = optional(object(
       content_type_profile_config = object(
         forward_when_content_type_is_unknown = bool
@@ -369,6 +373,7 @@ inputs = {
         query_strings = optional(list(string))
       )
     ))
+    existing_origin_request_policy_id = optional(string)
     realtime_log_config = optional(object(
       sampling_rate = number
       fields = list(string)
@@ -426,6 +431,7 @@ inputs = {
         sampling_rate = number
       ))
     ))
+    existing_response_headers_policy_id = optional(string)
     lambda_function_association = optional(object(
       viewer-request  = optional(object( lambda_arn = string, include_body = optional(bool) ))
       origin-request  = optional(object( lambda_arn = string, include_body = optional(bool) ))
@@ -634,7 +640,9 @@ object({
     #  List of AWS account IDs (or self) that you want to allow to create signed URLs for private content.
     trusted_signers = optional(list(string))
 
-    # You can use a cache policy to improve your cache hit ratio by controlling the values (URL query strings, HTTP headers, and cookies) that are included in the cache key.
+    # You can use a cache policy to improve your cache hit ratio by controlling the values (URL query strings, HTTP headers, and cookies)
+    # that are included in the cache key. It is possible to provide an existing cache policy ID directly. If both cache_policy and
+    # existing_cache_policy_id are provided, then existing_cache_policy_id takes priority.
     cache_policy = optional(object({
       # The minimum amount of time, in seconds, that you want objects to stay in the CloudFront cache
       # before CloudFront checks with the origin to see if the object has been updated.
@@ -687,6 +695,7 @@ object({
         })
       }))
     }))
+    existing_cache_policy_id = optional(string)
 
     # Defines Configuration for a CloudFront Field-level Encryption Config resource.
     field_level_encryption = optional(object({
@@ -739,6 +748,7 @@ object({
         query_strings = optional(list(string))
       })
     }))
+    existing_origin_request_policy_id = optional(string)
 
     # Defines a CloudFront real-time log configuration resource..
     realtime_log_config = optional(object({
@@ -756,7 +766,9 @@ object({
       kinesis_stream_arn = string
     }))
 
-    # Defines a CloudFront response headers policy resource.
+    # Defines a CloudFront response headers policy resource. It is possible to provide an existing policy ID directly.
+    # If both response_headers_policy and existing_response_headers_policy_id are provided, then
+    # existing_response_headers_policy_id takes priority.
     response_headers_policy = optional(object({
       # A configuration for a set of HTTP response headers that are used for Cross-Origin Resource Sharing (CORS).
       cors_config = optional(object({
@@ -882,6 +894,7 @@ object({
         sampling_rate = number
       }))
     }))
+    existing_response_headers_policy_id = optional(string)
 
     # A config block that triggers a lambda function with specific actions.
     lambda_function_association = optional(object({
@@ -1027,7 +1040,9 @@ object({
 
 ```hcl
 
-     You can use a cache policy to improve your cache hit ratio by controlling the values (URL query strings, HTTP headers, and cookies) that are included in the cache key.
+     You can use a cache policy to improve your cache hit ratio by controlling the values (URL query strings, HTTP headers, and cookies)
+     that are included in the cache key. It is possible to provide an existing cache policy ID directly. If both cache_policy and
+     existing_cache_policy_id are provided, then existing_cache_policy_id takes priority.
 
 ```
 </details>
@@ -1213,7 +1228,9 @@ object({
 
 ```hcl
 
-     Defines a CloudFront response headers policy resource.
+     Defines a CloudFront response headers policy resource. It is possible to provide an existing policy ID directly.
+     If both response_headers_policy and existing_response_headers_policy_id are provided, then
+     existing_response_headers_policy_id takes priority.
 
 ```
 </details>
@@ -2235,16 +2252,6 @@ map(object({
         })
       })
     }))
-    field_level_encryption = optional(object({
-      content_type_profile_config = object({
-        forward_when_content_type_is_unknown = bool
-        content_type                         = string
-        format                               = string
-      })
-      query_arg_profile_config = object({
-        forward_when_query_arg_profile_is_unknown = bool
-      })
-    }))
     origin_request_policy = optional(object({
       cookies_config = object({
         cookie_behavior = string
@@ -2258,11 +2265,6 @@ map(object({
         query_string_behavior = string
         query_strings         = optional(list(string))
       })
-    }))
-    realtime_log_config = optional(object({
-      sampling_rate      = number
-      fields             = list(string)
-      kinesis_stream_arn = string
     }))
     response_headers_policy = optional(object({
       cors_config = optional(object({
@@ -2315,6 +2317,26 @@ map(object({
         enabled       = bool
         sampling_rate = number
       }))
+    }))
+
+    existing_cache_policy_id            = optional(string)
+    existing_origin_request_policy_id   = optional(string)
+    existing_response_headers_policy_id = optional(string)
+
+    field_level_encryption = optional(object({
+      content_type_profile_config = object({
+        forward_when_content_type_is_unknown = bool
+        content_type                         = string
+        format                               = string
+      })
+      query_arg_profile_config = object({
+        forward_when_query_arg_profile_is_unknown = bool
+      })
+    }))
+    realtime_log_config = optional(object({
+      sampling_rate      = number
+      fields             = list(string)
+      kinesis_stream_arn = string
     }))
 
     lambda_function_association = optional(object({
@@ -2567,7 +2589,7 @@ Unique identifier that specifies the AWS WAF web ACL, if any, to associate with 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="cloudfront_distribution_domain_name">
+<HclListItem name="cloudfront_distribution">
 </HclListItem>
 
 </TabItem>
@@ -2576,11 +2598,11 @@ Unique identifier that specifies the AWS WAF web ACL, if any, to associate with 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.19.1/modules/cloudfront/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.19.1/modules/cloudfront/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.19.1/modules/cloudfront/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.0/modules/cloudfront/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.0/modules/cloudfront/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.0/modules/cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b8f66be5766eac97c60f820ca4b9c70e"
+  "hash": "f2b74d7021bf7b17838621bf71c42750"
 }
 ##DOCS-SOURCER-END -->
