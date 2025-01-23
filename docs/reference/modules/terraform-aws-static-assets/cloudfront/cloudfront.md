@@ -281,7 +281,7 @@ module "cloudfront" {
 
   # The SSL configuration for this distribution. Please see variable definition
   # for detailed fields description.
-  viewer_certificate = {"cloudfront_default_certificate":true,"minimum_protocol_version":"TLSv1.2_2021","ssl_support_method":"sni-only"}
+  viewer_certificate = {"cloudfront_default_certificate":true}
 
   # If enabled, the resource will wait for the distribution status to change
   # from InProgress to Deployed. Setting this to false will skip the process.
@@ -553,7 +553,7 @@ inputs = {
 
   # The SSL configuration for this distribution. Please see variable definition
   # for detailed fields description.
-  viewer_certificate = {"cloudfront_default_certificate":true,"minimum_protocol_version":"TLSv1.2_2021","ssl_support_method":"sni-only"}
+  viewer_certificate = {"cloudfront_default_certificate":true}
 
   # If enabled, the resource will wait for the distribution status to change
   # from InProgress to Deployed. Setting this to false will skip the process.
@@ -2491,9 +2491,7 @@ object({
 
 ```hcl
 {
-  cloudfront_default_certificate = true,
-  minimum_protocol_version = "TLSv1.2_2021",
-  ssl_support_method = "sni-only"
+  cloudfront_default_certificate = true
 }
 ```
 
@@ -2603,6 +2601,6 @@ Unique identifier that specifies the AWS WAF web ACL, if any, to associate with 
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.0/modules/cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f2b74d7021bf7b17838621bf71c42750"
+  "hash": "6ea95d49554240d0885951698d09d8db"
 }
 ##DOCS-SOURCER-END -->
