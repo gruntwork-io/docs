@@ -212,8 +212,25 @@ module "vpc_mgmt" {
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#ingress-block.
   default_security_group_ingress_rules = {"AllowAllFromSelf":{"from_port":0,"protocol":"-1","self":true,"to_port":0}}
 
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  dynamodb_endpoint_policy = null
+
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = false
+
+  # Specifies the number of days you want to retain log events. Possible values
+  # are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096,
+  # 1827, 2192, 2557, 2922, 3288, 3653, and 0. If you select 0, the events in
+  # the log group are always retained and never expire.
+  flow_log_cloudwatch_log_group_retention_in_days = 0
+
+  # The maximum interval of time during which a flow of packets is captured and
+  # aggregated into a flow log record. Valid values: 60 seconds (1 minute) or
+  # 600 seconds (10 minutes).
+  flow_log_max_aggregation_interval = 600
 
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role.
@@ -278,6 +295,12 @@ module "vpc_mgmt" {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   public_subnet_custom_tags = {}
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  s3_endpoint_policy = null
 
   # The amount of spacing between the different subnet types
   subnet_spacing = 8
@@ -414,8 +437,25 @@ inputs = {
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#ingress-block.
   default_security_group_ingress_rules = {"AllowAllFromSelf":{"from_port":0,"protocol":"-1","self":true,"to_port":0}}
 
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  dynamodb_endpoint_policy = null
+
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = false
+
+  # Specifies the number of days you want to retain log events. Possible values
+  # are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096,
+  # 1827, 2192, 2557, 2922, 3288, 3653, and 0. If you select 0, the events in
+  # the log group are always retained and never expire.
+  flow_log_cloudwatch_log_group_retention_in_days = 0
+
+  # The maximum interval of time during which a flow of packets is captured and
+  # aggregated into a flow log record. Valid values: 60 seconds (1 minute) or
+  # 600 seconds (10 minutes).
+  flow_log_max_aggregation_interval = 600
 
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role.
@@ -480,6 +520,12 @@ inputs = {
   # key is the tag name and the value is the tag value. Note that tags defined
   # here will override tags defined as custom_tags in case of conflict.
   public_subnet_custom_tags = {}
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  s3_endpoint_policy = null
 
   # The amount of spacing between the different subnet types
   subnet_spacing = 8
@@ -749,6 +795,15 @@ Any types represent complex values of variable type. For details, please consult
 </HclListItemDefaultValue>
 </HclListItem>
 
+<HclListItem name="dynamodb_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="enable_default_security_group" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -756,6 +811,24 @@ If set to false, the default security groups will NOT be created.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="flow_log_cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+Specifies the number of days you want to retain log events. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096, 1827, 2192, 2557, 2922, 3288, 3653, and 0. If you select 0, the events in the log group are always retained and never expire.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="flow_log_max_aggregation_interval" requirement="optional" type="number">
+<HclListItemDescription>
+
+The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record. Valid values: 60 seconds (1 minute) or 600 seconds (10 minutes).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="600"/>
 </HclListItem>
 
 <HclListItem name="iam_role_permissions_boundary" requirement="optional" type="string">
@@ -864,6 +937,15 @@ A map of tags to apply to the public Subnet, on top of the custom_tags. The key 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="s3_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="subnet_spacing" requirement="optional" type="number">
@@ -1010,6 +1092,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/modules/networking/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "fc01d3094eb00e8bab0856705ae8578a"
+  "hash": "01d152f26fd096b24586e01903a2eff2"
 }
 ##DOCS-SOURCER-END -->
