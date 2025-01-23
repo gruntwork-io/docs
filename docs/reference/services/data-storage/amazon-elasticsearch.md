@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.118.8" lastModifiedVersion="0.95.1"/>
+<VersionBadge version="0.118.10" lastModifiedVersion="0.95.1"/>
 
 # Amazon Elasticsearch Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.8/modules/data-stores/elasticsearch" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/modules/data-stores/elasticsearch" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Felasticsearch" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -63,7 +63,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.8/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -76,7 +76,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.8/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -101,7 +101,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "elasticsearch" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/elasticsearch?ref=v0.118.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/elasticsearch?ref=v0.118.10"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -175,101 +175,6 @@ module "elasticsearch" {
   # Number of Availability Zones for the domain to use with
   # var.zone_awareness_enabled. Defaults to 2. Valid values: 2 or 3.
   availability_zone_count = 2
-
-  # ARN of the Cloudwatch log group to which log needs to be published.
-  cloudwatch_log_group_arn = null
-
-  # The period, in seconds, over which to measure the CPU utilization percentage
-  cluster_high_cpu_utilization_period = 60
-
-  # Trigger an alarm if the Elasticsearch cluster has a CPU utilization
-  # percentage above this threshold
-  cluster_high_cpu_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  cluster_high_cpu_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the JVM heap usage percentage
-  cluster_high_jvm_memory_pressure_period = 60
-
-  # Trigger an alarm if the JVM heap usage percentage goes above this threshold
-  cluster_high_jvm_memory_pressure_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  cluster_high_jvm_memory_pressure_treat_missing_data = "missing"
-
-  # The maximum amount of time, in seconds, that ClusterIndexWritesBlocked can
-  # be in red status before triggering an alarm
-  cluster_index_writes_blocked_period = 300
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  cluster_index_writes_blocked_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the CPU credit balance
-  cluster_low_cpu_credit_balance_period = 60
-
-  # Trigger an alarm if the CPU credit balance drops below this threshold. Only
-  # used if var.instance_type is t2.xxx.
-  cluster_low_cpu_credit_balance_threshold = 10
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  cluster_low_cpu_credit_balance_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the available free storage
-  # space
-  cluster_low_free_storage_space_period = 60
-
-  # Trigger an alarm if the amount of free storage space, in Megabytes, on the
-  # Elasticsearch cluster drops below this threshold
-  cluster_low_free_storage_space_threshold = 1024
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  cluster_low_free_storage_space_treat_missing_data = "missing"
-
-  # The maximum amount of time, in seconds, during with the
-  # AutomatedSnapshotFailure can be in red status before triggering an alarm
-  cluster_snapshot_period = 60
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  cluster_snapshot_treat_missing_data = "missing"
-
-  # The maximum amount of time, in seconds, during which the cluster can be in
-  # red status before triggering an alarm
-  cluster_status_red_period = 300
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  cluster_status_red_treat_missing_data = "missing"
-
-  # The maximum amount of time, in seconds, during which the cluster can be in
-  # yellow status before triggering an alarm
-  cluster_status_yellow_period = 300
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  cluster_status_yellow_treat_missing_data = "missing"
 
   # Whether or not the Service Linked Role for Elasticsearch should be created
   # within this module. Normally the service linked role is created
@@ -352,57 +257,6 @@ module "elasticsearch" {
   # Whether the cluster is publicly accessible.
   is_public = false
 
-  # The maximum amount of time, in seconds, that KMSKeyError can be in red
-  # status before triggering an alarm
-  kms_key_error_period = 60
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  kms_key_error_treat_missing_data = "missing"
-
-  # The maximum amount of time, in seconds, that KMSKeyInaccessible can be in
-  # red status before triggering an alarm
-  kms_key_inaccessible_period = 60
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  kms_key_inaccessible_treat_missing_data = "missing"
-
-  # Type of Elasticsearch log.
-  log_type = null
-
-  # The period, in seconds, over which to measure the master nodes' CPU
-  # utilization
-  master_cpu_utilization_period = 900
-
-  # Trigger an alarm if the Elasticsearch cluster master nodes have a CPU
-  # utilization percentage above this threshold
-  master_cpu_utilization_threshold = 50
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  master_cpu_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the master nodes' JVM memory
-  # pressure
-  master_jvm_memory_pressure_period = 900
-
-  # Trigger an alarm if the Elasticsearch cluster master nodes have a JVM memory
-  # pressure percentage above this threshold
-  master_jvm_memory_pressure_threshold = 80
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  master_jvm_memory_pressure_treat_missing_data = "missing"
-
   # ARN of the master user. Only used if advanced_security_options and
   # internal_user_database_enabled are set to true.
   master_user_arn = null
@@ -415,22 +269,6 @@ module "elasticsearch" {
   # internal_user_database_enabled are set to true. WARNING: this password will
   # be stored in Terraform state.
   master_user_password = null # SENSITIVE
-
-  # Whether to monitor KMS key statistics
-  monitor_kms_key = false
-
-  # Whether to monitor master node statistics
-  monitor_master_nodes = false
-
-  # The period, in seconds, over which to measure the master nodes' CPU
-  # utilization
-  node_count_period = 86400
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  node_count_treat_missing_data = "missing"
 
   #  List of VPC Subnet IDs for the Elasticsearch domain endpoints to be created
   # in. If var.zone_awareness_enabled is true, the first 2 or 3 provided subnet
@@ -475,7 +313,7 @@ module "elasticsearch" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/elasticsearch?ref=v0.118.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/elasticsearch?ref=v0.118.10"
 }
 
 inputs = {
@@ -553,101 +391,6 @@ inputs = {
   # var.zone_awareness_enabled. Defaults to 2. Valid values: 2 or 3.
   availability_zone_count = 2
 
-  # ARN of the Cloudwatch log group to which log needs to be published.
-  cloudwatch_log_group_arn = null
-
-  # The period, in seconds, over which to measure the CPU utilization percentage
-  cluster_high_cpu_utilization_period = 60
-
-  # Trigger an alarm if the Elasticsearch cluster has a CPU utilization
-  # percentage above this threshold
-  cluster_high_cpu_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  cluster_high_cpu_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the JVM heap usage percentage
-  cluster_high_jvm_memory_pressure_period = 60
-
-  # Trigger an alarm if the JVM heap usage percentage goes above this threshold
-  cluster_high_jvm_memory_pressure_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  cluster_high_jvm_memory_pressure_treat_missing_data = "missing"
-
-  # The maximum amount of time, in seconds, that ClusterIndexWritesBlocked can
-  # be in red status before triggering an alarm
-  cluster_index_writes_blocked_period = 300
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  cluster_index_writes_blocked_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the CPU credit balance
-  cluster_low_cpu_credit_balance_period = 60
-
-  # Trigger an alarm if the CPU credit balance drops below this threshold. Only
-  # used if var.instance_type is t2.xxx.
-  cluster_low_cpu_credit_balance_threshold = 10
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  cluster_low_cpu_credit_balance_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the available free storage
-  # space
-  cluster_low_free_storage_space_period = 60
-
-  # Trigger an alarm if the amount of free storage space, in Megabytes, on the
-  # Elasticsearch cluster drops below this threshold
-  cluster_low_free_storage_space_threshold = 1024
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  cluster_low_free_storage_space_treat_missing_data = "missing"
-
-  # The maximum amount of time, in seconds, during with the
-  # AutomatedSnapshotFailure can be in red status before triggering an alarm
-  cluster_snapshot_period = 60
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  cluster_snapshot_treat_missing_data = "missing"
-
-  # The maximum amount of time, in seconds, during which the cluster can be in
-  # red status before triggering an alarm
-  cluster_status_red_period = 300
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  cluster_status_red_treat_missing_data = "missing"
-
-  # The maximum amount of time, in seconds, during which the cluster can be in
-  # yellow status before triggering an alarm
-  cluster_status_yellow_period = 300
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  cluster_status_yellow_treat_missing_data = "missing"
-
   # Whether or not the Service Linked Role for Elasticsearch should be created
   # within this module. Normally the service linked role is created
   # automatically by AWS when creating the Elasticsearch domain in the web
@@ -729,57 +472,6 @@ inputs = {
   # Whether the cluster is publicly accessible.
   is_public = false
 
-  # The maximum amount of time, in seconds, that KMSKeyError can be in red
-  # status before triggering an alarm
-  kms_key_error_period = 60
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  kms_key_error_treat_missing_data = "missing"
-
-  # The maximum amount of time, in seconds, that KMSKeyInaccessible can be in
-  # red status before triggering an alarm
-  kms_key_inaccessible_period = 60
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  kms_key_inaccessible_treat_missing_data = "missing"
-
-  # Type of Elasticsearch log.
-  log_type = null
-
-  # The period, in seconds, over which to measure the master nodes' CPU
-  # utilization
-  master_cpu_utilization_period = 900
-
-  # Trigger an alarm if the Elasticsearch cluster master nodes have a CPU
-  # utilization percentage above this threshold
-  master_cpu_utilization_threshold = 50
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  master_cpu_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the master nodes' JVM memory
-  # pressure
-  master_jvm_memory_pressure_period = 900
-
-  # Trigger an alarm if the Elasticsearch cluster master nodes have a JVM memory
-  # pressure percentage above this threshold
-  master_jvm_memory_pressure_threshold = 80
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  master_jvm_memory_pressure_treat_missing_data = "missing"
-
   # ARN of the master user. Only used if advanced_security_options and
   # internal_user_database_enabled are set to true.
   master_user_arn = null
@@ -792,22 +484,6 @@ inputs = {
   # internal_user_database_enabled are set to true. WARNING: this password will
   # be stored in Terraform state.
   master_user_password = null # SENSITIVE
-
-  # Whether to monitor KMS key statistics
-  monitor_kms_key = false
-
-  # Whether to monitor master node statistics
-  monitor_master_nodes = false
-
-  # The period, in seconds, over which to measure the master nodes' CPU
-  # utilization
-  node_count_period = 86400
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  node_count_treat_missing_data = "missing"
 
   #  List of VPC Subnet IDs for the Elasticsearch domain endpoints to be created
   # in. If var.zone_awareness_enabled is true, the first 2 or 3 provided subnet
@@ -968,195 +644,6 @@ Number of Availability Zones for the domain to use with <a href="#zone_awareness
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="2"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-ARN of the Cloudwatch log group to which log needs to be published.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_high_cpu_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the CPU utilization percentage
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="cluster_high_cpu_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the Elasticsearch cluster has a CPU utilization percentage above this threshold
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="cluster_high_cpu_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="cluster_high_jvm_memory_pressure_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the JVM heap usage percentage
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="cluster_high_jvm_memory_pressure_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the JVM heap usage percentage goes above this threshold
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="cluster_high_jvm_memory_pressure_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="cluster_index_writes_blocked_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The maximum amount of time, in seconds, that ClusterIndexWritesBlocked can be in red status before triggering an alarm
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="300"/>
-</HclListItem>
-
-<HclListItem name="cluster_index_writes_blocked_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="cluster_low_cpu_credit_balance_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the CPU credit balance
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="cluster_low_cpu_credit_balance_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the CPU credit balance drops below this threshold. Only used if <a href="#instance_type"><code>instance_type</code></a> is t2.xxx.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="10"/>
-</HclListItem>
-
-<HclListItem name="cluster_low_cpu_credit_balance_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="cluster_low_free_storage_space_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the available free storage space
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="cluster_low_free_storage_space_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the amount of free storage space, in Megabytes, on the Elasticsearch cluster drops below this threshold
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="1024"/>
-</HclListItem>
-
-<HclListItem name="cluster_low_free_storage_space_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="cluster_snapshot_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The maximum amount of time, in seconds, during with the AutomatedSnapshotFailure can be in red status before triggering an alarm
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="cluster_snapshot_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="cluster_status_red_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The maximum amount of time, in seconds, during which the cluster can be in red status before triggering an alarm
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="300"/>
-</HclListItem>
-
-<HclListItem name="cluster_status_red_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="cluster_status_yellow_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The maximum amount of time, in seconds, during which the cluster can be in yellow status before triggering an alarm
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="300"/>
-</HclListItem>
-
-<HclListItem name="cluster_status_yellow_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="create_service_linked_role" requirement="optional" type="bool">
@@ -1323,105 +810,6 @@ Whether the cluster is publicly accessible.
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="kms_key_error_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The maximum amount of time, in seconds, that KMSKeyError can be in red status before triggering an alarm
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="kms_key_error_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="kms_key_inaccessible_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The maximum amount of time, in seconds, that KMSKeyInaccessible can be in red status before triggering an alarm
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="kms_key_inaccessible_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="log_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-Type of Elasticsearch log.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="master_cpu_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the master nodes' CPU utilization
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="900"/>
-</HclListItem>
-
-<HclListItem name="master_cpu_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the Elasticsearch cluster master nodes have a CPU utilization percentage above this threshold
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="50"/>
-</HclListItem>
-
-<HclListItem name="master_cpu_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="master_jvm_memory_pressure_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the master nodes' JVM memory pressure
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="900"/>
-</HclListItem>
-
-<HclListItem name="master_jvm_memory_pressure_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the Elasticsearch cluster master nodes have a JVM memory pressure percentage above this threshold
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="80"/>
-</HclListItem>
-
-<HclListItem name="master_jvm_memory_pressure_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="master_user_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1447,42 +835,6 @@ Master account user password. Only used if advanced_security_options and interna
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="monitor_kms_key" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether to monitor KMS key statistics
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="monitor_master_nodes" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether to monitor master node statistics
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="node_count_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the master nodes' CPU utilization
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="86400"/>
-</HclListItem>
-
-<HclListItem name="node_count_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="subnet_ids" requirement="optional" type="list(string)">
@@ -1578,11 +930,11 @@ Domain-specific endpoint for Kibana without https scheme.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.8/modules/data-stores/elasticsearch/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.8/modules/data-stores/elasticsearch/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.8/modules/data-stores/elasticsearch/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/modules/data-stores/elasticsearch/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/modules/data-stores/elasticsearch/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/modules/data-stores/elasticsearch/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "af08ab7dd044633dffec09a9c8e0fd64"
+  "hash": "0147ae49182993b88d0e48a303e7661c"
 }
 ##DOCS-SOURCER-END -->

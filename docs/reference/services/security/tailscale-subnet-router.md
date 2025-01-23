@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.118.8" lastModifiedVersion="0.95.1"/>
+<VersionBadge version="0.118.10" lastModifiedVersion="0.95.1"/>
 
 # Tailscale Subnet Router
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.8/modules/mgmt/tailscale-subnet-router" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/modules/mgmt/tailscale-subnet-router" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Ftailscale-subnet-router" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -77,7 +77,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.8/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -94,21 +94,18 @@ access services within your VPC through the tailnet.
 
 ### What AMI should I use?
 
-Any AMI can be used with this module, provided that the [install-tailscale](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.8/modules/mgmt/tailscale-subnet-router/scripts/install-tailscale.sh) script is installed
+Any AMI can be used with this module, provided that the [install-tailscale](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/modules/mgmt/tailscale-subnet-router/scripts/install-tailscale.sh) script is installed
 into the AMI. The `install-tailscale` script ensures that Tailscale is installed with the `init-tailscale-subnet-router` boot
 script, which can be used to load the auth key from AWS Secrets Manager to authenticate to Tailscale at boot time.
 
 ### How do I authenticate the server to Tailscale?
 
 This module expects the server to authenticate to Tailscale using [an auth
-key](https://tailscale.com/kb/1085/auth-keys/) that is stored in AWS Secrets Manager. When creating the Secrets Manager secret first select the `Other type of secret` option, then select the `Plaintext` tab, and finally input your Tailscale auth key.
-
-The auth key must be **Reusable** to allow the server to automatically rejoin the network when recovering from a failure.
+key](https://tailscale.com/kb/1085/auth-keys/) that is stored in AWS Secrets Manager. The auth key must be **Reusable**
+to allow the server to automatically rejoin the network when recovering from a failure.
 
 We also recommend using a unique auth key for each subnet router instance, and to tag each key so that you can
 differentiate between the different VPC networks in your [Tailscale ACL rules](https://tailscale.com/kb/1018/acls/).
-
-You can specify the ACL tags your server will advertise by using the [tailscale_advertise_tags](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/e865799422cf334940a3a01c52d84f0377f494c6/modules/mgmt/tailscale-subnet-router/variables.tf#L71) variable, which will grant access to the server automatically based on tag-based ACLs in Tailscale. For more information see [Server role account using ACL tags](https://tailscale.com/kb/1068/acl-tags/).
 
 ### How do I add IAM policies to the Tailscale subnet router IAM role?
 
@@ -150,7 +147,7 @@ resource "aws_iam_role_policy_attachment" "attachment" {
 
 module "tailscale_subnet_router" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/tailscale-subnet-router?ref=v0.118.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/tailscale-subnet-router?ref=v0.118.10"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -282,48 +279,6 @@ module "tailscale_subnet_router" {
   # use null, or Terraform will complain).
   external_account_ssh_grunt_role_arn = ""
 
-  # The period, in seconds, over which to measure the CPU utilization percentage
-  # for the ASG.
-  high_asg_cpu_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster CPU utilization
-  # percentage above this threshold.
-  high_asg_cpu_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_asg_cpu_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the root disk utilization
-  # percentage for the ASG.
-  high_asg_disk_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster root disk utilization
-  # percentage above this threshold.
-  high_asg_disk_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_asg_disk_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the Memory utilization
-  # percentage for the ASG.
-  high_asg_memory_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster Memory utilization
-  # percentage above this threshold.
-  high_asg_memory_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_asg_memory_utilization_treat_missing_data = "missing"
-
   # The type of EC2 instance to run (e.g. t2.micro)
   instance_type = "t3.nano"
 
@@ -360,15 +315,11 @@ module "tailscale_subnet_router" {
   # var.name input value.
   tailnet_hostname = null
 
-  # Advertise tags for Tailscale subnet router. These are used on the 'up'
-  # command to control ACLs in Tailscale.
-  tailscale_advertise_tags = []
-
   # Set this variable to true to enable the use of Instance Metadata Service
-  # Version 1 in this module's aws_launch_template. Note that while IMDsv2 is
-  # preferred due to its special security hardening, we allow this in order to
-  # support the use case of AMIs built outside of these modules that depend on
-  # IMDSv1.
+  # Version 1 in this module's aws_launch_configuration. Note that while IMDsv2
+  # is preferred due to its special security hardening, we allow this in order
+  # to support the use case of AMIs built outside of these modules that depend
+  # on IMDSv1.
   use_imdsv1 = false
 
 }
@@ -386,7 +337,7 @@ module "tailscale_subnet_router" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/tailscale-subnet-router?ref=v0.118.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/tailscale-subnet-router?ref=v0.118.10"
 }
 
 inputs = {
@@ -521,48 +472,6 @@ inputs = {
   # use null, or Terraform will complain).
   external_account_ssh_grunt_role_arn = ""
 
-  # The period, in seconds, over which to measure the CPU utilization percentage
-  # for the ASG.
-  high_asg_cpu_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster CPU utilization
-  # percentage above this threshold.
-  high_asg_cpu_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_asg_cpu_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the root disk utilization
-  # percentage for the ASG.
-  high_asg_disk_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster root disk utilization
-  # percentage above this threshold.
-  high_asg_disk_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_asg_disk_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the Memory utilization
-  # percentage for the ASG.
-  high_asg_memory_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster Memory utilization
-  # percentage above this threshold.
-  high_asg_memory_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_asg_memory_utilization_treat_missing_data = "missing"
-
   # The type of EC2 instance to run (e.g. t2.micro)
   instance_type = "t3.nano"
 
@@ -599,15 +508,11 @@ inputs = {
   # var.name input value.
   tailnet_hostname = null
 
-  # Advertise tags for Tailscale subnet router. These are used on the 'up'
-  # command to control ACLs in Tailscale.
-  tailscale_advertise_tags = []
-
   # Set this variable to true to enable the use of Instance Metadata Service
-  # Version 1 in this module's aws_launch_template. Note that while IMDsv2 is
-  # preferred due to its special security hardening, we allow this in order to
-  # support the use case of AMIs built outside of these modules that depend on
-  # IMDSv1.
+  # Version 1 in this module's aws_launch_configuration. Note that while IMDsv2
+  # is preferred due to its special security hardening, we allow this in order
+  # to support the use case of AMIs built outside of these modules that depend
+  # on IMDSv1.
   use_imdsv1 = false
 
 }
@@ -874,87 +779,6 @@ If you are using ssh-grunt and your IAM users / groups are defined in a separate
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
-<HclListItem name="high_asg_cpu_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the CPU utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_cpu_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster CPU utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_cpu_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the root disk utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster root disk utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the Memory utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster Memory utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="instance_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1027,19 +851,10 @@ Advertised hostname of the server on the tailnet. If null, defaults to the <a hr
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="tailscale_advertise_tags" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Advertise tags for Tailscale subnet router. These are used on the 'up' command to control ACLs in Tailscale.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
 <HclListItem name="use_imdsv1" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
+Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_configuration. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -1094,11 +909,11 @@ ID of the primary security group attached to the Tailscale relay server.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.8/modules/mgmt/tailscale-subnet-router/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.8/modules/mgmt/tailscale-subnet-router/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.8/modules/mgmt/tailscale-subnet-router/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/modules/mgmt/tailscale-subnet-router/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/modules/mgmt/tailscale-subnet-router/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/modules/mgmt/tailscale-subnet-router/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "0591cdf22964787435b860a49cd56cf0"
+  "hash": "8da05b0c2e090e22788165e0464e531b"
 }
 ##DOCS-SOURCER-END -->
